@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Runtime.InteropServices;
+using System.Runtime.CompilerServices;
 
 namespace Skybound.Gecko
 {
@@ -15,33 +16,89 @@ namespace Skybound.Gecko
 		interface nsIChannel : nsIRequest
 		{
 			// nsIRequest:
-			new void GetName(nsACString aName);
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+			new void GetName([MarshalAs(UnmanagedType.LPStruct)]nsACString aName);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			new bool IsPending();
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			new int GetStatus();
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			new void Cancel(int aStatus);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			new void Suspend();
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			new void Resume();
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			new IntPtr GetLoadGroup(); // nsILoadGroup
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			new void SetLoadGroup(IntPtr aLoadGroup);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			new int GetLoadFlags();
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			new void SetLoadFlags(int aLoadFlags);
 			
 			// nsIChannel:
+			
+			[return: MarshalAs(UnmanagedType.Interface)] 
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			nsIURI GetOriginalURI();
-			void SetOriginalURI(nsIURI aOriginalURI);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+			void SetOriginalURI([MarshalAs(UnmanagedType.Interface)] nsIURI aOriginalURI);
+			
+			[return: MarshalAs(UnmanagedType.Interface)] 
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			nsIURI GetURI();
+			
+			[return: MarshalAs(UnmanagedType.Interface)] 
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			nsISupports GetOwner();
-			void SetOwner(nsISupports aOwner);
+						
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+			void SetOwner([MarshalAs(UnmanagedType.Interface)] nsISupports aOwner);
+			
+			[return: MarshalAs(UnmanagedType.Interface)] 
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			nsIInterfaceRequestor GetNotificationCallbacks();
+						
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			void SetNotificationCallbacks(nsIInterfaceRequestor aNotificationCallbacks);
+			
+			[return: MarshalAs(UnmanagedType.Interface)] 
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			nsISupports GetSecurityInfo();
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			void GetContentType(nsACString aContentType);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			void SetContentType(nsACString aContentType);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			void GetContentCharset(nsACString aContentCharset);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			void SetContentCharset(nsACString aContentCharset);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			int GetContentLength();
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			void SetContentLength(int aContentLength);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			IntPtr Open(); // nsIInputStream
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			void AsyncOpen(IntPtr aListener, nsISupports aContext); // aListener=nsIStreamListener
 		}
 		
@@ -49,61 +106,149 @@ namespace Skybound.Gecko
 		interface nsIHttpChannel : nsIChannel
 		{
 			// nsIRequest:
-			new void GetName(nsACString aName);
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+			new void GetName([MarshalAs(UnmanagedType.LPStruct)]nsACString aName);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			new bool IsPending();
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			new int GetStatus();
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			new void Cancel(int aStatus);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			new void Suspend();
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			new void Resume();
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			new IntPtr GetLoadGroup(); // nsILoadGroup
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			new void SetLoadGroup(IntPtr aLoadGroup);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			new int GetLoadFlags();
-			new void SetLoadFlags(int aLoadFlags);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+			new void SetLoadFlags(int aLoadFlags);			
 			
 			// nsIChannel:
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			new nsIURI GetOriginalURI();
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			new void SetOriginalURI(nsIURI aOriginalURI);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			new nsIURI GetURI();
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			new nsISupports GetOwner();
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			new void SetOwner(nsISupports aOwner);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			new nsIInterfaceRequestor GetNotificationCallbacks();
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			new void SetNotificationCallbacks(nsIInterfaceRequestor aNotificationCallbacks);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			new nsISupports GetSecurityInfo();
-			new void GetContentType(nsACString aContentType);
-			new void SetContentType(nsACString aContentType);
-			new void GetContentCharset(nsACString aContentCharset);
-			new void SetContentCharset(nsACString aContentCharset);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+			new void GetContentType([MarshalAs(UnmanagedType.LPStruct)]nsACString aContentType);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+			new void SetContentType([MarshalAs(UnmanagedType.LPStruct)]nsACString aContentType);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+			new void GetContentCharset([MarshalAs(UnmanagedType.LPStruct)]nsACString aContentCharset);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+			new void SetContentCharset([MarshalAs(UnmanagedType.LPStruct)]nsACString aContentCharset);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			new int GetContentLength();
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			new void SetContentLength(int aContentLength);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			new IntPtr Open(); // nsIInputStream
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			new void AsyncOpen(IntPtr aListener, nsISupports aContext); // aListener=nsIStreamListener
 
 			// nsIHttpChannel:
-			void GetRequestMethod(nsACString aRequestMethod);
-			void SetRequestMethod(nsACString aRequestMethod);
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+			void GetRequestMethod([MarshalAs(UnmanagedType.LPStruct)]nsACString aRequestMethod);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+			void SetRequestMethod([MarshalAs(UnmanagedType.LPStruct)]nsACString aRequestMethod);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			nsIURI GetReferrer();
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			void SetReferrer(nsIURI aReferrer);
-			void GetRequestHeader(nsACString aHeader, nsACString _retval);
-			void SetRequestHeader(nsACString aHeader, nsACString aValue, bool aMerge);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+			void GetRequestHeader([MarshalAs(UnmanagedType.LPStruct)]nsACString aHeader, [MarshalAs(UnmanagedType.LPStruct)]nsACString _retval);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+			void SetRequestHeader([MarshalAs(UnmanagedType.LPStruct)]nsACString aHeader, [MarshalAs(UnmanagedType.LPStruct)]nsACString aValue, bool aMerge);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			void VisitRequestHeaders(IntPtr aVisitor); // nsIHttpHeaderVisitor
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			bool GetAllowPipelining();
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			void SetAllowPipelining(bool aAllowPipelining);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			uint GetRedirectionLimit();
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			void SetRedirectionLimit(uint aRedirectionLimit);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			int GetResponseStatus();
-			void GetResponseStatusText(nsACString aResponseStatusText);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+			void GetResponseStatusText([MarshalAs(UnmanagedType.LPStruct)]nsACString aResponseStatusText);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			bool GetRequestSucceeded();
-			void GetResponseHeader(nsACString header, nsACString _retval);
-			void SetResponseHeader(nsACString header, nsACString value, bool merge);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+			void GetResponseHeader([MarshalAs(UnmanagedType.LPStruct)]nsACString header, [MarshalAs(UnmanagedType.LPStruct)]nsACString _retval);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+			void SetResponseHeader([MarshalAs(UnmanagedType.LPStruct)]nsACString header, [MarshalAs(UnmanagedType.LPStruct)]nsACString value, bool merge);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			void VisitResponseHeaders(IntPtr aVisitor); // nsIHttpHeaderVisitor
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			bool IsNoStoreResponse();
-			bool IsNoCacheResponse();
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+			bool IsNoCacheResponse();			
 		}
 		
 		[Guid("0cf40717-d7c1-4a94-8c1e-d6c9734101bb"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 		interface nsIHttpHeaderVisitor
 		{
-			void VisitHeader(nsACString aHeader, nsACString aValue);
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+			void VisitHeader([MarshalAs(UnmanagedType.LPStruct)]nsACString aHeader, [MarshalAs(UnmanagedType.LPStruct)]nsACString aValue);
 		}
 		
 		#endregion

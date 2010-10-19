@@ -110,10 +110,15 @@ namespace Skybound.Gecko
 			}
 		}
 	}
-	
-	[StructLayout(LayoutKind.Explicit, Size=16)]
+
+	// TODO: see common on class nsAString
+	[StructLayout(LayoutKind.Sequential)]
 	public class nsAUTF8String : IDisposable
 	{
+		IntPtr mData;
+		int mLength;
+		int mFlags;
+		
 		[DllImport("xpcom", CharSet = CharSet.Ansi)]
 		static extern int NS_CStringContainerInit(nsAUTF8String container);
 		
@@ -172,9 +177,15 @@ namespace Skybound.Gecko
 		}
 	}
 	
-	[StructLayout(LayoutKind.Explicit, Size=16)]
+
+	// TODO: see common on class nsAString
+	[StructLayout(LayoutKind.Sequential)]
 	public class nsACString : IDisposable
 	{
+		IntPtr mData;
+		int mLength;
+		int mFlags;
+		
 		[DllImport("xpcom", CharSet = CharSet.Ansi)]
 		static extern int NS_CStringContainerInit(nsACString container);
 		
@@ -229,9 +240,17 @@ namespace Skybound.Gecko
 		}
 	}
 	
-	[StructLayout(LayoutKind.Explicit, Size=16)]
+	// TODO: internal nsAString is implementation dependant.
+	// This works for now - write some unit tests to ensure we at least notice if it breaks.
+	// On 32 bit Linux systems it will be 12 bytes
+	// On 64 bit Linux Systems it will be 16 bytes.
+	[StructLayout(LayoutKind.Sequential)]
 	public class nsAString : IDisposable
-	{
+	{	
+		IntPtr mData;
+		int mLength;
+		int mFlags;
+		
 		[DllImport("xpcom", CharSet = CharSet.Unicode)]
 		static extern int NS_StringContainerInit(nsAString container);
 		

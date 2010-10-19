@@ -35,6 +35,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.CompilerServices;
 
 namespace Skybound.Gecko
 {
@@ -49,9 +50,16 @@ namespace Skybound.Gecko
 		[Guid("c67d8270-3189-11d3-9885-006008962422"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 		interface nsIJSContextStack
 		{
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			int GetCount();
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			IntPtr Peek();
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			IntPtr Pop();
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			void Push(IntPtr cx);
 		}
 		
@@ -59,41 +67,102 @@ namespace Skybound.Gecko
 		interface nsIScriptSecurityManager
 		{
 			// nsIXPCSecurityManager:
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			void CanCreateWrapper(out IntPtr aJSContext, ref Guid aIID, nsISupports aObj, IntPtr aClassInfo, IntPtr aPolicy); // aClassInfo=nsIClassInfo
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			void CanCreateInstance(out IntPtr aJSContext, ref Guid aCID);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			void CanGetService(out IntPtr aJSContext, ref Guid aCID);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			void CanAccess(uint aAction, IntPtr aCallContext, out IntPtr aJSContext, out IntPtr aJSObject, nsISupports aObj, IntPtr aClassInfo, IntPtr aName, IntPtr aPolicy); // aCallContext=nsIXPCNativeCallContext
 			
 
 			// nsIScriptSecurityManager:
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			void CheckPropertyAccess(out IntPtr aJSContext, out IntPtr aJSObject, [MarshalAs(UnmanagedType.LPStr)] string aClassName, IntPtr aProperty, uint aAction); // aProperty=jsval
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			void CheckConnect(out IntPtr aJSContext, nsIURI aTargetURI, [MarshalAs(UnmanagedType.LPStr)] string aClassName, [MarshalAs(UnmanagedType.LPStr)] string aProperty);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			void CheckLoadURIFromScript(out IntPtr cx, nsIURI uri);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			void CheckLoadURIWithPrincipal(nsIPrincipal aPrincipal, nsIURI uri, uint flags);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			void CheckLoadURI(nsIURI from, nsIURI uri, uint flags);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			void CheckLoadURIStrWithPrincipal(nsIPrincipal aPrincipal, nsACString uri, uint flags);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			void CheckLoadURIStr(nsACString from, nsACString uri, uint flags);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			void CheckFunctionAccess(out IntPtr cx, out IntPtr funObj, IntPtr targetObj);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			bool CanExecuteScripts(out IntPtr cx, nsIPrincipal principal);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			nsIPrincipal GetSubjectPrincipal();
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			nsIPrincipal GetSystemPrincipal();
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			nsIPrincipal GetCertificatePrincipal(nsACString aCertFingerprint, nsACString aSubjectName, nsACString aPrettyName, nsISupports aCert, nsIURI aURI);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			nsIPrincipal GetCodebasePrincipal(nsIURI aURI);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			short RequestCapability(nsIPrincipal principal, [MarshalAs(UnmanagedType.LPStr)] string capability);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			bool IsCapabilityEnabled([MarshalAs(UnmanagedType.LPStr)] string capability);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			void EnableCapability([MarshalAs(UnmanagedType.LPStr)] string capability);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			void RevertCapability([MarshalAs(UnmanagedType.LPStr)] string capability);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			void DisableCapability([MarshalAs(UnmanagedType.LPStr)] string capability);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			void SetCanEnableCapability(nsACString certificateFingerprint, [MarshalAs(UnmanagedType.LPStr)] string capability, short canEnable);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			nsIPrincipal GetObjectPrincipal(out IntPtr cx, out IntPtr aJSObject);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			bool SubjectPrincipalIsSystem();
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			void CheckSameOrigin(out IntPtr aJSContext, nsIURI aTargetURI);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			void CheckSameOriginURI(nsIURI aSourceURI, nsIURI aTargetURI, bool reportError);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			nsIPrincipal GetPrincipalFromContext(out IntPtr cx);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			nsIPrincipal GetChannelPrincipal(IntPtr aChannel); // nsIChannel
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			bool IsSystemPrincipal(nsIPrincipal aPrincipal);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			nsIPrincipal GetCxSubjectPrincipal(IntPtr cx); // JSContext
 
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			nsIPrincipal getCxSubjectPrincipalAndFrame(IntPtr cx, out IntPtr fp);
 
 
@@ -105,38 +174,87 @@ namespace Skybound.Gecko
 		interface nsIPrincipal
 		{
 			// nsISerializable:
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			void Read(IntPtr aInputStream); // nsIObjectInputStream
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			void Write(IntPtr aOutputStream); // nsIObjectOutputStream
 			
 			// nsIPrincipal:
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			void GetPreferences(out string prefBranch, out string id, out string subjectName, out string grantedList, out string deniedList);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			bool Equals(nsIPrincipal other);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			uint GetHashValue();
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			IntPtr GetJSPrincipals(IntPtr aJSContext); // returns: JSPrincipals
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			IntPtr GetSecurityPolicy();
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			IntPtr SetSecurityPolicy();
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			short CanEnableCapability(out string capability);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			void SetCanEnableCapability(out string capability, short canEnable);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			bool IsCapabilityEnabled(out string capability, out IntPtr annotation);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			void EnableCapability(out string capability, IntPtr annotation);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			void RevertCapability(out string capability, IntPtr annotation);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			void DisableCapability(out string capability, IntPtr annotation);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			nsIURI GetURI();
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			nsIURI GetDomain();
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			void SetDomain(nsIURI aDomain);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			[return: MarshalAs(UnmanagedType.LPStr)] string GetOrigin();
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			bool GetHasCertificate();
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			void GetFingerprint(nsACString aFingerprint);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			void GetPrettyName(nsACString aPrettyName);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			bool Subsumes(nsIPrincipal other);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			void GetSubjectName(nsACString aSubjectName);
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			nsISupports GetCertificate();
 		}
 		
 		[Guid("e7d09265-4c23-4028-b1b0-c99e02aa78f8"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 		interface nsIJSRuntimeService
 		{
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			IntPtr GetRuntime();
+			
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			IntPtr GetBackstagePass(); // nsIXPCScriptable
 		}
 		

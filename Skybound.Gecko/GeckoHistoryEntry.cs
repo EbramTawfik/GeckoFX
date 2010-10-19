@@ -38,6 +38,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Runtime.Remoting.Proxies;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 
 namespace Skybound.Gecko
 {
@@ -47,23 +48,50 @@ namespace Skybound.Gecko
     [Guid("9883609f-cdd8-4d83-9b55-868ff08ad433"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     interface nsISHistory
     {
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
         int GetCount();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
         int GetIndex();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
         int GetRequestedIndex();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
         int GetMaxLength();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
         void SetMaxLength(int aMaxLength);
+		
+		[return: MarshalAs(UnmanagedType.Interface)] 
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
         nsIHistoryEntry GetEntryAtIndex(int index, bool modifyIndex);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
         void PurgeHistory(int numEntries);
-        void AddSHistoryListener(nsISHistoryListener aListener);
-        void RemoveSHistoryListener(nsISHistoryListener aListener);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+        void AddSHistoryListener([MarshalAs(UnmanagedType.Interface)] nsISHistoryListener aListener);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+        void RemoveSHistoryListener([MarshalAs(UnmanagedType.Interface)] nsISHistoryListener aListener);
+		
+		[return: MarshalAs(UnmanagedType.Interface)] 
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
         nsISimpleEnumerator GetSHistoryEnumerator();
     }
 	
 	[Guid("a41661d4-1417-11d5-9882-00c04fa02f40"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	interface nsIHistoryEntry
 	{
+		[return: MarshalAs(UnmanagedType.Interface)] 
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIURI GetURI();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		[PreserveSig] int GetTitle(out IntPtr aTitle);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsSubFrame();
 	}
 	
