@@ -48,16 +48,16 @@ namespace Skybound.Gecko
 	{
 		#region Native Methods
 		[DllImport("xpcom", CharSet = CharSet.Ansi)]
-		static extern int NS_InitXPCOM2(out IntPtr serviceManager, [MarshalAs(UnmanagedType.IUnknown)] object binDirectory, nsIDirectoryServiceProvider appFileLocationProvider);
+		static extern int NS_InitXPCOM2([MarshalAs(UnmanagedType.Interface)] out nsIServiceManager serviceManager, [MarshalAs(UnmanagedType.IUnknown)] object binDirectory, nsIDirectoryServiceProvider appFileLocationProvider);
 		
 		[DllImport("xpcom", CharSet = CharSet.Ansi)]
 		static extern int NS_NewNativeLocalFile(nsACString path, bool followLinks, [MarshalAs(UnmanagedType.IUnknown)] out object result);
 		
 		[DllImport("xpcom", CharSet = CharSet.Ansi)]
-		static extern int NS_GetComponentManager(out nsInterfaces componentManager);
+		static extern int NS_GetComponentManager([MarshalAs(UnmanagedType.Interface)] out nsInterfaces componentManager);
 		
 		[DllImport("xpcom", CharSet = CharSet.Ansi)]
-		static extern int NS_GetComponentRegistrar(out nsIComponentRegistrar componentRegistrar);
+		static extern int NS_GetComponentRegistrar([MarshalAs(UnmanagedType.Interface)] out nsIComponentRegistrar componentRegistrar);
 		
 		[DllImport("xpcom", EntryPoint="NS_Alloc")]
 		public static extern IntPtr Alloc(int size);
@@ -77,6 +77,11 @@ namespace Skybound.Gecko
 			Initialize(null);
 		}
 		
+		public static bool IsLinux()
+		{
+			return Environment.OSVersion.Platform == PlatformID.Unix;
+		}
+			
 		/// <summary>
 		/// Initializes XPCOM using the specified directory.
 		/// </summary>
@@ -87,7 +92,7 @@ namespace Skybound.Gecko
 				return;
 			
 			string folder = binDirectory ?? Environment.CurrentDirectory;
-			string xpcomPath = Path.Combine(folder, "xpcom.dll");
+			string xpcomPath = Path.Combine(folder, IsLinux()?"libxpcom.so":"xpcom.dll");
 			
 			if (Debugger.IsAttached)
 			{
@@ -126,7 +131,7 @@ namespace Skybound.Gecko
 			String oldCurrent = Environment.CurrentDirectory;
 			Environment.CurrentDirectory = folder;
 			
-			IntPtr serviceManagerPtr;
+			nsIServiceManager serviceManagerPtr;
 			//int res = NS_InitXPCOM2(out serviceManagerPtr, mreAppDir, new DirectoryServiceProvider());
 			int res = NS_InitXPCOM2(out serviceManagerPtr, mreAppDir, null);
 			
@@ -138,7 +143,7 @@ namespace Skybound.Gecko
 				throw new Exception("Failed on NS_InitXPCOM2");
 			}
 			
-			ServiceManager = (nsIServiceManager)Marshal.GetObjectForIUnknown(serviceManagerPtr);
+			ServiceManager = (nsIServiceManager)serviceManagerPtr;
 			
 			// get some global objects we will need later
 			NS_GetComponentManager(out ComponentManager);
@@ -148,7 +153,8 @@ namespace Skybound.Gecko
 			// crash when loading a site over HTTPS.  in order to work around this bug, we must register an nsIDirectoryServiceProvider
 			// which will provide the location of a profile
 			nsIDirectoryService directoryService = GetService<nsIDirectoryService>("@mozilla.org/file/directory_service;1");
-			directoryService.RegisterProvider(new ProfileProvider());
+			if (directoryService != null)
+				directoryService.RegisterProvider(new ProfileProvider());
 			
 			_IsInitialized = true;
 		}

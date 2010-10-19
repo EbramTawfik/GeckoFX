@@ -136,7 +136,14 @@ namespace Skybound.Gecko
 				//      if (treeItem19 != null)
 				//            treeItem19.SetItemType(type);
 				//}
+
+#if __MonoCS__
+				// On Linux InitWindow assumes a handle is a GDK Window
+				Gdk.Window gdkWindow = Gdk.Window.ForeignNewForDisplay(Gdk.Display.Default, (uint)this.Handle);
+				BaseWindow.InitWindow( gdkWindow.Handle, IntPtr.Zero, 0, 0, this.Width, this.Height);
+#else
 				BaseWindow.InitWindow(this.Handle, IntPtr.Zero, 0, 0, this.Width, this.Height);
+#endif
 				BaseWindow.Create();
 				
 				Guid nsIWebProgressListenerGUID = typeof(nsIWebProgressListener).GUID;
@@ -155,7 +162,8 @@ namespace Skybound.Gecko
 				target.AddEventListener(new nsAString("click"), this, true);
 				
 				// history
-				WebNav.GetSessionHistory().AddSHistoryListener(this);
+				if (WebNav.GetSessionHistory() != null)
+					WebNav.GetSessionHistory().AddSHistoryListener(this);
 				
 				BaseWindow.SetVisibility(true);
 				
@@ -313,6 +321,7 @@ namespace Skybound.Gecko
 					m.Result = (IntPtr)DLGC_WANTALLKEYS;
 					return;
 				}
+#if !__MonoCS__
 				else if (m.Msg == WM_MOUSEACTIVATE)
 				{
 					m.Result = (IntPtr)MA_ACTIVATE;
@@ -323,6 +332,9 @@ namespace Skybound.Gecko
 					}
 					return;
 				}
+#else				
+				// TODO FIXME
+#endif
 			}
 			
 			base.WndProc(ref m);
@@ -1052,7 +1064,9 @@ namespace Skybound.Gecko
 				if (WebNav == null)
 					return null;
 				
-				nsURI location = WebNav.GetCurrentURI();
+				IntPtr /*nsURI*/ IUnknownPtr =  WebNav.GetCurrentURI();
+				nsIURI locationComObject = (nsIURI)Marshal.GetObjectForIUnknown(IUnknownPtr); 
+				var location = new nsURI(locationComObject);
 				if (!location.IsNull)
 				{
 					Uri result;
@@ -1074,7 +1088,8 @@ namespace Skybound.Gecko
 				if (WebNav == null)
 					return null;
 				
-				nsIURI location = WebNav.GetReferringURI();
+				IntPtr /*nsIURI*/ IUnknownPtr =  WebNav.GetReferringURI();
+				nsIURI location = (nsIURI)Marshal.GetObjectForIUnknown(IUnknownPtr); 				
 				if (location != null)
 				{
 					return new Uri(nsString.Get(location.GetSpec));
@@ -1734,6 +1749,10 @@ namespace Skybound.Gecko
 			IntPtr ppv, pUnk = Marshal.GetIUnknownForObject(this);
 			
 			Marshal.QueryInterface(pUnk, ref uuid, out ppv);
+#if __MonoCS__
+			// TODO FIXME - remove this hack.
+			Marshal.AddRef(ppv);
+#endif
 			
 			Marshal.Release(pUnk);
 			

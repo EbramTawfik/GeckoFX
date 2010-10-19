@@ -243,12 +243,17 @@ namespace Skybound.Gecko
 		internal GeckoElement(nsIDOMHTMLElement element) : base(element)
 		{
 			this.DomElement = element;
+#if !__MonoCS__ // TODO FIXME: this case throws exception in mono.						
 			this.DomNSElement = (nsIDOMNSElement)element;
+#endif
 			this.DomNSHTMLElement = (nsIDOMNSHTMLElement)element;
 			
+#if !__MonoCS__ // TODO FIXME: ChangeWrapperHandleStrength not implemented in mono
 			// since a reference is stored in the base class, we only need weak references here
 			Marshal.ChangeWrapperHandleStrength(DomNSElement, true);
 			Marshal.ChangeWrapperHandleStrength(DomNSHTMLElement, true);
+#endif
+
 		}
 		
 		internal static GeckoElement Create(nsIDOMHTMLElement element)
