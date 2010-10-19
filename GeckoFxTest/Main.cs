@@ -4,6 +4,9 @@ using Skybound.Gecko;
 
 // You will need to run this with a new version of mono (2.8 or newer)
 // mono 2.6.3 can not handle this.
+// Run this with the following command:
+// LD_LIBRARY_PATH="/usr/lib/xulrunner-1.9.2.10/" mono GeckoFxTest.exe
+// requires gdk-sharp assembly in the gac (which is in package libgtk2.0-cil)
 namespace GeckoFxTest
 {
 	class MainClass
