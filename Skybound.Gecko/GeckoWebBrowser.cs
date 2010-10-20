@@ -44,12 +44,22 @@ using System.Reflection;
 using System.Diagnostics;
 using System.Text;
 
+
 namespace Skybound.Gecko
 {
+	public class MozContainer : Gtk.Window		
+	{
+		public MozContainer() : base("gtkmozembed")
+		{
+			
+		}
+		
+	}
+	
 	/// <summary>
 	/// A Gecko-based web browser.
 	/// </summary>
-	public partial class GeckoWebBrowser : Control,
+	public partial class GeckoWebBrowser : Panel /*Control*/,
 		nsIWebBrowserChrome,
 		nsIContextMenuListener2,
 		nsIWebProgressListener,
@@ -62,11 +72,48 @@ namespace Skybound.Gecko
 		nsITooltipListener
 		//nsIWindowProvider,
 	{
+		
+		[StructLayout (LayoutKind.Sequential) ]
+	    struct GTypeInfo {
+	      public ushort class_size;
+	      IntPtr base_init;
+	      IntPtr base_finalize;
+	      IntPtr class_init;
+	      IntPtr class_finalize;
+	      IntPtr class_data;
+	      public ushort instance_size;
+	      ushort n_preallocs;
+	      IntPtr instance_init;
+	      IntPtr value_table;
+	    }
+		
+		[DllImport ("libgobject-2.0.dll") ]
+    	static extern IntPtr g_type_register_static (IntPtr parent, IntPtr name, ref GTypeInfo info, int flags);
+		
 		/// <summary>
 		/// Initializes a new instance of <see cref="GeckoWebBrowser"/>.
 		/// </summary>
 		public GeckoWebBrowser()
 		{
+			dummyWidget = new Gtk.Window("gtkmozembed"); //new MozContainer();
+#if false
+			// is g_type_register_static the same as: GLib.GType.Register(new GLib.GType(new IntPtr(31747264)), typeof(MozContainer));			
+			IntPtr mozContainerTypeName = Marshal.StringToHGlobalAnsi("MozContainer");
+			GTypeInfo info = new GTypeInfo();			
+			info.class_size = 824; // TODO FIXME: this isn't very maintainable and may not be right for 32bit.
+			info.instance_size = 120; // TODO FIXME: this isn't very maintainable and may not be right for 32bit.			
+			IntPtr type = g_type_register_static(Gtk.Container.GType.Val, mozContainerTypeName, ref info, 0);
+			GLib.GType.Register(new GLib.GType(type), typeof(MozContainer));
+			Console.WriteLine("type = {0}", type.ToInt32());
+			dummyWidget.Name = "gtkmozembed";
+#endif
+						                   
+			m_wrapper = new GtkDotNet.GtkWrapper((Gtk.Window gtkWindow, out Gtk.Widget widget) =>
+			{				
+				widget = dummyWidget;
+				dummyWidget.Show();
+				gtkWindow.Show();
+			}, this);
 		}
 		
 		//static Dictionary<nsIDOMDocument, GeckoWebBrowser> FromDOMDocumentTable = new Dictionary<nsIDOMDocument,GeckoWebBrowser>();
@@ -80,6 +127,8 @@ namespace Skybound.Gecko
 		#region protected override void Dispose(bool disposing)
 		protected override void Dispose(bool disposing)
 		{
+			m_wrapper.Exit();
+			
 			if (!Environment.HasShutdownStarted && !AppDomain.CurrentDomain.IsFinalizingForUnload())
 			{
 				// make sure the object is still alove before we call a method on it
@@ -106,8 +155,13 @@ namespace Skybound.Gecko
 		nsIWebNavigation WebNav;
 		int ChromeFlags;
 		
+		static GtkDotNet.GtkWrapper m_wrapper;
+		Gtk.Widget dummyWidget;
+		
 		protected override void OnHandleCreated(EventArgs e)
 		{
+			base.OnHandleCreated(e);
+			
 			if (!this.DesignMode)
 			{
 				Xpcom.Initialize();
@@ -137,12 +191,19 @@ namespace Skybound.Gecko
 				//            treeItem19.SetItemType(type);
 				//}
 
-#if __MonoCS__
-				// On Linux InitWindow assumes a handle is a GDK Window
+#if false
+				// On Linux InitWindow assumes a handle is a GDK Window	or a GTK Container.
+				// If we pass a GDKWindow it needs to be a "MozContainer" type. This is a hard to create
+				// as the type is registed by moz_container_get_type in mozcontainer.c. (registing the type first
+				// in managed code causes the native regerstation to fail.)
 				Gdk.Window gdkWindow = Gdk.Window.ForeignNewForDisplay(Gdk.Display.Default, (uint)this.Handle);
 				BaseWindow.InitWindow( gdkWindow.Handle, IntPtr.Zero, 0, 0, this.Width, this.Height);
-#else
-				BaseWindow.InitWindow(this.Handle, IntPtr.Zero, 0, 0, this.Width, this.Height);
+#else											
+Console.WriteLine("dummyWidget = {0}", dummyWidget);				
+Console.WriteLine("dummyWidget.Handle = {0}", dummyWidget.Handle);
+				
+				
+				BaseWindow.InitWindow(dummyWidget.Handle, IntPtr.Zero, 0, 0, this.Width, this.Height);
 #endif
 				BaseWindow.Create();
 				
@@ -170,7 +231,7 @@ namespace Skybound.Gecko
 				if ((this.ChromeFlags & (int)GeckoWindowFlags.OpenAsChrome) == 0)
 				{
 					// navigating to about:blank allows drag & drop to work properly before a page has been loaded into the browser
-					Navigate("about:blank");
+					Navigate("http://www.google.ca"); /* about:blank*/
 				}	
 				
 				// this fix prevents the browser from crashing if the first page loaded is invalid (missing file, invalid URL, etc)
@@ -200,6 +261,7 @@ namespace Skybound.Gecko
 			
 			public nsIWebBrowserChrome CreateChromeWindow(nsIWebBrowserChrome parent, uint chromeFlags)
 			{
+Console.WriteLine("START CreateChromeWindow");
 				// for chrome windows, we can use the AppShellService to create the window using some built-in xulrunner code
 				GeckoWindowFlags flags = (GeckoWindowFlags)chromeFlags;
 				if ((flags & GeckoWindowFlags.OpenAsChrome) != 0)
@@ -263,7 +325,13 @@ namespace Skybound.Gecko
 					new RectangleF(2, 2, this.Width-4, this.Height-4));
 				e.Graphics.DrawRectangle(SystemPens.ControlDark, 0, 0, Width-1, Height-1);
 			}
-			base.OnPaint(e);
+			
+			
+			dummyWidget.GdkWindow.InvalidateRect(new Gdk.Rectangle(0,0,1000,1000), true);
+			dummyWidget.GdkWindow.ProcessUpdates(true);		
+			
+			
+//			base.OnPaint(e);
 		}
 		
 		#region public event GeckoCreateWindowEventHandler CreateWindow
@@ -386,6 +454,7 @@ namespace Skybound.Gecko
 
 		protected override void OnEnter(EventArgs e)
 		{
+Console.WriteLine("OnEnter");			
 		      WebBrowserFocus.Activate();
 		      
 		      base.OnEnter(e);
@@ -393,6 +462,7 @@ namespace Skybound.Gecko
 
 		protected override void OnLeave(EventArgs e)
 		{
+Console.WriteLine("OnLeave");			
 		      if (!IsBusy)
 		            WebBrowserFocus.Deactivate();
 		           
@@ -456,7 +526,7 @@ namespace Skybound.Gecko
 					if (!File.Exists(created.LocalPath) && !Directory.Exists(created.LocalPath))
 						return false;
 				}
-				
+			Console.WriteLine("Navigate to {0}", url);
 				nsIInputStream postDataStream = null, headersStream = null;
 				
 				if (postData != null)
@@ -487,6 +557,7 @@ namespace Skybound.Gecko
 					referrerUri = Xpcom.GetService<nsIIOService>("@mozilla.org/network/io-service;1").NewURI(new nsACString(referrer), null, null);
 				}
 				
+				Console.WriteLine("Calling LoadURI with {0}", url);
 				return (WebNav.LoadURI(url, (uint)loadFlags, referrerUri, postDataStream, headersStream) != 0);
 			}
 			else
@@ -776,6 +847,7 @@ namespace Skybound.Gecko
 		/// </summary>
 		public void Stop()
 		{
+Console.WriteLine("GeckoWebBrowser Stop");			
 			if (WebNav != null)
 				WebNav.Stop(nsIWebNavigationConstants.STOP_ALL);
 		}
@@ -1073,7 +1145,7 @@ namespace Skybound.Gecko
 					return Uri.TryCreate(location.Spec, UriKind.Absolute, out result) ? result : null;
 				}
 				
-				return new Uri("about:blank");
+				return new Uri("http://www.google.com");
 			}
 		}
 		
@@ -1095,7 +1167,7 @@ namespace Skybound.Gecko
 					return new Uri(nsString.Get(location.GetSpec));
 				}
 				
-				return new Uri("about:blank");
+				return new Uri("http://www.google.com");
 			}
 		}
 		
@@ -1370,6 +1442,7 @@ namespace Skybound.Gecko
 
 		void nsIContextMenuListener2.OnShowContextMenu(uint aContextFlags, nsIContextMenuInfo info)
 		{
+Console.WriteLine("OnShowContextMenu");			
 			// if we don't have a target node, we can't do anything by default.  this happens in XUL forms (i.e. about:config)
 			if (info.GetTargetNode() == null)
 				return;
@@ -1770,11 +1843,14 @@ namespace Skybound.Gecko
 
 		void nsIWebProgressListener.OnStateChange(nsIWebProgress aWebProgress, nsIRequest aRequest, int aStateFlags, int aStatus)
 		{
+Console.WriteLine("OnStateChange aStatus = {0}", aStatus);
 			bool cancelled = false;
 			
 			if ((aStateFlags & nsIWebProgressListenerConstants.STATE_START) != 0 && (aStateFlags & nsIWebProgressListenerConstants.STATE_IS_NETWORK) != 0)
 			{
 				IsBusy = true;
+				
+Console.WriteLine("aRequest.GetName() = {0}", nsString.Get(aRequest.GetName));				
 				
 				Uri uri;
 				Uri.TryCreate(nsString.Get(aRequest.GetName), UriKind.Absolute, out uri);
@@ -1801,6 +1877,7 @@ namespace Skybound.Gecko
 			
 			if (cancelled || ((aStateFlags & nsIWebProgressListenerConstants.STATE_STOP) != 0 && (aStateFlags & nsIWebProgressListenerConstants.STATE_IS_NETWORK) != 0))
 			{
+Console.WriteLine("Cancelled = {0} or completed ", cancelled);				
 				// clear busy state
 				IsBusy = false;
 				
@@ -1832,6 +1909,7 @@ namespace Skybound.Gecko
 
 		void nsIWebProgressListener.OnLocationChange(nsIWebProgress aWebProgress, nsIRequest aRequest, nsIURI aLocation)
 		{
+Console.WriteLine("OnLocationChange  = aLocation = {0}", aLocation);			
 			// make sure we're loading the top-level window
 			nsIDOMWindow domWindow = aWebProgress.GetDOMWindow();
 			if (domWindow != null)
@@ -1840,7 +1918,8 @@ namespace Skybound.Gecko
 			            return;
 			}
 			
-			Uri uri = new Uri(nsString.Get(aLocation.GetSpec));
+Console.WriteLine("OnLocationChange  = uri = {0}", (nsString.Get(aLocation.GetSpec)));						
+			Uri uri = new Uri("about:cache");//nsString.Get(aLocation.GetSpec));
 			
 			OnNavigated(new GeckoNavigatedEventArgs(uri, new GeckoResponse(aRequest)));
 			UpdateCommandStatus();
@@ -1848,6 +1927,7 @@ namespace Skybound.Gecko
 
 		void nsIWebProgressListener.OnStatusChange(nsIWebProgress aWebProgress, nsIRequest aRequest, int aStatus, string aMessage)
 		{
+Console.WriteLine("OnStatusChange message = {0}", aMessage);			
 			if (aWebProgress.GetIsLoadingDocument())
 			{
 				StatusText = aMessage;
@@ -1906,6 +1986,7 @@ namespace Skybound.Gecko
 
 		void nsIDOMEventListener.HandleEvent(nsIDOMEvent e)
 		{
+Console.WriteLine("HandleEvent");			
 			string type;
 			using (nsAString str = new nsAString())
 			{
@@ -1914,7 +1995,6 @@ namespace Skybound.Gecko
 			}
 			
 			GeckoDomEventArgs ea = null;
-			
 			switch (type)
 			{
 				case "keydown": OnDomKeyDown((GeckoDomKeyEventArgs)(ea = new GeckoDomKeyEventArgs((nsIDOMKeyEvent)e))); break;

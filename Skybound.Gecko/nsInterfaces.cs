@@ -1118,12 +1118,6 @@ namespace Skybound.Gecko
 		bool GetIsLoadingDocument();
 	}
 	
-	// TODO: FIXME: nsIURI doesn't appear to be a COM Interface.
-	// It doesn't have members QueryInterface or AddRef or Release????
-	// Possibly gdb it missreporting the type????
-	// and yet the type is used as a COMPtr in the c++ eg: nsCOMPtr<nsIURI>
-	// ah found the problem -> value is being convert to the ptr.
-	
 	[Guid("07a22cc0-0ce5-11d3-9331-00104ba0fd40"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	interface nsIURI
 	{
@@ -1798,7 +1792,7 @@ namespace Skybound.Gecko
 	}
 	
 	[Guid("a6cf907b-15b3-11d2-932e-00805f8add32"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	interface nsIDOMNamedNodeMap
+	public interface nsIDOMNamedNodeMap
 	{
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -1833,7 +1827,7 @@ namespace Skybound.Gecko
 	}
 	
 	[Guid("a6cf907c-15b3-11d2-932e-00805f8add32"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	interface nsIDOMNode
+	public interface nsIDOMNode
 	{
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -1926,7 +1920,7 @@ namespace Skybound.Gecko
 	}
 	
 	[Guid("a6cf907d-15b3-11d2-932e-00805f8add32"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	interface nsIDOMNodeList
+	public interface nsIDOMNodeList
 	{
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -1937,7 +1931,7 @@ namespace Skybound.Gecko
 	}
 	
 	[Guid("a6cf9070-15b3-11d2-932e-00805f8add32"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	interface nsIDOMAttr : nsIDOMNode
+	public interface nsIDOMAttr : nsIDOMNode
 	{
 		// nsIDOMNode:
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -2046,7 +2040,7 @@ namespace Skybound.Gecko
 	}
 	
 	[Guid("a6cf9078-15b3-11d2-932e-00805f8add32"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	interface nsIDOMElement : nsIDOMNode
+	public interface nsIDOMElement : nsIDOMNode
 	{
 		// nsIDOMNode:
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -2193,7 +2187,7 @@ namespace Skybound.Gecko
 	}
 	
 	[Guid("a6cf9075-15b3-11d2-932e-00805f8add32"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	interface nsIDOMDocument : nsIDOMNode
+	public interface nsIDOMDocument : nsIDOMNode
 	{
 		// nsIDOMNode:
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -2345,7 +2339,7 @@ namespace Skybound.Gecko
 	}
 	
 	[Guid("a6cf9085-15b3-11d2-932e-00805f8add32"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	interface nsIDOMHTMLElement : nsIDOMElement
+	public interface nsIDOMHTMLElement : nsIDOMElement
 	{
 		// nsIDOMNode:
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

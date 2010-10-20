@@ -50,7 +50,7 @@ namespace Skybound.Gecko
 			_DomObject = domObject;
 		}
 		
-		internal static GeckoNode Create(nsIDOMNode domObject)
+		public static GeckoNode Create(nsIDOMNode domObject)
 		{
 			if (domObject == null)
 				return null;
@@ -132,7 +132,13 @@ namespace Skybound.Gecko
 		public bool HasChildNodes { get { return _DomObject.HasChildNodes(); } }
 		public bool HasAttributes { get { return _DomObject.HasAttributes(); } }
 		
-		public GeckoDocument OwnerDocument { get { return GeckoDocument.Create(Xpcom.QueryInterface<nsIDOMHTMLDocument>(_DomObject.GetOwnerDocument())); } }
+		public GeckoDocument OwnerDocument { 
+			get { 
+				Console.WriteLine("_DomObject = {0}", _DomObject);
+				Console.WriteLine("_DomObject.GetOwnerDocument() = {0}", _DomObject.GetOwnerDocument());
+				return GeckoDocument.Create(Xpcom.QueryInterface<nsIDOMHTMLDocument>(_DomObject.GetOwnerDocument())); 
+			} 
+		}
 		
 		public GeckoNode AppendChild(GeckoNode node)
 		{
@@ -242,10 +248,15 @@ namespace Skybound.Gecko
 	{
 		internal GeckoElement(nsIDOMHTMLElement element) : base(element)
 		{
-			this.DomElement = element;
-#if !__MonoCS__ // TODO FIXME: this case throws exception in mono.						
-			this.DomNSElement = (nsIDOMNSElement)element;
-#endif
+			this.DomElement = element;					
+			try
+			{
+				this.DomNSElement = (nsIDOMNSElement)element;
+			}catch(Exception e)
+			{
+				// TODO: fix me
+				Console.WriteLine(e);
+			}
 			this.DomNSHTMLElement = (nsIDOMNSHTMLElement)element;
 			
 #if !__MonoCS__ // TODO FIXME: ChangeWrapperHandleStrength not implemented in mono
@@ -573,7 +584,16 @@ namespace Skybound.Gecko
 		/// </summary>
 		public Uri Url
 		{
-			get { return new Uri(nsString.Get(DomDocument.GetURL)); }
+			get { 			
+				
+//				not allowed to add this type of element to the docuemnt (NS_ERROR_DOM_HIERARCHY_REQUEST_ERR).				
+//				var node = DomDocument.CreateElement(new nsAString("hello"));
+//				DomDocument.AppendChild(node);
+								
+				Console.WriteLine("nsString.Get(DomDocument.GetURL) = {0}", nsString.Get(DomDocument.GetURL));
+				return new Uri(nsString.Get(DomDocument.GetURL)); 
+			
+			}
 		}
 		
 		public GeckoElementCollection Frames

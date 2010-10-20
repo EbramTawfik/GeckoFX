@@ -82,6 +82,12 @@ namespace Skybound.Gecko
 			return Environment.OSVersion.Platform == PlatformID.Unix;
 		}
 			
+		public static void ForceInitialize(string binDirectory)
+		{
+			_IsInitialized = false;	
+			Initialize(binDirectory);
+		}
+		
 		/// <summary>
 		/// Initializes XPCOM using the specified directory.
 		/// </summary>
