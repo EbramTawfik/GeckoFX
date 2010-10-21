@@ -1118,12 +1118,6 @@ namespace Skybound.Gecko
 		bool GetIsLoadingDocument();
 	}
 	
-	// TODO: FIXME: nsIURI doesn't appear to be a COM Interface.
-	// It doesn't have members QueryInterface or AddRef or Release????
-	// Possibly gdb it missreporting the type????
-	// and yet the type is used as a COMPtr in the c++ eg: nsCOMPtr<nsIURI>
-	// ah found the problem -> value is being convert to the ptr.
-	
 	[Guid("07a22cc0-0ce5-11d3-9331-00104ba0fd40"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	interface nsIURI
 	{

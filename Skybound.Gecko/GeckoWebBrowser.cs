@@ -67,6 +67,7 @@ namespace Skybound.Gecko
 		/// </summary>
 		public GeckoWebBrowser()
 		{
+			m_wrapper = new GtkDotNet.GtkWrapperNoThread(new Gtk.Window(Gtk.WindowType.Popup), this);
 		}
 		
 		//static Dictionary<nsIDOMDocument, GeckoWebBrowser> FromDOMDocumentTable = new Dictionary<nsIDOMDocument,GeckoWebBrowser>();
@@ -106,8 +107,15 @@ namespace Skybound.Gecko
 		nsIWebNavigation WebNav;
 		int ChromeFlags;
 		
+		static GtkDotNet.GtkWrapperNoThread m_wrapper;		
+		
 		protected override void OnHandleCreated(EventArgs e)
 		{
+			base.OnHandleCreated(e);
+			this.BackColor = Color.AliceBlue;
+			
+			m_wrapper.Init();
+			
 			if (!this.DesignMode)
 			{
 				Xpcom.Initialize();
@@ -137,12 +145,7 @@ namespace Skybound.Gecko
 				//            treeItem19.SetItemType(type);
 				//}
 
-#if __MonoCS__
-				// On Linux InitWindow assumes a handle is a GDK Window
-				Gdk.Window gdkWindow = Gdk.Window.ForeignNewForDisplay(Gdk.Display.Default, (uint)this.Handle);
-				BaseWindow.InitWindow( gdkWindow.Handle, IntPtr.Zero, 0, 0, this.Width, this.Height);
-#else
-				BaseWindow.InitWindow(this.Handle, IntPtr.Zero, 0, 0, this.Width, this.Height);
+				BaseWindow.InitWindow(m_wrapper.m_popupWindow.Handle, IntPtr.Zero, 0, 0, this.Width, this.Height);
 #endif
 				BaseWindow.Create();
 				
@@ -169,8 +172,10 @@ namespace Skybound.Gecko
 				
 				if ((this.ChromeFlags & (int)GeckoWindowFlags.OpenAsChrome) == 0)
 				{
+#if !__MonoCS__
 					// navigating to about:blank allows drag & drop to work properly before a page has been loaded into the browser
-					Navigate("about:blank");
+					Navigate("about:blank"); /* about:blank*/
+#endif
 				}	
 				
 				// this fix prevents the browser from crashing if the first page loaded is invalid (missing file, invalid URL, etc)
