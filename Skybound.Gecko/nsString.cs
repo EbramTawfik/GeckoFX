@@ -299,7 +299,7 @@ namespace Skybound.Gecko
 			
 			if (length > 0)
 			{
-				return Marshal.PtrToStringAuto(data, length);
+				return Marshal.PtrToStringUni(data, length);
 			}
 			return "";
 		}
