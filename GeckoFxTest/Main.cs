@@ -15,14 +15,14 @@ namespace GeckoFxTest
 			// TODO FIXME: make better way of finding libxul.so etc.
 			Xpcom.Initialize("/usr/lib/xulrunner-1.9.2.11/");
 			
-			Application.Run(new MyForm());			
+			Application.Run(new MyForm());
 		}
 	}
-	
+
 	class MyForm : Form
 	{
 		private TabControl m_tabControl;
-		
+
 		public MyForm()
 		{
 			this.Width = 800;
@@ -30,37 +30,36 @@ namespace GeckoFxTest
 			
 			m_tabControl = new TabControl();
 			m_tabControl.Dock = DockStyle.Fill;
-
+			
 			AddTab();
 			
 			Controls.Add(m_tabControl);
 			
 			m_tabControl.ControlRemoved += delegate {
-				if (m_tabControl.TabCount == 0)
-				{
+				if (m_tabControl.TabCount == 0) {
 					AddTab();
 				}
 			};
 			
 		}
-		
+
 		protected void AddTab()
 		{
 			var tabPage = new TabPage();
 			tabPage.Text = "blank";
 			var browser = new GeckoWebBrowser();
 			browser.Dock = DockStyle.Fill;
-									
+			
 			tabPage.DockPadding.Top = 25;
 			tabPage.Dock = DockStyle.Fill;
-
+			
 			AddToolbarAndBrowserToTab(tabPage, browser);
 			
 			m_tabControl.TabPages.Add(tabPage);
 			tabPage.Show();
 			m_tabControl.SelectedTab = tabPage;
 		}
-		
+
 		protected void AddToolbarAndBrowserToTab(TabPage tabPage, GeckoWebBrowser browser)
 		{
 			TextBox urlbox = new TextBox();
@@ -83,22 +82,20 @@ namespace GeckoFxTest
 				browser.Navigate(urlbox.Text);
 				tabPage.Text = urlbox.Text;
 			};
-				
-			newTab.Click += delegate {
-				AddTab();
-			};
+			
+			newTab.Click += delegate { AddTab(); };
 			
 			closeTab.Click += delegate {
 				m_tabControl.Controls.Remove(tabPage);
 				browser.Dispose();
 			};
-						
+			
 			tabPage.Controls.Add(urlbox);
 			tabPage.Controls.Add(nav);
 			tabPage.Controls.Add(newTab);
 			tabPage.Controls.Add(closeTab);
 			tabPage.Controls.Add(browser);
-		}	
+		}
 	}
 }
 
