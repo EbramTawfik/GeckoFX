@@ -4,7 +4,7 @@ using Skybound.Gecko;
 
 // Tested with mono 2.6.3 and mono 2.8
 // Run this with the following command:
-// LD_LIBRARY_PATH="/usr/lib/xulrunner-1.9.2.11/" mono GeckoFxTest.exe
+// MONO_PATH=/usr/lib/cli/gdk-sharp-2.0/ LD_LIBRARY_PATH="/usr/lib/xulrunner-1.9.2.11/" mono --debug GeckoFxTest.exe
 // requires gdk-sharp assembly in the gac (which is in package libgtk2.0-cil)
 namespace GeckoFxTest
 {
@@ -90,6 +90,7 @@ namespace GeckoFxTest
 			
 			closeTab.Click += delegate {
 				m_tabControl.Controls.Remove(tabPage);
+				browser.Dispose();
 			};
 						
 			tabPage.Controls.Add(urlbox);
