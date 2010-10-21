@@ -146,7 +146,6 @@ namespace Skybound.Gecko
 				//}
 
 				BaseWindow.InitWindow(m_wrapper.m_popupWindow.Handle, IntPtr.Zero, 0, 0, this.Width, this.Height);
-#endif
 				BaseWindow.Create();
 				
 				Guid nsIWebProgressListenerGUID = typeof(nsIWebProgressListener).GUID;
