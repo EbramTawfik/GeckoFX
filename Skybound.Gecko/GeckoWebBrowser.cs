@@ -46,20 +46,11 @@ using System.Text;
 
 
 namespace Skybound.Gecko
-{
-	public class MozContainer : Gtk.Window		
-	{
-		public MozContainer() : base("gtkmozembed")
-		{
-			
-		}
-		
-	}
-	
+{	
 	/// <summary>
 	/// A Gecko-based web browser.
 	/// </summary>
-	public partial class GeckoWebBrowser : Panel /*Control*/,
+	public partial class GeckoWebBrowser : Control,
 		nsIWebBrowserChrome,
 		nsIContextMenuListener2,
 		nsIWebProgressListener,
@@ -72,48 +63,12 @@ namespace Skybound.Gecko
 		nsITooltipListener
 		//nsIWindowProvider,
 	{
-		
-		[StructLayout (LayoutKind.Sequential) ]
-	    struct GTypeInfo {
-	      public ushort class_size;
-	      IntPtr base_init;
-	      IntPtr base_finalize;
-	      IntPtr class_init;
-	      IntPtr class_finalize;
-	      IntPtr class_data;
-	      public ushort instance_size;
-	      ushort n_preallocs;
-	      IntPtr instance_init;
-	      IntPtr value_table;
-	    }
-		
-		[DllImport ("libgobject-2.0.dll") ]
-    	static extern IntPtr g_type_register_static (IntPtr parent, IntPtr name, ref GTypeInfo info, int flags);
-		
 		/// <summary>
 		/// Initializes a new instance of <see cref="GeckoWebBrowser"/>.
 		/// </summary>
 		public GeckoWebBrowser()
-		{
-			dummyWidget = new Gtk.Window("gtkmozembed"); //new MozContainer();
-#if false
-			// is g_type_register_static the same as: GLib.GType.Register(new GLib.GType(new IntPtr(31747264)), typeof(MozContainer));			
-			IntPtr mozContainerTypeName = Marshal.StringToHGlobalAnsi("MozContainer");
-			GTypeInfo info = new GTypeInfo();			
-			info.class_size = 824; // TODO FIXME: this isn't very maintainable and may not be right for 32bit.
-			info.instance_size = 120; // TODO FIXME: this isn't very maintainable and may not be right for 32bit.			
-			IntPtr type = g_type_register_static(Gtk.Container.GType.Val, mozContainerTypeName, ref info, 0);
-			GLib.GType.Register(new GLib.GType(type), typeof(MozContainer));
-			Console.WriteLine("type = {0}", type.ToInt32());
-			dummyWidget.Name = "gtkmozembed";
-#endif
-						                   
-			m_wrapper = new GtkDotNet.GtkWrapper((Gtk.Window gtkWindow, out Gtk.Widget widget) =>
-			{				
-				widget = dummyWidget;
-				dummyWidget.Show();
-				gtkWindow.Show();
-			}, this);
+		{										                   
+			m_wrapper = new GtkDotNet.GtkWrapperNoThread(new Gtk.Window(Gtk.WindowType.Popup), this);
 		}
 		
 		//static Dictionary<nsIDOMDocument, GeckoWebBrowser> FromDOMDocumentTable = new Dictionary<nsIDOMDocument,GeckoWebBrowser>();
@@ -126,9 +81,7 @@ namespace Skybound.Gecko
 		
 		#region protected override void Dispose(bool disposing)
 		protected override void Dispose(bool disposing)
-		{
-			m_wrapper.Exit();
-			
+		{			
 			if (!Environment.HasShutdownStarted && !AppDomain.CurrentDomain.IsFinalizingForUnload())
 			{
 				// make sure the object is still alove before we call a method on it
@@ -155,12 +108,14 @@ namespace Skybound.Gecko
 		nsIWebNavigation WebNav;
 		int ChromeFlags;
 		
-		static GtkDotNet.GtkWrapper m_wrapper;
-		Gtk.Widget dummyWidget;
+		static GtkDotNet.GtkWrapperNoThread m_wrapper;		
 		
 		protected override void OnHandleCreated(EventArgs e)
 		{
 			base.OnHandleCreated(e);
+			this.BackColor = Color.AliceBlue;
+			
+			m_wrapper.Init();
 			
 			if (!this.DesignMode)
 			{
@@ -199,11 +154,11 @@ namespace Skybound.Gecko
 				Gdk.Window gdkWindow = Gdk.Window.ForeignNewForDisplay(Gdk.Display.Default, (uint)this.Handle);
 				BaseWindow.InitWindow( gdkWindow.Handle, IntPtr.Zero, 0, 0, this.Width, this.Height);
 #else											
-Console.WriteLine("dummyWidget = {0}", dummyWidget);				
-Console.WriteLine("dummyWidget.Handle = {0}", dummyWidget.Handle);
+//Console.WriteLine("dummyWidget = {0}", dummyWidget);				
+Console.WriteLine("m_embededMozzilaContainerWindow.Handle = {0}", m_wrapper.m_popupWindow.Handle);
 				
 				
-				BaseWindow.InitWindow(dummyWidget.Handle, IntPtr.Zero, 0, 0, this.Width, this.Height);
+				BaseWindow.InitWindow(m_wrapper.m_popupWindow.Handle, IntPtr.Zero, 0, 0, this.Width, this.Height);
 #endif
 				BaseWindow.Create();
 				
@@ -231,7 +186,7 @@ Console.WriteLine("dummyWidget.Handle = {0}", dummyWidget.Handle);
 				if ((this.ChromeFlags & (int)GeckoWindowFlags.OpenAsChrome) == 0)
 				{
 					// navigating to about:blank allows drag & drop to work properly before a page has been loaded into the browser
-					Navigate("http://www.google.ca"); /* about:blank*/
+//					Navigate("about:blank"); /* about:blank*/
 				}	
 				
 				// this fix prevents the browser from crashing if the first page loaded is invalid (missing file, invalid URL, etc)
@@ -325,13 +280,8 @@ Console.WriteLine("START CreateChromeWindow");
 					new RectangleF(2, 2, this.Width-4, this.Height-4));
 				e.Graphics.DrawRectangle(SystemPens.ControlDark, 0, 0, Width-1, Height-1);
 			}
-			
-			
-			dummyWidget.GdkWindow.InvalidateRect(new Gdk.Rectangle(0,0,1000,1000), true);
-			dummyWidget.GdkWindow.ProcessUpdates(true);		
-			
-			
-//			base.OnPaint(e);
+						
+			base.OnPaint(e);
 		}
 		
 		#region public event GeckoCreateWindowEventHandler CreateWindow
@@ -1145,7 +1095,7 @@ Console.WriteLine("GeckoWebBrowser Stop");
 					return Uri.TryCreate(location.Spec, UriKind.Absolute, out result) ? result : null;
 				}
 				
-				return new Uri("http://www.google.com");
+				return new Uri("about:blank");
 			}
 		}
 		
@@ -1167,7 +1117,7 @@ Console.WriteLine("GeckoWebBrowser Stop");
 					return new Uri(nsString.Get(location.GetSpec));
 				}
 				
-				return new Uri("http://www.google.com");
+				return new Uri("about:blank");
 			}
 		}
 		
