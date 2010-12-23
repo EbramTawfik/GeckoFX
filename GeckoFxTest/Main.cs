@@ -4,7 +4,7 @@ using Skybound.Gecko;
 
 // Tested with mono 2.6.3 and mono 2.8
 // Run this with the following command:
-// MONO_PATH=/usr/lib/cli/gdk-sharp-2.0/ LD_LIBRARY_PATH="/usr/lib/xulrunner-1.9.2.11/" mono --debug GeckoFxTest.exe
+// MONO_PATH=/usr/lib/cli/gdk-sharp-2.0/ LD_LIBRARY_PATH="/usr/lib/xulrunner-1.9.2.13/" mono --debug GeckoFxTest.exe
 // requires gdk-sharp assembly in the gac (which is in package libgtk2.0-cil)
 namespace GeckoFxTest
 {
@@ -13,7 +13,7 @@ namespace GeckoFxTest
 		public static void Main(string[] args)
 		{
 			// TODO FIXME: make better way of finding libxul.so etc.
-			Xpcom.Initialize("/usr/lib/xulrunner-1.9.2.11/");
+			Xpcom.Initialize("/usr/lib/xulrunner-1.9.2.13/");
 			
 			Application.Run(new MyForm());
 		}
