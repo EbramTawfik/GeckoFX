@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skybound.Gecko", "Skybound.Gecko.csproj", "{877D1A24-2D5E-4C46-A933-FCF11EA0403B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeckoFxTest", "GeckoFxTest\GeckoFxTest.csproj", "{9F904D01-0295-4866-8F11-34482E2E2715}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeckoFxTest", "..\GeckoFxTest\GeckoFxTest.csproj", "{9F904D01-0295-4866-8F11-34482E2E2715}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,7 +51,7 @@ Global
 		{9F904D01-0295-4866-8F11-34482E2E2715}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = GeckoFxTest\GeckoFxTest.csproj
+		StartupItem = ..\GeckoFxTest\GeckoFxTest.csproj
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
