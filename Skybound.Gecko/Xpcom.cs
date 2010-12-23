@@ -77,9 +77,9 @@ namespace Skybound.Gecko
 			Initialize(null);
 		}
 		
-		public static bool IsLinux()
+		public static bool IsLinux
 		{
-			return Environment.OSVersion.Platform == PlatformID.Unix;
+			get { return Environment.OSVersion.Platform == PlatformID.Unix; }
 		}
 			
 		/// <summary>
@@ -92,7 +92,7 @@ namespace Skybound.Gecko
 				return;
 			
 			string folder = binDirectory ?? Environment.CurrentDirectory;
-			string xpcomPath = Path.Combine(folder, IsLinux()?"libxpcom.so":"xpcom.dll");
+			string xpcomPath = Path.Combine(folder, IsLinux ? "libxpcom.so" : "xpcom.dll");
 			
 			if (Debugger.IsAttached)
 			{

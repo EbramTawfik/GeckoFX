@@ -189,6 +189,8 @@
     </Reference>
     <Reference Include="gdk-sharp, Version=2.14.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
     <Reference Include="glib-sharp, Version=2.14.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutoJSContext.cs" />
@@ -241,6 +243,7 @@
     <Compile Include="Xpcom.cs" />
     <Compile Include="GtkWrapperNoThread.cs" />
     <Compile Include="X11Structs.cs" />
+    <Compile Include="XULRunnerLocator.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ChromeDialog.resx">
