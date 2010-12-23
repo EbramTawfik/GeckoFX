@@ -2,6 +2,7 @@ using Gdk;
 using Gtk;
 using System;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
 
 namespace GtkDotNet
 {
@@ -53,8 +54,8 @@ namespace GtkDotNet
 		{			
 			
 			// TODO FIXME: this is a proof of concept key forwarding, this will need more 
-			// work to deal with all keypresses.
-
+			// work to deal with all keypresses. (pressing backspace currently crashes)
+			
 			if (m_popupWindow.HasFocus)
 			{
 				m_parent.Focus();
@@ -106,6 +107,35 @@ namespace GtkDotNet
 			}
 		}
 		
+		public FilterReturn FilterFunc (IntPtr xevent, Event evnt)
+		{
+			if (xevent == IntPtr.Zero)
+				return FilterReturn.Continue;
+			
+			var e = (X11.XEvent)Marshal.PtrToStructure(xevent, typeof(X11.XEvent));
+			
+			// Dropping these events is non standard but so is embeding a Gtk into
+			// a X11 Window.
+			if (e.type == X11.XEventName.FocusOut || 
+				e.type == X11.XEventName.LeaveNotify)
+			{							
+				return FilterReturn.Remove;
+			}
+								
+			// Ensure Mouse clicks and Button go to the right place
+			if (e.type == X11.XEventName.ButtonPress || 
+				e.type == X11.XEventName.KeyPress)
+			{	
+				// TODO: possibly cancel any tooltip windows.
+		
+				this.m_parent.Focus();
+				return FilterReturn.Continue;
+			}
+			
+			// Everything else just process as normal			
+			return FilterReturn.Continue;
+		}
+		
 		protected void EmbedWidgetIntoWinFormPanel()
 		{						
 			m_popupWindow.ShowNow();
@@ -117,7 +147,9 @@ namespace GtkDotNet
 								
 			// Wraps the panel native (X) window handle in a GdkWrapper 			
 			m_gdkWrapperOfForm = Gdk.Window.ForeignNewForDisplay(Gdk.Display.Default, (uint)m_parent.Handle);
-						
+				
+			// get low level access to x11 events
+			Gdk.Window.AddFilterForAll(FilterFunc);
 			System.Windows.Forms.Application.DoEvents();
 			ProcessPendingGtkEvents();
 						
