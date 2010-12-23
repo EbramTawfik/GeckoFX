@@ -42,26 +42,10 @@ namespace GtkDotNet
 				throw new ArgumentException("Gtk Window should be of type Popup.");
 			}
 
-			popupWindow.KeyPressEvent += HandlePopupWindowKeyPressEvent;
-
 			m_parent = parent;
 			m_popupWindow = popupWindow;
 			m_parent.HandleCreated += HandleParentCreated;
 			m_parent.Resize += HandleParentResize;
-		}
-
-		void HandlePopupWindowKeyPressEvent (object o, Gtk.KeyPressEventArgs args)
-		{
-
-			// TODO FIXME: this is a proof of concept key forwarding, this will need more
-			// work to deal with all keypresses. (pressing backspace currently crashes)
-
-			if (m_popupWindow.HasFocus)
-			{
-				m_parent.Focus();
-				m_parent.Select();
-			}
-			System.Windows.Forms.SendKeys.Send(((char)args.Event.KeyValue).ToString());
 		}
 
 		void HandleParentResize(object sender, EventArgs e)
