@@ -37,6 +37,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Drawing;
+using System.Diagnostics;
 
 namespace Skybound.Gecko
 {
@@ -248,8 +249,11 @@ namespace Skybound.Gecko
 				this.DomNSElement = (nsIDOMNSElement)element;
 			}catch(Exception e)
 			{
-				// TODO: fix me
-				Console.WriteLine(e);
+				// TODO: fix me (this may be caused by slightly different xulrunner versions?)
+				Debug.WriteLine(e);
+				Debug.WriteLine(String.Format("element is nsIDOMNSElement : {0} ", element is nsIDOMNSElement));
+				Debug.WriteLine(String.Format("element is nsIDOMHTMLElement : {0} ", element is nsIDOMHTMLElement));
+				Debug.WriteLine(String.Format("element is nsIDOMNSHTMLElement {0} ", element is nsIDOMNSHTMLElement));
 			}
 			this.DomNSHTMLElement = (nsIDOMNSHTMLElement)element;
 			
