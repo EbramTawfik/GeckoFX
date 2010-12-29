@@ -106,12 +106,35 @@ namespace GeckoFxTest
 			// add a handler showing how to modify the DOM.
 			browser.DocumentCompleted += (s, e) => TestModifyingDom(browser);
 
-
 			AddToolbarAndBrowserToTab(tabPage, browser);
 
 			m_tabControl.TabPages.Add(tabPage);
 			tabPage.Show();
 			m_tabControl.SelectedTab = tabPage;
+
+			// Uncomment this to stop links from navigating.
+			// browser.DomClick += StopLinksNavigating;
+
+		}
+
+		/// <summary>
+		/// An example event handler for the DomClick event.
+		/// Prevents a link click from navigating.
+		/// </summary>
+		void StopLinksNavigating(object sender, GeckoDomEventArgs e)
+		{
+			if (sender != null && e != null && e.Target != null && e.Target.TagName != null)
+			{
+				GeckoElement clicked = e.Target;
+
+				// prevent clicking on Links from navigation to the
+				if (clicked.TagName == "A")
+				{
+					e.Handled = true;
+					MessageBox.Show(sender as IWin32Window, String.Format("You clicked on Link {0}", clicked.GetAttribute("href")));
+				}
+
+			}
 		}
 
 		protected void AddToolbarAndBrowserToTab(TabPage tabPage, GeckoWebBrowser browser)
@@ -133,6 +156,10 @@ namespace GeckoFxTest
 			closeTab.Left = 200 + nav.Width + newTab.Width;
 
 			nav.Click += delegate {
+				// use javascript to warn if url box is empty.
+				if (string.IsNullOrEmpty(urlbox.Text.Trim()))
+					browser.Navigate("javascript:alert('hey try typing a url!');");
+
 				browser.Navigate(urlbox.Text);
 				tabPage.Text = urlbox.Text;
 			};
