@@ -315,8 +315,10 @@ namespace Skybound.Gecko
 		{
 			const int WM_GETDLGCODE = 0x87;
 			const int DLGC_WANTALLKEYS = 0x4;
+#if !__MonoCS__
 			const int WM_MOUSEACTIVATE = 0x21;
 			const int MA_ACTIVATE = 0x1;
+#endif
 			
 			if (!DesignMode)
 			{
@@ -554,7 +556,7 @@ namespace Skybound.Gecko
 				      
 				      fixed (byte * data = &Data[Position])
 				      {
-						int result = fun(this, aClosure, (IntPtr)data, Position, length, out writeCount);
+						fun(this, aClosure, (IntPtr)data, Position, length, out writeCount);
 				      }
 				      
 				      Position += writeCount;

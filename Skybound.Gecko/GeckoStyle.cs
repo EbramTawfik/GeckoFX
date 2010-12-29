@@ -139,7 +139,7 @@ namespace Skybound.Gecko
 				using (AutoJSContext context = new AutoJSContext())
 				{
 					nsIDOMCSSRuleList ret;
-					int hresult = StyleSheet._DomStyleSheet.GetCssRules(out ret);
+					StyleSheet._DomStyleSheet.GetCssRules(out ret);
 					//return (StyleSheet._DomStyleSheet.GetCssRules(out ret) != 0) ? null : ret;
 					return ret;
 				}
