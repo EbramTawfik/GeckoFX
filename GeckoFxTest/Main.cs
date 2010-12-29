@@ -45,51 +45,51 @@ namespace GeckoFxTest
 			};
 
 		}
-		
+
 		protected void ModifyElements(GeckoElement element, string tagName, Action<GeckoElement> mod)
 		{
 			while (element != null)
-			{						
+			{
 				if (element.TagName == tagName)
 				{
 					mod(element);
 				}
 				ModifyElements(element.FirstChild as GeckoElement, tagName, mod);
 				element = (element.NextSibling as GeckoElement);
-			}	
+			}
 		}
 
 		protected void TestModifyingDom(GeckoWebBrowser browser)
-		{						
+		{
 			GeckoElement g = browser.Document.DocumentElement;
-			ModifyElements(g, "BODY", e => 
+			ModifyElements(g, "BODY", e =>
 			              	{
 								for(int i = 1; i < 4; ++i)
 								{
 									var newElement = g.OwnerDocument.CreateElement(String.Format("h{0}", i));
-									newElement.TextContent = "Geckofx added this text.";					
+									newElement.TextContent = "Geckofx added this text.";
 									g.InsertBefore(newElement, e);
 								}
 							});
 		}
-		
+
 		protected void DisplayElements(GeckoElement g)
-		{			
+		{
 			while (g != null)
 			{
-				Console.WriteLine("tag = {0} value = {1}", g.TagName, g.TextContent);				
+				Console.WriteLine("tag = {0} value = {1}", g.TagName, g.TextContent);
 				DisplayElements(g.FirstChild as GeckoElement);
 				g = (g.NextSibling as GeckoElement);
 			}
-			
+
 		}
-		
+
 		protected void TestQueryingOfDom(GeckoWebBrowser browser)
 		{
 			GeckoElement g = browser.Document.DocumentElement;
-			DisplayElements(g);		
+			DisplayElements(g);
 		}
-		
+
 		protected void AddTab()
 		{
 			var tabPage = new TabPage();
@@ -101,12 +101,12 @@ namespace GeckoFxTest
 			tabPage.Dock = DockStyle.Fill;
 
 			// add a handler showing how to view the DOM
-			browser.DocumentCompleted += (s, e) => 	TestQueryingOfDom(browser);		
-			
+			browser.DocumentCompleted += (s, e) => 	TestQueryingOfDom(browser);
+
 			// add a handler showing how to modify the DOM.
 			browser.DocumentCompleted += (s, e) => TestModifyingDom(browser);
-			
-			
+
+
 			AddToolbarAndBrowserToTab(tabPage, browser);
 
 			m_tabControl.TabPages.Add(tabPage);
