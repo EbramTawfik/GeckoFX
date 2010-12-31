@@ -586,7 +586,7 @@ namespace Skybound.Gecko
 	}
 	
 	[Guid("d1899240-f9d2-11d2-bdd6-000064657374"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	interface nsISimpleEnumerator
+	public interface nsISimpleEnumerator
 	{
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -1101,7 +1101,7 @@ namespace Skybound.Gecko
 	}
 	
 	[Guid("570f39d0-efd0-11d3-b093-00a024ffc08c"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	interface nsIWebProgress
+	public interface nsIWebProgress
 	{
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void AddProgressListener([MarshalAs(UnmanagedType.Interface)] nsIWebProgressListener aListener, int aNotifyMask);
@@ -1119,7 +1119,7 @@ namespace Skybound.Gecko
 	}
 	
 	[Guid("07a22cc0-0ce5-11d3-9331-00104ba0fd40"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	interface nsIURI
+	public interface nsIURI
 	{
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetSpec([MarshalAs(UnmanagedType.LPStruct)]nsAUTF8String outSpec);
@@ -3267,6 +3267,7 @@ namespace Skybound.Gecko
 	[Guid("e800ef97-ae37-46b7-a46c-31fbe79657ea"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	interface nsINonBlockingAlertService
 	{
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ShowNonBlockingAlert([MarshalAs(UnmanagedType.Interface)]nsIDOMWindow aParent, [MarshalAs(UnmanagedType.LPWStr)] string aDialogTitle, [MarshalAs(UnmanagedType.LPWStr)] string aText);
 	}
 
@@ -3274,19 +3275,38 @@ namespace Skybound.Gecko
 	interface nsIPromptService2 : nsIPromptService
 	{
 		// nsIPromptService:
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void Alert([MarshalAs(UnmanagedType.Interface)]nsIDOMWindow aParent, [MarshalAs(UnmanagedType.LPWStr)] string aDialogTitle, [MarshalAs(UnmanagedType.LPWStr)] string aText);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		[PreserveSig] new void AlertCheck([MarshalAs(UnmanagedType.Interface)]nsIDOMWindow aParent, [MarshalAs(UnmanagedType.LPWStr)] string aDialogTitle, [MarshalAs(UnmanagedType.LPWStr)] string aText, [MarshalAs(UnmanagedType.LPWStr)] string aCheckMsg, ref bool aCheckState);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool Confirm([MarshalAs(UnmanagedType.Interface)]nsIDOMWindow aParent, [MarshalAs(UnmanagedType.LPWStr)] string aDialogTitle, [MarshalAs(UnmanagedType.LPWStr)] string aText);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		[PreserveSig] new bool ConfirmCheck([MarshalAs(UnmanagedType.Interface)]nsIDOMWindow aParent, [MarshalAs(UnmanagedType.LPWStr)] string aDialogTitle, [MarshalAs(UnmanagedType.LPWStr)] string aText, [MarshalAs(UnmanagedType.LPWStr)] string aCheckMsg, ref bool aCheckState);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new int ConfirmEx([MarshalAs(UnmanagedType.Interface)]nsIDOMWindow aParent, [MarshalAs(UnmanagedType.LPWStr)] string aDialogTitle, [MarshalAs(UnmanagedType.LPWStr)] string aText, uint aButtonFlags, [MarshalAs(UnmanagedType.LPWStr)] string aButton0Title, [MarshalAs(UnmanagedType.LPWStr)] string aButton1Title, [MarshalAs(UnmanagedType.LPWStr)] string aButton2Title, [MarshalAs(UnmanagedType.LPWStr)] string aCheckMsg, out bool aCheckState);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool Prompt([MarshalAs(UnmanagedType.Interface)]nsIDOMWindow aParent, [MarshalAs(UnmanagedType.LPWStr)] string aDialogTitle, [MarshalAs(UnmanagedType.LPWStr)] string aText, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(PRUnicharMarshaler))] ref string aValue, [MarshalAs(UnmanagedType.LPWStr)] string aCheckMsg, IntPtr aCheckState);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool PromptUsernameAndPassword([MarshalAs(UnmanagedType.Interface)]nsIDOMWindow aParent, [MarshalAs(UnmanagedType.LPWStr)] string aDialogTitle, [MarshalAs(UnmanagedType.LPWStr)] string aText, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(PRUnicharMarshaler))] ref string aUsername, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(PRUnicharMarshaler))] ref string aPassword, [MarshalAs(UnmanagedType.LPWStr)] string aCheckMsg, IntPtr aCheckState);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool PromptPassword([MarshalAs(UnmanagedType.Interface)]nsIDOMWindow aParent, [MarshalAs(UnmanagedType.LPWStr)] string aDialogTitle, [MarshalAs(UnmanagedType.LPWStr)] string aText, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(PRUnicharMarshaler))] ref string aPassword, [MarshalAs(UnmanagedType.LPWStr)] string aCheckMsg, IntPtr aCheckState);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool Select([MarshalAs(UnmanagedType.Interface)]nsIDOMWindow aParent, [MarshalAs(UnmanagedType.LPWStr)] string aDialogTitle, [MarshalAs(UnmanagedType.LPWStr)] string aText, uint aCount, IntPtr aSelectList, out int aOutSelection);
 
 		// nsIPromptService2:
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool PromptAuth([MarshalAs(UnmanagedType.Interface)]nsIDOMWindow aParent, IntPtr aChannel, int level, nsIAuthInformation authInfo, [MarshalAs(UnmanagedType.LPWStr)] string checkboxLabel, IntPtr checkValue);
 		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		[return: MarshalAs(UnmanagedType.Interface)]
 		nsICancelable AsyncPromptAuth(nsIDOMWindow aParent, IntPtr aChannel, nsIAuthPromptCallback aCallback, nsISupports aContext, uint level, nsIAuthInformation authInfo, [MarshalAs(UnmanagedType.LPWStr)] string checkboxLabel, IntPtr checkValue);
 	}
@@ -3294,27 +3314,48 @@ namespace Skybound.Gecko
 	[Guid("0d73639c-2a92-4518-9f92-28f71fea5f20"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	interface nsIAuthInformation
 	{
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetFlags();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetRealm([MarshalAs(UnmanagedType.LPStruct)] nsAString aRealm);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetAuthenticationScheme([MarshalAs(UnmanagedType.LPStruct)]nsACString aAuthenticationScheme);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetUsername([MarshalAs(UnmanagedType.LPStruct)] nsAString aUsername);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetUsername([MarshalAs(UnmanagedType.LPStruct)] nsAString aUsername);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetPassword([MarshalAs(UnmanagedType.LPStruct)] nsAString aPassword);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetPassword([MarshalAs(UnmanagedType.LPStruct)] nsAString aPassword);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetDomain([MarshalAs(UnmanagedType.LPStruct)] nsAString aDomain);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetDomain([MarshalAs(UnmanagedType.LPStruct)] nsAString aDomain);
 	}
 	
 	[Guid("bdc387d7-2d29-4cac-92f1-dd75d786631d"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	interface nsIAuthPromptCallback
 	{
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void OnAuthAvailable([MarshalAs(UnmanagedType.Interface)]nsISupports aContext, [MarshalAs(UnmanagedType.Interface)]nsIAuthInformation aAuthInfo);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void OnAuthCancelled([MarshalAs(UnmanagedType.Interface)]nsISupports aContext, bool userCancel);
 	}
 	
 	[Guid("d94ac0a0-bb18-46b8-844e-84159064b0bd"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	interface nsICancelable
 	{
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Cancel(int aReason);
 	}
 	
@@ -3323,14 +3364,23 @@ namespace Skybound.Gecko
 	[Guid("decb9cc7-c08f-4ea5-be91-a8fc637ce2d2"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	interface nsIPrefService
 	{
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ReadUserPrefs([MarshalAs(UnmanagedType.Interface)]nsIFile aFile);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ResetPrefs();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ResetUserPrefs();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SavePrefFile([MarshalAs(UnmanagedType.Interface)]nsIFile aFile);
 		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		[return: MarshalAs(UnmanagedType.Interface)]
 		nsIPrefBranch GetBranch([MarshalAs(UnmanagedType.LPStr)] string aPrefRoot);
 		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		[return: MarshalAs(UnmanagedType.Interface)]
 		nsIPrefBranch GetDefaultBranch([MarshalAs(UnmanagedType.LPStr)] string aPrefRoot);
 	}
@@ -3338,30 +3388,68 @@ namespace Skybound.Gecko
 	[Guid("56c35506-f14b-11d3-99d3-ddbfac2ccf65"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	interface nsIPrefBranch
 	{
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		[return: MarshalAs(UnmanagedType.LPStr)] string GetRoot();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetPrefType([MarshalAs(UnmanagedType.LPStr)] string aPrefName);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetBoolPref([MarshalAs(UnmanagedType.LPStr)] string aPrefName);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetBoolPref([MarshalAs(UnmanagedType.LPStr)] string aPrefName, int aValue);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		[return: MarshalAs(UnmanagedType.LPStr)] string GetCharPref([MarshalAs(UnmanagedType.LPStr)] string aPrefName);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetCharPref([MarshalAs(UnmanagedType.LPStr)] string aPrefName, [MarshalAs(UnmanagedType.LPStr)] string aValue);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetIntPref([MarshalAs(UnmanagedType.LPStr)] string aPrefName);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetIntPref([MarshalAs(UnmanagedType.LPStr)] string aPrefName, int aValue);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetComplexValue([MarshalAs(UnmanagedType.LPStr)] string aPrefName, ref Guid aType, IntPtr aValue);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetComplexValue([MarshalAs(UnmanagedType.LPStr)] string aPrefName, ref Guid aType, nsISupports aValue);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ClearUserPref([MarshalAs(UnmanagedType.LPStr)] string aPrefName);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void LockPref([MarshalAs(UnmanagedType.LPStr)] string aPrefName);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool PrefHasUserValue([MarshalAs(UnmanagedType.LPStr)] string aPrefName);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool PrefIsLocked([MarshalAs(UnmanagedType.LPStr)] string aPrefName);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void UnlockPref([MarshalAs(UnmanagedType.LPStr)] string aPrefName);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void DeleteBranch([MarshalAs(UnmanagedType.LPStr)] string aStartingAt);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetChildList([MarshalAs(UnmanagedType.LPStr)] string aStartingAt, out uint aCount, [MarshalAs(UnmanagedType.LPArray, ArraySubType=UnmanagedType.LPStr)] string [] aChildArray);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ResetBranch([MarshalAs(UnmanagedType.LPStr)] string aStartingAt);
 	}
 	
 	[Guid("00000001-0000-0000-c000-000000000046"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface nsIFactory
 	{
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void CreateInstance([MarshalAs(UnmanagedType.Interface)]nsISupports aOuter, ref Guid iid, [MarshalAs(UnmanagedType.IUnknown)] out object result);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void LockFactory(bool @lock);
 	}
 	
@@ -3446,7 +3534,7 @@ namespace Skybound.Gecko
 	}
 	
 	[Guid("c8c0a080-0868-11d3-915f-d9d889d48e3c"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	interface nsIFile
+	public interface nsIFile
 	{
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Append([MarshalAs(UnmanagedType.LPStruct)] nsAString node);
@@ -3784,7 +3872,7 @@ namespace Skybound.Gecko
 	}
 	
 	[Guid("bddeda3f-9020-4d12-8c70-984ee9f7935e"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	interface nsIIOService
+	public interface nsIIOService
 	{
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		IntPtr GetProtocolHandler([MarshalAs(UnmanagedType.LPStr)] string aScheme); // nsIProtocolHandler
