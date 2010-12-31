@@ -67,7 +67,9 @@ namespace Skybound.Gecko
 		/// </summary>
 		public GeckoWebBrowser()
 		{
+#if __MonoCS__
 			m_wrapper = new GtkDotNet.GtkWrapperNoThread(new Gtk.Window(Gtk.WindowType.Popup), this);
+#endif
 		}
 		
 		//static Dictionary<nsIDOMDocument, GeckoWebBrowser> FromDOMDocumentTable = new Dictionary<nsIDOMDocument,GeckoWebBrowser>();
@@ -106,16 +108,17 @@ namespace Skybound.Gecko
 		nsIBaseWindow BaseWindow;
 		nsIWebNavigation WebNav;
 		int ChromeFlags;
-		
-		static GtkDotNet.GtkWrapperNoThread m_wrapper;		
+
+#if __MonoCS__
+		static GtkDotNet.GtkWrapperNoThread m_wrapper;
+#endif
 		
 		protected override void OnHandleCreated(EventArgs e)
 		{
+#if __MonoCS__
 			base.OnHandleCreated(e);
-			this.BackColor = Color.AliceBlue;
-			
 			m_wrapper.Init();
-			
+#endif
 			if (!this.DesignMode)
 			{
 				Xpcom.Initialize();
@@ -145,7 +148,12 @@ namespace Skybound.Gecko
 				//            treeItem19.SetItemType(type);
 				//}
 
+#if __MonoCS__
 				BaseWindow.InitWindow(m_wrapper.m_popupWindow.Handle, IntPtr.Zero, 0, 0, this.Width, this.Height);
+#else
+				BaseWindow.InitWindow(this.Handle, IntPtr.Zero, 0, 0, this.Width, this.Height);
+#endif
+
 				BaseWindow.Create();
 				
 				Guid nsIWebProgressListenerGUID = typeof(nsIWebProgressListener).GUID;
@@ -1070,9 +1078,13 @@ namespace Skybound.Gecko
 				if (WebNav == null)
 					return null;
 				
+#if __MonoCS__
 				IntPtr /*nsURI*/ IUnknownPtr =  WebNav.GetCurrentURI();
 				nsIURI locationComObject = (nsIURI)Marshal.GetObjectForIUnknown(IUnknownPtr); 
 				var location = new nsURI(locationComObject);
+#else
+				nsURI location = WebNav.GetCurrentURI();
+#endif
 				if (!location.IsNull)
 				{
 					Uri result;
@@ -1093,9 +1105,12 @@ namespace Skybound.Gecko
 			{
 				if (WebNav == null)
 					return null;
-				
+#if __MonoCS__				
 				IntPtr /*nsIURI*/ IUnknownPtr =  WebNav.GetReferringURI();
-				nsIURI location = (nsIURI)Marshal.GetObjectForIUnknown(IUnknownPtr); 				
+				nsIURI location = (nsIURI)Marshal.GetObjectForIUnknown(IUnknownPtr);
+#else
+				nsIURI location = WebNav.GetReferringURI();
+#endif
 				if (location != null)
 				{
 					return new Uri(nsString.Get(location.GetSpec));
@@ -1249,13 +1264,24 @@ namespace Skybound.Gecko
 				((GeckoProgressEventHandler)this.Events[ProgressChangedEvent])(this, e);
 		}
 		#endregion
-		
+
 		/// <summary>
 		/// Saves the current document to the specified file name.
 		/// </summary>
 		/// <param name="filename"></param>
 		/// <returns></returns>
 		public void SaveDocument(string filename)
+		{
+			SaveDocument(filename, null);
+		}
+
+
+		/// <summary>
+		/// Saves the current document to the specified file name.
+		/// </summary>
+		/// <param name="filename"></param>
+		/// <returns></returns>
+		public void SaveDocument(string filename, string outputMimeType)//hatton added mimeType param
 		{
 			if (!Directory.Exists(Path.GetDirectoryName(filename)))
 				throw new System.IO.DirectoryNotFoundException();
@@ -1266,7 +1292,7 @@ namespace Skybound.Gecko
 			if (persist != null)
 			{
 				persist.SaveDocument((nsIDOMDocument)Document.DomObject, Xpcom.NewNativeLocalFile(filename), null,
-					null, 0, 0);
+					outputMimeType, 0, 0);
 			}
 			else
 			{
