@@ -41,7 +41,11 @@ namespace Skybound.Gecko
 	/// <summary>
 	/// Provides a wrapper for Mozilla nsIURI objects.
 	/// </summary>
+#if __MonoCS__
 	[StructLayout(LayoutKind.Explicit, Size=8)]
+#else
+	[StructLayout(LayoutKind.Sequential)]
+#endif
 	public struct nsURI
 	{
 		internal nsURI(nsIURI instance)
@@ -100,8 +104,10 @@ namespace Skybound.Gecko
 		/// </summary>
 		/// <returns></returns>
 		public object GetInstance() { return Instance; }
-				
+
+#if __MonoCS__				
 		[FieldOffset(0)]
+#endif
 		nsIURI Instance;
 		
 		public string Spec { get { return nsString.Get(Instance.GetSpec); } set { nsString.Set(Instance.SetSpec, value); } }
