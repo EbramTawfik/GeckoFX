@@ -38,6 +38,7 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
 using System.Windows.Forms;
+using System.Runtime.CompilerServices;
 
 namespace Skybound.Gecko
 {
@@ -278,11 +279,20 @@ namespace Skybound.Gecko
 					// convert it to a managed interface
 					QI_nsIInterfaceRequestor req = (QI_nsIInterfaceRequestor)Marshal.GetObjectForIUnknown(pInterfaceRequestor);
 					
-					// try to get the requested interface
-					req.GetInterface(ref iid, out ppv);
+					if (req != null)
+					{
 					
-					// clean up
-					Marshal.ReleaseComObject(req);
+						try
+						{
+							req.GetInterface(ref iid, out ppv);
+							// clean up
+							Marshal.ReleaseComObject(req);
+						}
+						catch(NullReferenceException e)
+						{
+							Debug.WriteLine("NullRefException from native code.");
+						}
+					}
 					Marshal.Release(pInterfaceRequestor);
 				}
 			}
@@ -303,6 +313,8 @@ namespace Skybound.Gecko
 		[Guid("033a1470-8b2a-11d3-af88-00a024ffc08c"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 		interface QI_nsIInterfaceRequestor
 		{
+
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			[PreserveSig] int GetInterface(ref Guid uuid, out IntPtr pUnk);
 		}
 		

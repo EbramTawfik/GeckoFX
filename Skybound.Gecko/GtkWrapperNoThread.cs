@@ -3,6 +3,7 @@ using Gtk;
 using System;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using System.Diagnostics;
 
 namespace GtkDotNet
 {
@@ -86,9 +87,16 @@ namespace GtkDotNet
 
 		internal void ProcessPendingGtkEvents()
 		{
-			while (Gtk.Application.EventsPending()) {
-				Gtk.Application.RunIteration(false);
-			}
+			try
+			{
+				while (Gtk.Application.EventsPending()) {
+					Gtk.Application.RunIteration(false);
+				}
+			}catch(Exception e)
+			{
+				// Ignore any exceptions to improve stablity.
+				Debug.WriteLine(e);
+			}			
 		}
 
 		public FilterReturn FilterFunc (IntPtr xevent, Event evnt)
