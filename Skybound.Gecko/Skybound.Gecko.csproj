@@ -217,6 +217,15 @@
     <Compile Include="GeckoWebBrowser.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="martinsefcik.sk\nsIContentViewer.cs" />
+    <Compile Include="martinsefcik.sk\nsIDocShell.cs" />
+    <Compile Include="martinsefcik.sk\nsIDocShellLoadInfo.cs" />
+    <Compile Include="martinsefcik.sk\nsIDocumentCharsetInfo.cs" />
+    <Compile Include="martinsefcik.sk\nsIDOMStorage.cs" />
+    <Compile Include="martinsefcik.sk\nsIMarkupDocumentViewer.cs" />
+    <Compile Include="martinsefcik.sk\nsIPrintSettings.cs" />
+    <Compile Include="martinsefcik.sk\nsISecureBrowserUI.cs" />
+    <Compile Include="martinsefcik.sk\nsISHEntry.cs" />
     <Compile Include="nsInterfaces.cs" />
     <Compile Include="nsString.cs" />
     <Compile Include="nsURI.cs" />

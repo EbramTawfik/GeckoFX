@@ -82,7 +82,7 @@ namespace Skybound.Gecko
     }
 	
 	[Guid("a41661d4-1417-11d5-9882-00c04fa02f40"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	interface nsIHistoryEntry
+	public interface nsIHistoryEntry
 	{
 		[return: MarshalAs(UnmanagedType.Interface)] 
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

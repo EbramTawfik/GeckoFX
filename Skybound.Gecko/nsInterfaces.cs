@@ -901,7 +901,7 @@ namespace Skybound.Gecko
 	}
 	
 	[Guid("7d935d63-6d2a-4600-afb5-9a4f7d68b825"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	interface nsIDocShellTreeItem
+	public interface nsIDocShellTreeItem
 	{
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		[return: MarshalAs(UnmanagedType.LPWStr)] string GetName();
@@ -1204,14 +1204,14 @@ namespace Skybound.Gecko
 	}
 	
 	[Guid("df31c120-ded6-11d1-bd85-00805f8ae3f4"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	interface nsIDOMEventListener
+	public interface nsIDOMEventListener
 	{
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void HandleEvent([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent e);
 	}
 	
 	[Guid("a66b7b80-ff46-bd97-0080-5f8ae38add32"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	interface nsIDOMEvent
+	public interface nsIDOMEvent
 	{
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetType([MarshalAs(UnmanagedType.LPStruct)] nsAString aType);
@@ -1763,7 +1763,7 @@ namespace Skybound.Gecko
 	}
 	
 	[Guid("1c773b30-d1cf-11d2-bd95-00805f8ae3f4"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	interface nsIDOMEventTarget
+	public interface nsIDOMEventTarget
 	{
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void AddEventListener([MarshalAs(UnmanagedType.LPStruct)] nsAString type, [MarshalAs(UnmanagedType.IUnknown)] nsIDOMEventListener listener, bool useCapture);
@@ -4042,7 +4042,7 @@ namespace Skybound.Gecko
 	}
 	
 	[Guid("fa9c7f6c-61b3-11d4-9877-00c04fa0cf4a"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	interface nsIInputStream
+	public interface nsIInputStream
 	{
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Close();
@@ -4305,12 +4305,12 @@ namespace Skybound.Gecko
 	}
 	
 	[Guid("2f977d52-5485-11d4-87e2-0010a4e75ef2"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	interface nsIPrintSession
+	public interface nsIPrintSession
 	{
 	}
 	
 	[Guid("5af07661-6477-4235-8814-4a45215855b8"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	interface nsIPrintSettings
+	public interface nsIPrintSettings
 	{
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetPrintOptions(int aType, bool aTurnOnOff);
@@ -4689,7 +4689,7 @@ namespace Skybound.Gecko
 		void GetUnwriteableMarginInTwips(ref nsMargin aEdge);
 	}
 	
-	struct nsMargin
+	public struct nsMargin
 	{
 	}
 }
