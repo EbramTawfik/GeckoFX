@@ -1046,7 +1046,7 @@ namespace Skybound.Gecko
 	}
 	
 	[Guid("570f39d1-efd0-11d3-b093-00a024ffc08c"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	interface nsIWebProgressListener
+	public interface nsIWebProgressListener
 	{
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void OnStateChange([MarshalAs(UnmanagedType.Interface)]nsIWebProgress aWebProgress, [MarshalAs(UnmanagedType.Interface)]nsIRequest aRequest, int aStateFlags, int aStatus);
@@ -1065,7 +1065,7 @@ namespace Skybound.Gecko
 	}
 	
 	[Guid("ef6bfbd2-fd46-48d8-96b7-9f8f0fd387fe"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	interface nsIRequest
+	public interface nsIRequest
 	{
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -1446,7 +1446,7 @@ namespace Skybound.Gecko
 	}
 	
 	[Guid("a6cf906b-15b3-11d2-932e-00805f8add32"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	interface nsIDOMWindow
+	public interface nsIDOMWindow
 	{
 		[return: MarshalAs(UnmanagedType.Interface)] 
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -1574,7 +1574,7 @@ namespace Skybound.Gecko
 	}
 	
 	[Guid("b2c7ed59-8634-4352-9e37-5484c8b6e4e1"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	interface nsISelection
+	public interface nsISelection
 	{
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -1638,7 +1638,7 @@ namespace Skybound.Gecko
 	}
 
 	[Guid("a6cf90ce-15b3-11d2-932e-00805f8add32"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	interface nsIDOMRange
+	public interface nsIDOMRange
 	{
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]		
@@ -1792,7 +1792,7 @@ namespace Skybound.Gecko
 	}
 	
 	[Guid("a6cf907b-15b3-11d2-932e-00805f8add32"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	interface nsIDOMNamedNodeMap
+	public interface nsIDOMNamedNodeMap
 	{
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -1827,7 +1827,7 @@ namespace Skybound.Gecko
 	}
 	
 	[Guid("a6cf907c-15b3-11d2-932e-00805f8add32"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	interface nsIDOMNode
+	public interface nsIDOMNode
 	{
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -1920,7 +1920,7 @@ namespace Skybound.Gecko
 	}
 	
 	[Guid("a6cf907d-15b3-11d2-932e-00805f8add32"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	interface nsIDOMNodeList
+	public interface nsIDOMNodeList
 	{
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -1931,7 +1931,7 @@ namespace Skybound.Gecko
 	}
 	
 	[Guid("a6cf9070-15b3-11d2-932e-00805f8add32"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	interface nsIDOMAttr : nsIDOMNode
+	public interface nsIDOMAttr : nsIDOMNode
 	{
 		// nsIDOMNode:
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -2040,7 +2040,7 @@ namespace Skybound.Gecko
 	}
 	
 	[Guid("a6cf9078-15b3-11d2-932e-00805f8add32"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	interface nsIDOMElement : nsIDOMNode
+	public interface nsIDOMElement : nsIDOMNode
 	{
 		// nsIDOMNode:
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -2187,7 +2187,7 @@ namespace Skybound.Gecko
 	}
 	
 	[Guid("a6cf9075-15b3-11d2-932e-00805f8add32"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	interface nsIDOMDocument : nsIDOMNode
+	public interface nsIDOMDocument : nsIDOMNode
 	{
 		// nsIDOMNode:
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
