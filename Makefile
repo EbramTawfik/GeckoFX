@@ -7,5 +7,5 @@ Skybound.Gecko.dll: Skybound.Gecko/Skybound.Gecko.csproj
 	cd Skybound.Gecko && xbuild Skybound.Gecko.csproj
 
 install:
-	mkdir -p $(DESTDIR)/lib
-	cp Skybound.Gecko/bin/Debug/Skybound.Gecko.dll $(DESTDIR)/lib/Skybound.Gecko.dll
+	install -d $(DESTDIR)/usr/lib
+	install Skybound.Gecko/bin/Debug/Skybound.Gecko.dll $(DESTDIR)/usr/lib/Skybound.Gecko.dll
