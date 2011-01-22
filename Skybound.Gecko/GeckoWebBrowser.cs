@@ -1549,31 +1549,6 @@ namespace Skybound.Gecko
 			form.Show();			
 		}
 		
-		// this is disabled for now because it stopped working
-		
-		//#if GECKO_1_9
-		///// <summary>
-		///// Opens a chrome dialog.  This method is private for now until we finalize how it's going to work.  And it doesn't work in 1.8 because
-		///// the method signature for OpenWindowJS is different (it takes a jsval* for the arguments).
-		///// </summary>
-		///// <param name="chromeUrl"></param>
-		///// <param name="features"></param>
-		///// <param name="args"></param>
-		//void OpenDialog(string chromeUrl, string features, params object [] args)
-		//{
-		//      nsPIWindowWatcher watcher = Xpcom.GetService<nsPIWindowWatcher>("@mozilla.org/embedcomp/window-watcher;1");
-		//      if (watcher == null)
-		//      {
-		//            throw new Exception("Couldn't obtain the window watcher service.");
-		//      }
-			
-		//      nsIArray argsArray = (args.Length > 0) ? nsArray.Create(args) : null;
-			
-		//      // open the window
-		//      nsIDOMWindow window = watcher.OpenWindowJS((nsIDOMWindow)this.Window.DomWindow, chromeUrl, "_blank", features, true, argsArray);
-		//}
-		//#endif
-		
 		/// <summary>
 		/// Displays a properties dialog for the current page.
 		/// </summary>

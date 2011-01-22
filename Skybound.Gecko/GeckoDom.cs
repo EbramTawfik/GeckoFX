@@ -690,8 +690,7 @@ namespace Skybound.Gecko
 			
 			return DomDocument.IsSupported(new nsAString(feature), new nsAString(version));
 		}
-		
-		#if GECKO_1_9 || GECKO_1_9_1
+				
 		/// <summary>
 		/// Gets the currently focused element.
 		/// </summary>
@@ -721,7 +720,6 @@ namespace Skybound.Gecko
 		{
 			return GeckoElement.Create((nsIDOMHTMLElement)((nsIDOMNSDocument)DomDocument).ElementFromPoint(x, y));
 		}
-		#endif
 	}
 	
 	public class GeckoNamedNodeMap : IEnumerable<GeckoNode>
