@@ -6,7 +6,7 @@ namespace Skybound.Gecko
 {
 	/// <summary>
 	/// Search /usr/lib directory for latest xulrunner.
-	/// Currenly looks for xulrunner-1 variants in /usr/lib.
+	/// Currenly looks for xulrunner-1.9.2 variants in /usr/lib.
 	/// returns null if xulrunner-1. directory isn't found.
 	/// xulrunner doesn't come with a .pc file so I can't use pkg-config to find location of xulrunner.
 	/// </summary>
@@ -21,7 +21,7 @@ namespace Skybound.Gecko
 				throw new ApplicationException("/usr/lib doesn't exist");
 			
 			DirectoryInfo d = new DirectoryInfo("/usr/lib");
-			DirectoryInfo[] dirs = d.GetDirectories("xulrunner-1.*", SearchOption.TopDirectoryOnly);
+			DirectoryInfo[] dirs = d.GetDirectories("xulrunner-1.9.2.*", SearchOption.TopDirectoryOnly);
 			
 			if (dirs.Length == 0)
 				return null;
