@@ -82,6 +82,21 @@ namespace Skybound.Gecko
 		{
 			get { return Environment.OSVersion.Platform == PlatformID.Unix; }
 		}
+		
+		public static bool IsWindows
+		{
+			get { return !IsLinux; }
+		}
+		
+		public static bool IsMono
+		{
+			get { return Type.GetType ("Mono.Runtime") != null; }
+		}
+		
+		public static bool IsDotNet
+		{
+			get { return !IsMono; }	
+		}
 			
 		/// <summary>
 		/// Initializes XPCOM using the specified directory.

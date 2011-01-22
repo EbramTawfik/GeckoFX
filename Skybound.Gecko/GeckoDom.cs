@@ -247,11 +247,12 @@ namespace Skybound.Gecko
 			this.DomNSElement = (nsIDOMNSElement)element;
 			this.DomNSHTMLElement = (nsIDOMNSHTMLElement)element;
 			
-#if !__MonoCS__ // TODO FIXME: ChangeWrapperHandleStrength not implemented in mono
-			// since a reference is stored in the base class, we only need weak references here
-			Marshal.ChangeWrapperHandleStrength(DomNSElement, true);
-			Marshal.ChangeWrapperHandleStrength(DomNSHTMLElement, true);
-#endif
+			if (Xpcom.IsDotNet) // TODO FIXME: ChangeWrapperHandleStrength not implemented in mono
+			{
+				// since a reference is stored in the base class, we only need weak references here
+				Marshal.ChangeWrapperHandleStrength(DomNSElement, true);
+				Marshal.ChangeWrapperHandleStrength(DomNSHTMLElement, true);
+			}
 
 		}
 		

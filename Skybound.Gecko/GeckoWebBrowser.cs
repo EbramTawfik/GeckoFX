@@ -67,9 +67,8 @@ namespace Skybound.Gecko
 		/// </summary>
 		public GeckoWebBrowser()
 		{
-#if __MonoCS__
-			m_wrapper = new GtkDotNet.GtkWrapperNoThread(new Gtk.Window(Gtk.WindowType.Popup), this);
-#endif
+			if (Xpcom.IsMono)
+				m_wrapper = new GtkDotNet.GtkWrapperNoThread(new Gtk.Window(Gtk.WindowType.Popup), this);
 		}
 		
 		//static Dictionary<nsIDOMDocument, GeckoWebBrowser> FromDOMDocumentTable = new Dictionary<nsIDOMDocument,GeckoWebBrowser>();
@@ -109,16 +108,18 @@ namespace Skybound.Gecko
 		nsIWebNavigation WebNav;
 		int ChromeFlags;
 
-#if __MonoCS__
+		// Only used on mono.
 		static GtkDotNet.GtkWrapperNoThread m_wrapper;
-#endif
 		
 		protected override void OnHandleCreated(EventArgs e)
 		{
-#if __MonoCS__
-			base.OnHandleCreated(e);
-			m_wrapper.Init();
-#endif
+			
+			if (Xpcom.IsMono)
+			{
+				base.OnHandleCreated(e);
+				m_wrapper.Init();
+			}
+			
 			if (!this.DesignMode)
 			{
 				Xpcom.Initialize();
@@ -148,11 +149,10 @@ namespace Skybound.Gecko
 				//            treeItem19.SetItemType(type);
 				//}
 
-#if __MonoCS__
-				BaseWindow.InitWindow(m_wrapper.m_popupWindow.Handle, IntPtr.Zero, 0, 0, this.Width, this.Height);
-#else
-				BaseWindow.InitWindow(this.Handle, IntPtr.Zero, 0, 0, this.Width, this.Height);
-#endif
+				if (Xpcom.IsMono)
+					BaseWindow.InitWindow(m_wrapper.m_popupWindow.Handle, IntPtr.Zero, 0, 0, this.Width, this.Height);
+				else
+					BaseWindow.InitWindow(this.Handle, IntPtr.Zero, 0, 0, this.Width, this.Height);
 
 				BaseWindow.Create();
 				
@@ -179,10 +179,11 @@ namespace Skybound.Gecko
 				
 				if ((this.ChromeFlags & (int)GeckoWindowFlags.OpenAsChrome) == 0)
 				{
-#if !__MonoCS__
-					// navigating to about:blank allows drag & drop to work properly before a page has been loaded into the browser
-					Navigate("about:blank"); /* about:blank*/
-#endif
+					if (Xpcom.IsMono) // TODO: do we really need a IsMono here?
+					{						
+						// navigating to about:blank allows drag & drop to work properly before a page has been loaded into the browser
+						Navigate("about:blank");
+					}
 				}	
 				
 				// this fix prevents the browser from crashing if the first page loaded is invalid (missing file, invalid URL, etc)
@@ -323,10 +324,8 @@ namespace Skybound.Gecko
 		{
 			const int WM_GETDLGCODE = 0x87;
 			const int DLGC_WANTALLKEYS = 0x4;
-#if !__MonoCS__
 			const int WM_MOUSEACTIVATE = 0x21;
 			const int MA_ACTIVATE = 0x1;
-#endif
 			
 			if (!DesignMode)
 			{
@@ -335,8 +334,7 @@ namespace Skybound.Gecko
 					m.Result = (IntPtr)DLGC_WANTALLKEYS;
 					return;
 				}
-#if !__MonoCS__
-				else if (m.Msg == WM_MOUSEACTIVATE)
+				else if (m.Msg == WM_MOUSEACTIVATE && Xpcom.IsWindows) // TODO FIXME: port for Linux
 				{
 					m.Result = (IntPtr)MA_ACTIVATE;
 					
@@ -346,9 +344,6 @@ namespace Skybound.Gecko
 					}
 					return;
 				}
-#else				
-				// TODO FIXME
-#endif
 			}
 			
 			base.WndProc(ref m);
@@ -1078,13 +1073,10 @@ namespace Skybound.Gecko
 				if (WebNav == null)
 					return null;
 				
-#if __MonoCS__
 				IntPtr /*nsURI*/ IUnknownPtr =  WebNav.GetCurrentURI();
 				nsIURI locationComObject = (nsIURI)Marshal.GetObjectForIUnknown(IUnknownPtr); 
-				var location = new nsURI(locationComObject);
-#else
-				nsURI location = WebNav.GetCurrentURI();
-#endif
+				nsURI location = new nsURI(locationComObject);
+				
 				if (!location.IsNull)
 				{
 					Uri result;
@@ -1105,12 +1097,10 @@ namespace Skybound.Gecko
 			{
 				if (WebNav == null)
 					return null;
-#if __MonoCS__				
+			
 				IntPtr /*nsIURI*/ IUnknownPtr =  WebNav.GetReferringURI();
 				nsIURI location = (nsIURI)Marshal.GetObjectForIUnknown(IUnknownPtr);
-#else
-				nsIURI location = WebNav.GetReferringURI();
-#endif
+				
 				if (location != null)
 				{
 					return new Uri(nsString.Get(location.GetSpec));
@@ -1756,10 +1746,12 @@ namespace Skybound.Gecko
 			IntPtr ppv, pUnk = Marshal.GetIUnknownForObject(this);
 			
 			Marshal.QueryInterface(pUnk, ref uuid, out ppv);
-#if __MonoCS__
-			// TODO FIXME - remove this hack.
-			Marshal.AddRef(ppv);
-#endif
+
+			if (Xpcom.IsMono)
+			{
+				// TODO FIXME - remove this hack.
+				Marshal.AddRef(ppv);
+			}
 			
 			Marshal.Release(pUnk);
 			
