@@ -16,6 +16,25 @@ namespace GtkDotNet
 		}
 	}
 	
+	public static class GtkOnceOnly
+	{
+		public static void Init()
+		{
+			lock(m_initedOnce)
+			{
+				if (((bool)m_initedOnce) == false)
+				{
+					Gtk.Application.Init();
+					m_initedOnce = true;
+				}
+			}
+		}
+		/// <summary>
+		/// Stores if gtk has been initizlized.
+		/// </summary>
+		internal static object m_initedOnce = false;	
+	}
+		
 	/// <summary>
 	/// Allows embeding of a Gtk Window in Winforms control. The gtk event loop is run using  Winform idle processing.
 	/// </summary>
@@ -35,11 +54,6 @@ namespace GtkDotNet
 		/// Gdk wrapper created from m_parent handle.
 		/// </summary>
 		protected Gdk.Window m_gdkWrapperOfForm;
-
-		/// <summary>
-		/// Stores if gtk has been initizlized.
-		/// </summary>
-		protected static bool m_initedOnce = false;
 		
 		/// <summary>
 		/// stores if the passed popup windows has been created.
@@ -148,15 +162,8 @@ namespace GtkDotNet
 		{
 			if (m_popupWindowCreated)
 				return;
-
-			lock(this)
-			{
-				if (!m_initedOnce)
-				{
-					Gtk.Application.Init();
-					m_initedOnce = true;
-				}
-			}
+			
+			GtkOnceOnly.Init();
 			
 			lock(this)
 			{
