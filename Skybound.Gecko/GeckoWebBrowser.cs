@@ -68,7 +68,7 @@ namespace Skybound.Gecko
 		public GeckoWebBrowser()
 		{
 			if (Xpcom.IsMono)
-				m_wrapper = new GtkDotNet.GtkWrapperNoThread(new Gtk.Window(Gtk.WindowType.Popup), this);
+				m_wrapper = new GtkDotNet.GtkReparentingWrapperNoThread(new Gtk.Window(Gtk.WindowType.Popup), this);
 		}
 		
 		//static Dictionary<nsIDOMDocument, GeckoWebBrowser> FromDOMDocumentTable = new Dictionary<nsIDOMDocument,GeckoWebBrowser>();
