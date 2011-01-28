@@ -1,21 +1,30 @@
+using System;
+using System.Diagnostics;
+using System.Drawing;
+using System.IO;
+using System.Runtime.InteropServices;
+using System.Windows.Forms;
 using Gdk;
 using Gtk;
-using System;
-using System.Windows.Forms;
-using System.Runtime.InteropServices;
-using System.Diagnostics;
 
 namespace GtkDotNet
 {
+	public class NotInReparentModeException : ApplicationException
+	{
+		public NotInReparentModeException() : base("Programming error. This method should only be called when in reparenting mode.")
+		{		
+		}
+	}
+	
 	/// <summary>
 	/// Allows embeding of a Gtk Window in Winforms control. The gtk event loop is run using  Winform idle processing.
 	/// </summary>
-	public class GtkWrapperNoThread
+	public class GtkWrapperNoThread : IDisposable
 	{
 		/// <summary>
 		/// The Gtk window which is embeded into m_parent.
 		/// </summary>
-		public Gtk.Window m_popupWindow;
+		protected Gtk.Window m_popupWindow;
 
 		/// <summary>
 		/// The Winform control that m_popupWindow is reparented into.
@@ -30,8 +39,18 @@ namespace GtkDotNet
 		/// <summary>
 		/// Stores if gtk has been initizlized.
 		/// </summary>
-		protected bool m_initedOnce = false;
-
+		protected static bool m_initedOnce = false;
+		
+		/// <summary>
+		/// stores if the passed popup windows has been created.
+		/// </summary>
+		protected bool m_popupWindowCreated = false;
+		
+		/// <summary>
+		/// Control if popup window is reparented in to a WinForms window.
+		/// </summary>
+		protected bool m_reparentMode = true;
+		
 		/// <summary>
 		/// popupWindow must be a Gtk.Window of type WindowType.Popup
 		/// parent is winform control which the popupWindow is embeded into.
@@ -48,9 +67,52 @@ namespace GtkDotNet
 			m_parent.HandleCreated += HandleParentCreated;
 			m_parent.Resize += HandleParentResize;
 		}
+		
+		/// <summary>
+		/// popupWindow must be a Gtk.Window of type WindowType.Popup
+		/// </summary>
+		public GtkWrapperNoThread(Gtk.Window popupWindow)
+		{
+			if (popupWindow.Type != Gtk.WindowType.Popup)
+			{
+				throw new ArgumentException("Gtk Window should be of type Popup.");
+			}
+
+			m_reparentMode = false;
+			m_popupWindow = popupWindow;	
+			
+			System.Windows.Forms.Application.Idle += HandleSystemWindowsFormsApplicationIdle;			
+		}
+
+		void HandleSystemWindowsFormsApplicationIdle(object sender, EventArgs e)
+		{
+			Init();
+			ProcessPendingGtkEvents();
+		}
+
+		#region IDisposable implementation
+		public void Dispose()
+		{
+			if (m_reparentMode)
+			{
+				// TODO: reparent back into m_popupWindow before destroying Window.
+			}
+			
+			System.Windows.Forms.Application.Idle -= HandleSystemWindowsFormsApplicationIdle;
+			m_popupWindow.Destroy();
+		}
+		#endregion
+		
+		public Gtk.Window BrowserWindow
+		{
+			get { return m_popupWindow; }	
+		}
 
 		void HandleParentResize(object sender, EventArgs e)
 		{
+			if (!m_reparentMode)
+				throw new NotInReparentModeException();
+			
 			m_parent.Invalidate(true);
 
 			if (m_popupWindow != null)
@@ -59,19 +121,32 @@ namespace GtkDotNet
 				m_popupWindow.QueueDraw();
 			}
 		}
+				
+		protected Gdk.Pixbuf GetPixbufOfWebBrowser(int width, int height)
+		{				
+			return Pixbuf.FromDrawable(BrowserWindow.GdkWindow, BrowserWindow.Colormap, 0, 0, 0, 0, width, height);			
+		}
+		
+		internal Bitmap GetBitmap(int width, int height)
+		{			
+			Gdk.Pixbuf pb = GetPixbufOfWebBrowser(width, height);
+			byte[] buffer = pb.SaveToBuffer("bmp");			
+			MemoryStream s = new MemoryStream(buffer);
+			
+			return new Bitmap(s);			
+		}
 
 		void HandleParentCreated(object sender, EventArgs e)
 		{
-			System.Windows.Forms.Application.Idle += (senderArg, eventArg) =>
-			{
-				Init();
-				ProcessPendingGtkEvents();
-			};
+			if (m_reparentMode == false)
+				throw new NotInReparentModeException();
+			
+			System.Windows.Forms.Application.Idle += HandleSystemWindowsFormsApplicationIdle;
 		}
 
 		public void Init()
 		{
-			if (m_initedOnce)
+			if (m_popupWindowCreated)
 				return;
 
 			lock(this)
@@ -79,9 +154,19 @@ namespace GtkDotNet
 				if (!m_initedOnce)
 				{
 					Gtk.Application.Init();
-					EmbedWidgetIntoWinFormPanel();
 					m_initedOnce = true;
 				}
+			}
+			
+			lock(this)
+			{
+				if (m_popupWindowCreated == true)
+				return;
+				
+				CreatePopWindowOffScreen();
+				if (m_reparentMode == true)
+					EmbedWidgetIntoWinFormPanel();
+				m_popupWindowCreated = true;
 			}
 		}
 
@@ -99,7 +184,7 @@ namespace GtkDotNet
 			}			
 		}
 
-		public FilterReturn FilterFunc (IntPtr xevent, Event evnt)
+		private FilterReturn FilterFunc (IntPtr xevent, Event evnt)
 		{
 			if (xevent == IntPtr.Zero)
 				return FilterReturn.Continue;
@@ -128,15 +213,23 @@ namespace GtkDotNet
 			return FilterReturn.Continue;
 		}
 
-		protected void EmbedWidgetIntoWinFormPanel()
+		protected void CreatePopWindowOffScreen()
 		{
 			m_popupWindow.ShowNow();
+			m_popupWindow.DoubleBuffered = false;
 			m_popupWindow.Move(-5000, -5000);
+			
 			while (m_popupWindow.GdkWindow == null)
 			{
 				ProcessPendingGtkEvents();
 			}
-
+		}
+		
+		protected void EmbedWidgetIntoWinFormPanel()
+		{			
+			if (m_reparentMode == false)
+				throw new NotInReparentModeException();
+			
 			// Wraps the panel native (X) window handle in a GdkWrapper
 			m_gdkWrapperOfForm = Gdk.Window.ForeignNewForDisplay(Gdk.Display.Default, (uint)m_parent.Handle);
 

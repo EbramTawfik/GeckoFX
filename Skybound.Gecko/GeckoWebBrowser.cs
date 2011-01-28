@@ -98,6 +98,9 @@ namespace Skybound.Gecko
 				BaseWindow = null;
 			}
 			
+			if (m_wrapper != null)
+				m_wrapper.Dispose();
+			
 			base.Dispose(disposing);
 		}
 		#endregion
@@ -109,11 +112,10 @@ namespace Skybound.Gecko
 		int ChromeFlags;
 
 		// Only used on mono.
-		static GtkDotNet.GtkWrapperNoThread m_wrapper;
+		protected GtkDotNet.GtkWrapperNoThread m_wrapper;
 		
 		protected override void OnHandleCreated(EventArgs e)
-		{
-			
+		{			
 			if (Xpcom.IsMono)
 			{
 				base.OnHandleCreated(e);
@@ -150,7 +152,7 @@ namespace Skybound.Gecko
 				//}
 
 				if (Xpcom.IsMono)
-					BaseWindow.InitWindow(m_wrapper.m_popupWindow.Handle, IntPtr.Zero, 0, 0, this.Width, this.Height);
+					BaseWindow.InitWindow(m_wrapper.BrowserWindow.Handle, IntPtr.Zero, 0, 0, this.Width, this.Height);
 				else
 					BaseWindow.InitWindow(this.Handle, IntPtr.Zero, 0, 0, this.Width, this.Height);
 

@@ -253,6 +253,7 @@
     <Compile Include="GtkWrapperNoThread.cs" />
     <Compile Include="X11Structs.cs" />
     <Compile Include="XULRunnerLocator.cs" />
+    <Compile Include="OffScreenGeckoWebBrowser.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ChromeDialog.resx">
