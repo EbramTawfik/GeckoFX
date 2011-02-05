@@ -62,8 +62,10 @@ namespace GtkDotNet
 			// Wraps the panel native (X) window handle in a GdkWrapper
 			m_gdkWrapperOfForm = Gdk.Window.ForeignNewForDisplay(Gdk.Display.Default, (uint)m_parent.Handle);
 
-			// get low level access to x11 events
-			Gdk.Window.AddFilterForAll(FilterFunc);
+			m_parent.HandleCreated += delegate {
+				// get low level access to x11 events
+				Gdk.Window.AddFilterForAll(FilterFunc);
+			};
 			System.Windows.Forms.Application.DoEvents();
 			ProcessPendingGtkEvents();
 
