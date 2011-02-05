@@ -166,6 +166,7 @@ namespace Skybound.Gecko
 				target.AddEventListener(new nsAString("submit"), this, true);
 				target.AddEventListener(new nsAString("keydown"), this, true);
 				target.AddEventListener(new nsAString("keyup"), this, true);
+				target.AddEventListener(new nsAString("keypress"), this, true);
 				target.AddEventListener(new nsAString("mousemove"), this, true);
 				target.AddEventListener(new nsAString("mouseover"), this, true);
 				target.AddEventListener(new nsAString("mouseout"), this, true);
@@ -1920,6 +1921,7 @@ namespace Skybound.Gecko
 			{
 				case "keydown": OnDomKeyDown((GeckoDomKeyEventArgs)(ea = new GeckoDomKeyEventArgs((nsIDOMKeyEvent)e))); break;
 				case "keyup": OnDomKeyUp((GeckoDomKeyEventArgs)(ea = new GeckoDomKeyEventArgs((nsIDOMKeyEvent)e))); break;
+				case "keypress": OnDomKeyPress((GeckoDomKeyEventArgs)(ea = new GeckoDomKeyEventArgs((nsIDOMKeyEvent)e))); break;
 				
 				case "mousedown": OnDomMouseDown((GeckoDomMouseEventArgs)(ea = new GeckoDomMouseEventArgs((nsIDOMMouseEvent)e))); break;
 				case "mouseup": OnDomMouseUp((GeckoDomMouseEventArgs)(ea = new GeckoDomMouseEventArgs((nsIDOMMouseEvent)e))); break;
@@ -1967,6 +1969,22 @@ namespace Skybound.Gecko
 		{
 			if (((GeckoDomKeyEventHandler)this.Events[DomKeyUpEvent]) != null)
 				((GeckoDomKeyEventHandler)this.Events[DomKeyUpEvent])(this, e);
+		}
+		
+		[Category("DOM Events")]
+		public event GeckoDomKeyEventHandler DomKeyPress
+		{
+			add { this.Events.AddHandler(DomKeyPressEvent, value); }
+			remove { this.Events.RemoveHandler(DomKeyPressEvent, value); }
+		}
+		private static object DomKeyPressEvent = new object();
+		
+		/// <summary>Raises the <see cref="DomKeyPress"/> event.</summary>
+		/// <param name="e">The data for the event.</param>
+		protected virtual void OnDomKeyPress(GeckoDomKeyEventArgs e)
+		{
+			if (((GeckoDomKeyEventHandler)this.Events[DomKeyPressEvent]) != null)
+				((GeckoDomKeyEventHandler)this.Events[DomKeyPressEvent])(this, e);
 		}
 		#endregion
 		
