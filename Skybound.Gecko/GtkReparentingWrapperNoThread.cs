@@ -58,7 +58,10 @@ namespace GtkDotNet
 		}
 		
 		protected void EmbedWidgetIntoWinFormPanel()
-		{						
+		{		
+			if (m_gdkWrapperOfForm != null)
+				return;
+
 			// Wraps the panel native (X) window handle in a GdkWrapper
 			m_gdkWrapperOfForm = Gdk.Window.ForeignNewForDisplay(Gdk.Display.Default, (uint)m_parent.Handle);
 
