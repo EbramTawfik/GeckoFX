@@ -598,7 +598,7 @@ namespace Skybound.Gecko
 	}
 	
 	[Guid("9c5d3c58-1dd1-11b2-a1c9-f3699284657a"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	interface nsIWebBrowserFocus
+	public interface nsIWebBrowserFocus
 	{
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Activate();

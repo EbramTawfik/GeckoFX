@@ -106,10 +106,14 @@ namespace Skybound.Gecko
 		#endregion
 		
 		nsIWebBrowser WebBrowser;
-		nsIWebBrowserFocus WebBrowserFocus;
 		nsIBaseWindow BaseWindow;
 		nsIWebNavigation WebNav;
 		int ChromeFlags;
+
+		public nsIWebBrowserFocus WebBrowserFocus
+		{
+			get; protected set;
+		}
 
 		// Only used on mono.
 		protected GtkDotNet.GtkWrapperNoThread m_wrapper;
