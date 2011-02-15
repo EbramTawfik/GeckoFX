@@ -177,6 +177,11 @@ namespace Skybound.Gecko
 				target.AddEventListener(new nsAString("mousedown"), this, true);
 				target.AddEventListener(new nsAString("mouseup"), this, true);
 				target.AddEventListener(new nsAString("click"), this, true);
+				target.AddEventListener(new nsAString("compositionstart"), this, true);
+				target.AddEventListener(new nsAString("compositionend"), this, true);
+				target.AddEventListener(new nsAString("contextmenu"), this, true);
+				target.AddEventListener(new nsAString("DOMMouseScroll"), this, true);
+				target.AddEventListener(new nsAString("focus"), this, true);
 				
 				// history
 				if (WebNav.GetSessionHistory() != null)
@@ -1934,6 +1939,11 @@ namespace Skybound.Gecko
 				case "mouseout": OnDomMouseOut((GeckoDomMouseEventArgs)(ea = new GeckoDomMouseEventArgs((nsIDOMMouseEvent)e))); break;
 				case "click": OnDomClick(ea = new GeckoDomEventArgs(e)); break;
 				case "submit": OnDomSubmit(ea = new GeckoDomEventArgs(e)); break;
+				case "compositionstart": OnDomCompositionStart(ea = new GeckoDomEventArgs(e)); break;
+				case "compositionend": OnDomCompositionEnd(ea = new GeckoDomEventArgs(e)); break;
+				case "contextmenu": OnDomContextMenu((GeckoDomMouseEventArgs)(ea = new GeckoDomMouseEventArgs((nsIDOMMouseEvent)e))); break;				
+				case "DOMMouseScroll": OnDomMouseScroll((GeckoDomMouseEventArgs)(ea = new GeckoDomMouseEventArgs((nsIDOMMouseEvent)e))); break;				
+				case "focus": OnDomFocus(ea = new GeckoDomEventArgs(e)); break;
 			}
 			
 			if (ea != null && ea.Cancelable && ea.Handled)
@@ -2082,6 +2092,42 @@ namespace Skybound.Gecko
 		}
 		#endregion
 		
+		#region public event GeckoDomMouseEventHandler DomContextMenu
+		[Category("DOM Events")]
+		public event GeckoDomMouseEventHandler DomContextMenu
+		{
+			add { this.Events.AddHandler(DomContextMenuEvent, value); }
+			remove { this.Events.RemoveHandler(DomContextMenuEvent, value); }
+		}
+		private static object DomContextMenuEvent = new object();
+
+		/// <summary>Raises the <see cref="DomContextMenu"/> event.</summary>
+		/// <param name="e">The data for the event.</param>
+		protected virtual void OnDomContextMenu(GeckoDomMouseEventArgs e)
+		{
+			if (((GeckoDomMouseEventHandler)this.Events[DomContextMenuEvent]) != null)
+				((GeckoDomMouseEventHandler)this.Events[DomContextMenuEvent])(this, e);
+		}
+		#endregion
+		
+		#region public event GeckoDomMouseEventHandler DOMMouseScroll
+		[Category("DOM Events")]
+		public event GeckoDomMouseEventHandler DomMouseScroll
+		{
+			add { this.Events.AddHandler(DomMouseScrollEvent, value); }
+			remove { this.Events.RemoveHandler(DomMouseScrollEvent, value); }
+		}
+		private static object DomMouseScrollEvent = new object();
+
+		/// <summary>Raises the <see cref="DOMMouseScroll"/> event.</summary>
+		/// <param name="e">The data for the event.</param>
+		protected virtual void OnDomMouseScroll(GeckoDomMouseEventArgs e)
+		{
+			if (((GeckoDomMouseEventHandler)this.Events[DomMouseScrollEvent]) != null)
+				((GeckoDomMouseEventHandler)this.Events[DomMouseScrollEvent])(this, e);
+		}
+		#endregion	
+		
 		#region public event GeckoDomEventHandler DomSubmit
 		[Category("DOM Events")]
 		public event GeckoDomEventHandler DomSubmit
@@ -2097,6 +2143,60 @@ namespace Skybound.Gecko
 		{
 			if (((GeckoDomEventHandler)this.Events[DomSubmitEvent]) != null)
 				((GeckoDomEventHandler)this.Events[DomSubmitEvent])(this, e);
+		}
+		#endregion
+		
+		#region public event GeckoDomEventHandler DomCompositionStart
+		[Category("DOM Events")]
+		public event GeckoDomEventHandler DomCompositionStart
+		{
+			add { this.Events.AddHandler(DomCompositionStartEvent, value); }
+			remove { this.Events.RemoveHandler(DomCompositionStartEvent, value); }
+		}
+		private static object DomCompositionStartEvent = new object();
+
+		/// <summary>Raises the <see cref="DomCompositionStart"/> event.</summary>
+		/// <param name="e">The data for the event.</param>
+		protected virtual void OnDomCompositionStart(GeckoDomEventArgs e)
+		{
+			if (((GeckoDomEventHandler)this.Events[DomCompositionStartEvent]) != null)
+				((GeckoDomEventHandler)this.Events[DomCompositionStartEvent])(this, e);
+		}
+		#endregion
+		
+		#region public event GeckoDomEventHandler DomCompositionEnd
+		[Category("DOM Events")]
+		public event GeckoDomEventHandler DomCompositionEnd
+		{
+			add { this.Events.AddHandler(DomCompositionEndEvent, value); }
+			remove { this.Events.RemoveHandler(DomCompositionEndEvent, value); }
+		}
+		private static object DomCompositionEndEvent = new object();
+
+		/// <summary>Raises the <see cref="DomCompositionEnd"/> event.</summary>
+		/// <param name="e">The data for the event.</param>
+		protected virtual void OnDomCompositionEnd(GeckoDomEventArgs e)
+		{
+			if (((GeckoDomEventHandler)this.Events[DomCompositionEndEvent]) != null)
+				((GeckoDomEventHandler)this.Events[DomCompositionEndEvent])(this, e);
+		}
+		#endregion
+		
+		#region public event GeckoDomEventHandler DomFocus
+		[Category("DOM Events")]
+		public event GeckoDomEventHandler DomFocus
+		{
+			add { this.Events.AddHandler(DomFocusEvent, value); }
+			remove { this.Events.RemoveHandler(DomFocusEvent, value); }
+		}
+		private static object DomFocusEvent = new object();
+
+		/// <summary>Raises the <see cref="DomFocus"/> event.</summary>
+		/// <param name="e">The data for the event.</param>
+		protected virtual void OnDomFocus(GeckoDomEventArgs e)
+		{
+			if (((GeckoDomEventHandler)this.Events[DomFocusEvent]) != null)
+				((GeckoDomEventHandler)this.Events[DomFocusEvent])(this, e);
 		}
 		#endregion
 		
