@@ -1601,10 +1601,10 @@ namespace Skybound.Gecko
 		nsIDOMRange GetRangeAt(int index);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Collapse(nsIDOMNode parentNode, int offset);
+		void Collapse([MarshalAs(UnmanagedType.Interface)]nsIDOMNode parentNode, int offset);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Extend(nsIDOMNode parentNode, int offset);
+		void Extend([MarshalAs(UnmanagedType.Interface)]nsIDOMNode parentNode, int offset);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void CollapseToStart();
@@ -1616,13 +1616,13 @@ namespace Skybound.Gecko
 		bool ContainsNode(nsIDOMNode node, bool partlyContained);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SelectAllChildren(nsIDOMNode parentNode);
+		void SelectAllChildren([MarshalAs(UnmanagedType.Interface)]nsIDOMNode parentNode);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddRange(nsIDOMRange range);
+		void AddRange([MarshalAs(UnmanagedType.Interface)]nsIDOMRange range);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveRange(nsIDOMRange range);
+		void RemoveRange([MarshalAs(UnmanagedType.Interface)]nsIDOMRange range);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RemoveAllRanges();
@@ -1662,34 +1662,34 @@ namespace Skybound.Gecko
 		nsIDOMNode GetCommonAncestorContainer();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetStart(nsIDOMNode refNode, int offset);
+		void SetStart([MarshalAs(UnmanagedType.Interface)]nsIDOMNode refNode, int offset);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetEnd(nsIDOMNode refNode, int offset);
+		void SetEnd([MarshalAs(UnmanagedType.Interface)]nsIDOMNode refNode, int offset);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetStartBefore(nsIDOMNode refNode);
+		void SetStartBefore([MarshalAs(UnmanagedType.Interface)]nsIDOMNode refNode);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetStartAfter(nsIDOMNode refNode);
+		void SetStartAfter([MarshalAs(UnmanagedType.Interface)]nsIDOMNode refNode);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetEndBefore(nsIDOMNode refNode);
+		void SetEndBefore([MarshalAs(UnmanagedType.Interface)]nsIDOMNode refNode);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetEndAfter(nsIDOMNode refNode);
+		void SetEndAfter([MarshalAs(UnmanagedType.Interface)]nsIDOMNode refNode);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Collapse(bool toStart);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SelectNode(nsIDOMNode refNode);
+		void SelectNode([MarshalAs(UnmanagedType.Interface)]nsIDOMNode refNode);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SelectNodeContents(nsIDOMNode refNode);
+		void SelectNodeContents([MarshalAs(UnmanagedType.Interface)]nsIDOMNode refNode);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		short CompareBoundaryPoints(ushort how, nsIDOMRange sourceRange);
+		short CompareBoundaryPoints(ushort how, [MarshalAs(UnmanagedType.Interface)]nsIDOMRange sourceRange);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void DeleteContents();
@@ -1698,6 +1698,7 @@ namespace Skybound.Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMNode ExtractContents();
 		
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMNode CloneContents();
 		
@@ -1819,7 +1820,7 @@ namespace Skybound.Gecko
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMNode SetNamedItemNS(nsIDOMNode arg);
+		nsIDOMNode SetNamedItemNS([MarshalAs(UnmanagedType.Interface)]nsIDOMNode arg);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
