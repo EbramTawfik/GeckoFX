@@ -721,6 +721,11 @@ namespace Skybound.Gecko
 		{
 			return GeckoElement.Create((nsIDOMHTMLElement)((nsIDOMNSDocument)DomDocument).ElementFromPoint(x, y));
 		}
+		
+		public GeckoRange CreateRange()
+		{
+			return new GeckoRange(((nsIDOMDocumentRange)DomDocument).CreateRange());
+		}
 	}
 	
 	public class GeckoNamedNodeMap : IEnumerable<GeckoNode>

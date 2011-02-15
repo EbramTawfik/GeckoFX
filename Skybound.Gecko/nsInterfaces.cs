@@ -1637,6 +1637,14 @@ namespace Skybound.Gecko
 		[return: MarshalAs(UnmanagedType.LPWStr)] string ToString();
 	}
 
+	[Guid("7b9badc6-c9bc-447a-8670-dbd195aed24b"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	public interface nsIDOMDocumentRange
+	{
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]		
+		nsIDOMRange CreateRange();	
+	}
+	
 	[Guid("a6cf90ce-15b3-11d2-932e-00805f8add32"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface nsIDOMRange
 	{
