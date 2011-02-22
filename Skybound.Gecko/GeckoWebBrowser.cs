@@ -200,12 +200,9 @@ namespace Skybound.Gecko
 				BaseWindow.SetVisibility(true);
 				
 				if ((this.ChromeFlags & (int)GeckoWindowFlags.OpenAsChrome) == 0)
-				{
-					if (Xpcom.IsMono) // TODO: do we really need a IsMono here?
-					{						
-						// navigating to about:blank allows drag & drop to work properly before a page has been loaded into the browser
-						Navigate("about:blank");
-					}
+				{							
+					// navigating to about:blank allows drag & drop to work properly before a page has been loaded into the browser
+					Navigate("about:blank");					
 				}	
 				
 				// this fix prevents the browser from crashing if the first page loaded is invalid (missing file, invalid URL, etc)
