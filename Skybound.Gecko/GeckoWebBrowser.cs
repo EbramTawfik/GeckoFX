@@ -67,8 +67,10 @@ namespace Skybound.Gecko
 		/// </summary>
 		public GeckoWebBrowser()
 		{
+#if GTK
 			if (Xpcom.IsMono)
 				m_wrapper = new GtkDotNet.GtkReparentingWrapperNoThread(new Gtk.Window(Gtk.WindowType.Popup), this);
+#endif
 		}
 		
 		//static Dictionary<nsIDOMDocument, GeckoWebBrowser> FromDOMDocumentTable = new Dictionary<nsIDOMDocument,GeckoWebBrowser>();
@@ -98,8 +100,10 @@ namespace Skybound.Gecko
 				BaseWindow = null;
 			}
 			
+#if GTK			
 			if (m_wrapper != null)
 				m_wrapper.Dispose();
+#endif
 			
 			base.Dispose(disposing);
 		}
@@ -115,16 +119,20 @@ namespace Skybound.Gecko
 			get; protected set;
 		}
 
-		// Only used on mono.
+#if GTK
+		// Only used on Linux.
 		protected GtkDotNet.GtkWrapperNoThread m_wrapper;
+#endif
 		
 		protected override void OnHandleCreated(EventArgs e)
-		{			
+		{		
+#if GTK	
 			if (Xpcom.IsMono)
 			{
 				base.OnHandleCreated(e);
 				m_wrapper.Init();
 			}
+#endif
 			
 			if (!this.DesignMode)
 			{
@@ -155,9 +163,11 @@ namespace Skybound.Gecko
 				//            treeItem19.SetItemType(type);
 				//}
 
+#if GTK
 				if (Xpcom.IsMono)
 					BaseWindow.InitWindow(m_wrapper.BrowserWindow.Handle, IntPtr.Zero, 0, 0, this.Width, this.Height);
 				else
+#endif
 					BaseWindow.InitWindow(this.Handle, IntPtr.Zero, 0, 0, this.Width, this.Height);
 
 				BaseWindow.Create();

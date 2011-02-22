@@ -1,3 +1,4 @@
+#if GTK
 using System;
 using System.Diagnostics;
 using System.Drawing;
@@ -123,4 +124,5 @@ namespace GtkDotNet
 		}
 	}
 }
+#endif
 

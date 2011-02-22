@@ -1,3 +1,4 @@
+#if GTK
 namespace GtkDotNet
 {
 	public static class GtkOnceOnly
@@ -19,3 +20,4 @@ namespace GtkDotNet
 		internal static object m_initedOnce = false;	
 	}
 }
+#endif
