@@ -40,7 +40,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Skybound.Gecko")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Skybound Software (http://www.skybound.ca)")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("GeckoFX")]
 [assembly: AssemblyCopyright("Copyright © 2008 Skybound Software. All Rights Reserved.")]
 [assembly: AssemblyTrademark("")]
@@ -49,5 +49,5 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 [assembly: Guid("2d144611-62c5-4eb8-a0ae-8a1617949dcc")]
 
-[assembly: AssemblyVersion("1.9.1.0")]
-[assembly: AssemblyFileVersion("1.9.1.0")]
+[assembly: AssemblyVersion("1.9.2.0")]
+[assembly: AssemblyFileVersion("1.9.2.0")]
