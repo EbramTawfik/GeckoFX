@@ -1,3 +1,4 @@
+#if GTK
 using System.Drawing;
 using System;
 
@@ -31,3 +32,4 @@ namespace Skybound.Gecko
 		}
 	}
 }
+#endif
