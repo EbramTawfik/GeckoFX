@@ -35,7 +35,7 @@ using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using System.Reflection; 
 
-/// X11 Version
+// X11 Version
 namespace X11 {
 	//
 	// In the structures below, fields of type long are mapped to IntPtr.
