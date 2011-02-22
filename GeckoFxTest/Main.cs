@@ -13,10 +13,14 @@ namespace GeckoFxTest
 	{
 		public static void Main(string[] args)
 		{
+#if GTK
 			if (!Environment.GetEnvironmentVariable("LD_LIBRARY_PATH").Contains(XULRunnerLocator.GetXULRunnerLocation()))
 				throw new ApplicationException(String.Format("LD_LIBRARY_PATH must contain {0}", XULRunnerLocator.GetXULRunnerLocation()));
 
 			Xpcom.Initialize(XULRunnerLocator.GetXULRunnerLocation());
+#else
+			Xpcom.Initialize(@"C:\Program Files (x86)\Mozilla Firefox");
+#endif
 
 			Application.Run(new MyForm());
 		}
