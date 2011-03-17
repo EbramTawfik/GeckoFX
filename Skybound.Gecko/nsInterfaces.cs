@@ -4705,4 +4705,770 @@ namespace Skybound.Gecko
 	public struct nsMargin
 	{
 	}
+	
+	[Guid("0b9341f3-95d4-4fa4-adcd-e119e0db2889"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	interface nsIDOMViewCSS : nsIDOMAbstractView
+	{
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMAbstractView GetDocument();
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMCSSStyleDeclaration GetComputedStyle([MarshalAs(UnmanagedType.Interface)] nsIDOMElement element, [MarshalAs(UnmanagedType.LPStruct)] nsAString pseudoElt);
+	}
+
+	[Guid("1ACDB2BA-1DD2-11B2-95BC-9542495D2569"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	interface nsIDOMDocumentView
+	{
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMAbstractView GetDefaultView();
+	}
+
+	[Guid("F51EBADE-8B1A-11D3-AAE7-0010830123B4"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	interface nsIDOMAbstractView
+	{
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMAbstractView GetDocument();
+	}
+
+	[Guid("99715845-95fc-4a56-aa53-214b65c26e22"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	interface nsIDOMElementCSSInlineStyle
+	{
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMCSSStyleDeclaration GetStyle();
+	}
+
+	[Guid("529b987a-cb21-4d58-99d7-9586e7662801"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	interface nsIDOMCSS2Properties
+	{
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetAzimuth([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetAzimuth([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetBackground([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetBackground([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetBackgroundAttachment([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetBackgroundAttachment([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetBackgroundColor([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetBackgroundColor([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetBackgroundImage([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetBackgroundImage([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetBackgroundPosition([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetBackgroundPosition([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetBackgroundRepeat([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetBackgroundRepeat([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetBorder([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetBorder([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetBorderCollapse([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetBorderCollapse([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetBorderColor([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetBorderColor([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetBorderSpacing([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetBorderSpacing([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetBorderStyle([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetBorderStyle([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetBorderTop([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetBorderTop([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetBorderRight([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetBorderRight([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetBorderBottom([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetBorderBottom([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetBorderLeft([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetBorderLeft([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetBorderTopColor([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetBorderTopColor([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetBorderRightColor([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetBorderRightColor([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetBorderBottomColor([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetBorderBottomColor([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetBorderLeftColor([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetBorderLeftColor([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetBorderTopStyle([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetBorderTopStyle([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetBorderRightStyle([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetBorderRightStyle([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetBorderBottomStyle([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetBorderBottomStyle([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetBorderLeftStyle([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetBorderLeftStyle([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetBorderTopWidth([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetBorderTopWidth([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetBorderRightWidth([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetBorderRightWidth([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetBorderBottomWidth([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetBorderBottomWidth([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetBorderLeftWidth([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetBorderLeftWidth([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetBorderWidth([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetBorderWidth([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetBottom([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetBottom([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetCaptionSide([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetCaptionSide([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetClear([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetClear([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetClip([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetClip([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetColor([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetColor([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetContent([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetContent([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetCounterIncrement([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetCounterIncrement([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetCounterReset([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetCounterReset([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetCue([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetCue([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetCueAfter([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetCueAfter([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetCueBefore([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetCueBefore([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetCursor([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetCursor([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetDirection([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetDirection([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetDisplay([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetDisplay([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetElevation([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetElevation([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetEmptyCells([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetEmptyCells([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetCssFloat([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetCssFloat([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetFont([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetFont([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetFontFamily([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetFontFamily([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetFontSize([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetFontSize([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetFontSizeAdjust([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetFontSizeAdjust([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetFontStretch([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetFontStretch([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetFontStyle([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetFontStyle([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetFontVariant([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetFontVariant([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetFontWeight([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetFontWeight([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetHeight([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetHeight([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetLeft([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetLeft([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetLetterSpacing([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetLetterSpacing([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetLineHeight([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetLineHeight([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetListStyle([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetListStyle([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetListStyleImage([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetListStyleImage([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetListStylePosition([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetListStylePosition([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetListStyleType([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetListStyleType([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetMargin([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetMargin([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetMarginTop([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetMarginTop([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetMarginRight([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetMarginRight([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetMarginBottom([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetMarginBottom([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetMarginLeft([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetMarginLeft([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetMarkerOffset([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetMarkerOffset([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetMarks([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetMarks([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetMaxHeight([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetMaxHeight([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetMaxWidth([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetMaxWidth([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetMinHeight([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetMinHeight([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetMinWidth([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetMinWidth([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetOrphans([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOrphans([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetOutline([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOutline([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetOutlineColor([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOutlineColor([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetOutlineStyle([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOutlineStyle([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetOutlineWidth([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOutlineWidth([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetOverflow([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOverflow([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetPadding([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetPadding([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetPaddingTop([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetPaddingTop([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetPaddingRight([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetPaddingRight([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetPaddingBottom([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetPaddingBottom([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetPaddingLeft([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetPaddingLeft([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetPage([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetPage([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetPageBreakAfter([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetPageBreakAfter([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetPageBreakBefore([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetPageBreakBefore([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetPageBreakInside([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetPageBreakInside([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetPause([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetPause([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetPauseAfter([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetPauseAfter([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetPauseBefore([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetPauseBefore([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetPitch([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetPitch([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetPitchRange([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetPitchRange([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetPosition([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetPosition([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetQuotes([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetQuotes([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetRichness([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetRichness([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetRight([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetRight([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetSize([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetSize([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetSpeak([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetSpeak([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetSpeakHeader([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetSpeakHeader([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetSpeakNumeral([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetSpeakNumeral([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetSpeakPunctuation([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetSpeakPunctuation([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetSpeechRate([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetSpeechRate([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetStress([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetStress([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetTableLayout([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetTableLayout([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetTextAlign([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetTextAlign([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetTextDecoration([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetTextDecoration([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetTextIndent([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetTextIndent([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetTextShadow([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetTextShadow([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetTextTransform([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetTextTransform([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetTop([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetTop([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetUnicodeBidi([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetUnicodeBidi([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetVerticalAlign([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetVerticalAlign([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetVisibility([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetVisibility([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetVoiceFamily([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetVoiceFamily([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetVolume([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetVolume([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetWhiteSpace([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetWhiteSpace([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetWidows([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetWidows([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetWidth([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetWidth([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetWordSpacing([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetWordSpacing([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetZIndex([MarshalAs(UnmanagedType.LPStruct)]nsAString s);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetZIndex([MarshalAs(UnmanagedType.LPStruct)]nsAString s);		
+	}
 }
