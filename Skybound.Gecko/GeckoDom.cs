@@ -253,7 +253,6 @@ namespace Skybound.Gecko
 				Marshal.ChangeWrapperHandleStrength(DomNSElement, true);
 				Marshal.ChangeWrapperHandleStrength(DomNSHTMLElement, true);
 			}
-
 		}
 		
 		internal static GeckoElement Create(nsIDOMHTMLElement element)
@@ -264,6 +263,17 @@ namespace Skybound.Gecko
 		nsIDOMHTMLElement DomElement;
 		nsIDOMNSElement DomNSElement;
 		nsIDOMNSHTMLElement DomNSHTMLElement;
+		
+		/// <summary>
+		/// Gets the inline style of the GeckoElement. 
+		/// </summary>
+		public GeckoStyle Style
+		{
+			get
+			{
+				return GeckoStyle.Create(Xpcom.QueryInterface<nsIDOMElementCSSInlineStyle>(DomObject).GetStyle());
+			}
+		}
 		
 		/// <summary>
 		/// Gets the parent element of this one.

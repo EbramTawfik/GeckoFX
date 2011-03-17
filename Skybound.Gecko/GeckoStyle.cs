@@ -40,6 +40,75 @@ using System.Runtime.InteropServices;
 namespace Skybound.Gecko
 {
 	/// <summary>
+	/// Wrapper around nsIDOMCSSStyleDeclaration
+	/// Allows viewing and modifying inline CSS styles.
+	/// TODO: could add the following functionality if needed:
+	/// GetParentRule, RemoveProperty, GetPropertyPriority
+	/// </summary>
+	public class GeckoStyle
+	{
+		nsIDOMCSSStyleDeclaration StyleDelcaration;
+		
+		internal GeckoStyle(nsIDOMCSSStyleDeclaration styleDeclaration)
+		{
+			StyleDelcaration = styleDeclaration;
+		}
+		
+		internal static GeckoStyle Create(nsIDOMCSSStyleDeclaration styleDeclaration)
+		{
+			return (styleDeclaration == null) ? null : new GeckoStyle(styleDeclaration);					
+		}
+		
+		/// <summary>
+		/// Get and sets the CssText.
+		/// For example: "background-color: green; color: red;"
+		/// </summary>
+		public string CssText
+		{
+			get { return nsString.Get(StyleDelcaration.GetCssText); }
+			set { nsString.Set(StyleDelcaration.SetCssText, value); } 
+		}
+		
+		/// <summary>
+		/// Get the number of CSS properties. 
+		/// </summary>
+		public uint Length
+		{
+			get { return StyleDelcaration.GetLength(); }	
+		}
+		
+		/// <summary>
+		/// Get property name by index
+		/// </summary>		
+		public string this[int index]
+		{
+			get { 
+				nsAString retVal = new nsAString();
+				StyleDelcaration.Item(index, retVal);
+				return retVal.ToString();
+			}
+		}
+		
+		/// <summary>
+		/// Get the value of a specfic Css Property.
+		/// </summary>		
+		public string GetPropertyValue(string propertyName)
+		{						
+			nsAString retVal = new nsAString();
+			StyleDelcaration.GetPropertyValue(new nsAString(propertyName), retVal);
+			return retVal.ToString();
+		}
+		
+		/// <summary>
+		/// Set the value of a specfic Css Property.
+		/// </summary>		
+		public void SetPropertyValue(string propertyName, string value)
+		{								
+			StyleDelcaration.SetProperty(new nsAString(propertyName), new nsAString(value), new nsAString());			
+		}
+	}
+	
+	/// <summary>
 	/// Represents a DOM style sheet.
 	/// </summary>
 	public class GeckoStyleSheet
