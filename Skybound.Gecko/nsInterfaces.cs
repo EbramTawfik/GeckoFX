@@ -1283,14 +1283,15 @@ namespace Skybound.Gecko
 		new void InitEvent([MarshalAs(UnmanagedType.LPStruct)]nsACString eventTypeArg, bool canBubbleArg, bool cancelableArg);
 		
 		// nsIDOMUIEvent:
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		IntPtr GetView(); // nsIDOMAbstractView
+		nsIDOMAbstractView GetView();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetDetail();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitUIEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString typeArg, bool canBubbleArg, bool cancelableArg, IntPtr /*nsIDOMAbstractView*/ viewArg, int detailArg); 
+		void InitUIEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString typeArg, bool canBubbleArg, bool cancelableArg, [MarshalAs(UnmanagedType.Interface)]nsIDOMAbstractView viewArg, int detailArg); 
 	}
 	
 	[Guid("028e0e6e-8b01-11d3-aae7-0010838a3123"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -1331,14 +1332,15 @@ namespace Skybound.Gecko
 		
 		// nsIDOMUIEvent:
 		
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new IntPtr GetView(); // nsIDOMAbstractView
+		new nsIDOMAbstractView GetView();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new int GetDetail();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void InitUIEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString typeArg, bool canBubbleArg, bool cancelableArg, IntPtr /*nsIDOMAbstractView*/ viewArg, int detailArg); 
+		new void InitUIEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString typeArg, bool canBubbleArg, bool cancelableArg, [MarshalAs(UnmanagedType.Interface)]nsIDOMAbstractView viewArg, int detailArg); 
 		
 		// nsIDOMKeyEvent:
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -1360,7 +1362,7 @@ namespace Skybound.Gecko
 		bool GetMetaKey();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitKeyEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString typeArg, bool canBubbleArg, bool cancelableArg, IntPtr /*nsIDOMAbstractView*/ viewArg, bool ctrlKeyArg, bool altKeyArg, bool shiftKeyArg, bool metaKeyArg, uint keyCodeArg, uint charCodeArg); 
+		void InitKeyEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString typeArg, bool canBubbleArg, bool cancelableArg, [MarshalAs(UnmanagedType.Interface)]nsIDOMAbstractView viewArg, bool ctrlKeyArg, bool altKeyArg, bool shiftKeyArg, bool metaKeyArg, uint keyCodeArg, uint charCodeArg); 
 	}
 	
 	[Guid("ff751edc-8b02-aae7-0010-8301838a3123"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -1400,14 +1402,15 @@ namespace Skybound.Gecko
 		new void InitEvent([MarshalAs(UnmanagedType.LPStruct)]nsACString eventTypeArg, bool canBubbleArg, bool cancelableArg);
 				
 		// nsIDOMUIEvent:
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]		
+		new nsIDOMAbstractView GetView();
 		
-		new IntPtr GetView(); // nsIDOMAbstractView
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]		
 		new int GetDetail();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void InitUIEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString typeArg, bool canBubbleArg, bool cancelableArg, IntPtr /*nsIDOMAbstractView*/ viewArg, int detailArg); 
+		new void InitUIEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString typeArg, bool canBubbleArg, bool cancelableArg, [MarshalAs(UnmanagedType.Interface)]nsIDOMAbstractView viewArg, int detailArg); 
 		
 		// nsIDOMMouseEvent:
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -1442,7 +1445,7 @@ namespace Skybound.Gecko
 		nsIDOMEventTarget GetRelatedTarget();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitMouseEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString typeArg, bool canBubbleArg, bool cancelableArg, IntPtr /*nsIDOMAbstractView*/ viewArg, int detailArg, int screenXArg, int screenYArg, int clientXArg, int clientYArg, bool ctrlKeyArg, bool altKeyArg, bool shiftKeyArg, bool metaKeyArg, ushort buttonArg, [MarshalAs(UnmanagedType.Interface)]nsIDOMEventTarget relatedTargetArg); 
+		void InitMouseEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString typeArg, bool canBubbleArg, bool cancelableArg, [MarshalAs(UnmanagedType.Interface)]nsIDOMAbstractView viewArg, int detailArg, int screenXArg, int screenYArg, int clientXArg, int clientYArg, bool ctrlKeyArg, bool altKeyArg, bool shiftKeyArg, bool metaKeyArg, ushort buttonArg, [MarshalAs(UnmanagedType.Interface)]nsIDOMEventTarget relatedTargetArg); 
 	}
 	
 	[Guid("a6cf906b-15b3-11d2-932e-00805f8add32"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
