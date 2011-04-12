@@ -345,6 +345,7 @@ namespace Skybound.Gecko
 			const int DLGC_WANTALLKEYS = 0x4;
 			const int WM_MOUSEACTIVATE = 0x21;
 			const int MA_ACTIVATE = 0x1;
+			const int WM_IME_SETCONTEXT = 0x0281;
 			
 			if (!DesignMode)
 			{
@@ -361,6 +362,11 @@ namespace Skybound.Gecko
 					{
 						this.Focus();
 					}
+					return;
+				}
+				else if (m.Msg == WM_IME_SETCONTEXT)
+				{					
+					WebBrowserFocus.Activate();
 					return;
 				}
 			}
