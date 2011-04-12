@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Release_Windows</Configuration>
@@ -56,10 +56,11 @@
     <PlatformTarget>x86</PlatformTarget>
     <OutputPath>bin\x86\Debug_Windows\</OutputPath>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <DebugType>none</DebugType>
+    <DebugType>full</DebugType>
     <WarningLevel>4</WarningLevel>
     <Optimize>false</Optimize>
     <DefineConstants>TRACE;DEBUG;GECKO_1_9_1;GECKO_1_9</DefineConstants>
+    <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release_Linux|x86'">
     <PlatformTarget>x86</PlatformTarget>
