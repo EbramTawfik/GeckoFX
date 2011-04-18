@@ -275,8 +275,10 @@ namespace Skybound.Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int provideWindow([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aParent, uint aChromeFlags, [MarshalAs(UnmanagedType.Bool)] bool aPositionSpecified, [MarshalAs(UnmanagedType.Bool)] bool aSizeSpecified, nsIURI aURI,[MarshalAs(UnmanagedType.LPStruct)] nsAString aName,[MarshalAs(UnmanagedType.LPStruct)] nsAString aFeatures, [MarshalAs(UnmanagedType.Bool)] out bool aWindowIsNew, [MarshalAs(UnmanagedType.Interface)] out nsIDOMWindow ret);
 	}
-	
-	[Guid("b6c2f9e1-53a0-45f2-a2b8-fe37861fe8a8"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+
+	// firefox 3.0 b6c2f9e1-53a0-45f2-a2b8-fe37861fe8a8
+	// firefox 3.6 c175a596-ee13-420a-aa74-13ad3a14deb1
+	[Guid("c175a596-ee13-420a-aa74-13ad3a14deb1"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	interface nsIXULWindow
 	{
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -340,8 +342,11 @@ namespace Skybound.Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ApplyChromeFlags();
 	}
-	
-	[Guid("93a28ba2-7e22-11d9-9b6f-000a95d535fa"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+
+	// firefox 3.0 guid for nsIAppShellService is 93a28ba2-7e22-11d9-9b6f-000a95d535fa
+	// firefox 3.6 guid for nsIAppShellService is 361facd0-6e9a-4ff1-a0d4-450744cf0023
+
+	[Guid("361facd0-6e9a-4ff1-a0d4-450744cf0023"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	interface nsIAppShellService
 	{
 		[return: MarshalAs(UnmanagedType.Interface)]
