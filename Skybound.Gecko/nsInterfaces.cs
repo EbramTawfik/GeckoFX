@@ -2916,6 +2916,9 @@ namespace Skybound.Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetContentEditable([MarshalAs(UnmanagedType.LPStruct)] nsAString aContentEditable);
+
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		bool GetDraggable();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Blur();
