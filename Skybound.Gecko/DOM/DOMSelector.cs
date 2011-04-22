@@ -90,7 +90,7 @@ namespace Skybound.Gecko.DOM
         {
             foreach (GeckoClassDesc GeckoClass in Classes)
             {
-                if (nsString.Get(element.GetTagName).ToLower() == GeckoClass.TagName)
+                if (element.GetTagName().ToString().ToLower() == GeckoClass.TagName)
                 {  
                     object HTMLElement = Xpcom.QueryInterface(element,GeckoClass.InterfaceType.GUID);
                     if(HTMLElement != null)

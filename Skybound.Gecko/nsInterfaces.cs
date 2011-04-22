@@ -1838,15 +1838,25 @@ namespace Skybound.Gecko
 		nsIDOMNode RemoveNamedItemNS([MarshalAs(UnmanagedType.LPStruct)] nsAString namespaceURI,[MarshalAs(UnmanagedType.LPStruct)] nsAString localName);
 	}
 	
+	/**
+	 * The nsIDOMNodeList interface provides the abstraction of an ordered 
+	 * collection of nodes, without defining or constraining how this collection 
+	 * is implemented.
+	 * The items in the list are accessible via an integral index, starting from 0.
+	 *
+	 * For more information on this interface please see 
+	 * http://www.w3.org/TR/DOM-Level-2-Core/
+	 */
 	[Guid("a6cf907c-15b3-11d2-932e-00805f8add32"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface nsIDOMNode
 	{
-		
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNodeName([MarshalAs(UnmanagedType.LPStruct)] nsAString aNodeName);
-		
+		nsAString GetNodeName();
+
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNodeValue([MarshalAs(UnmanagedType.LPStruct)] nsAString aNodeValue);
+		nsAString GetNodeValue();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetNodeValue([MarshalAs(UnmanagedType.LPStruct)] nsAString aNodeValue);
@@ -1914,23 +1924,35 @@ namespace Skybound.Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsSupported([MarshalAs(UnmanagedType.LPStruct)] nsAString feature,[MarshalAs(UnmanagedType.LPStruct)] nsAString version);
-		
+
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNamespaceURI([MarshalAs(UnmanagedType.LPStruct)] nsAString aNamespaceURI);
-		
+		nsAString GetNamespaceURI();
+
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPrefix([MarshalAs(UnmanagedType.LPStruct)] nsAString aPrefix);
+		nsAString GetPrefix();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetPrefix([MarshalAs(UnmanagedType.LPStruct)] nsAString aPrefix);
-		
+
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetLocalName([MarshalAs(UnmanagedType.LPStruct)] nsAString aLocalName);
+		nsAString GetLocalName();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool HasAttributes(); 
 	}
-	
+
+	/**
+	 * The nsIDOMNodeList interface provides the abstraction of an ordered 
+	 * collection of nodes, without defining or constraining how this collection 
+	 * is implemented.
+	 * The items in the list are accessible via an integral index, starting from 0.
+	 *
+	 * For more information on this interface please see 
+	 * http://www.w3.org/TR/DOM-Level-2-Core/
+	 */
 	[Guid("a6cf907d-15b3-11d2-932e-00805f8add32"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface nsIDOMNodeList
 	{
@@ -1941,16 +1963,27 @@ namespace Skybound.Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetLength(); 
 	}
-	
+
+	/**
+	 * The nsIDOMAttr interface represents an attribute in an "Element" object. 
+	 * Typically the allowable values for the attribute are defined in a document 
+	 * type definition.
+	 *
+	 * For more information on this interface please see 
+	 * http://www.w3.org/TR/DOM-Level-2-Core/
+	 */
 	[Guid("a6cf9070-15b3-11d2-932e-00805f8add32"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface nsIDOMAttr : nsIDOMNode
 	{
-		// nsIDOMNode:
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetNodeName([MarshalAs(UnmanagedType.LPStruct)] nsAString aNodeName);
+		#region nsIDOMNode Elements
 		
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetNodeValue([MarshalAs(UnmanagedType.LPStruct)] nsAString aNodeValue);
+		new nsAString GetNodeName();
+
+		[return: MarshalAs(UnmanagedType.LPStruct)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsAString GetNodeValue();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetNodeValue([MarshalAs(UnmanagedType.LPStruct)] nsAString aNodeValue);
@@ -2033,121 +2066,139 @@ namespace Skybound.Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool HasAttributes(); 
-		
+
+		#endregion
+
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetName([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
+		nsAString GetName();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetSpecified();
-		
+
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetValue([MarshalAs(UnmanagedType.LPStruct)] nsAString aValue);
-		
+		nsAString GetValue();
+
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetValue([MarshalAs(UnmanagedType.LPStruct)] nsAString aValue);
+		void SetValue([MarshalAs(UnmanagedType.LPStruct)]nsAString aValue);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMElement GetOwnerElement();
 	}
 	
+	/**
+	 * The nsIDOMElement interface represents an element in an HTML or 
+	 * XML document. 
+	 *
+	 * For more information on this interface please see 
+	 * http://www.w3.org/TR/DOM-Level-2-Core/
+	 */
 	[Guid("a6cf9078-15b3-11d2-932e-00805f8add32"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface nsIDOMElement : nsIDOMNode
 	{
-		// nsIDOMNode:
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetNodeName([MarshalAs(UnmanagedType.LPStruct)] nsAString aNodeName);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetNodeValue([MarshalAs(UnmanagedType.LPStruct)] nsAString aNodeValue);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		#region nsIDOMNode Elements
+
+		[return: MarshalAs(UnmanagedType.LPStruct)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		new nsAString GetNodeName();
+
+		[return: MarshalAs(UnmanagedType.LPStruct)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		new nsAString GetNodeValue();
+
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
 		new void SetNodeValue([MarshalAs(UnmanagedType.LPStruct)] nsAString aNodeValue);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
 		new ushort GetNodeType();
-		
+
 		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
 		new nsIDOMNode GetParentNode();
-		
+
 		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
 		new nsIDOMNodeList GetChildNodes();
-		
+
 		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
 		new nsIDOMNode GetFirstChild();
-		
+
 		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
 		new nsIDOMNode GetLastChild();
-		
+
 		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
 		new nsIDOMNode GetPreviousSibling();
-		
+
 		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
 		new nsIDOMNode GetNextSibling();
-		
+
 		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
 		new nsIDOMNamedNodeMap GetAttributes();
-		
+
 		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
 		new nsIDOMDocument GetOwnerDocument();
-		
+
 		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
 		new nsIDOMNode InsertBefore([MarshalAs(UnmanagedType.Interface)]nsIDOMNode newChild, [MarshalAs(UnmanagedType.Interface)]nsIDOMNode refChild);
-		
+
 		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
 		new nsIDOMNode ReplaceChild([MarshalAs(UnmanagedType.Interface)]nsIDOMNode newChild, [MarshalAs(UnmanagedType.Interface)]nsIDOMNode oldChild);
-		
+
 		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
 		new nsIDOMNode RemoveChild([MarshalAs(UnmanagedType.Interface)]nsIDOMNode oldChild);
-		
+
 		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
 		new nsIDOMNode AppendChild([MarshalAs(UnmanagedType.Interface)]nsIDOMNode newChild);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
 		new bool HasChildNodes();
-		
+
 		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
 		new nsIDOMNode CloneNode(bool deep);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
 		new void Normalize();
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool IsSupported([MarshalAs(UnmanagedType.LPStruct)] nsAString feature,[MarshalAs(UnmanagedType.LPStruct)] nsAString version);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		new bool IsSupported([MarshalAs(UnmanagedType.LPStruct)] nsAString feature, [MarshalAs(UnmanagedType.LPStruct)] nsAString version);
+
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
 		new void GetNamespaceURI([MarshalAs(UnmanagedType.LPStruct)] nsAString aNamespaceURI);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
 		new void GetPrefix([MarshalAs(UnmanagedType.LPStruct)] nsAString aPrefix);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
 		new void SetPrefix([MarshalAs(UnmanagedType.LPStruct)] nsAString aPrefix);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
 		new void GetLocalName([MarshalAs(UnmanagedType.LPStruct)] nsAString aLocalName);
-		
+
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		new bool HasAttributes();
+
+		#endregion
+
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool HasAttributes(); 
-		
+		nsAString GetTagName();
+
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTagName([MarshalAs(UnmanagedType.LPStruct)] nsAString aTagName);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString name,[MarshalAs(UnmanagedType.LPStruct)] nsAString _retval);
+		nsAString GetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString name);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString name,[MarshalAs(UnmanagedType.LPStruct)] nsAString value);
@@ -2349,105 +2400,124 @@ namespace Skybound.Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMElement GetElementById([MarshalAs(UnmanagedType.LPStruct)] nsAString elementId); 
 	}
-	
+
+	/**
+	 * The nsIDOMHTMLElement interface is the primary [X]HTML element
+	 * interface. It represents a single [X]HTML element in the document
+	 * tree.
+	 *
+	 * This interface is trying to follow the DOM Level 2 HTML specification:
+	 * http://www.w3.org/TR/DOM-Level-2-HTML/
+	 *
+	 * with changes from the work-in-progress WHATWG HTML specification:
+	 * http://www.whatwg.org/specs/web-apps/current-work/
+	 */	
 	[Guid("a6cf9085-15b3-11d2-932e-00805f8add32"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	interface nsIDOMHTMLElement : nsIDOMElement
 	{
-		// nsIDOMNode:
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetNodeName([MarshalAs(UnmanagedType.LPStruct)] nsAString aNodeName);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetNodeValue([MarshalAs(UnmanagedType.LPStruct)] nsAString aNodeValue);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetNodeValue([MarshalAs(UnmanagedType.LPStruct)] nsAString aNodeValue);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new ushort GetNodeType();
-		
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMNode GetParentNode();
-		
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMNodeList GetChildNodes();
-		
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMNode GetFirstChild();
-		
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMNode GetLastChild();
-		
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMNode GetPreviousSibling();
-		
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMNode GetNextSibling();
-		
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMNamedNodeMap GetAttributes();
-		
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMDocument GetOwnerDocument();
-		
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMNode InsertBefore([MarshalAs(UnmanagedType.Interface)]nsIDOMNode newChild, [MarshalAs(UnmanagedType.Interface)]nsIDOMNode refChild);
-		
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMNode ReplaceChild([MarshalAs(UnmanagedType.Interface)]nsIDOMNode newChild, [MarshalAs(UnmanagedType.Interface)]nsIDOMNode oldChild);
-		
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMNode RemoveChild([MarshalAs(UnmanagedType.Interface)]nsIDOMNode oldChild);
-		
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMNode AppendChild([MarshalAs(UnmanagedType.Interface)]nsIDOMNode newChild);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool HasChildNodes();
-		
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMNode CloneNode(bool deep);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Normalize();
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool IsSupported([MarshalAs(UnmanagedType.LPStruct)] nsAString feature,[MarshalAs(UnmanagedType.LPStruct)] nsAString version);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetNamespaceURI([MarshalAs(UnmanagedType.LPStruct)] nsAString aNamespaceURI);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetPrefix([MarshalAs(UnmanagedType.LPStruct)] nsAString aPrefix);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetPrefix([MarshalAs(UnmanagedType.LPStruct)] nsAString aPrefix);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetLocalName([MarshalAs(UnmanagedType.LPStruct)] nsAString aLocalName);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool HasAttributes(); 
+		#region nsIDOMNode Elements
 
-		// nsIDOMElement:
+		[return: MarshalAs(UnmanagedType.LPStruct)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		new nsAString GetNodeName();
+
+		[return: MarshalAs(UnmanagedType.LPStruct)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		new nsAString GetNodeValue();
+
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		new void SetNodeValue([MarshalAs(UnmanagedType.LPStruct)] nsAString aNodeValue);
+
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		new ushort GetNodeType();
+
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		new nsIDOMNode GetParentNode();
+
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		new nsIDOMNodeList GetChildNodes();
+
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		new nsIDOMNode GetFirstChild();
+
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		new nsIDOMNode GetLastChild();
+
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		new nsIDOMNode GetPreviousSibling();
+
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		new nsIDOMNode GetNextSibling();
+
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		new nsIDOMNamedNodeMap GetAttributes();
+
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		new nsIDOMDocument GetOwnerDocument();
+
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		new nsIDOMNode InsertBefore([MarshalAs(UnmanagedType.Interface)]nsIDOMNode newChild, [MarshalAs(UnmanagedType.Interface)]nsIDOMNode refChild);
+
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		new nsIDOMNode ReplaceChild([MarshalAs(UnmanagedType.Interface)]nsIDOMNode newChild, [MarshalAs(UnmanagedType.Interface)]nsIDOMNode oldChild);
+
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		new nsIDOMNode RemoveChild([MarshalAs(UnmanagedType.Interface)]nsIDOMNode oldChild);
+
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		new nsIDOMNode AppendChild([MarshalAs(UnmanagedType.Interface)]nsIDOMNode newChild);
+
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		new bool HasChildNodes();
+
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		new nsIDOMNode CloneNode(bool deep);
+
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		new void Normalize();
+
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		new bool IsSupported([MarshalAs(UnmanagedType.LPStruct)] nsAString feature, [MarshalAs(UnmanagedType.LPStruct)] nsAString version);
+
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		new void GetNamespaceURI([MarshalAs(UnmanagedType.LPStruct)] nsAString aNamespaceURI);
+
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		new void GetPrefix([MarshalAs(UnmanagedType.LPStruct)] nsAString aPrefix);
+
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		new void SetPrefix([MarshalAs(UnmanagedType.LPStruct)] nsAString aPrefix);
+
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		new void GetLocalName([MarshalAs(UnmanagedType.LPStruct)] nsAString aLocalName);
+
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		new bool HasAttributes();
+
+		#endregion
+
+		#region nsIDOMElement Elements
+
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetTagName([MarshalAs(UnmanagedType.LPStruct)] nsAString aTagName);
-		
+		new nsAString GetTagName();
+
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString name,[MarshalAs(UnmanagedType.LPStruct)] nsAString _retval);
+		new nsAString GetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString name);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString name,[MarshalAs(UnmanagedType.LPStruct)] nsAString value);
@@ -2466,9 +2536,10 @@ namespace Skybound.Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMNodeList GetElementsByTagName([MarshalAs(UnmanagedType.LPStruct)] nsAString name);
-		
+
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetAttributeNS([MarshalAs(UnmanagedType.LPStruct)] nsAString namespaceURI,[MarshalAs(UnmanagedType.LPStruct)] nsAString localName,[MarshalAs(UnmanagedType.LPStruct)] nsAString _retval);
+		new nsAString GetAttributeNS([MarshalAs(UnmanagedType.LPStruct)] nsAString namespaceURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString localName);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetAttributeNS([MarshalAs(UnmanagedType.LPStruct)] nsAString namespaceURI,[MarshalAs(UnmanagedType.LPStruct)] nsAString qualifiedName,[MarshalAs(UnmanagedType.LPStruct)] nsAString value);
@@ -2494,33 +2565,39 @@ namespace Skybound.Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool HasAttributeNS([MarshalAs(UnmanagedType.LPStruct)] nsAString namespaceURI,[MarshalAs(UnmanagedType.LPStruct)] nsAString localName);
 		
-		// nsIDOMHTMLElement:		
+		#endregion
+
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetId([MarshalAs(UnmanagedType.LPStruct)] nsAString aId);
+		nsAString GetId();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetId([MarshalAs(UnmanagedType.LPStruct)] nsAString aId);
-		
+
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTitle([MarshalAs(UnmanagedType.LPStruct)] nsAString aTitle);
+		nsAString GetTitle();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetTitle([MarshalAs(UnmanagedType.LPStruct)] nsAString aTitle);
-		
+
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetLang([MarshalAs(UnmanagedType.LPStruct)] nsAString aLang);
+		nsAString GetLang();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetLang([MarshalAs(UnmanagedType.LPStruct)] nsAString aLang);
-		
+
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDir([MarshalAs(UnmanagedType.LPStruct)] nsAString aDir);
+		nsAString GetDir();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetDir([MarshalAs(UnmanagedType.LPStruct)] nsAString aDir);
-		
+
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetClassName([MarshalAs(UnmanagedType.LPStruct)] nsAString aClassName);
+		nsAString GetClassName();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetClassName([MarshalAs(UnmanagedType.LPStruct)] nsAString aClassName);
