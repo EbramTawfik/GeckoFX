@@ -2051,18 +2051,21 @@ namespace Skybound.Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsSupported([MarshalAs(UnmanagedType.LPStruct)] nsAString feature,[MarshalAs(UnmanagedType.LPStruct)] nsAString version);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetNamespaceURI([MarshalAs(UnmanagedType.LPStruct)] nsAString aNamespaceURI);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetPrefix([MarshalAs(UnmanagedType.LPStruct)] nsAString aPrefix);
+
+		[return: MarshalAs(UnmanagedType.LPStruct)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		new nsAString GetNamespaceURI();
+
+		[return: MarshalAs(UnmanagedType.LPStruct)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		new nsAString GetPrefix();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetPrefix([MarshalAs(UnmanagedType.LPStruct)] nsAString aPrefix);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetLocalName([MarshalAs(UnmanagedType.LPStruct)] nsAString aLocalName);
+
+		[return: MarshalAs(UnmanagedType.LPStruct)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		new nsAString GetLocalName();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool HasAttributes(); 
@@ -2175,17 +2178,20 @@ namespace Skybound.Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
 		new bool IsSupported([MarshalAs(UnmanagedType.LPStruct)] nsAString feature, [MarshalAs(UnmanagedType.LPStruct)] nsAString version);
 
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		new void GetNamespaceURI([MarshalAs(UnmanagedType.LPStruct)] nsAString aNamespaceURI);
+		new nsAString GetNamespaceURI();
 
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		new void GetPrefix([MarshalAs(UnmanagedType.LPStruct)] nsAString aPrefix);
+		new nsAString GetPrefix();
 
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
 		new void SetPrefix([MarshalAs(UnmanagedType.LPStruct)] nsAString aPrefix);
 
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		new void GetLocalName([MarshalAs(UnmanagedType.LPStruct)] nsAString aLocalName);
+		new nsAString GetLocalName();
 
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
 		new bool HasAttributes();
@@ -2341,17 +2347,20 @@ namespace Skybound.Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
 		new bool IsSupported([MarshalAs(UnmanagedType.LPStruct)] nsAString feature, [MarshalAs(UnmanagedType.LPStruct)] nsAString version);
 
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		new void GetNamespaceURI([MarshalAs(UnmanagedType.LPStruct)] nsAString aNamespaceURI);
+		new nsAString GetNamespaceURI();
 
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		new void GetPrefix([MarshalAs(UnmanagedType.LPStruct)] nsAString aPrefix);
+		new nsAString GetPrefix();
 
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
 		new void SetPrefix([MarshalAs(UnmanagedType.LPStruct)] nsAString aPrefix);
 
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		new void GetLocalName([MarshalAs(UnmanagedType.LPStruct)] nsAString aLocalName);
+		new nsAString GetLocalName();
 
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
 		new bool HasAttributes();
@@ -2703,17 +2712,20 @@ namespace Skybound.Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
 		new bool IsSupported([MarshalAs(UnmanagedType.LPStruct)] nsAString feature, [MarshalAs(UnmanagedType.LPStruct)] nsAString version);
 
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		new void GetNamespaceURI([MarshalAs(UnmanagedType.LPStruct)] nsAString aNamespaceURI);
+		new nsAString GetNamespaceURI();
 
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		new void GetPrefix([MarshalAs(UnmanagedType.LPStruct)] nsAString aPrefix);
+		new nsAString GetPrefix();
 
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
 		new void SetPrefix([MarshalAs(UnmanagedType.LPStruct)] nsAString aPrefix);
 
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		new void GetLocalName([MarshalAs(UnmanagedType.LPStruct)] nsAString aLocalName);
+		new nsAString GetLocalName();
 
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
 		new bool HasAttributes();
@@ -2890,18 +2902,21 @@ namespace Skybound.Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsSupported([MarshalAs(UnmanagedType.LPStruct)] nsAString feature,[MarshalAs(UnmanagedType.LPStruct)] nsAString version);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetNamespaceURI([MarshalAs(UnmanagedType.LPStruct)] nsAString aNamespaceURI);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetPrefix([MarshalAs(UnmanagedType.LPStruct)] nsAString aPrefix);
+
+		[return: MarshalAs(UnmanagedType.LPStruct)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		new nsAString GetNamespaceURI();
+
+		[return: MarshalAs(UnmanagedType.LPStruct)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		new nsAString GetPrefix();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetPrefix([MarshalAs(UnmanagedType.LPStruct)] nsAString aPrefix);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetLocalName([MarshalAs(UnmanagedType.LPStruct)] nsAString aLocalName);
+
+		[return: MarshalAs(UnmanagedType.LPStruct)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		new nsAString GetLocalName();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool HasAttributes(); 
@@ -3110,18 +3125,21 @@ namespace Skybound.Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsSupported([MarshalAs(UnmanagedType.LPStruct)] nsAString feature,[MarshalAs(UnmanagedType.LPStruct)] nsAString version);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetNamespaceURI([MarshalAs(UnmanagedType.LPStruct)] nsAString aNamespaceURI);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetPrefix([MarshalAs(UnmanagedType.LPStruct)] nsAString aPrefix);
+
+		[return: MarshalAs(UnmanagedType.LPStruct)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		new nsAString GetNamespaceURI();
+
+		[return: MarshalAs(UnmanagedType.LPStruct)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		new nsAString GetPrefix();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetPrefix([MarshalAs(UnmanagedType.LPStruct)] nsAString aPrefix);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetLocalName([MarshalAs(UnmanagedType.LPStruct)] nsAString aLocalName);
+
+		[return: MarshalAs(UnmanagedType.LPStruct)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		new nsAString GetLocalName();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool HasAttributes();
