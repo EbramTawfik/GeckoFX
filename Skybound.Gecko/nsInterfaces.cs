@@ -42,9 +42,8 @@ namespace Skybound.Gecko
 {
 	/**
 	 * The mother of all xpcom interfaces.
-	 */
-
-	/** In order to get both the right typelib and the right header we force
+	 *
+	 *  In order to get both the right typelib and the right header we force
 	 *  the 'real' output from xpidl to be commented out in the generated header
 	 *  and includes a copy of the original nsISupports.h. This is all just to deal 
 	 *  with the Mac specific ": public __comobject" thing.
@@ -56,7 +55,10 @@ namespace Skybound.Gecko
 		int AddRef();							// [noscript]
 		int Release();							// [noscript]
 	}
-	
+
+	/**
+	 * The nsIComponentManager interface.
+	 */
 	[Guid("a88e5a60-205a-4bb1-94e1-2628daf51eae"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	interface nsIComponentManager : nsISupports
 	{
@@ -73,7 +75,7 @@ namespace Skybound.Gecko
 		/// <summary>
 		/// Returns the factory object that can be used to create instances of Guid aClass.
 		/// </summary>
-		/// <param name="aClass">The classid of the factory that is being requested</param>
+		/// <param name="aContractID">The classid of the factory that is being requested</param>
 		/// <param name="aIID">IID of interface requested</param>
 		/// <returns>The factory object that can be used to create instances of aClass</returns>
 		[return: MarshalAs(UnmanagedType.Interface)] 
@@ -102,10 +104,29 @@ namespace Skybound.Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		object CreateInstanceByContractID([MarshalAs(UnmanagedType.LPStr)] string aContractID, [MarshalAs(UnmanagedType.Interface)] nsISupports aDelegate, ref Guid aIID);
 	}
-	
+
+	/**
+	 * The nsIServiceManager manager interface provides a means to obtain
+	 * global services in an application. The service manager depends on the 
+	 * repository to find and instantiate factories to obtain services.
+	 *
+	 * Users of the service manager must first obtain a pointer to the global
+	 * service manager by calling NS_GetServiceManager. After that, 
+	 * they can request specific services by calling GetService. When they are
+	 * finished they can NS_RELEASE() the service as usual.
+	 *
+	 * A user of a service may keep references to particular services indefinitely
+	 * and only must call Release when it shuts down.
+	 */
 	[Guid("8bb35ed9-e332-462d-9155-4a002ab5c958"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	interface nsIServiceManager
 	{
+		/// <summary>
+		/// Returns the instance that implements aClass or aContractID and the interface aIID.  This may result in the instance being created.
+		/// </summary>
+		/// <param name="aClass">aClass or aContractID of object instance requested</param>
+		/// <param name="aIID">IID of interface requested</param>
+		/// <returns>Resulting service</returns>
 		[return: MarshalAs(UnmanagedType.Interface)] 
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		object GetService(ref Guid aClass, ref Guid aIID);
@@ -113,7 +134,13 @@ namespace Skybound.Gecko
 		[return: MarshalAs(UnmanagedType.Interface)] 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		object GetServiceByContractID([MarshalAs(UnmanagedType.LPStr)] string aContractID, ref Guid aIID);
-		
+
+		/// <summary>
+		/// isServiceInstantiated will return a true if the service has already been created, otherwise false
+		/// </summary>
+		/// <param name="aClass">aClass or aContractID of object instance requested</param>
+		/// <param name="aIID">IID of interface requested</param>
+		/// <returns></returns>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsServiceInstantiated(ref Guid aClass, ref Guid aIID);
@@ -122,60 +149,199 @@ namespace Skybound.Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsServiceInstantiatedByContractID([MarshalAs(UnmanagedType.LPStr)] string aContractID, ref Guid aIID);
 	}
-	
-	[Guid("69E5DF00-7B8B-11d3-AF61-00A024FFC08C"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+
+	/**
+	 * The nsIWebBrowser interface is implemented by web browser objects.
+	 * Embedders use this interface during initialisation to associate
+	 * the new web browser instance with the embedders chrome and
+	 * to register any listeners. The interface may also be used at runtime
+	 * to obtain the content DOM window and from that the rest of the DOM.
+	 */
+	[Guid("33e9d001-caab-4ba9-8961-54902f197202"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	interface nsIWebBrowser
 	{
+		/// <summary>
+		/// Registers a listener of the type specified by the iid to receive
+		/// callbacks. The browser stores a weak reference to the listener to avoid any circular dependencies.
+		/// Typically this method will be called to register an object
+		/// to receive <CODE>nsIWebProgressListener</CODE> or 
+		/// <CODE>nsISHistoryListener</CODE> notifications in which case the
+		/// the IID is that of the interface.
+		/// </summary>
+		/// <param name="aListener">The listener to be added.</param>
+		/// <param name="aIID">The IID of the interface that will be called on the listener as appropriate.</param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void AddWebBrowserListener([MarshalAs(UnmanagedType.Interface)] nsIWeakReference aListener, ref Guid aIID);
-		
+
+		/// <summary>
+		/// Removes a previously registered listener.
+		/// </summary>
+		/// <param name="aListener">The listener to be removed.</param>
+		/// <param name="aIID">The IID of the interface on the listener that will no longer be called.</param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RemoveWebBrowserListener([MarshalAs(UnmanagedType.Interface)] nsIWeakReference aListener, ref Guid aIID);
-		
+
+		/// <summary>
+		/// The chrome object associated with the browser instance. The embedder
+		/// must create one chrome object for <I>each</I> browser object
+		/// that is instantiated. The embedder must associate the two by setting
+		/// this property to point to the chrome object before creating the browser
+		/// window via the browser's <CODE>nsIBaseWindow</CODE> interface. 
+		/// 
+		/// The chrome object must also implement <CODE>nsIEmbeddingSiteWindow</CODE>.
+		/// 
+		/// The chrome may optionally implement <CODE>nsIInterfaceRequestor</CODE>,
+		/// <CODE>nsIWebBrowserChromeFocus</CODE>,
+		/// <CODE>nsIContextMenuListener</CODE> and
+		/// <CODE>nsITooltipListener</CODE> to receive additional notifications
+		/// from the browser object.
+		/// 
+		/// The chrome object may optionally implement <CODE>nsIWebProgressListener</CODE> 
+		/// instead of explicitly calling <CODE>addWebBrowserListener</CODE> and
+		/// <CODE>removeWebBrowserListener</CODE> to register a progress listener
+		/// object. If the implementation does this, it must also implement
+		/// <CODE>nsIWeakReference</CODE>.
+		/// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIWebBrowserChrome GetContainerWindow();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetContainerWindow([MarshalAs(UnmanagedType.Interface)] nsIWebBrowserChrome containerWindow);
-		
+
+		/// <summary>
+		/// URI content listener parent. The embedder may set this property to
+		/// their own implementation if they intend to override or prevent
+		/// how certain kinds of content are loaded.
+		/// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIURIContentListener GetParentURIContentListener();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetParentURIContentListener([MarshalAs(UnmanagedType.IUnknown)] object parentURIContentListener);
-		
+
+		/// <summary>
+		/// The top-level DOM window. The embedder may walk the entire
+		/// DOM starting from this value.
+		/// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMWindow GetContentDOMWindow();
+
+		/// <summary>
+		/// Whether this web browser is active. Active means that it's visible
+		/// enough that we want to avoid certain optimizations like discarding
+		/// decoded image data and throttling the refresh driver. In Firefox,
+		/// this corresponds to the visible tab.
+		/// 
+		/// Defaults to true. For optimal performance, set it to false when
+		/// appropriate.
+		/// </summary>
+		bool isActive();
 	}
-	
+
+	/**
+	 * nsIURIContentListener is an interface used by components which
+	 * want to know (and have a chance to handle) a particular content type.
+	 * Typical usage scenarios will include running applications which register
+	 * a nsIURIContentListener for each of its content windows with the uri
+	 * dispatcher service. 
+	 */
 	[Guid("94928ab3-8b63-11d3-989d-001083010e9b"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	interface nsIURIContentListener
 	{
+		/// <summary>
+		/// Gives the original content listener first crack at stopping a load before
+		/// it happens.
+		/// </summary>
+		/// <param name="aURI">URI that is being opened.</param>
+		/// <returns>False if the load can continue. True if the open should be aborted.</returns>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool OnStartURIOpen([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
-		
+
+		/// <summary>
+		/// Notifies the content listener to hook up an nsIStreamListener capable of consuming the data stream.
+		/// </summary>
+		/// <param name="aContentType">Content type of the data.</param>
+		/// <param name="aIsContentPreferred">Indicates whether the content should 
+		/// be preferred by this listener.</param>
+		/// <param name="aRequest">Request that is providing the data.</param>
+		/// <param name="aContentHandler">nsIStreamListener that will consume the 
+		/// data. This should be set to Null if this content listener can't handle 
+		/// the content type.</param>
+		/// <returns>
+		/// True if the consumer wants to handle the load completely by itself.  
+		/// This causes the URI Loader do nothing else...
+		/// False if the URI Loader should continue handling the load and call 
+		/// the returned streamlistener's methods.
+		/// </returns>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool DoContent([MarshalAs(UnmanagedType.LPStr)] string aContentType, bool aIsContentPreferred, [MarshalAs(UnmanagedType.Interface)] nsIRequest aRequest, out IntPtr aContentHandler); // aContentHandler=nsIStreamListener
-		
+
+		/// <summary>
+		/// When given a uri to dispatch, if the URI is specified as 'preferred 
+		/// content' then the uri loader tries to find a preferred content handler
+		/// for the content type. The thought is that many content listeners may
+		/// be able to handle the same content type if they have to. i.e. the mail
+		/// content window can handle text/html just like a browser window content
+		/// listener. However, if the user clicks on a link with text/html content,
+		/// then the browser window should handle that content and not the mail
+		/// window where the user may have clicked the link.  This is the difference
+		/// between isPreferred and canHandleContent.
+		/// </summary>
+		/// <param name="aContentType">Content type of the data.</param>
+		/// <param name="aDesiredContentType">Indicates that aContentType must be converted
+		/// to aDesiredContentType before processing the
+		/// data.  This causes a stream converted to be
+		/// inserted into the nsIStreamListener chain.
+		/// This argument can be <code>nsnull</code> if
+		/// the content should be consumed directly as
+		/// aContentType.</param>
+		/// <returns>True if this is a preferred
+		/// content handler for aContentType;
+		/// False otherwise.</returns>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsPreferred([MarshalAs(UnmanagedType.LPStr)] string aContentType, [MarshalAs(UnmanagedType.LPStr)] out string aDesiredContentType);
-		
+
+		/// <summary>
+		/// When given a uri to dispatch, if the URI is not specified as 'preferred
+		/// content' then the uri loader calls canHandleContent to see if the content
+		/// listener is capable of handling the content.
+		/// </summary>
+		/// <param name="aContentType">Content type of the data.</param>
+		/// <param name="aIsContentPreferred">Indicates whether the content should be
+		/// preferred by this listener.</param>
+		/// <param name="aDesiredContentType">Indicates that aContentType must be converted
+		/// to aDesiredContentType before processing the
+		/// data.  This causes a stream converted to be
+		/// inserted into the nsIStreamListener chain.
+		/// This argument can be <code>nsnull</code> if
+		/// the content should be consumed directly as
+		/// aContentType.</param>
+		/// <returns><code>true</code> if the data can be consumed.
+		/// <code>false</code> otherwise.</returns>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool CanHandleContent([MarshalAs(UnmanagedType.LPStr)] string aContentType, [MarshalAs(UnmanagedType.Bool)]bool aIsContentPreferred, [MarshalAs(UnmanagedType.LPStr)] out string aDesiredContentType);
-		
+
+		/// <summary>
+		/// The load context associated with a particular content listener.
+		/// The URI Loader stores and accesses this value as needed.
+		/// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)] 
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISupports GetLoadCookie();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetLoadCookie([MarshalAs(UnmanagedType.Interface)] nsISupports aLoadCookie);
-		
+
+		/// <summary>
+		/// The parent content listener if this particular listener is part of a chain
+		/// of content listeners (i.e. a docshell!)
+		/// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)] 
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIURIContentListener GetParentContentListener();
@@ -215,85 +381,227 @@ namespace Skybound.Gecko
 		public const int CHROME_OPENAS_CHROME = unchecked((int)2147483648);
 		public const int CHROME_ALL = 4094;
 	}
-	
+
+	/**
+	 * nsIWebBrowserChrome corresponds to the top-level, outermost window
+	 * containing an embedded Gecko web browser.
+	 */
 	[Guid("ba434c60-9d52-11d3-afb0-00a024ffc08c"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	interface nsIWebBrowserChrome
 	{
+		/// <summary>
+		/// Called when the status text in the chrome needs to be updated.
+		/// </summary>
+		/// <param name="statusType">indicates what is setting the text</param>
+		/// <param name="status">status string. null is an acceptable value meaning
+		/// no status.</param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetStatus(int statusType, [MarshalAs(UnmanagedType.LPWStr)] string status);
-		
+
+		/// <summary>
+		/// The currently loaded WebBrowser.  The browser chrome may be
+		/// told to set the WebBrowser object to a new object by setting this
+		/// attribute.  In this case the implementer is responsible for taking the 
+		/// new WebBrowser object and doing any necessary initialization or setup 
+		/// as if it had created the WebBrowser itself.  This includes positioning
+		/// setting up listeners etc.
+		/// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)] 
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIWebBrowser GetWebBrowser();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetWebBrowser([MarshalAs(UnmanagedType.Interface)] nsIWebBrowser webBrowser);
-		
+
+		/// <summary>
+		/// The chrome flags for this browser chrome. The implementation should
+		/// reflect the value of this attribute by hiding or showing its chrome
+		/// appropriately.
+		/// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetChromeFlags();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetChromeFlags(int flags);
-		
+
+		/// <summary>
+		/// Asks the implementer to destroy the window associated with this
+		/// WebBrowser object.
+		/// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void DestroyBrowserWindow();
-		
+
+		/// <summary>
+		/// Tells the chrome to size itself such that the browser will be the 
+		/// specified size.
+		/// </summary>
+		/// <param name="cx">new width of the browser</param>
+		/// <param name="cy">new height of the browser</param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SizeBrowserTo(int cx, int cy);
-		
+
+		/// <summary>
+		/// Shows the window as a modal window.
+		/// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ShowAsModal();
-		
+
+		/// <summary>
+		/// Is the window modal (that is, currently executing a modal loop)?
+		/// </summary>
+		/// <returns>true if it's a modal window</returns>
 		[return: MarshalAs(UnmanagedType.Bool)]		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsWindowModal();
-		
+
+		/// <summary>
+		/// Exit a modal event loop if we're in one. The implementation
+		/// should also exit out of the loop if the window is destroyed.
+		/// </summary>
+		/// <param name="status">the result code to return from showAsModal</param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ExitModalEventLoop(int status);
 	}
-	
+
+	/** nsIWindowCreator is a callback interface used by Gecko to create
+	 * new browser windows. The application, either Mozilla or an embedding app,
+	 * must provide an implementation of the Window Watcher component and
+	 * notify the WindowWatcher during application initialization.
+	 */
 	[Guid("30465632-a777-44cc-90f9-8145475ef999"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	interface nsIWindowCreator
 	{
+		/// <summary>
+		/// Create a new window. Gecko will/may call this method, if made
+		/// available to it, to create new windows.
+		/// </summary>
+		/// <param name="parent">parent window, if any. null if not. the newly created
+		/// window should be made a child/dependent window of
+		/// the parent, if any (and if the concept applies
+		/// to the underlying OS).</param>
+		/// <param name="chromeFlags">chrome features from nsIWebBrowserChrome</param>
+		/// <returns>the new window</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIWebBrowserChrome CreateChromeWindow([MarshalAs(UnmanagedType.Interface)] nsIWebBrowserChrome parent, uint chromeFlags);
 	}
-	
+
+	/**
+	 * nsIWindowWatcher is the keeper of Gecko/DOM Windows. It maintains
+	 * a list of open top-level windows, and allows some operations on them.
+	 */
 	[Guid("002286a8-494b-43b3-8ddd-49e3fc50622b"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	interface nsIWindowWatcher
 	{
+		/// <summary>
+		/// Create a new window. It will automatically be added to our list
+		/// </summary>
+		/// <param name="aParent">parent window, if any. Null if no parent.  If it is
+		/// impossible to get to an nsIWebBrowserChrome from aParent, this
+		/// method will effectively act as if aParent were null.</param>
+		/// <param name="aUrl">url to which to open the new window. Must already be
+		/// escaped, if applicable. can be null.</param>
+		/// <param name="aName">window name from JS window.open. can be null.  If a window
+		/// with this name already exists, the openWindow call may just load
+		/// aUrl in it (if aUrl is not null) and return it.</param>
+		/// <param name="aFeatures">window features from JS window.open. can be null.</param>
+		/// <param name="aArguments">extra argument(s) to the new window, to be attached
+		/// as the |arguments| property. An nsISupportsArray will be
+		/// unwound into multiple arguments (but not recursively!).
+		/// can be null.</param>
+		/// <returns>the new window</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMWindow OpenWindow([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aParent, [MarshalAs(UnmanagedType.LPStr)] string aUrl, [MarshalAs(UnmanagedType.LPStr)] string aName, [MarshalAs(UnmanagedType.LPStr)] string aFeatures, [MarshalAs(UnmanagedType.Interface)] nsISupports aArguments);
-		
+
+		/// <summary>
+		/// Clients of this service can register themselves to be notified
+		/// when a window is opened or closed (added to or removed from this
+		/// service). This method adds an aObserver to the list of objects
+		/// to be notified.
+		/// </summary>
+		/// <param name="aObserver">the object to be notified when windows are
+		/// opened or closed.</param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RegisterNotification([MarshalAs(UnmanagedType.Interface)] nsIObserver aObserver);
-		
+
+		/// <summary>
+		/// Clients of this service can register themselves to be notified
+		/// when a window is opened or closed (added to or removed from this
+		/// service). This method removes an aObserver from the list of objects
+		/// to be notified.
+		/// </summary>
+		/// <param name="aObserver">the observer to be removed.</param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void UnregisterNotification([MarshalAs(UnmanagedType.Interface)] nsIObserver aObserver);
-		
+
+		/// <summary>
+		/// Get an iterator for currently open windows in the order they were opened,
+		/// guaranteeing that each will be visited exactly once.
+		/// </summary>
+		/// <returns>an enumerator which will itself return nsISupports objects which
+		/// can be QIed to an nsIDOMWindow</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISimpleEnumerator GetWindowEnumerator();
-		
+
+		/// <summary>
+		/// Return a newly created nsIPrompt implementation.
+		/// </summary>
+		/// <param name="aParent">the parent window used for posing alerts. can be null.</param>
+		/// <returns>a new nsIPrompt object</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		IntPtr GetNewPrompter([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aParent);
-		
+
+		/// <summary>
+		/// Return a newly created nsIAuthPrompt implementation.
+		/// </summary>
+		/// <param name="aParent">the parent window used for posing alerts. can be null.</param>
+		/// <returns>a new nsIAuthPrompt object</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		IntPtr GetNewAuthPrompter([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aParent);
-		
+
+		/// <summary>
+		/// Set the window creator callback. It must be filled in by the app.
+		/// openWindow will use it to create new windows.
+		/// </summary>
+		/// <param name="creator">the callback. if null, the callback will be cleared
+		/// and window creation capabilities lost.</param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetWindowCreator([MarshalAs(UnmanagedType.Interface)] nsIWindowCreator creator);
-		
+
+		/// <summary>
+		/// Retrieve the chrome window mapped to the given DOM window. Window
+		/// Watcher keeps a list of all top-level DOM windows currently open,
+		/// along with their corresponding chrome interfaces. Since DOM Windows
+		/// lack a (public) means of retrieving their corresponding chrome,
+		/// this method will do that.
+		/// </summary>
+		/// <param name="aWindow">the DOM window whose chrome window the caller needs</param>
+		/// <returns>the corresponding chrome window</returns>
 		[return: MarshalAs(UnmanagedType.Interface)] 
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIWebBrowserChrome GetChromeForWindow([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow);
-		
+
+		/// <summary>
+		/// Retrieve an existing window (or frame).
+		/// </summary>
+		/// <param name="aTargetName">the window name</param>
+		/// <param name="aCurrentWindow">a starting point in the window hierarchy to
+		/// begin the search.  If null, each toplevel window
+		/// will be searched.</param>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMWindow GetWindowByName([MarshalAs(UnmanagedType.LPWStr)] string aTargetName, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aCurrentWindow);
-		
+
+		/// <summary>
+		/// The Watcher serves as a global storage facility for the current active
+		/// (frontmost non-floating-palette-type) window, storing and returning
+		/// it on demand. Users must keep this attribute current, including after
+		/// the topmost window is closed. This attribute obviously can return null
+		/// if no windows are open, but should otherwise always return a valid
+		/// window.
+		/// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMWindow GetActiveWindow();
@@ -302,45 +610,158 @@ namespace Skybound.Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetActiveWindow([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aActiveWindow);
 	}
-	
+
+	/**
+	 * The nsIWindowProvider interface exists so that the window watcher's default
+	 * behavior of opening a new window can be easly modified.  When the window
+	 * watcher needs to open a new window, it will first check with the
+	 * nsIWindowProvider it gets from the parent window.  If there is no provider
+	 * or the provider does not provide a window, the window watcher will proceed
+	 * to actually open a new window.
+	 */
 	[Guid("5119ac7f-81dd-4061-96a7-71f2cf5efee4"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	interface nsIWindowProvider
 	{
+		/// <summary>
+		/// A method to request that this provider provide a window.  The window
+		/// returned need not to have the right name or parent set on it; setting
+		/// those is the caller's responsibility.  The provider can always return null
+		/// to have the caller create a brand-new window.
+		/// </summary>
+		/// <param name="aParent">Must not be null.  This is the window that the caller wants
+		/// to use as the parent for the new window.  Generally,
+		/// nsIWindowProvider implementors can expect to be somehow
+		/// related to aParent; the relationship may depend on the
+		/// nsIWindowProvider implementation.</param>
+		/// <param name="aChromeFlags">The chrome flags the caller will use to create a new
+		/// window if this provider returns null.  See
+		/// nsIWebBrowserChrome for the possible values of this
+		/// field.</param>
+		/// <param name="aCalledFromJS">Whether or not the method was called from JavaScript.
+		/// </param>
+		/// <param name="aPositionSpecified">Whether the attempt to create a window is trying
+		/// to specify a position for the new window.</param>
+		/// <param name="aSizeSpecified">Whether the attempt to create a window is trying to
+		/// specify a size for the new window.</param>
+		/// <param name="aURI">The URI to be loaded in the new window.  The nsIWindowProvider
+		/// implementation MUST NOT load this URI in the window it
+		/// returns.  This URI is provided solely to help the
+		/// nsIWindowProvider implementation make decisions; the caller
+		/// will handle loading the URI in the window returned if
+		/// provideWindow returns a window.  Note that the URI may be null
+		/// if the load cannot be represented by a single URI (e.g. if
+		/// the load has extra load flags, POST data, etc).</param>
+		/// <param name="aName">The name of the window being opened.  Setting the name on the
+		/// return value of provideWindow will be handled by the caller;
+		/// aName is provided solely to help the nsIWindowProvider
+		/// implementation make decisions.</param>
+		/// <param name="aFeatures">The feature string for the window being opened.  This may
+		/// be empty.  The nsIWindowProvider implementation is
+		/// allowed to apply the feature string to the window it
+		/// returns in any way it sees fit.  See the nsIWindowWatcher
+		/// interface for details on feature strings.</param>
+		/// <param name="aWindowIsNew">Whether the window being returned was just
+		/// created by the window provider implementation.
+		/// This can be used by callers to keep track of which
+		/// windows were opened by the user as opposed to
+		/// being opened programmatically.  This should be set
+		/// to false if the window being returned existed
+		/// before the provideWindow() call.  The value of this
+		/// out parameter is meaningless if provideWindow()
+		/// returns null.</param>
+		/// <returns>A window the caller should use or null if the caller should just
+		/// create a new window.  The returned window may be newly opened by
+		/// the nsIWindowProvider implementation or may be a window that
+		/// already existed.</returns>
 		[PreserveSig]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int provideWindow([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aParent, uint aChromeFlags, [MarshalAs(UnmanagedType.Bool)] bool aPositionSpecified, [MarshalAs(UnmanagedType.Bool)] bool aSizeSpecified, nsIURI aURI,[MarshalAs(UnmanagedType.LPStruct)] nsAString aName,[MarshalAs(UnmanagedType.LPStruct)] nsAString aFeatures, [MarshalAs(UnmanagedType.Bool)] out bool aWindowIsNew, [MarshalAs(UnmanagedType.Interface)] out nsIDOMWindow ret);
 	}
-	
-	[Guid("b6c2f9e1-53a0-45f2-a2b8-fe37861fe8a8"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+
+	static class nsIXulWindowConstants
+	{
+		public const uint lowestZ = 0;
+		public const uint loweredZ = 4;	// "alwaysLowered" attribute
+		public const uint normalZ = 5;
+		public const uint raisedZ = 6;	// "alwaysRaised" attribute
+		public const uint highestZ = 9;
+	}
+
+	/**
+	 * The nsIXULWindow
+	 *
+	 * When the window is destroyed, it will fire a "xul-window-destroyed"
+	 * notification through the global observer service.
+	 */
+	[Guid("5869c5e5-743d-473c-bb71-41752146d373"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	interface nsIXULWindow
 	{
+		/// <summary>
+		/// The docshell owning the XUL for this window.
+		/// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		IntPtr GetDocShell(); // nsIDocShell
-		
+
+		/// <summary>
+		/// Indicates if this window is instrinsically sized.
+		/// </summary>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIntrinsicallySized();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetIntrinsicallySized([MarshalAs(UnmanagedType.Bool)] bool aIntrinsicallySized);
-		
+
+		/// <summary>
+		/// The primary content shell. 
+		/// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDocShellTreeItem GetPrimaryContentShell();
-		
+
+		/// <summary>
+		/// The content shell specified by the supplied id.
+		/// </summary>
+		/// <param name="ID">ID of the content shell to return.</param>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDocShellTreeItem GetContentShellById([MarshalAs(UnmanagedType.LPWStr)] string ID);
-		
+
+		/// <summary>
+		/// Tell this window that it has picked up a child XUL window
+		/// </summary>
+		/// <param name="aChild">the child window being added</param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void AddChildWindow([MarshalAs(UnmanagedType.Interface)]nsIXULWindow aChild);
-		
+
+		/// <summary>
+		/// Tell this window that it has lost a child XUL window
+		/// </summary>
+		/// <param name="aChild">the child window being removed</param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RemoveChildWindow([MarshalAs(UnmanagedType.Interface)]nsIXULWindow aChild);
-		
+
+		/// <summary>
+		/// Move the window to a centered position.
+		/// </summary>
+		/// <param name="aRelative">If not null, the window relative to which the window is
+		/// moved. See aScreen parameter for details.</param>
+		/// <param name="aScreen">PR_TRUE to center the window relative to the screen
+		/// containing aRelative if aRelative is not null. If
+		/// aRelative is null then relative to the screen of the
+		/// opener window if it was initialized by passing it to
+		/// nsWebShellWindow::Initialize. Failing that relative to
+		/// the main screen.
+		/// PR_FALSE to center it relative to aRelative itself.</param>
+		/// <param name="aAlert">PR_TRUE to move the window to an alert position,
+		/// generally centered horizontally and 1/3 down from the top.</param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Center([MarshalAs(UnmanagedType.Interface)]nsIXULWindow aRelative, [MarshalAs(UnmanagedType.Bool)] bool aScreen, [MarshalAs(UnmanagedType.Bool)] bool aAlert);
-		
+
+		/// <summary>
+		/// Shows the window as a modal window. That is, ensures that it is visible
+		/// and runs a local event loop, exiting only once the window has been closed.
+		/// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ShowModal();
 		
@@ -349,7 +770,10 @@ namespace Skybound.Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetZLevel(uint aZLevel);
-		
+
+		/// <summary>
+		/// contextFlags are from nsIWindowCreator2
+		/// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetContextFlags();
 		
@@ -361,7 +785,18 @@ namespace Skybound.Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetChromeFlags(uint aChromeFlags);
-		
+
+		/// <summary>
+		/// Begin assuming |chromeFlags| don't change hereafter, and assert
+		/// if they do change.  The state change is one-way and idempotent.
+		/// </summary>
+		void AssumeChromeFlagsAreFrozen();
+
+		/// <summary>
+		/// Create a new window.
+		/// </summary>
+		/// <param name="aChromeFlags">see nsIWebBrowserChrome</param>
+		/// <returns>the newly minted window</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIXULWindow CreateNewWindow(uint aChromeFlags, [MarshalAs(UnmanagedType.IUnknown)] object aAppShell); // aAppShell=nsIAppShell
@@ -375,10 +810,26 @@ namespace Skybound.Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ApplyChromeFlags();
 	}
-	
-	[Guid("93a28ba2-7e22-11d9-9b6f-000a95d535fa"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+
+	[Guid("361facd0-6e9a-4ff1-a0d4-450744cf0023"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	interface nsIAppShellService
 	{
+		/// <summary>
+		/// Create a window, which will be initially invisible.
+		/// </summary>
+		/// <param name="aParent">the parent window.  Can be null.</param>
+		/// <param name="aUrl">the contents of the new window.</param>
+		/// <param name="aChromeMask">chrome flags affecting the kind of OS border
+		/// given to the window. see nsIBrowserWindow for
+		/// bit/flag definitions.</param>
+		/// <param name="aInitialWidth">width, in pixels, of the window.  Width of window
+		/// at creation.  Can be overridden by the "width"
+		/// tag in the XUL.  Set to NS_SIZETOCONTENT to force
+		/// the window to wrap to its contents.</param>
+		/// <param name="aInitialHeight">like aInitialWidth, but subtly different.</param>
+		/// <param name="aAppShell">a widget "appshell" (event processor) to associate
+		/// with the new window</param>
+		/// <returns>the newly created window</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIXULWindow CreateTopLevelWindow([MarshalAs(UnmanagedType.Interface)]nsIXULWindow aParent, [MarshalAs(UnmanagedType.Interface)]nsIURI aUrl, uint aChromeMask, int aInitialWidth, int aInitialHeight, [MarshalAs(UnmanagedType.IUnknown)] object aAppShell);
@@ -388,103 +839,282 @@ namespace Skybound.Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void DestroyHiddenWindow();
-		
+
+		/// <summary>
+		/// Return the (singleton) application hidden window, automatically created
+		/// and maintained by this AppShellService.
+		/// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIXULWindow GetHiddenWindow();
-		
+
+		/// <summary>
+		/// Return the (singleton) application hidden window, automatically created
+		/// and maintained by this AppShellService.
+		/// </summary>
+		/// <returns></returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		IntPtr GetHiddenDOMWindow(); // nsIDOMWindowInternal
-		
+
+		/// <summary>
+		/// Return the (singleton) application hidden window as an nsIDOMWindowInternal,
+		/// and, the corresponding JavaScript context pointer.  This is useful
+		/// if you'd like to subsequently call OpenDialog on the hidden window.
+		/// </summary>
+		/// <param name="aHiddenDOMWindow">the hidden window QI'd to type nsIDOMWindowInternal</param>
+		/// <param name="aJSContext">the corresponding JavaScript context</param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetHiddenWindowAndJSContext(out IntPtr aHiddenDOMWindow, IntPtr aJSContext); // nsIDOMWindowInternal JSContext
-		
+
+		/// <returns>Return true if the application hidden window was provided by the
+		/// application. If it wasn't, the default hidden window was used. This will
+		/// usually be false on all non-mac platforms.</returns>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetApplicationProvidedHiddenWindow();
-		
+
+		/// <summary>
+		/// Add a window to the application's registry of windows.  These windows
+		/// are generally shown in the Windows taskbar, and the application
+		/// knows it can't quit until it's out of registered windows.
+		/// </summary>
+		/// <param name="aWindow">the window to register</param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RegisterTopLevelWindow([MarshalAs(UnmanagedType.Interface)]nsIXULWindow aWindow);
-		
+
+		/// <summary>
+		/// Remove a window from the application's window registry. Note that
+		/// this method won't automatically attempt to quit the app when
+		/// the last window is unregistered. For that, see Quit().
+		/// </summary>
+		/// <param name="aWindow">the window to unregister</param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void UnregisterTopLevelWindow([MarshalAs(UnmanagedType.Interface)]nsIXULWindow aWindow);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void TopLevelWindowIsModal([MarshalAs(UnmanagedType.Interface)]nsIXULWindow aWindow, [MarshalAs(UnmanagedType.Bool)] bool aModal);
-	
 	}
-	
-	[Guid("3aaad312-e09d-4010-a013-78ef653dac99"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+
+	/**
+	 * Private "control" methods on the Window Watcher. These are annoying
+	 * bookkeeping methods, not part of the public (embedding) interface.
+	 */
+	[Guid("8624594a-28d7-4bc3-8d12-b1c2b9eefd90"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	interface nsPIWindowWatcher
 	{
+		/// <summary>
+		/// A window has been created. Add it to our list.
+		/// </summary>
+		/// <param name="aWindow">the window to add</param>
+		/// <param name="aChrome">the corresponding chrome window. The DOM window
+		/// and chrome will be mapped together, and the corresponding
+		/// chrome can be retrieved using the (not private)
+		/// method getChromeForWindow. If null, any extant mapping
+		/// will be cleared.</param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void AddWindow([MarshalAs(UnmanagedType.IUnknown)]nsIDOMWindow aWindow, [MarshalAs(UnmanagedType.IUnknown)]nsIWebBrowserChrome aChrome);
-		
+
+		/// <summary>
+		/// A window has been closed. Remove it from our list.
+		/// </summary>
+		/// <param name="aWindow">the window to remove</param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RemoveWindow([MarshalAs(UnmanagedType.IUnknown)]nsIDOMWindow aWindow);
-		
+
+		/// <summary>
+		/// Like the public interface's open(), but can deal with openDialog
+		/// style arguments.
+		/// </summary>
+		/// <param name="aParent">parent window, if any. Null if no parent.  If it is
+		/// impossible to get to an nsIWebBrowserChrome from aParent, this
+		/// method will effectively act as if aParent were null.</param>
+		/// <param name="aUrl">url to which to open the new window. Must already be
+		/// escaped, if applicable. can be null.</param>
+		/// <param name="aName">window name from JS window.open. can be null.  If a window
+		/// with this name already exists, the openWindow call may just load
+		/// aUrl in it (if aUrl is not null) and return it.</param>
+		/// <param name="aFeatures">window features from JS window.open. can be null.</param>
+		/// <param name="aDialog">use dialog defaults</param>
+		/// <param name="aArgs">Window argument</param>
+		/// <returns>the new window</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMWindow OpenWindowJS([MarshalAs(UnmanagedType.Interface)]nsIDOMWindow aParent, [MarshalAs(UnmanagedType.LPStr)] string aUrl, [MarshalAs(UnmanagedType.LPStr)] string aName, [MarshalAs(UnmanagedType.LPStr)] string aFeatures, [MarshalAs(UnmanagedType.Bool)] bool aDialog, [MarshalAs(UnmanagedType.IUnknown)] object aArgs);
 
+		/// <summary>
+		/// Find a named docshell tree item amongst all windows registered
+		/// with the window watcher.  This may be a subframe in some window,
+		/// for example.
+		/// </summary>
+		/// <param name="aName">the name of the window.  Must not be null.</param>
+		/// <param name="aRequestor">the tree item immediately making the request.
+		/// We should make sure to not recurse down into its findItemWithName
+		/// method.</param>
+		/// <param name="aOriginalRequestor">the original treeitem that made the request.
+		/// Used for security checks.</param>
+		/// <returns>the tree item with aName as the name, or null if there
+		/// isn't one.  "Special" names, like _self, _top, etc, will be
+		/// treated specially only if aRequestor is null; in that case they
+		/// will be resolved relative to the first window the windowwatcher
+		/// knows about.</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDocShellTreeItem FindItemWithName([MarshalAs(UnmanagedType.LPWStr)] string aName, [MarshalAs(UnmanagedType.Interface)]nsIDocShellTreeItem aRequestor, [MarshalAs(UnmanagedType.Interface)]nsIDocShellTreeItem aOriginalRequestor);
 	}
-	
+
+	/**
+	 * This interface is implemented by an object that wants
+	 * to observe an event corresponding to a topic.
+	 */
 	[Guid("db242e01-e4d9-11d2-9dde-000064657374"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	interface nsIObserver
-	{		
+	{
+		/// <summary>
+		/// Observe will be called when there is a notification for the
+		/// topic |aTopic|.  This assumes that the object implementing
+		/// this interface has been registered with an observer service
+		/// such as the nsIObserverService. 
+		/// 
+		/// If you expect multiple topics/subjects, the impl is 
+		/// responsible for filtering.
+		/// 
+		/// You should not modify, add, remove, or enumerate 
+		/// notifications in the implemention of observe.
+		/// </summary>
+		/// <param name="aSubject">Notification specific interface pointer.</param>
+		/// <param name="aTopic">The notification topic or subject.</param>
+		/// <param name="aData">Notification specific wide string.
+		/// subject event.</param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Observe(nsISupports aSubject, [MarshalAs(UnmanagedType.LPStr)] string aTopic, [MarshalAs(UnmanagedType.LPWStr)] string aData);
 	}
-	
+
+	/**
+	 * The nsIBaseWindow describes a generic window and basic operations that 
+	 * can be performed on it.  This is not to be a complete windowing interface
+	 * but rather a common set that nearly all windowed objects support.    
+	 */
 	[Guid("046bc8a0-8015-11d3-af70-00a024ffc08c"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	interface nsIBaseWindow
 	{
-		//void InitWindow(nativeWindow parentNativeWindow, nsIWidget * parentWidget, int x, int y, int cx, int cy);
+		/// <summary>
+		/// Allows a client to initialize an object implementing this interface with
+		/// the usually required window setup information.
+		/// It is possible to pass null for both parentNativeWindow and parentWidget,
+		/// but only docshells support this.
+		/// </summary>
+		/// <param name="parentNativeWindow">This allows a system to pass in the parenting
+		/// window as a native reference rather than relying on the calling
+		/// application to have created the parent window as an nsIWidget.  This 
+		/// value will be ignored (should be nsnull) if an nsIWidget is passed in to
+		/// the parentWidget parameter.</param>
+		/// <param name="parentWidget">This allows a system to pass in the parenting widget.
+		/// This allows some objects to optimize themselves and rely on the view
+		/// system for event flow rather than creating numerous native windows.  If
+		/// one of these is not available, nsnull should be passed.</param>
+		/// <param name="x">This is the x co-ordinate relative to the parent to place the
+		/// window.</param>
+		/// <param name="y">This is the y co-ordinate relative to the parent to place the 
+		/// window.</param>
+		/// <param name="cx">This is the width for the window to be.</param>
+		/// <param name="cy">This is the height for the window to be.</param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void InitWindow(IntPtr parentNativeWindow, IntPtr /* nsIWidget */ parentWidget, int x, int y, int cx, int cy);
-		
+
+		/// <summary>
+		/// Tells the window that intialization and setup is complete.  When this is
+		/// called the window can actually create itself based on the setup
+		/// information handed to it.
+		/// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Create();
-		
+
+		/// <summary>
+		/// Tell the window that it should destroy itself.  This call should not be
+		/// necessary as it will happen implictly when final release occurs on the
+		/// object.  If for some reaons you want the window destroyed prior to release
+		/// due to cycle or ordering issues, then this call provides that ability.
+		/// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Destroy();
-		
+
+		/// <summary>
+		/// Sets the current x and y coordinates of the control.  This is relative to
+		/// the parent window.
+		/// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetPosition(int x, int y);
-		
+
+		/// <summary>
+		/// Gets the current x and y coordinates of the control.  This is relatie to the
+		/// parent window.
+		/// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetPosition(out int x, out int y);
-		
+
+		/// <summary>
+		/// Sets the width and height of the control.
+		/// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetSize(int cx, int cy, [MarshalAs(UnmanagedType.Bool)] bool fRepaint);
-		
+
+		/// <summary>
+		/// Gets the width and height of the control.
+		/// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetSize(out int cx, out int cy);
-		
+
+		/// <summary>
+		/// Convenience function combining the SetPosition and SetSize into one call.
+		/// Also is more efficient than calling both.
+		/// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetPositionAndSize(int x, int y, int cx, int cy, [MarshalAs(UnmanagedType.Bool)] bool fRepaint);
-		
+
+		/// <summary>
+		/// Convenience function combining the GetPosition and GetSize into one call.
+		/// Also is more efficient than calling both.
+		/// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetPositionAndSize(out int x, out int y, out int cx, out int cy);
-		
+
+		/// <summary>
+		/// Tell the window to repaint itself
+		/// </summary>
+		/// <param name="force">if true, repaint immediately
+		/// if false, the window may defer repainting as it sees fit.</param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Repaint([MarshalAs(UnmanagedType.Bool)] bool force);
-		
+
+		/// <summary>
+		/// This is the parenting widget for the control.  This may be null if the
+		/// native window was handed in for the parent during initialization.
+		/// If this is returned, it should refer to the same object as
+		/// parentNativeWindow.
+		/// 
+		/// Setting this after Create() has been called may not be supported by some
+		/// implementations.
+		/// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		IntPtr GetParentWidget(); // returns: nsIWidget
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetParentWidget(IntPtr aParentWidget);
-		
+
+		/// <summary>
+		/// This is the native window parent of the control.
+		/// 
+		/// Setting this after Create() has been called may not be supported by some
+		/// implementations.
+		/// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		IntPtr GetParentNativeWindow(); // returns: nativeWindow
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetParentNativeWindow(IntPtr aParentNativeWindow);
-		
+
+		/// <summary>
+		/// Attribute controls the visibility of the object behind this interface.
+		/// Setting this attribute to false will hide the control.  Setting it to 
+		/// true will show it.
+		/// </summary>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetVisibility();
@@ -492,27 +1122,50 @@ namespace Skybound.Gecko
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetVisibility(bool aVisibility);
-		
+
+		/// <summary>
+		/// a disabled window should accept no user interaction; it's a dead window,
+		/// like the parent of a modal window.
+		/// </summary>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetEnabled();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetEnabled([MarshalAs(UnmanagedType.Bool)] bool aEnabled);
-		
+
+		/// <summary>
+		/// set blurSuppression to true to suppress handling of blur events.
+		/// set it false to re-enable them. query it to determine whether
+		/// blur events are suppressed. The implementation should allow
+		/// for blur events to be suppressed multiple times.
+		/// </summary>
+		/// <returns></returns>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetBlurSuppression();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetBlurSuppression([MarshalAs(UnmanagedType.Bool)]bool aBlurSuppression);
-		
+
+		/// <summary>
+		/// Allows you to find out what the widget is of a given object.  Depending
+		/// on the object, this may return the parent widget in which this object
+		/// lives if it has not had to create its own widget.
+		/// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		IntPtr GetMainWidget(); // returns: nsIWidget
-		
+		IntPtr GetMainWidget();			// [noscript]
+
+		/// <summary>
+		/// Give the window focus.
+		/// </summary>
+
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetFocus();
-		
+
+		/// <summary>
+		/// Title of the window.
+		/// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		[return: MarshalAs(UnmanagedType.LPWStr)] 
 		string GetTitle();
@@ -523,6 +1176,11 @@ namespace Skybound.Gecko
 	
 	static class nsIWebNavigationConstants
 	{
+		/****************************************************************************
+		 * The following flags may be bitwise combined to form the load flags
+		 * parameter passed to either the loadURI or reload method.  Some of these
+		 * flags are only applicable to loadURI.
+		 */
 		public const int LOAD_FLAGS_MASK = 65535;
 		public const int LOAD_FLAGS_NONE = 0;
 		public const int LOAD_FLAGS_IS_REFRESH = 16;
@@ -545,46 +1203,128 @@ namespace Skybound.Gecko
 		public const int STOP_CONTENT = 2;
 		public const int STOP_ALL = 3;
 	}
-	
+
+	/**
+	 * The nsIWebNavigation interface defines an interface for navigating the web.
+	 * It provides methods and attributes to direct an object to navigate to a new
+	 * location, stop or restart an in process load, or determine where the object
+	 * has previously gone.
+	 */
 	[Guid("f5d9e7b0-d930-11d3-b057-00a024ffc08c"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	interface nsIWebNavigation
 	{
+		/// <summary>
+		/// Indicates if the object can go back.  If true this indicates that
+		/// there is back session history available for navigation.
+		/// </summary>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]		
 		bool GetCanGoBack();
-		
+
+		/// <summary>
+		/// Indicates if the object can go forward.  If true this indicates that
+		/// there is forward session history available for navigation
+		/// </summary>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetCanGoForward();
-		
+
+		/// <summary>
+		/// Tells the object to navigate to the previous session history item.  When a
+		/// page is loaded from session history, all content is loaded from the cache
+		/// (if available) and page state (such as form values and scroll position) is
+		/// restored.
+		/// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GoBack();
-		
+
+		/// <summary>
+		/// Tells the object to navigate to the next session history item.  When a
+		/// page is loaded from session history, all content is loaded from the cache
+		/// (if available) and page state (such as form values and scroll position) is
+		/// restored.
+		/// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GoForward();
-		
+
+		/// <summary>
+		/// Tells the object to navigate to the session history item at a given index.
+		/// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GotoIndex(int index);
-		
+
+		/// <summary>
+		/// Loads a given URI.  This will give priority to loading the requested URI
+		/// in the object implementing this interface.  If it can't be loaded here
+		/// however, the URI dispatcher will go through its normal process of content
+		/// loading.
+		/// </summary>
+		/// <param name="aURI">The URI string to load.  For HTTP and FTP URLs and possibly others,
+		/// characters above U+007F will be converted to UTF-8 and then URL-
+		/// escaped per the rules of RFC 2396.</param>
+		/// <param name="aLoadFlags">Flags modifying load behaviour.  This parameter is a bitwise
+		/// combination of the load flags defined above.  (Undefined bits are
+		/// reserved for future use.)  Generally you will pass LOAD_FLAGS_NONE
+		/// for this parameter.</param>
+		/// <param name="aReferrer">The referring URI.  If this argument is null, then the referring
+		/// URI will be inferred internally.</param>
+		/// <param name="aPostData">If the URI corresponds to a HTTP request, then this stream is
+		/// appended directly to the HTTP request headers.  It may be prefixed
+		/// with additional HTTP headers.  This stream must contain a "\r\n"
+		/// sequence separating any HTTP headers from the HTTP request body.
+		/// This parameter is optional and may be null.</param>
+		/// <param name="aHeaders"></param>
+		/// <returns>If the URI corresponds to a HTTP request, then any HTTP headers
+		/// contained in this stream are set on the HTTP request.  The HTTP
+		/// header stream is formatted as:
+		/// ( HEADER "\r\n" )*
+		/// This parameter is optional and may be null.</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		[PreserveSig] int LoadURI([MarshalAs(UnmanagedType.LPWStr)] string aURI, uint aLoadFlags, [MarshalAs(UnmanagedType.Interface)]nsIURI aReferrer, [MarshalAs(UnmanagedType.Interface)]nsIInputStream aPostData, [MarshalAs(UnmanagedType.Interface)]nsIInputStream aHeaders);
-		
+
+		/// <summary>
+		/// Tells the Object to reload the current page.  There may be cases where the
+		/// user will be asked to confirm the reload (for example, when it is
+		/// determined that the request is non-idempotent).
+		/// </summary>
+		/// <param name="aReloadFlags">Flags modifying load behaviour.  This parameter is a bitwise
+		/// combination of the Load Flags defined in nsIWebNavigationConstants.  (Undefined bits are
+		/// reserved for future use.)  Generally you will pass LOAD_FLAGS_NONE
+		/// for this parameter.</param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Reload(uint aReloadFlags);
-		
+
+		/// <summary>
+		/// Stops a load of a URI.
+		/// </summary>
+		/// <param name="aStopFlags">This parameter is one of the stop flags defined in nsIWebNavigationConstants.</param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Stop(uint aStopFlags);
-		
+
+		/// <summary>
+		/// Retrieves the current DOM document for the frame, or lazily creates a
+		/// blank document if there is none.  This attribute never returns null except
+		/// for unexpected error situations.
+		/// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)] 
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMDocument GetDocument();
-				
+
+		/// <summary>
+		/// The currently loaded URI or null.
+		/// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		IntPtr /*nsURI*/ GetCurrentURI();
-				
+
+		/// <summary>
+		/// The referring URI for the currently loaded URI or null.
+		/// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		IntPtr /*nsIURI*/ GetReferringURI();
-		
+
+		/// <summary>
+		/// The session history object used by this web navigation instance.
+		/// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)] 
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISHistory GetSessionHistory();
@@ -592,68 +1332,184 @@ namespace Skybound.Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetSessionHistory([MarshalAs(UnmanagedType.IUnknown)] object aSessionHistory);
 	}
-	
+
+	/**
+	 * nsISHistoryListener defines the interface one can implement to receive
+	 * notifications about activities in session history and to be able to
+	 * cancel them.
+	 *
+	 * A session history listener will be notified when pages are added, removed
+	 * and loaded from session history. It can prevent any action (except adding
+	 * a new session history entry) from happening by returning false from the
+	 * corresponding callback method.
+	 *
+	 * A session history listener can be registered on a particular nsISHistory
+	 * instance via the nsISHistory::addSHistoryListener() method.
+	 */
 	[Guid("3b07f591-e8e1-11d4-9882-00c04fa02f40"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	interface nsISHistoryListener
 	{
+		/// <summary>
+		/// Called when a new document is added to session history. New documents are
+		/// added to session history by docshell when new pages are loaded in a frame
+		/// or content area.
+		/// </summary>
+		/// <param name="aNewURI">The URI of the document to be added to session history.</param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void OnHistoryNewEntry([MarshalAs(UnmanagedType.Interface)]nsIURI aNewURI);
-		
+
+		/// <summary>
+		/// Called when navigating to a previous session history entry.
+		/// </summary>
+		/// <param name="aBackURI">The URI of the session history entry being navigated to.</param>
+		/// <returns>Whether the operation can proceed.</returns>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool OnHistoryGoBack([MarshalAs(UnmanagedType.Interface)]nsIURI aBackURI);
-		
+
+		/// <summary>
+		/// Called when navigating to a next session history entry.
+		/// </summary>
+		/// <param name="aForwardURI">The URI of the session history entry being navigated to.</param>
+		/// <returns>Whether the operation can proceed.</returns>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool OnHistoryGoForward([MarshalAs(UnmanagedType.Interface)]nsIURI aForwardURI);
-		
+
+		/// <summary>
+		/// Called when the current document is reloaded.
+		/// </summary>
+		/// <param name="aReloadURI">The URI of the document to be reloaded.</param>
+		/// <param name="aReloadFlags">Flags that indicate how the document is to be 
+		/// refreshed. See constants on the nsIWebNavigation
+		/// interface.</param>
+		/// <returns>Whether the operation can proceed.</returns>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool OnHistoryReload(nsIURI aReloadURI, uint aReloadFlags);
-		
+
+		/// <summary>
+		/// Called when navigating to a session history entry by index.
+		/// </summary>
+		/// <param name="aIndex">The index in session history of the entry to be loaded.</param>
+		/// <param name="aGotoURI">The URI of the session history entry to be loaded.</param>
+		/// <returns>Whether the operation can proceed.</returns>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool OnHistoryGotoIndex(int aIndex, nsIURI aGotoURI);
-		
+
+		/// <summary>
+		/// Called when entries are removed from session history. Entries can be
+		/// removed from session history for various reasons, for example to control
+		/// the memory usage of the browser, to prevent users from loading documents
+		/// from history, to erase evidence of prior page loads, etc.
+		/// </summary>
+		/// <param name="aNumEntries">The number of entries to be removed from session history.</param>
+		/// <returns>Whether the operation can proceed.</returns>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool OnHistoryPurge(int aNumEntries);		
 	}
-	
+
+	/**
+	 * Used to enumerate over elements defined by its implementor.
+	 * Although hasMoreElements() can be called independently of getNext(),
+	 * getNext() must be pre-ceeded by a call to hasMoreElements(). There is
+	 * no way to "reset" an enumerator, once you obtain one.
+	 */
 	[Guid("d1899240-f9d2-11d2-bdd6-000064657374"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface nsISimpleEnumerator
 	{
+		/// <summary>
+		/// Called to determine whether or not the enumerator has
+		/// any elements that can be returned via getNext(). This method
+		/// is generally used to determine whether or not to initiate or
+		/// continue iteration over the enumerator, though it can be
+		/// called without subsequent getNext() calls. Does not affect
+		/// internal state of enumerator.
+		/// </summary>
+		/// <returns>PR_TRUE if there are remaining elements in the enumerator.
+		/// PR_FALSE if there are no more elements in the enumerator.</returns>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool HasMoreElements();
-		
+
+		/// <summary>
+		/// Called to retrieve the next element in the enumerator. The "next"
+		/// element is the first element upon the first call. Must be
+		/// pre-ceeded by a call to hasMoreElements() which returns PR_TRUE.
+		/// This method is generally called within a loop to iterate over
+		/// the elements in the enumerator.
+		/// </summary>
+		/// <returns>the next element in the enumeration.</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISupports GetNext();
 	}
-	
+
+	/**
+	 * nsIWebBrowserFocus
+	 * Interface that embedders use for controlling and interacting
+	 * with the browser focus management. The embedded browser can be focused by
+	 * clicking in it or tabbing into it. If the browser is currently focused and
+	 * the embedding application's top level window is disabled, deactivate() must
+	 * be called, and activate() called again when the top level window is
+	 * reactivated for the browser's focus memory to work correctly.
+	 */
 	[Guid("9c5d3c58-1dd1-11b2-a1c9-f3699284657a"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface nsIWebBrowserFocus
 	{
+		/// <summary>
+		/// MANDATORY
+		/// activate() is a mandatory call that must be made to the browser
+		/// when the embedding application's window is activated *and* the 
+		/// browser area was the last thing in focus.  This method can also be called
+		/// if the embedding application wishes to give the browser area focus,
+		/// without affecting the currently focused element within the browser.
+		/// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Activate();
-		
+
+		/// <summary>
+		/// MANDATORY
+		/// deactivate() is a mandatory call that must be made to the browser
+		/// when the embedding application's window is deactivated *and* the
+		/// browser area was the last thing in focus.  On non-windows platforms,
+		/// deactivate() should also be called when focus moves from the browser
+		/// to the embedding chrome.
+		/// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Deactivate();
-		
+
+		/// <summary>
+		/// Give the first element focus within mozilla.
+		/// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetFocusAtFirstElement();
-		
+
+		/// <summary>
+		/// Give the last element focus within mozilla.
+		/// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetFocusAtLastElement();
-		
+
+		/// <summary>
+		/// The currently focused nsDOMWindow when the browser is active,
+		/// or the last focused nsDOMWindow when the browser is inactive.
+		/// </summary>
+		/// <returns></returns>
 		[return: MarshalAs(UnmanagedType.Interface)] 
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMWindow GetFocusedWindow();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetFocusedWindow([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aFocusedWindow);
-		
+
+		/// <summary>
+		/// The currently focused nsDOMElement when the browser is active,
+		/// or the last focused nsDOMElement when the browser is inactive.
+		/// </summary>
+		/// <returns></returns>
 		[return: MarshalAs(UnmanagedType.Interface)] 
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMElement GetFocusedElement();
@@ -661,75 +1517,228 @@ namespace Skybound.Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetFocusedElement([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aFocusedElement);		
 	}
+
+	static class nsIWebBrowserPersistConstants
+	{
+		public const uint PERSIST_FLAGS_NONE = 0;
+		public const uint PERSIST_FLAGS_FROM_CACHE = 1;
+		public const uint PERSIST_FLAGS_BYPASS_CACHE = 2;
+		public const uint PERSIST_FLAGS_IGNORE_REDIRECTED_DATA = 4;
+		public const uint PERSIST_FLAGS_IGNORE_IFRAMES = 8;
+		public const uint PERSIST_FLAGS_NO_CONVERSION = 16;
+		public const uint PERSIST_FLAGS_REPLACE_EXISTING_FILES = 32;
+		public const uint PERSIST_FLAGS_NO_BASE_TAG_MODIFICATIONS = 64;
+		public const uint PERSIST_FLAGS_FIXUP_ORIGINAL_DOM = 128;
+		public const uint PERSIST_FLAGS_FIXUP_LINKS_TO_DESTINATION = 256;
+		public const uint PERSIST_FLAGS_DONT_FIXUP_LINKS = 512;
+		public const uint PERSIST_FLAGS_SERIALIZE_OUTPUT = 1024;
+		public const uint PERSIST_FLAGS_DONT_CHANGE_FILENAMES = 2048;
+		public const uint PERSIST_FLAGS_FAIL_ON_BROKEN_LINKS = 4096;
+		public const uint PERSIST_FLAGS_CLEANUP_ON_FAILURE = 8192;
+		public const uint PERSIST_FLAGS_AUTODETECT_APPLY_CONVERSION = 16384;
+		public const uint PERSIST_FLAGS_APPEND_TO_FILE = 32768;
+		public const uint PERSIST_FLAGS_FORCE_ALLOW_COOKIES = 65536;
+
+		public const uint PERSIST_STATE_READY = 1;
+		public const uint PERSIST_STATE_SAVING = 2;
+		public const uint PERSIST_STATE_FINISHED = 3;
+
+		public const uint ENCODE_FLAGS_SELECTION_ONLY = 1;
+		public const uint ENCODE_FLAGS_FORMATTED = 2;
+		public const uint ENCODE_FLAGS_RAW = 4;
+		public const uint ENCODE_FLAGS_BODY_ONLY = 8;
+		public const uint ENCODE_FLAGS_PREFORMATTED = 16;
+		public const uint ENCODE_FLAGS_WRAP = 32;
+		public const uint ENCODE_FLAGS_FORMAT_FLOWED = 64;
+		public const uint ENCODE_FLAGS_ABSOLUTE_LINKS = 128;
+		public const uint ENCODE_FLAGS_ENCODE_W3C_ENTITIES = 256;
+		public const uint ENCODE_FLAGS_CR_LINEBREAKS = 512;
+		public const uint ENCODE_FLAGS_LF_LINEBREAKS = 1024;
+		public const uint ENCODE_FLAGS_NOSCRIPT_CONTENT = 2048;
+		public const uint ENCODE_FLAGS_NOFRAMES_CONTENT = 4096;
+		public const uint ENCODE_FLAGS_ENCODE_BASIC_ENTITIES = 8192;
+		public const uint ENCODE_FLAGS_ENCODE_LATIN1_ENTITIES = 16384;
+		public const uint ENCODE_FLAGS_ENCLODE_HTML_ENTITIES = 32768;
+	}
 	
 	[Guid("dd4e0a6a-210f-419a-ad85-40e8543b9465"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	interface nsIWebBrowserPersist
+	interface nsIWebBrowserPersist : nsICancelable
 	{
-		// nsICancelable:
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Cancel(int aReason);
-
-		// nsIWebBrowserPersist:
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		/// <summary>
+		/// Flags governing how data is fetched and saved from the network. 
+		/// It is best to set this value explicitly unless you are prepared
+		/// to accept the default values.
+		/// </summary>
 		uint GetPersistFlags();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetPersistFlags(uint aPersistFlags);
-		
+
+		/// <summary>
+		/// Current state of the persister object.
+		/// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetCurrentState();
-		
+
+		/// <summary>
+		/// Value indicating the success or failure of the persist
+		/// operation.
+		/// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetResult();
-		
+
+		/// <summary>
+		/// Callback listener for progress notifications. The object that the
+		/// embbedder supplies may also implement nsIInterfaceRequestor and be
+		/// prepared to return nsIAuthPrompt or other interfaces that may be required
+		/// to download data.
+		/// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)] 
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIWebProgressListener GetProgressListener();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetProgressListener([MarshalAs(UnmanagedType.Interface)] nsIWebProgressListener aProgressListener);
-		
+
+		/// <summary>
+		/// Save the specified URI to file.
+		/// </summary>
+		/// <param name="aURI">URI to save to file. Some implementations of this interface
+		/// may also support <CODE>nsnull</CODE> to imply the currently
+		/// loaded URI.</param>
+		/// <param name="aCacheKey">An object representing the URI in the cache or
+		/// <CODE>nsnull</CODE>.  This can be a necko cache key,
+		/// an nsIWebPageDescriptor, or the currentDescriptor of an
+		/// nsIWebPageDescriptor.</param>
+		/// <param name="aReferrer">The referrer URI to pass with an HTTP request or
+		/// <CODE>nsnull</CODE>.</param>
+		/// <param name="aPostData">Post data to pass with an HTTP request or
+		/// <CODE>nsnull</CODE>.</param>
+		/// <param name="aExtraHeaders">Additional headers to supply with an HTTP request
+		/// or <CODE>nsnull</CODE>.</param>
+		/// <param name="aFile">Target file. This may be a nsILocalFile object or an
+		/// nsIURI object with a file scheme or a scheme that
+		/// supports uploading (e.g. ftp).</param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SaveURI([MarshalAs(UnmanagedType.Interface)]nsIURI aURI, [MarshalAs(UnmanagedType.Interface)]nsISupports aCacheKey, [MarshalAs(UnmanagedType.Interface)]nsIURI aReferrer, IntPtr aPostData, [MarshalAs(UnmanagedType.LPStr)] string aExtraHeaders, [MarshalAs(UnmanagedType.Interface)]nsISupports aFile); // aPostData=nsIInputStream
-		
+
+		/// <summary>
+		/// Save a channel to a file. It must not be opened yet.
+		/// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SaveChannel(IntPtr aChannel, [MarshalAs(UnmanagedType.Interface)] nsISupports aFile); // aChannel=nsIChannel
-		
+
+		/// <summary>
+		/// Save the specified DOM document to file and optionally all linked files
+		/// (e.g. images, CSS, JS, and subframes). Do not call this method until the
+		/// document has finished loading!
+		/// </summary>
+		/// <param name="aDocument">Document to save to file. Some implementations of
+		/// this interface may also support <CODE>nsnull</CODE>
+		/// to imply the currently loaded document.</param>
+		/// <param name="aFile">Target local file. This may be a nsILocalFile object or an
+		/// nsIURI object with a file scheme or a scheme that
+		/// supports uploading (e.g. ftp).</param>
+		/// <param name="aDataPath">Path to directory where URIs linked to the document
+		/// are saved or nsnull if no linked URIs should be saved.
+		/// This may be a nsILocalFile object or an nsIURI object
+		/// with a file scheme.</param>
+		/// <param name="aOutputContentType">The desired MIME type format to save the 
+		/// document and all subdocuments into or nsnull to use
+		/// the default behaviour.</param>
+		/// <param name="aEncodingFlags">Flags to pass to the encoder.</param>
+		/// <param name="aWrapColumn">For text documents, indicates the desired width to
+		/// wrap text at. Parameter is ignored if wrapping is not
+		/// specified by the encoding flags.</param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SaveDocument([MarshalAs(UnmanagedType.Interface)] nsIDOMDocument aDocument, [MarshalAs(UnmanagedType.IUnknown)] object aFile, [MarshalAs(UnmanagedType.Interface)] nsISupports aDataPath, [MarshalAs(UnmanagedType.LPStr)] string aOutputContentType, uint aEncodingFlags, uint aWrapColumn);
-		
+
+		/// <summary>
+		/// ancels the current operation. The caller is responsible for cleaning up
+		/// partially written files or directories. This has the same effect as calling
+		/// cancel with an argument of NS_BINDING_ABORTED.
+		/// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void CancelSave();
 	}
-	
+
+	static class nsIContextMenuListener2Constants
+	{
+		public const uint CONTEXT_NONE = 0;
+		public const uint CONTEXT_LINK = 1;
+		public const uint CONTEXT_IMAGE = 2;
+		public const uint CONTEXT_DOCUMENT = 4;
+		public const uint CONTEXT_TEXT = 8;
+		public const uint CONTEXT_INPUT = 16;
+		public const uint CONTEXT_BACKGROUND_IMAGE = 32;
+	}
+
+	/**
+	 * nsIContextMenuListener2
+	 *
+	 * This is an extended version of nsIContextMenuListener
+	 * It provides a helper class, nsIContextMenuInfo, to allow access to
+	 * background images as well as various utilities.
+	 */
 	[Guid("7fb719b3-d804-4964-9596-77cf924ee314"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	interface nsIContextMenuListener2
 	{
+		/// <summary>
+		/// Called when the browser receives a context menu event (e.g. user is right-mouse
+		/// clicking somewhere on the document). The combination of flags, along with the
+		/// attributes of <CODE>aUtils</CODE>, indicate where and what was clicked on.
+		/// </summary>
+		/// <param name="aContextFlags">Flags indicating the kind of context.</param>
+		/// <param name="aUtils">Context information and helper utilities.</param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void OnShowContextMenu(uint aContextFlags, nsIContextMenuInfo aUtils); 
 	}
-	
+
+	/**
+	 * nsIContextMenuInfo
+	 *
+	 * A helper object for implementors of nsIContextMenuListener2.
+	 */
 	[Guid("2f977d56-5485-11d4-87e2-0010a4e75ef2"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	interface nsIContextMenuInfo
 	{
+		/// <summary>
+		/// The DOM context menu event.
+		/// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMEvent GetMouseEvent();
-		
+
+		/// <summary>
+		/// The DOM node most relevant to the context.
+		/// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMNode GetTargetNode();
-		
+
+		/// <summary>
+		/// Given the <CODE>CONTEXT_LINK</CODE> flag, <CODE>targetNode</CODE> may not
+		/// nescesarily be a link. This returns the anchor from <CODE>targetNode</CODE>
+		/// if it has one or that of its nearest ancestor if it does not.
+		/// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		[PreserveSig] int GetAssociatedLink([MarshalAs(UnmanagedType.LPStruct)]nsAString aAssociatedLink);
-		
+
+		/// <summary>
+		/// Given the <CODE>CONTEXT_IMAGE</CODE> flag, these methods can be
+		/// used in order to get the image for viewing, saving, or for the clipboard.
+		/// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		imgIContainer GetImageContainer();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		[PreserveSig] int GetImageSrc([MarshalAs(UnmanagedType.Interface)]out nsIURI result);
-		
+
+		/// <summary>
+		/// Given the <CODE>CONTEXT_BACKGROUND_IMAGE</CODE> flag, these methods can be
+		/// used in order to get the image for viewing, saving, or for the clipboard.
+		/// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		imgIContainer GetBackgroundImageContainer();
@@ -737,68 +1746,151 @@ namespace Skybound.Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		[PreserveSig] int GetBackgroundImageSrc([MarshalAs(UnmanagedType.Interface)]out nsIURI result); 
 	}
-	
-	[Guid("1a6290e6-8285-4e10-963d-d001f8d327b8"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+
+	static class imgIContainerConstants
+	{
+		public const ushort TYPE_RASTER = 0;
+		public const ushort TYPE_VECTOR = 1;
+
+		public const long FLAG_NONE = 0x0;
+		public const long FLAG_SYNC_DECODE = 0x1;
+		public const long FLAG_DECODE_NO_PREMULTIPLY_ALPHA = 0x2;
+		public const long FLAG_DECODE_NO_COLORSPACE_CONVERSION = 0x4;
+
+		public const uint FRAME_FIRST = 0;
+		public const uint FRAME_CURRENT = 1;
+		public const uint FRAME_MAX_VALUE = 1;
+
+		public const short kNormalAnimMode = 0;
+		public const short kDontAnimMode = 1;
+		public const short kLoopOnceAnimMode = 2;
+	}
+
+	/**
+	 * imgIContainer is the interface that represents an image. It allows
+	 * access to frames as Thebes surfaces, and permits users to extract subregions
+	 * as other imgIContainers. It also allows drawing of images on to Thebes
+	 * contexts.
+	 *
+	 * Internally, imgIContainer also manages animation of images.
+	 */
+	[Guid("239dfa70-2285-4d63-99cd-e9b7ff9555c7"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	interface imgIContainer
 	{
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init(int aWidth, int aHeight, IntPtr aObserver); // imgIContainerObserver
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		IntPtr GetPreferredAlphaChannelFormat(); // gfx_format
-		
+		/// <summary>
+		/// The width of the container rectangle.  In the case of any error,
+		/// zero is returned, and an exception will be thrown.
+		/// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetWidth();
-		
+
+		/// <summary>
+		/// The height of the container rectangle.  In the case of any error,
+		/// zero is returned, and an exception will be thrown.
+		/// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetHeight();
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		IntPtr GetCurrentFrame(); // gfxIImageFrame
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetNumFrames();
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+
+		/// <summary>
+		/// The type of this image
+		/// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		ushort GetType();
+
+		/// <summary>
+		/// Whether this image is animated. You can only be guaranteed that querying
+		/// this will not throw if STATUS_DECODE_COMPLETE is set on the imgIRequest.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		bool Animated();
+
+		/// <summary>
+		/// Whether the current frame is opaque; that is, needs the background painted
+		/// behind it.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		bool CurrentFrameIsOpaque();
+
+		/// <summary>
+		/// Get a surface for the given frame. This may be a platform-native,
+		/// optimized surface, so you cannot inspect its pixel data.
+		/// </summary>
+		/// <param name="aWhichFrame">Frame specifier of the FRAME_* variety.</param>
+		/// <param name="aFlags">Flags of the FLAG_* variety</param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		IntPtr GetFrame(uint aWhichFrame, uint aFlags);
+
+		/// <summary>
+		/// Create and return a new copy of the given frame that you can write to
+		/// and otherwise inspect the pixels of.
+		/// </summary>
+		/// <param name="aWhichFrame">Frame specifier of the FRAME_* variety.</param>
+		/// <param name="aFlags">Flags of the FLAG_* variety</param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		IntPtr CopyFrame(uint aWhichFrame, uint aFlags);
+
+		/// <summary>
+		/// Create a new imgContainer that contains only a single frame, which itself
+		/// contains a subregion of the given frame.
+		/// </summary>
+		/// <param name="aWhichFrame">Frame specifier of the FRAME_* variety.</param>
+		/// <param name="aRect">the area of the current frame to be duplicated in the
+		/// returned imgContainer's frame.</param>
+		/// <param name="aFlags">Flags of the FLAG_* variety</param>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		imgIContainer ExtractFrame(uint aWhichFrame, IntPtr aRect, uint aFlags);
+
+		/// <summary>
+		/// Draw the current frame on to the context specified.
+		/// </summary>
+		/// <param name="aContext">The Thebes context to draw the image to.</param>
+		/// <param name="aFilter">The filter to be used if we're scaling the image.</param>
+		/// <param name="aUserSpaceToImageSpace">The transformation from user space (e.g.,
+		/// appunits) to image space.</param>
+		/// <param name="aFill">The area in the context to draw pixels to. Image will be
+		/// automatically tiled as necessary.</param>
+		/// <param name="aSubimage">The area of the image, in pixels, that we are allowed to
+		/// sample from.</param>
+		/// <param name="aViewportSize">The size (in CSS pixels) of the viewport that would be available
+		/// for the full image to occupy, if we were drawing the full image.</param>
+		/// <param name="aFlags">Flags of the FLAG_* variety</param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		void Draw(IntPtr aContext, IntPtr aFilter, IntPtr aUserSpaceToImageSpace, IntPtr aFill, IntPtr aSubimage, IntPtr aViewportSize, uint aFlags);	// [noscript]
+
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		IntPtr GetRootLayoutFrame();	// [notxpcom]
+
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		void RequestDecode();
+
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		void LockImage();
+
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		void UnlockImage();
+
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
 		ushort GetAnimationMode();
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
 		void SetAnimationMode(ushort aAnimationMode);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		IntPtr GetFrameAt(uint index); // gfxIImageFrame
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AppendFrame(IntPtr item); // gfxIImageFrame
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveFrame(IntPtr item); // gfxIImageFrame
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EndFrameDecode(uint framenumber, uint timeout);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DecodingComplete();
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Clear();
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void StartAnimation();
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void StopAnimation();
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
 		void ResetAnimation();
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetLoopCount();
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetLoopCount(int aLoopCount);		
 	}
-	
+
+	/**
+	 * The nsIInterfaceRequestor interface defines a generic interface for 
+	 * requesting interfaces that a given object might provide access to.
+	 * This is very similar to QueryInterface found in nsISupports.  
+	 * The main difference is that interfaces returned from GetInterface()
+	 * are not required to provide a way back to the object implementing this 
+	 * interface.  The semantics of QI() dictate that given an interface A that 
+	 * you QI() on to get to interface B, you must be able to QI on B to get back 
+	 * to A.  This interface however allows you to obtain an interface C from A 
+	 * that may or most likely will not have the ability to get back to A. 
+	 */
 	[Guid("033a1470-8b2a-11d3-af88-00a024ffc08c"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface nsIInterfaceRequestor
 	{
@@ -812,41 +1904,81 @@ namespace Skybound.Gecko
 		public const int DIM_FLAGS_SIZE_INNER = 2;
 		public const int DIM_FLAGS_SIZE_OUTER = 4;
 	}
-	
+
+	/**
+	 * The nsIEmbeddingSiteWindow is implemented by the embedder to provide
+	 * Gecko with the means to call up to the host to resize the window,
+	 * hide or show it and set/get its title.
+	 */
 	[Guid("3e5432cd-9568-4bd1-8cbe-d50aba110743"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	interface nsIEmbeddingSiteWindow
 	{
-		
+		/// <summary>
+		/// Sets the dimensions for the window; the position & size. The
+		/// flags to indicate what the caller wants to set and whether the size
+		/// refers to the inner or outer area. The inner area refers to just
+		/// the embedded area, wheras the outer area can also include any 
+		/// surrounding chrome, window frame, title bar, and so on.
+		/// </summary>
+		/// <param name="flags">Combination of position, inner and outer size flags.</param>
+		/// <param name="x">Left hand corner of the outer area.</param>
+		/// <param name="y">Top corner of the outer area.</param>
+		/// <param name="cx">Width of the inner or outer area.</param>
+		/// <param name="cy">Height of the inner or outer area.</param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetDimensions(uint flags, int x, int y, int cx, int cy);
-		
+
+		/// <summary>
+		/// Gets the dimensions of the window. The caller may pass
+		/// <CODE>nsnull</CODE> for any value it is uninterested in receiving.
+		/// </summary>
+		/// <param name="flags">Combination of position, inner and outer size flags.</param>
+		/// <param name="x">Left hand corner of the outer area.</param>
+		/// <param name="y">Top corner of the outer area.</param>
+		/// <param name="cx">Width of the inner or outer area.</param>
+		/// <param name="cy">Height of the inner or outer area.</param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]	
 		void GetDimensions(uint flags, ref int x, ref int y, ref int cx, ref int cy);
-				
+
+		/// <summary>
+		/// Give the window focus.
+		/// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]		
 		void SetFocus();
-		
+
+		/// <summary>
+		/// Visibility of the window.
+		/// </summary>
+		/// <returns></returns>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetVisibility();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetVisibility([MarshalAs(UnmanagedType.Bool)] bool aVisibility);
-		
+
+		/// <summary>
+		/// Title of the window.
+		/// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		[return: MarshalAs(UnmanagedType.LPWStr)] string GetTitle();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetTitle([MarshalAs(UnmanagedType.LPWStr)] string aTitle);
-		
+
+		/// <summary>
+		/// Native window for the site's window. The implementor should copy the
+		/// native window object into the address supplied by the caller. The
+		/// type of the native window that the address refers to is  platform
+		/// and OS specific
+		/// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		IntPtr GetSiteWindow();
 	}
 	
 	[Guid("e932bf55-0a64-4beb-923a-1f32d3661044"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	interface nsIEmbeddingSiteWindow2 : nsIEmbeddingSiteWindow
-	{	
-		
+	{			
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetDimensions(uint flags, int x, int y, int cx, int cy);
 				
@@ -1764,35 +2896,6 @@ namespace Skybound.Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Detach();
 	}
-	
-	/* GECKO 1.9
-	[Guid("73c5fa35-3add-4c87-a303-a850ccf4d65a"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	interface nsIDOMWindow2
-	{
-		// nsIDOMWindow:
-		nsIDOMDocument GetDocument();
-		nsIDOMWindow GetParent();
-		nsIDOMWindow GetTop();
-		IntPtr GetScrollbars(); // nsIDOMBarProp
-		nsIDOMWindowCollection GetFrames();
-		void GetName([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
-		void SetName([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
-		float GetTextZoom();
-		void SetTextZoom(float aTextZoom);
-		int GetScrollX();
-		int GetScrollY();
-		void ScrollTo(int xScroll, int yScroll);
-		void ScrollBy(int xScrollDif, int yScrollDif);
-		IntPtr GetSelection(); // nsISelection
-		void ScrollByLines(int numLines);
-		void ScrollByPages(int numPages);
-		void SizeToContent();
-
-		// nsIDOMWindow2:
-		nsIDOMEventTarget GetWindowRoot();
-		IntPtr GetApplicationCache(); // nsIDOMOfflineResourceList
-	}
-	*/
 	
 	[Guid("a6cf906f-15b3-11d2-932e-00805f8add32"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	interface nsIDOMWindowCollection
@@ -4995,6 +6098,114 @@ namespace Skybound.Gecko
 	
 	public struct nsMargin
 	{
+	}
+
+	[Guid("ab3725b8-3fca-40cc-a42c-92fb154ef01d"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	interface nsIWorkerMessagePort : nsISupports
+	{
+		void PostMessage();
+	}
+
+	[Guid("508f2d49-e9a0-4fe8-bd33-321820173b4a"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	interface nsIWorkerMessageEvent : nsIDOMEvent
+	{
+		void GetData(nsAString aData);
+		void GetOrigin(nsAString aOrigin);
+		void GetSource(nsISupports aSource);
+
+		void InitMessageEvent(nsAString aTypeArg, bool aCanBubbleArg, bool aCancelableArg, nsAString aDataArg, nsAString aOriginArg, nsISupports aSourceArg);
+	}
+
+	[Guid("73d82c1d-05de-49c9-a23b-7121ff09a67a"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	interface nsIWorkerErrorEvent : nsIDOMEvent
+	{
+		void GetMessage(nsAString aMessage);
+		void GetFilename(nsAString aFilename);
+		void GetLineNo(nsAString aLineNo);
+
+		void InitErrorEvent(nsAString aTypeArg, bool aCanBubbleArg, bool aCancelableArg, nsAString aMessageArg, nsAString aFilenameArg, long aLineNoArg);
+	}
+
+	[Guid("17a005c3-4f2f-4bb6-b169-c181fa6873de"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	interface nsIWorkerLocation : nsISupports
+	{
+		void GetHref(nsAUTF8String aHref);
+		void GetProtocol(nsAUTF8String aProtocol);
+		void GetHost(nsAUTF8String aHost);
+		void GetHostname(nsAUTF8String aHostname);
+		void GetPort(nsAUTF8String aPort);
+		void GetPathname(nsAUTF8String aPathname);
+		void GetSearch(nsAUTF8String aSearch);
+		void GetHash(nsAUTF8String aHash);
+
+		void ToString(nsAUTF8String _retval);
+	}
+
+	[Guid("74fb665a-e477-4ce2-b3c6-c58b1b28b6c3"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	interface nsIWorkerNavigator : nsISupports
+	{
+		void GetAppName(nsAString aAppName);
+		void GetAppVersion(nsAString aAppVersion);
+		void GetPlatform(nsAString aPlatform);
+		void GetUserAgent(nsAString aUserAgent);
+	}
+
+	[Guid("c111e7d3-8044-4458-aa7b-637696ffb841"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	interface nsIWorkerGlobalScope : nsISupports
+	{
+		void GetSelf(nsIWorkerGlobalScope aSelf);
+		void GetNavigator(nsIWorkerNavigator aNavigator);
+		void GetLocation(nsIWorkerLocation aLocation);
+
+		void GetOnError(nsIDOMEventListener aOnError);
+		void SetOnError(nsIDOMEventListener aOnError);
+	}
+
+	[Guid("5c55ea4b-e4ac-4ceb-bfeb-46bd5e521b8a"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	interface nsIWorkerScope : nsIWorkerGlobalScope
+	{
+		void PostMessage();
+		void Close();
+
+		void GetOnMessage(nsIDOMEventListener aOnMessage);
+		void SetOnMessage(nsIDOMEventListener aOnMessage);
+
+		void GetOnClose(nsIDOMEventListener aOnClose);
+		void SetOnClose(nsIDOMEventListener aOnClose);
+	}
+
+	[Guid("b90b7561-b5e2-4545-84b0-280dbaaa94ea"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	interface nsIAbstractWorker : nsIDOMEventTarget
+	{
+		void GetOnError(nsIDOMEventListener aOnError);
+		void SetOnError(nsIDOMEventListener aOnError);
+	}
+
+	[Guid("daf945c3-8d29-4724-8939-dd383f7d27a7"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	interface nsIWorker : nsIAbstractWorker
+	{
+		void PostMessage();
+
+		void GetOnMessage(nsIDOMEventListener aOnMessage);
+		void SetOnMessage(nsIDOMEventListener aOnMessage);
+
+		void Terminate();
+	}
+
+	[Guid("cfc4bb32-ca83-4d58-9b6f-66f8054a333a"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	interface nsIWorkerFactory : nsISupports
+	{
+		void NewCromeWorker(nsIWorker _retval);
+	}
+
+	[Guid("c43448db-0bab-461d-b648-1ca14a967f7e"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	interface nsIDOMTimeRanges : nsISupports
+	{
+		void GetLength(long aLength);
+
+		double Start(long Index);
+
+		double End(long Index);
 	}
 	
 	[Guid("0b9341f3-95d4-4fa4-adcd-e119e0db2889"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]

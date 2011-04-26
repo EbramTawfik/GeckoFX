@@ -270,8 +270,8 @@ namespace Skybound.Gecko
 		{
 			if (obj == null)
 				return null;
-			
-			// get an nsISupports (aka IUnknown) pointer from the objection
+
+			// get an nsISupports (aka IUnknown) pointer from the object
 			IntPtr pUnk = Marshal.GetIUnknownForObject(obj);
 			if (pUnk == IntPtr.Zero)
 				return null;
