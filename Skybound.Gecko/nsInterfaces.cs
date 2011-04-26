@@ -40,29 +40,64 @@ using System.Runtime.CompilerServices;
 
 namespace Skybound.Gecko
 {
+	/**
+	 * The mother of all xpcom interfaces.
+	 */
+
+	/** In order to get both the right typelib and the right header we force
+	 *  the 'real' output from xpidl to be commented out in the generated header
+	 *  and includes a copy of the original nsISupports.h. This is all just to deal 
+	 *  with the Mac specific ": public __comobject" thing.
+	 */
 	[Guid("00000000-0000-0000-c000-000000000046"), ComImport]
 	public interface nsISupports
 	{
 		object QueryInterface(ref Guid iid);
-		int AddRef();
-		int Release();
+		int AddRef();							// [noscript]
+		int Release();							// [noscript]
 	}
 	
 	[Guid("a88e5a60-205a-4bb1-94e1-2628daf51eae"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	interface nsInterfaces
-	{		
+	interface nsIComponentManager : nsISupports
+	{
+		/// <summary>
+		/// Returns the factory object that can be used to create instances of Guid aClass.
+		/// </summary>
+		/// <param name="aClass">The classid of the factory that is being requested</param>
+		/// <param name="aIID">IID of interface requested</param>
+		/// <returns>The factory object that can be used to create instances of aClass</returns>
 		[return: MarshalAs(UnmanagedType.Interface)] 
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		object GetClassObject(ref Guid aClass, ref Guid aIID);
-				
+
+		/// <summary>
+		/// Returns the factory object that can be used to create instances of Guid aClass.
+		/// </summary>
+		/// <param name="aClass">The classid of the factory that is being requested</param>
+		/// <param name="aIID">IID of interface requested</param>
+		/// <returns>The factory object that can be used to create instances of aClass</returns>
 		[return: MarshalAs(UnmanagedType.Interface)] 
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		object GetClassObjectByContractID(string aContractID, ref Guid aIID);
-				
+
+		/// <summary>
+		/// Create an instance of the Guid aClass and return the interface aIID.
+		/// </summary>
+		/// <param name="aClass">ClassID of object instance requested</param>
+		/// <param name="aDelegate">Used for aggregation</param>
+		/// <param name="aIID">IID of interface requested</param>
+		/// <returns></returns>
 		[return: MarshalAs(UnmanagedType.Interface)] 
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		object CreateInstance(ref Guid aClass, [MarshalAs(UnmanagedType.Interface)] nsISupports aDelegate, ref Guid aIID);
-						
+
+		/// <summary>
+		/// Create an instance of the CID that implements aContractID and return the interface aIID.
+		/// </summary>
+		/// <param name="aContractID">ContractID of object instance requested</param>
+		/// <param name="aDelegate">Used for aggregation</param>
+		/// <param name="aIID">IID of interface requested</param>
+		/// <returns></returns>		
 		[return: MarshalAs(UnmanagedType.Interface)] 
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		object CreateInstanceByContractID([MarshalAs(UnmanagedType.LPStr)] string aContractID, [MarshalAs(UnmanagedType.Interface)] nsISupports aDelegate, ref Guid aIID);
@@ -2267,7 +2302,7 @@ namespace Skybound.Gecko
 	 * For more information on this interface please see 
 	 * http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html
 	 */
-	[Guid("fde1a53b-cf60-4997-a0b2-1aa1dc55492e"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("a6cf9075-15b3-11d2-932e-00805f8add32"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface nsIDOMDocument : nsIDOMNode
 	{
 		#region nsIDOMNode Elements
@@ -2367,8 +2402,6 @@ namespace Skybound.Gecko
 
 		#endregion
 
-		#region DOM Level 2
-
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		IntPtr GetDoctype(); // nsIDOMDocumentType
 		
@@ -2409,7 +2442,9 @@ namespace Skybound.Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMNodeList GetElementsByTagName([MarshalAs(UnmanagedType.LPStruct)] nsAString tagname);
-		
+
+		#region DOM Level 2
+
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMNode ImportNode(nsIDOMNode importedNode, bool deep);
@@ -2429,59 +2464,6 @@ namespace Skybound.Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMElement GetElementById([MarshalAs(UnmanagedType.LPStruct)] nsAString elementId);
-
-		#endregion
-
-		#region DOM Level 3
-
-		[return: MarshalAs(UnmanagedType.LPStruct)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		nsAString GetInputEncoding();
-
-		[return: MarshalAs(UnmanagedType.LPStruct)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		nsAString GetXmlEncoding();
-
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		bool GetXmlStandalone();
-
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		void GetXmlStandalone(bool aXmlStandalone);
-
-		[return: MarshalAs(UnmanagedType.LPStruct)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		nsAString GetXmlVersion();
-
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		void SetXmlVersion([MarshalAs(UnmanagedType.LPStruct)]nsAString aXmlVersion);
-
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		bool GetStrictErrorChecking();
-
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		void SetStringErrorChecking(bool aStrictErrorChecking);
-
-		[return: MarshalAs(UnmanagedType.LPStruct)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		nsAString GetDocumentURI();
-
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		void SetDocumentURI([MarshalAs(UnmanagedType.LPStruct)]nsAString aDocumentURI);
-
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		nsIDOMNode AdoptNode([MarshalAs(UnmanagedType.Interface)]nsIDOMNode Source);
-
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		nsIDOMConfiguration GetDomConfig();
-
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		void NormalizeDocument();
-
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		nsIDOMNode RenameNode([MarshalAs(UnmanagedType.Interface)]nsIDOMNode Node, [MarshalAs(UnmanagedType.LPStruct)]nsAString NamespaceURI, [MarshalAs(UnmanagedType.LPStruct)]nsAString QualifiedName);
 
 		#endregion
 	}

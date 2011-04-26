@@ -55,7 +55,7 @@ namespace Skybound.Gecko
 		static extern int NS_NewNativeLocalFile(nsACString path, bool followLinks, [MarshalAs(UnmanagedType.IUnknown)] out object result);
 		
 		[DllImport("xpcom", CharSet = CharSet.Ansi)]
-		static extern int NS_GetComponentManager([MarshalAs(UnmanagedType.Interface)] out nsInterfaces componentManager);
+		static extern int NS_GetComponentManager([MarshalAs(UnmanagedType.Interface)]out nsIComponentManager componentManager);		
 		
 		[DllImport("xpcom", CharSet = CharSet.Ansi)]
 		static extern int NS_GetComponentRegistrar([MarshalAs(UnmanagedType.Interface)] out nsIComponentRegistrar componentRegistrar);
@@ -176,8 +176,8 @@ namespace Skybound.Gecko
 		}
 		
 		static bool _IsInitialized;
-		
-		static nsInterfaces ComponentManager;
+
+		static nsIComponentManager ComponentManager;
 		static nsIComponentRegistrar ComponentRegistrar;
 		static nsIServiceManager ServiceManager;
 		
