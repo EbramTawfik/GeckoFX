@@ -114,7 +114,7 @@ namespace Skybound.Gecko
 		/// </summary>
 		public string NodeValue
 		{
-			get { return ((nsIDOMNode)_DomObject.GetNodeValue()).ToString(); }
+			get { return nsString.Get(((nsIDOMNode)_DomObject).GetNodeValue); }
 			set { nsString.Set(((nsIDOMNode)_DomObject).SetNodeValue, value); }
 		}
 		
@@ -182,18 +182,18 @@ namespace Skybound.Gecko
 
 		public string NamespaceURI
 		{
-			get { return ((nsIDOMNode)_DomObject.GetNamespaceURI()).ToString(); }
+			get { return nsString.Get(((nsIDOMNode)_DomObject).GetNamespaceURI); }
 		}
 
 		public string Prefix
 		{
-			get { return ((nsIDOMNode)_DomObject.GetPrefix()).ToString(); }
+			get { return nsString.Get(((nsIDOMNode)_DomObject).GetPrefix); }
 			set { nsString.Set(((nsIDOMNode)_DomObject).SetPrefix, value); }
 		}
 
 		public string LocalName
 		{
-			get { return ((nsIDOMNode)_DomObject.GetLocalName()).ToString(); }
+			get { return nsString.Get(((nsIDOMNode)_DomObject).GetLocalName); }
 		}
 
 		public GeckoNamedNodeMap Attributes
@@ -223,7 +223,7 @@ namespace Skybound.Gecko
 		/// </summary>
 		public string Name
 		{
-			get { return DomAttr.GetName().ToString(); }
+			get { return nsString.Get(DomAttr.GetName); }
 		}
 		
 		/// <summary>
@@ -247,7 +247,7 @@ namespace Skybound.Gecko
 		/// </summary>
 		public string Value
 		{
-			get { return DomAttr.GetValue().ToString(); }
+			get { return nsString.Get(DomAttr.GetValue); }
 			set { nsString.Set(DomAttr.SetValue, value); }
 		}
 	}
@@ -308,7 +308,7 @@ namespace Skybound.Gecko
 		/// </summary>
 		public string TagName
 		{
-			get { return DomElement.GetTagName().ToString(); }
+			get { return nsString.Get(DomElement.GetTagName); }
 		}
 		
 		/// <summary>
@@ -316,7 +316,7 @@ namespace Skybound.Gecko
 		/// </summary>
 		public string Id
 		{
-			get { return DomElement.GetId().ToString(); }
+			get { return nsString.Get(DomElement.GetId); }
 			set { nsString.Set(DomElement.SetId, value); }
 		}
 		
@@ -325,7 +325,7 @@ namespace Skybound.Gecko
 		/// </summary>
 		public string ClassName
 		{
-			get { return DomElement.GetClassName().ToString(); }
+			get { return nsString.Get(DomElement.GetClassName); }
 			set { nsString.Set(DomElement.SetClassName, value); }
 		}
 		
@@ -351,8 +351,12 @@ namespace Skybound.Gecko
 		{
 			if (string.IsNullOrEmpty(attributeName))
 				throw new ArgumentException("attributeName");
-			
-			return (DomElement.GetAttribute(new nsAString(attributeName))).ToString();
+
+			using (nsAString retval = new nsAString())
+			{
+				DomElement.GetAttribute(new nsAString(attributeName), retval);
+				return retval.ToString();
+			}
 		}
 		
 		/// <summary>
@@ -367,8 +371,12 @@ namespace Skybound.Gecko
 			
 			if (string.IsNullOrEmpty(attributeName))
 				throw new ArgumentException("attributeName");
-			
-			return (DomElement.GetAttributeNS(new nsAString(namespaceUri), new nsAString(attributeName))).ToString();
+
+			using (nsAString retval = new nsAString())
+			{
+				DomElement.GetAttributeNS(new nsAString(namespaceUri), new nsAString(attributeName), retval);
+				return retval.ToString();
+			}
 		}
 		
 		/// <summary>

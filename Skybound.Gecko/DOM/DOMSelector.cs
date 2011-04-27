@@ -88,17 +88,16 @@ namespace Skybound.Gecko.DOM
 
         internal static GeckoElement GetClassFor(nsIDOMHTMLElement element)
         {
-            foreach (GeckoClassDesc GeckoClass in Classes)
-            {
-                if (element.GetTagName().ToString().ToLower() == GeckoClass.TagName)
-                {  
-                    object HTMLElement = Xpcom.QueryInterface(element,GeckoClass.InterfaceType.GUID);
-                    if(HTMLElement != null)
-                        return Activator.CreateInstance(GeckoClass.GeckoElement, new object[] {HTMLElement}) as GeckoElement;
-                }
-            }
-            return null;
-            
+			foreach (GeckoClassDesc GeckoClass in Classes)
+			{
+				if (nsString.Get(element.GetTagName).ToLower() == GeckoClass.TagName)
+				{  
+					object HTMLElement = Xpcom.QueryInterface(element,GeckoClass.InterfaceType.GUID);
+					if(HTMLElement != null)
+						return Activator.CreateInstance(GeckoClass.GeckoElement, new object[] {HTMLElement}) as GeckoElement;
+				}
+			}
+			return null;            
         }
     }
 }
