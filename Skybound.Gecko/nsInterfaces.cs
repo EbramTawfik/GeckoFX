@@ -811,6 +811,8 @@ namespace Skybound.Gecko
 		void ApplyChromeFlags();
 	}
 
+	// firefox 3.6 guid for nsIAppShellService is 361facd0-6e9a-4ff1-a0d4-450744cf0023
+
 	[Guid("361facd0-6e9a-4ff1-a0d4-450744cf0023"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	interface nsIAppShellService
 	{

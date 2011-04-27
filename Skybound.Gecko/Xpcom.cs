@@ -97,6 +97,10 @@ namespace Skybound.Gecko
 		{
 			get { return !IsMono; }	
 		}
+
+		[DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
+		[return: MarshalAs(UnmanagedType.Bool)]
+		static extern bool SetDllDirectory(string lpPathName);
 			
 		/// <summary>
 		/// Initializes XPCOM using the specified directory.
@@ -106,6 +110,9 @@ namespace Skybound.Gecko
 		{
 			if (_IsInitialized)
 				return;
+
+			if (IsWindows)
+				SetDllDirectory(binDirectory);
 			
 			string folder = binDirectory ?? Environment.CurrentDirectory;
 			string xpcomPath = Path.Combine(folder, IsLinux ? "libxpcom.so" : "xpcom.dll");

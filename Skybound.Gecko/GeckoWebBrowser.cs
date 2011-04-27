@@ -271,11 +271,10 @@ namespace Skybound.Gecko
 						((nsIWebBrowserChrome)e.WebBrowser).SetChromeFlags((int)chromeFlags);
 						return e.WebBrowser;
 					}
-					
-					System.Media.SystemSounds.Beep.Play();
-					
-					// prevents crash
-					return new GeckoWebBrowser();
+									
+					nsIAppShellService appShellService = Xpcom.GetService<nsIAppShellService>("@mozilla.org/appshell/appShellService;1");
+					nsIXULWindow xulChild = appShellService.CreateTopLevelWindow(null, null, chromeFlags, -1, -1, appShellService);
+					return Xpcom.QueryInterface<nsIWebBrowserChrome>(xulChild);									
 				}
 				return null;
 			}
