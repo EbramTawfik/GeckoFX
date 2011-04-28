@@ -3627,7 +3627,101 @@ namespace Skybound.Gecko
 	[Guid("a6cf9077-15b3-11d2-932e-00805f8add32"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface nsIDOMDocumentType : nsIDOMNode
 	{		
-		// nsIDOMDocumentType:
+		#region nsIDOMNode
+
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		new void GetNodeName([MarshalAs(UnmanagedType.LPStruct)] nsAString aNodeName);
+
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		new void GetNodeValue([MarshalAs(UnmanagedType.LPStruct)] nsAString aNodeValue);
+
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		new void SetNodeValue([MarshalAs(UnmanagedType.LPStruct)] nsAString aNodeValue);
+
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		new ushort GetNodeType();
+
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		new nsIDOMNode GetParentNode();
+
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		new nsIDOMNodeList GetChildNodes();
+
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		new nsIDOMNode GetFirstChild();
+
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		new nsIDOMNode GetLastChild();
+
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		new nsIDOMNode GetPreviousSibling();
+
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		new nsIDOMNode GetNextSibling();
+
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		new nsIDOMNamedNodeMap GetAttributes();
+
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		new nsIDOMDocument GetOwnerDocument();
+
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		new nsIDOMNode InsertBefore([MarshalAs(UnmanagedType.Interface)]nsIDOMNode newChild, [MarshalAs(UnmanagedType.Interface)]nsIDOMNode refChild);
+
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		new nsIDOMNode ReplaceChild([MarshalAs(UnmanagedType.Interface)]nsIDOMNode newChild, [MarshalAs(UnmanagedType.Interface)]nsIDOMNode oldChild);
+
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		new nsIDOMNode RemoveChild([MarshalAs(UnmanagedType.Interface)]nsIDOMNode oldChild);
+
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		new nsIDOMNode AppendChild([MarshalAs(UnmanagedType.Interface)]nsIDOMNode newChild);
+
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		new bool HasChildNodes();
+
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		new nsIDOMNode CloneNode(bool deep);
+
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		new void Normalize();
+
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		new bool IsSupported([MarshalAs(UnmanagedType.LPStruct)] nsAString feature, [MarshalAs(UnmanagedType.LPStruct)] nsAString version);
+
+		[return: MarshalAs(UnmanagedType.LPStruct)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		new nsAString GetNamespaceURI();
+
+		[return: MarshalAs(UnmanagedType.LPStruct)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		new nsAString GetPrefix();
+
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		new void SetPrefix([MarshalAs(UnmanagedType.LPStruct)] nsAString aPrefix);
+
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		new void GetLocalName([MarshalAs(UnmanagedType.LPStruct)] nsAString aLocalName);
+
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		new bool HasAttributes(); 
+
+		#endregion
+
+		#region nsIDOMDocumentType
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetName([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
 		
@@ -3646,7 +3740,9 @@ namespace Skybound.Gecko
 		void GetSystemId([MarshalAs(UnmanagedType.LPStruct)] nsAString aSystemId);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetInternalSubset([MarshalAs(UnmanagedType.LPStruct)] nsAString aInternalSubset);		
+		void GetInternalSubset([MarshalAs(UnmanagedType.LPStruct)] nsAString aInternalSubset);
+
+		#endregion
 	}
 	
 	[Guid("a6cf9083-15b3-11d2-932e-00805f8add32"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
