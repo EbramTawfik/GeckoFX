@@ -3407,7 +3407,7 @@ namespace Skybound.Gecko
 	{		
 		// nsIDOMHTMLDocument:
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTitle([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aTitle);
+		void GetTitle([MarshalAs(UnmanagedType.LPStruct)] nsAString aTitle);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetTitle([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aTitle);
