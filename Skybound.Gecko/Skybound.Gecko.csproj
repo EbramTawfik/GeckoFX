@@ -114,6 +114,9 @@
       <DependentUpon>ConfirmDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="DOM\DOMSelector.cs" />
+    <Compile Include="DOM\EditableElement.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DOM\HTMLAnchorElement.cs" />
     <Compile Include="DOM\HTMLAppletElement.cs" />
     <Compile Include="DOM\HTMLAreaElement.cs" />
