@@ -8,8 +8,7 @@ namespace Skybound.Gecko.Extensions.SpellChecking
 {
 	/**
 	* This interface represents a SpellChecker.
-	*/
-	// move this to an extensions/spellchecking module
+	*/	
 	[Guid("43987F7B-0FAA-4019-811E-42BECAC73FC5"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	public interface mozISpellCheckingEngine : nsISupports
 	{
