@@ -33,8 +33,9 @@ namespace Skybound.Gecko.Editor
 		 *
 		 * @see nsISpellChecker::GetNextMisspelledWord
 		 */
+		[return: MarshalAs(UnmanagedType.LPWStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		void GetNextMisspelledWord([MarshalAs(UnmanagedType.LPStruct)] nsAString nextMisspelledWord);
+		string GetNextMisspelledWord();
 
 		/**
 		 * Used to get suggestions for the last word that was checked and found to
@@ -45,8 +46,9 @@ namespace Skybound.Gecko.Editor
 		 *
 		 * @see nsISpellChecker::GetSuggestedWord
 		 */
+		[return: MarshalAs(UnmanagedType.LPWStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		void GetSuggestedWord([MarshalAs(UnmanagedType.LPStruct)] nsAString suggestedWord);
+		string GetSuggestedWord();
 
 		/**
 		 * Check a given word. In spite of the name, this function checks the word
@@ -57,20 +59,21 @@ namespace Skybound.Gecko.Editor
 		 * @see nsISpellChecker::CheckCurrentWord
 		 */
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		bool CheckCurrentWord([MarshalAs(UnmanagedType.LPStruct)] nsAString suggestedWord);
+		bool CheckCurrentWord([MarshalAs(UnmanagedType.LPWStr)] string suggestedWord);
 
 		/**
 		 * Use when modally checking the document to replace a word.
 		 *
 		 * @see nsISpellChecker::CheckCurrentWord
 		 */
-		void ReplaceWord([MarshalAs(UnmanagedType.LPStruct)] nsAString misspelledWord, [MarshalAs(UnmanagedType.LPStruct)] nsAString replaceWord, bool allOccurrences);
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		void ReplaceWord([MarshalAs(UnmanagedType.LPWStr)] string misspelledWord, [MarshalAs(UnmanagedType.LPWStr)] nsAString replaceWord, bool allOccurrences);
 
 		/**
 		 * @see nsISpellChecker::IgnoreAll
 		 */
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		void IgnoreWordAllOccurrences([MarshalAs(UnmanagedType.LPStruct)] nsAString word);
+		void IgnoreWordAllOccurrences([MarshalAs(UnmanagedType.LPWStr)] string word);
 
 		/**
 		 * Fills an internal list of words added to the personal dictionary. These
@@ -79,16 +82,18 @@ namespace Skybound.Gecko.Editor
 		 * @see nsISpellChecker::GetPersonalDictionary
 		 * @see GetPersonalDictionaryWord
 		 */
+		[return: MarshalAs(UnmanagedType.LPWStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		void GetPersonalDictionary();
+		string GetPersonalDictionary();
 
 		/**
 		 * Used after you call GetPersonalDictionary() to iterate through all the
 		 * words added to the personal dictionary. Will return the empty string when
 		 * there are no more words.
 		 */
+		[return: MarshalAs(UnmanagedType.LPWStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		void GetPersonalDictionaryWord([MarshalAs(UnmanagedType.LPStruct)] nsAString word);
+		string GetPersonalDictionaryWord();
 
 		/**
 		 * Adds a word to the current personal dictionary.
@@ -96,7 +101,7 @@ namespace Skybound.Gecko.Editor
 		 * @see nsISpellChecker::AddWordToDictionary
 		 */
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		void AddWordToDictionary([MarshalAs(UnmanagedType.LPStruct)] nsAString word);
+		void AddWordToDictionary([MarshalAs(UnmanagedType.LPWStr)] string word);
 
 		/**
 		 * Removes a word from the current personal dictionary.
@@ -104,7 +109,7 @@ namespace Skybound.Gecko.Editor
 		 * @see nsISpellChecker::RemoveWordFromPersonalDictionary
 		 */
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		void RemoveWordFromDictionary([MarshalAs(UnmanagedType.LPStruct)] nsAString word);
+		void RemoveWordFromDictionary([MarshalAs(UnmanagedType.LPWStr)] string word);
 
 		/**
 		 * Retrieves a list of the currently available dictionaries. The strings will
@@ -113,19 +118,20 @@ namespace Skybound.Gecko.Editor
 		 * @see mozISpellCheckingEngine::GetDictionaryList
 		 */
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		void GetDictionaryList([MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 1)] nsAString[] dictionaryList, ref int count);
+		void GetDictionaryList([MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPWStr, SizeParamIndex = 1)]string[] dictionaryList, out int count);
 
 		/**
 		 * @see nsISpellChecker::GetCurrentDictionary
 		 */
+		[return: MarshalAs(UnmanagedType.LPWStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		void GetCurrentDictionary([MarshalAs(UnmanagedType.LPStruct)] nsAString dictionary);
+		string GetCurrentDictionary();
 
 		/**
 		 * @see nsISpellChecker::SetCurrentDictionary
-		 */
+		 */		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		void SetCurrentDictionary([MarshalAs(UnmanagedType.LPStruct)] nsAString dictionary);
+		void SetCurrentDictionary([MarshalAs(UnmanagedType.LPWStr)] string dictionary);
 
 		/**
 		 * Call to save the currently selected dictionary as the default. The
@@ -134,7 +140,7 @@ namespace Skybound.Gecko.Editor
 		 * default right now.
 		 */
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		void saveDefaultDictionary();
+		void SaveDefaultDictionary();
 
 		/**
 		 * Call this to free up the spell checking object. It will also save the
@@ -155,7 +161,7 @@ namespace Skybound.Gecko.Editor
 		 * @see nsITextServicesDocument::setFilter
 		 */
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		void setFilter(IntPtr/*nsITextServicesFilter*/ filter);
+		void SetFilter(IntPtr/*nsITextServicesFilter*/ filter);
 
 		/**
 		 * Like CheckCurrentWord, checks the word you give it, returning true if it's
