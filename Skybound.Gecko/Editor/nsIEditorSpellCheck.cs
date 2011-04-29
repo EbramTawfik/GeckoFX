@@ -30,12 +30,14 @@ namespace Skybound.Gecko.Editor
 		 * When interactively spell checking the document, this will return the
 		 * value of the next word that is misspelled. This also computes the
 		 * suggestions which you can get by calling GetSuggestedWord.
+		 * 
+		 * Free return ptr with nsiMemory.Free(IntPtr) method.
+		 * or Xpcom.Free(IntPtr)
 		 *
 		 * @see nsISpellChecker::GetNextMisspelledWord
 		 */
-		[return: MarshalAs(UnmanagedType.LPWStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		string GetNextMisspelledWord();
+		IntPtr GetNextMisspelledWord();
 
 		/**
 		 * Used to get suggestions for the last word that was checked and found to
@@ -45,35 +47,41 @@ namespace Skybound.Gecko.Editor
 		 * (not a null pointer) will be returned.
 		 *
 		 * @see nsISpellChecker::GetSuggestedWord
-		 */
-		[return: MarshalAs(UnmanagedType.LPWStr)]
+		 */		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		string GetSuggestedWord();
+		IntPtr GetSuggestedWord();
 
 		/**
 		 * Check a given word. In spite of the name, this function checks the word
 		 * you give it, returning true if the word is misspelled. If the word is
 		 * misspelled, it will compute the suggestions which you can get from
 		 * GetSuggestedWord().
+		 * 
+		 * Allocate ptr with nsIMemory.Alloc() or Xpcom.Alloc()
 		 *
 		 * @see nsISpellChecker::CheckCurrentWord
 		 */
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		bool CheckCurrentWord([MarshalAs(UnmanagedType.LPWStr)] string suggestedWord);
+		bool CheckCurrentWord(IntPtr suggestedWord);
 
 		/**
 		 * Use when modally checking the document to replace a word.
 		 *
+		 * Allocate ptr with nsIMemory.Alloc() or Xpcom.Alloc()
+		 * 
 		 * @see nsISpellChecker::CheckCurrentWord
 		 */
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		void ReplaceWord([MarshalAs(UnmanagedType.LPWStr)] string misspelledWord, [MarshalAs(UnmanagedType.LPWStr)] nsAString replaceWord, bool allOccurrences);
+		void ReplaceWord(IntPtr misspelledWord, IntPtr replaceWord, bool allOccurrences);
 
 		/**
+		 * Allocate ptr with nsIMemory.Alloc() or Xpcom.Alloc()
+		 * 
 		 * @see nsISpellChecker::IgnoreAll
+		 * 		 
 		 */
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		void IgnoreWordAllOccurrences([MarshalAs(UnmanagedType.LPWStr)] string word);
+		void IgnoreWordAllOccurrences(IntPtr word);
 
 		/**
 		 * Fills an internal list of words added to the personal dictionary. These
@@ -81,19 +89,17 @@ namespace Skybound.Gecko.Editor
 		 *
 		 * @see nsISpellChecker::GetPersonalDictionary
 		 * @see GetPersonalDictionaryWord
-		 */
-		[return: MarshalAs(UnmanagedType.LPWStr)]
+		 */		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		string GetPersonalDictionary();
+		IntPtr GetPersonalDictionary();
 
 		/**
 		 * Used after you call GetPersonalDictionary() to iterate through all the
 		 * words added to the personal dictionary. Will return the empty string when
 		 * there are no more words.
-		 */
-		[return: MarshalAs(UnmanagedType.LPWStr)]
+		 */		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		string GetPersonalDictionaryWord();
+		IntPtr GetPersonalDictionaryWord();
 
 		/**
 		 * Adds a word to the current personal dictionary.
@@ -101,7 +107,7 @@ namespace Skybound.Gecko.Editor
 		 * @see nsISpellChecker::AddWordToDictionary
 		 */
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		void AddWordToDictionary([MarshalAs(UnmanagedType.LPWStr)] string word);
+		void AddWordToDictionary(IntPtr word);
 
 		/**
 		 * Removes a word from the current personal dictionary.
@@ -109,29 +115,34 @@ namespace Skybound.Gecko.Editor
 		 * @see nsISpellChecker::RemoveWordFromPersonalDictionary
 		 */
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		void RemoveWordFromDictionary([MarshalAs(UnmanagedType.LPWStr)] string word);
+		void RemoveWordFromDictionary(IntPtr word);
 
 		/**
 		 * Retrieves a list of the currently available dictionaries. The strings will
 		 * typically be language IDs, like "en-US".
 		 *
-		 * @see mozISpellCheckingEngine::GetDictionaryList
+		 * Free return ptr with nsiMemory.Free(IntPtr) method.
+		 * or Xpcom.Free(IntPtr)
+		 * 
+		 * @see mozISpellCheckingEngine::GetDictionaryList		 
 		 */
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		void GetDictionaryList([MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPWStr, SizeParamIndex = 1)]string[] dictionaryList, out int count);
+		void GetDictionaryList(out IntPtr dictionaryList, out int count);
 
 		/**
 		 * @see nsISpellChecker::GetCurrentDictionary
-		 */
-		[return: MarshalAs(UnmanagedType.LPWStr)]
+		 * Free return ptr with nsiMemory.Free(IntPtr) method.
+		 * or Xpcom.Free(IntPtr)
+		 */		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		string GetCurrentDictionary();
+		IntPtr GetCurrentDictionary();
 
 		/**
 		 * @see nsISpellChecker::SetCurrentDictionary
-		 */		
+		 * Allocate ptr with nsIMemory.Alloc() or Xpcom.Alloc()
+		 */
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		void SetCurrentDictionary([MarshalAs(UnmanagedType.LPWStr)] string dictionary);
+		void SetCurrentDictionary(IntPtr dictionary);
 
 		/**
 		 * Call to save the currently selected dictionary as the default. The
@@ -171,9 +182,11 @@ namespace Skybound.Gecko.Editor
 		 * Watch out: this does not clear any suggestions left over from previous
 		 * calls to CheckCurrentWord, so there may be suggestions, but they will be
 		 * invalid.
+		 * 
+		 * Allocate ptr with nsIMemory.Alloc() or Xpcom.Alloc()
 		 */
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		bool CheckCurrentWordNoSuggest([MarshalAs(UnmanagedType.LPStruct)] nsAString suggestedWord);
+		bool CheckCurrentWordNoSuggest(IntPtr suggestedWord);
 	};
 }
 
