@@ -15,17 +15,19 @@ namespace Skybound.Gecko.Extensions.SpellChecking
 		/**
 		 * The name of the current dictionary
 		 */
+		[return: MarshalAs(UnmanagedType.LPWStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		void GetDictionary([MarshalAs(UnmanagedType.LPStruct)] nsAString dictionary);
+		string GetDictionary();
 
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		void SetDictionary([MarshalAs(UnmanagedType.LPStruct)] nsAString dictionary);
+		void SetDictionary([MarshalAs(UnmanagedType.LPWStr)] string dictionary);
 
 		/**
 		 * The language this spellchecker is using when checking
 		 */
+		[return: MarshalAs(UnmanagedType.LPWStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		void GetLanguage([MarshalAs(UnmanagedType.LPStruct)] nsAString language);
+		string GetLanguage();
 
 		/**
 		 * Does the engine provide its own personal dictionary?
@@ -61,18 +63,18 @@ namespace Skybound.Gecko.Extensions.SpellChecking
 		 * Get the list of dictionaries
 		 */
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		void getDictionaryList([MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 1)] nsAString[] dictionaries, out Int32 count);
+		void GetDictionaryList([MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 1, ArraySubType = UnmanagedType.LPWStr)] string[] dictionaries, out uint count);
 
 		/**
 		 * check a word
 		 */
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		bool check([MarshalAs(UnmanagedType.LPStruct)] nsAString word);
+		bool Check([MarshalAs(UnmanagedType.LPWStr)] string word);
 
 		/**
 		 * get a list of suggestions for a misspelled word
 		 */
-		void suggest([MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 1)] nsAString[] suggestions, out Int32 count);
+		void Suggest([MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 1, ArraySubType = UnmanagedType.LPWStr)] string[] suggestions, out uint count);
 	};
 }
 
