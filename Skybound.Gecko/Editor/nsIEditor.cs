@@ -279,7 +279,7 @@ namespace Skybound.Gecko.Editor
 		  *                     WILL RETURN NULL.
 		  */
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		IntPtr /*nsIInlineSpellChecker*/ GetInlineSpellChecker(bool autoCreate);
+		nsIInlineSpellChecker GetInlineSpellChecker(bool autoCreate);
 
 		/** Resyncs spellchecking state (enabled/disabled).  This should be called
 		  * when anything that affects spellchecking state changes, such as the

@@ -173,6 +173,7 @@
     <Compile Include="DOM\HTMLTitleElement.cs" />
     <Compile Include="DOM\HTMLUListElement.cs" />
     <Compile Include="Editor\nsIEditor.cs" />
+    <Compile Include="Editor\nsIInlineSpellChecker.cs" />
     <Compile Include="Extensions\SpellChecking\mozISpellCheckingEngine.cs" />
     <Compile Include="Editor\nsIEditorSpellCheck.cs" />
     <Compile Include="GeckoDom.cs" />
