@@ -169,6 +169,9 @@
     <Compile Include="DOM\HTMLTextAreaElement.cs" />
     <Compile Include="DOM\HTMLTitleElement.cs" />
     <Compile Include="DOM\HTMLUListElement.cs" />
+    <Compile Include="Editor\nsIEditor.cs" />
+    <Compile Include="Extensions\SpellChecking\mozISpellCheckingEngine.cs" />
+    <Compile Include="Editor\nsIEditorSpellCheck.cs" />
     <Compile Include="GeckoDom.cs" />
     <Compile Include="GeckoDomEvents.cs" />
     <Compile Include="GeckoHistoryEntry.cs" />
