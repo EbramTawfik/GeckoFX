@@ -29,15 +29,13 @@ namespace Skybound.Gecko.Editor
 		/**
 		 * When interactively spell checking the document, this will return the
 		 * value of the next word that is misspelled. This also computes the
-		 * suggestions which you can get by calling GetSuggestedWord.
-		 * 
-		 * Free return ptr with nsiMemory.Free(IntPtr) method.
-		 * or Xpcom.Free(IntPtr)
+		 * suggestions which you can get by calling GetSuggestedWord.		 
 		 *
 		 * @see nsISpellChecker::GetNextMisspelledWord
 		 */
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		IntPtr GetNextMisspelledWord();
+		string GetNextMisspelledWord();
 
 		/**
 		 * Used to get suggestions for the last word that was checked and found to
@@ -47,9 +45,10 @@ namespace Skybound.Gecko.Editor
 		 * (not a null pointer) will be returned.
 		 *
 		 * @see nsISpellChecker::GetSuggestedWord
-		 */		
+		 */
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		IntPtr GetSuggestedWord();
+		string GetSuggestedWord();
 
 		/**
 		 * Check a given word. In spite of the name, this function checks the word
@@ -62,7 +61,7 @@ namespace Skybound.Gecko.Editor
 		 * @see nsISpellChecker::CheckCurrentWord
 		 */
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		bool CheckCurrentWord(IntPtr suggestedWord);
+		bool CheckCurrentWord([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string suggestedWord);
 
 		/**
 		 * Use when modally checking the document to replace a word.
@@ -72,7 +71,8 @@ namespace Skybound.Gecko.Editor
 		 * @see nsISpellChecker::CheckCurrentWord
 		 */
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		void ReplaceWord(IntPtr misspelledWord, IntPtr replaceWord, bool allOccurrences);
+		void ReplaceWord([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string misspelledWord, 
+			[MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string replaceWord, bool allOccurrences);
 
 		/**
 		 * Allocate ptr with nsIMemory.Alloc() or Xpcom.Alloc()
@@ -81,7 +81,7 @@ namespace Skybound.Gecko.Editor
 		 * 		 
 		 */
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		void IgnoreWordAllOccurrences(IntPtr word);
+		void IgnoreWordAllOccurrences([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string word);
 
 		/**
 		 * Fills an internal list of words added to the personal dictionary. These
@@ -89,17 +89,19 @@ namespace Skybound.Gecko.Editor
 		 *
 		 * @see nsISpellChecker::GetPersonalDictionary
 		 * @see GetPersonalDictionaryWord
-		 */		
+		 */
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		IntPtr GetPersonalDictionary();
+		string GetPersonalDictionary();
 
 		/**
 		 * Used after you call GetPersonalDictionary() to iterate through all the
 		 * words added to the personal dictionary. Will return the empty string when
 		 * there are no more words.
-		 */		
+		 */
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		IntPtr GetPersonalDictionaryWord();
+		string GetPersonalDictionaryWord();
 
 		/**
 		 * Adds a word to the current personal dictionary.
@@ -107,7 +109,7 @@ namespace Skybound.Gecko.Editor
 		 * @see nsISpellChecker::AddWordToDictionary
 		 */
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		void AddWordToDictionary(IntPtr word);
+		void AddWordToDictionary([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string word);
 
 		/**
 		 * Removes a word from the current personal dictionary.
@@ -115,7 +117,7 @@ namespace Skybound.Gecko.Editor
 		 * @see nsISpellChecker::RemoveWordFromPersonalDictionary
 		 */
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		void RemoveWordFromDictionary(IntPtr word);
+		void RemoveWordFromDictionary([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string word);
 
 		/**
 		 * Retrieves a list of the currently available dictionaries. The strings will
@@ -130,19 +132,18 @@ namespace Skybound.Gecko.Editor
 		void GetDictionaryList(out IntPtr dictionaryList, out int count);
 
 		/**
-		 * @see nsISpellChecker::GetCurrentDictionary
-		 * Free return ptr with nsiMemory.Free(IntPtr) method.
-		 * or Xpcom.Free(IntPtr)
-		 */		
+		 * @see nsISpellChecker::GetCurrentDictionary		 
+		 */
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		IntPtr GetCurrentDictionary();
+		string GetCurrentDictionary();
 
 		/**
 		 * @see nsISpellChecker::SetCurrentDictionary
 		 * Allocate ptr with nsIMemory.Alloc() or Xpcom.Alloc()
 		 */
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		void SetCurrentDictionary(IntPtr dictionary);
+		void SetCurrentDictionary([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string dictionary);
 
 		/**
 		 * Call to save the currently selected dictionary as the default. The
@@ -186,7 +187,7 @@ namespace Skybound.Gecko.Editor
 		 * Allocate ptr with nsIMemory.Alloc() or Xpcom.Alloc()
 		 */
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		bool CheckCurrentWordNoSuggest(IntPtr suggestedWord);
+		bool CheckCurrentWordNoSuggest([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string suggestedWord);
 	};
 }
 
