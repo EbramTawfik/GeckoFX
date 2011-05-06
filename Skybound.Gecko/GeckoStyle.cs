@@ -106,6 +106,14 @@ namespace Skybound.Gecko
 		{								
 			StyleDelcaration.SetProperty(new nsAString(propertyName), new nsAString(value), new nsAString());			
 		}
+
+		/// <summary>
+		/// Set the value of a specfic Css Property.
+		/// </summary>          
+		public void SetPropertyValue(string propertyName, string value, string priority)
+		{
+			StyleDelcaration.SetProperty(new nsAString(propertyName), new nsAString(value), new nsAString(priority));
+		}
 	}
 	
 	/// <summary>
