@@ -21,7 +21,7 @@ namespace Skybound.Gecko
 				throw new ApplicationException("/usr/lib doesn't exist");
 
 			DirectoryInfo d = new DirectoryInfo("/usr/lib");
-			DirectoryInfo[] dirs = d.GetDirectories("xulrunner-1.9.2.*", SearchOption.TopDirectoryOnly);
+			DirectoryInfo[] dirs = d.GetDirectories("xulrunner-2.0", SearchOption.TopDirectoryOnly);
 
 			if (dirs.Length == 0)
 				return null;

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -64,7 +64,7 @@
     <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
     <EnvironmentVariables>
       <EnvironmentVariables>
-        <Variable name="LD_LIBRARY_PATH" value="/usr/lib/xulrunner-1.9.2.13/" />
+        <Variable name="LD_LIBRARY_PATH" value="/usr/lib/xulrunner-2.0/" />
         <Variable name="MONO_PATH" value="/usr/lib/cli/gdk-sharp-2.0/" />
       </EnvironmentVariables>
     </EnvironmentVariables>
