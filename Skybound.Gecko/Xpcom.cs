@@ -172,12 +172,14 @@ namespace Skybound.Gecko
 			NS_GetComponentManager(out ComponentManager);
 			NS_GetComponentRegistrar(out ComponentRegistrar);
 			
+#if false
 			// a bug in Mozilla 1.8 (https://bugzilla.mozilla.org/show_bug.cgi?id=309877) causes the PSM to
 			// crash when loading a site over HTTPS.  in order to work around this bug, we must register an nsIDirectoryServiceProvider
 			// which will provide the location of a profile
 			nsIDirectoryService directoryService = GetService<nsIDirectoryService>("@mozilla.org/file/directory_service;1");
 			if (directoryService != null)
 				directoryService.RegisterProvider(new ProfileProvider());
+#endif
 			
 			_IsInitialized = true;
 		}
@@ -265,7 +267,8 @@ namespace Skybound.Gecko
 		public static TInterfaceType CreateInstance<TInterfaceType>(string contractID)
 		{
 			Guid iid = typeof(TInterfaceType).GUID;
-			return (TInterfaceType)ComponentManager.CreateInstanceByContractID(contractID, null, ref iid);
+			IntPtr ptr = ComponentManager.CreateInstanceByContractID(contractID, null, ref iid);
+			return (TInterfaceType)Marshal.GetObjectForIUnknown(ptr);
 		}
 		
 		public static TInterfaceType QueryInterface<TInterfaceType>(object obj)
@@ -354,7 +357,8 @@ namespace Skybound.Gecko
 		public static TInterfaceType GetService<TInterfaceType>(string contractID)
 		{
 			Guid iid = typeof(TInterfaceType).GUID;
-			return (TInterfaceType)ServiceManager.GetServiceByContractID(contractID, ref iid);
+			IntPtr ptr = ServiceManager.GetServiceByContractID(contractID, ref iid);
+			return (TInterfaceType)Marshal.GetObjectForIUnknown(ptr);
 		}
 		
 		/// <summary>

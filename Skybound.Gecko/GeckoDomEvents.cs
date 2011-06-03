@@ -66,17 +66,17 @@ namespace Skybound.Gecko
 		
 		public bool Bubbles
 		{
-			get { return _Event.GetBubbles(); }
+			get { return _Event.GetBubblesAttribute(); }
 		}
 		
 		public bool Cancelable
 		{
-			get { return _Event.GetCancelable(); }
+			get { return _Event.GetCancelableAttribute(); }
 		}
 		
 		public GeckoElement CurrentTarget
 		{
-			get { return GeckoElement.Create(Xpcom.QueryInterface<nsIDOMHTMLElement>(_Event.GetCurrentTarget())); }
+			get { return GeckoElement.Create(Xpcom.QueryInterface<nsIDOMHTMLElement>(_Event.GetCurrentTargetAttribute())); }
 		}
 		
 		/// <summary>
@@ -84,7 +84,7 @@ namespace Skybound.Gecko
 		/// </summary>
 		public GeckoElement Target
 		{
-			get { return GeckoElement.Create(Xpcom.QueryInterface<nsIDOMHTMLElement>(_Event.GetTarget())); }
+			get { return GeckoElement.Create(Xpcom.QueryInterface<nsIDOMHTMLElement>(_Event.GetTargetAttribute())); }
 		}
 	};
 	
@@ -99,7 +99,7 @@ namespace Skybound.Gecko
 		
 		public int Detail
 		{
-			get { return _Event.GetDetail(); }
+			get { return _Event.GetDetailAttribute(); }
 		}
 	};
 	
@@ -119,27 +119,27 @@ namespace Skybound.Gecko
 		
 		public uint KeyChar
 		{
-			get { return _Event.GetCharCode(); }
+			get { return _Event.GetCharCodeAttribute(); }
 		}
 		
 		public uint KeyCode
 		{
-			get { return _Event.GetKeyCode(); }
+			get { return _Event.GetKeyCodeAttribute(); }
 		}
 		
 		public bool AltKey
 		{
-			get { return _Event.GetAltKey(); }
+			get { return _Event.GetAltKeyAttribute(); }
 		}
 		
 		public bool CtrlKey
 		{
-			get { return _Event.GetCtrlKey(); }
+			get { return _Event.GetCtrlKeyAttribute(); }
 		}
 		
 		public bool ShiftKey
 		{
-			get { return _Event.GetShiftKey(); }
+			get { return _Event.GetShiftKeyAttribute(); }
 		}
 	};
 	
@@ -159,42 +159,42 @@ namespace Skybound.Gecko
 		
 		public int ClientX
 		{
-			get { return _Event.GetClientX(); }
+			get { return _Event.GetClientXAttribute(); }
 		}
 		
 		public int ClientY
 		{
-			get { return _Event.GetClientY(); }
+			get { return _Event.GetClientYAttribute(); }
 		}
 		
 		public int ScreenX
 		{
-			get { return _Event.GetScreenX(); }
+			get { return _Event.GetScreenXAttribute(); }
 		}
 		
 		public int ScreenY
 		{
-			get { return _Event.GetScreenY(); }
+			get { return _Event.GetScreenYAttribute(); }
 		}
 		
 		public ushort Button
 		{
-			get { return _Event.GetButton(); }
+			get { return _Event.GetButtonAttribute(); }
 		}
 		
 		public bool AltKey
 		{
-			get { return _Event.GetAltKey(); }
+			get { return _Event.GetAltKeyAttribute(); }
 		}
 		
 		public bool CtrlKey
 		{
-			get { return _Event.GetCtrlKey(); }
+			get { return _Event.GetCtrlKeyAttribute(); }
 		}
 		
 		public bool ShiftKey
 		{
-			get { return _Event.GetShiftKey(); }
+			get { return _Event.GetShiftKeyAttribute(); }
 		}
 	};
 }

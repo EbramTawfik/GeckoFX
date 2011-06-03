@@ -105,8 +105,8 @@ namespace Skybound.Gecko
 		/// </summary>
 		public string TextContent
 		{
-			get { return nsString.Get(((nsIDOM3Node)_DomObject).GetTextContent); }
-			set { nsString.Set(((nsIDOM3Node)_DomObject).SetTextContent, value); }
+			get { return nsString.Get(((nsIDOM3Node)_DomObject).GetTextContentAttribute); }
+			set { nsString.Set(((nsIDOM3Node)_DomObject).SetTextContentAttribute, value); }
 		}
 		
 		/// <summary>
@@ -114,8 +114,8 @@ namespace Skybound.Gecko
 		/// </summary>
 		public string NodeValue
 		{
-			get { return nsString.Get(((nsIDOMNode)_DomObject).GetNodeValue); }
-			set { nsString.Set(((nsIDOMNode)_DomObject).SetNodeValue, value); }
+			get { return nsString.Get(((nsIDOMNode)_DomObject).GetNodeValueAttribute); }
+			set { nsString.Set(((nsIDOMNode)_DomObject).SetNodeValueAttribute, value); }
 		}
 		
 		/// <summary>
@@ -123,17 +123,17 @@ namespace Skybound.Gecko
 		/// </summary>
 		public GeckoNodeCollection ChildNodes
 		{
-			get { return new GeckoNodeCollection(_DomObject.GetChildNodes()); }
+			get { return new GeckoNodeCollection(_DomObject.GetChildNodesAttribute()); }
 		}
-		
-		public GeckoNode FirstChild { get { return GeckoNode.Create(_DomObject.GetFirstChild()); } }
-		public GeckoNode LastChild { get { return GeckoNode.Create(_DomObject.GetLastChild()); } }
-		public GeckoNode NextSibling { get { return GeckoNode.Create(_DomObject.GetNextSibling()); } }
-		public GeckoNode PreviousSibling { get { return GeckoNode.Create(_DomObject.GetPreviousSibling()); } }
+
+		public GeckoNode FirstChild { get { return GeckoNode.Create(_DomObject.GetFirstChildAttribute()); } }
+		public GeckoNode LastChild { get { return GeckoNode.Create(_DomObject.GetLastChildAttribute()); } }
+		public GeckoNode NextSibling { get { return GeckoNode.Create(_DomObject.GetNextSiblingAttribute()); } }
+		public GeckoNode PreviousSibling { get { return GeckoNode.Create(_DomObject.GetPreviousSiblingAttribute()); } }
 		public bool HasChildNodes { get { return _DomObject.HasChildNodes(); } }
 		public bool HasAttributes { get { return _DomObject.HasAttributes(); } }
-		
-		public GeckoDocument OwnerDocument { get { return GeckoDocument.Create(Xpcom.QueryInterface<nsIDOMHTMLDocument>(_DomObject.GetOwnerDocument())); } }
+
+		public GeckoDocument OwnerDocument { get { return GeckoDocument.Create(Xpcom.QueryInterface<nsIDOMHTMLDocument>(_DomObject.GetOwnerDocumentAttribute())); } }
 		
 		public GeckoNode AppendChild(GeckoNode node)
 		{
@@ -182,23 +182,23 @@ namespace Skybound.Gecko
 
 		public string NamespaceURI
 		{
-			get { return nsString.Get(((nsIDOMNode)_DomObject).GetNamespaceURI); }
+			get { return nsString.Get(((nsIDOMNode)_DomObject).GetNamespaceURIAttribute); }
 		}
 
 		public string Prefix
 		{
-			get { return nsString.Get(((nsIDOMNode)_DomObject).GetPrefix); }
-			set { nsString.Set(((nsIDOMNode)_DomObject).SetPrefix, value); }
+			get { return nsString.Get(((nsIDOMNode)_DomObject).GetPrefixAttribute); }
+			set { nsString.Set(((nsIDOMNode)_DomObject).SetPrefixAttribute, value); }
 		}
 
 		public string LocalName
 		{
-			get { return nsString.Get(((nsIDOMNode)_DomObject).GetLocalName); }
+			get { return nsString.Get(((nsIDOMNode)_DomObject).GetLocalNameAttribute); }
 		}
 
 		public GeckoNamedNodeMap Attributes
 		{
-			get { return new GeckoNamedNodeMap(_DomObject.GetAttributes()); }
+			get { return new GeckoNamedNodeMap(_DomObject.GetAttributesAttribute()); }
 		}
 	}
 	
@@ -223,7 +223,7 @@ namespace Skybound.Gecko
 		/// </summary>
 		public string Name
 		{
-			get { return nsString.Get(DomAttr.GetName); }
+			get { return nsString.Get(DomAttr.GetNameAttribute); }
 		}
 		
 		/// <summary>
@@ -231,7 +231,7 @@ namespace Skybound.Gecko
 		/// </summary>
 		public GeckoElement OwnerElement
 		{
-			get { return GeckoElement.Create((nsIDOMHTMLElement)DomAttr.GetOwnerElement()); }
+			get { return GeckoElement.Create((nsIDOMHTMLElement)DomAttr.GetOwnerElementAttribute()); }
 		}
 		
 		/// <summary>
@@ -239,7 +239,7 @@ namespace Skybound.Gecko
 		/// </summary>
 		public bool Specified
 		{
-			get { return DomAttr.GetSpecified(); }
+			get { return DomAttr.GetSpecifiedAttribute(); }
 		}
 
 		/// <summary>
@@ -247,8 +247,8 @@ namespace Skybound.Gecko
 		/// </summary>
 		public string Value
 		{
-			get { return nsString.Get(DomAttr.GetValue); }
-			set { nsString.Set(DomAttr.SetValue, value); }
+			get { return nsString.Get(DomAttr.GetValueAttribute); }
+			set { nsString.Set(DomAttr.SetValueAttribute, value); }
 		}
 	}
 	
@@ -287,7 +287,7 @@ namespace Skybound.Gecko
 		{
 			get
 			{
-				return GeckoStyle.Create(Xpcom.QueryInterface<nsIDOMElementCSSInlineStyle>(DomObject).GetStyle());
+				return GeckoStyle.Create(Xpcom.QueryInterface<nsIDOMElementCSSInlineStyle>(DomObject).GetStyleAttribute());
 			}
 		}
 		
@@ -299,7 +299,7 @@ namespace Skybound.Gecko
 			get
 			{
 				// note: the parent node could also be the document
-				return GeckoElement.Create(Xpcom.QueryInterface<nsIDOMHTMLElement>(DomElement.GetParentNode()));
+				return GeckoElement.Create(Xpcom.QueryInterface<nsIDOMHTMLElement>(DomElement.GetParentNodeAttribute()));
 			}
 		}
 		
@@ -308,7 +308,7 @@ namespace Skybound.Gecko
 		/// </summary>
 		public string TagName
 		{
-			get { return nsString.Get(DomElement.GetTagName); }
+			get { return nsString.Get(DomElement.GetTagNameAttribute); }
 		}
 		
 		/// <summary>
@@ -316,8 +316,8 @@ namespace Skybound.Gecko
 		/// </summary>
 		public string Id
 		{
-			get { return nsString.Get(DomElement.GetId); }
-			set { nsString.Set(DomElement.SetId, value); }
+			get { return nsString.Get(DomElement.GetIdAttribute); }
+			set { nsString.Set(DomElement.SetIdAttribute, value); }
 		}
 		
 		/// <summary>
@@ -325,8 +325,8 @@ namespace Skybound.Gecko
 		/// </summary>
 		public string ClassName
 		{
-			get { return nsString.Get(DomElement.GetClassName); }
-			set { nsString.Set(DomElement.SetClassName, value); }
+			get { return nsString.Get(DomElement.GetClassNameAttribute); }
+			set { nsString.Set(DomElement.SetClassNameAttribute, value); }
 		}
 		
 		/// <summary>
@@ -352,11 +352,7 @@ namespace Skybound.Gecko
 			if (string.IsNullOrEmpty(attributeName))
 				throw new ArgumentException("attributeName");
 
-			using (nsAString retval = new nsAString())
-			{
-				DomElement.GetAttribute(new nsAString(attributeName), retval);
-				return retval.ToString();
-			}
+			return DomElement.GetAttribute(new nsAString(attributeName)).ToString();			
 		}
 		
 		/// <summary>
@@ -372,11 +368,7 @@ namespace Skybound.Gecko
 			if (string.IsNullOrEmpty(attributeName))
 				throw new ArgumentException("attributeName");
 
-			using (nsAString retval = new nsAString())
-			{
-				DomElement.GetAttributeNS(new nsAString(namespaceUri), new nsAString(attributeName), retval);
-				return retval.ToString();
-			}
+			return DomElement.GetAttributeNS(new nsAString(namespaceUri), new nsAString(attributeName)).ToString();			
 		}
 		
 		/// <summary>
@@ -423,23 +415,23 @@ namespace Skybound.Gecko
 			
 			DomElement.RemoveAttribute(new nsAString(attributeName));
 		}
-		
 
-		public int ScrollLeft { get { return DomNSElement.GetScrollLeft(); } set { DomNSElement.SetScrollLeft(value); } }
-		public int ScrollTop { get { return DomNSElement.GetScrollTop(); } set { DomNSElement.SetScrollTop(value); } }
-		public int ScrollWidth { get { return DomNSElement.GetScrollWidth(); } }
-		public int ScrollHeight { get { return DomNSElement.GetScrollHeight(); } }
-		public int ClientWidth { get { return DomNSElement.GetClientWidth(); } }
-		public int ClientHeight { get { return DomNSElement.GetClientHeight(); } }
 
-		public int OffsetLeft { get { return DomNSHTMLElement.GetOffsetLeft(); } }
-		public int OffsetTop { get { return DomNSHTMLElement.GetOffsetTop(); } }
-		public int OffsetWidth { get { return DomNSHTMLElement.GetOffsetWidth(); } }
-		public int OffsetHeight { get { return DomNSHTMLElement.GetOffsetHeight(); } }
+		public int ScrollLeft { get { return DomNSElement.GetScrollLeftAttribute(); } set { DomNSElement.SetScrollLeftAttribute(value); } }
+		public int ScrollTop { get { return DomNSElement.GetScrollTopAttribute(); } set { DomNSElement.SetScrollTopAttribute(value); } }
+		public int ScrollWidth { get { return DomNSElement.GetScrollWidthAttribute(); } }
+		public int ScrollHeight { get { return DomNSElement.GetScrollHeightAttribute(); } }
+		public int ClientWidth { get { return DomNSElement.GetClientWidthAttribute(); } }
+		public int ClientHeight { get { return DomNSElement.GetClientHeightAttribute(); } }
+
+		public int OffsetLeft { get { return DomNSHTMLElement.GetOffsetLeftAttribute(); } }
+		public int OffsetTop { get { return DomNSHTMLElement.GetOffsetTopAttribute(); } }
+		public int OffsetWidth { get { return DomNSHTMLElement.GetOffsetWidthAttribute(); } }
+		public int OffsetHeight { get { return DomNSHTMLElement.GetOffsetHeightAttribute(); } }
 		
 		public GeckoElement OffsetParent
 		{
-			get { return GeckoElement.Create((nsIDOMHTMLElement)DomNSHTMLElement.GetOffsetParent()); }
+			get { return GeckoElement.Create((nsIDOMHTMLElement)DomNSHTMLElement.GetOffsetParentAttribute()); }
 		}
 		
 		public void ScrollIntoView(bool top)
@@ -449,8 +441,8 @@ namespace Skybound.Gecko
 		
 		public string InnerHtml
 		{
-			get { return nsString.Get(DomNSHTMLElement.GetInnerHTML); }
-			set { nsString.Set(DomNSHTMLElement.SetInnerHTML, value); }
+			get { return nsString.Get(DomNSHTMLElement.GetInnerHTMLAttribute); }
+			set { nsString.Set(DomNSHTMLElement.SetInnerHTMLAttribute, value); }
 		}
 		
 		public void Focus()
@@ -465,8 +457,8 @@ namespace Skybound.Gecko
 
 		public int TabIndex
 		{
-			get { return DomNSHTMLElement.GetTabIndex(); }
-			set { DomNSHTMLElement.SetTabIndex(value); }
+			get { return DomNSHTMLElement.GetTabIndexAttribute(); }
+			set { DomNSHTMLElement.SetTabIndexAttribute(value); }
 		}
 
 	}
@@ -493,8 +485,8 @@ namespace Skybound.Gecko
 		/// </summary>
 		public string Title
 		{
-			get { return nsString.Get(DomDocument.GetTitle); }
-			set { nsString.Set(DomDocument.SetTitle, value); }
+			get { return nsString.Get(DomDocument.GetTitleAttribute); }
+			set { nsString.Set(DomDocument.SetTitleAttribute, value); }
 		}
 		
 		/// <summary>
@@ -502,7 +494,7 @@ namespace Skybound.Gecko
 		/// </summary>
 		public GeckoElement Body
 		{
-			get { return GeckoElement.Create(DomDocument.GetBody()); }
+			get { return GeckoElement.Create(DomDocument.GetBodyAttribute()); }
 		}
 		
 		/// <summary>
@@ -510,7 +502,7 @@ namespace Skybound.Gecko
 		/// </summary>
 		public GeckoElement DocumentElement
 		{
-			get { return GeckoElement.Create((nsIDOMHTMLElement)DomDocument.GetDocumentElement()); }
+			get { return GeckoElement.Create((nsIDOMHTMLElement)DomDocument.GetDocumentElementAttribute()); }
 		}
 		
 		/// <summary>
@@ -533,7 +525,7 @@ namespace Skybound.Gecko
 		{
 			internal StyleSheetCollection(GeckoDocument document)
 			{
-				this.List = ((nsIDOMDocumentStyle)document.DomDocument).GetStyleSheets();
+				this.List = ((nsIDOMDocumentStyle)document.DomDocument).GetStyleSheetsAttribute();
 			}
 			nsIDOMStyleSheetList List;
 			
@@ -542,7 +534,7 @@ namespace Skybound.Gecko
 			/// </summary>
 			public int Count
 			{
-				get { return (List == null) ? 0 : List.GetLength(); }
+				get { return (List == null) ? 0 : (int)List.GetLengthAttribute(); }
 			}
 			
 			/// <summary>
@@ -556,8 +548,8 @@ namespace Skybound.Gecko
 				{
 					if (index < 0 || index >= Count)
 						throw new ArgumentOutOfRangeException("index");
-					
-					return GeckoStyleSheet.Create((nsIDOMCSSStyleSheet)List.Item(index));
+
+					return GeckoStyleSheet.Create((nsIDOMCSSStyleSheet)List.Item((uint)index));
 				}
 			}
 			
@@ -572,7 +564,7 @@ namespace Skybound.Gecko
 				int length = Count;
 				for (int i = 0; i < length; i++)
 				{
-					yield return GeckoStyleSheet.Create((nsIDOMCSSStyleSheet)List.Item(i));
+					yield return GeckoStyleSheet.Create((nsIDOMCSSStyleSheet)List.Item((uint)i));
 				}
 			}
 			
@@ -599,43 +591,43 @@ namespace Skybound.Gecko
 		/// </summary>
 		public Uri Url
 		{
-			get { return new Uri(nsString.Get(DomDocument.GetURL)); }
+			get { return new Uri(nsString.Get(DomDocument.GetURLAttribute)); }
 		}
 		
 		public GeckoElementCollection Frames
 		{
-			get { return new GeckoHtmlElementCollection(DomDocument.GetForms()); }
+			get { return new GeckoHtmlElementCollection(DomDocument.GetFormsAttribute()); }
 		}
 		
 		public GeckoElementCollection Images
 		{
-			get { return new GeckoHtmlElementCollection(DomDocument.GetImages()); }
+			get { return new GeckoHtmlElementCollection(DomDocument.GetImagesAttribute()); }
 		}
 		
 		public GeckoElementCollection Anchors
 		{
-			get { return new GeckoHtmlElementCollection(DomDocument.GetAnchors()); }
+			get { return new GeckoHtmlElementCollection(DomDocument.GetAnchorsAttribute()); }
 		}
 		
 		public GeckoElementCollection Applets
 		{
-			get { return new GeckoHtmlElementCollection(DomDocument.GetApplets()); }
+			get { return new GeckoHtmlElementCollection(DomDocument.GetAppletsAttribute()); }
 		}
 		
 		public GeckoElementCollection Links
 		{
-			get { return new GeckoHtmlElementCollection(DomDocument.GetLinks()); }
+			get { return new GeckoHtmlElementCollection(DomDocument.GetLinksAttribute()); }
 		}
 		
 		public string Cookie
 		{
-			get { return nsString.Get(DomDocument.GetCookie); }
-			set { nsString.Set(DomDocument.SetCookie, value); }
+			get { return nsString.Get(DomDocument.GetCookieAttribute); }
+			set { nsString.Set(DomDocument.SetCookieAttribute, value); }
 		}
 		
 		public string Domain
 		{
-			get { return nsString.Get(DomDocument.GetDomain); }
+			get { return nsString.Get(DomDocument.GetDomainAttribute); }
 		}
 		
 		/// <summary>
@@ -723,7 +715,7 @@ namespace Skybound.Gecko
 		/// </summary>
 		public GeckoElement ActiveElement
 		{
-			get { return (GeckoElement)GeckoElement.Create(((nsIDOMNSDocument)DomDocument).GetActiveElement()); }
+			get { return (GeckoElement)GeckoElement.Create(((nsIDOMNSDocument)DomDocument).GetActiveElementAttribute()); }
 		}
 		
 		/// <summary>
@@ -768,7 +760,7 @@ namespace Skybound.Gecko
 		/// </summary>
 		public int Count
 		{
-			get { return (Map == null) ? 0 : Map.GetLength(); }
+			get { return (Map == null) ? 0 : (int)Map.GetLengthAttribute(); }
 		}
 		
 		public GeckoNode this[int index]
@@ -777,8 +769,8 @@ namespace Skybound.Gecko
 			{
 				if (index < 0 || index >= Count)
 					throw new ArgumentOutOfRangeException("index");
-				
-				return GeckoNode.Create(Map.Item(index));
+
+				return GeckoNode.Create(Map.Item((uint)index));
 			}
 		}
 		
@@ -805,7 +797,7 @@ namespace Skybound.Gecko
 			int length = Count;
 			for (int i = 0; i < length; i++)
 			{
-				yield return GeckoNode.Create(Map.Item(i));
+				yield return GeckoNode.Create(Map.Item((uint)i));
 			}
 		}
 
@@ -851,7 +843,7 @@ namespace Skybound.Gecko
 		/// </summary>
 		public GeckoDocument Document
 		{
-			get { return GeckoDocument.Create((nsIDOMHTMLDocument)_DomWindow.GetDocument()); }
+			get { return GeckoDocument.Create((nsIDOMHTMLDocument)_DomWindow.GetDocumentAttribute()); }
 		}
 		
 		/// <summary>
@@ -859,34 +851,34 @@ namespace Skybound.Gecko
 		/// </summary>
 		public GeckoWindow Parent
 		{
-			get { return GeckoWindow.Create((nsIDOMWindow)_DomWindow.GetParent()); }
+			get { return GeckoWindow.Create((nsIDOMWindow)_DomWindow.GetParentAttribute()); }
 		}
 
 		public int ScrollX
 		{
-			get { return _DomWindow.GetScrollX(); }
+			get { return _DomWindow.GetScrollXAttribute(); }
 		}
 		
 		public int ScrollY
 		{
-			get { return _DomWindow.GetScrollY(); }
+			get { return _DomWindow.GetScrollYAttribute(); }
 		}
 
 		public float TextZoom
 		{
-			get { return _DomWindow.GetTextZoom(); }
-			set { _DomWindow.SetTextZoom(value); }
+			get { return (float)_DomWindow.GetTextZoomAttribute(); }
+			set { _DomWindow.SetTextZoomAttribute((double)value); }
 		}
 		
 		public GeckoWindow Top
 		{
-			get { return GeckoWindow.Create((nsIDOMWindow)_DomWindow.GetTop()); }
+			get { return GeckoWindow.Create((nsIDOMWindow)_DomWindow.GetTopAttribute()); }
 		}
 		
 		public string Name
 		{
-			get { return nsString.Get(_DomWindow.GetName); }
-			set { nsString.Set(_DomWindow.SetName, value); }
+			get { return nsString.Get(_DomWindow.GetNameAttribute); }
+			set { nsString.Set(_DomWindow.SetNameAttribute, value); }
 		}
 		
 		public void Print()
@@ -927,7 +919,7 @@ namespace Skybound.Gecko
 
 		public virtual int Count
 		{
-			get { return (List == null) ? 0 : List.GetLength(); }
+			get { return (List == null) ? 0 : (int)List.GetLengthAttribute(); }
 		}
 		
 		public virtual GeckoElement this[int index]
@@ -936,8 +928,8 @@ namespace Skybound.Gecko
 			{
 				if (index < 0 || index >= Count)
 					throw new ArgumentOutOfRangeException("index");
-				
-				return GeckoElement.Create((nsIDOMHTMLElement)List.Item(index));
+
+				return GeckoElement.Create((nsIDOMHTMLElement)List.Item((uint)index));
 			}
 		}
 		
@@ -948,7 +940,7 @@ namespace Skybound.Gecko
 			int length = Count;
 			for (int i = 0; i < length; i++)
 			{
-				yield return GeckoElement.Create((nsIDOMHTMLElement)List.Item(i));
+				yield return GeckoElement.Create((nsIDOMHTMLElement)List.Item((uint)i));
 			}
 		}
 		
@@ -978,7 +970,7 @@ namespace Skybound.Gecko
 
 		public virtual int Count
 		{
-			get { return (List == null) ? 0 : List.GetLength(); }
+			get { return (List == null) ? 0 : (int)List.GetLengthAttribute(); }
 		}
 		
 		public virtual GeckoNode this[int index]
@@ -987,8 +979,8 @@ namespace Skybound.Gecko
 			{
 				if (index < 0 || index >= Count)
 					throw new ArgumentOutOfRangeException("index");
-				
-				return GeckoNode.Create(List.Item(index));
+
+				return GeckoNode.Create(List.Item((uint)index));
 			}
 		}
 		
@@ -999,7 +991,7 @@ namespace Skybound.Gecko
 			int length = Count;
 			for (int i = 0; i < length; i++)
 			{
-				yield return GeckoNode.Create(List.Item(i));
+				yield return GeckoNode.Create(List.Item((uint)i));
 			}
 		}
 		
@@ -1026,7 +1018,7 @@ namespace Skybound.Gecko
 
 		public override int Count
 		{
-			get { return (Collection == null) ? 0 : Collection.GetLength(); }
+			get { return (Collection == null) ? 0 : (int)Collection.GetLengthAttribute(); }
 		}
 
 		public override GeckoElement this[int index]
@@ -1035,8 +1027,8 @@ namespace Skybound.Gecko
 			{
 				if (index < 0 || index >= Count)
 					throw new ArgumentOutOfRangeException("index");
-				
-				return GeckoElement.Create((nsIDOMHTMLElement)Collection.Item(index));
+
+				return GeckoElement.Create((nsIDOMHTMLElement)Collection.Item((uint)index));
 			}
 		}
 
@@ -1045,7 +1037,7 @@ namespace Skybound.Gecko
 			int length = Count;
 			for (int i = 0; i < length; i++)
 			{
-				yield return GeckoElement.Create((nsIDOMHTMLElement)Collection.Item(i));
+				yield return GeckoElement.Create((nsIDOMHTMLElement)Collection.Item((uint)i));
 			}
 		}
 	}

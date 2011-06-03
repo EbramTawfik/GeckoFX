@@ -59,7 +59,7 @@ namespace Skybound.Gecko
 		/// </summary>
 		public GeckoNode AnchorNode
 		{
-			get { return GeckoNode.Create(Selection.GetAnchorNode()); }
+			get { return GeckoNode.Create(Selection.GetAnchorNodeAttribute()); }
 		}
 		
 		/// <summary>
@@ -67,7 +67,7 @@ namespace Skybound.Gecko
 		/// </summary>
 		public int AnchorOffset
 		{
-			get { return Selection.GetAnchorOffset(); }
+			get { return Selection.GetAnchorOffsetAttribute(); }
 		}
 		
 		/// <summary>
@@ -75,7 +75,7 @@ namespace Skybound.Gecko
 		/// </summary>
 		public GeckoNode FocusNode
 		{
-			get { return GeckoNode.Create(Selection.GetFocusNode()); }
+			get { return GeckoNode.Create(Selection.GetFocusNodeAttribute()); }
 		}
 		
 		/// <summary>
@@ -83,7 +83,7 @@ namespace Skybound.Gecko
 		/// </summary>
 		public int FocusOffset
 		{
-			get { return Selection.GetFocusOffset(); }
+			get { return Selection.GetFocusOffsetAttribute(); }
 		}
 		
 		/// <summary>
@@ -91,7 +91,7 @@ namespace Skybound.Gecko
 		/// </summary>
 		public bool IsCollapsed
 		{
-			get { return Selection.GetIsCollapsed(); }
+			get { return Selection.GetIsCollapsedAttribute(); }
 		}
 		
 		/// <summary>
@@ -99,7 +99,7 @@ namespace Skybound.Gecko
 		/// </summary>
 		public int RangeCount
 		{
-			get { return Selection.GetRangeCount(); }
+			get { return Selection.GetRangeCountAttribute(); }
 		}
 		
 		/// <summary>
@@ -240,23 +240,23 @@ namespace Skybound.Gecko
 		
 		public GeckoNode StartContainer
 		{
-			get { return GeckoNode.Create(Range.GetStartContainer()); }
+			get { return GeckoNode.Create(Range.GetStartContainerAttribute()); }
 		}
-		
-		public int StartOffset { get { return Range.GetStartOffset(); } }
+
+		public int StartOffset { get { return Range.GetStartOffsetAttribute(); } }
 		
 		public GeckoNode EndContainer
 		{
-			get { return GeckoNode.Create(Range.GetEndContainer()); }
+			get { return GeckoNode.Create(Range.GetEndContainerAttribute()); }
 		}
-		
-		public int EndOffset { get { return Range.GetEndOffset(); } }
-		
-		public bool Collapsed { get { return Range.GetCollapsed(); } }
+
+		public int EndOffset { get { return Range.GetEndOffsetAttribute(); } }
+
+		public bool Collapsed { get { return Range.GetCollapsedAttribute(); } }
 		
 		public GeckoNode CommonAncestorContainer
 		{
-			get { return GeckoNode.Create(Range.GetCommonAncestorContainer()); }
+			get { return GeckoNode.Create(Range.GetCommonAncestorContainerAttribute()); }
 		}
 		
 		public void SetStart(GeckoNode node, int offset)
@@ -346,7 +346,7 @@ namespace Skybound.Gecko
 		
 		public override string ToString()
 		{
-			return nsString.Get(Range.ToString);
+			return Range.ToString().ToString();
 		}
 		
 		public void Detach()

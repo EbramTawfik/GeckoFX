@@ -51,13 +51,13 @@ namespace Skybound.Gecko
 		
 		public PropertiesDialog(nsIDOMHTMLDocument doc) : this()
 		{
-			txtTitle.Text = nsString.Get(doc.GetTitle);
-			txtAddress.Text = nsString.Get(doc.GetURL);
-			txtReferrer.Text = nsString.Get(doc.GetReferrer);
-			
-			nsIDOMDocumentType docType = doc.GetDoctype();
+			txtTitle.Text = nsString.Get(doc.GetTitleAttribute);
+			txtAddress.Text = nsString.Get(doc.GetURLAttribute);
+			txtReferrer.Text = nsString.Get(doc.GetReferrerAttribute);
+
+			nsIDOMDocumentType docType = doc.GetDoctypeAttribute();
 			if (docType != null)
-				lblDocType.Text = nsString.Get(docType.GetPublicId);
+				lblDocType.Text = nsString.Get(docType.GetPublicIdAttribute);
 			else
 				lblDocType.Text = "(none)";
 		}

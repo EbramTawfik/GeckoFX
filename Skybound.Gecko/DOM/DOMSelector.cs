@@ -24,8 +24,7 @@ namespace Skybound.Gecko.DOM
             Classes.Add(new GeckoClassDesc() { TagName = "a", InterfaceType = typeof(nsIDOMHTMLAnchorElement), GeckoElement = typeof(GeckoAnchorElement) });
             Classes.Add(new GeckoClassDesc() { TagName = "applet", InterfaceType = typeof(nsIDOMHTMLAppletElement), GeckoElement = typeof(GeckoAppletElement) });
             Classes.Add(new GeckoClassDesc() { TagName = "area", InterfaceType = typeof(nsIDOMHTMLAreaElement), GeckoElement = typeof(GeckoAreaElement) });
-            Classes.Add(new GeckoClassDesc() { TagName = "base", InterfaceType = typeof(nsIDOMHTMLBaseElement), GeckoElement = typeof(GeckoBaseElement) });
-            Classes.Add(new GeckoClassDesc() { TagName = "basefont", InterfaceType = typeof(nsIDOMHTMLBaseFontElement), GeckoElement = typeof(GeckoBaseFontElement) });
+            Classes.Add(new GeckoClassDesc() { TagName = "base", InterfaceType = typeof(nsIDOMHTMLBaseElement), GeckoElement = typeof(GeckoBaseElement) });            
             Classes.Add(new GeckoClassDesc() { TagName = "body", InterfaceType = typeof(nsIDOMHTMLBodyElement), GeckoElement = typeof(GeckoBodyElement) });
             Classes.Add(new GeckoClassDesc() { TagName = "br", InterfaceType = typeof(nsIDOMHTMLBRElement), GeckoElement = typeof(GeckoBRElement) });
             Classes.Add(new GeckoClassDesc() { TagName = "button", InterfaceType = typeof(nsIDOMHTMLButtonElement), GeckoElement = typeof(GeckoButtonElement) });
@@ -90,7 +89,7 @@ namespace Skybound.Gecko.DOM
         {
 			foreach (GeckoClassDesc GeckoClass in Classes)
 			{
-				if (nsString.Get(element.GetTagName).ToLower() == GeckoClass.TagName)
+				if (nsString.Get(element.GetTagNameAttribute).ToLower() == GeckoClass.TagName)
 				{  
 					object HTMLElement = Xpcom.QueryInterface(element,GeckoClass.InterfaceType.GUID);
 					if(HTMLElement != null)

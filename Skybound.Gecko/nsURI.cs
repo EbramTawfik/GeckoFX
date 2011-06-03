@@ -107,24 +107,24 @@ namespace Skybound.Gecko
 
 		[FieldOffset(0)]
 		nsIURI Instance;
-		
-		public string Spec { get { return nsString.Get(Instance.GetSpec); } set { nsString.Set(Instance.SetSpec, value); } }
-		public string PrePath { get { return nsString.Get(Instance.GetPrePath); } }
-		public string Scheme { get { return nsString.Get(Instance.GetScheme); } set { nsString.Set(Instance.SetScheme, value); } }
-		public string UserPass { get { return nsString.Get(Instance.GetUserPass); } set { nsString.Set(Instance.SetUserPass, value); } }
-		public string Username { get { return nsString.Get(Instance.GetUsername); } set { nsString.Set(Instance.SetUsername, value); } }
-		public string Password { get { return nsString.Get(Instance.GetPassword); } set { nsString.Set(Instance.SetPassword, value); } }
-		public string HostPort { get { return nsString.Get(Instance.GetHostPort); } set { nsString.Set(Instance.SetHostPort, value); } }
-		public string Host { get { return nsString.Get(Instance.GetHost); } set { nsString.Set(Instance.SetHost, value); } }
-		public int Port { get { return Instance.GetPort(); } set { Instance.SetPort(value); } }
-		public string Path { get { return nsString.Get(Instance.GetPath); } set { nsString.Set(Instance.SetPath, value); } }
+
+		public string Spec { get { return nsString.Get(Instance.GetSpecAttribute); } set { nsString.Set(Instance.SetSpecAttribute, value); } }
+		public string PrePath { get { return nsString.Get(Instance.GetPrePathAttribute); } }
+		public string Scheme { get { return nsString.Get(Instance.GetSchemeAttribute); } set { nsString.Set(Instance.SetSchemeAttribute, value); } }
+		public string UserPass { get { return nsString.Get(Instance.GetUserPassAttribute); } set { nsString.Set(Instance.SetUserPassAttribute, value); } }
+		public string Username { get { return nsString.Get(Instance.GetUsernameAttribute); } set { nsString.Set(Instance.SetUsernameAttribute, value); } }
+		public string Password { get { return nsString.Get(Instance.GetPasswordAttribute); } set { nsString.Set(Instance.SetPasswordAttribute, value); } }
+		public string HostPort { get { return nsString.Get(Instance.GetHostPortAttribute); } set { nsString.Set(Instance.SetHostPortAttribute, value); } }
+		public string Host { get { return nsString.Get(Instance.GetHostAttribute); } set { nsString.Set(Instance.SetHostAttribute, value); } }
+		public int Port { get { return Instance.GetPortAttribute(); } set { Instance.SetPortAttribute(value); } }
+		public string Path { get { return nsString.Get(Instance.GetPathAttribute); } set { nsString.Set(Instance.SetPathAttribute, value); } }
 		public bool SchemeIs(string s) { return Instance.SchemeIs(s); }
 		public bool Equals(nsURI uri) { return Instance.Equals(uri); }
 		public nsURI Clone() { return new nsURI(Instance.Clone()); }
-		public void Resolve(string relativePath, string resolved) { Instance.Resolve(new nsACString(relativePath), new nsACString(resolved)); }
-		public string AsciiSpec { get { return nsString.Get(Instance.GetAsciiSpec); } }
-		public string AsciiHost { get { return nsString.Get(Instance.GetAsciiHost); } }
-		public string OriginCharset { get { return nsString.Get(Instance.GetOriginCharset); } }
+		public void Resolve(string relativePath, string resolved) { resolved = Instance.Resolve(new nsAString(relativePath)).ToString(); }
+		public string AsciiSpec { get { return nsString.Get(Instance.GetAsciiSpecAttribute); } }
+		public string AsciiHost { get { return nsString.Get(Instance.GetAsciiHostAttribute); } }
+		public string OriginCharset { get { return nsString.Get(Instance.GetOriginCharsetAttribute); } }
 	}
 	
 }

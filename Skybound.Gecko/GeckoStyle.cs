@@ -65,8 +65,8 @@ namespace Skybound.Gecko
 		/// </summary>
 		public string CssText
 		{
-			get { return nsString.Get(StyleDelcaration.GetCssText); }
-			set { nsString.Set(StyleDelcaration.SetCssText, value); } 
+			get { return nsString.Get(StyleDelcaration.GetCssTextAttribute); }
+			set { nsString.Set(StyleDelcaration.SetCssTextAttribute, value); } 
 		}
 		
 		/// <summary>
@@ -74,7 +74,7 @@ namespace Skybound.Gecko
 		/// </summary>
 		public uint Length
 		{
-			get { return StyleDelcaration.GetLength(); }	
+			get { return StyleDelcaration.GetLengthAttribute(); }	
 		}
 		
 		/// <summary>
@@ -82,10 +82,8 @@ namespace Skybound.Gecko
 		/// </summary>		
 		public string this[int index]
 		{
-			get { 
-				nsAString retVal = new nsAString();
-				StyleDelcaration.Item(index, retVal);
-				return retVal.ToString();
+			get {
+				return StyleDelcaration.Item((uint)index).ToString();				
 			}
 		}
 		
@@ -93,10 +91,8 @@ namespace Skybound.Gecko
 		/// Get the value of a specfic Css Property.
 		/// </summary>		
 		public string GetPropertyValue(string propertyName)
-		{						
-			nsAString retVal = new nsAString();
-			StyleDelcaration.GetPropertyValue(new nsAString(propertyName), retVal);
-			return retVal.ToString();
+		{
+			return StyleDelcaration.GetPropertyValue(new nsAString(propertyName)).ToString();					
 		}
 		
 		/// <summary>
@@ -145,8 +141,8 @@ namespace Skybound.Gecko
 		/// </summary>
 		public bool Disabled
 		{
-			get { return _DomStyleSheet.GetDisabled(); }
-			set { _DomStyleSheet.SetDisabled(value); }
+			get { return _DomStyleSheet.GetDisabledAttribute(); }
+			set { _DomStyleSheet.SetDisabledAttribute(value); }
 		}
 		
 		/// <summary>
@@ -154,7 +150,7 @@ namespace Skybound.Gecko
 		/// </summary>
 		public string Href
 		{
-			get { return nsString.Get(_DomStyleSheet.GetHref); }
+			get { return nsString.Get(_DomStyleSheet.GetHrefAttribute); }
 		}
 		
 		/// <summary>
@@ -162,7 +158,7 @@ namespace Skybound.Gecko
 		/// </summary>
 		public GeckoStyleSheet ParentStyleSheet
 		{
-			get { return Create((nsIDOMCSSStyleSheet)_DomStyleSheet.GetParentStyleSheet()); }
+			get { return Create((nsIDOMCSSStyleSheet)_DomStyleSheet.GetParentStyleSheetAttribute()); }
 		}
 		
 		/// <summary>
@@ -170,7 +166,7 @@ namespace Skybound.Gecko
 		/// </summary>
 		public GeckoStyleRule OwnerRule
 		{
-			get { return GeckoStyleRule.Create((nsIDOMCSSRule)_DomStyleSheet.GetOwnerRule()); }
+			get { return GeckoStyleRule.Create((nsIDOMCSSRule)_DomStyleSheet.GetOwnerRuleAttribute()); }
 		}
 		
 		/// <summary>
@@ -179,7 +175,7 @@ namespace Skybound.Gecko
 		/// </summary>
 		public GeckoNode OwnerNode
 		{
-			get { return GeckoNode.Create(_DomStyleSheet.GetOwnerNode()); }
+			get { return GeckoNode.Create(_DomStyleSheet.GetOwnerNodeAttribute()); }
 		}
 		
 		public override string ToString()
@@ -216,8 +212,7 @@ namespace Skybound.Gecko
 				using (AutoJSContext context = new AutoJSContext())
 				{
 					nsIDOMCSSRuleList ret;
-					StyleSheet._DomStyleSheet.GetCssRules(out ret);
-					//return (StyleSheet._DomStyleSheet.GetCssRules(out ret) != 0) ? null : ret;
+					ret = StyleSheet._DomStyleSheet.GetCssRulesAttribute();					
 					return ret;
 				}
 			}
@@ -243,7 +238,7 @@ namespace Skybound.Gecko
 			/// </summary>
 			public int Count
 			{
-				get { return (List == null) ? 0 : List.GetLength(); }
+				get { return (List == null) ? 0 : (int)List.GetLengthAttribute(); }
 			}
 			
 			/// <summary>
@@ -258,7 +253,7 @@ namespace Skybound.Gecko
 					if (index < 0 || index >= Count)
 						throw new ArgumentOutOfRangeException("index");
 					
-					return GeckoStyleRule.Create(List.Item(index));
+					return GeckoStyleRule.Create(List.Item((uint)index));
 				}
 			}
 			
@@ -290,16 +285,7 @@ namespace Skybound.Gecko
 				
 				using (AutoJSContext context = new AutoJSContext())
 				{
-					int hresult = StyleSheet._DomStyleSheet.InsertRule(new nsAString(rule), index, out index);
-					
-					if (hresult == NS_ERROR_DOM_SYNTAX_ERR)
-					{
-						return -1;
-					}
-					else if (hresult != 0)
-					{
-						throw new COMException("", hresult);
-					}
+					index = (int)StyleSheet._DomStyleSheet.InsertRule(new nsAString(rule), (uint)index);										
 				}
 				
 				return index;
@@ -318,7 +304,7 @@ namespace Skybound.Gecko
 				
 				using (AutoJSContext context = new AutoJSContext())
 				{
-					StyleSheet._DomStyleSheet.DeleteRule(index);
+					StyleSheet._DomStyleSheet.DeleteRule((uint)index);
 				}
 			}
 			
@@ -333,7 +319,7 @@ namespace Skybound.Gecko
 				using (AutoJSContext context = new AutoJSContext())
 				{
 					for (int i = Count - 1; i >= 0; i--)
-						StyleSheet._DomStyleSheet.DeleteRule(i);
+						StyleSheet._DomStyleSheet.DeleteRule((uint)i);
 				}
 			}
 			
@@ -348,7 +334,7 @@ namespace Skybound.Gecko
 				int length = Count;
 				for (int i = 0; i < length; i++)
 				{
-					yield return GeckoStyleRule.Create((nsIDOMCSSRule)List.Item(i));
+					yield return GeckoStyleRule.Create((nsIDOMCSSRule)List.Item((uint)i));
 				}
 			}
 			
@@ -397,7 +383,7 @@ namespace Skybound.Gecko
 				nsIDOMCSSStyleRule rule = Xpcom.QueryInterface<nsIDOMCSSStyleRule>(DomStyleRule);
 				if (rule != null)
 				{
-					return nsString.Get(rule.GetSelectorText);
+					return nsString.Get(rule.GetSelectorTextAttribute);
 				}
 				return null;
 			}
@@ -408,7 +394,7 @@ namespace Skybound.Gecko
 		/// </summary>
 		public string CssText
 		{
-			get { return nsString.Get(_DomStyleRule.GetCssText); }
+			get { return nsString.Get(_DomStyleRule.GetCssTextAttribute); }
 		}
 		
 		/// <summary>
@@ -421,7 +407,7 @@ namespace Skybound.Gecko
 				nsIDOMCSSStyleRule rule = Xpcom.QueryInterface<nsIDOMCSSStyleRule>(DomStyleRule);
 				if (rule != null)
 				{
-					return nsString.Get(rule.GetStyle().GetCssText);
+					return nsString.Get(rule.GetStyleAttribute().GetCssTextAttribute);
 				}
 				return null;
 			}
@@ -430,7 +416,7 @@ namespace Skybound.Gecko
 				nsIDOMCSSStyleRule rule = Xpcom.QueryInterface<nsIDOMCSSStyleRule>(DomStyleRule);
 				if (rule != null)
 				{
-					nsString.Set(rule.GetStyle().SetCssText, value);
+					nsString.Set(rule.GetStyleAttribute().SetCssTextAttribute, value);
 				}
 				else
 				{
@@ -444,7 +430,7 @@ namespace Skybound.Gecko
 		/// </summary>
 		public GeckoStyleSheet ParentStyleSheet
 		{
-			get { return GeckoStyleSheet.Create((nsIDOMCSSStyleSheet)_DomStyleRule.GetParentStyleSheet()); }
+			get { return GeckoStyleSheet.Create((nsIDOMCSSStyleSheet)_DomStyleRule.GetParentStyleSheetAttribute()); }
 		}
 		
 		/// <summary>
@@ -457,7 +443,7 @@ namespace Skybound.Gecko
 				nsIDOMCSSImportRule rule = Xpcom.QueryInterface<nsIDOMCSSImportRule>(DomStyleRule);
 				if (rule != null)
 				{
-					return GeckoStyleSheet.Create((nsIDOMCSSStyleSheet)rule.GetStyleSheet());
+					return GeckoStyleSheet.Create((nsIDOMCSSStyleSheet)rule.GetStyleSheetAttribute());
 				}
 				return null;
 			}
@@ -473,7 +459,7 @@ namespace Skybound.Gecko
 				nsIDOMCSSImportRule rule = Xpcom.QueryInterface<nsIDOMCSSImportRule>(DomStyleRule);
 				if (rule != null)
 				{
-					return nsString.Get(rule.GetHref);
+					return nsString.Get(rule.GetHrefAttribute);
 				}
 				return null;
 			}
@@ -489,7 +475,7 @@ namespace Skybound.Gecko
 				nsIDOMCSSImportRule rule = Xpcom.QueryInterface<nsIDOMCSSImportRule>(DomStyleRule);
 				if (rule != null)
 				{
-					return new GeckoMediaList(rule.GetMedia());
+					return new GeckoMediaList(rule.GetMediaAttribute());
 				}
 				return null;
 			}
@@ -500,7 +486,7 @@ namespace Skybound.Gecko
 		/// </summary>
 		public GeckoRuleType RuleType
 		{
-			get { return (GeckoRuleType)_DomStyleRule.GetType(); }
+			get { return (GeckoRuleType)_DomStyleRule.GetTypeAttribute(); }
 		}
 		
 		public override string ToString()
@@ -525,7 +511,7 @@ namespace Skybound.Gecko
 		/// </summary>
 		public int Count
 		{
-			get { return MediaList.GetLength(); }
+			get { return (int)MediaList.GetLengthAttribute(); }
 		}
 		
 		/// <summary>
@@ -539,12 +525,8 @@ namespace Skybound.Gecko
 			{
 				if (index < 0 || index >= Count)
 					throw new ArgumentOutOfRangeException("index");
-				
-				using (nsAString str = new nsAString())
-				{
-					MediaList.Item(index, str);
-					return str.ToString();
-				}
+
+				return MediaList.Item((uint)index).ToString();				
 			}
 		}
 		
@@ -571,8 +553,8 @@ namespace Skybound.Gecko
 		/// </summary>
 		public string MediaText
 		{
-			get { return nsString.Get(MediaList.GetMediaText); }
-			set { nsString.Set(MediaList.SetMediaText, value); }
+			get { return nsString.Get(MediaList.GetMediaTextAttribute); }
+			set { nsString.Set(MediaList.SetMediaTextAttribute, value); }
 		}
 
 		public override string ToString()

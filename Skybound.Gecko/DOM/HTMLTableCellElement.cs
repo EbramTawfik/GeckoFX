@@ -6,113 +6,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 
 namespace Skybound.Gecko.DOM
-{
-	[Guid("a6cf90b7-15b3-11d2-932e-00805f8add32"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	interface nsIDOMHTMLTableCellElement : nsIDOMHTMLElement
-	{
-		#region Inherited Intefaces
-        // nsIDOMNode:
-        new void GetNodeName(nsAString aNodeName);
-        new void GetNodeValue(nsAString aNodeValue);
-        new void SetNodeValue(nsAString aNodeValue);
-        new ushort GetNodeType();
-        new nsIDOMNode GetParentNode();
-        new nsIDOMNodeList GetChildNodes();
-        new nsIDOMNode GetFirstChild();
-        new nsIDOMNode GetLastChild();
-        new nsIDOMNode GetPreviousSibling();
-        new nsIDOMNode GetNextSibling();
-        new nsIDOMNamedNodeMap GetAttributes();
-        new nsIDOMDocument GetOwnerDocument();
-        new nsIDOMNode InsertBefore(nsIDOMNode newChild, nsIDOMNode refChild);
-        new nsIDOMNode ReplaceChild(nsIDOMNode newChild, nsIDOMNode oldChild);
-        new nsIDOMNode RemoveChild(nsIDOMNode oldChild);
-        new nsIDOMNode AppendChild(nsIDOMNode newChild);
-        new bool HasChildNodes();
-        new nsIDOMNode CloneNode(bool deep);
-        new void Normalize();
-        new bool IsSupported(nsAString feature, nsAString version);
-        new void GetNamespaceURI(nsAString aNamespaceURI);
-        new void GetPrefix(nsAString aPrefix);
-        new void SetPrefix(nsAString aPrefix);
-        new void GetLocalName(nsAString aLocalName);
-        new bool HasAttributes();
-
-        // nsIDOMElement:
-        new void GetTagName(nsAString aTagName);
-        new void GetAttribute(nsAString name, nsAString _retval);
-        new void SetAttribute(nsAString name, nsAString value);
-        new void RemoveAttribute(nsAString name);
-        new nsIDOMAttr GetAttributeNode(nsAString name);
-        new nsIDOMAttr SetAttributeNode(nsIDOMAttr newAttr);
-        new nsIDOMAttr RemoveAttributeNode(nsIDOMAttr oldAttr);
-        new nsIDOMNodeList GetElementsByTagName(nsAString name);
-        new void GetAttributeNS(nsAString namespaceURI, nsAString localName, nsAString _retval);
-        new void SetAttributeNS(nsAString namespaceURI, nsAString qualifiedName, nsAString value);
-        new void RemoveAttributeNS(nsAString namespaceURI, nsAString localName);
-        new nsIDOMAttr GetAttributeNodeNS(nsAString namespaceURI, nsAString localName);
-        new nsIDOMAttr SetAttributeNodeNS(nsIDOMAttr newAttr);
-        new nsIDOMNodeList GetElementsByTagNameNS(nsAString namespaceURI, nsAString localName);
-        new bool HasAttribute(nsAString name);
-        new bool HasAttributeNS(nsAString namespaceURI, nsAString localName);
-
-        // nsIDOMHTMLElement:
-        new void GetId(nsAString aId);
-        new void SetId(nsAString aId);
-        new void GetTitle(nsAString aTitle);
-        new void SetTitle(nsAString aTitle);
-        new void GetLang(nsAString aLang);
-        new void SetLang(nsAString aLang);
-        new void GetDir(nsAString aDir);
-        new void SetDir(nsAString aDir);
-        new void GetClassName(nsAString aClassName);
-        new void SetClassName(nsAString aClassName);
-        #endregion
-		int GetCellIndex();
-
-		void GetAbbr(nsAString aAbbr);
-		void SetAbbr(nsAString aAbbr);
-
-		void GetAlign(nsAString aAlign);
-		void SetAlign(nsAString aAlign);
-
-		void GetAxis(nsAString aAxis);
-		void SetAxis(nsAString aAxis);
-
-		void GetBgColor(nsAString aBgColor);
-		void SetBgColor(nsAString aBgColor);
-
-		void GetCh(nsAString aCh);
-		void SetCh(nsAString aCh);
-
-		void GetChOff(nsAString aChOff);
-		void SetChOff(nsAString aChOff);
-
-		int GetColSpan();
-		void SetColSpan(int aColSpan);
-
-		void GetHeaders(nsAString aHeaders);
-		void SetHeaders(nsAString aHeaders);
-
-		void GetHeight(nsAString aHeight);
-		void SetHeight(nsAString aHeight);
-
-		bool GetNoWrap();
-		void SetNoWrap(bool aNoWrap);
-
-		int GetRowSpan();
-		void SetRowSpan(int aRowSpan);
-
-		void GetScope(nsAString aScope);
-		void SetScope(nsAString aScope);
-
-		void GetVAlign(nsAString aVAlign);
-		void SetVAlign(nsAString aVAlign);
-
-		void GetWidth(nsAString aWidth);
-		void SetWidth(nsAString aWidth);
-
-	}
+{	
 	public class GeckoTableCellElement : GeckoElement
 	{
 		nsIDOMHTMLTableCellElement DOMHTMLElement;
@@ -125,77 +19,77 @@ namespace Skybound.Gecko.DOM
 			this.DOMHTMLElement = element as nsIDOMHTMLTableCellElement;
 		}
 		public int CellIndex {
-			get { return DOMHTMLElement.GetCellIndex(); }
+			get { return DOMHTMLElement.GetCellIndexAttribute(); }
 		}
 
 		public string Abbr {
-			get { return nsString.Get(DOMHTMLElement.GetAbbr); }
-			set { DOMHTMLElement.SetAbbr(new nsAString(value)); }
+			get { return nsString.Get(DOMHTMLElement.GetAbbrAttribute); }
+			set { DOMHTMLElement.SetAbbrAttribute(new nsAString(value)); }
 		}
 
 		public string Align {
-			get { return nsString.Get(DOMHTMLElement.GetAlign); }
-			set { DOMHTMLElement.SetAlign(new nsAString(value)); }
+			get { return nsString.Get(DOMHTMLElement.GetAlignAttribute); }
+			set { DOMHTMLElement.SetAlignAttribute(new nsAString(value)); }
 		}
 
 		public string Axis {
-			get { return nsString.Get(DOMHTMLElement.GetAxis); }
-			set { DOMHTMLElement.SetAxis(new nsAString(value)); }
+			get { return nsString.Get(DOMHTMLElement.GetAxisAttribute); }
+			set { DOMHTMLElement.SetAxisAttribute(new nsAString(value)); }
 		}
 
 		public string BgColor {
-			get { return nsString.Get(DOMHTMLElement.GetBgColor); }
-			set { DOMHTMLElement.SetBgColor(new nsAString(value)); }
+			get { return nsString.Get(DOMHTMLElement.GetBgColorAttribute); }
+			set { DOMHTMLElement.SetBgColorAttribute(new nsAString(value)); }
 		}
 
 		public string Ch {
-			get { return nsString.Get(DOMHTMLElement.GetCh); }
-			set { DOMHTMLElement.SetCh(new nsAString(value)); }
+			get { return nsString.Get(DOMHTMLElement.GetChAttribute); }
+			set { DOMHTMLElement.SetChAttribute(new nsAString(value)); }
 		}
 
 		public string ChOff {
-			get { return nsString.Get(DOMHTMLElement.GetChOff); }
-			set { DOMHTMLElement.SetChOff(new nsAString(value)); }
+			get { return nsString.Get(DOMHTMLElement.GetChOffAttribute); }
+			set { DOMHTMLElement.SetChOffAttribute(new nsAString(value)); }
 		}
 
 		public int ColSpan {
-			get { return DOMHTMLElement.GetColSpan(); }
-			set { DOMHTMLElement.SetColSpan(value); }
+			get { return DOMHTMLElement.GetColSpanAttribute(); }
+			set { DOMHTMLElement.SetColSpanAttribute(value); }
 		}
 
 		public string Headers {
-			get { return nsString.Get(DOMHTMLElement.GetHeaders); }
-			set { DOMHTMLElement.SetHeaders(new nsAString(value)); }
+			get { return nsString.Get(DOMHTMLElement.GetHeadersAttribute); }
+			set { DOMHTMLElement.SetHeadersAttribute(new nsAString(value)); }
 		}
 
 		public string Height {
-			get { return nsString.Get(DOMHTMLElement.GetHeight); }
-			set { DOMHTMLElement.SetHeight(new nsAString(value)); }
+			get { return nsString.Get(DOMHTMLElement.GetHeightAttribute); }
+			set { DOMHTMLElement.SetHeightAttribute(new nsAString(value)); }
 		}
 
 		public bool NoWrap {
-			get { return DOMHTMLElement.GetNoWrap(); }
-			set { DOMHTMLElement.SetNoWrap(value); }
+			get { return DOMHTMLElement.GetNoWrapAttribute(); }
+			set { DOMHTMLElement.SetNoWrapAttribute(value); }
 		}
 
 		public int RowSpan {
-			get { return DOMHTMLElement.GetRowSpan(); }
-			set { DOMHTMLElement.SetRowSpan(value); }
+			get { return DOMHTMLElement.GetRowSpanAttribute(); }
+			set { DOMHTMLElement.SetRowSpanAttribute(value); }
 		}
 
 		public string Scope {
-			get { return nsString.Get(DOMHTMLElement.GetScope); }
-			set { DOMHTMLElement.SetScope(new nsAString(value)); }
+			get { return nsString.Get(DOMHTMLElement.GetScopeAttribute); }
+			set { DOMHTMLElement.SetScopeAttribute(new nsAString(value)); }
 		}
 
 		public string VAlign {
-			get { return nsString.Get(DOMHTMLElement.GetVAlign); }
-			set { DOMHTMLElement.SetVAlign(new nsAString(value)); }
+			get { return nsString.Get(DOMHTMLElement.GetVAlignAttribute); }
+			set { DOMHTMLElement.SetVAlignAttribute(new nsAString(value)); }
 		}
 
 		public string Width {
-			get { return nsString.Get(DOMHTMLElement.GetWidth); }
-			set { DOMHTMLElement.SetWidth(new nsAString(value)); }
+			get { return nsString.Get(DOMHTMLElement.GetWidthAttribute); }
+			set { DOMHTMLElement.SetWidthAttribute(new nsAString(value)); }
 		}
 
 	}

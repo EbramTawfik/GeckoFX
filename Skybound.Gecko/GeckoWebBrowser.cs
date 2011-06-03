@@ -112,7 +112,7 @@ namespace Skybound.Gecko
 		nsIWebBrowser WebBrowser;
 		nsIBaseWindow BaseWindow;
 		nsIWebNavigation WebNav;
-		int ChromeFlags;
+		uint ChromeFlags;
 
 		public nsIWebBrowserFocus WebBrowserFocus
 		{
@@ -148,8 +148,8 @@ namespace Skybound.Gecko
 				WebBrowserFocus = (nsIWebBrowserFocus)WebBrowser;
 				BaseWindow = (nsIBaseWindow)WebBrowser;
 				WebNav = (nsIWebNavigation)WebBrowser;
-				
-				WebBrowser.SetContainerWindow(this);
+
+				WebBrowser.SetContainerWindowAttribute(this);
 				
 				//int type = ((this.ChromeFlags & (int)GeckoWindowFlags.OpenAsChrome) != 0) ? nsIDocShellTreeItemConstants.typeChromeWrapper : nsIDocShellTreeItemConstants.typeContentWrapper;
 				
@@ -174,8 +174,8 @@ namespace Skybound.Gecko
 				
 				Guid nsIWebProgressListenerGUID = typeof(nsIWebProgressListener).GUID;
 				WebBrowser.AddWebBrowserListener(this, ref nsIWebProgressListenerGUID);
-				
-				nsIDOMEventTarget target = Xpcom.QueryInterface<nsIDOMWindow2>(WebBrowser.GetContentDOMWindow()).GetWindowRoot();
+
+				nsIDOMEventTarget target = Xpcom.QueryInterface<nsIDOMWindow2>(WebBrowser.GetContentDOMWindowAttribute()).GetWindowRootAttribute();
 				
 				target.AddEventListener(new nsAString("submit"), this, true);
 				target.AddEventListener(new nsAString("keydown"), this, true);
@@ -194,10 +194,10 @@ namespace Skybound.Gecko
 				target.AddEventListener(new nsAString("focus"), this, true);
 				
 				// history
-				if (WebNav.GetSessionHistory() != null)
-					WebNav.GetSessionHistory().AddSHistoryListener(this);
-				
-				BaseWindow.SetVisibility(true);
+				if (WebNav.GetSessionHistoryAttribute() != null)
+					WebNav.GetSessionHistoryAttribute().AddSHistoryListener(this);
+
+				BaseWindow.SetVisibilityAttribute(true);
 				
 				if ((this.ChromeFlags & (int)GeckoWindowFlags.OpenAsChrome) == 0)
 				{							
@@ -238,7 +238,7 @@ namespace Skybound.Gecko
 				{
 				      // obtain the services we need
 				      nsIAppShellService appShellService = Xpcom.GetService<nsIAppShellService>("@mozilla.org/appshell/appShellService;1");
-				      object appShell = Xpcom.GetService(new Guid("2d96b3df-c051-11d1-a827-0040959a28c9"));
+				      nsIAppShell appShell = (nsIAppShell)Xpcom.GetService(new Guid("2d96b3df-c051-11d1-a827-0040959a28c9"));
 				      
 				      // create the child window
 				      nsIXULWindow xulChild = appShellService.CreateTopLevelWindow(null, null, chromeFlags, -1, -1, appShell);
@@ -268,12 +268,13 @@ namespace Skybound.Gecko
 					if (e.WebBrowser != null)
 					{
 						// set flags
-						((nsIWebBrowserChrome)e.WebBrowser).SetChromeFlags((int)chromeFlags);
+						((nsIWebBrowserChrome)e.WebBrowser).SetChromeFlagsAttribute(chromeFlags);
 						return e.WebBrowser;
 					}
 									
 					nsIAppShellService appShellService = Xpcom.GetService<nsIAppShellService>("@mozilla.org/appshell/appShellService;1");
-					nsIXULWindow xulChild = appShellService.CreateTopLevelWindow(null, null, chromeFlags, -1, -1, appShellService);
+					nsIAppShell appShell = (nsIAppShell)Xpcom.GetService(new Guid("2d96b3df-c051-11d1-a827-0040959a28c9"));
+					nsIXULWindow xulChild = appShellService.CreateTopLevelWindow(null, null, chromeFlags, -1, -1, appShell);
 					return Xpcom.QueryInterface<nsIWebBrowserChrome>(xulChild);									
 				}
 				return null;
@@ -517,10 +518,11 @@ namespace Skybound.Gecko
 				nsIURI referrerUri = null;
 				if (!string.IsNullOrEmpty(referrer))
 				{
-					referrerUri = Xpcom.GetService<nsIIOService>("@mozilla.org/network/io-service;1").NewURI(new nsACString(referrer), null, null);
+					referrerUri = Xpcom.GetService<nsIIOService>("@mozilla.org/network/io-service;1").NewURI(new nsAString(referrer), null, null);
 				}
 				
-				return (WebNav.LoadURI(url, (uint)loadFlags, referrerUri, postDataStream, headersStream) != 0);
+				WebNav.LoadURI(url, (uint)loadFlags, referrerUri, postDataStream, headersStream);
+				return true;
 			}
 			else
 			{
@@ -548,48 +550,48 @@ namespace Skybound.Gecko
 			int Position;
 			
 			#region nsIInputStream Members
-			
+
 			public void Close()
 			{
 				// do nothing
 			}
 			
-			public int Available()
+			public uint Available()
 			{
-				return Data.Length - Position;
+				return (uint)(Data.Length - Position);
 			}
 			
-			public int Read(IntPtr aBuf, uint aCount)
+			public uint Read(IntPtr aBuf, uint aCount)
 			{
-				int count = (int)Math.Min(aCount, Available());
+				uint count = Math.Min(aCount, Available());
 				
 				if (count > 0)
 				{
-					Marshal.Copy(Data, Position, aBuf, count);
-					Position += count;
+					Marshal.Copy(Data, Position, aBuf, (int)count);
+					Position += (int)count;
 				}
 				
 				return count;
 			}
-			
-			public unsafe int ReadSegments(IntPtr aWriter, IntPtr aClosure, uint aCount)
+
+			public unsafe uint ReadSegments(nsWriteSegmentFun aWriter, IntPtr aClosure, uint aCount)
 			{
 				int length = (int)Math.Min(aCount, Available());
 				int writeCount = 0;
 				
 				if (length > 0)
 				{
-				      nsWriteSegmentFun fun = (nsWriteSegmentFun)Marshal.GetDelegateForFunctionPointer(aWriter, typeof(nsWriteSegmentFun));
+					nsWriteSegmentFun fun = aWriter;
 				      
-				      fixed (byte * data = &Data[Position])
-				      {
-						fun(this, aClosure, (IntPtr)data, Position, length, out writeCount);
-				      }
+					fixed (byte * data = &Data[Position])
+					{
+					fun(this, aClosure, (IntPtr)data, Position, length, out writeCount);
+					}
 				      
-				      Position += writeCount;
+					Position += writeCount;
 				}
 				
-				return writeCount;
+				return (uint)writeCount;
 			}
 
 			public bool IsNonBlocking()
@@ -759,8 +761,8 @@ namespace Skybound.Gecko
 			bool canGoForward = false;
 			if (WebNav != null)
 			{
-				canGoBack = WebNav.GetCanGoBack();
-				canGoForward = WebNav.GetCanGoForward();
+				canGoBack = WebNav.GetCanGoBackAttribute();
+				canGoForward = WebNav.GetCanGoForwardAttribute();
 			}
 			
 			if (_CanGoBack != canGoBack)
@@ -855,14 +857,11 @@ namespace Skybound.Gecko
 		}
 		nsIClipboardCommands _ClipboardCommands;
 		
-		delegate int CanPerformMethod(out bool result);
+		delegate bool CanPerformMethod();
 		
 		bool CanPerform(CanPerformMethod method)
 		{
-			bool result;
-			if (method(out result) != 0)
-				return false;
-			return result;
+			return method();			
 		}
 		
 		/// <summary>
@@ -1096,9 +1095,8 @@ namespace Skybound.Gecko
 			{
 				if (WebNav == null)
 					return null;
-				
-				IntPtr /*nsURI*/ IUnknownPtr =  WebNav.GetCurrentURI();
-				nsIURI locationComObject = (nsIURI)Marshal.GetObjectForIUnknown(IUnknownPtr); 
+
+				nsIURI locationComObject = WebNav.GetCurrentURIAttribute();				
 				nsURI location = new nsURI(locationComObject);
 				
 				if (!location.IsNull)
@@ -1122,12 +1120,11 @@ namespace Skybound.Gecko
 				if (WebNav == null)
 					return null;
 			
-				IntPtr /*nsIURI*/ IUnknownPtr =  WebNav.GetReferringURI();
-				nsIURI location = (nsIURI)Marshal.GetObjectForIUnknown(IUnknownPtr);
+				nsIURI location =  WebNav.GetReferringURIAttribute();				
 				
 				if (location != null)
 				{
-					return new Uri(nsString.Get(location.GetSpec));
+					return new Uri(nsString.Get(location.GetSpecAttribute));
 				}
 				
 				return new Uri("about:blank");
@@ -1147,7 +1144,7 @@ namespace Skybound.Gecko
 				
 				if (_Window == null)
 				{
-					_Window = GeckoWindow.Create((nsIDOMWindow)WebBrowser.GetContentDOMWindow());
+					_Window = GeckoWindow.Create((nsIDOMWindow)WebBrowser.GetContentDOMWindowAttribute());
 				}
 				return _Window;
 			}
@@ -1167,7 +1164,7 @@ namespace Skybound.Gecko
 				
 				if (_Document == null)
 				{
-					_Document = GeckoDocument.Create(Xpcom.QueryInterface<nsIDOMHTMLDocument>(WebBrowser.GetContentDOMWindow().GetDocument()));
+					_Document = GeckoDocument.Create(Xpcom.QueryInterface<nsIDOMHTMLDocument>(WebBrowser.GetContentDOMWindowAttribute().GetDocumentAttribute()));
 					//FromDOMDocumentTable.Add((nsIDOMDocument)_Document.DomObject, this);
 				}
 				return _Document;
@@ -1305,7 +1302,7 @@ namespace Skybound.Gecko
 			nsIWebBrowserPersist persist = Xpcom.QueryInterface<nsIWebBrowserPersist>(WebBrowser);
 			if (persist != null)
 			{
-				persist.SaveDocument((nsIDOMDocument)Document.DomObject, Xpcom.NewNativeLocalFile(filename), null,
+				persist.SaveDocument((nsIDOMDocument)Document.DomObject, (nsISupports)Xpcom.NewNativeLocalFile(filename), null,
 					outputMimeType, 0, 0);
 			}
 			else
@@ -1332,35 +1329,35 @@ namespace Skybound.Gecko
 		
 		#region nsIWebBrowserChrome Members
 
-		void nsIWebBrowserChrome.SetStatus(int statusType, string status)
+		void nsIWebBrowserChrome.SetStatus(uint statusType, string status)
 		{
-			this.StatusText = status;
+			this.StatusText = status;			
 		}
 
-		nsIWebBrowser nsIWebBrowserChrome.GetWebBrowser()
+		nsIWebBrowser nsIWebBrowserChrome.GetWebBrowserAttribute()
 		{
 			return this.WebBrowser;
 		}
 
-		void nsIWebBrowserChrome.SetWebBrowser(nsIWebBrowser webBrowser)
+		void nsIWebBrowserChrome.SetWebBrowserAttribute(nsIWebBrowser webBrowser)
 		{
 			this.WebBrowser = webBrowser;
 		}
 
-		int nsIWebBrowserChrome.GetChromeFlags()
+		System.UInt32 nsIWebBrowserChrome.GetChromeFlagsAttribute()
 		{
 			return this.ChromeFlags;
 		}
 
-		void nsIWebBrowserChrome.SetChromeFlags(int flags)
+		void nsIWebBrowserChrome.SetChromeFlagsAttribute(uint flags)
 		{
-			this.ChromeFlags = flags;
+			this.ChromeFlags = (uint)flags;
 		}
 		
 		void nsIWebBrowserChrome.DestroyBrowserWindow()
 		{
 			//throw new NotImplementedException();
-			OnWindowClosed(EventArgs.Empty);
+			OnWindowClosed(EventArgs.Empty);			
 		}
 		
 		#region public event EventHandler WindowClosed
@@ -1379,7 +1376,7 @@ namespace Skybound.Gecko
 				((EventHandler)this.Events[WindowClosedEvent])(this, e);
 		}
 		#endregion
-		
+
 		void nsIWebBrowserChrome.SizeBrowserTo(int cx, int cy)
 		{
 			OnWindowSetBounds(new GeckoWindowSetBoundsEventArgs(new Rectangle(0, 0, cx, cy), BoundsSpecified.Size));
@@ -1417,7 +1414,7 @@ namespace Skybound.Gecko
 		void nsIContextMenuListener2.OnShowContextMenu(uint aContextFlags, nsIContextMenuInfo info)
 		{
 			// if we don't have a target node, we can't do anything by default.  this happens in XUL forms (i.e. about:config)
-			if (info.GetTargetNode() == null)
+			if (info.GetTargetNodeAttribute() == null)
 				return;
 			
 			ContextMenu menu = new ContextMenu();
@@ -1461,7 +1458,7 @@ namespace Skybound.Gecko
 				MenuItem mnuSelectAll = new MenuItem("Select All");
 				mnuSelectAll.Click += delegate { SelectAll(); };
 				
-				GeckoDocument doc = GeckoDocument.Create((nsIDOMHTMLDocument)info.GetTargetNode().GetOwnerDocument());
+				GeckoDocument doc = GeckoDocument.Create((nsIDOMHTMLDocument)info.GetTargetNodeAttribute().GetOwnerDocumentAttribute());
 				
 				string viewSourceUrl = (doc == null) ? null : Convert.ToString(doc.Url);
 				
@@ -1484,32 +1481,24 @@ namespace Skybound.Gecko
 			
 			// get image urls
 			Uri backgroundImageSrc = null, imageSrc = null;
-			nsIURI src;
-			
-			if (info.GetBackgroundImageSrc(out src) == 0)
-			{
-				backgroundImageSrc = new Uri(new nsURI(src).Spec);
-			}
-			
-			if (info.GetImageSrc(out src) == 0)
-			{
-				imageSrc = new Uri(new nsURI(src).Spec);
-			}
+			nsIURI src = info.GetBackgroundImageSrcAttribute();			
+			backgroundImageSrc = new Uri(new nsURI(src).Spec);
+
+			src = info.GetImageSrcAttribute();			
+			imageSrc = new Uri(new nsURI(src).Spec);			
 			
 			// get associated link.  note that this needs to be done manually because GetAssociatedLink returns a non-zero
 			// result when no associated link is available, so an exception would be thrown by nsString.Get()
 			string associatedLink = null;
 			using (nsAString str = new nsAString())
 			{
-				if (info.GetAssociatedLink(str) == 0)
-				{
-					associatedLink = str.ToString();
-				}
+				info.GetAssociatedLinkAttribute(str);
+				associatedLink = str.ToString();
 			}
 			
 			GeckoContextMenuEventArgs e = new GeckoContextMenuEventArgs(
 				PointToClient(MousePosition), menu, associatedLink, backgroundImageSrc, imageSrc,
-				GeckoNode.Create(Xpcom.QueryInterface<nsIDOMNode>(info.GetTargetNode()))
+				GeckoNode.Create(Xpcom.QueryInterface<nsIDOMNode>(info.GetTargetNodeAttribute()))
 				);
 			
 			OnShowContextMenu(e);
@@ -1593,11 +1582,11 @@ namespace Skybound.Gecko
 			{
 				if (uuid == typeof(nsIDOMWindow).GUID)
 				{
-					obj = this.WebBrowser.GetContentDOMWindow();
+					obj = this.WebBrowser.GetContentDOMWindowAttribute();
 				}
 				else if (uuid == typeof(nsIDOMDocument).GUID)
 				{
-					obj = this.WebBrowser.GetContentDOMWindow().GetDocument();
+					obj = this.WebBrowser.GetContentDOMWindowAttribute().GetDocumentAttribute();
 				}
 			}
 			
@@ -1606,7 +1595,7 @@ namespace Skybound.Gecko
 			Marshal.QueryInterface(pUnk, ref uuid, out ppv);
 			
 			Marshal.Release(pUnk);
-			
+
 			return ppv;
 		}
 
@@ -1630,11 +1619,15 @@ namespace Skybound.Gecko
 				specified |= BoundsSpecified.Size;
 			}
 			
-			OnWindowSetBounds(new GeckoWindowSetBoundsEventArgs(new Rectangle(x, y, cx, cy), specified));
+			OnWindowSetBounds(new GeckoWindowSetBoundsEventArgs(new Rectangle(x, y, cx, cy), specified));			
 		}
-
-		void nsIEmbeddingSiteWindow.GetDimensions(uint flags, ref int x, ref int y, ref int cx, ref int cy)
+	
+		void nsIEmbeddingSiteWindow.GetDimensions(uint flags, out int x, out int y, out int cx, out int cy)
 		{
+			x = 0;
+			y = 0;
+			cx = 0;
+			cy = 0;
 			if ((flags & nsIEmbeddingSiteWindowConstants.DIM_FLAGS_POSITION) != 0)
 			{
 				Point pt = PointToScreen(Point.Empty);
@@ -1657,7 +1650,7 @@ namespace Skybound.Gecko
 			{
 				cx += nonClient.Width;
 				cy += nonClient.Height;
-			}
+			}			
 		}
 
 		void nsIEmbeddingSiteWindow.SetFocus()
@@ -1666,15 +1659,15 @@ namespace Skybound.Gecko
 			if (BaseWindow != null)
 			{
 				BaseWindow.SetFocus();
-			}
+			}			
 		}
 
-		bool nsIEmbeddingSiteWindow.GetVisibility()
+		bool nsIEmbeddingSiteWindow.GetVisibilityAttribute()
 		{
 			return Visible;
 		}
 
-		void nsIEmbeddingSiteWindow.SetVisibility(bool aVisibility)
+		void nsIEmbeddingSiteWindow.SetVisibilityAttribute(bool aVisibility)
 		{
 			//if (aVisibility)
 			//{
@@ -1688,17 +1681,17 @@ namespace Skybound.Gecko
 			Visible = aVisibility;
 		}
 
-		string nsIEmbeddingSiteWindow.GetTitle()
+		string nsIEmbeddingSiteWindow.GetTitleAttribute()
 		{
 			return DocumentTitle;
 		}
 
-		void nsIEmbeddingSiteWindow.SetTitle(string aTitle)
+		void nsIEmbeddingSiteWindow.SetTitleAttribute(string aTitle)
 		{
 			DocumentTitle = aTitle;
 		}
 
-		IntPtr nsIEmbeddingSiteWindow.GetSiteWindow()
+		IntPtr nsIEmbeddingSiteWindow.GetSiteWindowAttribute()
 		{
 			return Handle;
 		}
@@ -1712,44 +1705,44 @@ namespace Skybound.Gecko
 			(this as nsIEmbeddingSiteWindow).SetDimensions(flags, x, y, cx, y);
 		}
 
-		void nsIEmbeddingSiteWindow2.GetDimensions(uint flags, ref int x, ref int y, ref int cx, ref int cy)
+		void nsIEmbeddingSiteWindow2.GetDimensions(uint flags, out int x, out int y, out int cx, out int cy)
 		{
-			(this as nsIEmbeddingSiteWindow).GetDimensions(flags, ref x, ref y, ref cx, ref y);
+			(this as nsIEmbeddingSiteWindow).GetDimensions(flags, out x, out y, out cx, out cy);
 		}
 
 		void nsIEmbeddingSiteWindow2.SetFocus()
 		{
-			(this as nsIEmbeddingSiteWindow).SetFocus();
+			(this as nsIEmbeddingSiteWindow).SetFocus();			
 		}
 
-		bool nsIEmbeddingSiteWindow2.GetVisibility()
+		bool nsIEmbeddingSiteWindow2.GetVisibilityAttribute()
 		{
-			return (this as nsIEmbeddingSiteWindow).GetVisibility();
+			return (this as nsIEmbeddingSiteWindow).GetVisibilityAttribute();
 		}
 
-		void nsIEmbeddingSiteWindow2.SetVisibility(bool aVisibility)
+		void nsIEmbeddingSiteWindow2.SetVisibilityAttribute(bool aVisibility)
 		{
-			(this as nsIEmbeddingSiteWindow).SetVisibility(aVisibility);
+			(this as nsIEmbeddingSiteWindow).SetVisibilityAttribute(aVisibility);
 		}
 
-		string nsIEmbeddingSiteWindow2.GetTitle()
+		string nsIEmbeddingSiteWindow2.GetTitleAttribute()
 		{
-			return (this as nsIEmbeddingSiteWindow).GetTitle();
+			return (this as nsIEmbeddingSiteWindow).GetTitleAttribute();
 		}
 
-		void nsIEmbeddingSiteWindow2.SetTitle(string aTitle)
+		void nsIEmbeddingSiteWindow2.SetTitleAttribute(string aTitle)
 		{
-			(this as nsIEmbeddingSiteWindow).SetTitle(aTitle);
+			(this as nsIEmbeddingSiteWindow).SetTitleAttribute(aTitle);
 		}
 
-		IntPtr nsIEmbeddingSiteWindow2.GetSiteWindow()
+		IntPtr nsIEmbeddingSiteWindow2.GetSiteWindowAttribute()
 		{
-			return (this as nsIEmbeddingSiteWindow).GetSiteWindow();
+			return (this as nsIEmbeddingSiteWindow).GetSiteWindowAttribute();
 		}
-		
+
 		void nsIEmbeddingSiteWindow2.Blur()
 		{
-		      //throw new NotImplementedException();
+		      //throw new NotImplementedException();			
 		}
 
 		#endregion
@@ -1758,13 +1751,12 @@ namespace Skybound.Gecko
 
 		nsIWeakReference nsISupportsWeakReference.GetWeakReference()
 		{
-			return this;
+			return this;			
 		}
 
 		#endregion
 
-		#region nsIWeakReference Members
-
+		#region nsIWeakReference Members		
 		IntPtr nsIWeakReference.QueryReferent(ref Guid uuid)
 		{
 			IntPtr ppv, pUnk = Marshal.GetIUnknownForObject(this);
@@ -1783,7 +1775,7 @@ namespace Skybound.Gecko
 			{
 			      Marshal.Release(ppv);
 			}
-			
+
 			return ppv;
 		}
 
@@ -1791,7 +1783,7 @@ namespace Skybound.Gecko
 		
 		#region nsIWebProgressListener Members
 
-		void nsIWebProgressListener.OnStateChange(nsIWebProgress aWebProgress, nsIRequest aRequest, int aStateFlags, int aStatus)
+		void nsIWebProgressListener.OnStateChange(nsIWebProgress aWebProgress, nsIRequest aRequest, uint aStateFlags, int aStatus)
 		{
 			bool cancelled = false;
 			
@@ -1800,7 +1792,7 @@ namespace Skybound.Gecko
 				IsBusy = true;
 				
 				Uri uri;
-				Uri.TryCreate(nsString.Get(aRequest.GetName), UriKind.Absolute, out uri);
+				Uri.TryCreate(nsString.Get(aRequest.GetNameAttribute), UriKind.Absolute, out uri);
 				
 				GeckoNavigatingEventArgs ea = new GeckoNavigatingEventArgs(uri);
 				OnNavigating(ea);
@@ -1838,7 +1830,7 @@ namespace Skybound.Gecko
 				StatusText = "";
 			}
 		}
-		
+
 		void nsIWebProgressListener.OnProgressChange(nsIWebProgress aWebProgress, nsIRequest aRequest, int aCurSelfProgress, int aMaxSelfProgress, int aCurTotalProgress, int aMaxTotalProgress)
 		{
 			int nProgress = aCurTotalProgress;
@@ -1856,14 +1848,14 @@ namespace Skybound.Gecko
 		void nsIWebProgressListener.OnLocationChange(nsIWebProgress aWebProgress, nsIRequest aRequest, nsIURI aLocation)
 		{
 			// make sure we're loading the top-level window
-			nsIDOMWindow domWindow = aWebProgress.GetDOMWindow();
+			nsIDOMWindow domWindow = aWebProgress.GetDOMWindowAttribute();
 			if (domWindow != null)
 			{
-			      if (domWindow != domWindow.GetTop())
+			      if (domWindow != domWindow.GetTopAttribute())
 			            return;
 			}
-			
-			Uri uri = new Uri(nsString.Get(aLocation.GetSpec));
+
+			Uri uri = new Uri(nsString.Get(aLocation.GetSpecAttribute));
 			
 			OnNavigated(new GeckoNavigatedEventArgs(uri, new GeckoResponse(aRequest)));
 			UpdateCommandStatus();
@@ -1871,16 +1863,16 @@ namespace Skybound.Gecko
 
 		void nsIWebProgressListener.OnStatusChange(nsIWebProgress aWebProgress, nsIRequest aRequest, int aStatus, string aMessage)
 		{
-			if (aWebProgress.GetIsLoadingDocument())
+			if (aWebProgress.GetIsLoadingDocumentAttribute())
 			{
 				StatusText = aMessage;
 				UpdateCommandStatus();
 			}
 		}
 
-		void nsIWebProgressListener.OnSecurityChange(nsIWebProgress aWebProgress, nsIRequest aRequest, int aState)
+		void nsIWebProgressListener.OnSecurityChange(nsIWebProgress aWebProgress, nsIRequest aRequest, uint aState)
 		{
-			SetSecurityState((GeckoSecurityState) aState);
+			SetSecurityState((GeckoSecurityState) aState);				
 		}
 		
 		/// <summary>
@@ -1931,8 +1923,8 @@ namespace Skybound.Gecko
 		{
 			string type;
 			using (nsAString str = new nsAString())
-			{
-				e.GetType(str);
+			{				
+				e.GetTypeAttribute(str);
 				type = str.ToString();
 			}
 			
@@ -1960,6 +1952,7 @@ namespace Skybound.Gecko
 			
 			if (ea != null && ea.Cancelable && ea.Handled)
 				e.PreventDefault();
+			
 		}
 
 		#region public event GeckoDomKeyEventHandler DomKeyDown
@@ -2367,36 +2360,36 @@ namespace Skybound.Gecko
 				((GeckoHistoryPurgeEventHandler)this.Events[HistoryPurgeEvent])(this, e);
 		}
 		#endregion
-		
+
 		void nsISHistoryListener.OnHistoryNewEntry(nsIURI aNewURI)
 		{
-			OnHistoryNewEntry(new GeckoHistoryEventArgs(new Uri(nsString.Get(aNewURI.GetSpec))));
+			OnHistoryNewEntry(new GeckoHistoryEventArgs(new Uri(nsString.Get(aNewURI.GetSpecAttribute))));			
 		}
 
 		bool nsISHistoryListener.OnHistoryGoBack(nsIURI aBackURI)
 		{
-			GeckoHistoryEventArgs e = new GeckoHistoryEventArgs(new Uri(nsString.Get(aBackURI.GetSpec)));
+			GeckoHistoryEventArgs e = new GeckoHistoryEventArgs(new Uri(nsString.Get(aBackURI.GetSpecAttribute)));
 			OnHistoryGoBack(e);
 			return !e.Cancel;
 		}
 
 		bool nsISHistoryListener.OnHistoryGoForward(nsIURI aForwardURI)
 		{
-			GeckoHistoryEventArgs e = new GeckoHistoryEventArgs(new Uri(nsString.Get(aForwardURI.GetSpec)));
+			GeckoHistoryEventArgs e = new GeckoHistoryEventArgs(new Uri(nsString.Get(aForwardURI.GetSpecAttribute)));
 			OnHistoryGoForward(e);
 			return !e.Cancel;
 		}
 
 		bool nsISHistoryListener.OnHistoryReload(nsIURI aReloadURI, uint aReloadFlags)
 		{
-			GeckoHistoryEventArgs e = new GeckoHistoryEventArgs(new Uri(nsString.Get(aReloadURI.GetSpec)));
+			GeckoHistoryEventArgs e = new GeckoHistoryEventArgs(new Uri(nsString.Get(aReloadURI.GetSpecAttribute)));
 			OnHistoryReload(e);
 			return !e.Cancel;
 		}
 
 		bool nsISHistoryListener.OnHistoryGotoIndex(int aIndex, nsIURI aGotoURI)
 		{
-			GeckoHistoryGotoIndexEventArgs e = new GeckoHistoryGotoIndexEventArgs(new Uri(nsString.Get(aGotoURI.GetSpec)), aIndex);
+			GeckoHistoryGotoIndexEventArgs e = new GeckoHistoryGotoIndexEventArgs(new Uri(nsString.Get(aGotoURI.GetSpecAttribute)), aIndex);
 			OnHistoryGotoIndex(e);
 			return !e.Cancel;
 		}
@@ -2417,7 +2410,7 @@ namespace Skybound.Gecko
 			ToolTip = new ToolTipWindow();
 			ToolTip.Location = PointToScreen(new Point(aXCoords, aYCoords)) + new Size(0, 24);
 			ToolTip.Text = aTipText;
-			ToolTip.Show();
+			ToolTip.Show();			
 		}
 		
 		ToolTipWindow ToolTip;
@@ -2428,6 +2421,7 @@ namespace Skybound.Gecko
 			{
 				ToolTip.Close();
 			}
+			
 		}
 		
 		#region class ToolTipWindow : Form
