@@ -1483,7 +1483,6 @@
     <Compile Include="Xpcom.cs" />
     <Compile Include="GtkWrapperNoThread.cs" />
     <Compile Include="X11Structs.cs" />
-    <Compile Include="Xpcom\nsIMemory.cs" />
     <Compile Include="XULRunnerLocator.cs" />
     <Compile Include="OffScreenGeckoWebBrowser.cs">
       <SubType>Component</SubType>
