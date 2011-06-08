@@ -689,5 +689,926 @@ namespace GeckofxUnitTests
 			Assert.IsNotNull(instance);
 			Marshal.ReleaseComObject(instance);
 		}
+
+		[Test]
+		public void CreateInstance_CreatingPersonalDictionary_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<mozIPersonalDictionary>("@mozilla.org/spellchecker/personaldictionary;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingIl8nManager_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<mozISpellI18NManager>("@mozilla.org/spellchecker/i18nmanager;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingDocumentCharSet_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsIDocumentCharsetInfo>("@mozilla.org/document-charset-info;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingLocaleService_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsILocaleService>("@mozilla.org/intl/nslocaleservice;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingScriptableDateFormat_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsIScriptableDateFormat>("@mozilla.org/intl/scriptabledateformat;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingCollation_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsICollation>("@mozilla.org/intl/collation;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingCollationFactory_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsICollationFactory>("@mozilla.org/intl/collation-factory;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingDateTimeFormat_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsISupports>("@mozilla.org/intl/datetimeformat;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingLanguageAtomService_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsISupports>("@mozilla.org/intl/nslanguageatomservice;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);		
+		}
+
+		[Test]
+		public void CreateInstance_CreatingWin32Locale_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsISupports>("@mozilla.org/locale/win32-locale;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingSemanticUnitsScanner_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsISemanticUnitScanner>("@mozilla.org/intl/semanticunitscanner;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingLbek_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsISupports>("@mozilla.org/intl/lbrk;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingWbrk_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsISupports>("@mozilla.org/intl/wbrk;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingStringBundle_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsIStringBundleService>("@mozilla.org/intl/stringbundle;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+	
+		[Test]
+		public void CreateInstance_CreatingCharsetConverterManager_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsICharsetConverterManager>("@mozilla.org/charset-converter-manager;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingScriptableUnicodeConverter_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsIScriptableUnicodeConverter>("@mozilla.org/intl/scriptableunicodeconverter");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingTextToSubUri_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsITextToSubURI>("@mozilla.org/intl/texttosuburi;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingCharSetAlias_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsISupports>("@mozilla.org/intl/charsetalias;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingPlatformCharset_ReturnsValidInstance()
+		{
+			var instance = Xpcom.CreateInstance<nsISupports>("@mozilla.org/intl/platformcharset;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingUtf8ConverterService_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsISupports>("@mozilla.org/intl/utf8converterservice;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingConverterInputStream_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsIConverterInputStream>("@mozilla.org/intl/converter-input-stream;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingUnideDecoderWindows1252_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsISupports>("@mozilla.org/intl/unicode/decoder;1?charset=windows-1252");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingUnicodeDecoderISO8859_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsISupports>("@mozilla.org/intl/unicode/decoder;1?charset=ISO-8859-1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingEntityConverter_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsIEntityConverter>("@mozilla.org/intl/entityconverter;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingSaveAsCharset_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsISaveAsCharset>("@mozilla.org/intl/saveascharset;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingUnicodeNormalizer_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsIUnicodeNormalizer>("@mozilla.org/intl/unicodenormalizer;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingUniCharUtil_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsISupports>("@mozilla.org/intl/unicharutil;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingScriptableInterfaces_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsIScriptableInterfaces>("@mozilla.org/scriptableinterfaces;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingSciptError_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsIScriptError>("@mozilla.org/scripterror;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingJsLoader_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsISupports>("@mozilla.org/moz/jsloader;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingContextStackIterator_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsIJSContextStackIterator>("@mozilla.org/js/xpc/ContextStackIterator;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingStyleSheetService_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsIStyleSheetService>("@mozilla.org/content/style-sheet-service;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingDocumentLoaderFactory_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsIDocumentLoaderFactory>("@mozilla.org/content/document-loader-factory;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingTransformiixNodeSet_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<txINodeSet>("@mozilla.org/transformiix-nodeset;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingZipWriter_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsIZipWriter>("@mozilla.org/zipwriter;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingPrefLocalizedString_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsIPrefLocalizedString>("@mozilla.org/pref-localizedstring;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingPreferencesService_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsIPrefBranch>("@mozilla.org/preferences-service;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingPrefRelativeFile_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsIRelativeFilePref>("@mozilla.org/pref-relativefile;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingPluginHost_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsIPluginHost>("@mozilla.org/plugin/host;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingThirdPartyUtil_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<mozIThirdPartyUtil>("@mozilla.org/thirdpartyutil;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingPermissionManager_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsIPermissionManager>("@mozilla.org/permissionmanager;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingSecureBrowser_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsISecureBrowserUI>("@mozilla.org/secure_browser_ui;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingStrictTransportService_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsIStrictTransportSecurityService>("@mozilla.org/stsservice;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingMimeInpurtStream_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsIMIMEInputStream>("@mozilla.org/network/mime-input-stream;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingCookiePermission_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsICookiePermission>("@mozilla.org/cookie/permission;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingTxtToHtmlConv_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<mozITXTToHTMLConv>("@mozilla.org/txttohtmlconv;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingDirIndexParser_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsIDirIndexParser>("@mozilla.org/dirIndexParser;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingHtmlFragmentSink_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsISupports>("@mozilla.org/layout/htmlfragmentsink;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingHtmlFragmentsSink2_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsISupports>("@mozilla.org/layout/htmlfragmentsink;2");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingHtmlParanoidGragmentSink_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsISupports>("@mozilla.org/htmlparanoidfragmentsink;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingHtmlParanoidGragmentSink2_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsISupports>("@mozilla.org/htmlparanoidfragmentsink;2");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingXmlFragment_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsISupports>("@mozilla.org/layout/xmlfragmentsink;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingParserService_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsISupports>("@mozilla.org/parser/parser-service;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingSaxParserAttributes_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsISAXAttributes>("@mozilla.org/saxparser/attributes;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingSaxParserXmlReader_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsISAXXMLReader>("@mozilla.org/saxparser/xmlreader;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingSecurityWarningDialogs_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsISecurityWarningDialogs>("@mozilla.org/nsSecurityWarningDialogs;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingASN1Tree_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsIASN1Tree>("@mozilla.org/security/nsASN1Tree;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingPkiParamBlocl_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsIPKIParamBlock>("@mozilla.org/security/pkiparamblock;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingCertificateDialogs_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsICertificateDialogs>("@mozilla.org/nsCertificateDialogs;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingCertPickDialog_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsICertPickDialogs>("@mozilla.org/nsCertPickDialogs;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingAlertsService_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsIAlertsService>("@mozilla.org/alerts-service;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingSystemInfo_ReturnsValidInstance()
+		{	
+			var instance = Xpcom.CreateInstance<nsISupports>("@mozilla.org/system-info;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingFindService_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsIFindService>("@mozilla.org/find/find_service;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingLoginInfo_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsILoginInfo>("@mozilla.org/login-manager/loginInfo;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingLoginManager_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsILoginManager>("@mozilla.org/login-manager;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingJSPerf_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsISupports>("@mozilla.org/jsperf;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingUserInfo_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsIUserInfo>("@mozilla.org/userinfo;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingAppShellComponentBrowserStatusFilter_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsISupports>("@mozilla.org/appshell/component/browser-status-filter;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingProfileMigrator_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsIProfileMigrator>("@mozilla.org/toolkit/profile-migrator;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingCrashReporter_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsICrashReporter>("@mozilla.org/toolkit/crash-reporter;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingUriLoader_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsIURILoader>("@mozilla.org/uriloader;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingExternalHelperAppService_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsIExternalHelperAppService>("@mozilla.org/uriloader/external-helper-app-service;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingHelperAppLauncherDialog_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsIHelperAppLauncherDialog>("@mozilla.org/helperapplauncherdialog;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingPrefetchService_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsIPrefetchService>("@mozilla.org/prefetch-service;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingDebug_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsIDebug>("@mozilla.org/xpcom/debug;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingConsoleService_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsIConsoleService>("@mozilla.org/consoleservice;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingErrorService_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsIErrorService>("@mozilla.org/xpcom/error-service;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingExceptionService_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsIExceptionService>("@mozilla.org/exceptionservice;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingUuidGenerator_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsIUUIDGenerator>("@mozilla.org/uuid-generator;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingVersionComparator_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsIVersionComparator>("@mozilla.org/xpcom/version-comparator;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingDirectoryService_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsIDirectoryService>("@mozilla.org/file/directory_service;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingFileLocal_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsILocalFile>("@mozilla.org/file/local;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingCategoryManager_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsICategoryManager>("@mozilla.org/categorymanager;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingProperties_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsIProperties>("@mozilla.org/properties;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingArray_ReturnsValidInstance()
+		{			 
+			var instance = Xpcom.CreateInstance<nsIArray>("@mozilla.org/array;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingObserverService_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsIObserverService>("@mozilla.org/observer-service;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingIoUtil_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsIIOUtil>("@mozilla.org/io-util;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingCycleCollector_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsICycleCollectorListener>("@mozilla.org/cycle-collector-logger;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingSupportsId_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsISupportsID>("@mozilla.org/supports-id;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingSupportsCString_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsISupportsCString>("@mozilla.org/supports-cstring;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingSupportsString_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsISupportsString>("@mozilla.org/supports-string;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingAtomService_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsIAtomService>("@mozilla.org/atom-service;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingByteBuffer_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsISupports>("@mozilla.org/byte-buffer;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingIniParserFactory_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsIINIParserFactory>("@mozilla.org/xpcom/ini-parser-factory;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingPersistentProperties_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsIPersistentProperties>("@mozilla.org/persistent-properties;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingRecyclingAllocator_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsIRecyclingAllocator>("@mozilla.org/recycling-allocator;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingSupportsArray_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsISupportsArray>("@mozilla.org/supports-array;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingVariant_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsIVariant>("@mozilla.org/variant;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingWindowsRegistryKey_ReturnsValidInstance()
+		{			 
+			var instance = Xpcom.CreateInstance<nsIWindowsRegKey>("@mozilla.org/windows-registry-key;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingMemoryService_ReturnsValidInstance()
+		{			 
+			var instance = Xpcom.CreateInstance<nsIMemory>("@mozilla.org/xpcom/memory-service;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingBinaryOutputStream_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsIBinaryOutputStream>("@mozilla.org/binaryoutputstream;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingBinaryInputStream_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsIBinaryInputStream>("@mozilla.org/binaryinputstream;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingFastLoadService_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsIFastLoadService>("@mozilla.org/fast-load-service;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingMultiplexInputStream_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsIMultiplexInputStream>("@mozilla.org/io/multiplex-input-stream;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingPipe_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsIPipe>("@mozilla.org/pipe;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingScriptableInputStream_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsIScriptableInputStream>("@mozilla.org/scriptableinputstream;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingStorageStream_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsIStorageStream>("@mozilla.org/storagestream;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingGeolocationProvider_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsIGeolocationProvider>("@mozilla.org/geolocation/provider;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingEnvironment_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsIEnvironment>("@mozilla.org/process/environment;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingProcessUtil_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsIProcess>("@mozilla.org/process/util;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingTimer_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsITimer>("@mozilla.org/timer;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingAppShellService_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsIAppShellService>("@mozilla.org/appshell/appShellService;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingPopupWindowManager_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsIPopupWindowManager>("@mozilla.org/PopupWindowManager;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingWindowMediator_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsIWindowMediator>("@mozilla.org/appshell/window-mediator;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void CreateInstance_CreatingHttpIndexService_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.CreateInstance<nsIHTTPIndex>("@mozilla.org/browser/httpindex-service;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
 	}
 }
