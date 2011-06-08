@@ -11,7 +11,7 @@ namespace GeckoFxTest
 {
 	class MainClass
 	{
-		//[STAThread]
+		[STAThread]
 		public static void Main(string[] args)
 		{
 #if GTK
