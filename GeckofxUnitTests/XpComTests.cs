@@ -35,7 +35,7 @@ namespace GeckofxUnitTests
 			Assert.IsFalse(memory == IntPtr.Zero);
 			Xpcom.Free(memory);
 		}
-
+#region CreateInstance Unittests
 		[Test]
 		public void CreateInstance_CreatingnsWebBrowser_ReturnsValidInstance()
 		{
@@ -1609,6 +1609,65 @@ namespace GeckofxUnitTests
 			Assert.IsNotNull(instance);
 			Marshal.ReleaseComObject(instance);
 		}
+#endregion
 
+#region GetService Unittests
+		[Test]
+		public void GetIoService_CleanXpComInstance_ReturnsValidInstance()
+		{
+			var instance = Xpcom.GetService<nsIIOService>("@mozilla.org/network/io-service;1");
+			Assert.IsNotNull(instance);
+		}
+
+		[Test]
+		public void GetJsRuntimeService_CleanXpComInstance_ReturnsValidInstance()
+		{		
+			nsIJSRuntimeService instance = Xpcom.GetService<nsIJSRuntimeService>("@mozilla.org/js/xpc/RuntimeService;1");
+			Assert.IsNotNull(instance);
+		}
+
+		[Test]
+		public void GetJsContextStack_CleanXpComInstance_ReturnsValidInstance()
+		{			
+			var instance = Xpcom.GetService<nsIJSContextStack>("@mozilla.org/js/xpc/ContextStack;1");
+			Assert.IsNotNull(instance);
+		}
+
+		[Test]
+		public void GetScriptSecurityManager_CleanXpComInstance_ReturnsValidInstance()
+		{
+			var instance = Xpcom.GetService<nsIScriptSecurityManager>("@mozilla.org/scriptsecuritymanager;1");
+			Assert.IsNotNull(instance);
+		}
+
+		[Test]
+		public void GetPreferencesService_CleanXpComInstance_ReturnsValidInstance()
+		{
+			var instance = Xpcom.GetService<nsIPrefService>("@mozilla.org/preferences-service;1");
+			Assert.IsNotNull(instance);
+		}
+
+		[Test]
+		public void GetWindowWatcher_CleanXpComInstance_ReturnsValidInstance()
+		{
+			var instance = Xpcom.GetService<nsIWindowWatcher>("@mozilla.org/embedcomp/window-watcher;1");
+			Assert.IsNotNull(instance);
+		}
+
+		[Test]
+		public void GetAppShellService_CleanXpComInstance_ReturnsValidInstance()
+		{
+			var instance = Xpcom.GetService<nsIAppShellService>("@mozilla.org/appshell/appShellService;1");
+			Assert.IsNotNull(instance);
+		}
+
+		[Test]
+		public void GetAppShell_CleanXpComInstance_ReturnsValidInstance()
+		{
+			System.IntPtr ptr = (IntPtr)Xpcom.GetService(new Guid("2d96b3df-c051-11d1-a827-0040959a28c9"));
+			var instance = (nsIAppShell)Marshal.GetObjectForIUnknown(ptr);
+			Assert.IsNotNull(instance);						
+		}
+#endregion
 	}
 }
