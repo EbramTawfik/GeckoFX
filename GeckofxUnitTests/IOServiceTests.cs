@@ -28,6 +28,34 @@ namespace GeckofxUnitTests
 		}
 
 		[Test]
+		public void AllowPort_TelnetPort_ReturnsUnsafe()
+		{
+			Assert.IsFalse(m_instance.AllowPort(23, String.Empty));
+		}
+
+		[Test]
+		public void GetOfflineAttribute_NotOffline_ReturnsFalse()
+		{
+			Assert.IsFalse(m_instance.GetOfflineAttribute());
+		}
+
+		[Test]
+		public void GetProtocalFlags_CompareValidAndInvalidProtocoals_ProtocolFlagsDiffer()
+		{
+			// Expect http to be non zero
+			Assert.AreNotEqual(0, m_instance.GetProtocolFlags("http"));
+			// Expect http flag values to be different from invalid protocol
+			Assert.AreNotEqual(m_instance.GetProtocolFlags("http"), m_instance.GetProtocolFlags("nonexistantprotocaol"));
+		}
+
+		[Test]
+		public void GetProtocolHandler_HandlerForHttp_ReturnsValidHandlerInstance()
+		{
+			nsIProtocolHandler handler = m_instance.GetProtocolHandler("http");
+			Assert.IsNotNull(handler);
+		}
+
+		[Test]
 		public void NewURI_BadUri_ThrowsMalformedUriException()
 		{
 			string referrer = "somejunk";
@@ -39,6 +67,17 @@ namespace GeckofxUnitTests
 		{
 			string referrer = "http://www.google.co.uk";
 			nsIURI result = m_instance.NewURI(new nsAUTF8String(referrer), null, null);
+		}
+
+		[Test]
+		[Ignore("SetOfflineAttribute(true) hangs")]
+		public void SetOfflineAttribute_SwitchingAttributeOnAndOff_ShouldChangeState()
+		{
+			Assert.IsFalse(m_instance.GetOfflineAttribute());
+			m_instance.SetOfflineAttribute(true);
+			Assert.IsTrue(m_instance.GetOfflineAttribute());
+			m_instance.SetOfflineAttribute(false);
+			Assert.IsFalse(m_instance.GetOfflineAttribute());
 		}
 	}
 }
