@@ -1668,6 +1668,13 @@ namespace GeckofxUnitTests
 			var instance = (nsIAppShell)Marshal.GetObjectForIUnknown(ptr);
 			Assert.IsNotNull(instance);						
 		}
+
+		[Test]
+		public void GetAppInfo_CleanXpComInstance_ReturnsValidInstance()
+		{
+			var instance = Xpcom.GetService<nsIXULRuntime>("@mozilla.org/xre/app-info;1");
+			Assert.IsNotNull(instance);			
+		}
 #endregion
 	}
 }
