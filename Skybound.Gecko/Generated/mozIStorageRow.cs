@@ -59,9 +59,9 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member GetUTF8String </summary>
 		/// <param name='aIndex'> </param>
-		/// <returns>A nsAString</returns>
+		/// <returns>A nsAUTF8String</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsAString GetUTF8String(System.UInt32  aIndex);
+		new nsAUTF8String GetUTF8String(System.UInt32  aIndex);
 		
 		/// <summary>Member GetString </summary>
 		/// <param name='aIndex'> </param>
@@ -115,6 +115,6 @@ namespace Skybound.Gecko
 		/// <param name='aName'> </param>
 		/// <returns>A nsIVariant</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant GetResultByName([MarshalAs(UnmanagedType.LPStruct)] nsAString  aName);
+		nsIVariant GetResultByName([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName);
 	}
 }

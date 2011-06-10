@@ -52,7 +52,7 @@ namespace Skybound.Gecko
 		/// <param name='aFailoverProxy'> </param>
 		/// <returns>A nsIProxyInfo</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIProxyInfo NewProxyInfo([MarshalAs(UnmanagedType.LPStruct)] nsAString  aType, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aHost, System.Int32  aPort, System.UInt32  aFlags, System.UInt32  aFailoverTimeout, [MarshalAs(UnmanagedType.Interface)] nsIProxyInfo  aFailoverProxy);
+		nsIProxyInfo NewProxyInfo([MarshalAs(UnmanagedType.LPStruct)] nsAString  aType, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aHost, System.Int32  aPort, System.UInt32  aFlags, System.UInt32  aFailoverTimeout, [MarshalAs(UnmanagedType.Interface)] nsIProxyInfo  aFailoverProxy);
 		
 		/// <summary>Member GetFailoverForProxy </summary>
 		/// <param name='aProxyInfo'> </param>

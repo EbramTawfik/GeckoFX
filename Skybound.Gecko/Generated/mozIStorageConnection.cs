@@ -67,7 +67,7 @@ namespace Skybound.Gecko
 		/// <summary>Member GetLastErrorStringAttribute </summary>
 		/// <param name='aLastErrorString'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetLastErrorStringAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aLastErrorString);
+		void GetLastErrorStringAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aLastErrorString);
 		
 		/// <summary>Member GetSchemaVersionAttribute </summary>
 		/// <returns>A System.Int32 </returns>
@@ -83,18 +83,18 @@ namespace Skybound.Gecko
 		/// <param name='aSQLStatement'> </param>
 		/// <returns>A mozIStorageStatement</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		mozIStorageStatement CreateStatement([MarshalAs(UnmanagedType.LPStruct)] nsAString  aSQLStatement);
+		mozIStorageStatement CreateStatement([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aSQLStatement);
 		
 		/// <summary>Member CreateAsyncStatement </summary>
 		/// <param name='aSQLStatement'> </param>
 		/// <returns>A mozIStorageAsyncStatement</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		mozIStorageAsyncStatement CreateAsyncStatement([MarshalAs(UnmanagedType.LPStruct)] nsAString  aSQLStatement);
+		mozIStorageAsyncStatement CreateAsyncStatement([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aSQLStatement);
 		
 		/// <summary>Member ExecuteSimpleSQL </summary>
 		/// <param name='aSQLStatement'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ExecuteSimpleSQL([MarshalAs(UnmanagedType.LPStruct)] nsAString  aSQLStatement);
+		void ExecuteSimpleSQL([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aSQLStatement);
 		
 		/// <summary>Member ExecuteAsync </summary>
 		/// <param name='aStatements'> </param>
@@ -108,13 +108,13 @@ namespace Skybound.Gecko
 		/// <param name='aTableName'> </param>
 		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool TableExists([MarshalAs(UnmanagedType.LPStruct)] nsAString  aTableName);
+		bool TableExists([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aTableName);
 		
 		/// <summary>Member IndexExists </summary>
 		/// <param name='aIndexName'> </param>
 		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IndexExists([MarshalAs(UnmanagedType.LPStruct)] nsAString  aIndexName);
+		bool IndexExists([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aIndexName);
 		
 		/// <summary>Member GetTransactionInProgressAttribute </summary>
 		/// <returns>A System.Boolean </returns>
@@ -149,19 +149,19 @@ namespace Skybound.Gecko
 		/// <param name='aNumArguments'> </param>
 		/// <param name='aFunction'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CreateFunction([MarshalAs(UnmanagedType.LPStruct)] nsAString  aFunctionName, System.Int32  aNumArguments, mozIStorageFunction  aFunction);
+		void CreateFunction([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aFunctionName, System.Int32  aNumArguments, mozIStorageFunction  aFunction);
 		
 		/// <summary>Member CreateAggregateFunction </summary>
 		/// <param name='aFunctionName'> </param>
 		/// <param name='aNumArguments'> </param>
 		/// <param name='aFunction'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CreateAggregateFunction([MarshalAs(UnmanagedType.LPStruct)] nsAString  aFunctionName, System.Int32  aNumArguments, mozIStorageAggregateFunction  aFunction);
+		void CreateAggregateFunction([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aFunctionName, System.Int32  aNumArguments, mozIStorageAggregateFunction  aFunction);
 		
 		/// <summary>Member RemoveFunction </summary>
 		/// <param name='aFunctionName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveFunction([MarshalAs(UnmanagedType.LPStruct)] nsAString  aFunctionName);
+		void RemoveFunction([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aFunctionName);
 		
 		/// <summary>Member SetProgressHandler </summary>
 		/// <param name='aGranularity'> </param>
@@ -179,6 +179,6 @@ namespace Skybound.Gecko
 		/// <param name='aIncrement'> </param>
 		/// <param name='aDatabaseName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetGrowthIncrement(System.Int32  aIncrement, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aDatabaseName);
+		void SetGrowthIncrement(System.Int32  aIncrement, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aDatabaseName);
 	}
 }

@@ -84,9 +84,9 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member GetPropertyAsAUTF8String </summary>
 		/// <param name='prop'> </param>
-		/// <returns>A nsAString</returns>
+		/// <returns>A nsAUTF8String</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetPropertyAsAUTF8String([MarshalAs(UnmanagedType.LPStruct)] nsAString prop);
+		nsAUTF8String GetPropertyAsAUTF8String([MarshalAs(UnmanagedType.LPStruct)] nsAString prop);
 		
 		/// <summary>Member GetPropertyAsBool </summary>
 		/// <param name='prop'> </param>

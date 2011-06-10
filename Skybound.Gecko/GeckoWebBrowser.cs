@@ -518,7 +518,7 @@ namespace Skybound.Gecko
 				nsIURI referrerUri = null;
 				if (!string.IsNullOrEmpty(referrer))
 				{
-					referrerUri = Xpcom.GetService<nsIIOService>("@mozilla.org/network/io-service;1").NewURI(new nsAString(referrer), null, null);
+					referrerUri = Xpcom.GetService<nsIIOService>("@mozilla.org/network/io-service;1").NewURI(new nsAUTF8String(referrer), null, null);
 				}
 				
 				WebNav.LoadURI(url, (uint)loadFlags, referrerUri, postDataStream, headersStream);

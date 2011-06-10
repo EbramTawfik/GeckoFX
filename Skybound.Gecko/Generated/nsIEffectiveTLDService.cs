@@ -45,13 +45,13 @@ namespace Skybound.Gecko
 		/// <param name='aHost'> </param>
 		/// <returns>A nsAString</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetPublicSuffixFromHost([MarshalAs(UnmanagedType.LPStruct)] nsAString  aHost);
+		nsAString GetPublicSuffixFromHost([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aHost);
 		
 		/// <summary>Member GetBaseDomainFromHost </summary>
 		/// <param name='aHost'> </param>
 		/// <param name='aAdditionalParts'> </param>
 		/// <returns>A nsAString</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetBaseDomainFromHost([MarshalAs(UnmanagedType.LPStruct)] nsAString  aHost, System.UInt32  aAdditionalParts);
+		nsAString GetBaseDomainFromHost([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aHost, System.UInt32  aAdditionalParts);
 	}
 }

@@ -59,20 +59,20 @@ namespace Skybound.Gecko
 		/// <param name='aZipEntry'> </param>
 		/// <returns>A nsIZipEntry</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIZipEntry GetEntry([MarshalAs(UnmanagedType.LPStruct)] nsAString  aZipEntry);
+		nsIZipEntry GetEntry([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aZipEntry);
 		
 		/// <summary>Member HasEntry </summary>
 		/// <param name='aZipEntry'> </param>
 		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool HasEntry([MarshalAs(UnmanagedType.LPStruct)] nsAString  aZipEntry);
+		bool HasEntry([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aZipEntry);
 		
 		/// <summary>Member AddEntryDirectory </summary>
 		/// <param name='aZipEntry'> </param>
 		/// <param name='aModTime'> </param>
 		/// <param name='aQueue'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddEntryDirectory([MarshalAs(UnmanagedType.LPStruct)] nsAString  aZipEntry, System.UInt32  aModTime, System.Boolean  aQueue);
+		void AddEntryDirectory([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aZipEntry, System.UInt32  aModTime, System.Boolean  aQueue);
 		
 		/// <summary>Member AddEntryFile </summary>
 		/// <param name='aZipEntry'> </param>
@@ -80,7 +80,7 @@ namespace Skybound.Gecko
 		/// <param name='aFile'> </param>
 		/// <param name='aQueue'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddEntryFile([MarshalAs(UnmanagedType.LPStruct)] nsAString  aZipEntry, System.Int32  aCompression, [MarshalAs(UnmanagedType.Interface)] nsIFile  aFile, System.Boolean  aQueue);
+		void AddEntryFile([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aZipEntry, System.Int32  aCompression, [MarshalAs(UnmanagedType.Interface)] nsIFile  aFile, System.Boolean  aQueue);
 		
 		/// <summary>Member AddEntryChannel </summary>
 		/// <param name='aZipEntry'> </param>
@@ -89,7 +89,7 @@ namespace Skybound.Gecko
 		/// <param name='aChannel'> </param>
 		/// <param name='aQueue'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddEntryChannel([MarshalAs(UnmanagedType.LPStruct)] nsAString  aZipEntry, System.UInt32  aModTime, System.Int32  aCompression, [MarshalAs(UnmanagedType.Interface)] nsIChannel  aChannel, System.Boolean  aQueue);
+		void AddEntryChannel([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aZipEntry, System.UInt32  aModTime, System.Int32  aCompression, [MarshalAs(UnmanagedType.Interface)] nsIChannel  aChannel, System.Boolean  aQueue);
 		
 		/// <summary>Member AddEntryStream </summary>
 		/// <param name='aZipEntry'> </param>
@@ -98,13 +98,13 @@ namespace Skybound.Gecko
 		/// <param name='aStream'> </param>
 		/// <param name='aQueue'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddEntryStream([MarshalAs(UnmanagedType.LPStruct)] nsAString  aZipEntry, System.UInt32  aModTime, System.Int32  aCompression, [MarshalAs(UnmanagedType.Interface)] nsIInputStream  aStream, System.Boolean  aQueue);
+		void AddEntryStream([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aZipEntry, System.UInt32  aModTime, System.Int32  aCompression, [MarshalAs(UnmanagedType.Interface)] nsIInputStream  aStream, System.Boolean  aQueue);
 		
 		/// <summary>Member RemoveEntry </summary>
 		/// <param name='aZipEntry'> </param>
 		/// <param name='aQueue'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveEntry([MarshalAs(UnmanagedType.LPStruct)] nsAString  aZipEntry, System.Boolean  aQueue);
+		void RemoveEntry([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aZipEntry, System.Boolean  aQueue);
 		
 		/// <summary>Member ProcessQueue </summary>
 		/// <param name='aObserver'> </param>

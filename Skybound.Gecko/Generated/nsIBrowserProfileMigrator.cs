@@ -61,6 +61,6 @@ namespace Skybound.Gecko
 		/// <summary>Member GetSourceHomePageURLAttribute </summary>
 		/// <param name='aSourceHomePageURL'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSourceHomePageURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aSourceHomePageURL);
+		void GetSourceHomePageURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aSourceHomePageURL);
 	}
 }

@@ -185,13 +185,13 @@ namespace Skybound.Gecko
 		/// <param name='flags'> </param>
 		/// <param name='maxAge'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ClearSiteData([MarshalAs(UnmanagedType.Interface)] nsIPluginTag  plugin, [MarshalAs(UnmanagedType.LPStruct)] nsAString  domain, System.UInt64  flags, System.Int64  maxAge);
+		void ClearSiteData([MarshalAs(UnmanagedType.Interface)] nsIPluginTag  plugin, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  domain, System.UInt64  flags, System.Int64  maxAge);
 		
 		/// <summary>Member SiteHasData </summary>
 		/// <param name='plugin'> </param>
 		/// <param name='domain'> </param>
 		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool SiteHasData([MarshalAs(UnmanagedType.Interface)] nsIPluginTag  plugin, [MarshalAs(UnmanagedType.LPStruct)] nsAString  domain);
+		bool SiteHasData([MarshalAs(UnmanagedType.Interface)] nsIPluginTag  plugin, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  domain);
 	}
 }

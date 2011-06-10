@@ -54,15 +54,15 @@ namespace Skybound.Gecko
 		/// <param name='iv'> </param>
 		/// <returns>A nsAString</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString Encrypt([MarshalAs(UnmanagedType.LPStruct)] nsAString  clearText, [MarshalAs(UnmanagedType.LPStruct)] nsAString  symmetricKey, [MarshalAs(UnmanagedType.LPStruct)] nsAString  iv);
+		nsAString Encrypt([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  clearText, [MarshalAs(UnmanagedType.LPStruct)] nsAString  symmetricKey, [MarshalAs(UnmanagedType.LPStruct)] nsAString  iv);
 		
 		/// <summary>Member Decrypt </summary>
 		/// <param name='cipherText'> </param>
 		/// <param name='symmetricKey'> </param>
 		/// <param name='iv'> </param>
-		/// <returns>A nsAString</returns>
+		/// <returns>A nsAUTF8String</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString Decrypt([MarshalAs(UnmanagedType.LPStruct)] nsAString  cipherText, [MarshalAs(UnmanagedType.LPStruct)] nsAString  symmetricKey, [MarshalAs(UnmanagedType.LPStruct)] nsAString  iv);
+		nsAUTF8String Decrypt([MarshalAs(UnmanagedType.LPStruct)] nsAString  cipherText, [MarshalAs(UnmanagedType.LPStruct)] nsAString  symmetricKey, [MarshalAs(UnmanagedType.LPStruct)] nsAString  iv);
 		
 		/// <summary>Member GenerateKeypair </summary>
 		/// <param name='aPassphrase'> </param>

@@ -32,73 +32,73 @@ namespace Skybound.Gecko
 		/// <param name='key'> </param>
 		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetBool([MarshalAs(UnmanagedType.LPStruct)] nsAString  key);
+		bool GetBool([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  key);
 		
 		/// <summary>Member GetString </summary>
 		/// <param name='key'> </param>
-		/// <returns>A nsAString</returns>
+		/// <returns>A nsAUTF8String</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetString([MarshalAs(UnmanagedType.LPStruct)] nsAString  key);
+		nsAUTF8String GetString([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  key);
 		
 		/// <summary>Member GetInt </summary>
 		/// <param name='key'> </param>
 		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetInt([MarshalAs(UnmanagedType.LPStruct)] nsAString  key);
+		int GetInt([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  key);
 		
 		/// <summary>Member GetFloat </summary>
 		/// <param name='key'> </param>
 		/// <returns>A System.Double</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetFloat([MarshalAs(UnmanagedType.LPStruct)] nsAString  key);
+		double GetFloat([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  key);
 		
 		/// <summary>Member GetStringList </summary>
 		/// <param name='key'> </param>
 		/// <returns>A nsIArray</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIArray GetStringList([MarshalAs(UnmanagedType.LPStruct)] nsAString  key);
+		nsIArray GetStringList([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  key);
 		
 		/// <summary>Member SetBool </summary>
 		/// <param name='key'> </param>
 		/// <param name='value'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBool([MarshalAs(UnmanagedType.LPStruct)] nsAString  key, System.Boolean  value);
+		void SetBool([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  key, System.Boolean  value);
 		
 		/// <summary>Member SetString </summary>
 		/// <param name='key'> </param>
 		/// <param name='value'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetString([MarshalAs(UnmanagedType.LPStruct)] nsAString  key, [MarshalAs(UnmanagedType.LPStruct)] nsAString  value);
+		void SetString([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  key, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  value);
 		
 		/// <summary>Member SetInt </summary>
 		/// <param name='key'> </param>
 		/// <param name='value'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetInt([MarshalAs(UnmanagedType.LPStruct)] nsAString  key, System.Int32  value);
+		void SetInt([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  key, System.Int32  value);
 		
 		/// <summary>Member SetFloat </summary>
 		/// <param name='key'> </param>
 		/// <param name='value'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFloat([MarshalAs(UnmanagedType.LPStruct)] nsAString  key, double value);
+		void SetFloat([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  key, double value);
 		
 		/// <summary>Member GetAppForProtocol </summary>
 		/// <param name='scheme'> </param>
 		/// <param name='enabled'> </param>
-		/// <returns>A nsAString</returns>
+		/// <returns>A nsAUTF8String</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetAppForProtocol([MarshalAs(UnmanagedType.LPStruct)] nsAString  scheme, out System.Boolean  enabled);
+		nsAUTF8String GetAppForProtocol([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  scheme, out System.Boolean  enabled);
 		
 		/// <summary>Member HandlerRequiresTerminal </summary>
 		/// <param name='scheme'> </param>
 		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool HandlerRequiresTerminal([MarshalAs(UnmanagedType.LPStruct)] nsAString  scheme);
+		bool HandlerRequiresTerminal([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  scheme);
 		
 		/// <summary>Member SetAppForProtocol </summary>
 		/// <param name='scheme'> </param>
 		/// <param name='command'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAppForProtocol([MarshalAs(UnmanagedType.LPStruct)] nsAString  scheme, [MarshalAs(UnmanagedType.LPStruct)] nsAString  command);
+		void SetAppForProtocol([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  scheme, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  command);
 	}
 }

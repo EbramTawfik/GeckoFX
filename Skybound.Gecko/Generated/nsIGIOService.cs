@@ -31,17 +31,17 @@ namespace Skybound.Gecko
 		/// <summary>Member GetIdAttribute </summary>
 		/// <param name='aId'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetIdAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aId);
+		void GetIdAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aId);
 		
 		/// <summary>Member GetNameAttribute </summary>
 		/// <param name='aName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aName);
+		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName);
 		
 		/// <summary>Member GetCommandAttribute </summary>
 		/// <param name='aCommand'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCommandAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aCommand);
+		void GetCommandAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aCommand);
 		
 		/// <summary>Member GetExpectsURIsAttribute </summary>
 		/// <returns>A System.Int32 </returns>
@@ -57,17 +57,17 @@ namespace Skybound.Gecko
 		/// <summary>Member Launch </summary>
 		/// <param name='uri'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Launch([MarshalAs(UnmanagedType.LPStruct)] nsAString  uri);
+		void Launch([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  uri);
 		
 		/// <summary>Member SetAsDefaultForMimeType </summary>
 		/// <param name='mimeType'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAsDefaultForMimeType([MarshalAs(UnmanagedType.LPStruct)] nsAString  mimeType);
+		void SetAsDefaultForMimeType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  mimeType);
 		
 		/// <summary>Member SetAsDefaultForFileExtensions </summary>
 		/// <param name='extensions'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAsDefaultForFileExtensions([MarshalAs(UnmanagedType.LPStruct)] nsAString  extensions);
+		void SetAsDefaultForFileExtensions([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  extensions);
 	}
 	
 	/// <summary>nsIGIOService </summary>
@@ -79,28 +79,28 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member GetMimeTypeFromExtension </summary>
 		/// <param name='extension'> </param>
-		/// <returns>A nsAString</returns>
+		/// <returns>A nsAUTF8String</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetMimeTypeFromExtension([MarshalAs(UnmanagedType.LPStruct)] nsAString  extension);
+		nsAUTF8String GetMimeTypeFromExtension([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  extension);
 		
 		/// <summary>Member GetAppForMimeType </summary>
 		/// <param name='mimeType'> </param>
 		/// <returns>A nsIGIOMimeApp</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIGIOMimeApp GetAppForMimeType([MarshalAs(UnmanagedType.LPStruct)] nsAString  mimeType);
+		nsIGIOMimeApp GetAppForMimeType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  mimeType);
 		
 		/// <summary>Member CreateAppFromCommand </summary>
 		/// <param name='cmd'> </param>
 		/// <param name='appName'> </param>
 		/// <returns>A nsIGIOMimeApp</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIGIOMimeApp CreateAppFromCommand([MarshalAs(UnmanagedType.LPStruct)] nsAString  cmd, [MarshalAs(UnmanagedType.LPStruct)] nsAString  appName);
+		nsIGIOMimeApp CreateAppFromCommand([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  cmd, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  appName);
 		
 		/// <summary>Member GetDescriptionForMimeType </summary>
 		/// <param name='mimeType'> </param>
-		/// <returns>A nsAString</returns>
+		/// <returns>A nsAUTF8String</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetDescriptionForMimeType([MarshalAs(UnmanagedType.LPStruct)] nsAString  mimeType);
+		nsAUTF8String GetDescriptionForMimeType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  mimeType);
 		
 		/// <summary>Member ShowURI </summary>
 		/// <param name='uri'> </param>

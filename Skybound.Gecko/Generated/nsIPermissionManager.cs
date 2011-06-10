@@ -41,7 +41,7 @@ namespace Skybound.Gecko
 		/// <param name='host'> </param>
 		/// <param name='type'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Remove([MarshalAs(UnmanagedType.LPStruct)] nsAString  host, [MarshalAs(UnmanagedType.LPStr)] System.String  type);
+		void Remove([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  host, [MarshalAs(UnmanagedType.LPStr)] System.String  type);
 		
 		/// <summary>Member RemoveAll </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

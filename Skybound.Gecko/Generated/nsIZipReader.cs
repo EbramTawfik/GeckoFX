@@ -113,7 +113,7 @@ namespace Skybound.Gecko
 		/// <param name='zipEntry'> </param>
 		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool HasEntry([MarshalAs(UnmanagedType.LPStruct)] nsAString  zipEntry);
+		bool HasEntry([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  zipEntry);
 		
 		/// <summary>Member FindEntries </summary>
 		/// <param name='aPattern'> </param>
@@ -132,7 +132,7 @@ namespace Skybound.Gecko
 		/// <param name='zipEntry'> </param>
 		/// <returns>A nsIInputStream</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIInputStream GetInputStreamWithSpec([MarshalAs(UnmanagedType.LPStruct)] nsAString  aJarSpec, [MarshalAs(UnmanagedType.LPStr)] System.String  zipEntry);
+		nsIInputStream GetInputStreamWithSpec([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aJarSpec, [MarshalAs(UnmanagedType.LPStr)] System.String  zipEntry);
 		
 		/// <summary>Member GetCertificatePrincipal </summary>
 		/// <param name='aEntryName'> </param>

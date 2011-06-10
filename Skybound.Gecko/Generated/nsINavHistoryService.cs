@@ -43,7 +43,7 @@ namespace Skybound.Gecko
 		/// <summary>Member GetUriAttribute </summary>
 		/// <param name='aUri'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetUriAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aUri);
+		void GetUriAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aUri);
 		
 		/// <summary>Member GetTypeAttribute </summary>
 		/// <returns>A System.UInt32 </returns>
@@ -53,7 +53,7 @@ namespace Skybound.Gecko
 		/// <summary>Member GetTitleAttribute </summary>
 		/// <param name='aTitle'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTitleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aTitle);
+		void GetTitleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aTitle);
 		
 		/// <summary>Member GetAccessCountAttribute </summary>
 		/// <returns>A System.UInt32 </returns>
@@ -68,7 +68,7 @@ namespace Skybound.Gecko
 		/// <summary>Member GetIconAttribute </summary>
 		/// <param name='aIcon'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetIconAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aIcon);
+		void GetIconAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aIcon);
 		
 		/// <summary>Member GetIndentLevelAttribute </summary>
 		/// <returns>A System.Int32 </returns>
@@ -123,7 +123,7 @@ namespace Skybound.Gecko
 		/// <summary>Member GetUriAttribute </summary>
 		/// <param name='aUri'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetUriAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aUri);
+		new void GetUriAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aUri);
 		
 		/// <summary>Member GetTypeAttribute </summary>
 		/// <returns>A System.UInt32 </returns>
@@ -133,7 +133,7 @@ namespace Skybound.Gecko
 		/// <summary>Member GetTitleAttribute </summary>
 		/// <param name='aTitle'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetTitleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aTitle);
+		new void GetTitleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aTitle);
 		
 		/// <summary>Member GetAccessCountAttribute </summary>
 		/// <returns>A System.UInt32 </returns>
@@ -148,7 +148,7 @@ namespace Skybound.Gecko
 		/// <summary>Member GetIconAttribute </summary>
 		/// <param name='aIcon'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetIconAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aIcon);
+		new void GetIconAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aIcon);
 		
 		/// <summary>Member GetIndentLevelAttribute </summary>
 		/// <returns>A System.Int32 </returns>
@@ -208,7 +208,7 @@ namespace Skybound.Gecko
 		/// <summary>Member GetUriAttribute </summary>
 		/// <param name='aUri'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetUriAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aUri);
+		new void GetUriAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aUri);
 		
 		/// <summary>Member GetTypeAttribute </summary>
 		/// <returns>A System.UInt32 </returns>
@@ -218,7 +218,7 @@ namespace Skybound.Gecko
 		/// <summary>Member GetTitleAttribute </summary>
 		/// <param name='aTitle'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetTitleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aTitle);
+		new void GetTitleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aTitle);
 		
 		/// <summary>Member GetAccessCountAttribute </summary>
 		/// <returns>A System.UInt32 </returns>
@@ -233,7 +233,7 @@ namespace Skybound.Gecko
 		/// <summary>Member GetIconAttribute </summary>
 		/// <param name='aIcon'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetIconAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aIcon);
+		new void GetIconAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aIcon);
 		
 		/// <summary>Member GetIndentLevelAttribute </summary>
 		/// <returns>A System.Int32 </returns>
@@ -308,7 +308,7 @@ namespace Skybound.Gecko
 		/// <summary>Member GetUriAttribute </summary>
 		/// <param name='aUri'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetUriAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aUri);
+		new void GetUriAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aUri);
 		
 		/// <summary>Member GetTypeAttribute </summary>
 		/// <returns>A System.UInt32 </returns>
@@ -318,7 +318,7 @@ namespace Skybound.Gecko
 		/// <summary>Member GetTitleAttribute </summary>
 		/// <param name='aTitle'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetTitleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aTitle);
+		new void GetTitleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aTitle);
 		
 		/// <summary>Member GetAccessCountAttribute </summary>
 		/// <returns>A System.UInt32 </returns>
@@ -333,7 +333,7 @@ namespace Skybound.Gecko
 		/// <summary>Member GetIconAttribute </summary>
 		/// <param name='aIcon'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetIconAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aIcon);
+		new void GetIconAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aIcon);
 		
 		/// <summary>Member GetIndentLevelAttribute </summary>
 		/// <returns>A System.Int32 </returns>
@@ -409,7 +409,7 @@ namespace Skybound.Gecko
 		/// <param name='aRecursive'> </param>
 		/// <returns>A nsINavHistoryResultNode</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsINavHistoryResultNode FindNodeByDetails([MarshalAs(UnmanagedType.LPStruct)] nsAString  aURIString, System.UInt32  aTime, System.Int32  aItemId, System.Boolean  aRecursive);
+		nsINavHistoryResultNode FindNodeByDetails([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aURIString, System.UInt32  aTime, System.Int32  aItemId, System.Boolean  aRecursive);
 		
 		/// <summary>Member GetChildrenReadOnlyAttribute </summary>
 		/// <returns>A System.Boolean </returns>
@@ -419,7 +419,7 @@ namespace Skybound.Gecko
 		/// <summary>Member GetDynamicContainerTypeAttribute </summary>
 		/// <param name='aDynamicContainerType'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDynamicContainerTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aDynamicContainerType);
+		void GetDynamicContainerTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aDynamicContainerType);
 		
 		/// <summary>Member AppendURINode </summary>
 		/// <param name='aURI'> </param>
@@ -429,7 +429,7 @@ namespace Skybound.Gecko
 		/// <param name='aIconURI'> </param>
 		/// <returns>A nsINavHistoryResultNode</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsINavHistoryResultNode AppendURINode([MarshalAs(UnmanagedType.LPStruct)] nsAString  aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aTitle, System.UInt32  aAccessCount, System.UInt32  aTime, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aIconURI);
+		nsINavHistoryResultNode AppendURINode([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aTitle, System.UInt32  aAccessCount, System.UInt32  aTime, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aIconURI);
 		
 		/// <summary>Member AppendFolderNode </summary>
 		/// <param name='aFolderId'> </param>
@@ -460,7 +460,7 @@ namespace Skybound.Gecko
 		/// <summary>Member GetUriAttribute </summary>
 		/// <param name='aUri'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetUriAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aUri);
+		new void GetUriAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aUri);
 		
 		/// <summary>Member GetTypeAttribute </summary>
 		/// <returns>A System.UInt32 </returns>
@@ -470,7 +470,7 @@ namespace Skybound.Gecko
 		/// <summary>Member GetTitleAttribute </summary>
 		/// <param name='aTitle'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetTitleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aTitle);
+		new void GetTitleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aTitle);
 		
 		/// <summary>Member GetAccessCountAttribute </summary>
 		/// <returns>A System.UInt32 </returns>
@@ -485,7 +485,7 @@ namespace Skybound.Gecko
 		/// <summary>Member GetIconAttribute </summary>
 		/// <param name='aIcon'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetIconAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aIcon);
+		new void GetIconAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aIcon);
 		
 		/// <summary>Member GetIndentLevelAttribute </summary>
 		/// <returns>A System.Int32 </returns>
@@ -561,7 +561,7 @@ namespace Skybound.Gecko
 		/// <param name='aRecursive'> </param>
 		/// <returns>A nsINavHistoryResultNode</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsINavHistoryResultNode FindNodeByDetails([MarshalAs(UnmanagedType.LPStruct)] nsAString  aURIString, System.UInt32  aTime, System.Int32  aItemId, System.Boolean  aRecursive);
+		new nsINavHistoryResultNode FindNodeByDetails([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aURIString, System.UInt32  aTime, System.Int32  aItemId, System.Boolean  aRecursive);
 		
 		/// <summary>Member GetChildrenReadOnlyAttribute </summary>
 		/// <returns>A System.Boolean </returns>
@@ -571,7 +571,7 @@ namespace Skybound.Gecko
 		/// <summary>Member GetDynamicContainerTypeAttribute </summary>
 		/// <param name='aDynamicContainerType'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetDynamicContainerTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aDynamicContainerType);
+		new void GetDynamicContainerTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aDynamicContainerType);
 		
 		/// <summary>Member AppendURINode </summary>
 		/// <param name='aURI'> </param>
@@ -581,7 +581,7 @@ namespace Skybound.Gecko
 		/// <param name='aIconURI'> </param>
 		/// <returns>A nsINavHistoryResultNode</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsINavHistoryResultNode AppendURINode([MarshalAs(UnmanagedType.LPStruct)] nsAString  aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aTitle, System.UInt32  aAccessCount, System.UInt32  aTime, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aIconURI);
+		new nsINavHistoryResultNode AppendURINode([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aTitle, System.UInt32  aAccessCount, System.UInt32  aTime, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aIconURI);
 		
 		/// <summary>Member AppendFolderNode </summary>
 		/// <param name='aFolderId'> </param>
@@ -641,13 +641,13 @@ namespace Skybound.Gecko
 		/// <param name='aNode'> </param>
 		/// <param name='aNewTitle'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NodeTitleChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode  aNode, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aNewTitle);
+		void NodeTitleChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode  aNode, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aNewTitle);
 		
 		/// <summary>Member NodeURIChanged </summary>
 		/// <param name='aNode'> </param>
 		/// <param name='aNewURI'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NodeURIChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode  aNode, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aNewURI);
+		void NodeURIChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode  aNode, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aNewURI);
 		
 		/// <summary>Member NodeIconChanged </summary>
 		/// <param name='aNode'> </param>
@@ -670,13 +670,13 @@ namespace Skybound.Gecko
 		/// <param name='aNode'> </param>
 		/// <param name='aNewKeyword'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NodeKeywordChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode  aNode, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aNewKeyword);
+		void NodeKeywordChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode  aNode, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aNewKeyword);
 		
 		/// <summary>Member NodeAnnotationChanged </summary>
 		/// <param name='aNode'> </param>
 		/// <param name='aAnnoName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NodeAnnotationChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode  aNode, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aAnnoName);
+		void NodeAnnotationChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode  aNode, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aAnnoName);
 		
 		/// <summary>Member NodeDateAddedChanged </summary>
 		/// <param name='aNode'> </param>
@@ -776,13 +776,13 @@ namespace Skybound.Gecko
 		/// <param name='aNode'> </param>
 		/// <param name='aNewTitle'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void NodeTitleChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode  aNode, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aNewTitle);
+		new void NodeTitleChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode  aNode, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aNewTitle);
 		
 		/// <summary>Member NodeURIChanged </summary>
 		/// <param name='aNode'> </param>
 		/// <param name='aNewURI'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void NodeURIChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode  aNode, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aNewURI);
+		new void NodeURIChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode  aNode, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aNewURI);
 		
 		/// <summary>Member NodeIconChanged </summary>
 		/// <param name='aNode'> </param>
@@ -805,13 +805,13 @@ namespace Skybound.Gecko
 		/// <param name='aNode'> </param>
 		/// <param name='aNewKeyword'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void NodeKeywordChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode  aNode, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aNewKeyword);
+		new void NodeKeywordChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode  aNode, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aNewKeyword);
 		
 		/// <summary>Member NodeAnnotationChanged </summary>
 		/// <param name='aNode'> </param>
 		/// <param name='aAnnoName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void NodeAnnotationChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode  aNode, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aAnnoName);
+		new void NodeAnnotationChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode  aNode, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aAnnoName);
 		
 		/// <summary>Member NodeDateAddedChanged </summary>
 		/// <param name='aNode'> </param>
@@ -909,12 +909,12 @@ namespace Skybound.Gecko
 		/// <summary>Member GetSortingAnnotationAttribute </summary>
 		/// <param name='aSortingAnnotation'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSortingAnnotationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aSortingAnnotation);
+		void GetSortingAnnotationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aSortingAnnotation);
 		
 		/// <summary>Member SetSortingAnnotationAttribute </summary>
 		/// <param name='aSortingAnnotation'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSortingAnnotationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aSortingAnnotation);
+		void SetSortingAnnotationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aSortingAnnotation);
 		
 		/// <summary>Member GetSuppressNotificationsAttribute </summary>
 		/// <returns>A System.Boolean </returns>
@@ -1146,12 +1146,12 @@ namespace Skybound.Gecko
 		/// <summary>Member GetDomainAttribute </summary>
 		/// <param name='aDomain'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDomainAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aDomain);
+		void GetDomainAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aDomain);
 		
 		/// <summary>Member SetDomainAttribute </summary>
 		/// <param name='aDomain'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDomainAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aDomain);
+		void SetDomainAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aDomain);
 		
 		/// <summary>Member GetHasDomainAttribute </summary>
 		/// <returns>A System.Boolean </returns>
@@ -1197,12 +1197,12 @@ namespace Skybound.Gecko
 		/// <summary>Member GetAnnotationAttribute </summary>
 		/// <param name='aAnnotation'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetAnnotationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aAnnotation);
+		void GetAnnotationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aAnnotation);
 		
 		/// <summary>Member SetAnnotationAttribute </summary>
 		/// <param name='aAnnotation'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAnnotationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aAnnotation);
+		void SetAnnotationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aAnnotation);
 		
 		/// <summary>Member GetHasAnnotationAttribute </summary>
 		/// <returns>A System.Boolean </returns>
@@ -1273,12 +1273,12 @@ namespace Skybound.Gecko
 		/// <summary>Member GetSortingAnnotationAttribute </summary>
 		/// <param name='aSortingAnnotation'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSortingAnnotationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aSortingAnnotation);
+		void GetSortingAnnotationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aSortingAnnotation);
 		
 		/// <summary>Member SetSortingAnnotationAttribute </summary>
 		/// <param name='aSortingAnnotation'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSortingAnnotationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aSortingAnnotation);
+		void SetSortingAnnotationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aSortingAnnotation);
 		
 		/// <summary>Member GetResultTypeAttribute </summary>
 		/// <returns>A System.UInt16</returns>
@@ -1323,12 +1323,12 @@ namespace Skybound.Gecko
 		/// <summary>Member GetExcludeItemIfParentHasAnnotationAttribute </summary>
 		/// <param name='aExcludeItemIfParentHasAnnotation'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetExcludeItemIfParentHasAnnotationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aExcludeItemIfParentHasAnnotation);
+		void GetExcludeItemIfParentHasAnnotationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aExcludeItemIfParentHasAnnotation);
 		
 		/// <summary>Member SetExcludeItemIfParentHasAnnotationAttribute </summary>
 		/// <param name='aExcludeItemIfParentHasAnnotation'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetExcludeItemIfParentHasAnnotationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aExcludeItemIfParentHasAnnotation);
+		void SetExcludeItemIfParentHasAnnotationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aExcludeItemIfParentHasAnnotation);
 		
 		/// <summary>Member GetExpandQueriesAttribute </summary>
 		/// <returns>A System.Boolean </returns>
@@ -1484,15 +1484,15 @@ namespace Skybound.Gecko
 		/// <param name='aResultCount'> </param>
 		/// <param name='options'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void QueryStringToQueries([MarshalAs(UnmanagedType.LPStruct)] nsAString  aQueryString, out nsINavHistoryQuery  aQueries, out System.UInt32  aResultCount, [MarshalAs(UnmanagedType.Interface)] out nsINavHistoryQueryOptions  options);
+		void QueryStringToQueries([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aQueryString, out nsINavHistoryQuery  aQueries, out System.UInt32  aResultCount, [MarshalAs(UnmanagedType.Interface)] out nsINavHistoryQueryOptions  options);
 		
 		/// <summary>Member QueriesToQueryString </summary>
 		/// <param name='aQueries'> </param>
 		/// <param name='aQueryCount'> </param>
 		/// <param name='options'> </param>
-		/// <returns>A nsAString</returns>
+		/// <returns>A nsAUTF8String</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString QueriesToQueryString(nsINavHistoryQuery  aQueries, System.UInt32  aQueryCount, [MarshalAs(UnmanagedType.Interface)] nsINavHistoryQueryOptions  options);
+		nsAUTF8String QueriesToQueryString(nsINavHistoryQuery  aQueries, System.UInt32  aQueryCount, [MarshalAs(UnmanagedType.Interface)] nsINavHistoryQueryOptions  options);
 		
 		/// <summary>Member AddObserver </summary>
 		/// <param name='observer'> </param>

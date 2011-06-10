@@ -49,7 +49,7 @@ namespace Skybound.Gecko
 		/// <param name='aMimeType'> </param>
 		/// <param name='aExpiration'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFaviconData([MarshalAs(UnmanagedType.Interface)] nsIURI  aFaviconURI, System.IntPtr  aData, System.UInt32  aDataLen, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aMimeType, System.UInt32  aExpiration);
+		void SetFaviconData([MarshalAs(UnmanagedType.Interface)] nsIURI  aFaviconURI, System.IntPtr  aData, System.UInt32  aDataLen, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aMimeType, System.UInt32  aExpiration);
 		
 		/// <summary>Member SetFaviconDataFromDataURL </summary>
 		/// <param name='aFaviconURI'> </param>
@@ -64,7 +64,7 @@ namespace Skybound.Gecko
 		/// <param name='aDataLen'> </param>
 		/// <returns>A System.IntPtr </returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr  GetFaviconData([MarshalAs(UnmanagedType.Interface)] nsIURI  aFaviconURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aMimeType, out System.UInt32  aDataLen);
+		System.IntPtr  GetFaviconData([MarshalAs(UnmanagedType.Interface)] nsIURI  aFaviconURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aMimeType, out System.UInt32  aDataLen);
 		
 		/// <summary>Member GetFaviconDataAsDataURL </summary>
 		/// <param name='aFaviconURI'> </param>
@@ -130,6 +130,6 @@ namespace Skybound.Gecko
 		/// <param name='aData'> </param>
 		/// <param name='aMimeType'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnFaviconDataAvailable([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, System.UInt32  aDataLen, System.IntPtr  aData, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aMimeType);
+		void OnFaviconDataAvailable([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, System.UInt32  aDataLen, System.IntPtr  aData, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aMimeType);
 	}
 }

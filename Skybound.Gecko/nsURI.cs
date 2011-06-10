@@ -121,7 +121,7 @@ namespace Skybound.Gecko
 		public bool SchemeIs(string s) { return Instance.SchemeIs(s); }
 		public bool Equals(nsURI uri) { return Instance.Equals(uri); }
 		public nsURI Clone() { return new nsURI(Instance.Clone()); }
-		public void Resolve(string relativePath, string resolved) { resolved = Instance.Resolve(new nsAString(relativePath)).ToString(); }
+		public void Resolve(string relativePath, string resolved) { resolved = Instance.Resolve(new nsAUTF8String(relativePath)).ToString(); }
 		public string AsciiSpec { get { return nsString.Get(Instance.GetAsciiSpecAttribute); } }
 		public string AsciiHost { get { return nsString.Get(Instance.GetAsciiHostAttribute); } }
 		public string OriginCharset { get { return nsString.Get(Instance.GetOriginCharsetAttribute); } }

@@ -214,47 +214,47 @@ namespace Skybound.Gecko
 		/// <summary>Member GetHrefAttribute </summary>
 		/// <param name='aHref'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetHrefAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aHref);
+		void GetHrefAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aHref);
 		
 		/// <summary>Member GetProtocolAttribute </summary>
 		/// <param name='aProtocol'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetProtocolAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aProtocol);
+		void GetProtocolAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aProtocol);
 		
 		/// <summary>Member GetHostAttribute </summary>
 		/// <param name='aHost'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetHostAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aHost);
+		void GetHostAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aHost);
 		
 		/// <summary>Member GetHostnameAttribute </summary>
 		/// <param name='aHostname'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetHostnameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aHostname);
+		void GetHostnameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aHostname);
 		
 		/// <summary>Member GetPortAttribute </summary>
 		/// <param name='aPort'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPortAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aPort);
+		void GetPortAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aPort);
 		
 		/// <summary>Member GetPathnameAttribute </summary>
 		/// <param name='aPathname'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPathnameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aPathname);
+		void GetPathnameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aPathname);
 		
 		/// <summary>Member GetSearchAttribute </summary>
 		/// <param name='aSearch'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSearchAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aSearch);
+		void GetSearchAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aSearch);
 		
 		/// <summary>Member GetHashAttribute </summary>
 		/// <param name='aHash'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetHashAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aHash);
+		void GetHashAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aHash);
 		
 		/// <summary>Member ToString </summary>
-		/// <returns>A nsAString</returns>
+		/// <returns>A nsAUTF8String</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString ToString();
+		nsAUTF8String ToString();
 	}
 	
 	/// <summary>nsIWorkerNavigator </summary>

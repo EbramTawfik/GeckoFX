@@ -31,12 +31,12 @@ namespace Skybound.Gecko
 		/// <summary>Member GetPACURIAttribute </summary>
 		/// <param name='aPACURI'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPACURIAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aPACURI);
+		void GetPACURIAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aPACURI);
 		
 		/// <summary>Member GetProxyForURI </summary>
 		/// <param name='aURI'> </param>
-		/// <returns>A nsAString</returns>
+		/// <returns>A nsAUTF8String</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetProxyForURI([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI);
+		nsAUTF8String GetProxyForURI([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI);
 	}
 }

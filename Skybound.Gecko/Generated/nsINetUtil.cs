@@ -32,9 +32,9 @@ namespace Skybound.Gecko
 		/// <param name='aTypeHeader'> </param>
 		/// <param name='aCharset'> </param>
 		/// <param name='aHadCharset'> </param>
-		/// <returns>A nsAString</returns>
+		/// <returns>A nsAUTF8String</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString ParseContentType([MarshalAs(UnmanagedType.LPStruct)] nsAString  aTypeHeader, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aCharset, out System.Boolean  aHadCharset);
+		nsAUTF8String ParseContentType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aTypeHeader, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aCharset, out System.Boolean  aHadCharset);
 		
 		/// <summary>Member ProtocolHasFlags </summary>
 		/// <param name='aURI'> </param>
@@ -81,7 +81,7 @@ namespace Skybound.Gecko
 		/// <param name='aFlags'> </param>
 		/// <returns>A nsAString</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString UnescapeString([MarshalAs(UnmanagedType.LPStruct)] nsAString  aStr, System.UInt32  aFlags);
+		nsAString UnescapeString([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aStr, System.UInt32  aFlags);
 		
 		/// <summary>Member ExtractCharsetFromContentType </summary>
 		/// <param name='aTypeHeader'> </param>
@@ -90,6 +90,6 @@ namespace Skybound.Gecko
 		/// <param name='aCharsetEnd'> </param>
 		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool ExtractCharsetFromContentType([MarshalAs(UnmanagedType.LPStruct)] nsAString  aTypeHeader, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aCharset, out System.Int32  aCharsetStart, out System.Int32  aCharsetEnd);
+		bool ExtractCharsetFromContentType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aTypeHeader, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aCharset, out System.Int32  aCharsetStart, out System.Int32  aCharsetEnd);
 	}
 }

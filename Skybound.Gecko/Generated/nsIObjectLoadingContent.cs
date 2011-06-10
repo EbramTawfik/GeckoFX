@@ -42,7 +42,7 @@ namespace Skybound.Gecko
 		/// <param name='aMimeType'> </param>
 		/// <returns>A System.UInt32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetContentTypeForMIMEType([MarshalAs(UnmanagedType.LPStruct)] nsAString  aMimeType);
+		uint GetContentTypeForMIMEType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aMimeType);
 		
 		/// <summary>Member GetPluginInstanceAttribute </summary>
 		/// <returns>A nsIPluginInstance </returns>

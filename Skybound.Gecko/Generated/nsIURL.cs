@@ -31,17 +31,17 @@ namespace Skybound.Gecko
 		/// <summary>Member GetSpecAttribute </summary>
 		/// <param name='aSpec'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetSpecAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aSpec);
+		new void GetSpecAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aSpec);
 		
 		/// <summary>Member SetSpecAttribute </summary>
 		/// <param name='aSpec'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetSpecAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aSpec);
+		new void SetSpecAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aSpec);
 		
 		/// <summary>Member GetPrePathAttribute </summary>
 		/// <param name='aPrePath'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetPrePathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aPrePath);
+		new void GetPrePathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aPrePath);
 		
 		/// <summary>Member GetSchemeAttribute </summary>
 		/// <param name='aScheme'> </param>
@@ -56,52 +56,52 @@ namespace Skybound.Gecko
 		/// <summary>Member GetUserPassAttribute </summary>
 		/// <param name='aUserPass'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetUserPassAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aUserPass);
+		new void GetUserPassAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aUserPass);
 		
 		/// <summary>Member SetUserPassAttribute </summary>
 		/// <param name='aUserPass'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetUserPassAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aUserPass);
+		new void SetUserPassAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aUserPass);
 		
 		/// <summary>Member GetUsernameAttribute </summary>
 		/// <param name='aUsername'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetUsernameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aUsername);
+		new void GetUsernameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aUsername);
 		
 		/// <summary>Member SetUsernameAttribute </summary>
 		/// <param name='aUsername'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetUsernameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aUsername);
+		new void SetUsernameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aUsername);
 		
 		/// <summary>Member GetPasswordAttribute </summary>
 		/// <param name='aPassword'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetPasswordAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aPassword);
+		new void GetPasswordAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aPassword);
 		
 		/// <summary>Member SetPasswordAttribute </summary>
 		/// <param name='aPassword'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetPasswordAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aPassword);
+		new void SetPasswordAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aPassword);
 		
 		/// <summary>Member GetHostPortAttribute </summary>
 		/// <param name='aHostPort'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetHostPortAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aHostPort);
+		new void GetHostPortAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aHostPort);
 		
 		/// <summary>Member SetHostPortAttribute </summary>
 		/// <param name='aHostPort'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetHostPortAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aHostPort);
+		new void SetHostPortAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aHostPort);
 		
 		/// <summary>Member GetHostAttribute </summary>
 		/// <param name='aHost'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetHostAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aHost);
+		new void GetHostAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aHost);
 		
 		/// <summary>Member SetHostAttribute </summary>
 		/// <param name='aHost'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetHostAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aHost);
+		new void SetHostAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aHost);
 		
 		/// <summary>Member GetPortAttribute </summary>
 		/// <returns>A System.Int32 </returns>
@@ -116,12 +116,12 @@ namespace Skybound.Gecko
 		/// <summary>Member GetPathAttribute </summary>
 		/// <param name='aPath'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetPathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aPath);
+		new void GetPathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aPath);
 		
 		/// <summary>Member SetPathAttribute </summary>
 		/// <param name='aPath'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetPathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aPath);
+		new void SetPathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aPath);
 		
 		/// <summary>Member Equals </summary>
 		/// <param name='other'> </param>
@@ -142,9 +142,9 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member Resolve </summary>
 		/// <param name='relativePath'> </param>
-		/// <returns>A nsAString</returns>
+		/// <returns>A nsAUTF8String</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsAString Resolve([MarshalAs(UnmanagedType.LPStruct)] nsAString  relativePath);
+		new nsAUTF8String Resolve([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  relativePath);
 		
 		/// <summary>Member GetAsciiSpecAttribute </summary>
 		/// <param name='aAsciiSpec'> </param>
@@ -164,93 +164,93 @@ namespace Skybound.Gecko
 		/// <summary>Member GetFilePathAttribute </summary>
 		/// <param name='aFilePath'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetFilePathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aFilePath);
+		void GetFilePathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aFilePath);
 		
 		/// <summary>Member SetFilePathAttribute </summary>
 		/// <param name='aFilePath'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFilePathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aFilePath);
+		void SetFilePathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aFilePath);
 		
 		/// <summary>Member GetParamAttribute </summary>
 		/// <param name='aParam'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetParamAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aParam);
+		void GetParamAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aParam);
 		
 		/// <summary>Member SetParamAttribute </summary>
 		/// <param name='aParam'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetParamAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aParam);
+		void SetParamAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aParam);
 		
 		/// <summary>Member GetQueryAttribute </summary>
 		/// <param name='aQuery'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetQueryAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aQuery);
+		void GetQueryAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aQuery);
 		
 		/// <summary>Member SetQueryAttribute </summary>
 		/// <param name='aQuery'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetQueryAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aQuery);
+		void SetQueryAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aQuery);
 		
 		/// <summary>Member GetRefAttribute </summary>
 		/// <param name='aRef'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetRefAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aRef);
+		void GetRefAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aRef);
 		
 		/// <summary>Member SetRefAttribute </summary>
 		/// <param name='aRef'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetRefAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aRef);
+		void SetRefAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aRef);
 		
 		/// <summary>Member GetDirectoryAttribute </summary>
 		/// <param name='aDirectory'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDirectoryAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aDirectory);
+		void GetDirectoryAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aDirectory);
 		
 		/// <summary>Member SetDirectoryAttribute </summary>
 		/// <param name='aDirectory'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDirectoryAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aDirectory);
+		void SetDirectoryAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aDirectory);
 		
 		/// <summary>Member GetFileNameAttribute </summary>
 		/// <param name='aFileName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetFileNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aFileName);
+		void GetFileNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aFileName);
 		
 		/// <summary>Member SetFileNameAttribute </summary>
 		/// <param name='aFileName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFileNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aFileName);
+		void SetFileNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aFileName);
 		
 		/// <summary>Member GetFileBaseNameAttribute </summary>
 		/// <param name='aFileBaseName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetFileBaseNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aFileBaseName);
+		void GetFileBaseNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aFileBaseName);
 		
 		/// <summary>Member SetFileBaseNameAttribute </summary>
 		/// <param name='aFileBaseName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFileBaseNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aFileBaseName);
+		void SetFileBaseNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aFileBaseName);
 		
 		/// <summary>Member GetFileExtensionAttribute </summary>
 		/// <param name='aFileExtension'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetFileExtensionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aFileExtension);
+		void GetFileExtensionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aFileExtension);
 		
 		/// <summary>Member SetFileExtensionAttribute </summary>
 		/// <param name='aFileExtension'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFileExtensionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aFileExtension);
+		void SetFileExtensionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aFileExtension);
 		
 		/// <summary>Member GetCommonBaseSpec </summary>
 		/// <param name='aURIToCompare'> </param>
-		/// <returns>A nsAString</returns>
+		/// <returns>A nsAUTF8String</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetCommonBaseSpec([MarshalAs(UnmanagedType.Interface)] nsIURI  aURIToCompare);
+		nsAUTF8String GetCommonBaseSpec([MarshalAs(UnmanagedType.Interface)] nsIURI  aURIToCompare);
 		
 		/// <summary>Member GetRelativeSpec </summary>
 		/// <param name='aURIToCompare'> </param>
-		/// <returns>A nsAString</returns>
+		/// <returns>A nsAUTF8String</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetRelativeSpec([MarshalAs(UnmanagedType.Interface)] nsIURI  aURIToCompare);
+		nsAUTF8String GetRelativeSpec([MarshalAs(UnmanagedType.Interface)] nsIURI  aURIToCompare);
 	}
 }

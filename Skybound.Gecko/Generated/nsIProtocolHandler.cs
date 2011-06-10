@@ -49,7 +49,7 @@ namespace Skybound.Gecko
 		/// <param name='aBaseURI'> </param>
 		/// <returns>A nsIURI</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI NewURI([MarshalAs(UnmanagedType.LPStruct)] nsAString  aSpec, [MarshalAs(UnmanagedType.LPStr)] System.String  aOriginCharset, [MarshalAs(UnmanagedType.Interface)] nsIURI  aBaseURI);
+		nsIURI NewURI([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aSpec, [MarshalAs(UnmanagedType.LPStr)] System.String  aOriginCharset, [MarshalAs(UnmanagedType.Interface)] nsIURI  aBaseURI);
 		
 		/// <summary>Member NewChannel </summary>
 		/// <param name='aURI'> </param>

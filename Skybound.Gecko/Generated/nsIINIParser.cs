@@ -37,14 +37,14 @@ namespace Skybound.Gecko
 		/// <param name='aSection'> </param>
 		/// <returns>A nsIUTF8StringEnumerator</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIUTF8StringEnumerator GetKeys([MarshalAs(UnmanagedType.LPStruct)] nsAString  aSection);
+		nsIUTF8StringEnumerator GetKeys([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aSection);
 		
 		/// <summary>Member GetString </summary>
 		/// <param name='aSection'> </param>
 		/// <param name='aKey'> </param>
-		/// <returns>A nsAString</returns>
+		/// <returns>A nsAUTF8String</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetString([MarshalAs(UnmanagedType.LPStruct)] nsAString  aSection, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aKey);
+		nsAUTF8String GetString([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aSection, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aKey);
 	}
 	
 	/// <summary>nsIINIParserWriter </summary>
@@ -59,7 +59,7 @@ namespace Skybound.Gecko
 		/// <param name='aKey'> </param>
 		/// <param name='aValue'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetString([MarshalAs(UnmanagedType.LPStruct)] nsAString  aSection, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aKey, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aValue);
+		void SetString([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aSection, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aKey, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aValue);
 		
 		/// <summary>Member WriteFile </summary>
 		/// <param name='aINIFile'> </param>

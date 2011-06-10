@@ -164,15 +164,15 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member In2OutOneUTF8String </summary>
 		/// <param name='input'> </param>
-		/// <returns>A nsAString</returns>
+		/// <returns>A nsAUTF8String</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString In2OutOneUTF8String([MarshalAs(UnmanagedType.LPStruct)] nsAString  input);
+		nsAUTF8String In2OutOneUTF8String([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  input);
 		
 		/// <summary>Member EchoIn2OutOneUTF8String </summary>
 		/// <param name='input'> </param>
-		/// <returns>A nsAString</returns>
+		/// <returns>A nsAUTF8String</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString EchoIn2OutOneUTF8String([MarshalAs(UnmanagedType.LPStruct)] nsAString  input);
+		nsAUTF8String EchoIn2OutOneUTF8String([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  input);
 		
 		/// <summary>Member In2OutOneCString </summary>
 		/// <param name='input'> </param>

@@ -66,6 +66,6 @@ namespace Skybound.Gecko
 		/// <summary>Member GetLastFetchURLAttribute </summary>
 		/// <param name='aLastFetchURL'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetLastFetchURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aLastFetchURL);
+		void GetLastFetchURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aLastFetchURL);
 	}
 }

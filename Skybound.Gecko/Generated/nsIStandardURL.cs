@@ -45,6 +45,6 @@ namespace Skybound.Gecko
 		/// <param name='aOriginCharset'> </param>
 		/// <param name='aBaseURI'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init(System.UInt32  aUrlType, System.Int32  aDefaultPort, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aSpec, [MarshalAs(UnmanagedType.LPStr)] System.String  aOriginCharset, [MarshalAs(UnmanagedType.Interface)] nsIURI  aBaseURI);
+		void Init(System.UInt32  aUrlType, System.Int32  aDefaultPort, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aSpec, [MarshalAs(UnmanagedType.LPStr)] System.String  aOriginCharset, [MarshalAs(UnmanagedType.Interface)] nsIURI  aBaseURI);
 	}
 }

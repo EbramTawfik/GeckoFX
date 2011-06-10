@@ -224,7 +224,7 @@ namespace Skybound.Gecko
 		/// <summary>Member GetStatusTextAttribute </summary>
 		/// <param name='aStatusText'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetStatusTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aStatusText);
+		void GetStatusTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aStatusText);
 		
 		/// <summary>Member Abort </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -239,7 +239,7 @@ namespace Skybound.Gecko
 		/// <param name='header'> </param>
 		/// <returns>A nsAString</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetResponseHeader([MarshalAs(UnmanagedType.LPStruct)] nsAString  header);
+		nsAString GetResponseHeader([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  header);
 		
 		/// <summary>Member OpenRequest </summary>
 		/// <param name='method'> </param>
@@ -248,7 +248,7 @@ namespace Skybound.Gecko
 		/// <param name='user'> </param>
 		/// <param name='password'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OpenRequest([MarshalAs(UnmanagedType.LPStruct)] nsAString  method, [MarshalAs(UnmanagedType.LPStruct)] nsAString  url, System.Boolean  async, [MarshalAs(UnmanagedType.LPStruct)] nsAString user, [MarshalAs(UnmanagedType.LPStruct)] nsAString password);
+		void OpenRequest([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  method, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  url, System.Boolean  async, [MarshalAs(UnmanagedType.LPStruct)] nsAString user, [MarshalAs(UnmanagedType.LPStruct)] nsAString password);
 		
 		/// <summary>Member Open </summary>
 		/// <param name='method'> </param>
@@ -257,7 +257,7 @@ namespace Skybound.Gecko
 		/// <param name='user'> </param>
 		/// <param name='password'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Open([MarshalAs(UnmanagedType.LPStruct)] nsAString  method, [MarshalAs(UnmanagedType.LPStruct)] nsAString  url, System.Boolean  async, [MarshalAs(UnmanagedType.LPStruct)] nsAString user, [MarshalAs(UnmanagedType.LPStruct)] nsAString password);
+		void Open([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  method, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  url, System.Boolean  async, [MarshalAs(UnmanagedType.LPStruct)] nsAString user, [MarshalAs(UnmanagedType.LPStruct)] nsAString password);
 		
 		/// <summary>Member Send </summary>
 		/// <param name='body'> </param>
@@ -273,7 +273,7 @@ namespace Skybound.Gecko
 		/// <param name='header'> </param>
 		/// <param name='value'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetRequestHeader([MarshalAs(UnmanagedType.LPStruct)] nsAString  header, [MarshalAs(UnmanagedType.LPStruct)] nsAString  value);
+		void SetRequestHeader([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  header, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  value);
 		
 		/// <summary>Member GetReadyStateAttribute </summary>
 		/// <returns>A System.Int32 </returns>
@@ -283,7 +283,7 @@ namespace Skybound.Gecko
 		/// <summary>Member OverrideMimeType </summary>
 		/// <param name='mimetype'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OverrideMimeType([MarshalAs(UnmanagedType.LPStruct)] nsAString  mimetype);
+		void OverrideMimeType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  mimetype);
 		
 		/// <summary>Member GetMultipartAttribute </summary>
 		/// <returns>A System.Boolean </returns>

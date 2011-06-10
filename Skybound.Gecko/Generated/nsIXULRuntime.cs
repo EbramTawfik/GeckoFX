@@ -46,17 +46,17 @@ namespace Skybound.Gecko
 		/// <summary>Member GetOSAttribute </summary>
 		/// <param name='aOS'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetOSAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aOS);
+		void GetOSAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aOS);
 		
 		/// <summary>Member GetXPCOMABIAttribute </summary>
 		/// <param name='aXPCOMABI'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetXPCOMABIAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aXPCOMABI);
+		void GetXPCOMABIAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aXPCOMABI);
 		
 		/// <summary>Member GetWidgetToolkitAttribute </summary>
 		/// <param name='aWidgetToolkit'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetWidgetToolkitAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aWidgetToolkit);
+		void GetWidgetToolkitAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aWidgetToolkit);
 		
 		/// <summary>Member GetProcessTypeAttribute </summary>
 		/// <returns>A System.UInt32 </returns>

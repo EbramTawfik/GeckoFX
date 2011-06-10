@@ -125,6 +125,6 @@ namespace Skybound.Gecko
 		/// <summary>Member GetHelpTextAttribute </summary>
 		/// <param name='aHelpText'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetHelpTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aHelpText);
+		void GetHelpTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aHelpText);
 	}
 }

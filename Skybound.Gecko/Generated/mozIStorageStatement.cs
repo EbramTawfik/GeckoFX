@@ -35,7 +35,7 @@ namespace Skybound.Gecko
 		/// <param name='aParamIndex'> </param>
 		/// <param name='aValue'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void BindUTF8StringParameter(System.UInt32  aParamIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aValue);
+		new void BindUTF8StringParameter(System.UInt32  aParamIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aValue);
 		
 		/// <summary>Member BindStringParameter </summary>
 		/// <param name='aParamIndex'> </param>
@@ -113,15 +113,15 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member GetParameterName </summary>
 		/// <param name='aParamIndex'> </param>
-		/// <returns>A nsAString</returns>
+		/// <returns>A nsAUTF8String</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetParameterName(System.UInt32  aParamIndex);
+		nsAUTF8String GetParameterName(System.UInt32  aParamIndex);
 		
 		/// <summary>Member GetParameterIndex </summary>
 		/// <param name='aName'> </param>
 		/// <returns>A System.UInt32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetParameterIndex([MarshalAs(UnmanagedType.LPStruct)] nsAString  aName);
+		uint GetParameterIndex([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName);
 		
 		/// <summary>Member GetColumnCountAttribute </summary>
 		/// <returns>A System.UInt32 </returns>
@@ -130,21 +130,21 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member GetColumnName </summary>
 		/// <param name='aColumnIndex'> </param>
-		/// <returns>A nsAString</returns>
+		/// <returns>A nsAUTF8String</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetColumnName(System.UInt32  aColumnIndex);
+		nsAUTF8String GetColumnName(System.UInt32  aColumnIndex);
 		
 		/// <summary>Member GetColumnIndex </summary>
 		/// <param name='aName'> </param>
 		/// <returns>A System.UInt32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetColumnIndex([MarshalAs(UnmanagedType.LPStruct)] nsAString  aName);
+		uint GetColumnIndex([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName);
 		
 		/// <summary>Member GetColumnDecltype </summary>
 		/// <param name='aParamIndex'> </param>
-		/// <returns>A nsAString</returns>
+		/// <returns>A nsAUTF8String</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetColumnDecltype(System.UInt32  aParamIndex);
+		nsAUTF8String GetColumnDecltype(System.UInt32  aParamIndex);
 		
 		/// <summary>Member Reset </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -190,9 +190,9 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member GetUTF8String </summary>
 		/// <param name='aIndex'> </param>
-		/// <returns>A nsAString</returns>
+		/// <returns>A nsAUTF8String</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetUTF8String(System.UInt32  aIndex);
+		nsAUTF8String GetUTF8String(System.UInt32  aIndex);
 		
 		/// <summary>Member GetString </summary>
 		/// <param name='aIndex'> </param>

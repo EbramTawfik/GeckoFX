@@ -44,6 +44,6 @@ namespace Skybound.Gecko
 		/// <param name='aPath'> </param>
 		/// <param name='aBlocked'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Remove([MarshalAs(UnmanagedType.LPStruct)] nsAString  aHost, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aName, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aPath, System.Boolean  aBlocked);
+		void Remove([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aHost, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aName, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aPath, System.Boolean  aBlocked);
 	}
 }

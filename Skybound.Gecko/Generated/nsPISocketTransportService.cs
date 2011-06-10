@@ -36,7 +36,7 @@ namespace Skybound.Gecko
 		/// <param name='aProxyInfo'> </param>
 		/// <returns>A nsISocketTransport</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsISocketTransport CreateTransport([MarshalAs(UnmanagedType.LPStr, SizeParamIndex=1)] System.String  aSocketTypes, System.UInt32  aTypeCount, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aHost, System.Int32  aPort, [MarshalAs(UnmanagedType.Interface)] nsIProxyInfo  aProxyInfo);
+		new nsISocketTransport CreateTransport([MarshalAs(UnmanagedType.LPStr, SizeParamIndex=1)] System.String  aSocketTypes, System.UInt32  aTypeCount, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aHost, System.Int32  aPort, [MarshalAs(UnmanagedType.Interface)] nsIProxyInfo  aProxyInfo);
 		
 		/// <summary>Member AttachSocket </summary>
 		/// <param name='aFd'> </param>

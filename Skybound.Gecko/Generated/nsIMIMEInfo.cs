@@ -180,28 +180,28 @@ namespace Skybound.Gecko
 		/// <summary>Member SetFileExtensions </summary>
 		/// <param name='aExtensions'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFileExtensions([MarshalAs(UnmanagedType.LPStruct)] nsAString  aExtensions);
+		void SetFileExtensions([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aExtensions);
 		
 		/// <summary>Member ExtensionExists </summary>
 		/// <param name='aExtension'> </param>
 		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool ExtensionExists([MarshalAs(UnmanagedType.LPStruct)] nsAString  aExtension);
+		bool ExtensionExists([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aExtension);
 		
 		/// <summary>Member AppendExtension </summary>
 		/// <param name='aExtension'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AppendExtension([MarshalAs(UnmanagedType.LPStruct)] nsAString  aExtension);
+		void AppendExtension([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aExtension);
 		
 		/// <summary>Member GetPrimaryExtensionAttribute </summary>
 		/// <param name='aPrimaryExtension'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPrimaryExtensionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aPrimaryExtension);
+		void GetPrimaryExtensionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aPrimaryExtension);
 		
 		/// <summary>Member SetPrimaryExtensionAttribute </summary>
 		/// <param name='aPrimaryExtension'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPrimaryExtensionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aPrimaryExtension);
+		void SetPrimaryExtensionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aPrimaryExtension);
 		
 		/// <summary>Member GetMIMETypeAttribute </summary>
 		/// <param name='aMIMEType'> </param>
@@ -385,12 +385,12 @@ namespace Skybound.Gecko
 		/// <summary>Member GetUriTemplateAttribute </summary>
 		/// <param name='aUriTemplate'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetUriTemplateAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aUriTemplate);
+		void GetUriTemplateAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aUriTemplate);
 		
 		/// <summary>Member SetUriTemplateAttribute </summary>
 		/// <param name='aUriTemplate'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetUriTemplateAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aUriTemplate);
+		void SetUriTemplateAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aUriTemplate);
 	}
 	
 	/// <summary>nsIDBusHandlerApp </summary>
@@ -435,41 +435,41 @@ namespace Skybound.Gecko
 		/// <summary>Member GetServiceAttribute </summary>
 		/// <param name='aService'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetServiceAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aService);
+		void GetServiceAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aService);
 		
 		/// <summary>Member SetServiceAttribute </summary>
 		/// <param name='aService'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetServiceAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aService);
+		void SetServiceAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aService);
 		
 		/// <summary>Member GetObjectPathAttribute </summary>
 		/// <param name='aObjectPath'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetObjectPathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aObjectPath);
+		void GetObjectPathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aObjectPath);
 		
 		/// <summary>Member SetObjectPathAttribute </summary>
 		/// <param name='aObjectPath'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetObjectPathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aObjectPath);
+		void SetObjectPathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aObjectPath);
 		
 		/// <summary>Member GetDBusInterfaceAttribute </summary>
 		/// <param name='aDBusInterface'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDBusInterfaceAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aDBusInterface);
+		void GetDBusInterfaceAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aDBusInterface);
 		
 		/// <summary>Member SetDBusInterfaceAttribute </summary>
 		/// <param name='aDBusInterface'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDBusInterfaceAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aDBusInterface);
+		void SetDBusInterfaceAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aDBusInterface);
 		
 		/// <summary>Member GetMethodAttribute </summary>
 		/// <param name='aMethod'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMethodAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aMethod);
+		void GetMethodAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aMethod);
 		
 		/// <summary>Member SetMethodAttribute </summary>
 		/// <param name='aMethod'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMethodAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aMethod);
+		void SetMethodAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aMethod);
 	}
 }

@@ -46,7 +46,7 @@ namespace Skybound.Gecko
 		/// <param name='aBaseURI'> </param>
 		/// <returns>A nsIURI</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIURI NewURI([MarshalAs(UnmanagedType.LPStruct)] nsAString  aSpec, [MarshalAs(UnmanagedType.LPStr)] System.String  aOriginCharset, [MarshalAs(UnmanagedType.Interface)] nsIURI  aBaseURI);
+		new nsIURI NewURI([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aSpec, [MarshalAs(UnmanagedType.LPStr)] System.String  aOriginCharset, [MarshalAs(UnmanagedType.Interface)] nsIURI  aBaseURI);
 		
 		/// <summary>Member NewFileURI </summary>
 		/// <param name='aFile'> </param>
@@ -66,7 +66,7 @@ namespace Skybound.Gecko
 		/// <param name='aBaseURI'> </param>
 		/// <returns>A nsIChannel</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIChannel NewChannel([MarshalAs(UnmanagedType.LPStruct)] nsAString  aSpec, [MarshalAs(UnmanagedType.LPStr)] System.String  aOriginCharset, [MarshalAs(UnmanagedType.Interface)] nsIURI  aBaseURI);
+		new nsIChannel NewChannel([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aSpec, [MarshalAs(UnmanagedType.LPStr)] System.String  aOriginCharset, [MarshalAs(UnmanagedType.Interface)] nsIURI  aBaseURI);
 		
 		/// <summary>Member GetOfflineAttribute </summary>
 		/// <returns>A System.Boolean </returns>
@@ -89,7 +89,7 @@ namespace Skybound.Gecko
 		/// <param name='urlString'> </param>
 		/// <returns>A nsAString</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsAString ExtractScheme([MarshalAs(UnmanagedType.LPStruct)] nsAString  urlString);
+		new nsAString ExtractScheme([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  urlString);
 		
 		/// <summary>Member GetManageOfflineStatusAttribute </summary>
 		/// <returns>A System.Boolean </returns>

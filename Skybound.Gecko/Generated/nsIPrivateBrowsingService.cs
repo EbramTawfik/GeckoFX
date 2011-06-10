@@ -51,6 +51,6 @@ namespace Skybound.Gecko
 		/// <summary>Member RemoveDataFromDomain </summary>
 		/// <param name='aDomain'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveDataFromDomain([MarshalAs(UnmanagedType.LPStruct)] nsAString  aDomain);
+		void RemoveDataFromDomain([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aDomain);
 	}
 }

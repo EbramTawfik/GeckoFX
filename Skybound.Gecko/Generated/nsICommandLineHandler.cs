@@ -36,6 +36,6 @@ namespace Skybound.Gecko
 		/// <summary>Member GetHelpInfoAttribute </summary>
 		/// <param name='aHelpInfo'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetHelpInfoAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aHelpInfo);
+		void GetHelpInfoAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aHelpInfo);
 	}
 }

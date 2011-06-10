@@ -31,7 +31,7 @@ namespace Skybound.Gecko
 		/// <summary>Member GetHostAttribute </summary>
 		/// <param name='aHost'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetHostAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aHost);
+		void GetHostAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aHost);
 		
 		/// <summary>Member GetTypeAttribute </summary>
 		/// <param name='aType'> </param>

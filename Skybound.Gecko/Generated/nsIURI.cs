@@ -31,17 +31,17 @@ namespace Skybound.Gecko
 		/// <summary>Member GetSpecAttribute </summary>
 		/// <param name='aSpec'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSpecAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aSpec);
+		void GetSpecAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aSpec);
 		
 		/// <summary>Member SetSpecAttribute </summary>
 		/// <param name='aSpec'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSpecAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aSpec);
+		void SetSpecAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aSpec);
 		
 		/// <summary>Member GetPrePathAttribute </summary>
 		/// <param name='aPrePath'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPrePathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aPrePath);
+		void GetPrePathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aPrePath);
 		
 		/// <summary>Member GetSchemeAttribute </summary>
 		/// <param name='aScheme'> </param>
@@ -56,52 +56,52 @@ namespace Skybound.Gecko
 		/// <summary>Member GetUserPassAttribute </summary>
 		/// <param name='aUserPass'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetUserPassAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aUserPass);
+		void GetUserPassAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aUserPass);
 		
 		/// <summary>Member SetUserPassAttribute </summary>
 		/// <param name='aUserPass'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetUserPassAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aUserPass);
+		void SetUserPassAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aUserPass);
 		
 		/// <summary>Member GetUsernameAttribute </summary>
 		/// <param name='aUsername'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetUsernameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aUsername);
+		void GetUsernameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aUsername);
 		
 		/// <summary>Member SetUsernameAttribute </summary>
 		/// <param name='aUsername'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetUsernameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aUsername);
+		void SetUsernameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aUsername);
 		
 		/// <summary>Member GetPasswordAttribute </summary>
 		/// <param name='aPassword'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPasswordAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aPassword);
+		void GetPasswordAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aPassword);
 		
 		/// <summary>Member SetPasswordAttribute </summary>
 		/// <param name='aPassword'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPasswordAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aPassword);
+		void SetPasswordAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aPassword);
 		
 		/// <summary>Member GetHostPortAttribute </summary>
 		/// <param name='aHostPort'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetHostPortAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aHostPort);
+		void GetHostPortAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aHostPort);
 		
 		/// <summary>Member SetHostPortAttribute </summary>
 		/// <param name='aHostPort'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetHostPortAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aHostPort);
+		void SetHostPortAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aHostPort);
 		
 		/// <summary>Member GetHostAttribute </summary>
 		/// <param name='aHost'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetHostAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aHost);
+		void GetHostAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aHost);
 		
 		/// <summary>Member SetHostAttribute </summary>
 		/// <param name='aHost'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetHostAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aHost);
+		void SetHostAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aHost);
 		
 		/// <summary>Member GetPortAttribute </summary>
 		/// <returns>A System.Int32 </returns>
@@ -116,12 +116,12 @@ namespace Skybound.Gecko
 		/// <summary>Member GetPathAttribute </summary>
 		/// <param name='aPath'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aPath);
+		void GetPathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aPath);
 		
 		/// <summary>Member SetPathAttribute </summary>
 		/// <param name='aPath'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aPath);
+		void SetPathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aPath);
 		
 		/// <summary>Member Equals </summary>
 		/// <param name='other'> </param>
@@ -142,9 +142,9 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member Resolve </summary>
 		/// <param name='relativePath'> </param>
-		/// <returns>A nsAString</returns>
+		/// <returns>A nsAUTF8String</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString Resolve([MarshalAs(UnmanagedType.LPStruct)] nsAString  relativePath);
+		nsAUTF8String Resolve([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  relativePath);
 		
 		/// <summary>Member GetAsciiSpecAttribute </summary>
 		/// <param name='aAsciiSpec'> </param>

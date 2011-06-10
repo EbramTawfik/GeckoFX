@@ -372,6 +372,6 @@ namespace Skybound.Gecko
 		/// <summary>Member SetFileSource </summary>
 		/// <param name='aURI'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFileSource([MarshalAs(UnmanagedType.LPStruct)] nsAString  aURI);
+		void SetFileSource([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aURI);
 	}
 }

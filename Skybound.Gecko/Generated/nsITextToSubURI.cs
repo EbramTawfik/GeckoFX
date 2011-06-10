@@ -47,13 +47,13 @@ namespace Skybound.Gecko
 		/// <param name='aURIFragment'> </param>
 		/// <returns>A nsAString</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString UnEscapeURIForUI([MarshalAs(UnmanagedType.LPStruct)] nsAString  aCharset, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aURIFragment);
+		nsAString UnEscapeURIForUI([MarshalAs(UnmanagedType.LPStruct)] nsAString  aCharset, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aURIFragment);
 		
 		/// <summary>Member UnEscapeNonAsciiURI </summary>
 		/// <param name='aCharset'> </param>
 		/// <param name='aURIFragment'> </param>
 		/// <returns>A nsAString</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString UnEscapeNonAsciiURI([MarshalAs(UnmanagedType.LPStruct)] nsAString  aCharset, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aURIFragment);
+		nsAString UnEscapeNonAsciiURI([MarshalAs(UnmanagedType.LPStruct)] nsAString  aCharset, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aURIFragment);
 	}
 }

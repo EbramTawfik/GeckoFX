@@ -58,7 +58,7 @@ namespace Skybound.Gecko
 		/// <summary>Member GetLastPageVisitedAttribute </summary>
 		/// <param name='aLastPageVisited'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetLastPageVisitedAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aLastPageVisited);
+		void GetLastPageVisitedAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aLastPageVisited);
 		
 		/// <summary>Member GetCountAttribute </summary>
 		/// <returns>A System.UInt32 </returns>
@@ -81,7 +81,7 @@ namespace Skybound.Gecko
 		/// <param name='aHost'> </param>
 		/// <param name='aEntireDomain'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemovePagesFromHost([MarshalAs(UnmanagedType.LPStruct)] nsAString  aHost, System.Boolean  aEntireDomain);
+		void RemovePagesFromHost([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aHost, System.Boolean  aEntireDomain);
 		
 		/// <summary>Member RemovePagesByTimeframe </summary>
 		/// <param name='aBeginTime'> </param>

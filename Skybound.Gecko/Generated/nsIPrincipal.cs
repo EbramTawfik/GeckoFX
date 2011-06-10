@@ -143,12 +143,12 @@ namespace Skybound.Gecko
 		/// <summary>Member GetFingerprintAttribute </summary>
 		/// <param name='aFingerprint'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetFingerprintAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aFingerprint);
+		void GetFingerprintAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aFingerprint);
 		
 		/// <summary>Member GetPrettyNameAttribute </summary>
 		/// <param name='aPrettyName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPrettyNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aPrettyName);
+		void GetPrettyNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aPrettyName);
 		
 		/// <summary>Member Subsumes </summary>
 		/// <param name='other'> </param>
@@ -165,7 +165,7 @@ namespace Skybound.Gecko
 		/// <summary>Member GetSubjectNameAttribute </summary>
 		/// <param name='aSubjectName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSubjectNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aSubjectName);
+		void GetSubjectNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aSubjectName);
 		
 		/// <summary>Member GetCertificateAttribute </summary>
 		/// <returns>A nsISupports </returns>

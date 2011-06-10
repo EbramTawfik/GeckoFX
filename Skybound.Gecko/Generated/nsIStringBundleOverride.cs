@@ -33,12 +33,12 @@ namespace Skybound.Gecko
 		/// <param name='key'> </param>
 		/// <returns>A nsAString</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetStringFromName([MarshalAs(UnmanagedType.LPStruct)] nsAString  url, [MarshalAs(UnmanagedType.LPStruct)] nsAString  key);
+		nsAString GetStringFromName([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  url, [MarshalAs(UnmanagedType.LPStruct)] nsAString  key);
 		
 		/// <summary>Member EnumerateKeysInBundle </summary>
 		/// <param name='url'> </param>
 		/// <returns>A nsISimpleEnumerator</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISimpleEnumerator EnumerateKeysInBundle([MarshalAs(UnmanagedType.LPStruct)] nsAString  url);
+		nsISimpleEnumerator EnumerateKeysInBundle([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  url);
 	}
 }

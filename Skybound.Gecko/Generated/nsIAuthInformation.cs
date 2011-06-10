@@ -41,7 +41,7 @@ namespace Skybound.Gecko
 		/// <summary>Member GetAuthenticationSchemeAttribute </summary>
 		/// <param name='aAuthenticationScheme'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetAuthenticationSchemeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aAuthenticationScheme);
+		void GetAuthenticationSchemeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aAuthenticationScheme);
 		
 		/// <summary>Member GetUsernameAttribute </summary>
 		/// <param name='aUsername'> </param>

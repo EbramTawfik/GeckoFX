@@ -31,27 +31,27 @@ namespace Skybound.Gecko
 		/// <summary>Member GetStartPageAttribute </summary>
 		/// <param name='aStartPage'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetStartPageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aStartPage);
+		void GetStartPageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aStartPage);
 		
 		/// <summary>Member SetStartPageAttribute </summary>
 		/// <param name='aStartPage'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetStartPageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aStartPage);
+		void SetStartPageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aStartPage);
 		
 		/// <summary>Member GetDefaultArgsAttribute </summary>
 		/// <param name='aDefaultArgs'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDefaultArgsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aDefaultArgs);
+		void GetDefaultArgsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aDefaultArgs);
 		
 		/// <summary>Member SetDefaultArgsAttribute </summary>
 		/// <param name='aDefaultArgs'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDefaultArgsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aDefaultArgs);
+		void SetDefaultArgsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aDefaultArgs);
 		
 		/// <summary>Member GetFeatures </summary>
 		/// <param name='aCmdLine'> </param>
-		/// <returns>A nsAString</returns>
+		/// <returns>A nsAUTF8String</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetFeatures([MarshalAs(UnmanagedType.Interface)] nsICommandLine  aCmdLine);
+		nsAUTF8String GetFeatures([MarshalAs(UnmanagedType.Interface)] nsICommandLine  aCmdLine);
 	}
 }

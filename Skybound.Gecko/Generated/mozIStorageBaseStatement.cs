@@ -35,7 +35,7 @@ namespace Skybound.Gecko
 		/// <param name='aParamIndex'> </param>
 		/// <param name='aValue'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BindUTF8StringParameter(System.UInt32  aParamIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aValue);
+		void BindUTF8StringParameter(System.UInt32  aParamIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aValue);
 		
 		/// <summary>Member BindStringParameter </summary>
 		/// <param name='aParamIndex'> </param>

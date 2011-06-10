@@ -82,9 +82,9 @@ namespace Skybound.Gecko
 		void Init([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string message, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string sourceName, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string sourceLine, System.UInt32  lineNumber, System.UInt32  columnNumber, System.UInt32  flags, [MarshalAs(UnmanagedType.LPStr)] System.String  category);
 		
 		/// <summary>Member ToString </summary>
-		/// <returns>A nsAString</returns>
+		/// <returns>A nsAUTF8String</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString ToString();
+		nsAUTF8String ToString();
 	}
 	
 	/// <summary>nsIScriptError2 </summary>

@@ -49,7 +49,7 @@ namespace Skybound.Gecko
 		/// <param name='aBaseURI'> </param>
 		/// <returns>A nsIURI</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIURI NewURI([MarshalAs(UnmanagedType.LPStruct)] nsAString  aSpec, [MarshalAs(UnmanagedType.LPStr)] System.String  aOriginCharset, [MarshalAs(UnmanagedType.Interface)] nsIURI  aBaseURI);
+		new nsIURI NewURI([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aSpec, [MarshalAs(UnmanagedType.LPStr)] System.String  aOriginCharset, [MarshalAs(UnmanagedType.Interface)] nsIURI  aBaseURI);
 		
 		/// <summary>Member NewChannel </summary>
 		/// <param name='aURI'> </param>
@@ -72,27 +72,27 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member GetURLSpecFromFile </summary>
 		/// <param name='file'> </param>
-		/// <returns>A nsAString</returns>
+		/// <returns>A nsAUTF8String</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetURLSpecFromFile([MarshalAs(UnmanagedType.Interface)] nsIFile  file);
+		nsAUTF8String GetURLSpecFromFile([MarshalAs(UnmanagedType.Interface)] nsIFile  file);
 		
 		/// <summary>Member GetURLSpecFromActualFile </summary>
 		/// <param name='file'> </param>
-		/// <returns>A nsAString</returns>
+		/// <returns>A nsAUTF8String</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetURLSpecFromActualFile([MarshalAs(UnmanagedType.Interface)] nsIFile  file);
+		nsAUTF8String GetURLSpecFromActualFile([MarshalAs(UnmanagedType.Interface)] nsIFile  file);
 		
 		/// <summary>Member GetURLSpecFromDir </summary>
 		/// <param name='file'> </param>
-		/// <returns>A nsAString</returns>
+		/// <returns>A nsAUTF8String</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetURLSpecFromDir([MarshalAs(UnmanagedType.Interface)] nsIFile  file);
+		nsAUTF8String GetURLSpecFromDir([MarshalAs(UnmanagedType.Interface)] nsIFile  file);
 		
 		/// <summary>Member GetFileFromURLSpec </summary>
 		/// <param name='url'> </param>
 		/// <returns>A nsIFile</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIFile GetFileFromURLSpec([MarshalAs(UnmanagedType.LPStruct)] nsAString  url);
+		nsIFile GetFileFromURLSpec([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  url);
 		
 		/// <summary>Member ReadURLFile </summary>
 		/// <param name='file'> </param>

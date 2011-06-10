@@ -34,6 +34,6 @@ namespace Skybound.Gecko
 		/// <param name='targetSite'> </param>
 		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool NotifySSLError([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor  socketInfo, System.Int32  error, [MarshalAs(UnmanagedType.LPStruct)] nsAString  targetSite);
+		bool NotifySSLError([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor  socketInfo, System.Int32  error, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  targetSite);
 	}
 }

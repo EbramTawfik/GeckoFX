@@ -46,12 +46,12 @@ namespace Skybound.Gecko
 		/// <summary>Member GetHostAttribute </summary>
 		/// <param name='aHost'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetHostAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aHost);
+		void GetHostAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aHost);
 		
 		/// <summary>Member GetPathAttribute </summary>
 		/// <param name='aPath'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aPath);
+		void GetPathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aPath);
 		
 		/// <summary>Member GetIsSecureAttribute </summary>
 		/// <returns>A System.Boolean </returns>

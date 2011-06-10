@@ -42,7 +42,7 @@ namespace Skybound.Gecko
 		/// <param name='aEncodingType'> </param>
 		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool ApplyDecodingForExtension([MarshalAs(UnmanagedType.LPStruct)] nsAString  aExtension, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aEncodingType);
+		bool ApplyDecodingForExtension([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aExtension, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aEncodingType);
 	}
 	
 	/// <summary>nsPIExternalAppLauncher </summary>

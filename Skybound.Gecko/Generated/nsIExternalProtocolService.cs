@@ -74,6 +74,6 @@ namespace Skybound.Gecko
 		/// <param name='aScheme'> </param>
 		/// <returns>A nsAString</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetApplicationDescription([MarshalAs(UnmanagedType.LPStruct)] nsAString  aScheme);
+		nsAString GetApplicationDescription([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aScheme);
 	}
 }

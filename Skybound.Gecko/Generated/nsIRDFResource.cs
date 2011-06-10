@@ -43,7 +43,7 @@ namespace Skybound.Gecko
 		/// <summary>Member GetValueUTF8Attribute </summary>
 		/// <param name='aValueUTF8'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetValueUTF8Attribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aValueUTF8);
+		void GetValueUTF8Attribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aValueUTF8);
 		
 		/// <summary>Member GetValueConst </summary>
 		/// <param name='aConstValue'> </param>

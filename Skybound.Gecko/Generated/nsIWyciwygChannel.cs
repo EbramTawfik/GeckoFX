@@ -31,7 +31,7 @@ namespace Skybound.Gecko
 		/// <summary>Member GetNameAttribute </summary>
 		/// <param name='aName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aName);
+		new void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName);
 		
 		/// <summary>Member IsPending </summary>
 		/// <returns>A System.Boolean</returns>

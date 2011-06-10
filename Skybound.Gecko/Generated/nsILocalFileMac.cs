@@ -428,6 +428,6 @@ namespace Skybound.Gecko
 		/// <summary>Member GetBundleIdentifierAttribute </summary>
 		/// <param name='aBundleIdentifier'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetBundleIdentifierAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aBundleIdentifier);
+		void GetBundleIdentifierAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aBundleIdentifier);
 	}
 }

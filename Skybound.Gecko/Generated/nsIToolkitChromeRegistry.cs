@@ -84,6 +84,6 @@ namespace Skybound.Gecko
 		/// <param name='aPackage'> </param>
 		/// <returns>A nsIUTF8StringEnumerator</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIUTF8StringEnumerator GetLocalesForPackage([MarshalAs(UnmanagedType.LPStruct)] nsAString  aPackage);
+		nsIUTF8StringEnumerator GetLocalesForPackage([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aPackage);
 	}
 }

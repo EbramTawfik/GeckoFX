@@ -52,8 +52,8 @@ namespace Skybound.Gecko
 		bool HasMore();
 		
 		/// <summary>Member GetNext </summary>
-		/// <returns>A nsAString</returns>
+		/// <returns>A nsAUTF8String</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetNext();
+		nsAUTF8String GetNext();
 	}
 }

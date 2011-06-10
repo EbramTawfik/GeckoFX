@@ -32,7 +32,7 @@ namespace Skybound.Gecko
 		/// <param name='aURI'> </param>
 		/// <returns>A nsIRDFResource</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIRDFResource GetResource([MarshalAs(UnmanagedType.LPStruct)] nsAString  aURI);
+		nsIRDFResource GetResource([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aURI);
 		
 		/// <summary>Member GetUnicodeResource </summary>
 		/// <param name='aURI'> </param>

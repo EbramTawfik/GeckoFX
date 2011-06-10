@@ -35,19 +35,19 @@ namespace Skybound.Gecko
 		/// <param name='aListenerTarget'> </param>
 		/// <returns>A nsICancelable</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsICancelable AsyncResolve([MarshalAs(UnmanagedType.LPStruct)] nsAString  aHostName, System.UInt32  aFlags, [MarshalAs(UnmanagedType.Interface)] nsIDNSListener  aListener, [MarshalAs(UnmanagedType.Interface)] nsIEventTarget  aListenerTarget);
+		new nsICancelable AsyncResolve([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aHostName, System.UInt32  aFlags, [MarshalAs(UnmanagedType.Interface)] nsIDNSListener  aListener, [MarshalAs(UnmanagedType.Interface)] nsIEventTarget  aListenerTarget);
 		
 		/// <summary>Member Resolve </summary>
 		/// <param name='aHostName'> </param>
 		/// <param name='aFlags'> </param>
 		/// <returns>A nsIDNSRecord</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDNSRecord Resolve([MarshalAs(UnmanagedType.LPStruct)] nsAString  aHostName, System.UInt32  aFlags);
+		new nsIDNSRecord Resolve([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aHostName, System.UInt32  aFlags);
 		
 		/// <summary>Member GetMyHostNameAttribute </summary>
 		/// <param name='aMyHostName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetMyHostNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aMyHostName);
+		new void GetMyHostNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aMyHostName);
 		
 		/// <summary>Member Init </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

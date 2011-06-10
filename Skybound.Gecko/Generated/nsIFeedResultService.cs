@@ -44,7 +44,7 @@ namespace Skybound.Gecko
 		/// <param name='subtitle'> </param>
 		/// <param name='feedType'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddToClientReader([MarshalAs(UnmanagedType.LPStruct)] nsAString  uri, [MarshalAs(UnmanagedType.LPStruct)] nsAString title, [MarshalAs(UnmanagedType.LPStruct)] nsAString subtitle, System.UInt32  feedType);
+		void AddToClientReader([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  uri, [MarshalAs(UnmanagedType.LPStruct)] nsAString title, [MarshalAs(UnmanagedType.LPStruct)] nsAString subtitle, System.UInt32  feedType);
 		
 		/// <summary>Member AddFeedResult </summary>
 		/// <param name='feedResult'> </param>

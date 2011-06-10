@@ -59,7 +59,7 @@ namespace Skybound.Gecko
 		/// <summary>Member GetNameAttribute </summary>
 		/// <param name='aName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aName);
+		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName);
 		
 		/// <summary>Member GetUriAttribute </summary>
 		/// <returns>A nsIURI </returns>

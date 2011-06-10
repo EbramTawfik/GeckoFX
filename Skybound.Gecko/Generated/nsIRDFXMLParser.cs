@@ -40,6 +40,6 @@ namespace Skybound.Gecko
 		/// <param name='aBaseURI'> </param>
 		/// <param name='aSource'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ParseString([MarshalAs(UnmanagedType.Interface)] nsIRDFDataSource  aSink, [MarshalAs(UnmanagedType.Interface)] nsIURI  aBaseURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aSource);
+		void ParseString([MarshalAs(UnmanagedType.Interface)] nsIRDFDataSource  aSink, [MarshalAs(UnmanagedType.Interface)] nsIURI  aBaseURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aSource);
 	}
 }

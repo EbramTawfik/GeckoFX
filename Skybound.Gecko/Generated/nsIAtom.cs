@@ -34,9 +34,9 @@ namespace Skybound.Gecko
 		nsAString ToString();
 		
 		/// <summary>Member ToUTF8String </summary>
-		/// <returns>A nsAString</returns>
+		/// <returns>A nsAUTF8String</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString ToUTF8String();
+		nsAUTF8String ToUTF8String();
 		
 		/// <summary>Member Equals </summary>
 		/// <param name='aString'> </param>
@@ -48,7 +48,7 @@ namespace Skybound.Gecko
 		/// <param name='aString'> </param>
 		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool EqualsUTF8([MarshalAs(UnmanagedType.LPStruct)] nsAString  aString);
+		bool EqualsUTF8([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aString);
 		
 		/// <summary>Member IsStaticAtom </summary>
 		/// <returns>A System.Boolean</returns>

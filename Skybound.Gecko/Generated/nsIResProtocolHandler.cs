@@ -49,7 +49,7 @@ namespace Skybound.Gecko
 		/// <param name='aBaseURI'> </param>
 		/// <returns>A nsIURI</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIURI NewURI([MarshalAs(UnmanagedType.LPStruct)] nsAString  aSpec, [MarshalAs(UnmanagedType.LPStr)] System.String  aOriginCharset, [MarshalAs(UnmanagedType.Interface)] nsIURI  aBaseURI);
+		new nsIURI NewURI([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aSpec, [MarshalAs(UnmanagedType.LPStr)] System.String  aOriginCharset, [MarshalAs(UnmanagedType.Interface)] nsIURI  aBaseURI);
 		
 		/// <summary>Member NewChannel </summary>
 		/// <param name='aURI'> </param>
@@ -84,8 +84,8 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member ResolveURI </summary>
 		/// <param name='resURI'> </param>
-		/// <returns>A nsAString</returns>
+		/// <returns>A nsAUTF8String</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString ResolveURI([MarshalAs(UnmanagedType.Interface)] nsIURI  resURI);
+		nsAUTF8String ResolveURI([MarshalAs(UnmanagedType.Interface)] nsIURI  resURI);
 	}
 }

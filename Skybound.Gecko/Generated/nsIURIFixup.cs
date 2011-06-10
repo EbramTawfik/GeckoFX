@@ -39,12 +39,12 @@ namespace Skybound.Gecko
 		/// <param name='aFixupFlags'> </param>
 		/// <returns>A nsIURI</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI CreateFixupURI([MarshalAs(UnmanagedType.LPStruct)] nsAString  aURIText, System.UInt32  aFixupFlags);
+		nsIURI CreateFixupURI([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aURIText, System.UInt32  aFixupFlags);
 		
 		/// <summary>Member KeywordToURI </summary>
 		/// <param name='aKeyword'> </param>
 		/// <returns>A nsIURI</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI KeywordToURI([MarshalAs(UnmanagedType.LPStruct)] nsAString  aKeyword);
+		nsIURI KeywordToURI([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aKeyword);
 	}
 }

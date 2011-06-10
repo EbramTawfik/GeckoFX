@@ -33,13 +33,13 @@ namespace Skybound.Gecko
 		/// <param name='aFileExt'> </param>
 		/// <returns>A nsIMIMEInfo</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIMIMEInfo GetFromTypeAndExtension([MarshalAs(UnmanagedType.LPStruct)] nsAString  aMIMEType, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aFileExt);
+		nsIMIMEInfo GetFromTypeAndExtension([MarshalAs(UnmanagedType.LPStruct)] nsAString  aMIMEType, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aFileExt);
 		
 		/// <summary>Member GetTypeFromExtension </summary>
 		/// <param name='aFileExt'> </param>
 		/// <returns>A nsAString</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetTypeFromExtension([MarshalAs(UnmanagedType.LPStruct)] nsAString  aFileExt);
+		nsAString GetTypeFromExtension([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aFileExt);
 		
 		/// <summary>Member GetTypeFromURI </summary>
 		/// <param name='aURI'> </param>
@@ -56,8 +56,8 @@ namespace Skybound.Gecko
 		/// <summary>Member GetPrimaryExtension </summary>
 		/// <param name='aMIMEType'> </param>
 		/// <param name='aFileExt'> </param>
-		/// <returns>A nsAString</returns>
+		/// <returns>A nsAUTF8String</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetPrimaryExtension([MarshalAs(UnmanagedType.LPStruct)] nsAString  aMIMEType, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aFileExt);
+		nsAUTF8String GetPrimaryExtension([MarshalAs(UnmanagedType.LPStruct)] nsAString  aMIMEType, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aFileExt);
 	}
 }

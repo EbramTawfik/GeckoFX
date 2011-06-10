@@ -32,13 +32,13 @@ namespace Skybound.Gecko
 		/// <param name='input'> </param>
 		/// <returns>A nsAString</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString ConvertUTF8toACE([MarshalAs(UnmanagedType.LPStruct)] nsAString  input);
+		nsAString ConvertUTF8toACE([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  input);
 		
 		/// <summary>Member ConvertACEtoUTF8 </summary>
 		/// <param name='input'> </param>
-		/// <returns>A nsAString</returns>
+		/// <returns>A nsAUTF8String</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString ConvertACEtoUTF8([MarshalAs(UnmanagedType.LPStruct)] nsAString  input);
+		nsAUTF8String ConvertACEtoUTF8([MarshalAs(UnmanagedType.LPStruct)] nsAString  input);
 		
 		/// <summary>Member IsACE </summary>
 		/// <param name='input'> </param>
@@ -48,15 +48,15 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member Normalize </summary>
 		/// <param name='input'> </param>
-		/// <returns>A nsAString</returns>
+		/// <returns>A nsAUTF8String</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString Normalize([MarshalAs(UnmanagedType.LPStruct)] nsAString  input);
+		nsAUTF8String Normalize([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  input);
 		
 		/// <summary>Member ConvertToDisplayIDN </summary>
 		/// <param name='input'> </param>
 		/// <param name='isASCII'> </param>
-		/// <returns>A nsAString</returns>
+		/// <returns>A nsAUTF8String</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString ConvertToDisplayIDN([MarshalAs(UnmanagedType.LPStruct)] nsAString  input, out System.Boolean  isASCII);
+		nsAUTF8String ConvertToDisplayIDN([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  input, out System.Boolean  isASCII);
 	}
 }

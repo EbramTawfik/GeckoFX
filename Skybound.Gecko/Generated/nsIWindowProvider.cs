@@ -40,6 +40,6 @@ namespace Skybound.Gecko
 		/// <param name='aWindowIsNew'> </param>
 		/// <returns>A nsIDOMWindow</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMWindow ProvideWindow([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  aParent, System.UInt32  aChromeFlags, System.Boolean  aCalledFromJS, System.Boolean  aPositionSpecified, System.Boolean  aSizeSpecified, [MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString aName, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aFeatures, out System.Boolean  aWindowIsNew);
+		nsIDOMWindow ProvideWindow([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  aParent, System.UInt32  aChromeFlags, System.Boolean  aCalledFromJS, System.Boolean  aPositionSpecified, System.Boolean  aSizeSpecified, [MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString aName, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aFeatures, out System.Boolean  aWindowIsNew);
 	}
 }

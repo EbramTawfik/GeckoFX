@@ -44,7 +44,7 @@ namespace Skybound.Gecko
 		/// <param name='aPath'> </param>
 		/// <param name='aBlocked'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Remove([MarshalAs(UnmanagedType.LPStruct)] nsAString  aHost, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aName, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aPath, System.Boolean  aBlocked);
+		new void Remove([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aHost, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aName, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aPath, System.Boolean  aBlocked);
 		
 		/// <summary>Member Add </summary>
 		/// <param name='aHost'> </param>
@@ -56,7 +56,7 @@ namespace Skybound.Gecko
 		/// <param name='aIsSession'> </param>
 		/// <param name='aExpiry'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Add([MarshalAs(UnmanagedType.LPStruct)] nsAString  aHost, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aPath, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aName, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aValue, System.Boolean  aIsSecure, System.Boolean  aIsHttpOnly, System.Boolean  aIsSession, System.Int64  aExpiry);
+		void Add([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aHost, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aPath, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aName, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aValue, System.Boolean  aIsSecure, System.Boolean  aIsHttpOnly, System.Boolean  aIsSession, System.Int64  aExpiry);
 		
 		/// <summary>Member CookieExists </summary>
 		/// <param name='aCookie'> </param>
@@ -68,13 +68,13 @@ namespace Skybound.Gecko
 		/// <param name='aHost'> </param>
 		/// <returns>A System.UInt32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint CountCookiesFromHost([MarshalAs(UnmanagedType.LPStruct)] nsAString  aHost);
+		uint CountCookiesFromHost([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aHost);
 		
 		/// <summary>Member GetCookiesFromHost </summary>
 		/// <param name='aHost'> </param>
 		/// <returns>A nsISimpleEnumerator</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISimpleEnumerator GetCookiesFromHost([MarshalAs(UnmanagedType.LPStruct)] nsAString  aHost);
+		nsISimpleEnumerator GetCookiesFromHost([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aHost);
 		
 		/// <summary>Member ImportCookies </summary>
 		/// <param name='aCookieFile'> </param>

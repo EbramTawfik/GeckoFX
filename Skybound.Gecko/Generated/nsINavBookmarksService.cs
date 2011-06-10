@@ -67,7 +67,7 @@ namespace Skybound.Gecko
 		/// <param name='aLastModified'> </param>
 		/// <param name='aItemType'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnItemChanged(System.Int32  aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aProperty, System.Boolean  aIsAnnotationProperty, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aNewValue, System.UInt32  aLastModified, ushort aItemType);
+		void OnItemChanged(System.Int32  aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aProperty, System.Boolean  aIsAnnotationProperty, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aNewValue, System.UInt32  aLastModified, ushort aItemType);
 		
 		/// <summary>Member OnItemVisited </summary>
 		/// <param name='aBookmarkId'> </param>
@@ -126,7 +126,7 @@ namespace Skybound.Gecko
 		/// <param name='aTitle'> </param>
 		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int InsertBookmark(System.Int32  aParentId, [MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, System.Int32  aIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aTitle);
+		int InsertBookmark(System.Int32  aParentId, [MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, System.Int32  aIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aTitle);
 		
 		/// <summary>Member RemoveItem </summary>
 		/// <param name='aItemId'> </param>
@@ -139,7 +139,7 @@ namespace Skybound.Gecko
 		/// <param name='index'> </param>
 		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int CreateFolder(System.Int32  aParentFolder, [MarshalAs(UnmanagedType.LPStruct)] nsAString  name, System.Int32  index);
+		int CreateFolder(System.Int32  aParentFolder, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  name, System.Int32  index);
 		
 		/// <summary>Member CreateDynamicContainer </summary>
 		/// <param name='aParentFolder'> </param>
@@ -148,7 +148,7 @@ namespace Skybound.Gecko
 		/// <param name='aIndex'> </param>
 		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int CreateDynamicContainer(System.Int32  aParentFolder, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aName, [MarshalAs(UnmanagedType.LPStruct)] nsAString aContractId, System.Int32  aIndex);
+		int CreateDynamicContainer(System.Int32  aParentFolder, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName, [MarshalAs(UnmanagedType.LPStruct)] nsAString aContractId, System.Int32  aIndex);
 		
 		/// <summary>Member GetRemoveFolderTransaction </summary>
 		/// <param name='aItemId'> </param>
@@ -204,13 +204,13 @@ namespace Skybound.Gecko
 		/// <param name='aItemId'> </param>
 		/// <param name='aTitle'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetItemTitle(System.Int32  aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aTitle);
+		void SetItemTitle(System.Int32  aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aTitle);
 		
 		/// <summary>Member GetItemTitle </summary>
 		/// <param name='aItemId'> </param>
-		/// <returns>A nsAString</returns>
+		/// <returns>A nsAUTF8String</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetItemTitle(System.Int32  aItemId);
+		nsAUTF8String GetItemTitle(System.Int32  aItemId);
 		
 		/// <summary>Member SetItemDateAdded </summary>
 		/// <param name='aItemId'> </param>

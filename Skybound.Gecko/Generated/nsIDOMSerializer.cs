@@ -39,6 +39,6 @@ namespace Skybound.Gecko
 		/// <param name='stream'> </param>
 		/// <param name='charset'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SerializeToStream([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  root, [MarshalAs(UnmanagedType.Interface)] nsIOutputStream  stream, [MarshalAs(UnmanagedType.LPStruct)] nsAString  charset);
+		void SerializeToStream([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  root, [MarshalAs(UnmanagedType.Interface)] nsIOutputStream  stream, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  charset);
 	}
 }

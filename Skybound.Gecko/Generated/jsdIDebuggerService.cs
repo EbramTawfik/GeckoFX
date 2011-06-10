@@ -146,7 +146,7 @@ namespace Skybound.Gecko
 		/// <summary>Member GetImplementationStringAttribute </summary>
 		/// <param name='aImplementationString'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetImplementationStringAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aImplementationString);
+		void GetImplementationStringAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aImplementationString);
 		
 		/// <summary>Member GetIsOnAttribute </summary>
 		/// <returns>A System.Boolean </returns>
@@ -279,7 +279,7 @@ namespace Skybound.Gecko
 		/// <summary>Member DumpHeap </summary>
 		/// <param name='fileName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DumpHeap([MarshalAs(UnmanagedType.LPStruct)] nsAString  fileName);
+		void DumpHeap([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  fileName);
 	}
 	
 	/// <summary>jsdIFilter </summary>
@@ -313,12 +313,12 @@ namespace Skybound.Gecko
 		/// <summary>Member GetUrlPatternAttribute </summary>
 		/// <param name='aUrlPattern'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetUrlPatternAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aUrlPattern);
+		void GetUrlPatternAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aUrlPattern);
 		
 		/// <summary>Member SetUrlPatternAttribute </summary>
 		/// <param name='aUrlPattern'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetUrlPatternAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aUrlPattern);
+		void SetUrlPatternAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aUrlPattern);
 		
 		/// <summary>Member GetStartLineAttribute </summary>
 		/// <returns>A System.UInt32 </returns>
@@ -453,7 +453,7 @@ namespace Skybound.Gecko
 		/// <param name='exc'> </param>
 		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool OnError([MarshalAs(UnmanagedType.LPStruct)] nsAString  message, [MarshalAs(UnmanagedType.LPStruct)] nsAString  fileName, System.UInt32  line, System.UInt32  pos, System.UInt32  flags, System.UInt32  errnum, jsdIValue  exc);
+		bool OnError([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  message, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  fileName, System.UInt32  line, System.UInt32  pos, System.UInt32  flags, System.UInt32  errnum, jsdIValue  exc);
 	}
 	
 	/// <summary>jsdIExecutionHook </summary>
@@ -617,7 +617,7 @@ namespace Skybound.Gecko
 		/// <summary>Member GetFunctionNameAttribute </summary>
 		/// <param name='aFunctionName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetFunctionNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aFunctionName);
+		void GetFunctionNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aFunctionName);
 		
 		/// <summary>Member GetScriptAttribute </summary>
 		/// <returns>A jsdIScript </returns>
@@ -656,7 +656,7 @@ namespace Skybound.Gecko
 		/// <param name='result'> </param>
 		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Eval([MarshalAs(UnmanagedType.LPStruct)] nsAString bytes, [MarshalAs(UnmanagedType.LPStruct)] nsAString  fileName, System.UInt32  line, out jsdIValue  result);
+		bool Eval([MarshalAs(UnmanagedType.LPStruct)] nsAString bytes, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  fileName, System.UInt32  line, out jsdIValue  result);
 	}
 	
 	/// <summary>jsdIScript </summary>
@@ -708,12 +708,12 @@ namespace Skybound.Gecko
 		/// <summary>Member GetFileNameAttribute </summary>
 		/// <param name='aFileName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetFileNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aFileName);
+		void GetFileNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aFileName);
 		
 		/// <summary>Member GetFunctionNameAttribute </summary>
 		/// <param name='aFunctionName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetFunctionNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aFunctionName);
+		void GetFunctionNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aFunctionName);
 		
 		/// <summary>Member GetParameterNames </summary>
 		/// <param name='count'> </param>
@@ -886,7 +886,7 @@ namespace Skybound.Gecko
 		/// <summary>Member GetJsClassNameAttribute </summary>
 		/// <param name='aJsClassName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetJsClassNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aJsClassName);
+		void GetJsClassNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aJsClassName);
 		
 		/// <summary>Member GetJsConstructorAttribute </summary>
 		/// <returns>A jsdIValue </returns>
@@ -896,7 +896,7 @@ namespace Skybound.Gecko
 		/// <summary>Member GetJsFunctionNameAttribute </summary>
 		/// <param name='aJsFunctionName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetJsFunctionNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aJsFunctionName);
+		void GetJsFunctionNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aJsFunctionName);
 		
 		/// <summary>Member GetBooleanValueAttribute </summary>
 		/// <returns>A System.Boolean </returns>
@@ -921,7 +921,7 @@ namespace Skybound.Gecko
 		/// <summary>Member GetStringValueAttribute </summary>
 		/// <param name='aStringValue'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetStringValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aStringValue);
+		void GetStringValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aStringValue);
 		
 		/// <summary>Member GetPropertyCountAttribute </summary>
 		/// <returns>A System.Int32 </returns>
@@ -938,7 +938,7 @@ namespace Skybound.Gecko
 		/// <param name='name'> </param>
 		/// <returns>A jsdIProperty</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		jsdIProperty GetProperty([MarshalAs(UnmanagedType.LPStruct)] nsAString  name);
+		jsdIProperty GetProperty([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  name);
 		
 		/// <summary>Member Refresh </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -974,7 +974,7 @@ namespace Skybound.Gecko
 		/// <summary>Member GetCreatorURLAttribute </summary>
 		/// <param name='aCreatorURL'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCreatorURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aCreatorURL);
+		void GetCreatorURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aCreatorURL);
 		
 		/// <summary>Member GetCreatorLineAttribute </summary>
 		/// <returns>A System.UInt32 </returns>
@@ -984,7 +984,7 @@ namespace Skybound.Gecko
 		/// <summary>Member GetConstructorURLAttribute </summary>
 		/// <param name='aConstructorURL'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetConstructorURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aConstructorURL);
+		void GetConstructorURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aConstructorURL);
 		
 		/// <summary>Member GetConstructorLineAttribute </summary>
 		/// <returns>A System.UInt32 </returns>

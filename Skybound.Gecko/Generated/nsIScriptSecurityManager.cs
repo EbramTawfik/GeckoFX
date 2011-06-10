@@ -95,14 +95,14 @@ namespace Skybound.Gecko
 		/// <param name='uri'> </param>
 		/// <param name='flags'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CheckLoadURIStrWithPrincipal([MarshalAs(UnmanagedType.Interface)] nsIPrincipal  aPrincipal, [MarshalAs(UnmanagedType.LPStruct)] nsAString  uri, System.UInt32  flags);
+		void CheckLoadURIStrWithPrincipal([MarshalAs(UnmanagedType.Interface)] nsIPrincipal  aPrincipal, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  uri, System.UInt32  flags);
 		
 		/// <summary>Member CheckLoadURIStr </summary>
 		/// <param name='from'> </param>
 		/// <param name='uri'> </param>
 		/// <param name='flags'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CheckLoadURIStr([MarshalAs(UnmanagedType.LPStruct)] nsAString  from, [MarshalAs(UnmanagedType.LPStruct)] nsAString  uri, System.UInt32  flags);
+		void CheckLoadURIStr([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  from, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  uri, System.UInt32  flags);
 		
 		/// <summary>Member CheckFunctionAccess </summary>
 		/// <param name='cx'> </param>
@@ -136,7 +136,7 @@ namespace Skybound.Gecko
 		/// <param name='aURI'> </param>
 		/// <returns>A nsIPrincipal</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIPrincipal GetCertificatePrincipal([MarshalAs(UnmanagedType.LPStruct)] nsAString  aCertFingerprint, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aSubjectName, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aPrettyName, [MarshalAs(UnmanagedType.Interface)] nsISupports  aCert, [MarshalAs(UnmanagedType.Interface)] nsIURI  aURI);
+		nsIPrincipal GetCertificatePrincipal([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aCertFingerprint, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aSubjectName, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aPrettyName, [MarshalAs(UnmanagedType.Interface)] nsISupports  aCert, [MarshalAs(UnmanagedType.Interface)] nsIURI  aURI);
 		
 		/// <summary>Member GetCodebasePrincipal </summary>
 		/// <param name='aURI'> </param>
@@ -177,7 +177,7 @@ namespace Skybound.Gecko
 		/// <param name='capability'> </param>
 		/// <param name='canEnable'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCanEnableCapability([MarshalAs(UnmanagedType.LPStruct)] nsAString  certificateFingerprint, [MarshalAs(UnmanagedType.LPStr)] System.String  capability, short canEnable);
+		void SetCanEnableCapability([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  certificateFingerprint, [MarshalAs(UnmanagedType.LPStr)] System.String  capability, short canEnable);
 		
 		/// <summary>Member GetObjectPrincipal </summary>
 		/// <param name='cx'> </param>

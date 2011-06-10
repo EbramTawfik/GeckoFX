@@ -31,7 +31,7 @@ namespace Skybound.Gecko
 		/// <summary>Member Import </summary>
 		/// <param name='aResourceURI'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Import([MarshalAs(UnmanagedType.LPStruct)] nsAString  aResourceURI);
+		void Import([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aResourceURI);
 		
 		/// <summary>Member ImportInto </summary>
 		/// <param name='aResourceURI'> </param>
@@ -39,6 +39,6 @@ namespace Skybound.Gecko
 		/// <param name='cc'> </param>
 		/// <returns>A System.IntPtr</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr ImportInto([MarshalAs(UnmanagedType.LPStruct)] nsAString  aResourceURI, System.IntPtr  targetObj, System.IntPtr cc);
+		System.IntPtr ImportInto([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aResourceURI, System.IntPtr  targetObj, System.IntPtr cc);
 	}
 }

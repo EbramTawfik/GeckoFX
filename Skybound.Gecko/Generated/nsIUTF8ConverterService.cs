@@ -32,15 +32,15 @@ namespace Skybound.Gecko
 		/// <param name='aString'> </param>
 		/// <param name='aCharset'> </param>
 		/// <param name='aSkipCheck'> </param>
-		/// <returns>A nsAString</returns>
+		/// <returns>A nsAUTF8String</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString ConvertStringToUTF8([MarshalAs(UnmanagedType.LPStruct)] nsAString  aString, [MarshalAs(UnmanagedType.LPStr)] System.String  aCharset, System.Boolean  aSkipCheck);
+		nsAUTF8String ConvertStringToUTF8([MarshalAs(UnmanagedType.LPStruct)] nsAString  aString, [MarshalAs(UnmanagedType.LPStr)] System.String  aCharset, System.Boolean  aSkipCheck);
 		
 		/// <summary>Member ConvertURISpecToUTF8 </summary>
 		/// <param name='aSpec'> </param>
 		/// <param name='aCharset'> </param>
-		/// <returns>A nsAString</returns>
+		/// <returns>A nsAUTF8String</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString ConvertURISpecToUTF8([MarshalAs(UnmanagedType.LPStruct)] nsAString  aSpec, [MarshalAs(UnmanagedType.LPStr)] System.String  aCharset);
+		nsAUTF8String ConvertURISpecToUTF8([MarshalAs(UnmanagedType.LPStruct)] nsAString  aSpec, [MarshalAs(UnmanagedType.LPStr)] System.String  aCharset);
 	}
 }

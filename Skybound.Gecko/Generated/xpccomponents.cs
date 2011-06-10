@@ -132,7 +132,7 @@ namespace Skybound.Gecko
 		/// <summary>Member Import </summary>
 		/// <param name='registryLocation'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Import([MarshalAs(UnmanagedType.LPStruct)] nsAString  registryLocation);
+		void Import([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  registryLocation);
 		
 		/// <summary>Member GetWeakReference </summary>
 		/// <returns>A xpcIJSWeakReference</returns>

@@ -31,12 +31,12 @@ namespace Skybound.Gecko
 		/// <summary>Member GetKeyAttribute </summary>
 		/// <param name='aKey'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetKeyAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aKey);
+		void GetKeyAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aKey);
 		
 		/// <summary>Member SetKeyAttribute </summary>
 		/// <param name='aKey'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetKeyAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aKey);
+		void SetKeyAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aKey);
 		
 		/// <summary>Member GetValueAttribute </summary>
 		/// <param name='aValue'> </param>
@@ -96,7 +96,7 @@ namespace Skybound.Gecko
 		/// <param name='output'> </param>
 		/// <param name='header'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Save([MarshalAs(UnmanagedType.Interface)] nsIOutputStream  output, [MarshalAs(UnmanagedType.LPStruct)] nsAString  header);
+		void Save([MarshalAs(UnmanagedType.Interface)] nsIOutputStream  output, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  header);
 		
 		/// <summary>Member Subclass </summary>
 		/// <param name='superclass'> </param>
@@ -112,13 +112,13 @@ namespace Skybound.Gecko
 		/// <param name='key'> </param>
 		/// <returns>A nsAString</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetStringProperty([MarshalAs(UnmanagedType.LPStruct)] nsAString  key);
+		nsAString GetStringProperty([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  key);
 		
 		/// <summary>Member SetStringProperty </summary>
 		/// <param name='key'> </param>
 		/// <param name='value'> </param>
 		/// <returns>A nsAString</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString SetStringProperty([MarshalAs(UnmanagedType.LPStruct)] nsAString  key, [MarshalAs(UnmanagedType.LPStruct)] nsAString value);
+		nsAString SetStringProperty([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  key, [MarshalAs(UnmanagedType.LPStruct)] nsAString value);
 	}
 }

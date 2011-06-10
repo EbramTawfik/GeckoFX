@@ -69,7 +69,7 @@ namespace Skybound.Gecko
 		/// <param name='aName'> </param>
 		/// <returns>A nsIToolkitProfile</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIToolkitProfile GetProfileByName([MarshalAs(UnmanagedType.LPStruct)] nsAString  aName);
+		nsIToolkitProfile GetProfileByName([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName);
 		
 		/// <summary>Member LockProfilePath </summary>
 		/// <param name='aDirectory'> </param>
@@ -84,7 +84,7 @@ namespace Skybound.Gecko
 		/// <param name='aName'> </param>
 		/// <returns>A nsIToolkitProfile</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIToolkitProfile CreateProfile([MarshalAs(UnmanagedType.Interface)] nsILocalFile  aRootDir, [MarshalAs(UnmanagedType.Interface)] nsILocalFile  aTempDir, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aName);
+		nsIToolkitProfile CreateProfile([MarshalAs(UnmanagedType.Interface)] nsILocalFile  aRootDir, [MarshalAs(UnmanagedType.Interface)] nsILocalFile  aTempDir, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName);
 		
 		/// <summary>Member GetProfileCountAttribute </summary>
 		/// <returns>A System.UInt32 </returns>

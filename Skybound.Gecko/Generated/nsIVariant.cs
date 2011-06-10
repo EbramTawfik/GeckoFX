@@ -128,9 +128,9 @@ namespace Skybound.Gecko
 		nsAString GetAsACString();
 		
 		/// <summary>Member GetAsAUTF8String </summary>
-		/// <returns>A nsAString</returns>
+		/// <returns>A nsAUTF8String</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetAsAUTF8String();
+		nsAUTF8String GetAsAUTF8String();
 		
 		/// <summary>Member GetAsString </summary>
 		/// <returns>A System.String</returns>
@@ -281,9 +281,9 @@ namespace Skybound.Gecko
 		new nsAString GetAsACString();
 		
 		/// <summary>Member GetAsAUTF8String </summary>
-		/// <returns>A nsAString</returns>
+		/// <returns>A nsAUTF8String</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsAString GetAsAUTF8String();
+		new nsAUTF8String GetAsAUTF8String();
 		
 		/// <summary>Member GetAsString </summary>
 		/// <returns>A System.String</returns>
@@ -432,7 +432,7 @@ namespace Skybound.Gecko
 		/// <summary>Member SetAsAUTF8String </summary>
 		/// <param name='aValue'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAsAUTF8String([MarshalAs(UnmanagedType.LPStruct)] nsAString  aValue);
+		void SetAsAUTF8String([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aValue);
 		
 		/// <summary>Member SetAsString </summary>
 		/// <param name='aValue'> </param>

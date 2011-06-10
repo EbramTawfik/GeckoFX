@@ -36,6 +36,6 @@ namespace Skybound.Gecko
 		/// <summary>Member GetMessageAttribute </summary>
 		/// <param name='aMessage'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMessageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aMessage);
+		void GetMessageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aMessage);
 	}
 }
