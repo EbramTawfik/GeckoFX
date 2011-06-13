@@ -2,6 +2,13 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v2.0.1-0.3 ==
+
+1. Generated Files now contain correct License block.
+2. Generated Files now contain method and interface comments imported directly from 
+   the IDL files.
+3. Fix bug where some return parameter types were missing there Marshing attributes.
+
 == v2.0.1-0.2 ==
 
 1. Fix bug where some UTF8 strings were being treated as UTF16.
