@@ -40,28 +40,28 @@ namespace Skybound.Gecko
         /// Test the 'in' keyword.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int EchoLong(System.Int32  l);
+		int EchoLong(int l);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		short EchoShort(short a);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		char EchoChar(System.Char  c);
+		char EchoChar(char c);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool EchoBoolean(System.Boolean  b);
+		bool EchoBoolean(bool b);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr EchoOctet(System.IntPtr  o);
+		System.IntPtr EchoOctet(System.IntPtr o);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int EchoLongLong(System.Int32  ll);
+		int EchoLongLong(int ll);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint EchoUnsignedShort(ushort us);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint EchoUnsignedLong(System.UInt32  ul);
+		uint EchoUnsignedLong(uint ul);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		double EchoFloat(double f);
@@ -70,46 +70,47 @@ namespace Skybound.Gecko
 		double EchoDouble(double d);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		char EchoWchar(System.Char  wc);
+		char EchoWchar(char wc);
 		
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string EchoString([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string ws);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool EchoPRBool(System.Boolean  b);
+		bool EchoPRBool(bool b);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int EchoPRInt32(System.Int32  l);
+		int EchoPRInt32(int l);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		short EchoPRInt16(System.Int16  l);
+		short EchoPRInt16(short l);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		long EchoPRInt64(System.Int64  i);
+		long EchoPRInt64(long i);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		byte EchoPRUint8(byte i);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		ushort EchoPRUint16(System.UInt16  i);
+		ushort EchoPRUint16(ushort i);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint EchoPRUint32(System.UInt32  i);
+		uint EchoPRUint32(uint i);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint EchoPRUint32_2(System.UInt32  i);
+		uint EchoPRUint32_2(uint i);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		ulong EchoPRUint64(System.UInt64  i);
+		ulong EchoPRUint64(ulong i);
 		
 		/// <summary>
         /// compiler
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr EchoVoidPtr(System.IntPtr  vs);
+		System.IntPtr EchoVoidPtr(System.IntPtr vs);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr EchoCharPtr(System.IntPtr  cs);
+		System.IntPtr EchoCharPtr(System.IntPtr cs);
 		
 		/// <summary>
         ///[noscript] voidRef EchoVoidRef( in voidRef vf );

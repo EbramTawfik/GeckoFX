@@ -40,13 +40,13 @@ namespace Skybound.Gecko
         /// The machine-local (internal) id of the visit.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetVisitIdAttribute();
+		int GetVisitIdAttribute();
 		
 		/// <summary>
         /// The time the visit occurred.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetVisitDateAttribute();
+		uint GetVisitDateAttribute();
 		
 		/// <summary>
         /// The transition type used to get to this visit.  One of the TRANSITION_TYPE
@@ -55,14 +55,14 @@ namespace Skybound.Gecko
         /// @see nsINavHistory.idl
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetTransitionTypeAttribute();
+		uint GetTransitionTypeAttribute();
 		
 		/// <summary>
         /// The referring URI of this visit.  This may be null.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI  GetReferrerURIAttribute();
+		nsIURI GetReferrerURIAttribute();
 		
 		/// <summary>
         /// The sessionId of this visit.
@@ -70,7 +70,7 @@ namespace Skybound.Gecko
         /// @see nsINavHistory.idl
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetSessionIdAttribute();
+		int GetSessionIdAttribute();
 	}
 	
 	/// <summary>
@@ -86,20 +86,20 @@ namespace Skybound.Gecko
         /// The machine-local (internal) id of the place.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetPlaceIdAttribute();
+		int GetPlaceIdAttribute();
 		
 		/// <summary>
         /// The globally unique id of the place.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetGuidAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aGuid);
+		void GetGuidAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aGuid);
 		
 		/// <summary>
         /// The URI of the place.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI  GetUriAttribute();
+		nsIURI GetUriAttribute();
 		
 		/// <summary>
         /// The title associated with the place.
@@ -111,7 +111,7 @@ namespace Skybound.Gecko
         /// The frecency of the place.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetFrecencyAttribute();
+		int GetFrecencyAttribute();
 		
 		/// <summary>
         /// An array of mozIVisitInfo objects for the place.
@@ -139,7 +139,7 @@ namespace Skybound.Gecko
         /// The information that was being entered into the database.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnComplete(System.Int32  aResultCode, mozIPlaceInfo  aPlaceInfo);
+		void OnComplete(int aResultCode, mozIPlaceInfo aPlaceInfo);
 	}
 	
 	/// <summary>
@@ -174,6 +174,6 @@ namespace Skybound.Gecko
         /// - Providing an invalid transitionType for a mozIVisitInfo.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UpdatePlaces(System.IntPtr aPlaceInfo, mozIVisitInfoCallback  aCallback);
+		void UpdatePlaces(System.IntPtr aPlaceInfo, mozIVisitInfoCallback aCallback);
 	}
 }

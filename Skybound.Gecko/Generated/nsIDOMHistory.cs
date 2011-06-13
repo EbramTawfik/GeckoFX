@@ -35,9 +35,9 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetLengthAttribute </summary>
-		/// <returns>A System.Int32 </returns>
+		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetLengthAttribute();
+		int GetLengthAttribute();
 		
 		/// <summary>Member GetCurrentAttribute </summary>
 		/// <param name='aCurrent'> </param>
@@ -65,27 +65,28 @@ namespace Skybound.Gecko
 		/// <summary>Member Go </summary>
 		/// <param name='aDelta'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Go(System.Int32  aDelta);
+		void Go(int aDelta);
 		
 		/// <summary>Member Item </summary>
 		/// <param name='index'> </param>
 		/// <returns>A nsAString</returns>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString Item(System.UInt32  index);
+		nsAString Item(uint index);
 		
 		/// <summary>Member PushState </summary>
 		/// <param name='aData'> </param>
 		/// <param name='aTitle'> </param>
 		/// <param name='aURL'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PushState([MarshalAs(UnmanagedType.Interface)] nsIVariant  aData, [MarshalAs(UnmanagedType.LPStruct)] nsAString aTitle, [MarshalAs(UnmanagedType.LPStruct)] nsAString aURL);
+		void PushState([MarshalAs(UnmanagedType.Interface)] nsIVariant aData, [MarshalAs(UnmanagedType.LPStruct)] nsAString aTitle, [MarshalAs(UnmanagedType.LPStruct)] nsAString aURL);
 		
 		/// <summary>Member ReplaceState </summary>
 		/// <param name='aData'> </param>
 		/// <param name='aTitle'> </param>
 		/// <param name='aURL'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ReplaceState([MarshalAs(UnmanagedType.Interface)] nsIVariant  aData, [MarshalAs(UnmanagedType.LPStruct)] nsAString aTitle, [MarshalAs(UnmanagedType.LPStruct)] nsAString aURL);
+		void ReplaceState([MarshalAs(UnmanagedType.Interface)] nsIVariant aData, [MarshalAs(UnmanagedType.LPStruct)] nsAString aTitle, [MarshalAs(UnmanagedType.LPStruct)] nsAString aURL);
 	}
 	
 	/// <summary>nsIDOMHistory_MOZILLA_2_0_BRANCH </summary>
@@ -96,9 +97,9 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetStateAttribute </summary>
-		/// <returns>A nsIVariant </returns>
+		/// <returns>A nsIVariant</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant  GetStateAttribute();
+		nsIVariant GetStateAttribute();
 	}
 }

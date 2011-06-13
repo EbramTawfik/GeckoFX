@@ -53,13 +53,13 @@ namespace Skybound.Gecko
         /// Introduced in DOM Level 3:
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetXmlStandaloneAttribute();
+		bool GetXmlStandaloneAttribute();
 		
 		/// <summary>
         /// Introduced in DOM Level 3:
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetXmlStandaloneAttribute(System.Boolean  aXmlStandalone);
+		void SetXmlStandaloneAttribute(bool aXmlStandalone);
 		
 		/// <summary>
         /// Introduced in DOM Level 3:
@@ -77,13 +77,13 @@ namespace Skybound.Gecko
         /// Introduced in DOM Level 3:
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetStrictErrorCheckingAttribute();
+		bool GetStrictErrorCheckingAttribute();
 		
 		/// <summary>
         /// Introduced in DOM Level 3:
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetStrictErrorCheckingAttribute(System.Boolean  aStrictErrorChecking);
+		void SetStrictErrorCheckingAttribute(bool aStrictErrorChecking);
 		
 		/// <summary>
         /// Introduced in DOM Level 3:
@@ -100,15 +100,16 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Introduced in DOM Level 3:
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMNode AdoptNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  source);
+		nsIDOMNode AdoptNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode source);
 		
 		/// <summary>
         /// Introduced in DOM Level 3:
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMConfiguration  GetDomConfigAttribute();
+		nsIDOMDOMConfiguration GetDomConfigAttribute();
 		
 		/// <summary>
         /// Introduced in DOM Level 3:
@@ -119,7 +120,8 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Introduced in DOM Level 3:
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMNode RenameNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  node, [MarshalAs(UnmanagedType.LPStruct)] nsAString namespaceURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString qualifiedName);
+		nsIDOMNode RenameNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode node, [MarshalAs(UnmanagedType.LPStruct)] nsAString namespaceURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString qualifiedName);
 	}
 }

@@ -45,6 +45,6 @@ namespace Skybound.Gecko
         /// being canceled.  It is an error to pass a success code.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Cancel(System.Int32  aReason);
+		void Cancel(int aReason);
 	}
 }

@@ -42,27 +42,27 @@ namespace Skybound.Gecko
         /// this element will not appear in the session history list.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddEntry([MarshalAs(UnmanagedType.Interface)] nsISHEntry  aEntry, System.Boolean  aPersist);
+		void AddEntry([MarshalAs(UnmanagedType.Interface)] nsISHEntry aEntry, bool aPersist);
 		
 		/// <summary>
         /// Get the root transaction
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISHTransaction  GetRootTransactionAttribute();
+		nsISHTransaction GetRootTransactionAttribute();
 		
 		/// <summary>
         /// The toplevel docshell object to which this SHistory object belongs to.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDocShell  GetRootDocShellAttribute();
+		nsIDocShell GetRootDocShellAttribute();
 		
 		/// <summary>
         /// The toplevel docshell object to which this SHistory object belongs to.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetRootDocShellAttribute([MarshalAs(UnmanagedType.Interface)] nsIDocShell  aRootDocShell);
+		void SetRootDocShellAttribute([MarshalAs(UnmanagedType.Interface)] nsIDocShell aRootDocShell);
 		
 		/// <summary>
         /// Update the index maintained by sessionHistory
@@ -76,14 +76,14 @@ namespace Skybound.Gecko
         /// @param aReplaceEntry - The replacement entry for the index.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ReplaceEntry(System.Int32  aIndex, [MarshalAs(UnmanagedType.Interface)] nsISHEntry  aReplaceEntry);
+		void ReplaceEntry(int aIndex, [MarshalAs(UnmanagedType.Interface)] nsISHEntry aReplaceEntry);
 		
 		/// <summary>
         /// Get handle to the history listener
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISHistoryListener  GetListenerAttribute();
+		nsISHistoryListener GetListenerAttribute();
 		
 		/// <summary>
         /// Evict content viewers until the number of content viewers per tab
@@ -93,14 +93,14 @@ namespace Skybound.Gecko
         /// the previous viewer.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EvictContentViewers(System.Int32  previousIndex, System.Int32  index);
+		void EvictContentViewers(int previousIndex, int index);
 		
 		/// <summary>
         /// Evict the content viewer associated with a session history entry
         /// that has timed out.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EvictExpiredContentViewerForEntry([MarshalAs(UnmanagedType.Interface)] nsISHEntry  aEntry);
+		void EvictExpiredContentViewerForEntry([MarshalAs(UnmanagedType.Interface)] nsISHEntry aEntry);
 		
 		/// <summary>
         /// Evict all the content viewers in this session history
@@ -113,6 +113,6 @@ namespace Skybound.Gecko
         /// aIDs array.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveEntries(System.IntPtr aIDs, System.Int32  aStartIndex);
+		void RemoveEntries(System.IntPtr aIDs, int aStartIndex);
 	}
 }

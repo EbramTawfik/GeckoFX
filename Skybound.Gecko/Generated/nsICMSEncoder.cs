@@ -42,15 +42,15 @@ namespace Skybound.Gecko
         /// Interface to Encode an CMS message
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Start([MarshalAs(UnmanagedType.Interface)] nsICMSMessage  aMsg, System.IntPtr cb, System.IntPtr  arg);
+		void Start([MarshalAs(UnmanagedType.Interface)] nsICMSMessage aMsg, System.IntPtr cb, System.IntPtr arg);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Update([MarshalAs(UnmanagedType.LPStr)] System.String  aBuf, System.Int32  aLen);
+		void Update([MarshalAs(UnmanagedType.LPStr)] string aBuf, int aLen);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Finish();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Encode([MarshalAs(UnmanagedType.Interface)] nsICMSMessage  aMsg);
+		void Encode([MarshalAs(UnmanagedType.Interface)] nsICMSMessage aMsg);
 	}
 }

@@ -45,6 +45,6 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIIDBFactory  GetMozIndexedDBAttribute();
+		nsIIDBFactory GetMozIndexedDBAttribute();
 	}
 }

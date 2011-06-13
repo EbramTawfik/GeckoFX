@@ -41,7 +41,8 @@ namespace Skybound.Gecko
         /// Wrap an object implementing nsIAuthPrompt so that it's usable via
         /// nsIAuthPrompt2.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIAuthPrompt2 CreateAdapter([MarshalAs(UnmanagedType.Interface)] nsIAuthPrompt  aPrompt);
+		nsIAuthPrompt2 CreateAdapter([MarshalAs(UnmanagedType.Interface)] nsIAuthPrompt aPrompt);
 	}
 }

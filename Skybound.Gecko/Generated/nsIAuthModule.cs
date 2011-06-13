@@ -52,7 +52,7 @@ namespace Skybound.Gecko
         /// the user's password
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init([MarshalAs(UnmanagedType.LPStr)] System.String  aServiceName, System.UInt32  aServiceFlags, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aDomain, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aUsername, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aPassword);
+		void Init([MarshalAs(UnmanagedType.LPStr)] string aServiceName, uint aServiceFlags, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aDomain, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aUsername, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aPassword);
 		
 		/// <summary>
         /// Called to get the next token in a sequence of authentication steps.
@@ -72,7 +72,7 @@ namespace Skybound.Gecko
         /// length of the buffer (number of bytes) pointed to by aOutToken.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNextToken(System.IntPtr  aInToken, System.UInt32  aInTokenLength, out System.IntPtr  aOutToken, out System.UInt32  aOutTokenLength);
+		void GetNextToken(System.IntPtr aInToken, uint aInTokenLength, out System.IntPtr aOutToken, out uint aOutTokenLength);
 		
 		/// <summary>
         /// Once a security context has been established through calls to GetNextToken()
@@ -95,7 +95,7 @@ namespace Skybound.Gecko
         /// mechanism does not support security layers.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Wrap(System.IntPtr  aInToken, System.UInt32  aInTokenLength, System.Boolean  confidential, out System.IntPtr  aOutToken, out System.UInt32  aOutTokenLength);
+		void Wrap(System.IntPtr aInToken, uint aInTokenLength, bool confidential, out System.IntPtr aOutToken, out uint aOutTokenLength);
 		
 		/// <summary>
         /// Unwrap() is used to unpack, decrypt, and verify the checksums on data
@@ -114,6 +114,6 @@ namespace Skybound.Gecko
         /// authentication mechanism does not support security layers.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Unwrap(System.IntPtr  aInToken, System.UInt32  aInTokenLength, out System.IntPtr  aOutToken, out System.UInt32  aOutTokenLength);
+		void Unwrap(System.IntPtr aInToken, uint aInTokenLength, out System.IntPtr aOutToken, out uint aOutTokenLength);
 	}
 }

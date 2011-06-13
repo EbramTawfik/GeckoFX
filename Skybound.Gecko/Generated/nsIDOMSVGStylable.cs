@@ -35,20 +35,21 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetClassNameAttribute </summary>
-		/// <returns>A nsIDOMSVGAnimatedString </returns>
+		/// <returns>A nsIDOMSVGAnimatedString</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMSVGAnimatedString  GetClassNameAttribute();
+		nsIDOMSVGAnimatedString GetClassNameAttribute();
 		
 		/// <summary>Member GetStyleAttribute </summary>
-		/// <returns>A nsIDOMCSSStyleDeclaration </returns>
+		/// <returns>A nsIDOMCSSStyleDeclaration</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMCSSStyleDeclaration  GetStyleAttribute();
+		nsIDOMCSSStyleDeclaration GetStyleAttribute();
 		
 		/// <summary>Member GetPresentationAttribute </summary>
 		/// <param name='name'> </param>
 		/// <returns>A nsIDOMCSSValue</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMCSSValue GetPresentationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString name);
 	}

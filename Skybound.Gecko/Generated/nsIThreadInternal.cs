@@ -54,7 +54,7 @@ namespace Skybound.Gecko
         /// events, so this event would never run and has not been dispatched.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Dispatch([MarshalAs(UnmanagedType.Interface)] nsIRunnable  @event, System.UInt32  flags);
+		new void Dispatch([MarshalAs(UnmanagedType.Interface)] nsIRunnable @event, uint flags);
 		
 		/// <summary>
         /// Check to see if this event target is associated with the current thread.
@@ -72,7 +72,7 @@ namespace Skybound.Gecko
         /// The NSPR thread object corresponding to this nsIThread.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.IntPtr  GetPRThreadAttribute();
+		new System.IntPtr GetPRThreadAttribute();
 		
 		/// <summary>
         /// Shutdown the thread.  This method prevents further dispatch of events to
@@ -132,7 +132,7 @@ namespace Skybound.Gecko
         /// not the current thread.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool ProcessNextEvent(System.Boolean  mayWait);
+		new bool ProcessNextEvent(bool mayWait);
 		
 		/// <summary>
         /// Get/set the current thread observer (may be null).  This attribute may be
@@ -143,7 +143,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIThreadObserver  GetObserverAttribute();
+		nsIThreadObserver GetObserverAttribute();
 		
 		/// <summary>
         /// Get/set the current thread observer (may be null).  This attribute may be
@@ -153,7 +153,7 @@ namespace Skybound.Gecko
         /// processed during a call to Shutdown.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetObserverAttribute([MarshalAs(UnmanagedType.Interface)] nsIThreadObserver  aObserver);
+		void SetObserverAttribute([MarshalAs(UnmanagedType.Interface)] nsIThreadObserver aObserver);
 		
 		/// <summary>
         /// This method causes any events currently enqueued on the thread to be
@@ -168,7 +168,7 @@ namespace Skybound.Gecko
         /// all dispatched events.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PushEventQueue([MarshalAs(UnmanagedType.Interface)] nsIThreadEventFilter  filter);
+		void PushEventQueue([MarshalAs(UnmanagedType.Interface)] nsIThreadEventFilter filter);
 		
 		/// <summary>
         /// Revert a call to PushEventQueue.  When an event queue is popped, any
@@ -221,7 +221,7 @@ namespace Skybound.Gecko
         /// The thread where the event is being dispatched.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnDispatchedEvent([MarshalAs(UnmanagedType.Interface)] nsIThreadInternal  thread);
+		void OnDispatchedEvent([MarshalAs(UnmanagedType.Interface)] nsIThreadInternal thread);
 		
 		/// <summary>
         /// This method is called (from nsIThread::ProcessNextEvent) before an event
@@ -237,7 +237,7 @@ namespace Skybound.Gecko
         /// addition to the current call.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnProcessNextEvent([MarshalAs(UnmanagedType.Interface)] nsIThreadInternal  thread, System.Boolean  mayWait, System.UInt32  recursionDepth);
+		void OnProcessNextEvent([MarshalAs(UnmanagedType.Interface)] nsIThreadInternal thread, bool mayWait, uint recursionDepth);
 		
 		/// <summary>
         /// This method is called (from nsIThread::ProcessNextEvent) after an event
@@ -250,7 +250,7 @@ namespace Skybound.Gecko
         /// addition to the current call.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AfterProcessNextEvent([MarshalAs(UnmanagedType.Interface)] nsIThreadInternal  thread, System.UInt32  recursionDepth);
+		void AfterProcessNextEvent([MarshalAs(UnmanagedType.Interface)] nsIThreadInternal thread, uint recursionDepth);
 	}
 	
 	/// <summary>
@@ -272,7 +272,7 @@ namespace Skybound.Gecko
         /// WARNING: This method must not make any calls on the thread object.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool AcceptEvent([MarshalAs(UnmanagedType.Interface)] nsIRunnable  @event);
+		bool AcceptEvent([MarshalAs(UnmanagedType.Interface)] nsIRunnable @event);
 	}
 	
 	/// <summary>
@@ -301,7 +301,7 @@ namespace Skybound.Gecko
         /// events, so this event would never run and has not been dispatched.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Dispatch([MarshalAs(UnmanagedType.Interface)] nsIRunnable  @event, System.UInt32  flags);
+		new void Dispatch([MarshalAs(UnmanagedType.Interface)] nsIRunnable @event, uint flags);
 		
 		/// <summary>
         /// Check to see if this event target is associated with the current thread.
@@ -319,7 +319,7 @@ namespace Skybound.Gecko
         /// The NSPR thread object corresponding to this nsIThread.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.IntPtr  GetPRThreadAttribute();
+		new System.IntPtr GetPRThreadAttribute();
 		
 		/// <summary>
         /// Shutdown the thread.  This method prevents further dispatch of events to
@@ -379,7 +379,7 @@ namespace Skybound.Gecko
         /// not the current thread.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool ProcessNextEvent(System.Boolean  mayWait);
+		new bool ProcessNextEvent(bool mayWait);
 		
 		/// <summary>
         /// Get/set the current thread observer (may be null).  This attribute may be
@@ -390,7 +390,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIThreadObserver  GetObserverAttribute();
+		new nsIThreadObserver GetObserverAttribute();
 		
 		/// <summary>
         /// Get/set the current thread observer (may be null).  This attribute may be
@@ -400,7 +400,7 @@ namespace Skybound.Gecko
         /// processed during a call to Shutdown.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetObserverAttribute([MarshalAs(UnmanagedType.Interface)] nsIThreadObserver  aObserver);
+		new void SetObserverAttribute([MarshalAs(UnmanagedType.Interface)] nsIThreadObserver aObserver);
 		
 		/// <summary>
         /// This method causes any events currently enqueued on the thread to be
@@ -415,7 +415,7 @@ namespace Skybound.Gecko
         /// all dispatched events.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void PushEventQueue([MarshalAs(UnmanagedType.Interface)] nsIThreadEventFilter  filter);
+		new void PushEventQueue([MarshalAs(UnmanagedType.Interface)] nsIThreadEventFilter filter);
 		
 		/// <summary>
         /// Revert a call to PushEventQueue.  When an event queue is popped, any
@@ -430,7 +430,7 @@ namespace Skybound.Gecko
         /// called on the target thread.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetRecursionDepthAttribute();
+		uint GetRecursionDepthAttribute();
 		
 		/// <summary>
         /// Add an observer that will *only* receive onProcessNextEvent and
@@ -440,13 +440,13 @@ namespace Skybound.Gecko
         /// whether or not the observer is added in a nested loop). Holds a strong ref.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddObserver([MarshalAs(UnmanagedType.Interface)] nsIThreadObserver  observer);
+		void AddObserver([MarshalAs(UnmanagedType.Interface)] nsIThreadObserver observer);
 		
 		/// <summary>
         /// Remove an observer added via the addObserver call. Once removed the
         /// observer will never be called again by the thread.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveObserver([MarshalAs(UnmanagedType.Interface)] nsIThreadObserver  observer);
+		void RemoveObserver([MarshalAs(UnmanagedType.Interface)] nsIThreadObserver observer);
 	}
 }

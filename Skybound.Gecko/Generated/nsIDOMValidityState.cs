@@ -48,30 +48,30 @@ namespace Skybound.Gecko
         /// http://www.whatwg.org/specs/web-apps/current-work/#validitystate
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetValueMissingAttribute();
+		bool GetValueMissingAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetTypeMismatchAttribute();
+		bool GetTypeMismatchAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetPatternMismatchAttribute();
+		bool GetPatternMismatchAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetTooLongAttribute();
+		bool GetTooLongAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetRangeUnderflowAttribute();
+		bool GetRangeUnderflowAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetRangeOverflowAttribute();
+		bool GetRangeOverflowAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetStepMismatchAttribute();
+		bool GetStepMismatchAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetCustomErrorAttribute();
+		bool GetCustomErrorAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetValidAttribute();
+		bool GetValidAttribute();
 	}
 }

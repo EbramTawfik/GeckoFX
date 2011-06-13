@@ -48,12 +48,12 @@ namespace Skybound.Gecko
         /// it is up.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsLinkUpAttribute();
+		bool GetIsLinkUpAttribute();
 		
 		/// <summary>
         /// This is set to true when we believe that isLinkUp is accurate.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetLinkStatusKnownAttribute();
+		bool GetLinkStatusKnownAttribute();
 	}
 }

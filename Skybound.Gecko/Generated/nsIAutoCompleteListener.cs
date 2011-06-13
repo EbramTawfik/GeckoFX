@@ -51,17 +51,17 @@ namespace Skybound.Gecko
 		/// <summary>
         ///onAutoComplete is called by the autocomplete session when the search is done or over </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnAutoComplete([MarshalAs(UnmanagedType.Interface)] nsIAutoCompleteResults  result, System.IntPtr status);
+		void OnAutoComplete([MarshalAs(UnmanagedType.Interface)] nsIAutoCompleteResults result, System.IntPtr status);
 		
 		/// <summary>
         ///private param used by the autocomplete widget </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports  GetParamAttribute();
+		nsISupports GetParamAttribute();
 		
 		/// <summary>
         ///private param used by the autocomplete widget </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetParamAttribute([MarshalAs(UnmanagedType.Interface)] nsISupports  aParam);
+		void SetParamAttribute([MarshalAs(UnmanagedType.Interface)] nsISupports aParam);
 	}
 }

@@ -35,24 +35,24 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetShowHiddenFilesAttribute </summary>
-		/// <returns>A System.Boolean </returns>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetShowHiddenFilesAttribute();
+		bool GetShowHiddenFilesAttribute();
 		
 		/// <summary>Member SetShowHiddenFilesAttribute </summary>
 		/// <param name='aShowHiddenFiles'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetShowHiddenFilesAttribute(System.Boolean  aShowHiddenFiles);
+		void SetShowHiddenFilesAttribute(bool aShowHiddenFiles);
 		
 		/// <summary>Member GetShowOnlyDirectoriesAttribute </summary>
-		/// <returns>A System.Boolean </returns>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetShowOnlyDirectoriesAttribute();
+		bool GetShowOnlyDirectoriesAttribute();
 		
 		/// <summary>Member SetShowOnlyDirectoriesAttribute </summary>
 		/// <param name='aShowOnlyDirectories'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetShowOnlyDirectoriesAttribute(System.Boolean  aShowOnlyDirectories);
+		void SetShowOnlyDirectoriesAttribute(bool aShowOnlyDirectories);
 		
 		/// <summary>Member GetSortTypeAttribute </summary>
 		/// <returns>A System.Int16</returns>
@@ -60,20 +60,20 @@ namespace Skybound.Gecko
 		short GetSortTypeAttribute();
 		
 		/// <summary>Member GetReverseSortAttribute </summary>
-		/// <returns>A System.Boolean </returns>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetReverseSortAttribute();
+		bool GetReverseSortAttribute();
 		
 		/// <summary>Member Sort </summary>
 		/// <param name='sortType'> </param>
 		/// <param name='reverseSort'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Sort(short sortType, System.Boolean  reverseSort);
+		void Sort(short sortType, bool reverseSort);
 		
 		/// <summary>Member SetDirectory </summary>
 		/// <param name='directory'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDirectory([MarshalAs(UnmanagedType.Interface)] nsIFile  directory);
+		void SetDirectory([MarshalAs(UnmanagedType.Interface)] nsIFile directory);
 		
 		/// <summary>Member SetFilter </summary>
 		/// <param name='filterString'> </param>
@@ -81,9 +81,9 @@ namespace Skybound.Gecko
 		void SetFilter([MarshalAs(UnmanagedType.LPStruct)] nsAString filterString);
 		
 		/// <summary>Member GetSelectedFilesAttribute </summary>
-		/// <returns>A nsIArray </returns>
+		/// <returns>A nsIArray</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIArray  GetSelectedFilesAttribute();
+		nsIArray GetSelectedFilesAttribute();
 	}
 }

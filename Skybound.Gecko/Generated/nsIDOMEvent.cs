@@ -53,7 +53,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventTarget  GetTargetAttribute();
+		nsIDOMEventTarget GetTargetAttribute();
 		
 		/// <summary>
         /// Used to indicate the EventTarget whose EventListeners are currently
@@ -62,7 +62,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventTarget  GetCurrentTargetAttribute();
+		nsIDOMEventTarget GetCurrentTargetAttribute();
 		
 		/// <summary>
         /// Used to indicate which phase of event flow is currently being
@@ -76,7 +76,7 @@ namespace Skybound.Gecko
         /// event can bubble the value is true, else the value is false.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetBubblesAttribute();
+		bool GetBubblesAttribute();
 		
 		/// <summary>
         /// Used to indicate whether or not an event can have its default action
@@ -84,7 +84,7 @@ namespace Skybound.Gecko
         /// else the value is false.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetCancelableAttribute();
+		bool GetCancelableAttribute();
 		
 		/// <summary>
         /// Used to specify the time (in milliseconds relative to the epoch) at
@@ -95,7 +95,7 @@ namespace Skybound.Gecko
         /// 0:0:0 UTC 1st January 1970.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int64  GetTimeStampAttribute();
+		long GetTimeStampAttribute();
 		
 		/// <summary>
         /// The stopPropagation method is used prevent further propagation of an
@@ -150,6 +150,6 @@ namespace Skybound.Gecko
         /// action can be prevented.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString eventTypeArg, System.Boolean  canBubbleArg, System.Boolean  cancelableArg);
+		void InitEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString eventTypeArg, bool canBubbleArg, bool cancelableArg);
 	}
 }

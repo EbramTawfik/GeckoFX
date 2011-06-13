@@ -43,7 +43,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsISAXAttributes  GetAttributesAttribute();
+		new nsISAXAttributes GetAttributesAttribute();
 		
 		/// <summary>
         /// The attributes found on the element. Most interfaces provide convenience
@@ -51,20 +51,20 @@ namespace Skybound.Gecko
         /// an extension.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetAttributesAttribute([MarshalAs(UnmanagedType.Interface)] nsISAXAttributes  aAttributes);
+		new void SetAttributesAttribute([MarshalAs(UnmanagedType.Interface)] nsISAXAttributes aAttributes);
 		
 		/// <summary>
         /// The baseURI for the Entry or Feed.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIURI  GetBaseURIAttribute();
+		new nsIURI GetBaseURIAttribute();
 		
 		/// <summary>
         /// The baseURI for the Entry or Feed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetBaseURIAttribute([MarshalAs(UnmanagedType.Interface)] nsIURI  aBaseURI);
+		new void SetBaseURIAttribute([MarshalAs(UnmanagedType.Interface)] nsIURI aBaseURI);
 		
 		/// <summary>
         /// The name of the person.
@@ -95,12 +95,12 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI  GetUriAttribute();
+		nsIURI GetUriAttribute();
 		
 		/// <summary>
         /// A URI associated with the person (e.g. a homepage).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetUriAttribute([MarshalAs(UnmanagedType.Interface)] nsIURI  aUri);
+		void SetUriAttribute([MarshalAs(UnmanagedType.Interface)] nsIURI aUri);
 	}
 }

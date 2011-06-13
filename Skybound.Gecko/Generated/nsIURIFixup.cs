@@ -46,8 +46,9 @@ namespace Skybound.Gecko
         /// @throws NS_ERROR_UNKNOWN_PROTOCOL when we can't get a protocol handler service
         /// for the URI scheme.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI CreateExposableURI([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI);
+		nsIURI CreateExposableURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 		
 		/// <summary>
         /// Converts the specified string into a URI, first attempting
@@ -57,15 +58,17 @@ namespace Skybound.Gecko
         /// @param aURIText    Candidate URI.
         /// @param aFixupFlags Flags that govern ways the URI may be fixed up.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI CreateFixupURI([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aURIText, System.UInt32  aFixupFlags);
+		nsIURI CreateFixupURI([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aURIText, uint aFixupFlags);
 		
 		/// <summary>
         /// Converts the specified keyword string into a URI.  Note that it's the
         /// caller's responsibility to check whether keywords are enabled and
         /// whether aKeyword is a sensible keyword.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI KeywordToURI([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aKeyword);
+		nsIURI KeywordToURI([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aKeyword);
 	}
 }

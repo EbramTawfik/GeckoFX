@@ -45,7 +45,7 @@ namespace Skybound.Gecko
         /// @param aClass The classid of the factory that is being requested
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr  GetClassObject(ref System.Guid aClass, ref System.Guid aIID);
+		System.IntPtr GetClassObject(ref System.Guid aClass, ref System.Guid aIID);
 		
 		/// <summary>
         /// getClassObjectByContractID
@@ -56,7 +56,7 @@ namespace Skybound.Gecko
         /// @param aClass The classid of the factory that is being requested
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr  GetClassObjectByContractID([MarshalAs(UnmanagedType.LPStr)] System.String  aContractID, ref System.Guid aIID);
+		System.IntPtr GetClassObjectByContractID([MarshalAs(UnmanagedType.LPStr)] string aContractID, ref System.Guid aIID);
 		
 		/// <summary>
         /// createInstance
@@ -68,7 +68,7 @@ namespace Skybound.Gecko
         /// @param aIID : IID of interface requested
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr  CreateInstance(ref System.Guid aClass, [MarshalAs(UnmanagedType.Interface)] nsISupports  aDelegate, ref System.Guid aIID);
+		System.IntPtr CreateInstance(ref System.Guid aClass, [MarshalAs(UnmanagedType.Interface)] nsISupports aDelegate, ref System.Guid aIID);
 		
 		/// <summary>
         /// createInstanceByContractID
@@ -81,6 +81,6 @@ namespace Skybound.Gecko
         /// @param aIID : IID of interface requested
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr  CreateInstanceByContractID([MarshalAs(UnmanagedType.LPStr)] System.String  aContractID, [MarshalAs(UnmanagedType.Interface)] nsISupports  aDelegate, ref System.Guid aIID);
+		System.IntPtr CreateInstanceByContractID([MarshalAs(UnmanagedType.LPStr)] string aContractID, [MarshalAs(UnmanagedType.Interface)] nsISupports aDelegate, ref System.Guid aIID);
 	}
 }

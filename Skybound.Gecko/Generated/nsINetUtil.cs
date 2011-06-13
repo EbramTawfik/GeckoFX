@@ -46,8 +46,9 @@ namespace Skybound.Gecko
         /// @param [out] aHadCharset whether a charset was explicitly specified.
         /// @return the MIME type specified in the header, in lower-case.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAUTF8String ParseContentType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aTypeHeader, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aCharset, out System.Boolean  aHadCharset);
+		nsAUTF8String ParseContentType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aTypeHeader, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aCharset, out bool aHadCharset);
 		
 		/// <summary>
         /// Test whether the given URI's handler has the given protocol flags.
@@ -59,7 +60,7 @@ namespace Skybound.Gecko
         /// in aFlags.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool ProtocolHasFlags([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, System.UInt32  aFlag);
+		bool ProtocolHasFlags([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, uint aFlag);
 		
 		/// <summary>
         /// Test whether the protocol handler for this URI or that for any of
@@ -73,7 +74,7 @@ namespace Skybound.Gecko
         /// in aFlags.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool URIChainHasFlags([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, System.UInt32  aFlags);
+		bool URIChainHasFlags([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, uint aFlags);
 		
 		/// <summary>
         /// Take aURI and produce an immutable version of it for the caller.  If aURI
@@ -81,22 +82,25 @@ namespace Skybound.Gecko
         /// marked immutable if possible.  Passing null to this method is allowed; in
         /// that case it will return null.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI ToImmutableURI([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI);
+		nsIURI ToImmutableURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 		
 		/// <summary>
         /// Create a simple nested URI using the result of
         /// toImmutableURI on the passed-in aURI which may not be null.
         /// Note: The return URI will not have had its spec set yet.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI NewSimpleNestedURI([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI);
+		nsIURI NewSimpleNestedURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 		
 		/// <summary>
         /// escape a string with %00-style escaping
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString EscapeString([MarshalAs(UnmanagedType.LPStruct)] nsAString  aString, System.UInt32  aEscapeType);
+		nsAString EscapeString([MarshalAs(UnmanagedType.LPStruct)] nsAString aString, uint aEscapeType);
 		
 		/// <summary>
         /// %XX-Escape invalid chars in a URL segment.
@@ -107,8 +111,9 @@ namespace Skybound.Gecko
         /// @return the escaped string (the string itself if escaping did not happen)
         ///
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString EscapeURL([MarshalAs(UnmanagedType.LPStruct)] nsAString  aStr, System.UInt32  aFlags);
+		nsAString EscapeURL([MarshalAs(UnmanagedType.LPStruct)] nsAString aStr, uint aFlags);
 		
 		/// <summary>
         /// Expands URL escape sequences
@@ -119,8 +124,9 @@ namespace Skybound.Gecko
         /// unescaped
         /// @return unescaped string
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString UnescapeString([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aStr, System.UInt32  aFlags);
+		nsAString UnescapeString([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aStr, uint aFlags);
 		
 		/// <summary>
         /// Extract the charset parameter location and value from a content-type
@@ -145,6 +151,6 @@ namespace Skybound.Gecko
         /// that won out does not have a charset parameter specified.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool ExtractCharsetFromContentType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aTypeHeader, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aCharset, out System.Int32  aCharsetStart, out System.Int32  aCharsetEnd);
+		bool ExtractCharsetFromContentType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aTypeHeader, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aCharset, out int aCharsetStart, out int aCharsetEnd);
 	}
 }

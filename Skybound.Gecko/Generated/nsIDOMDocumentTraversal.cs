@@ -39,10 +39,12 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Introduced in DOM Level 2:
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMNodeIterator CreateNodeIterator([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  root, System.UInt32  whatToShow, [MarshalAs(UnmanagedType.Interface)] nsIDOMNodeFilter  filter, System.Boolean  entityReferenceExpansion);
+		nsIDOMNodeIterator CreateNodeIterator([MarshalAs(UnmanagedType.Interface)] nsIDOMNode root, uint whatToShow, [MarshalAs(UnmanagedType.Interface)] nsIDOMNodeFilter filter, bool entityReferenceExpansion);
 		
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMTreeWalker CreateTreeWalker([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  root, System.UInt32  whatToShow, [MarshalAs(UnmanagedType.Interface)] nsIDOMNodeFilter  filter, System.Boolean  entityReferenceExpansion);
+		nsIDOMTreeWalker CreateTreeWalker([MarshalAs(UnmanagedType.Interface)] nsIDOMNode root, uint whatToShow, [MarshalAs(UnmanagedType.Interface)] nsIDOMNodeFilter filter, bool entityReferenceExpansion);
 	}
 }

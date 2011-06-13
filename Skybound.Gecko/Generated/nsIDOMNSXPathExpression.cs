@@ -47,7 +47,8 @@ namespace Skybound.Gecko
         /// @param type              The needed result type
         /// @param result            The result
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports EvaluateWithContext([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  contextNode, System.UInt32  contextPosition, System.UInt32  contextSize, ushort type, [MarshalAs(UnmanagedType.Interface)] nsISupports  result);
+		nsISupports EvaluateWithContext([MarshalAs(UnmanagedType.Interface)] nsIDOMNode contextNode, uint contextPosition, uint contextSize, ushort type, [MarshalAs(UnmanagedType.Interface)] nsISupports result);
 	}
 }

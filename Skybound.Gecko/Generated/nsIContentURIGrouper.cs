@@ -41,7 +41,8 @@ namespace Skybound.Gecko
         ///
         /// @returns  the group to which the URI belongs
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString Group([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI);
+		nsAString Group([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 	}
 }

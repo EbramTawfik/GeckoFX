@@ -38,13 +38,14 @@ namespace Skybound.Gecko
 		
 		/// <summary>
         ///in JSObject value </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsAString Encode();
 		
 		/// <summary>
         ///in JSObject value </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EncodeToStream([MarshalAs(UnmanagedType.Interface)] nsIOutputStream  stream, [MarshalAs(UnmanagedType.LPStr)] System.String  charset, System.Boolean  writeBOM);
+		void EncodeToStream([MarshalAs(UnmanagedType.Interface)] nsIOutputStream stream, [MarshalAs(UnmanagedType.LPStr)] string charset, bool writeBOM);
 		
 		/// <summary>
         ///JSObject </summary>
@@ -54,16 +55,17 @@ namespace Skybound.Gecko
 		/// <summary>
         ///JSObject </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DecodeFromStream([MarshalAs(UnmanagedType.Interface)] nsIInputStream  stream, System.Int32  contentLength);
+		void DecodeFromStream([MarshalAs(UnmanagedType.Interface)] nsIInputStream stream, int contentLength);
 		
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString EncodeFromJSVal(System.IntPtr  value, System.IntPtr  cx);
+		nsAString EncodeFromJSVal(System.IntPtr value, System.IntPtr cx);
 		
 		/// <summary>
         /// Make sure you GCroot the result of this function before using it.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr DecodeToJSVal([MarshalAs(UnmanagedType.LPStruct)] nsAString str, System.IntPtr  cx);
+		System.IntPtr DecodeToJSVal([MarshalAs(UnmanagedType.LPStruct)] nsAString str, System.IntPtr cx);
 		
 		/// <summary>
         ///JSObject </summary>
@@ -73,12 +75,12 @@ namespace Skybound.Gecko
 		/// <summary>
         ///JSObject </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void LegacyDecodeFromStream([MarshalAs(UnmanagedType.Interface)] nsIInputStream  stream, System.Int32  contentLength);
+		void LegacyDecodeFromStream([MarshalAs(UnmanagedType.Interface)] nsIInputStream stream, int contentLength);
 		
 		/// <summary>
         /// Make sure you GCroot the result of this function before using it.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr LegacyDecodeToJSVal([MarshalAs(UnmanagedType.LPStruct)] nsAString str, System.IntPtr  cx);
+		System.IntPtr LegacyDecodeToJSVal([MarshalAs(UnmanagedType.LPStruct)] nsAString str, System.IntPtr cx);
 	}
 }

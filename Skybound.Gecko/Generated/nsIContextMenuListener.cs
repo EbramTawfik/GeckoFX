@@ -70,6 +70,6 @@ namespace Skybound.Gecko
         /// @return <CODE>NS_OK</CODE> always.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnShowContextMenu(System.UInt32  aContextFlags, [MarshalAs(UnmanagedType.Interface)] nsIDOMEvent  aEvent, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode  aNode);
+		void OnShowContextMenu(uint aContextFlags, [MarshalAs(UnmanagedType.Interface)] nsIDOMEvent aEvent, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aNode);
 	}
 }

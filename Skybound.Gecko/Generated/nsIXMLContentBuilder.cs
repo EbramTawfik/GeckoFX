@@ -38,13 +38,13 @@ namespace Skybound.Gecko
         /// element namespace.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Clear([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  root);
+		void Clear([MarshalAs(UnmanagedType.Interface)] nsIDOMElement root);
 		
 		/// <summary>
         /// internally.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDocument([MarshalAs(UnmanagedType.Interface)] nsIDOMDocument  doc);
+		void SetDocument([MarshalAs(UnmanagedType.Interface)] nsIDOMDocument doc);
 		
 		/// <summary>
         /// Set the namespace for all elements built subsequently
@@ -75,15 +75,15 @@ namespace Skybound.Gecko
 		void TextNode([MarshalAs(UnmanagedType.LPStruct)] nsAString text);
 		
 		/// <summary>Member GetRootAttribute </summary>
-		/// <returns>A nsIDOMElement </returns>
+		/// <returns>A nsIDOMElement</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMElement  GetRootAttribute();
+		nsIDOMElement GetRootAttribute();
 		
 		/// <summary>Member GetCurrentAttribute </summary>
-		/// <returns>A nsIDOMElement </returns>
+		/// <returns>A nsIDOMElement</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMElement  GetCurrentAttribute();
+		nsIDOMElement GetCurrentAttribute();
 	}
 }

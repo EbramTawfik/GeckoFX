@@ -40,13 +40,15 @@ namespace Skybound.Gecko
         /// get the override value for a particular key in a particular
         /// string bundle
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetStringFromName([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  url, [MarshalAs(UnmanagedType.LPStruct)] nsAString  key);
+		nsAString GetStringFromName([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String url, [MarshalAs(UnmanagedType.LPStruct)] nsAString key);
 		
 		/// <summary>
         /// get all override keys for a given string bundle
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISimpleEnumerator EnumerateKeysInBundle([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  url);
+		nsISimpleEnumerator EnumerateKeysInBundle([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String url);
 	}
 }

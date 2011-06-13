@@ -144,7 +144,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMElement  GetRootAttribute();
+		nsIDOMElement GetRootAttribute();
 		
 		/// <summary>
         /// The opaque datasource object that is used for the template. This object
@@ -159,7 +159,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports  GetDatasourceAttribute();
+		nsISupports GetDatasourceAttribute();
 		
 		/// <summary>
         /// The opaque datasource object that is used for the template. This object
@@ -173,7 +173,7 @@ namespace Skybound.Gecko
         /// other types for the datasource.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDatasourceAttribute([MarshalAs(UnmanagedType.Interface)] nsISupports  aDatasource);
+		void SetDatasourceAttribute([MarshalAs(UnmanagedType.Interface)] nsISupports aDatasource);
 		
 		/// <summary>
         /// The composite datasource that the template builder observes
@@ -183,7 +183,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIRDFCompositeDataSource  GetDatabaseAttribute();
+		nsIRDFCompositeDataSource GetDatabaseAttribute();
 		
 		/// <summary>
         /// The virtual result representing the starting reference point,
@@ -192,14 +192,14 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIXULTemplateResult  GetRootResultAttribute();
+		nsIXULTemplateResult GetRootResultAttribute();
 		
 		/// <summary>
         /// The query processor used to generate results.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIXULTemplateQueryProcessor  GetQueryProcessorAttribute();
+		nsIXULTemplateQueryProcessor GetQueryProcessorAttribute();
 		
 		/// <summary>
         /// Force the template builder to rebuild its content. All existing content
@@ -237,7 +237,7 @@ namespace Skybound.Gecko
         /// @throws NS_ERROR_NULL_POINTER if aResult or aQueryNode are null
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddResult([MarshalAs(UnmanagedType.Interface)] nsIXULTemplateResult  aResult, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode  aQueryNode);
+		void AddResult([MarshalAs(UnmanagedType.Interface)] nsIXULTemplateResult aResult, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aQueryNode);
 		
 		/// <summary>
         /// Inform the template builder that a result no longer applies. The builder
@@ -250,7 +250,7 @@ namespace Skybound.Gecko
         /// @throws NS_ERROR_NULL_POINTER if aResult is null
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveResult([MarshalAs(UnmanagedType.Interface)] nsIXULTemplateResult  aResult);
+		void RemoveResult([MarshalAs(UnmanagedType.Interface)] nsIXULTemplateResult aResult);
 		
 		/// <summary>
         /// Inform the template builder that one result should be replaced with
@@ -269,7 +269,7 @@ namespace Skybound.Gecko
         /// NS_ERROR_INVALID_ARG if the ids don't match
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ReplaceResult([MarshalAs(UnmanagedType.Interface)] nsIXULTemplateResult  aOldResult, [MarshalAs(UnmanagedType.Interface)] nsIXULTemplateResult  aNewResult, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode  aQueryNode);
+		void ReplaceResult([MarshalAs(UnmanagedType.Interface)] nsIXULTemplateResult aOldResult, [MarshalAs(UnmanagedType.Interface)] nsIXULTemplateResult aNewResult, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aQueryNode);
 		
 		/// <summary>
         /// Inform the template builder that one or more of the optional bindings
@@ -282,7 +282,7 @@ namespace Skybound.Gecko
         /// @throws NS_ERROR_NULL_POINTER if aResult is null
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ResultBindingChanged([MarshalAs(UnmanagedType.Interface)] nsIXULTemplateResult  aResult);
+		void ResultBindingChanged([MarshalAs(UnmanagedType.Interface)] nsIXULTemplateResult aResult);
 		
 		/// <summary>
         /// Return the result for a given id. Only one such result is returned and
@@ -291,6 +291,7 @@ namespace Skybound.Gecko
         ///
         /// @param aId the id to return the result for
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIXULTemplateResult GetResultForId([MarshalAs(UnmanagedType.LPStruct)] nsAString aId);
 		
@@ -300,8 +301,9 @@ namespace Skybound.Gecko
         ///
         /// @param aContent element to result the result of
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIXULTemplateResult GetResultForContent([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  aElement);
+		nsIXULTemplateResult GetResultForContent([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement);
 		
 		/// <summary>
         /// Returns true if the node has content generated for it. This method is
@@ -313,7 +315,7 @@ namespace Skybound.Gecko
         /// @param aTag tag that must match
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool HasGeneratedContent([MarshalAs(UnmanagedType.Interface)] nsIRDFResource  aNode, [MarshalAs(UnmanagedType.Interface)] nsIAtom  aTag);
+		bool HasGeneratedContent([MarshalAs(UnmanagedType.Interface)] nsIRDFResource aNode, [MarshalAs(UnmanagedType.Interface)] nsIAtom aTag);
 		
 		/// <summary>
         /// Adds a rule filter for a given rule, which may be used for specialized
@@ -327,7 +329,7 @@ namespace Skybound.Gecko
         /// @param aFilter the filter to add
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddRuleFilter([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  aRule, [MarshalAs(UnmanagedType.Interface)] nsIXULTemplateRuleFilter  aFilter);
+		void AddRuleFilter([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aRule, [MarshalAs(UnmanagedType.Interface)] nsIXULTemplateRuleFilter aFilter);
 		
 		/// <summary>
         /// Called to initialize a XUL content builder on a particular root
@@ -345,20 +347,20 @@ namespace Skybound.Gecko
         /// generate its contents if it is open. This behaviour is used with menus.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CreateContents(System.IntPtr aElement, System.Boolean  aForceCreation);
+		void CreateContents(System.IntPtr aElement, bool aForceCreation);
 		
 		/// <summary>
         /// Add a listener to this template builder. The template builder
         /// holds a strong reference to the listener.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddListener([MarshalAs(UnmanagedType.Interface)] nsIXULBuilderListener  aListener);
+		void AddListener([MarshalAs(UnmanagedType.Interface)] nsIXULBuilderListener aListener);
 		
 		/// <summary>
         /// Remove a listener from this template builder.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveListener([MarshalAs(UnmanagedType.Interface)] nsIXULBuilderListener  aListener);
+		void RemoveListener([MarshalAs(UnmanagedType.Interface)] nsIXULBuilderListener aListener);
 	}
 	
 	/// <summary>
@@ -380,33 +382,33 @@ namespace Skybound.Gecko
         /// the orientation is not DROP_ON.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool CanDrop(System.Int32  index, System.Int32  orientation, [MarshalAs(UnmanagedType.Interface)] nsIDOMDataTransfer  dataTransfer);
+		bool CanDrop(int index, int orientation, [MarshalAs(UnmanagedType.Interface)] nsIDOMDataTransfer dataTransfer);
 		
 		/// <summary>
         /// Called when the user drops something on this view. The |orientation| param
         /// specifies before/on/after the given |row|.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnDrop(System.Int32  row, System.Int32  orientation, [MarshalAs(UnmanagedType.Interface)] nsIDOMDataTransfer  dataTransfer);
+		void OnDrop(int row, int orientation, [MarshalAs(UnmanagedType.Interface)] nsIDOMDataTransfer dataTransfer);
 		
 		/// <summary>
         /// Called when an item is opened or closed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnToggleOpenState(System.Int32  index);
+		void OnToggleOpenState(int index);
 		
 		/// <summary>
         /// Called when a header is clicked.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnCycleHeader([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string colID, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement  elt);
+		void OnCycleHeader([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string colID, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement elt);
 		
 		/// <summary>
         /// Called when a cell in a non-selectable cycling column (e.g.
         /// unread/flag/etc.) is clicked.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnCycleCell(System.Int32  row, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string colID);
+		void OnCycleCell(int row, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string colID);
 		
 		/// <summary>
         /// Called when selection in the tree changes
@@ -427,13 +429,13 @@ namespace Skybound.Gecko
         /// A command API that can be used to invoke commands on a specific row.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnPerformActionOnRow([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string action, System.Int32  row);
+		void OnPerformActionOnRow([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string action, int row);
 		
 		/// <summary>
         /// A command API that can be used to invoke commands on a specific cell.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnPerformActionOnCell([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string action, System.Int32  row, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string colID);
+		void OnPerformActionOnCell([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string action, int row, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string colID);
 	}
 	
 	/// <summary>nsIXULTreeBuilder </summary>
@@ -446,32 +448,33 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Retrieve the RDF resource associated with the specified row.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIRDFResource GetResourceAtIndex(System.Int32  aRowIndex);
+		nsIRDFResource GetResourceAtIndex(int aRowIndex);
 		
 		/// <summary>
         /// Retrieve the index associated with specified RDF resource.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetIndexOfResource([MarshalAs(UnmanagedType.Interface)] nsIRDFResource  resource);
+		int GetIndexOfResource([MarshalAs(UnmanagedType.Interface)] nsIRDFResource resource);
 		
 		/// <summary>
         /// Add a Tree Builder Observer to handle Tree View
         /// methods that the base builder does not implement.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddObserver([MarshalAs(UnmanagedType.Interface)] nsIXULTreeBuilderObserver  aObserver);
+		void AddObserver([MarshalAs(UnmanagedType.Interface)] nsIXULTreeBuilderObserver aObserver);
 		
 		/// <summary>
         /// Remove an Tree Builder Observer.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveObserver([MarshalAs(UnmanagedType.Interface)] nsIXULTreeBuilderObserver  aObserver);
+		void RemoveObserver([MarshalAs(UnmanagedType.Interface)] nsIXULTreeBuilderObserver aObserver);
 		
 		/// <summary>
         /// Sort the contents of the tree using the specified column.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Sort([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  aColumnElement);
+		void Sort([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aColumnElement);
 	}
 }

@@ -39,7 +39,7 @@ namespace Skybound.Gecko
         ///this is NOT intended to be scriptable </summary>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetNameAttribute();
+		string GetNameAttribute();
 		
 		System.Guid GetInterfaceIIDAttribute();
 		
@@ -48,16 +48,16 @@ namespace Skybound.Gecko
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIInterfaceInfo  GetParentAttribute();
+		nsIInterfaceInfo GetParentAttribute();
 		
 		/// <summary>
         /// These include counts for parent (and all ancestors).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt16  GetMethodCountAttribute();
+		ushort GetMethodCountAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt16  GetConstantCountAttribute();
+		ushort GetConstantCountAttribute();
 		
 		/// <summary>
         /// These include methods and constants for parent (and all ancestors).
@@ -65,44 +65,45 @@ namespace Skybound.Gecko
         /// These do *not* make copies ***explicit bending of XPCOM rules***.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr  GetMethodInfo(System.UInt16  index);
+		System.IntPtr GetMethodInfo(ushort index);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr  GetMethodInfoForName([MarshalAs(UnmanagedType.LPStr)] System.String  methodName, out System.UInt16  index);
+		System.IntPtr GetMethodInfoForName([MarshalAs(UnmanagedType.LPStr)] string methodName, out ushort index);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr  GetConstant(System.UInt16  index);
+		System.IntPtr GetConstant(ushort index);
 		
 		/// <summary>
         /// Get the interface information or iid associated with a param of some
         /// method in this interface.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIInterfaceInfo GetInfoForParam(System.UInt16  methodIndex, System.IntPtr  param);
+		nsIInterfaceInfo GetInfoForParam(ushort methodIndex, System.IntPtr param);
 		
-		System.Guid GetIIDForParam(System.UInt16  methodIndex, System.IntPtr  param);
+		System.Guid GetIIDForParam(ushort methodIndex, System.IntPtr param);
 		
 		/// <summary>
         /// These do *not* make copies ***explicit bending of XPCOM rules***.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetTypeForParam(System.UInt16  methodIndex, System.IntPtr  param, System.UInt16  dimension);
+		System.IntPtr GetTypeForParam(ushort methodIndex, System.IntPtr param, ushort dimension);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		byte GetSizeIsArgNumberForParam(System.UInt16  methodIndex, System.IntPtr  param, System.UInt16  dimension);
+		byte GetSizeIsArgNumberForParam(ushort methodIndex, System.IntPtr param, ushort dimension);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		byte GetLengthIsArgNumberForParam(System.UInt16  methodIndex, System.IntPtr  param, System.UInt16  dimension);
+		byte GetLengthIsArgNumberForParam(ushort methodIndex, System.IntPtr param, ushort dimension);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		byte GetInterfaceIsArgNumberForParam(System.UInt16  methodIndex, System.IntPtr  param);
+		byte GetInterfaceIsArgNumberForParam(ushort methodIndex, System.IntPtr param);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsIID(System.Guid IID);
 		
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetNameShared();
+		string GetNameShared();
 		
 		System.Guid GetIIDShared();
 		
@@ -113,6 +114,6 @@ namespace Skybound.Gecko
 		bool HasAncestor(System.Guid iid);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetIIDForParamNoAlloc(System.UInt16  methodIndex, System.IntPtr  param, out System.Guid iid);
+		int GetIIDForParamNoAlloc(ushort methodIndex, System.IntPtr param, out System.Guid iid);
 	}
 }

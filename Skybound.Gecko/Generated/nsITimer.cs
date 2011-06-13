@@ -40,7 +40,7 @@ namespace Skybound.Gecko
         /// @param aTimer the timer which has expired
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Notify([MarshalAs(UnmanagedType.Interface)] nsITimer  timer);
+		void Notify([MarshalAs(UnmanagedType.Interface)] nsITimer timer);
 	}
 	
 	/// <summary>
@@ -72,7 +72,7 @@ namespace Skybound.Gecko
         /// @param aType       timer type per TYPE* consts defined above
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init([MarshalAs(UnmanagedType.Interface)] nsIObserver  aObserver, System.UInt32  aDelay, System.UInt32  aType);
+		void Init([MarshalAs(UnmanagedType.Interface)] nsIObserver aObserver, uint aDelay, uint aType);
 		
 		/// <summary>
         /// Initialize a timer to fire after the given millisecond interval.
@@ -85,7 +85,7 @@ namespace Skybound.Gecko
         /// @param aType      Timer type per TYPE* consts defined above
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitWithFuncCallback(System.IntPtr aCallback, System.IntPtr  aClosure, System.UInt32  aDelay, System.UInt32  aType);
+		void InitWithFuncCallback(System.IntPtr aCallback, System.IntPtr aClosure, uint aDelay, uint aType);
 		
 		/// <summary>
         /// Initialize a timer to fire after the given millisecond interval.
@@ -97,7 +97,7 @@ namespace Skybound.Gecko
         /// @param aType      Timer type per TYPE* consts defined above
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitWithCallback([MarshalAs(UnmanagedType.Interface)] nsITimerCallback  aCallback, System.UInt32  aDelay, System.UInt32  aType);
+		void InitWithCallback([MarshalAs(UnmanagedType.Interface)] nsITimerCallback aCallback, uint aDelay, uint aType);
 		
 		/// <summary>
         /// Cancel the timer.  This method works on all types, not just on repeating
@@ -116,7 +116,7 @@ namespace Skybound.Gecko
         /// a one-shot timer.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetDelayAttribute();
+		uint GetDelayAttribute();
 		
 		/// <summary>
         /// The millisecond delay of the timeout.
@@ -126,32 +126,32 @@ namespace Skybound.Gecko
         /// a one-shot timer.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDelayAttribute(System.UInt32  aDelay);
+		void SetDelayAttribute(uint aDelay);
 		
 		/// <summary>
         /// The timer type - one of the above TYPE_* constants.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetTypeAttribute();
+		uint GetTypeAttribute();
 		
 		/// <summary>
         /// The timer type - one of the above TYPE_* constants.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTypeAttribute(System.UInt32  aType);
+		void SetTypeAttribute(uint aType);
 		
 		/// <summary>
         /// The opaque pointer pass to initWithFuncCallback.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr  GetClosureAttribute();
+		System.IntPtr GetClosureAttribute();
 		
 		/// <summary>
         /// The nsITimerCallback object passed to initWithCallback.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsITimerCallback  GetCallbackAttribute();
+		nsITimerCallback GetCallbackAttribute();
 		
 		/// <summary>
         /// The nsIEventTarget where the callback will be dispatched. Note that this
@@ -159,13 +159,13 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIEventTarget  GetTargetAttribute();
+		nsIEventTarget GetTargetAttribute();
 		
 		/// <summary>
         /// The nsIEventTarget where the callback will be dispatched. Note that this
         /// target may only be set before the call to one of the init methods above.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTargetAttribute([MarshalAs(UnmanagedType.Interface)] nsIEventTarget  aTarget);
+		void SetTargetAttribute([MarshalAs(UnmanagedType.Interface)] nsIEventTarget aTarget);
 	}
 }

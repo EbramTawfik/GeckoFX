@@ -41,7 +41,7 @@ namespace Skybound.Gecko
         /// in the database row)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.UInt32  GetNumEntriesAttribute();
+		new uint GetNumEntriesAttribute();
 		
 		/// <summary>
         /// Returns the type of the value at the given column index;
@@ -49,7 +49,7 @@ namespace Skybound.Gecko
         /// VALUE_TYPE_TEXT, VALUE_TYPE_BLOB.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new int GetTypeOfIndex(System.UInt32  aIndex);
+		new int GetTypeOfIndex(uint aIndex);
 		
 		/// <summary>
         /// Obtain a value for the given entry (column) index.
@@ -64,50 +64,52 @@ namespace Skybound.Gecko
         /// string.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new int GetInt32(System.UInt32  aIndex);
+		new int GetInt32(uint aIndex);
 		
 		/// <summary>Member GetInt64 </summary>
 		/// <param name='aIndex'> </param>
 		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new int GetInt64(System.UInt32  aIndex);
+		new int GetInt64(uint aIndex);
 		
 		/// <summary>Member GetDouble </summary>
 		/// <param name='aIndex'> </param>
 		/// <returns>A System.Double</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new double GetDouble(System.UInt32  aIndex);
+		new double GetDouble(uint aIndex);
 		
 		/// <summary>Member GetUTF8String </summary>
 		/// <param name='aIndex'> </param>
 		/// <returns>A nsAUTF8String</returns>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsAUTF8String GetUTF8String(System.UInt32  aIndex);
+		new nsAUTF8String GetUTF8String(uint aIndex);
 		
 		/// <summary>Member GetString </summary>
 		/// <param name='aIndex'> </param>
 		/// <returns>A nsAString</returns>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsAString GetString(System.UInt32  aIndex);
+		new nsAString GetString(uint aIndex);
 		
 		/// <summary>
         /// data will be NULL if dataSize = 0
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetBlob(System.UInt32  aIndex, out System.UInt32  aDataSize, out System.IntPtr  aData);
+		new void GetBlob(uint aIndex, out uint aDataSize, out System.IntPtr aData);
 		
 		/// <summary>Member GetIsNull </summary>
 		/// <param name='aIndex'> </param>
 		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool GetIsNull(System.UInt32  aIndex);
+		new bool GetIsNull(uint aIndex);
 		
 		/// <summary>
         /// Returns a shared string pointer
         /// </summary>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.String  GetSharedUTF8String(System.UInt32  aIndex, out System.UInt32  aLength);
+		new string GetSharedUTF8String(uint aIndex, out uint aLength);
 		
 		/// <summary>Member GetSharedString </summary>
 		/// <param name='aIndex'> </param>
@@ -115,14 +117,14 @@ namespace Skybound.Gecko
 		/// <returns>A System.String</returns>
 		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new string GetSharedString(System.UInt32  aIndex, out System.UInt32  aLength);
+		new string GetSharedString(uint aIndex, out uint aLength);
 		
 		/// <summary>Member GetSharedBlob </summary>
 		/// <param name='aIndex'> </param>
 		/// <param name='aLength'> </param>
-		/// <returns>A System.IntPtr </returns>
+		/// <returns>A System.IntPtr</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.IntPtr  GetSharedBlob(System.UInt32  aIndex, out System.UInt32  aLength);
+		new System.IntPtr GetSharedBlob(uint aIndex, out uint aLength);
 		
 		/// <summary>
         /// Obtains the result of a given column specified by aIndex.
@@ -131,8 +133,9 @@ namespace Skybound.Gecko
         /// Zero-based index of the result to get from the tuple.
         /// @returns the result of the specified column.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant GetResultByIndex(System.UInt32  aIndex);
+		nsIVariant GetResultByIndex(uint aIndex);
 		
 		/// <summary>
         /// Obtains the result of a given column specified by aName.
@@ -144,7 +147,8 @@ namespace Skybound.Gecko
         /// column.  If there is no AS clause then the name of the column is
         /// unspecified and may change from one release to the next.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant GetResultByName([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName);
+		nsIVariant GetResultByName([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName);
 	}
 }

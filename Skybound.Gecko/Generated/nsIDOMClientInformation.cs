@@ -55,6 +55,6 @@ namespace Skybound.Gecko
 		/// <param name='whenOffline'> </param>
 		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool MozIsLocallyAvailable([MarshalAs(UnmanagedType.LPStruct)] nsAString uri, System.Boolean  whenOffline);
+		bool MozIsLocallyAvailable([MarshalAs(UnmanagedType.LPStruct)] nsAString uri, bool whenOffline);
 	}
 }

@@ -41,18 +41,18 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIRDFDataSource  GetDataSourceAttribute();
+		nsIRDFDataSource GetDataSourceAttribute();
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIRDFResource  GetResourceAttribute();
+		nsIRDFResource GetResourceAttribute();
 		
 		/// <summary>
         /// Initialize the container wrapper to the specified resource
         /// using the specified datasource for context.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init([MarshalAs(UnmanagedType.Interface)] nsIRDFDataSource  aDataSource, [MarshalAs(UnmanagedType.Interface)] nsIRDFResource  aContainer);
+		void Init([MarshalAs(UnmanagedType.Interface)] nsIRDFDataSource aDataSource, [MarshalAs(UnmanagedType.Interface)] nsIRDFResource aContainer);
 		
 		/// <summary>
         /// Return the number of elements in the container. Note that this
@@ -65,6 +65,7 @@ namespace Skybound.Gecko
         /// Return an enumerator that can be used to enumerate the contents
         /// of the container in ascending order.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISimpleEnumerator GetElements();
 		
@@ -73,7 +74,7 @@ namespace Skybound.Gecko
         /// available ordinal.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AppendElement([MarshalAs(UnmanagedType.Interface)] nsIRDFNode  aElement);
+		void AppendElement([MarshalAs(UnmanagedType.Interface)] nsIRDFNode aElement);
 		
 		/// <summary>
         /// Remove the first occurence of the specified element from the
@@ -81,7 +82,7 @@ namespace Skybound.Gecko
         /// will be 're-numbered' to account for the removal.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveElement([MarshalAs(UnmanagedType.Interface)] nsIRDFNode  aElement, System.Boolean  aRenumber);
+		void RemoveElement([MarshalAs(UnmanagedType.Interface)] nsIRDFNode aElement, bool aRenumber);
 		
 		/// <summary>
         /// Insert aElement at the specified index. If aRenumber is 'true', then
@@ -89,7 +90,7 @@ namespace Skybound.Gecko
         /// element.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InsertElementAt([MarshalAs(UnmanagedType.Interface)] nsIRDFNode  aElement, System.Int32  aIndex, System.Boolean  aRenumber);
+		void InsertElementAt([MarshalAs(UnmanagedType.Interface)] nsIRDFNode aElement, int aIndex, bool aRenumber);
 		
 		/// <summary>
         /// Remove the element at the specified index. If aRenumber is 'true', then
@@ -98,8 +99,9 @@ namespace Skybound.Gecko
         ///
         /// @return the element that was removed.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIRDFNode RemoveElementAt(System.Int32  aIndex, System.Boolean  aRenumber);
+		nsIRDFNode RemoveElementAt(int aIndex, bool aRenumber);
 		
 		/// <summary>
         /// Determine the index of an element in the container.
@@ -109,6 +111,6 @@ namespace Skybound.Gecko
         /// returns '-1'.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int IndexOf([MarshalAs(UnmanagedType.Interface)] nsIRDFNode  aElement);
+		int IndexOf([MarshalAs(UnmanagedType.Interface)] nsIRDFNode aElement);
 	}
 }

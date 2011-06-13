@@ -81,8 +81,9 @@ namespace Skybound.Gecko
         /// nsMemory::Free it.
         /// @return the value of <code>aParamName</code> in Unichar(UTF-16).
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetParameter([MarshalAs(UnmanagedType.LPStruct)] nsAString  aHeaderVal, [MarshalAs(UnmanagedType.LPStr)] System.String  aParamName, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aFallbackCharset, System.Boolean  aTryLocaleCharset, [MarshalAs(UnmanagedType.LPStr)] out System.String  aLang);
+		nsAString GetParameter([MarshalAs(UnmanagedType.LPStruct)] nsAString aHeaderVal, [MarshalAs(UnmanagedType.LPStr)] string aParamName, [MarshalAs(UnmanagedType.LPStruct)] nsAString aFallbackCharset, bool aTryLocaleCharset, [MarshalAs(UnmanagedType.LPStr)] out string aLang);
 		
 		/// <summary>
         /// Given the value of a single header field  (such as
@@ -112,8 +113,9 @@ namespace Skybound.Gecko
         /// @return             the value of <code>aParamName</code> after
         /// RFC 2231 decoding but without charset conversion.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string GetParameterInternal([MarshalAs(UnmanagedType.LPStr)] System.String  aHeaderVal, [MarshalAs(UnmanagedType.LPStr)] System.String  aParamName, [MarshalAs(UnmanagedType.LPStr)] out System.String  aCharset, [MarshalAs(UnmanagedType.LPStr)] out System.String  aLang);
+		string GetParameterInternal([MarshalAs(UnmanagedType.LPStr)] string aHeaderVal, [MarshalAs(UnmanagedType.LPStr)] string aParamName, [MarshalAs(UnmanagedType.LPStr)] out string aCharset, [MarshalAs(UnmanagedType.LPStr)] out string aLang);
 		
 		/// <summary>
         /// Given a header value, decodes RFC 2047-style encoding and
@@ -138,8 +140,9 @@ namespace Skybound.Gecko
         /// @param aEatContinuation When set, removes CR/LF
         /// @return                 decoded header value
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString DecodeRFC2047Header([MarshalAs(UnmanagedType.LPStr)] System.String  aHeaderVal, [MarshalAs(UnmanagedType.LPStr)] System.String  aDefaultCharset, System.Boolean  aOverrideCharset, System.Boolean  aEatContinuation);
+		nsAString DecodeRFC2047Header([MarshalAs(UnmanagedType.LPStr)] string aHeaderVal, [MarshalAs(UnmanagedType.LPStr)] string aDefaultCharset, bool aOverrideCharset, bool aEatContinuation);
 		
 		/// <summary>
         /// Given a header parameter, decodes RFC 2047 style encoding (if it's
@@ -170,7 +173,8 @@ namespace Skybound.Gecko
         /// <code>aDefaultCharset</code>
         /// @return                 decoded parameter
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString DecodeParameter([MarshalAs(UnmanagedType.LPStruct)] nsAString  aParamValue, [MarshalAs(UnmanagedType.LPStr)] System.String  aCharset, [MarshalAs(UnmanagedType.LPStr)] System.String  aDefaultCharset, System.Boolean  aOverrideCharset);
+		nsAString DecodeParameter([MarshalAs(UnmanagedType.LPStruct)] nsAString aParamValue, [MarshalAs(UnmanagedType.LPStr)] string aCharset, [MarshalAs(UnmanagedType.LPStr)] string aDefaultCharset, bool aOverrideCharset);
 	}
 }

@@ -39,8 +39,9 @@ namespace Skybound.Gecko
         ///
         /// @param aURI the uri of the new channel
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIChannel NewChannel([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI);
+		nsIChannel NewChannel([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 		
 		/// <summary>
         /// A method to get the flags that apply to a given about: URI.  The URI
@@ -48,6 +49,6 @@ namespace Skybound.Gecko
         /// registered to deal with.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetURIFlags([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI);
+		uint GetURIFlags([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 	}
 }

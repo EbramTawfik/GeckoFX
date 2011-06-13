@@ -48,6 +48,6 @@ namespace Skybound.Gecko
         /// if the lookup failed, this parameter gives the reason.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnLookupComplete([MarshalAs(UnmanagedType.Interface)] nsICancelable  aRequest, [MarshalAs(UnmanagedType.Interface)] nsIDNSRecord  aRecord, System.Int32  aStatus);
+		void OnLookupComplete([MarshalAs(UnmanagedType.Interface)] nsICancelable aRequest, [MarshalAs(UnmanagedType.Interface)] nsIDNSRecord aRecord, int aStatus);
 	}
 }

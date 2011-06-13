@@ -63,7 +63,7 @@ namespace Skybound.Gecko
         /// error information (e.g., for HTTP requests see nsIHttpChannel).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnStateChange([MarshalAs(UnmanagedType.Interface)] nsIWebProgress  aWebProgress, [MarshalAs(UnmanagedType.Interface)] nsIRequest  aRequest, System.UInt32  aStateFlags, System.Int32  aStatus);
+		void OnStateChange([MarshalAs(UnmanagedType.Interface)] nsIWebProgress aWebProgress, [MarshalAs(UnmanagedType.Interface)] nsIRequest aRequest, uint aStateFlags, int aStatus);
 		
 		/// <summary>
         /// Notification that the progress has changed for one of the requests
@@ -93,7 +93,7 @@ namespace Skybound.Gecko
         /// nsIWebProgressListener2::onProgressChange64 will be called.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnProgressChange([MarshalAs(UnmanagedType.Interface)] nsIWebProgress  aWebProgress, [MarshalAs(UnmanagedType.Interface)] nsIRequest  aRequest, System.Int32  aCurSelfProgress, System.Int32  aMaxSelfProgress, System.Int32  aCurTotalProgress, System.Int32  aMaxTotalProgress);
+		void OnProgressChange([MarshalAs(UnmanagedType.Interface)] nsIWebProgress aWebProgress, [MarshalAs(UnmanagedType.Interface)] nsIRequest aRequest, int aCurSelfProgress, int aMaxSelfProgress, int aCurTotalProgress, int aMaxTotalProgress);
 		
 		/// <summary>
         /// Called when the location of the window being watched changes.  This is not
@@ -111,7 +111,7 @@ namespace Skybound.Gecko
         /// The URI of the location that is being loaded.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnLocationChange([MarshalAs(UnmanagedType.Interface)] nsIWebProgress  aWebProgress, [MarshalAs(UnmanagedType.Interface)] nsIRequest  aRequest, [MarshalAs(UnmanagedType.Interface)] nsIURI  aLocation);
+		void OnLocationChange([MarshalAs(UnmanagedType.Interface)] nsIWebProgress aWebProgress, [MarshalAs(UnmanagedType.Interface)] nsIRequest aRequest, [MarshalAs(UnmanagedType.Interface)] nsIURI aLocation);
 		
 		/// <summary>
         /// Notification that the status of a request has changed.  The status message
@@ -131,7 +131,7 @@ namespace Skybound.Gecko
         /// Localized text corresponding to aStatus.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnStatusChange([MarshalAs(UnmanagedType.Interface)] nsIWebProgress  aWebProgress, [MarshalAs(UnmanagedType.Interface)] nsIRequest  aRequest, System.Int32  aStatus, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aMessage);
+		void OnStatusChange([MarshalAs(UnmanagedType.Interface)] nsIWebProgress aWebProgress, [MarshalAs(UnmanagedType.Interface)] nsIRequest aRequest, int aStatus, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aMessage);
 		
 		/// <summary>
         /// Notification called for security progress.  This method will be called on
@@ -152,6 +152,6 @@ namespace Skybound.Gecko
         /// installed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnSecurityChange([MarshalAs(UnmanagedType.Interface)] nsIWebProgress  aWebProgress, [MarshalAs(UnmanagedType.Interface)] nsIRequest  aRequest, System.UInt32  aState);
+		void OnSecurityChange([MarshalAs(UnmanagedType.Interface)] nsIWebProgress aWebProgress, [MarshalAs(UnmanagedType.Interface)] nsIRequest aRequest, uint aState);
 	}
 }

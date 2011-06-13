@@ -131,14 +131,14 @@ namespace Skybound.Gecko
         /// @param aLeftSize How much to expand left the rectangle
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIContentView  GetContentViewsIn(double aXPx, double aYPx, double aTopSize, double aRightSize, double aBottomSize, double aLeftSize, out System.UInt32  aLength);
+		nsIContentView GetContentViewsIn(double aXPx, double aYPx, double aTopSize, double aRightSize, double aBottomSize, double aLeftSize, out uint aLength);
 		
 		/// <summary>
         /// The root content view.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIContentView  GetRootContentViewAttribute();
+		nsIContentView GetRootContentViewAttribute();
 	}
 	
 	/// <summary>nsIFrameLoader </summary>
@@ -153,7 +153,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDocShell  GetDocShellAttribute();
+		nsIDocShell GetDocShellAttribute();
 		
 		/// <summary>
         /// Start loading the frame. This method figures out what to load
@@ -167,7 +167,7 @@ namespace Skybound.Gecko
         /// except that this method allows specifying the URI to load.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void LoadURI([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI);
+		void LoadURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 		
 		/// <summary>
         /// Destroy the frame loader and everything inside it. This will
@@ -182,7 +182,7 @@ namespace Skybound.Gecko
         /// or may not be allowed on the loader's docshell.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetDepthTooGreatAttribute();
+		bool GetDepthTooGreatAttribute();
 		
 		/// <summary>
         /// Updates the position and size of the subdocument loaded by this frameloader.
@@ -203,36 +203,36 @@ namespace Skybound.Gecko
         /// @see nsIDOMWindowUtils sendMouseEvent.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendCrossProcessMouseEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString aType, double aX, double aY, System.Int32  aButton, System.Int32  aClickCount, System.Int32  aModifiers, System.Boolean  aIgnoreRootScrollFrame);
+		void SendCrossProcessMouseEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString aType, double aX, double aY, int aButton, int aClickCount, int aModifiers, bool aIgnoreRootScrollFrame);
 		
 		/// <summary>
         /// Activate event forwarding from client (remote frame) to parent.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ActivateFrameEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString aType, System.Boolean  capture);
+		void ActivateFrameEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString aType, bool capture);
 		
 		/// <summary>
         /// Note, when frameloaders are swapped, also messageManagers are swapped.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIChromeFrameMessageManager  GetMessageManagerAttribute();
+		nsIChromeFrameMessageManager GetMessageManagerAttribute();
 		
 		/// <summary>
         /// @see nsIDOMWindowUtils sendKeyEvent.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendCrossProcessKeyEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString aType, System.Int32  aKeyCode, System.Int32  aCharCode, System.Int32  aModifiers, System.Boolean  aPreventDefault);
+		void SendCrossProcessKeyEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString aType, int aKeyCode, int aCharCode, int aModifiers, bool aPreventDefault);
 		
 		/// <summary>Member GetDelayRemoteDialogsAttribute </summary>
-		/// <returns>A System.Boolean </returns>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetDelayRemoteDialogsAttribute();
+		bool GetDelayRemoteDialogsAttribute();
 		
 		/// <summary>Member SetDelayRemoteDialogsAttribute </summary>
 		/// <param name='aDelayRemoteDialogs'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDelayRemoteDialogsAttribute(System.Boolean  aDelayRemoteDialogs);
+		void SetDelayRemoteDialogsAttribute(bool aDelayRemoteDialogs);
 		
 		/// <summary>
         /// DEPRECATED. Please QI to nsIContentViewManager.
@@ -313,7 +313,7 @@ namespace Skybound.Gecko
         /// the platform hands over control of scroll offset to the user.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetRenderModeAttribute();
+		uint GetRenderModeAttribute();
 		
 		/// <summary>
         /// When asynchronous scrolling is enabled, a target viewport can be
@@ -324,6 +324,6 @@ namespace Skybound.Gecko
         /// the platform hands over control of scroll offset to the user.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetRenderModeAttribute(System.UInt32  aRenderMode);
+		void SetRenderModeAttribute(uint aRenderMode);
 	}
 }

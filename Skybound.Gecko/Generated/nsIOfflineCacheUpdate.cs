@@ -43,7 +43,7 @@ namespace Skybound.Gecko
         /// See enumeration above
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UpdateStateChanged([MarshalAs(UnmanagedType.Interface)] nsIOfflineCacheUpdate  aUpdate, System.UInt32  state);
+		void UpdateStateChanged([MarshalAs(UnmanagedType.Interface)] nsIOfflineCacheUpdate aUpdate, uint state);
 		
 		/// <summary>
         /// Informs the observer about an application being available to associate.
@@ -53,7 +53,7 @@ namespace Skybound.Gecko
         /// update to associate with
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ApplicationCacheAvailable([MarshalAs(UnmanagedType.Interface)] nsIApplicationCache  applicationCache);
+		void ApplicationCacheAvailable([MarshalAs(UnmanagedType.Interface)] nsIApplicationCache applicationCache);
 	}
 	
 	/// <summary>
@@ -88,34 +88,34 @@ namespace Skybound.Gecko
         /// FALSE if the complete cache update process is happening.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetPartialAttribute();
+		bool GetPartialAttribute();
 		
 		/// <summary>
         /// TRUE if this is an upgrade attempt, FALSE if it is a new cache
         /// attempt.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsUpgradeAttribute();
+		bool GetIsUpgradeAttribute();
 		
 		/// <summary>
         /// The domain being updated, and the domain that will own any URIs added
         /// with this update.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetUpdateDomainAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aUpdateDomain);
+		void GetUpdateDomainAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aUpdateDomain);
 		
 		/// <summary>
         /// The manifest for the offline application being updated.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI  GetManifestURIAttribute();
+		nsIURI GetManifestURIAttribute();
 		
 		/// <summary>
         /// TRUE if the cache update completed successfully.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetSucceededAttribute();
+		bool GetSucceededAttribute();
 		
 		/// <summary>
         /// Initialize the update.
@@ -126,7 +126,7 @@ namespace Skybound.Gecko
         /// The page that is requesting the update.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init([MarshalAs(UnmanagedType.Interface)] nsIURI  aManifestURI, [MarshalAs(UnmanagedType.Interface)] nsIURI  aDocumentURI, [MarshalAs(UnmanagedType.Interface)] nsIDOMDocument  aDocument);
+		void Init([MarshalAs(UnmanagedType.Interface)] nsIURI aManifestURI, [MarshalAs(UnmanagedType.Interface)] nsIURI aDocumentURI, [MarshalAs(UnmanagedType.Interface)] nsIDOMDocument aDocument);
 		
 		/// <summary>
         /// Initialize the update for partial processing.
@@ -142,7 +142,7 @@ namespace Skybound.Gecko
         /// when this information is unknown.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitPartial([MarshalAs(UnmanagedType.Interface)] nsIURI  aManifestURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aClientID, [MarshalAs(UnmanagedType.Interface)] nsIURI  aDocumentURI);
+		void InitPartial([MarshalAs(UnmanagedType.Interface)] nsIURI aManifestURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString aClientID, [MarshalAs(UnmanagedType.Interface)] nsIURI aDocumentURI);
 		
 		/// <summary>
         /// Add a dynamic URI to the offline cache as part of the update.
@@ -151,7 +151,7 @@ namespace Skybound.Gecko
         /// The URI to add.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddDynamicURI([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI);
+		void AddDynamicURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 		
 		/// <summary>
         /// Add the update to the offline update queue.  An offline-cache-update-added
@@ -170,7 +170,7 @@ namespace Skybound.Gecko
         /// observer, FALSE for a strong reference.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddObserver([MarshalAs(UnmanagedType.Interface)] nsIOfflineCacheUpdateObserver  aObserver, System.Boolean  aHoldWeak);
+		void AddObserver([MarshalAs(UnmanagedType.Interface)] nsIOfflineCacheUpdateObserver aObserver, bool aHoldWeak);
 		
 		/// <summary>
         /// Remove an observer from the update.
@@ -179,7 +179,7 @@ namespace Skybound.Gecko
         /// the observer to remove.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveObserver([MarshalAs(UnmanagedType.Interface)] nsIOfflineCacheUpdateObserver  aObserver);
+		void RemoveObserver([MarshalAs(UnmanagedType.Interface)] nsIOfflineCacheUpdateObserver aObserver);
 	}
 	
 	/// <summary>nsIOfflineCacheUpdateService </summary>
@@ -193,28 +193,30 @@ namespace Skybound.Gecko
         /// Access to the list of cache updates that have been scheduled.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetNumUpdatesAttribute();
+		uint GetNumUpdatesAttribute();
 		
 		/// <summary>Member GetUpdate </summary>
 		/// <param name='index'> </param>
 		/// <returns>A nsIOfflineCacheUpdate</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIOfflineCacheUpdate GetUpdate(System.UInt32  index);
+		nsIOfflineCacheUpdate GetUpdate(uint index);
 		
 		/// <summary>
         /// Schedule a cache update for a given offline manifest.  If an
         /// existing update is scheduled or running, that update will be returned.
         /// Otherwise a new update will be scheduled.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIOfflineCacheUpdate ScheduleUpdate([MarshalAs(UnmanagedType.Interface)] nsIURI  aManifestURI, [MarshalAs(UnmanagedType.Interface)] nsIURI  aDocumentURI, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  aWindow);
+		nsIOfflineCacheUpdate ScheduleUpdate([MarshalAs(UnmanagedType.Interface)] nsIURI aManifestURI, [MarshalAs(UnmanagedType.Interface)] nsIURI aDocumentURI, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow);
 		
 		/// <summary>
         /// Schedule a cache update for a manifest when the document finishes
         /// loading.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ScheduleOnDocumentStop([MarshalAs(UnmanagedType.Interface)] nsIURI  aManifestURI, [MarshalAs(UnmanagedType.Interface)] nsIURI  aDocumentURI, [MarshalAs(UnmanagedType.Interface)] nsIDOMDocument  aDocument);
+		void ScheduleOnDocumentStop([MarshalAs(UnmanagedType.Interface)] nsIURI aManifestURI, [MarshalAs(UnmanagedType.Interface)] nsIURI aDocumentURI, [MarshalAs(UnmanagedType.Interface)] nsIDOMDocument aDocument);
 		
 		/// <summary>
         /// Checks whether a principal should have access to the offline
@@ -227,7 +229,7 @@ namespace Skybound.Gecko
         /// the pref service will be used.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool OfflineAppAllowed([MarshalAs(UnmanagedType.Interface)] nsIPrincipal  aPrincipal, [MarshalAs(UnmanagedType.Interface)] nsIPrefBranch  aPrefBranch);
+		bool OfflineAppAllowed([MarshalAs(UnmanagedType.Interface)] nsIPrincipal aPrincipal, [MarshalAs(UnmanagedType.Interface)] nsIPrefBranch aPrefBranch);
 		
 		/// <summary>
         /// Checks whether a document at the given URI should have access
@@ -240,6 +242,6 @@ namespace Skybound.Gecko
         /// the pref service will be used.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool OfflineAppAllowedForURI([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, [MarshalAs(UnmanagedType.Interface)] nsIPrefBranch  aPrefBranch);
+		bool OfflineAppAllowedForURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIPrefBranch aPrefBranch);
 	}
 }

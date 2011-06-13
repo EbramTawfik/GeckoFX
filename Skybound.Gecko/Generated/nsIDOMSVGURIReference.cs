@@ -35,9 +35,9 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetHrefAttribute </summary>
-		/// <returns>A nsIDOMSVGAnimatedString </returns>
+		/// <returns>A nsIDOMSVGAnimatedString</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMSVGAnimatedString  GetHrefAttribute();
+		nsIDOMSVGAnimatedString GetHrefAttribute();
 	}
 }

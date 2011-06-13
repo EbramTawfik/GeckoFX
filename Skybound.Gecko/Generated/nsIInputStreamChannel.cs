@@ -44,7 +44,7 @@ namespace Skybound.Gecko
         /// channel is opened, and it may only be called once.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetURI([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI);
+		void SetURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 		
 		/// <summary>
         /// Get/set the content stream
@@ -62,7 +62,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIInputStream  GetContentStreamAttribute();
+		nsIInputStream GetContentStreamAttribute();
 		
 		/// <summary>
         /// Get/set the content stream
@@ -79,6 +79,6 @@ namespace Skybound.Gecko
         /// has been opened.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetContentStreamAttribute([MarshalAs(UnmanagedType.Interface)] nsIInputStream  aContentStream);
+		void SetContentStreamAttribute([MarshalAs(UnmanagedType.Interface)] nsIInputStream aContentStream);
 	}
 }

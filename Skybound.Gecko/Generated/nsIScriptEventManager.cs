@@ -46,8 +46,9 @@ namespace Skybound.Gecko
         /// @param aArgCount      Number of arguments expected by the event handler.
         ///
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports FindEventHandler([MarshalAs(UnmanagedType.LPStruct)] nsAString aObjectName, [MarshalAs(UnmanagedType.LPStruct)] nsAString aEventName, System.UInt32  aArgCount);
+		nsISupports FindEventHandler([MarshalAs(UnmanagedType.LPStruct)] nsAString aObjectName, [MarshalAs(UnmanagedType.LPStruct)] nsAString aEventName, uint aArgCount);
 		
 		/// <summary>
         ///
@@ -67,6 +68,6 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InvokeEventHandler([MarshalAs(UnmanagedType.Interface)] nsISupports  aHandler, [MarshalAs(UnmanagedType.Interface)] nsISupports  aTargetObject, System.IntPtr  aArgs, System.UInt32  aArgCount);
+		void InvokeEventHandler([MarshalAs(UnmanagedType.Interface)] nsISupports aHandler, [MarshalAs(UnmanagedType.Interface)] nsISupports aTargetObject, System.IntPtr aArgs, uint aArgCount);
 	}
 }

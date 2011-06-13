@@ -44,12 +44,12 @@ namespace Skybound.Gecko
         /// Get preferred IME status of current widget.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPreferredIMEState(out System.UInt32  aState);
+		void GetPreferredIMEState(out uint aState);
 		
 		/// <summary>
         /// whether this editor has active IME transaction
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetComposingAttribute();
+		bool GetComposingAttribute();
 	}
 }

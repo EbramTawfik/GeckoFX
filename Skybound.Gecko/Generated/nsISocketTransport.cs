@@ -74,8 +74,9 @@ namespace Skybound.Gecko
         /// if OPEN_UNBUFFERED is not set, then this parameter specifies the
         /// maximum number of buffer segments (pass 0 to use default value).
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIInputStream OpenInputStream(System.UInt32  aFlags, System.UInt32  aSegmentSize, System.UInt32  aSegmentCount);
+		new nsIInputStream OpenInputStream(uint aFlags, uint aSegmentSize, uint aSegmentCount);
 		
 		/// <summary>
         /// Open an output stream on this transport.
@@ -108,8 +109,9 @@ namespace Skybound.Gecko
         /// if OPEN_UNBUFFERED is not set, then this parameter specifies the
         /// maximum number of buffer segments (pass 0 to use default value).
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIOutputStream OpenOutputStream(System.UInt32  aFlags, System.UInt32  aSegmentSize, System.UInt32  aSegmentCount);
+		new nsIOutputStream OpenOutputStream(uint aFlags, uint aSegmentSize, uint aSegmentCount);
 		
 		/// <summary>
         /// Close the transport and any open streams.
@@ -118,7 +120,7 @@ namespace Skybound.Gecko
         /// the reason for closing the stream.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Close(System.Int32  aReason);
+		new void Close(int aReason);
 		
 		/// <summary>
         /// Set the transport event sink.
@@ -131,19 +133,19 @@ namespace Skybound.Gecko
         /// any thread.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetEventSink([MarshalAs(UnmanagedType.Interface)] nsITransportEventSink  aSink, [MarshalAs(UnmanagedType.Interface)] nsIEventTarget  aEventTarget);
+		new void SetEventSink([MarshalAs(UnmanagedType.Interface)] nsITransportEventSink aSink, [MarshalAs(UnmanagedType.Interface)] nsIEventTarget aEventTarget);
 		
 		/// <summary>
         /// Get the host for the underlying socket connection.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetHostAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aHost);
+		void GetHostAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aHost);
 		
 		/// <summary>
         /// Get the port for the underlying socket connection.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetPortAttribute();
+		int GetPortAttribute();
 		
 		/// <summary>
         /// Returns the IP address of the socket connection peer. This
@@ -168,7 +170,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports  GetSecurityInfoAttribute();
+		nsISupports GetSecurityInfoAttribute();
 		
 		/// <summary>
         /// Security notification callbacks passed to the secure socket provider
@@ -178,7 +180,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIInterfaceRequestor  GetSecurityCallbacksAttribute();
+		nsIInterfaceRequestor GetSecurityCallbacksAttribute();
 		
 		/// <summary>
         /// Security notification callbacks passed to the secure socket provider
@@ -187,7 +189,7 @@ namespace Skybound.Gecko
         /// NOTE: this attribute cannot be changed once a stream has been opened.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSecurityCallbacksAttribute([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor  aSecurityCallbacks);
+		void SetSecurityCallbacksAttribute([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor aSecurityCallbacks);
 		
 		/// <summary>
         /// Test if this socket transport is (still) connected.
@@ -201,24 +203,24 @@ namespace Skybound.Gecko
         /// to a smaller range of values (e.g., 0 to 0xFFFF).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetTimeout(System.UInt32  aType);
+		uint GetTimeout(uint aType);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTimeout(System.UInt32  aType, System.UInt32  aValue);
-		
-		/// <summary>
-        /// connectionFlags is a bitmask that can be used to modify underlying
-        /// behavior of the socket connection.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetConnectionFlagsAttribute();
+		void SetTimeout(uint aType, uint aValue);
 		
 		/// <summary>
         /// connectionFlags is a bitmask that can be used to modify underlying
         /// behavior of the socket connection.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetConnectionFlagsAttribute(System.UInt32  aConnectionFlags);
+		uint GetConnectionFlagsAttribute();
+		
+		/// <summary>
+        /// connectionFlags is a bitmask that can be used to modify underlying
+        /// behavior of the socket connection.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetConnectionFlagsAttribute(uint aConnectionFlags);
 		
 		/// <summary>
         /// Socket QoS/ToS markings. Valid values are IPTOS_DSCP_AFxx or
@@ -229,7 +231,7 @@ namespace Skybound.Gecko
         /// IPTOS_PREC_ROUTINE).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr  GetQoSBitsAttribute();
+		System.IntPtr GetQoSBitsAttribute();
 		
 		/// <summary>
         /// Socket QoS/ToS markings. Valid values are IPTOS_DSCP_AFxx or
@@ -240,6 +242,6 @@ namespace Skybound.Gecko
         /// IPTOS_PREC_ROUTINE).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetQoSBitsAttribute(System.IntPtr  aQoSBits);
+		void SetQoSBitsAttribute(System.IntPtr aQoSBits);
 	}
 }

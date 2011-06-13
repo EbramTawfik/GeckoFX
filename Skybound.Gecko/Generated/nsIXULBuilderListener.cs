@@ -41,13 +41,13 @@ namespace Skybound.Gecko
         /// @param aBuilder the template builder that rebuilds the content.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void WillRebuild([MarshalAs(UnmanagedType.Interface)] nsIXULTemplateBuilder  aBuilder);
+		void WillRebuild([MarshalAs(UnmanagedType.Interface)] nsIXULTemplateBuilder aBuilder);
 		
 		/// <summary>
         /// Called after a template builder has rebuilt its content.
         /// @param aBuilder the template builder that has rebuilt the content.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DidRebuild([MarshalAs(UnmanagedType.Interface)] nsIXULTemplateBuilder  aBuilder);
+		void DidRebuild([MarshalAs(UnmanagedType.Interface)] nsIXULTemplateBuilder aBuilder);
 	}
 }

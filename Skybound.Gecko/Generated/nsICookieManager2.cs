@@ -48,7 +48,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsISimpleEnumerator  GetEnumeratorAttribute();
+		new nsISimpleEnumerator GetEnumeratorAttribute();
 		
 		/// <summary>
         /// Called to remove an individual cookie from the cookie list, specified
@@ -66,7 +66,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Remove([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aHost, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aName, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aPath, System.Boolean  aBlocked);
+		new void Remove([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aHost, [MarshalAs(UnmanagedType.LPStruct)] nsAString aName, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aPath, bool aBlocked);
 		
 		/// <summary>
         /// Add a cookie. nsICookieService is the normal way to do this. This
@@ -101,7 +101,7 @@ namespace Skybound.Gecko
         /// in this way, the more restrictive of the two will take effect.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Add([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aHost, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aPath, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aName, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aValue, System.Boolean  aIsSecure, System.Boolean  aIsHttpOnly, System.Boolean  aIsSession, System.Int64  aExpiry);
+		void Add([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aHost, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aPath, [MarshalAs(UnmanagedType.LPStruct)] nsAString aName, [MarshalAs(UnmanagedType.LPStruct)] nsAString aValue, bool aIsSecure, bool aIsHttpOnly, bool aIsSession, long aExpiry);
 		
 		/// <summary>
         /// Find whether a given cookie already exists.
@@ -113,7 +113,7 @@ namespace Skybound.Gecko
         /// fields of aCookie
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool CookieExists([MarshalAs(UnmanagedType.Interface)] nsICookie2  aCookie);
+		bool CookieExists([MarshalAs(UnmanagedType.Interface)] nsICookie2 aCookie);
 		
 		/// <summary>
         /// Count how many cookies exist within the base domain of 'aHost'.
@@ -129,7 +129,7 @@ namespace Skybound.Gecko
         /// @return the number of cookies found.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint CountCookiesFromHost([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aHost);
+		uint CountCookiesFromHost([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aHost);
 		
 		/// <summary>
         /// Returns an enumerator of cookies that exist within the base domain of
@@ -146,8 +146,9 @@ namespace Skybound.Gecko
         ///
         /// @see countCookiesFromHost
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISimpleEnumerator GetCookiesFromHost([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aHost);
+		nsISimpleEnumerator GetCookiesFromHost([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aHost);
 		
 		/// <summary>
         /// Import an old-style cookie file. Imported cookies will be added to the
@@ -157,6 +158,6 @@ namespace Skybound.Gecko
         /// @param aCookieFile the file to import, usually cookies.txt
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ImportCookies([MarshalAs(UnmanagedType.Interface)] nsIFile  aCookieFile);
+		void ImportCookies([MarshalAs(UnmanagedType.Interface)] nsIFile aCookieFile);
 	}
 }

@@ -43,7 +43,7 @@ namespace Skybound.Gecko
         /// @result NS_Ok if no errors
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetData([MarshalAs(UnmanagedType.Interface)] nsITransferable  aTransferable, [MarshalAs(UnmanagedType.Interface)] nsIClipboardOwner  anOwner, System.Int32  aWhichClipboard);
+		void SetData([MarshalAs(UnmanagedType.Interface)] nsITransferable aTransferable, [MarshalAs(UnmanagedType.Interface)] nsIClipboardOwner anOwner, int aWhichClipboard);
 		
 		/// <summary>
         /// Given a transferable, get the clipboard data.
@@ -53,7 +53,7 @@ namespace Skybound.Gecko
         /// @result NS_Ok if no errors
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetData([MarshalAs(UnmanagedType.Interface)] nsITransferable  aTransferable, System.Int32  aWhichClipboard);
+		void GetData([MarshalAs(UnmanagedType.Interface)] nsITransferable aTransferable, int aWhichClipboard);
 		
 		/// <summary>
         /// This empties the clipboard and notifies the clipboard owner.
@@ -63,7 +63,7 @@ namespace Skybound.Gecko
         /// @result NS_OK if successful.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EmptyClipboard(System.Int32  aWhichClipboard);
+		void EmptyClipboard(int aWhichClipboard);
 		
 		/// <summary>
         /// This provides a way to give correct UI feedback about, for instance, a paste
@@ -78,7 +78,7 @@ namespace Skybound.Gecko
         /// @result NS_OK if successful.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool HasDataMatchingFlavors([MarshalAs(UnmanagedType.LPStr, SizeParamIndex=1)] System.String  aFlavorList, System.UInt32  aLength, System.Int32  aWhichClipboard);
+		bool HasDataMatchingFlavors([MarshalAs(UnmanagedType.LPStr, SizeParamIndex=1)] string aFlavorList, uint aLength, int aWhichClipboard);
 		
 		/// <summary>
         /// Allows clients to determine if the implementation supports the concept of a

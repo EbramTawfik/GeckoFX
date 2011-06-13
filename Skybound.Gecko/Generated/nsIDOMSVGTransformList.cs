@@ -35,9 +35,9 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetNumberOfItemsAttribute </summary>
-		/// <returns>A System.UInt32 </returns>
+		/// <returns>A System.UInt32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetNumberOfItemsAttribute();
+		uint GetNumberOfItemsAttribute();
 		
 		/// <summary>Member Clear </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -46,47 +46,55 @@ namespace Skybound.Gecko
 		/// <summary>
         /// raises( DOMException );
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMSVGTransform Initialize([MarshalAs(UnmanagedType.Interface)] nsIDOMSVGTransform  newItem);
+		nsIDOMSVGTransform Initialize([MarshalAs(UnmanagedType.Interface)] nsIDOMSVGTransform newItem);
 		
 		/// <summary>
         /// raises( DOMException, SVGException );
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMSVGTransform GetItem(System.UInt32  index);
+		nsIDOMSVGTransform GetItem(uint index);
 		
 		/// <summary>
         /// raises( DOMException );
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMSVGTransform InsertItemBefore([MarshalAs(UnmanagedType.Interface)] nsIDOMSVGTransform  newItem, System.UInt32  index);
+		nsIDOMSVGTransform InsertItemBefore([MarshalAs(UnmanagedType.Interface)] nsIDOMSVGTransform newItem, uint index);
 		
 		/// <summary>
         ///  raises( DOMException, SVGException );
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMSVGTransform ReplaceItem([MarshalAs(UnmanagedType.Interface)] nsIDOMSVGTransform  newItem, System.UInt32  index);
+		nsIDOMSVGTransform ReplaceItem([MarshalAs(UnmanagedType.Interface)] nsIDOMSVGTransform newItem, uint index);
 		
 		/// <summary>
         /// raises( DOMException, SVGException );
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMSVGTransform RemoveItem(System.UInt32  index);
+		nsIDOMSVGTransform RemoveItem(uint index);
 		
 		/// <summary>
         ///  raises( DOMException );
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMSVGTransform AppendItem([MarshalAs(UnmanagedType.Interface)] nsIDOMSVGTransform  newItem);
+		nsIDOMSVGTransform AppendItem([MarshalAs(UnmanagedType.Interface)] nsIDOMSVGTransform newItem);
 		
 		/// <summary>
         /// raises( DOMException, SVGException );
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMSVGTransform CreateSVGTransformFromMatrix([MarshalAs(UnmanagedType.Interface)] nsIDOMSVGMatrix  matrix);
+		nsIDOMSVGTransform CreateSVGTransformFromMatrix([MarshalAs(UnmanagedType.Interface)] nsIDOMSVGMatrix matrix);
 		
 		/// <summary>Member Consolidate </summary>
 		/// <returns>A nsIDOMSVGTransform</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMSVGTransform Consolidate();
 	}

@@ -66,7 +66,7 @@ namespace Skybound.Gecko
         /// @see DIM_FLAGS_SIZE_INNER
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetDimensions(System.UInt32  flags, System.Int32  x, System.Int32  y, System.Int32  cx, System.Int32  cy);
+		new void SetDimensions(uint flags, int x, int y, int cx, int cy);
 		
 		/// <summary>
         /// Gets the dimensions of the window. The caller may pass
@@ -84,7 +84,7 @@ namespace Skybound.Gecko
         /// @see DIM_FLAGS_SIZE_INNER
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetDimensions(System.UInt32  flags, out System.Int32  x, out System.Int32  y, out System.Int32  cx, out System.Int32  cy);
+		new void GetDimensions(uint flags, out int x, out int y, out int cx, out int cy);
 		
 		/// <summary>
         /// Give the window focus.
@@ -96,13 +96,13 @@ namespace Skybound.Gecko
         /// Visibility of the window.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Boolean  GetVisibilityAttribute();
+		new bool GetVisibilityAttribute();
 		
 		/// <summary>
         /// Visibility of the window.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetVisibilityAttribute(System.Boolean  aVisibility);
+		new void SetVisibilityAttribute(bool aVisibility);
 		
 		/// <summary>
         /// Title of the window.
@@ -130,7 +130,7 @@ namespace Skybound.Gecko
         /// </ul>
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.IntPtr  GetSiteWindowAttribute();
+		new System.IntPtr GetSiteWindowAttribute();
 		
 		/// <summary>
         /// Blur the window. This should unfocus the window and send an onblur event.

@@ -48,7 +48,7 @@ namespace Skybound.Gecko
         /// a channel id sent to the HttpChannelChild being redirected.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint RegisterChannel([MarshalAs(UnmanagedType.Interface)] nsIChannel  channel);
+		uint RegisterChannel([MarshalAs(UnmanagedType.Interface)] nsIChannel channel);
 		
 		/// <summary>
         /// First, search for the channel registered under the id.  If found return
@@ -61,8 +61,9 @@ namespace Skybound.Gecko
         /// in reaction to nsIChildChannel.connectParent(id) called from the child
         /// process.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIChannel LinkChannels(System.UInt32  id, [MarshalAs(UnmanagedType.Interface)] nsIParentChannel  channel);
+		nsIChannel LinkChannels(uint id, [MarshalAs(UnmanagedType.Interface)] nsIParentChannel channel);
 		
 		/// <summary>
         /// Returns back the channel previously registered under the ID with
@@ -71,8 +72,9 @@ namespace Skybound.Gecko
         /// Primarilly used in chrome IPC side of protocols when attaching a redirect
         /// target channel to an existing 'real' channel implementation.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIChannel GetRegisteredChannel(System.UInt32  id);
+		nsIChannel GetRegisteredChannel(uint id);
 		
 		/// <summary>
         /// Returns the stream listener that shall be attached to the redirect target
@@ -83,8 +85,9 @@ namespace Skybound.Gecko
         /// to grab the created parent side of the channel and forward notifications
         /// to it.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIParentChannel GetParentChannel(System.UInt32  id);
+		nsIParentChannel GetParentChannel(uint id);
 		
 		/// <summary>
         /// To not force all channel implementations to support weak reference
@@ -95,6 +98,6 @@ namespace Skybound.Gecko
         /// Primarilly used in HttpChannelParentListener::OnRedirectResult callback.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DeregisterChannels(System.UInt32  id);
+		void DeregisterChannels(uint id);
 	}
 }

@@ -47,7 +47,7 @@ namespace Skybound.Gecko
         /// itemId of a tag container.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void TagURI([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, [MarshalAs(UnmanagedType.Interface)] nsIVariant  aTags);
+		void TagURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIVariant aTags);
 		
 		/// <summary>
         /// Removes tags from a URL. Tags from aTags which are not set for the
@@ -61,7 +61,7 @@ namespace Skybound.Gecko
         /// (non-empty string) or a concrete itemId of a tag container.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UntagURI([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, [MarshalAs(UnmanagedType.Interface)] nsIVariant  aTags);
+		void UntagURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIVariant aTags);
 		
 		/// <summary>
         /// Retrieves all URLs tagged with the given tag.
@@ -70,6 +70,7 @@ namespace Skybound.Gecko
         /// tag name
         /// @returns Array of uris tagged with aTag.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIVariant GetURIsForTag([MarshalAs(UnmanagedType.LPStruct)] nsAString aTag);
 		
@@ -82,13 +83,13 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler", SizeParamIndex=1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string GetTagsForURI([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, out System.UInt32  length);
+		string GetTagsForURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, out uint length);
 		
 		/// <summary>
         /// Retrieves all tags used to tag URIs in the data-base (sorted by name).
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant  GetAllTagsAttribute();
+		nsIVariant GetAllTagsAttribute();
 	}
 }

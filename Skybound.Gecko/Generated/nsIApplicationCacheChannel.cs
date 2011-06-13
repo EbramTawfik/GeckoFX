@@ -42,14 +42,14 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIApplicationCache  GetApplicationCacheAttribute();
+		new nsIApplicationCache GetApplicationCacheAttribute();
 		
 		/// <summary>
         /// Interface used by objects that can be associated with an
         /// application cache.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetApplicationCacheAttribute([MarshalAs(UnmanagedType.Interface)] nsIApplicationCache  aApplicationCache);
+		new void SetApplicationCacheAttribute([MarshalAs(UnmanagedType.Interface)] nsIApplicationCache aApplicationCache);
 		
 		/// <summary>
         /// TRUE when the resource came from the application cache. This
@@ -58,7 +58,7 @@ namespace Skybound.Gecko
         /// namespace.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetLoadedFromApplicationCacheAttribute();
+		bool GetLoadedFromApplicationCacheAttribute();
 		
 		/// <summary>
         /// When true, the channel will ask its notification callbacks for
@@ -69,7 +69,7 @@ namespace Skybound.Gecko
         /// is called.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetInheritApplicationCacheAttribute();
+		bool GetInheritApplicationCacheAttribute();
 		
 		/// <summary>
         /// When true, the channel will ask its notification callbacks for
@@ -80,7 +80,7 @@ namespace Skybound.Gecko
         /// is called.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetInheritApplicationCacheAttribute(System.Boolean  aInheritApplicationCache);
+		void SetInheritApplicationCacheAttribute(bool aInheritApplicationCache);
 		
 		/// <summary>
         /// When true, the channel will choose an application cache if one
@@ -93,7 +93,7 @@ namespace Skybound.Gecko
         /// is called.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetChooseApplicationCacheAttribute();
+		bool GetChooseApplicationCacheAttribute();
 		
 		/// <summary>
         /// When true, the channel will choose an application cache if one
@@ -106,7 +106,7 @@ namespace Skybound.Gecko
         /// is called.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetChooseApplicationCacheAttribute(System.Boolean  aChooseApplicationCache);
+		void SetChooseApplicationCacheAttribute(bool aChooseApplicationCache);
 		
 		/// <summary>
         /// A shortcut method to mark the cache item of this channel as 'foreign'.

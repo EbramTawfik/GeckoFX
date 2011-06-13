@@ -41,10 +41,10 @@ namespace Skybound.Gecko
 		ushort GetTypeAttribute();
 		
 		/// <summary>Member GetMatrixAttribute </summary>
-		/// <returns>A nsIDOMSVGMatrix </returns>
+		/// <returns>A nsIDOMSVGMatrix</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMSVGMatrix  GetMatrixAttribute();
+		nsIDOMSVGMatrix GetMatrixAttribute();
 		
 		/// <summary>Member GetAngleAttribute </summary>
 		/// <returns>A System.Double</returns>
@@ -54,7 +54,7 @@ namespace Skybound.Gecko
 		/// <summary>Member SetMatrix </summary>
 		/// <param name='matrix'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMatrix([MarshalAs(UnmanagedType.Interface)] nsIDOMSVGMatrix  matrix);
+		void SetMatrix([MarshalAs(UnmanagedType.Interface)] nsIDOMSVGMatrix matrix);
 		
 		/// <summary>Member SetTranslate </summary>
 		/// <param name='tx'> </param>

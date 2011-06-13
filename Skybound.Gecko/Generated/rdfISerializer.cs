@@ -48,6 +48,6 @@ namespace Skybound.Gecko
         /// @param aOut The output stream to use.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Serialize(rdfIDataSource  aDataSource, [MarshalAs(UnmanagedType.Interface)] nsIOutputStream  aOut);
+		void Serialize(rdfIDataSource aDataSource, [MarshalAs(UnmanagedType.Interface)] nsIOutputStream aOut);
 	}
 }

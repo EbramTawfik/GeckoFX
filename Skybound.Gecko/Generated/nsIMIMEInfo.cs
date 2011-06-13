@@ -44,7 +44,7 @@ namespace Skybound.Gecko
         /// @return String representing the type.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aType);
+		void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aType);
 		
 		/// <summary>
         /// A human readable description of the handler type
@@ -64,14 +64,14 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIHandlerApp  GetPreferredApplicationHandlerAttribute();
+		nsIHandlerApp GetPreferredApplicationHandlerAttribute();
 		
 		/// <summary>
         /// The application the user has said they want associated with this content
         /// type. This is not always guaranteed to be set!!
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPreferredApplicationHandlerAttribute([MarshalAs(UnmanagedType.Interface)] nsIHandlerApp  aPreferredApplicationHandler);
+		void SetPreferredApplicationHandlerAttribute([MarshalAs(UnmanagedType.Interface)] nsIHandlerApp aPreferredApplicationHandler);
 		
 		/// <summary>
         /// Applications that can handle this content type.
@@ -84,7 +84,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIMutableArray  GetPossibleApplicationHandlersAttribute();
+		nsIMutableArray GetPossibleApplicationHandlersAttribute();
 		
 		/// <summary>
         /// Indicates whether a default application handler exists,
@@ -92,7 +92,7 @@ namespace Skybound.Gecko
         /// and defaultDescription will contain usable information.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetHasDefaultHandlerAttribute();
+		bool GetHasDefaultHandlerAttribute();
 		
 		/// <summary>
         /// A pretty name description of the associated default application. Only
@@ -124,7 +124,7 @@ namespace Skybound.Gecko
         /// call. Other exceptions may be thrown.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void LaunchWithURI([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor  aWindowContext);
+		void LaunchWithURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor aWindowContext);
 		
 		/// <summary>
         /// preferredAction is how the user specified they would like to handle
@@ -149,14 +149,14 @@ namespace Skybound.Gecko
         /// dialog asking how to dispose of this content.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetAlwaysAskBeforeHandlingAttribute();
+		bool GetAlwaysAskBeforeHandlingAttribute();
 		
 		/// <summary>
         /// alwaysAskBeforeHandling: if true, we should always give the user a
         /// dialog asking how to dispose of this content.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAlwaysAskBeforeHandlingAttribute(System.Boolean  aAlwaysAskBeforeHandling);
+		void SetAlwaysAskBeforeHandlingAttribute(bool aAlwaysAskBeforeHandling);
 	}
 	
 	/// <summary>
@@ -181,7 +181,7 @@ namespace Skybound.Gecko
         /// @return String representing the type.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aType);
+		new void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aType);
 		
 		/// <summary>
         /// A human readable description of the handler type
@@ -201,14 +201,14 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIHandlerApp  GetPreferredApplicationHandlerAttribute();
+		new nsIHandlerApp GetPreferredApplicationHandlerAttribute();
 		
 		/// <summary>
         /// The application the user has said they want associated with this content
         /// type. This is not always guaranteed to be set!!
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetPreferredApplicationHandlerAttribute([MarshalAs(UnmanagedType.Interface)] nsIHandlerApp  aPreferredApplicationHandler);
+		new void SetPreferredApplicationHandlerAttribute([MarshalAs(UnmanagedType.Interface)] nsIHandlerApp aPreferredApplicationHandler);
 		
 		/// <summary>
         /// Applications that can handle this content type.
@@ -221,7 +221,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIMutableArray  GetPossibleApplicationHandlersAttribute();
+		new nsIMutableArray GetPossibleApplicationHandlersAttribute();
 		
 		/// <summary>
         /// Indicates whether a default application handler exists,
@@ -229,7 +229,7 @@ namespace Skybound.Gecko
         /// and defaultDescription will contain usable information.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Boolean  GetHasDefaultHandlerAttribute();
+		new bool GetHasDefaultHandlerAttribute();
 		
 		/// <summary>
         /// A pretty name description of the associated default application. Only
@@ -261,7 +261,7 @@ namespace Skybound.Gecko
         /// call. Other exceptions may be thrown.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void LaunchWithURI([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor  aWindowContext);
+		new void LaunchWithURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor aWindowContext);
 		
 		/// <summary>
         /// preferredAction is how the user specified they would like to handle
@@ -286,14 +286,14 @@ namespace Skybound.Gecko
         /// dialog asking how to dispose of this content.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Boolean  GetAlwaysAskBeforeHandlingAttribute();
+		new bool GetAlwaysAskBeforeHandlingAttribute();
 		
 		/// <summary>
         /// alwaysAskBeforeHandling: if true, we should always give the user a
         /// dialog asking how to dispose of this content.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetAlwaysAskBeforeHandlingAttribute(System.Boolean  aAlwaysAskBeforeHandling);
+		new void SetAlwaysAskBeforeHandlingAttribute(bool aAlwaysAskBeforeHandling);
 		
 		/// <summary>
         /// Gives you an array of file types associated with this type.
@@ -301,6 +301,7 @@ namespace Skybound.Gecko
         /// @return Number of elements in the array.
         /// @return Array of extensions.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIUTF8StringEnumerator GetFileExtensions();
 		
@@ -308,7 +309,7 @@ namespace Skybound.Gecko
         /// Set File Extensions. Input is a comma delimited list of extensions.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFileExtensions([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aExtensions);
+		void SetFileExtensions([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aExtensions);
 		
 		/// <summary>
         /// Returns whether or not the given extension is
@@ -317,13 +318,13 @@ namespace Skybound.Gecko
         /// @return TRUE if the association exists.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool ExtensionExists([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aExtension);
+		bool ExtensionExists([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aExtension);
 		
 		/// <summary>
         /// Append a given extension to the set of extensions
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AppendExtension([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aExtension);
+		void AppendExtension([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aExtension);
 		
 		/// <summary>
         /// Returns the first extension association in
@@ -332,7 +333,7 @@ namespace Skybound.Gecko
         /// @return The first extension.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPrimaryExtensionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aPrimaryExtension);
+		void GetPrimaryExtensionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aPrimaryExtension);
 		
 		/// <summary>
         /// Returns the first extension association in
@@ -341,7 +342,7 @@ namespace Skybound.Gecko
         /// @return The first extension.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPrimaryExtensionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aPrimaryExtension);
+		void SetPrimaryExtensionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aPrimaryExtension);
 		
 		/// <summary>
         /// The MIME type of this MIMEInfo.
@@ -351,7 +352,7 @@ namespace Skybound.Gecko
         /// @deprecated  use nsIHandlerInfo::type instead.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMIMETypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aMIMEType);
+		void GetMIMETypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMIMEType);
 		
 		/// <summary>
         /// Returns whether or not these two nsIMIMEInfos are logically
@@ -360,7 +361,7 @@ namespace Skybound.Gecko
         /// @returns PR_TRUE if the two are considered equal
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Equals([MarshalAs(UnmanagedType.Interface)] nsIMIMEInfo  aMIMEInfo);
+		bool Equals([MarshalAs(UnmanagedType.Interface)] nsIMIMEInfo aMIMEInfo);
 		
 		/// <summary>
         /// Returns a list of nsILocalHandlerApp objects containing
@@ -373,7 +374,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIArray  GetPossibleLocalHandlersAttribute();
+		nsIArray GetPossibleLocalHandlersAttribute();
 		
 		/// <summary>
         /// Launches the application with the specified file, in a way that
@@ -386,7 +387,7 @@ namespace Skybound.Gecko
         /// Other exceptions may be thrown.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void LaunchWithFile([MarshalAs(UnmanagedType.Interface)] nsIFile  aFile);
+		void LaunchWithFile([MarshalAs(UnmanagedType.Interface)] nsIFile aFile);
 	}
 	
 	/// <summary>
@@ -442,7 +443,7 @@ namespace Skybound.Gecko
         /// @returns true if the two are logically equivalent, false otherwise
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Equals([MarshalAs(UnmanagedType.Interface)] nsIHandlerApp  aHandlerApp);
+		bool Equals([MarshalAs(UnmanagedType.Interface)] nsIHandlerApp aHandlerApp);
 		
 		/// <summary>
         /// Launches the application with the specified URI.
@@ -463,7 +464,7 @@ namespace Skybound.Gecko
         /// off to the system default browser (bug 394479).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void LaunchWithURI([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor  aWindowContext);
+		void LaunchWithURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor aWindowContext);
 	}
 	
 	/// <summary>
@@ -514,7 +515,7 @@ namespace Skybound.Gecko
         /// @returns true if the two are logically equivalent, false otherwise
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool Equals([MarshalAs(UnmanagedType.Interface)] nsIHandlerApp  aHandlerApp);
+		new bool Equals([MarshalAs(UnmanagedType.Interface)] nsIHandlerApp aHandlerApp);
 		
 		/// <summary>
         /// Launches the application with the specified URI.
@@ -535,26 +536,26 @@ namespace Skybound.Gecko
         /// off to the system default browser (bug 394479).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void LaunchWithURI([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor  aWindowContext);
+		new void LaunchWithURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor aWindowContext);
 		
 		/// <summary>
         /// Pointer to the executable file used to handle content
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIFile  GetExecutableAttribute();
+		nsIFile GetExecutableAttribute();
 		
 		/// <summary>
         /// Pointer to the executable file used to handle content
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetExecutableAttribute([MarshalAs(UnmanagedType.Interface)] nsIFile  aExecutable);
+		void SetExecutableAttribute([MarshalAs(UnmanagedType.Interface)] nsIFile aExecutable);
 		
 		/// <summary>
         /// Returns the current number of command line parameters.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetParameterCountAttribute();
+		uint GetParameterCountAttribute();
 		
 		/// <summary>
         /// Clears the current list of command line parameters.
@@ -580,8 +581,9 @@ namespace Skybound.Gecko
         ///
         /// @throw NS_ERROR_INVALID_ARG if the index is out of range.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetParameter(System.UInt32  parameterIndex);
+		nsAString GetParameter(uint parameterIndex);
 		
 		/// <summary>
         /// Checks to see if a parameter exists in the command line
@@ -646,7 +648,7 @@ namespace Skybound.Gecko
         /// @returns true if the two are logically equivalent, false otherwise
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool Equals([MarshalAs(UnmanagedType.Interface)] nsIHandlerApp  aHandlerApp);
+		new bool Equals([MarshalAs(UnmanagedType.Interface)] nsIHandlerApp aHandlerApp);
 		
 		/// <summary>
         /// Launches the application with the specified URI.
@@ -667,7 +669,7 @@ namespace Skybound.Gecko
         /// off to the system default browser (bug 394479).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void LaunchWithURI([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor  aWindowContext);
+		new void LaunchWithURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor aWindowContext);
 		
 		/// <summary>
         /// Template used to construct the URI to GET.  Template is expected to have
@@ -675,7 +677,7 @@ namespace Skybound.Gecko
         /// that %s, as per the HTML5 spec.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetUriTemplateAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aUriTemplate);
+		void GetUriTemplateAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aUriTemplate);
 		
 		/// <summary>
         /// Template used to construct the URI to GET.  Template is expected to have
@@ -683,7 +685,7 @@ namespace Skybound.Gecko
         /// that %s, as per the HTML5 spec.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetUriTemplateAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aUriTemplate);
+		void SetUriTemplateAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aUriTemplate);
 	}
 	
 	/// <summary>
@@ -735,7 +737,7 @@ namespace Skybound.Gecko
         /// @returns true if the two are logically equivalent, false otherwise
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool Equals([MarshalAs(UnmanagedType.Interface)] nsIHandlerApp  aHandlerApp);
+		new bool Equals([MarshalAs(UnmanagedType.Interface)] nsIHandlerApp aHandlerApp);
 		
 		/// <summary>
         /// Launches the application with the specified URI.
@@ -756,21 +758,21 @@ namespace Skybound.Gecko
         /// off to the system default browser (bug 394479).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void LaunchWithURI([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor  aWindowContext);
+		new void LaunchWithURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor aWindowContext);
 		
 		/// <summary>
         /// Service defines the dbus service that should handle this protocol.
         /// If its not set,  NS_ERROR_FAILURE will be returned by LaunchWithURI
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetServiceAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aService);
+		void GetServiceAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aService);
 		
 		/// <summary>
         /// Service defines the dbus service that should handle this protocol.
         /// If its not set,  NS_ERROR_FAILURE will be returned by LaunchWithURI
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetServiceAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aService);
+		void SetServiceAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aService);
 		
 		/// <summary>
         /// Objpath defines the object path of the dbus service that should handle
@@ -778,7 +780,7 @@ namespace Skybound.Gecko
         /// by LaunchWithURI
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetObjectPathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aObjectPath);
+		void GetObjectPathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aObjectPath);
 		
 		/// <summary>
         /// Objpath defines the object path of the dbus service that should handle
@@ -786,7 +788,7 @@ namespace Skybound.Gecko
         /// by LaunchWithURI
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetObjectPathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aObjectPath);
+		void SetObjectPathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aObjectPath);
 		
 		/// <summary>
         /// DBusInterface defines the interface of the dbus service that should
@@ -794,7 +796,7 @@ namespace Skybound.Gecko
         /// returned by LaunchWithURI
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDBusInterfaceAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aDBusInterface);
+		void GetDBusInterfaceAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aDBusInterface);
 		
 		/// <summary>
         /// DBusInterface defines the interface of the dbus service that should
@@ -802,7 +804,7 @@ namespace Skybound.Gecko
         /// returned by LaunchWithURI
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDBusInterfaceAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aDBusInterface);
+		void SetDBusInterfaceAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aDBusInterface);
 		
 		/// <summary>
         /// Method defines the dbus method that should be invoked to handle this
@@ -810,7 +812,7 @@ namespace Skybound.Gecko
         /// LaunchWithURI
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMethodAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aMethod);
+		void GetMethodAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aMethod);
 		
 		/// <summary>
         /// Method defines the dbus method that should be invoked to handle this
@@ -818,6 +820,6 @@ namespace Skybound.Gecko
         /// LaunchWithURI
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMethodAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aMethod);
+		void SetMethodAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aMethod);
 	}
 }

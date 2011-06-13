@@ -42,6 +42,6 @@ namespace Skybound.Gecko
         /// we load XPTs from JAR files correctly.        ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void TestMethod(System.UInt32  testArg);
+		void TestMethod(uint testArg);
 	}
 }

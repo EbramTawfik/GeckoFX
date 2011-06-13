@@ -37,32 +37,37 @@ namespace Skybound.Gecko
 		/// <summary>Member GetStringFromID </summary>
 		/// <param name='aID'> </param>
 		/// <returns>A System.String</returns>
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string GetStringFromID(System.Int32  aID);
+		string GetStringFromID(int aID);
 		
 		/// <summary>Member GetStringFromName </summary>
 		/// <param name='aName'> </param>
 		/// <returns>A System.String</returns>
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string GetStringFromName([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aName);
 		
 		/// <summary>
         /// this uses nsTextFormatter::smprintf to do the dirty work.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string FormatStringFromID(System.Int32  aID, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler", SizeParamIndex=2)] string @params, System.UInt32  length);
+		string FormatStringFromID(int aID, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler", SizeParamIndex=2)] string @params, uint length);
 		
 		/// <summary>Member FormatStringFromName </summary>
 		/// <param name='aName'> </param>
 		/// <param name='params'> </param>
 		/// <param name='length'> </param>
 		/// <returns>A System.String</returns>
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string FormatStringFromName([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aName, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler", SizeParamIndex=2)] string @params, System.UInt32  length);
+		string FormatStringFromName([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aName, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler", SizeParamIndex=2)] string @params, uint length);
 		
 		/// <summary>
         ///Implements nsISimpleEnumerator, replaces nsIEnumerator
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISimpleEnumerator GetSimpleEnumeration();
 	}
@@ -77,14 +82,16 @@ namespace Skybound.Gecko
 		/// <summary>Member CreateBundle </summary>
 		/// <param name='aURLSpec'> </param>
 		/// <returns>A nsIStringBundle</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIStringBundle CreateBundle([MarshalAs(UnmanagedType.LPStr)] System.String  aURLSpec);
+		nsIStringBundle CreateBundle([MarshalAs(UnmanagedType.LPStr)] string aURLSpec);
 		
 		/// <summary>Member CreateExtensibleBundle </summary>
 		/// <param name='aRegistryKey'> </param>
 		/// <returns>A nsIStringBundle</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIStringBundle CreateExtensibleBundle([MarshalAs(UnmanagedType.LPStr)] System.String  aRegistryKey);
+		nsIStringBundle CreateExtensibleBundle([MarshalAs(UnmanagedType.LPStr)] string aRegistryKey);
 		
 		/// <summary>
         /// Formats a message string from a status code and status arguments.
@@ -94,8 +101,9 @@ namespace Skybound.Gecko
         /// can be separated by newline ('\n') characters.
         /// @return the formatted message
         /// </summary>
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string FormatStatusMessage(System.Int32  aStatus, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aStatusArg);
+		string FormatStatusMessage(int aStatus, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aStatusArg);
 		
 		/// <summary>
         /// flushes the string bundle cache - useful when the locale changes or

@@ -41,7 +41,7 @@ namespace Skybound.Gecko
         /// access points in view.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnChange(nsIWifiAccessPoint  accessPoints, System.UInt32  aLen);
+		void OnChange(nsIWifiAccessPoint accessPoints, uint aLen);
 		
 		/// <summary>
         /// Called when there is a problem with listening to wifi
@@ -50,6 +50,6 @@ namespace Skybound.Gecko
         /// error values will be nsresult codes.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnError(System.Int32  error);
+		void OnError(int error);
 	}
 }

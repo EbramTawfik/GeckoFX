@@ -54,7 +54,7 @@ namespace Skybound.Gecko
         /// URI of the favicon to associate with the page.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFaviconUrlForPage([MarshalAs(UnmanagedType.Interface)] nsIURI  aPageURI, [MarshalAs(UnmanagedType.Interface)] nsIURI  aFaviconURI);
+		void SetFaviconUrlForPage([MarshalAs(UnmanagedType.Interface)] nsIURI aPageURI, [MarshalAs(UnmanagedType.Interface)] nsIURI aFaviconURI);
 		
 		/// <summary>
         /// Same as SetFaviconUrlForPage except that this also attempts to fetch and
@@ -87,7 +87,7 @@ namespace Skybound.Gecko
         /// it will always try to reload the favicon.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAndLoadFaviconForPage([MarshalAs(UnmanagedType.Interface)] nsIURI  aPageURI, [MarshalAs(UnmanagedType.Interface)] nsIURI  aFaviconURI, System.Boolean  aForceReload, [MarshalAs(UnmanagedType.Interface)] nsIFaviconDataCallback  aCallback);
+		void SetAndLoadFaviconForPage([MarshalAs(UnmanagedType.Interface)] nsIURI aPageURI, [MarshalAs(UnmanagedType.Interface)] nsIURI aFaviconURI, bool aForceReload, [MarshalAs(UnmanagedType.Interface)] nsIFaviconDataCallback aCallback);
 		
 		/// <summary>
         /// Stores the data for a given favicon URI.
@@ -133,7 +133,7 @@ namespace Skybound.Gecko
         /// Thrown if the favicon is overbloated and won't be saved to the db.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFaviconData([MarshalAs(UnmanagedType.Interface)] nsIURI  aFaviconURI, System.IntPtr  aData, System.UInt32  aDataLen, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aMimeType, System.UInt32  aExpiration);
+		void SetFaviconData([MarshalAs(UnmanagedType.Interface)] nsIURI aFaviconURI, System.IntPtr aData, uint aDataLen, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aMimeType, uint aExpiration);
 		
 		/// <summary>
         /// Same as setFaviconData but the data is provided by a string
@@ -153,7 +153,7 @@ namespace Skybound.Gecko
         /// Thrown if the favicon is overbloated and won't be saved to the db.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFaviconDataFromDataURL([MarshalAs(UnmanagedType.Interface)] nsIURI  aFaviconURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString aDataURL, System.UInt32  aExpiration);
+		void SetFaviconDataFromDataURL([MarshalAs(UnmanagedType.Interface)] nsIURI aFaviconURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString aDataURL, uint aExpiration);
 		
 		/// <summary>
         /// Retrieves the given favicon data.  Throws if we don't have data.
@@ -175,7 +175,7 @@ namespace Skybound.Gecko
         /// Thrown when we have never heard of this favicon URI.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr  GetFaviconData([MarshalAs(UnmanagedType.Interface)] nsIURI  aFaviconURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aMimeType, out System.UInt32  aDataLen);
+		System.IntPtr GetFaviconData([MarshalAs(UnmanagedType.Interface)] nsIURI aFaviconURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aMimeType, out uint aDataLen);
 		
 		/// <summary>
         /// Same as getFaviconData, but returns data as a string containing a data url.
@@ -189,8 +189,9 @@ namespace Skybound.Gecko
         /// @throws NS_ERROR_NOT_AVAILABLE
         /// Thrown when we have never heard of this favicon URL.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetFaviconDataAsDataURL([MarshalAs(UnmanagedType.Interface)] nsIURI  aFaviconURI);
+		nsAString GetFaviconDataAsDataURL([MarshalAs(UnmanagedType.Interface)] nsIURI aFaviconURI);
 		
 		/// <summary>
         /// Retrieves the URI of the favicon for the given page.
@@ -203,8 +204,9 @@ namespace Skybound.Gecko
         /// @throws NS_ERROR_NOT_AVAILABLE
         /// When the page is not found or it has no favicon.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI GetFaviconForPage([MarshalAs(UnmanagedType.Interface)] nsIURI  aPageURI);
+		nsIURI GetFaviconForPage([MarshalAs(UnmanagedType.Interface)] nsIURI aPageURI);
 		
 		/// <summary>
         /// Same as getFaviconLinkForIcon but this adds an extra level of indirection,
@@ -224,8 +226,9 @@ namespace Skybound.Gecko
         /// be a chrome URI of the default icon. For chrome URIs, the
         /// output will be the same as the input.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI GetFaviconImageForPage([MarshalAs(UnmanagedType.Interface)] nsIURI  aPageURI);
+		nsIURI GetFaviconImageForPage([MarshalAs(UnmanagedType.Interface)] nsIURI aPageURI);
 		
 		/// <summary>
         /// For a given icon URI, this will return a URI that will result in the image.
@@ -249,8 +252,9 @@ namespace Skybound.Gecko
         /// be a chrome URI of the default icon. For chrome URIs, the
         /// output will be the same as the input.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI GetFaviconLinkForIcon([MarshalAs(UnmanagedType.Interface)] nsIURI  aFaviconURI);
+		nsIURI GetFaviconLinkForIcon([MarshalAs(UnmanagedType.Interface)] nsIURI aFaviconURI);
 		
 		/// <summary>
         /// Expire all known favicons from the database.
@@ -273,7 +277,7 @@ namespace Skybound.Gecko
         /// The URI of an icon in the favicon service.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddFailedFavicon([MarshalAs(UnmanagedType.Interface)] nsIURI  aFaviconURI);
+		void AddFailedFavicon([MarshalAs(UnmanagedType.Interface)] nsIURI aFaviconURI);
 		
 		/// <summary>
         /// Removes the given favicon from the failed favicon cache.  If the icon is
@@ -283,7 +287,7 @@ namespace Skybound.Gecko
         /// The URI of an icon in the favicon service.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveFailedFavicon([MarshalAs(UnmanagedType.Interface)] nsIURI  aFaviconURI);
+		void RemoveFailedFavicon([MarshalAs(UnmanagedType.Interface)] nsIURI aFaviconURI);
 		
 		/// <summary>
         /// Checks to see if a favicon is in the failed favicon cache.
@@ -297,14 +301,14 @@ namespace Skybound.Gecko
         /// The URI of an icon in the favicon service.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsFailedFavicon([MarshalAs(UnmanagedType.Interface)] nsIURI  aFaviconURI);
+		bool IsFailedFavicon([MarshalAs(UnmanagedType.Interface)] nsIURI aFaviconURI);
 		
 		/// <summary>
         /// The default favicon URI
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI  GetDefaultFaviconAttribute();
+		nsIURI GetDefaultFaviconAttribute();
 	}
 	
 	/// <summary>nsIFaviconDataCallback </summary>
@@ -341,6 +345,6 @@ namespace Skybound.Gecko
         /// Mime type of the icon, null if aDataLen is 0.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnFaviconDataAvailable([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, System.UInt32  aDataLen, System.IntPtr  aData, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aMimeType);
+		void OnFaviconDataAvailable([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, uint aDataLen, System.IntPtr aData, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aMimeType);
 	}
 }

@@ -40,6 +40,6 @@ namespace Skybound.Gecko
         /// only valid value is nsnull.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetHostingFlags([MarshalAs(UnmanagedType.LPStr)] System.String  aContext);
+		uint GetHostingFlags([MarshalAs(UnmanagedType.LPStr)] string aContext);
 	}
 }

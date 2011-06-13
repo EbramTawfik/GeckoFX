@@ -35,25 +35,27 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetLengthAttribute </summary>
-		/// <returns>A System.UInt32 </returns>
+		/// <returns>A System.UInt32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetLengthAttribute();
+		uint GetLengthAttribute();
 		
 		/// <summary>Member Item </summary>
 		/// <param name='index'> </param>
 		/// <returns>A nsIDOMPlugin</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMPlugin Item(System.UInt32  index);
+		nsIDOMPlugin Item(uint index);
 		
 		/// <summary>Member NamedItem </summary>
 		/// <param name='name'> </param>
 		/// <returns>A nsIDOMPlugin</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMPlugin NamedItem([MarshalAs(UnmanagedType.LPStruct)] nsAString name);
 		
 		/// <summary>Member Refresh </summary>
 		/// <param name='reloadDocuments'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Refresh(System.Boolean  reloadDocuments);
+		void Refresh(bool reloadDocuments);
 	}
 }

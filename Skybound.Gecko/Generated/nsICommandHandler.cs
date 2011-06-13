@@ -35,15 +35,15 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetWindowAttribute </summary>
-		/// <returns>A nsIDOMWindow </returns>
+		/// <returns>A nsIDOMWindow</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMWindow  GetWindowAttribute();
+		nsIDOMWindow GetWindowAttribute();
 		
 		/// <summary>Member SetWindowAttribute </summary>
 		/// <param name='aWindow'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetWindowAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  aWindow);
+		void SetWindowAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow);
 	}
 	
 	/// <summary>nsICommandHandler </summary>
@@ -58,15 +58,17 @@ namespace Skybound.Gecko
         /// the result to the caller. The format of the command, parameters and
         /// the result are determined by the acutal implementation.
         ///	 </summary>
+		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string Exec([MarshalAs(UnmanagedType.LPStr)] System.String  aCommand, [MarshalAs(UnmanagedType.LPStr)] System.String  aParameters);
+		string Exec([MarshalAs(UnmanagedType.LPStr)] string aCommand, [MarshalAs(UnmanagedType.LPStr)] string aParameters);
 		
 		/// <summary>
         /// Query the status of the specified command with the specified parameters
         /// and return the result to the caller. The format of the command,
         /// parameters and the result are determined by the implementation.
         ///	 </summary>
+		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string Query([MarshalAs(UnmanagedType.LPStr)] System.String  aCommand, [MarshalAs(UnmanagedType.LPStr)] System.String  aParameters);
+		string Query([MarshalAs(UnmanagedType.LPStr)] string aCommand, [MarshalAs(UnmanagedType.LPStr)] string aParameters);
 	}
 }

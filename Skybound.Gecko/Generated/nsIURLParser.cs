@@ -44,7 +44,7 @@ namespace Skybound.Gecko
         /// spec = <scheme>://<authority><path>
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ParseURL([MarshalAs(UnmanagedType.LPStr)] System.String  spec, System.Int32  specLen, out System.UInt32  schemePos, out System.Int32  schemeLen, out System.UInt32  authorityPos, out System.Int32  authorityLen, out System.UInt32  pathPos, out System.Int32  pathLen);
+		void ParseURL([MarshalAs(UnmanagedType.LPStr)] string spec, int specLen, out uint schemePos, out int schemeLen, out uint authorityPos, out int authorityLen, out uint pathPos, out int pathLen);
 		
 		/// <summary>
         /// ParseAuthority breaks the authority string up into its 4 components:
@@ -53,19 +53,19 @@ namespace Skybound.Gecko
         /// auth = <username>:<password>@<hostname>:<port>
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ParseAuthority([MarshalAs(UnmanagedType.LPStr)] System.String  authority, System.Int32  authorityLen, out System.UInt32  usernamePos, out System.Int32  usernameLen, out System.UInt32  passwordPos, out System.Int32  passwordLen, out System.UInt32  hostnamePos, out System.Int32  hostnameLen, out System.Int32  port);
+		void ParseAuthority([MarshalAs(UnmanagedType.LPStr)] string authority, int authorityLen, out uint usernamePos, out int usernameLen, out uint passwordPos, out int passwordLen, out uint hostnamePos, out int hostnameLen, out int port);
 		
 		/// <summary>
         /// userinfo = <username>:<password>
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ParseUserInfo([MarshalAs(UnmanagedType.LPStr)] System.String  userinfo, System.Int32  userinfoLen, out System.UInt32  usernamePos, out System.Int32  usernameLen, out System.UInt32  passwordPos, out System.Int32  passwordLen);
+		void ParseUserInfo([MarshalAs(UnmanagedType.LPStr)] string userinfo, int userinfoLen, out uint usernamePos, out int usernameLen, out uint passwordPos, out int passwordLen);
 		
 		/// <summary>
         /// serverinfo = <hostname>:<port>
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ParseServerInfo([MarshalAs(UnmanagedType.LPStr)] System.String  serverinfo, System.Int32  serverinfoLen, out System.UInt32  hostnamePos, out System.Int32  hostnameLen, out System.Int32  port);
+		void ParseServerInfo([MarshalAs(UnmanagedType.LPStr)] string serverinfo, int serverinfoLen, out uint hostnamePos, out int hostnameLen, out int port);
 		
 		/// <summary>
         /// ParsePath breaks the path string up into its 4 major components: a file path,
@@ -74,7 +74,7 @@ namespace Skybound.Gecko
         /// path = <filepath>;<param>?<query>#<ref>
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ParsePath([MarshalAs(UnmanagedType.LPStr)] System.String  path, System.Int32  pathLen, out System.UInt32  filepathPos, out System.Int32  filepathLen, out System.UInt32  paramPos, out System.Int32  paramLen, out System.UInt32  queryPos, out System.Int32  queryLen, out System.UInt32  refPos, out System.Int32  refLen);
+		void ParsePath([MarshalAs(UnmanagedType.LPStr)] string path, int pathLen, out uint filepathPos, out int filepathLen, out uint paramPos, out int paramLen, out uint queryPos, out int queryLen, out uint refPos, out int refLen);
 		
 		/// <summary>
         /// ParseFilePath breaks the file path string up into: the directory portion,
@@ -83,12 +83,12 @@ namespace Skybound.Gecko
         /// filepath = <directory><basename>.<extension>
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ParseFilePath([MarshalAs(UnmanagedType.LPStr)] System.String  filepath, System.Int32  filepathLen, out System.UInt32  directoryPos, out System.Int32  directoryLen, out System.UInt32  basenamePos, out System.Int32  basenameLen, out System.UInt32  extensionPos, out System.Int32  extensionLen);
+		void ParseFilePath([MarshalAs(UnmanagedType.LPStr)] string filepath, int filepathLen, out uint directoryPos, out int directoryLen, out uint basenamePos, out int basenameLen, out uint extensionPos, out int extensionLen);
 		
 		/// <summary>
         /// filename = <basename>.<extension>
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ParseFileName([MarshalAs(UnmanagedType.LPStr)] System.String  filename, System.Int32  filenameLen, out System.UInt32  basenamePos, out System.Int32  basenameLen, out System.UInt32  extensionPos, out System.Int32  extensionLen);
+		void ParseFileName([MarshalAs(UnmanagedType.LPStr)] string filename, int filenameLen, out uint basenamePos, out int basenameLen, out uint extensionPos, out int extensionLen);
 	}
 }

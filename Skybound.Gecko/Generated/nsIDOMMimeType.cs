@@ -40,10 +40,10 @@ namespace Skybound.Gecko
 		void GetDescriptionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDescription);
 		
 		/// <summary>Member GetEnabledPluginAttribute </summary>
-		/// <returns>A nsIDOMPlugin </returns>
+		/// <returns>A nsIDOMPlugin</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMPlugin  GetEnabledPluginAttribute();
+		nsIDOMPlugin GetEnabledPluginAttribute();
 		
 		/// <summary>Member GetSuffixesAttribute </summary>
 		/// <param name='aSuffixes'> </param>

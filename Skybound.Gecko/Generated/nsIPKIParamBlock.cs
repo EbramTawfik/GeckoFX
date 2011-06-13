@@ -38,12 +38,13 @@ namespace Skybound.Gecko
 		/// <param name='index'> </param>
 		/// <param name='object'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetISupportAtIndex(System.Int32  index, [MarshalAs(UnmanagedType.Interface)] nsISupports  @object);
+		void SetISupportAtIndex(int index, [MarshalAs(UnmanagedType.Interface)] nsISupports @object);
 		
 		/// <summary>Member GetISupportAtIndex </summary>
 		/// <param name='index'> </param>
 		/// <returns>A nsISupports</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports GetISupportAtIndex(System.Int32  index);
+		nsISupports GetISupportAtIndex(int index);
 	}
 }

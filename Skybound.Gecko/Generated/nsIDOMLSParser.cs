@@ -35,49 +35,52 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetDomConfigAttribute </summary>
-		/// <returns>A nsIDOMDOMConfiguration </returns>
+		/// <returns>A nsIDOMDOMConfiguration</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMConfiguration  GetDomConfigAttribute();
+		nsIDOMDOMConfiguration GetDomConfigAttribute();
 		
 		/// <summary>Member GetFilterAttribute </summary>
-		/// <returns>A nsIDOMLSParserFilter </returns>
+		/// <returns>A nsIDOMLSParserFilter</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMLSParserFilter  GetFilterAttribute();
+		nsIDOMLSParserFilter GetFilterAttribute();
 		
 		/// <summary>Member SetFilterAttribute </summary>
 		/// <param name='aFilter'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFilterAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMLSParserFilter  aFilter);
+		void SetFilterAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMLSParserFilter aFilter);
 		
 		/// <summary>Member GetAsyncAttribute </summary>
-		/// <returns>A System.Boolean </returns>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetAsyncAttribute();
+		bool GetAsyncAttribute();
 		
 		/// <summary>Member GetBusyAttribute </summary>
-		/// <returns>A System.Boolean </returns>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetBusyAttribute();
+		bool GetBusyAttribute();
 		
 		/// <summary>Member Parse </summary>
 		/// <param name='input'> </param>
 		/// <returns>A nsIDOMDocument</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDocument Parse([MarshalAs(UnmanagedType.Interface)] nsIDOMLSInput  input);
+		nsIDOMDocument Parse([MarshalAs(UnmanagedType.Interface)] nsIDOMLSInput input);
 		
 		/// <summary>Member ParseURI </summary>
 		/// <param name='uri'> </param>
 		/// <returns>A nsIDOMDocument</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMDocument ParseURI([MarshalAs(UnmanagedType.LPStruct)] nsAString uri);
 		
 		/// <summary>
         /// ACTION_TYPES
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMNode ParseWithContext([MarshalAs(UnmanagedType.Interface)] nsIDOMLSInput  input, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode  contextArg, ushort action);
+		nsIDOMNode ParseWithContext([MarshalAs(UnmanagedType.Interface)] nsIDOMLSInput input, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode contextArg, ushort action);
 		
 		/// <summary>Member Abort </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

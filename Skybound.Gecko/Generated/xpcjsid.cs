@@ -35,35 +35,36 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetNameAttribute </summary>
-		/// <returns>A System.String </returns>
+		/// <returns>A System.String</returns>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetNameAttribute();
+		string GetNameAttribute();
 		
 		/// <summary>Member GetNumberAttribute </summary>
-		/// <returns>A System.String </returns>
+		/// <returns>A System.String</returns>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetNumberAttribute();
+		string GetNumberAttribute();
 		
 		/// <summary>Member GetValidAttribute </summary>
-		/// <returns>A System.Boolean </returns>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetValidAttribute();
+		bool GetValidAttribute();
 		
 		/// <summary>Member Equals </summary>
 		/// <param name='other'> </param>
 		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Equals([MarshalAs(UnmanagedType.Interface)] nsIJSID  other);
+		bool Equals([MarshalAs(UnmanagedType.Interface)] nsIJSID other);
 		
 		/// <summary>Member Initialize </summary>
 		/// <param name='idString'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Initialize([MarshalAs(UnmanagedType.LPStr)] System.String  idString);
+		void Initialize([MarshalAs(UnmanagedType.LPStr)] string idString);
 		
 		/// <summary>Member ToString </summary>
 		/// <returns>A System.String</returns>
+		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string ToString();
 		
@@ -82,35 +83,36 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetNameAttribute </summary>
-		/// <returns>A System.String </returns>
+		/// <returns>A System.String</returns>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.String  GetNameAttribute();
+		new string GetNameAttribute();
 		
 		/// <summary>Member GetNumberAttribute </summary>
-		/// <returns>A System.String </returns>
+		/// <returns>A System.String</returns>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.String  GetNumberAttribute();
+		new string GetNumberAttribute();
 		
 		/// <summary>Member GetValidAttribute </summary>
-		/// <returns>A System.Boolean </returns>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Boolean  GetValidAttribute();
+		new bool GetValidAttribute();
 		
 		/// <summary>Member Equals </summary>
 		/// <param name='other'> </param>
 		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool Equals([MarshalAs(UnmanagedType.Interface)] nsIJSID  other);
+		new bool Equals([MarshalAs(UnmanagedType.Interface)] nsIJSID other);
 		
 		/// <summary>Member Initialize </summary>
 		/// <param name='idString'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Initialize([MarshalAs(UnmanagedType.LPStr)] System.String  idString);
+		new void Initialize([MarshalAs(UnmanagedType.LPStr)] string idString);
 		
 		/// <summary>Member ToString </summary>
 		/// <returns>A System.String</returns>
+		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new string ToString();
 		
@@ -129,35 +131,36 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetNameAttribute </summary>
-		/// <returns>A System.String </returns>
+		/// <returns>A System.String</returns>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.String  GetNameAttribute();
+		new string GetNameAttribute();
 		
 		/// <summary>Member GetNumberAttribute </summary>
-		/// <returns>A System.String </returns>
+		/// <returns>A System.String</returns>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.String  GetNumberAttribute();
+		new string GetNumberAttribute();
 		
 		/// <summary>Member GetValidAttribute </summary>
-		/// <returns>A System.Boolean </returns>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Boolean  GetValidAttribute();
+		new bool GetValidAttribute();
 		
 		/// <summary>Member Equals </summary>
 		/// <param name='other'> </param>
 		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool Equals([MarshalAs(UnmanagedType.Interface)] nsIJSID  other);
+		new bool Equals([MarshalAs(UnmanagedType.Interface)] nsIJSID other);
 		
 		/// <summary>Member Initialize </summary>
 		/// <param name='idString'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Initialize([MarshalAs(UnmanagedType.LPStr)] System.String  idString);
+		new void Initialize([MarshalAs(UnmanagedType.LPStr)] string idString);
 		
 		/// <summary>Member ToString </summary>
 		/// <returns>A System.String</returns>
+		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new string ToString();
 		
@@ -169,11 +172,13 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member CreateInstance </summary>
 		/// <returns>A nsISupports</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISupports CreateInstance();
 		
 		/// <summary>Member GetService </summary>
 		/// <returns>A nsISupports</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISupports GetService();
 	}

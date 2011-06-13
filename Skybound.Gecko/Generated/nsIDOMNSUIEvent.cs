@@ -38,7 +38,7 @@ namespace Skybound.Gecko
         ///The original target of the event, before any retargetings. </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMEventTarget  GetOriginalTargetAttribute();
+		new nsIDOMEventTarget GetOriginalTargetAttribute();
 		
 		/// <summary>
         /// The explicit original target of the event.  If the event was retargeted
@@ -52,7 +52,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMEventTarget  GetExplicitOriginalTargetAttribute();
+		new nsIDOMEventTarget GetExplicitOriginalTargetAttribute();
 		
 		/// <summary>
         ///XXX This is TEMPORARY.
@@ -62,7 +62,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMEventTarget  GetTmpRealOriginalTargetAttribute();
+		new nsIDOMEventTarget GetTmpRealOriginalTargetAttribute();
 		
 		/// <summary>
         /// @deprecated Use nsIDOMEvent::stopPropagation.
@@ -82,59 +82,59 @@ namespace Skybound.Gecko
 		new bool GetPreventDefault();
 		
 		/// <summary>Member GetIsTrustedAttribute </summary>
-		/// <returns>A System.Boolean </returns>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Boolean  GetIsTrustedAttribute();
+		new bool GetIsTrustedAttribute();
 		
 		/// <summary>Member GetLayerXAttribute </summary>
-		/// <returns>A System.Int32 </returns>
+		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetLayerXAttribute();
+		int GetLayerXAttribute();
 		
 		/// <summary>Member GetLayerYAttribute </summary>
-		/// <returns>A System.Int32 </returns>
+		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetLayerYAttribute();
+		int GetLayerYAttribute();
 		
 		/// <summary>Member GetPageXAttribute </summary>
-		/// <returns>A System.Int32 </returns>
+		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetPageXAttribute();
+		int GetPageXAttribute();
 		
 		/// <summary>Member GetPageYAttribute </summary>
-		/// <returns>A System.Int32 </returns>
+		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetPageYAttribute();
+		int GetPageYAttribute();
 		
 		/// <summary>Member GetWhichAttribute </summary>
-		/// <returns>A System.UInt32 </returns>
+		/// <returns>A System.UInt32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetWhichAttribute();
+		uint GetWhichAttribute();
 		
 		/// <summary>Member GetRangeParentAttribute </summary>
-		/// <returns>A nsIDOMNode </returns>
+		/// <returns>A nsIDOMNode</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMNode  GetRangeParentAttribute();
+		nsIDOMNode GetRangeParentAttribute();
 		
 		/// <summary>Member GetRangeOffsetAttribute </summary>
-		/// <returns>A System.Int32 </returns>
+		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetRangeOffsetAttribute();
+		int GetRangeOffsetAttribute();
 		
 		/// <summary>Member GetCancelBubbleAttribute </summary>
-		/// <returns>A System.Boolean </returns>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetCancelBubbleAttribute();
+		bool GetCancelBubbleAttribute();
 		
 		/// <summary>Member SetCancelBubbleAttribute </summary>
 		/// <param name='aCancelBubble'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCancelBubbleAttribute(System.Boolean  aCancelBubble);
+		void SetCancelBubbleAttribute(bool aCancelBubble);
 		
 		/// <summary>Member GetIsCharAttribute </summary>
-		/// <returns>A System.Boolean </returns>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsCharAttribute();
+		bool GetIsCharAttribute();
 	}
 }

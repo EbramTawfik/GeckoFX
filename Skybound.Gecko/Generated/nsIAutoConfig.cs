@@ -35,14 +35,14 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetConfigURLAttribute </summary>
-		/// <returns>A System.String </returns>
+		/// <returns>A System.String</returns>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetConfigURLAttribute();
+		string GetConfigURLAttribute();
 		
 		/// <summary>Member SetConfigURLAttribute </summary>
 		/// <param name='aConfigURL'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetConfigURLAttribute([MarshalAs(UnmanagedType.LPStr)] System.String  aConfigURL);
+		void SetConfigURLAttribute([MarshalAs(UnmanagedType.LPStr)] string aConfigURL);
 	}
 }

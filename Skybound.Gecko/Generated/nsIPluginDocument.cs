@@ -38,7 +38,7 @@ namespace Skybound.Gecko
         /// Sets the stream listener for this plugin document
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetStreamListener([MarshalAs(UnmanagedType.Interface)] nsIStreamListener  aStreamListener);
+		void SetStreamListener([MarshalAs(UnmanagedType.Interface)] nsIStreamListener aStreamListener);
 		
 		/// <summary>
         /// Causes the plugin to print in full-page mode
@@ -50,6 +50,6 @@ namespace Skybound.Gecko
         /// XXXbz once we move plug-in loading to content, this can go away.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetWillHandleInstantiationAttribute();
+		bool GetWillHandleInstantiationAttribute();
 	}
 }

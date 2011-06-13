@@ -41,7 +41,7 @@ namespace Skybound.Gecko
         /// Initialize debugger object to act on a docshell.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  win);
+		void Init([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow win);
 		
 		/// <summary>
         /// Notify the debugger that the docshell has been told to load a new
@@ -53,60 +53,60 @@ namespace Skybound.Gecko
 		/// <summary>
         ///Toggle various debugging states </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetVisualDebuggingAttribute();
+		bool GetVisualDebuggingAttribute();
 		
 		/// <summary>
         ///Toggle various debugging states </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetVisualDebuggingAttribute(System.Boolean  aVisualDebugging);
+		void SetVisualDebuggingAttribute(bool aVisualDebugging);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetVisualEventDebuggingAttribute();
+		bool GetVisualEventDebuggingAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetVisualEventDebuggingAttribute(System.Boolean  aVisualEventDebugging);
+		void SetVisualEventDebuggingAttribute(bool aVisualEventDebugging);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetPaintFlashingAttribute();
+		bool GetPaintFlashingAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPaintFlashingAttribute(System.Boolean  aPaintFlashing);
+		void SetPaintFlashingAttribute(bool aPaintFlashing);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetPaintDumpingAttribute();
+		bool GetPaintDumpingAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPaintDumpingAttribute(System.Boolean  aPaintDumping);
+		void SetPaintDumpingAttribute(bool aPaintDumping);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetInvalidateDumpingAttribute();
+		bool GetInvalidateDumpingAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetInvalidateDumpingAttribute(System.Boolean  aInvalidateDumping);
+		void SetInvalidateDumpingAttribute(bool aInvalidateDumping);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetEventDumpingAttribute();
+		bool GetEventDumpingAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetEventDumpingAttribute(System.Boolean  aEventDumping);
+		void SetEventDumpingAttribute(bool aEventDumping);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetMotionEventDumpingAttribute();
+		bool GetMotionEventDumpingAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMotionEventDumpingAttribute(System.Boolean  aMotionEventDumping);
+		void SetMotionEventDumpingAttribute(bool aMotionEventDumping);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetCrossingEventDumpingAttribute();
+		bool GetCrossingEventDumpingAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCrossingEventDumpingAttribute(System.Boolean  aCrossingEventDumping);
+		void SetCrossingEventDumpingAttribute(bool aCrossingEventDumping);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetReflowCountsAttribute();
+		bool GetReflowCountsAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetReflowCountsAttribute(System.Boolean  aReflowCounts);
+		void SetReflowCountsAttribute(bool aReflowCounts);
 		
 		/// <summary>
         ///Run various tests. </summary>

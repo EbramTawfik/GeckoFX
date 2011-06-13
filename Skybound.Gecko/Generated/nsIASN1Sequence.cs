@@ -60,25 +60,25 @@ namespace Skybound.Gecko
         /// "type" will be equal to one of the defined object identifiers.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.UInt32  GetTypeAttribute();
+		new uint GetTypeAttribute();
 		
 		/// <summary>
         /// "type" will be equal to one of the defined object identifiers.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetTypeAttribute(System.UInt32  aType);
+		new void SetTypeAttribute(uint aType);
 		
 		/// <summary>
         /// This contains a tag as explained in ASN.1 standards documents.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.UInt32  GetTagAttribute();
+		new uint GetTagAttribute();
 		
 		/// <summary>
         /// This contains a tag as explained in ASN.1 standards documents.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetTagAttribute(System.UInt32  aTag);
+		new void SetTagAttribute(uint aTag);
 		
 		/// <summary>
         /// "displayName" contains a human readable explanatory label.
@@ -109,13 +109,13 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIMutableArray  GetASN1ObjectsAttribute();
+		nsIMutableArray GetASN1ObjectsAttribute();
 		
 		/// <summary>
         /// The array of objects stored in the sequence.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetASN1ObjectsAttribute([MarshalAs(UnmanagedType.Interface)] nsIMutableArray  aASN1Objects);
+		void SetASN1ObjectsAttribute([MarshalAs(UnmanagedType.Interface)] nsIMutableArray aASN1Objects);
 		
 		/// <summary>
         /// Whether the node at this position in the ASN.1 data structure
@@ -123,7 +123,7 @@ namespace Skybound.Gecko
         /// application.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsValidContainerAttribute();
+		bool GetIsValidContainerAttribute();
 		
 		/// <summary>
         /// Whether the node at this position in the ASN.1 data structure
@@ -131,7 +131,7 @@ namespace Skybound.Gecko
         /// application.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetIsValidContainerAttribute(System.Boolean  aIsValidContainer);
+		void SetIsValidContainerAttribute(bool aIsValidContainer);
 		
 		/// <summary>
         /// Whether the contained objects should be shown or hidden.
@@ -139,7 +139,7 @@ namespace Skybound.Gecko
         /// expansion state when shown in a tree widget.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsExpandedAttribute();
+		bool GetIsExpandedAttribute();
 		
 		/// <summary>
         /// Whether the contained objects should be shown or hidden.
@@ -147,6 +147,6 @@ namespace Skybound.Gecko
         /// expansion state when shown in a tree widget.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetIsExpandedAttribute(System.Boolean  aIsExpanded);
+		void SetIsExpandedAttribute(bool aIsExpanded);
 	}
 }

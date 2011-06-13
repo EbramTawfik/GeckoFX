@@ -66,7 +66,7 @@ namespace Skybound.Gecko
         /// EventListener designated to use capture.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddEventListener([MarshalAs(UnmanagedType.LPStruct)] nsAString type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener  listener, System.Boolean  useCapture);
+		void AddEventListener([MarshalAs(UnmanagedType.LPStruct)] nsAString type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener listener, bool useCapture);
 		
 		/// <summary>
         /// This method allows the removal of event listeners from the event
@@ -89,7 +89,7 @@ namespace Skybound.Gecko
         /// listener, and vice versa.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveEventListener([MarshalAs(UnmanagedType.LPStruct)] nsAString type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener  listener, System.Boolean  useCapture);
+		void RemoveEventListener([MarshalAs(UnmanagedType.LPStruct)] nsAString type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener listener, bool useCapture);
 		
 		/// <summary>
         /// This method allows the dispatch of events into the implementations
@@ -110,6 +110,6 @@ namespace Skybound.Gecko
         /// exception.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool DispatchEvent([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent  evt);
+		bool DispatchEvent([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent evt);
 	}
 }

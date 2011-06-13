@@ -65,7 +65,7 @@ namespace Skybound.Gecko
         /// PR_FALSE actually takes effect.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void FavorPerformanceHint(System.Boolean  favorPerfOverStarvation, System.UInt32  starvationDelay);
+		void FavorPerformanceHint(bool favorPerfOverStarvation, uint starvationDelay);
 		
 		/// <summary>
         /// Suspends the use of additional platform-specific methods (besides the
@@ -96,7 +96,7 @@ namespace Skybound.Gecko
         /// The current event loop nesting level.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetEventloopNestingLevelAttribute();
+		uint GetEventloopNestingLevelAttribute();
 		
 		/// <summary>
         /// Allows running of a "synchronous section", in the form of an nsIRunnable
@@ -108,6 +108,6 @@ namespace Skybound.Gecko
         /// be executed, in the order in which runInStableState() was called.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RunInStableState([MarshalAs(UnmanagedType.Interface)] nsIRunnable  aRunnable);
+		void RunInStableState([MarshalAs(UnmanagedType.Interface)] nsIRunnable aRunnable);
 	}
 }

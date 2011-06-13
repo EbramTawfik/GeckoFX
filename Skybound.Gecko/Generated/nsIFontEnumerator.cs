@@ -43,7 +43,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler", SizeParamIndex=0)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string EnumerateAllFonts(out System.UInt32  aCount);
+		string EnumerateAllFonts(out uint aCount);
 		
 		/// <summary>
         /// Return a sorted array of names of fonts that support the given language
@@ -57,22 +57,23 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler", SizeParamIndex=2)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string EnumerateFonts([MarshalAs(UnmanagedType.LPStr)] System.String  aLangGroup, [MarshalAs(UnmanagedType.LPStr)] System.String  aGeneric, out System.UInt32  aCount);
+		string EnumerateFonts([MarshalAs(UnmanagedType.LPStr)] string aLangGroup, [MarshalAs(UnmanagedType.LPStr)] string aGeneric, out uint aCount);
 		
 		/// <summary>
         ///@param  aLangGroup language group
         ///    @return bool do we have a font for this language group
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  HaveFontFor([MarshalAs(UnmanagedType.LPStr)] System.String  aLangGroup);
+		bool HaveFontFor([MarshalAs(UnmanagedType.LPStr)] string aLangGroup);
 		
 		/// <summary>
         /// @param  aLangGroup language group
         /// @param  aGeneric CSS generic font
         /// @return suggested default font for this language group and generic family
         /// </summary>
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string GetDefaultFont([MarshalAs(UnmanagedType.LPStr)] System.String  aLangGroup, [MarshalAs(UnmanagedType.LPStr)] System.String  aGeneric);
+		string GetDefaultFont([MarshalAs(UnmanagedType.LPStr)] string aLangGroup, [MarshalAs(UnmanagedType.LPStr)] string aGeneric);
 		
 		/// <summary>
         /// update the global font list
@@ -87,6 +88,7 @@ namespace Skybound.Gecko
         /// @return the standard family name on the system, if given name does not
         /// exist, returns empty string
         /// </summary>
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string GetStandardFamilyName([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aName);
 	}

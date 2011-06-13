@@ -54,14 +54,15 @@ namespace Skybound.Gecko
         /// based cache entry can only have a storage policy of STORE_IN_MEMORY.
         /// @return new cache session.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsICacheSession CreateSession([MarshalAs(UnmanagedType.LPStr)] System.String  clientID, System.IntPtr storagePolicy, System.Boolean  streamBased);
+		nsICacheSession CreateSession([MarshalAs(UnmanagedType.LPStr)] string clientID, System.IntPtr storagePolicy, bool streamBased);
 		
 		/// <summary>
         /// Visit entries stored in the cache.  Used to implement about:cache.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void VisitEntries([MarshalAs(UnmanagedType.Interface)] nsICacheVisitor  visitor);
+		void VisitEntries([MarshalAs(UnmanagedType.Interface)] nsICacheVisitor visitor);
 		
 		/// <summary>
         /// Evicts all entries in all devices implied by the storage policy.
@@ -77,6 +78,6 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIEventTarget  GetCacheIOTargetAttribute();
+		nsIEventTarget GetCacheIOTargetAttribute();
 	}
 }

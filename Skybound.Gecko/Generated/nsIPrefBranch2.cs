@@ -44,7 +44,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.String  GetRootAttribute();
+		new string GetRootAttribute();
 		
 		/// <summary>
         /// Called to determine the type of a specific preference.
@@ -55,7 +55,7 @@ namespace Skybound.Gecko
         /// value will be PREF_STRING, PREF_INT, or PREF_BOOL.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new int GetPrefType([MarshalAs(UnmanagedType.LPStr)] System.String  aPrefName);
+		new int GetPrefType([MarshalAs(UnmanagedType.LPStr)] string aPrefName);
 		
 		/// <summary>
         /// Called to get the state of an individual boolean preference.
@@ -67,7 +67,7 @@ namespace Skybound.Gecko
         /// @see setBoolPref
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool GetBoolPref([MarshalAs(UnmanagedType.LPStr)] System.String  aPrefName);
+		new bool GetBoolPref([MarshalAs(UnmanagedType.LPStr)] string aPrefName);
 		
 		/// <summary>
         /// Called to set the state of an individual boolean preference.
@@ -81,7 +81,7 @@ namespace Skybound.Gecko
         /// @see getBoolPref
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetBoolPref([MarshalAs(UnmanagedType.LPStr)] System.String  aPrefName, System.Int32  aValue);
+		new void SetBoolPref([MarshalAs(UnmanagedType.LPStr)] string aPrefName, int aValue);
 		
 		/// <summary>
         /// Called to get the state of an individual string preference.
@@ -92,8 +92,9 @@ namespace Skybound.Gecko
         ///
         /// @see setCharPref
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new string GetCharPref([MarshalAs(UnmanagedType.LPStr)] System.String  aPrefName);
+		new string GetCharPref([MarshalAs(UnmanagedType.LPStr)] string aPrefName);
 		
 		/// <summary>
         /// Called to set the state of an individual string preference.
@@ -107,7 +108,7 @@ namespace Skybound.Gecko
         /// @see getCharPref
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetCharPref([MarshalAs(UnmanagedType.LPStr)] System.String  aPrefName, [MarshalAs(UnmanagedType.LPStr)] System.String  aValue);
+		new void SetCharPref([MarshalAs(UnmanagedType.LPStr)] string aPrefName, [MarshalAs(UnmanagedType.LPStr)] string aValue);
 		
 		/// <summary>
         /// Called to get the state of an individual integer preference.
@@ -119,7 +120,7 @@ namespace Skybound.Gecko
         /// @see setIntPref
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new int GetIntPref([MarshalAs(UnmanagedType.LPStr)] System.String  aPrefName);
+		new int GetIntPref([MarshalAs(UnmanagedType.LPStr)] string aPrefName);
 		
 		/// <summary>
         /// Called to set the state of an individual integer preference.
@@ -133,7 +134,7 @@ namespace Skybound.Gecko
         /// @see getIntPref
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetIntPref([MarshalAs(UnmanagedType.LPStr)] System.String  aPrefName, System.Int32  aValue);
+		new void SetIntPref([MarshalAs(UnmanagedType.LPStr)] string aPrefName, int aValue);
 		
 		/// <summary>
         /// Called to get the state of an individual complex preference. A complex
@@ -155,7 +156,7 @@ namespace Skybound.Gecko
         /// @see setComplexValue
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.IntPtr  GetComplexValue([MarshalAs(UnmanagedType.LPStr)] System.String  aPrefName, ref System.Guid aType);
+		new System.IntPtr GetComplexValue([MarshalAs(UnmanagedType.LPStr)] string aPrefName, ref System.Guid aType);
 		
 		/// <summary>
         /// Called to set the state of an individual complex preference. A complex
@@ -177,7 +178,7 @@ namespace Skybound.Gecko
         /// @see getComplexValue
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetComplexValue([MarshalAs(UnmanagedType.LPStr)] System.String  aPrefName, ref System.Guid aType, [MarshalAs(UnmanagedType.Interface)] nsISupports  aValue);
+		new void SetComplexValue([MarshalAs(UnmanagedType.LPStr)] string aPrefName, ref System.Guid aType, [MarshalAs(UnmanagedType.Interface)] nsISupports aValue);
 		
 		/// <summary>
         /// Called to clear a user set value from a specific preference. This will, in
@@ -193,7 +194,7 @@ namespace Skybound.Gecko
         /// @return Other The preference does not exist or have a user set value.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void ClearUserPref([MarshalAs(UnmanagedType.LPStr)] System.String  aPrefName);
+		new void ClearUserPref([MarshalAs(UnmanagedType.LPStr)] string aPrefName);
 		
 		/// <summary>
         /// Called to lock a specific preference. Locking a preference will cause the
@@ -212,7 +213,7 @@ namespace Skybound.Gecko
         /// @see unlockPref
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void LockPref([MarshalAs(UnmanagedType.LPStr)] System.String  aPrefName);
+		new void LockPref([MarshalAs(UnmanagedType.LPStr)] string aPrefName);
 		
 		/// <summary>
         /// Called to check if a specific preference has a user value associated to
@@ -235,7 +236,7 @@ namespace Skybound.Gecko
         /// false The preference only has a default value.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool PrefHasUserValue([MarshalAs(UnmanagedType.LPStr)] System.String  aPrefName);
+		new bool PrefHasUserValue([MarshalAs(UnmanagedType.LPStr)] string aPrefName);
 		
 		/// <summary>
         /// Called to check if a specific preference is locked. If a preference is
@@ -254,7 +255,7 @@ namespace Skybound.Gecko
         /// @see unlockPref
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool PrefIsLocked([MarshalAs(UnmanagedType.LPStr)] System.String  aPrefName);
+		new bool PrefIsLocked([MarshalAs(UnmanagedType.LPStr)] string aPrefName);
 		
 		/// <summary>
         /// Called to unlock a specific preference. Unlocking a previously locked
@@ -273,7 +274,7 @@ namespace Skybound.Gecko
         /// @see lockPref
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void UnlockPref([MarshalAs(UnmanagedType.LPStr)] System.String  aPrefName);
+		new void UnlockPref([MarshalAs(UnmanagedType.LPStr)] string aPrefName);
 		
 		/// <summary>
         /// Called to remove all of the preferences referenced by this branch.
@@ -290,7 +291,7 @@ namespace Skybound.Gecko
         /// @return Other The preference(s) do not exist or an error occurred.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void DeleteBranch([MarshalAs(UnmanagedType.LPStr)] System.String  aStartingAt);
+		new void DeleteBranch([MarshalAs(UnmanagedType.LPStr)] string aStartingAt);
 		
 		/// <summary>
         /// Returns an array of strings representing the child preferences of the
@@ -311,7 +312,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.LPStr, SizeParamIndex=1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.String  GetChildList([MarshalAs(UnmanagedType.LPStr)] System.String  aStartingAt, out System.UInt32  aCount);
+		new string GetChildList([MarshalAs(UnmanagedType.LPStr)] string aStartingAt, out uint aCount);
 		
 		/// <summary>
         /// Called to reset all of the preferences referenced by this branch to their
@@ -329,7 +330,7 @@ namespace Skybound.Gecko
         /// @return Other The preference(s) do not exist or an error occurred.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void ResetBranch([MarshalAs(UnmanagedType.LPStr)] System.String  aStartingAt);
+		new void ResetBranch([MarshalAs(UnmanagedType.LPStr)] string aStartingAt);
 		
 		/// <summary>
         /// Add a preference change observer. On preference changes, the following
@@ -392,7 +393,7 @@ namespace Skybound.Gecko
         /// @see removeObserver
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddObserver([MarshalAs(UnmanagedType.LPStr)] System.String  aDomain, [MarshalAs(UnmanagedType.Interface)] nsIObserver  aObserver, System.Boolean  aHoldWeak);
+		void AddObserver([MarshalAs(UnmanagedType.LPStr)] string aDomain, [MarshalAs(UnmanagedType.Interface)] nsIObserver aObserver, bool aHoldWeak);
 		
 		/// <summary>
         /// Remove a preference change observer.
@@ -409,6 +410,6 @@ namespace Skybound.Gecko
         /// @see addObserver
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveObserver([MarshalAs(UnmanagedType.LPStr)] System.String  aDomain, [MarshalAs(UnmanagedType.Interface)] nsIObserver  aObserver);
+		void RemoveObserver([MarshalAs(UnmanagedType.LPStr)] string aDomain, [MarshalAs(UnmanagedType.Interface)] nsIObserver aObserver);
 	}
 }

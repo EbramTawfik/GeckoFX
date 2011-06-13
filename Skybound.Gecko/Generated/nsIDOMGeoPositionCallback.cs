@@ -37,6 +37,6 @@ namespace Skybound.Gecko
 		/// <summary>Member HandleEvent </summary>
 		/// <param name='position'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void HandleEvent([MarshalAs(UnmanagedType.Interface)] nsIDOMGeoPosition  position);
+		void HandleEvent([MarshalAs(UnmanagedType.Interface)] nsIDOMGeoPosition position);
 	}
 }

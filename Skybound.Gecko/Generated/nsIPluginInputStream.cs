@@ -84,7 +84,7 @@ namespace Skybound.Gecko
         /// NOTE: this method should not throw NS_BASE_STREAM_CLOSED.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new uint Read(System.IntPtr  aBuf, System.UInt32  aCount);
+		new uint Read(System.IntPtr aBuf, uint aCount);
 		
 		/// <summary>
         /// Low-level read method that provides access to the stream's underlying
@@ -111,7 +111,7 @@ namespace Skybound.Gecko
         /// NOTE: this method should not throw NS_BASE_STREAM_CLOSED.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new uint ReadSegments(nsWriteSegmentFun  aWriter, System.IntPtr  aClosure, System.UInt32  aCount);
+		new uint ReadSegments(nsWriteSegmentFun aWriter, System.IntPtr aClosure, uint aCount);
 		
 		/// <summary>
         /// @return true if stream is non-blocking
@@ -130,7 +130,7 @@ namespace Skybound.Gecko
         /// Corresponds to NPStream's lastmodified field.)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetLastModified(out System.UInt32  aResult);
+		void GetLastModified(out uint aResult);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RequestRead(out System.IntPtr aRangeList);

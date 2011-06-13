@@ -54,7 +54,7 @@ namespace Skybound.Gecko
         /// @param aNewURI     The URI of the document to be added to session history.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnHistoryNewEntry([MarshalAs(UnmanagedType.Interface)] nsIURI  aNewURI);
+		void OnHistoryNewEntry([MarshalAs(UnmanagedType.Interface)] nsIURI aNewURI);
 		
 		/// <summary>
         /// Called when navigating to a previous session history entry, for example
@@ -64,7 +64,7 @@ namespace Skybound.Gecko
         /// @return            Whether the operation can proceed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool OnHistoryGoBack([MarshalAs(UnmanagedType.Interface)] nsIURI  aBackURI);
+		bool OnHistoryGoBack([MarshalAs(UnmanagedType.Interface)] nsIURI aBackURI);
 		
 		/// <summary>
         /// Called when navigating to a next session history entry, for example
@@ -74,7 +74,7 @@ namespace Skybound.Gecko
         /// @return              Whether the operation can proceed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool OnHistoryGoForward([MarshalAs(UnmanagedType.Interface)] nsIURI  aForwardURI);
+		bool OnHistoryGoForward([MarshalAs(UnmanagedType.Interface)] nsIURI aForwardURI);
 		
 		/// <summary>
         /// Called when the current document is reloaded, for example due to a
@@ -89,7 +89,7 @@ namespace Skybound.Gecko
         /// @see  nsIWebNavigation
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool OnHistoryReload([MarshalAs(UnmanagedType.Interface)] nsIURI  aReloadURI, System.UInt32  aReloadFlags);
+		bool OnHistoryReload([MarshalAs(UnmanagedType.Interface)] nsIURI aReloadURI, uint aReloadFlags);
 		
 		/// <summary>
         /// Called when navigating to a session history entry by index, for example,
@@ -100,7 +100,7 @@ namespace Skybound.Gecko
         /// @return              Whether the operation can proceed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool OnHistoryGotoIndex(System.Int32  aIndex, [MarshalAs(UnmanagedType.Interface)] nsIURI  aGotoURI);
+		bool OnHistoryGotoIndex(int aIndex, [MarshalAs(UnmanagedType.Interface)] nsIURI aGotoURI);
 		
 		/// <summary>
         /// Called when entries are removed from session history. Entries can be
@@ -114,6 +114,6 @@ namespace Skybound.Gecko
         /// @return              Whether the operation can proceed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool OnHistoryPurge(System.Int32  aNumEntries);
+		bool OnHistoryPurge(int aNumEntries);
 	}
 }

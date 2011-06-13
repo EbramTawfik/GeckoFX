@@ -53,6 +53,7 @@ namespace Skybound.Gecko
         /// XXXjst: This doesn't really belong in dom/public/idl/storage, but
         /// it gets to live here until I find a more suitable place.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsAString ToString();
 	}

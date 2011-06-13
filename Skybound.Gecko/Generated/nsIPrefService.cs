@@ -58,7 +58,7 @@ namespace Skybound.Gecko
         /// @see nsIFile
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ReadUserPrefs([MarshalAs(UnmanagedType.Interface)] nsIFile  aFile);
+		void ReadUserPrefs([MarshalAs(UnmanagedType.Interface)] nsIFile aFile);
 		
 		/// <summary>
         /// Called to completely flush and re-initialize the preferences system.
@@ -94,7 +94,7 @@ namespace Skybound.Gecko
         /// @see nsIFile
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SavePrefFile([MarshalAs(UnmanagedType.Interface)] nsIFile  aFile);
+		void SavePrefFile([MarshalAs(UnmanagedType.Interface)] nsIFile aFile);
 		
 		/// <summary>
         /// Call to get a Preferences "Branch" which accesses user preference data.
@@ -114,8 +114,9 @@ namespace Skybound.Gecko
         ///
         /// @see getDefaultBranch
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIPrefBranch GetBranch([MarshalAs(UnmanagedType.LPStr)] System.String  aPrefRoot);
+		nsIPrefBranch GetBranch([MarshalAs(UnmanagedType.LPStr)] string aPrefRoot);
 		
 		/// <summary>
         /// Call to get a Preferences "Branch" which accesses only the default
@@ -140,8 +141,9 @@ namespace Skybound.Gecko
         ///
         /// @see getBranch
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIPrefBranch GetDefaultBranch([MarshalAs(UnmanagedType.LPStr)] System.String  aPrefRoot);
+		nsIPrefBranch GetDefaultBranch([MarshalAs(UnmanagedType.LPStr)] string aPrefRoot);
 	}
 	
 	/// <summary>nsIPrefServiceInternal </summary>
@@ -163,7 +165,7 @@ namespace Skybound.Gecko
         /// @see readUserPrefs
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ReadExtensionPrefs([MarshalAs(UnmanagedType.Interface)] nsILocalFile  aFile);
+		void ReadExtensionPrefs([MarshalAs(UnmanagedType.Interface)] nsILocalFile aFile);
 		
 		/// <summary>Member MirrorPreferences </summary>
 		/// <param name='aArray'> </param>
@@ -174,13 +176,13 @@ namespace Skybound.Gecko
 		/// <param name='aPrefName'> </param>
 		/// <param name='aPref'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MirrorPreference([MarshalAs(UnmanagedType.LPStruct)] nsAString  aPrefName, System.IntPtr aPref);
+		void MirrorPreference([MarshalAs(UnmanagedType.LPStruct)] nsAString aPrefName, System.IntPtr aPref);
 		
 		/// <summary>Member PrefHasUserValue </summary>
 		/// <param name='aPrefName'> </param>
 		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool PrefHasUserValue([MarshalAs(UnmanagedType.LPStruct)] nsAString  aPrefName);
+		bool PrefHasUserValue([MarshalAs(UnmanagedType.LPStruct)] nsAString aPrefName);
 		
 		/// <summary>Member SetPreference </summary>
 		/// <param name='aPref'> </param>
@@ -190,6 +192,6 @@ namespace Skybound.Gecko
 		/// <summary>Member ClearContentPref </summary>
 		/// <param name='aPrefName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ClearContentPref([MarshalAs(UnmanagedType.LPStruct)] nsAString  aPrefName);
+		void ClearContentPref([MarshalAs(UnmanagedType.LPStruct)] nsAString aPrefName);
 	}
 }

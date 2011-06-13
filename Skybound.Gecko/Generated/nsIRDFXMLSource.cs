@@ -41,6 +41,6 @@ namespace Skybound.Gecko
         /// implement the |write()| method.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Serialize([MarshalAs(UnmanagedType.Interface)] nsIOutputStream  aStream);
+		void Serialize([MarshalAs(UnmanagedType.Interface)] nsIOutputStream aStream);
 	}
 }

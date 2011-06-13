@@ -39,7 +39,8 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Corresponds to http://www.w3.org/TR/2002/WD-DOM-Level-3-XPath-20020208
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports Evaluate([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  contextNode, ushort type, [MarshalAs(UnmanagedType.Interface)] nsISupports  result);
+		nsISupports Evaluate([MarshalAs(UnmanagedType.Interface)] nsIDOMNode contextNode, ushort type, [MarshalAs(UnmanagedType.Interface)] nsISupports result);
 	}
 }

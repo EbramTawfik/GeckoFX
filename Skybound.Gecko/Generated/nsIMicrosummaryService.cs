@@ -46,7 +46,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnContentLoaded([MarshalAs(UnmanagedType.Interface)] nsIMicrosummary  microsummary);
+		void OnContentLoaded([MarshalAs(UnmanagedType.Interface)] nsIMicrosummary microsummary);
 		
 		/// <summary>
         /// Called when an observed microsummary encounters an error during an update.
@@ -56,7 +56,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnError([MarshalAs(UnmanagedType.Interface)] nsIMicrosummary  microsummary);
+		void OnError([MarshalAs(UnmanagedType.Interface)] nsIMicrosummary microsummary);
 		
 		/// <summary>
         /// Called when an element is appended to a microsummary set.
@@ -67,7 +67,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnElementAppended([MarshalAs(UnmanagedType.Interface)] nsIMicrosummary  microsummary);
+		void OnElementAppended([MarshalAs(UnmanagedType.Interface)] nsIMicrosummary microsummary);
 	}
 	
 	/// <summary>nsIMicrosummaryGenerator </summary>
@@ -81,40 +81,40 @@ namespace Skybound.Gecko
         /// Has the generator itself, which may be a remote resource, been loaded.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetLoadedAttribute();
+		bool GetLoadedAttribute();
 		
 		/// <summary>
         /// An arbitrary descriptive name for this microsummary generator.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName);
+		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName);
 		
 		/// <summary>
         /// of the generators they create.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI  GetUriAttribute();
+		nsIURI GetUriAttribute();
 		
 		/// <summary>
         /// microsummary-generator equivalence test
         /// generators equal if their canonical locations equal, see uri attribute.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Equals([MarshalAs(UnmanagedType.Interface)] nsIMicrosummaryGenerator  aOther);
+		bool Equals([MarshalAs(UnmanagedType.Interface)] nsIMicrosummaryGenerator aOther);
 		
 		/// <summary>
         /// generator's XML.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI  GetLocalURIAttribute();
+		nsIURI GetLocalURIAttribute();
 		
 		/// <summary>
         /// do not.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetNeedsPageContentAttribute();
+		bool GetNeedsPageContentAttribute();
 		
 		/// <summary>
         /// Generate a microsummary by processing the generator template
@@ -130,8 +130,9 @@ namespace Skybound.Gecko
         /// @returns the text result of processing the template
         ///
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GenerateMicrosummary([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  aPageContent);
+		nsAString GenerateMicrosummary([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aPageContent);
 		
 		/// <summary>
         /// Calculate the interval until the microsummary should be updated for
@@ -144,7 +145,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int CalculateUpdateInterval([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  aPageContent);
+		int CalculateUpdateInterval([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aPageContent);
 	}
 	
 	/// <summary>nsIMicrosummary </summary>
@@ -159,20 +160,20 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI  GetPageURIAttribute();
+		nsIURI GetPageURIAttribute();
 		
 		/// <summary>
         /// The generator that generates this microsummary. May need to be loaded.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIMicrosummaryGenerator  GetGeneratorAttribute();
+		nsIMicrosummaryGenerator GetGeneratorAttribute();
 		
 		/// <summary>
         /// The generator that generates this microsummary. May need to be loaded.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetGeneratorAttribute([MarshalAs(UnmanagedType.Interface)] nsIMicrosummaryGenerator  aGenerator);
+		void SetGeneratorAttribute([MarshalAs(UnmanagedType.Interface)] nsIMicrosummaryGenerator aGenerator);
 		
 		/// <summary>
         /// to generate the content, this may not always be available.
@@ -184,13 +185,13 @@ namespace Skybound.Gecko
         /// (or null if it doesn't care).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetUpdateIntervalAttribute();
+		int GetUpdateIntervalAttribute();
 		
 		/// <summary>
         /// associated generator) will no longer be available.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetNeedsRemovalAttribute();
+		bool GetNeedsRemovalAttribute();
 		
 		/// <summary>
         /// Add a microsummary observer to this microsummary.
@@ -200,7 +201,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddObserver([MarshalAs(UnmanagedType.Interface)] nsIMicrosummaryObserver  observer);
+		void AddObserver([MarshalAs(UnmanagedType.Interface)] nsIMicrosummaryObserver observer);
 		
 		/// <summary>
         /// Remove a microsummary observer from this microsummary.
@@ -210,7 +211,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveObserver([MarshalAs(UnmanagedType.Interface)] nsIMicrosummaryObserver  observer);
+		void RemoveObserver([MarshalAs(UnmanagedType.Interface)] nsIMicrosummaryObserver observer);
 		
 		/// <summary>
         /// Microsummary equivalence test
@@ -220,7 +221,7 @@ namespace Skybound.Gecko
         /// Note: this method returns false if either objects don't have a generator
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Equals([MarshalAs(UnmanagedType.Interface)] nsIMicrosummary  aOther);
+		bool Equals([MarshalAs(UnmanagedType.Interface)] nsIMicrosummary aOther);
 		
 		/// <summary>
         /// Update the microsummary, first loading its generator and page content
@@ -248,7 +249,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddObserver([MarshalAs(UnmanagedType.Interface)] nsIMicrosummaryObserver  observer);
+		void AddObserver([MarshalAs(UnmanagedType.Interface)] nsIMicrosummaryObserver observer);
 		
 		/// <summary>
         /// Remove a microsummary observer from this microsummary.
@@ -258,7 +259,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveObserver([MarshalAs(UnmanagedType.Interface)] nsIMicrosummaryObserver  observer);
+		void RemoveObserver([MarshalAs(UnmanagedType.Interface)] nsIMicrosummaryObserver observer);
 		
 		/// <summary>
         /// Retrieve a enumerator of microsummaries in the set.
@@ -266,6 +267,7 @@ namespace Skybound.Gecko
         /// @returns an enumerator of nsIMicrosummary objects
         ///
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISimpleEnumerator Enumerate();
 	}
@@ -286,8 +288,9 @@ namespace Skybound.Gecko
         /// @returns an nsIMicrosummaryGenerator for the given URI.
         ///
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIMicrosummaryGenerator GetGenerator([MarshalAs(UnmanagedType.Interface)] nsIURI  generatorURI);
+		nsIMicrosummaryGenerator GetGenerator([MarshalAs(UnmanagedType.Interface)] nsIURI generatorURI);
 		
 		/// <summary>
         /// Install the microsummary generator from the resource at the supplied URI.
@@ -298,7 +301,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddGenerator([MarshalAs(UnmanagedType.Interface)] nsIURI  generatorURI);
+		void AddGenerator([MarshalAs(UnmanagedType.Interface)] nsIURI generatorURI);
 		
 		/// <summary>
         /// Install the microsummary generator in the given XML definition.
@@ -309,8 +312,9 @@ namespace Skybound.Gecko
         /// @returns the newly-installed nsIMicrosummaryGenerator object
         ///
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIMicrosummaryGenerator InstallGenerator([MarshalAs(UnmanagedType.Interface)] nsIDOMDocument  xmlDefinition);
+		nsIMicrosummaryGenerator InstallGenerator([MarshalAs(UnmanagedType.Interface)] nsIDOMDocument xmlDefinition);
 		
 		/// <summary>
         /// Get the set of bookmarks with microsummaries.
@@ -321,6 +325,7 @@ namespace Skybound.Gecko
         /// @returns an nsISimpleEnumerator enumeration of bookmark IDs
         ///
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISimpleEnumerator GetBookmarks();
 		
@@ -346,8 +351,9 @@ namespace Skybound.Gecko
         /// @returns an nsIMicrosummarySet of nsIMicrosummaries for the given page
         ///
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIMicrosummarySet GetMicrosummaries([MarshalAs(UnmanagedType.Interface)] nsIURI  pageURI, System.Int32  bookmarkID);
+		nsIMicrosummarySet GetMicrosummaries([MarshalAs(UnmanagedType.Interface)] nsIURI pageURI, int bookmarkID);
 		
 		/// <summary>
         /// Get the current microsummary for the given bookmark.
@@ -359,8 +365,9 @@ namespace Skybound.Gecko
         /// if the bookmark does not have a current microsummary
         ///
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIMicrosummary GetMicrosummary(System.Int32  bookmarkID);
+		nsIMicrosummary GetMicrosummary(int bookmarkID);
 		
 		/// <summary>
         /// Create a microsummary for a given page URI and generator URI.
@@ -374,8 +381,9 @@ namespace Skybound.Gecko
         /// @returns an nsIMicrosummary for the given page and generator URIs.
         ///
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIMicrosummary CreateMicrosummary([MarshalAs(UnmanagedType.Interface)] nsIURI  pageURI, [MarshalAs(UnmanagedType.Interface)] nsIURI  generatorURI);
+		nsIMicrosummary CreateMicrosummary([MarshalAs(UnmanagedType.Interface)] nsIURI pageURI, [MarshalAs(UnmanagedType.Interface)] nsIURI generatorURI);
 		
 		/// <summary>
         /// Set the current microsummary for the given bookmark.
@@ -388,7 +396,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMicrosummary(System.Int32  bookmarkID, [MarshalAs(UnmanagedType.Interface)] nsIMicrosummary  microsummary);
+		void SetMicrosummary(int bookmarkID, [MarshalAs(UnmanagedType.Interface)] nsIMicrosummary microsummary);
 		
 		/// <summary>
         /// Remove the current microsummary for the given bookmark.
@@ -398,7 +406,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveMicrosummary(System.Int32  bookmarkID);
+		void RemoveMicrosummary(int bookmarkID);
 		
 		/// <summary>
         /// Whether or not the given bookmark has a current microsummary.
@@ -411,7 +419,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool HasMicrosummary(System.Int32  bookmarkID);
+		bool HasMicrosummary(int bookmarkID);
 		
 		/// <summary>
         /// Whether or not the given microsummary is the current microsummary
@@ -428,7 +436,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsMicrosummary(System.Int32  bookmarkID, [MarshalAs(UnmanagedType.Interface)] nsIMicrosummary  microsummary);
+		bool IsMicrosummary(int bookmarkID, [MarshalAs(UnmanagedType.Interface)] nsIMicrosummary microsummary);
 		
 		/// <summary>
         /// Refresh a microsummary, updating its value in the datastore and UI.
@@ -448,8 +456,9 @@ namespace Skybound.Gecko
         /// @returns the microsummary being refreshed
         ///
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIMicrosummary RefreshMicrosummary(System.Int32  bookmarkID);
+		nsIMicrosummary RefreshMicrosummary(int bookmarkID);
 	}
 	
 	/// <summary>nsILiveTitleNotificationSubject </summary>
@@ -463,13 +472,13 @@ namespace Skybound.Gecko
         /// become an integer.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetBookmarkIDAttribute();
+		int GetBookmarkIDAttribute();
 		
 		/// <summary>
         /// to the user) is stored in the content property of this object.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIMicrosummary  GetMicrosummaryAttribute();
+		nsIMicrosummary GetMicrosummaryAttribute();
 	}
 }

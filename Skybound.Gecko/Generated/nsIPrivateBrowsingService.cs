@@ -38,25 +38,25 @@ namespace Skybound.Gecko
         /// by the private browsing service throws NS_ERROR_FAILURE.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetPrivateBrowsingEnabledAttribute();
+		bool GetPrivateBrowsingEnabledAttribute();
 		
 		/// <summary>
         /// by the private browsing service throws NS_ERROR_FAILURE.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPrivateBrowsingEnabledAttribute(System.Boolean  aPrivateBrowsingEnabled);
+		void SetPrivateBrowsingEnabledAttribute(bool aPrivateBrowsingEnabled);
 		
 		/// <summary>
         /// This value will never be true if privateBrowsingEnabled is false.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetAutoStartedAttribute();
+		bool GetAutoStartedAttribute();
 		
 		/// <summary>
         /// the command line (using either the -private or -private-toggle switches).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetLastChangedByCommandLineAttribute();
+		bool GetLastChangedByCommandLineAttribute();
 		
 		/// <summary>
         /// Removes all data stored for a given domain.  This includes all data for
@@ -66,6 +66,6 @@ namespace Skybound.Gecko
         /// The domain that will have its data removed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveDataFromDomain([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aDomain);
+		void RemoveDataFromDomain([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aDomain);
 	}
 }

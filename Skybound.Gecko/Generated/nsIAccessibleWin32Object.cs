@@ -37,6 +37,6 @@ namespace Skybound.Gecko
 		/// <summary>
         ///handle to the external window implementing IAccessible </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr  GetHwndAttribute();
+		System.IntPtr GetHwndAttribute();
 	}
 }

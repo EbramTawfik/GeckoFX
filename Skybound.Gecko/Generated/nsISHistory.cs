@@ -49,14 +49,14 @@ namespace Skybound.Gecko
         /// in session history.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetCountAttribute();
+		int GetCountAttribute();
 		
 		/// <summary>
         /// A readonly property of the interface that returns
         /// the index of the current document in session history.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetIndexAttribute();
+		int GetIndexAttribute();
 		
 		/// <summary>
         /// A readonly property of the interface that returns
@@ -65,7 +65,7 @@ namespace Skybound.Gecko
         /// value -1 is returned.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetRequestedIndexAttribute();
+		int GetRequestedIndexAttribute();
 		
 		/// <summary>
         /// A read/write property of the interface, used to Get/Set
@@ -73,7 +73,7 @@ namespace Skybound.Gecko
         /// can hold for each instance.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetMaxLengthAttribute();
+		int GetMaxLengthAttribute();
 		
 		/// <summary>
         /// A read/write property of the interface, used to Get/Set
@@ -81,7 +81,7 @@ namespace Skybound.Gecko
         /// can hold for each instance.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMaxLengthAttribute(System.Int32  aMaxLength);
+		void SetMaxLengthAttribute(int aMaxLength);
 		
 		/// <summary>
         /// Called to obtain handle to the history entry at a
@@ -97,8 +97,9 @@ namespace Skybound.Gecko
         /// <code>NS_ERROR_FAILURE</code> Error in obtaining
         /// history entry for the given index.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIHistoryEntry GetEntryAtIndex(System.Int32  index, System.Boolean  modifyIndex);
+		nsIHistoryEntry GetEntryAtIndex(int index, bool modifyIndex);
 		
 		/// <summary>
         /// Called to purge older documents from history.
@@ -117,7 +118,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PurgeHistory(System.Int32  numEntries);
+		void PurgeHistory(int numEntries);
 		
 		/// <summary>
         /// Called to register a listener for the session history component.
@@ -133,7 +134,7 @@ namespace Skybound.Gecko
         /// @see nsSupportsWeakReference
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddSHistoryListener([MarshalAs(UnmanagedType.Interface)] nsISHistoryListener  aListener);
+		void AddSHistoryListener([MarshalAs(UnmanagedType.Interface)] nsISHistoryListener aListener);
 		
 		/// <summary>
         /// Called to remove a listener for the session history component.
@@ -148,7 +149,7 @@ namespace Skybound.Gecko
         /// @see nsSupportsWeakReference
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveSHistoryListener([MarshalAs(UnmanagedType.Interface)] nsISHistoryListener  aListener);
+		void RemoveSHistoryListener([MarshalAs(UnmanagedType.Interface)] nsISHistoryListener aListener);
 		
 		/// <summary>
         /// Called to obtain a enumerator for all the  documents stored in
@@ -173,7 +174,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISimpleEnumerator  GetSHistoryEnumeratorAttribute();
+		nsISimpleEnumerator GetSHistoryEnumeratorAttribute();
 	}
 	
 	/// <summary>nsISHistory_2_0_BRANCH </summary>
@@ -189,14 +190,14 @@ namespace Skybound.Gecko
         /// in session history.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Int32  GetCountAttribute();
+		new int GetCountAttribute();
 		
 		/// <summary>
         /// A readonly property of the interface that returns
         /// the index of the current document in session history.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Int32  GetIndexAttribute();
+		new int GetIndexAttribute();
 		
 		/// <summary>
         /// A readonly property of the interface that returns
@@ -205,7 +206,7 @@ namespace Skybound.Gecko
         /// value -1 is returned.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Int32  GetRequestedIndexAttribute();
+		new int GetRequestedIndexAttribute();
 		
 		/// <summary>
         /// A read/write property of the interface, used to Get/Set
@@ -213,7 +214,7 @@ namespace Skybound.Gecko
         /// can hold for each instance.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Int32  GetMaxLengthAttribute();
+		new int GetMaxLengthAttribute();
 		
 		/// <summary>
         /// A read/write property of the interface, used to Get/Set
@@ -221,7 +222,7 @@ namespace Skybound.Gecko
         /// can hold for each instance.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetMaxLengthAttribute(System.Int32  aMaxLength);
+		new void SetMaxLengthAttribute(int aMaxLength);
 		
 		/// <summary>
         /// Called to obtain handle to the history entry at a
@@ -237,8 +238,9 @@ namespace Skybound.Gecko
         /// <code>NS_ERROR_FAILURE</code> Error in obtaining
         /// history entry for the given index.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIHistoryEntry GetEntryAtIndex(System.Int32  index, System.Boolean  modifyIndex);
+		new nsIHistoryEntry GetEntryAtIndex(int index, bool modifyIndex);
 		
 		/// <summary>
         /// Called to purge older documents from history.
@@ -257,7 +259,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void PurgeHistory(System.Int32  numEntries);
+		new void PurgeHistory(int numEntries);
 		
 		/// <summary>
         /// Called to register a listener for the session history component.
@@ -273,7 +275,7 @@ namespace Skybound.Gecko
         /// @see nsSupportsWeakReference
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void AddSHistoryListener([MarshalAs(UnmanagedType.Interface)] nsISHistoryListener  aListener);
+		new void AddSHistoryListener([MarshalAs(UnmanagedType.Interface)] nsISHistoryListener aListener);
 		
 		/// <summary>
         /// Called to remove a listener for the session history component.
@@ -288,7 +290,7 @@ namespace Skybound.Gecko
         /// @see nsSupportsWeakReference
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void RemoveSHistoryListener([MarshalAs(UnmanagedType.Interface)] nsISHistoryListener  aListener);
+		new void RemoveSHistoryListener([MarshalAs(UnmanagedType.Interface)] nsISHistoryListener aListener);
 		
 		/// <summary>
         /// Called to obtain a enumerator for all the  documents stored in
@@ -313,7 +315,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsISimpleEnumerator  GetSHistoryEnumeratorAttribute();
+		new nsISimpleEnumerator GetSHistoryEnumeratorAttribute();
 		
 		/// <summary>Member ReloadCurrentEntry </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

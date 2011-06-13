@@ -57,14 +57,14 @@ namespace Skybound.Gecko
         /// being canceled.  It is an error to pass a success code.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Cancel(System.Int32  aReason);
+		new void Cancel(int aReason);
 		
 		/// <summary>
         /// Initializes the http authentication support for the channel.
         /// Implementations must hold a weak reference of the channel.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init([MarshalAs(UnmanagedType.Interface)] nsIHttpAuthenticableChannel  channel);
+		void Init([MarshalAs(UnmanagedType.Interface)] nsIHttpAuthenticableChannel channel);
 		
 		/// <summary>
         /// Upon receipt of a server challenge, this function is called to determine
@@ -86,7 +86,7 @@ namespace Skybound.Gecko
         /// until disconnect be called.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ProcessAuthentication(System.UInt32  httpStatus, System.Boolean  sslConnectFailed);
+		void ProcessAuthentication(uint httpStatus, bool sslConnectFailed);
 		
 		/// <summary>
         /// Add credentials from the http auth cache.
@@ -106,6 +106,6 @@ namespace Skybound.Gecko
         /// weak references.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Disconnect(System.Int32  status);
+		void Disconnect(int status);
 	}
 }

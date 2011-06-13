@@ -40,6 +40,7 @@ namespace Skybound.Gecko
         ///
         /// See <http://whatwg.org/specs/web-apps/current-work/>
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMNodeList GetElementsByClassName([MarshalAs(UnmanagedType.LPStruct)] nsAString classes);
 		
@@ -59,6 +60,7 @@ namespace Skybound.Gecko
         /// HTML AREA elements, and SVG elements that do not render). Those return
         /// an empty list.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMClientRectList GetClientRects();
 		
@@ -68,6 +70,7 @@ namespace Skybound.Gecko
         /// we return an empty rectangle positioned at the top-left of the first
         /// rectangle in getClientRects().
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMClientRect GetBoundingClientRect();
 		
@@ -77,7 +80,7 @@ namespace Skybound.Gecko
         /// vertical scroll position.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetScrollTopAttribute();
+		int GetScrollTopAttribute();
 		
 		/// <summary>
         /// The vertical scroll position of the element, or 0 if the element is not
@@ -85,7 +88,7 @@ namespace Skybound.Gecko
         /// vertical scroll position.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetScrollTopAttribute(System.Int32  aScrollTop);
+		void SetScrollTopAttribute(int aScrollTop);
 		
 		/// <summary>
         /// The horizontal scroll position of the element, or 0 if the element is not
@@ -93,7 +96,7 @@ namespace Skybound.Gecko
         /// horizontal scroll position.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetScrollLeftAttribute();
+		int GetScrollLeftAttribute();
 		
 		/// <summary>
         /// The horizontal scroll position of the element, or 0 if the element is not
@@ -101,48 +104,48 @@ namespace Skybound.Gecko
         /// horizontal scroll position.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetScrollLeftAttribute(System.Int32  aScrollLeft);
+		void SetScrollLeftAttribute(int aScrollLeft);
 		
 		/// <summary>
         /// The height of the scrollable area of the element. If the element is not
         /// scrollable, scrollHeight is equivalent to the offsetHeight.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetScrollHeightAttribute();
+		int GetScrollHeightAttribute();
 		
 		/// <summary>
         /// The width of the scrollable area of the element. If the element is not
         /// scrollable, scrollWidth is equivalent to the offsetWidth.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetScrollWidthAttribute();
+		int GetScrollWidthAttribute();
 		
 		/// <summary>
         /// The height in CSS pixels of the element's top border.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetClientTopAttribute();
+		int GetClientTopAttribute();
 		
 		/// <summary>
         /// The width in CSS pixels of the element's left border and scrollbar
         /// if it is present on the left side.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetClientLeftAttribute();
+		int GetClientLeftAttribute();
 		
 		/// <summary>
         /// The width in CSS pixels of the element's padding box. If the element is
         /// scrollable, the scroll bars are included inside this height.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetClientHeightAttribute();
+		int GetClientHeightAttribute();
 		
 		/// <summary>
         /// The height in CSS pixels of the element's padding box. If the element is
         /// scrollable, the scroll bars are included inside this width.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetClientWidthAttribute();
+		int GetClientWidthAttribute();
 		
 		/// <summary>
         /// Similar as the attributes on nsIDOMNode, but navigates just elements
@@ -152,25 +155,25 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMElement  GetFirstElementChildAttribute();
+		nsIDOMElement GetFirstElementChildAttribute();
 		
 		/// <summary>Member GetLastElementChildAttribute </summary>
-		/// <returns>A nsIDOMElement </returns>
+		/// <returns>A nsIDOMElement</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMElement  GetLastElementChildAttribute();
+		nsIDOMElement GetLastElementChildAttribute();
 		
 		/// <summary>Member GetPreviousElementSiblingAttribute </summary>
-		/// <returns>A nsIDOMElement </returns>
+		/// <returns>A nsIDOMElement</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMElement  GetPreviousElementSiblingAttribute();
+		nsIDOMElement GetPreviousElementSiblingAttribute();
 		
 		/// <summary>Member GetNextElementSiblingAttribute </summary>
-		/// <returns>A nsIDOMElement </returns>
+		/// <returns>A nsIDOMElement</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMElement  GetNextElementSiblingAttribute();
+		nsIDOMElement GetNextElementSiblingAttribute();
 		
 		/// <summary>
         /// Returns the number of child nodes that are nsIDOMElements.
@@ -178,21 +181,21 @@ namespace Skybound.Gecko
         /// Defined by the ElementTraversal spec.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetChildElementCountAttribute();
+		uint GetChildElementCountAttribute();
 		
 		/// <summary>
         /// Returns a live nsIDOMNodeList of the current child elements.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMNodeList  GetChildrenAttribute();
+		nsIDOMNodeList GetChildrenAttribute();
 		
 		/// <summary>
         /// Returns a DOMTokenList object reflecting the class attribute.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMTokenList  GetClassListAttribute();
+		nsIDOMDOMTokenList GetClassListAttribute();
 		
 		/// <summary>
         /// Set this during a mousedown event to grab and retarget all mouse events
@@ -203,7 +206,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCapture(System.Boolean  retargetToElement);
+		void SetCapture(bool retargetToElement);
 		
 		/// <summary>
         /// If this element has captured the mouse, release the capture. If another

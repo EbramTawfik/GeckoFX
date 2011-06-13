@@ -40,17 +40,17 @@ namespace Skybound.Gecko
         /// forward declare the below interfaces for clarity
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetSomeValueAttribute();
+		int GetSomeValueAttribute();
 		
 		/// <summary>
         /// forward declare the below interfaces for clarity
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSomeValueAttribute(System.Int32  aSomeValue);
+		void SetSomeValueAttribute(int aSomeValue);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIXPCSample_ClassB  GetBAttribute();
+		nsIXPCSample_ClassB GetBAttribute();
 	}
 	
 	/// <summary>nsIXPCSample_ClassB </summary>
@@ -61,20 +61,20 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetSomeValueAttribute </summary>
-		/// <returns>A System.Int32 </returns>
+		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetSomeValueAttribute();
+		int GetSomeValueAttribute();
 		
 		/// <summary>Member SetSomeValueAttribute </summary>
 		/// <param name='aSomeValue'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSomeValueAttribute(System.Int32  aSomeValue);
+		void SetSomeValueAttribute(int aSomeValue);
 		
 		/// <summary>Member GetCAttribute </summary>
-		/// <returns>A nsIXPCSample_ClassC </returns>
+		/// <returns>A nsIXPCSample_ClassC</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIXPCSample_ClassC  GetCAttribute();
+		nsIXPCSample_ClassC GetCAttribute();
 	}
 	
 	/// <summary>nsIXPCSample_ClassC </summary>
@@ -85,14 +85,14 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetSomeValueAttribute </summary>
-		/// <returns>A System.Int32 </returns>
+		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetSomeValueAttribute();
+		int GetSomeValueAttribute();
 		
 		/// <summary>Member SetSomeValueAttribute </summary>
 		/// <param name='aSomeValue'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSomeValueAttribute(System.Int32  aSomeValue);
+		void SetSomeValueAttribute(int aSomeValue);
 	}
 	
 	/// <summary>
@@ -108,6 +108,6 @@ namespace Skybound.Gecko
         /// activity from within an xpcom component.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CreateSampleObjectAtGlobalScope([MarshalAs(UnmanagedType.LPStr)] System.String  name, System.Int32  value);
+		void CreateSampleObjectAtGlobalScope([MarshalAs(UnmanagedType.LPStr)] string name, int value);
 	}
 }

@@ -60,10 +60,10 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports  GetRelatedExceptionAttribute();
+		nsISupports GetRelatedExceptionAttribute();
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMLocator  GetLocationAttribute();
+		nsIDOMDOMLocator GetLocationAttribute();
 	}
 }

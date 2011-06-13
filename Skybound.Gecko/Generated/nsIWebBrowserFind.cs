@@ -82,7 +82,7 @@ namespace Skybound.Gecko
         /// Default is false (search forward).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetFindBackwardsAttribute();
+		bool GetFindBackwardsAttribute();
 		
 		/// <summary>
         /// findBackwards
@@ -91,7 +91,7 @@ namespace Skybound.Gecko
         /// Default is false (search forward).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFindBackwardsAttribute(System.Boolean  aFindBackwards);
+		void SetFindBackwardsAttribute(bool aFindBackwards);
 		
 		/// <summary>
         /// wrapFind
@@ -102,7 +102,7 @@ namespace Skybound.Gecko
         /// false.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetWrapFindAttribute();
+		bool GetWrapFindAttribute();
 		
 		/// <summary>
         /// wrapFind
@@ -113,7 +113,7 @@ namespace Skybound.Gecko
         /// false.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetWrapFindAttribute(System.Boolean  aWrapFind);
+		void SetWrapFindAttribute(bool aWrapFind);
 		
 		/// <summary>
         /// entireWord
@@ -121,7 +121,7 @@ namespace Skybound.Gecko
         /// Whether to match entire words only. Default is false.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetEntireWordAttribute();
+		bool GetEntireWordAttribute();
 		
 		/// <summary>
         /// entireWord
@@ -129,7 +129,7 @@ namespace Skybound.Gecko
         /// Whether to match entire words only. Default is false.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetEntireWordAttribute(System.Boolean  aEntireWord);
+		void SetEntireWordAttribute(bool aEntireWord);
 		
 		/// <summary>
         /// matchCase
@@ -137,7 +137,7 @@ namespace Skybound.Gecko
         /// Whether to match case (case sensitive) when searching. Default is false.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetMatchCaseAttribute();
+		bool GetMatchCaseAttribute();
 		
 		/// <summary>
         /// matchCase
@@ -145,7 +145,7 @@ namespace Skybound.Gecko
         /// Whether to match case (case sensitive) when searching. Default is false.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMatchCaseAttribute(System.Boolean  aMatchCase);
+		void SetMatchCaseAttribute(bool aMatchCase);
 		
 		/// <summary>
         /// searchFrames
@@ -158,7 +158,7 @@ namespace Skybound.Gecko
         /// returns false.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetSearchFramesAttribute();
+		bool GetSearchFramesAttribute();
 		
 		/// <summary>
         /// searchFrames
@@ -171,7 +171,7 @@ namespace Skybound.Gecko
         /// returns false.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSearchFramesAttribute(System.Boolean  aSearchFrames);
+		void SetSearchFramesAttribute(bool aSearchFrames);
 	}
 	
 	/// <summary>
@@ -196,7 +196,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMWindow  GetCurrentSearchFrameAttribute();
+		nsIDOMWindow GetCurrentSearchFrameAttribute();
 		
 		/// <summary>
         /// currentSearchFrame
@@ -206,7 +206,7 @@ namespace Skybound.Gecko
         /// Has to be equal to or contained within the rootSearchFrame.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCurrentSearchFrameAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  aCurrentSearchFrame);
+		void SetCurrentSearchFrameAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aCurrentSearchFrame);
 		
 		/// <summary>
         /// rootSearchFrame
@@ -216,7 +216,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMWindow  GetRootSearchFrameAttribute();
+		nsIDOMWindow GetRootSearchFrameAttribute();
 		
 		/// <summary>
         /// rootSearchFrame
@@ -225,7 +225,7 @@ namespace Skybound.Gecko
         /// Set this to only search a subtree of the frame hierarchy.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetRootSearchFrameAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  aRootSearchFrame);
+		void SetRootSearchFrameAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aRootSearchFrame);
 		
 		/// <summary>
         /// searchSubframes
@@ -235,7 +235,7 @@ namespace Skybound.Gecko
         /// Setting nsIWebBrowserfind.searchFrames to true sets this to true.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetSearchSubframesAttribute();
+		bool GetSearchSubframesAttribute();
 		
 		/// <summary>
         /// searchSubframes
@@ -245,7 +245,7 @@ namespace Skybound.Gecko
         /// Setting nsIWebBrowserfind.searchFrames to true sets this to true.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSearchSubframesAttribute(System.Boolean  aSearchSubframes);
+		void SetSearchSubframesAttribute(bool aSearchSubframes);
 		
 		/// <summary>
         /// searchParentFrames
@@ -257,7 +257,7 @@ namespace Skybound.Gecko
         /// Setting nsIWebBrowserfind.searchFrames to true sets this to true.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetSearchParentFramesAttribute();
+		bool GetSearchParentFramesAttribute();
 		
 		/// <summary>
         /// searchParentFrames
@@ -269,6 +269,6 @@ namespace Skybound.Gecko
         /// Setting nsIWebBrowserfind.searchFrames to true sets this to true.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSearchParentFramesAttribute(System.Boolean  aSearchParentFrames);
+		void SetSearchParentFramesAttribute(bool aSearchParentFrames);
 	}
 }

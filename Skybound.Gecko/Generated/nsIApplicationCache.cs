@@ -43,27 +43,27 @@ namespace Skybound.Gecko
         /// Initialize the namespace.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init(System.UInt32  itemType, [MarshalAs(UnmanagedType.LPStruct)] nsAString  namespaceSpec, [MarshalAs(UnmanagedType.LPStruct)] nsAString  data);
+		void Init(uint itemType, [MarshalAs(UnmanagedType.LPStruct)] nsAString namespaceSpec, [MarshalAs(UnmanagedType.LPStruct)] nsAString data);
 		
 		/// <summary>
         /// The namespace type.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetItemTypeAttribute();
+		uint GetItemTypeAttribute();
 		
 		/// <summary>
         /// The prefix of this namespace.  This should be the asciiSpec of the
         /// URI prefix.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNamespaceSpecAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aNamespaceSpec);
+		void GetNamespaceSpecAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aNamespaceSpec);
 		
 		/// <summary>
         /// Data associated with this namespace, such as a fallback.  URI data should
         /// use the asciiSpec of the URI.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDataAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aData);
+		void GetDataAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aData);
 	}
 	
 	/// <summary>
@@ -92,14 +92,14 @@ namespace Skybound.Gecko
         /// content process to simplify the application cache code.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitAsHandle([MarshalAs(UnmanagedType.LPStruct)] nsAString  groupId, [MarshalAs(UnmanagedType.LPStruct)] nsAString  clientId);
+		void InitAsHandle([MarshalAs(UnmanagedType.LPStruct)] nsAString groupId, [MarshalAs(UnmanagedType.LPStruct)] nsAString clientId);
 		
 		/// <summary>
         /// The group ID for this cache group.  This is the URI of the
         /// manifest file.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetGroupIDAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aGroupID);
+		void GetGroupIDAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aGroupID);
 		
 		/// <summary>
         /// The client ID for this application cache.  Clients can open a
@@ -107,19 +107,19 @@ namespace Skybound.Gecko
         /// ID and a storage policy of STORE_OFFLINE to access this cache.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetClientIDAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aClientID);
+		void GetClientIDAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aClientID);
 		
 		/// <summary>
         /// TRUE if the cache is the active cache for this group.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetActiveAttribute();
+		bool GetActiveAttribute();
 		
 		/// <summary>
         /// The disk usage of the application cache, in bytes.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetUsageAttribute();
+		uint GetUsageAttribute();
 		
 		/// <summary>
         /// Makes this cache the active application cache for this group.
@@ -141,27 +141,27 @@ namespace Skybound.Gecko
         /// Adds item types to a given entry.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MarkEntry([MarshalAs(UnmanagedType.LPStruct)] nsAString  key, System.UInt32  typeBits);
+		void MarkEntry([MarshalAs(UnmanagedType.LPStruct)] nsAString key, uint typeBits);
 		
 		/// <summary>
         /// Removes types from a given entry.  If the resulting entry has
         /// no types left, the entry is removed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UnmarkEntry([MarshalAs(UnmanagedType.LPStruct)] nsAString  key, System.UInt32  typeBits);
+		void UnmarkEntry([MarshalAs(UnmanagedType.LPStruct)] nsAString key, uint typeBits);
 		
 		/// <summary>
         /// Gets the types for a given entry.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetTypes([MarshalAs(UnmanagedType.LPStruct)] nsAString  key);
+		uint GetTypes([MarshalAs(UnmanagedType.LPStruct)] nsAString key);
 		
 		/// <summary>
         /// Returns any entries in the application cache whose type matches
         /// one or more of the bits in typeBits.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GatherEntries(System.UInt32  typeBits, out System.UInt32  count, [MarshalAs(UnmanagedType.LPStr, SizeParamIndex=1)] out System.String  keys);
+		void GatherEntries(uint typeBits, out uint count, [MarshalAs(UnmanagedType.LPStr, SizeParamIndex=1)] out string keys);
 		
 		/// <summary>
         /// Add a set of namespace entries to the application cache.
@@ -169,12 +169,13 @@ namespace Skybound.Gecko
         /// An nsIArray of nsIApplicationCacheNamespace entries.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddNamespaces([MarshalAs(UnmanagedType.Interface)] nsIArray  namespaces);
+		void AddNamespaces([MarshalAs(UnmanagedType.Interface)] nsIArray namespaces);
 		
 		/// <summary>
         /// Get the most specific namespace matching a given key.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIApplicationCacheNamespace GetMatchingNamespace([MarshalAs(UnmanagedType.LPStruct)] nsAString  key);
+		nsIApplicationCacheNamespace GetMatchingNamespace([MarshalAs(UnmanagedType.LPStruct)] nsAString key);
 	}
 }

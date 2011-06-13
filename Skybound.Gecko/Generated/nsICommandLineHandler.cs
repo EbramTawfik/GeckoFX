@@ -65,7 +65,7 @@ namespace Skybound.Gecko
         /// All other exceptions are silently ignored.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Handle([MarshalAs(UnmanagedType.Interface)] nsICommandLine  aCommandLine);
+		void Handle([MarshalAs(UnmanagedType.Interface)] nsICommandLine aCommandLine);
 		
 		/// <summary>
         /// When the app is launched with the -help argument, this attribute
@@ -75,6 +75,6 @@ namespace Skybound.Gecko
         /// descriptions begins at the 24th character.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetHelpInfoAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aHelpInfo);
+		void GetHelpInfoAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aHelpInfo);
 	}
 }

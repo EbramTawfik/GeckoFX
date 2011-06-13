@@ -73,7 +73,7 @@ namespace Skybound.Gecko
         /// @returns true if the two are logically equivalent, false otherwise
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool Equals([MarshalAs(UnmanagedType.Interface)] nsIHandlerApp  aHandlerApp);
+		new bool Equals([MarshalAs(UnmanagedType.Interface)] nsIHandlerApp aHandlerApp);
 		
 		/// <summary>
         /// Launches the application with the specified URI.
@@ -94,7 +94,7 @@ namespace Skybound.Gecko
         /// off to the system default browser (bug 394479).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void LaunchWithURI([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor  aWindowContext);
+		new void LaunchWithURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor aWindowContext);
 		
 		/// <summary>Member Share </summary>
 		/// <param name='data'> </param>
@@ -120,8 +120,8 @@ namespace Skybound.Gecko
 		/// <summary>Member GetSharingApps </summary>
 		/// <param name='aMIMEType'> </param>
 		/// <param name='aLen'> </param>
-		/// <returns>A nsISharingHandlerApp </returns>
+		/// <returns>A nsISharingHandlerApp</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISharingHandlerApp  GetSharingApps([MarshalAs(UnmanagedType.LPStruct)] nsAString aMIMEType, out System.UInt32  aLen);
+		nsISharingHandlerApp GetSharingApps([MarshalAs(UnmanagedType.LPStruct)] nsAString aMIMEType, out uint aLen);
 	}
 }

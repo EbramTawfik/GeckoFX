@@ -95,7 +95,7 @@ namespace Skybound.Gecko
         /// NOTE: this method should not throw NS_BASE_STREAM_CLOSED.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint Read(System.IntPtr  aBuf, System.UInt32  aCount);
+		uint Read(System.IntPtr aBuf, uint aCount);
 		
 		/// <summary>
         /// Low-level read method that provides access to the stream's underlying
@@ -122,7 +122,7 @@ namespace Skybound.Gecko
         /// NOTE: this method should not throw NS_BASE_STREAM_CLOSED.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint ReadSegments(nsWriteSegmentFun  aWriter, System.IntPtr  aClosure, System.UInt32  aCount);
+		uint ReadSegments(nsWriteSegmentFun aWriter, System.IntPtr aClosure, uint aCount);
 		
 		/// <summary>
         /// @return true if stream is non-blocking

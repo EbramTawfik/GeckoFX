@@ -45,7 +45,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener  GetOnblockedAttribute();
+		nsIDOMEventListener GetOnblockedAttribute();
 		
 		/// <summary>
         /// IDBReqeust interface.  See
@@ -53,6 +53,6 @@ namespace Skybound.Gecko
         /// information.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnblockedAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener  aOnblocked);
+		void SetOnblockedAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnblocked);
 	}
 }

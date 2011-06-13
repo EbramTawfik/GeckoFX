@@ -59,8 +59,9 @@ namespace Skybound.Gecko
         ///
         /// NOTE: this function can be called from any thread
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsISocketTransport CreateTransport([MarshalAs(UnmanagedType.LPStr, SizeParamIndex=1)] System.String  aSocketTypes, System.UInt32  aTypeCount, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aHost, System.Int32  aPort, [MarshalAs(UnmanagedType.Interface)] nsIProxyInfo  aProxyInfo);
+		new nsISocketTransport CreateTransport([MarshalAs(UnmanagedType.LPStr, SizeParamIndex=1)] string aSocketTypes, uint aTypeCount, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aHost, int aPort, [MarshalAs(UnmanagedType.Interface)] nsIProxyInfo aProxyInfo);
 		
 		/// <summary>
         /// Adds a new socket to the list of controlled sockets.
@@ -95,7 +96,7 @@ namespace Skybound.Gecko
         /// socket thread.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void NotifyWhenCanAttachSocket([MarshalAs(UnmanagedType.Interface)] nsIRunnable  aEvent);
+		new void NotifyWhenCanAttachSocket([MarshalAs(UnmanagedType.Interface)] nsIRunnable aEvent);
 		
 		/// <summary>
         /// init/shutdown routines.
@@ -111,19 +112,19 @@ namespace Skybound.Gecko
         /// the autodialer on connection failure.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetAutodialEnabledAttribute();
+		bool GetAutodialEnabledAttribute();
 		
 		/// <summary>
         /// controls whether or not the socket transport service should poke
         /// the autodialer on connection failure.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAutodialEnabledAttribute(System.Boolean  aAutodialEnabled);
+		void SetAutodialEnabledAttribute(bool aAutodialEnabled);
 		
 		/// <summary>
         /// controls the TCP sender window clamp
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetSendBufferSizeAttribute();
+		int GetSendBufferSizeAttribute();
 	}
 }

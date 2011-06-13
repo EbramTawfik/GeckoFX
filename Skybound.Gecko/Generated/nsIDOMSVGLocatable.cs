@@ -35,36 +35,40 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetNearestViewportElementAttribute </summary>
-		/// <returns>A nsIDOMSVGElement </returns>
+		/// <returns>A nsIDOMSVGElement</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMSVGElement  GetNearestViewportElementAttribute();
+		nsIDOMSVGElement GetNearestViewportElementAttribute();
 		
 		/// <summary>Member GetFarthestViewportElementAttribute </summary>
-		/// <returns>A nsIDOMSVGElement </returns>
+		/// <returns>A nsIDOMSVGElement</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMSVGElement  GetFarthestViewportElementAttribute();
+		nsIDOMSVGElement GetFarthestViewportElementAttribute();
 		
 		/// <summary>Member GetBBox </summary>
 		/// <returns>A nsIDOMSVGRect</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMSVGRect GetBBox();
 		
 		/// <summary>Member GetCTM </summary>
 		/// <returns>A nsIDOMSVGMatrix</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMSVGMatrix GetCTM();
 		
 		/// <summary>Member GetScreenCTM </summary>
 		/// <returns>A nsIDOMSVGMatrix</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMSVGMatrix GetScreenCTM();
 		
 		/// <summary>Member GetTransformToElement </summary>
 		/// <param name='element'> </param>
 		/// <returns>A nsIDOMSVGMatrix</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMSVGMatrix GetTransformToElement([MarshalAs(UnmanagedType.Interface)] nsIDOMSVGElement  element);
+		nsIDOMSVGMatrix GetTransformToElement([MarshalAs(UnmanagedType.Interface)] nsIDOMSVGElement element);
 	}
 }

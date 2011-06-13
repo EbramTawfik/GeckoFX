@@ -37,9 +37,9 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetDocShellAttribute </summary>
-		/// <returns>A nsIDocShell </returns>
+		/// <returns>A nsIDocShell</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDocShell  GetDocShellAttribute();
+		new nsIDocShell GetDocShellAttribute();
 	}
 }

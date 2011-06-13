@@ -48,10 +48,10 @@ namespace Skybound.Gecko
         /// The component is a service, so use GetService, not CreateInstance to get it.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr CreateInstance([MarshalAs(UnmanagedType.LPStr)] System.String  aCommand, [MarshalAs(UnmanagedType.Interface)] nsIChannel  aChannel, [MarshalAs(UnmanagedType.Interface)] nsILoadGroup  aLoadGroup, [MarshalAs(UnmanagedType.LPStr)] System.String  aContentType, [MarshalAs(UnmanagedType.Interface)] nsISupports  aContainer, [MarshalAs(UnmanagedType.Interface)] nsISupports  aExtraInfo, [MarshalAs(UnmanagedType.Interface)] out nsIStreamListener  aDocListenerResult);
+		System.IntPtr CreateInstance([MarshalAs(UnmanagedType.LPStr)] string aCommand, [MarshalAs(UnmanagedType.Interface)] nsIChannel aChannel, [MarshalAs(UnmanagedType.Interface)] nsILoadGroup aLoadGroup, [MarshalAs(UnmanagedType.LPStr)] string aContentType, [MarshalAs(UnmanagedType.Interface)] nsISupports aContainer, [MarshalAs(UnmanagedType.Interface)] nsISupports aExtraInfo, [MarshalAs(UnmanagedType.Interface)] out nsIStreamListener aDocListenerResult);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr CreateInstanceForDocument([MarshalAs(UnmanagedType.Interface)] nsISupports  aContainer, System.IntPtr aDocument, [MarshalAs(UnmanagedType.LPStr)] System.String  aCommand);
+		System.IntPtr CreateInstanceForDocument([MarshalAs(UnmanagedType.Interface)] nsISupports aContainer, System.IntPtr aDocument, [MarshalAs(UnmanagedType.LPStr)] string aCommand);
 		
 		/// <summary>
         /// Create a blank document using the given loadgroup and given
@@ -59,6 +59,6 @@ namespace Skybound.Gecko
         /// new document will get the about:blank codebase principal.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr CreateBlankDocument([MarshalAs(UnmanagedType.Interface)] nsILoadGroup  aLoadGroup, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal  aPrincipal);
+		System.IntPtr CreateBlankDocument([MarshalAs(UnmanagedType.Interface)] nsILoadGroup aLoadGroup, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal aPrincipal);
 	}
 }

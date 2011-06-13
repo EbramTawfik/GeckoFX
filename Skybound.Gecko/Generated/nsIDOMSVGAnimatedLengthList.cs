@@ -35,15 +35,15 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetBaseValAttribute </summary>
-		/// <returns>A nsIDOMSVGLengthList </returns>
+		/// <returns>A nsIDOMSVGLengthList</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMSVGLengthList  GetBaseValAttribute();
+		nsIDOMSVGLengthList GetBaseValAttribute();
 		
 		/// <summary>Member GetAnimValAttribute </summary>
-		/// <returns>A nsIDOMSVGLengthList </returns>
+		/// <returns>A nsIDOMSVGLengthList</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMSVGLengthList  GetAnimValAttribute();
+		nsIDOMSVGLengthList GetAnimValAttribute();
 	}
 }

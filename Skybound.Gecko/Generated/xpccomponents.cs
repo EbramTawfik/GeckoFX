@@ -101,15 +101,15 @@ namespace Skybound.Gecko
         /// (additional interesting stuff only reflected into JavaScript) </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIJSCID  GetClassIDAttribute();
+		nsIJSCID GetClassIDAttribute();
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIJSIID  GetInterfaceIDAttribute();
+		nsIJSIID GetInterfaceIDAttribute();
 		
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetInitializerAttribute();
+		string GetInitializerAttribute();
 	}
 	
 	/// <summary>
@@ -162,7 +162,7 @@ namespace Skybound.Gecko
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIXPCComponents_utils_Sandbox  GetSandboxAttribute();
+		nsIXPCComponents_utils_Sandbox GetSandboxAttribute();
 		
 		/// <summary>
         ///, obj </summary>
@@ -172,7 +172,7 @@ namespace Skybound.Gecko
 		/// <summary>
         ///, [optional] in JSObject targetObj </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Import([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  registryLocation);
+		void Import([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String registryLocation);
 		
 		/// <summary>
         ///in JSObject obj </summary>
@@ -205,11 +205,11 @@ namespace Skybound.Gecko
         /// interface of JavaScript's 'Components' object </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIScriptableInterfaces  GetInterfacesAttribute();
+		nsIScriptableInterfaces GetInterfacesAttribute();
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIScriptableInterfacesByID  GetInterfacesByIDAttribute();
+		nsIScriptableInterfacesByID GetInterfacesByIDAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetClassesAttribute();
@@ -219,18 +219,18 @@ namespace Skybound.Gecko
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIStackFrame  GetStackAttribute();
+		nsIStackFrame GetStackAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetResultsAttribute();
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIComponentManager  GetManagerAttribute();
+		nsIComponentManager GetManagerAttribute();
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIXPCComponents_Utils  GetUtilsAttribute();
+		nsIXPCComponents_Utils GetUtilsAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetIDAttribute();
@@ -242,7 +242,7 @@ namespace Skybound.Gecko
 		System.IntPtr GetConstructorAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsSuccessCode(System.Int32  result);
+		bool IsSuccessCode(int result);
 		
 		/// <summary>
         ///DEPRECATED: use Components.utils.lookupMethod instead.

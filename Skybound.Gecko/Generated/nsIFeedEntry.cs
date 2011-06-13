@@ -45,7 +45,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsISAXAttributes  GetAttributesAttribute();
+		new nsISAXAttributes GetAttributesAttribute();
 		
 		/// <summary>
         /// The attributes found on the element. Most interfaces provide convenience
@@ -53,20 +53,20 @@ namespace Skybound.Gecko
         /// an extension.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetAttributesAttribute([MarshalAs(UnmanagedType.Interface)] nsISAXAttributes  aAttributes);
+		new void SetAttributesAttribute([MarshalAs(UnmanagedType.Interface)] nsISAXAttributes aAttributes);
 		
 		/// <summary>
         /// The baseURI for the Entry or Feed.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIURI  GetBaseURIAttribute();
+		new nsIURI GetBaseURIAttribute();
 		
 		/// <summary>
         /// The baseURI for the Entry or Feed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetBaseURIAttribute([MarshalAs(UnmanagedType.Interface)] nsIURI  aBaseURI);
+		new void SetBaseURIAttribute([MarshalAs(UnmanagedType.Interface)] nsIURI aBaseURI);
 		
 		/// <summary>
         /// Many feeds contain an ID distinct from their URI, and
@@ -94,7 +94,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIWritablePropertyBag2  GetFieldsAttribute();
+		new nsIWritablePropertyBag2 GetFieldsAttribute();
 		
 		/// <summary>
         /// The fields found in the document. Common Atom
@@ -107,7 +107,7 @@ namespace Skybound.Gecko
         /// See nsIFeedResult::registerExtensionPrefix.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetFieldsAttribute([MarshalAs(UnmanagedType.Interface)] nsIWritablePropertyBag2  aFields);
+		new void SetFieldsAttribute([MarshalAs(UnmanagedType.Interface)] nsIWritablePropertyBag2 aFields);
 		
 		/// <summary>
         /// Sometimes there's no title, or the title contains markup, so take
@@ -115,92 +115,92 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIFeedTextConstruct  GetTitleAttribute();
+		new nsIFeedTextConstruct GetTitleAttribute();
 		
 		/// <summary>
         /// Sometimes there's no title, or the title contains markup, so take
         /// care in decoding the attribute.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetTitleAttribute([MarshalAs(UnmanagedType.Interface)] nsIFeedTextConstruct  aTitle);
+		new void SetTitleAttribute([MarshalAs(UnmanagedType.Interface)] nsIFeedTextConstruct aTitle);
 		
 		/// <summary>
         /// Returns the primary link for the feed or entry.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIURI  GetLinkAttribute();
+		new nsIURI GetLinkAttribute();
 		
 		/// <summary>
         /// Returns the primary link for the feed or entry.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetLinkAttribute([MarshalAs(UnmanagedType.Interface)] nsIURI  aLink);
+		new void SetLinkAttribute([MarshalAs(UnmanagedType.Interface)] nsIURI aLink);
 		
 		/// <summary>
         /// Returns all links for a feed or entry.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIArray  GetLinksAttribute();
+		new nsIArray GetLinksAttribute();
 		
 		/// <summary>
         /// Returns all links for a feed or entry.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetLinksAttribute([MarshalAs(UnmanagedType.Interface)] nsIArray  aLinks);
+		new void SetLinksAttribute([MarshalAs(UnmanagedType.Interface)] nsIArray aLinks);
 		
 		/// <summary>
         /// Returns the categories found in a feed or entry.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIArray  GetCategoriesAttribute();
+		new nsIArray GetCategoriesAttribute();
 		
 		/// <summary>
         /// Returns the categories found in a feed or entry.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetCategoriesAttribute([MarshalAs(UnmanagedType.Interface)] nsIArray  aCategories);
+		new void SetCategoriesAttribute([MarshalAs(UnmanagedType.Interface)] nsIArray aCategories);
 		
 		/// <summary>
         /// The rights or license associated with a feed or entry.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIFeedTextConstruct  GetRightsAttribute();
+		new nsIFeedTextConstruct GetRightsAttribute();
 		
 		/// <summary>
         /// The rights or license associated with a feed or entry.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetRightsAttribute([MarshalAs(UnmanagedType.Interface)] nsIFeedTextConstruct  aRights);
+		new void SetRightsAttribute([MarshalAs(UnmanagedType.Interface)] nsIFeedTextConstruct aRights);
 		
 		/// <summary>
         /// A list of nsIFeedPersons that authored the feed.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIArray  GetAuthorsAttribute();
+		new nsIArray GetAuthorsAttribute();
 		
 		/// <summary>
         /// A list of nsIFeedPersons that authored the feed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetAuthorsAttribute([MarshalAs(UnmanagedType.Interface)] nsIArray  aAuthors);
+		new void SetAuthorsAttribute([MarshalAs(UnmanagedType.Interface)] nsIArray aAuthors);
 		
 		/// <summary>
         /// A list of nsIFeedPersons that contributed to the feed.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIArray  GetContributorsAttribute();
+		new nsIArray GetContributorsAttribute();
 		
 		/// <summary>
         /// A list of nsIFeedPersons that contributed to the feed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetContributorsAttribute([MarshalAs(UnmanagedType.Interface)] nsIArray  aContributors);
+		new void SetContributorsAttribute([MarshalAs(UnmanagedType.Interface)] nsIArray aContributors);
 		
 		/// <summary>
         /// The date the feed was updated, in RFC822 form. Parsable by JS
@@ -229,7 +229,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIFeedTextConstruct  GetSummaryAttribute();
+		nsIFeedTextConstruct GetSummaryAttribute();
 		
 		/// <summary>
         /// Uses description, subtitle, summary, content and extensions
@@ -237,7 +237,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSummaryAttribute([MarshalAs(UnmanagedType.Interface)] nsIFeedTextConstruct  aSummary);
+		void SetSummaryAttribute([MarshalAs(UnmanagedType.Interface)] nsIFeedTextConstruct aSummary);
 		
 		/// <summary>
         /// The date the entry was published, in RFC822 form. Parsable by JS
@@ -260,7 +260,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIFeedTextConstruct  GetContentAttribute();
+		nsIFeedTextConstruct GetContentAttribute();
 		
 		/// <summary>
         /// Uses atom:content and content:encoded to provide
@@ -268,32 +268,32 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetContentAttribute([MarshalAs(UnmanagedType.Interface)] nsIFeedTextConstruct  aContent);
+		void SetContentAttribute([MarshalAs(UnmanagedType.Interface)] nsIFeedTextConstruct aContent);
 		
 		/// <summary>
         /// Enclosures are podcasts, photocasts, etc.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIArray  GetEnclosuresAttribute();
+		nsIArray GetEnclosuresAttribute();
 		
 		/// <summary>
         /// Enclosures are podcasts, photocasts, etc.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetEnclosuresAttribute([MarshalAs(UnmanagedType.Interface)] nsIArray  aEnclosures);
+		void SetEnclosuresAttribute([MarshalAs(UnmanagedType.Interface)] nsIArray aEnclosures);
 		
 		/// <summary>
         /// Enclosures, etc. that might be displayed inline.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIArray  GetMediaContentAttribute();
+		nsIArray GetMediaContentAttribute();
 		
 		/// <summary>
         /// Enclosures, etc. that might be displayed inline.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMediaContentAttribute([MarshalAs(UnmanagedType.Interface)] nsIArray  aMediaContent);
+		void SetMediaContentAttribute([MarshalAs(UnmanagedType.Interface)] nsIArray aMediaContent);
 	}
 }

@@ -43,13 +43,13 @@ namespace Skybound.Gecko
         /// Enable or disable the crashreporter at runtime.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetEnabledAttribute();
+		bool GetEnabledAttribute();
 		
 		/// <summary>
         /// Enable or disable the crashreporter at runtime.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetEnabledAttribute(System.Boolean  aEnabled);
+		void SetEnabledAttribute(bool aEnabled);
 		
 		/// <summary>
         /// Get or set the URL to which crash reports will be submitted.
@@ -62,7 +62,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURL  GetServerURLAttribute();
+		nsIURL GetServerURLAttribute();
 		
 		/// <summary>
         /// Get or set the URL to which crash reports will be submitted.
@@ -74,7 +74,7 @@ namespace Skybound.Gecko
         /// @throw NS_ERROR_FAILURE on get if no URL is set
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetServerURLAttribute([MarshalAs(UnmanagedType.Interface)] nsIURL  aServerURL);
+		void SetServerURLAttribute([MarshalAs(UnmanagedType.Interface)] nsIURL aServerURL);
 		
 		/// <summary>
         /// Get or set the path on the local system to which minidumps will be
@@ -84,7 +84,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsILocalFile  GetMinidumpPathAttribute();
+		nsILocalFile GetMinidumpPathAttribute();
 		
 		/// <summary>
         /// Get or set the path on the local system to which minidumps will be
@@ -93,7 +93,7 @@ namespace Skybound.Gecko
         /// @throw NS_ERROR_NOT_INITIALIZED if crash reporting is not initialized
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMinidumpPathAttribute([MarshalAs(UnmanagedType.Interface)] nsILocalFile  aMinidumpPath);
+		void SetMinidumpPathAttribute([MarshalAs(UnmanagedType.Interface)] nsILocalFile aMinidumpPath);
 		
 		/// <summary>
         /// Add some extra data to be submitted with a crash report.
@@ -109,7 +109,7 @@ namespace Skybound.Gecko
         /// '\n'.  Invalid character for data is '\0'.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AnnotateCrashReport([MarshalAs(UnmanagedType.LPStruct)] nsAString  key, [MarshalAs(UnmanagedType.LPStruct)] nsAString  data);
+		void AnnotateCrashReport([MarshalAs(UnmanagedType.LPStruct)] nsAString key, [MarshalAs(UnmanagedType.LPStruct)] nsAString data);
 		
 		/// <summary>
         /// Append some data to the "Notes" field, to be submitted with a crash report.
@@ -123,7 +123,7 @@ namespace Skybound.Gecko
         /// The only invalid character is '\0'.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AppendAppNotesToCrashReport([MarshalAs(UnmanagedType.LPStruct)] nsAString  data);
+		void AppendAppNotesToCrashReport([MarshalAs(UnmanagedType.LPStruct)] nsAString data);
 		
 		/// <summary>
         /// Write a minidump immediately, with the user-supplied exception
@@ -133,7 +133,7 @@ namespace Skybound.Gecko
         /// @param aExceptionInfo  EXCEPTION_INFO* provided by Window's SEH
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void WriteMinidumpForException(System.IntPtr  aExceptionInfo);
+		void WriteMinidumpForException(System.IntPtr aExceptionInfo);
 		
 		/// <summary>
         /// Append note containing an Obj-C exception's info.
@@ -141,18 +141,18 @@ namespace Skybound.Gecko
         /// @param aException  NSException object to append note for
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AppendObjCExceptionInfoToAppNotes(System.IntPtr  aException);
+		void AppendObjCExceptionInfoToAppNotes(System.IntPtr aException);
 		
 		/// <summary>
         /// User preference for submitting crash reports.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetSubmitReportsAttribute();
+		bool GetSubmitReportsAttribute();
 		
 		/// <summary>
         /// User preference for submitting crash reports.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSubmitReportsAttribute(System.Boolean  aSubmitReports);
+		void SetSubmitReportsAttribute(bool aSubmitReports);
 	}
 }

@@ -70,7 +70,7 @@ namespace Skybound.Gecko
         /// @version 0.1
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void FrameChanged(imgIContainer  aContainer, [MarshalAs(UnmanagedType.Interface)] nsIntRect  aDirtyRect);
+		new void FrameChanged(imgIContainer aContainer, [MarshalAs(UnmanagedType.Interface)] nsIntRect aDirtyRect);
 		
 		/// <summary>
         /// Load notification.
@@ -80,7 +80,7 @@ namespace Skybound.Gecko
         /// not imgIDecoder objects)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnStartRequest(imgIRequest  aRequest);
+		void OnStartRequest(imgIRequest aRequest);
 		
 		/// <summary>
         /// Decode notification.
@@ -90,7 +90,7 @@ namespace Skybound.Gecko
         /// out of the image. Thus, it is a decode notification only.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnStartDecode(imgIRequest  aRequest);
+		void OnStartDecode(imgIRequest aRequest);
 		
 		/// <summary>
         /// Load notification.
@@ -101,7 +101,7 @@ namespace Skybound.Gecko
         /// has been set on the associated imgRequest.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnStartContainer(imgIRequest  aRequest, imgIContainer  aContainer);
+		void OnStartContainer(imgIRequest aRequest, imgIContainer aContainer);
 		
 		/// <summary>
         /// Decode notification.
@@ -109,7 +109,7 @@ namespace Skybound.Gecko
         /// called when each frame is created.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnStartFrame(imgIRequest  aRequest, System.UInt32  aFrame);
+		void OnStartFrame(imgIRequest aRequest, uint aFrame);
 		
 		/// <summary>
         /// Decode notification.
@@ -117,7 +117,7 @@ namespace Skybound.Gecko
         /// called when there is more to paint.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnDataAvailable(imgIRequest  aRequest, System.Boolean  aCurrentFrame, [MarshalAs(UnmanagedType.Interface)] nsIntRect  aRect);
+		void OnDataAvailable(imgIRequest aRequest, bool aCurrentFrame, [MarshalAs(UnmanagedType.Interface)] nsIntRect aRect);
 		
 		/// <summary>
         /// Decode notification.
@@ -125,13 +125,13 @@ namespace Skybound.Gecko
         /// called when a frame is finished decoding.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnStopFrame(imgIRequest  aRequest, System.UInt32  aFrame);
+		void OnStopFrame(imgIRequest aRequest, uint aFrame);
 		
 		/// <summary>
         /// Do not implement this. It is useless and going away.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnStopContainer(imgIRequest  aRequest, imgIContainer  aContainer);
+		void OnStopContainer(imgIRequest aRequest, imgIContainer aContainer);
 		
 		/// <summary>
         /// In theory a decode notification, but currently a load notification.
@@ -146,7 +146,7 @@ namespace Skybound.Gecko
         /// this, please talk to bholley first.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnStopDecode(imgIRequest  aRequest, System.Int32  status, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string statusArg);
+		void OnStopDecode(imgIRequest aRequest, int status, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string statusArg);
 		
 		/// <summary>
         /// Load notification.
@@ -156,7 +156,7 @@ namespace Skybound.Gecko
         /// not imgIDecoder objects)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnStopRequest(imgIRequest  aRequest, System.Boolean  aIsLastPart);
+		void OnStopRequest(imgIRequest aRequest, bool aIsLastPart);
 		
 		/// <summary>
         /// Called when the decoded image data is discarded. This means that the frames
@@ -164,6 +164,6 @@ namespace Skybound.Gecko
         /// image will initiate a new series of progressive decode notifications.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnDiscard(imgIRequest  aRequest);
+		void OnDiscard(imgIRequest aRequest);
 	}
 }

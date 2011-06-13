@@ -46,14 +46,14 @@ namespace Skybound.Gecko
         /// nsIContentPolicy::TYPE_IMAGE
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetLoadTypeAttribute();
+		uint GetLoadTypeAttribute();
 		
 		/// <summary>
         /// Indicates what type of content is being loaded, e.g.
         /// nsIContentPolicy::TYPE_IMAGE
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetLoadTypeAttribute(System.UInt32  aLoadType);
+		void SetLoadTypeAttribute(uint aLoadType);
 		
 		/// <summary>
         /// A nsIContentSecurityPolicy object to determine if the load should
@@ -61,13 +61,13 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports  GetContentSecurityPolicyAttribute();
+		nsISupports GetContentSecurityPolicyAttribute();
 		
 		/// <summary>
         /// A nsIContentSecurityPolicy object to determine if the load should
         /// be allowed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetContentSecurityPolicyAttribute([MarshalAs(UnmanagedType.Interface)] nsISupports  aContentSecurityPolicy);
+		void SetContentSecurityPolicyAttribute([MarshalAs(UnmanagedType.Interface)] nsISupports aContentSecurityPolicy);
 	}
 }

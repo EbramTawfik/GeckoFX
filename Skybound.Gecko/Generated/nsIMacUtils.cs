@@ -41,7 +41,7 @@ namespace Skybound.Gecko
         /// ppc and x86 (universal binary).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsUniversalBinaryAttribute();
+		bool GetIsUniversalBinaryAttribute();
 		
 		/// <summary>
         /// Returns a string containing a list of architectures delimited
@@ -55,6 +55,6 @@ namespace Skybound.Gecko
         /// True when running under binary translation (Rosetta).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsTranslatedAttribute();
+		bool GetIsTranslatedAttribute();
 	}
 }

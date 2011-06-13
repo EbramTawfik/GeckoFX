@@ -35,10 +35,10 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetSelectionAttribute </summary>
-		/// <returns>A nsISelection </returns>
+		/// <returns>A nsISelection</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISelection  GetSelectionAttribute();
+		nsISelection GetSelectionAttribute();
 		
 		/// <summary>
         /// Init is to tell the implementation of nsIEditor to begin its services
@@ -56,7 +56,7 @@ namespace Skybound.Gecko
         /// of the editor.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init([MarshalAs(UnmanagedType.Interface)] nsIDOMDocument  doc, System.IntPtr shell, System.IntPtr aRoot, [MarshalAs(UnmanagedType.Interface)] nsISelectionController  aSelCon, System.UInt32  aFlags);
+		void Init([MarshalAs(UnmanagedType.Interface)] nsIDOMDocument doc, System.IntPtr shell, System.IntPtr aRoot, [MarshalAs(UnmanagedType.Interface)] nsISelectionController aSelCon, uint aFlags);
 		
 		/// <summary>Member SetAttributeOrEquivalent </summary>
 		/// <param name='element'> </param>
@@ -64,14 +64,14 @@ namespace Skybound.Gecko
 		/// <param name='sourceAttrValue'> </param>
 		/// <param name='aSuppressTransaction'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAttributeOrEquivalent([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  element, [MarshalAs(UnmanagedType.LPStruct)] nsAString sourceAttrName, [MarshalAs(UnmanagedType.LPStruct)] nsAString sourceAttrValue, System.Boolean  aSuppressTransaction);
+		void SetAttributeOrEquivalent([MarshalAs(UnmanagedType.Interface)] nsIDOMElement element, [MarshalAs(UnmanagedType.LPStruct)] nsAString sourceAttrName, [MarshalAs(UnmanagedType.LPStruct)] nsAString sourceAttrValue, bool aSuppressTransaction);
 		
 		/// <summary>Member RemoveAttributeOrEquivalent </summary>
 		/// <param name='element'> </param>
 		/// <param name='sourceAttrName'> </param>
 		/// <param name='aSuppressTransaction'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveAttributeOrEquivalent([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  element, [MarshalAs(UnmanagedType.LPStruct)] nsAString sourceAttrName, System.Boolean  aSuppressTransaction);
+		void RemoveAttributeOrEquivalent([MarshalAs(UnmanagedType.Interface)] nsIDOMElement element, [MarshalAs(UnmanagedType.LPStruct)] nsAString sourceAttrName, bool aSuppressTransaction);
 		
 		/// <summary>
         /// postCreate should be called after Init, and is the time that the editor
@@ -88,56 +88,56 @@ namespace Skybound.Gecko
         /// nor is it safe to do so)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PreDestroy(System.Boolean  aDestroyingFrames);
+		void PreDestroy(bool aDestroyingFrames);
 		
 		/// <summary>
         ///edit flags for this editor.  May be set at any time. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetFlagsAttribute();
+		uint GetFlagsAttribute();
 		
 		/// <summary>
         ///edit flags for this editor.  May be set at any time. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFlagsAttribute(System.UInt32  aFlags);
+		void SetFlagsAttribute(uint aFlags);
 		
 		/// <summary>
         /// the MimeType of the document
         /// </summary>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetContentsMIMETypeAttribute();
+		string GetContentsMIMETypeAttribute();
 		
 		/// <summary>
         /// the MimeType of the document
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetContentsMIMETypeAttribute([MarshalAs(UnmanagedType.LPStr)] System.String  aContentsMIMEType);
+		void SetContentsMIMETypeAttribute([MarshalAs(UnmanagedType.LPStr)] string aContentsMIMEType);
 		
 		/// <summary>
         ///Returns true if we have a document that is not marked read-only </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsDocumentEditableAttribute();
+		bool GetIsDocumentEditableAttribute();
 		
 		/// <summary>
         /// the DOM Document this editor is associated with, refcounted.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDocument  GetDocumentAttribute();
+		nsIDOMDocument GetDocumentAttribute();
 		
 		/// <summary>
         ///the body element, i.e. the root of the editable document.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMElement  GetRootElementAttribute();
+		nsIDOMElement GetRootElementAttribute();
 		
 		/// <summary>
         /// the selection controller for the current presentation, refcounted.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISelectionController  GetSelectionControllerAttribute();
+		nsISelectionController GetSelectionControllerAttribute();
 		
 		/// <summary>
         /// DeleteSelection removes all nodes in the current selection.
@@ -150,22 +150,22 @@ namespace Skybound.Gecko
 		/// <summary>
         ///Returns true if the document has no *meaningful* content </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetDocumentIsEmptyAttribute();
+		bool GetDocumentIsEmptyAttribute();
 		
 		/// <summary>
         ///Returns true if the document is modifed and needs saving </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetDocumentModifiedAttribute();
+		bool GetDocumentModifiedAttribute();
 		
 		/// <summary>
         ///Sets the current 'Save' document character set </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDocumentCharacterSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aDocumentCharacterSet);
+		void GetDocumentCharacterSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDocumentCharacterSet);
 		
 		/// <summary>
         ///Sets the current 'Save' document character set </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDocumentCharacterSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aDocumentCharacterSet);
+		void SetDocumentCharacterSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDocumentCharacterSet);
 		
 		/// <summary>
         ///to be used ONLY when we need to override the doc's modification
@@ -189,20 +189,20 @@ namespace Skybound.Gecko
         /// to increase or decrease the count
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void IncrementModificationCount(System.Int32  aModCount);
+		void IncrementModificationCount(int aModCount);
 		
 		/// <summary>
         ///transactionManager Get the transaction manager the editor is using.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsITransactionManager  GetTransactionManagerAttribute();
+		nsITransactionManager GetTransactionManagerAttribute();
 		
 		/// <summary>
         ///transactionManager Get the transaction manager the editor is using.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTransactionManagerAttribute([MarshalAs(UnmanagedType.Interface)] nsITransactionManager  aTransactionManager);
+		void SetTransactionManagerAttribute([MarshalAs(UnmanagedType.Interface)] nsITransactionManager aTransactionManager);
 		
 		/// <summary>
         ///doTransaction() fires a transaction.
@@ -213,7 +213,7 @@ namespace Skybound.Gecko
         /// @param aTxn the transaction to execute
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DoTransaction([MarshalAs(UnmanagedType.Interface)] nsITransaction  txn);
+		void DoTransaction([MarshalAs(UnmanagedType.Interface)] nsITransaction txn);
 		
 		/// <summary>
         ///turn the undo system on or off
@@ -225,7 +225,7 @@ namespace Skybound.Gecko
         /// if aEnable is PR_FALSE, returns NS_OK.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EnableUndo(System.Boolean  enable);
+		void EnableUndo(bool enable);
 		
 		/// <summary>
         ///undo reverses the effects of the last Do operation,
@@ -239,7 +239,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Undo(System.UInt32  count);
+		void Undo(uint count);
 		
 		/// <summary>
         ///returns state information about the undo system.
@@ -248,7 +248,7 @@ namespace Skybound.Gecko
         /// currently ready to be undone.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CanUndo(out System.Boolean  isEnabled, out System.Boolean  canUndo);
+		void CanUndo(out bool isEnabled, out bool canUndo);
 		
 		/// <summary>
         ///redo reverses the effects of the last Undo operation
@@ -262,7 +262,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Redo(System.UInt32  count);
+		void Redo(uint count);
 		
 		/// <summary>
         ///returns state information about the redo system.
@@ -271,7 +271,7 @@ namespace Skybound.Gecko
         ///                              currently ready to be redone.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CanRedo(out System.Boolean  isEnabled, out System.Boolean  canRedo);
+		void CanRedo(out bool isEnabled, out bool canRedo);
 		
 		/// <summary>
         ///beginTransaction is a signal from the caller to the editor that
@@ -300,7 +300,7 @@ namespace Skybound.Gecko
 		/// <summary>Member BeginPlaceHolderTransaction </summary>
 		/// <param name='name'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BeginPlaceHolderTransaction([MarshalAs(UnmanagedType.Interface)] nsIAtom  name);
+		void BeginPlaceHolderTransaction([MarshalAs(UnmanagedType.Interface)] nsIAtom name);
 		
 		/// <summary>Member EndPlaceHolderTransaction </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -321,7 +321,7 @@ namespace Skybound.Gecko
         /// for further editing.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetShouldTxnSetSelection(System.Boolean  should);
+		void SetShouldTxnSetSelection(bool should);
 		
 		/// <summary>
         ///Returns the inline spell checker associated with this object. The spell
@@ -332,8 +332,9 @@ namespace Skybound.Gecko
         /// and the object has not been created, this function
         /// WILL RETURN NULL.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIInlineSpellChecker GetInlineSpellChecker(System.Boolean  autoCreate);
+		nsIInlineSpellChecker GetInlineSpellChecker(bool autoCreate);
 		
 		/// <summary>
         ///Resyncs spellchecking state (enabled/disabled).  This should be called
@@ -350,7 +351,7 @@ namespace Skybound.Gecko
         /// requested by the user.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSpellcheckUserOverride(System.Boolean  enable);
+		void SetSpellcheckUserOverride(bool enable);
 		
 		/// <summary>
         ///cut the currently selected text, putting it into the OS clipboard
@@ -388,21 +389,21 @@ namespace Skybound.Gecko
         /// the selected text (if any)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Paste(System.Int32  aSelectionType);
+		void Paste(int aSelectionType);
 		
 		/// <summary>
         ///Paste the text in |aTransferable| at the cursor position, replacing the
         /// selected text (if any).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PasteTransferable([MarshalAs(UnmanagedType.Interface)] nsITransferable  aTransferable);
+		void PasteTransferable([MarshalAs(UnmanagedType.Interface)] nsITransferable aTransferable);
 		
 		/// <summary>
         ///Can we paste? True if the doc is modifiable, and we have
         /// pasteable data in the clipboard.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool CanPaste(System.Int32  aSelectionType);
+		bool CanPaste(int aSelectionType);
 		
 		/// <summary>
         ///Can we paste |aTransferable| or, if |aTransferable| is null, will a call
@@ -411,7 +412,7 @@ namespace Skybound.Gecko
         /// |aTransfeable| is non-null, we have pasteable data in |aTransfeable|.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool CanPasteTransferable([MarshalAs(UnmanagedType.Interface)] nsITransferable  aTransferable);
+		bool CanPasteTransferable([MarshalAs(UnmanagedType.Interface)] nsITransferable aTransferable);
 		
 		/// <summary>
         ///sets the document selection to the entire contents of the document </summary>
@@ -433,21 +434,21 @@ namespace Skybound.Gecko
         /// (for example, based on the current selection and mousepoint).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool CanDrag([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent  aEvent);
+		bool CanDrag([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent aEvent);
 		
 		/// <summary>
         /// doDrag transfers the relevant data (as appropriate)
         /// to a transferable so it can later be dropped.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DoDrag([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent  aEvent);
+		void DoDrag([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent aEvent);
 		
 		/// <summary>
         /// insertFromDrop looks for a dragsession and inserts the
         /// relevant data in response to a drop.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InsertFromDrop([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent  aEvent);
+		void InsertFromDrop([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent aEvent);
 		
 		/// <summary>
         /// setAttribute() sets the attribute of aElement.
@@ -459,7 +460,7 @@ namespace Skybound.Gecko
         /// @param aValue      the value to set aAttribute to
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  aElement, [MarshalAs(UnmanagedType.LPStruct)] nsAString attributestr, [MarshalAs(UnmanagedType.LPStruct)] nsAString attvalue);
+		void SetAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement, [MarshalAs(UnmanagedType.LPStruct)] nsAString attributestr, [MarshalAs(UnmanagedType.LPStruct)] nsAString attvalue);
 		
 		/// <summary>
         /// getAttributeValue() retrieves the attribute's value for aElement.
@@ -472,7 +473,7 @@ namespace Skybound.Gecko
         /// PR_FALSE if it is not.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetAttributeValue([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  aElement, [MarshalAs(UnmanagedType.LPStruct)] nsAString attributestr, [MarshalAs(UnmanagedType.LPStruct)] nsAString resultValue);
+		bool GetAttributeValue([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement, [MarshalAs(UnmanagedType.LPStruct)] nsAString attributestr, [MarshalAs(UnmanagedType.LPStruct)] nsAString resultValue);
 		
 		/// <summary>
         /// removeAttribute() deletes aAttribute from the attribute list of aElement.
@@ -482,7 +483,7 @@ namespace Skybound.Gecko
         /// @param aAttribute    the string representation of the attribute to get
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  aElement, [MarshalAs(UnmanagedType.LPStruct)] nsAString aAttribute);
+		void RemoveAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement, [MarshalAs(UnmanagedType.LPStruct)] nsAString aAttribute);
 		
 		/// <summary>
         /// cloneAttribute() copies the attribute from the source node to
@@ -497,7 +498,7 @@ namespace Skybound.Gecko
         /// element
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CloneAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aAttribute, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode  aDestNode, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode  aSourceNode);
+		void CloneAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aAttribute, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aDestNode, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aSourceNode);
 		
 		/// <summary>
         /// cloneAttributes() is similar to nsIDOMNode::cloneNode(),
@@ -511,7 +512,7 @@ namespace Skybound.Gecko
         /// @param aSourceNode   the source element to copy attributes from
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CloneAttributes([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  destNode, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode  sourceNode);
+		void CloneAttributes([MarshalAs(UnmanagedType.Interface)] nsIDOMNode destNode, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode sourceNode);
 		
 		/// <summary>
         /// createNode instantiates a new element of type aTag and inserts it
@@ -521,8 +522,9 @@ namespace Skybound.Gecko
         /// @param aPosition The place in aParent to insert the new node
         /// @return          The node created.  Caller must release aNewNode.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMNode CreateNode([MarshalAs(UnmanagedType.LPStruct)] nsAString tag, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode  parent, System.Int32  position);
+		nsIDOMNode CreateNode([MarshalAs(UnmanagedType.LPStruct)] nsAString tag, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode parent, int position);
 		
 		/// <summary>
         /// insertNode inserts aNode into aParent at aPosition.
@@ -535,7 +537,7 @@ namespace Skybound.Gecko
         /// any number > number of current children = last child
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InsertNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  node, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode  parent, System.Int32  aPosition);
+		void InsertNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode node, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode parent, int aPosition);
 		
 		/// <summary>
         /// splitNode() creates a new node identical to an existing node,
@@ -548,7 +550,7 @@ namespace Skybound.Gecko
         /// becomes aExistingRightNode's previous sibling.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SplitNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  existingRightNode, System.Int32  offset, [MarshalAs(UnmanagedType.Interface)] out nsIDOMNode  newLeftNode);
+		void SplitNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode existingRightNode, int offset, [MarshalAs(UnmanagedType.Interface)] out nsIDOMNode newLeftNode);
 		
 		/// <summary>
         /// joinNodes() takes 2 nodes and merge their content|children.
@@ -561,14 +563,14 @@ namespace Skybound.Gecko
         /// merged only with another text node.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void JoinNodes([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  leftNode, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode  rightNode, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode  parent);
+		void JoinNodes([MarshalAs(UnmanagedType.Interface)] nsIDOMNode leftNode, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode rightNode, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode parent);
 		
 		/// <summary>
         /// deleteNode removes aChild from aParent.
         /// @param aChild    The node to delete
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DeleteNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  child);
+		void DeleteNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode child);
 		
 		/// <summary>
         /// markNodeDirty() sets a special dirty attribute on the node.
@@ -576,7 +578,7 @@ namespace Skybound.Gecko
         /// @param aNode      The node for which to insert formatting.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MarkNodeDirty([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  node);
+		void MarkNodeDirty([MarshalAs(UnmanagedType.Interface)] nsIDOMNode node);
 		
 		/// <summary>
         /// Switches the editor element direction; from "Left-to-Right" to
@@ -589,8 +591,9 @@ namespace Skybound.Gecko
         /// Output methods:
         /// aFormatType is a mime type, like text/plain.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString OutputToString([MarshalAs(UnmanagedType.LPStruct)] nsAString formatType, System.UInt32  flags);
+		nsAString OutputToString([MarshalAs(UnmanagedType.LPStruct)] nsAString formatType, uint flags);
 		
 		/// <summary>Member OutputToStream </summary>
 		/// <param name='aStream'> </param>
@@ -598,27 +601,27 @@ namespace Skybound.Gecko
 		/// <param name='charsetOverride'> </param>
 		/// <param name='flags'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OutputToStream([MarshalAs(UnmanagedType.Interface)] nsIOutputStream  aStream, [MarshalAs(UnmanagedType.LPStruct)] nsAString formatType, [MarshalAs(UnmanagedType.LPStruct)] nsAString  charsetOverride, System.UInt32  flags);
+		void OutputToStream([MarshalAs(UnmanagedType.Interface)] nsIOutputStream aStream, [MarshalAs(UnmanagedType.LPStruct)] nsAString formatType, [MarshalAs(UnmanagedType.LPStruct)] nsAString charsetOverride, uint flags);
 		
 		/// <summary>
         ///add an EditorObserver to the editors list of observers. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddEditorObserver([MarshalAs(UnmanagedType.Interface)] nsIEditorObserver  observer);
+		void AddEditorObserver([MarshalAs(UnmanagedType.Interface)] nsIEditorObserver observer);
 		
 		/// <summary>
         ///Remove an EditorObserver from the editor's list of observers. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveEditorObserver([MarshalAs(UnmanagedType.Interface)] nsIEditorObserver  observer);
+		void RemoveEditorObserver([MarshalAs(UnmanagedType.Interface)] nsIEditorObserver observer);
 		
 		/// <summary>
         ///add an EditActionListener to the editors list of listeners. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddEditActionListener([MarshalAs(UnmanagedType.Interface)] nsIEditActionListener  listener);
+		void AddEditActionListener([MarshalAs(UnmanagedType.Interface)] nsIEditActionListener listener);
 		
 		/// <summary>
         ///Remove an EditActionListener from the editor's list of listeners. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveEditActionListener([MarshalAs(UnmanagedType.Interface)] nsIEditActionListener  listener);
+		void RemoveEditActionListener([MarshalAs(UnmanagedType.Interface)] nsIEditActionListener listener);
 		
 		/// <summary>
         ///Add a DocumentStateListener to the editors list of doc state listeners. </summary>
@@ -644,12 +647,12 @@ namespace Skybound.Gecko
 		/// <summary>
         ///Run unit tests. Noop in optimized builds </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DebugUnitTests(out System.Int32  outNumTests, out System.Int32  outNumTestsFailed);
+		void DebugUnitTests(out int outNumTests, out int outNumTestsFailed);
 		
 		/// <summary>
         ///checks if a node is read-only or not </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsModifiableNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  aNode);
+		bool IsModifiableNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aNode);
 	}
 	
 	/// <summary>nsIEditor_MOZILLA_2_0_BRANCH </summary>
@@ -665,6 +668,6 @@ namespace Skybound.Gecko
         /// are being called, and will throw upon access at all other times.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetLastKeypressEventTrustedAttribute();
+		bool GetLastKeypressEventTrustedAttribute();
 	}
 }

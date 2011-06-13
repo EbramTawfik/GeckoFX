@@ -55,6 +55,6 @@ namespace Skybound.Gecko
         /// NS_ERROR* - method failure.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr  GetInterface(ref System.Guid uuid);
+		System.IntPtr GetInterface(ref System.Guid uuid);
 	}
 }

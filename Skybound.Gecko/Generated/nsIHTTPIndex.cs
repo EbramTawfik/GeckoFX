@@ -40,26 +40,26 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetBaseURLAttribute();
+		string GetBaseURLAttribute();
 		
 		/// <summary>
         /// The RDF datasource that contains the HTTP index information.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIRDFDataSource  GetDataSourceAttribute();
+		nsIRDFDataSource GetDataSourceAttribute();
 		
 		/// <summary>
         /// The charset to use for decoding FTP filenames
         /// </summary>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetEncodingAttribute();
+		string GetEncodingAttribute();
 		
 		/// <summary>
         /// The charset to use for decoding FTP filenames
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetEncodingAttribute([MarshalAs(UnmanagedType.LPStr)] System.String  aEncoding);
+		void SetEncodingAttribute([MarshalAs(UnmanagedType.LPStr)] string aEncoding);
 	}
 }

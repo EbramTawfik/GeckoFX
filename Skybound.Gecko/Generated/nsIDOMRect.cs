@@ -35,27 +35,27 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetTopAttribute </summary>
-		/// <returns>A nsIDOMCSSPrimitiveValue </returns>
+		/// <returns>A nsIDOMCSSPrimitiveValue</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMCSSPrimitiveValue  GetTopAttribute();
+		nsIDOMCSSPrimitiveValue GetTopAttribute();
 		
 		/// <summary>Member GetRightAttribute </summary>
-		/// <returns>A nsIDOMCSSPrimitiveValue </returns>
+		/// <returns>A nsIDOMCSSPrimitiveValue</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMCSSPrimitiveValue  GetRightAttribute();
+		nsIDOMCSSPrimitiveValue GetRightAttribute();
 		
 		/// <summary>Member GetBottomAttribute </summary>
-		/// <returns>A nsIDOMCSSPrimitiveValue </returns>
+		/// <returns>A nsIDOMCSSPrimitiveValue</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMCSSPrimitiveValue  GetBottomAttribute();
+		nsIDOMCSSPrimitiveValue GetBottomAttribute();
 		
 		/// <summary>Member GetLeftAttribute </summary>
-		/// <returns>A nsIDOMCSSPrimitiveValue </returns>
+		/// <returns>A nsIDOMCSSPrimitiveValue</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMCSSPrimitiveValue  GetLeftAttribute();
+		nsIDOMCSSPrimitiveValue GetLeftAttribute();
 	}
 }

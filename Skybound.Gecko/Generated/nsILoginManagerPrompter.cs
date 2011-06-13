@@ -44,7 +44,7 @@ namespace Skybound.Gecko
         /// is being used, topmost opener in some cases).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  aWindow);
+		void Init([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow);
 		
 		/// <summary>
         /// Ask the user if they want to save a login (Yes, Never, Not Now)
@@ -53,7 +53,7 @@ namespace Skybound.Gecko
         /// The login to be saved.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PromptToSavePassword([MarshalAs(UnmanagedType.Interface)] nsILoginInfo  aLogin);
+		void PromptToSavePassword([MarshalAs(UnmanagedType.Interface)] nsILoginInfo aLogin);
 		
 		/// <summary>
         /// Ask the user if they want to change a login's password. If the
@@ -65,7 +65,7 @@ namespace Skybound.Gecko
         /// The new login.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PromptToChangePassword([MarshalAs(UnmanagedType.Interface)] nsILoginInfo  aOldLogin, [MarshalAs(UnmanagedType.Interface)] nsILoginInfo  aNewLogin);
+		void PromptToChangePassword([MarshalAs(UnmanagedType.Interface)] nsILoginInfo aOldLogin, [MarshalAs(UnmanagedType.Interface)] nsILoginInfo aNewLogin);
 		
 		/// <summary>
         /// Ask the user if they want to change the password for one of
@@ -86,6 +86,6 @@ namespace Skybound.Gecko
         /// is called.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PromptToChangePasswordWithUsernames(nsILoginInfo  logins, System.UInt32  count, [MarshalAs(UnmanagedType.Interface)] nsILoginInfo  aNewLogin);
+		void PromptToChangePasswordWithUsernames(nsILoginInfo logins, uint count, [MarshalAs(UnmanagedType.Interface)] nsILoginInfo aNewLogin);
 	}
 }

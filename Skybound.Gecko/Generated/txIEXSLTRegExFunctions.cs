@@ -41,7 +41,7 @@ namespace Skybound.Gecko
 		/// <param name='aFlags'> </param>
 		/// <returns>A txINodeSet</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		txINodeSet Match(txIFunctionEvaluationContext  aContext, [MarshalAs(UnmanagedType.LPStruct)] nsAString aString, [MarshalAs(UnmanagedType.LPStruct)] nsAString aRegEx, [MarshalAs(UnmanagedType.LPStruct)] nsAString aFlags);
+		txINodeSet Match(txIFunctionEvaluationContext aContext, [MarshalAs(UnmanagedType.LPStruct)] nsAString aString, [MarshalAs(UnmanagedType.LPStruct)] nsAString aRegEx, [MarshalAs(UnmanagedType.LPStruct)] nsAString aFlags);
 		
 		/// <summary>Member Replace </summary>
 		/// <param name='aString'> </param>
@@ -49,6 +49,7 @@ namespace Skybound.Gecko
 		/// <param name='aFlags'> </param>
 		/// <param name='aReplace'> </param>
 		/// <returns>A nsAString</returns>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsAString Replace([MarshalAs(UnmanagedType.LPStruct)] nsAString aString, [MarshalAs(UnmanagedType.LPStruct)] nsAString aRegEx, [MarshalAs(UnmanagedType.LPStruct)] nsAString aFlags, [MarshalAs(UnmanagedType.LPStruct)] nsAString aReplace);
 		

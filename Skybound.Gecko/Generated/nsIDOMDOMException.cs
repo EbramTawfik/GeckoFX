@@ -48,6 +48,6 @@ namespace Skybound.Gecko
         /// Introduced in DOM Level 3:
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetCodeAttribute();
+		uint GetCodeAttribute();
 	}
 }

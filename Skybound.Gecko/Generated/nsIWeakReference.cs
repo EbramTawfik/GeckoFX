@@ -54,7 +54,7 @@ namespace Skybound.Gecko
         /// that would defeat the purpose of using a non-owning |nsIWeakReference| in the first place.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr  QueryReferent(ref System.Guid uuid);
+		System.IntPtr QueryReferent(ref System.Guid uuid);
 	}
 	
 	/// <summary>
@@ -81,6 +81,7 @@ namespace Skybound.Gecko
         /// @see nsWeakPtr
         /// @see nsCOMPtr
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIWeakReference GetWeakReference();
 	}

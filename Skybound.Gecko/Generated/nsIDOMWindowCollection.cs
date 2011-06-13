@@ -41,17 +41,19 @@ namespace Skybound.Gecko
         /// Accessor for the number of windows in this collection.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetLengthAttribute();
+		uint GetLengthAttribute();
 		
 		/// <summary>
         /// Method for accessing an item in this collection by index.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMWindow Item(System.UInt32  index);
+		nsIDOMWindow Item(uint index);
 		
 		/// <summary>
         /// Method for accessing an item in this collection by window name.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMWindow NamedItem([MarshalAs(UnmanagedType.LPStruct)] nsAString name);
 	}

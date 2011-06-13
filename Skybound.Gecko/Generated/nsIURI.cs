@@ -63,7 +63,7 @@ namespace Skybound.Gecko
         /// Some characters may be escaped.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSpecAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aSpec);
+		void GetSpecAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aSpec);
 		
 		/// <summary>
         /// Returns a string representation of the URI. Setting the spec causes
@@ -78,7 +78,7 @@ namespace Skybound.Gecko
         /// Some characters may be escaped.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSpecAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aSpec);
+		void SetSpecAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aSpec);
 		
 		/// <summary>
         /// The prePath (eg. scheme://user:password@host:port) returns the string
@@ -87,7 +87,7 @@ namespace Skybound.Gecko
         /// Some characters may be escaped.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPrePathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aPrePath);
+		void GetPrePathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aPrePath);
 		
 		/// <summary>
         /// The Scheme is the protocol to which this URI refers.  The scheme is
@@ -96,7 +96,7 @@ namespace Skybound.Gecko
         /// that will generally lead to incorrect results.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSchemeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aScheme);
+		void GetSchemeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aScheme);
 		
 		/// <summary>
         /// The Scheme is the protocol to which this URI refers.  The scheme is
@@ -105,7 +105,7 @@ namespace Skybound.Gecko
         /// that will generally lead to incorrect results.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSchemeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aScheme);
+		void SetSchemeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aScheme);
 		
 		/// <summary>
         /// The username:password (or username only if value doesn't contain a ':')
@@ -113,7 +113,7 @@ namespace Skybound.Gecko
         /// Some characters may be escaped.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetUserPassAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aUserPass);
+		void GetUserPassAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aUserPass);
 		
 		/// <summary>
         /// The username:password (or username only if value doesn't contain a ':')
@@ -121,7 +121,7 @@ namespace Skybound.Gecko
         /// Some characters may be escaped.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetUserPassAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aUserPass);
+		void SetUserPassAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aUserPass);
 		
 		/// <summary>
         /// The optional username and password, assuming the preHost consists of
@@ -130,7 +130,7 @@ namespace Skybound.Gecko
         /// Some characters may be escaped.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetUsernameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aUsername);
+		void GetUsernameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aUsername);
 		
 		/// <summary>
         /// The optional username and password, assuming the preHost consists of
@@ -139,21 +139,13 @@ namespace Skybound.Gecko
         /// Some characters may be escaped.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetUsernameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aUsername);
+		void SetUsernameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aUsername);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPasswordAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aPassword);
+		void GetPasswordAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aPassword);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPasswordAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aPassword);
-		
-		/// <summary>
-        /// The host:port (or simply the host, if port == -1).
-        ///
-        /// Characters are NOT escaped.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetHostPortAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aHostPort);
+		void SetPasswordAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aPassword);
 		
 		/// <summary>
         /// The host:port (or simply the host, if port == -1).
@@ -161,7 +153,15 @@ namespace Skybound.Gecko
         /// Characters are NOT escaped.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetHostPortAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aHostPort);
+		void GetHostPortAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aHostPort);
+		
+		/// <summary>
+        /// The host:port (or simply the host, if port == -1).
+        ///
+        /// Characters are NOT escaped.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetHostPortAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aHostPort);
 		
 		/// <summary>
         /// The host is the internet domain name to which this URI refers.  It could
@@ -171,7 +171,7 @@ namespace Skybound.Gecko
         /// Characters are NOT escaped.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetHostAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aHost);
+		void GetHostAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aHost);
 		
 		/// <summary>
         /// The host is the internet domain name to which this URI refers.  It could
@@ -181,21 +181,21 @@ namespace Skybound.Gecko
         /// Characters are NOT escaped.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetHostAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aHost);
+		void SetHostAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aHost);
 		
 		/// <summary>
         /// A port value of -1 corresponds to the protocol's default port (eg. -1
         /// implies port 80 for http URIs).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetPortAttribute();
+		int GetPortAttribute();
 		
 		/// <summary>
         /// A port value of -1 corresponds to the protocol's default port (eg. -1
         /// implies port 80 for http URIs).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPortAttribute(System.Int32  aPort);
+		void SetPortAttribute(int aPort);
 		
 		/// <summary>
         /// The path, typically including at least a leading '/' (but may also be
@@ -204,7 +204,7 @@ namespace Skybound.Gecko
         /// Some characters may be escaped.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aPath);
+		void GetPathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aPath);
 		
 		/// <summary>
         /// The path, typically including at least a leading '/' (but may also be
@@ -213,7 +213,7 @@ namespace Skybound.Gecko
         /// Some characters may be escaped.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aPath);
+		void SetPathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aPath);
 		
 		/// <summary>
         /// URI equivalence test (not a strict string comparison).
@@ -221,7 +221,7 @@ namespace Skybound.Gecko
         /// eg. http://foo.com:80/ == http://foo.com/
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Equals([MarshalAs(UnmanagedType.Interface)] nsIURI  other);
+		bool Equals([MarshalAs(UnmanagedType.Interface)] nsIURI other);
 		
 		/// <summary>
         /// An optimization to do scheme checks without requiring the users of nsIURI
@@ -229,7 +229,7 @@ namespace Skybound.Gecko
         /// the schemes match (case ignored).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool SchemeIs([MarshalAs(UnmanagedType.LPStr)] System.String  scheme);
+		bool SchemeIs([MarshalAs(UnmanagedType.LPStr)] string scheme);
 		
 		/// <summary>
         /// Clones the current URI.  For some protocols, this is more than just an
@@ -237,6 +237,7 @@ namespace Skybound.Gecko
         /// necessarily uniquely identify a file since two volumes could share the
         /// same name.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIURI Clone();
 		
@@ -246,8 +247,9 @@ namespace Skybound.Gecko
         ///
         /// NOTE: some implementations may have no concept of a relative URI.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAUTF8String Resolve([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  relativePath);
+		nsAUTF8String Resolve([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String relativePath);
 		
 		/// <summary>
         /// The URI spec with an ASCII compatible encoding.  Host portion follows
@@ -255,7 +257,7 @@ namespace Skybound.Gecko
         /// RFC2396.  The result is strictly ASCII.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetAsciiSpecAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aAsciiSpec);
+		void GetAsciiSpecAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aAsciiSpec);
 		
 		/// <summary>
         /// The URI host with an ASCII compatible encoding.  Follows the IDNA
@@ -263,7 +265,7 @@ namespace Skybound.Gecko
         /// ASCII for compatibility with existing internet infrasture.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetAsciiHostAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aAsciiHost);
+		void GetAsciiHostAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aAsciiHost);
 		
 		/// <summary>
         /// The charset of the document from which this URI originated.  An empty
@@ -275,6 +277,6 @@ namespace Skybound.Gecko
         /// characters.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetOriginCharsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aOriginCharset);
+		void GetOriginCharsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aOriginCharset);
 	}
 }

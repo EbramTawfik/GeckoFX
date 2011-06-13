@@ -40,7 +40,7 @@ namespace Skybound.Gecko
         /// the specified MIME type.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CreatePluginInstance([MarshalAs(UnmanagedType.Interface)] out nsIPluginInstance  aResult);
+		void CreatePluginInstance([MarshalAs(UnmanagedType.Interface)] out nsIPluginInstance aResult);
 		
 		/// <summary>
         /// Called when the browser is done with the plugin factory, or when

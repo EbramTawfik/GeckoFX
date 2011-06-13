@@ -40,7 +40,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIArray  GetDialogArgumentsAttribute();
+		nsIArray GetDialogArgumentsAttribute();
 		
 		/// <summary>
         /// The return value that will be returned to the function that
@@ -48,13 +48,13 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant  GetReturnValueAttribute();
+		nsIVariant GetReturnValueAttribute();
 		
 		/// <summary>
         /// The return value that will be returned to the function that
         /// opened the modal content window.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetReturnValueAttribute([MarshalAs(UnmanagedType.Interface)] nsIVariant  aReturnValue);
+		void SetReturnValueAttribute([MarshalAs(UnmanagedType.Interface)] nsIVariant aReturnValue);
 	}
 }

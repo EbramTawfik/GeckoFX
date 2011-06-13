@@ -41,26 +41,30 @@ namespace Skybound.Gecko
         /// getCertByPrefID - a BASE64 string representing a user's
         /// certificate (or NULL if there isn't one)
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string GetCertByPrefID([MarshalAs(UnmanagedType.LPStr)] System.String  certID);
+		string GetCertByPrefID([MarshalAs(UnmanagedType.LPStr)] string certID);
 		
 		/// <summary>
         /// decodeCert - decode a BASE64 string into an X509Certificate object
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIX509Cert DecodeCert([MarshalAs(UnmanagedType.LPStr)] System.String  value);
+		nsIX509Cert DecodeCert([MarshalAs(UnmanagedType.LPStr)] string value);
 		
 		/// <summary>
         /// sendMessage - send a text message to the recipient indicated
         /// by the base64-encoded cert.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string SendMessage([MarshalAs(UnmanagedType.LPStr)] System.String  msg, [MarshalAs(UnmanagedType.LPStr)] System.String  cert);
+		string SendMessage([MarshalAs(UnmanagedType.LPStr)] string msg, [MarshalAs(UnmanagedType.LPStr)] string cert);
 		
 		/// <summary>
         /// receiveMessage - receive an encrypted (enveloped) message
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string ReceiveMessage([MarshalAs(UnmanagedType.LPStr)] System.String  msg);
+		string ReceiveMessage([MarshalAs(UnmanagedType.LPStr)] string msg);
 	}
 }

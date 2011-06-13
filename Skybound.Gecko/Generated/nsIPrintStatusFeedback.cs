@@ -50,13 +50,13 @@ namespace Skybound.Gecko
 		/// <summary>Member ShowProgress </summary>
 		/// <param name='percent'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ShowProgress(System.Int32  percent);
+		void ShowProgress(int percent);
 		
 		/// <summary>Member SetDocShell </summary>
 		/// <param name='shell'> </param>
 		/// <param name='window'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDocShell([MarshalAs(UnmanagedType.Interface)] nsIDocShell  shell, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindowInternal  window);
+		void SetDocShell([MarshalAs(UnmanagedType.Interface)] nsIDocShell shell, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindowInternal window);
 		
 		/// <summary>Member CloseWindow </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

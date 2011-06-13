@@ -51,7 +51,7 @@ namespace Skybound.Gecko
         /// @note  Any exceptions thrown from this method should be ignored.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnAuthAvailable([MarshalAs(UnmanagedType.Interface)] nsISupports  aContext, [MarshalAs(UnmanagedType.Interface)] nsIAuthInformation  aAuthInfo);
+		void OnAuthAvailable([MarshalAs(UnmanagedType.Interface)] nsISupports aContext, [MarshalAs(UnmanagedType.Interface)] nsIAuthInformation aAuthInfo);
 		
 		/// <summary>
         /// Notification that the prompt was cancelled.
@@ -64,6 +64,6 @@ namespace Skybound.Gecko
         /// it was cancelled by the user.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnAuthCancelled([MarshalAs(UnmanagedType.Interface)] nsISupports  aContext, System.Boolean  userCancel);
+		void OnAuthCancelled([MarshalAs(UnmanagedType.Interface)] nsISupports aContext, bool userCancel);
 	}
 }

@@ -60,7 +60,7 @@ namespace Skybound.Gecko
         /// EventListener designated to use capture.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void AddEventListener([MarshalAs(UnmanagedType.LPStruct)] nsAString type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener  listener, System.Boolean  useCapture);
+		new void AddEventListener([MarshalAs(UnmanagedType.LPStruct)] nsAString type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener listener, bool useCapture);
 		
 		/// <summary>
         /// This method allows the removal of event listeners from the event
@@ -83,7 +83,7 @@ namespace Skybound.Gecko
         /// listener, and vice versa.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void RemoveEventListener([MarshalAs(UnmanagedType.LPStruct)] nsAString type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener  listener, System.Boolean  useCapture);
+		new void RemoveEventListener([MarshalAs(UnmanagedType.LPStruct)] nsAString type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener listener, bool useCapture);
 		
 		/// <summary>
         /// This method allows the dispatch of events into the implementations
@@ -104,64 +104,64 @@ namespace Skybound.Gecko
         /// exception.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool DispatchEvent([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent  evt);
+		new bool DispatchEvent([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent evt);
 		
 		/// <summary>
         /// event handler attributes
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener  GetOnabortAttribute();
+		nsIDOMEventListener GetOnabortAttribute();
 		
 		/// <summary>
         /// event handler attributes
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnabortAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener  aOnabort);
+		void SetOnabortAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnabort);
 		
 		/// <summary>Member GetOnerrorAttribute </summary>
-		/// <returns>A nsIDOMEventListener </returns>
+		/// <returns>A nsIDOMEventListener</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener  GetOnerrorAttribute();
+		nsIDOMEventListener GetOnerrorAttribute();
 		
 		/// <summary>Member SetOnerrorAttribute </summary>
 		/// <param name='aOnerror'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnerrorAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener  aOnerror);
+		void SetOnerrorAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnerror);
 		
 		/// <summary>Member GetOnloadAttribute </summary>
-		/// <returns>A nsIDOMEventListener </returns>
+		/// <returns>A nsIDOMEventListener</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener  GetOnloadAttribute();
+		nsIDOMEventListener GetOnloadAttribute();
 		
 		/// <summary>Member SetOnloadAttribute </summary>
 		/// <param name='aOnload'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnloadAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener  aOnload);
+		void SetOnloadAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnload);
 		
 		/// <summary>Member GetOnloadstartAttribute </summary>
-		/// <returns>A nsIDOMEventListener </returns>
+		/// <returns>A nsIDOMEventListener</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener  GetOnloadstartAttribute();
+		nsIDOMEventListener GetOnloadstartAttribute();
 		
 		/// <summary>Member SetOnloadstartAttribute </summary>
 		/// <param name='aOnloadstart'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnloadstartAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener  aOnloadstart);
+		void SetOnloadstartAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnloadstart);
 		
 		/// <summary>Member GetOnprogressAttribute </summary>
-		/// <returns>A nsIDOMEventListener </returns>
+		/// <returns>A nsIDOMEventListener</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener  GetOnprogressAttribute();
+		nsIDOMEventListener GetOnprogressAttribute();
 		
 		/// <summary>Member SetOnprogressAttribute </summary>
 		/// <param name='aOnprogress'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnprogressAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener  aOnprogress);
+		void SetOnprogressAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnprogress);
 	}
 	
 	/// <summary>nsIXMLHttpRequestUpload </summary>
@@ -197,7 +197,7 @@ namespace Skybound.Gecko
         /// EventListener designated to use capture.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void AddEventListener([MarshalAs(UnmanagedType.LPStruct)] nsAString type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener  listener, System.Boolean  useCapture);
+		new void AddEventListener([MarshalAs(UnmanagedType.LPStruct)] nsAString type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener listener, bool useCapture);
 		
 		/// <summary>
         /// This method allows the removal of event listeners from the event
@@ -220,7 +220,7 @@ namespace Skybound.Gecko
         /// listener, and vice versa.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void RemoveEventListener([MarshalAs(UnmanagedType.LPStruct)] nsAString type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener  listener, System.Boolean  useCapture);
+		new void RemoveEventListener([MarshalAs(UnmanagedType.LPStruct)] nsAString type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener listener, bool useCapture);
 		
 		/// <summary>
         /// This method allows the dispatch of events into the implementations
@@ -241,64 +241,64 @@ namespace Skybound.Gecko
         /// exception.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool DispatchEvent([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent  evt);
+		new bool DispatchEvent([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent evt);
 		
 		/// <summary>
         /// event handler attributes
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMEventListener  GetOnabortAttribute();
+		new nsIDOMEventListener GetOnabortAttribute();
 		
 		/// <summary>
         /// event handler attributes
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetOnabortAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener  aOnabort);
+		new void SetOnabortAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnabort);
 		
 		/// <summary>Member GetOnerrorAttribute </summary>
-		/// <returns>A nsIDOMEventListener </returns>
+		/// <returns>A nsIDOMEventListener</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMEventListener  GetOnerrorAttribute();
+		new nsIDOMEventListener GetOnerrorAttribute();
 		
 		/// <summary>Member SetOnerrorAttribute </summary>
 		/// <param name='aOnerror'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetOnerrorAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener  aOnerror);
+		new void SetOnerrorAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnerror);
 		
 		/// <summary>Member GetOnloadAttribute </summary>
-		/// <returns>A nsIDOMEventListener </returns>
+		/// <returns>A nsIDOMEventListener</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMEventListener  GetOnloadAttribute();
+		new nsIDOMEventListener GetOnloadAttribute();
 		
 		/// <summary>Member SetOnloadAttribute </summary>
 		/// <param name='aOnload'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetOnloadAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener  aOnload);
+		new void SetOnloadAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnload);
 		
 		/// <summary>Member GetOnloadstartAttribute </summary>
-		/// <returns>A nsIDOMEventListener </returns>
+		/// <returns>A nsIDOMEventListener</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMEventListener  GetOnloadstartAttribute();
+		new nsIDOMEventListener GetOnloadstartAttribute();
 		
 		/// <summary>Member SetOnloadstartAttribute </summary>
 		/// <param name='aOnloadstart'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetOnloadstartAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener  aOnloadstart);
+		new void SetOnloadstartAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnloadstart);
 		
 		/// <summary>Member GetOnprogressAttribute </summary>
-		/// <returns>A nsIDOMEventListener </returns>
+		/// <returns>A nsIDOMEventListener</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMEventListener  GetOnprogressAttribute();
+		new nsIDOMEventListener GetOnprogressAttribute();
 		
 		/// <summary>Member SetOnprogressAttribute </summary>
 		/// <param name='aOnprogress'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetOnprogressAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener  aOnprogress);
+		new void SetOnprogressAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnprogress);
 	}
 	
 	/// <summary>
@@ -361,7 +361,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIChannel  GetChannelAttribute();
+		nsIChannel GetChannelAttribute();
 		
 		/// <summary>
         /// The response to the request is parsed as if it were a
@@ -371,7 +371,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDocument  GetResponseXMLAttribute();
+		nsIDOMDocument GetResponseXMLAttribute();
 		
 		/// <summary>
         /// The response to the request as text.
@@ -390,14 +390,14 @@ namespace Skybound.Gecko
         /// The status of the response to the request for HTTP requests.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetStatusAttribute();
+		uint GetStatusAttribute();
 		
 		/// <summary>
         /// The string representing the status of the response for
         /// HTTP requests.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetStatusTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aStatusText);
+		void GetStatusTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aStatusText);
 		
 		/// <summary>
         /// If the request has been sent already, this method will
@@ -416,6 +416,7 @@ namespace Skybound.Gecko
         /// @returns A string containing all of the response headers.
         /// NULL if the response has not yet been received.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string GetAllResponseHeaders();
 		
@@ -428,8 +429,9 @@ namespace Skybound.Gecko
         /// NULL if the response has not yet been received or the
         /// header does not exist in the response.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetResponseHeader([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  header);
+		nsAString GetResponseHeader([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String header);
 		
 		/// <summary>
         /// Native (non-script) method to initialize a request. Note that
@@ -454,7 +456,7 @@ namespace Skybound.Gecko
         /// @param password A password for authentication if necessary.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OpenRequest([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  method, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  url, System.Boolean  async, [MarshalAs(UnmanagedType.LPStruct)] nsAString user, [MarshalAs(UnmanagedType.LPStruct)] nsAString password);
+		void OpenRequest([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String method, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String url, bool async, [MarshalAs(UnmanagedType.LPStruct)] nsAString user, [MarshalAs(UnmanagedType.LPStruct)] nsAString password);
 		
 		/// <summary>
         /// Meant to be a script-only method for initializing a request.
@@ -483,7 +485,7 @@ namespace Skybound.Gecko
         /// The default value is the empty string
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Open([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  method, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  url, System.Boolean  async, [MarshalAs(UnmanagedType.LPStruct)] nsAString user, [MarshalAs(UnmanagedType.LPStruct)] nsAString password);
+		void Open([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String method, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String url, bool async, [MarshalAs(UnmanagedType.LPStruct)] nsAString user, [MarshalAs(UnmanagedType.LPStruct)] nsAString password);
 		
 		/// <summary>
         /// Sends the request. If the request is asynchronous, returns
@@ -511,7 +513,7 @@ namespace Skybound.Gecko
         /// calling send.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Send([MarshalAs(UnmanagedType.Interface)] nsIVariant  body);
+		void Send([MarshalAs(UnmanagedType.Interface)] nsIVariant body);
 		
 		/// <summary>
         /// A variant of the send() method used to send binary data.
@@ -531,7 +533,7 @@ namespace Skybound.Gecko
         /// @param value The body of the header.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetRequestHeader([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  header, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  value);
+		void SetRequestHeader([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String header, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String value);
 		
 		/// <summary>
         /// The state of the request.
@@ -544,7 +546,7 @@ namespace Skybound.Gecko
         /// 4 COMPLETED     Finished with all operations.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetReadyStateAttribute();
+		int GetReadyStateAttribute();
 		
 		/// <summary>
         /// Override the mime type returned by the server (if any). This may
@@ -556,7 +558,7 @@ namespace Skybound.Gecko
         /// (if any).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OverrideMimeType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  mimetype);
+		void OverrideMimeType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String mimetype);
 		
 		/// <summary>
         /// Set to true if the response is expected to be a stream of
@@ -572,7 +574,7 @@ namespace Skybound.Gecko
         /// will be called as each part of the response is received.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetMultipartAttribute();
+		bool GetMultipartAttribute();
 		
 		/// <summary>
         /// Set to true if the response is expected to be a stream of
@@ -588,7 +590,7 @@ namespace Skybound.Gecko
         /// will be called as each part of the response is received.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMultipartAttribute(System.Boolean  aMultipart);
+		void SetMultipartAttribute(bool aMultipart);
 		
 		/// <summary>
         /// Set to true if this is a background service request. This will
@@ -598,7 +600,7 @@ namespace Skybound.Gecko
         /// will simply fail instead.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetMozBackgroundRequestAttribute();
+		bool GetMozBackgroundRequestAttribute();
 		
 		/// <summary>
         /// Set to true if this is a background service request. This will
@@ -608,7 +610,7 @@ namespace Skybound.Gecko
         /// will simply fail instead.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozBackgroundRequestAttribute(System.Boolean  aMozBackgroundRequest);
+		void SetMozBackgroundRequestAttribute(bool aMozBackgroundRequest);
 		
 		/// <summary>
         /// When set to true attempts to make cross-site Access-Control requests
@@ -619,7 +621,7 @@ namespace Skybound.Gecko
         /// Defaults to false.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetWithCredentialsAttribute();
+		bool GetWithCredentialsAttribute();
 		
 		/// <summary>
         /// When set to true attempts to make cross-site Access-Control requests
@@ -630,7 +632,7 @@ namespace Skybound.Gecko
         /// Defaults to false.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetWithCredentialsAttribute(System.Boolean  aWithCredentials);
+		void SetWithCredentialsAttribute(bool aWithCredentials);
 		
 		/// <summary>
         /// Initialize the object for use from C++ code with the principal, script
@@ -645,14 +647,14 @@ namespace Skybound.Gecko
         /// null.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init([MarshalAs(UnmanagedType.Interface)] nsIPrincipal  principal, System.IntPtr scriptContext, System.IntPtr ownerWindow, [MarshalAs(UnmanagedType.Interface)] nsIURI  baseURI);
+		void Init([MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr scriptContext, System.IntPtr ownerWindow, [MarshalAs(UnmanagedType.Interface)] nsIURI baseURI);
 		
 		/// <summary>
         /// Upload process can be tracked by adding event listener to |upload|.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIXMLHttpRequestUpload  GetUploadAttribute();
+		nsIXMLHttpRequestUpload GetUploadAttribute();
 		
 		/// <summary>
         /// Meant to be a script-only mechanism for setting a callback function.
@@ -667,7 +669,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener  GetOnreadystatechangeAttribute();
+		nsIDOMEventListener GetOnreadystatechangeAttribute();
 		
 		/// <summary>
         /// Meant to be a script-only mechanism for setting a callback function.
@@ -681,7 +683,7 @@ namespace Skybound.Gecko
         /// Call open() before setting an onreadystatechange listener.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnreadystatechangeAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener  aOnreadystatechange);
+		void SetOnreadystatechangeAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnreadystatechange);
 	}
 	
 	/// <summary>nsIXHRSendable </summary>
@@ -696,7 +698,7 @@ namespace Skybound.Gecko
 		/// <param name='contentType'> </param>
 		/// <param name='charset'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSendInfo([MarshalAs(UnmanagedType.Interface)] out nsIInputStream  body, [MarshalAs(UnmanagedType.LPStruct)] nsAString  contentType, [MarshalAs(UnmanagedType.LPStruct)] nsAString  charset);
+		void GetSendInfo([MarshalAs(UnmanagedType.Interface)] out nsIInputStream body, [MarshalAs(UnmanagedType.LPStruct)] nsAString contentType, [MarshalAs(UnmanagedType.LPStruct)] nsAString charset);
 	}
 	
 	/// <summary>
@@ -723,7 +725,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener  GetOnuploadprogressAttribute();
+		nsIDOMEventListener GetOnuploadprogressAttribute();
 		
 		/// <summary>
         /// Meant to be a script-only mechanism for setting an upload progress event
@@ -739,6 +741,6 @@ namespace Skybound.Gecko
         /// Mozilla only.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnuploadprogressAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener  aOnuploadprogress);
+		void SetOnuploadprogressAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnuploadprogress);
 	}
 }

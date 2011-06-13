@@ -43,8 +43,9 @@ namespace Skybound.Gecko
         /// for the same <code>uri</code> will return identical pointers. FindResource
         /// is used to find out whether there already exists a resource corresponding to that url.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIRDFResource GetResource([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aURI);
+		nsIRDFResource GetResource([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aURI);
 		
 		/// <summary>
         /// Construct an RDF resource from a Unicode URI. This is provided
@@ -52,38 +53,44 @@ namespace Skybound.Gecko
         /// conversion from <code>nsString</code> objects. The <code>uri</code> will
         /// be converted to a single-byte representation internally.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIRDFResource GetUnicodeResource([MarshalAs(UnmanagedType.LPStruct)] nsAString aURI);
 		
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIRDFResource GetAnonymousResource();
 		
 		/// <summary>
         /// Construct an RDF literal from a Unicode string.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIRDFLiteral GetLiteral([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aValue);
 		
 		/// <summary>
         /// Construct an RDF literal from a PRTime.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIRDFDate GetDateLiteral(System.Int32  aValue);
+		nsIRDFDate GetDateLiteral(int aValue);
 		
 		/// <summary>
         /// Construct an RDF literal from an int.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIRDFInt GetIntLiteral(System.Int32  aValue);
+		nsIRDFInt GetIntLiteral(int aValue);
 		
 		/// <summary>
         /// Construct an RDF literal from a data blob
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIRDFBlob GetBlobLiteral(System.IntPtr aValue, System.Int32  aLength);
+		nsIRDFBlob GetBlobLiteral(System.IntPtr aValue, int aLength);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsAnonymousResource([MarshalAs(UnmanagedType.Interface)] nsIRDFResource  aResource);
+		bool IsAnonymousResource([MarshalAs(UnmanagedType.Interface)] nsIRDFResource aResource);
 		
 		/// <summary>
         /// Registers a resource with the RDF system, making it unique w.r.t.
@@ -110,7 +117,7 @@ namespace Skybound.Gecko
         /// cache rather than copying the resource URI itself.)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RegisterResource([MarshalAs(UnmanagedType.Interface)] nsIRDFResource  aResource, System.Boolean  aReplace);
+		void RegisterResource([MarshalAs(UnmanagedType.Interface)] nsIRDFResource aResource, bool aReplace);
 		
 		/// <summary>
         /// Called to notify the resource manager that a resource is no
@@ -126,7 +133,7 @@ namespace Skybound.Gecko
         /// releasing the storage for the <code>const char*</code> URI.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UnregisterResource([MarshalAs(UnmanagedType.Interface)] nsIRDFResource  aResource);
+		void UnregisterResource([MarshalAs(UnmanagedType.Interface)] nsIRDFResource aResource);
 		
 		/// <summary>
         /// Register a <i>named data source</i>. The RDF service will call
@@ -140,7 +147,7 @@ namespace Skybound.Gecko
         /// last reference to the data source is released.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RegisterDataSource([MarshalAs(UnmanagedType.Interface)] nsIRDFDataSource  aDataSource, System.Boolean  aReplace);
+		void RegisterDataSource([MarshalAs(UnmanagedType.Interface)] nsIRDFDataSource aDataSource, bool aReplace);
 		
 		/// <summary>
         /// Unregister a <i>named data source</i>. The RDF service will call
@@ -148,7 +155,7 @@ namespace Skybound.Gecko
         /// data source was registered.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UnregisterDataSource([MarshalAs(UnmanagedType.Interface)] nsIRDFDataSource  aDataSource);
+		void UnregisterDataSource([MarshalAs(UnmanagedType.Interface)] nsIRDFDataSource aDataSource);
 		
 		/// <summary>
         /// Get the <i>named data source</i> corresponding to the URI. If a data
@@ -162,15 +169,17 @@ namespace Skybound.Gecko
         /// new data source. If construction is successful, the data source will
         /// be initialized via <code>nsIRDFDataSource::Init()</code>.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIRDFDataSource GetDataSource([MarshalAs(UnmanagedType.LPStr)] System.String  aURI);
+		nsIRDFDataSource GetDataSource([MarshalAs(UnmanagedType.LPStr)] string aURI);
 		
 		/// <summary>
         /// Same as GetDataSource, but if a remote/XML data source needs to be
         /// constructed, then this method will issue a <b>blocking</b> Refresh
         /// call on that data source.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIRDFDataSource GetDataSourceBlocking([MarshalAs(UnmanagedType.LPStr)] System.String  aURI);
+		nsIRDFDataSource GetDataSourceBlocking([MarshalAs(UnmanagedType.LPStr)] string aURI);
 	}
 }

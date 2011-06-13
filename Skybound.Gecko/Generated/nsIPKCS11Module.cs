@@ -49,11 +49,13 @@ namespace Skybound.Gecko
 		/// <summary>Member FindSlotByName </summary>
 		/// <param name='name'> </param>
 		/// <returns>A nsIPKCS11Slot</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIPKCS11Slot FindSlotByName([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string name);
 		
 		/// <summary>Member ListSlots </summary>
 		/// <returns>A nsIEnumerator</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIEnumerator ListSlots();
 	}

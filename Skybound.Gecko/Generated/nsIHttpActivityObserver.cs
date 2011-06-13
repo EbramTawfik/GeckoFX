@@ -71,7 +71,7 @@ namespace Skybound.Gecko
         /// this activity
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ObserveActivity([MarshalAs(UnmanagedType.Interface)] nsISupports  aHttpChannel, System.UInt32  aActivityType, System.UInt32  aActivitySubtype, System.UInt32  aTimestamp, System.UInt64  aExtraSizeData, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aExtraStringData);
+		void ObserveActivity([MarshalAs(UnmanagedType.Interface)] nsISupports aHttpChannel, uint aActivityType, uint aActivitySubtype, uint aTimestamp, ulong aExtraSizeData, [MarshalAs(UnmanagedType.LPStruct)] nsAString aExtraStringData);
 		
 		/// <summary>
         /// This attribute is true when this interface is active and should
@@ -80,7 +80,7 @@ namespace Skybound.Gecko
         /// implemented only by nsHttpActivityDistributor.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsActiveAttribute();
+		bool GetIsActiveAttribute();
 	}
 	
 	/// <summary>
@@ -127,7 +127,7 @@ namespace Skybound.Gecko
         /// this activity
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void ObserveActivity([MarshalAs(UnmanagedType.Interface)] nsISupports  aHttpChannel, System.UInt32  aActivityType, System.UInt32  aActivitySubtype, System.UInt32  aTimestamp, System.UInt64  aExtraSizeData, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aExtraStringData);
+		new void ObserveActivity([MarshalAs(UnmanagedType.Interface)] nsISupports aHttpChannel, uint aActivityType, uint aActivitySubtype, uint aTimestamp, ulong aExtraSizeData, [MarshalAs(UnmanagedType.LPStruct)] nsAString aExtraStringData);
 		
 		/// <summary>
         /// This attribute is true when this interface is active and should
@@ -136,7 +136,7 @@ namespace Skybound.Gecko
         /// implemented only by nsHttpActivityDistributor.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Boolean  GetIsActiveAttribute();
+		new bool GetIsActiveAttribute();
 		
 		/// <summary>
         /// nsIHttpActivityDistributor
@@ -145,9 +145,9 @@ namespace Skybound.Gecko
         /// http activities.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddObserver([MarshalAs(UnmanagedType.Interface)] nsIHttpActivityObserver  aObserver);
+		void AddObserver([MarshalAs(UnmanagedType.Interface)] nsIHttpActivityObserver aObserver);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveObserver([MarshalAs(UnmanagedType.Interface)] nsIHttpActivityObserver  aObserver);
+		void RemoveObserver([MarshalAs(UnmanagedType.Interface)] nsIHttpActivityObserver aObserver);
 	}
 }

@@ -52,7 +52,7 @@ namespace Skybound.Gecko
         /// @param value     final result when state==INSTALL_DONE, otherwise ignored
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnStateChange(System.UInt32  index, short state, System.Int32  value);
+		void OnStateChange(uint index, short state, int value);
 		
 		/// <summary>
         /// download progress
@@ -62,6 +62,6 @@ namespace Skybound.Gecko
         /// @param maxValue  the total size
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnProgress(System.UInt32  index, System.UInt32  value, System.UInt32  maxValue);
+		void OnProgress(uint index, uint value, uint maxValue);
 	}
 }

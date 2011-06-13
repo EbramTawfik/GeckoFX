@@ -38,25 +38,25 @@ namespace Skybound.Gecko
         /// "type" will be equal to one of the defined object identifiers.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.UInt32  GetTypeAttribute();
+		new uint GetTypeAttribute();
 		
 		/// <summary>
         /// "type" will be equal to one of the defined object identifiers.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetTypeAttribute(System.UInt32  aType);
+		new void SetTypeAttribute(uint aType);
 		
 		/// <summary>
         /// This contains a tag as explained in ASN.1 standards documents.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.UInt32  GetTagAttribute();
+		new uint GetTagAttribute();
 		
 		/// <summary>
         /// This contains a tag as explained in ASN.1 standards documents.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetTagAttribute(System.UInt32  aTag);
+		new void SetTagAttribute(uint aTag);
 		
 		/// <summary>
         /// "displayName" contains a human readable explanatory label.
@@ -86,12 +86,12 @@ namespace Skybound.Gecko
 		/// <param name='data'> </param>
 		/// <param name='len'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetData(System.IntPtr  data, System.UInt32  len);
+		void SetData(System.IntPtr data, uint len);
 		
 		/// <summary>Member GetData </summary>
 		/// <param name='data'> </param>
 		/// <param name='len'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetData(out System.IntPtr  data, out System.UInt32  len);
+		void GetData(out System.IntPtr data, out uint len);
 	}
 }

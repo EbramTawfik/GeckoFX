@@ -43,7 +43,7 @@ namespace Skybound.Gecko
         /// sub-content until either it knows that a CSP is ready or will not be used.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsInitializedAttribute();
+		bool GetIsInitializedAttribute();
 		
 		/// <summary>
         /// Set to true when the CSP has been read in and parsed and is ready to
@@ -51,21 +51,21 @@ namespace Skybound.Gecko
         /// sub-content until either it knows that a CSP is ready or will not be used.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetIsInitializedAttribute(System.Boolean  aIsInitialized);
+		void SetIsInitializedAttribute(bool aIsInitialized);
 		
 		/// <summary>
         /// When set to true, content load-blocking and fail-closed are disabled: CSP
         /// will ONLY send reports, and not modify behavior.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetReportOnlyModeAttribute();
+		bool GetReportOnlyModeAttribute();
 		
 		/// <summary>
         /// When set to true, content load-blocking and fail-closed are disabled: CSP
         /// will ONLY send reports, and not modify behavior.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetReportOnlyModeAttribute(System.Boolean  aReportOnlyMode);
+		void SetReportOnlyModeAttribute(bool aReportOnlyMode);
 		
 		/// <summary>
         /// A read-only string version of the policy for debugging.
@@ -77,14 +77,14 @@ namespace Skybound.Gecko
         /// Whether this policy allows in-page script.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetAllowsInlineScriptAttribute();
+		bool GetAllowsInlineScriptAttribute();
 		
 		/// <summary>
         /// whether this policy allows eval and eval-like functions
         /// such as setTimeout("code string", time).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetAllowsEvalAttribute();
+		bool GetAllowsEvalAttribute();
 		
 		/// <summary>
         /// Log policy violation on the Error Console and send a report if a report-uri
@@ -100,7 +100,7 @@ namespace Skybound.Gecko
         /// source line number of the violation (if available)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void LogViolationDetails(ushort violationType, [MarshalAs(UnmanagedType.LPStruct)] nsAString sourceFile, [MarshalAs(UnmanagedType.LPStruct)] nsAString scriptSample, System.Int32  lineNum);
+		void LogViolationDetails(ushort violationType, [MarshalAs(UnmanagedType.LPStruct)] nsAString sourceFile, [MarshalAs(UnmanagedType.LPStruct)] nsAString scriptSample, int lineNum);
 		
 		/// <summary>
         /// Manually triggers violation report sending given a URI and reason.
@@ -117,21 +117,21 @@ namespace Skybound.Gecko
         /// nothing.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendReports([MarshalAs(UnmanagedType.LPStruct)] nsAString blockedURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString violatedDirective, [MarshalAs(UnmanagedType.LPStruct)] nsAString scriptSample, System.Int32  lineNum);
+		void SendReports([MarshalAs(UnmanagedType.LPStruct)] nsAString blockedURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString violatedDirective, [MarshalAs(UnmanagedType.LPStruct)] nsAString scriptSample, int lineNum);
 		
 		/// <summary>
         /// Called after the CSP object is created to fill in the appropriate request
         /// and request header information needed in case a report needs to be sent.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ScanRequestData([MarshalAs(UnmanagedType.Interface)] nsIHttpChannel  aChannel);
+		void ScanRequestData([MarshalAs(UnmanagedType.Interface)] nsIHttpChannel aChannel);
 		
 		/// <summary>
         /// Updates the policy currently stored in the CSP to be "refined" or
         /// tightened by the one specified in the string policyString.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RefinePolicy([MarshalAs(UnmanagedType.LPStruct)] nsAString policyString, [MarshalAs(UnmanagedType.Interface)] nsIURI  selfURI);
+		void RefinePolicy([MarshalAs(UnmanagedType.LPStruct)] nsAString policyString, [MarshalAs(UnmanagedType.Interface)] nsIURI selfURI);
 		
 		/// <summary>
         /// Verifies ancestry as permitted by the policy.
@@ -145,7 +145,7 @@ namespace Skybound.Gecko
         /// true if the frame's ancestors are all permitted by policy
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool PermitsAncestry([MarshalAs(UnmanagedType.Interface)] nsIDocShell  docShell);
+		bool PermitsAncestry([MarshalAs(UnmanagedType.Interface)] nsIDocShell docShell);
 		
 		/// <summary>
         /// Delegate method called by the service when sub-elements of the protected
@@ -156,7 +156,7 @@ namespace Skybound.Gecko
         /// this value should not be cached.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		short ShouldLoad(System.UInt32  aContentType, [MarshalAs(UnmanagedType.Interface)] nsIURI  aContentLocation, [MarshalAs(UnmanagedType.Interface)] nsIURI  aRequestOrigin, [MarshalAs(UnmanagedType.Interface)] nsISupports  aContext, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aMimeTypeGuess, [MarshalAs(UnmanagedType.Interface)] nsISupports  aExtra);
+		short ShouldLoad(uint aContentType, [MarshalAs(UnmanagedType.Interface)] nsIURI aContentLocation, [MarshalAs(UnmanagedType.Interface)] nsIURI aRequestOrigin, [MarshalAs(UnmanagedType.Interface)] nsISupports aContext, [MarshalAs(UnmanagedType.LPStruct)] nsAString aMimeTypeGuess, [MarshalAs(UnmanagedType.Interface)] nsISupports aExtra);
 		
 		/// <summary>
         /// Delegate method called by the service when sub-elements of the protected
@@ -164,6 +164,6 @@ namespace Skybound.Gecko
         /// decides whether or not the policy is satisfied.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		short ShouldProcess(System.UInt32  aContentType, [MarshalAs(UnmanagedType.Interface)] nsIURI  aContentLocation, [MarshalAs(UnmanagedType.Interface)] nsIURI  aRequestOrigin, [MarshalAs(UnmanagedType.Interface)] nsISupports  aContext, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aMimeType, [MarshalAs(UnmanagedType.Interface)] nsISupports  aExtra);
+		short ShouldProcess(uint aContentType, [MarshalAs(UnmanagedType.Interface)] nsIURI aContentLocation, [MarshalAs(UnmanagedType.Interface)] nsIURI aRequestOrigin, [MarshalAs(UnmanagedType.Interface)] nsISupports aContext, [MarshalAs(UnmanagedType.LPStruct)] nsAString aMimeType, [MarshalAs(UnmanagedType.Interface)] nsISupports aExtra);
 	}
 }

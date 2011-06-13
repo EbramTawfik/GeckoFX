@@ -57,6 +57,7 @@ namespace Skybound.Gecko
         ///CurrentItem will return the CurrentItem item it will fail if the
         /// list is empty
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISupports CurrentItem();
 		
@@ -91,6 +92,7 @@ namespace Skybound.Gecko
         ///CurrentItem will return the CurrentItem item it will fail if the
         /// list is empty
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsISupports CurrentItem();
 		

@@ -49,8 +49,9 @@ namespace Skybound.Gecko
         /// @returns The DOM document created as a result of parsing the
         /// string
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDocument ParseFromString([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string str, [MarshalAs(UnmanagedType.LPStr)] System.String  contentType);
+		nsIDOMDocument ParseFromString([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string str, [MarshalAs(UnmanagedType.LPStr)] string contentType);
 		
 		/// <summary>
         /// The buffer is parsed into a DOM document.
@@ -62,8 +63,9 @@ namespace Skybound.Gecko
         /// @returns The DOM document created as a result of parsing the
         /// string
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDocument ParseFromBuffer(System.IntPtr  buf, System.UInt32  bufLen, [MarshalAs(UnmanagedType.LPStr)] System.String  contentType);
+		nsIDOMDocument ParseFromBuffer(System.IntPtr buf, uint bufLen, [MarshalAs(UnmanagedType.LPStr)] string contentType);
 		
 		/// <summary>
         /// The byte stream passed in is parsed into a DOM document.
@@ -80,8 +82,9 @@ namespace Skybound.Gecko
         /// @returns The DOM document created as a result of parsing the
         /// stream
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDocument ParseFromStream([MarshalAs(UnmanagedType.Interface)] nsIInputStream  stream, [MarshalAs(UnmanagedType.LPStr)] System.String  charset, System.Int32  contentLength, [MarshalAs(UnmanagedType.LPStr)] System.String  contentType);
+		nsIDOMDocument ParseFromStream([MarshalAs(UnmanagedType.Interface)] nsIInputStream stream, [MarshalAs(UnmanagedType.LPStr)] string charset, int contentLength, [MarshalAs(UnmanagedType.LPStr)] string contentType);
 		
 		/// <summary>
         /// Initialize the principal and document and base URIs that the parser should
@@ -105,7 +108,7 @@ namespace Skybound.Gecko
         /// can be got.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init([MarshalAs(UnmanagedType.Interface)] nsIPrincipal  principal, [MarshalAs(UnmanagedType.Interface)] nsIURI  documentURI, [MarshalAs(UnmanagedType.Interface)] nsIURI  baseURI, System.IntPtr scriptObject);
+		void Init([MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, [MarshalAs(UnmanagedType.Interface)] nsIURI documentURI, [MarshalAs(UnmanagedType.Interface)] nsIURI baseURI, System.IntPtr scriptObject);
 	}
 	
 	/// <summary>
@@ -122,6 +125,6 @@ namespace Skybound.Gecko
         /// Just like nsIDOMParser.init, but callable from JS.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init([MarshalAs(UnmanagedType.Interface)] nsIPrincipal  principal, [MarshalAs(UnmanagedType.Interface)] nsIURI  documentURI, [MarshalAs(UnmanagedType.Interface)] nsIURI  baseURI);
+		void Init([MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, [MarshalAs(UnmanagedType.Interface)] nsIURI documentURI, [MarshalAs(UnmanagedType.Interface)] nsIURI baseURI);
 	}
 }

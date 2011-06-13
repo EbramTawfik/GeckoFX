@@ -38,23 +38,23 @@ namespace Skybound.Gecko
 		/// <param name='command'> </param>
 		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsCommandEnabled([MarshalAs(UnmanagedType.LPStr)] System.String  command);
+		bool IsCommandEnabled([MarshalAs(UnmanagedType.LPStr)] string command);
 		
 		/// <summary>Member SupportsCommand </summary>
 		/// <param name='command'> </param>
 		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool SupportsCommand([MarshalAs(UnmanagedType.LPStr)] System.String  command);
+		bool SupportsCommand([MarshalAs(UnmanagedType.LPStr)] string command);
 		
 		/// <summary>Member DoCommand </summary>
 		/// <param name='command'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DoCommand([MarshalAs(UnmanagedType.LPStr)] System.String  command);
+		void DoCommand([MarshalAs(UnmanagedType.LPStr)] string command);
 		
 		/// <summary>Member OnEvent </summary>
 		/// <param name='eventName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnEvent([MarshalAs(UnmanagedType.LPStr)] System.String  eventName);
+		void OnEvent([MarshalAs(UnmanagedType.LPStr)] string eventName);
 	}
 	
 	/// <summary>
@@ -72,10 +72,10 @@ namespace Skybound.Gecko
         ///  to commands.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCommandStateWithParams([MarshalAs(UnmanagedType.LPStr)] System.String  command, [MarshalAs(UnmanagedType.Interface)] nsICommandParams  aCommandParams);
+		void GetCommandStateWithParams([MarshalAs(UnmanagedType.LPStr)] string command, [MarshalAs(UnmanagedType.Interface)] nsICommandParams aCommandParams);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DoCommandWithParams([MarshalAs(UnmanagedType.LPStr)] System.String  command, [MarshalAs(UnmanagedType.Interface)] nsICommandParams  aCommandParams);
+		void DoCommandWithParams([MarshalAs(UnmanagedType.LPStr)] string command, [MarshalAs(UnmanagedType.Interface)] nsICommandParams aCommandParams);
 	}
 	
 	/// <summary>
@@ -91,21 +91,23 @@ namespace Skybound.Gecko
         ///An API for registering commands in groups, to allow for
         ///  updating via nsIDOMWindowInternal::UpdateCommands. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddCommandToGroup([MarshalAs(UnmanagedType.LPStr)] System.String  aCommand, [MarshalAs(UnmanagedType.LPStr)] System.String  aGroup);
+		void AddCommandToGroup([MarshalAs(UnmanagedType.LPStr)] string aCommand, [MarshalAs(UnmanagedType.LPStr)] string aGroup);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveCommandFromGroup([MarshalAs(UnmanagedType.LPStr)] System.String  aCommand, [MarshalAs(UnmanagedType.LPStr)] System.String  aGroup);
+		void RemoveCommandFromGroup([MarshalAs(UnmanagedType.LPStr)] string aCommand, [MarshalAs(UnmanagedType.LPStr)] string aGroup);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsCommandInGroup([MarshalAs(UnmanagedType.LPStr)] System.String  aCommand, [MarshalAs(UnmanagedType.LPStr)] System.String  aGroup);
+		bool IsCommandInGroup([MarshalAs(UnmanagedType.LPStr)] string aCommand, [MarshalAs(UnmanagedType.LPStr)] string aGroup);
 		
 		/// <summary>
         ///We should expose some methods that allow for enumeration.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISimpleEnumerator GetGroupsEnumerator();
 		
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISimpleEnumerator GetEnumeratorForGroup([MarshalAs(UnmanagedType.LPStr)] System.String  aGroup);
+		nsISimpleEnumerator GetEnumeratorForGroup([MarshalAs(UnmanagedType.LPStr)] string aGroup);
 	}
 }

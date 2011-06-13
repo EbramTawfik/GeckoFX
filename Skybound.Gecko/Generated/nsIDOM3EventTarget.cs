@@ -44,13 +44,13 @@ namespace Skybound.Gecko
         /// Introduced in DOM Level 3:
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddGroupedEventListener([MarshalAs(UnmanagedType.LPStruct)] nsAString type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener  listener, System.Boolean  useCapture, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventGroup  evtGroup);
+		void AddGroupedEventListener([MarshalAs(UnmanagedType.LPStruct)] nsAString type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener listener, bool useCapture, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventGroup evtGroup);
 		
 		/// <summary>
         /// Introduced in DOM Level 3:
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveGroupedEventListener([MarshalAs(UnmanagedType.LPStruct)] nsAString type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener  listener, System.Boolean  useCapture, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventGroup  evtGroup);
+		void RemoveGroupedEventListener([MarshalAs(UnmanagedType.LPStruct)] nsAString type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener listener, bool useCapture, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventGroup evtGroup);
 		
 		/// <summary>
         /// Introduced in DOM Level 3:

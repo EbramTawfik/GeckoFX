@@ -35,10 +35,10 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetSourceAttribute </summary>
-		/// <returns>A nsIDOMNode </returns>
+		/// <returns>A nsIDOMNode</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMNode  GetSourceAttribute();
+		nsIDOMNode GetSourceAttribute();
 		
 		/// <summary>Member GetUriAttribute </summary>
 		/// <param name='aUri'> </param>
@@ -46,14 +46,14 @@ namespace Skybound.Gecko
 		void GetUriAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aUri);
 		
 		/// <summary>Member GetTotalSizeAttribute </summary>
-		/// <returns>A System.Int32 </returns>
+		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetTotalSizeAttribute();
+		int GetTotalSizeAttribute();
 		
 		/// <summary>Member GetLoadedSizeAttribute </summary>
-		/// <returns>A System.Int32 </returns>
+		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetLoadedSizeAttribute();
+		int GetLoadedSizeAttribute();
 		
 		/// <summary>Member GetReadyStateAttribute </summary>
 		/// <returns>A System.UInt16</returns>

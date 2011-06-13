@@ -68,7 +68,7 @@ namespace Skybound.Gecko
         /// error information (e.g., for HTTP requests see nsIHttpChannel).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void OnStateChange([MarshalAs(UnmanagedType.Interface)] nsIWebProgress  aWebProgress, [MarshalAs(UnmanagedType.Interface)] nsIRequest  aRequest, System.UInt32  aStateFlags, System.Int32  aStatus);
+		new void OnStateChange([MarshalAs(UnmanagedType.Interface)] nsIWebProgress aWebProgress, [MarshalAs(UnmanagedType.Interface)] nsIRequest aRequest, uint aStateFlags, int aStatus);
 		
 		/// <summary>
         /// Notification that the progress has changed for one of the requests
@@ -98,7 +98,7 @@ namespace Skybound.Gecko
         /// nsIWebProgressListener2::onProgressChange64 will be called.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void OnProgressChange([MarshalAs(UnmanagedType.Interface)] nsIWebProgress  aWebProgress, [MarshalAs(UnmanagedType.Interface)] nsIRequest  aRequest, System.Int32  aCurSelfProgress, System.Int32  aMaxSelfProgress, System.Int32  aCurTotalProgress, System.Int32  aMaxTotalProgress);
+		new void OnProgressChange([MarshalAs(UnmanagedType.Interface)] nsIWebProgress aWebProgress, [MarshalAs(UnmanagedType.Interface)] nsIRequest aRequest, int aCurSelfProgress, int aMaxSelfProgress, int aCurTotalProgress, int aMaxTotalProgress);
 		
 		/// <summary>
         /// Called when the location of the window being watched changes.  This is not
@@ -116,7 +116,7 @@ namespace Skybound.Gecko
         /// The URI of the location that is being loaded.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void OnLocationChange([MarshalAs(UnmanagedType.Interface)] nsIWebProgress  aWebProgress, [MarshalAs(UnmanagedType.Interface)] nsIRequest  aRequest, [MarshalAs(UnmanagedType.Interface)] nsIURI  aLocation);
+		new void OnLocationChange([MarshalAs(UnmanagedType.Interface)] nsIWebProgress aWebProgress, [MarshalAs(UnmanagedType.Interface)] nsIRequest aRequest, [MarshalAs(UnmanagedType.Interface)] nsIURI aLocation);
 		
 		/// <summary>
         /// Notification that the status of a request has changed.  The status message
@@ -136,7 +136,7 @@ namespace Skybound.Gecko
         /// Localized text corresponding to aStatus.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void OnStatusChange([MarshalAs(UnmanagedType.Interface)] nsIWebProgress  aWebProgress, [MarshalAs(UnmanagedType.Interface)] nsIRequest  aRequest, System.Int32  aStatus, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aMessage);
+		new void OnStatusChange([MarshalAs(UnmanagedType.Interface)] nsIWebProgress aWebProgress, [MarshalAs(UnmanagedType.Interface)] nsIRequest aRequest, int aStatus, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aMessage);
 		
 		/// <summary>
         /// Notification called for security progress.  This method will be called on
@@ -157,7 +157,7 @@ namespace Skybound.Gecko
         /// installed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void OnSecurityChange([MarshalAs(UnmanagedType.Interface)] nsIWebProgress  aWebProgress, [MarshalAs(UnmanagedType.Interface)] nsIRequest  aRequest, System.UInt32  aState);
+		new void OnSecurityChange([MarshalAs(UnmanagedType.Interface)] nsIWebProgress aWebProgress, [MarshalAs(UnmanagedType.Interface)] nsIRequest aRequest, uint aState);
 		
 		/// <summary>
         /// Notification that the progress has changed for one of the requests
@@ -187,7 +187,7 @@ namespace Skybound.Gecko
         /// @see nsIWebProgressListener2::onProgressChange64
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void OnProgressChange64([MarshalAs(UnmanagedType.Interface)] nsIWebProgress  aWebProgress, [MarshalAs(UnmanagedType.Interface)] nsIRequest  aRequest, System.Int32  aCurSelfProgress, System.Int32  aMaxSelfProgress, System.Int32  aCurTotalProgress, System.Int32  aMaxTotalProgress);
+		new void OnProgressChange64([MarshalAs(UnmanagedType.Interface)] nsIWebProgress aWebProgress, [MarshalAs(UnmanagedType.Interface)] nsIRequest aRequest, int aCurSelfProgress, int aMaxSelfProgress, int aCurTotalProgress, int aMaxTotalProgress);
 		
 		/// <summary>
         /// Notification that a refresh or redirect has been requested in aWebProgress
@@ -209,7 +209,7 @@ namespace Skybound.Gecko
         /// False if the refresh should be aborted.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool OnRefreshAttempted([MarshalAs(UnmanagedType.Interface)] nsIWebProgress  aWebProgress, [MarshalAs(UnmanagedType.Interface)] nsIURI  aRefreshURI, System.Int32  aMillis, System.Boolean  aSameURI);
+		new bool OnRefreshAttempted([MarshalAs(UnmanagedType.Interface)] nsIWebProgress aWebProgress, [MarshalAs(UnmanagedType.Interface)] nsIURI aRefreshURI, int aMillis, bool aSameURI);
 		
 		/// <summary>
         /// Initializes the transfer with certain properties.  This function must
@@ -244,48 +244,48 @@ namespace Skybound.Gecko
         /// reference.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Init([MarshalAs(UnmanagedType.Interface)] nsIURI  aSource, [MarshalAs(UnmanagedType.Interface)] nsIURI  aTarget, [MarshalAs(UnmanagedType.LPStruct)] nsAString aDisplayName, [MarshalAs(UnmanagedType.Interface)] nsIMIMEInfo  aMIMEInfo, System.UInt32  startTime, [MarshalAs(UnmanagedType.Interface)] nsILocalFile  aTempFile, [MarshalAs(UnmanagedType.Interface)] nsICancelable  aCancelable);
+		new void Init([MarshalAs(UnmanagedType.Interface)] nsIURI aSource, [MarshalAs(UnmanagedType.Interface)] nsIURI aTarget, [MarshalAs(UnmanagedType.LPStruct)] nsAString aDisplayName, [MarshalAs(UnmanagedType.Interface)] nsIMIMEInfo aMIMEInfo, uint startTime, [MarshalAs(UnmanagedType.Interface)] nsILocalFile aTempFile, [MarshalAs(UnmanagedType.Interface)] nsICancelable aCancelable);
 		
 		/// <summary>
         /// The target of a download is always a file on the local file system.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsILocalFile  GetTargetFileAttribute();
+		nsILocalFile GetTargetFileAttribute();
 		
 		/// <summary>
         /// The percentage of transfer completed.
         /// If the file size is unknown it'll be -1 here.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetPercentCompleteAttribute();
+		int GetPercentCompleteAttribute();
 		
 		/// <summary>
         /// The amount of bytes downloaded so far.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetAmountTransferredAttribute();
+		int GetAmountTransferredAttribute();
 		
 		/// <summary>
         /// The size of file in bytes.
         /// Unknown size is represented by -1.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetSizeAttribute();
+		int GetSizeAttribute();
 		
 		/// <summary>
         /// The source of the transfer.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI  GetSourceAttribute();
+		nsIURI GetSourceAttribute();
 		
 		/// <summary>
         /// The target of the transfer.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI  GetTargetAttribute();
+		nsIURI GetTargetAttribute();
 		
 		/// <summary>
         /// Object that can be used to cancel the download.
@@ -293,7 +293,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsICancelable  GetCancelableAttribute();
+		nsICancelable GetCancelableAttribute();
 		
 		/// <summary>
         /// The user-readable description of the transfer.
@@ -305,7 +305,7 @@ namespace Skybound.Gecko
         /// The time a transfer was started.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetStartTimeAttribute();
+		int GetStartTimeAttribute();
 		
 		/// <summary>
         /// The speed of the transfer in bytes/sec.
@@ -320,13 +320,13 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIMIMEInfo  GetMIMEInfoAttribute();
+		nsIMIMEInfo GetMIMEInfoAttribute();
 		
 		/// <summary>
         /// The id of the download that is stored in the database.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetIdAttribute();
+		uint GetIdAttribute();
 		
 		/// <summary>
         /// The state of the download.
@@ -341,7 +341,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI  GetReferrerAttribute();
+		nsIURI GetReferrerAttribute();
 		
 		/// <summary>
         /// Indicates if the download can be resumed after being paused or not.  This
@@ -349,6 +349,6 @@ namespace Skybound.Gecko
         /// server supports it.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetResumableAttribute();
+		bool GetResumableAttribute();
 	}
 }

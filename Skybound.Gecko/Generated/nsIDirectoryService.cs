@@ -54,8 +54,9 @@ namespace Skybound.Gecko
         /// @return             The file represented by the property.
         ///
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIFile GetFile([MarshalAs(UnmanagedType.LPStr)] System.String  prop, out System.Boolean  persistent);
+		nsIFile GetFile([MarshalAs(UnmanagedType.LPStr)] string prop, out bool persistent);
 	}
 	
 	/// <summary>
@@ -86,8 +87,9 @@ namespace Skybound.Gecko
         /// @return             The file represented by the property.
         ///
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIFile GetFile([MarshalAs(UnmanagedType.LPStr)] System.String  prop, out System.Boolean  persistent);
+		new nsIFile GetFile([MarshalAs(UnmanagedType.LPStr)] string prop, out bool persistent);
 		
 		/// <summary>
         /// getFiles
@@ -102,8 +104,9 @@ namespace Skybound.Gecko
         /// @returnCode         NS_SUCCESS_AGGREGATE_RESULT if this result should be
         /// aggregated with other "lower" providers.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISimpleEnumerator GetFiles([MarshalAs(UnmanagedType.LPStr)] System.String  prop);
+		nsISimpleEnumerator GetFiles([MarshalAs(UnmanagedType.LPStr)] string prop);
 	}
 	
 	/// <summary>
@@ -135,7 +138,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RegisterProvider([MarshalAs(UnmanagedType.Interface)] nsIDirectoryServiceProvider  prov);
+		void RegisterProvider([MarshalAs(UnmanagedType.Interface)] nsIDirectoryServiceProvider prov);
 		
 		/// <summary>
         /// unregisterProvider
@@ -146,6 +149,6 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UnregisterProvider([MarshalAs(UnmanagedType.Interface)] nsIDirectoryServiceProvider  prov);
+		void UnregisterProvider([MarshalAs(UnmanagedType.Interface)] nsIDirectoryServiceProvider prov);
 	}
 }

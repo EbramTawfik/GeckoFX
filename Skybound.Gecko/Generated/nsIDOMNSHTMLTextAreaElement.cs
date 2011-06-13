@@ -35,55 +35,55 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetAutofocusAttribute </summary>
-		/// <returns>A System.Boolean </returns>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetAutofocusAttribute();
+		bool GetAutofocusAttribute();
 		
 		/// <summary>Member SetAutofocusAttribute </summary>
 		/// <param name='aAutofocus'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAutofocusAttribute(System.Boolean  aAutofocus);
+		void SetAutofocusAttribute(bool aAutofocus);
 		
 		/// <summary>Member GetControllersAttribute </summary>
-		/// <returns>A nsIControllers </returns>
+		/// <returns>A nsIControllers</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIControllers  GetControllersAttribute();
+		nsIControllers GetControllersAttribute();
 		
 		/// <summary>Member GetTextLengthAttribute </summary>
-		/// <returns>A System.Int32 </returns>
+		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetTextLengthAttribute();
+		int GetTextLengthAttribute();
 		
 		/// <summary>Member GetSelectionStartAttribute </summary>
-		/// <returns>A System.Int32 </returns>
+		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetSelectionStartAttribute();
+		int GetSelectionStartAttribute();
 		
 		/// <summary>Member SetSelectionStartAttribute </summary>
 		/// <param name='aSelectionStart'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSelectionStartAttribute(System.Int32  aSelectionStart);
+		void SetSelectionStartAttribute(int aSelectionStart);
 		
 		/// <summary>Member GetSelectionEndAttribute </summary>
-		/// <returns>A System.Int32 </returns>
+		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetSelectionEndAttribute();
+		int GetSelectionEndAttribute();
 		
 		/// <summary>Member SetSelectionEndAttribute </summary>
 		/// <param name='aSelectionEnd'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSelectionEndAttribute(System.Int32  aSelectionEnd);
+		void SetSelectionEndAttribute(int aSelectionEnd);
 		
 		/// <summary>Member GetMaxLengthAttribute </summary>
-		/// <returns>A System.Int32 </returns>
+		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetMaxLengthAttribute();
+		int GetMaxLengthAttribute();
 		
 		/// <summary>Member SetMaxLengthAttribute </summary>
 		/// <param name='aMaxLength'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMaxLengthAttribute(System.Int32  aMaxLength);
+		void SetMaxLengthAttribute(int aMaxLength);
 		
 		/// <summary>Member GetPlaceholderAttribute </summary>
 		/// <param name='aPlaceholder'> </param>
@@ -96,14 +96,14 @@ namespace Skybound.Gecko
 		void SetPlaceholderAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aPlaceholder);
 		
 		/// <summary>Member GetRequiredAttribute </summary>
-		/// <returns>A System.Boolean </returns>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetRequiredAttribute();
+		bool GetRequiredAttribute();
 		
 		/// <summary>Member SetRequiredAttribute </summary>
 		/// <param name='aRequired'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetRequiredAttribute(System.Boolean  aRequired);
+		void SetRequiredAttribute(bool aRequired);
 		
 		/// <summary>
         /// Reflects the wrap content attribute. Possible values are "soft, "hard" and
@@ -123,13 +123,13 @@ namespace Skybound.Gecko
         /// http://www.whatwg.org/specs/web-apps/current-work/#the-constraint-validation-api
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetWillValidateAttribute();
+		bool GetWillValidateAttribute();
 		
 		/// <summary>Member GetValidityAttribute </summary>
-		/// <returns>A nsIDOMValidityState </returns>
+		/// <returns>A nsIDOMValidityState</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMValidityState  GetValidityAttribute();
+		nsIDOMValidityState GetValidityAttribute();
 		
 		/// <summary>Member GetValidationMessageAttribute </summary>
 		/// <param name='aValidationMessage'> </param>
@@ -150,6 +150,6 @@ namespace Skybound.Gecko
 		/// <param name='selectionStart'> </param>
 		/// <param name='selectionEnd'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSelectionRange(System.Int32  selectionStart, System.Int32  selectionEnd);
+		void SetSelectionRange(int selectionStart, int selectionEnd);
 	}
 }

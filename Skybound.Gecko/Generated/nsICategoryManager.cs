@@ -42,8 +42,9 @@ namespace Skybound.Gecko
         /// @param aEntry The entry you're looking for ("http")
         /// @return The value.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string GetCategoryEntry([MarshalAs(UnmanagedType.LPStr)] System.String  aCategory, [MarshalAs(UnmanagedType.LPStr)] System.String  aEntry);
+		string GetCategoryEntry([MarshalAs(UnmanagedType.LPStr)] string aCategory, [MarshalAs(UnmanagedType.LPStr)] string aEntry);
 		
 		/// <summary>
         /// Add an entry to a category.
@@ -54,8 +55,9 @@ namespace Skybound.Gecko
         /// @param aReplace Should we replace an existing entry?
         /// @return Previous entry, if any
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string AddCategoryEntry([MarshalAs(UnmanagedType.LPStr)] System.String  aCategory, [MarshalAs(UnmanagedType.LPStr)] System.String  aEntry, [MarshalAs(UnmanagedType.LPStr)] System.String  aValue, System.Boolean  aPersist, System.Boolean  aReplace);
+		string AddCategoryEntry([MarshalAs(UnmanagedType.LPStr)] string aCategory, [MarshalAs(UnmanagedType.LPStr)] string aEntry, [MarshalAs(UnmanagedType.LPStr)] string aValue, bool aPersist, bool aReplace);
 		
 		/// <summary>
         /// Delete an entry from the category.
@@ -64,14 +66,14 @@ namespace Skybound.Gecko
         /// @param aPersist Delete persistent data from registry, if present?
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DeleteCategoryEntry([MarshalAs(UnmanagedType.LPStr)] System.String  aCategory, [MarshalAs(UnmanagedType.LPStr)] System.String  aEntry, System.Boolean  aPersist);
+		void DeleteCategoryEntry([MarshalAs(UnmanagedType.LPStr)] string aCategory, [MarshalAs(UnmanagedType.LPStr)] string aEntry, bool aPersist);
 		
 		/// <summary>
         /// Delete a category and all entries.
         /// @param aCategory The category to be deleted.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DeleteCategory([MarshalAs(UnmanagedType.LPStr)] System.String  aCategory);
+		void DeleteCategory([MarshalAs(UnmanagedType.LPStr)] string aCategory);
 		
 		/// <summary>
         /// Enumerate the entries in a category.
@@ -79,8 +81,9 @@ namespace Skybound.Gecko
         /// @return a simple enumerator, each result QIs to
         /// nsISupportsCString.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISimpleEnumerator EnumerateCategory([MarshalAs(UnmanagedType.LPStr)] System.String  aCategory);
+		nsISimpleEnumerator EnumerateCategory([MarshalAs(UnmanagedType.LPStr)] string aCategory);
 		
 		/// <summary>
         /// Enumerate all existing categories
@@ -88,6 +91,7 @@ namespace Skybound.Gecko
         /// @return a simple enumerator, each result QIs to
         /// nsISupportsCString.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISimpleEnumerator EnumerateCategories();
 	}

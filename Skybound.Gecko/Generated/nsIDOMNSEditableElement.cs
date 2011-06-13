@@ -41,7 +41,7 @@ namespace Skybound.Gecko
         /// such as HTML input and textarea. </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIEditor  GetEditorAttribute();
+		nsIEditor GetEditorAttribute();
 		
 		/// <summary>
         /// element.

@@ -64,15 +64,16 @@ namespace Skybound.Gecko
         /// @return The number of attributes in the list.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Int32  GetLengthAttribute();
+		new int GetLengthAttribute();
 		
 		/// <summary>
         /// Look up an attribute's local name by index.
         /// @param index The attribute index (zero-based).
         /// @return The local name, or null if the index is out of range.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsAString GetLocalName(System.UInt32  index);
+		new nsAString GetLocalName(uint index);
 		
 		/// <summary>
         /// Look up an attribute's XML qualified name by index.
@@ -80,8 +81,9 @@ namespace Skybound.Gecko
         /// @return The XML qualified name, or the empty string if none is
         /// available, or null if the index is out of range.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsAString GetQName(System.UInt32  index);
+		new nsAString GetQName(uint index);
 		
 		/// <summary>
         /// Look up an attribute's type by index. The attribute type is one
@@ -98,8 +100,9 @@ namespace Skybound.Gecko
         /// @return The attribute's type as a string, or null if the index is
         /// out of range.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsAString GetType(System.UInt32  index);
+		new nsAString GetType(uint index);
 		
 		/// <summary>
         /// Look up an attribute's type by Namespace name.
@@ -109,6 +112,7 @@ namespace Skybound.Gecko
         /// @return The attribute type as a string, or null if the attribute
         /// is not in the list.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsAString GetTypeFromName([MarshalAs(UnmanagedType.LPStruct)] nsAString uri, [MarshalAs(UnmanagedType.LPStruct)] nsAString localName);
 		
@@ -118,6 +122,7 @@ namespace Skybound.Gecko
         /// @return The attribute type as a string, or null if the attribute
         /// is not in the list.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsAString GetTypeFromQName([MarshalAs(UnmanagedType.LPStruct)] nsAString qName);
 		
@@ -127,8 +132,9 @@ namespace Skybound.Gecko
         /// @return The Namespace URI, or the empty string if none is available,
         /// or null if the index is out of range.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsAString GetURI(System.UInt32  index);
+		new nsAString GetURI(uint index);
 		
 		/// <summary>
         /// Look up an attribute's value by index.  If the attribute value is
@@ -140,8 +146,9 @@ namespace Skybound.Gecko
         /// @return The attribute's value as a string, or null if the index is
         /// out of range.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsAString GetValue(System.UInt32  index);
+		new nsAString GetValue(uint index);
 		
 		/// <summary>
         /// Look up an attribute's value by Namespace name.  If the attribute
@@ -155,6 +162,7 @@ namespace Skybound.Gecko
         /// @return The attribute's value as a string, or null if the attribute is
         /// not in the list.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsAString GetValueFromName([MarshalAs(UnmanagedType.LPStruct)] nsAString uri, [MarshalAs(UnmanagedType.LPStruct)] nsAString localName);
 		
@@ -168,6 +176,7 @@ namespace Skybound.Gecko
         /// @return The attribute's value as a string, or null if the attribute is
         /// not in the list.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsAString GetValueFromQName([MarshalAs(UnmanagedType.LPStruct)] nsAString qName);
 		
@@ -203,7 +212,7 @@ namespace Skybound.Gecko
         /// @param index The index of the attribute (zero-based).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveAttribute(System.UInt32  index);
+		void RemoveAttribute(uint index);
 		
 		/// <summary>
         /// Set the attributes list. This method will clear any attributes in
@@ -213,7 +222,7 @@ namespace Skybound.Gecko
         /// list with.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAttributes([MarshalAs(UnmanagedType.Interface)] nsISAXAttributes  attributes);
+		void SetAttributes([MarshalAs(UnmanagedType.Interface)] nsISAXAttributes attributes);
 		
 		/// <summary>
         /// Set an attribute in the list.
@@ -234,7 +243,7 @@ namespace Skybound.Gecko
         /// @param value The attribute value.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAttribute(System.UInt32  index, [MarshalAs(UnmanagedType.LPStruct)] nsAString uri, [MarshalAs(UnmanagedType.LPStruct)] nsAString localName, [MarshalAs(UnmanagedType.LPStruct)] nsAString qName, [MarshalAs(UnmanagedType.LPStruct)] nsAString type, [MarshalAs(UnmanagedType.LPStruct)] nsAString value);
+		void SetAttribute(uint index, [MarshalAs(UnmanagedType.LPStruct)] nsAString uri, [MarshalAs(UnmanagedType.LPStruct)] nsAString localName, [MarshalAs(UnmanagedType.LPStruct)] nsAString qName, [MarshalAs(UnmanagedType.LPStruct)] nsAString type, [MarshalAs(UnmanagedType.LPStruct)] nsAString value);
 		
 		/// <summary>
         /// Set the local name of a specific attribute.
@@ -244,7 +253,7 @@ namespace Skybound.Gecko
         /// string for none.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetLocalName(System.UInt32  index, [MarshalAs(UnmanagedType.LPStruct)] nsAString localName);
+		void SetLocalName(uint index, [MarshalAs(UnmanagedType.LPStruct)] nsAString localName);
 		
 		/// <summary>
         /// Set the qualified name of a specific attribute.
@@ -254,7 +263,7 @@ namespace Skybound.Gecko
         /// string for none.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetQName(System.UInt32  index, [MarshalAs(UnmanagedType.LPStruct)] nsAString qName);
+		void SetQName(uint index, [MarshalAs(UnmanagedType.LPStruct)] nsAString qName);
 		
 		/// <summary>
         /// Set the type of a specific attribute.
@@ -263,7 +272,7 @@ namespace Skybound.Gecko
         /// @param type The attribute's type.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetType(System.UInt32  index, [MarshalAs(UnmanagedType.LPStruct)] nsAString type);
+		void SetType(uint index, [MarshalAs(UnmanagedType.LPStruct)] nsAString type);
 		
 		/// <summary>
         /// Set the Namespace URI of a specific attribute.
@@ -273,7 +282,7 @@ namespace Skybound.Gecko
         /// string for none.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetURI(System.UInt32  index, [MarshalAs(UnmanagedType.LPStruct)] nsAString uri);
+		void SetURI(uint index, [MarshalAs(UnmanagedType.LPStruct)] nsAString uri);
 		
 		/// <summary>
         /// Set the value of a specific attribute.
@@ -282,6 +291,6 @@ namespace Skybound.Gecko
         /// @param value The attribute's value.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetValue(System.UInt32  index, [MarshalAs(UnmanagedType.LPStruct)] nsAString value);
+		void SetValue(uint index, [MarshalAs(UnmanagedType.LPStruct)] nsAString value);
 	}
 }

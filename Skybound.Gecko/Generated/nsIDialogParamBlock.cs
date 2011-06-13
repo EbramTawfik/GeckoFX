@@ -41,39 +41,40 @@ namespace Skybound.Gecko
         /// Index must be in the range 0..7
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetInt(System.Int32  inIndex);
+		int GetInt(int inIndex);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetInt(System.Int32  inIndex, System.Int32  inInt);
+		void SetInt(int inIndex, int inInt);
 		
 		/// <summary>
         ///Set the maximum number of strings to pass. Default is 16.
         /// Use before setting any string (If you want to change it from the default).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetNumberStrings(System.Int32  inNumStrings);
+		void SetNumberStrings(int inNumStrings);
 		
 		/// <summary>
         ///Get or set an string to pass.
         /// Index starts at 0
         /// </summary>
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string GetString(System.Int32  inIndex);
+		string GetString(int inIndex);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetString(System.Int32  inIndex, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string inString);
+		void SetString(int inIndex, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string inString);
 		
 		/// <summary>
         /// A place where you can store an nsIMutableArray to pass nsISupports
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIMutableArray  GetObjectsAttribute();
+		nsIMutableArray GetObjectsAttribute();
 		
 		/// <summary>
         /// A place where you can store an nsIMutableArray to pass nsISupports
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetObjectsAttribute([MarshalAs(UnmanagedType.Interface)] nsIMutableArray  aObjects);
+		void SetObjectsAttribute([MarshalAs(UnmanagedType.Interface)] nsIMutableArray aObjects);
 	}
 }

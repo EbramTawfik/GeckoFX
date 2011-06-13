@@ -43,7 +43,7 @@ namespace Skybound.Gecko
         ///	this object.
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Int32  GetChildCountAttribute();
+		new int GetChildCountAttribute();
 		
 		/// <summary>
         ///Add a new child DocShellTreeItem.  Adds to the end of the list.
@@ -54,22 +54,23 @@ namespace Skybound.Gecko
         ///	@throws NS_ERROR_UNEXPECTED if this node is a leaf in the tree.
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void AddChild([MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeItem  child);
+		new void AddChild([MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeItem child);
 		
 		/// <summary>
         ///Removes a child DocShellTreeItem.
         ///	@throws NS_ERROR_UNEXPECTED if this node is a leaf in the tree.
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void RemoveChild([MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeItem  child);
+		new void RemoveChild([MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeItem child);
 		
 		/// <summary>
         /// Return the child at the index requested.  This is 0-based.
         ///
         /// @throws NS_ERROR_UNEXPECTED if the index is out of range
         ///	 </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDocShellTreeItem GetChildAt(System.Int32  index);
+		new nsIDocShellTreeItem GetChildAt(int index);
 		
 		/// <summary>
         ///Return the child DocShellTreeItem with the specified name.
@@ -84,8 +85,9 @@ namespace Skybound.Gecko
         ///    	This is used to ensure that we don't run into cross-site issues.
         ///	Note the search is depth first when recursing.
         ///	 </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDocShellTreeItem FindChildWithName([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aName, System.Boolean  aRecurse, System.Boolean  aSameType, [MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeItem  aRequestor, [MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeItem  aOriginalRequestor);
+		new nsIDocShellTreeItem FindChildWithName([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aName, bool aRecurse, bool aSameType, [MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeItem aRequestor, [MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeItem aOriginalRequestor);
 		
 		/// <summary>
         ///name of the DocShellTreeItem
@@ -114,20 +116,20 @@ namespace Skybound.Gecko
         ///The type this item is.
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetItemTypeAttribute();
+		int GetItemTypeAttribute();
 		
 		/// <summary>
         ///The type this item is.
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetItemTypeAttribute(System.Int32  aItemType);
+		void SetItemTypeAttribute(int aItemType);
 		
 		/// <summary>
         ///Parent DocShell.
         ///	 </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDocShellTreeItem  GetParentAttribute();
+		nsIDocShellTreeItem GetParentAttribute();
 		
 		/// <summary>
         ///This is call returns the same thing parent does however if the parent is
@@ -137,7 +139,7 @@ namespace Skybound.Gecko
         ///	 </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDocShellTreeItem  GetSameTypeParentAttribute();
+		nsIDocShellTreeItem GetSameTypeParentAttribute();
 		
 		/// <summary>
         ///Returns the root DocShellTreeItem.  This is a convience equivalent to
@@ -145,7 +147,7 @@ namespace Skybound.Gecko
         ///	 </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDocShellTreeItem  GetRootTreeItemAttribute();
+		nsIDocShellTreeItem GetRootTreeItemAttribute();
 		
 		/// <summary>
         ///Returns the root DocShellTreeItem of the same type.  This is a convience
@@ -154,7 +156,7 @@ namespace Skybound.Gecko
         ///	 </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDocShellTreeItem  GetSameTypeRootTreeItemAttribute();
+		nsIDocShellTreeItem GetSameTypeRootTreeItemAttribute();
 		
 		/// <summary>
         ///Returns the docShellTreeItem with the specified name.  Search order is as
@@ -182,8 +184,9 @@ namespace Skybound.Gecko
         ///	aOriginalRequestor - The original treeitem that made the request, if any.
         ///		This is used to ensure that we don't run into cross-site issues.
         ///	 </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDocShellTreeItem FindItemWithName([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string name, [MarshalAs(UnmanagedType.Interface)] nsISupports  aRequestor, [MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeItem  aOriginalRequestor);
+		nsIDocShellTreeItem FindItemWithName([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string name, [MarshalAs(UnmanagedType.Interface)] nsISupports aRequestor, [MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeItem aOriginalRequestor);
 		
 		/// <summary>
         ///The owner of the DocShell Tree.  This interface will be called upon when
@@ -205,9 +208,9 @@ namespace Skybound.Gecko
         ///	 </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDocShellTreeOwner  GetTreeOwnerAttribute();
+		nsIDocShellTreeOwner GetTreeOwnerAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTreeOwner([MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeOwner  treeOwner);
+		void SetTreeOwner([MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeOwner treeOwner);
 	}
 }

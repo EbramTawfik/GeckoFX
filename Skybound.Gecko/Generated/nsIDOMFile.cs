@@ -35,9 +35,9 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetSizeAttribute </summary>
-		/// <returns>A System.UInt32 </returns>
+		/// <returns>A System.UInt32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetSizeAttribute();
+		uint GetSizeAttribute();
 		
 		/// <summary>Member GetTypeAttribute </summary>
 		/// <param name='aType'> </param>
@@ -49,20 +49,22 @@ namespace Skybound.Gecko
 		/// <param name='length'> </param>
 		/// <param name='contentType'> </param>
 		/// <returns>A nsIDOMBlob</returns>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMBlob Slice(System.UInt32  start, System.UInt32  length, [MarshalAs(UnmanagedType.LPStruct)] nsAString contentType);
-		
-		/// <summary>Member GetInternalStreamAttribute </summary>
-		/// <returns>A nsIInputStream </returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIInputStream  GetInternalStreamAttribute();
+		nsIDOMBlob Slice(uint start, uint length, [MarshalAs(UnmanagedType.LPStruct)] nsAString contentType);
+		
+		/// <summary>Member GetInternalStreamAttribute </summary>
+		/// <returns>A nsIInputStream</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIInputStream GetInternalStreamAttribute();
 		
 		/// <summary>
         /// moz-filedata: protocol handler
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetInternalUrl([MarshalAs(UnmanagedType.Interface)] nsIPrincipal  principal);
+		nsAString GetInternalUrl([MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal);
 	}
 	
 	/// <summary>nsIDOMBlob_MOZILLA_2_0_BRANCH </summary>
@@ -77,8 +79,9 @@ namespace Skybound.Gecko
 		/// <param name='end'> </param>
 		/// <param name='contentType'> </param>
 		/// <returns>A nsIDOMBlob</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMBlob MozSlice(System.Int32  start, System.Int32  end, [MarshalAs(UnmanagedType.LPStruct)] nsAString contentType);
+		nsIDOMBlob MozSlice(int start, int end, [MarshalAs(UnmanagedType.LPStruct)] nsAString contentType);
 	}
 	
 	/// <summary>nsIDOMFile </summary>
@@ -89,9 +92,9 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetSizeAttribute </summary>
-		/// <returns>A System.UInt32 </returns>
+		/// <returns>A System.UInt32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.UInt32  GetSizeAttribute();
+		new uint GetSizeAttribute();
 		
 		/// <summary>Member GetTypeAttribute </summary>
 		/// <param name='aType'> </param>
@@ -103,20 +106,22 @@ namespace Skybound.Gecko
 		/// <param name='length'> </param>
 		/// <param name='contentType'> </param>
 		/// <returns>A nsIDOMBlob</returns>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMBlob Slice(System.UInt32  start, System.UInt32  length, [MarshalAs(UnmanagedType.LPStruct)] nsAString contentType);
-		
-		/// <summary>Member GetInternalStreamAttribute </summary>
-		/// <returns>A nsIInputStream </returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIInputStream  GetInternalStreamAttribute();
+		new nsIDOMBlob Slice(uint start, uint length, [MarshalAs(UnmanagedType.LPStruct)] nsAString contentType);
+		
+		/// <summary>Member GetInternalStreamAttribute </summary>
+		/// <returns>A nsIInputStream</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIInputStream GetInternalStreamAttribute();
 		
 		/// <summary>
         /// moz-filedata: protocol handler
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsAString GetInternalUrl([MarshalAs(UnmanagedType.Interface)] nsIPrincipal  principal);
+		new nsAString GetInternalUrl([MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal);
 		
 		/// <summary>Member GetNameAttribute </summary>
 		/// <param name='aName'> </param>
@@ -141,25 +146,28 @@ namespace Skybound.Gecko
 		void GetFileNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aFileName);
 		
 		/// <summary>Member GetFileSizeAttribute </summary>
-		/// <returns>A System.UInt32 </returns>
+		/// <returns>A System.UInt32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetFileSizeAttribute();
+		uint GetFileSizeAttribute();
 		
 		/// <summary>Member GetAsText </summary>
 		/// <param name='encoding'> </param>
 		/// <returns>A nsAString</returns>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsAString GetAsText([MarshalAs(UnmanagedType.LPStruct)] nsAString encoding);
 		
 		/// <summary>
         /// raises(FileException) on retrieval
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsAString GetAsDataURL();
 		
 		/// <summary>
         /// raises(FileException) on retrieval
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsAString GetAsBinary();
 	}

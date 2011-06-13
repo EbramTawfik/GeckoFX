@@ -41,7 +41,7 @@ namespace Skybound.Gecko
 		/// <param name='aTruthValue'> </param>
 		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Mark([MarshalAs(UnmanagedType.Interface)] nsIRDFResource  aSource, [MarshalAs(UnmanagedType.Interface)] nsIRDFResource  aProperty, [MarshalAs(UnmanagedType.Interface)] nsIRDFNode  aTarget, System.Boolean  aTruthValue);
+		bool Mark([MarshalAs(UnmanagedType.Interface)] nsIRDFResource aSource, [MarshalAs(UnmanagedType.Interface)] nsIRDFResource aProperty, [MarshalAs(UnmanagedType.Interface)] nsIRDFNode aTarget, bool aTruthValue);
 		
 		/// <summary>Member Sweep </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

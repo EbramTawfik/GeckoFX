@@ -44,7 +44,7 @@ namespace Skybound.Gecko
         /// (eg. kSelectionClipboard -- see nsIClipboard.idl)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CopyStringToClipboard([MarshalAs(UnmanagedType.LPStruct)] nsAString aString, System.Int32  aClipboardID);
+		void CopyStringToClipboard([MarshalAs(UnmanagedType.LPStruct)] nsAString aString, int aClipboardID);
 		
 		/// <summary>
         /// copy string to (default) clipboard

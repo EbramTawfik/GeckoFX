@@ -37,21 +37,25 @@ namespace Skybound.Gecko
 		/// <summary>
         /// DOMImplementationLSMode
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMLSParser CreateLSParser(ushort mode, [MarshalAs(UnmanagedType.LPStruct)] nsAString schemaType);
 		
 		/// <summary>Member CreateLSSerializer </summary>
 		/// <returns>A nsIDOMLSSerializer</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMLSSerializer CreateLSSerializer();
 		
 		/// <summary>Member CreateLSInput </summary>
 		/// <returns>A nsIDOMLSInput</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMLSInput CreateLSInput();
 		
 		/// <summary>Member CreateLSOutput </summary>
 		/// <returns>A nsIDOMLSOutput</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMLSOutput CreateLSOutput();
 	}

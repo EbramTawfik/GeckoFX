@@ -40,32 +40,32 @@ namespace Skybound.Gecko
         ///nsIGnomeVFSMimeApp holds information about an application that is looked up
         ///   with nsIGnomeVFSService::GetAppForMimeType. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetIdAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aId);
+		void GetIdAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aId);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName);
+		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCommandAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aCommand);
+		void GetCommandAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aCommand);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetCanOpenMultipleFilesAttribute();
+		bool GetCanOpenMultipleFilesAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetExpectsURIsAttribute();
+		int GetExpectsURIsAttribute();
 		
 		/// <summary>
         /// see constants above
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIUTF8StringEnumerator  GetSupportedURISchemesAttribute();
+		nsIUTF8StringEnumerator GetSupportedURISchemesAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetRequiresTerminalAttribute();
+		bool GetRequiresTerminalAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Launch([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  uri);
+		void Launch([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String uri);
 	}
 	
 	/// <summary>
@@ -84,25 +84,28 @@ namespace Skybound.Gecko
 		/// <summary>
         ///Obtain the MIME type registered for an extension.  The extension
         ///     should not include a leading dot. </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAUTF8String GetMimeTypeFromExtension([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  extension);
+		nsAUTF8String GetMimeTypeFromExtension([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String extension);
 		
 		/// <summary>
         ///Obtain the preferred application for opening a given MIME type </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIGnomeVFSMimeApp GetAppForMimeType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  mimeType);
+		nsIGnomeVFSMimeApp GetAppForMimeType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String mimeType);
 		
 		/// <summary>
         ///Obtain a description for the given MIME type </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAUTF8String GetDescriptionForMimeType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  mimeType);
+		nsAUTF8String GetDescriptionForMimeType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String mimeType);
 		
 		/// <summary>
         ///Open the given URI in the default application </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ShowURI([MarshalAs(UnmanagedType.Interface)] nsIURI  uri);
+		void ShowURI([MarshalAs(UnmanagedType.Interface)] nsIURI uri);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ShowURIForInput([MarshalAs(UnmanagedType.LPStruct)] nsAString  uri);
+		void ShowURIForInput([MarshalAs(UnmanagedType.LPStruct)] nsAString uri);
 	}
 }

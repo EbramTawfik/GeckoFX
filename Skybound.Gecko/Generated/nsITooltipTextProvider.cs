@@ -63,6 +63,6 @@ namespace Skybound.Gecko
         /// <CODE>PR_FALSE</CODE> otherwise.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetNodeText([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  aNode, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] out string aText);
+		bool GetNodeText([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aNode, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] out string aText);
 	}
 }

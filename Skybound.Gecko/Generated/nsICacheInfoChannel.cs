@@ -39,7 +39,7 @@ namespace Skybound.Gecko
         /// nsICachingChannel.cacheToken.expirationTime.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetCacheTokenExpirationTimeAttribute();
+		uint GetCacheTokenExpirationTimeAttribute();
 		
 		/// <summary>
         /// Set/get charset of cache entry. Accessing this attribute is equivalent to
@@ -47,7 +47,7 @@ namespace Skybound.Gecko
         /// nsICachingChannel.cacheToken.setMetaDataElement("charset").
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCacheTokenCachedCharsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aCacheTokenCachedCharset);
+		void GetCacheTokenCachedCharsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aCacheTokenCachedCharset);
 		
 		/// <summary>
         /// Set/get charset of cache entry. Accessing this attribute is equivalent to
@@ -55,7 +55,7 @@ namespace Skybound.Gecko
         /// nsICachingChannel.cacheToken.setMetaDataElement("charset").
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCacheTokenCachedCharsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aCacheTokenCachedCharset);
+		void SetCacheTokenCachedCharsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aCacheTokenCachedCharset);
 		
 		/// <summary>
         /// TRUE if this channel's data is being loaded from the cache.  This value

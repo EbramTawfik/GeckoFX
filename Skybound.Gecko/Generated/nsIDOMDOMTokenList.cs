@@ -48,10 +48,11 @@ namespace Skybound.Gecko
         /// <http://www.whatwg.org/html5/#domtokenlist>
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetLengthAttribute();
+		uint GetLengthAttribute();
 		
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString Item(System.UInt32  index);
+		nsAString Item(uint index);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool Contains([MarshalAs(UnmanagedType.LPStruct)] nsAString token);
@@ -65,6 +66,7 @@ namespace Skybound.Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool Toggle([MarshalAs(UnmanagedType.LPStruct)] nsAString token);
 		
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsAString ToString();
 	}

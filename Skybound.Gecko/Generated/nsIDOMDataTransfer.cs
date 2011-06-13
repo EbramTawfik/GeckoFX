@@ -141,7 +141,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMFileList  GetFilesAttribute();
+		nsIDOMFileList GetFilesAttribute();
 		
 		/// <summary>
         /// Holds a list of the format types of the data that is stored for the first
@@ -176,6 +176,7 @@ namespace Skybound.Gecko
         /// Retrieves the data for a given format, or an empty string if data for
         /// that format does not exist or the data transfer contains no data.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsAString GetData([MarshalAs(UnmanagedType.LPStruct)] nsAString format);
 		
@@ -199,7 +200,7 @@ namespace Skybound.Gecko
         /// @throws NO_MODIFICATION_ALLOWED_ERR if the item cannot be modified
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDragImage([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  image, System.Int32  x, System.Int32  y);
+		void SetDragImage([MarshalAs(UnmanagedType.Interface)] nsIDOMElement image, int x, int y);
 		
 		/// <summary>
         /// Set the drag source. Usually you would not change this, but it will
@@ -210,7 +211,7 @@ namespace Skybound.Gecko
         /// @throws NO_MODIFICATION_ALLOWED_ERR if the item cannot be modified
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddElement([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  element);
+		void AddElement([MarshalAs(UnmanagedType.Interface)] nsIDOMElement element);
 	}
 	
 	/// <summary>nsIDOMNSDataTransfer </summary>
@@ -224,40 +225,41 @@ namespace Skybound.Gecko
         /// Integer version of dropEffect, set to one of the constants in nsIDragService.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetDropEffectIntAttribute();
+		uint GetDropEffectIntAttribute();
 		
 		/// <summary>
         /// Integer version of dropEffect, set to one of the constants in nsIDragService.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDropEffectIntAttribute(System.UInt32  aDropEffectInt);
+		void SetDropEffectIntAttribute(uint aDropEffectInt);
 		
 		/// <summary>
         /// Integer version of effectAllowed, set to one or a combination of the
         /// constants in nsIDragService.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetEffectAllowedIntAttribute();
+		uint GetEffectAllowedIntAttribute();
 		
 		/// <summary>
         /// Integer version of effectAllowed, set to one or a combination of the
         /// constants in nsIDragService.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetEffectAllowedIntAttribute(System.UInt32  aEffectAllowedInt);
+		void SetEffectAllowedIntAttribute(uint aEffectAllowedInt);
 		
 		/// <summary>
         /// Creates a copy of the data transfer object, for the given event type and
         /// user cancelled flag.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDataTransfer Clone(System.UInt32  aEventType, System.Boolean  aUserCancelled);
+		nsIDOMDataTransfer Clone(uint aEventType, bool aUserCancelled);
 		
 		/// <summary>
         /// The number of items being dragged.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetMozItemCountAttribute();
+		uint GetMozItemCountAttribute();
 		
 		/// <summary>
         /// Sets the drag cursor state. Primarily used to control the cursor during
@@ -295,7 +297,7 @@ namespace Skybound.Gecko
         /// itemCount - 1, an empty string list is returned.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr MozTypesAt(System.UInt32  index);
+		System.IntPtr MozTypesAt(uint index);
 		
 		/// <summary>
         /// Remove the data associated with the given format for an item at the
@@ -312,7 +314,7 @@ namespace Skybound.Gecko
         /// @throws NO_MODIFICATION_ALLOWED_ERR if the item cannot be modified
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MozClearDataAt([MarshalAs(UnmanagedType.LPStruct)] nsAString format, System.UInt32  index);
+		void MozClearDataAt([MarshalAs(UnmanagedType.LPStruct)] nsAString format, uint index);
 		
 		/// <summary>
         /// A data transfer may store multiple items, each at a given zero-based
@@ -336,7 +338,7 @@ namespace Skybound.Gecko
         /// @throws NO_MODIFICATION_ALLOWED_ERR if the item cannot be modified
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MozSetDataAt([MarshalAs(UnmanagedType.LPStruct)] nsAString format, [MarshalAs(UnmanagedType.Interface)] nsIVariant  data, System.UInt32  index);
+		void MozSetDataAt([MarshalAs(UnmanagedType.LPStruct)] nsAString format, [MarshalAs(UnmanagedType.Interface)] nsIVariant data, uint index);
 		
 		/// <summary>
         /// Retrieve the data associated with the given format for an item at the
@@ -347,8 +349,9 @@ namespace Skybound.Gecko
         /// @returns the data of the given format, or null if it doesn't exist.
         /// @throws NS_ERROR_DOM_INDEX_SIZE_ERR if index is greater or equal than itemCount
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant MozGetDataAt([MarshalAs(UnmanagedType.LPStruct)] nsAString format, System.UInt32  index);
+		nsIVariant MozGetDataAt([MarshalAs(UnmanagedType.LPStruct)] nsAString format, uint index);
 		
 		/// <summary>
         /// Will be true when the user has cancelled the drag (typically by pressing
@@ -357,7 +360,7 @@ namespace Skybound.Gecko
         /// This property is only relevant for the dragend event.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetMozUserCancelledAttribute();
+		bool GetMozUserCancelledAttribute();
 		
 		/// <summary>
         /// The node that the mouse was pressed over to begin the drag. For external
@@ -365,6 +368,6 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMNode  GetMozSourceNodeAttribute();
+		nsIDOMNode GetMozSourceNodeAttribute();
 	}
 }

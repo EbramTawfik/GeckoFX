@@ -35,9 +35,9 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetSSLStatusAttribute </summary>
-		/// <returns>A nsISupports </returns>
+		/// <returns>A nsISupports</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports  GetSSLStatusAttribute();
+		nsISupports GetSSLStatusAttribute();
 	}
 }

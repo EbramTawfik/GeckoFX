@@ -38,7 +38,7 @@ namespace Skybound.Gecko
         /// true if the selection container is absolutely positioned
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetSelectionContainerAbsolutelyPositionedAttribute();
+		bool GetSelectionContainerAbsolutelyPositionedAttribute();
 		
 		/// <summary>
         /// this contains the absolutely positioned element currently edited
@@ -46,45 +46,45 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMElement  GetPositionedElementAttribute();
+		nsIDOMElement GetPositionedElementAttribute();
 		
 		/// <summary>
         /// true if Absolute Positioning handling is enabled in the editor
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetAbsolutePositioningEnabledAttribute();
+		bool GetAbsolutePositioningEnabledAttribute();
 		
 		/// <summary>
         /// true if Absolute Positioning handling is enabled in the editor
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAbsolutePositioningEnabledAttribute(System.Boolean  aAbsolutePositioningEnabled);
+		void SetAbsolutePositioningEnabledAttribute(bool aAbsolutePositioningEnabled);
 		
 		/// <summary>
         /// true if Snap To Grid is enabled in the editor.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetSnapToGridEnabledAttribute();
+		bool GetSnapToGridEnabledAttribute();
 		
 		/// <summary>
         /// true if Snap To Grid is enabled in the editor.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSnapToGridEnabledAttribute(System.Boolean  aSnapToGridEnabled);
+		void SetSnapToGridEnabledAttribute(bool aSnapToGridEnabled);
 		
 		/// <summary>
         /// sets the grid size in pixels.
         /// @param aSizeInPixels [IN] the size of the grid in pixels
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetGridSizeAttribute();
+		uint GetGridSizeAttribute();
 		
 		/// <summary>
         /// sets the grid size in pixels.
         /// @param aSizeInPixels [IN] the size of the grid in pixels
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetGridSizeAttribute(System.UInt32  aGridSize);
+		void SetGridSizeAttribute(uint aGridSize);
 		
 		/// <summary>
         /// returns the deepest absolutely positioned container of the selection
@@ -92,7 +92,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMElement  GetAbsolutelyPositionedSelectionContainerAttribute();
+		nsIDOMElement GetAbsolutelyPositionedSelectionContainerAttribute();
 		
 		/// <summary>
         /// extracts the selection from the normal flow of the document and
@@ -101,14 +101,14 @@ namespace Skybound.Gecko
         /// false to put it back in the normal flow
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AbsolutePositionSelection(System.Boolean  aEnabled);
+		void AbsolutePositionSelection(bool aEnabled);
 		
 		/// <summary>
         /// adds aChange to the z-index of the currently positioned element.
         /// @param aChange [IN] relative change to apply to current z-index
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RelativeChangeZIndex(System.Int32  aChange);
+		void RelativeChangeZIndex(int aChange);
 		
 		/// <summary>
         /// extracts an element from the normal flow of the document and
@@ -118,7 +118,7 @@ namespace Skybound.Gecko
         /// false to put it back in the normal flow
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AbsolutelyPositionElement([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  aElement, System.Boolean  aEnabled);
+		void AbsolutelyPositionElement([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement, bool aEnabled);
 		
 		/// <summary>
         /// sets the position of an element; warning it does NOT check if the
@@ -128,7 +128,7 @@ namespace Skybound.Gecko
         /// @param aY       [IN] the y position in pixels.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetElementPosition([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  aElement, System.Int32  aX, System.Int32  aY);
+		void SetElementPosition([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement, int aX, int aY);
 		
 		/// <summary>
         /// returns the absolute z-index of a positioned element. Never returns 'auto'.
@@ -136,7 +136,7 @@ namespace Skybound.Gecko
         /// @param aElement [IN] the element.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetElementZIndex([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  aElement);
+		int GetElementZIndex([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement);
 		
 		/// <summary>
         /// sets the z-index of an element.
@@ -144,7 +144,7 @@ namespace Skybound.Gecko
         /// @param aZorder  [IN] the z-index
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetElementZIndex([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  aElement, System.Int32  aZorder);
+		void SetElementZIndex([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement, int aZorder);
 		
 		/// <summary>
         /// adds aChange to the z-index of an arbitrary element.
@@ -154,7 +154,7 @@ namespace Skybound.Gecko
         /// the element
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int RelativeChangeElementZIndex([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  aElement, System.Int32  aChange);
+		int RelativeChangeElementZIndex([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement, int aChange);
 		
 		/// <summary>
         /// shows a grabber attached to an arbitrary element. The grabber is an image
@@ -164,7 +164,7 @@ namespace Skybound.Gecko
         /// @param aElement [IN] the element
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ShowGrabberOnElement([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  aElement);
+		void ShowGrabberOnElement([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement);
 		
 		/// <summary>
         /// hide the grabber if it shown.

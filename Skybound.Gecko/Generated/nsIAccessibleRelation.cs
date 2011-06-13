@@ -42,24 +42,26 @@ namespace Skybound.Gecko
         /// Returns the type of the relation.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetRelationTypeAttribute();
+		uint GetRelationTypeAttribute();
 		
 		/// <summary>
         /// Returns the number of targets for this relation.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetTargetsCountAttribute();
+		uint GetTargetsCountAttribute();
 		
 		/// <summary>
         /// Returns one accessible relation target.
         /// @param index - 0 based index of relation target.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIAccessible GetTarget(System.UInt32  index);
+		nsIAccessible GetTarget(uint index);
 		
 		/// <summary>
         /// Returns multiple accessible relation targets.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIArray GetTargets();
 	}

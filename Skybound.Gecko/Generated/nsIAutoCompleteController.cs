@@ -39,13 +39,13 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIAutoCompleteInput  GetInputAttribute();
+		nsIAutoCompleteInput GetInputAttribute();
 		
 		/// <summary>
         /// The input widget that is currently being controlled.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetInputAttribute([MarshalAs(UnmanagedType.Interface)] nsIAutoCompleteInput  aInput);
+		void SetInputAttribute([MarshalAs(UnmanagedType.Interface)] nsIAutoCompleteInput aInput);
 		
 		/// <summary>
         /// State which indicates the status of possible ongoing searches
@@ -57,7 +57,7 @@ namespace Skybound.Gecko
         /// The number of matches
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetMatchCountAttribute();
+		uint GetMatchCountAttribute();
 		
 		/// <summary>
         /// Start a search on a string, assuming the input property is already set.
@@ -88,7 +88,7 @@ namespace Skybound.Gecko
         /// @return True if the controller wishes to prevent event propagation and default event
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool HandleEnter(System.Boolean  aIsPopupSelection);
+		bool HandleEnter(bool aIsPopupSelection);
 		
 		/// <summary>
         /// Notify the controller that the user wishes to revert autocomplete
@@ -123,7 +123,7 @@ namespace Skybound.Gecko
         /// @return True if the controller wishes to prevent event propagation and default event
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool HandleKeyNavigation(System.UInt32  key);
+		bool HandleKeyNavigation(uint key);
 		
 		/// <summary>
         /// Notify the controller that the user chose to delete the current
@@ -135,32 +135,37 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Get the value of the result at a given index in the last completed search
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetValueAt(System.Int32  index);
+		nsAString GetValueAt(int index);
 		
 		/// <summary>
         /// Get the label of the result at a given index in the last completed search
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetLabelAt(System.Int32  index);
+		nsAString GetLabelAt(int index);
 		
 		/// <summary>
         /// Get the comment of the result at a given index in the last completed search
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetCommentAt(System.Int32  index);
+		nsAString GetCommentAt(int index);
 		
 		/// <summary>
         /// Get a the style hint for the result at a given index in the last completed search
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetStyleAt(System.Int32  index);
+		nsAString GetStyleAt(int index);
 		
 		/// <summary>
         /// Get the url of the image of the result at a given index in the last completed search
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetImageAt(System.Int32  index);
+		nsAString GetImageAt(int index);
 		
 		/// <summary>
         /// Get / set the current search string.  Note, setting will not start searching

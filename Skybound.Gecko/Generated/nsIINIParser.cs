@@ -37,20 +37,23 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Enumerates the [section]s available in the INI file.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIUTF8StringEnumerator GetSections();
 		
 		/// <summary>
         /// Enumerates the keys available within a section.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIUTF8StringEnumerator GetKeys([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aSection);
+		nsIUTF8StringEnumerator GetKeys([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aSection);
 		
 		/// <summary>
         /// Get the value of a string for a particular section and key.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAUTF8String GetString([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aSection, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aKey);
+		nsAUTF8String GetString([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aSection, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aKey);
 	}
 	
 	/// <summary>nsIINIParserWriter </summary>
@@ -64,13 +67,13 @@ namespace Skybound.Gecko
         /// Set the value of a string for a particular section and key.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetString([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aSection, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aKey, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aValue);
+		void SetString([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aSection, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aKey, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aValue);
 		
 		/// <summary>
         /// Write to the INI file.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void WriteFile([MarshalAs(UnmanagedType.Interface)] nsILocalFile  aINIFile);
+		void WriteFile([MarshalAs(UnmanagedType.Interface)] nsILocalFile aINIFile);
 	}
 	
 	/// <summary>nsIINIParserFactory </summary>
@@ -83,7 +86,8 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Create an iniparser instance from a local file.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIINIParser CreateINIParser([MarshalAs(UnmanagedType.Interface)] nsILocalFile  aINIFile);
+		nsIINIParser CreateINIParser([MarshalAs(UnmanagedType.Interface)] nsILocalFile aINIFile);
 	}
 }

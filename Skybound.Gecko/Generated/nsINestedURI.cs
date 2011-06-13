@@ -57,7 +57,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI  GetInnerURIAttribute();
+		nsIURI GetInnerURIAttribute();
 		
 		/// <summary>
         /// The innermost URI for this nested URI.  This must not return null if the
@@ -69,6 +69,6 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI  GetInnermostURIAttribute();
+		nsIURI GetInnermostURIAttribute();
 	}
 }

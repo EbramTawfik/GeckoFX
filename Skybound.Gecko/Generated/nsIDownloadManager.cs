@@ -68,8 +68,9 @@ namespace Skybound.Gecko
         /// as the aCancelable object, call this method, set the progressListener
         /// as the returned download object, then call saveURI.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDownload AddDownload(short aDownloadType, [MarshalAs(UnmanagedType.Interface)] nsIURI  aSource, [MarshalAs(UnmanagedType.Interface)] nsIURI  aTarget, [MarshalAs(UnmanagedType.LPStruct)] nsAString aDisplayName, [MarshalAs(UnmanagedType.Interface)] nsIMIMEInfo  aMIMEInfo, System.UInt32  aStartTime, [MarshalAs(UnmanagedType.Interface)] nsILocalFile  aTempFile, [MarshalAs(UnmanagedType.Interface)] nsICancelable  aCancelable);
+		nsIDownload AddDownload(short aDownloadType, [MarshalAs(UnmanagedType.Interface)] nsIURI aSource, [MarshalAs(UnmanagedType.Interface)] nsIURI aTarget, [MarshalAs(UnmanagedType.LPStruct)] nsAString aDisplayName, [MarshalAs(UnmanagedType.Interface)] nsIMIMEInfo aMIMEInfo, uint aStartTime, [MarshalAs(UnmanagedType.Interface)] nsILocalFile aTempFile, [MarshalAs(UnmanagedType.Interface)] nsICancelable aCancelable);
 		
 		/// <summary>
         /// Retrieves a download managed by the download manager.  This can be one that
@@ -80,8 +81,9 @@ namespace Skybound.Gecko
         /// @return The download with the specified ID.
         /// @throws NS_ERROR_NOT_AVAILABLE if the download is not in the database.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDownload GetDownload(System.UInt32  aID);
+		nsIDownload GetDownload(uint aID);
 		
 		/// <summary>
         /// Cancels the download with the specified ID if it's currently in-progress.
@@ -92,7 +94,7 @@ namespace Skybound.Gecko
         /// @throws NS_ERROR_FAILURE if the download is not in-progress.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CancelDownload(System.UInt32  aID);
+		void CancelDownload(uint aID);
 		
 		/// <summary>
         /// Removes the download with the specified id if it's not currently
@@ -107,7 +109,7 @@ namespace Skybound.Gecko
         /// @throws NS_ERROR_FAILURE if the download is active.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveDownload(System.UInt32  aID);
+		void RemoveDownload(uint aID);
 		
 		/// <summary>
         /// Removes all inactive downloads that were started inclusively within the
@@ -119,7 +121,7 @@ namespace Skybound.Gecko
         /// The end time to remove downloads by in microseconds.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveDownloadsByTimeframe(System.Int32  aBeginTime, System.Int32  aEndTime);
+		void RemoveDownloadsByTimeframe(int aBeginTime, int aEndTime);
 		
 		/// <summary>
         /// Pause the specified download.
@@ -128,7 +130,7 @@ namespace Skybound.Gecko
         /// @throws NS_ERROR_FAILURE if the download is not in-progress.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PauseDownload(System.UInt32  aID);
+		void PauseDownload(uint aID);
 		
 		/// <summary>
         /// Resume the specified download.
@@ -137,7 +139,7 @@ namespace Skybound.Gecko
         /// @throws NS_ERROR_FAILURE if the download is not in-progress.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ResumeDownload(System.UInt32  aID);
+		void ResumeDownload(uint aID);
 		
 		/// <summary>
         /// Retries a failed download.
@@ -149,20 +151,20 @@ namespace Skybound.Gecko
         /// nsIDownloadManager::DOWNLOAD_FAILED
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RetryDownload(System.UInt32  aID);
+		void RetryDownload(uint aID);
 		
 		/// <summary>
         /// The database connection to the downloads database.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		mozIStorageConnection  GetDBConnectionAttribute();
+		mozIStorageConnection GetDBConnectionAttribute();
 		
 		/// <summary>
         /// Whether or not there are downloads that can be cleaned up (removed)
         /// i.e. downloads that have completed, have failed or have been canceled.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetCanCleanUpAttribute();
+		bool GetCanCleanUpAttribute();
 		
 		/// <summary>
         /// Removes completed, failed, and canceled downloads from the list.
@@ -177,33 +179,33 @@ namespace Skybound.Gecko
         /// The number of files currently being downloaded.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetActiveDownloadCountAttribute();
+		int GetActiveDownloadCountAttribute();
 		
 		/// <summary>
         /// An enumeration of active nsIDownloads
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISimpleEnumerator  GetActiveDownloadsAttribute();
+		nsISimpleEnumerator GetActiveDownloadsAttribute();
 		
 		/// <summary>
         /// Adds a listener from the download manager.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddListener([MarshalAs(UnmanagedType.Interface)] nsIDownloadProgressListener  aListener);
+		void AddListener([MarshalAs(UnmanagedType.Interface)] nsIDownloadProgressListener aListener);
 		
 		/// <summary>
         /// Removes a listener from the download manager.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveListener([MarshalAs(UnmanagedType.Interface)] nsIDownloadProgressListener  aListener);
+		void RemoveListener([MarshalAs(UnmanagedType.Interface)] nsIDownloadProgressListener aListener);
 		
 		/// <summary>
         /// Returns the platform default downloads directory.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsILocalFile  GetDefaultDownloadsDirectoryAttribute();
+		nsILocalFile GetDefaultDownloadsDirectoryAttribute();
 		
 		/// <summary>
         /// Returns the user configured downloads directory.
@@ -227,6 +229,6 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsILocalFile  GetUserDownloadsDirectoryAttribute();
+		nsILocalFile GetUserDownloadsDirectoryAttribute();
 	}
 }

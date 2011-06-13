@@ -63,15 +63,19 @@ namespace Skybound.Gecko
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsAString GetPropertyValue([MarshalAs(UnmanagedType.LPStruct)] nsAString propertyName);
 		
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMCSSValue GetPropertyCSSValue([MarshalAs(UnmanagedType.LPStruct)] nsAString propertyName);
 		
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsAString RemoveProperty([MarshalAs(UnmanagedType.LPStruct)] nsAString propertyName);
 		
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsAString GetPropertyPriority([MarshalAs(UnmanagedType.LPStruct)] nsAString propertyName);
 		
@@ -79,13 +83,14 @@ namespace Skybound.Gecko
 		void SetProperty([MarshalAs(UnmanagedType.LPStruct)] nsAString propertyName, [MarshalAs(UnmanagedType.LPStruct)] nsAString value, [MarshalAs(UnmanagedType.LPStruct)] nsAString priority);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetLengthAttribute();
+		uint GetLengthAttribute();
 		
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString Item(System.UInt32  index);
+		nsAString Item(uint index);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMCSSRule  GetParentRuleAttribute();
+		nsIDOMCSSRule GetParentRuleAttribute();
 	}
 }

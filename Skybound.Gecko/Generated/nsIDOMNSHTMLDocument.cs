@@ -35,14 +35,14 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetWidthAttribute </summary>
-		/// <returns>A System.Int32 </returns>
+		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetWidthAttribute();
+		int GetWidthAttribute();
 		
 		/// <summary>Member GetHeightAttribute </summary>
-		/// <returns>A System.Int32 </returns>
+		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetHeightAttribute();
+		int GetHeightAttribute();
 		
 		/// <summary>Member GetAlinkColorAttribute </summary>
 		/// <param name='aAlinkColor'> </param>
@@ -105,21 +105,23 @@ namespace Skybound.Gecko
 		void SetDomainAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDomain);
 		
 		/// <summary>Member GetEmbedsAttribute </summary>
-		/// <returns>A nsIDOMHTMLCollection </returns>
+		/// <returns>A nsIDOMHTMLCollection</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMHTMLCollection  GetEmbedsAttribute();
+		nsIDOMHTMLCollection GetEmbedsAttribute();
 		
 		/// <summary>Member GetSelection </summary>
 		/// <returns>A nsAString</returns>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsAString GetSelection();
 		
 		/// <summary>
         /// document in session history; pass false for normal history handling.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDocument Open([MarshalAs(UnmanagedType.LPStruct)] nsAString  aContentType, System.Boolean  aReplace);
+		nsIDOMDocument Open([MarshalAs(UnmanagedType.LPStruct)] nsAString aContentType, bool aReplace);
 		
 		/// <summary>
         /// Scriptable version of clear().
@@ -132,17 +134,17 @@ namespace Skybound.Gecko
         /// the implementation is no-op.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CaptureEvents(System.Int32  eventFlags);
+		void CaptureEvents(int eventFlags);
 		
 		/// <summary>Member ReleaseEvents </summary>
 		/// <param name='eventFlags'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ReleaseEvents(System.Int32  eventFlags);
+		void ReleaseEvents(int eventFlags);
 		
 		/// <summary>Member RouteEvent </summary>
 		/// <param name='evt'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RouteEvent([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent  evt);
+		void RouteEvent([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent evt);
 		
 		/// <summary>
         /// or "CSS1Compat" if we're in strict mode
@@ -155,7 +157,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMHTMLCollection  GetPluginsAttribute();
+		nsIDOMHTMLCollection GetPluginsAttribute();
 		
 		/// <summary>
         /// Midas additions
@@ -175,7 +177,7 @@ namespace Skybound.Gecko
 		/// <param name='value'> </param>
 		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool ExecCommand([MarshalAs(UnmanagedType.LPStruct)] nsAString commandID, System.Boolean  doShowUI, [MarshalAs(UnmanagedType.LPStruct)] nsAString value);
+		bool ExecCommand([MarshalAs(UnmanagedType.LPStruct)] nsAString commandID, bool doShowUI, [MarshalAs(UnmanagedType.LPStruct)] nsAString value);
 		
 		/// <summary>
         /// returns true if the help is being shown for command (false if not)
@@ -209,19 +211,21 @@ namespace Skybound.Gecko
 		
 		/// <summary>
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsAString QueryCommandText([MarshalAs(UnmanagedType.LPStruct)] nsAString commandID);
 		
 		/// <summary>
         /// returns the current value of the document or current selection for command
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsAString QueryCommandValue([MarshalAs(UnmanagedType.LPStruct)] nsAString commandID);
 		
 		/// <summary>Member GetHeadAttribute </summary>
-		/// <returns>A nsIDOMHTMLHeadElement </returns>
+		/// <returns>A nsIDOMHTMLHeadElement</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMHTMLHeadElement  GetHeadAttribute();
+		nsIDOMHTMLHeadElement GetHeadAttribute();
 	}
 }

@@ -47,7 +47,7 @@ namespace Skybound.Gecko
         /// @note To read more than 2^32 characters, call this method multiple times.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint Read([MarshalAs(UnmanagedType.LPWStr, SizeParamIndex=1)] System.String  aBuf, System.UInt32  aCount);
+		uint Read([MarshalAs(UnmanagedType.LPWStr, SizeParamIndex=1)] string aBuf, uint aCount);
 		
 		/// <summary>
         /// Low-level read method that has access to the stream's underlying buffer.
@@ -71,7 +71,7 @@ namespace Skybound.Gecko
         /// buffer
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint ReadSegments(System.IntPtr aWriter, System.IntPtr  aClosure, System.UInt32  aCount);
+		uint ReadSegments(System.IntPtr aWriter, System.IntPtr aClosure, uint aCount);
 		
 		/// <summary>
         /// Read into a string object.
@@ -79,7 +79,7 @@ namespace Skybound.Gecko
         /// @return The number of characters that were read.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint ReadString(System.UInt32  aCount, [MarshalAs(UnmanagedType.LPStruct)] nsAString aString);
+		uint ReadString(uint aCount, [MarshalAs(UnmanagedType.LPStruct)] nsAString aString);
 		
 		/// <summary>
         /// Close the stream and free associated resources. This also closes the

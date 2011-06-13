@@ -42,33 +42,33 @@ namespace Skybound.Gecko
         /// Interface to a CMS Message
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ContentIsSigned(out System.Boolean  aSigned);
+		void ContentIsSigned(out bool aSigned);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ContentIsEncrypted(out System.Boolean  aEncrypted);
+		void ContentIsEncrypted(out bool aEncrypted);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSignerCommonName([MarshalAs(UnmanagedType.LPStr)] out System.String  aName);
+		void GetSignerCommonName([MarshalAs(UnmanagedType.LPStr)] out string aName);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSignerEmailAddress([MarshalAs(UnmanagedType.LPStr)] out System.String  aEmail);
+		void GetSignerEmailAddress([MarshalAs(UnmanagedType.LPStr)] out string aEmail);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSignerCert([MarshalAs(UnmanagedType.Interface)] out nsIX509Cert  scert);
+		void GetSignerCert([MarshalAs(UnmanagedType.Interface)] out nsIX509Cert scert);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetEncryptionCert([MarshalAs(UnmanagedType.Interface)] out nsIX509Cert  ecert);
+		void GetEncryptionCert([MarshalAs(UnmanagedType.Interface)] out nsIX509Cert ecert);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void VerifySignature();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void VerifyDetachedSignature(System.IntPtr  aDigestData, System.UInt32  aDigestDataLen);
+		void VerifyDetachedSignature(System.IntPtr aDigestData, uint aDigestDataLen);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CreateEncrypted([MarshalAs(UnmanagedType.Interface)] nsIArray  aRecipientCerts);
+		void CreateEncrypted([MarshalAs(UnmanagedType.Interface)] nsIArray aRecipientCerts);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CreateSigned([MarshalAs(UnmanagedType.Interface)] nsIX509Cert  scert, [MarshalAs(UnmanagedType.Interface)] nsIX509Cert  ecert, System.IntPtr  aDigestData, System.UInt32  aDigestDataLen);
+		void CreateSigned([MarshalAs(UnmanagedType.Interface)] nsIX509Cert scert, [MarshalAs(UnmanagedType.Interface)] nsIX509Cert ecert, System.IntPtr aDigestData, uint aDigestDataLen);
 	}
 }

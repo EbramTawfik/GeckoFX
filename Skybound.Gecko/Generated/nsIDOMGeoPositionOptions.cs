@@ -35,33 +35,33 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetEnableHighAccuracyAttribute </summary>
-		/// <returns>A System.Boolean </returns>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetEnableHighAccuracyAttribute();
+		bool GetEnableHighAccuracyAttribute();
 		
 		/// <summary>Member SetEnableHighAccuracyAttribute </summary>
 		/// <param name='aEnableHighAccuracy'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetEnableHighAccuracyAttribute(System.Boolean  aEnableHighAccuracy);
+		void SetEnableHighAccuracyAttribute(bool aEnableHighAccuracy);
 		
 		/// <summary>Member GetTimeoutAttribute </summary>
-		/// <returns>A System.Int32 </returns>
+		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetTimeoutAttribute();
+		int GetTimeoutAttribute();
 		
 		/// <summary>Member SetTimeoutAttribute </summary>
 		/// <param name='aTimeout'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTimeoutAttribute(System.Int32  aTimeout);
+		void SetTimeoutAttribute(int aTimeout);
 		
 		/// <summary>Member GetMaximumAgeAttribute </summary>
-		/// <returns>A System.Int32 </returns>
+		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetMaximumAgeAttribute();
+		int GetMaximumAgeAttribute();
 		
 		/// <summary>Member SetMaximumAgeAttribute </summary>
 		/// <param name='aMaximumAge'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMaximumAgeAttribute(System.Int32  aMaximumAge);
+		void SetMaximumAgeAttribute(int aMaximumAge);
 	}
 }

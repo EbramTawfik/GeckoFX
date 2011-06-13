@@ -110,13 +110,13 @@ namespace Skybound.Gecko
         /// The size of this file, in bytes.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetSizeAttribute();
+		uint GetSizeAttribute();
 		
 		/// <summary>
         /// The size of this file, in bytes.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSizeAttribute(System.UInt32  aSize);
+		void SetSizeAttribute(uint aSize);
 		
 		/// <summary>
         /// The state of this patch
@@ -136,7 +136,7 @@ namespace Skybound.Gecko
         /// update has been selected.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetSelectedAttribute();
+		bool GetSelectedAttribute();
 		
 		/// <summary>
         /// true if this patch is currently selected as the patch to be downloaded and
@@ -144,7 +144,7 @@ namespace Skybound.Gecko
         /// update has been selected.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSelectedAttribute(System.Boolean  aSelected);
+		void SetSelectedAttribute(bool aSelected);
 		
 		/// <summary>
         /// Serializes this patch object into a DOM Element
@@ -152,8 +152,9 @@ namespace Skybound.Gecko
         /// The document to serialize into
         /// @returns The DOM Element created by the serialization process
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMElement Serialize([MarshalAs(UnmanagedType.Interface)] nsIDOMDocument  updates);
+		nsIDOMElement Serialize([MarshalAs(UnmanagedType.Interface)] nsIDOMDocument updates);
 	}
 	
 	/// <summary>
@@ -348,7 +349,7 @@ namespace Skybound.Gecko
         /// default setting to download the update in the background.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetShowPromptAttribute();
+		bool GetShowPromptAttribute();
 		
 		/// <summary>
         /// Whether to show the update prompt which requires user confirmation when an
@@ -356,7 +357,7 @@ namespace Skybound.Gecko
         /// default setting to download the update in the background.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetShowPromptAttribute(System.Boolean  aShowPrompt);
+		void SetShowPromptAttribute(bool aShowPrompt);
 		
 		/// <summary>
         /// Whether to show the "No Thanks" button in the update prompt. This allows
@@ -364,7 +365,7 @@ namespace Skybound.Gecko
         /// again.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetShowNeverForVersionAttribute();
+		bool GetShowNeverForVersionAttribute();
 		
 		/// <summary>
         /// Whether to show the "No Thanks" button in the update prompt. This allows
@@ -372,21 +373,21 @@ namespace Skybound.Gecko
         /// again.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetShowNeverForVersionAttribute(System.Boolean  aShowNeverForVersion);
+		void SetShowNeverForVersionAttribute(bool aShowNeverForVersion);
 		
 		/// <summary>
         /// Whether to show the survey link in the update prompt. The url must also be
         /// present in the app.update.surveyURL preference.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetShowSurveyAttribute();
+		bool GetShowSurveyAttribute();
 		
 		/// <summary>
         /// Whether to show the survey link in the update prompt. The url must also be
         /// present in the app.update.surveyURL preference.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetShowSurveyAttribute(System.Boolean  aShowSurvey);
+		void SetShowSurveyAttribute(bool aShowSurvey);
 		
 		/// <summary>
         /// Whether or not the update being downloaded is a complete replacement of
@@ -394,7 +395,7 @@ namespace Skybound.Gecko
         /// between the new version and the previous version.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsCompleteUpdateAttribute();
+		bool GetIsCompleteUpdateAttribute();
 		
 		/// <summary>
         /// Whether or not the update being downloaded is a complete replacement of
@@ -402,7 +403,7 @@ namespace Skybound.Gecko
         /// between the new version and the previous version.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetIsCompleteUpdateAttribute(System.Boolean  aIsCompleteUpdate);
+		void SetIsCompleteUpdateAttribute(bool aIsCompleteUpdate);
 		
 		/// <summary>
         /// Whether or not the update is a security update or not. If this is true,
@@ -410,7 +411,7 @@ namespace Skybound.Gecko
         /// user.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsSecurityUpdateAttribute();
+		bool GetIsSecurityUpdateAttribute();
 		
 		/// <summary>
         /// Whether or not the update is a security update or not. If this is true,
@@ -418,19 +419,19 @@ namespace Skybound.Gecko
         /// user.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetIsSecurityUpdateAttribute(System.Boolean  aIsSecurityUpdate);
+		void SetIsSecurityUpdateAttribute(bool aIsSecurityUpdate);
 		
 		/// <summary>
         /// When the update was installed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetInstallDateAttribute();
+		int GetInstallDateAttribute();
 		
 		/// <summary>
         /// When the update was installed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetInstallDateAttribute(System.Int32  aInstallDate);
+		void SetInstallDateAttribute(int aInstallDate);
 		
 		/// <summary>
         /// A message associated with this update, if any.
@@ -449,7 +450,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIUpdatePatch  GetSelectedPatchAttribute();
+		nsIUpdatePatch GetSelectedPatchAttribute();
 		
 		/// <summary>
         /// The state of the selected patch:
@@ -485,7 +486,7 @@ namespace Skybound.Gecko
         /// CERT_ATTR_CHECK_FAILED_* values in nsUpdateService.js)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetErrorCodeAttribute();
+		int GetErrorCodeAttribute();
 		
 		/// <summary>
         /// A numeric error code that conveys additional information about the state
@@ -497,13 +498,13 @@ namespace Skybound.Gecko
         /// CERT_ATTR_CHECK_FAILED_* values in nsUpdateService.js)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetErrorCodeAttribute(System.Int32  aErrorCode);
+		void SetErrorCodeAttribute(int aErrorCode);
 		
 		/// <summary>
         /// The number of patches supplied by this update.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetPatchCountAttribute();
+		uint GetPatchCountAttribute();
 		
 		/// <summary>
         /// Retrieves a patch.
@@ -511,8 +512,9 @@ namespace Skybound.Gecko
         /// The index of the patch to retrieve.
         /// @returns The nsIUpdatePatch at the specified index.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIUpdatePatch GetPatchAt(System.UInt32  index);
+		nsIUpdatePatch GetPatchAt(uint index);
 		
 		/// <summary>
         /// Serializes this update object into a DOM Element
@@ -520,8 +522,9 @@ namespace Skybound.Gecko
         /// The document to serialize into
         /// @returns The DOM Element created by the serialization process
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMElement Serialize([MarshalAs(UnmanagedType.Interface)] nsIDOMDocument  updates);
+		nsIDOMElement Serialize([MarshalAs(UnmanagedType.Interface)] nsIDOMDocument updates);
 	}
 	
 	/// <summary>
@@ -546,7 +549,7 @@ namespace Skybound.Gecko
         /// The total number of bytes that have to be downloaded
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnProgress([MarshalAs(UnmanagedType.Interface)] nsIXMLHttpRequest  request, System.UInt32  position, System.UInt32  totalSize);
+		void OnProgress([MarshalAs(UnmanagedType.Interface)] nsIXMLHttpRequest request, uint position, uint totalSize);
 		
 		/// <summary>
         /// The update check was completed.
@@ -558,7 +561,7 @@ namespace Skybound.Gecko
         /// The size of the |updates| array.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnCheckComplete([MarshalAs(UnmanagedType.Interface)] nsIXMLHttpRequest  request, nsIUpdate  updates, System.UInt32  updateCount);
+		void OnCheckComplete([MarshalAs(UnmanagedType.Interface)] nsIXMLHttpRequest request, nsIUpdate updates, uint updateCount);
 		
 		/// <summary>
         /// An error occurred while loading the remote update service file.
@@ -569,7 +572,7 @@ namespace Skybound.Gecko
         /// error in its |statusText| property.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnError([MarshalAs(UnmanagedType.Interface)] nsIXMLHttpRequest  request, [MarshalAs(UnmanagedType.Interface)] nsIUpdate  update);
+		void OnError([MarshalAs(UnmanagedType.Interface)] nsIXMLHttpRequest request, [MarshalAs(UnmanagedType.Interface)] nsIUpdate update);
 	}
 	
 	/// <summary>
@@ -595,7 +598,7 @@ namespace Skybound.Gecko
         /// the app.update.enabled preference.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CheckForUpdates([MarshalAs(UnmanagedType.Interface)] nsIUpdateCheckListener  listener, System.Boolean  force);
+		void CheckForUpdates([MarshalAs(UnmanagedType.Interface)] nsIUpdateCheckListener listener, bool force);
 		
 		/// <summary>
         /// Ends any pending update check.
@@ -622,7 +625,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIUpdateChecker  GetBackgroundCheckerAttribute();
+		nsIUpdateChecker GetBackgroundCheckerAttribute();
 		
 		/// <summary>
         /// Selects the best update to install from a list of available updates.
@@ -631,8 +634,9 @@ namespace Skybound.Gecko
         /// @param   updateCount
         /// The length of the |updates| array
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIUpdate SelectUpdate(nsIUpdate  updates, System.UInt32  updateCount);
+		nsIUpdate SelectUpdate(nsIUpdate updates, uint updateCount);
 		
 		/// <summary>
         /// Adds a listener that receives progress and state information about the
@@ -644,7 +648,7 @@ namespace Skybound.Gecko
         /// progress information as the update is downloaded.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddDownloadListener([MarshalAs(UnmanagedType.Interface)] nsIRequestObserver  listener);
+		void AddDownloadListener([MarshalAs(UnmanagedType.Interface)] nsIRequestObserver listener);
 		
 		/// <summary>
         /// Removes a listener that is receiving progress and state information
@@ -653,13 +657,14 @@ namespace Skybound.Gecko
         /// The listener object to remove.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveDownloadListener([MarshalAs(UnmanagedType.Interface)] nsIRequestObserver  listener);
+		void RemoveDownloadListener([MarshalAs(UnmanagedType.Interface)] nsIRequestObserver listener);
 		
 		/// <summary>
         ///
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString DownloadUpdate([MarshalAs(UnmanagedType.Interface)] nsIUpdate  update, System.Boolean  background);
+		nsAString DownloadUpdate([MarshalAs(UnmanagedType.Interface)] nsIUpdate update, bool background);
 		
 		/// <summary>
         /// Pauses the active update download process
@@ -671,7 +676,7 @@ namespace Skybound.Gecko
         /// Whether or not there is an download happening at the moment.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsDownloadingAttribute();
+		bool GetIsDownloadingAttribute();
 		
 		/// <summary>
         /// Whether or not the Update Service can check for updates. This is a function
@@ -679,7 +684,7 @@ namespace Skybound.Gecko
         /// platform the application is running on.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetCanCheckForUpdatesAttribute();
+		bool GetCanCheckForUpdatesAttribute();
 		
 		/// <summary>
         /// Whether or not the Update Service can download and install updates.
@@ -687,7 +692,7 @@ namespace Skybound.Gecko
         /// privileges to the install directory.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetCanApplyUpdatesAttribute();
+		bool GetCanApplyUpdatesAttribute();
 	}
 	
 	/// <summary>
@@ -706,27 +711,28 @@ namespace Skybound.Gecko
         /// The index within the updates array
         /// @returns The nsIUpdate object at the specified index
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIUpdate GetUpdateAt(System.Int32  index);
+		nsIUpdate GetUpdateAt(int index);
 		
 		/// <summary>
         /// Gets the total number of updates in the history list.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetUpdateCountAttribute();
+		int GetUpdateCountAttribute();
 		
 		/// <summary>
         /// The active (current) update. The active update is not in the history list.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIUpdate  GetActiveUpdateAttribute();
+		nsIUpdate GetActiveUpdateAttribute();
 		
 		/// <summary>
         /// The active (current) update. The active update is not in the history list.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetActiveUpdateAttribute([MarshalAs(UnmanagedType.Interface)] nsIUpdate  aActiveUpdate);
+		void SetActiveUpdateAttribute([MarshalAs(UnmanagedType.Interface)] nsIUpdate aActiveUpdate);
 		
 		/// <summary>
         /// Saves all updates to disk.
@@ -761,7 +767,7 @@ namespace Skybound.Gecko
         /// The nsIUpdate object to be downloaded and installed
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ShowUpdateAvailable([MarshalAs(UnmanagedType.Interface)] nsIUpdate  update);
+		void ShowUpdateAvailable([MarshalAs(UnmanagedType.Interface)] nsIUpdate update);
 		
 		/// <summary>
         /// Shows the application update downloaded user interface advising that an
@@ -774,7 +780,7 @@ namespace Skybound.Gecko
         /// Less obtrusive UI, starting with a non-modal notification alert
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ShowUpdateDownloaded([MarshalAs(UnmanagedType.Interface)] nsIUpdate  update, System.Boolean  background);
+		void ShowUpdateDownloaded([MarshalAs(UnmanagedType.Interface)] nsIUpdate update, bool background);
 		
 		/// <summary>
         /// Shows the application update installed user interface advising that an
@@ -796,7 +802,7 @@ namespace Skybound.Gecko
         /// nsIUpdate object with the error information for the update check.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ShowUpdateError([MarshalAs(UnmanagedType.Interface)] nsIUpdate  update);
+		void ShowUpdateError([MarshalAs(UnmanagedType.Interface)] nsIUpdate update);
 		
 		/// <summary>
         /// Shows a list of all updates installed to date.
@@ -804,6 +810,6 @@ namespace Skybound.Gecko
         /// An nsIDOMWindow to set as the parent for this window. Can be null.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ShowUpdateHistory([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  parent);
+		void ShowUpdateHistory([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow parent);
 	}
 }

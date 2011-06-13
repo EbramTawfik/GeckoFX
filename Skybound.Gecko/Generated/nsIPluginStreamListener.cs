@@ -48,7 +48,7 @@ namespace Skybound.Gecko
         /// it may be used to cancel the URL load..
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnStartBinding([MarshalAs(UnmanagedType.Interface)] nsIPluginStreamInfo  aPluginInfo);
+		void OnStartBinding([MarshalAs(UnmanagedType.Interface)] nsIPluginStreamInfo aPluginInfo);
 		
 		/// <summary>
         /// Notify the client that data is available in the input stream.  This
@@ -62,7 +62,7 @@ namespace Skybound.Gecko
         /// @return             - the return value is currently ignored.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnDataAvailable([MarshalAs(UnmanagedType.Interface)] nsIPluginStreamInfo  aPluginInfo, [MarshalAs(UnmanagedType.Interface)] nsIInputStream  aInputStream, System.UInt32  aLength);
+		void OnDataAvailable([MarshalAs(UnmanagedType.Interface)] nsIPluginStreamInfo aPluginInfo, [MarshalAs(UnmanagedType.Interface)] nsIInputStream aInputStream, uint aLength);
 		
 		/// <summary>
         /// Notify the client that data is available in the file.
@@ -72,7 +72,7 @@ namespace Skybound.Gecko
         /// @return            - the return value is currently ignored.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnFileAvailable([MarshalAs(UnmanagedType.Interface)] nsIPluginStreamInfo  aPluginInfo, [MarshalAs(UnmanagedType.LPStr)] System.String  aFileName);
+		void OnFileAvailable([MarshalAs(UnmanagedType.Interface)] nsIPluginStreamInfo aPluginInfo, [MarshalAs(UnmanagedType.LPStr)] string aFileName);
 		
 		/// <summary>
         /// Notify the observer that the URL has finished loading.  This method is
@@ -86,7 +86,7 @@ namespace Skybound.Gecko
         /// @return            - the return value is currently ignored.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnStopBinding([MarshalAs(UnmanagedType.Interface)] nsIPluginStreamInfo  aPluginInfo, System.Int32  aStatus);
+		void OnStopBinding([MarshalAs(UnmanagedType.Interface)] nsIPluginStreamInfo aPluginInfo, int aStatus);
 		
 		/// <summary>
         /// Gets the type of the stream
@@ -94,6 +94,6 @@ namespace Skybound.Gecko
         /// @param aStreamType - the type of the stream
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetStreamTypeAttribute();
+		int GetStreamTypeAttribute();
 	}
 }

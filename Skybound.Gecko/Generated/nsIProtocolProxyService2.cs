@@ -68,8 +68,9 @@ namespace Skybound.Gecko
         ///
         /// @see nsIProxiedProtocolHandler::newProxiedChannel
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIProxyInfo Resolve([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, System.UInt32  aFlags);
+		new nsIProxyInfo Resolve([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, uint aFlags);
 		
 		/// <summary>
         /// This method is an asychronous version of the resolve method.  Unlike
@@ -90,8 +91,9 @@ namespace Skybound.Gecko
         /// If canceled, the cancelation status (aReason) will be forwarded
         /// to the callback's onProxyAvailable method via the aStatus param.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsICancelable AsyncResolve([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, System.UInt32  aFlags, [MarshalAs(UnmanagedType.Interface)] nsIProtocolProxyCallback  aCallback);
+		new nsICancelable AsyncResolve([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, uint aFlags, [MarshalAs(UnmanagedType.Interface)] nsIProtocolProxyCallback aCallback);
 		
 		/// <summary>
         /// This method may be called to construct a nsIProxyInfo instance from
@@ -125,8 +127,9 @@ namespace Skybound.Gecko
         /// Specifies the next proxy to try if this proxy fails.  This
         /// parameter may be null.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIProxyInfo NewProxyInfo([MarshalAs(UnmanagedType.LPStruct)] nsAString  aType, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aHost, System.Int32  aPort, System.UInt32  aFlags, System.UInt32  aFailoverTimeout, [MarshalAs(UnmanagedType.Interface)] nsIProxyInfo  aFailoverProxy);
+		new nsIProxyInfo NewProxyInfo([MarshalAs(UnmanagedType.LPStruct)] nsAString aType, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aHost, int aPort, uint aFlags, uint aFailoverTimeout, [MarshalAs(UnmanagedType.Interface)] nsIProxyInfo aFailoverProxy);
 		
 		/// <summary>
         /// If the proxy identified by aProxyInfo is unavailable for some reason,
@@ -144,8 +147,9 @@ namespace Skybound.Gecko
         ///
         /// @throw NS_ERROR_NOT_AVAILABLE if there is no alternate proxy available.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIProxyInfo GetFailoverForProxy([MarshalAs(UnmanagedType.Interface)] nsIProxyInfo  aProxyInfo, [MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, System.Int32  aReason);
+		new nsIProxyInfo GetFailoverForProxy([MarshalAs(UnmanagedType.Interface)] nsIProxyInfo aProxyInfo, [MarshalAs(UnmanagedType.Interface)] nsIURI aURI, int aReason);
 		
 		/// <summary>
         /// This method may be used to register a proxy filter instance.  Each proxy
@@ -181,7 +185,7 @@ namespace Skybound.Gecko
         /// via the preferences service).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void RegisterFilter([MarshalAs(UnmanagedType.Interface)] nsIProtocolProxyFilter  aFilter, System.UInt32  aPosition);
+		new void RegisterFilter([MarshalAs(UnmanagedType.Interface)] nsIProtocolProxyFilter aFilter, uint aPosition);
 		
 		/// <summary>
         /// This method may be used to unregister a proxy filter instance.  All
@@ -191,13 +195,13 @@ namespace Skybound.Gecko
         /// The nsIProtocolProxyFilter instance to be unregistered.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void UnregisterFilter([MarshalAs(UnmanagedType.Interface)] nsIProtocolProxyFilter  aFilter);
+		new void UnregisterFilter([MarshalAs(UnmanagedType.Interface)] nsIProtocolProxyFilter aFilter);
 		
 		/// <summary>
         /// This attribute specifies the current type of proxy configuration.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.UInt32  GetProxyConfigTypeAttribute();
+		new uint GetProxyConfigTypeAttribute();
 		
 		/// <summary>
         /// Call this method to cause the PAC file (if any is configured) to be

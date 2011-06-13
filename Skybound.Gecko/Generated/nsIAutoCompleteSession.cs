@@ -37,7 +37,7 @@ namespace Skybound.Gecko
 		/// <summary>
         ///onStartLookup is called when the user has stop typing for a predifined elapse time </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnStartLookup([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string searchString, [MarshalAs(UnmanagedType.Interface)] nsIAutoCompleteResults  previousSearchResult, [MarshalAs(UnmanagedType.Interface)] nsIAutoCompleteListener  listener);
+		void OnStartLookup([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string searchString, [MarshalAs(UnmanagedType.Interface)] nsIAutoCompleteResults previousSearchResult, [MarshalAs(UnmanagedType.Interface)] nsIAutoCompleteListener listener);
 		
 		/// <summary>
         ///onStopLookup is called each time the user press a key </summary>
@@ -47,6 +47,6 @@ namespace Skybound.Gecko
 		/// <summary>
         ///onAutoComplete is called either when the user press enter/return or when the input element loses focus </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnAutoComplete([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string searchString, [MarshalAs(UnmanagedType.Interface)] nsIAutoCompleteResults  previousSearchResult, [MarshalAs(UnmanagedType.Interface)] nsIAutoCompleteListener  listener);
+		void OnAutoComplete([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string searchString, [MarshalAs(UnmanagedType.Interface)] nsIAutoCompleteResults previousSearchResult, [MarshalAs(UnmanagedType.Interface)] nsIAutoCompleteListener listener);
 	}
 }

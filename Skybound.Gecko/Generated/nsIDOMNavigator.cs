@@ -55,10 +55,10 @@ namespace Skybound.Gecko
 		void GetLanguageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aLanguage);
 		
 		/// <summary>Member GetMimeTypesAttribute </summary>
-		/// <returns>A nsIDOMMimeTypeArray </returns>
+		/// <returns>A nsIDOMMimeTypeArray</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMMimeTypeArray  GetMimeTypesAttribute();
+		nsIDOMMimeTypeArray GetMimeTypesAttribute();
 		
 		/// <summary>Member GetPlatformAttribute </summary>
 		/// <param name='aPlatform'> </param>
@@ -91,10 +91,10 @@ namespace Skybound.Gecko
 		void GetProductSubAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aProductSub);
 		
 		/// <summary>Member GetPluginsAttribute </summary>
-		/// <returns>A nsIDOMPluginArray </returns>
+		/// <returns>A nsIDOMPluginArray</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMPluginArray  GetPluginsAttribute();
+		nsIDOMPluginArray GetPluginsAttribute();
 		
 		/// <summary>Member GetSecurityPolicyAttribute </summary>
 		/// <param name='aSecurityPolicy'> </param>
@@ -107,14 +107,14 @@ namespace Skybound.Gecko
 		void GetUserAgentAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aUserAgent);
 		
 		/// <summary>Member GetCookieEnabledAttribute </summary>
-		/// <returns>A System.Boolean </returns>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetCookieEnabledAttribute();
+		bool GetCookieEnabledAttribute();
 		
 		/// <summary>Member GetOnLineAttribute </summary>
-		/// <returns>A System.Boolean </returns>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetOnLineAttribute();
+		bool GetOnLineAttribute();
 		
 		/// <summary>Member GetBuildIDAttribute </summary>
 		/// <param name='aBuildID'> </param>

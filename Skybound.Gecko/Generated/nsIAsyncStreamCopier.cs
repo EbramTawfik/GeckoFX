@@ -38,7 +38,7 @@ namespace Skybound.Gecko
         /// The name of the request.  Often this is the URI of the request.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName);
+		new void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName);
 		
 		/// <summary>
         /// Indicates whether the request is pending. nsIRequest::isPending is
@@ -62,7 +62,7 @@ namespace Skybound.Gecko
         /// The error status associated with the request.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Int32  GetStatusAttribute();
+		new int GetStatusAttribute();
 		
 		/// <summary>
         /// Cancels the current request.  This will close any open input or
@@ -86,7 +86,7 @@ namespace Skybound.Gecko
         /// a failure code.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Cancel(System.Int32  aStatus);
+		new void Cancel(int aStatus);
 		
 		/// <summary>
         /// Suspends the current request.  This may have the effect of closing
@@ -120,7 +120,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsILoadGroup  GetLoadGroupAttribute();
+		new nsILoadGroup GetLoadGroupAttribute();
 		
 		/// <summary>
         /// The load group of this request.  While pending, the request is a
@@ -128,7 +128,7 @@ namespace Skybound.Gecko
         /// to implement this policy.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetLoadGroupAttribute([MarshalAs(UnmanagedType.Interface)] nsILoadGroup  aLoadGroup);
+		new void SetLoadGroupAttribute([MarshalAs(UnmanagedType.Interface)] nsILoadGroup aLoadGroup);
 		
 		/// <summary>
         /// The load flags of this request.  Bits 0-15 are reserved.
@@ -137,7 +137,7 @@ namespace Skybound.Gecko
         /// the load flags of the load group.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.UInt32  GetLoadFlagsAttribute();
+		new uint GetLoadFlagsAttribute();
 		
 		/// <summary>
         /// The load flags of this request.  Bits 0-15 are reserved.
@@ -146,7 +146,7 @@ namespace Skybound.Gecko
         /// the load flags of the load group.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetLoadFlagsAttribute(System.UInt32  aLoadFlags);
+		new void SetLoadFlagsAttribute(uint aLoadFlags);
 		
 		/// <summary>
         /// Initialize the stream copier.
@@ -175,7 +175,7 @@ namespace Skybound.Gecko
         /// NOTE: at least one of the streams must be buffered.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init([MarshalAs(UnmanagedType.Interface)] nsIInputStream  aSource, [MarshalAs(UnmanagedType.Interface)] nsIOutputStream  aSink, [MarshalAs(UnmanagedType.Interface)] nsIEventTarget  aTarget, System.Boolean  aSourceBuffered, System.Boolean  aSinkBuffered, System.UInt32  aChunkSize, System.Boolean  aCloseSource, System.Boolean  aCloseSink);
+		void Init([MarshalAs(UnmanagedType.Interface)] nsIInputStream aSource, [MarshalAs(UnmanagedType.Interface)] nsIOutputStream aSink, [MarshalAs(UnmanagedType.Interface)] nsIEventTarget aTarget, bool aSourceBuffered, bool aSinkBuffered, uint aChunkSize, bool aCloseSource, bool aCloseSink);
 		
 		/// <summary>
         /// asyncCopy triggers the start of the copy.  The observer will be notified
@@ -187,6 +187,6 @@ namespace Skybound.Gecko
         /// passed to observer methods.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AsyncCopy([MarshalAs(UnmanagedType.Interface)] nsIRequestObserver  aObserver, [MarshalAs(UnmanagedType.Interface)] nsISupports  aObserverContext);
+		void AsyncCopy([MarshalAs(UnmanagedType.Interface)] nsIRequestObserver aObserver, [MarshalAs(UnmanagedType.Interface)] nsISupports aObserverContext);
 	}
 }

@@ -57,10 +57,10 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMCSSStyleSheet  GetParentStyleSheetAttribute();
+		nsIDOMCSSStyleSheet GetParentStyleSheetAttribute();
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMCSSRule  GetParentRuleAttribute();
+		nsIDOMCSSRule GetParentRuleAttribute();
 	}
 }

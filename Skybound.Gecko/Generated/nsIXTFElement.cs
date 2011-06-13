@@ -38,7 +38,7 @@ namespace Skybound.Gecko
         /// (i.e. holding a reference to this will not create a cycle).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnCreated([MarshalAs(UnmanagedType.Interface)] nsIXTFElementWrapper  wrapper);
+		void OnCreated([MarshalAs(UnmanagedType.Interface)] nsIXTFElementWrapper wrapper);
 		
 		/// <summary>
         /// called when the wrapper object is being destroyed.
@@ -50,87 +50,87 @@ namespace Skybound.Gecko
         /// onCreated()-calls until after onDestroyed()-calls).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsAttributeHandlerAttribute();
+		bool GetIsAttributeHandlerAttribute();
 		
 		/// <summary>
         /// @note 'Normal' DOM interfaces are always automatically scriptable.
         /// </summary>
-		System.Guid GetScriptingInterfaces(out System.UInt32  count);
+		System.Guid GetScriptingInterfaces(out uint count);
 		
 		/// <summary>
         /// Event notifications:
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void WillChangeDocument([MarshalAs(UnmanagedType.Interface)] nsIDOMDocument  newDoc);
+		void WillChangeDocument([MarshalAs(UnmanagedType.Interface)] nsIDOMDocument newDoc);
 		
 		/// <summary>Member DocumentChanged </summary>
 		/// <param name='newDoc'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DocumentChanged([MarshalAs(UnmanagedType.Interface)] nsIDOMDocument  newDoc);
+		void DocumentChanged([MarshalAs(UnmanagedType.Interface)] nsIDOMDocument newDoc);
 		
 		/// <summary>Member WillChangeParent </summary>
 		/// <param name='newParent'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void WillChangeParent([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  newParent);
+		void WillChangeParent([MarshalAs(UnmanagedType.Interface)] nsIDOMElement newParent);
 		
 		/// <summary>Member ParentChanged </summary>
 		/// <param name='newParent'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ParentChanged([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  newParent);
+		void ParentChanged([MarshalAs(UnmanagedType.Interface)] nsIDOMElement newParent);
 		
 		/// <summary>Member WillInsertChild </summary>
 		/// <param name='child'> </param>
 		/// <param name='index'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void WillInsertChild([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  child, System.UInt32  index);
+		void WillInsertChild([MarshalAs(UnmanagedType.Interface)] nsIDOMNode child, uint index);
 		
 		/// <summary>Member ChildInserted </summary>
 		/// <param name='child'> </param>
 		/// <param name='index'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ChildInserted([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  child, System.UInt32  index);
+		void ChildInserted([MarshalAs(UnmanagedType.Interface)] nsIDOMNode child, uint index);
 		
 		/// <summary>Member WillAppendChild </summary>
 		/// <param name='child'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void WillAppendChild([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  child);
+		void WillAppendChild([MarshalAs(UnmanagedType.Interface)] nsIDOMNode child);
 		
 		/// <summary>Member ChildAppended </summary>
 		/// <param name='child'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ChildAppended([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  child);
+		void ChildAppended([MarshalAs(UnmanagedType.Interface)] nsIDOMNode child);
 		
 		/// <summary>Member WillRemoveChild </summary>
 		/// <param name='index'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void WillRemoveChild(System.UInt32  index);
+		void WillRemoveChild(uint index);
 		
 		/// <summary>Member ChildRemoved </summary>
 		/// <param name='index'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ChildRemoved(System.UInt32  index);
+		void ChildRemoved(uint index);
 		
 		/// <summary>Member WillSetAttribute </summary>
 		/// <param name='name'> </param>
 		/// <param name='newValue'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void WillSetAttribute([MarshalAs(UnmanagedType.Interface)] nsIAtom  name, [MarshalAs(UnmanagedType.LPStruct)] nsAString newValue);
+		void WillSetAttribute([MarshalAs(UnmanagedType.Interface)] nsIAtom name, [MarshalAs(UnmanagedType.LPStruct)] nsAString newValue);
 		
 		/// <summary>Member AttributeSet </summary>
 		/// <param name='name'> </param>
 		/// <param name='newValue'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AttributeSet([MarshalAs(UnmanagedType.Interface)] nsIAtom  name, [MarshalAs(UnmanagedType.LPStruct)] nsAString newValue);
+		void AttributeSet([MarshalAs(UnmanagedType.Interface)] nsIAtom name, [MarshalAs(UnmanagedType.LPStruct)] nsAString newValue);
 		
 		/// <summary>Member WillRemoveAttribute </summary>
 		/// <param name='name'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void WillRemoveAttribute([MarshalAs(UnmanagedType.Interface)] nsIAtom  name);
+		void WillRemoveAttribute([MarshalAs(UnmanagedType.Interface)] nsIAtom name);
 		
 		/// <summary>Member AttributeRemoved </summary>
 		/// <param name='name'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AttributeRemoved([MarshalAs(UnmanagedType.Interface)] nsIAtom  name);
+		void AttributeRemoved([MarshalAs(UnmanagedType.Interface)] nsIAtom name);
 		
 		/// <summary>
         /// added to the element.
@@ -146,20 +146,20 @@ namespace Skybound.Gecko
         /// other default handlers won't be able to handle it again.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool HandleDefault([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent  aEvent);
+		bool HandleDefault([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent aEvent);
 		
 		/// <summary>
         /// other needed state.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CloneState([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  aElement);
+		void CloneState([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement);
 		
 		/// <summary>
         /// Returns accesskey attribute node.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMAttr  GetAccesskeyNodeAttribute();
+		nsIDOMAttr GetAccesskeyNodeAttribute();
 		
 		/// <summary>
         /// Performs accesskey. The method is called when accesskey is activated.

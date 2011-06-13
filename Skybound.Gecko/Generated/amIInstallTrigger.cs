@@ -46,7 +46,7 @@ namespace Skybound.Gecko
         /// 0 if the install was successful or negative if not
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnInstallEnded([MarshalAs(UnmanagedType.LPStruct)] nsAString aUrl, System.Int32  aStatus);
+		void OnInstallEnded([MarshalAs(UnmanagedType.LPStruct)] nsAString aUrl, int aStatus);
 	}
 	
 	/// <summary>
@@ -88,7 +88,7 @@ namespace Skybound.Gecko
         /// @return true if the installations were successfully started
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Install([MarshalAs(UnmanagedType.Interface)] nsIVariant  aArgs, amIInstallCallback  aCallback);
+		bool Install([MarshalAs(UnmanagedType.Interface)] nsIVariant aArgs, amIInstallCallback aCallback);
 		
 		/// <summary>
         /// Starts installing a new add-on. This method is deprecated, please use
@@ -103,7 +103,7 @@ namespace Skybound.Gecko
         /// @return true if the installation was successfully started
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool InstallChrome(System.UInt32  aType, [MarshalAs(UnmanagedType.LPStruct)] nsAString aUrl, [MarshalAs(UnmanagedType.LPStruct)] nsAString aSkin);
+		bool InstallChrome(uint aType, [MarshalAs(UnmanagedType.LPStruct)] nsAString aUrl, [MarshalAs(UnmanagedType.LPStruct)] nsAString aSkin);
 		
 		/// <summary>
         /// Starts installing a new add-on.
@@ -117,6 +117,6 @@ namespace Skybound.Gecko
         /// @return true if the installation was successfully started
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool StartSoftwareUpdate([MarshalAs(UnmanagedType.LPStruct)] nsAString aUrl, System.Int32  aFlags);
+		bool StartSoftwareUpdate([MarshalAs(UnmanagedType.LPStruct)] nsAString aUrl, int aFlags);
 	}
 }

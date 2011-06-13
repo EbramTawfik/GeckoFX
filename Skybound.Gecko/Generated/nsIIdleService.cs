@@ -50,7 +50,7 @@ namespace Skybound.Gecko
         /// at all, and if we are also unable to poll for idle time manually).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetIdleTimeAttribute();
+		uint GetIdleTimeAttribute();
 		
 		/// <summary>
         /// Add an observer to be notified when the user idles for some period of
@@ -76,7 +76,7 @@ namespace Skybound.Gecko
         /// Current implementations use a delay of 5 seconds.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddIdleObserver([MarshalAs(UnmanagedType.Interface)] nsIObserver  observer, System.UInt32  time);
+		void AddIdleObserver([MarshalAs(UnmanagedType.Interface)] nsIObserver observer, uint time);
 		
 		/// <summary>
         /// Remove an observer registered with addIdleObserver.
@@ -88,6 +88,6 @@ namespace Skybound.Gecko
         /// just as many times.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveIdleObserver([MarshalAs(UnmanagedType.Interface)] nsIObserver  observer, System.UInt32  time);
+		void RemoveIdleObserver([MarshalAs(UnmanagedType.Interface)] nsIObserver observer, uint time);
 	}
 }

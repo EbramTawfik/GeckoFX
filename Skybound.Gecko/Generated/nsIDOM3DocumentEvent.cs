@@ -43,6 +43,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Introduced in DOM Level 3:
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMEventGroup CreateEventGroup();
 	}

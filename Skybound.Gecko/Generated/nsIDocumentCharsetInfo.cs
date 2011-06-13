@@ -41,31 +41,31 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIAtom  GetForcedCharsetAttribute();
+		nsIAtom GetForcedCharsetAttribute();
 		
 		/// <summary>
         /// XXX mark the right params "const"
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetForcedCharsetAttribute([MarshalAs(UnmanagedType.Interface)] nsIAtom  aForcedCharset);
+		void SetForcedCharsetAttribute([MarshalAs(UnmanagedType.Interface)] nsIAtom aForcedCharset);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetForcedDetectorAttribute();
+		bool GetForcedDetectorAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetForcedDetectorAttribute(System.Boolean  aForcedDetector);
+		void SetForcedDetectorAttribute(bool aForcedDetector);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIAtom  GetParentCharsetAttribute();
+		nsIAtom GetParentCharsetAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetParentCharsetAttribute([MarshalAs(UnmanagedType.Interface)] nsIAtom  aParentCharset);
+		void SetParentCharsetAttribute([MarshalAs(UnmanagedType.Interface)] nsIAtom aParentCharset);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetParentCharsetSourceAttribute();
+		int GetParentCharsetSourceAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetParentCharsetSourceAttribute(System.Int32  aParentCharsetSource);
+		void SetParentCharsetSourceAttribute(int aParentCharsetSource);
 	}
 }

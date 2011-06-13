@@ -37,15 +37,16 @@ namespace Skybound.Gecko
 		/// <summary>Member AddCert </summary>
 		/// <param name='cert'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddCert([MarshalAs(UnmanagedType.Interface)] nsIX509Cert  cert);
+		void AddCert([MarshalAs(UnmanagedType.Interface)] nsIX509Cert cert);
 		
 		/// <summary>Member DeleteCert </summary>
 		/// <param name='cert'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DeleteCert([MarshalAs(UnmanagedType.Interface)] nsIX509Cert  cert);
+		void DeleteCert([MarshalAs(UnmanagedType.Interface)] nsIX509Cert cert);
 		
 		/// <summary>Member GetEnumerator </summary>
 		/// <returns>A nsISimpleEnumerator</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISimpleEnumerator GetEnumerator();
 		

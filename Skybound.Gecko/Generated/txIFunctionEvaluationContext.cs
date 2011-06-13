@@ -35,25 +35,25 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetPositionAttribute </summary>
-		/// <returns>A System.UInt32 </returns>
+		/// <returns>A System.UInt32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetPositionAttribute();
+		uint GetPositionAttribute();
 		
 		/// <summary>Member GetSizeAttribute </summary>
-		/// <returns>A System.UInt32 </returns>
+		/// <returns>A System.UInt32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetSizeAttribute();
+		uint GetSizeAttribute();
 		
 		/// <summary>Member GetContextNodeAttribute </summary>
-		/// <returns>A nsIDOMNode </returns>
+		/// <returns>A nsIDOMNode</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMNode  GetContextNodeAttribute();
+		nsIDOMNode GetContextNodeAttribute();
 		
 		/// <summary>Member GetStateAttribute </summary>
-		/// <returns>A nsISupports </returns>
+		/// <returns>A nsISupports</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports  GetStateAttribute();
+		nsISupports GetStateAttribute();
 	}
 }

@@ -46,7 +46,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  aWindow);
+		void Init([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow);
 		
 		/// <summary>
         /// Notify the command manager that the status of a command
@@ -54,6 +54,6 @@ namespace Skybound.Gecko
         /// or vice versa, or become toggled etc.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CommandStatusChanged([MarshalAs(UnmanagedType.LPStr)] System.String  aCommandName);
+		void CommandStatusChanged([MarshalAs(UnmanagedType.LPStr)] string aCommandName);
 	}
 }

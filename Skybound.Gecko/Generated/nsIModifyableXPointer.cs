@@ -42,16 +42,17 @@ namespace Skybound.Gecko
         /// all return values, although it would be more user friendly to return
         /// nodes and node lists when they are possible.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMRange Item(System.UInt32  index);
+		new nsIDOMRange Item(uint index);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.UInt32  GetLengthAttribute();
+		new uint GetLengthAttribute();
 		
 		/// <summary>
         /// Helper interface that can assist in creating an nsIXPointerResult.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AppendRange([MarshalAs(UnmanagedType.Interface)] nsIDOMRange  aRange);
+		void AppendRange([MarshalAs(UnmanagedType.Interface)] nsIDOMRange aRange);
 	}
 }

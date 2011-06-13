@@ -60,6 +60,6 @@ namespace Skybound.Gecko
         /// without explicit action (with the exception of pinned tabs)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetSessionTypeAttribute();
+		uint GetSessionTypeAttribute();
 	}
 }

@@ -42,7 +42,7 @@ namespace Skybound.Gecko
         /// @param aKey nsIKeyObject
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init([MarshalAs(UnmanagedType.Interface)] nsIKeyObject  aKey);
+		void Init([MarshalAs(UnmanagedType.Interface)] nsIKeyObject aKey);
 		
 		/// <summary>
         /// Initialize a stream cipher with an initialization vector.
@@ -51,33 +51,34 @@ namespace Skybound.Gecko
         /// @param aIVLen the length of the initialization vector
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitWithIV([MarshalAs(UnmanagedType.Interface)] nsIKeyObject  aKey, System.IntPtr  aIV, System.UInt32  aIVLen);
+		void InitWithIV([MarshalAs(UnmanagedType.Interface)] nsIKeyObject aKey, System.IntPtr aIV, uint aIVLen);
 		
 		/// <summary>
         /// Update from an array of bytes.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Update(System.IntPtr  aData, System.UInt32  aLen);
+		void Update(System.IntPtr aData, uint aLen);
 		
 		/// <summary>
         /// Update from a stream.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UpdateFromStream([MarshalAs(UnmanagedType.Interface)] nsIInputStream  aStream, System.Int32  aLen);
+		void UpdateFromStream([MarshalAs(UnmanagedType.Interface)] nsIInputStream aStream, int aLen);
 		
 		/// <summary>
         /// A more script friendly method (not in nsICryptoHash interface).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UpdateFromString([MarshalAs(UnmanagedType.LPStruct)] nsAString  aInput);
+		void UpdateFromString([MarshalAs(UnmanagedType.LPStruct)] nsAString aInput);
 		
 		/// <summary>
         /// @param aASCII if true then the returned value is a base-64
         /// encoded string.  if false, then the returned value is
         /// binary data.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString Finish(System.Boolean  aASCII);
+		nsAString Finish(bool aASCII);
 		
 		/// <summary>
         /// Discard aLen bytes of the keystream.
@@ -85,6 +86,6 @@ namespace Skybound.Gecko
         /// the key state warmed-up enough for secure usage.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Discard(System.Int32  aLen);
+		void Discard(int aLen);
 	}
 }

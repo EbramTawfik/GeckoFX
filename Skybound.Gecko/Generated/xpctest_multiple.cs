@@ -35,18 +35,19 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetParentOneAttributeAttribute </summary>
-		/// <returns>A System.String </returns>
+		/// <returns>A System.String</returns>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetParentOneAttributeAttribute();
+		string GetParentOneAttributeAttribute();
 		
 		/// <summary>Member SetParentOneAttributeAttribute </summary>
 		/// <param name='aParentOneAttribute'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetParentOneAttributeAttribute([MarshalAs(UnmanagedType.LPStr)] System.String  aParentOneAttribute);
+		void SetParentOneAttributeAttribute([MarshalAs(UnmanagedType.LPStr)] string aParentOneAttribute);
 		
 		/// <summary>Member ParentOneMethod </summary>
 		/// <returns>A System.String</returns>
+		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string ParentOneMethod();
 	}
@@ -59,18 +60,19 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetParentTwoAttributeAttribute </summary>
-		/// <returns>A System.String </returns>
+		/// <returns>A System.String</returns>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetParentTwoAttributeAttribute();
+		string GetParentTwoAttributeAttribute();
 		
 		/// <summary>Member SetParentTwoAttributeAttribute </summary>
 		/// <param name='aParentTwoAttribute'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetParentTwoAttributeAttribute([MarshalAs(UnmanagedType.LPStr)] System.String  aParentTwoAttribute);
+		void SetParentTwoAttributeAttribute([MarshalAs(UnmanagedType.LPStr)] string aParentTwoAttribute);
 		
 		/// <summary>Member ParentTwoMethod </summary>
 		/// <returns>A System.String</returns>
+		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string ParentTwoMethod();
 	}
@@ -83,18 +85,19 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetChildAttributeAttribute </summary>
-		/// <returns>A System.String </returns>
+		/// <returns>A System.String</returns>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetChildAttributeAttribute();
+		string GetChildAttributeAttribute();
 		
 		/// <summary>Member SetChildAttributeAttribute </summary>
 		/// <param name='aChildAttribute'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetChildAttributeAttribute([MarshalAs(UnmanagedType.LPStr)] System.String  aChildAttribute);
+		void SetChildAttributeAttribute([MarshalAs(UnmanagedType.LPStr)] string aChildAttribute);
 		
 		/// <summary>Member ChildMethod </summary>
 		/// <returns>A System.String</returns>
+		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string ChildMethod();
 	}
@@ -107,34 +110,36 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetParentOneAttributeAttribute </summary>
-		/// <returns>A System.String </returns>
+		/// <returns>A System.String</returns>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.String  GetParentOneAttributeAttribute();
+		new string GetParentOneAttributeAttribute();
 		
 		/// <summary>Member SetParentOneAttributeAttribute </summary>
 		/// <param name='aParentOneAttribute'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetParentOneAttributeAttribute([MarshalAs(UnmanagedType.LPStr)] System.String  aParentOneAttribute);
+		new void SetParentOneAttributeAttribute([MarshalAs(UnmanagedType.LPStr)] string aParentOneAttribute);
 		
 		/// <summary>Member ParentOneMethod </summary>
 		/// <returns>A System.String</returns>
+		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new string ParentOneMethod();
 		
 		/// <summary>Member GetChildAttributeAttribute </summary>
-		/// <returns>A System.String </returns>
+		/// <returns>A System.String</returns>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetChildAttributeAttribute();
+		string GetChildAttributeAttribute();
 		
 		/// <summary>Member SetChildAttributeAttribute </summary>
 		/// <param name='aChildAttribute'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetChildAttributeAttribute([MarshalAs(UnmanagedType.LPStr)] System.String  aChildAttribute);
+		void SetChildAttributeAttribute([MarshalAs(UnmanagedType.LPStr)] string aChildAttribute);
 		
 		/// <summary>Member ChildMethod </summary>
 		/// <returns>A System.String</returns>
+		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string ChildMethod();
 	}
@@ -147,18 +152,19 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetChildAttributeAttribute </summary>
-		/// <returns>A System.String </returns>
+		/// <returns>A System.String</returns>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetChildAttributeAttribute();
+		string GetChildAttributeAttribute();
 		
 		/// <summary>Member SetChildAttributeAttribute </summary>
 		/// <param name='aChildAttribute'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetChildAttributeAttribute([MarshalAs(UnmanagedType.LPStr)] System.String  aChildAttribute);
+		void SetChildAttributeAttribute([MarshalAs(UnmanagedType.LPStr)] string aChildAttribute);
 		
 		/// <summary>Member ChildMethod </summary>
 		/// <returns>A System.String</returns>
+		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string ChildMethod();
 	}
@@ -171,34 +177,36 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetParentOneAttributeAttribute </summary>
-		/// <returns>A System.String </returns>
+		/// <returns>A System.String</returns>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.String  GetParentOneAttributeAttribute();
+		new string GetParentOneAttributeAttribute();
 		
 		/// <summary>Member SetParentOneAttributeAttribute </summary>
 		/// <param name='aParentOneAttribute'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetParentOneAttributeAttribute([MarshalAs(UnmanagedType.LPStr)] System.String  aParentOneAttribute);
+		new void SetParentOneAttributeAttribute([MarshalAs(UnmanagedType.LPStr)] string aParentOneAttribute);
 		
 		/// <summary>Member ParentOneMethod </summary>
 		/// <returns>A System.String</returns>
+		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new string ParentOneMethod();
 		
 		/// <summary>Member GetChildAttributeAttribute </summary>
-		/// <returns>A System.String </returns>
+		/// <returns>A System.String</returns>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetChildAttributeAttribute();
+		string GetChildAttributeAttribute();
 		
 		/// <summary>Member SetChildAttributeAttribute </summary>
 		/// <param name='aChildAttribute'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetChildAttributeAttribute([MarshalAs(UnmanagedType.LPStr)] System.String  aChildAttribute);
+		void SetChildAttributeAttribute([MarshalAs(UnmanagedType.LPStr)] string aChildAttribute);
 		
 		/// <summary>Member ChildMethod </summary>
 		/// <returns>A System.String</returns>
+		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string ChildMethod();
 	}

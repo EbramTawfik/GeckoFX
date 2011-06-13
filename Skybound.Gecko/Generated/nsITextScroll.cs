@@ -44,7 +44,7 @@ namespace Skybound.Gecko
         /// @param numLines number of lines to scroll the view by
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ScrollByLines(System.Int32  numLines);
+		void ScrollByLines(int numLines);
 		
 		/// <summary>
         /// Scroll the view up or down by numPages pages. a page
@@ -54,6 +54,6 @@ namespace Skybound.Gecko
         /// @param numPages number of pages to scroll the view by
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ScrollByPages(System.Int32  numPages);
+		void ScrollByPages(int numPages);
 	}
 }

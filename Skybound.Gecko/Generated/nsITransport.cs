@@ -79,8 +79,9 @@ namespace Skybound.Gecko
         /// if OPEN_UNBUFFERED is not set, then this parameter specifies the
         /// maximum number of buffer segments (pass 0 to use default value).
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIInputStream OpenInputStream(System.UInt32  aFlags, System.UInt32  aSegmentSize, System.UInt32  aSegmentCount);
+		nsIInputStream OpenInputStream(uint aFlags, uint aSegmentSize, uint aSegmentCount);
 		
 		/// <summary>
         /// Open an output stream on this transport.
@@ -113,8 +114,9 @@ namespace Skybound.Gecko
         /// if OPEN_UNBUFFERED is not set, then this parameter specifies the
         /// maximum number of buffer segments (pass 0 to use default value).
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIOutputStream OpenOutputStream(System.UInt32  aFlags, System.UInt32  aSegmentSize, System.UInt32  aSegmentCount);
+		nsIOutputStream OpenOutputStream(uint aFlags, uint aSegmentSize, uint aSegmentCount);
 		
 		/// <summary>
         /// Close the transport and any open streams.
@@ -123,7 +125,7 @@ namespace Skybound.Gecko
         /// the reason for closing the stream.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Close(System.Int32  aReason);
+		void Close(int aReason);
 		
 		/// <summary>
         /// Set the transport event sink.
@@ -136,7 +138,7 @@ namespace Skybound.Gecko
         /// any thread.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetEventSink([MarshalAs(UnmanagedType.Interface)] nsITransportEventSink  aSink, [MarshalAs(UnmanagedType.Interface)] nsIEventTarget  aEventTarget);
+		void SetEventSink([MarshalAs(UnmanagedType.Interface)] nsITransportEventSink aSink, [MarshalAs(UnmanagedType.Interface)] nsIEventTarget aEventTarget);
 	}
 	
 	/// <summary>
@@ -167,6 +169,6 @@ namespace Skybound.Gecko
         /// unknown, 0xFFFFFFFF will be passed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnTransportStatus([MarshalAs(UnmanagedType.Interface)] nsITransport  aTransport, System.Int32  aStatus, System.UInt32  aProgress, System.UInt32  aProgressMax);
+		void OnTransportStatus([MarshalAs(UnmanagedType.Interface)] nsITransport aTransport, int aStatus, uint aProgress, uint aProgressMax);
 	}
 }

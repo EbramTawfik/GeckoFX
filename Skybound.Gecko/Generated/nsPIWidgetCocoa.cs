@@ -44,7 +44,7 @@ namespace Skybound.Gecko
         /// wants to be displayed (if !aShown)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetChildSheet(System.Boolean  aShown);
+		System.IntPtr GetChildSheet(bool aShown);
 		
 		/// <summary>
         /// Get the parent widget (if any) StandardCreate() was called with.
@@ -62,6 +62,6 @@ namespace Skybound.Gecko
         /// True if window is a sheet
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsSheetAttribute();
+		bool GetIsSheetAttribute();
 	}
 }

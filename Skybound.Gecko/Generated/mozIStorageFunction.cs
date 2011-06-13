@@ -55,7 +55,8 @@ namespace Skybound.Gecko
         ///
         /// @returns any value as Variant type.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant OnFunctionCall(mozIStorageValueArray  aFunctionArguments);
+		nsIVariant OnFunctionCall(mozIStorageValueArray aFunctionArguments);
 	}
 }

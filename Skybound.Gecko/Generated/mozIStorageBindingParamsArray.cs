@@ -51,12 +51,12 @@ namespace Skybound.Gecko
         /// The parameters to add to this array.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddParams(mozIStorageBindingParams  aParameters);
+		void AddParams(mozIStorageBindingParams aParameters);
 		
 		/// <summary>
         /// The number of mozIStorageBindingParams this object contains.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetLengthAttribute();
+		uint GetLengthAttribute();
 	}
 }

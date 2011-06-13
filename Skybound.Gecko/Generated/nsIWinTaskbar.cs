@@ -69,7 +69,7 @@ namespace Skybound.Gecko
         /// This property acts as a replacement for in-place os version checking.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetAvailableAttribute();
+		bool GetAvailableAttribute();
 		
 		/// <summary>
         /// Returns the default application user model identity the application
@@ -85,8 +85,9 @@ namespace Skybound.Gecko
         /// is used to find the toplevel window. See the documentation for
         /// nsITaskbarTabPreview for more information.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsITaskbarTabPreview CreateTaskbarTabPreview([MarshalAs(UnmanagedType.Interface)] nsIDocShell  shell, [MarshalAs(UnmanagedType.Interface)] nsITaskbarPreviewController  controller);
+		nsITaskbarTabPreview CreateTaskbarTabPreview([MarshalAs(UnmanagedType.Interface)] nsIDocShell shell, [MarshalAs(UnmanagedType.Interface)] nsITaskbarPreviewController controller);
 		
 		/// <summary>
         /// Gets the taskbar preview for a window. The docshell is used to find the
@@ -95,16 +96,18 @@ namespace Skybound.Gecko
         ///
         /// Note: to implement custom drawing or buttons, a controller is required.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsITaskbarWindowPreview GetTaskbarWindowPreview([MarshalAs(UnmanagedType.Interface)] nsIDocShell  shell);
+		nsITaskbarWindowPreview GetTaskbarWindowPreview([MarshalAs(UnmanagedType.Interface)] nsIDocShell shell);
 		
 		/// <summary>
         /// Gets the taskbar progress for a window. The docshell is used to find the
         /// toplevel window. See the documentation for nsITaskbarProgress for more
         /// information.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsITaskbarProgress GetTaskbarProgress([MarshalAs(UnmanagedType.Interface)] nsIDocShell  shell);
+		nsITaskbarProgress GetTaskbarProgress([MarshalAs(UnmanagedType.Interface)] nsIDocShell shell);
 		
 		/// <summary>
         /// Retrieve a taskbar jump list builder
@@ -116,6 +119,7 @@ namespace Skybound.Gecko
         /// @thow NS_ERROR_ALREADY_INITIALIZED if an nsIJumpListBuilder instance is
         /// currently building a list.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIJumpListBuilder CreateJumpListBuilder();
 		
@@ -140,6 +144,6 @@ namespace Skybound.Gecko
         /// @thow NS_ERROR_UNEXPECTED for general failures.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetGroupIdForWindow([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  aParent, [MarshalAs(UnmanagedType.LPStruct)] nsAString aIdentifier);
+		void SetGroupIdForWindow([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aParent, [MarshalAs(UnmanagedType.LPStruct)] nsAString aIdentifier);
 	}
 }

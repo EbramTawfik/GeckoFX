@@ -48,7 +48,7 @@ namespace Skybound.Gecko
         /// part of the command line.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetLengthAttribute();
+		int GetLengthAttribute();
 		
 		/// <summary>
         /// Get an argument from the array of command-line arguments.
@@ -64,8 +64,9 @@ namespace Skybound.Gecko
         /// @return       The indexth argument.
         /// @throws       NS_ERROR_INVALID_ARG if aIndex is out of bounds.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetArgument(System.Int32  aIndex);
+		nsAString GetArgument(int aIndex);
 		
 		/// <summary>
         /// Find a command-line flag.
@@ -76,7 +77,7 @@ namespace Skybound.Gecko
         /// @return               The position of the flag in the command line.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int FindFlag([MarshalAs(UnmanagedType.LPStruct)] nsAString aFlag, System.Boolean  aCaseSensitive);
+		int FindFlag([MarshalAs(UnmanagedType.LPStruct)] nsAString aFlag, bool aCaseSensitive);
 		
 		/// <summary>
         /// Remove arguments from the command line. This normally occurs after
@@ -86,7 +87,7 @@ namespace Skybound.Gecko
         /// @param aEnd    Index to end removing, inclusive.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveArguments(System.Int32  aStart, System.Int32  aEnd);
+		void RemoveArguments(int aStart, int aEnd);
 		
 		/// <summary>
         /// A helper method which will find a flag and remove it in one step.
@@ -96,7 +97,7 @@ namespace Skybound.Gecko
         /// @return       Whether the flag was found.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool HandleFlag([MarshalAs(UnmanagedType.LPStruct)] nsAString aFlag, System.Boolean  aCaseSensitive);
+		bool HandleFlag([MarshalAs(UnmanagedType.LPStruct)] nsAString aFlag, bool aCaseSensitive);
 		
 		/// <summary>
         /// Find a flag with a parameter and remove both. This is a helper
@@ -109,8 +110,9 @@ namespace Skybound.Gecko
         /// @param aFlag The flag name to find and remove.
         /// @param aCaseSensitive Whether to do case-sensitive flag search.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString HandleFlagWithParam([MarshalAs(UnmanagedType.LPStruct)] nsAString aFlag, System.Boolean  aCaseSensitive);
+		nsAString HandleFlagWithParam([MarshalAs(UnmanagedType.LPStruct)] nsAString aFlag, bool aCaseSensitive);
 		
 		/// <summary>
         /// The type of command line being processed.
@@ -122,7 +124,7 @@ namespace Skybound.Gecko
         /// this instance using xremote/windde/appleevents.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetStateAttribute();
+		uint GetStateAttribute();
 		
 		/// <summary>
         /// There may be a command-line handler which performs a default action if
@@ -130,7 +132,7 @@ namespace Skybound.Gecko
         /// window, for example). This flag allows the default action to be prevented.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetPreventDefaultAttribute();
+		bool GetPreventDefaultAttribute();
 		
 		/// <summary>
         /// There may be a command-line handler which performs a default action if
@@ -138,7 +140,7 @@ namespace Skybound.Gecko
         /// window, for example). This flag allows the default action to be prevented.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPreventDefaultAttribute(System.Boolean  aPreventDefault);
+		void SetPreventDefaultAttribute(bool aPreventDefault);
 		
 		/// <summary>
         /// The working directory for this command line. Use this property instead
@@ -147,7 +149,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIFile  GetWorkingDirectoryAttribute();
+		nsIFile GetWorkingDirectoryAttribute();
 		
 		/// <summary>
         /// A window to be targeted by this command line. In most cases, this will
@@ -155,7 +157,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMWindow  GetWindowContextAttribute();
+		nsIDOMWindow GetWindowContextAttribute();
 		
 		/// <summary>
         /// Resolve a file-path argument into an nsIFile. This method gracefully
@@ -164,6 +166,7 @@ namespace Skybound.Gecko
         ///
         /// @param aArgument  The command-line argument to resolve.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIFile ResolveFile([MarshalAs(UnmanagedType.LPStruct)] nsAString aArgument);
 		
@@ -175,6 +178,7 @@ namespace Skybound.Gecko
         ///
         /// @param aArgument  The command-line argument to resolve.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIURI ResolveURI([MarshalAs(UnmanagedType.LPStruct)] nsAString aArgument);
 	}

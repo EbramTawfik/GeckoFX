@@ -40,6 +40,6 @@ namespace Skybound.Gecko
         ///The general dialog posing function within nsPromptService, for
         ///   private consumption, only. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DoDialog([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  aParent, [MarshalAs(UnmanagedType.Interface)] nsIDialogParamBlock  aParamBlock, [MarshalAs(UnmanagedType.LPStr)] System.String  aChromeURL);
+		void DoDialog([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aParent, [MarshalAs(UnmanagedType.Interface)] nsIDialogParamBlock aParamBlock, [MarshalAs(UnmanagedType.LPStr)] string aChromeURL);
 	}
 }

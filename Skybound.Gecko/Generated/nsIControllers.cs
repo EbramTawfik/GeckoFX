@@ -37,49 +37,53 @@ namespace Skybound.Gecko
 		/// <summary>Member GetControllerForCommand </summary>
 		/// <param name='command'> </param>
 		/// <returns>A nsIController</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIController GetControllerForCommand([MarshalAs(UnmanagedType.LPStr)] System.String  command);
+		nsIController GetControllerForCommand([MarshalAs(UnmanagedType.LPStr)] string command);
 		
 		/// <summary>Member InsertControllerAt </summary>
 		/// <param name='index'> </param>
 		/// <param name='controller'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InsertControllerAt(System.UInt32  index, [MarshalAs(UnmanagedType.Interface)] nsIController  controller);
+		void InsertControllerAt(uint index, [MarshalAs(UnmanagedType.Interface)] nsIController controller);
 		
 		/// <summary>Member RemoveControllerAt </summary>
 		/// <param name='index'> </param>
 		/// <returns>A nsIController</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIController RemoveControllerAt(System.UInt32  index);
+		nsIController RemoveControllerAt(uint index);
 		
 		/// <summary>Member GetControllerAt </summary>
 		/// <param name='index'> </param>
 		/// <returns>A nsIController</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIController GetControllerAt(System.UInt32  index);
+		nsIController GetControllerAt(uint index);
 		
 		/// <summary>Member AppendController </summary>
 		/// <param name='controller'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AppendController([MarshalAs(UnmanagedType.Interface)] nsIController  controller);
+		void AppendController([MarshalAs(UnmanagedType.Interface)] nsIController controller);
 		
 		/// <summary>Member RemoveController </summary>
 		/// <param name='controller'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveController([MarshalAs(UnmanagedType.Interface)] nsIController  controller);
+		void RemoveController([MarshalAs(UnmanagedType.Interface)] nsIController controller);
 		
 		/// <summary>
         ///Return an ID for this controller which is unique to this
         ///        nsIControllers.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetControllerId([MarshalAs(UnmanagedType.Interface)] nsIController  controller);
+		uint GetControllerId([MarshalAs(UnmanagedType.Interface)] nsIController controller);
 		
 		/// <summary>
         ///Get the controller specified by the given ID.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIController GetControllerById(System.UInt32  controllerID);
+		nsIController GetControllerById(uint controllerID);
 		
 		/// <summary>Member GetControllerCount </summary>
 		/// <returns>A System.UInt32</returns>

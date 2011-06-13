@@ -40,7 +40,7 @@ namespace Skybound.Gecko
         /// Interface for JS function callbacks
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void HandleEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString  value);
+		void HandleEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString value);
 	}
 	
 	/// <summary>nsIUrlListManager </summary>
@@ -54,21 +54,21 @@ namespace Skybound.Gecko
         /// Set the URL we check for updates.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetUpdateUrl([MarshalAs(UnmanagedType.LPStruct)] nsAString  url);
+		void SetUpdateUrl([MarshalAs(UnmanagedType.LPStruct)] nsAString url);
 		
 		/// <summary>
         /// Set the URL we use to get keys used to decrypt URLs in
         /// enchash tables.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetKeyUrl([MarshalAs(UnmanagedType.LPStruct)] nsAString  url);
+		void SetKeyUrl([MarshalAs(UnmanagedType.LPStruct)] nsAString url);
 		
 		/// <summary>
         /// Set the URL that we will query for complete hashes after a partial
         /// hash match.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetGethashUrl([MarshalAs(UnmanagedType.LPStruct)] nsAString  url);
+		void SetGethashUrl([MarshalAs(UnmanagedType.LPStruct)] nsAString url);
 		
 		/// <summary>
         /// Add a table to the list of tables we are managing.  The name is a
@@ -76,20 +76,20 @@ namespace Skybound.Gecko
         /// example, goog-white-enchash or goog-black-url.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool RegisterTable([MarshalAs(UnmanagedType.LPStruct)] nsAString  tableName, System.Boolean  requireMac);
+		bool RegisterTable([MarshalAs(UnmanagedType.LPStruct)] nsAString tableName, bool requireMac);
 		
 		/// <summary>
         /// Turn on update checking for a table.  I.e., during the next server
         /// check, download updates for this table.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EnableUpdate([MarshalAs(UnmanagedType.LPStruct)] nsAString  tableName);
+		void EnableUpdate([MarshalAs(UnmanagedType.LPStruct)] nsAString tableName);
 		
 		/// <summary>
         /// Turn off update checking for a table.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DisableUpdate([MarshalAs(UnmanagedType.LPStruct)] nsAString  tableName);
+		void DisableUpdate([MarshalAs(UnmanagedType.LPStruct)] nsAString tableName);
 		
 		/// <summary>
         /// Lookup a key.  Should not raise exceptions.  Calls the callback
@@ -97,7 +97,7 @@ namespace Skybound.Gecko
         /// belongs.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SafeLookup([MarshalAs(UnmanagedType.LPStruct)] nsAString  key, [MarshalAs(UnmanagedType.Interface)] nsIUrlListManagerCallback  cb);
+		void SafeLookup([MarshalAs(UnmanagedType.LPStruct)] nsAString key, [MarshalAs(UnmanagedType.Interface)] nsIUrlListManagerCallback cb);
 		
 		/// <summary>Member CheckForUpdates </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

@@ -48,7 +48,7 @@ namespace Skybound.Gecko
         /// @exception nsIXSLTException
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ImportStylesheet([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  style);
+		void ImportStylesheet([MarshalAs(UnmanagedType.Interface)] nsIDOMNode style);
 		
 		/// <summary>
         /// Transforms the node source applying the stylesheet given by
@@ -61,8 +61,9 @@ namespace Skybound.Gecko
         ///
         /// @exception nsIXSLTException
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDocumentFragment TransformToFragment([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  source, [MarshalAs(UnmanagedType.Interface)] nsIDOMDocument  output);
+		nsIDOMDocumentFragment TransformToFragment([MarshalAs(UnmanagedType.Interface)] nsIDOMNode source, [MarshalAs(UnmanagedType.Interface)] nsIDOMDocument output);
 		
 		/// <summary>
         /// Transforms the node source applying the stylesheet given by the
@@ -73,8 +74,9 @@ namespace Skybound.Gecko
         ///
         /// @exception nsIXSLTException
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDocument TransformToDocument([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  source);
+		nsIDOMDocument TransformToDocument([MarshalAs(UnmanagedType.Interface)] nsIDOMNode source);
 		
 		/// <summary>
         /// Sets a parameter to be used in subsequent transformations with this
@@ -89,7 +91,7 @@ namespace Skybound.Gecko
         /// not supported
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetParameter([MarshalAs(UnmanagedType.LPStruct)] nsAString namespaceURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString localName, [MarshalAs(UnmanagedType.Interface)] nsIVariant  value);
+		void SetParameter([MarshalAs(UnmanagedType.LPStruct)] nsAString namespaceURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString localName, [MarshalAs(UnmanagedType.Interface)] nsIVariant value);
 		
 		/// <summary>
         /// Gets a parameter if previously set by setParameter. Returns null
@@ -99,6 +101,7 @@ namespace Skybound.Gecko
         /// @param localName    The local name of the XSLT parameter
         /// @return nsIVariant  The value of the XSLT parameter
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIVariant GetParameter([MarshalAs(UnmanagedType.LPStruct)] nsAString namespaceURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString localName);
 		

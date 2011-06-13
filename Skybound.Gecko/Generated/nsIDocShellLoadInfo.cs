@@ -41,12 +41,12 @@ namespace Skybound.Gecko
         ///This is the referrer for the load. </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI  GetReferrerAttribute();
+		nsIURI GetReferrerAttribute();
 		
 		/// <summary>
         ///This is the referrer for the load. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetReferrerAttribute([MarshalAs(UnmanagedType.Interface)] nsIURI  aReferrer);
+		void SetReferrerAttribute([MarshalAs(UnmanagedType.Interface)] nsIURI aReferrer);
 		
 		/// <summary>
         ///The owner of the load, that is, the entity responsible for
@@ -54,28 +54,28 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports  GetOwnerAttribute();
+		nsISupports GetOwnerAttribute();
 		
 		/// <summary>
         ///The owner of the load, that is, the entity responsible for
         /// causing the load to occur. This should be a nsIPrincipal typically.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOwnerAttribute([MarshalAs(UnmanagedType.Interface)] nsISupports  aOwner);
+		void SetOwnerAttribute([MarshalAs(UnmanagedType.Interface)] nsISupports aOwner);
 		
 		/// <summary>
         ///If this attribute is true and no owner is specified, copy
         /// the owner from the referring document.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetInheritOwnerAttribute();
+		bool GetInheritOwnerAttribute();
 		
 		/// <summary>
         ///If this attribute is true and no owner is specified, copy
         /// the owner from the referring document.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetInheritOwnerAttribute(System.Boolean  aInheritOwner);
+		void SetInheritOwnerAttribute(bool aInheritOwner);
 		
 		/// <summary>
         ///If this attribute is true only ever use the owner specify by
@@ -85,7 +85,7 @@ namespace Skybound.Gecko
         /// the load fails.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetOwnerIsExplicitAttribute();
+		bool GetOwnerIsExplicitAttribute();
 		
 		/// <summary>
         ///If this attribute is true only ever use the owner specify by
@@ -95,7 +95,7 @@ namespace Skybound.Gecko
         /// the load fails.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOwnerIsExplicitAttribute(System.Boolean  aOwnerIsExplicit);
+		void SetOwnerIsExplicitAttribute(bool aOwnerIsExplicit);
 		
 		/// <summary>
         ///Contains a load type as specified by the load* constants </summary>
@@ -111,12 +111,12 @@ namespace Skybound.Gecko
         ///SHEntry for this page </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISHEntry  GetSHEntryAttribute();
+		nsISHEntry GetSHEntryAttribute();
 		
 		/// <summary>
         ///SHEntry for this page </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSHEntryAttribute([MarshalAs(UnmanagedType.Interface)] nsISHEntry  aSHEntry);
+		void SetSHEntryAttribute([MarshalAs(UnmanagedType.Interface)] nsISHEntry aSHEntry);
 		
 		/// <summary>
         ///Target for load, like _content, _blank etc. </summary>
@@ -133,36 +133,36 @@ namespace Skybound.Gecko
         ///Post data </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIInputStream  GetPostDataStreamAttribute();
+		nsIInputStream GetPostDataStreamAttribute();
 		
 		/// <summary>
         ///Post data </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPostDataStreamAttribute([MarshalAs(UnmanagedType.Interface)] nsIInputStream  aPostDataStream);
+		void SetPostDataStreamAttribute([MarshalAs(UnmanagedType.Interface)] nsIInputStream aPostDataStream);
 		
 		/// <summary>
         ///Additional headers </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIInputStream  GetHeadersStreamAttribute();
+		nsIInputStream GetHeadersStreamAttribute();
 		
 		/// <summary>
         ///Additional headers </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetHeadersStreamAttribute([MarshalAs(UnmanagedType.Interface)] nsIInputStream  aHeadersStream);
+		void SetHeadersStreamAttribute([MarshalAs(UnmanagedType.Interface)] nsIInputStream aHeadersStream);
 		
 		/// <summary>
         ///True if the referrer should be sent, false if it shouldn't be
         /// sent, even if it's available. This attribute defaults to true.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetSendReferrerAttribute();
+		bool GetSendReferrerAttribute();
 		
 		/// <summary>
         ///True if the referrer should be sent, false if it shouldn't be
         /// sent, even if it's available. This attribute defaults to true.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSendReferrerAttribute(System.Boolean  aSendReferrer);
+		void SetSendReferrerAttribute(bool aSendReferrer);
 	}
 }

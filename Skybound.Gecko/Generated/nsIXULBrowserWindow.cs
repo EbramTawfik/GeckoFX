@@ -55,12 +55,13 @@ namespace Skybound.Gecko
         /// over.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOverLink([MarshalAs(UnmanagedType.LPStruct)] nsAString link, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement  element);
+		void SetOverLink([MarshalAs(UnmanagedType.LPStruct)] nsAString link, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement element);
 		
 		/// <summary>
         /// Determines the appropriate target for a link.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString OnBeforeLinkTraversal([MarshalAs(UnmanagedType.LPStruct)] nsAString originalTarget, [MarshalAs(UnmanagedType.Interface)] nsIURI  linkURI, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode  linkNode, System.Boolean  isAppTab);
+		nsAString OnBeforeLinkTraversal([MarshalAs(UnmanagedType.LPStruct)] nsAString originalTarget, [MarshalAs(UnmanagedType.Interface)] nsIURI linkURI, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode linkNode, bool isAppTab);
 	}
 }

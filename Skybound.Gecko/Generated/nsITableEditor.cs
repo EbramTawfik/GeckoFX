@@ -46,19 +46,19 @@ namespace Skybound.Gecko
         /// else insert before current cell
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InsertTableCell(System.Int32  aNumber, System.Boolean  aAfter);
+		void InsertTableCell(int aNumber, bool aAfter);
 		
 		/// <summary>Member InsertTableColumn </summary>
 		/// <param name='aNumber'> </param>
 		/// <param name='aAfter'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InsertTableColumn(System.Int32  aNumber, System.Boolean  aAfter);
+		void InsertTableColumn(int aNumber, bool aAfter);
 		
 		/// <summary>Member InsertTableRow </summary>
 		/// <param name='aNumber'> </param>
 		/// <param name='aAfter'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InsertTableRow(System.Int32  aNumber, System.Boolean  aAfter);
+		void InsertTableRow(int aNumber, bool aAfter);
 		
 		/// <summary>
         ///Delete table methods
@@ -93,17 +93,17 @@ namespace Skybound.Gecko
         /// have to be contiguous.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DeleteTableCell(System.Int32  aNumber);
+		void DeleteTableCell(int aNumber);
 		
 		/// <summary>Member DeleteTableColumn </summary>
 		/// <param name='aNumber'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DeleteTableColumn(System.Int32  aNumber);
+		void DeleteTableColumn(int aNumber);
 		
 		/// <summary>Member DeleteTableRow </summary>
 		/// <param name='aNumber'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DeleteTableRow(System.Int32  aNumber);
+		void DeleteTableRow(int aNumber);
 		
 		/// <summary>
         ///Table Selection methods
@@ -123,7 +123,7 @@ namespace Skybound.Gecko
         /// @param aEndCell    ending cell in block
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SelectBlockOfCells([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  aStartCell, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement  aEndCell);
+		void SelectBlockOfCells([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aStartCell, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement aEndCell);
 		
 		/// <summary>Member SelectTableRow </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -150,8 +150,9 @@ namespace Skybound.Gecko
         /// @param aSourceCell   The cell to be replaced
         /// @return              The new cell that replaces aSourceCell
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMElement SwitchTableCellHeaderType([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  aSourceCell);
+		nsIDOMElement SwitchTableCellHeaderType([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aSourceCell);
 		
 		/// <summary>
         ///Merges contents of all selected cells
@@ -175,7 +176,7 @@ namespace Skybound.Gecko
         /// are merged
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void JoinTableCells(System.Boolean  aMergeNonContiguousContents);
+		void JoinTableCells(bool aMergeNonContiguousContents);
 		
 		/// <summary>
         ///Split a cell that has rowspan and/or colspan > 0
@@ -199,7 +200,7 @@ namespace Skybound.Gecko
         /// in a page independent of the selection
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NormalizeTable([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  aTable);
+		void NormalizeTable([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aTable);
 		
 		/// <summary>
         ///Get the row an column index from the layout's cellmap
@@ -207,7 +208,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCellIndexes([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  aCell, out System.Int32  aRowIndex, out System.Int32  aColIndex);
+		void GetCellIndexes([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aCell, out int aRowIndex, out int aColIndex);
 		
 		/// <summary>
         ///Get the number of rows and columns in a table from the layout's cellmap
@@ -216,7 +217,7 @@ namespace Skybound.Gecko
         /// ROWSPAN effects or if table is not "rectangular" (has short rows)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTableSize([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  aTable, out System.Int32  aRowCount, out System.Int32  aColCount);
+		void GetTableSize([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aTable, out int aRowCount, out int aColCount);
 		
 		/// <summary>
         ///Get a cell element at cellmap grid coordinates
@@ -233,8 +234,9 @@ namespace Skybound.Gecko
         /// by iterating through the appropriate indexes
         /// until the returned aCell is null
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMElement GetCellAt([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  aTable, System.Int32  aRowIndex, System.Int32  aColIndex);
+		nsIDOMElement GetCellAt([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aTable, int aRowIndex, int aColIndex);
 		
 		/// <summary>
         ///Get a cell at cellmap grid coordinates and associated data
@@ -263,7 +265,7 @@ namespace Skybound.Gecko
         /// passes NS_SUCCEEDED macro)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCellDataAt([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  aTable, System.Int32  aRowIndex, System.Int32  aColIndex, [MarshalAs(UnmanagedType.Interface)] out nsIDOMElement  aCell, out System.Int32  aStartRowIndex, out System.Int32  aStartColIndex, out System.Int32  aRowSpan, out System.Int32  aColSpan, out System.Int32  aActualRowSpan, out System.Int32  aActualColSpan, out System.Boolean  aIsSelected);
+		void GetCellDataAt([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aTable, int aRowIndex, int aColIndex, [MarshalAs(UnmanagedType.Interface)] out nsIDOMElement aCell, out int aStartRowIndex, out int aStartColIndex, out int aRowSpan, out int aColSpan, out int aActualRowSpan, out int aActualColSpan, out bool aIsSelected);
 		
 		/// <summary>
         ///Get the first row element in a table
@@ -273,8 +275,9 @@ namespace Skybound.Gecko
         /// (in C++ returns: NS_EDITOR_ELEMENT_NOT_FOUND if an element is not found
         /// passes NS_SUCCEEDED macro)
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMNode GetFirstRow([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  aTableElement);
+		nsIDOMNode GetFirstRow([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aTableElement);
 		
 		/// <summary>
         ///Get the next row element starting the search from aTableElement
@@ -287,8 +290,9 @@ namespace Skybound.Gecko
         /// (in C++ returns: NS_EDITOR_ELEMENT_NOT_FOUND if an element is not found
         /// passes NS_SUCCEEDED macro)
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMNode GetNextRow([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  aTableElement);
+		nsIDOMNode GetNextRow([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aTableElement);
 		
 		/// <summary>
         ///Reset a selected cell or collapsed selection (the caret) after table editing
@@ -309,7 +313,7 @@ namespace Skybound.Gecko
         /// object to insure we reset the caret in a table-editing method.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSelectionAfterTableEdit([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  aTable, System.Int32  aRow, System.Int32  aCol, System.Int32  aDirection, System.Boolean  aSelected);
+		void SetSelectionAfterTableEdit([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aTable, int aRow, int aCol, int aDirection, bool aSelected);
 		
 		/// <summary>
         ///Examine the current selection and find
@@ -326,8 +330,9 @@ namespace Skybound.Gecko
         /// @return                 The table element (table, row, or first selected cell)
         ///
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMElement GetSelectedOrParentTableElement([MarshalAs(UnmanagedType.LPStruct)] nsAString aTagName, out System.Int32  aCount);
+		nsIDOMElement GetSelectedOrParentTableElement([MarshalAs(UnmanagedType.LPStruct)] nsAString aTagName, out int aCount);
 		
 		/// <summary>
         ///Generally used after GetSelectedOrParentTableElement
@@ -351,7 +356,7 @@ namespace Skybound.Gecko
         /// and in each column, all cells are selected
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetSelectedCellsType([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  aElement);
+		uint GetSelectedCellsType([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement);
 		
 		/// <summary>
         ///Get first selected element from first selection range.
@@ -366,8 +371,9 @@ namespace Skybound.Gecko
         /// (in C++: returns NS_EDITOR_ELEMENT_NOT_FOUND if an element is not found
         /// passes NS_SUCCEEDED macro)
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMElement GetFirstSelectedCell([MarshalAs(UnmanagedType.Interface)] out nsIDOMRange  aRange);
+		nsIDOMElement GetFirstSelectedCell([MarshalAs(UnmanagedType.Interface)] out nsIDOMRange aRange);
 		
 		/// <summary>
         ///Get first selected element in the table
@@ -384,8 +390,9 @@ namespace Skybound.Gecko
         /// (in C++: returns NS_EDITOR_ELEMENT_NOT_FOUND if an element is not found
         /// passes NS_SUCCEEDED macro)
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMElement GetFirstSelectedCellInTable(out System.Int32  aRowIndex, out System.Int32  aColIndex);
+		nsIDOMElement GetFirstSelectedCellInTable(out int aRowIndex, out int aColIndex);
 		
 		/// <summary>
         ///Get next selected cell element from first selection range.
@@ -401,7 +408,8 @@ namespace Skybound.Gecko
         /// (in C++: returns NS_EDITOR_ELEMENT_NOT_FOUND if an element is not found
         /// passes NS_SUCCEEDED macro)
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMElement GetNextSelectedCell([MarshalAs(UnmanagedType.Interface)] out nsIDOMRange  aRange);
+		nsIDOMElement GetNextSelectedCell([MarshalAs(UnmanagedType.Interface)] out nsIDOMRange aRange);
 	}
 }

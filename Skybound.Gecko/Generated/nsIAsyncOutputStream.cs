@@ -76,7 +76,7 @@ namespace Skybound.Gecko
         /// @throws <other-error> on failure
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new uint Write([MarshalAs(UnmanagedType.LPStr)] System.String  aBuf, System.UInt32  aCount);
+		new uint Write([MarshalAs(UnmanagedType.LPStr)] string aBuf, uint aCount);
 		
 		/// <summary>
         /// Writes data into the stream from an input stream.
@@ -97,7 +97,7 @@ namespace Skybound.Gecko
         /// the output stream's other Write method.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new uint WriteFrom([MarshalAs(UnmanagedType.Interface)] nsIInputStream  aFromStream, System.UInt32  aCount);
+		new uint WriteFrom([MarshalAs(UnmanagedType.Interface)] nsIInputStream aFromStream, uint aCount);
 		
 		/// <summary>
         /// Low-level write method that has access to the stream's underlying buffer.
@@ -121,7 +121,7 @@ namespace Skybound.Gecko
         /// buffer (e.g., socket output stream).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new uint WriteSegments(System.IntPtr aReader, System.IntPtr  aClosure, System.UInt32  aCount);
+		new uint WriteSegments(System.IntPtr aReader, System.IntPtr aClosure, uint aCount);
 		
 		/// <summary>
         /// @return true if stream is non-blocking
@@ -155,7 +155,7 @@ namespace Skybound.Gecko
         /// it has been closed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CloseWithStatus(System.Int32  reason);
+		void CloseWithStatus(int reason);
 		
 		/// <summary>
         /// Asynchronously wait for the stream to be writable or closed.  The
@@ -189,7 +189,7 @@ namespace Skybound.Gecko
         /// target.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AsyncWait([MarshalAs(UnmanagedType.Interface)] nsIOutputStreamCallback  aCallback, System.UInt32  aFlags, System.UInt32  aRequestedCount, [MarshalAs(UnmanagedType.Interface)] nsIEventTarget  aEventTarget);
+		void AsyncWait([MarshalAs(UnmanagedType.Interface)] nsIOutputStreamCallback aCallback, uint aFlags, uint aRequestedCount, [MarshalAs(UnmanagedType.Interface)] nsIEventTarget aEventTarget);
 	}
 	
 	/// <summary>
@@ -208,6 +208,6 @@ namespace Skybound.Gecko
         /// The stream whose asyncWait method was called.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnOutputStreamReady([MarshalAs(UnmanagedType.Interface)] nsIAsyncOutputStream  aStream);
+		void OnOutputStreamReady([MarshalAs(UnmanagedType.Interface)] nsIAsyncOutputStream aStream);
 	}
 }

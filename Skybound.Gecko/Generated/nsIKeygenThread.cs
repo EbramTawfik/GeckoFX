@@ -52,7 +52,7 @@ namespace Skybound.Gecko
         /// and subject.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void StartKeyGeneration([MarshalAs(UnmanagedType.Interface)] nsIObserver  observer);
+		void StartKeyGeneration([MarshalAs(UnmanagedType.Interface)] nsIObserver observer);
 		
 		/// <summary>
         /// userCanceled - notify the thread
@@ -61,6 +61,6 @@ namespace Skybound.Gecko
         /// it, we are not allowed to close it.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UserCanceled(out System.Boolean  threadAlreadyClosedDialog);
+		void UserCanceled(out bool threadAlreadyClosedDialog);
 	}
 }

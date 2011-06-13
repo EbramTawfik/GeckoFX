@@ -42,39 +42,39 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIProxyInfo  GetProxyInfoAttribute();
+		new nsIProxyInfo GetProxyInfoAttribute();
 		
 		/// <summary>
         /// If the channel being authenticated is using SSL.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsSSLAttribute();
+		bool GetIsSSLAttribute();
 		
 		/// <summary>
         /// Returns if the proxy HTTP method used is CONNECT. If no proxy is being
         /// used it must return PR_FALSE.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetProxyMethodIsConnectAttribute();
+		bool GetProxyMethodIsConnectAttribute();
 		
 		/// <summary>
         /// Cancels the current request. See nsIRequest.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Cancel(System.Int32  aStatus);
+		void Cancel(int aStatus);
 		
 		/// <summary>
         /// The load flags of this request. See nsIRequest.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetLoadFlagsAttribute();
+		uint GetLoadFlagsAttribute();
 		
 		/// <summary>
         /// The URI corresponding to the channel. See nsIChannel.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI  GetURIAttribute();
+		nsIURI GetURIAttribute();
 		
 		/// <summary>
         /// The load group of this request. It is here for querying its
@@ -82,53 +82,53 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsILoadGroup  GetLoadGroupAttribute();
+		nsILoadGroup GetLoadGroupAttribute();
 		
 		/// <summary>
         /// The notification callbacks for the channel. See nsIChannel.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIInterfaceRequestor  GetNotificationCallbacksAttribute();
+		nsIInterfaceRequestor GetNotificationCallbacksAttribute();
 		
 		/// <summary>
         /// The HTTP request method. See nsIHttpChannel.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetRequestMethodAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aRequestMethod);
+		void GetRequestMethodAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aRequestMethod);
 		
 		/// <summary>
         /// The "Server" response header.
         /// Return NS_ERROR_NOT_AVAILABLE if not available.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetServerResponseHeaderAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aServerResponseHeader);
+		void GetServerResponseHeaderAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aServerResponseHeader);
 		
 		/// <summary>
         /// The Proxy-Authenticate response header.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetProxyChallengesAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aProxyChallenges);
+		void GetProxyChallengesAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aProxyChallenges);
 		
 		/// <summary>
         /// The WWW-Authenticate response header.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetWWWChallengesAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aWWWChallenges);
+		void GetWWWChallengesAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aWWWChallenges);
 		
 		/// <summary>
         /// Sets the Proxy-Authorization request header. An empty string
         /// will clear it.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetProxyCredentials([MarshalAs(UnmanagedType.LPStruct)] nsAString  credentials);
+		void SetProxyCredentials([MarshalAs(UnmanagedType.LPStruct)] nsAString credentials);
 		
 		/// <summary>
         /// Sets the Authorization request header. An empty string
         /// will clear it.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetWWWCredentials([MarshalAs(UnmanagedType.LPStruct)] nsAString  credentials);
+		void SetWWWCredentials([MarshalAs(UnmanagedType.LPStruct)] nsAString credentials);
 		
 		/// <summary>
         /// Called when authentication information is ready and has been set on this
@@ -153,6 +153,6 @@ namespace Skybound.Gecko
         /// If the user was cancelled has cancelled the authentication prompt.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnAuthCancelled(System.Boolean  userCancel);
+		void OnAuthCancelled(bool userCancel);
 	}
 }

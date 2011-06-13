@@ -41,7 +41,7 @@ namespace Skybound.Gecko
         /// @param aProfile profile to migrate from, if there is more than one.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Migrate(ushort aItems, [MarshalAs(UnmanagedType.Interface)] nsIProfileStartup  aStartup, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aProfile);
+		void Migrate(ushort aItems, [MarshalAs(UnmanagedType.Interface)] nsIProfileStartup aStartup, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aProfile);
 		
 		/// <summary>
         /// A bit field containing profile items that this migrator
@@ -52,7 +52,7 @@ namespace Skybound.Gecko
         /// @returns bit field containing profile items (see above)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetMigrateData([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aProfile, System.Boolean  aDoingStartup);
+		uint GetMigrateData([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aProfile, bool aDoingStartup);
 		
 		/// <summary>
         /// Whether or not there is any data that can be imported from this
@@ -60,14 +60,14 @@ namespace Skybound.Gecko
         /// a user profile)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetSourceExistsAttribute();
+		bool GetSourceExistsAttribute();
 		
 		/// <summary>
         /// Whether or not the import source implementing this interface
         /// has multiple user profiles configured.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetSourceHasMultipleProfilesAttribute();
+		bool GetSourceHasMultipleProfilesAttribute();
 		
 		/// <summary>
         /// An enumeration of available profiles. If the import source does
@@ -75,12 +75,12 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupportsArray  GetSourceProfilesAttribute();
+		nsISupportsArray GetSourceProfilesAttribute();
 		
 		/// <summary>
         /// The import source homepage.  Returns null if not present/available
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSourceHomePageURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aSourceHomePageURL);
+		void GetSourceHomePageURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aSourceHomePageURL);
 	}
 }

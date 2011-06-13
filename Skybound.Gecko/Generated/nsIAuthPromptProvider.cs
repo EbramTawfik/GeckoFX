@@ -46,6 +46,6 @@ namespace Skybound.Gecko
         /// @returns an nsIAuthPrompt2 interface, or throws NS_ERROR_NOT_AVAILABLE
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr  GetAuthPrompt(System.UInt32  aPromptReason, ref System.Guid iid);
+		System.IntPtr GetAuthPrompt(uint aPromptReason, ref System.Guid iid);
 	}
 }

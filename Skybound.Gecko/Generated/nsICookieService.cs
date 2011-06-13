@@ -100,8 +100,9 @@ namespace Skybound.Gecko
         ///
         /// @return the resulting cookie string
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string GetCookieString([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, [MarshalAs(UnmanagedType.Interface)] nsIChannel  aChannel);
+		string GetCookieString([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIChannel aChannel);
 		
 		/// <summary>
         /// Get the complete cookie string associated with the URI.
@@ -126,8 +127,9 @@ namespace Skybound.Gecko
         ///
         /// @return the resulting cookie string
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string GetCookieStringFromHttp([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, [MarshalAs(UnmanagedType.Interface)] nsIURI  aFirstURI, [MarshalAs(UnmanagedType.Interface)] nsIChannel  aChannel);
+		string GetCookieStringFromHttp([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIURI aFirstURI, [MarshalAs(UnmanagedType.Interface)] nsIChannel aChannel);
 		
 		/// <summary>
         /// Set the cookie string associated with the URI.
@@ -151,7 +153,7 @@ namespace Skybound.Gecko
         /// provided, the cookies will be assumed third-party.)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCookieString([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, [MarshalAs(UnmanagedType.Interface)] nsIPrompt  aPrompt, [MarshalAs(UnmanagedType.LPStr)] System.String  aCookie, [MarshalAs(UnmanagedType.Interface)] nsIChannel  aChannel);
+		void SetCookieString([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIPrompt aPrompt, [MarshalAs(UnmanagedType.LPStr)] string aCookie, [MarshalAs(UnmanagedType.Interface)] nsIChannel aChannel);
 		
 		/// <summary>
         /// Set the cookie string and expires associated with the URI.
@@ -187,6 +189,6 @@ namespace Skybound.Gecko
         /// provided, the cookies will be assumed third-party.)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCookieStringFromHttp([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, [MarshalAs(UnmanagedType.Interface)] nsIURI  aFirstURI, [MarshalAs(UnmanagedType.Interface)] nsIPrompt  aPrompt, [MarshalAs(UnmanagedType.LPStr)] System.String  aCookie, [MarshalAs(UnmanagedType.LPStr)] System.String  aServerTime, [MarshalAs(UnmanagedType.Interface)] nsIChannel  aChannel);
+		void SetCookieStringFromHttp([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIURI aFirstURI, [MarshalAs(UnmanagedType.Interface)] nsIPrompt aPrompt, [MarshalAs(UnmanagedType.LPStr)] string aCookie, [MarshalAs(UnmanagedType.LPStr)] string aServerTime, [MarshalAs(UnmanagedType.Interface)] nsIChannel aChannel);
 	}
 }

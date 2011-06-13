@@ -43,6 +43,6 @@ namespace Skybound.Gecko
         /// vetoed. If SUCCEEDED the redirect has been allowed by all consumers.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnRedirectVerifyCallback(System.Int32  result);
+		void OnRedirectVerifyCallback(int result);
 	}
 }

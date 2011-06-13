@@ -41,6 +41,6 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMGeoGeolocation  GetGeolocationAttribute();
+		nsIDOMGeoGeolocation GetGeolocationAttribute();
 	}
 }

@@ -51,10 +51,10 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMSVGAngle  GetBaseValAttribute();
+		nsIDOMSVGAngle GetBaseValAttribute();
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMSVGAngle  GetAnimValAttribute();
+		nsIDOMSVGAngle GetAnimValAttribute();
 	}
 }

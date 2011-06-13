@@ -37,7 +37,7 @@ namespace Skybound.Gecko
 		/// <summary>Member LogMessage </summary>
 		/// <param name='message'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void LogMessage([MarshalAs(UnmanagedType.Interface)] nsIConsoleMessage  message);
+		void LogMessage([MarshalAs(UnmanagedType.Interface)] nsIConsoleMessage message);
 		
 		/// <summary>
         /// Convenience method for logging simple messages.
@@ -52,7 +52,7 @@ namespace Skybound.Gecko
         /// 0-length array when called from script.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMessageArray(out nsIConsoleMessage  messages, out System.UInt32  count);
+		void GetMessageArray(out nsIConsoleMessage messages, out uint count);
 		
 		/// <summary>
         /// To guard against stack overflows from listeners that could log
@@ -61,13 +61,13 @@ namespace Skybound.Gecko
         /// another error is already being logged.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RegisterListener([MarshalAs(UnmanagedType.Interface)] nsIConsoleListener  listener);
+		void RegisterListener([MarshalAs(UnmanagedType.Interface)] nsIConsoleListener listener);
 		
 		/// <summary>
         /// Each registered listener should also be unregistered.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UnregisterListener([MarshalAs(UnmanagedType.Interface)] nsIConsoleListener  listener);
+		void UnregisterListener([MarshalAs(UnmanagedType.Interface)] nsIConsoleListener listener);
 		
 		/// <summary>
         /// Clear the message buffer (e.g. for privacy reasons).

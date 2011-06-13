@@ -49,7 +49,7 @@ namespace Skybound.Gecko
         /// @param aInputStream parameter providing the stream to wrap
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init([MarshalAs(UnmanagedType.Interface)] nsIInputStream  aInputStream);
+		void Init([MarshalAs(UnmanagedType.Interface)] nsIInputStream aInputStream);
 		
 		/// <summary>
         /// Return the number of bytes currently available in the stream
@@ -74,8 +74,9 @@ namespace Skybound.Gecko
         /// @throws NS_BASE_STREAM_CLOSED if called after the stream has been closed
         /// @throws NS_ERROR_NOT_INITIALIZED if init was not called
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string Read(System.UInt32  aCount);
+		string Read(uint aCount);
 		
 		/// <summary>
         /// Read data from the stream, including NULL bytes.
@@ -90,7 +91,8 @@ namespace Skybound.Gecko
         /// @throws NS_ERROR_FAILURE if there are not enough bytes available to read
         /// aCount amount of data.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString ReadBytes(System.UInt32  aCount);
+		nsAString ReadBytes(uint aCount);
 	}
 }

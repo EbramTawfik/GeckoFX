@@ -35,36 +35,36 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetServerCertAttribute </summary>
-		/// <returns>A nsIX509Cert </returns>
+		/// <returns>A nsIX509Cert</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIX509Cert  GetServerCertAttribute();
+		nsIX509Cert GetServerCertAttribute();
 		
 		/// <summary>Member GetCipherNameAttribute </summary>
-		/// <returns>A System.String </returns>
+		/// <returns>A System.String</returns>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetCipherNameAttribute();
+		string GetCipherNameAttribute();
 		
 		/// <summary>Member GetKeyLengthAttribute </summary>
-		/// <returns>A System.UInt32 </returns>
+		/// <returns>A System.UInt32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetKeyLengthAttribute();
+		uint GetKeyLengthAttribute();
 		
 		/// <summary>Member GetSecretKeyLengthAttribute </summary>
-		/// <returns>A System.UInt32 </returns>
+		/// <returns>A System.UInt32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetSecretKeyLengthAttribute();
+		uint GetSecretKeyLengthAttribute();
 		
 		/// <summary>Member GetIsDomainMismatchAttribute </summary>
-		/// <returns>A System.Boolean </returns>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsDomainMismatchAttribute();
+		bool GetIsDomainMismatchAttribute();
 		
 		/// <summary>Member GetIsNotValidAtThisTimeAttribute </summary>
-		/// <returns>A System.Boolean </returns>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsNotValidAtThisTimeAttribute();
+		bool GetIsNotValidAtThisTimeAttribute();
 		
 		/// <summary>
         ///Note: To distinguish between
@@ -74,6 +74,6 @@ namespace Skybound.Gecko
         /// query nsIX509Cert3::isSelfSigned
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsUntrustedAttribute();
+		bool GetIsUntrustedAttribute();
 	}
 }

@@ -39,58 +39,58 @@ namespace Skybound.Gecko
         /// usually the target "frame" sets this so the native system can render the correct feedback
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetCanDropAttribute();
+		bool GetCanDropAttribute();
 		
 		/// <summary>
         /// Set the current state of the drag, whether it can be dropped or not.
         /// usually the target "frame" sets this so the native system can render the correct feedback
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCanDropAttribute(System.Boolean  aCanDrop);
+		void SetCanDropAttribute(bool aCanDrop);
 		
 		/// <summary>
         /// Indicates if the drop event should be dispatched only to chrome.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetOnlyChromeDropAttribute();
+		bool GetOnlyChromeDropAttribute();
 		
 		/// <summary>
         /// Indicates if the drop event should be dispatched only to chrome.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnlyChromeDropAttribute(System.Boolean  aOnlyChromeDrop);
+		void SetOnlyChromeDropAttribute(bool aOnlyChromeDrop);
 		
 		/// <summary>
         /// Sets the action (copy, move, link, et.c) for the current drag
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetDragActionAttribute();
+		uint GetDragActionAttribute();
 		
 		/// <summary>
         /// Sets the action (copy, move, link, et.c) for the current drag
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDragActionAttribute(System.UInt32  aDragAction);
+		void SetDragActionAttribute(uint aDragAction);
 		
 		/// <summary>
         /// Sets the current width and height of the drag target area.
         /// It will contain the current size of the Frame that the drag is currently in
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetTargetSizeAttribute();
+		uint GetTargetSizeAttribute();
 		
 		/// <summary>
         /// Sets the current width and height of the drag target area.
         /// It will contain the current size of the Frame that the drag is currently in
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTargetSizeAttribute(System.UInt32  aTargetSize);
+		void SetTargetSizeAttribute(uint aTargetSize);
 		
 		/// <summary>
         /// Get the number of items that were dropped
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetNumDropItemsAttribute();
+		uint GetNumDropItemsAttribute();
 		
 		/// <summary>
         /// The document where the drag was started, which will be null if the
@@ -99,7 +99,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDocument  GetSourceDocumentAttribute();
+		nsIDOMDocument GetSourceDocumentAttribute();
 		
 		/// <summary>
         /// The dom node that was originally dragged to start the session, which will be null if the
@@ -107,20 +107,20 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMNode  GetSourceNodeAttribute();
+		nsIDOMNode GetSourceNodeAttribute();
 		
 		/// <summary>
         /// The data transfer object for the current drag.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDataTransfer  GetDataTransferAttribute();
+		nsIDOMDataTransfer GetDataTransferAttribute();
 		
 		/// <summary>
         /// The data transfer object for the current drag.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDataTransferAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMDataTransfer  aDataTransfer);
+		void SetDataTransferAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMDataTransfer aDataTransfer);
 		
 		/// <summary>
         /// Get data from a Drag&Drop. Can be called while the drag is in process
@@ -130,12 +130,12 @@ namespace Skybound.Gecko
         /// @param  aItemIndex which of multiple drag items, zero-based
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetData([MarshalAs(UnmanagedType.Interface)] nsITransferable  aTransferable, System.UInt32  aItemIndex);
+		void GetData([MarshalAs(UnmanagedType.Interface)] nsITransferable aTransferable, uint aItemIndex);
 		
 		/// <summary>
         /// Check to set if any of the native data on the clipboard matches this data flavor
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsDataFlavorSupported([MarshalAs(UnmanagedType.LPStr)] System.String  aDataFlavor);
+		bool IsDataFlavorSupported([MarshalAs(UnmanagedType.LPStr)] string aDataFlavor);
 	}
 }

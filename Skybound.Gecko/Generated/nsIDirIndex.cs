@@ -42,13 +42,13 @@ namespace Skybound.Gecko
         /// The type of the entry - one of the constants above
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetTypeAttribute();
+		uint GetTypeAttribute();
 		
 		/// <summary>
         /// The type of the entry - one of the constants above
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTypeAttribute(System.UInt32  aType);
+		void SetTypeAttribute(uint aType);
 		
 		/// <summary>
         /// The content type - may be null if it is unknown.
@@ -56,14 +56,14 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetContentTypeAttribute();
+		string GetContentTypeAttribute();
 		
 		/// <summary>
         /// The content type - may be null if it is unknown.
         /// Unspecified for directories
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetContentTypeAttribute([MarshalAs(UnmanagedType.LPStr)] System.String  aContentType);
+		void SetContentTypeAttribute([MarshalAs(UnmanagedType.LPStr)] string aContentType);
 		
 		/// <summary>
         /// The fully qualified filename, expressed as a uri
@@ -73,7 +73,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetLocationAttribute();
+		string GetLocationAttribute();
 		
 		/// <summary>
         /// The fully qualified filename, expressed as a uri
@@ -82,7 +82,7 @@ namespace Skybound.Gecko
         /// the nsIDirIndexParser, and is also escaped.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetLocationAttribute([MarshalAs(UnmanagedType.LPStr)] System.String  aLocation);
+		void SetLocationAttribute([MarshalAs(UnmanagedType.LPStr)] string aLocation);
 		
 		/// <summary>
         /// A description for the filename, which should be
@@ -103,13 +103,13 @@ namespace Skybound.Gecko
         /// File size, with -1 meaning "unknown"
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetSizeAttribute();
+		int GetSizeAttribute();
 		
 		/// <summary>
         /// File size, with -1 meaning "unknown"
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSizeAttribute(System.Int32  aSize);
+		void SetSizeAttribute(int aSize);
 		
 		/// <summary>
         /// Last-modified time in seconds-since-epoch.
@@ -117,7 +117,7 @@ namespace Skybound.Gecko
         /// ftp servers in 1969
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetLastModifiedAttribute();
+		uint GetLastModifiedAttribute();
 		
 		/// <summary>
         /// Last-modified time in seconds-since-epoch.
@@ -125,6 +125,6 @@ namespace Skybound.Gecko
         /// ftp servers in 1969
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetLastModifiedAttribute(System.UInt32  aLastModified);
+		void SetLastModifiedAttribute(uint aLastModified);
 	}
 }

@@ -48,6 +48,6 @@ namespace Skybound.Gecko
         /// @returns true if the signature matches the data, false if not.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool VerifyData([MarshalAs(UnmanagedType.LPStruct)] nsAString  aData, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aSignature, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aPublicKey);
+		bool VerifyData([MarshalAs(UnmanagedType.LPStruct)] nsAString aData, [MarshalAs(UnmanagedType.LPStruct)] nsAString aSignature, [MarshalAs(UnmanagedType.LPStruct)] nsAString aPublicKey);
 	}
 }

@@ -48,7 +48,7 @@ namespace Skybound.Gecko
         /// @param aFunctionArguments    The arguments passed in to the function
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnStep(mozIStorageValueArray  aFunctionArguments);
+		void OnStep(mozIStorageValueArray aFunctionArguments);
 		
 		/// <summary>
         /// Called when all tuples in a group have been processed and the engine
@@ -56,6 +56,7 @@ namespace Skybound.Gecko
         ///
         /// @returns aggregate result as Variant.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIVariant OnFinal();
 	}

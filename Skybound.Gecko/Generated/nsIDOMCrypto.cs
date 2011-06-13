@@ -40,17 +40,18 @@ namespace Skybound.Gecko
 		void GetVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aVersion);
 		
 		/// <summary>Member GetEnableSmartCardEventsAttribute </summary>
-		/// <returns>A System.Boolean </returns>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetEnableSmartCardEventsAttribute();
+		bool GetEnableSmartCardEventsAttribute();
 		
 		/// <summary>Member SetEnableSmartCardEventsAttribute </summary>
 		/// <param name='aEnableSmartCardEvents'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetEnableSmartCardEventsAttribute(System.Boolean  aEnableSmartCardEvents);
+		void SetEnableSmartCardEventsAttribute(bool aEnableSmartCardEvents);
 		
 		/// <summary>
         ///... </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMCRMFObject GenerateCRMFRequest();
 		
@@ -59,23 +60,27 @@ namespace Skybound.Gecko
 		/// <param name='cmmfResponse'> </param>
 		/// <param name='doForcedBackup'> </param>
 		/// <returns>A nsAString</returns>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString ImportUserCertificates([MarshalAs(UnmanagedType.LPStruct)] nsAString nickname, [MarshalAs(UnmanagedType.LPStruct)] nsAString cmmfResponse, System.Boolean  doForcedBackup);
+		nsAString ImportUserCertificates([MarshalAs(UnmanagedType.LPStruct)] nsAString nickname, [MarshalAs(UnmanagedType.LPStruct)] nsAString cmmfResponse, bool doForcedBackup);
 		
 		/// <summary>Member PopChallengeResponse </summary>
 		/// <param name='challenge'> </param>
 		/// <returns>A nsAString</returns>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsAString PopChallengeResponse([MarshalAs(UnmanagedType.LPStruct)] nsAString challenge);
 		
 		/// <summary>Member Random </summary>
 		/// <param name='numBytes'> </param>
 		/// <returns>A nsAString</returns>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString Random(System.Int32  numBytes);
+		nsAString Random(int numBytes);
 		
 		/// <summary>
         ///... </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsAString SignText([MarshalAs(UnmanagedType.LPStruct)] nsAString stringToSign, [MarshalAs(UnmanagedType.LPStruct)] nsAString caOption);
 		

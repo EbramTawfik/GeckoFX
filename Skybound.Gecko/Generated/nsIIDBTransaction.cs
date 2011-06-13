@@ -45,7 +45,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIIDBDatabase  GetDbAttribute();
+		nsIIDBDatabase GetDbAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		ushort GetReadyStateAttribute();
@@ -56,6 +56,7 @@ namespace Skybound.Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetObjectStoreNamesAttribute();
 		
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIIDBObjectStore ObjectStore([MarshalAs(UnmanagedType.LPStruct)] nsAString name);
 		
@@ -67,48 +68,48 @@ namespace Skybound.Gecko
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener  GetOnerrorAttribute();
+		nsIDOMEventListener GetOnerrorAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnerrorAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener  aOnerror);
-		
-		/// <summary>
-        /// successfully. Receives an Event.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener  GetOncompleteAttribute();
+		void SetOnerrorAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnerror);
 		
 		/// <summary>
         /// successfully. Receives an Event.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOncompleteAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener  aOncomplete);
+		nsIDOMEventListener GetOncompleteAttribute();
+		
+		/// <summary>
+        /// successfully. Receives an Event.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOncompleteAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOncomplete);
 		
 		/// <summary>
         /// Receives an Event.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener  GetOnabortAttribute();
+		nsIDOMEventListener GetOnabortAttribute();
 		
 		/// <summary>
         /// Receives an Event.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnabortAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener  aOnabort);
+		void SetOnabortAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnabort);
 		
 		/// <summary>
         /// Receives an Event.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener  GetOntimeoutAttribute();
+		nsIDOMEventListener GetOntimeoutAttribute();
 		
 		/// <summary>
         /// Receives an Event.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOntimeoutAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener  aOntimeout);
+		void SetOntimeoutAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOntimeout);
 	}
 }

@@ -35,20 +35,20 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetTimestampAttribute </summary>
-		/// <returns>A System.Int64 </returns>
+		/// <returns>A System.Int64</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int64  GetTimestampAttribute();
+		long GetTimestampAttribute();
 		
 		/// <summary>Member GetCoordsAttribute </summary>
-		/// <returns>A nsIDOMGeoPositionCoords </returns>
+		/// <returns>A nsIDOMGeoPositionCoords</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMGeoPositionCoords  GetCoordsAttribute();
+		nsIDOMGeoPositionCoords GetCoordsAttribute();
 		
 		/// <summary>Member GetAddressAttribute </summary>
-		/// <returns>A nsIDOMGeoPositionAddress </returns>
+		/// <returns>A nsIDOMGeoPositionAddress</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMGeoPositionAddress  GetAddressAttribute();
+		nsIDOMGeoPositionAddress GetAddressAttribute();
 	}
 }

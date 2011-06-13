@@ -60,7 +60,7 @@ namespace Skybound.Gecko
         /// REASON_CANTHANDLE.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Show([MarshalAs(UnmanagedType.Interface)] nsIHelperAppLauncher  aLauncher, [MarshalAs(UnmanagedType.Interface)] nsISupports  aWindowContext, System.UInt32  aReason);
+		void Show([MarshalAs(UnmanagedType.Interface)] nsIHelperAppLauncher aLauncher, [MarshalAs(UnmanagedType.Interface)] nsISupports aWindowContext, uint aReason);
 		
 		/// <summary>
         /// Invoke a save-to-file dialog instead of the full fledged helper app dialog.
@@ -79,7 +79,8 @@ namespace Skybound.Gecko
         /// name/location, otherwise perferences may control if the user is
         /// prompted.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsILocalFile PromptForSaveToFile([MarshalAs(UnmanagedType.Interface)] nsIHelperAppLauncher  aLauncher, [MarshalAs(UnmanagedType.Interface)] nsISupports  aWindowContext, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aDefaultFileName, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aSuggestedFileExtension, System.Boolean  aForcePrompt);
+		nsILocalFile PromptForSaveToFile([MarshalAs(UnmanagedType.Interface)] nsIHelperAppLauncher aLauncher, [MarshalAs(UnmanagedType.Interface)] nsISupports aWindowContext, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aDefaultFileName, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aSuggestedFileExtension, bool aForcePrompt);
 	}
 }

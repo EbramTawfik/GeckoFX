@@ -45,7 +45,8 @@ namespace Skybound.Gecko
         /// @param aFound  Was an OS default handler for this URL found?
         /// @return  An nsIHanderInfo for the protocol.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIHandlerInfo GetURLHandlerInfoFromOS([MarshalAs(UnmanagedType.Interface)] nsIURI  aURL, out System.Boolean  aFound);
+		nsIHandlerInfo GetURLHandlerInfoFromOS([MarshalAs(UnmanagedType.Interface)] nsIURI aURL, out bool aFound);
 	}
 }

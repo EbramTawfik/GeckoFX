@@ -56,7 +56,7 @@ namespace Skybound.Gecko
         /// @param aLineNumber the line number of the start tag in the data stream.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void HandleStartElement([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aName, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler", SizeParamIndex=2)] string aAtts, System.UInt32  aAttsCount, System.Int32  aIndex, System.UInt32  aLineNumber);
+		void HandleStartElement([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aName, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler", SizeParamIndex=2)] string aAtts, uint aAttsCount, int aIndex, uint aLineNumber);
 		
 		/// <summary>
         /// Called to handle the closing tag of an element.
@@ -79,13 +79,13 @@ namespace Skybound.Gecko
         /// @param aLength the length of the aData string
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void HandleCDataSection([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler", SizeParamIndex=1)] string aData, System.UInt32  aLength);
+		void HandleCDataSection([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler", SizeParamIndex=1)] string aData, uint aLength);
 		
 		/// <summary>
         /// Called to handle the doctype declaration
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void HandleDoctypeDecl([MarshalAs(UnmanagedType.LPStruct)] nsAString aSubset, [MarshalAs(UnmanagedType.LPStruct)] nsAString aName, [MarshalAs(UnmanagedType.LPStruct)] nsAString aSystemId, [MarshalAs(UnmanagedType.LPStruct)] nsAString aPublicId, [MarshalAs(UnmanagedType.Interface)] nsISupports  aCatalogData);
+		void HandleDoctypeDecl([MarshalAs(UnmanagedType.LPStruct)] nsAString aSubset, [MarshalAs(UnmanagedType.LPStruct)] nsAString aName, [MarshalAs(UnmanagedType.LPStruct)] nsAString aSystemId, [MarshalAs(UnmanagedType.LPStruct)] nsAString aPublicId, [MarshalAs(UnmanagedType.Interface)] nsISupports aCatalogData);
 		
 		/// <summary>
         /// Called to handle character data.  Note that this does NOT get
@@ -94,7 +94,7 @@ namespace Skybound.Gecko
         /// @param aLength the length of the aData string
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void HandleCharacterData([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler", SizeParamIndex=1)] string aData, System.UInt32  aLength);
+		void HandleCharacterData([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler", SizeParamIndex=1)] string aData, uint aLength);
 		
 		/// <summary>
         /// Called to handle a processing instruction
@@ -114,7 +114,7 @@ namespace Skybound.Gecko
         /// given as no, or that it was given as yes.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void HandleXMLDeclaration([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aVersion, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aEncoding, System.Int32  aStandalone);
+		void HandleXMLDeclaration([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aVersion, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aEncoding, int aStandalone);
 		
 		/// <summary>
         /// Ask the content sink if the expat driver should log an error to the console.
@@ -126,6 +126,6 @@ namespace Skybound.Gecko
         /// @retval True if the expat driver should report the error.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool ReportError([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aErrorText, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aSourceText, [MarshalAs(UnmanagedType.Interface)] nsIScriptError  aError);
+		bool ReportError([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aErrorText, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aSourceText, [MarshalAs(UnmanagedType.Interface)] nsIScriptError aError);
 	}
 }

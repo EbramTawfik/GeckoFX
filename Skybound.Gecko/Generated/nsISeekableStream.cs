@@ -57,7 +57,7 @@ namespace Skybound.Gecko
         /// @throws NS_BASE_STREAM_CLOSED if called on a closed stream.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Seek(System.Int32  whence, System.Int32  offset);
+		void Seek(int whence, int offset);
 		
 		/// <summary>
         /// tell

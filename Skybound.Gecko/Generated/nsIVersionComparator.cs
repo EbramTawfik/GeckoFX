@@ -70,6 +70,6 @@ namespace Skybound.Gecko
         /// > 0 if A > B
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int Compare([MarshalAs(UnmanagedType.LPStruct)] nsAString  A, [MarshalAs(UnmanagedType.LPStruct)] nsAString  B);
+		int Compare([MarshalAs(UnmanagedType.LPStruct)] nsAString A, [MarshalAs(UnmanagedType.LPStruct)] nsAString B);
 	}
 }

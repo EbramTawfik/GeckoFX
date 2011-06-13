@@ -43,13 +43,14 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMStyleSheetList  GetStyleSheetsAttribute();
+		new nsIDOMStyleSheetList GetStyleSheetsAttribute();
 		
 		/// <summary>Member GetOverrideStyle </summary>
 		/// <param name='elt'> </param>
 		/// <param name='pseudoElt'> </param>
 		/// <returns>A nsIDOMCSSStyleDeclaration</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMCSSStyleDeclaration GetOverrideStyle([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  elt, [MarshalAs(UnmanagedType.LPStruct)] nsAString pseudoElt);
+		nsIDOMCSSStyleDeclaration GetOverrideStyle([MarshalAs(UnmanagedType.Interface)] nsIDOMElement elt, [MarshalAs(UnmanagedType.LPStruct)] nsAString pseudoElt);
 	}
 }

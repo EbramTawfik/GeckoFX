@@ -44,7 +44,7 @@ namespace Skybound.Gecko
         /// If true, the source is not checked.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool CanDropLink([MarshalAs(UnmanagedType.Interface)] nsIDOMDragEvent  aEvent, System.Boolean  aAllowSameDocument);
+		bool CanDropLink([MarshalAs(UnmanagedType.Interface)] nsIDOMDragEvent aEvent, bool aAllowSameDocument);
 		
 		/// <summary>
         /// Given a drop event aEvent, determines the link being dragged and returns
@@ -59,7 +59,8 @@ namespace Skybound.Gecko
         /// aName is filled in with the link title if it exists, or an empty string
         /// otherwise.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString DropLink([MarshalAs(UnmanagedType.Interface)] nsIDOMDragEvent  aEvent, [MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
+		nsAString DropLink([MarshalAs(UnmanagedType.Interface)] nsIDOMDragEvent aEvent, [MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
 	}
 }

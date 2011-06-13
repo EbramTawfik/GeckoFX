@@ -50,7 +50,8 @@ namespace Skybound.Gecko
         ///      @param chromeFlags chrome features from nsIWebBrowserChrome
         ///      @return the new window
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIWebBrowserChrome CreateChromeWindow([MarshalAs(UnmanagedType.Interface)] nsIWebBrowserChrome  parent, System.UInt32  chromeFlags);
+		nsIWebBrowserChrome CreateChromeWindow([MarshalAs(UnmanagedType.Interface)] nsIWebBrowserChrome parent, uint chromeFlags);
 	}
 }

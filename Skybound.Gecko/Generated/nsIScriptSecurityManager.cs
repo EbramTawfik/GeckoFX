@@ -42,31 +42,31 @@ namespace Skybound.Gecko
         /// if that is appropriate.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void CanCreateWrapper(System.IntPtr  aJSContext, ref System.Guid aIID, [MarshalAs(UnmanagedType.Interface)] nsISupports  aObj, [MarshalAs(UnmanagedType.Interface)] nsIClassInfo  aClassInfo, ref System.IntPtr  aPolicy);
+		new void CanCreateWrapper(System.IntPtr aJSContext, ref System.Guid aIID, [MarshalAs(UnmanagedType.Interface)] nsISupports aObj, [MarshalAs(UnmanagedType.Interface)] nsIClassInfo aClassInfo, ref System.IntPtr aPolicy);
 		
 		/// <summary>Member CanCreateInstance </summary>
 		/// <param name='aJSContext'> </param>
 		/// <param name='aCID'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void CanCreateInstance(System.IntPtr  aJSContext, ref System.Guid aCID);
+		new void CanCreateInstance(System.IntPtr aJSContext, ref System.Guid aCID);
 		
 		/// <summary>Member CanGetService </summary>
 		/// <param name='aJSContext'> </param>
 		/// <param name='aCID'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void CanGetService(System.IntPtr  aJSContext, ref System.Guid aCID);
+		new void CanGetService(System.IntPtr aJSContext, ref System.Guid aCID);
 		
 		/// <summary>
         /// Used for aAction below
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void CanAccess(System.UInt32  aAction, System.IntPtr aCallContext, System.IntPtr  aJSContext, System.IntPtr  aJSObject, [MarshalAs(UnmanagedType.Interface)] nsISupports  aObj, [MarshalAs(UnmanagedType.Interface)] nsIClassInfo  aClassInfo, System.IntPtr aName, ref System.IntPtr  aPolicy);
+		new void CanAccess(uint aAction, System.IntPtr aCallContext, System.IntPtr aJSContext, System.IntPtr aJSObject, [MarshalAs(UnmanagedType.Interface)] nsISupports aObj, [MarshalAs(UnmanagedType.Interface)] nsIClassInfo aClassInfo, System.IntPtr aName, ref System.IntPtr aPolicy);
 		
 		/// <summary>
         /// Checks whether the running script is allowed to access aProperty.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CheckPropertyAccess(System.IntPtr  aJSContext, System.IntPtr  aJSObject, [MarshalAs(UnmanagedType.LPStr)] System.String  aClassName, System.IntPtr aProperty, System.UInt32  aAction);
+		void CheckPropertyAccess(System.IntPtr aJSContext, System.IntPtr aJSObject, [MarshalAs(UnmanagedType.LPStr)] string aClassName, System.IntPtr aProperty, uint aAction);
 		
 		/// <summary>
         /// Check that the script currently running in context "cx" can load "uri".
@@ -78,7 +78,7 @@ namespace Skybound.Gecko
         /// @param uri the URI that is being loaded
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CheckLoadURIFromScript(System.IntPtr  cx, [MarshalAs(UnmanagedType.Interface)] nsIURI  uri);
+		void CheckLoadURIFromScript(System.IntPtr cx, [MarshalAs(UnmanagedType.Interface)] nsIURI uri);
 		
 		/// <summary>
         /// Check that content with principal aPrincipal can load "uri".
@@ -91,7 +91,7 @@ namespace Skybound.Gecko
         /// @param flags the permission set, see above
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CheckLoadURIWithPrincipal([MarshalAs(UnmanagedType.Interface)] nsIPrincipal  aPrincipal, [MarshalAs(UnmanagedType.Interface)] nsIURI  uri, System.UInt32  flags);
+		void CheckLoadURIWithPrincipal([MarshalAs(UnmanagedType.Interface)] nsIPrincipal aPrincipal, [MarshalAs(UnmanagedType.Interface)] nsIURI uri, uint flags);
 		
 		/// <summary>
         /// Check that content from "from" can load "uri".
@@ -106,7 +106,7 @@ namespace Skybound.Gecko
         /// @deprecated Use checkLoadURIWithPrincipal instead of this function.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CheckLoadURI([MarshalAs(UnmanagedType.Interface)] nsIURI  from, [MarshalAs(UnmanagedType.Interface)] nsIURI  uri, System.UInt32  flags);
+		void CheckLoadURI([MarshalAs(UnmanagedType.Interface)] nsIURI from, [MarshalAs(UnmanagedType.Interface)] nsIURI uri, uint flags);
 		
 		/// <summary>
         /// Similar to checkLoadURIWithPrincipal but there are two differences:
@@ -118,7 +118,7 @@ namespace Skybound.Gecko
         /// function will return error code NS_ERROR_DOM_BAD_URI.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CheckLoadURIStrWithPrincipal([MarshalAs(UnmanagedType.Interface)] nsIPrincipal  aPrincipal, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  uri, System.UInt32  flags);
+		void CheckLoadURIStrWithPrincipal([MarshalAs(UnmanagedType.Interface)] nsIPrincipal aPrincipal, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String uri, uint flags);
 		
 		/// <summary>
         /// Same as CheckLoadURI but takes string arguments for ease of use
@@ -127,7 +127,7 @@ namespace Skybound.Gecko
         /// @deprecated Use checkLoadURIStrWithPrincipal instead of this function.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CheckLoadURIStr([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  from, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  uri, System.UInt32  flags);
+		void CheckLoadURIStr([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String from, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String uri, uint flags);
 		
 		/// <summary>
         /// Check that the function 'funObj' is allowed to run on 'targetObj'
@@ -140,26 +140,28 @@ namespace Skybound.Gecko
         /// @param targetObj The object the function will run on.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CheckFunctionAccess(System.IntPtr  cx, System.IntPtr  funObj, System.IntPtr  targetObj);
+		void CheckFunctionAccess(System.IntPtr cx, System.IntPtr funObj, System.IntPtr targetObj);
 		
 		/// <summary>
         /// Return true if content from the given principal is allowed to
         /// execute scripts.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool CanExecuteScripts(System.IntPtr  cx, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal  principal);
+		bool CanExecuteScripts(System.IntPtr cx, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal);
 		
 		/// <summary>
         /// Return the principal of the innermost frame of the currently
         /// executing script. Will return null if there is no script
         /// currently executing.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIPrincipal GetSubjectPrincipal();
 		
 		/// <summary>
         /// Return the all-powerful system principal.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIPrincipal GetSystemPrincipal();
 		
@@ -171,14 +173,16 @@ namespace Skybound.Gecko
         /// nonempty; otherwise an error will be thrown.  Similarly, aCert must
         /// not be null.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIPrincipal GetCertificatePrincipal([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aCertFingerprint, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aSubjectName, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aPrettyName, [MarshalAs(UnmanagedType.Interface)] nsISupports  aCert, [MarshalAs(UnmanagedType.Interface)] nsIURI  aURI);
+		nsIPrincipal GetCertificatePrincipal([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aCertFingerprint, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aSubjectName, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aPrettyName, [MarshalAs(UnmanagedType.Interface)] nsISupports aCert, [MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 		
 		/// <summary>
         /// Return a principal that has the same origin as aURI.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIPrincipal GetCodebasePrincipal([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI);
+		nsIPrincipal GetCodebasePrincipal([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 		
 		/// <summary>
         /// Request that 'capability' can be enabled by scripts or applets
@@ -187,20 +191,20 @@ namespace Skybound.Gecko
         /// nsIPrincipal::ENABLE_DENIED based on user's choice.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		short RequestCapability([MarshalAs(UnmanagedType.Interface)] nsIPrincipal  principal, [MarshalAs(UnmanagedType.LPStr)] System.String  capability);
+		short RequestCapability([MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, [MarshalAs(UnmanagedType.LPStr)] string capability);
 		
 		/// <summary>
         /// Return true if the currently executing script has 'capability' enabled.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsCapabilityEnabled([MarshalAs(UnmanagedType.LPStr)] System.String  capability);
+		bool IsCapabilityEnabled([MarshalAs(UnmanagedType.LPStr)] string capability);
 		
 		/// <summary>
         /// Enable 'capability' in the innermost frame of the currently executing
         /// script.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EnableCapability([MarshalAs(UnmanagedType.LPStr)] System.String  capability);
+		void EnableCapability([MarshalAs(UnmanagedType.LPStr)] string capability);
 		
 		/// <summary>
         /// Remove 'capability' from the innermost frame of the currently
@@ -208,26 +212,27 @@ namespace Skybound.Gecko
         /// frames thus comes into effect.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RevertCapability([MarshalAs(UnmanagedType.LPStr)] System.String  capability);
+		void RevertCapability([MarshalAs(UnmanagedType.LPStr)] string capability);
 		
 		/// <summary>
         /// Disable 'capability' in the innermost frame of the currently executing
         /// script.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DisableCapability([MarshalAs(UnmanagedType.LPStr)] System.String  capability);
+		void DisableCapability([MarshalAs(UnmanagedType.LPStr)] string capability);
 		
 		/// <summary>
         /// cert we're enabling for...
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCanEnableCapability([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  certificateFingerprint, [MarshalAs(UnmanagedType.LPStr)] System.String  capability, short canEnable);
+		void SetCanEnableCapability([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String certificateFingerprint, [MarshalAs(UnmanagedType.LPStr)] string capability, short canEnable);
 		
 		/// <summary>
         /// Return the principal of the specified object in the specified context.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIPrincipal GetObjectPrincipal(System.IntPtr  cx, System.IntPtr  obj);
+		nsIPrincipal GetObjectPrincipal(System.IntPtr cx, System.IntPtr obj);
 		
 		/// <summary>
         /// Returns true if the principal of the currently running script is the
@@ -241,7 +246,7 @@ namespace Skybound.Gecko
         /// (scheme, host, and port).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CheckSameOrigin(System.IntPtr  aJSContext, [MarshalAs(UnmanagedType.Interface)] nsIURI  aTargetURI);
+		void CheckSameOrigin(System.IntPtr aJSContext, [MarshalAs(UnmanagedType.Interface)] nsIURI aTargetURI);
 		
 		/// <summary>
         /// Returns OK if aSourceURI and target have the same "origin"
@@ -250,22 +255,24 @@ namespace Skybound.Gecko
         /// don't need reporting.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CheckSameOriginURI([MarshalAs(UnmanagedType.Interface)] nsIURI  aSourceURI, [MarshalAs(UnmanagedType.Interface)] nsIURI  aTargetURI, System.Boolean  reportError);
+		void CheckSameOriginURI([MarshalAs(UnmanagedType.Interface)] nsIURI aSourceURI, [MarshalAs(UnmanagedType.Interface)] nsIURI aTargetURI, bool reportError);
 		
 		/// <summary>
         /// Returns the principal of the global object of the given context, or null
         /// if no global or no principal.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIPrincipal GetPrincipalFromContext(System.IntPtr  cx);
+		nsIPrincipal GetPrincipalFromContext(System.IntPtr cx);
 		
 		/// <summary>
         /// Get the principal for the given channel.  This will typically be the
         /// channel owner if there is one, and the codebase principal for the
         /// channel's URI otherwise.  aChannel must not be null.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIPrincipal GetChannelPrincipal([MarshalAs(UnmanagedType.Interface)] nsIChannel  aChannel);
+		nsIPrincipal GetChannelPrincipal([MarshalAs(UnmanagedType.Interface)] nsIChannel aChannel);
 		
 		/// <summary>
         /// Check whether a given principal is a system principal.  This allows us
@@ -273,7 +280,7 @@ namespace Skybound.Gecko
         /// script to check whether a given principal is system.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsSystemPrincipal([MarshalAs(UnmanagedType.Interface)] nsIPrincipal  aPrincipal);
+		bool IsSystemPrincipal([MarshalAs(UnmanagedType.Interface)] nsIPrincipal aPrincipal);
 		
 		/// <summary>
         /// Same as getSubjectPrincipal(), only faster. cx must *never* be
@@ -281,15 +288,17 @@ namespace Skybound.Gecko
         /// context stack. Does *not* reference count the returned
         /// principal.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIPrincipal GetCxSubjectPrincipal(System.IntPtr  cx);
+		nsIPrincipal GetCxSubjectPrincipal(System.IntPtr cx);
 		
 		/// <summary>Member GetCxSubjectPrincipalAndFrame </summary>
 		/// <param name='cx'> </param>
 		/// <param name='fp'> </param>
 		/// <returns>A nsIPrincipal</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIPrincipal GetCxSubjectPrincipalAndFrame(System.IntPtr  cx, out System.IntPtr fp);
+		nsIPrincipal GetCxSubjectPrincipalAndFrame(System.IntPtr cx, out System.IntPtr fp);
 		
 		/// <summary>
         /// If no scripted code is running "above" (or called from) fp, then
@@ -304,7 +313,7 @@ namespace Skybound.Gecko
         /// @param principal The principal to clamp to.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PushContextPrincipal(System.IntPtr  cx, System.IntPtr fp, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal  principal);
+		void PushContextPrincipal(System.IntPtr cx, System.IntPtr fp, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal);
 		
 		/// <summary>
         /// Removes a clamp set by pushContextPrincipal from cx. This must be
@@ -312,6 +321,6 @@ namespace Skybound.Gecko
         /// it is not legal to do: push(a) push(b) pop(a)).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PopContextPrincipal(System.IntPtr  cx);
+		void PopContextPrincipal(System.IntPtr cx);
 	}
 }

@@ -45,13 +45,13 @@ namespace Skybound.Gecko
         /// NS_ERROR_FAILURE -
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void LoadPage([MarshalAs(UnmanagedType.Interface)] nsISupports  aPageDescriptor, System.UInt32  aDisplayType);
+		void LoadPage([MarshalAs(UnmanagedType.Interface)] nsISupports aPageDescriptor, uint aDisplayType);
 		
 		/// <summary>
         /// Retrieves the page descriptor for the curent document.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports  GetCurrentDescriptorAttribute();
+		nsISupports GetCurrentDescriptorAttribute();
 	}
 }

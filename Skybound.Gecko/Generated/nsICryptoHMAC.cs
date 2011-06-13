@@ -60,7 +60,7 @@ namespace Skybound.Gecko
         /// on this interface is called.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init(System.UInt32  aAlgorithm, [MarshalAs(UnmanagedType.Interface)] nsIKeyObject  aKeyObject);
+		void Init(uint aAlgorithm, [MarshalAs(UnmanagedType.Interface)] nsIKeyObject aKeyObject);
 		
 		/// <summary>
         /// @param aData a buffer to calculate the hash over
@@ -71,7 +71,7 @@ namespace Skybound.Gecko
         /// called.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Update(System.IntPtr  aData, System.UInt32  aLen);
+		void Update(System.IntPtr aData, uint aLen);
 		
 		/// <summary>
         /// Calculates and updates a new hash based on a given data stream.
@@ -90,7 +90,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UpdateFromStream([MarshalAs(UnmanagedType.Interface)] nsIInputStream  aStream, System.UInt32  aLen);
+		void UpdateFromStream([MarshalAs(UnmanagedType.Interface)] nsIInputStream aStream, uint aLen);
 		
 		/// <summary>
         /// Completes this HMAC object and produces the actual HMAC diegest data.
@@ -109,8 +109,9 @@ namespace Skybound.Gecko
         /// is called.  This call resets the object to its
         /// pre-init state.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString Finish(System.Boolean  aASCII);
+		nsAString Finish(bool aASCII);
 		
 		/// <summary>
         /// Reinitialize HMAC context to be reused with the same

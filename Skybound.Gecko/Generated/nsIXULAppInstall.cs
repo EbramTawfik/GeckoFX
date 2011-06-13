@@ -55,6 +55,6 @@ namespace Skybound.Gecko
         /// on Mac.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InstallApplication([MarshalAs(UnmanagedType.Interface)] nsIFile  aAppFile, [MarshalAs(UnmanagedType.Interface)] nsIFile  aDirectory, [MarshalAs(UnmanagedType.LPStruct)] nsAString aLeafName);
+		void InstallApplication([MarshalAs(UnmanagedType.Interface)] nsIFile aAppFile, [MarshalAs(UnmanagedType.Interface)] nsIFile aDirectory, [MarshalAs(UnmanagedType.LPStruct)] nsAString aLeafName);
 	}
 }

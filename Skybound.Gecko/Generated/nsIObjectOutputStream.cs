@@ -68,7 +68,7 @@ namespace Skybound.Gecko
         /// @throws <other-error> on failure
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new uint Write([MarshalAs(UnmanagedType.LPStr)] System.String  aBuf, System.UInt32  aCount);
+		new uint Write([MarshalAs(UnmanagedType.LPStr)] string aBuf, uint aCount);
 		
 		/// <summary>
         /// Writes data into the stream from an input stream.
@@ -89,7 +89,7 @@ namespace Skybound.Gecko
         /// the output stream's other Write method.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new uint WriteFrom([MarshalAs(UnmanagedType.Interface)] nsIInputStream  aFromStream, System.UInt32  aCount);
+		new uint WriteFrom([MarshalAs(UnmanagedType.Interface)] nsIInputStream aFromStream, uint aCount);
 		
 		/// <summary>
         /// Low-level write method that has access to the stream's underlying buffer.
@@ -113,7 +113,7 @@ namespace Skybound.Gecko
         /// buffer (e.g., socket output stream).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new uint WriteSegments(System.IntPtr aReader, System.IntPtr  aClosure, System.UInt32  aCount);
+		new uint WriteSegments(System.IntPtr aReader, System.IntPtr aClosure, uint aCount);
 		
 		/// <summary>
         /// @return true if stream is non-blocking
@@ -140,25 +140,25 @@ namespace Skybound.Gecko
         /// @See nsIBinaryInputStream
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetOutputStream([MarshalAs(UnmanagedType.Interface)] nsIOutputStream  aOutputStream);
+		new void SetOutputStream([MarshalAs(UnmanagedType.Interface)] nsIOutputStream aOutputStream);
 		
 		/// <summary>
         /// Write a boolean as an 8-bit char to the stream.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void WriteBoolean(System.Boolean  aBoolean);
+		new void WriteBoolean(bool aBoolean);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void Write8(byte aByte);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Write16(System.UInt16  a16);
+		new void Write16(ushort a16);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Write32(System.UInt32  a32);
+		new void Write32(uint a32);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Write64(System.UInt64  a64);
+		new void Write64(ulong a64);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void WriteFloat(double aFloat);
@@ -171,7 +171,7 @@ namespace Skybound.Gecko
         /// 32-bit length field, followed by length 8-bit chars.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void WriteStringZ([MarshalAs(UnmanagedType.LPStr)] System.String  aString);
+		new void WriteStringZ([MarshalAs(UnmanagedType.LPStr)] string aString);
 		
 		/// <summary>
         /// Write a 16-bit pascal style string to the stream.
@@ -191,13 +191,13 @@ namespace Skybound.Gecko
         /// Write an opaque byte array to the stream.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void WriteBytes([MarshalAs(UnmanagedType.LPStr, SizeParamIndex=1)] System.String  aString, System.UInt32  aLength);
+		new void WriteBytes([MarshalAs(UnmanagedType.LPStr, SizeParamIndex=1)] string aString, uint aLength);
 		
 		/// <summary>
         /// Write an opaque byte array to the stream.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void WriteByteArray(byte aBytes, System.UInt32  aLength);
+		new void WriteByteArray(byte aBytes, uint aLength);
 		
 		/// <summary>
         /// Write the object whose "root" or XPCOM-identity nsISupports is aObject.
@@ -214,7 +214,7 @@ namespace Skybound.Gecko
         /// call writeCompoundObject instead of this method.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void WriteObject([MarshalAs(UnmanagedType.Interface)] nsISupports  aObject, System.Boolean  aIsStrongRef);
+		void WriteObject([MarshalAs(UnmanagedType.Interface)] nsISupports aObject, bool aIsStrongRef);
 		
 		/// <summary>
         /// Write an object referenced singly and strongly via its root nsISupports
@@ -222,7 +222,7 @@ namespace Skybound.Gecko
         /// aObject in memory, or in the serialization.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void WriteSingleRefObject([MarshalAs(UnmanagedType.Interface)] nsISupports  aObject);
+		void WriteSingleRefObject([MarshalAs(UnmanagedType.Interface)] nsISupports aObject);
 		
 		/// <summary>
         /// Write the object referenced by an interface pointer at aObject that
@@ -233,7 +233,7 @@ namespace Skybound.Gecko
         /// this interface.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void WriteCompoundObject([MarshalAs(UnmanagedType.Interface)] nsISupports  aObject, ref System.Guid aIID, System.Boolean  aIsStrongRef);
+		void WriteCompoundObject([MarshalAs(UnmanagedType.Interface)] nsISupports aObject, ref System.Guid aIID, bool aIsStrongRef);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void WriteID(System.IntPtr aID);
@@ -242,9 +242,9 @@ namespace Skybound.Gecko
         /// Optimized serialization support -- see nsIStreamBufferAccess.idl.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetBuffer(System.UInt32  aLength, System.UInt32  aAlignMask);
+		System.IntPtr GetBuffer(uint aLength, uint aAlignMask);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PutBuffer(System.IntPtr  aBuffer, System.UInt32  aLength);
+		void PutBuffer(System.IntPtr aBuffer, uint aLength);
 	}
 }

@@ -49,7 +49,7 @@ namespace Skybound.Gecko
         /// throwing an error.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool WillDo([MarshalAs(UnmanagedType.Interface)] nsITransactionManager  aManager, [MarshalAs(UnmanagedType.Interface)] nsITransaction  aTransaction);
+		bool WillDo([MarshalAs(UnmanagedType.Interface)] nsITransactionManager aManager, [MarshalAs(UnmanagedType.Interface)] nsITransaction aTransaction);
 		
 		/// <summary>
         /// Called after a transaction manager calls the doTransaction() method of
@@ -60,7 +60,7 @@ namespace Skybound.Gecko
         /// the transaction.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DidDo([MarshalAs(UnmanagedType.Interface)] nsITransactionManager  aManager, [MarshalAs(UnmanagedType.Interface)] nsITransaction  aTransaction, System.Int32  aDoResult);
+		void DidDo([MarshalAs(UnmanagedType.Interface)] nsITransactionManager aManager, [MarshalAs(UnmanagedType.Interface)] nsITransaction aTransaction, int aDoResult);
 		
 		/// <summary>
         /// Called before a transaction manager calls the Undo() method of
@@ -74,7 +74,7 @@ namespace Skybound.Gecko
         /// control flow by throwing an nsresult that indicates an error.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool WillUndo([MarshalAs(UnmanagedType.Interface)] nsITransactionManager  aManager, [MarshalAs(UnmanagedType.Interface)] nsITransaction  aTransaction);
+		bool WillUndo([MarshalAs(UnmanagedType.Interface)] nsITransactionManager aManager, [MarshalAs(UnmanagedType.Interface)] nsITransaction aTransaction);
 		
 		/// <summary>
         /// Called after a transaction manager calls the Undo() method of
@@ -84,7 +84,7 @@ namespace Skybound.Gecko
         /// @param aUndoResult the nsresult returned after undoing the transaction.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DidUndo([MarshalAs(UnmanagedType.Interface)] nsITransactionManager  aManager, [MarshalAs(UnmanagedType.Interface)] nsITransaction  aTransaction, System.Int32  aUndoResult);
+		void DidUndo([MarshalAs(UnmanagedType.Interface)] nsITransactionManager aManager, [MarshalAs(UnmanagedType.Interface)] nsITransaction aTransaction, int aUndoResult);
 		
 		/// <summary>
         /// Called before a transaction manager calls the Redo() method of
@@ -98,7 +98,7 @@ namespace Skybound.Gecko
         /// control flow by throwing an nsresult that indicates an error.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool WillRedo([MarshalAs(UnmanagedType.Interface)] nsITransactionManager  aManager, [MarshalAs(UnmanagedType.Interface)] nsITransaction  aTransaction);
+		bool WillRedo([MarshalAs(UnmanagedType.Interface)] nsITransactionManager aManager, [MarshalAs(UnmanagedType.Interface)] nsITransaction aTransaction);
 		
 		/// <summary>
         /// Called after a transaction manager calls the Redo() method of
@@ -108,7 +108,7 @@ namespace Skybound.Gecko
         /// @param aRedoResult the nsresult returned after redoing the transaction.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DidRedo([MarshalAs(UnmanagedType.Interface)] nsITransactionManager  aManager, [MarshalAs(UnmanagedType.Interface)] nsITransaction  aTransaction, System.Int32  aRedoResult);
+		void DidRedo([MarshalAs(UnmanagedType.Interface)] nsITransactionManager aManager, [MarshalAs(UnmanagedType.Interface)] nsITransaction aTransaction, int aRedoResult);
 		
 		/// <summary>
         /// Called before a transaction manager begins a batch.
@@ -120,7 +120,7 @@ namespace Skybound.Gecko
         /// control flow by throwing an nsresult that indicates an error.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool WillBeginBatch([MarshalAs(UnmanagedType.Interface)] nsITransactionManager  aManager);
+		bool WillBeginBatch([MarshalAs(UnmanagedType.Interface)] nsITransactionManager aManager);
 		
 		/// <summary>
         /// Called after a transaction manager begins a batch.
@@ -128,7 +128,7 @@ namespace Skybound.Gecko
         /// @param aResult the nsresult returned after beginning a batch.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DidBeginBatch([MarshalAs(UnmanagedType.Interface)] nsITransactionManager  aManager, System.Int32  aResult);
+		void DidBeginBatch([MarshalAs(UnmanagedType.Interface)] nsITransactionManager aManager, int aResult);
 		
 		/// <summary>
         /// Called before a transaction manager ends a batch.
@@ -140,7 +140,7 @@ namespace Skybound.Gecko
         /// control flow by throwing an nsresult that indicates an error.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool WillEndBatch([MarshalAs(UnmanagedType.Interface)] nsITransactionManager  aManager);
+		bool WillEndBatch([MarshalAs(UnmanagedType.Interface)] nsITransactionManager aManager);
 		
 		/// <summary>
         /// Called after a transaction manager ends a batch.
@@ -148,7 +148,7 @@ namespace Skybound.Gecko
         /// @param aResult the nsresult returned after ending a batch.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DidEndBatch([MarshalAs(UnmanagedType.Interface)] nsITransactionManager  aManager, System.Int32  aResult);
+		void DidEndBatch([MarshalAs(UnmanagedType.Interface)] nsITransactionManager aManager, int aResult);
 		
 		/// <summary>
         /// Called before a transaction manager tries to merge
@@ -164,7 +164,7 @@ namespace Skybound.Gecko
         /// control flow by throwing an nsresult that indicates an error.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool WillMerge([MarshalAs(UnmanagedType.Interface)] nsITransactionManager  aManager, [MarshalAs(UnmanagedType.Interface)] nsITransaction  aTopTransaction, [MarshalAs(UnmanagedType.Interface)] nsITransaction  aTransactionToMerge);
+		bool WillMerge([MarshalAs(UnmanagedType.Interface)] nsITransactionManager aManager, [MarshalAs(UnmanagedType.Interface)] nsITransaction aTopTransaction, [MarshalAs(UnmanagedType.Interface)] nsITransaction aTransactionToMerge);
 		
 		/// <summary>
         /// Called after a transaction manager tries to merge
@@ -179,6 +179,6 @@ namespace Skybound.Gecko
         /// want to interrupt normal control flow, without throwing an error.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DidMerge([MarshalAs(UnmanagedType.Interface)] nsITransactionManager  aManager, [MarshalAs(UnmanagedType.Interface)] nsITransaction  aTopTransaction, [MarshalAs(UnmanagedType.Interface)] nsITransaction  aTransactionToMerge, System.Boolean  aDidMerge, System.Int32  aMergeResult);
+		void DidMerge([MarshalAs(UnmanagedType.Interface)] nsITransactionManager aManager, [MarshalAs(UnmanagedType.Interface)] nsITransaction aTopTransaction, [MarshalAs(UnmanagedType.Interface)] nsITransaction aTransactionToMerge, bool aDidMerge, int aMergeResult);
 	}
 }

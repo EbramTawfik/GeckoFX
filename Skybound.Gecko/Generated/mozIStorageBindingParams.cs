@@ -43,49 +43,49 @@ namespace Skybound.Gecko
         /// The value to bind.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BindByName([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName, [MarshalAs(UnmanagedType.Interface)] nsIVariant  aValue);
+		void BindByName([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName, [MarshalAs(UnmanagedType.Interface)] nsIVariant aValue);
 		
 		/// <summary>Member BindUTF8StringByName </summary>
 		/// <param name='aName'> </param>
 		/// <param name='aValue'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BindUTF8StringByName([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aValue);
+		void BindUTF8StringByName([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aValue);
 		
 		/// <summary>Member BindStringByName </summary>
 		/// <param name='aName'> </param>
 		/// <param name='aValue'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BindStringByName([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName, [MarshalAs(UnmanagedType.LPStruct)] nsAString aValue);
+		void BindStringByName([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName, [MarshalAs(UnmanagedType.LPStruct)] nsAString aValue);
 		
 		/// <summary>Member BindDoubleByName </summary>
 		/// <param name='aName'> </param>
 		/// <param name='aValue'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BindDoubleByName([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName, double aValue);
+		void BindDoubleByName([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName, double aValue);
 		
 		/// <summary>Member BindInt32ByName </summary>
 		/// <param name='aName'> </param>
 		/// <param name='aValue'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BindInt32ByName([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName, System.Int32  aValue);
+		void BindInt32ByName([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName, int aValue);
 		
 		/// <summary>Member BindInt64ByName </summary>
 		/// <param name='aName'> </param>
 		/// <param name='aValue'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BindInt64ByName([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName, System.Int32  aValue);
+		void BindInt64ByName([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName, int aValue);
 		
 		/// <summary>Member BindNullByName </summary>
 		/// <param name='aName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BindNullByName([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName);
+		void BindNullByName([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName);
 		
 		/// <summary>Member BindBlobByName </summary>
 		/// <param name='aName'> </param>
 		/// <param name='aValue'> </param>
 		/// <param name='aValueSize'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BindBlobByName([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName, System.IntPtr  aValue, System.UInt32  aValueSize);
+		void BindBlobByName([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName, System.IntPtr aValue, uint aValueSize);
 		
 		/// <summary>
         /// Binds aValue to the parameter with the index aIndex.
@@ -96,48 +96,48 @@ namespace Skybound.Gecko
         /// The value to bind.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BindByIndex(System.UInt32  aIndex, [MarshalAs(UnmanagedType.Interface)] nsIVariant  aValue);
+		void BindByIndex(uint aIndex, [MarshalAs(UnmanagedType.Interface)] nsIVariant aValue);
 		
 		/// <summary>Member BindUTF8StringByIndex </summary>
 		/// <param name='aIndex'> </param>
 		/// <param name='aValue'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BindUTF8StringByIndex(System.UInt32  aIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aValue);
+		void BindUTF8StringByIndex(uint aIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aValue);
 		
 		/// <summary>Member BindStringByIndex </summary>
 		/// <param name='aIndex'> </param>
 		/// <param name='aValue'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BindStringByIndex(System.UInt32  aIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAString aValue);
+		void BindStringByIndex(uint aIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAString aValue);
 		
 		/// <summary>Member BindDoubleByIndex </summary>
 		/// <param name='aIndex'> </param>
 		/// <param name='aValue'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BindDoubleByIndex(System.UInt32  aIndex, double aValue);
+		void BindDoubleByIndex(uint aIndex, double aValue);
 		
 		/// <summary>Member BindInt32ByIndex </summary>
 		/// <param name='aIndex'> </param>
 		/// <param name='aValue'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BindInt32ByIndex(System.UInt32  aIndex, System.Int32  aValue);
+		void BindInt32ByIndex(uint aIndex, int aValue);
 		
 		/// <summary>Member BindInt64ByIndex </summary>
 		/// <param name='aIndex'> </param>
 		/// <param name='aValue'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BindInt64ByIndex(System.UInt32  aIndex, System.Int32  aValue);
+		void BindInt64ByIndex(uint aIndex, int aValue);
 		
 		/// <summary>Member BindNullByIndex </summary>
 		/// <param name='aIndex'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BindNullByIndex(System.UInt32  aIndex);
+		void BindNullByIndex(uint aIndex);
 		
 		/// <summary>Member BindBlobByIndex </summary>
 		/// <param name='aIndex'> </param>
 		/// <param name='aValue'> </param>
 		/// <param name='aValueSize'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BindBlobByIndex(System.UInt32  aIndex, System.IntPtr  aValue, System.UInt32  aValueSize);
+		void BindBlobByIndex(uint aIndex, System.IntPtr aValue, uint aValueSize);
 	}
 }

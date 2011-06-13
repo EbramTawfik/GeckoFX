@@ -50,7 +50,7 @@ namespace Skybound.Gecko
         /// defined in this interface.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetEventTypeAttribute();
+		uint GetEventTypeAttribute();
 		
 		/// <summary>
         /// The nsIAccessible associated with the event.
@@ -58,7 +58,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIAccessible  GetAccessibleAttribute();
+		nsIAccessible GetAccessibleAttribute();
 		
 		/// <summary>
         /// The nsIAccessibleDocument that the event target nsIAccessible
@@ -67,7 +67,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIAccessibleDocument  GetAccessibleDocumentAttribute();
+		nsIAccessibleDocument GetAccessibleDocumentAttribute();
 		
 		/// <summary>
         /// The nsIDOMNode associated with the event
@@ -75,14 +75,14 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMNode  GetDOMNodeAttribute();
+		nsIDOMNode GetDOMNodeAttribute();
 		
 		/// <summary>
         /// Returns true if the event was caused by explicit user input,
         /// as opposed to purely originating from a timer or mouse movement
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsFromUserInputAttribute();
+		bool GetIsFromUserInputAttribute();
 	}
 	
 	/// <summary>nsIAccessibleStateChangeEvent </summary>
@@ -97,7 +97,7 @@ namespace Skybound.Gecko
         /// in nsIAccessibleStates).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetStateAttribute();
+		uint GetStateAttribute();
 		
 		/// <summary>
         /// Returns true if the state is extra state.
@@ -123,13 +123,13 @@ namespace Skybound.Gecko
         /// Returns offset of changed text in accessible.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetStartAttribute();
+		int GetStartAttribute();
 		
 		/// <summary>
         /// Returns length of changed text.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetLengthAttribute();
+		uint GetLengthAttribute();
 		
 		/// <summary>
         /// Returns true if text was inserted, otherwise false.
@@ -155,7 +155,7 @@ namespace Skybound.Gecko
         /// Return caret offset.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetCaretOffsetAttribute();
+		int GetCaretOffsetAttribute();
 	}
 	
 	/// <summary>nsIAccessibleTableChangeEvent </summary>
@@ -169,12 +169,12 @@ namespace Skybound.Gecko
         /// Return the row or column index.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetRowOrColIndexAttribute();
+		int GetRowOrColIndexAttribute();
 		
 		/// <summary>
         /// Return the number of rows or cols
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetNumRowsOrColsAttribute();
+		int GetNumRowsOrColsAttribute();
 	}
 }

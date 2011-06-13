@@ -46,6 +46,6 @@ namespace Skybound.Gecko
         /// @version 0.1
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void FrameChanged(imgIContainer  aContainer, [MarshalAs(UnmanagedType.Interface)] nsIntRect  aDirtyRect);
+		void FrameChanged(imgIContainer aContainer, [MarshalAs(UnmanagedType.Interface)] nsIntRect aDirtyRect);
 	}
 }

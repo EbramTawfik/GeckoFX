@@ -49,7 +49,7 @@ namespace Skybound.Gecko
         /// if there are unrecognized tokens in the header.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ProcessStsHeader([MarshalAs(UnmanagedType.Interface)] nsIURI  aSourceURI, [MarshalAs(UnmanagedType.LPStr)] System.String  aHeader);
+		void ProcessStsHeader([MarshalAs(UnmanagedType.Interface)] nsIURI aSourceURI, [MarshalAs(UnmanagedType.LPStr)] string aHeader);
 		
 		/// <summary>
         /// Removes the STS state of a host, including the includeSubdomains state
@@ -57,14 +57,14 @@ namespace Skybound.Gecko
         /// the domain tree rooted at this host.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveStsState([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI);
+		void RemoveStsState([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 		
 		/// <summary>
         /// Checks if the given security info is for an STS host with a broken
         /// transport layer (certificate errors like invalid CN).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool ShouldIgnoreStsHeader([MarshalAs(UnmanagedType.Interface)] nsISupports  aSecurityInfo);
+		bool ShouldIgnoreStsHeader([MarshalAs(UnmanagedType.Interface)] nsISupports aSecurityInfo);
 		
 		/// <summary>
         /// Checks whether or not the given hostname has STS state set.
@@ -74,7 +74,7 @@ namespace Skybound.Gecko
         /// @param aHost the hostname (punycode) to query for STS state.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsStsHost([MarshalAs(UnmanagedType.LPStr)] System.String  aHost);
+		bool IsStsHost([MarshalAs(UnmanagedType.LPStr)] string aHost);
 		
 		/// <summary>
         /// Checks whether or not the URI's hostname has STS state set.
@@ -87,6 +87,6 @@ namespace Skybound.Gecko
         /// @param aURI the URI to query for STS state.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsStsURI([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI);
+		bool IsStsURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 	}
 }

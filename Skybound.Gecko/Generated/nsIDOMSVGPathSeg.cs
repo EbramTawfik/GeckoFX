@@ -539,25 +539,25 @@ namespace Skybound.Gecko
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetLargeArcFlagAttribute();
+		bool GetLargeArcFlagAttribute();
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetLargeArcFlagAttribute(System.Boolean  aLargeArcFlag);
+		void SetLargeArcFlagAttribute(bool aLargeArcFlag);
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetSweepFlagAttribute();
+		bool GetSweepFlagAttribute();
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSweepFlagAttribute(System.Boolean  aSweepFlag);
+		void SetSweepFlagAttribute(bool aSweepFlag);
 	}
 	
 	/// <summary>
@@ -633,25 +633,25 @@ namespace Skybound.Gecko
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetLargeArcFlagAttribute();
+		bool GetLargeArcFlagAttribute();
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetLargeArcFlagAttribute(System.Boolean  aLargeArcFlag);
+		void SetLargeArcFlagAttribute(bool aLargeArcFlag);
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetSweepFlagAttribute();
+		bool GetSweepFlagAttribute();
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSweepFlagAttribute(System.Boolean  aSweepFlag);
+		void SetSweepFlagAttribute(bool aSweepFlag);
 	}
 	
 	/// <summary>

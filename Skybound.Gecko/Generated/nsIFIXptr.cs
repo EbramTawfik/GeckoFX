@@ -43,7 +43,8 @@ namespace Skybound.Gecko
         /// @param aExpression The FIXptr expression string to evaluate.
         /// @return            The result.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMRange Evaluate([MarshalAs(UnmanagedType.Interface)] nsIDOMDocument  aDocument, [MarshalAs(UnmanagedType.LPStruct)] nsAString aExpression);
+		nsIDOMRange Evaluate([MarshalAs(UnmanagedType.Interface)] nsIDOMDocument aDocument, [MarshalAs(UnmanagedType.LPStruct)] nsAString aExpression);
 	}
 }

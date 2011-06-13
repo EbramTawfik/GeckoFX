@@ -52,6 +52,6 @@ namespace Skybound.Gecko
         /// Indicates if this is the last visit for this URI.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NotifyOnPageExpired([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, System.UInt32  aVisitTime, System.Boolean  aWholeEntry);
+		void NotifyOnPageExpired([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, uint aVisitTime, bool aWholeEntry);
 	}
 }

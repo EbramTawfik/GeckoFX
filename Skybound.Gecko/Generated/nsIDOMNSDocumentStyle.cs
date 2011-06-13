@@ -53,7 +53,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMStyleSheetList  GetStyleSheetsAttribute();
+		new nsIDOMStyleSheetList GetStyleSheetsAttribute();
 		
 		/// <summary>
         /// This attribute must return the preferred style sheet set as set by the

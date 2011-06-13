@@ -37,7 +37,7 @@ namespace Skybound.Gecko
 		/// <summary>Member Play </summary>
 		/// <param name='aURL'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Play([MarshalAs(UnmanagedType.Interface)] nsIURL  aURL);
+		void Play([MarshalAs(UnmanagedType.Interface)] nsIURL aURL);
 		
 		/// <summary>
         /// for playing system sounds
@@ -68,6 +68,6 @@ namespace Skybound.Gecko
         /// the embedders.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PlayEventSound(System.UInt32  aEventId);
+		void PlayEventSound(uint aEventId);
 	}
 }

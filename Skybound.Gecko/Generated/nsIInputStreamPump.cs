@@ -51,7 +51,7 @@ namespace Skybound.Gecko
         /// The name of the request.  Often this is the URI of the request.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName);
+		new void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName);
 		
 		/// <summary>
         /// Indicates whether the request is pending. nsIRequest::isPending is
@@ -75,7 +75,7 @@ namespace Skybound.Gecko
         /// The error status associated with the request.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Int32  GetStatusAttribute();
+		new int GetStatusAttribute();
 		
 		/// <summary>
         /// Cancels the current request.  This will close any open input or
@@ -99,7 +99,7 @@ namespace Skybound.Gecko
         /// a failure code.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Cancel(System.Int32  aStatus);
+		new void Cancel(int aStatus);
 		
 		/// <summary>
         /// Suspends the current request.  This may have the effect of closing
@@ -133,7 +133,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsILoadGroup  GetLoadGroupAttribute();
+		new nsILoadGroup GetLoadGroupAttribute();
 		
 		/// <summary>
         /// The load group of this request.  While pending, the request is a
@@ -141,7 +141,7 @@ namespace Skybound.Gecko
         /// to implement this policy.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetLoadGroupAttribute([MarshalAs(UnmanagedType.Interface)] nsILoadGroup  aLoadGroup);
+		new void SetLoadGroupAttribute([MarshalAs(UnmanagedType.Interface)] nsILoadGroup aLoadGroup);
 		
 		/// <summary>
         /// The load flags of this request.  Bits 0-15 are reserved.
@@ -150,7 +150,7 @@ namespace Skybound.Gecko
         /// the load flags of the load group.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.UInt32  GetLoadFlagsAttribute();
+		new uint GetLoadFlagsAttribute();
 		
 		/// <summary>
         /// The load flags of this request.  Bits 0-15 are reserved.
@@ -159,7 +159,7 @@ namespace Skybound.Gecko
         /// the load flags of the load group.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetLoadFlagsAttribute(System.UInt32  aLoadFlags);
+		new void SetLoadFlagsAttribute(uint aLoadFlags);
 		
 		/// <summary>
         /// Initialize the input stream pump.
@@ -189,7 +189,7 @@ namespace Skybound.Gecko
         /// if true, the input stream will be closed after it has been read.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init([MarshalAs(UnmanagedType.Interface)] nsIInputStream  aStream, System.Int32  aStreamPos, System.Int32  aStreamLen, System.UInt32  aSegmentSize, System.UInt32  aSegmentCount, System.Boolean  aCloseWhenDone);
+		void Init([MarshalAs(UnmanagedType.Interface)] nsIInputStream aStream, int aStreamPos, int aStreamLen, uint aSegmentSize, uint aSegmentCount, bool aCloseWhenDone);
 		
 		/// <summary>
         /// asyncRead causes the input stream to be read in chunks and delivered
@@ -201,6 +201,6 @@ namespace Skybound.Gecko
         /// passed to listener methods.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AsyncRead([MarshalAs(UnmanagedType.Interface)] nsIStreamListener  aListener, [MarshalAs(UnmanagedType.Interface)] nsISupports  aListenerContext);
+		void AsyncRead([MarshalAs(UnmanagedType.Interface)] nsIStreamListener aListener, [MarshalAs(UnmanagedType.Interface)] nsISupports aListenerContext);
 	}
 }

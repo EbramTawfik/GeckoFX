@@ -40,6 +40,6 @@ namespace Skybound.Gecko
 		/// <param name='aStatus'> </param>
 		/// <param name='aPrincipal'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnCertAvailable([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, [MarshalAs(UnmanagedType.Interface)] nsISupports  aContext, System.UInt32  aStatus, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal  aPrincipal);
+		void OnCertAvailable([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsISupports aContext, uint aStatus, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal aPrincipal);
 	}
 }

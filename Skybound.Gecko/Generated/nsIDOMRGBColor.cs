@@ -35,21 +35,21 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetRedAttribute </summary>
-		/// <returns>A nsIDOMCSSPrimitiveValue </returns>
+		/// <returns>A nsIDOMCSSPrimitiveValue</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMCSSPrimitiveValue  GetRedAttribute();
+		nsIDOMCSSPrimitiveValue GetRedAttribute();
 		
 		/// <summary>Member GetGreenAttribute </summary>
-		/// <returns>A nsIDOMCSSPrimitiveValue </returns>
+		/// <returns>A nsIDOMCSSPrimitiveValue</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMCSSPrimitiveValue  GetGreenAttribute();
+		nsIDOMCSSPrimitiveValue GetGreenAttribute();
 		
 		/// <summary>Member GetBlueAttribute </summary>
-		/// <returns>A nsIDOMCSSPrimitiveValue </returns>
+		/// <returns>A nsIDOMCSSPrimitiveValue</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMCSSPrimitiveValue  GetBlueAttribute();
+		nsIDOMCSSPrimitiveValue GetBlueAttribute();
 	}
 }

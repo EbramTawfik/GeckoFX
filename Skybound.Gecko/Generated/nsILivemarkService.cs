@@ -58,13 +58,13 @@ namespace Skybound.Gecko
         /// @returns the ID of the folder for the livemark
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int CreateLivemark(System.Int32  folder, [MarshalAs(UnmanagedType.LPStruct)] nsAString name, [MarshalAs(UnmanagedType.Interface)] nsIURI  siteURI, [MarshalAs(UnmanagedType.Interface)] nsIURI  feedURI, System.Int32  index);
+		int CreateLivemark(int folder, [MarshalAs(UnmanagedType.LPStruct)] nsAString name, [MarshalAs(UnmanagedType.Interface)] nsIURI siteURI, [MarshalAs(UnmanagedType.Interface)] nsIURI feedURI, int index);
 		
 		/// <summary>
         /// Same as above, use during startup to avoid HTTP traffic
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int CreateLivemarkFolderOnly(System.Int32  folder, [MarshalAs(UnmanagedType.LPStruct)] nsAString name, [MarshalAs(UnmanagedType.Interface)] nsIURI  siteURI, [MarshalAs(UnmanagedType.Interface)] nsIURI  feedURI, System.Int32  index);
+		int CreateLivemarkFolderOnly(int folder, [MarshalAs(UnmanagedType.LPStruct)] nsAString name, [MarshalAs(UnmanagedType.Interface)] nsIURI siteURI, [MarshalAs(UnmanagedType.Interface)] nsIURI feedURI, int index);
 		
 		/// <summary>
         /// Determines whether the folder with the given folder ID identifies
@@ -78,7 +78,7 @@ namespace Skybound.Gecko
         /// @throws NS_ERROR_INVALID_ARG if the folder ID isn't known
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsLivemark(System.Int32  folder);
+		bool IsLivemark(int folder);
 		
 		/// <summary>
         /// Determines whether the feed URI is a currently registered livemark.
@@ -89,7 +89,7 @@ namespace Skybound.Gecko
         /// @returns the found livemark folder id, or -1 if nothing was found.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetLivemarkIdForFeedURI([MarshalAs(UnmanagedType.Interface)] nsIURI  aFeedURI);
+		int GetLivemarkIdForFeedURI([MarshalAs(UnmanagedType.Interface)] nsIURI aFeedURI);
 		
 		/// <summary>
         /// Gets the URI of the website associated with a livemark container.
@@ -104,8 +104,9 @@ namespace Skybound.Gecko
         /// @throws NS_ERROR_MALFORMED_URI if the site URI annotation has
         /// somehow been corrupted (and can't be turned into an nsIURI)
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI GetSiteURI(System.Int32  container);
+		nsIURI GetSiteURI(int container);
 		
 		/// <summary>
         /// Sets the URI of the website associated with a livemark container.
@@ -119,7 +120,7 @@ namespace Skybound.Gecko
         /// argument isn't a valid nsIURI object (or null)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSiteURI(System.Int32  container, [MarshalAs(UnmanagedType.Interface)] nsIURI  siteURI);
+		void SetSiteURI(int container, [MarshalAs(UnmanagedType.Interface)] nsIURI siteURI);
 		
 		/// <summary>
         /// Gets the URI of the syndication feed associated with a livemark container.
@@ -135,8 +136,9 @@ namespace Skybound.Gecko
         /// @throws NS_ERROR_MALFORMED_URI if the site URI annotation has
         /// somehow been corrupted (and can't be turned into an nsIURI)
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI GetFeedURI(System.Int32  container);
+		nsIURI GetFeedURI(int container);
 		
 		/// <summary>
         /// Sets the URI of the feed associated with a livemark container.
@@ -153,7 +155,7 @@ namespace Skybound.Gecko
         /// argument isn't a valid nsIURI object
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFeedURI(System.Int32  container, [MarshalAs(UnmanagedType.Interface)] nsIURI  feedURI);
+		void SetFeedURI(int container, [MarshalAs(UnmanagedType.Interface)] nsIURI feedURI);
 		
 		/// <summary>
         /// Reloads all livemark subscriptions, whether or not they've expired.
@@ -166,6 +168,6 @@ namespace Skybound.Gecko
         /// @param folderID		The ID of the folder to be reloaded
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ReloadLivemarkFolder(System.Int32  folderID);
+		void ReloadLivemarkFolder(int folderID);
 	}
 }

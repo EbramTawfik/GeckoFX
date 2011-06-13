@@ -40,13 +40,13 @@ namespace Skybound.Gecko
         /// This interface may be used to determine if a channel is a FTP channel.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetLastModifiedTimeAttribute();
+		uint GetLastModifiedTimeAttribute();
 		
 		/// <summary>
         /// This interface may be used to determine if a channel is a FTP channel.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetLastModifiedTimeAttribute(System.UInt32  aLastModifiedTime);
+		void SetLastModifiedTimeAttribute(uint aLastModifiedTime);
 	}
 	
 	/// <summary>
@@ -64,6 +64,6 @@ namespace Skybound.Gecko
         /// XXX document this method!  (see bug 328915)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnFTPControlLog(System.Boolean  server, [MarshalAs(UnmanagedType.LPStr)] System.String  msg);
+		void OnFTPControlLog(bool server, [MarshalAs(UnmanagedType.LPStr)] string msg);
 	}
 }

@@ -40,24 +40,24 @@ namespace Skybound.Gecko
         /// because function calls here may fail, or because the docShell is
         /// required. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init([MarshalAs(UnmanagedType.Interface)] nsIDocShell  aDocShell);
+		void Init([MarshalAs(UnmanagedType.Interface)] nsIDocShell aDocShell);
 		
 		/// <summary>
         ///Find aSearchString in page.  If aLinksOnly is true, only search the page's
         /// hyperlinks for the string. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint Find([MarshalAs(UnmanagedType.LPStruct)] nsAString aSearchString, System.Boolean  aLinksOnly);
+		uint Find([MarshalAs(UnmanagedType.LPStruct)] nsAString aSearchString, bool aLinksOnly);
 		
 		/// <summary>
         ///Find another match in the page. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint FindAgain(System.Boolean  findBackwards, System.Boolean  aLinksOnly);
+		uint FindAgain(bool findBackwards, bool aLinksOnly);
 		
 		/// <summary>
         ///Change searched docShell.  This happens when e.g. we use the same
         /// nsITypeAheadFind object to search different tabs. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDocShell([MarshalAs(UnmanagedType.Interface)] nsIDocShell  aDocShell);
+		void SetDocShell([MarshalAs(UnmanagedType.Interface)] nsIDocShell aDocShell);
 		
 		/// <summary>
         ///Change the look of the the "found match" selection to aToggle, and repaint
@@ -81,33 +81,33 @@ namespace Skybound.Gecko
         /// Most recent search string
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetCaseSensitiveAttribute();
+		bool GetCaseSensitiveAttribute();
 		
 		/// <summary>
         /// Most recent search string
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCaseSensitiveAttribute(System.Boolean  aCaseSensitive);
+		void SetCaseSensitiveAttribute(bool aCaseSensitive);
 		
 		/// <summary>
         /// Searches are case sensitive
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMElement  GetFoundLinkAttribute();
+		nsIDOMElement GetFoundLinkAttribute();
 		
 		/// <summary>
         /// Most recent elem found, if a link
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMElement  GetFoundEditableAttribute();
+		nsIDOMElement GetFoundEditableAttribute();
 		
 		/// <summary>
         /// Most recent elem found, if editable
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMWindow  GetCurrentWindowAttribute();
+		nsIDOMWindow GetCurrentWindowAttribute();
 	}
 }

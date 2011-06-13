@@ -52,7 +52,7 @@ namespace Skybound.Gecko
         /// causing the request to be canceled.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void OnStartRequest([MarshalAs(UnmanagedType.Interface)] nsIRequest  aRequest, [MarshalAs(UnmanagedType.Interface)] nsISupports  aContext);
+		new void OnStartRequest([MarshalAs(UnmanagedType.Interface)] nsIRequest aRequest, [MarshalAs(UnmanagedType.Interface)] nsISupports aContext);
 		
 		/// <summary>
         /// Called to signify the end of an asynchronous request.  This
@@ -65,7 +65,7 @@ namespace Skybound.Gecko
         /// An exception thrown from onStopRequest is generally ignored.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void OnStopRequest([MarshalAs(UnmanagedType.Interface)] nsIRequest  aRequest, [MarshalAs(UnmanagedType.Interface)] nsISupports  aContext, System.Int32  aStatusCode);
+		new void OnStopRequest([MarshalAs(UnmanagedType.Interface)] nsIRequest aRequest, [MarshalAs(UnmanagedType.Interface)] nsISupports aContext, int aStatusCode);
 		
 		/// <summary>
         /// Called when the next chunk of data (corresponding to the request) may
@@ -89,7 +89,7 @@ namespace Skybound.Gecko
         /// causing the request to be canceled.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void OnDataAvailable([MarshalAs(UnmanagedType.Interface)] nsIRequest  aRequest, [MarshalAs(UnmanagedType.Interface)] nsISupports  aContext, [MarshalAs(UnmanagedType.Interface)] nsIInputStream  aInputStream, System.UInt32  aOffset, System.UInt32  aCount);
+		new void OnDataAvailable([MarshalAs(UnmanagedType.Interface)] nsIRequest aRequest, [MarshalAs(UnmanagedType.Interface)] nsISupports aContext, [MarshalAs(UnmanagedType.Interface)] nsIInputStream aInputStream, uint aOffset, uint aCount);
 		
 		/// <summary>
         /// Initialize this downloader
@@ -106,7 +106,7 @@ namespace Skybound.Gecko
         /// to keep track of the file, etc.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init([MarshalAs(UnmanagedType.Interface)] nsIDownloadObserver  observer, [MarshalAs(UnmanagedType.Interface)] nsIFile  downloadLocation);
+		void Init([MarshalAs(UnmanagedType.Interface)] nsIDownloadObserver observer, [MarshalAs(UnmanagedType.Interface)] nsIFile downloadLocation);
 	}
 	
 	/// <summary>nsIDownloadObserver </summary>
@@ -120,6 +120,6 @@ namespace Skybound.Gecko
         /// Called to signal a download that has completed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnDownloadComplete([MarshalAs(UnmanagedType.Interface)] nsIDownloader  downloader, [MarshalAs(UnmanagedType.Interface)] nsIRequest  request, [MarshalAs(UnmanagedType.Interface)] nsISupports  ctxt, System.Int32  status, [MarshalAs(UnmanagedType.Interface)] nsIFile  result);
+		void OnDownloadComplete([MarshalAs(UnmanagedType.Interface)] nsIDownloader downloader, [MarshalAs(UnmanagedType.Interface)] nsIRequest request, [MarshalAs(UnmanagedType.Interface)] nsISupports ctxt, int status, [MarshalAs(UnmanagedType.Interface)] nsIFile result);
 	}
 }

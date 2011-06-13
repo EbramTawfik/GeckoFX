@@ -52,11 +52,13 @@ namespace Skybound.Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool HasFeature([MarshalAs(UnmanagedType.LPStruct)] nsAString feature, [MarshalAs(UnmanagedType.LPStruct)] nsAString version);
 		
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMDocumentType CreateDocumentType([MarshalAs(UnmanagedType.LPStruct)] nsAString qualifiedName, [MarshalAs(UnmanagedType.LPStruct)] nsAString publicId, [MarshalAs(UnmanagedType.LPStruct)] nsAString systemId);
 		
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDocument CreateDocument([MarshalAs(UnmanagedType.LPStruct)] nsAString namespaceURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString qualifiedName, [MarshalAs(UnmanagedType.Interface)] nsIDOMDocumentType  doctype);
+		nsIDOMDocument CreateDocument([MarshalAs(UnmanagedType.LPStruct)] nsAString namespaceURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString qualifiedName, [MarshalAs(UnmanagedType.Interface)] nsIDOMDocumentType doctype);
 		
 		/// <summary>
         /// Returns an HTML document with a basic DOM already constructed and with an
@@ -65,6 +67,7 @@ namespace Skybound.Gecko
         /// @param title the title of the Document
         /// @see <http://www.whatwg.org/html/#creating-documents>
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMDocument CreateHTMLDocument([MarshalAs(UnmanagedType.LPStruct)] nsAString title);
 	}

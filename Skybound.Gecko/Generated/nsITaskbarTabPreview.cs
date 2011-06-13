@@ -61,7 +61,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsITaskbarPreviewController  GetControllerAttribute();
+		new nsITaskbarPreviewController GetControllerAttribute();
 		
 		/// <summary>
         /// The controller for this preview. A controller is required to provide
@@ -78,7 +78,7 @@ namespace Skybound.Gecko
         /// @see nsITaskbarPreviewController
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetControllerAttribute([MarshalAs(UnmanagedType.Interface)] nsITaskbarPreviewController  aController);
+		new void SetControllerAttribute([MarshalAs(UnmanagedType.Interface)] nsITaskbarPreviewController aController);
 		
 		/// <summary>
         /// The tooltip displayed above the preview when the user hovers over it
@@ -108,7 +108,7 @@ namespace Skybound.Gecko
         /// Default: false
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Boolean  GetVisibleAttribute();
+		new bool GetVisibleAttribute();
 		
 		/// <summary>
         /// Whether or not the preview is visible.
@@ -122,21 +122,21 @@ namespace Skybound.Gecko
         /// Default: false
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetVisibleAttribute(System.Boolean  aVisible);
+		new void SetVisibleAttribute(bool aVisible);
 		
 		/// <summary>
         /// Gets/sets whether or not the preview is marked active (selected) in the
         /// taskbar.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Boolean  GetActiveAttribute();
+		new bool GetActiveAttribute();
 		
 		/// <summary>
         /// Gets/sets whether or not the preview is marked active (selected) in the
         /// taskbar.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetActiveAttribute(System.Boolean  aActive);
+		new void SetActiveAttribute(bool aActive);
 		
 		/// <summary>
         /// Invalidates the taskbar's cached image of this preview, forcing a redraw
@@ -167,7 +167,7 @@ namespace Skybound.Gecko
         /// Default: null
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		imgIContainer  GetIconAttribute();
+		imgIContainer GetIconAttribute();
 		
 		/// <summary>
         /// The icon displayed next to the title in the preview
@@ -175,7 +175,7 @@ namespace Skybound.Gecko
         /// Default: null
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetIconAttribute(imgIContainer  aIcon);
+		void SetIconAttribute(imgIContainer aIcon);
 		
 		/// <summary>
         /// Rearranges the preview relative to another tab preview from the same window
@@ -183,7 +183,7 @@ namespace Skybound.Gecko
         /// indicates that the preview is the rightmost one.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Move([MarshalAs(UnmanagedType.Interface)] nsITaskbarTabPreview  aNext);
+		void Move([MarshalAs(UnmanagedType.Interface)] nsITaskbarTabPreview aNext);
 		
 		/// <summary>
         /// Used internally to grab the handle to the proxy window.

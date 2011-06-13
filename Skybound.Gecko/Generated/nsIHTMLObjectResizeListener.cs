@@ -40,7 +40,7 @@ namespace Skybound.Gecko
         /// @param aElement [IN] the element
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnStartResizing([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  aElement);
+		void OnStartResizing([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement);
 		
 		/// <summary>
         /// Listener's callback called by the editor when the user
@@ -52,6 +52,6 @@ namespace Skybound.Gecko
         /// @param aNewHeight [IN] the height of the element after resizing
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnEndResizing([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  aElement, System.Int32  aOldWidth, System.Int32  aOldHeight, System.Int32  aNewWidth, System.Int32  aNewHeight);
+		void OnEndResizing([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement, int aOldWidth, int aOldHeight, int aNewWidth, int aNewHeight);
 	}
 }

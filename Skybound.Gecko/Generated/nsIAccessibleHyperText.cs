@@ -44,7 +44,7 @@ namespace Skybound.Gecko
         /// Return the number of links contained within this hypertext object.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetLinkCountAttribute();
+		int GetLinkCountAttribute();
 		
 		/// <summary>
         /// Return link accessible at the given index.
@@ -53,8 +53,9 @@ namespace Skybound.Gecko
         ///
         /// @return       link accessible or null if there is no link at that index
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIAccessibleHyperLink GetLinkAt(System.Int32  index);
+		nsIAccessibleHyperLink GetLinkAt(int index);
 		
 		/// <summary>
         /// Return index of the given link.
@@ -65,7 +66,7 @@ namespace Skybound.Gecko
         /// hypertext accessible
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetLinkIndex([MarshalAs(UnmanagedType.Interface)] nsIAccessibleHyperLink  link);
+		int GetLinkIndex([MarshalAs(UnmanagedType.Interface)] nsIAccessibleHyperLink link);
 		
 		/// <summary>
         /// Return link index at the given offset within hypertext accessible.
@@ -76,6 +77,6 @@ namespace Skybound.Gecko
         /// offset
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetLinkIndexAtOffset(System.Int32  offset);
+		int GetLinkIndexAtOffset(int offset);
 	}
 }

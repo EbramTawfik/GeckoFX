@@ -62,18 +62,19 @@ namespace Skybound.Gecko
         /// @param aCommand      the handler for this command.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RegisterCommand([MarshalAs(UnmanagedType.LPStr)] System.String  aCommandName, [MarshalAs(UnmanagedType.Interface)] nsIControllerCommand  aCommand);
+		void RegisterCommand([MarshalAs(UnmanagedType.LPStr)] string aCommandName, [MarshalAs(UnmanagedType.Interface)] nsIControllerCommand aCommand);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UnregisterCommand([MarshalAs(UnmanagedType.LPStr)] System.String  aCommandName, [MarshalAs(UnmanagedType.Interface)] nsIControllerCommand  aCommand);
+		void UnregisterCommand([MarshalAs(UnmanagedType.LPStr)] string aCommandName, [MarshalAs(UnmanagedType.Interface)] nsIControllerCommand aCommand);
 		
 		/// <summary>
         /// Find the command handler which has been registered to handle the named command.
         ///
         /// @param aCommandName  the name of the command to find the handler for.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIControllerCommand FindCommandHandler([MarshalAs(UnmanagedType.LPStr)] System.String  aCommandName);
+		nsIControllerCommand FindCommandHandler([MarshalAs(UnmanagedType.LPStr)] string aCommandName);
 		
 		/// <summary>
         /// Get whether the named command is enabled.
@@ -82,7 +83,7 @@ namespace Skybound.Gecko
         /// @param aCommandRefCon  the command context data
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsCommandEnabled([MarshalAs(UnmanagedType.LPStr)] System.String  aCommandName, [MarshalAs(UnmanagedType.Interface)] nsISupports  aCommandRefCon);
+		bool IsCommandEnabled([MarshalAs(UnmanagedType.LPStr)] string aCommandName, [MarshalAs(UnmanagedType.Interface)] nsISupports aCommandRefCon);
 		
 		/// <summary>
         /// Tell the command to update its state (if it is a state updating command)
@@ -91,7 +92,7 @@ namespace Skybound.Gecko
         /// @param aCommandRefCon  the command context data
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UpdateCommandState([MarshalAs(UnmanagedType.LPStr)] System.String  aCommandName, [MarshalAs(UnmanagedType.Interface)] nsISupports  aCommandRefCon);
+		void UpdateCommandState([MarshalAs(UnmanagedType.LPStr)] string aCommandName, [MarshalAs(UnmanagedType.Interface)] nsISupports aCommandRefCon);
 		
 		/// <summary>
         /// Get whether the named command is supported.
@@ -100,7 +101,7 @@ namespace Skybound.Gecko
         /// @param aCommandRefCon  the command context data
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool SupportsCommand([MarshalAs(UnmanagedType.LPStr)] System.String  aCommandName, [MarshalAs(UnmanagedType.Interface)] nsISupports  aCommandRefCon);
+		bool SupportsCommand([MarshalAs(UnmanagedType.LPStr)] string aCommandName, [MarshalAs(UnmanagedType.Interface)] nsISupports aCommandRefCon);
 		
 		/// <summary>
         /// Execute the named command.
@@ -109,12 +110,12 @@ namespace Skybound.Gecko
         /// @param aCommandRefCon  the command context data
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DoCommand([MarshalAs(UnmanagedType.LPStr)] System.String  aCommandName, [MarshalAs(UnmanagedType.Interface)] nsISupports  aCommandRefCon);
+		void DoCommand([MarshalAs(UnmanagedType.LPStr)] string aCommandName, [MarshalAs(UnmanagedType.Interface)] nsISupports aCommandRefCon);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DoCommandParams([MarshalAs(UnmanagedType.LPStr)] System.String  aCommandName, [MarshalAs(UnmanagedType.Interface)] nsICommandParams  aParam, [MarshalAs(UnmanagedType.Interface)] nsISupports  aCommandRefCon);
+		void DoCommandParams([MarshalAs(UnmanagedType.LPStr)] string aCommandName, [MarshalAs(UnmanagedType.Interface)] nsICommandParams aParam, [MarshalAs(UnmanagedType.Interface)] nsISupports aCommandRefCon);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCommandState([MarshalAs(UnmanagedType.LPStr)] System.String  aCommandName, [MarshalAs(UnmanagedType.Interface)] nsICommandParams  aParam, [MarshalAs(UnmanagedType.Interface)] nsISupports  aCommandRefCon);
+		void GetCommandState([MarshalAs(UnmanagedType.LPStr)] string aCommandName, [MarshalAs(UnmanagedType.Interface)] nsICommandParams aParam, [MarshalAs(UnmanagedType.Interface)] nsISupports aCommandRefCon);
 	}
 }

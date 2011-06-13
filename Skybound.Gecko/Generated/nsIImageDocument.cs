@@ -39,22 +39,22 @@ namespace Skybound.Gecko
 		/// <summary>
         ///Whether the pref for image resizing has been set. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetImageResizingEnabledAttribute();
+		bool GetImageResizingEnabledAttribute();
 		
 		/// <summary>
         ///Whether the image is overflowing visible area. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetImageIsOverflowingAttribute();
+		bool GetImageIsOverflowingAttribute();
 		
 		/// <summary>
         ///Whether the image has been resized to fit visible area. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetImageIsResizedAttribute();
+		bool GetImageIsResizedAttribute();
 		
 		/// <summary>
         ///The image request being displayed in the content area </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		imgIRequest  GetImageRequestAttribute();
+		imgIRequest GetImageRequestAttribute();
 		
 		/// <summary>
         ///Resize the image to fit visible area. </summary>
@@ -71,7 +71,7 @@ namespace Skybound.Gecko
         /// The coordinate system is that of the shrunken image.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RestoreImageTo(System.Int32  x, System.Int32  y);
+		void RestoreImageTo(int x, int y);
 		
 		/// <summary>
         ///A helper method for switching between states.

@@ -37,12 +37,12 @@ namespace Skybound.Gecko
 		/// <summary>Member GetKeyAttribute </summary>
 		/// <param name='aKey'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetKeyAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aKey);
+		void GetKeyAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aKey);
 		
 		/// <summary>Member SetKeyAttribute </summary>
 		/// <param name='aKey'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetKeyAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aKey);
+		void SetKeyAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aKey);
 		
 		/// <summary>Member GetValueAttribute </summary>
 		/// <param name='aValue'> </param>
@@ -70,19 +70,19 @@ namespace Skybound.Gecko
         /// given iid.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.IntPtr  Get([MarshalAs(UnmanagedType.LPStr)] System.String  prop, ref System.Guid iid);
+		new System.IntPtr Get([MarshalAs(UnmanagedType.LPStr)] string prop, ref System.Guid iid);
 		
 		/// <summary>
         /// Sets a property with a given name to a given value.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Set([MarshalAs(UnmanagedType.LPStr)] System.String  prop, [MarshalAs(UnmanagedType.Interface)] nsISupports  value);
+		new void Set([MarshalAs(UnmanagedType.LPStr)] string prop, [MarshalAs(UnmanagedType.Interface)] nsISupports value);
 		
 		/// <summary>
         /// Returns true if the property with the given name exists.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool Has([MarshalAs(UnmanagedType.LPStr)] System.String  prop);
+		new bool Has([MarshalAs(UnmanagedType.LPStr)] string prop);
 		
 		/// <summary>
         /// Undefines a property.
@@ -90,40 +90,41 @@ namespace Skybound.Gecko
         /// already exist.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Undefine([MarshalAs(UnmanagedType.LPStr)] System.String  prop);
+		new void Undefine([MarshalAs(UnmanagedType.LPStr)] string prop);
 		
 		/// <summary>
         /// Returns an array of the keys.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.LPStr, SizeParamIndex=0)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.String  GetKeys(out System.UInt32  count);
+		new string GetKeys(out uint count);
 		
 		/// <summary>
         /// load a set of name/value pairs from the input stream
         /// names and values should be in UTF8
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Load([MarshalAs(UnmanagedType.Interface)] nsIInputStream  input);
+		void Load([MarshalAs(UnmanagedType.Interface)] nsIInputStream input);
 		
 		/// <summary>
         /// output the values to the stream - results will be in UTF8
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Save([MarshalAs(UnmanagedType.Interface)] nsIOutputStream  output, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  header);
+		void Save([MarshalAs(UnmanagedType.Interface)] nsIOutputStream output, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String header);
 		
 		/// <summary>
         /// call subclass() to make future calls to load() set the properties
         /// in this "superclass" instead
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Subclass([MarshalAs(UnmanagedType.Interface)] nsIPersistentProperties  superclass);
+		void Subclass([MarshalAs(UnmanagedType.Interface)] nsIPersistentProperties superclass);
 		
 		/// <summary>
         /// get an enumeration of nsIPropertyElement objects,
         /// which are read-only (i.e. setting properties on the element will
         /// not make changes back into the source nsIPersistentProperties
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISimpleEnumerator Enumerate();
 		
@@ -131,15 +132,17 @@ namespace Skybound.Gecko
         /// shortcut to nsIProperty's get() which retrieves a string value
         /// directly (and thus faster)
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetStringProperty([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  key);
+		nsAString GetStringProperty([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String key);
 		
 		/// <summary>
         /// shortcut to nsIProperty's set() which sets a string value
         /// directly (and thus faster). If the given property already exists,
         /// then the old value will be returned
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString SetStringProperty([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  key, [MarshalAs(UnmanagedType.LPStruct)] nsAString value);
+		nsAString SetStringProperty([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String key, [MarshalAs(UnmanagedType.LPStruct)] nsAString value);
 	}
 }

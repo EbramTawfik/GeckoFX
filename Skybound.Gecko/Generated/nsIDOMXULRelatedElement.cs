@@ -40,7 +40,8 @@ namespace Skybound.Gecko
         /// this interface is implemented by XUL tabs and XUL tabpanels elements
         /// and used to get XUL tab element by linked tab panel and vice versa.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMNode GetRelatedElement([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  aElement);
+		nsIDOMNode GetRelatedElement([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aElement);
 	}
 }

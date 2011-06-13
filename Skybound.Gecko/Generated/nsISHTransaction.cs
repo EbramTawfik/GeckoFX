@@ -41,58 +41,58 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISHEntry  GetSHEntryAttribute();
+		nsISHEntry GetSHEntryAttribute();
 		
 		/// <summary>
         /// The nsISHEntry for the current transaction
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSHEntryAttribute([MarshalAs(UnmanagedType.Interface)] nsISHEntry  aSHEntry);
+		void SetSHEntryAttribute([MarshalAs(UnmanagedType.Interface)] nsISHEntry aSHEntry);
 		
 		/// <summary>
         /// The parent of this transaction
         ///	 </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISHTransaction  GetPrevAttribute();
+		nsISHTransaction GetPrevAttribute();
 		
 		/// <summary>
         /// The parent of this transaction
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPrevAttribute([MarshalAs(UnmanagedType.Interface)] nsISHTransaction  aPrev);
+		void SetPrevAttribute([MarshalAs(UnmanagedType.Interface)] nsISHTransaction aPrev);
 		
 		/// <summary>
         /// The legitimate child of this transaction
         ///	 </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISHTransaction  GetNextAttribute();
+		nsISHTransaction GetNextAttribute();
 		
 		/// <summary>
         /// The legitimate child of this transaction
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetNextAttribute([MarshalAs(UnmanagedType.Interface)] nsISHTransaction  aNext);
+		void SetNextAttribute([MarshalAs(UnmanagedType.Interface)] nsISHTransaction aNext);
 		
 		/// <summary>
         /// Specifies if this transaction should persist.  If not it will be replaced
         /// by new additions to the list.
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetPersistAttribute();
+		bool GetPersistAttribute();
 		
 		/// <summary>
         /// Specifies if this transaction should persist.  If not it will be replaced
         /// by new additions to the list.
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPersistAttribute(System.Boolean  aPersist);
+		void SetPersistAttribute(bool aPersist);
 		
 		/// <summary>
         /// Create a transaction with parent and History Entry
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Create([MarshalAs(UnmanagedType.Interface)] nsISHEntry  aSHEntry, [MarshalAs(UnmanagedType.Interface)] nsISHTransaction  aPrev);
+		void Create([MarshalAs(UnmanagedType.Interface)] nsISHEntry aSHEntry, [MarshalAs(UnmanagedType.Interface)] nsISHTransaction aPrev);
 	}
 }

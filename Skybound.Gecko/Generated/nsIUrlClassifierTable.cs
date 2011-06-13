@@ -40,25 +40,25 @@ namespace Skybound.Gecko
         /// The name used to identify this table
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aName);
+		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
 		
 		/// <summary>
         /// The name used to identify this table
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aName);
+		void SetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
 		
 		/// <summary>
         /// Set to false if we don't want to update this table.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetNeedsUpdateAttribute();
+		bool GetNeedsUpdateAttribute();
 		
 		/// <summary>
         /// Set to false if we don't want to update this table.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetNeedsUpdateAttribute(System.Boolean  aNeedsUpdate);
+		void SetNeedsUpdateAttribute(bool aNeedsUpdate);
 		
 		/// <summary>
         /// In the simple case, exists just looks up the string in the
@@ -67,6 +67,6 @@ namespace Skybound.Gecko
         /// (e.g., canonicalize the url).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Exists([MarshalAs(UnmanagedType.LPStruct)] nsAString  key, [MarshalAs(UnmanagedType.Interface)] nsIUrlListManagerCallback  cb);
+		void Exists([MarshalAs(UnmanagedType.LPStruct)] nsAString key, [MarshalAs(UnmanagedType.Interface)] nsIUrlListManagerCallback cb);
 	}
 }

@@ -93,7 +93,7 @@ namespace Skybound.Gecko
         /// NOTE: this method should not throw NS_BASE_STREAM_CLOSED.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new uint Read(System.IntPtr  aBuf, System.UInt32  aCount);
+		new uint Read(System.IntPtr aBuf, uint aCount);
 		
 		/// <summary>
         /// Low-level read method that provides access to the stream's underlying
@@ -120,7 +120,7 @@ namespace Skybound.Gecko
         /// NOTE: this method should not throw NS_BASE_STREAM_CLOSED.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new uint ReadSegments(nsWriteSegmentFun  aWriter, System.IntPtr  aClosure, System.UInt32  aCount);
+		new uint ReadSegments(nsWriteSegmentFun aWriter, System.IntPtr aClosure, uint aCount);
 		
 		/// <summary>
         /// @return true if stream is non-blocking
@@ -154,7 +154,7 @@ namespace Skybound.Gecko
         /// it has been closed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CloseWithStatus(System.Int32  aStatus);
+		void CloseWithStatus(int aStatus);
 		
 		/// <summary>
         /// Asynchronously wait for the stream to be readable or closed.  The
@@ -188,7 +188,7 @@ namespace Skybound.Gecko
         /// target.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AsyncWait([MarshalAs(UnmanagedType.Interface)] nsIInputStreamCallback  aCallback, System.UInt32  aFlags, System.UInt32  aRequestedCount, [MarshalAs(UnmanagedType.Interface)] nsIEventTarget  aEventTarget);
+		void AsyncWait([MarshalAs(UnmanagedType.Interface)] nsIInputStreamCallback aCallback, uint aFlags, uint aRequestedCount, [MarshalAs(UnmanagedType.Interface)] nsIEventTarget aEventTarget);
 	}
 	
 	/// <summary>
@@ -207,6 +207,6 @@ namespace Skybound.Gecko
         /// The stream whose asyncWait method was called.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnInputStreamReady([MarshalAs(UnmanagedType.Interface)] nsIAsyncInputStream  aStream);
+		void OnInputStreamReady([MarshalAs(UnmanagedType.Interface)] nsIAsyncInputStream aStream);
 	}
 }

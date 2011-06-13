@@ -47,13 +47,13 @@ namespace Skybound.Gecko
         /// constants.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Show([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor  aWindowContext, System.UInt32  aID, short aReason);
+		void Show([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor aWindowContext, uint aID, short aReason);
 		
 		/// <summary>
         /// Indicates if the UI is visible or not.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetVisibleAttribute();
+		bool GetVisibleAttribute();
 		
 		/// <summary>
         /// Brings attention to the UI if it is already visible

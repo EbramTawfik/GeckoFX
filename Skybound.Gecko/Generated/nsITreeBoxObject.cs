@@ -39,7 +39,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsITreeColumns  GetColumnsAttribute();
+		nsITreeColumns GetColumnsAttribute();
 		
 		/// <summary>
         /// The view that backs the tree and that supplies it with its data.
@@ -48,7 +48,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsITreeView  GetViewAttribute();
+		nsITreeView GetViewAttribute();
 		
 		/// <summary>
         /// The view that backs the tree and that supplies it with its data.
@@ -56,51 +56,51 @@ namespace Skybound.Gecko
         /// tree tag or by setting this attribute to a new value.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetViewAttribute([MarshalAs(UnmanagedType.Interface)] nsITreeView  aView);
+		void SetViewAttribute([MarshalAs(UnmanagedType.Interface)] nsITreeView aView);
 		
 		/// <summary>
         /// Whether or not we are currently focused.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetFocusedAttribute();
+		bool GetFocusedAttribute();
 		
 		/// <summary>
         /// Whether or not we are currently focused.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFocusedAttribute(System.Boolean  aFocused);
+		void SetFocusedAttribute(bool aFocused);
 		
 		/// <summary>
         /// Obtain the treebody content node
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMElement  GetTreeBodyAttribute();
+		nsIDOMElement GetTreeBodyAttribute();
 		
 		/// <summary>
         /// Obtain the height of a row.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetRowHeightAttribute();
+		int GetRowHeightAttribute();
 		
 		/// <summary>
         /// Obtain the width of a row.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetRowWidthAttribute();
+		int GetRowWidthAttribute();
 		
 		/// <summary>
         /// Get the pixel position of the horizontal scrollbar.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetHorizontalPositionAttribute();
+		int GetHorizontalPositionAttribute();
 		
 		/// <summary>
         /// Return the region for the visible parts of the selection, in device pixels.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIScriptableRegion  GetSelectionRegionAttribute();
+		nsIScriptableRegion GetSelectionRegionAttribute();
 		
 		/// <summary>
         /// Get the index of the first visible row.
@@ -124,19 +124,19 @@ namespace Skybound.Gecko
         /// Ensures that a row at a given index is visible.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EnsureRowIsVisible(System.Int32  index);
+		void EnsureRowIsVisible(int index);
 		
 		/// <summary>
         /// Ensures that a given cell in the tree is visible.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EnsureCellIsVisible(System.Int32  row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn  col);
+		void EnsureCellIsVisible(int row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn col);
 		
 		/// <summary>
         /// Scrolls such that the row at index is at the top of the visible view.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ScrollToRow(System.Int32  index);
+		void ScrollToRow(int index);
 		
 		/// <summary>
         /// Scroll the tree up or down by numLines lines. Positive
@@ -144,7 +144,7 @@ namespace Skybound.Gecko
         /// end of the tree.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ScrollByLines(System.Int32  numLines);
+		void ScrollByLines(int numLines);
 		
 		/// <summary>
         /// Scroll the tree up or down by numPages pages. A page
@@ -153,27 +153,27 @@ namespace Skybound.Gecko
         /// off the end of the tree.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ScrollByPages(System.Int32  numPages);
+		void ScrollByPages(int numPages);
 		
 		/// <summary>
         /// Scrolls such that a given cell is visible (if possible)
         /// at the top left corner of the visible view.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ScrollToCell(System.Int32  row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn  col);
+		void ScrollToCell(int row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn col);
 		
 		/// <summary>
         /// Scrolls horizontally so that the specified column is
         /// at the left of the view (if possible).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ScrollToColumn([MarshalAs(UnmanagedType.Interface)] nsITreeColumn  col);
+		void ScrollToColumn([MarshalAs(UnmanagedType.Interface)] nsITreeColumn col);
 		
 		/// <summary>
         /// Scroll to a specific horizontal pixel position.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ScrollToHorizontalPosition(System.Int32  horizontalPosition);
+		void ScrollToHorizontalPosition(int horizontalPosition);
 		
 		/// <summary>
         /// Invalidation methods for fine-grained painting control.
@@ -184,31 +184,31 @@ namespace Skybound.Gecko
 		/// <summary>Member InvalidateColumn </summary>
 		/// <param name='col'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InvalidateColumn([MarshalAs(UnmanagedType.Interface)] nsITreeColumn  col);
+		void InvalidateColumn([MarshalAs(UnmanagedType.Interface)] nsITreeColumn col);
 		
 		/// <summary>Member InvalidateRow </summary>
 		/// <param name='index'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InvalidateRow(System.Int32  index);
+		void InvalidateRow(int index);
 		
 		/// <summary>Member InvalidateCell </summary>
 		/// <param name='row'> </param>
 		/// <param name='col'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InvalidateCell(System.Int32  row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn  col);
+		void InvalidateCell(int row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn col);
 		
 		/// <summary>Member InvalidateRange </summary>
 		/// <param name='startIndex'> </param>
 		/// <param name='endIndex'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InvalidateRange(System.Int32  startIndex, System.Int32  endIndex);
+		void InvalidateRange(int startIndex, int endIndex);
 		
 		/// <summary>Member InvalidateColumnRange </summary>
 		/// <param name='startIndex'> </param>
 		/// <param name='endIndex'> </param>
 		/// <param name='col'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InvalidateColumnRange(System.Int32  startIndex, System.Int32  endIndex, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn  col);
+		void InvalidateColumnRange(int startIndex, int endIndex, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn col);
 		
 		/// <summary>
         /// A hit test that can tell you what row the mouse is over.
@@ -218,7 +218,7 @@ namespace Skybound.Gecko
         /// document this boxObject lives in, and the units are CSS pixels.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetRowAt(System.Int32  x, System.Int32  y);
+		int GetRowAt(int x, int y);
 		
 		/// <summary>
         /// A hit test that can tell you what cell the mouse is over.  Row is the row index
@@ -230,19 +230,19 @@ namespace Skybound.Gecko
         /// document this boxObject lives in, and the units are CSS pixels.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCellAt(System.Int32  x, System.Int32  y, out System.Int32  row, [MarshalAs(UnmanagedType.Interface)] out nsITreeColumn  col, [MarshalAs(UnmanagedType.LPStruct)] nsAString  childElt);
+		void GetCellAt(int x, int y, out int row, [MarshalAs(UnmanagedType.Interface)] out nsITreeColumn col, [MarshalAs(UnmanagedType.LPStruct)] nsAString childElt);
 		
 		/// <summary>
         /// Find the coordinates of an element within a specific cell.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCoordsForCellItem(System.Int32  row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn  col, [MarshalAs(UnmanagedType.LPStruct)] nsAString  element, out System.Int32  x, out System.Int32  y, out System.Int32  width, out System.Int32  height);
+		void GetCoordsForCellItem(int row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn col, [MarshalAs(UnmanagedType.LPStruct)] nsAString element, out int x, out int y, out int width, out int height);
 		
 		/// <summary>
         /// Determine if the text of a cell is being cropped or not.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsCellCropped(System.Int32  row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn  col);
+		bool IsCellCropped(int row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn col);
 		
 		/// <summary>
         /// The view is responsible for calling these notification methods when
@@ -251,7 +251,7 @@ namespace Skybound.Gecko
         /// non-contiguous additions/removals, this method should be called multiple times.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RowCountChanged(System.Int32  index, System.Int32  count);
+		void RowCountChanged(int index, int count);
 		
 		/// <summary>
         /// Notify the tree that the view is about to perform a batch

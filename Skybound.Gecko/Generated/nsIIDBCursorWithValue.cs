@@ -48,11 +48,11 @@ namespace Skybound.Gecko
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsISupports  GetSourceAttribute();
+		new nsISupports GetSourceAttribute();
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIVariant  GetKeyAttribute();
+		new nsIVariant GetKeyAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new System.IntPtr GetPrimaryKeyAttribute();
@@ -65,12 +65,14 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Success fires IDBTransactionEvent, result == key
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIIDBRequest Update(System.IntPtr value);
 		
 		/// <summary>
         /// Success fires IDBTransactionEvent, result == null
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIIDBRequest Delete();
 		

@@ -41,7 +41,7 @@ namespace Skybound.Gecko
         /// Determine if two nodes are identical
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool EqualsNode([MarshalAs(UnmanagedType.Interface)] nsIRDFNode  aNode);
+		new bool EqualsNode([MarshalAs(UnmanagedType.Interface)] nsIRDFNode aNode);
 		
 		/// <summary>
         /// The single-byte string value of the resource.
@@ -50,13 +50,13 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetValueAttribute();
+		string GetValueAttribute();
 		
 		/// <summary>
         /// The UTF-8 URI of the resource.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetValueUTF8Attribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aValueUTF8);
+		void GetValueUTF8Attribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aValueUTF8);
 		
 		/// <summary>
         /// An unscriptable version used to avoid a string copy. Meant
@@ -64,7 +64,7 @@ namespace Skybound.Gecko
         /// in UTF-8.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetValueConst([MarshalAs(UnmanagedType.LPStr)] out System.String  aConstValue);
+		void GetValueConst([MarshalAs(UnmanagedType.LPStr)] out string aConstValue);
 		
 		/// <summary>
         /// This method is called by the nsIRDFService after constructing
@@ -72,13 +72,13 @@ namespace Skybound.Gecko
         /// call this method directly
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init([MarshalAs(UnmanagedType.LPStr)] System.String  uri);
+		void Init([MarshalAs(UnmanagedType.LPStr)] string uri);
 		
 		/// <summary>
         /// Determine if the resource has the given URI.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool EqualsString([MarshalAs(UnmanagedType.LPStr)] System.String  aURI);
+		bool EqualsString([MarshalAs(UnmanagedType.LPStr)] string aURI);
 		
 		/// <summary>
         /// Retrieve the "delegate" object for this resource. A resource
@@ -102,7 +102,7 @@ namespace Skybound.Gecko
         /// factory will be used to construct the delegate object.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr  GetDelegate([MarshalAs(UnmanagedType.LPStr)] System.String  aKey, ref System.Guid aIID);
+		System.IntPtr GetDelegate([MarshalAs(UnmanagedType.LPStr)] string aKey, ref System.Guid aIID);
 		
 		/// <summary>
         /// Force a delegate to be "unbound" from the resource.
@@ -112,6 +112,6 @@ namespace Skybound.Gecko
         /// delegate to unlink itself from an RDF resource prematurely.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ReleaseDelegate([MarshalAs(UnmanagedType.LPStr)] System.String  aKey);
+		void ReleaseDelegate([MarshalAs(UnmanagedType.LPStr)] string aKey);
 	}
 }

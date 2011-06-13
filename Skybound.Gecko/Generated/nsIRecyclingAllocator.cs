@@ -51,7 +51,7 @@ namespace Skybound.Gecko
         /// @result the block of memory
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.IntPtr Alloc(System.UInt32  size);
+		new System.IntPtr Alloc(uint size);
 		
 		/// <summary>
         /// Reallocates a block of memory to a new size.
@@ -68,7 +68,7 @@ namespace Skybound.Gecko
         /// and null is returned. The returned value may be the same as ptr.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.IntPtr Realloc(System.IntPtr  ptr, System.UInt32  newSize);
+		new System.IntPtr Realloc(System.IntPtr ptr, uint newSize);
 		
 		/// <summary>
         /// Frees a block of memory. Null is a permissible value, in which case
@@ -77,7 +77,7 @@ namespace Skybound.Gecko
         /// @param ptr - the block of memory to free
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Free(System.IntPtr  ptr);
+		new void Free(System.IntPtr ptr);
 		
 		/// <summary>
         /// Attempts to shrink the heap.
@@ -89,7 +89,7 @@ namespace Skybound.Gecko
         /// was not on the application's main thread.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void HeapMinimize(System.Boolean  immediate);
+		new void HeapMinimize(bool immediate);
 		
 		/// <summary>
         /// This predicate can be used to determine if we're in a low-memory
@@ -111,6 +111,6 @@ namespace Skybound.Gecko
         /// @status UNDER_DEVELOPMENT
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init(System.UInt32  nblocks, System.UInt32  recycleAfter, [MarshalAs(UnmanagedType.LPStr)] System.String  id);
+		void Init(uint nblocks, uint recycleAfter, [MarshalAs(UnmanagedType.LPStr)] string id);
 	}
 }

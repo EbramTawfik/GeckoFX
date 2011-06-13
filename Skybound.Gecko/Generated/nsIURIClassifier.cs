@@ -47,7 +47,7 @@ namespace Skybound.Gecko
         /// NS_OK if the load should continue normally.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnClassifyComplete(System.Int32  aErrorCode);
+		void OnClassifyComplete(int aErrorCode);
 	}
 	
 	/// <summary>
@@ -75,6 +75,6 @@ namespace Skybound.Gecko
         /// callback will be called.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Classify([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, [MarshalAs(UnmanagedType.Interface)] nsIURIClassifierCallback  aCallback);
+		bool Classify([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIURIClassifierCallback aCallback);
 	}
 }

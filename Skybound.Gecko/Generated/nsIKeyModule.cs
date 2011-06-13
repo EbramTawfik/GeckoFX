@@ -40,7 +40,7 @@ namespace Skybound.Gecko
         /// for freeing the key memory when destroyed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitKey(short aAlgorithm, System.IntPtr  aKey);
+		void InitKey(short aAlgorithm, System.IntPtr aKey);
 		
 		/// <summary>
         /// Return a pointer to the underlying key object
@@ -65,21 +65,24 @@ namespace Skybound.Gecko
 		/// <summary>Member LookupKeyByName </summary>
 		/// <param name='aName'> </param>
 		/// <returns>A nsIKeyObject</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIKeyObject LookupKeyByName([MarshalAs(UnmanagedType.LPStruct)] nsAString  aName);
+		nsIKeyObject LookupKeyByName([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
 		
 		/// <summary>Member UnwrapKey </summary>
 		/// <param name='aAlgorithm'> </param>
 		/// <param name='aWrappedKey'> </param>
 		/// <param name='aWrappedKeyLen'> </param>
 		/// <returns>A nsIKeyObject</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIKeyObject UnwrapKey(short aAlgorithm, System.IntPtr  aWrappedKey, System.UInt32  aWrappedKeyLen);
+		nsIKeyObject UnwrapKey(short aAlgorithm, System.IntPtr aWrappedKey, uint aWrappedKeyLen);
 		
 		/// <summary>
         /// This is not FIPS compliant and should not be used.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIKeyObject KeyFromString(short aAlgorithm, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aKey);
+		nsIKeyObject KeyFromString(short aAlgorithm, [MarshalAs(UnmanagedType.LPStruct)] nsAString aKey);
 	}
 }

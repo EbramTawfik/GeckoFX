@@ -42,6 +42,6 @@ namespace Skybound.Gecko
         /// MozBeforePaint event.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnBeforePaint(System.Int64  timeStamp);
+		void OnBeforePaint(long timeStamp);
 	}
 }

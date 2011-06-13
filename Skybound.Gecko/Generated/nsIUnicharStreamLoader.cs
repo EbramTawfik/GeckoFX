@@ -47,8 +47,9 @@ namespace Skybound.Gecko
         /// @note this method will only be called if the stream loader receives an
         /// OnDataAvailable call.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString OnDetermineCharset([MarshalAs(UnmanagedType.Interface)] nsIUnicharStreamLoader  aLoader, [MarshalAs(UnmanagedType.Interface)] nsISupports  aContext, [MarshalAs(UnmanagedType.LPStr, SizeParamIndex=3)] System.String  aFirstSegment, System.UInt32  aLength);
+		nsAString OnDetermineCharset([MarshalAs(UnmanagedType.Interface)] nsIUnicharStreamLoader aLoader, [MarshalAs(UnmanagedType.Interface)] nsISupports aContext, [MarshalAs(UnmanagedType.LPStr, SizeParamIndex=3)] string aFirstSegment, uint aLength);
 		
 		/// <summary>
         /// Called when the entire stream has been loaded.
@@ -67,7 +68,7 @@ namespace Skybound.Gecko
         /// aUnicharData will be null, and aStatus will be a success value.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnStreamComplete([MarshalAs(UnmanagedType.Interface)] nsIUnicharStreamLoader  aLoader, [MarshalAs(UnmanagedType.Interface)] nsISupports  aContext, System.Int32  aStatus, [MarshalAs(UnmanagedType.Interface)] nsIUnicharInputStream  aUnicharData);
+		void OnStreamComplete([MarshalAs(UnmanagedType.Interface)] nsIUnicharStreamLoader aLoader, [MarshalAs(UnmanagedType.Interface)] nsISupports aContext, int aStatus, [MarshalAs(UnmanagedType.Interface)] nsIUnicharInputStream aUnicharData);
 	}
 	
 	/// <summary>
@@ -95,7 +96,7 @@ namespace Skybound.Gecko
         /// causing the request to be canceled.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void OnStartRequest([MarshalAs(UnmanagedType.Interface)] nsIRequest  aRequest, [MarshalAs(UnmanagedType.Interface)] nsISupports  aContext);
+		new void OnStartRequest([MarshalAs(UnmanagedType.Interface)] nsIRequest aRequest, [MarshalAs(UnmanagedType.Interface)] nsISupports aContext);
 		
 		/// <summary>
         /// Called to signify the end of an asynchronous request.  This
@@ -108,7 +109,7 @@ namespace Skybound.Gecko
         /// An exception thrown from onStopRequest is generally ignored.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void OnStopRequest([MarshalAs(UnmanagedType.Interface)] nsIRequest  aRequest, [MarshalAs(UnmanagedType.Interface)] nsISupports  aContext, System.Int32  aStatusCode);
+		new void OnStopRequest([MarshalAs(UnmanagedType.Interface)] nsIRequest aRequest, [MarshalAs(UnmanagedType.Interface)] nsISupports aContext, int aStatusCode);
 		
 		/// <summary>
         /// Called when the next chunk of data (corresponding to the request) may
@@ -132,7 +133,7 @@ namespace Skybound.Gecko
         /// causing the request to be canceled.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void OnDataAvailable([MarshalAs(UnmanagedType.Interface)] nsIRequest  aRequest, [MarshalAs(UnmanagedType.Interface)] nsISupports  aContext, [MarshalAs(UnmanagedType.Interface)] nsIInputStream  aInputStream, System.UInt32  aOffset, System.UInt32  aCount);
+		new void OnDataAvailable([MarshalAs(UnmanagedType.Interface)] nsIRequest aRequest, [MarshalAs(UnmanagedType.Interface)] nsISupports aContext, [MarshalAs(UnmanagedType.Interface)] nsIInputStream aInputStream, uint aOffset, uint aCount);
 		
 		/// <summary>
         /// Initializes the unichar stream loader
@@ -142,7 +143,7 @@ namespace Skybound.Gecko
         /// @param aSegmentSize the size of the segments to use for the data, in bytes
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init([MarshalAs(UnmanagedType.Interface)] nsIUnicharStreamLoaderObserver  aObserver, System.UInt32  aSegmentSize);
+		void Init([MarshalAs(UnmanagedType.Interface)] nsIUnicharStreamLoaderObserver aObserver, uint aSegmentSize);
 		
 		/// <summary>
         /// The channel attribute is only valid inside the onDetermineCharset
@@ -150,13 +151,13 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIChannel  GetChannelAttribute();
+		nsIChannel GetChannelAttribute();
 		
 		/// <summary>
         /// The charset that onDetermineCharset returned, if that's been
         /// called.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCharsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aCharset);
+		void GetCharsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aCharset);
 	}
 }

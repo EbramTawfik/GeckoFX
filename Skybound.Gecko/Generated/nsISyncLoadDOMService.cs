@@ -48,11 +48,13 @@ namespace Skybound.Gecko
         ///
         /// @returns The document loaded from the URI.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDocument LoadDocument([MarshalAs(UnmanagedType.Interface)] nsIChannel  aChannel, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal  aLoaderPrincipal);
+		nsIDOMDocument LoadDocument([MarshalAs(UnmanagedType.Interface)] nsIChannel aChannel, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal aLoaderPrincipal);
 		
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDocument LoadDocumentAsXML([MarshalAs(UnmanagedType.Interface)] nsIChannel  aChannel, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal  aLoaderPrincipal);
+		nsIDOMDocument LoadDocumentAsXML([MarshalAs(UnmanagedType.Interface)] nsIChannel aChannel, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal aLoaderPrincipal);
 		
 		/// <summary>
         /// Synchronously load an XML document from the specified
@@ -64,7 +66,8 @@ namespace Skybound.Gecko
         ///
         /// @returns The document loaded from the URI.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDocument LoadLocalDocument([MarshalAs(UnmanagedType.Interface)] nsIChannel  aChannel, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal  aLoaderPrincipal);
+		nsIDOMDocument LoadLocalDocument([MarshalAs(UnmanagedType.Interface)] nsIChannel aChannel, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal aLoaderPrincipal);
 	}
 }

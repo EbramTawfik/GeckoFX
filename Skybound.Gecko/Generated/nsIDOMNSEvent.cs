@@ -38,7 +38,7 @@ namespace Skybound.Gecko
         ///The original target of the event, before any retargetings. </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventTarget  GetOriginalTargetAttribute();
+		nsIDOMEventTarget GetOriginalTargetAttribute();
 		
 		/// <summary>
         /// The explicit original target of the event.  If the event was retargeted
@@ -52,7 +52,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventTarget  GetExplicitOriginalTargetAttribute();
+		nsIDOMEventTarget GetExplicitOriginalTargetAttribute();
 		
 		/// <summary>
         ///XXX This is TEMPORARY.
@@ -62,7 +62,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventTarget  GetTmpRealOriginalTargetAttribute();
+		nsIDOMEventTarget GetTmpRealOriginalTargetAttribute();
 		
 		/// <summary>
         /// @deprecated Use nsIDOMEvent::stopPropagation.
@@ -82,8 +82,8 @@ namespace Skybound.Gecko
 		bool GetPreventDefault();
 		
 		/// <summary>Member GetIsTrustedAttribute </summary>
-		/// <returns>A System.Boolean </returns>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsTrustedAttribute();
+		bool GetIsTrustedAttribute();
 	}
 }

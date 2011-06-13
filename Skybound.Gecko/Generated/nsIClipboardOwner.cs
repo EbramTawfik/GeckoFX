@@ -42,6 +42,6 @@ namespace Skybound.Gecko
         /// @result NS_Ok if no errors
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void LosingOwnership([MarshalAs(UnmanagedType.Interface)] nsITransferable  aTransferable);
+		void LosingOwnership([MarshalAs(UnmanagedType.Interface)] nsITransferable aTransferable);
 	}
 }

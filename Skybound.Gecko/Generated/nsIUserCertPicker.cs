@@ -37,7 +37,8 @@ namespace Skybound.Gecko
 		/// <summary>
         /// as defined by NSS enum SECCertUsage
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIX509Cert PickByUsage([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor  ctx, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string selectedNickname, System.Int32  certUsage, System.Boolean  allowInvalid, System.Boolean  allowDuplicateNicknames, out System.Boolean  canceled);
+		nsIX509Cert PickByUsage([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor ctx, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string selectedNickname, int certUsage, bool allowInvalid, bool allowDuplicateNicknames, out bool canceled);
 	}
 }

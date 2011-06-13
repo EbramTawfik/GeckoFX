@@ -40,7 +40,7 @@ namespace Skybound.Gecko
         /// Is this object the equivalent of the other object?
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Equals([MarshalAs(UnmanagedType.Interface)] nsIHashable  aOther);
+		bool Equals([MarshalAs(UnmanagedType.Interface)] nsIHashable aOther);
 		
 		/// <summary>
         /// A generated hashcode for this object. Objects that are equivalent
@@ -48,6 +48,6 @@ namespace Skybound.Gecko
         /// throw an exception!
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetHashCodeAttribute();
+		uint GetHashCodeAttribute();
 	}
 }

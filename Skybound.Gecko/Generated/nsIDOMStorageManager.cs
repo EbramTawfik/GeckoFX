@@ -57,7 +57,8 @@ namespace Skybound.Gecko
         /// This method ensures there is always only a single instance
         /// for a single origin.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMStorage GetLocalStorageForPrincipal([MarshalAs(UnmanagedType.Interface)] nsIPrincipal  aPrincipal, [MarshalAs(UnmanagedType.LPStruct)] nsAString aDocumentURI);
+		nsIDOMStorage GetLocalStorageForPrincipal([MarshalAs(UnmanagedType.Interface)] nsIPrincipal aPrincipal, [MarshalAs(UnmanagedType.LPStruct)] nsAString aDocumentURI);
 	}
 }

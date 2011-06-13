@@ -41,7 +41,7 @@ namespace Skybound.Gecko
         /// @param aSelectionType Text or html?
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PasteAsQuotation(System.Int32  aSelectionType);
+		void PasteAsQuotation(int aSelectionType);
 		
 		/// <summary>
         ///Insert a string as quoted text
@@ -50,6 +50,7 @@ namespace Skybound.Gecko
         /// @param aQuotedText  The actual text to be quoted
         /// @return             The node which was inserted
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMNode InsertAsQuotation([MarshalAs(UnmanagedType.LPStruct)] nsAString aQuotedText);
 		
@@ -74,7 +75,7 @@ namespace Skybound.Gecko
         /// @param aSelectionType Text or html?
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PasteAsCitedQuotation([MarshalAs(UnmanagedType.LPStruct)] nsAString aCitation, System.Int32  aSelectionType);
+		void PasteAsCitedQuotation([MarshalAs(UnmanagedType.LPStruct)] nsAString aCitation, int aSelectionType);
 		
 		/// <summary>
         ///Insert a string as quoted text
@@ -86,15 +87,16 @@ namespace Skybound.Gecko
         /// @param aInsertHTML  Insert as html?  (vs plaintext)
         /// @return             The node which was inserted
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMNode InsertAsCitedQuotation([MarshalAs(UnmanagedType.LPStruct)] nsAString aQuotedText, [MarshalAs(UnmanagedType.LPStruct)] nsAString aCitation, System.Boolean  aInsertHTML);
+		nsIDOMNode InsertAsCitedQuotation([MarshalAs(UnmanagedType.LPStruct)] nsAString aQuotedText, [MarshalAs(UnmanagedType.LPStruct)] nsAString aCitation, bool aInsertHTML);
 		
 		/// <summary>
         /// Rewrap the selected part of the document, re-quoting if necessary.
         /// @param aRespectNewlines  Try to maintain newlines in the original?
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Rewrap(System.Boolean  aRespectNewlines);
+		void Rewrap(bool aRespectNewlines);
 		
 		/// <summary>
         /// Strip any citations in the selected part of the document.
@@ -105,6 +107,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Get a list of IMG and OBJECT tags in the current document.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISupportsArray GetEmbeddedObjects();
 	}

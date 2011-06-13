@@ -41,7 +41,7 @@ namespace Skybound.Gecko
         /// @param aEnabled Indicates if the notification is enabled by default.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddNotification([MarshalAs(UnmanagedType.LPStruct)] nsAString aName, System.Boolean  aEnabled);
+		void AddNotification([MarshalAs(UnmanagedType.LPStruct)] nsAString aName, bool aEnabled);
 		
 		/// <summary>
         /// Checks to see if a paticular notification has already been registered.

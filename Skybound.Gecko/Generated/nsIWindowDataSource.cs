@@ -39,7 +39,8 @@ namespace Skybound.Gecko
 		/// <summary>
         /// for the given resource name, return the window
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMWindowInternal GetWindowForResource([MarshalAs(UnmanagedType.LPStr)] System.String  inResource);
+		nsIDOMWindowInternal GetWindowForResource([MarshalAs(UnmanagedType.LPStr)] string inResource);
 	}
 }

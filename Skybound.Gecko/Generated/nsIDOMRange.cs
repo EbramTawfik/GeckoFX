@@ -47,94 +47,98 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMNode  GetStartContainerAttribute();
+		nsIDOMNode GetStartContainerAttribute();
 		
 		/// <summary>
         /// raises(DOMException) on retrieval
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetStartOffsetAttribute();
-		
-		/// <summary>
-        /// raises(DOMException) on retrieval
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMNode  GetEndContainerAttribute();
-		
-		/// <summary>
-        /// raises(DOMException) on retrieval
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetEndOffsetAttribute();
-		
-		/// <summary>
-        /// raises(DOMException) on retrieval
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetCollapsedAttribute();
+		int GetStartOffsetAttribute();
 		
 		/// <summary>
         /// raises(DOMException) on retrieval
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMNode  GetCommonAncestorContainerAttribute();
+		nsIDOMNode GetEndContainerAttribute();
 		
 		/// <summary>
         /// raises(DOMException) on retrieval
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetStart([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  refNode, System.Int32  offset);
+		int GetEndOffsetAttribute();
+		
+		/// <summary>
+        /// raises(DOMException) on retrieval
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetCollapsedAttribute();
+		
+		/// <summary>
+        /// raises(DOMException) on retrieval
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMNode GetCommonAncestorContainerAttribute();
+		
+		/// <summary>
+        /// raises(DOMException) on retrieval
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetStart([MarshalAs(UnmanagedType.Interface)] nsIDOMNode refNode, int offset);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetEnd([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  refNode, System.Int32  offset);
+		void SetEnd([MarshalAs(UnmanagedType.Interface)] nsIDOMNode refNode, int offset);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetStartBefore([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  refNode);
+		void SetStartBefore([MarshalAs(UnmanagedType.Interface)] nsIDOMNode refNode);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetStartAfter([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  refNode);
+		void SetStartAfter([MarshalAs(UnmanagedType.Interface)] nsIDOMNode refNode);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetEndBefore([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  refNode);
+		void SetEndBefore([MarshalAs(UnmanagedType.Interface)] nsIDOMNode refNode);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetEndAfter([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  refNode);
+		void SetEndAfter([MarshalAs(UnmanagedType.Interface)] nsIDOMNode refNode);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Collapse(System.Boolean  toStart);
+		void Collapse(bool toStart);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SelectNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  refNode);
+		void SelectNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode refNode);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SelectNodeContents([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  refNode);
+		void SelectNodeContents([MarshalAs(UnmanagedType.Interface)] nsIDOMNode refNode);
 		
 		/// <summary>
         /// CompareHow
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		short CompareBoundaryPoints(ushort how, [MarshalAs(UnmanagedType.Interface)] nsIDOMRange  sourceRange);
+		short CompareBoundaryPoints(ushort how, [MarshalAs(UnmanagedType.Interface)] nsIDOMRange sourceRange);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void DeleteContents();
 		
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMDocumentFragment ExtractContents();
 		
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMDocumentFragment CloneContents();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InsertNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  newNode);
+		void InsertNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode newNode);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SurroundContents([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  newParent);
+		void SurroundContents([MarshalAs(UnmanagedType.Interface)] nsIDOMNode newParent);
 		
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMRange CloneRange();
 		
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsAString ToString();
 		

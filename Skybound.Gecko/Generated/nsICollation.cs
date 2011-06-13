@@ -45,8 +45,9 @@ namespace Skybound.Gecko
         /// user preference.
         /// @return A collation for the given locale.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsICollation CreateCollation([MarshalAs(UnmanagedType.Interface)] nsILocale  locale);
+		nsICollation CreateCollation([MarshalAs(UnmanagedType.Interface)] nsILocale locale);
 	}
 	
 	/// <summary>nsICollation </summary>
@@ -60,24 +61,24 @@ namespace Skybound.Gecko
         /// init this interface to a specified locale (should only be called by collation factory)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Initialize([MarshalAs(UnmanagedType.Interface)] nsILocale  locale);
+		void Initialize([MarshalAs(UnmanagedType.Interface)] nsILocale locale);
 		
 		/// <summary>
         /// result is same as strcmp
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int CompareString(System.Int32  strength, [MarshalAs(UnmanagedType.LPStruct)] nsAString string1, [MarshalAs(UnmanagedType.LPStruct)] nsAString string2);
+		int CompareString(int strength, [MarshalAs(UnmanagedType.LPStruct)] nsAString string1, [MarshalAs(UnmanagedType.LPStruct)] nsAString string2);
 		
 		/// <summary>
         /// returns newly allocated key, and its band its byte length
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AllocateRawSortKey(System.Int32  strength, [MarshalAs(UnmanagedType.LPStruct)] nsAString stringIn, out System.IntPtr  key, out System.UInt32  outLen);
+		void AllocateRawSortKey(int strength, [MarshalAs(UnmanagedType.LPStruct)] nsAString stringIn, out System.IntPtr key, out uint outLen);
 		
 		/// <summary>
         /// length is a byte length, result is same as strcmp
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int CompareRawSortKey(System.IntPtr  key1, System.UInt32  len1, System.IntPtr  key2, System.UInt32  len2);
+		int CompareRawSortKey(System.IntPtr key1, uint len1, System.IntPtr key2, uint len2);
 	}
 }

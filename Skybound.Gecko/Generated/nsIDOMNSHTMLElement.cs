@@ -35,30 +35,30 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetOffsetTopAttribute </summary>
-		/// <returns>A System.Int32 </returns>
+		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetOffsetTopAttribute();
+		int GetOffsetTopAttribute();
 		
 		/// <summary>Member GetOffsetLeftAttribute </summary>
-		/// <returns>A System.Int32 </returns>
+		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetOffsetLeftAttribute();
+		int GetOffsetLeftAttribute();
 		
 		/// <summary>Member GetOffsetWidthAttribute </summary>
-		/// <returns>A System.Int32 </returns>
+		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetOffsetWidthAttribute();
+		int GetOffsetWidthAttribute();
 		
 		/// <summary>Member GetOffsetHeightAttribute </summary>
-		/// <returns>A System.Int32 </returns>
+		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetOffsetHeightAttribute();
+		int GetOffsetHeightAttribute();
 		
 		/// <summary>Member GetOffsetParentAttribute </summary>
-		/// <returns>A nsIDOMElement </returns>
+		/// <returns>A nsIDOMElement</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMElement  GetOffsetParentAttribute();
+		nsIDOMElement GetOffsetParentAttribute();
 		
 		/// <summary>Member GetInnerHTMLAttribute </summary>
 		/// <param name='aInnerHTML'> </param>
@@ -76,7 +76,7 @@ namespace Skybound.Gecko
         /// See <http://www.whatwg.org/html5/#the-hidden-attribute>.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetHiddenAttribute();
+		bool GetHiddenAttribute();
 		
 		/// <summary>
         /// Indicates that the element is not yet, or is no longer, relevant.
@@ -84,17 +84,17 @@ namespace Skybound.Gecko
         /// See <http://www.whatwg.org/html5/#the-hidden-attribute>.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetHiddenAttribute(System.Boolean  aHidden);
+		void SetHiddenAttribute(bool aHidden);
 		
 		/// <summary>Member GetTabIndexAttribute </summary>
-		/// <returns>A System.Int32 </returns>
+		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetTabIndexAttribute();
+		int GetTabIndexAttribute();
 		
 		/// <summary>Member SetTabIndexAttribute </summary>
 		/// <param name='aTabIndex'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTabIndexAttribute(System.Int32  aTabIndex);
+		void SetTabIndexAttribute(int aTabIndex);
 		
 		/// <summary>Member GetContentEditableAttribute </summary>
 		/// <param name='aContentEditable'> </param>
@@ -107,21 +107,21 @@ namespace Skybound.Gecko
 		void SetContentEditableAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aContentEditable);
 		
 		/// <summary>Member GetIsContentEditableAttribute </summary>
-		/// <returns>A System.Boolean </returns>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsContentEditableAttribute();
+		bool GetIsContentEditableAttribute();
 		
 		/// <summary>
         /// for WHAT-WG drag and drop
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetDraggableAttribute();
+		bool GetDraggableAttribute();
 		
 		/// <summary>
         /// for WHAT-WG drag and drop
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDraggableAttribute(System.Boolean  aDraggable);
+		void SetDraggableAttribute(bool aDraggable);
 		
 		/// <summary>Member Blur </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -134,16 +134,16 @@ namespace Skybound.Gecko
 		/// <summary>Member ScrollIntoView </summary>
 		/// <param name='top'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ScrollIntoView(System.Boolean  top);
+		void ScrollIntoView(bool top);
 		
 		/// <summary>Member GetSpellcheckAttribute </summary>
-		/// <returns>A System.Boolean </returns>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetSpellcheckAttribute();
+		bool GetSpellcheckAttribute();
 		
 		/// <summary>Member SetSpellcheckAttribute </summary>
 		/// <param name='aSpellcheck'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSpellcheckAttribute(System.Boolean  aSpellcheck);
+		void SetSpellcheckAttribute(bool aSpellcheck);
 	}
 }

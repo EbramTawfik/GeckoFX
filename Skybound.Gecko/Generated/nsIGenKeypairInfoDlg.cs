@@ -44,6 +44,6 @@ namespace Skybound.Gecko
         /// while generating a key pair.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DisplayGeneratingKeypairInfo([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor  ctx, [MarshalAs(UnmanagedType.Interface)] nsIKeygenThread  runnable);
+		void DisplayGeneratingKeypairInfo([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor ctx, [MarshalAs(UnmanagedType.Interface)] nsIKeygenThread runnable);
 	}
 }

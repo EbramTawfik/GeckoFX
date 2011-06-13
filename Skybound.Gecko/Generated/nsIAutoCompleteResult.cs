@@ -50,7 +50,7 @@ namespace Skybound.Gecko
         /// Index of the default item that should be entered if none is selected
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetDefaultIndexAttribute();
+		int GetDefaultIndexAttribute();
 		
 		/// <summary>
         /// A string describing the cause of a search failure
@@ -62,37 +62,42 @@ namespace Skybound.Gecko
         /// The number of matches
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetMatchCountAttribute();
+		uint GetMatchCountAttribute();
 		
 		/// <summary>
         /// Get the value of the result at the given index
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetValueAt(System.Int32  index);
+		nsAString GetValueAt(int index);
 		
 		/// <summary>
         /// This returns the string that is displayed in the dropdown
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetLabelAt(System.Int32  index);
+		nsAString GetLabelAt(int index);
 		
 		/// <summary>
         /// Get the comment of the result at the given index
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetCommentAt(System.Int32  index);
+		nsAString GetCommentAt(int index);
 		
 		/// <summary>
         /// Get the style hint for the result at the given index
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetStyleAt(System.Int32  index);
+		nsAString GetStyleAt(int index);
 		
 		/// <summary>
         /// Get the image of the result at the given index
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetImageAt(System.Int32  index);
+		nsAString GetImageAt(int index);
 		
 		/// <summary>
         /// Remove the value at the given index from the autocomplete results.
@@ -100,6 +105,6 @@ namespace Skybound.Gecko
         /// persistent storage as well.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveValueAt(System.Int32  rowIndex, System.Boolean  removeFromDb);
+		void RemoveValueAt(int rowIndex, bool removeFromDb);
 	}
 }

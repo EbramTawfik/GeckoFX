@@ -39,21 +39,21 @@ namespace Skybound.Gecko
         /// XXX change this type to 'unsigned long'
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetTextLengthAttribute();
+		int GetTextLengthAttribute();
 		
 		/// <summary>
         /// The maximum number of characters allowed.
         /// default: -1 (unlimited).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetMaxTextLengthAttribute();
+		int GetMaxTextLengthAttribute();
 		
 		/// <summary>
         /// The maximum number of characters allowed.
         /// default: -1 (unlimited).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMaxTextLengthAttribute(System.Int32  aMaxTextLength);
+		void SetMaxTextLengthAttribute(int aMaxTextLength);
 		
 		/// <summary>
         ///Get and set the body wrap width.
@@ -63,7 +63,7 @@ namespace Skybound.Gecko
         /// -1 = no wrap at all
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetWrapWidthAttribute();
+		int GetWrapWidthAttribute();
 		
 		/// <summary>
         ///Get and set the body wrap width.
@@ -73,7 +73,7 @@ namespace Skybound.Gecko
         /// -1 = no wrap at all
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetWrapWidthAttribute(System.Int32  aWrapWidth);
+		void SetWrapWidthAttribute(int aWrapWidth);
 		
 		/// <summary>
         /// Similar to the setter for wrapWidth, but just sets the editor
@@ -82,7 +82,7 @@ namespace Skybound.Gecko
         /// are sure that their content is already set up correctly.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetWrapColumn(System.Int32  aWrapColumn);
+		void SetWrapColumn(int aWrapColumn);
 		
 		/// <summary>
         ///Get and set newline handling.
@@ -90,7 +90,7 @@ namespace Skybound.Gecko
         /// Values are the constants defined above.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetNewlineHandlingAttribute();
+		int GetNewlineHandlingAttribute();
 		
 		/// <summary>
         ///Get and set newline handling.
@@ -98,7 +98,7 @@ namespace Skybound.Gecko
         /// Values are the constants defined above.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetNewlineHandlingAttribute(System.Int32  aNewlineHandling);
+		void SetNewlineHandlingAttribute(int aNewlineHandling);
 		
 		/// <summary>
         /// Inserts a string at the current location,

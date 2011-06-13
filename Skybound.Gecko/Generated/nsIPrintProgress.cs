@@ -57,7 +57,7 @@ namespace Skybound.Gecko
         /// error information (e.g., for HTTP requests see nsIHttpChannel).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void OnStateChange([MarshalAs(UnmanagedType.Interface)] nsIWebProgress  aWebProgress, [MarshalAs(UnmanagedType.Interface)] nsIRequest  aRequest, System.UInt32  aStateFlags, System.Int32  aStatus);
+		new void OnStateChange([MarshalAs(UnmanagedType.Interface)] nsIWebProgress aWebProgress, [MarshalAs(UnmanagedType.Interface)] nsIRequest aRequest, uint aStateFlags, int aStatus);
 		
 		/// <summary>
         /// Notification that the progress has changed for one of the requests
@@ -87,7 +87,7 @@ namespace Skybound.Gecko
         /// nsIWebProgressListener2::onProgressChange64 will be called.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void OnProgressChange([MarshalAs(UnmanagedType.Interface)] nsIWebProgress  aWebProgress, [MarshalAs(UnmanagedType.Interface)] nsIRequest  aRequest, System.Int32  aCurSelfProgress, System.Int32  aMaxSelfProgress, System.Int32  aCurTotalProgress, System.Int32  aMaxTotalProgress);
+		new void OnProgressChange([MarshalAs(UnmanagedType.Interface)] nsIWebProgress aWebProgress, [MarshalAs(UnmanagedType.Interface)] nsIRequest aRequest, int aCurSelfProgress, int aMaxSelfProgress, int aCurTotalProgress, int aMaxTotalProgress);
 		
 		/// <summary>
         /// Called when the location of the window being watched changes.  This is not
@@ -105,7 +105,7 @@ namespace Skybound.Gecko
         /// The URI of the location that is being loaded.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void OnLocationChange([MarshalAs(UnmanagedType.Interface)] nsIWebProgress  aWebProgress, [MarshalAs(UnmanagedType.Interface)] nsIRequest  aRequest, [MarshalAs(UnmanagedType.Interface)] nsIURI  aLocation);
+		new void OnLocationChange([MarshalAs(UnmanagedType.Interface)] nsIWebProgress aWebProgress, [MarshalAs(UnmanagedType.Interface)] nsIRequest aRequest, [MarshalAs(UnmanagedType.Interface)] nsIURI aLocation);
 		
 		/// <summary>
         /// Notification that the status of a request has changed.  The status message
@@ -125,7 +125,7 @@ namespace Skybound.Gecko
         /// Localized text corresponding to aStatus.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void OnStatusChange([MarshalAs(UnmanagedType.Interface)] nsIWebProgress  aWebProgress, [MarshalAs(UnmanagedType.Interface)] nsIRequest  aRequest, System.Int32  aStatus, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aMessage);
+		new void OnStatusChange([MarshalAs(UnmanagedType.Interface)] nsIWebProgress aWebProgress, [MarshalAs(UnmanagedType.Interface)] nsIRequest aRequest, int aStatus, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aMessage);
 		
 		/// <summary>
         /// Notification called for security progress.  This method will be called on
@@ -146,29 +146,29 @@ namespace Skybound.Gecko
         /// installed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void OnSecurityChange([MarshalAs(UnmanagedType.Interface)] nsIWebProgress  aWebProgress, [MarshalAs(UnmanagedType.Interface)] nsIRequest  aRequest, System.UInt32  aState);
+		new void OnSecurityChange([MarshalAs(UnmanagedType.Interface)] nsIWebProgress aWebProgress, [MarshalAs(UnmanagedType.Interface)] nsIRequest aRequest, uint aState);
 		
 		/// <summary>
         ///Open the progress dialog
         ///     you can specify parameters through an xpcom object
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OpenProgressDialog([MarshalAs(UnmanagedType.Interface)] nsIDOMWindowInternal  parent, [MarshalAs(UnmanagedType.LPStr)] System.String  dialogURL, [MarshalAs(UnmanagedType.Interface)] nsISupports  parameters, [MarshalAs(UnmanagedType.Interface)] nsIObserver  openDialogObserver, out System.Boolean  notifyOnOpen);
+		void OpenProgressDialog([MarshalAs(UnmanagedType.Interface)] nsIDOMWindowInternal parent, [MarshalAs(UnmanagedType.LPStr)] string dialogURL, [MarshalAs(UnmanagedType.Interface)] nsISupports parameters, [MarshalAs(UnmanagedType.Interface)] nsIObserver openDialogObserver, out bool notifyOnOpen);
 		
 		/// <summary>
         ///Close the progress dialog </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CloseProgressDialog(System.Boolean  forceClose);
+		void CloseProgressDialog(bool forceClose);
 		
 		/// <summary>
         ///Register a Web Progress Listener </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RegisterListener([MarshalAs(UnmanagedType.Interface)] nsIWebProgressListener  listener);
+		void RegisterListener([MarshalAs(UnmanagedType.Interface)] nsIWebProgressListener listener);
 		
 		/// <summary>
         ///Unregister a Web Progress Listener </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UnregisterListener([MarshalAs(UnmanagedType.Interface)] nsIWebProgressListener  listener);
+		void UnregisterListener([MarshalAs(UnmanagedType.Interface)] nsIWebProgressListener listener);
 		
 		/// <summary>
         ///This method is called after the dialog that shows the progress has been shown
@@ -178,17 +178,18 @@ namespace Skybound.Gecko
 		
 		/// <summary>
         ///Retrieve the prompter, needed to display modal dialog on top of progress dialog </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIPrompt GetPrompter();
 		
 		/// <summary>
         ///Indicated if the user asked to cancel the current process </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetProcessCanceledByUserAttribute();
+		bool GetProcessCanceledByUserAttribute();
 		
 		/// <summary>
         ///Indicated if the user asked to cancel the current process </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetProcessCanceledByUserAttribute(System.Boolean  aProcessCanceledByUser);
+		void SetProcessCanceledByUserAttribute(bool aProcessCanceledByUser);
 	}
 }

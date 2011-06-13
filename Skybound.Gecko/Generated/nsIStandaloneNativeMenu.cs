@@ -42,7 +42,7 @@ namespace Skybound.Gecko
         /// @param aDOMElement A XUL DOM element of tag type |menu| or |menupopup|.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  aDOMElement);
+		void Init([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aDOMElement);
 		
 		/// <summary>
         /// This method must be called before the menu is opened and displayed to the
@@ -60,7 +60,7 @@ namespace Skybound.Gecko
         /// autoreleased when the attribute is retrieved.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr  GetNativeMenuAttribute();
+		System.IntPtr GetNativeMenuAttribute();
 		
 		/// <summary>
         /// Activate the native menu item specified by |anIndexString|. This method

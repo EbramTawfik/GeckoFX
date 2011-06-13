@@ -54,7 +54,7 @@ namespace Skybound.Gecko
         /// called.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Start(System.Int32  port);
+		void Start(int port);
 		
 		/// <summary>
         /// Shuts down this server if it is running (including the period of time after
@@ -69,7 +69,7 @@ namespace Skybound.Gecko
         /// if this server is not running
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Stop([MarshalAs(UnmanagedType.Interface)] nsIHttpServerStoppedCallback  callback);
+		void Stop([MarshalAs(UnmanagedType.Interface)] nsIHttpServerStoppedCallback callback);
 		
 		/// <summary>
         /// Associates the local file represented by the string file with all requests
@@ -83,7 +83,7 @@ namespace Skybound.Gecko
         /// might exist; this file must exist for the lifetime of the server
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RegisterFile([MarshalAs(UnmanagedType.LPStr)] System.String  path, [MarshalAs(UnmanagedType.Interface)] nsILocalFile  file);
+		void RegisterFile([MarshalAs(UnmanagedType.LPStr)] string path, [MarshalAs(UnmanagedType.Interface)] nsILocalFile file);
 		
 		/// <summary>
         /// Registers a custom path handler.
@@ -102,7 +102,7 @@ namespace Skybound.Gecko
         /// if path does not begin with a "/"
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RegisterPathHandler([MarshalAs(UnmanagedType.LPStr)] System.String  path, [MarshalAs(UnmanagedType.Interface)] nsIHttpRequestHandler  handler);
+		void RegisterPathHandler([MarshalAs(UnmanagedType.LPStr)] string path, [MarshalAs(UnmanagedType.Interface)] nsIHttpRequestHandler handler);
 		
 		/// <summary>
         /// Registers a custom error page handler.
@@ -122,7 +122,7 @@ namespace Skybound.Gecko
         /// If the error handler handles HTTP 500 and throws, behavior is undefined.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RegisterErrorHandler(System.UInt32  code, [MarshalAs(UnmanagedType.Interface)] nsIHttpRequestHandler  handler);
+		void RegisterErrorHandler(uint code, [MarshalAs(UnmanagedType.Interface)] nsIHttpRequestHandler handler);
 		
 		/// <summary>
         /// Maps all requests to paths beneath path to the corresponding file beneath
@@ -142,7 +142,7 @@ namespace Skybound.Gecko
         /// does not begin with and end with a forward slash
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RegisterDirectory([MarshalAs(UnmanagedType.LPStr)] System.String  path, [MarshalAs(UnmanagedType.Interface)] nsILocalFile  dir);
+		void RegisterDirectory([MarshalAs(UnmanagedType.LPStr)] string path, [MarshalAs(UnmanagedType.Interface)] nsILocalFile dir);
 		
 		/// <summary>
         /// Associates files with the given extension with the given Content-Type when
@@ -164,7 +164,7 @@ namespace Skybound.Gecko
         /// generate this string from trusted data risk security vulnerabilities.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RegisterContentType([MarshalAs(UnmanagedType.LPStr)] System.String  extension, [MarshalAs(UnmanagedType.LPStr)] System.String  type);
+		void RegisterContentType([MarshalAs(UnmanagedType.LPStr)] string extension, [MarshalAs(UnmanagedType.LPStr)] string type);
 		
 		/// <summary>
         /// Sets the handler used to display the contents of a directory if
@@ -180,19 +180,20 @@ namespace Skybound.Gecko
         /// handler, under the key "directory".
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetIndexHandler([MarshalAs(UnmanagedType.Interface)] nsIHttpRequestHandler  handler);
+		void SetIndexHandler([MarshalAs(UnmanagedType.Interface)] nsIHttpRequestHandler handler);
 		
 		/// <summary>
         ///Represents the locations at which this server is reachable. </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIHttpServerIdentity  GetIdentityAttribute();
+		nsIHttpServerIdentity GetIdentityAttribute();
 		
 		/// <summary>
         /// Retrieves the string associated with the given key in this, for the given
         /// path's saved state.  All keys are initially associated with the empty
         /// string.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsAString GetState([MarshalAs(UnmanagedType.LPStruct)] nsAString path, [MarshalAs(UnmanagedType.LPStruct)] nsAString key);
 		
@@ -208,6 +209,7 @@ namespace Skybound.Gecko
         /// entire-server saved state.  All keys are initially associated with the
         /// empty string.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsAString GetSharedState([MarshalAs(UnmanagedType.LPStruct)] nsAString key);
 		
@@ -222,6 +224,7 @@ namespace Skybound.Gecko
         /// Retrieves the object associated with the given key in this in
         /// object-valued saved state.  All keys are initially associated with null.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISupports GetObjectState([MarshalAs(UnmanagedType.LPStruct)] nsAString key);
 		
@@ -230,7 +233,7 @@ namespace Skybound.Gecko
         /// saved state.  The value may be null.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetObjectState([MarshalAs(UnmanagedType.LPStruct)] nsAString key, [MarshalAs(UnmanagedType.Interface)] nsISupports  value);
+		void SetObjectState([MarshalAs(UnmanagedType.LPStruct)] nsAString key, [MarshalAs(UnmanagedType.Interface)] nsISupports value);
 	}
 	
 	/// <summary>
@@ -276,7 +279,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetPrimarySchemeAttribute();
+		string GetPrimarySchemeAttribute();
 		
 		/// <summary>
         /// The primary name by which the corresponding server is known, defaulting to
@@ -290,7 +293,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetPrimaryHostAttribute();
+		string GetPrimaryHostAttribute();
 		
 		/// <summary>
         /// The primary port on which the corresponding server runs, defaulting to the
@@ -303,7 +306,7 @@ namespace Skybound.Gecko
         /// throw NS_ERROR_NOT_INITIALIZED.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetPrimaryPortAttribute();
+		int GetPrimaryPortAttribute();
 		
 		/// <summary>
         /// Adds a location at which this server may be accessed.
@@ -313,7 +316,7 @@ namespace Skybound.Gecko
         /// into RFC 2616 from RFC 2396, or if port is not a valid port number
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Add([MarshalAs(UnmanagedType.LPStr)] System.String  scheme, [MarshalAs(UnmanagedType.LPStr)] System.String  host, System.Int32  port);
+		void Add([MarshalAs(UnmanagedType.LPStr)] string scheme, [MarshalAs(UnmanagedType.LPStr)] string host, int port);
 		
 		/// <summary>
         /// Removes this name from the list of names by which the corresponding server
@@ -327,7 +330,7 @@ namespace Skybound.Gecko
         /// true if the given name was a name for this server, false otherwise
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Remove([MarshalAs(UnmanagedType.LPStr)] System.String  scheme, [MarshalAs(UnmanagedType.LPStr)] System.String  host, System.Int32  port);
+		bool Remove([MarshalAs(UnmanagedType.LPStr)] string scheme, [MarshalAs(UnmanagedType.LPStr)] string host, int port);
 		
 		/// <summary>
         /// Returns true if the given name is in this, false otherwise.
@@ -337,7 +340,7 @@ namespace Skybound.Gecko
         /// into RFC 2616 from RFC 2396, or if port is not a valid port number
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Has([MarshalAs(UnmanagedType.LPStr)] System.String  scheme, [MarshalAs(UnmanagedType.LPStr)] System.String  host, System.Int32  port);
+		bool Has([MarshalAs(UnmanagedType.LPStr)] string scheme, [MarshalAs(UnmanagedType.LPStr)] string host, int port);
 		
 		/// <summary>
         /// Returns the scheme for the name with the given host and port, if one is
@@ -347,8 +350,9 @@ namespace Skybound.Gecko
         /// if host does not match the host production imported into RFC 2616 from
         /// RFC 2396, or if port is not a valid port number
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string GetScheme([MarshalAs(UnmanagedType.LPStr)] System.String  host, System.Int32  port);
+		string GetScheme([MarshalAs(UnmanagedType.LPStr)] string host, int port);
 		
 		/// <summary>
         /// Designates the given name as the primary name in this and adds it to this
@@ -359,7 +363,7 @@ namespace Skybound.Gecko
         /// into RFC 2616 from RFC 2396, or if port is not a valid port number
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPrimary([MarshalAs(UnmanagedType.LPStr)] System.String  scheme, [MarshalAs(UnmanagedType.LPStr)] System.String  host, System.Int32  port);
+		void SetPrimary([MarshalAs(UnmanagedType.LPStr)] string scheme, [MarshalAs(UnmanagedType.LPStr)] string host, int port);
 	}
 	
 	/// <summary>
@@ -403,7 +407,7 @@ namespace Skybound.Gecko
         /// which should be sent as the response to the request described by metadata
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Handle([MarshalAs(UnmanagedType.Interface)] nsIHttpRequest  request, [MarshalAs(UnmanagedType.Interface)] nsIHttpResponse  response);
+		void Handle([MarshalAs(UnmanagedType.Interface)] nsIHttpRequest request, [MarshalAs(UnmanagedType.Interface)] nsIHttpResponse response);
 	}
 	
 	/// <summary>
@@ -420,7 +424,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetMethodAttribute();
+		string GetMethodAttribute();
 		
 		/// <summary>
         /// The scheme of the requested path, usually 'http' but might possibly be
@@ -431,7 +435,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetSchemeAttribute();
+		string GetSchemeAttribute();
 		
 		/// <summary>
         /// The host of the data being requested (e.g. "localhost" for the
@@ -441,13 +445,13 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetHostAttribute();
+		string GetHostAttribute();
 		
 		/// <summary>
         /// The port on the server on which the request was received.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetPortAttribute();
+		uint GetPortAttribute();
 		
 		/// <summary>
         /// The requested path, without any query string (e.g. "/dir/file.txt").  It is
@@ -456,7 +460,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetPathAttribute();
+		string GetPathAttribute();
 		
 		/// <summary>
         /// The URL-encoded query string associated with this request, not including
@@ -464,7 +468,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetQueryStringAttribute();
+		string GetQueryStringAttribute();
 		
 		/// <summary>
         /// A string containing the HTTP version of the request (i.e., "1.1").  Leading
@@ -474,7 +478,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetHttpVersionAttribute();
+		string GetHttpVersionAttribute();
 		
 		/// <summary>
         /// Returns the value for the header in this request specified by fieldName.
@@ -494,8 +498,9 @@ namespace Skybound.Gecko
         /// @throws NS_ERROR_NOT_AVAILABLE
         /// if the given header does not exist in this
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string GetHeader([MarshalAs(UnmanagedType.LPStr)] System.String  fieldName);
+		string GetHeader([MarshalAs(UnmanagedType.LPStr)] string fieldName);
 		
 		/// <summary>
         /// Returns true if a header with the given field name exists in this, false
@@ -509,7 +514,7 @@ namespace Skybound.Gecko
         /// if fieldName does not constitute a valid header field name
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool HasHeader([MarshalAs(UnmanagedType.LPStr)] System.String  fieldName);
+		bool HasHeader([MarshalAs(UnmanagedType.LPStr)] string fieldName);
 		
 		/// <summary>
         /// An nsISimpleEnumerator of nsISupportsStrings over the names of the headers
@@ -518,14 +523,14 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISimpleEnumerator  GetHeadersAttribute();
+		nsISimpleEnumerator GetHeadersAttribute();
 		
 		/// <summary>
         /// A stream from which data appearing in the body of this request can be read.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIInputStream  GetBodyInputStreamAttribute();
+		nsIInputStream GetBodyInputStreamAttribute();
 	}
 	
 	/// <summary>
@@ -559,7 +564,7 @@ namespace Skybound.Gecko
         /// this
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetStatusLine([MarshalAs(UnmanagedType.LPStr)] System.String  httpVersion, ushort statusCode, [MarshalAs(UnmanagedType.LPStr)] System.String  description);
+		void SetStatusLine([MarshalAs(UnmanagedType.LPStr)] string httpVersion, ushort statusCode, [MarshalAs(UnmanagedType.LPStr)] string description);
 		
 		/// <summary>
         /// Sets the specified header in this.
@@ -585,7 +590,7 @@ namespace Skybound.Gecko
         /// this
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetHeader([MarshalAs(UnmanagedType.LPStr)] System.String  name, [MarshalAs(UnmanagedType.LPStr)] System.String  value, System.Boolean  merge);
+		void SetHeader([MarshalAs(UnmanagedType.LPStr)] string name, [MarshalAs(UnmanagedType.LPStr)] string value, bool merge);
 		
 		/// <summary>
         /// A stream to which data appearing in the body of this response (or in the
@@ -604,7 +609,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIOutputStream  GetBodyOutputStreamAttribute();
+		nsIOutputStream GetBodyOutputStreamAttribute();
 		
 		/// <summary>
         /// Writes a string to the response's output stream.  This method is merely a
@@ -617,7 +622,7 @@ namespace Skybound.Gecko
         /// if called after this response has been fully constructed
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Write([MarshalAs(UnmanagedType.LPStr)] System.String  data);
+		void Write([MarshalAs(UnmanagedType.LPStr)] string data);
 		
 		/// <summary>
         /// Signals that this response is being constructed asynchronously.  Requests

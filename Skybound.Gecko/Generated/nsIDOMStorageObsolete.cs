@@ -50,7 +50,7 @@ namespace Skybound.Gecko
         /// The number of keys stored.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetLengthAttribute();
+		uint GetLengthAttribute();
 		
 		/// <summary>
         /// Retrieve the name of the key at a particular index.
@@ -59,8 +59,9 @@ namespace Skybound.Gecko
         /// @returns the key at index
         /// @throws INDEX_SIZE_ERR if there is no key at that index
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString Key(System.UInt32  index);
+		nsAString Key(uint index);
 		
 		/// <summary>
         /// Retrieve an item with a given key
@@ -68,6 +69,7 @@ namespace Skybound.Gecko
         /// @param key key to retrieve
         /// @returns found item or null if the key was not found
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMStorageItem GetItem([MarshalAs(UnmanagedType.LPStruct)] nsAString key);
 		

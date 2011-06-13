@@ -42,7 +42,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant  GetNamesAttribute();
+		nsIVariant GetNamesAttribute();
 		
 		/// <summary>
         /// Determines if an annotation exists with the given name.
@@ -61,6 +61,7 @@ namespace Skybound.Gecko
         /// @returns A variant containing the value of the annotation. Supports
         /// string, boolean and number.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIVariant Get([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
 		
@@ -76,7 +77,7 @@ namespace Skybound.Gecko
         /// See nsIAnnotationService.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Set([MarshalAs(UnmanagedType.LPStruct)] nsAString aName, [MarshalAs(UnmanagedType.Interface)] nsIVariant  aValue, System.Int32  aExpiration);
+		void Set([MarshalAs(UnmanagedType.LPStruct)] nsAString aName, [MarshalAs(UnmanagedType.Interface)] nsIVariant aValue, int aExpiration);
 		
 		/// <summary>
         /// Removes the named annotation from the owner item.
@@ -100,7 +101,7 @@ namespace Skybound.Gecko
         /// The id of the bookmark.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetIdAttribute();
+		int GetIdAttribute();
 		
 		/// <summary>
         /// The title of the bookmark.
@@ -119,13 +120,13 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI  GetUriAttribute();
+		nsIURI GetUriAttribute();
 		
 		/// <summary>
         /// The uri of the bookmark.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetUriAttribute([MarshalAs(UnmanagedType.Interface)] nsIURI  aUri);
+		void SetUriAttribute([MarshalAs(UnmanagedType.Interface)] nsIURI aUri);
 		
 		/// <summary>
         /// The description of the bookmark.
@@ -162,26 +163,26 @@ namespace Skybound.Gecko
         /// The parent folder of the bookmark.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		fuelIBookmarkFolder  GetParentAttribute();
+		fuelIBookmarkFolder GetParentAttribute();
 		
 		/// <summary>
         /// The parent folder of the bookmark.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetParentAttribute(fuelIBookmarkFolder  aParent);
+		void SetParentAttribute(fuelIBookmarkFolder aParent);
 		
 		/// <summary>
         /// The annotations object for the bookmark.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		fuelIAnnotations  GetAnnotationsAttribute();
+		fuelIAnnotations GetAnnotationsAttribute();
 		
 		/// <summary>
         /// The events object for the bookmark.
         /// supports: "remove", "change", "visit", "move"
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		extIEvents  GetEventsAttribute();
+		extIEvents GetEventsAttribute();
 		
 		/// <summary>
         /// Removes the item from the parent folder. Used to
@@ -205,7 +206,7 @@ namespace Skybound.Gecko
         /// The id of the folder.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetIdAttribute();
+		int GetIdAttribute();
 		
 		/// <summary>
         /// The title of the folder.
@@ -242,26 +243,26 @@ namespace Skybound.Gecko
         /// The parent folder of the folder.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		fuelIBookmarkFolder  GetParentAttribute();
+		fuelIBookmarkFolder GetParentAttribute();
 		
 		/// <summary>
         /// The parent folder of the folder.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetParentAttribute(fuelIBookmarkFolder  aParent);
+		void SetParentAttribute(fuelIBookmarkFolder aParent);
 		
 		/// <summary>
         /// The annotations object for the folder.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		fuelIAnnotations  GetAnnotationsAttribute();
+		fuelIAnnotations GetAnnotationsAttribute();
 		
 		/// <summary>
         /// The events object for the folder.
         /// supports: "add", "addchild", "remove", "removechild", "change", "move"
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		extIEvents  GetEventsAttribute();
+		extIEvents GetEventsAttribute();
 		
 		/// <summary>
         /// Array of all bookmarks, separators and folders contained
@@ -269,7 +270,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant  GetChildrenAttribute();
+		nsIVariant GetChildrenAttribute();
 		
 		/// <summary>
         /// Adds a new child bookmark to this folder.
@@ -279,7 +280,7 @@ namespace Skybound.Gecko
         /// The uri of bookmark.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		fuelIBookmark AddBookmark([MarshalAs(UnmanagedType.LPStruct)] nsAString aTitle, [MarshalAs(UnmanagedType.Interface)] nsIURI  aURI);
+		fuelIBookmark AddBookmark([MarshalAs(UnmanagedType.LPStruct)] nsAString aTitle, [MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 		
 		/// <summary>
         /// Adds a new child separator to this folder.
@@ -316,25 +317,25 @@ namespace Skybound.Gecko
         /// The folder for the 'bookmarks menu' root.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		fuelIBookmarkFolder  GetMenuAttribute();
+		fuelIBookmarkFolder GetMenuAttribute();
 		
 		/// <summary>
         /// The folder for the 'personal toolbar' root.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		fuelIBookmarkFolder  GetToolbarAttribute();
+		fuelIBookmarkFolder GetToolbarAttribute();
 		
 		/// <summary>
         /// The folder for the 'tags' root.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		fuelIBookmarkFolder  GetTagsAttribute();
+		fuelIBookmarkFolder GetTagsAttribute();
 		
 		/// <summary>
         /// The folder for the 'unfiled bookmarks' root.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		fuelIBookmarkFolder  GetUnfiledAttribute();
+		fuelIBookmarkFolder GetUnfiledAttribute();
 	}
 	
 	/// <summary>
@@ -351,13 +352,13 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant  GetTabsAttribute();
+		nsIVariant GetTabsAttribute();
 		
 		/// <summary>
         /// The currently-active tab within the browser window.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		fuelIBrowserTab  GetActiveTabAttribute();
+		fuelIBrowserTab GetActiveTabAttribute();
 		
 		/// <summary>
         /// Open a new browser tab, pointing to the specified URI.
@@ -365,14 +366,14 @@ namespace Skybound.Gecko
         /// The uri to open the browser tab to
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		fuelIBrowserTab Open([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI);
+		fuelIBrowserTab Open([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 		
 		/// <summary>
         /// The events object for the browser window.
         /// supports: "TabOpen", "TabClose", "TabMove", "TabSelect"
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		extIEvents  GetEventsAttribute();
+		extIEvents GetEventsAttribute();
 	}
 	
 	/// <summary>
@@ -389,33 +390,33 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI  GetUriAttribute();
+		nsIURI GetUriAttribute();
 		
 		/// <summary>
         /// The current index of this tab in the browser window.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetIndexAttribute();
+		int GetIndexAttribute();
 		
 		/// <summary>
         /// The browser window that is holding the tab.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		fuelIWindow  GetWindowAttribute();
+		fuelIWindow GetWindowAttribute();
 		
 		/// <summary>
         /// The content document of the browser tab.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMHTMLDocument  GetDocumentAttribute();
+		nsIDOMHTMLDocument GetDocumentAttribute();
 		
 		/// <summary>
         /// The events object for the browser tab.
         /// supports: "load"
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		extIEvents  GetEventsAttribute();
+		extIEvents GetEventsAttribute();
 		
 		/// <summary>
         /// Load a new URI into this browser tab.
@@ -423,7 +424,7 @@ namespace Skybound.Gecko
         /// The uri to load into the browser tab
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Load([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI);
+		void Load([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 		
 		/// <summary>
         /// Give focus to this browser tab, and bring it to the front.
@@ -444,7 +445,7 @@ namespace Skybound.Gecko
         /// The tab before which the target tab will be moved
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MoveBefore(fuelIBrowserTab  aBefore);
+		void MoveBefore(fuelIBrowserTab aBefore);
 		
 		/// <summary>
         /// Move this browser tab to the last tab within the window.
@@ -484,34 +485,34 @@ namespace Skybound.Gecko
         /// The console object for the application.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new extIConsole  GetConsoleAttribute();
+		new extIConsole GetConsoleAttribute();
 		
 		/// <summary>
         /// The extensions object for the application. Contains a list
         /// of all installed extensions.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetExtensions(extIExtensionsCallback  aCallback);
+		new void GetExtensions(extIExtensionsCallback aCallback);
 		
 		/// <summary>
         /// The preferences object for the application. Defaults to an empty
         /// root branch.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new extIPreferenceBranch  GetPrefsAttribute();
+		new extIPreferenceBranch GetPrefsAttribute();
 		
 		/// <summary>
         /// The storage object for the application.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new extISessionStorage  GetStorageAttribute();
+		new extISessionStorage GetStorageAttribute();
 		
 		/// <summary>
         /// The events object for the application.
         /// supports: "load", "ready", "quit", "unload"
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new extIEvents  GetEventsAttribute();
+		new extIEvents GetEventsAttribute();
 		
 		/// <summary>
         /// Quits the application (if nobody objects to quit-application-requested).
@@ -532,19 +533,19 @@ namespace Skybound.Gecko
         /// Contains all the bookmark roots in the system.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		fuelIBookmarkRoots  GetBookmarksAttribute();
+		fuelIBookmarkRoots GetBookmarksAttribute();
 		
 		/// <summary>
         /// An array of browser windows within the application.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant  GetWindowsAttribute();
+		nsIVariant GetWindowsAttribute();
 		
 		/// <summary>
         /// The currently active browser window.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		fuelIWindow  GetActiveWindowAttribute();
+		fuelIWindow GetActiveWindowAttribute();
 	}
 }

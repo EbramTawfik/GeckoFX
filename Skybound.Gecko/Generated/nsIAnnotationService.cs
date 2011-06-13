@@ -39,13 +39,13 @@ namespace Skybound.Gecko
         /// or it could be a new value for an existing annotation.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnPageAnnotationSet([MarshalAs(UnmanagedType.Interface)] nsIURI  aPage, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName);
+		void OnPageAnnotationSet([MarshalAs(UnmanagedType.Interface)] nsIURI aPage, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName);
 		
 		/// <summary>Member OnItemAnnotationSet </summary>
 		/// <param name='aItemId'> </param>
 		/// <param name='aName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnItemAnnotationSet(System.Int32  aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName);
+		void OnItemAnnotationSet(int aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName);
 		
 		/// <summary>
         /// Called when an annotation is deleted. If aName is empty, then ALL
@@ -53,13 +53,13 @@ namespace Skybound.Gecko
         /// annotations are expired (normally happens when the app exits).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnPageAnnotationRemoved([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName);
+		void OnPageAnnotationRemoved([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName);
 		
 		/// <summary>Member OnItemAnnotationRemoved </summary>
 		/// <param name='aItemId'> </param>
 		/// <param name='aName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnItemAnnotationRemoved(System.Int32  aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName);
+		void OnItemAnnotationRemoved(int aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName);
 	}
 	
 	/// <summary>nsIAnnotationService </summary>
@@ -105,7 +105,7 @@ namespace Skybound.Gecko
         /// @throws NS_ERROR_ILLEGAL_VALUE if the page or the bookmark doesn't exist.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPageAnnotation([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName, [MarshalAs(UnmanagedType.Interface)] nsIVariant  aValue, System.Int32  aFlags, ushort aExpiration);
+		void SetPageAnnotation([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName, [MarshalAs(UnmanagedType.Interface)] nsIVariant aValue, int aFlags, ushort aExpiration);
 		
 		/// <summary>Member SetItemAnnotation </summary>
 		/// <param name='aItemId'> </param>
@@ -114,13 +114,13 @@ namespace Skybound.Gecko
 		/// <param name='aFlags'> </param>
 		/// <param name='aExpiration'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetItemAnnotation(System.Int32  aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName, [MarshalAs(UnmanagedType.Interface)] nsIVariant  aValue, System.Int32  aFlags, ushort aExpiration);
+		void SetItemAnnotation(int aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName, [MarshalAs(UnmanagedType.Interface)] nsIVariant aValue, int aFlags, ushort aExpiration);
 		
 		/// <summary>
         /// @throws NS_ERROR_ILLEGAL_VALUE if the page or the bookmark doesn't exist.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPageAnnotationString([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName, [MarshalAs(UnmanagedType.LPStruct)] nsAString aValue, System.Int32  aFlags, ushort aExpiration);
+		void SetPageAnnotationString([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName, [MarshalAs(UnmanagedType.LPStruct)] nsAString aValue, int aFlags, ushort aExpiration);
 		
 		/// <summary>Member SetItemAnnotationString </summary>
 		/// <param name='aItemId'> </param>
@@ -129,7 +129,7 @@ namespace Skybound.Gecko
 		/// <param name='aFlags'> </param>
 		/// <param name='aExpiration'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetItemAnnotationString(System.Int32  aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName, [MarshalAs(UnmanagedType.LPStruct)] nsAString aValue, System.Int32  aFlags, ushort aExpiration);
+		void SetItemAnnotationString(int aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName, [MarshalAs(UnmanagedType.LPStruct)] nsAString aValue, int aFlags, ushort aExpiration);
 		
 		/// <summary>
         /// Sets an annotation just like setAnnotationString, but takes an Int32 as
@@ -138,7 +138,7 @@ namespace Skybound.Gecko
         /// @throws NS_ERROR_ILLEGAL_VALUE if the page or the bookmark doesn't exist.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPageAnnotationInt32([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName, System.Int32  aValue, System.Int32  aFlags, ushort aExpiration);
+		void SetPageAnnotationInt32([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName, int aValue, int aFlags, ushort aExpiration);
 		
 		/// <summary>Member SetItemAnnotationInt32 </summary>
 		/// <param name='aItemId'> </param>
@@ -147,7 +147,7 @@ namespace Skybound.Gecko
 		/// <param name='aFlags'> </param>
 		/// <param name='aExpiration'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetItemAnnotationInt32(System.Int32  aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName, System.Int32  aValue, System.Int32  aFlags, ushort aExpiration);
+		void SetItemAnnotationInt32(int aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName, int aValue, int aFlags, ushort aExpiration);
 		
 		/// <summary>
         /// Sets an annotation just like setAnnotationString, but takes an Int64 as
@@ -156,7 +156,7 @@ namespace Skybound.Gecko
         /// @throws NS_ERROR_ILLEGAL_VALUE if the page or the bookmark doesn't exist.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPageAnnotationInt64([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName, System.Int32  aValue, System.Int32  aFlags, ushort aExpiration);
+		void SetPageAnnotationInt64([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName, int aValue, int aFlags, ushort aExpiration);
 		
 		/// <summary>Member SetItemAnnotationInt64 </summary>
 		/// <param name='aItemId'> </param>
@@ -165,7 +165,7 @@ namespace Skybound.Gecko
 		/// <param name='aFlags'> </param>
 		/// <param name='aExpiration'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetItemAnnotationInt64(System.Int32  aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName, System.Int32  aValue, System.Int32  aFlags, ushort aExpiration);
+		void SetItemAnnotationInt64(int aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName, int aValue, int aFlags, ushort aExpiration);
 		
 		/// <summary>
         /// Sets an annotation just like setAnnotationString, but takes a double as
@@ -174,7 +174,7 @@ namespace Skybound.Gecko
         /// @throws NS_ERROR_ILLEGAL_VALUE if the page or the bookmark doesn't exist.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPageAnnotationDouble([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName, double aValue, System.Int32  aFlags, ushort aExpiration);
+		void SetPageAnnotationDouble([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName, double aValue, int aFlags, ushort aExpiration);
 		
 		/// <summary>Member SetItemAnnotationDouble </summary>
 		/// <param name='aItemId'> </param>
@@ -183,7 +183,7 @@ namespace Skybound.Gecko
 		/// <param name='aFlags'> </param>
 		/// <param name='aExpiration'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetItemAnnotationDouble(System.Int32  aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName, double aValue, System.Int32  aFlags, ushort aExpiration);
+		void SetItemAnnotationDouble(int aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName, double aValue, int aFlags, ushort aExpiration);
 		
 		/// <summary>
         /// Sets an annotation just like setAnnotationString, but takes binary data
@@ -192,7 +192,7 @@ namespace Skybound.Gecko
         /// @throws NS_ERROR_ILLEGAL_VALUE if the page or the bookmark doesn't exist.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPageAnnotationBinary([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName, System.IntPtr  aData, System.UInt32  aDataLen, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aMimeType, System.Int32  aFlags, ushort aExpiration);
+		void SetPageAnnotationBinary([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName, System.IntPtr aData, uint aDataLen, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aMimeType, int aFlags, ushort aExpiration);
 		
 		/// <summary>Member SetItemAnnotationBinary </summary>
 		/// <param name='aItemId'> </param>
@@ -203,7 +203,7 @@ namespace Skybound.Gecko
 		/// <param name='aFlags'> </param>
 		/// <param name='aExpiration'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetItemAnnotationBinary(System.Int32  aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName, System.IntPtr  aData, System.UInt32  aDataLen, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aMimeType, System.Int32  aFlags, ushort aExpiration);
+		void SetItemAnnotationBinary(int aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName, System.IntPtr aData, uint aDataLen, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aMimeType, int aFlags, ushort aExpiration);
 		
 		/// <summary>
         /// Retrieves the value of a given annotation. Throws an error if the
@@ -214,74 +214,78 @@ namespace Skybound.Gecko
         /// The type-specific methods throw if the given annotation is set in
         /// a different type.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant GetPageAnnotation([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName);
+		nsIVariant GetPageAnnotation([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName);
 		
 		/// <summary>Member GetItemAnnotation </summary>
 		/// <param name='aItemId'> </param>
 		/// <param name='aName'> </param>
 		/// <returns>A nsIVariant</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant GetItemAnnotation(System.Int32  aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName);
+		nsIVariant GetItemAnnotation(int aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName);
 		
 		/// <summary>
         /// @see getPageAnnotation
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetPageAnnotationString([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName);
+		nsAString GetPageAnnotationString([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName);
 		
 		/// <summary>Member GetItemAnnotationString </summary>
 		/// <param name='aItemId'> </param>
 		/// <param name='aName'> </param>
 		/// <returns>A nsAString</returns>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetItemAnnotationString(System.Int32  aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName);
+		nsAString GetItemAnnotationString(int aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName);
 		
 		/// <summary>
         /// @see getPageAnnotation
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetPageAnnotationInt32([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName);
+		int GetPageAnnotationInt32([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName);
 		
 		/// <summary>Member GetItemAnnotationInt32 </summary>
 		/// <param name='aItemId'> </param>
 		/// <param name='aName'> </param>
 		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetItemAnnotationInt32(System.Int32  aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName);
+		int GetItemAnnotationInt32(int aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName);
 		
 		/// <summary>
         /// @see getPageAnnotation
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetPageAnnotationInt64([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName);
+		int GetPageAnnotationInt64([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName);
 		
 		/// <summary>Member GetItemAnnotationInt64 </summary>
 		/// <param name='aItemId'> </param>
 		/// <param name='aName'> </param>
 		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetItemAnnotationInt64(System.Int32  aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName);
+		int GetItemAnnotationInt64(int aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName);
 		
 		/// <summary>
         /// @see getPageAnnotation
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetPageAnnotationDouble([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName);
+		double GetPageAnnotationDouble([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName);
 		
 		/// <summary>Member GetItemAnnotationDouble </summary>
 		/// <param name='aItemId'> </param>
 		/// <param name='aName'> </param>
 		/// <returns>A System.Double</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetItemAnnotationDouble(System.Int32  aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName);
+		double GetItemAnnotationDouble(int aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName);
 		
 		/// <summary>
         /// @see getPageAnnotation. This also returns the
         /// MIME type.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPageAnnotationBinary([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName, out System.IntPtr  aData, out System.UInt32  aDataLen, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aMimeType);
+		void GetPageAnnotationBinary([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName, out System.IntPtr aData, out uint aDataLen, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aMimeType);
 		
 		/// <summary>Member GetItemAnnotationBinary </summary>
 		/// <param name='aItemId'> </param>
@@ -290,7 +294,7 @@ namespace Skybound.Gecko
 		/// <param name='aDataLen'> </param>
 		/// <param name='aMimeType'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetItemAnnotationBinary(System.Int32  aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName, out System.IntPtr  aData, out System.UInt32  aDataLen, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aMimeType);
+		void GetItemAnnotationBinary(int aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName, out System.IntPtr aData, out uint aDataLen, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aMimeType);
 		
 		/// <summary>
         /// Retrieves info about an existing annotation. aMimeType will be empty
@@ -304,7 +308,7 @@ namespace Skybound.Gecko
         /// // now you can use 'exp.value' and 'flags.value'
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPageAnnotationInfo([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName, out System.Int32  aFlags, out ushort aExpiration, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aMimeType, out ushort aType);
+		void GetPageAnnotationInfo([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName, out int aFlags, out ushort aExpiration, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aMimeType, out ushort aType);
 		
 		/// <summary>Member GetItemAnnotationInfo </summary>
 		/// <param name='aItemId'> </param>
@@ -314,7 +318,7 @@ namespace Skybound.Gecko
 		/// <param name='aMimeType'> </param>
 		/// <param name='aType'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetItemAnnotationInfo(System.Int32  aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName, out System.Int32  aFlags, out ushort aExpiration, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aMimeType, out ushort aType);
+		void GetItemAnnotationInfo(int aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName, out int aFlags, out ushort aExpiration, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aMimeType, out ushort aType);
 		
 		/// <summary>
         /// Retrieves the type of an existing annotation
@@ -328,27 +332,27 @@ namespace Skybound.Gecko
         /// @throws if the annotation is not set
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		ushort GetPageAnnotationType([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName);
+		ushort GetPageAnnotationType([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName);
 		
 		/// <summary>Member GetItemAnnotationType </summary>
 		/// <param name='aItemId'> </param>
 		/// <param name='aName'> </param>
 		/// <returns>A System.UInt16</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		ushort GetItemAnnotationType(System.Int32  aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName);
+		ushort GetItemAnnotationType(int aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName);
 		
 		/// <summary>
         /// Returns a list of all URIs having a given annotation.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI  GetPagesWithAnnotation([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  name, out System.UInt32  resultCount);
+		nsIURI GetPagesWithAnnotation([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String name, out uint resultCount);
 		
 		/// <summary>Member GetItemsWithAnnotation </summary>
 		/// <param name='name'> </param>
 		/// <param name='resultCount'> </param>
-		/// <returns>A System.Int32 </returns>
+		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetItemsWithAnnotation([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  name, out System.UInt32  resultCount);
+		int GetItemsWithAnnotation([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String name, out uint resultCount);
 		
 		/// <summary>
         /// Get the names of all annotations for this URI.
@@ -357,40 +361,40 @@ namespace Skybound.Gecko
         /// var annotations = annotator.getPageAnnotations(myURI, {});
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant  GetPageAnnotationNames([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, out System.UInt32  count);
+		nsIVariant GetPageAnnotationNames([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, out uint count);
 		
 		/// <summary>Member GetItemAnnotationNames </summary>
 		/// <param name='aItemId'> </param>
 		/// <param name='count'> </param>
-		/// <returns>A nsIVariant </returns>
+		/// <returns>A nsIVariant</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant  GetItemAnnotationNames(System.Int32  aItemId, out System.UInt32  count);
+		nsIVariant GetItemAnnotationNames(int aItemId, out uint count);
 		
 		/// <summary>
         /// Test for annotation existence.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool PageHasAnnotation([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName);
+		bool PageHasAnnotation([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName);
 		
 		/// <summary>Member ItemHasAnnotation </summary>
 		/// <param name='aItemId'> </param>
 		/// <param name='aName'> </param>
 		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool ItemHasAnnotation(System.Int32  aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName);
+		bool ItemHasAnnotation(int aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName);
 		
 		/// <summary>
         /// Removes a specific annotation. Succeeds even if the annotation is
         /// not found.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemovePageAnnotation([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName);
+		void RemovePageAnnotation([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName);
 		
 		/// <summary>Member RemoveItemAnnotation </summary>
 		/// <param name='aItemId'> </param>
 		/// <param name='aName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveItemAnnotation(System.Int32  aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName);
+		void RemoveItemAnnotation(int aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName);
 		
 		/// <summary>
         /// Removes all annotations for the given page/item.
@@ -398,12 +402,12 @@ namespace Skybound.Gecko
         /// flags (once we have flags defined).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemovePageAnnotations([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI);
+		void RemovePageAnnotations([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 		
 		/// <summary>Member RemoveItemAnnotations </summary>
 		/// <param name='aItemId'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveItemAnnotations(System.Int32  aItemId);
+		void RemoveItemAnnotations(int aItemId);
 		
 		/// <summary>
         /// Copies all annotations from the source to the destination URI/item. If
@@ -415,27 +419,27 @@ namespace Skybound.Gecko
         /// any more, use removePageAnnotations on that URI.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CopyPageAnnotations([MarshalAs(UnmanagedType.Interface)] nsIURI  aSourceURI, [MarshalAs(UnmanagedType.Interface)] nsIURI  aDestURI, System.Boolean  aOverwriteDest);
+		void CopyPageAnnotations([MarshalAs(UnmanagedType.Interface)] nsIURI aSourceURI, [MarshalAs(UnmanagedType.Interface)] nsIURI aDestURI, bool aOverwriteDest);
 		
 		/// <summary>Member CopyItemAnnotations </summary>
 		/// <param name='aSourceItemId'> </param>
 		/// <param name='aDestItemId'> </param>
 		/// <param name='aOverwriteDest'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CopyItemAnnotations(System.Int32  aSourceItemId, System.Int32  aDestItemId, System.Boolean  aOverwriteDest);
+		void CopyItemAnnotations(int aSourceItemId, int aDestItemId, bool aOverwriteDest);
 		
 		/// <summary>
         /// Adds an annotation observer. The annotation service will keep an owning
         /// reference to the observer object.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddObserver([MarshalAs(UnmanagedType.Interface)] nsIAnnotationObserver  aObserver);
+		void AddObserver([MarshalAs(UnmanagedType.Interface)] nsIAnnotationObserver aObserver);
 		
 		/// <summary>
         /// Removes an annotaton observer previously registered by addObserver.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveObserver([MarshalAs(UnmanagedType.Interface)] nsIAnnotationObserver  aObserver);
+		void RemoveObserver([MarshalAs(UnmanagedType.Interface)] nsIAnnotationObserver aObserver);
 		
 		/// <summary>
         /// Returns a URI that can be used to access the given binary annotation.
@@ -444,7 +448,8 @@ namespace Skybound.Gecko
         /// set by setAnnotationBinary. No non-URI valid chars in name, especially
         /// colon, which will mess up parsing.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI GetAnnotationURI([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName);
+		nsIURI GetAnnotationURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName);
 	}
 }

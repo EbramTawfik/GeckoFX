@@ -44,7 +44,7 @@ namespace Skybound.Gecko
         /// toolbars, ...) through the DOM.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetVisibleAttribute();
+		bool GetVisibleAttribute();
 		
 		/// <summary>
         /// The nsIDOMBarProp interface is the interface for controlling and
@@ -52,6 +52,6 @@ namespace Skybound.Gecko
         /// toolbars, ...) through the DOM.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetVisibleAttribute(System.Boolean  aVisible);
+		void SetVisibleAttribute(bool aVisible);
 	}
 }

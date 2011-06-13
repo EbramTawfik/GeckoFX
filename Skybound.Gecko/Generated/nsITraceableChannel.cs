@@ -53,7 +53,8 @@ namespace Skybound.Gecko
         /// It is not recommended to allow listener replacement after OnStartRequest
         /// has been called.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIStreamListener SetNewListener([MarshalAs(UnmanagedType.Interface)] nsIStreamListener  aListener);
+		nsIStreamListener SetNewListener([MarshalAs(UnmanagedType.Interface)] nsIStreamListener aListener);
 	}
 }

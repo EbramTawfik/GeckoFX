@@ -47,14 +47,14 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDocument  GetDocumentAttribute();
+		nsIDOMDocument GetDocumentAttribute();
 		
 		/// <summary>
         /// document
         /// The document of the download manager frontend.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDocumentAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMDocument  aDocument);
+		void SetDocumentAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMDocument aDocument);
 		
 		/// <summary>
         /// Dispatched whenever the state of the download changes.
@@ -64,15 +64,15 @@ namespace Skybound.Gecko
         /// @see nsIDownloadManager for download states.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnDownloadStateChange(short aState, [MarshalAs(UnmanagedType.Interface)] nsIDownload  aDownload);
+		void OnDownloadStateChange(short aState, [MarshalAs(UnmanagedType.Interface)] nsIDownload aDownload);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnStateChange([MarshalAs(UnmanagedType.Interface)] nsIWebProgress  aWebProgress, [MarshalAs(UnmanagedType.Interface)] nsIRequest  aRequest, System.UInt32  aStateFlags, System.Int32  aStatus, [MarshalAs(UnmanagedType.Interface)] nsIDownload  aDownload);
+		void OnStateChange([MarshalAs(UnmanagedType.Interface)] nsIWebProgress aWebProgress, [MarshalAs(UnmanagedType.Interface)] nsIRequest aRequest, uint aStateFlags, int aStatus, [MarshalAs(UnmanagedType.Interface)] nsIDownload aDownload);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnProgressChange([MarshalAs(UnmanagedType.Interface)] nsIWebProgress  aWebProgress, [MarshalAs(UnmanagedType.Interface)] nsIRequest  aRequest, System.Int32  aCurSelfProgress, System.Int32  aMaxSelfProgress, System.Int32  aCurTotalProgress, System.Int32  aMaxTotalProgress, [MarshalAs(UnmanagedType.Interface)] nsIDownload  aDownload);
+		void OnProgressChange([MarshalAs(UnmanagedType.Interface)] nsIWebProgress aWebProgress, [MarshalAs(UnmanagedType.Interface)] nsIRequest aRequest, int aCurSelfProgress, int aMaxSelfProgress, int aCurTotalProgress, int aMaxTotalProgress, [MarshalAs(UnmanagedType.Interface)] nsIDownload aDownload);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnSecurityChange([MarshalAs(UnmanagedType.Interface)] nsIWebProgress  aWebProgress, [MarshalAs(UnmanagedType.Interface)] nsIRequest  aRequest, System.UInt32  aState, [MarshalAs(UnmanagedType.Interface)] nsIDownload  aDownload);
+		void OnSecurityChange([MarshalAs(UnmanagedType.Interface)] nsIWebProgress aWebProgress, [MarshalAs(UnmanagedType.Interface)] nsIRequest aRequest, uint aState, [MarshalAs(UnmanagedType.Interface)] nsIDownload aDownload);
 	}
 }

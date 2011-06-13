@@ -39,7 +39,7 @@ namespace Skybound.Gecko
         /// XX-XX-XX-XX-XX-XX
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMacAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aMac);
+		void GetMacAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMac);
 		
 		/// <summary>
         /// Public name of a wireless network.  The charset of this string is ASCII.
@@ -58,12 +58,12 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetRawSSIDAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aRawSSID);
+		void GetRawSSIDAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aRawSSID);
 		
 		/// <summary>
         /// Current signal strength measured in dBm.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetSignalAttribute();
+		int GetSignalAttribute();
 	}
 }

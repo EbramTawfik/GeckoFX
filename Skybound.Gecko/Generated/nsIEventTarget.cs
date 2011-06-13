@@ -51,7 +51,7 @@ namespace Skybound.Gecko
         /// events, so this event would never run and has not been dispatched.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Dispatch([MarshalAs(UnmanagedType.Interface)] nsIRunnable  @event, System.UInt32  flags);
+		void Dispatch([MarshalAs(UnmanagedType.Interface)] nsIRunnable @event, uint flags);
 		
 		/// <summary>
         /// Check to see if this event target is associated with the current thread.

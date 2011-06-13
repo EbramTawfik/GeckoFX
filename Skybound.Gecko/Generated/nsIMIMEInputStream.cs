@@ -85,7 +85,7 @@ namespace Skybound.Gecko
         /// NOTE: this method should not throw NS_BASE_STREAM_CLOSED.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new uint Read(System.IntPtr  aBuf, System.UInt32  aCount);
+		new uint Read(System.IntPtr aBuf, uint aCount);
 		
 		/// <summary>
         /// Low-level read method that provides access to the stream's underlying
@@ -112,7 +112,7 @@ namespace Skybound.Gecko
         /// NOTE: this method should not throw NS_BASE_STREAM_CLOSED.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new uint ReadSegments(nsWriteSegmentFun  aWriter, System.IntPtr  aClosure, System.UInt32  aCount);
+		new uint ReadSegments(nsWriteSegmentFun aWriter, System.IntPtr aClosure, uint aCount);
 		
 		/// <summary>
         /// @return true if stream is non-blocking
@@ -135,7 +135,7 @@ namespace Skybound.Gecko
         /// Not allowed to be changed once the stream has been started to be read.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetAddContentLengthAttribute();
+		bool GetAddContentLengthAttribute();
 		
 		/// <summary>
         /// When true a "Content-Length" header is automatically added to the
@@ -145,7 +145,7 @@ namespace Skybound.Gecko
         /// Not allowed to be changed once the stream has been started to be read.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAddContentLengthAttribute(System.Boolean  aAddContentLength);
+		void SetAddContentLengthAttribute(bool aAddContentLength);
 		
 		/// <summary>
         /// Adds an additional header to the stream on the form "name: value". May
@@ -154,7 +154,7 @@ namespace Skybound.Gecko
         /// @param value  value of the header
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddHeader([MarshalAs(UnmanagedType.LPStr)] System.String  name, [MarshalAs(UnmanagedType.LPStr)] System.String  value);
+		void AddHeader([MarshalAs(UnmanagedType.LPStr)] string name, [MarshalAs(UnmanagedType.LPStr)] string value);
 		
 		/// <summary>
         /// Sets data-stream. May not be called once the stream has been started
@@ -165,6 +165,6 @@ namespace Skybound.Gecko
         /// @param stream  stream containing the data for the stream
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetData([MarshalAs(UnmanagedType.Interface)] nsIInputStream  stream);
+		void SetData([MarshalAs(UnmanagedType.Interface)] nsIInputStream stream);
 	}
 }

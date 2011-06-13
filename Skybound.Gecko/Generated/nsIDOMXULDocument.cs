@@ -35,15 +35,15 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetPopupNodeAttribute </summary>
-		/// <returns>A nsIDOMNode </returns>
+		/// <returns>A nsIDOMNode</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMNode  GetPopupNodeAttribute();
+		nsIDOMNode GetPopupNodeAttribute();
 		
 		/// <summary>Member SetPopupNodeAttribute </summary>
 		/// <param name='aPopupNode'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPopupNodeAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  aPopupNode);
+		void SetPopupNodeAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aPopupNode);
 		
 		/// <summary>
         /// These attributes correspond to trustedGetPopupNode().rangeOffset and
@@ -53,44 +53,45 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMNode  GetPopupRangeParentAttribute();
+		nsIDOMNode GetPopupRangeParentAttribute();
 		
 		/// <summary>Member GetPopupRangeOffsetAttribute </summary>
-		/// <returns>A System.Int32 </returns>
+		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetPopupRangeOffsetAttribute();
+		int GetPopupRangeOffsetAttribute();
 		
 		/// <summary>Member GetTooltipNodeAttribute </summary>
-		/// <returns>A nsIDOMNode </returns>
+		/// <returns>A nsIDOMNode</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMNode  GetTooltipNodeAttribute();
+		nsIDOMNode GetTooltipNodeAttribute();
 		
 		/// <summary>Member SetTooltipNodeAttribute </summary>
 		/// <param name='aTooltipNode'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTooltipNodeAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  aTooltipNode);
+		void SetTooltipNodeAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aTooltipNode);
 		
 		/// <summary>Member GetCommandDispatcherAttribute </summary>
-		/// <returns>A nsIDOMXULCommandDispatcher </returns>
+		/// <returns>A nsIDOMXULCommandDispatcher</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMXULCommandDispatcher  GetCommandDispatcherAttribute();
+		nsIDOMXULCommandDispatcher GetCommandDispatcherAttribute();
 		
 		/// <summary>Member GetWidthAttribute </summary>
-		/// <returns>A System.Int32 </returns>
+		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetWidthAttribute();
+		int GetWidthAttribute();
 		
 		/// <summary>Member GetHeightAttribute </summary>
-		/// <returns>A System.Int32 </returns>
+		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetHeightAttribute();
+		int GetHeightAttribute();
 		
 		/// <summary>Member GetElementsByAttribute </summary>
 		/// <param name='name'> </param>
 		/// <param name='value'> </param>
 		/// <returns>A nsIDOMNodeList</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMNodeList GetElementsByAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString name, [MarshalAs(UnmanagedType.LPStruct)] nsAString value);
 		
@@ -99,6 +100,7 @@ namespace Skybound.Gecko
 		/// <param name='name'> </param>
 		/// <param name='value'> </param>
 		/// <returns>A nsIDOMNodeList</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMNodeList GetElementsByAttributeNS([MarshalAs(UnmanagedType.LPStruct)] nsAString namespaceURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString name, [MarshalAs(UnmanagedType.LPStruct)] nsAString value);
 		
@@ -107,14 +109,14 @@ namespace Skybound.Gecko
 		/// <param name='observer'> </param>
 		/// <param name='attr'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddBroadcastListenerFor([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  broadcaster, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement  observer, [MarshalAs(UnmanagedType.LPStruct)] nsAString attr);
+		void AddBroadcastListenerFor([MarshalAs(UnmanagedType.Interface)] nsIDOMElement broadcaster, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement observer, [MarshalAs(UnmanagedType.LPStruct)] nsAString attr);
 		
 		/// <summary>Member RemoveBroadcastListenerFor </summary>
 		/// <param name='broadcaster'> </param>
 		/// <param name='observer'> </param>
 		/// <param name='attr'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveBroadcastListenerFor([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  broadcaster, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement  observer, [MarshalAs(UnmanagedType.LPStruct)] nsAString attr);
+		void RemoveBroadcastListenerFor([MarshalAs(UnmanagedType.Interface)] nsIDOMElement broadcaster, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement observer, [MarshalAs(UnmanagedType.LPStruct)] nsAString attr);
 		
 		/// <summary>Member Persist </summary>
 		/// <param name='id'> </param>
@@ -125,8 +127,9 @@ namespace Skybound.Gecko
 		/// <summary>Member GetBoxObjectFor </summary>
 		/// <param name='elt'> </param>
 		/// <returns>A nsIBoxObject</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIBoxObject GetBoxObjectFor([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  elt);
+		nsIBoxObject GetBoxObjectFor([MarshalAs(UnmanagedType.Interface)] nsIDOMElement elt);
 		
 		/// <summary>
         /// Loads a XUL overlay and merges it with the current document, notifying an
@@ -146,6 +149,6 @@ namespace Skybound.Gecko
         /// - Ben Goodger (8/23/2005)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void LoadOverlay([MarshalAs(UnmanagedType.LPStruct)] nsAString url, [MarshalAs(UnmanagedType.Interface)] nsIObserver  aObserver);
+		void LoadOverlay([MarshalAs(UnmanagedType.LPStruct)] nsAString url, [MarshalAs(UnmanagedType.Interface)] nsIObserver aObserver);
 	}
 }

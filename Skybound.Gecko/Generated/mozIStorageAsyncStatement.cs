@@ -75,25 +75,25 @@ namespace Skybound.Gecko
         /// @{
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void BindUTF8StringParameter(System.UInt32  aParamIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aValue);
+		new void BindUTF8StringParameter(uint aParamIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aValue);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void BindStringParameter(System.UInt32  aParamIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAString aValue);
+		new void BindStringParameter(uint aParamIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAString aValue);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void BindDoubleParameter(System.UInt32  aParamIndex, double aValue);
+		new void BindDoubleParameter(uint aParamIndex, double aValue);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void BindInt32Parameter(System.UInt32  aParamIndex, System.Int32  aValue);
+		new void BindInt32Parameter(uint aParamIndex, int aValue);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void BindInt64Parameter(System.UInt32  aParamIndex, System.Int32  aValue);
+		new void BindInt64Parameter(uint aParamIndex, int aValue);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void BindNullParameter(System.UInt32  aParamIndex);
+		new void BindNullParameter(uint aParamIndex);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void BindBlobParameter(System.UInt32  aParamIndex, System.IntPtr  aValue, System.UInt32  aValueSize);
+		new void BindBlobParameter(uint aParamIndex, System.IntPtr aValue, uint aValueSize);
 		
 		/// <summary>
         /// Binds the array of parameters to the statement.  When executeAsync is
@@ -105,7 +105,7 @@ namespace Skybound.Gecko
         /// @note This is only works on statements being used asynchronously.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void BindParameters(mozIStorageBindingParamsArray  aParameters);
+		new void BindParameters(mozIStorageBindingParamsArray aParameters);
 		
 		/// <summary>
         /// Creates a new mozIStorageBindingParamsArray that can be used to bind
@@ -132,13 +132,13 @@ namespace Skybound.Gecko
         /// @return an object that can be used to cancel the statements execution.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new mozIStoragePendingStatement ExecuteAsync(mozIStorageStatementCallback  aCallback);
+		new mozIStoragePendingStatement ExecuteAsync(mozIStorageStatementCallback aCallback);
 		
 		/// <summary>
         /// Find out whether the statement is usable (has not been finalized).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Int32  GetStateAttribute();
+		new int GetStateAttribute();
 		
 		/// <summary>
         /// Escape a string for SQL LIKE search.
@@ -155,7 +155,8 @@ namespace Skybound.Gecko
         /// For example, we will convert "foo/bar_baz%20cheese"
         /// into "foo//bar/_baz/%20cheese" (if the escape char is '/').
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsAString EscapeStringForLIKE([MarshalAs(UnmanagedType.LPStruct)] nsAString aValue, System.Char  aEscapeChar);
+		new nsAString EscapeStringForLIKE([MarshalAs(UnmanagedType.LPStruct)] nsAString aValue, char aEscapeChar);
 	}
 }

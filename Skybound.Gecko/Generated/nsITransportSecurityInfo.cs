@@ -35,9 +35,9 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetSecurityStateAttribute </summary>
-		/// <returns>A System.UInt32 </returns>
+		/// <returns>A System.UInt32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetSecurityStateAttribute();
+		uint GetSecurityStateAttribute();
 		
 		/// <summary>Member GetShortSecurityDescriptionAttribute </summary>
 		/// <returns>A System.String</returns>

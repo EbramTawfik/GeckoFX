@@ -46,7 +46,7 @@ namespace Skybound.Gecko
         /// call to nsISMimeVerificationListener.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AsyncVerifySignature([MarshalAs(UnmanagedType.Interface)] nsISMimeVerificationListener  listener);
+		void AsyncVerifySignature([MarshalAs(UnmanagedType.Interface)] nsISMimeVerificationListener listener);
 		
 		/// <summary>
         /// Async version of nsICMSMessage::VerifyDetachedSignature.
@@ -66,7 +66,7 @@ namespace Skybound.Gecko
         /// in unsigned long aDigestDataLen);
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AsyncVerifyDetachedSignature([MarshalAs(UnmanagedType.Interface)] nsISMimeVerificationListener  listener, System.IntPtr  aDigestData, System.UInt32  aDigestDataLen);
+		void AsyncVerifyDetachedSignature([MarshalAs(UnmanagedType.Interface)] nsISMimeVerificationListener listener, System.IntPtr aDigestData, uint aDigestDataLen);
 	}
 	
 	/// <summary>nsISMimeVerificationListener </summary>
@@ -84,6 +84,6 @@ namespace Skybound.Gecko
         /// nsICMSMessage::verify[Detached]Signature
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Notify([MarshalAs(UnmanagedType.Interface)] nsICMSMessage2  verifiedMessage, System.Int32  verificationResultCode);
+		void Notify([MarshalAs(UnmanagedType.Interface)] nsICMSMessage2 verifiedMessage, int verificationResultCode);
 	}
 }

@@ -53,13 +53,14 @@ namespace Skybound.Gecko
         /// with the new window
         /// @param aResult the newly created window is returned here.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIXULWindow CreateTopLevelWindow([MarshalAs(UnmanagedType.Interface)] nsIXULWindow  aParent, [MarshalAs(UnmanagedType.Interface)] nsIURI  aUrl, System.UInt32  aChromeMask, System.Int32  aInitialWidth, System.Int32  aInitialHeight, [MarshalAs(UnmanagedType.Interface)] nsIAppShell  aAppShell);
+		nsIXULWindow CreateTopLevelWindow([MarshalAs(UnmanagedType.Interface)] nsIXULWindow aParent, [MarshalAs(UnmanagedType.Interface)] nsIURI aUrl, uint aChromeMask, int aInitialWidth, int aInitialHeight, [MarshalAs(UnmanagedType.Interface)] nsIAppShell aAppShell);
 		
 		/// <summary>Member CreateHiddenWindow </summary>
 		/// <param name='aAppShell'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CreateHiddenWindow([MarshalAs(UnmanagedType.Interface)] nsIAppShell  aAppShell);
+		void CreateHiddenWindow([MarshalAs(UnmanagedType.Interface)] nsIAppShell aAppShell);
 		
 		/// <summary>Member DestroyHiddenWindow </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -73,7 +74,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIXULWindow  GetHiddenWindowAttribute();
+		nsIXULWindow GetHiddenWindowAttribute();
 		
 		/// <summary>
         /// Return the (singleton) application hidden window, automatically created
@@ -83,7 +84,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMWindowInternal  GetHiddenDOMWindowAttribute();
+		nsIDOMWindowInternal GetHiddenDOMWindowAttribute();
 		
 		/// <summary>
         /// Return the (singleton) application hidden window as an nsIDOMWindowInternal,
@@ -93,7 +94,7 @@ namespace Skybound.Gecko
         /// @aJSContext       the corresponding JavaScript context
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetHiddenWindowAndJSContext([MarshalAs(UnmanagedType.Interface)] out nsIDOMWindowInternal  aHiddenDOMWindow, out System.IntPtr  aJSContext);
+		void GetHiddenWindowAndJSContext([MarshalAs(UnmanagedType.Interface)] out nsIDOMWindowInternal aHiddenDOMWindow, out System.IntPtr aJSContext);
 		
 		/// <summary>
         /// Return true if the application hidden window was provided by the
@@ -101,7 +102,7 @@ namespace Skybound.Gecko
         /// usually be false on all non-mac platforms.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetApplicationProvidedHiddenWindowAttribute();
+		bool GetApplicationProvidedHiddenWindowAttribute();
 		
 		/// <summary>
         /// Add a window to the application's registry of windows.  These windows
@@ -112,7 +113,7 @@ namespace Skybound.Gecko
         /// "xul-window-registered"
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RegisterTopLevelWindow([MarshalAs(UnmanagedType.Interface)] nsIXULWindow  aWindow);
+		void RegisterTopLevelWindow([MarshalAs(UnmanagedType.Interface)] nsIXULWindow aWindow);
 		
 		/// <summary>
         /// Remove a window from the application's window registry. Note that
@@ -121,6 +122,6 @@ namespace Skybound.Gecko
         /// @param aWindow you see the pattern
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UnregisterTopLevelWindow([MarshalAs(UnmanagedType.Interface)] nsIXULWindow  aWindow);
+		void UnregisterTopLevelWindow([MarshalAs(UnmanagedType.Interface)] nsIXULWindow aWindow);
 	}
 }

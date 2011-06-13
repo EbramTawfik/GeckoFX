@@ -45,7 +45,7 @@ namespace Skybound.Gecko
         /// being canceled.  It is an error to pass a success code.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Cancel(System.Int32  aReason);
+		new void Cancel(int aReason);
 		
 		/// <summary>
         /// Flags governing how data is fetched and saved from the network.
@@ -53,7 +53,7 @@ namespace Skybound.Gecko
         /// to accept the default values.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetPersistFlagsAttribute();
+		uint GetPersistFlagsAttribute();
 		
 		/// <summary>
         /// Flags governing how data is fetched and saved from the network.
@@ -61,13 +61,13 @@ namespace Skybound.Gecko
         /// to accept the default values.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPersistFlagsAttribute(System.UInt32  aPersistFlags);
+		void SetPersistFlagsAttribute(uint aPersistFlags);
 		
 		/// <summary>
         /// Current state of the persister object.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetCurrentStateAttribute();
+		uint GetCurrentStateAttribute();
 		
 		/// <summary>
         /// Value indicating the success or failure of the persist
@@ -78,7 +78,7 @@ namespace Skybound.Gecko
         /// @return NS_ERROR_FAILURE Non-specific failure.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetResultAttribute();
+		uint GetResultAttribute();
 		
 		/// <summary>
         /// Callback listener for progress notifications. The object that the
@@ -91,7 +91,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIWebProgressListener  GetProgressListenerAttribute();
+		nsIWebProgressListener GetProgressListenerAttribute();
 		
 		/// <summary>
         /// Callback listener for progress notifications. The object that the
@@ -103,7 +103,7 @@ namespace Skybound.Gecko
         /// @see nsIInterfaceRequestor
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetProgressListenerAttribute([MarshalAs(UnmanagedType.Interface)] nsIWebProgressListener  aProgressListener);
+		void SetProgressListenerAttribute([MarshalAs(UnmanagedType.Interface)] nsIWebProgressListener aProgressListener);
 		
 		/// <summary>
         /// Save the specified URI to file.
@@ -133,14 +133,14 @@ namespace Skybound.Gecko
         /// @return NS_ERROR_INVALID_ARG One or more arguments was invalid.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SaveURI([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, [MarshalAs(UnmanagedType.Interface)] nsISupports  aCacheKey, [MarshalAs(UnmanagedType.Interface)] nsIURI  aReferrer, [MarshalAs(UnmanagedType.Interface)] nsIInputStream  aPostData, [MarshalAs(UnmanagedType.LPStr)] System.String  aExtraHeaders, [MarshalAs(UnmanagedType.Interface)] nsISupports  aFile);
+		void SaveURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsISupports aCacheKey, [MarshalAs(UnmanagedType.Interface)] nsIURI aReferrer, [MarshalAs(UnmanagedType.Interface)] nsIInputStream aPostData, [MarshalAs(UnmanagedType.LPStr)] string aExtraHeaders, [MarshalAs(UnmanagedType.Interface)] nsISupports aFile);
 		
 		/// <summary>
         /// Save a channel to a file. It must not be opened yet.
         /// @see saveURI
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SaveChannel([MarshalAs(UnmanagedType.Interface)] nsIChannel  aChannel, [MarshalAs(UnmanagedType.Interface)] nsISupports  aFile);
+		void SaveChannel([MarshalAs(UnmanagedType.Interface)] nsIChannel aChannel, [MarshalAs(UnmanagedType.Interface)] nsISupports aFile);
 		
 		/// <summary>
         /// Save the specified DOM document to file and optionally all linked files
@@ -172,7 +172,7 @@ namespace Skybound.Gecko
         /// @return NS_ERROR_INVALID_ARG One or more arguments was invalid.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SaveDocument([MarshalAs(UnmanagedType.Interface)] nsIDOMDocument  aDocument, [MarshalAs(UnmanagedType.Interface)] nsISupports  aFile, [MarshalAs(UnmanagedType.Interface)] nsISupports  aDataPath, [MarshalAs(UnmanagedType.LPStr)] System.String  aOutputContentType, System.UInt32  aEncodingFlags, System.UInt32  aWrapColumn);
+		void SaveDocument([MarshalAs(UnmanagedType.Interface)] nsIDOMDocument aDocument, [MarshalAs(UnmanagedType.Interface)] nsISupports aFile, [MarshalAs(UnmanagedType.Interface)] nsISupports aDataPath, [MarshalAs(UnmanagedType.LPStr)] string aOutputContentType, uint aEncodingFlags, uint aWrapColumn);
 		
 		/// <summary>
         /// Cancels the current operation. The caller is responsible for cleaning up

@@ -39,10 +39,10 @@ namespace Skybound.Gecko
         /// These are win32-specific
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetD2DEnabledAttribute();
+		bool GetD2DEnabledAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetDWriteEnabledAttribute();
+		bool GetDWriteEnabledAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetDWriteVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDWriteVersion);
@@ -59,10 +59,10 @@ namespace Skybound.Gecko
 		/// <summary>
         ///These types are inspired by DXGI_ADAPTER_DESC </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetAdapterVendorIDAttribute();
+		uint GetAdapterVendorIDAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetAdapterDeviceIDAttribute();
+		uint GetAdapterDeviceIDAttribute();
 		
 		/// <summary>
         /// The amount of RAM in MB in the display adapter.
@@ -78,29 +78,31 @@ namespace Skybound.Gecko
 		
 		[return: MarshalAs(UnmanagedType.LPStr, SizeParamIndex=0)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetFailures(out System.UInt32  failureCount);
+		string GetFailures(out uint failureCount);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void LogFailure([MarshalAs(UnmanagedType.LPStruct)] nsAString  failure);
+		void LogFailure([MarshalAs(UnmanagedType.LPStruct)] nsAString failure);
 		
 		/// <summary>
         /// Ask about a feature, and return the status of that feature
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetFeatureStatus(System.Int32  aFeature);
+		int GetFeatureStatus(int aFeature);
 		
 		/// <summary>
         /// Ask about a feature, return the minimum driver version required for it if its status is
         /// FEATURE_BLOCKED_DRIVER_VERSION, otherwise return an empty string.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetFeatureSuggestedDriverVersion(System.Int32  aFeature);
+		nsAString GetFeatureSuggestedDriverVersion(int aFeature);
 		
 		/// <summary>
         /// WebGL info; valid params are "full-renderer", "vendor", "renderer", "version",
         /// "shading_language_version", "extensions".  These return info from
         /// underlying GL impl that's used to implement WebGL.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsAString GetWebGLParameter([MarshalAs(UnmanagedType.LPStruct)] nsAString aParam);
 	}

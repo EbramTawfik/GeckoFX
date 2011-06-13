@@ -43,12 +43,12 @@ namespace Skybound.Gecko
         /// was changed via some other means.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ValueChanged([MarshalAs(UnmanagedType.LPStruct)] nsAString which, System.Int32  newValue, System.Boolean  userChanged);
+		void ValueChanged([MarshalAs(UnmanagedType.LPStruct)] nsAString which, int newValue, bool userChanged);
 		
 		/// <summary>
         /// Called when the user begins or ends dragging the thumb.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DragStateChanged(System.Boolean  isDragging);
+		void DragStateChanged(bool isDragging);
 	}
 }

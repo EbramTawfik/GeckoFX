@@ -48,6 +48,6 @@ namespace Skybound.Gecko
         /// related to the bad cert (the connection will still get canceled).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool NotifyCertProblem([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor  socketInfo, [MarshalAs(UnmanagedType.Interface)] nsISSLStatus  status, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  targetSite);
+		bool NotifyCertProblem([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor socketInfo, [MarshalAs(UnmanagedType.Interface)] nsISSLStatus status, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String targetSite);
 	}
 }

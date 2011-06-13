@@ -37,6 +37,7 @@ namespace Skybound.Gecko
 		/// <summary>Member CreateElement </summary>
 		/// <param name='tagName'> </param>
 		/// <returns>A nsIXTFElement</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIXTFElement CreateElement([MarshalAs(UnmanagedType.LPStruct)] nsAString tagName);
 	}

@@ -57,7 +57,7 @@ namespace Skybound.Gecko
         /// @throws NS_ERROR_INVALID_ARG when set to an unrecognized value.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetExecutionPolicyAttribute();
+		uint GetExecutionPolicyAttribute();
 		
 		/// <summary>
         /// Whether and how the program represented by this channel is to be executed.
@@ -67,7 +67,7 @@ namespace Skybound.Gecko
         /// @throws NS_ERROR_INVALID_ARG when set to an unrecognized value.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetExecutionPolicyAttribute(System.UInt32  aExecutionPolicy);
+		void SetExecutionPolicyAttribute(uint aExecutionPolicy);
 		
 		/// <summary>
         /// Control whether the program should be executed synchronosly when
@@ -82,7 +82,7 @@ namespace Skybound.Gecko
         /// channel has no effect.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetExecuteAsyncAttribute();
+		bool GetExecuteAsyncAttribute();
 		
 		/// <summary>
         /// Control whether the program should be executed synchronosly when
@@ -97,6 +97,6 @@ namespace Skybound.Gecko
         /// channel has no effect.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetExecuteAsyncAttribute(System.Boolean  aExecuteAsync);
+		void SetExecuteAsyncAttribute(bool aExecuteAsync);
 	}
 }

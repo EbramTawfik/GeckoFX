@@ -74,7 +74,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant  GetDataAttribute();
+		nsIVariant GetDataAttribute();
 		
 		/// <summary>
         /// Cancels the event if it is cancelable.
@@ -100,7 +100,7 @@ namespace Skybound.Gecko
         /// The extIEventItem associated with the event.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void HandleEvent(extIEventItem  aEvent);
+		void HandleEvent(extIEventItem aEvent);
 	}
 	
 	/// <summary>
@@ -125,7 +125,7 @@ namespace Skybound.Gecko
         /// The reference to a listener
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddListener([MarshalAs(UnmanagedType.LPStruct)] nsAString aEvent, extIEventListener  aListener);
+		void AddListener([MarshalAs(UnmanagedType.LPStruct)] nsAString aEvent, extIEventListener aListener);
 		
 		/// <summary>
         /// Removes an event listener from the list. Calling remove
@@ -137,7 +137,7 @@ namespace Skybound.Gecko
         /// The reference to a listener
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveListener([MarshalAs(UnmanagedType.LPStruct)] nsAString aEvent, extIEventListener  aListener);
+		void RemoveListener([MarshalAs(UnmanagedType.LPStruct)] nsAString aEvent, extIEventListener aListener);
 	}
 	
 	/// <summary>
@@ -165,14 +165,14 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant  GetAllAttribute();
+		nsIVariant GetAllAttribute();
 		
 		/// <summary>
         /// The events object for the preferences
         /// supports: "change"
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		extIEvents  GetEventsAttribute();
+		extIEvents GetEventsAttribute();
 		
 		/// <summary>
         /// Check to see if a preference exists.
@@ -202,8 +202,9 @@ namespace Skybound.Gecko
         /// @returns value of the preference or the given default value if preference
         /// does not exists.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant GetValue([MarshalAs(UnmanagedType.LPStruct)] nsAString aName, [MarshalAs(UnmanagedType.Interface)] nsIVariant  aDefaultValue);
+		nsIVariant GetValue([MarshalAs(UnmanagedType.LPStruct)] nsAString aName, [MarshalAs(UnmanagedType.Interface)] nsIVariant aDefaultValue);
 		
 		/// <summary>
         /// Sets the value of a storage item with the given name.
@@ -213,7 +214,7 @@ namespace Skybound.Gecko
         /// The value to assign to the item
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetValue([MarshalAs(UnmanagedType.LPStruct)] nsAString aName, [MarshalAs(UnmanagedType.Interface)] nsIVariant  aValue);
+		void SetValue([MarshalAs(UnmanagedType.LPStruct)] nsAString aName, [MarshalAs(UnmanagedType.Interface)] nsIVariant aValue);
 		
 		/// <summary>
         /// Resets all preferences in a branch back to their default values.
@@ -249,44 +250,44 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant  GetValueAttribute();
+		nsIVariant GetValueAttribute();
 		
 		/// <summary>
         /// Get/Set the value of the preference.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetValueAttribute([MarshalAs(UnmanagedType.Interface)] nsIVariant  aValue);
+		void SetValueAttribute([MarshalAs(UnmanagedType.Interface)] nsIVariant aValue);
 		
 		/// <summary>
         /// Get the locked state of the preference. Set to a boolean value to (un)lock it.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetLockedAttribute();
+		bool GetLockedAttribute();
 		
 		/// <summary>
         /// Get the locked state of the preference. Set to a boolean value to (un)lock it.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetLockedAttribute(System.Boolean  aLocked);
+		void SetLockedAttribute(bool aLocked);
 		
 		/// <summary>
         /// Check if a preference has been modified by the user, or not.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetModifiedAttribute();
+		bool GetModifiedAttribute();
 		
 		/// <summary>
         /// The preference branch that contains this preference.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		extIPreferenceBranch  GetBranchAttribute();
+		extIPreferenceBranch GetBranchAttribute();
 		
 		/// <summary>
         /// The events object for this preference.
         /// supports: "change"
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		extIEvents  GetEventsAttribute();
+		extIEvents GetEventsAttribute();
 		
 		/// <summary>
         /// Resets a preference back to its default values.
@@ -320,7 +321,7 @@ namespace Skybound.Gecko
         /// Check if the extension is currently enabled, or not.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetEnabledAttribute();
+		bool GetEnabledAttribute();
 		
 		/// <summary>
         /// The version number of the extension.
@@ -332,27 +333,27 @@ namespace Skybound.Gecko
         /// Indicates whether this is the extension's first run after install
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetFirstRunAttribute();
+		bool GetFirstRunAttribute();
 		
 		/// <summary>
         /// The preferences object for the extension. Defaults to the
         /// "extensions.<extensionid>." branch.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		extIPreferenceBranch  GetPrefsAttribute();
+		extIPreferenceBranch GetPrefsAttribute();
 		
 		/// <summary>
         /// The storage object for the extension.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		extISessionStorage  GetStorageAttribute();
+		extISessionStorage GetStorageAttribute();
 		
 		/// <summary>
         /// The events object for the extension.
         /// supports: "uninstall"
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		extIEvents  GetEventsAttribute();
+		extIEvents GetEventsAttribute();
 	}
 	
 	/// <summary>
@@ -369,7 +370,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant  GetAllAttribute();
+		nsIVariant GetAllAttribute();
 		
 		/// <summary>
         /// Determines if an extension exists with the given id.
@@ -405,7 +406,7 @@ namespace Skybound.Gecko
         /// Interface representing a callback that receives an array of extIExtensions
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Callback([MarshalAs(UnmanagedType.Interface)] nsIVariant  extensions);
+		void Callback([MarshalAs(UnmanagedType.Interface)] nsIVariant extensions);
 	}
 	
 	/// <summary>
@@ -422,7 +423,7 @@ namespace Skybound.Gecko
         /// supports: "change"
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		extIEvents  GetEventsAttribute();
+		extIEvents GetEventsAttribute();
 		
 		/// <summary>
         /// Determines if a storage item exists with the given name.
@@ -442,7 +443,7 @@ namespace Skybound.Gecko
         /// The value to assign to the item
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Set([MarshalAs(UnmanagedType.LPStruct)] nsAString aName, [MarshalAs(UnmanagedType.Interface)] nsIVariant  aValue);
+		void Set([MarshalAs(UnmanagedType.LPStruct)] nsAString aName, [MarshalAs(UnmanagedType.Interface)] nsIVariant aValue);
 		
 		/// <summary>
         /// Gets the value of a storage item with the given name. Returns a
@@ -454,8 +455,9 @@ namespace Skybound.Gecko
         /// @returns value of the item or the given default value if no item
         /// exists with the given name.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant Get([MarshalAs(UnmanagedType.LPStruct)] nsAString aName, [MarshalAs(UnmanagedType.Interface)] nsIVariant  aDefaultValue);
+		nsIVariant Get([MarshalAs(UnmanagedType.LPStruct)] nsAString aName, [MarshalAs(UnmanagedType.Interface)] nsIVariant aDefaultValue);
 	}
 	
 	/// <summary>extIApplication </summary>
@@ -487,34 +489,34 @@ namespace Skybound.Gecko
         /// The console object for the application.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		extIConsole  GetConsoleAttribute();
+		extIConsole GetConsoleAttribute();
 		
 		/// <summary>
         /// The extensions object for the application. Contains a list
         /// of all installed extensions.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetExtensions(extIExtensionsCallback  aCallback);
+		void GetExtensions(extIExtensionsCallback aCallback);
 		
 		/// <summary>
         /// The preferences object for the application. Defaults to an empty
         /// root branch.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		extIPreferenceBranch  GetPrefsAttribute();
+		extIPreferenceBranch GetPrefsAttribute();
 		
 		/// <summary>
         /// The storage object for the application.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		extISessionStorage  GetStorageAttribute();
+		extISessionStorage GetStorageAttribute();
 		
 		/// <summary>
         /// The events object for the application.
         /// supports: "load", "ready", "quit", "unload"
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		extIEvents  GetEventsAttribute();
+		extIEvents GetEventsAttribute();
 		
 		/// <summary>
         /// Quits the application (if nobody objects to quit-application-requested).

@@ -43,14 +43,14 @@ namespace Skybound.Gecko
         /// "geolocation".
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aType);
+		void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aType);
 		
 		/// <summary>
         /// The uri of the permission request.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI  GetUriAttribute();
+		nsIURI GetUriAttribute();
 		
 		/// <summary>
         /// The window or element that the permission request was
@@ -60,11 +60,11 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMWindow  GetWindowAttribute();
+		nsIDOMWindow GetWindowAttribute();
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMElement  GetElementAttribute();
+		nsIDOMElement GetElementAttribute();
 		
 		/// <summary>
         /// allow or cancel the request
@@ -91,6 +91,6 @@ namespace Skybound.Gecko
         /// privileged content apis
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Prompt([MarshalAs(UnmanagedType.Interface)] nsIContentPermissionRequest  request);
+		void Prompt([MarshalAs(UnmanagedType.Interface)] nsIContentPermissionRequest request);
 	}
 }

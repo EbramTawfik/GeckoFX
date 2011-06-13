@@ -43,7 +43,7 @@ namespace Skybound.Gecko
         /// The result set containing the data from the database.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void HandleResult(mozIStorageResultSet  aResultSet);
+		void HandleResult(mozIStorageResultSet aResultSet);
 		
 		/// <summary>
         /// Called when some error occurs while executing the statement.  This function
@@ -54,7 +54,7 @@ namespace Skybound.Gecko
         /// An object containing information about the error.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void HandleError(mozIStorageError  aError);
+		void HandleError(mozIStorageError aError);
 		
 		/// <summary>
         /// Called when the statement has finished executing.  This function will only

@@ -84,6 +84,6 @@ namespace Skybound.Gecko
         /// cancelled
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AsyncOnChannelRedirect([MarshalAs(UnmanagedType.Interface)] nsIChannel  oldChannel, [MarshalAs(UnmanagedType.Interface)] nsIChannel  newChannel, System.UInt32  flags, [MarshalAs(UnmanagedType.Interface)] nsIAsyncVerifyRedirectCallback  callback);
+		void AsyncOnChannelRedirect([MarshalAs(UnmanagedType.Interface)] nsIChannel oldChannel, [MarshalAs(UnmanagedType.Interface)] nsIChannel newChannel, uint flags, [MarshalAs(UnmanagedType.Interface)] nsIAsyncVerifyRedirectCallback callback);
 	}
 }

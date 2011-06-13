@@ -85,7 +85,7 @@ namespace Skybound.Gecko
         /// NOTE: this method should not throw NS_BASE_STREAM_CLOSED.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new uint Read(System.IntPtr  aBuf, System.UInt32  aCount);
+		new uint Read(System.IntPtr aBuf, uint aCount);
 		
 		/// <summary>
         /// Low-level read method that provides access to the stream's underlying
@@ -112,7 +112,7 @@ namespace Skybound.Gecko
         /// NOTE: this method should not throw NS_BASE_STREAM_CLOSED.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new uint ReadSegments(nsWriteSegmentFun  aWriter, System.IntPtr  aClosure, System.UInt32  aCount);
+		new uint ReadSegments(nsWriteSegmentFun aWriter, System.IntPtr aClosure, uint aCount);
 		
 		/// <summary>
         /// @return true if stream is non-blocking
@@ -138,7 +138,7 @@ namespace Skybound.Gecko
         /// @See nsIBinaryOutputStream
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetInputStream([MarshalAs(UnmanagedType.Interface)] nsIInputStream  aInputStream);
+		new void SetInputStream([MarshalAs(UnmanagedType.Interface)] nsIInputStream aInputStream);
 		
 		/// <summary>
         /// Read 8-bits from the stream.
@@ -170,6 +170,7 @@ namespace Skybound.Gecko
         /// Read an 8-bit pascal style string from the stream.
         /// 32-bit length field, followed by length 8-bit chars.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsAString ReadCString();
 		
@@ -177,6 +178,7 @@ namespace Skybound.Gecko
         /// Read an 16-bit pascal style string from the stream.
         /// 32-bit length field, followed by length PRUnichars.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsAString ReadString();
 		
@@ -189,7 +191,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.LPStr, SizeParamIndex=0)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.String  ReadBytes(System.UInt32  aLength);
+		new string ReadBytes(uint aLength);
 		
 		/// <summary>
         /// Read an opaque byte array from the stream, storing the results
@@ -200,7 +202,7 @@ namespace Skybound.Gecko
         /// @throws NS_ERROR_FAILURE if it can't read aLength bytes
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new byte ReadByteArray(System.UInt32  aLength);
+		new byte ReadByteArray(uint aLength);
 		
 		/// <summary>
         /// Read an object from this stream to satisfy a strong or weak reference
@@ -211,8 +213,9 @@ namespace Skybound.Gecko
         ///
         /// @see nsIObjectOutputStream
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports ReadObject(System.Boolean  aIsStrongRef);
+		nsISupports ReadObject(bool aIsStrongRef);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int ReadID(out System.IntPtr aID);
@@ -221,9 +224,9 @@ namespace Skybound.Gecko
         /// Optimized deserialization support -- see nsIStreamBufferAccess.idl.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetBuffer(System.UInt32  aLength, System.UInt32  aAlignMask);
+		System.IntPtr GetBuffer(uint aLength, uint aAlignMask);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PutBuffer(System.IntPtr  aBuffer, System.UInt32  aLength);
+		void PutBuffer(System.IntPtr aBuffer, uint aLength);
 	}
 }

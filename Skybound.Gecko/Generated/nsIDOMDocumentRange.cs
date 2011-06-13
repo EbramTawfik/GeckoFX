@@ -47,6 +47,7 @@ namespace Skybound.Gecko
         /// For more information on this interface please see
         /// http://www.w3.org/TR/DOM-Level-2-Traversal-Range/
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMRange CreateRange();
 	}

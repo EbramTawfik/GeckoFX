@@ -41,7 +41,7 @@ namespace Skybound.Gecko
         /// @param aHooks  implementation of hooks
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddClipboardDragDropHooks([MarshalAs(UnmanagedType.Interface)] nsIClipboardDragDropHooks  aHooks);
+		void AddClipboardDragDropHooks([MarshalAs(UnmanagedType.Interface)] nsIClipboardDragDropHooks aHooks);
 		
 		/// <summary>
         /// Remove a hook from list (note if this implementation is not present
@@ -49,12 +49,13 @@ namespace Skybound.Gecko
         /// @param aHooks  implementation of hooks
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveClipboardDragDropHooks([MarshalAs(UnmanagedType.Interface)] nsIClipboardDragDropHooks  aHooks);
+		void RemoveClipboardDragDropHooks([MarshalAs(UnmanagedType.Interface)] nsIClipboardDragDropHooks aHooks);
 		
 		/// <summary>
         /// Gets an enumerator for all hooks which have been added.
         /// @return nsISimpleEnumerator for nsIClipboardDragDropHooks
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISimpleEnumerator GetHookEnumerator();
 	}

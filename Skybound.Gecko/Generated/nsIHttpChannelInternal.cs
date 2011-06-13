@@ -43,25 +43,25 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI  GetDocumentURIAttribute();
+		nsIURI GetDocumentURIAttribute();
 		
 		/// <summary>
         /// An http channel can own a reference to the document URI
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDocumentURIAttribute([MarshalAs(UnmanagedType.Interface)] nsIURI  aDocumentURI);
+		void SetDocumentURIAttribute([MarshalAs(UnmanagedType.Interface)] nsIURI aDocumentURI);
 		
 		/// <summary>
         /// Get the major/minor version numbers for the request
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetRequestVersion(out System.UInt32  major, out System.UInt32  minor);
+		void GetRequestVersion(out uint major, out uint minor);
 		
 		/// <summary>
         /// Get the major/minor version numbers for the response
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetResponseVersion(out System.UInt32  major, out System.UInt32  minor);
+		void GetResponseVersion(out uint major, out uint minor);
 		
 		/// <summary>
         /// Helper method to set a cookie with a consumer-provided
@@ -72,44 +72,44 @@ namespace Skybound.Gecko
         /// The cookie header to be parsed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCookie([MarshalAs(UnmanagedType.LPStr)] System.String  aCookieHeader);
+		void SetCookie([MarshalAs(UnmanagedType.LPStr)] string aCookieHeader);
 		
 		/// <summary>
         /// Setup this channel as an application cache fallback channel.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetupFallbackChannel([MarshalAs(UnmanagedType.LPStr)] System.String  aFallbackKey);
+		void SetupFallbackChannel([MarshalAs(UnmanagedType.LPStr)] string aFallbackKey);
 		
 		/// <summary>
         /// Force relevant cookies to be sent with this load even if normally they
         /// wouldn't be.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetForceAllowThirdPartyCookieAttribute();
+		bool GetForceAllowThirdPartyCookieAttribute();
 		
 		/// <summary>
         /// Force relevant cookies to be sent with this load even if normally they
         /// wouldn't be.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetForceAllowThirdPartyCookieAttribute(System.Boolean  aForceAllowThirdPartyCookie);
+		void SetForceAllowThirdPartyCookieAttribute(bool aForceAllowThirdPartyCookie);
 		
 		/// <summary>
         /// Returns true iff the channel has been canceled.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetCanceledAttribute();
+		bool GetCanceledAttribute();
 		
 		/// <summary>
         /// Lets externalhandler tell the channel it is open on behalf of a download
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetChannelIsForDownloadAttribute();
+		bool GetChannelIsForDownloadAttribute();
 		
 		/// <summary>
         /// Lets externalhandler tell the channel it is open on behalf of a download
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetChannelIsForDownloadAttribute(System.Boolean  aChannelIsForDownload);
+		void SetChannelIsForDownloadAttribute(bool aChannelIsForDownload);
 	}
 }

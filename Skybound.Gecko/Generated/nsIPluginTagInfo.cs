@@ -48,7 +48,7 @@ namespace Skybound.Gecko
         /// Each name or value is a null-terminated string.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetAttributes(ref System.UInt16  aCount, System.IntPtr aNames, System.IntPtr aValues);
+		void GetAttributes(ref System.UInt16 aCount, System.IntPtr aNames, System.IntPtr aValues);
 		
 		/// <summary>
         /// Gets the value for the named attribute.
@@ -60,7 +60,7 @@ namespace Skybound.Gecko
         /// else to the found value.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetAttribute([MarshalAs(UnmanagedType.LPStr)] System.String  aName, out System.IntPtr  aResult);
+		void GetAttribute([MarshalAs(UnmanagedType.LPStr)] string aName, out System.IntPtr aResult);
 		
 		/// <summary>
         /// Get the type of the HTML tag that was used ot instantiate this
@@ -73,7 +73,7 @@ namespace Skybound.Gecko
         /// Get the complete text of the HTML tag that was used to instantiate this plugin.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTagText(out System.IntPtr  aTagText);
+		void GetTagText(out System.IntPtr aTagText);
 		
 		/// <summary>
         /// Get a ptr to the paired list of parameter names and values,
@@ -82,7 +82,7 @@ namespace Skybound.Gecko
         /// Each name or value is a null-terminated string.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetParameters(ref System.UInt16  aCount, System.IntPtr aNames, System.IntPtr aValues);
+		void GetParameters(ref System.UInt16 aCount, System.IntPtr aNames, System.IntPtr aValues);
 		
 		/// <summary>
         /// Get the value for the named parameter.  Returns null
@@ -93,56 +93,56 @@ namespace Skybound.Gecko
         /// @result        - NS_OK if this operation was successful
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetParameter([MarshalAs(UnmanagedType.LPStr)] System.String  aName, out System.IntPtr  aResult);
+		void GetParameter([MarshalAs(UnmanagedType.LPStr)] string aName, out System.IntPtr aResult);
 		
 		/// <summary>
         /// Get the document base
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDocumentBase(out System.IntPtr  aDocumentBase);
+		void GetDocumentBase(out System.IntPtr aDocumentBase);
 		
 		/// <summary>
         /// Return an encoding whose name is specified in:
         /// http://java.sun.com/products/jdk/1.1/docs/guide/intl/intl.doc.html#25303
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDocumentEncoding(out System.IntPtr  aDocumentEncoding);
+		void GetDocumentEncoding(out System.IntPtr aDocumentEncoding);
 		
 		/// <summary>
         /// Get object alignment
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetAlignment(out System.IntPtr  aElignment);
+		void GetAlignment(out System.IntPtr aElignment);
 		
 		/// <summary>
         /// Get object width
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetWidthAttribute();
+		uint GetWidthAttribute();
 		
 		/// <summary>
         /// Get object height
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetHeightAttribute();
+		uint GetHeightAttribute();
 		
 		/// <summary>
         /// Get border vertical space
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetBorderVertSpaceAttribute();
+		uint GetBorderVertSpaceAttribute();
 		
 		/// <summary>
         /// Get border horizontal space
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetBorderHorizSpaceAttribute();
+		uint GetBorderHorizSpaceAttribute();
 		
 		/// <summary>
         /// Returns a unique id for the current document containing plugin
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetUniqueIDAttribute();
+		uint GetUniqueIDAttribute();
 		
 		/// <summary>
         /// Returns the DOM element corresponding to the tag which references
@@ -153,6 +153,6 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMElement  GetDOMElementAttribute();
+		nsIDOMElement GetDOMElementAttribute();
 	}
 }

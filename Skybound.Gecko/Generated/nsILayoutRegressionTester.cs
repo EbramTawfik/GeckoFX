@@ -38,7 +38,7 @@ namespace Skybound.Gecko
         /// an error occurred
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int DumpFrameModel([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  aWindowToDump, [MarshalAs(UnmanagedType.Interface)] nsILocalFile  aFile, System.UInt32  aFlagsMask);
+		int DumpFrameModel([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindowToDump, [MarshalAs(UnmanagedType.Interface)] nsILocalFile aFile, uint aFlagsMask);
 		
 		/// <summary>
         /// Compares the contents of frame model files
@@ -48,6 +48,6 @@ namespace Skybound.Gecko
         /// @param aResult             result of the comparison: zero if the files are same, non-zero if different
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int CompareFrameModels([MarshalAs(UnmanagedType.Interface)] nsILocalFile  aBaseFile, [MarshalAs(UnmanagedType.Interface)] nsILocalFile  aVerFile, System.UInt32  aFlags);
+		int CompareFrameModels([MarshalAs(UnmanagedType.Interface)] nsILocalFile aBaseFile, [MarshalAs(UnmanagedType.Interface)] nsILocalFile aVerFile, uint aFlags);
 	}
 }

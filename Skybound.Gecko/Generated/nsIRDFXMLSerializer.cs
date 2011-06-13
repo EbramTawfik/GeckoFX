@@ -40,7 +40,7 @@ namespace Skybound.Gecko
         /// serialized
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init([MarshalAs(UnmanagedType.Interface)] nsIRDFDataSource  aDataSource);
+		void Init([MarshalAs(UnmanagedType.Interface)] nsIRDFDataSource aDataSource);
 		
 		/// <summary>
         /// Add the specified namespace to the serializer.
@@ -48,6 +48,6 @@ namespace Skybound.Gecko
         /// @param aURI the namespace URI
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddNameSpace([MarshalAs(UnmanagedType.Interface)] nsIAtom  aPrefix, [MarshalAs(UnmanagedType.LPStruct)] nsAString aURI);
+		void AddNameSpace([MarshalAs(UnmanagedType.Interface)] nsIAtom aPrefix, [MarshalAs(UnmanagedType.LPStruct)] nsAString aURI);
 	}
 }

@@ -49,7 +49,7 @@ namespace Skybound.Gecko
         /// NOTE: You must copy the values of the params.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NewResponseHeader([MarshalAs(UnmanagedType.LPStr)] System.String  headerName, [MarshalAs(UnmanagedType.LPStr)] System.String  headerValue);
+		void NewResponseHeader([MarshalAs(UnmanagedType.LPStr)] string headerName, [MarshalAs(UnmanagedType.LPStr)] string headerValue);
 		
 		/// <summary>
         /// Called once for the HTTP Response status line.
@@ -57,6 +57,6 @@ namespace Skybound.Gecko
         /// NOTE: You must copy this value.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void StatusLine([MarshalAs(UnmanagedType.LPStr)] System.String  line);
+		void StatusLine([MarshalAs(UnmanagedType.LPStr)] string line);
 	}
 }

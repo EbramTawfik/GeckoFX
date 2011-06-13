@@ -43,23 +43,24 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetStrReadOnlyAttribute();
+		string GetStrReadOnlyAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetBoolReadOnlyAttribute();
+		bool GetBoolReadOnlyAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		short GetShortReadOnlyAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetLongReadOnlyAttribute();
+		int GetLongReadOnlyAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		double GetFloatReadOnlyAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Char  GetCharReadOnlyAttribute();
+		char GetCharReadOnlyAttribute();
 		
+		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string GetID();
 	}
@@ -72,25 +73,25 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetStringPropertyAttribute </summary>
-		/// <returns>A System.String </returns>
+		/// <returns>A System.String</returns>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetStringPropertyAttribute();
+		string GetStringPropertyAttribute();
 		
 		/// <summary>Member SetStringPropertyAttribute </summary>
 		/// <param name='aStringProperty'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetStringPropertyAttribute([MarshalAs(UnmanagedType.LPStr)] System.String  aStringProperty);
+		void SetStringPropertyAttribute([MarshalAs(UnmanagedType.LPStr)] string aStringProperty);
 		
 		/// <summary>Member GetBooleanPropertyAttribute </summary>
-		/// <returns>A System.Boolean </returns>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetBooleanPropertyAttribute();
+		bool GetBooleanPropertyAttribute();
 		
 		/// <summary>Member SetBooleanPropertyAttribute </summary>
 		/// <param name='aBooleanProperty'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBooleanPropertyAttribute(System.Boolean  aBooleanProperty);
+		void SetBooleanPropertyAttribute(bool aBooleanProperty);
 		
 		/// <summary>Member GetShortPropertyAttribute </summary>
 		/// <returns>A System.Int16</returns>
@@ -103,14 +104,14 @@ namespace Skybound.Gecko
 		void SetShortPropertyAttribute(short aShortProperty);
 		
 		/// <summary>Member GetLongPropertyAttribute </summary>
-		/// <returns>A System.Int32 </returns>
+		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetLongPropertyAttribute();
+		int GetLongPropertyAttribute();
 		
 		/// <summary>Member SetLongPropertyAttribute </summary>
 		/// <param name='aLongProperty'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetLongPropertyAttribute(System.Int32  aLongProperty);
+		void SetLongPropertyAttribute(int aLongProperty);
 		
 		/// <summary>Member GetFloatPropertyAttribute </summary>
 		/// <returns>A System.Double</returns>
@@ -123,13 +124,13 @@ namespace Skybound.Gecko
 		void SetFloatPropertyAttribute(double aFloatProperty);
 		
 		/// <summary>Member GetCharPropertyAttribute </summary>
-		/// <returns>A System.Char </returns>
+		/// <returns>A System.Char</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Char  GetCharPropertyAttribute();
+		char GetCharPropertyAttribute();
 		
 		/// <summary>Member SetCharPropertyAttribute </summary>
 		/// <param name='aCharProperty'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCharPropertyAttribute(System.Char  aCharProperty);
+		void SetCharPropertyAttribute(char aCharProperty);
 	}
 }

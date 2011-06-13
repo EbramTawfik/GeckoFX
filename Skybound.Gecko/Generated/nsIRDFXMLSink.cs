@@ -42,28 +42,28 @@ namespace Skybound.Gecko
         /// @param aSink the RDF/XML sink on which the load is beginning.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnBeginLoad([MarshalAs(UnmanagedType.Interface)] nsIRDFXMLSink  aSink);
+		void OnBeginLoad([MarshalAs(UnmanagedType.Interface)] nsIRDFXMLSink aSink);
 		
 		/// <summary>
         /// Called when the load is suspended (e.g., for network quantization).
         /// @param aSink the RDF/XML sink that is being interrupted.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnInterrupt([MarshalAs(UnmanagedType.Interface)] nsIRDFXMLSink  aSink);
+		void OnInterrupt([MarshalAs(UnmanagedType.Interface)] nsIRDFXMLSink aSink);
 		
 		/// <summary>
         /// Called when a suspended load is resuming.
         /// @param aSink the RDF/XML sink that is resuming.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnResume([MarshalAs(UnmanagedType.Interface)] nsIRDFXMLSink  aSink);
+		void OnResume([MarshalAs(UnmanagedType.Interface)] nsIRDFXMLSink aSink);
 		
 		/// <summary>
         /// Called when an RDF/XML load completes successfully.
         /// @param aSink the RDF/XML sink that has finished loading.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnEndLoad([MarshalAs(UnmanagedType.Interface)] nsIRDFXMLSink  aSink);
+		void OnEndLoad([MarshalAs(UnmanagedType.Interface)] nsIRDFXMLSink aSink);
 		
 		/// <summary>
         /// Called when an error occurs during the load
@@ -72,7 +72,7 @@ namespace Skybound.Gecko
         /// @param aErrorMsg an error message, if applicable
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnError([MarshalAs(UnmanagedType.Interface)] nsIRDFXMLSink  aSink, System.Int32  aStatus, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aErrorMsg);
+		void OnError([MarshalAs(UnmanagedType.Interface)] nsIRDFXMLSink aSink, int aStatus, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aErrorMsg);
 	}
 	
 	/// <summary>
@@ -90,14 +90,14 @@ namespace Skybound.Gecko
         /// be modified
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetReadOnlyAttribute();
+		bool GetReadOnlyAttribute();
 		
 		/// <summary>
         /// Set to <code>true</code> if the sink is read-only and cannot
         /// be modified
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetReadOnlyAttribute(System.Boolean  aReadOnly);
+		void SetReadOnlyAttribute(bool aReadOnly);
 		
 		/// <summary>
         /// Initiate the RDF/XML load.
@@ -146,13 +146,13 @@ namespace Skybound.Gecko
         /// load observers.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddXMLSinkObserver([MarshalAs(UnmanagedType.Interface)] nsIRDFXMLSinkObserver  aObserver);
+		void AddXMLSinkObserver([MarshalAs(UnmanagedType.Interface)] nsIRDFXMLSinkObserver aObserver);
 		
 		/// <summary>
         /// Remove an observer from the sink's set of observers.
         /// @param aObserver the observer to remove.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveXMLSinkObserver([MarshalAs(UnmanagedType.Interface)] nsIRDFXMLSinkObserver  aObserver);
+		void RemoveXMLSinkObserver([MarshalAs(UnmanagedType.Interface)] nsIRDFXMLSinkObserver aObserver);
 	}
 }

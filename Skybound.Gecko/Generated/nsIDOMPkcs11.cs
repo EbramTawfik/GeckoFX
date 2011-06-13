@@ -47,6 +47,6 @@ namespace Skybound.Gecko
 		/// <param name='cipherFlags'> </param>
 		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int Addmodule([MarshalAs(UnmanagedType.LPStruct)] nsAString moduleName, [MarshalAs(UnmanagedType.LPStruct)] nsAString libraryFullPath, System.Int32  cryptoMechanismFlags, System.Int32  cipherFlags);
+		int Addmodule([MarshalAs(UnmanagedType.LPStruct)] nsAString moduleName, [MarshalAs(UnmanagedType.LPStruct)] nsAString libraryFullPath, int cryptoMechanismFlags, int cipherFlags);
 	}
 }

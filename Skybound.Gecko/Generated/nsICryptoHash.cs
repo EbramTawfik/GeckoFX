@@ -52,7 +52,7 @@ namespace Skybound.Gecko
         /// before any other method on this interface is called.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init(System.UInt32  aAlgorithm);
+		void Init(uint aAlgorithm);
 		
 		/// <summary>
         /// Initialize the hashing object. This method may be
@@ -67,7 +67,7 @@ namespace Skybound.Gecko
         /// other method on this interface is called.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitWithString([MarshalAs(UnmanagedType.LPStruct)] nsAString  aAlgorithm);
+		void InitWithString([MarshalAs(UnmanagedType.LPStruct)] nsAString aAlgorithm);
 		
 		/// <summary>
         /// @param aData a buffer to calculate the hash over
@@ -78,7 +78,7 @@ namespace Skybound.Gecko
         /// called.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Update(System.IntPtr  aData, System.UInt32  aLen);
+		void Update(System.IntPtr aData, uint aLen);
 		
 		/// <summary>
         /// Calculates and updates a new hash based on a given data stream.
@@ -97,7 +97,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UpdateFromStream([MarshalAs(UnmanagedType.Interface)] nsIInputStream  aStream, System.UInt32  aLen);
+		void UpdateFromStream([MarshalAs(UnmanagedType.Interface)] nsIInputStream aStream, uint aLen);
 		
 		/// <summary>
         /// Completes this hash object and produces the actual hash data.
@@ -116,7 +116,8 @@ namespace Skybound.Gecko
         /// is called.  This call resets the object to its
         /// pre-init state.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString Finish(System.Boolean  aASCII);
+		nsAString Finish(bool aASCII);
 	}
 }

@@ -52,10 +52,10 @@ namespace Skybound.Gecko
         /// The contents of this cookie are implementation-defined.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsCommandEnabled([MarshalAs(UnmanagedType.LPStr)] System.String  aCommandName, [MarshalAs(UnmanagedType.Interface)] nsISupports  aCommandContext);
+		bool IsCommandEnabled([MarshalAs(UnmanagedType.LPStr)] string aCommandName, [MarshalAs(UnmanagedType.Interface)] nsISupports aCommandContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCommandStateParams([MarshalAs(UnmanagedType.LPStr)] System.String  aCommandName, [MarshalAs(UnmanagedType.Interface)] nsICommandParams  aParams, [MarshalAs(UnmanagedType.Interface)] nsISupports  aCommandContext);
+		void GetCommandStateParams([MarshalAs(UnmanagedType.LPStr)] string aCommandName, [MarshalAs(UnmanagedType.Interface)] nsICommandParams aParams, [MarshalAs(UnmanagedType.Interface)] nsISupports aCommandContext);
 		
 		/// <summary>
         /// Execute the name command.
@@ -67,9 +67,9 @@ namespace Skybound.Gecko
         /// The contents of this cookie are implementation-defined.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DoCommand([MarshalAs(UnmanagedType.LPStr)] System.String  aCommandName, [MarshalAs(UnmanagedType.Interface)] nsISupports  aCommandContext);
+		void DoCommand([MarshalAs(UnmanagedType.LPStr)] string aCommandName, [MarshalAs(UnmanagedType.Interface)] nsISupports aCommandContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DoCommandParams([MarshalAs(UnmanagedType.LPStr)] System.String  aCommandName, [MarshalAs(UnmanagedType.Interface)] nsICommandParams  aParams, [MarshalAs(UnmanagedType.Interface)] nsISupports  aCommandContext);
+		void DoCommandParams([MarshalAs(UnmanagedType.LPStr)] string aCommandName, [MarshalAs(UnmanagedType.Interface)] nsICommandParams aParams, [MarshalAs(UnmanagedType.Interface)] nsISupports aCommandContext);
 	}
 }

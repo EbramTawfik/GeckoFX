@@ -45,8 +45,9 @@ namespace Skybound.Gecko
         /// instead of the children of the original node.
         /// @return The resulting fixed up node.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMNode FixupNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  aNode, out System.Boolean  aSerializeCloneKids);
+		nsIDOMNode FixupNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aNode, out bool aSerializeCloneKids);
 	}
 	
 	/// <summary>nsIDocumentEncoder </summary>
@@ -63,14 +64,14 @@ namespace Skybound.Gecko
         /// @param aFlags Flags to use while encoding. May also be set by SetFlags.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init([MarshalAs(UnmanagedType.Interface)] nsIDOMDocument  aDocument, [MarshalAs(UnmanagedType.LPStruct)] nsAString aMimeType, System.UInt32  aFlags);
+		void Init([MarshalAs(UnmanagedType.Interface)] nsIDOMDocument aDocument, [MarshalAs(UnmanagedType.LPStruct)] nsAString aMimeType, uint aFlags);
 		
 		/// <summary>Member NativeInit </summary>
 		/// <param name='aDocument'> </param>
 		/// <param name='aMimeType'> </param>
 		/// <param name='aFlags'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NativeInit(System.IntPtr aDocument, [MarshalAs(UnmanagedType.LPStruct)] nsAString aMimeType, System.UInt32  aFlags);
+		void NativeInit(System.IntPtr aDocument, [MarshalAs(UnmanagedType.LPStruct)] nsAString aMimeType, uint aFlags);
 		
 		/// <summary>
         /// If the selection is set to a non-null value, then the
@@ -79,7 +80,7 @@ namespace Skybound.Gecko
         /// @param aSelection The selection to encode.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSelection([MarshalAs(UnmanagedType.Interface)] nsISelection  aSelection);
+		void SetSelection([MarshalAs(UnmanagedType.Interface)] nsISelection aSelection);
 		
 		/// <summary>
         /// If the range is set to a non-null value, then the
@@ -88,7 +89,7 @@ namespace Skybound.Gecko
         /// @param aRange The range to encode.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetRange([MarshalAs(UnmanagedType.Interface)] nsIDOMRange  aRange);
+		void SetRange([MarshalAs(UnmanagedType.Interface)] nsIDOMRange aRange);
 		
 		/// <summary>
         /// If the node is set to a non-null value, then the
@@ -97,7 +98,7 @@ namespace Skybound.Gecko
         /// @param aNode The node to encode.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  aNode);
+		void SetNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aNode);
 		
 		/// <summary>
         /// If the container is set to a non-null value, then its
@@ -106,7 +107,7 @@ namespace Skybound.Gecko
         /// @param aContainer The node which child nodes will be encoded.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetContainerNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  aContainer);
+		void SetContainerNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aContainer);
 		
 		/// <summary>Member SetNativeContainerNode </summary>
 		/// <param name='aContainer'> </param>
@@ -124,14 +125,14 @@ namespace Skybound.Gecko
         /// Possible result codes: NS_ERROR_NO_CHARSET_CONVERTER
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCharset([MarshalAs(UnmanagedType.LPStruct)] nsAString  aCharset);
+		void SetCharset([MarshalAs(UnmanagedType.LPStruct)] nsAString aCharset);
 		
 		/// <summary>
         /// Set a wrap column.  This may have no effect in some types of encoders.
         /// @param aWrapColumn Column to which to wrap.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetWrapColumn(System.UInt32  aWrapColumn);
+		void SetWrapColumn(uint aWrapColumn);
 		
 		/// <summary>
         /// The mime type preferred by the encoder.  This piece of api was
@@ -150,13 +151,14 @@ namespace Skybound.Gecko
         /// @param aStream Stream into which to encode.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EncodeToStream([MarshalAs(UnmanagedType.Interface)] nsIOutputStream  aStream);
+		void EncodeToStream([MarshalAs(UnmanagedType.Interface)] nsIOutputStream aStream);
 		
 		/// <summary>
         /// Encode the document into a string.
         ///
         /// @return The document encoded into a string.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsAString EncodeToString();
 		
@@ -170,6 +172,7 @@ namespace Skybound.Gecko
         /// @return The document encoded as a string.
         ///
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsAString EncodeToStringWithContext([MarshalAs(UnmanagedType.LPStruct)] nsAString aContextString, [MarshalAs(UnmanagedType.LPStruct)] nsAString aInfoString);
 		
@@ -178,6 +181,6 @@ namespace Skybound.Gecko
         /// @param aFixup The fixup object.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetNodeFixup([MarshalAs(UnmanagedType.Interface)] nsIDocumentEncoderNodeFixup  aFixup);
+		void SetNodeFixup([MarshalAs(UnmanagedType.Interface)] nsIDocumentEncoderNodeFixup aFixup);
 	}
 }

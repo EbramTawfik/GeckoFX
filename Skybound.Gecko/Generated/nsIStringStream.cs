@@ -87,7 +87,7 @@ namespace Skybound.Gecko
         /// NOTE: this method should not throw NS_BASE_STREAM_CLOSED.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new uint Read(System.IntPtr  aBuf, System.UInt32  aCount);
+		new uint Read(System.IntPtr aBuf, uint aCount);
 		
 		/// <summary>
         /// Low-level read method that provides access to the stream's underlying
@@ -114,7 +114,7 @@ namespace Skybound.Gecko
         /// NOTE: this method should not throw NS_BASE_STREAM_CLOSED.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new uint ReadSegments(nsWriteSegmentFun  aWriter, System.IntPtr  aClosure, System.UInt32  aCount);
+		new uint ReadSegments(nsWriteSegmentFun aWriter, System.IntPtr aClosure, uint aCount);
 		
 		/// <summary>
         /// @return true if stream is non-blocking
@@ -144,7 +144,7 @@ namespace Skybound.Gecko
         /// from a JS string to a C++ character array.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetData([MarshalAs(UnmanagedType.LPStr)] System.String  data, System.Int32  dataLen);
+		void SetData([MarshalAs(UnmanagedType.LPStr)] string data, int dataLen);
 		
 		/// <summary>
         /// AdoptData - assign data to the input stream.  the input stream takes
@@ -155,7 +155,7 @@ namespace Skybound.Gecko
         /// @param dataLen   - stream data length (-1 if length should be computed)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AdoptData(System.IntPtr  data, System.Int32  dataLen);
+		void AdoptData(System.IntPtr data, int dataLen);
 		
 		/// <summary>
         /// ShareData - assign data to the input stream.  the input stream references
@@ -166,6 +166,6 @@ namespace Skybound.Gecko
         /// @param dataLen   - stream data length (-1 if length should be computed)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ShareData([MarshalAs(UnmanagedType.LPStr)] System.String  data, System.Int32  dataLen);
+		void ShareData([MarshalAs(UnmanagedType.LPStr)] string data, int dataLen);
 	}
 }

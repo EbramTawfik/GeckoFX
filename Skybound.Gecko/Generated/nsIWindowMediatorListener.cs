@@ -38,16 +38,16 @@ namespace Skybound.Gecko
 		/// <param name='window'> </param>
 		/// <param name='newTitle'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnWindowTitleChange([MarshalAs(UnmanagedType.Interface)] nsIXULWindow  window, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string newTitle);
+		void OnWindowTitleChange([MarshalAs(UnmanagedType.Interface)] nsIXULWindow window, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string newTitle);
 		
 		/// <summary>Member OnOpenWindow </summary>
 		/// <param name='window'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnOpenWindow([MarshalAs(UnmanagedType.Interface)] nsIXULWindow  window);
+		void OnOpenWindow([MarshalAs(UnmanagedType.Interface)] nsIXULWindow window);
 		
 		/// <summary>Member OnCloseWindow </summary>
 		/// <param name='window'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnCloseWindow([MarshalAs(UnmanagedType.Interface)] nsIXULWindow  window);
+		void OnCloseWindow([MarshalAs(UnmanagedType.Interface)] nsIXULWindow window);
 	}
 }

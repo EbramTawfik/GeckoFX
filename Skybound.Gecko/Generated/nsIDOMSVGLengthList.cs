@@ -35,9 +35,9 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetNumberOfItemsAttribute </summary>
-		/// <returns>A System.UInt32 </returns>
+		/// <returns>A System.UInt32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetNumberOfItemsAttribute();
+		uint GetNumberOfItemsAttribute();
 		
 		/// <summary>Member Clear </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -46,37 +46,43 @@ namespace Skybound.Gecko
 		/// <summary>
         /// raises(nsIDOMDOMException);
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMSVGLength Initialize([MarshalAs(UnmanagedType.Interface)] nsIDOMSVGLength  newItem);
+		nsIDOMSVGLength Initialize([MarshalAs(UnmanagedType.Interface)] nsIDOMSVGLength newItem);
 		
 		/// <summary>
         /// raises(nsIDOMDOMException, nsIDOMSVGException);
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMSVGLength GetItem(System.UInt32  index);
+		nsIDOMSVGLength GetItem(uint index);
 		
 		/// <summary>
         /// raises(nsIDOMDOMException);
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMSVGLength InsertItemBefore([MarshalAs(UnmanagedType.Interface)] nsIDOMSVGLength  newItem, System.UInt32  index);
+		nsIDOMSVGLength InsertItemBefore([MarshalAs(UnmanagedType.Interface)] nsIDOMSVGLength newItem, uint index);
 		
 		/// <summary>
         /// raises(nsIDOMDOMException, nsIDOMSVGException);
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMSVGLength ReplaceItem([MarshalAs(UnmanagedType.Interface)] nsIDOMSVGLength  newItem, System.UInt32  index);
+		nsIDOMSVGLength ReplaceItem([MarshalAs(UnmanagedType.Interface)] nsIDOMSVGLength newItem, uint index);
 		
 		/// <summary>
         /// raises(nsIDOMDOMException, nsIDOMSVGException);
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMSVGLength RemoveItem(System.UInt32  index);
+		nsIDOMSVGLength RemoveItem(uint index);
 		
 		/// <summary>
         /// raises(nsIDOMDOMException);
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMSVGLength AppendItem([MarshalAs(UnmanagedType.Interface)] nsIDOMSVGLength  newItem);
+		nsIDOMSVGLength AppendItem([MarshalAs(UnmanagedType.Interface)] nsIDOMSVGLength newItem);
 	}
 }

@@ -35,38 +35,38 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetFocusedElementAttribute </summary>
-		/// <returns>A nsIDOMElement </returns>
+		/// <returns>A nsIDOMElement</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMElement  GetFocusedElementAttribute();
+		nsIDOMElement GetFocusedElementAttribute();
 		
 		/// <summary>Member SetFocusedElementAttribute </summary>
 		/// <param name='aFocusedElement'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFocusedElementAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  aFocusedElement);
+		void SetFocusedElementAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aFocusedElement);
 		
 		/// <summary>Member GetFocusedWindowAttribute </summary>
-		/// <returns>A nsIDOMWindow </returns>
+		/// <returns>A nsIDOMWindow</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMWindow  GetFocusedWindowAttribute();
+		nsIDOMWindow GetFocusedWindowAttribute();
 		
 		/// <summary>Member SetFocusedWindowAttribute </summary>
 		/// <param name='aFocusedWindow'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFocusedWindowAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  aFocusedWindow);
+		void SetFocusedWindowAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aFocusedWindow);
 		
 		/// <summary>Member AddCommandUpdater </summary>
 		/// <param name='updater'> </param>
 		/// <param name='events'> </param>
 		/// <param name='targets'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddCommandUpdater([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  updater, [MarshalAs(UnmanagedType.LPStruct)] nsAString events, [MarshalAs(UnmanagedType.LPStruct)] nsAString targets);
+		void AddCommandUpdater([MarshalAs(UnmanagedType.Interface)] nsIDOMElement updater, [MarshalAs(UnmanagedType.LPStruct)] nsAString events, [MarshalAs(UnmanagedType.LPStruct)] nsAString targets);
 		
 		/// <summary>Member RemoveCommandUpdater </summary>
 		/// <param name='updater'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveCommandUpdater([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  updater);
+		void RemoveCommandUpdater([MarshalAs(UnmanagedType.Interface)] nsIDOMElement updater);
 		
 		/// <summary>Member UpdateCommands </summary>
 		/// <param name='eventName'> </param>
@@ -76,11 +76,13 @@ namespace Skybound.Gecko
 		/// <summary>Member GetControllerForCommand </summary>
 		/// <param name='command'> </param>
 		/// <returns>A nsIController</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIController GetControllerForCommand([MarshalAs(UnmanagedType.LPStr)] System.String  command);
+		nsIController GetControllerForCommand([MarshalAs(UnmanagedType.LPStr)] string command);
 		
 		/// <summary>Member GetControllers </summary>
 		/// <returns>A nsIControllers</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIControllers GetControllers();
 		
@@ -95,16 +97,16 @@ namespace Skybound.Gecko
 		/// <summary>Member AdvanceFocusIntoSubtree </summary>
 		/// <param name='elt'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AdvanceFocusIntoSubtree([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  elt);
+		void AdvanceFocusIntoSubtree([MarshalAs(UnmanagedType.Interface)] nsIDOMElement elt);
 		
 		/// <summary>Member GetSuppressFocusScrollAttribute </summary>
-		/// <returns>A System.Boolean </returns>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetSuppressFocusScrollAttribute();
+		bool GetSuppressFocusScrollAttribute();
 		
 		/// <summary>Member SetSuppressFocusScrollAttribute </summary>
 		/// <param name='aSuppressFocusScroll'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSuppressFocusScrollAttribute(System.Boolean  aSuppressFocusScroll);
+		void SetSuppressFocusScrollAttribute(bool aSuppressFocusScroll);
 	}
 }

@@ -54,7 +54,7 @@ namespace Skybound.Gecko
         /// referrer.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddURI([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, System.Boolean  aRedirect, System.Boolean  aToplevel, [MarshalAs(UnmanagedType.Interface)] nsIURI  aReferrer);
+		void AddURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, bool aRedirect, bool aToplevel, [MarshalAs(UnmanagedType.Interface)] nsIURI aReferrer);
 		
 		/// <summary>
         /// Checks to see whether the given URI is in history.
@@ -63,7 +63,7 @@ namespace Skybound.Gecko
         /// @return true if a URI has been visited
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsVisited([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI);
+		bool IsVisited([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 		
 		/// <summary>
         /// Set the page title for the given uri. URIs that are not already in
@@ -73,6 +73,6 @@ namespace Skybound.Gecko
         /// @param aTitle  the page title
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPageTitle([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString aTitle);
+		void SetPageTitle([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString aTitle);
 	}
 }

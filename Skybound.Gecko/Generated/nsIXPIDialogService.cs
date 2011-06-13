@@ -67,7 +67,7 @@ namespace Skybound.Gecko
         /// @return true to install, false to cancel
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool ConfirmInstall([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  parent, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler", SizeParamIndex=2)] string packageList, System.UInt32  count);
+		bool ConfirmInstall([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow parent, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler", SizeParamIndex=2)] string packageList, uint count);
 		
 		/// <summary>
         /// @brief Create and open a download-and-install progress dialog
@@ -90,6 +90,6 @@ namespace Skybound.Gecko
         /// @param observer      nsIObserver to receive messages from the dialog
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OpenProgressDialog([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler", SizeParamIndex=1)] string packageList, System.UInt32  count, [MarshalAs(UnmanagedType.Interface)] nsIObserver  observer);
+		void OpenProgressDialog([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler", SizeParamIndex=1)] string packageList, uint count, [MarshalAs(UnmanagedType.Interface)] nsIObserver observer);
 	}
 }

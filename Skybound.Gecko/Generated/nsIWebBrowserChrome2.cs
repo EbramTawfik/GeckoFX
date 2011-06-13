@@ -43,7 +43,7 @@ namespace Skybound.Gecko
         /// no status.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetStatus(System.UInt32  statusType, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string status);
+		new void SetStatus(uint statusType, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string status);
 		
 		/// <summary>
         /// The currently loaded WebBrowser.  The browser chrome may be
@@ -55,7 +55,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIWebBrowser  GetWebBrowserAttribute();
+		new nsIWebBrowser GetWebBrowserAttribute();
 		
 		/// <summary>
         /// The currently loaded WebBrowser.  The browser chrome may be
@@ -66,7 +66,7 @@ namespace Skybound.Gecko
         /// setting up listeners etc.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetWebBrowserAttribute([MarshalAs(UnmanagedType.Interface)] nsIWebBrowser  aWebBrowser);
+		new void SetWebBrowserAttribute([MarshalAs(UnmanagedType.Interface)] nsIWebBrowser aWebBrowser);
 		
 		/// <summary>
         /// The chrome flags for this browser chrome. The implementation should
@@ -74,7 +74,7 @@ namespace Skybound.Gecko
         /// appropriately.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.UInt32  GetChromeFlagsAttribute();
+		new uint GetChromeFlagsAttribute();
 		
 		/// <summary>
         /// The chrome flags for this browser chrome. The implementation should
@@ -82,7 +82,7 @@ namespace Skybound.Gecko
         /// appropriately.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetChromeFlagsAttribute(System.UInt32  aChromeFlags);
+		new void SetChromeFlagsAttribute(uint aChromeFlags);
 		
 		/// <summary>
         /// Asks the implementer to destroy the window associated with this
@@ -98,7 +98,7 @@ namespace Skybound.Gecko
         /// @param aCY new height of the browser
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SizeBrowserTo(System.Int32  aCX, System.Int32  aCY);
+		new void SizeBrowserTo(int aCX, int aCY);
 		
 		/// <summary>
         /// Shows the window as a modal window.
@@ -121,7 +121,7 @@ namespace Skybound.Gecko
         /// @param aStatus - the result code to return from showAsModal
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void ExitModalEventLoop(System.Int32  aStatus);
+		new void ExitModalEventLoop(int aStatus);
 		
 		/// <summary>
         /// Called when the status text in the chrome needs to be updated.  This
@@ -139,6 +139,6 @@ namespace Skybound.Gecko
         /// be null if there is no context.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetStatusWithContext(System.UInt32  statusType, [MarshalAs(UnmanagedType.LPStruct)] nsAString statusText, [MarshalAs(UnmanagedType.Interface)] nsISupports  statusContext);
+		void SetStatusWithContext(uint statusType, [MarshalAs(UnmanagedType.LPStruct)] nsAString statusText, [MarshalAs(UnmanagedType.Interface)] nsISupports statusContext);
 	}
 }

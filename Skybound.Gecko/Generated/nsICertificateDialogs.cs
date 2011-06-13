@@ -49,7 +49,7 @@ namespace Skybound.Gecko
         /// @return true if the user allows to import the certificate.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool ConfirmDownloadCACert([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor  ctx, [MarshalAs(UnmanagedType.Interface)] nsIX509Cert  cert, out System.UInt32  trust);
+		bool ConfirmDownloadCACert([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor ctx, [MarshalAs(UnmanagedType.Interface)] nsIX509Cert cert, out uint trust);
 		
 		/// <summary>
         /// UI shown when a web site has delivered a CA certificate to
@@ -59,7 +59,7 @@ namespace Skybound.Gecko
         /// @param ctx A user interface context.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NotifyCACertExists([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor  ctx);
+		void NotifyCACertExists([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor ctx);
 		
 		/// <summary>
         /// UI shown when a user's personal certificate is going to be
@@ -76,7 +76,7 @@ namespace Skybound.Gecko
         /// @return false if the user requests to cancel.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool SetPKCS12FilePassword([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor  ctx, [MarshalAs(UnmanagedType.LPStruct)] nsAString password);
+		bool SetPKCS12FilePassword([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor ctx, [MarshalAs(UnmanagedType.LPStruct)] nsAString password);
 		
 		/// <summary>
         /// UI shown when a user is about to restore a personal
@@ -90,7 +90,7 @@ namespace Skybound.Gecko
         /// @return false if the user requests to cancel.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetPKCS12FilePassword([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor  ctx, [MarshalAs(UnmanagedType.LPStruct)] nsAString password);
+		bool GetPKCS12FilePassword([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor ctx, [MarshalAs(UnmanagedType.LPStruct)] nsAString password);
 		
 		/// <summary>
         /// UI shown when a certificate needs to be shown to the user.
@@ -101,7 +101,7 @@ namespace Skybound.Gecko
         /// @param cert The certificate to be shown to the user.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ViewCert([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor  ctx, [MarshalAs(UnmanagedType.Interface)] nsIX509Cert  cert);
+		void ViewCert([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor ctx, [MarshalAs(UnmanagedType.Interface)] nsIX509Cert cert);
 		
 		/// <summary>
         /// UI shown after a Certificate Revocation List (CRL) has been
@@ -111,6 +111,6 @@ namespace Skybound.Gecko
         /// @param crl Information describing the CRL that was imported.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CrlImportStatusDialog([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor  ctx, [MarshalAs(UnmanagedType.Interface)] nsICRLInfo  crl);
+		void CrlImportStatusDialog([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor ctx, [MarshalAs(UnmanagedType.Interface)] nsICRLInfo crl);
 	}
 }

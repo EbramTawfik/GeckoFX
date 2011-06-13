@@ -72,7 +72,7 @@ namespace Skybound.Gecko
         /// @return FALSE drag is cancelled, does not go to OS
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool AllowStartDrag([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent  @event);
+		bool AllowStartDrag([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent @event);
 		
 		/// <summary>
         /// Tells gecko whether a drop is allowed on this content area
@@ -87,7 +87,7 @@ namespace Skybound.Gecko
         /// will change the cursor to "reject".
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool AllowDrop([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent  @event, [MarshalAs(UnmanagedType.Interface)] nsIDragSession  session);
+		bool AllowDrop([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent @event, [MarshalAs(UnmanagedType.Interface)] nsIDragSession session);
 		
 		/// <summary>
         /// Alter the flavors or data presented to the OS
@@ -104,7 +104,7 @@ namespace Skybound.Gecko
         /// @return FALSE copy/drag is cancelled, does not go to OS
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool OnCopyOrDrag([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent  aEvent, [MarshalAs(UnmanagedType.Interface)] nsITransferable  trans);
+		bool OnCopyOrDrag([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent aEvent, [MarshalAs(UnmanagedType.Interface)] nsITransferable trans);
 		
 		/// <summary>
         /// Provide an alternative action to the built-in behavior when
@@ -119,6 +119,6 @@ namespace Skybound.Gecko
         /// @return FALSE action was not overridden, do built-in behavior
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool OnPasteOrDrop([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent  @event, [MarshalAs(UnmanagedType.Interface)] nsITransferable  trans);
+		bool OnPasteOrDrop([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent @event, [MarshalAs(UnmanagedType.Interface)] nsITransferable trans);
 	}
 }

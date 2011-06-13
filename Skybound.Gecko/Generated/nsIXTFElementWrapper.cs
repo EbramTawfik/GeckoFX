@@ -35,37 +35,37 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetElementNodeAttribute </summary>
-		/// <returns>A nsIDOMElement </returns>
+		/// <returns>A nsIDOMElement</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMElement  GetElementNodeAttribute();
+		nsIDOMElement GetElementNodeAttribute();
 		
 		/// <summary>Member GetDocumentFrameElementAttribute </summary>
-		/// <returns>A nsIDOMElement </returns>
+		/// <returns>A nsIDOMElement</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMElement  GetDocumentFrameElementAttribute();
+		nsIDOMElement GetDocumentFrameElementAttribute();
 		
 		/// <summary>
         /// Events can be unmasked by setting the corresponding bit as given
         /// by the NOTIFY_* constants in nsIXTFElement:
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetNotificationMaskAttribute();
+		uint GetNotificationMaskAttribute();
 		
 		/// <summary>
         /// Events can be unmasked by setting the corresponding bit as given
         /// by the NOTIFY_* constants in nsIXTFElement:
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetNotificationMaskAttribute(System.UInt32  aNotificationMask);
+		void SetNotificationMaskAttribute(uint aNotificationMask);
 		
 		/// <summary>
         /// Sets the intrinsic state for the element.
         /// @see nsIContent::IntrinsicState().
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetIntrinsicState(System.UInt32  newState);
+		void SetIntrinsicState(uint newState);
 		
 		/// <summary>
         /// This sets the name of the class attribute.
@@ -73,6 +73,6 @@ namespace Skybound.Gecko
         /// Note! nsIXTFAttributeHandler can't be used to handle class attribute.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetClassAttributeName([MarshalAs(UnmanagedType.Interface)] nsIAtom  name);
+		void SetClassAttributeName([MarshalAs(UnmanagedType.Interface)] nsIAtom name);
 	}
 }

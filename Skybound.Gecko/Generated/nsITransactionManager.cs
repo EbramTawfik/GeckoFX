@@ -49,7 +49,7 @@ namespace Skybound.Gecko
         /// @param aTransaction the transaction to do.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DoTransaction([MarshalAs(UnmanagedType.Interface)] nsITransaction  aTransaction);
+		void DoTransaction([MarshalAs(UnmanagedType.Interface)] nsITransaction aTransaction);
 		
 		/// <summary>
         /// Pops the topmost transaction on the undo stack, calls it's
@@ -91,13 +91,13 @@ namespace Skybound.Gecko
         /// The number of items on the undo stack.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetNumberOfUndoItemsAttribute();
+		int GetNumberOfUndoItemsAttribute();
 		
 		/// <summary>
         /// The number of items on the redo stack.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetNumberOfRedoItemsAttribute();
+		int GetNumberOfRedoItemsAttribute();
 		
 		/// <summary>
         /// Sets the maximum number of transaction items the transaction manager will
@@ -113,7 +113,7 @@ namespace Skybound.Gecko
         /// on both the undo and redo stacks.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetMaxTransactionCountAttribute();
+		int GetMaxTransactionCountAttribute();
 		
 		/// <summary>
         /// Sets the maximum number of transaction items the transaction manager will
@@ -129,7 +129,7 @@ namespace Skybound.Gecko
         /// on both the undo and redo stacks.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMaxTransactionCountAttribute(System.Int32  aMaxTransactionCount);
+		void SetMaxTransactionCountAttribute(int aMaxTransactionCount);
 		
 		/// <summary>
         /// Returns an AddRef'd pointer to the transaction at the top of the
@@ -137,6 +137,7 @@ namespace Skybound.Gecko
         /// return a null in some implementations if there is a batch at the top
         /// of the undo stack.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsITransaction PeekUndoStack();
 		
@@ -146,6 +147,7 @@ namespace Skybound.Gecko
         /// return a null in some implementations if there is a batch at the top
         /// of the redo stack.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsITransaction PeekRedoStack();
 		
@@ -154,6 +156,7 @@ namespace Skybound.Gecko
         /// transaction at the top of the undo stack will actually be at the
         /// index 'n-1' in the list, where 'n' is the number of items in the list.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsITransactionList GetUndoList();
 		
@@ -162,6 +165,7 @@ namespace Skybound.Gecko
         /// transaction at the top of the redo stack will actually be at the
         /// index 'n-1' in the list, where 'n' is the number of items in the list.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsITransactionList GetRedoList();
 		
@@ -173,7 +177,7 @@ namespace Skybound.Gecko
         /// @param aListener the lister to add.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddListener([MarshalAs(UnmanagedType.Interface)] nsITransactionListener  aListener);
+		void AddListener([MarshalAs(UnmanagedType.Interface)] nsITransactionListener aListener);
 		
 		/// <summary>
         /// Removes a listener from the transaction manager's notification list.
@@ -182,6 +186,6 @@ namespace Skybound.Gecko
         /// @param aListener the lister to remove.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveListener([MarshalAs(UnmanagedType.Interface)] nsITransactionListener  aListener);
+		void RemoveListener([MarshalAs(UnmanagedType.Interface)] nsITransactionListener aListener);
 	}
 }

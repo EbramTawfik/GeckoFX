@@ -53,13 +53,13 @@ namespace Skybound.Gecko
         /// The time this CRL was created at.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetLastUpdateAttribute();
+		uint GetLastUpdateAttribute();
 		
 		/// <summary>
         /// The time the suggested next update for this CRL.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetNextUpdateAttribute();
+		uint GetNextUpdateAttribute();
 		
 		/// <summary>
         /// lastUpdate formatted as a human readable string
@@ -85,6 +85,6 @@ namespace Skybound.Gecko
         /// The URL this CRL was last fetched from.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetLastFetchURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aLastFetchURL);
+		void GetLastFetchURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aLastFetchURL);
 	}
 }

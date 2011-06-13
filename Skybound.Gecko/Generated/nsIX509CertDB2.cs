@@ -49,11 +49,12 @@ namespace Skybound.Gecko
         /// @param aName name of the cert for display purposes.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddCertFromBase64([MarshalAs(UnmanagedType.LPStr)] System.String  base64, [MarshalAs(UnmanagedType.LPStr)] System.String  aTrust, [MarshalAs(UnmanagedType.LPStr)] System.String  aName);
+		void AddCertFromBase64([MarshalAs(UnmanagedType.LPStr)] string base64, [MarshalAs(UnmanagedType.LPStr)] string aTrust, [MarshalAs(UnmanagedType.LPStr)] string aName);
 		
 		/// <summary>
         /// Get all the known certs in the database
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIX509CertList GetCerts();
 	}

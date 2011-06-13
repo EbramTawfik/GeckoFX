@@ -57,7 +57,8 @@ namespace Skybound.Gecko
         /// connection should be used.  Use aProxyService.newProxyInfo to
         /// construct nsIProxyInfo objects.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIProxyInfo ApplyFilter([MarshalAs(UnmanagedType.Interface)] nsIProtocolProxyService  aProxyService, [MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, [MarshalAs(UnmanagedType.Interface)] nsIProxyInfo  aProxy);
+		nsIProxyInfo ApplyFilter([MarshalAs(UnmanagedType.Interface)] nsIProtocolProxyService aProxyService, [MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIProxyInfo aProxy);
 	}
 }

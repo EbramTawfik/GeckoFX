@@ -59,7 +59,7 @@ namespace Skybound.Gecko
         /// goes away.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		imgIRequest LoadImage([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, [MarshalAs(UnmanagedType.Interface)] nsIURI  aInitialDocumentURL, [MarshalAs(UnmanagedType.Interface)] nsIURI  aReferrerURI, [MarshalAs(UnmanagedType.Interface)] nsILoadGroup  aLoadGroup, imgIDecoderObserver  aObserver, [MarshalAs(UnmanagedType.Interface)] nsISupports  aCX, System.UInt32  aLoadFlags, [MarshalAs(UnmanagedType.Interface)] nsISupports  cacheKey, imgIRequest  aRequest, [MarshalAs(UnmanagedType.Interface)] nsIChannelPolicy  channelPolicy);
+		imgIRequest LoadImage([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIURI aInitialDocumentURL, [MarshalAs(UnmanagedType.Interface)] nsIURI aReferrerURI, [MarshalAs(UnmanagedType.Interface)] nsILoadGroup aLoadGroup, imgIDecoderObserver aObserver, [MarshalAs(UnmanagedType.Interface)] nsISupports aCX, uint aLoadFlags, [MarshalAs(UnmanagedType.Interface)] nsISupports cacheKey, imgIRequest aRequest, [MarshalAs(UnmanagedType.Interface)] nsIChannelPolicy channelPolicy);
 		
 		/// <summary>
         /// Start the load and decode of an image.
@@ -79,7 +79,7 @@ namespace Skybound.Gecko
         /// make sure to Cancel() the resulting request before the observer goes away.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		imgIRequest LoadImageWithChannel([MarshalAs(UnmanagedType.Interface)] nsIChannel  aChannel, imgIDecoderObserver  aObserver, [MarshalAs(UnmanagedType.Interface)] nsISupports  cx, [MarshalAs(UnmanagedType.Interface)] out nsIStreamListener  aListener);
+		imgIRequest LoadImageWithChannel([MarshalAs(UnmanagedType.Interface)] nsIChannel aChannel, imgIDecoderObserver aObserver, [MarshalAs(UnmanagedType.Interface)] nsISupports cx, [MarshalAs(UnmanagedType.Interface)] out nsIStreamListener aListener);
 		
 		/// <summary>
         /// Checks if a decoder for the an image with the given mime type is available
@@ -87,6 +87,6 @@ namespace Skybound.Gecko
         /// @return true if a decoder is available, false otherwise
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool SupportImageWithMimeType([MarshalAs(UnmanagedType.LPStr)] System.String  mimeType);
+		bool SupportImageWithMimeType([MarshalAs(UnmanagedType.LPStr)] string mimeType);
 	}
 }

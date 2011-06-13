@@ -35,36 +35,36 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetSelectedIndexAttribute </summary>
-		/// <returns>A System.Int32 </returns>
+		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetSelectedIndexAttribute();
+		int GetSelectedIndexAttribute();
 		
 		/// <summary>Member SetSelectedIndexAttribute </summary>
 		/// <param name='aSelectedIndex'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSelectedIndexAttribute(System.Int32  aSelectedIndex);
+		void SetSelectedIndexAttribute(int aSelectedIndex);
 		
 		/// <summary>Member SetOption </summary>
 		/// <param name='index'> </param>
 		/// <param name='option'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOption(System.Int32  index, [MarshalAs(UnmanagedType.Interface)] nsIDOMHTMLOptionElement  option);
+		void SetOption(int index, [MarshalAs(UnmanagedType.Interface)] nsIDOMHTMLOptionElement option);
 		
 		/// <summary>Member GetSelectAttribute </summary>
-		/// <returns>A nsIDOMHTMLSelectElement </returns>
+		/// <returns>A nsIDOMHTMLSelectElement</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMHTMLSelectElement  GetSelectAttribute();
+		nsIDOMHTMLSelectElement GetSelectAttribute();
 		
 		/// <summary>Member Add </summary>
 		/// <param name='option'> </param>
 		/// <param name='index'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Add([MarshalAs(UnmanagedType.Interface)] nsIDOMHTMLOptionElement  option, System.Int32  index);
+		void Add([MarshalAs(UnmanagedType.Interface)] nsIDOMHTMLOptionElement option, int index);
 		
 		/// <summary>Member Remove </summary>
 		/// <param name='index'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Remove(System.Int32  index);
+		void Remove(int index);
 	}
 }

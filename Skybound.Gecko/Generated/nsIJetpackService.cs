@@ -36,6 +36,7 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member CreateJetpack </summary>
 		/// <returns>A nsIJetpack</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIJetpack CreateJetpack();
 	}

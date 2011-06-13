@@ -70,7 +70,7 @@ namespace Skybound.Gecko
         /// specified by the IID.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddWebBrowserListener([MarshalAs(UnmanagedType.Interface)] nsIWeakReference  aListener, ref System.Guid aIID);
+		void AddWebBrowserListener([MarshalAs(UnmanagedType.Interface)] nsIWeakReference aListener, ref System.Guid aIID);
 		
 		/// <summary>
         /// Removes a previously registered listener.
@@ -87,7 +87,7 @@ namespace Skybound.Gecko
         /// @see nsIWeakReference
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveWebBrowserListener([MarshalAs(UnmanagedType.Interface)] nsIWeakReference  aListener, ref System.Guid aIID);
+		void RemoveWebBrowserListener([MarshalAs(UnmanagedType.Interface)] nsIWeakReference aListener, ref System.Guid aIID);
 		
 		/// <summary>
         /// The chrome object associated with the browser instance. The embedder
@@ -128,7 +128,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIWebBrowserChrome  GetContainerWindowAttribute();
+		nsIWebBrowserChrome GetContainerWindowAttribute();
 		
 		/// <summary>
         /// The chrome object associated with the browser instance. The embedder
@@ -168,7 +168,7 @@ namespace Skybound.Gecko
         /// @see nsIWebProgressListener
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetContainerWindowAttribute([MarshalAs(UnmanagedType.Interface)] nsIWebBrowserChrome  aContainerWindow);
+		void SetContainerWindowAttribute([MarshalAs(UnmanagedType.Interface)] nsIWebBrowserChrome aContainerWindow);
 		
 		/// <summary>
         /// URI content listener parent. The embedder may set this property to
@@ -187,7 +187,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURIContentListener  GetParentURIContentListenerAttribute();
+		nsIURIContentListener GetParentURIContentListenerAttribute();
 		
 		/// <summary>
         /// URI content listener parent. The embedder may set this property to
@@ -205,7 +205,7 @@ namespace Skybound.Gecko
         /// @see nsIURIContentListener
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetParentURIContentListenerAttribute([MarshalAs(UnmanagedType.Interface)] nsIURIContentListener  aParentURIContentListener);
+		void SetParentURIContentListenerAttribute([MarshalAs(UnmanagedType.Interface)] nsIURIContentListener aParentURIContentListener);
 		
 		/// <summary>
         /// The top-level DOM window. The embedder may walk the entire
@@ -215,7 +215,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMWindow  GetContentDOMWindowAttribute();
+		nsIDOMWindow GetContentDOMWindowAttribute();
 		
 		/// <summary>
         /// Whether this web browser is active. Active means that it's visible
@@ -227,7 +227,7 @@ namespace Skybound.Gecko
         /// appropriate.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsActiveAttribute();
+		bool GetIsActiveAttribute();
 		
 		/// <summary>
         /// Whether this web browser is active. Active means that it's visible
@@ -239,6 +239,6 @@ namespace Skybound.Gecko
         /// appropriate.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetIsActiveAttribute(System.Boolean  aIsActive);
+		void SetIsActiveAttribute(bool aIsActive);
 	}
 }

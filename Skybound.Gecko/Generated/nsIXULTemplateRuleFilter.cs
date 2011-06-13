@@ -55,6 +55,6 @@ namespace Skybound.Gecko
         /// @return true if the rule matches
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Match([MarshalAs(UnmanagedType.Interface)] nsIXULTemplateResult  aRef, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode  aRule);
+		bool Match([MarshalAs(UnmanagedType.Interface)] nsIXULTemplateResult aRef, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aRule);
 	}
 }

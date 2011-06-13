@@ -43,7 +43,7 @@ namespace Skybound.Gecko
         /// @param    aValue      the new value of the pref
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnContentPrefSet([MarshalAs(UnmanagedType.LPStruct)] nsAString aGroup, [MarshalAs(UnmanagedType.LPStruct)] nsAString aName, [MarshalAs(UnmanagedType.Interface)] nsIVariant  aValue);
+		void OnContentPrefSet([MarshalAs(UnmanagedType.LPStruct)] nsAString aGroup, [MarshalAs(UnmanagedType.LPStruct)] nsAString aName, [MarshalAs(UnmanagedType.Interface)] nsIVariant aValue);
 		
 		/// <summary>
         /// Called when a content pref is removed.
@@ -66,7 +66,7 @@ namespace Skybound.Gecko
 		/// <summary>Member OnResult </summary>
 		/// <param name='aResult'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnResult([MarshalAs(UnmanagedType.Interface)] nsIVariant  aResult);
+		void OnResult([MarshalAs(UnmanagedType.Interface)] nsIVariant aResult);
 	}
 	
 	/// <summary>nsIContentPrefService </summary>
@@ -100,8 +100,9 @@ namespace Skybound.Gecko
         /// @throws   NS_ERROR_ILLEGAL_VALUE if aGroup is not a string, nsIURI, or null
         /// @throws   NS_ERROR_ILLEGAL_VALUE if aName is null or an empty string
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant GetPref([MarshalAs(UnmanagedType.Interface)] nsIVariant  aGroup, [MarshalAs(UnmanagedType.LPStruct)] nsAString aName, System.IntPtr aCallback);
+		nsIVariant GetPref([MarshalAs(UnmanagedType.Interface)] nsIVariant aGroup, [MarshalAs(UnmanagedType.LPStruct)] nsAString aName, System.IntPtr aCallback);
 		
 		/// <summary>
         /// Set a pref.
@@ -119,7 +120,7 @@ namespace Skybound.Gecko
         /// @throws   NS_ERROR_ILLEGAL_VALUE if aName is null or an empty string
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPref([MarshalAs(UnmanagedType.Interface)] nsIVariant  aGroup, [MarshalAs(UnmanagedType.LPStruct)] nsAString aName, [MarshalAs(UnmanagedType.Interface)] nsIVariant  aValue);
+		void SetPref([MarshalAs(UnmanagedType.Interface)] nsIVariant aGroup, [MarshalAs(UnmanagedType.LPStruct)] nsAString aName, [MarshalAs(UnmanagedType.Interface)] nsIVariant aValue);
 		
 		/// <summary>
         /// Check whether or not a pref exists.
@@ -133,7 +134,7 @@ namespace Skybound.Gecko
         /// @throws   NS_ERROR_ILLEGAL_VALUE if aName is null or an empty string
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool HasPref([MarshalAs(UnmanagedType.Interface)] nsIVariant  aGroup, [MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
+		bool HasPref([MarshalAs(UnmanagedType.Interface)] nsIVariant aGroup, [MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
 		
 		/// <summary>
         /// Remove a pref.
@@ -147,7 +148,7 @@ namespace Skybound.Gecko
         /// @throws   NS_ERROR_ILLEGAL_VALUE if aName is null or an empty string
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemovePref([MarshalAs(UnmanagedType.Interface)] nsIVariant  aGroup, [MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
+		void RemovePref([MarshalAs(UnmanagedType.Interface)] nsIVariant aGroup, [MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
 		
 		/// <summary>
         /// Remove all grouped prefs.  Useful for removing references to the sites
@@ -176,8 +177,9 @@ namespace Skybound.Gecko
         /// @returns  a property bag of prefs
         /// @throws   NS_ERROR_ILLEGAL_VALUE if aGroup is not a string, nsIURI, or null
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIPropertyBag2 GetPrefs([MarshalAs(UnmanagedType.Interface)] nsIVariant  aGroup);
+		nsIPropertyBag2 GetPrefs([MarshalAs(UnmanagedType.Interface)] nsIVariant aGroup);
 		
 		/// <summary>
         /// Get the prefs with the given name.
@@ -187,6 +189,7 @@ namespace Skybound.Gecko
         /// @returns  a property bag of prefs
         /// @throws   NS_ERROR_ILLEGAL_VALUE if aName is null or an empty string
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIPropertyBag2 GetPrefsByName([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
 		
@@ -227,7 +230,7 @@ namespace Skybound.Gecko
         /// and migration code.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		mozIStorageConnection  GetDBConnectionAttribute();
+		mozIStorageConnection GetDBConnectionAttribute();
 	}
 	
 	/// <summary>nsIContentPrefService_MOZILLA_2_0 </summary>
@@ -261,8 +264,9 @@ namespace Skybound.Gecko
         /// @throws   NS_ERROR_ILLEGAL_VALUE if aGroup is not a string, nsIURI, or null
         /// @throws   NS_ERROR_ILLEGAL_VALUE if aName is null or an empty string
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIVariant GetPref([MarshalAs(UnmanagedType.Interface)] nsIVariant  aGroup, [MarshalAs(UnmanagedType.LPStruct)] nsAString aName, System.IntPtr aCallback);
+		new nsIVariant GetPref([MarshalAs(UnmanagedType.Interface)] nsIVariant aGroup, [MarshalAs(UnmanagedType.LPStruct)] nsAString aName, System.IntPtr aCallback);
 		
 		/// <summary>
         /// Set a pref.
@@ -280,7 +284,7 @@ namespace Skybound.Gecko
         /// @throws   NS_ERROR_ILLEGAL_VALUE if aName is null or an empty string
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetPref([MarshalAs(UnmanagedType.Interface)] nsIVariant  aGroup, [MarshalAs(UnmanagedType.LPStruct)] nsAString aName, [MarshalAs(UnmanagedType.Interface)] nsIVariant  aValue);
+		new void SetPref([MarshalAs(UnmanagedType.Interface)] nsIVariant aGroup, [MarshalAs(UnmanagedType.LPStruct)] nsAString aName, [MarshalAs(UnmanagedType.Interface)] nsIVariant aValue);
 		
 		/// <summary>
         /// Check whether or not a pref exists.
@@ -294,7 +298,7 @@ namespace Skybound.Gecko
         /// @throws   NS_ERROR_ILLEGAL_VALUE if aName is null or an empty string
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool HasPref([MarshalAs(UnmanagedType.Interface)] nsIVariant  aGroup, [MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
+		new bool HasPref([MarshalAs(UnmanagedType.Interface)] nsIVariant aGroup, [MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
 		
 		/// <summary>
         /// Remove a pref.
@@ -308,7 +312,7 @@ namespace Skybound.Gecko
         /// @throws   NS_ERROR_ILLEGAL_VALUE if aName is null or an empty string
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void RemovePref([MarshalAs(UnmanagedType.Interface)] nsIVariant  aGroup, [MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
+		new void RemovePref([MarshalAs(UnmanagedType.Interface)] nsIVariant aGroup, [MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
 		
 		/// <summary>
         /// Remove all grouped prefs.  Useful for removing references to the sites
@@ -337,8 +341,9 @@ namespace Skybound.Gecko
         /// @returns  a property bag of prefs
         /// @throws   NS_ERROR_ILLEGAL_VALUE if aGroup is not a string, nsIURI, or null
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIPropertyBag2 GetPrefs([MarshalAs(UnmanagedType.Interface)] nsIVariant  aGroup);
+		new nsIPropertyBag2 GetPrefs([MarshalAs(UnmanagedType.Interface)] nsIVariant aGroup);
 		
 		/// <summary>
         /// Get the prefs with the given name.
@@ -348,6 +353,7 @@ namespace Skybound.Gecko
         /// @returns  a property bag of prefs
         /// @throws   NS_ERROR_ILLEGAL_VALUE if aName is null or an empty string
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIPropertyBag2 GetPrefsByName([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
 		
@@ -388,7 +394,7 @@ namespace Skybound.Gecko
         /// and migration code.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new mozIStorageConnection  GetDBConnectionAttribute();
+		new mozIStorageConnection GetDBConnectionAttribute();
 		
 		/// <summary>
         /// Check whether or not the value of a pref (or its non-existance) is cached.
@@ -402,6 +408,6 @@ namespace Skybound.Gecko
         /// @throws   NS_ERROR_ILLEGAL_VALUE if aName is null or an empty string
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool HasCachedPref([MarshalAs(UnmanagedType.Interface)] nsIVariant  aGroup, [MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
+		bool HasCachedPref([MarshalAs(UnmanagedType.Interface)] nsIVariant aGroup, [MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
 	}
 }

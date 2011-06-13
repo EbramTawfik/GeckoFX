@@ -70,23 +70,26 @@ namespace Skybound.Gecko
         /// @return The date and time formatted as human readable text according to
         /// user preferences or the given locale.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string FormatDateTime([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string locale, System.Int32  dateFormatSelector, System.Int32  timeFormatSelector, System.Int32  year, System.Int32  month, System.Int32  day, System.Int32  hour, System.Int32  minute, System.Int32  second);
+		string FormatDateTime([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string locale, int dateFormatSelector, int timeFormatSelector, int year, int month, int day, int hour, int minute, int second);
 		
 		/// <summary>
         /// Format the given date in a human readable format.
         ///
         /// See FormatDateTime for details.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string FormatDate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string locale, System.Int32  dateFormatSelector, System.Int32  year, System.Int32  month, System.Int32  day);
+		string FormatDate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string locale, int dateFormatSelector, int year, int month, int day);
 		
 		/// <summary>
         /// Format the given time in a human readable format.
         ///
         /// See FormatDateTime for details.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string FormatTime([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string locale, System.Int32  timeFormatSelector, System.Int32  hour, System.Int32  minute, System.Int32  second);
+		string FormatTime([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string locale, int timeFormatSelector, int hour, int minute, int second);
 	}
 }

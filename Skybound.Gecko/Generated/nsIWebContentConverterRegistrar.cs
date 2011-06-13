@@ -73,7 +73,7 @@ namespace Skybound.Gecko
         /// @returns true if the two are logically equivalent, false otherwise
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool Equals([MarshalAs(UnmanagedType.Interface)] nsIHandlerApp  aHandlerApp);
+		new bool Equals([MarshalAs(UnmanagedType.Interface)] nsIHandlerApp aHandlerApp);
 		
 		/// <summary>
         /// Launches the application with the specified URI.
@@ -94,7 +94,7 @@ namespace Skybound.Gecko
         /// off to the system default browser (bug 394479).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void LaunchWithURI([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor  aWindowContext);
+		new void LaunchWithURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor aWindowContext);
 		
 		/// <summary>
         /// The content type handled by the handler
@@ -116,6 +116,7 @@ namespace Skybound.Gecko
         /// @returns The URI of the service with the loading document URI encoded in
         /// it.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsAString GetHandlerURI([MarshalAs(UnmanagedType.LPStruct)] nsAString uri);
 	}
@@ -133,7 +134,7 @@ namespace Skybound.Gecko
         /// content window from which the method has been called.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void RegisterContentHandler([MarshalAs(UnmanagedType.LPStruct)] nsAString mimeType, [MarshalAs(UnmanagedType.LPStruct)] nsAString uri, [MarshalAs(UnmanagedType.LPStruct)] nsAString title, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  contentWindow);
+		new void RegisterContentHandler([MarshalAs(UnmanagedType.LPStruct)] nsAString mimeType, [MarshalAs(UnmanagedType.LPStruct)] nsAString uri, [MarshalAs(UnmanagedType.LPStruct)] nsAString title, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow contentWindow);
 		
 		/// <summary>Member RegisterProtocolHandler </summary>
 		/// <param name='protocol'> </param>
@@ -141,7 +142,7 @@ namespace Skybound.Gecko
 		/// <param name='title'> </param>
 		/// <param name='contentWindow'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void RegisterProtocolHandler([MarshalAs(UnmanagedType.LPStruct)] nsAString protocol, [MarshalAs(UnmanagedType.LPStruct)] nsAString uri, [MarshalAs(UnmanagedType.LPStruct)] nsAString title, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  contentWindow);
+		new void RegisterProtocolHandler([MarshalAs(UnmanagedType.LPStruct)] nsAString protocol, [MarshalAs(UnmanagedType.LPStruct)] nsAString uri, [MarshalAs(UnmanagedType.LPStruct)] nsAString title, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow contentWindow);
 		
 		/// <summary>
         /// Specifies the handler to be used to automatically handle all links of a
@@ -155,7 +156,7 @@ namespace Skybound.Gecko
         /// not already registered.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAutoHandler([MarshalAs(UnmanagedType.LPStruct)] nsAString contentType, [MarshalAs(UnmanagedType.Interface)] nsIWebContentHandlerInfo  handler);
+		void SetAutoHandler([MarshalAs(UnmanagedType.LPStruct)] nsAString contentType, [MarshalAs(UnmanagedType.Interface)] nsIWebContentHandlerInfo handler);
 		
 		/// <summary>
         /// Gets the auto handler specified for a particular content type
@@ -166,6 +167,7 @@ namespace Skybound.Gecko
         /// handler. (Handlers may be registered, just none of them specified
         /// as "automatic").
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIWebContentHandlerInfo GetAutoHandler([MarshalAs(UnmanagedType.LPStruct)] nsAString contentType);
 		
@@ -177,6 +179,7 @@ namespace Skybound.Gecko
         /// The service URI of the handler to locate.
         /// @returns A web service handler that uses the specified uri.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIWebContentHandlerInfo GetWebContentHandlerByURI([MarshalAs(UnmanagedType.LPStruct)] nsAString contentType, [MarshalAs(UnmanagedType.LPStruct)] nsAString uri);
 		
@@ -187,7 +190,7 @@ namespace Skybound.Gecko
         /// The nsIRequest for the load of the content
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void LoadPreferredHandler([MarshalAs(UnmanagedType.Interface)] nsIRequest  request);
+		void LoadPreferredHandler([MarshalAs(UnmanagedType.Interface)] nsIRequest request);
 		
 		/// <summary>
         /// Removes a registered protocol handler
@@ -216,7 +219,7 @@ namespace Skybound.Gecko
         /// @returns An array of nsIWebContentHandlerInfo objects
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIWebContentHandlerInfo  GetContentHandlers([MarshalAs(UnmanagedType.LPStruct)] nsAString contentType, out System.UInt32  count);
+		nsIWebContentHandlerInfo GetContentHandlers([MarshalAs(UnmanagedType.LPStruct)] nsAString contentType, out uint count);
 		
 		/// <summary>
         /// Resets the list of available content handlers to the default set from

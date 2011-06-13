@@ -39,8 +39,8 @@ namespace Skybound.Gecko
 		void AddCookiesToRequest();
 		
 		/// <summary>Member GetHeaderTuplesAttribute </summary>
-		/// <returns>A System.IntPtr </returns>
+		/// <returns>A System.IntPtr</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr  GetHeaderTuplesAttribute();
+		System.IntPtr GetHeaderTuplesAttribute();
 	}
 }

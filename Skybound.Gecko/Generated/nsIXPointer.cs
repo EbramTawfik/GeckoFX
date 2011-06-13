@@ -45,11 +45,12 @@ namespace Skybound.Gecko
         /// all return values, although it would be more user friendly to return
         /// nodes and node lists when they are possible.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMRange Item(System.UInt32  index);
+		nsIDOMRange Item(uint index);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetLengthAttribute();
+		uint GetLengthAttribute();
 	}
 	
 	/// <summary>
@@ -69,10 +70,10 @@ namespace Skybound.Gecko
         /// nsIXPointerSchemeProcessor is currently evaluating.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetCountAttribute();
+		uint GetCountAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSchemeData(System.UInt32  index, [MarshalAs(UnmanagedType.LPStruct)] nsAString scheme, [MarshalAs(UnmanagedType.LPStruct)] nsAString data);
+		void GetSchemeData(uint index, [MarshalAs(UnmanagedType.LPStruct)] nsAString scheme, [MarshalAs(UnmanagedType.LPStruct)] nsAString data);
 	}
 	
 	/// <summary>
@@ -94,8 +95,9 @@ namespace Skybound.Gecko
         /// @param aData     The data in the scheme that needs to be resolved.
         /// @return          The result of the evaluation.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIXPointerResult Evaluate([MarshalAs(UnmanagedType.Interface)] nsIDOMDocument  aDocument, [MarshalAs(UnmanagedType.Interface)] nsIXPointerSchemeContext  aContext, [MarshalAs(UnmanagedType.LPStruct)] nsAString aData);
+		nsIXPointerResult Evaluate([MarshalAs(UnmanagedType.Interface)] nsIDOMDocument aDocument, [MarshalAs(UnmanagedType.Interface)] nsIXPointerSchemeContext aContext, [MarshalAs(UnmanagedType.LPStruct)] nsAString aData);
 	}
 	
 	/// <summary>
@@ -114,7 +116,8 @@ namespace Skybound.Gecko
         /// @param aExpression The XPointer expression string to evaluate.
         /// @return            The result.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIXPointerResult Evaluate([MarshalAs(UnmanagedType.Interface)] nsIDOMDocument  aDocument, [MarshalAs(UnmanagedType.LPStruct)] nsAString aExpression);
+		nsIXPointerResult Evaluate([MarshalAs(UnmanagedType.Interface)] nsIDOMDocument aDocument, [MarshalAs(UnmanagedType.LPStruct)] nsAString aExpression);
 	}
 }

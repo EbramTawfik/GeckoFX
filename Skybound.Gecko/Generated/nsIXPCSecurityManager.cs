@@ -42,24 +42,24 @@ namespace Skybound.Gecko
         /// if that is appropriate.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CanCreateWrapper(System.IntPtr  aJSContext, ref System.Guid aIID, [MarshalAs(UnmanagedType.Interface)] nsISupports  aObj, [MarshalAs(UnmanagedType.Interface)] nsIClassInfo  aClassInfo, ref System.IntPtr  aPolicy);
+		void CanCreateWrapper(System.IntPtr aJSContext, ref System.Guid aIID, [MarshalAs(UnmanagedType.Interface)] nsISupports aObj, [MarshalAs(UnmanagedType.Interface)] nsIClassInfo aClassInfo, ref System.IntPtr aPolicy);
 		
 		/// <summary>Member CanCreateInstance </summary>
 		/// <param name='aJSContext'> </param>
 		/// <param name='aCID'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CanCreateInstance(System.IntPtr  aJSContext, ref System.Guid aCID);
+		void CanCreateInstance(System.IntPtr aJSContext, ref System.Guid aCID);
 		
 		/// <summary>Member CanGetService </summary>
 		/// <param name='aJSContext'> </param>
 		/// <param name='aCID'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CanGetService(System.IntPtr  aJSContext, ref System.Guid aCID);
+		void CanGetService(System.IntPtr aJSContext, ref System.Guid aCID);
 		
 		/// <summary>
         /// Used for aAction below
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CanAccess(System.UInt32  aAction, System.IntPtr aCallContext, System.IntPtr  aJSContext, System.IntPtr  aJSObject, [MarshalAs(UnmanagedType.Interface)] nsISupports  aObj, [MarshalAs(UnmanagedType.Interface)] nsIClassInfo  aClassInfo, System.IntPtr aName, ref System.IntPtr  aPolicy);
+		void CanAccess(uint aAction, System.IntPtr aCallContext, System.IntPtr aJSContext, System.IntPtr aJSObject, [MarshalAs(UnmanagedType.Interface)] nsISupports aObj, [MarshalAs(UnmanagedType.Interface)] nsIClassInfo aClassInfo, System.IntPtr aName, ref System.IntPtr aPolicy);
 	}
 }

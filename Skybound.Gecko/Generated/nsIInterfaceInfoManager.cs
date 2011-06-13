@@ -37,25 +37,30 @@ namespace Skybound.Gecko
 		
 		/// <summary>
         ///this is NOT intended to be scriptable </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIInterfaceInfo GetInfoForIID(System.Guid iid);
 		
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIInterfaceInfo GetInfoForName([MarshalAs(UnmanagedType.LPStr)] System.String  name);
+		nsIInterfaceInfo GetInfoForName([MarshalAs(UnmanagedType.LPStr)] string name);
 		
-		System.Guid GetIIDForName([MarshalAs(UnmanagedType.LPStr)] System.String  name);
+		System.Guid GetIIDForName([MarshalAs(UnmanagedType.LPStr)] string name);
 		
+		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string GetNameForIID(System.Guid iid);
 		
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIEnumerator EnumerateInterfaces();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void AutoRegisterInterfaces();
 		
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIEnumerator EnumerateInterfacesWhoseNamesStartWith([MarshalAs(UnmanagedType.LPStr)] System.String  prefix);
+		nsIEnumerator EnumerateInterfacesWhoseNamesStartWith([MarshalAs(UnmanagedType.LPStr)] string prefix);
 	}
 	
 	/// <summary>nsIInterfaceInfoSuperManager </summary>
@@ -67,28 +72,32 @@ namespace Skybound.Gecko
 		
 		/// <summary>
         ///this is NOT intended to be scriptable </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIInterfaceInfo GetInfoForIID(System.Guid iid);
 		
 		/// <summary>Member GetInfoForName </summary>
 		/// <param name='name'> </param>
 		/// <returns>A nsIInterfaceInfo</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIInterfaceInfo GetInfoForName([MarshalAs(UnmanagedType.LPStr)] System.String  name);
+		new nsIInterfaceInfo GetInfoForName([MarshalAs(UnmanagedType.LPStr)] string name);
 		
 		/// <summary>Member GetIIDForName </summary>
 		/// <param name='name'> </param>
 		/// <returns>A System.Guid</returns>
-		new System.Guid GetIIDForName([MarshalAs(UnmanagedType.LPStr)] System.String  name);
+		new System.Guid GetIIDForName([MarshalAs(UnmanagedType.LPStr)] string name);
 		
 		/// <summary>Member GetNameForIID </summary>
 		/// <param name='iid'> </param>
 		/// <returns>A System.String</returns>
+		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new string GetNameForIID(System.Guid iid);
 		
 		/// <summary>Member EnumerateInterfaces </summary>
 		/// <returns>A nsIEnumerator</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIEnumerator EnumerateInterfaces();
 		
@@ -99,18 +108,19 @@ namespace Skybound.Gecko
 		/// <summary>Member EnumerateInterfacesWhoseNamesStartWith </summary>
 		/// <param name='prefix'> </param>
 		/// <returns>A nsIEnumerator</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIEnumerator EnumerateInterfacesWhoseNamesStartWith([MarshalAs(UnmanagedType.LPStr)] System.String  prefix);
+		new nsIEnumerator EnumerateInterfacesWhoseNamesStartWith([MarshalAs(UnmanagedType.LPStr)] string prefix);
 		
 		/// <summary>Member AddAdditionalManager </summary>
 		/// <param name='manager'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddAdditionalManager([MarshalAs(UnmanagedType.Interface)] nsIInterfaceInfoManager  manager);
+		void AddAdditionalManager([MarshalAs(UnmanagedType.Interface)] nsIInterfaceInfoManager manager);
 		
 		/// <summary>Member RemoveAdditionalManager </summary>
 		/// <param name='manager'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveAdditionalManager([MarshalAs(UnmanagedType.Interface)] nsIInterfaceInfoManager  manager);
+		void RemoveAdditionalManager([MarshalAs(UnmanagedType.Interface)] nsIInterfaceInfoManager manager);
 		
 		/// <summary>Member HasAdditionalManagers </summary>
 		/// <returns>A System.Boolean</returns>
@@ -119,6 +129,7 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member EnumerateAdditionalManagers </summary>
 		/// <returns>A nsISimpleEnumerator</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISimpleEnumerator EnumerateAdditionalManagers();
 	}

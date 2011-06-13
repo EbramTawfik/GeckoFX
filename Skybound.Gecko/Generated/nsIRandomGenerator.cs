@@ -47,6 +47,6 @@ namespace Skybound.Gecko
         /// A buffer that contains random bytes of size aLength.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr  GenerateRandomBytes(System.UInt32  aLength);
+		System.IntPtr GenerateRandomBytes(uint aLength);
 	}
 }

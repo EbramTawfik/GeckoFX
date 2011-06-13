@@ -38,7 +38,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnUsageResult([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, System.UInt32  aUsage);
+		void OnUsageResult([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, uint aUsage);
 	}
 	
 	/// <summary>nsIIndexedDatabaseManager </summary>
@@ -58,7 +58,7 @@ namespace Skybound.Gecko
         /// The callback that will be called when the usage is available.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetUsageForURI([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, [MarshalAs(UnmanagedType.Interface)] nsIIndexedDatabaseUsageCallback  aCallback);
+		void GetUsageForURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIIndexedDatabaseUsageCallback aCallback);
 		
 		/// <summary>
         /// Cancels an asynchronous usage check initiated by a previous call to
@@ -70,7 +70,7 @@ namespace Skybound.Gecko
         /// The callback that will be called when the usage is available.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CancelGetUsageForURI([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, [MarshalAs(UnmanagedType.Interface)] nsIIndexedDatabaseUsageCallback  aCallback);
+		void CancelGetUsageForURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIIndexedDatabaseUsageCallback aCallback);
 		
 		/// <summary>
         /// Removes all databases stored for the given URI. The files may not be
@@ -80,6 +80,6 @@ namespace Skybound.Gecko
         /// The URI whose databases are to be cleared.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ClearDatabasesForURI([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI);
+		void ClearDatabasesForURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 	}
 }

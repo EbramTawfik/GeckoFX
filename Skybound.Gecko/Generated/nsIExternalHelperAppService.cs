@@ -51,8 +51,9 @@ namespace Skybound.Gecko
         /// nsIMIMEInfo and other such influences.
         /// @return A nsIStreamListener which the caller should pump the data into.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIStreamListener DoContent([MarshalAs(UnmanagedType.LPStruct)] nsAString  aMimeContentType, [MarshalAs(UnmanagedType.Interface)] nsIRequest  aRequest, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor  aWindowContext, System.Boolean  aForceSave);
+		nsIStreamListener DoContent([MarshalAs(UnmanagedType.LPStruct)] nsAString aMimeContentType, [MarshalAs(UnmanagedType.Interface)] nsIRequest aRequest, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor aWindowContext, bool aForceSave);
 		
 		/// <summary>
         /// Returns true if data from a URL with this extension combination
@@ -60,7 +61,7 @@ namespace Skybound.Gecko
         /// off to helper apps, false otherwise.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool ApplyDecodingForExtension([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aExtension, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aEncodingType);
+		bool ApplyDecodingForExtension([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aExtension, [MarshalAs(UnmanagedType.LPStruct)] nsAString aEncodingType);
 	}
 	
 	/// <summary>
@@ -79,7 +80,7 @@ namespace Skybound.Gecko
         /// @param aTemporaryFile A temporary file we should delete on exit.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DeleteTemporaryFileOnExit([MarshalAs(UnmanagedType.Interface)] nsIFile  aTemporaryFile);
+		void DeleteTemporaryFileOnExit([MarshalAs(UnmanagedType.Interface)] nsIFile aTemporaryFile);
 	}
 	
 	/// <summary>
@@ -104,7 +105,7 @@ namespace Skybound.Gecko
         /// being canceled.  It is an error to pass a success code.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Cancel(System.Int32  aReason);
+		new void Cancel(int aReason);
 		
 		/// <summary>
         /// The mime info object associated with the content type this helper app
@@ -112,14 +113,14 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIMIMEInfo  GetMIMEInfoAttribute();
+		nsIMIMEInfo GetMIMEInfoAttribute();
 		
 		/// <summary>
         /// The source uri
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI  GetSourceAttribute();
+		nsIURI GetSourceAttribute();
 		
 		/// <summary>
         /// The suggested name for this file
@@ -133,7 +134,7 @@ namespace Skybound.Gecko
         /// @param aNewFileLocation Location where the content should be saved
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SaveToDisk([MarshalAs(UnmanagedType.Interface)] nsIFile  aNewFileLocation, System.Boolean  aRememberThisPreference);
+		void SaveToDisk([MarshalAs(UnmanagedType.Interface)] nsIFile aNewFileLocation, bool aRememberThisPreference);
 		
 		/// <summary>
         /// Use aApplication to launch with this content.
@@ -142,7 +143,7 @@ namespace Skybound.Gecko
         /// @param aRememberThisPreference TRUE if we should remember this choice.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void LaunchWithApplication([MarshalAs(UnmanagedType.Interface)] nsIFile  aApplication, System.Boolean  aRememberThisPreference);
+		void LaunchWithApplication([MarshalAs(UnmanagedType.Interface)] nsIFile aApplication, bool aRememberThisPreference);
 		
 		/// <summary>
         /// The following methods are used by the progress dialog to get or set
@@ -151,7 +152,7 @@ namespace Skybound.Gecko
         /// listener receives the STATE_STOP notification).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetWebProgressListener([MarshalAs(UnmanagedType.Interface)] nsIWebProgressListener2  aWebProgressListener);
+		void SetWebProgressListener([MarshalAs(UnmanagedType.Interface)] nsIWebProgressListener2 aWebProgressListener);
 		
 		/// <summary>
         /// when the stand alone progress window actually closes, it calls this method
@@ -165,24 +166,24 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIFile  GetTargetFileAttribute();
+		nsIFile GetTargetFileAttribute();
 		
 		/// <summary>
         /// The executable-ness of the target file
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetTargetFileIsExecutableAttribute();
+		bool GetTargetFileIsExecutableAttribute();
 		
 		/// <summary>
         /// Time when the download started
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetTimeDownloadStartedAttribute();
+		uint GetTimeDownloadStartedAttribute();
 		
 		/// <summary>
         /// The download content length, or -1 if the length is not available.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int64  GetContentLengthAttribute();
+		long GetContentLengthAttribute();
 	}
 }

@@ -46,17 +46,17 @@ namespace Skybound.Gecko
         /// http://www.w3.org/TR/2002/WD-DOM-Level-3-Core-20020409/core.html
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetLineNumberAttribute();
+		int GetLineNumberAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetColumnNumberAttribute();
+		int GetColumnNumberAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetOffsetAttribute();
+		int GetOffsetAttribute();
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMNode  GetErrorNodeAttribute();
+		nsIDOMNode GetErrorNodeAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetUriAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aUri);

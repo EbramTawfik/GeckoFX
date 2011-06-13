@@ -79,6 +79,7 @@ namespace Skybound.Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetDataAttribute(System.IntPtr aData);
 		
+		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string ToString();
 	}
@@ -105,14 +106,15 @@ namespace Skybound.Gecko
         /// Scriptable storage for ASCII strings
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDataAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aData);
+		void GetDataAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aData);
 		
 		/// <summary>
         /// Scriptable storage for ASCII strings
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDataAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aData);
+		void SetDataAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aData);
 		
+		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string ToString();
 	}
@@ -147,6 +149,7 @@ namespace Skybound.Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetDataAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aData);
 		
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string ToString();
 	}
@@ -173,14 +176,15 @@ namespace Skybound.Gecko
         /// Scriptable storage for booleans
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetDataAttribute();
+		bool GetDataAttribute();
 		
 		/// <summary>
         /// Scriptable storage for booleans
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDataAttribute(System.Boolean  aData);
+		void SetDataAttribute(bool aData);
 		
+		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string ToString();
 	}
@@ -215,6 +219,7 @@ namespace Skybound.Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetDataAttribute(byte aData);
 		
+		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string ToString();
 	}
@@ -241,14 +246,15 @@ namespace Skybound.Gecko
         /// Scriptable storage for unsigned 16-bit integers
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt16  GetDataAttribute();
+		ushort GetDataAttribute();
 		
 		/// <summary>
         /// Scriptable storage for unsigned 16-bit integers
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDataAttribute(System.UInt16  aData);
+		void SetDataAttribute(ushort aData);
 		
+		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string ToString();
 	}
@@ -275,14 +281,15 @@ namespace Skybound.Gecko
         /// Scriptable storage for unsigned 32-bit integers
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetDataAttribute();
+		uint GetDataAttribute();
 		
 		/// <summary>
         /// Scriptable storage for unsigned 32-bit integers
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDataAttribute(System.UInt32  aData);
+		void SetDataAttribute(uint aData);
 		
+		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string ToString();
 	}
@@ -309,14 +316,15 @@ namespace Skybound.Gecko
         /// Scriptable storage for 64-bit integers
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt64  GetDataAttribute();
+		ulong GetDataAttribute();
 		
 		/// <summary>
         /// Scriptable storage for 64-bit integers
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDataAttribute(System.UInt64  aData);
+		void SetDataAttribute(ulong aData);
 		
+		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string ToString();
 	}
@@ -343,14 +351,15 @@ namespace Skybound.Gecko
         /// Scriptable storage for NSPR date/time values
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetDataAttribute();
+		uint GetDataAttribute();
 		
 		/// <summary>
         /// Scriptable storage for NSPR date/time values
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDataAttribute(System.UInt32  aData);
+		void SetDataAttribute(uint aData);
 		
+		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string ToString();
 	}
@@ -379,15 +388,16 @@ namespace Skybound.Gecko
         /// (often used to store an ASCII character)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Char  GetDataAttribute();
+		char GetDataAttribute();
 		
 		/// <summary>
         /// Scriptable storage for single character values
         /// (often used to store an ASCII character)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDataAttribute(System.Char  aData);
+		void SetDataAttribute(char aData);
 		
+		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string ToString();
 	}
@@ -414,14 +424,15 @@ namespace Skybound.Gecko
         /// Scriptable storage for 16-bit integers
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int16  GetDataAttribute();
+		short GetDataAttribute();
 		
 		/// <summary>
         /// Scriptable storage for 16-bit integers
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDataAttribute(System.Int16  aData);
+		void SetDataAttribute(short aData);
 		
+		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string ToString();
 	}
@@ -448,14 +459,15 @@ namespace Skybound.Gecko
         /// Scriptable storage for 32-bit integers
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetDataAttribute();
+		int GetDataAttribute();
 		
 		/// <summary>
         /// Scriptable storage for 32-bit integers
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDataAttribute(System.Int32  aData);
+		void SetDataAttribute(int aData);
 		
+		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string ToString();
 	}
@@ -482,14 +494,15 @@ namespace Skybound.Gecko
         /// Scriptable storage for 64-bit integers
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int64  GetDataAttribute();
+		long GetDataAttribute();
 		
 		/// <summary>
         /// Scriptable storage for 64-bit integers
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDataAttribute(System.Int64  aData);
+		void SetDataAttribute(long aData);
 		
+		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string ToString();
 	}
@@ -524,6 +537,7 @@ namespace Skybound.Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetDataAttribute(double aData);
 		
+		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string ToString();
 	}
@@ -558,6 +572,7 @@ namespace Skybound.Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetDataAttribute(double aData);
 		
+		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string ToString();
 	}
@@ -584,14 +599,15 @@ namespace Skybound.Gecko
         /// Scriptable storage for generic pointers
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr  GetDataAttribute();
+		System.IntPtr GetDataAttribute();
 		
 		/// <summary>
         /// Scriptable storage for generic pointers
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDataAttribute(System.IntPtr  aData);
+		void SetDataAttribute(System.IntPtr aData);
 		
+		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string ToString();
 	}
@@ -619,13 +635,13 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports  GetDataAttribute();
+		nsISupports GetDataAttribute();
 		
 		/// <summary>
         /// Scriptable storage for other XPCOM objects
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDataAttribute([MarshalAs(UnmanagedType.Interface)] nsISupports  aData);
+		void SetDataAttribute([MarshalAs(UnmanagedType.Interface)] nsISupports aData);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetDataIIDAttribute();
@@ -633,6 +649,7 @@ namespace Skybound.Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetDataIIDAttribute(System.IntPtr aDataIID);
 		
+		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string ToString();
 	}

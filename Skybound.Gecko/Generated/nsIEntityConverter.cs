@@ -37,21 +37,24 @@ namespace Skybound.Gecko
 		/// <summary>
         /// excludes &quot, &amp, &lt, &gt
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string ConvertUTF32ToEntity(System.UInt32  character, System.UInt32  entityVersion);
+		string ConvertUTF32ToEntity(uint character, uint entityVersion);
 		
 		/// <summary>Member ConvertToEntity </summary>
 		/// <param name='character'> </param>
 		/// <param name='entityVersion'> </param>
 		/// <returns>A System.String</returns>
+		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string ConvertToEntity(System.Char  character, System.UInt32  entityVersion);
+		string ConvertToEntity(char character, uint entityVersion);
 		
 		/// <summary>Member ConvertToEntities </summary>
 		/// <param name='inString'> </param>
 		/// <param name='entityVersion'> </param>
 		/// <returns>A System.String</returns>
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string ConvertToEntities([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string inString, System.UInt32  entityVersion);
+		string ConvertToEntities([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string inString, uint entityVersion);
 	}
 }

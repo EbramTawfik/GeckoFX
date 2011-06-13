@@ -63,7 +63,7 @@ namespace Skybound.Gecko
         /// number of elements in the array.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetLengthAttribute();
+		uint GetLengthAttribute();
 		
 		/// <summary>
         /// queryElementAt()
@@ -83,7 +83,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr  QueryElementAt(System.UInt32  index, ref System.Guid uuid);
+		System.IntPtr QueryElementAt(uint index, ref System.Guid uuid);
 		
 		/// <summary>
         /// indexOf()
@@ -101,7 +101,7 @@ namespace Skybound.Gecko
         /// @throws NS_ERROR_NOT_FOUND if the element was not in the array.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint IndexOf(System.UInt32  startIndex, [MarshalAs(UnmanagedType.Interface)] nsISupports  element);
+		uint IndexOf(uint startIndex, [MarshalAs(UnmanagedType.Interface)] nsISupports element);
 		
 		/// <summary>
         /// enumerate the array
@@ -110,6 +110,7 @@ namespace Skybound.Gecko
         /// @throws NS_ERROR_FAILURE if the array is empty (to make it easy
         /// to detect errors)
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISimpleEnumerator Enumerate();
 	}

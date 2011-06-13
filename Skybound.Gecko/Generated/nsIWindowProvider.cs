@@ -94,7 +94,8 @@ namespace Skybound.Gecko
         /// @see nsIWindowWatcher for more information on aFeatures.
         /// @see nsIWebBrowserChrome for more information on aChromeFlags.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMWindow ProvideWindow([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  aParent, System.UInt32  aChromeFlags, System.Boolean  aCalledFromJS, System.Boolean  aPositionSpecified, System.Boolean  aSizeSpecified, [MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString aName, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aFeatures, out System.Boolean  aWindowIsNew);
+		nsIDOMWindow ProvideWindow([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aParent, uint aChromeFlags, bool aCalledFromJS, bool aPositionSpecified, bool aSizeSpecified, [MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString aName, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aFeatures, out bool aWindowIsNew);
 	}
 }

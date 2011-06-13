@@ -41,7 +41,7 @@ namespace Skybound.Gecko
         /// The test is bound to SSL Server Cert Usage.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsExtendedValidationAttribute();
+		bool GetIsExtendedValidationAttribute();
 		
 		/// <summary>
         /// This function uses the same test as attribute
@@ -53,6 +53,7 @@ namespace Skybound.Gecko
         /// If isExtendedValidation is false, this function will return
         /// an empty (length string) value.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsAString GetValidEVPolicyOid();
 	}

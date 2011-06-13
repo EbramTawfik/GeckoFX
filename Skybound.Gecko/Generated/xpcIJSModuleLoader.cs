@@ -37,7 +37,7 @@ namespace Skybound.Gecko
 		/// <summary>
         ///, [optional] in JSObject targetObj </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Import([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aResourceURI);
+		void Import([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aResourceURI);
 		
 		/// <summary>
         /// Imports the JS module at 'registryLocation' to the JS object
@@ -45,6 +45,6 @@ namespace Skybound.Gecko
         /// returns the module's global object.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr ImportInto([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aResourceURI, System.IntPtr  targetObj, System.IntPtr cc);
+		System.IntPtr ImportInto([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aResourceURI, System.IntPtr targetObj, System.IntPtr cc);
 	}
 }

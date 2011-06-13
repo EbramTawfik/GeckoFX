@@ -42,7 +42,7 @@ namespace Skybound.Gecko
         /// @result      - NS_OK if this operation was successful
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Initialize([MarshalAs(UnmanagedType.Interface)] nsIPluginInstanceOwner  aOwner, [MarshalAs(UnmanagedType.LPStr)] System.String  aMIMEType);
+		void Initialize([MarshalAs(UnmanagedType.Interface)] nsIPluginInstanceOwner aOwner, [MarshalAs(UnmanagedType.LPStr)] string aMIMEType);
 		
 		/// <summary>
         /// Called to instruct the plugin instance to start. This will be
@@ -88,7 +88,7 @@ namespace Skybound.Gecko
         /// @result          - NS_OK if this operation was successful
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NewStreamToPlugin([MarshalAs(UnmanagedType.Interface)] out nsIPluginStreamListener  aListener);
+		void NewStreamToPlugin([MarshalAs(UnmanagedType.Interface)] out nsIPluginStreamListener aListener);
 		
 		/// <summary>
         /// This operation is called by the plugin instance when it wishes to send
@@ -104,7 +104,7 @@ namespace Skybound.Gecko
         /// @result        - NS_OK if this operation was successful
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NewStreamFromPlugin([MarshalAs(UnmanagedType.LPStr)] System.String  aType, [MarshalAs(UnmanagedType.LPStr)] System.String  aTarget, [MarshalAs(UnmanagedType.Interface)] out nsIOutputStream  aResult);
+		void NewStreamFromPlugin([MarshalAs(UnmanagedType.LPStr)] string aType, [MarshalAs(UnmanagedType.LPStr)] string aTarget, [MarshalAs(UnmanagedType.Interface)] out nsIOutputStream aResult);
 		
 		/// <summary>
         /// Called to instruct the plugin instance to print itself to a printer.
@@ -134,7 +134,7 @@ namespace Skybound.Gecko
         /// @result - NS_OK if this operation was successful
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void HandleEvent(System.IntPtr  aEvent, out System.Int16  aHandled);
+		void HandleEvent(System.IntPtr aEvent, out short aHandled);
 		
 		/// <summary>
         /// Corresponds to NPN_InvalidateRect
@@ -163,7 +163,7 @@ namespace Skybound.Gecko
         /// @result          - NS_OK if this operation was successful
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMIMEType([MarshalAs(UnmanagedType.LPStr)] out System.String  aValue);
+		void GetMIMEType([MarshalAs(UnmanagedType.LPStr)] out string aValue);
 		
 		/// <summary>
         /// Get the JavaScript context to this plugin instance.
@@ -172,18 +172,18 @@ namespace Skybound.Gecko
         /// @result           - NS_OK if this operation was successful
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr  GetJSContextAttribute();
+		System.IntPtr GetJSContextAttribute();
 		
 		/// <summary>Member GetOwnerAttribute </summary>
-		/// <returns>A nsIPluginInstanceOwner </returns>
+		/// <returns>A nsIPluginInstanceOwner</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIPluginInstanceOwner  GetOwnerAttribute();
+		nsIPluginInstanceOwner GetOwnerAttribute();
 		
 		/// <summary>Member SetOwnerAttribute </summary>
 		/// <param name='aOwner'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOwnerAttribute([MarshalAs(UnmanagedType.Interface)] nsIPluginInstanceOwner  aOwner);
+		void SetOwnerAttribute([MarshalAs(UnmanagedType.Interface)] nsIPluginInstanceOwner aOwner);
 		
 		/// <summary>
         /// This operation causes status information to be displayed on the window
@@ -195,7 +195,7 @@ namespace Skybound.Gecko
         /// @result         - NS_OK if this operation was successful
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ShowStatus([MarshalAs(UnmanagedType.LPStr)] System.String  aMessage);
+		void ShowStatus([MarshalAs(UnmanagedType.LPStr)] string aMessage);
 		
 		/// <summary>
         /// Drop our reference to our owner.
@@ -207,7 +207,7 @@ namespace Skybound.Gecko
 		/// <param name='cx'> </param>
 		/// <returns>A System.IntPtr</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetJSObject(System.IntPtr  cx);
+		System.IntPtr GetJSObject(System.IntPtr cx);
 		
 		/// <summary>Member GetFormValueAttribute </summary>
 		/// <param name='aFormValue'> </param>
@@ -217,16 +217,16 @@ namespace Skybound.Gecko
 		/// <summary>Member PushPopupsEnabledState </summary>
 		/// <param name='aEnabled'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PushPopupsEnabledState(System.Boolean  aEnabled);
+		void PushPopupsEnabledState(bool aEnabled);
 		
 		/// <summary>Member PopPopupsEnabledState </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void PopPopupsEnabledState();
 		
 		/// <summary>Member GetPluginAPIVersionAttribute </summary>
-		/// <returns>A System.UInt16 </returns>
+		/// <returns>A System.UInt16</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt16  GetPluginAPIVersionAttribute();
+		ushort GetPluginAPIVersionAttribute();
 		
 		/// <summary>Member DefineJavaProperties </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -251,7 +251,7 @@ namespace Skybound.Gecko
 		/// <param name='variable'> </param>
 		/// <param name='aValue'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetValueFromPlugin(System.IntPtr variable, System.IntPtr  aValue);
+		void GetValueFromPlugin(System.IntPtr variable, System.IntPtr aValue);
 		
 		/// <summary>Member GetDrawingModel </summary>
 		/// <returns>A System.Int32</returns>
@@ -303,7 +303,7 @@ namespace Skybound.Gecko
         /// @result      - NS_OK if this operation was successful
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Initialize([MarshalAs(UnmanagedType.Interface)] nsIPluginInstanceOwner  aOwner, [MarshalAs(UnmanagedType.LPStr)] System.String  aMIMEType);
+		new void Initialize([MarshalAs(UnmanagedType.Interface)] nsIPluginInstanceOwner aOwner, [MarshalAs(UnmanagedType.LPStr)] string aMIMEType);
 		
 		/// <summary>
         /// Called to instruct the plugin instance to start. This will be
@@ -349,7 +349,7 @@ namespace Skybound.Gecko
         /// @result          - NS_OK if this operation was successful
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void NewStreamToPlugin([MarshalAs(UnmanagedType.Interface)] out nsIPluginStreamListener  aListener);
+		new void NewStreamToPlugin([MarshalAs(UnmanagedType.Interface)] out nsIPluginStreamListener aListener);
 		
 		/// <summary>
         /// This operation is called by the plugin instance when it wishes to send
@@ -365,7 +365,7 @@ namespace Skybound.Gecko
         /// @result        - NS_OK if this operation was successful
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void NewStreamFromPlugin([MarshalAs(UnmanagedType.LPStr)] System.String  aType, [MarshalAs(UnmanagedType.LPStr)] System.String  aTarget, [MarshalAs(UnmanagedType.Interface)] out nsIOutputStream  aResult);
+		new void NewStreamFromPlugin([MarshalAs(UnmanagedType.LPStr)] string aType, [MarshalAs(UnmanagedType.LPStr)] string aTarget, [MarshalAs(UnmanagedType.Interface)] out nsIOutputStream aResult);
 		
 		/// <summary>
         /// Called to instruct the plugin instance to print itself to a printer.
@@ -395,7 +395,7 @@ namespace Skybound.Gecko
         /// @result - NS_OK if this operation was successful
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void HandleEvent(System.IntPtr  aEvent, out System.Int16  aHandled);
+		new void HandleEvent(System.IntPtr aEvent, out short aHandled);
 		
 		/// <summary>
         /// Corresponds to NPN_InvalidateRect
@@ -424,7 +424,7 @@ namespace Skybound.Gecko
         /// @result          - NS_OK if this operation was successful
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetMIMEType([MarshalAs(UnmanagedType.LPStr)] out System.String  aValue);
+		new void GetMIMEType([MarshalAs(UnmanagedType.LPStr)] out string aValue);
 		
 		/// <summary>
         /// Get the JavaScript context to this plugin instance.
@@ -433,14 +433,14 @@ namespace Skybound.Gecko
         /// @result           - NS_OK if this operation was successful
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.IntPtr  GetJSContextAttribute();
+		new System.IntPtr GetJSContextAttribute();
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIPluginInstanceOwner  GetOwnerAttribute();
+		new nsIPluginInstanceOwner GetOwnerAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetOwnerAttribute([MarshalAs(UnmanagedType.Interface)] nsIPluginInstanceOwner  aOwner);
+		new void SetOwnerAttribute([MarshalAs(UnmanagedType.Interface)] nsIPluginInstanceOwner aOwner);
 		
 		/// <summary>
         /// This operation causes status information to be displayed on the window
@@ -452,7 +452,7 @@ namespace Skybound.Gecko
         /// @result         - NS_OK if this operation was successful
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void ShowStatus([MarshalAs(UnmanagedType.LPStr)] System.String  aMessage);
+		new void ShowStatus([MarshalAs(UnmanagedType.LPStr)] string aMessage);
 		
 		/// <summary>
         /// Drop our reference to our owner.
@@ -461,19 +461,19 @@ namespace Skybound.Gecko
 		new void InvalidateOwner();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.IntPtr GetJSObject(System.IntPtr  cx);
+		new System.IntPtr GetJSObject(System.IntPtr cx);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetFormValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aFormValue);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void PushPopupsEnabledState(System.Boolean  aEnabled);
+		new void PushPopupsEnabledState(bool aEnabled);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void PopPopupsEnabledState();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.UInt16  GetPluginAPIVersionAttribute();
+		new ushort GetPluginAPIVersionAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void DefineJavaProperties();
@@ -488,7 +488,7 @@ namespace Skybound.Gecko
 		new bool IsTransparent();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetValueFromPlugin(System.IntPtr variable, System.IntPtr  aValue);
+		new void GetValueFromPlugin(System.IntPtr variable, System.IntPtr aValue);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new int GetDrawingModel();
@@ -533,7 +533,7 @@ namespace Skybound.Gecko
         /// been received, or if the plugin is not using async rendering.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetImage(System.IntPtr  aContainer, out System.IntPtr  aImage);
+		void GetImage(System.IntPtr aContainer, out System.IntPtr aImage);
 		
 		/// <summary>
         /// Returns the size of the Image object that would be created if we called

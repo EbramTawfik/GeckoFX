@@ -70,6 +70,7 @@ namespace Skybound.Gecko
         /// to enumerate.
         /// @return the next element in the enumeration.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISupports GetNext();
 	}

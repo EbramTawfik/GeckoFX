@@ -35,24 +35,24 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetFindBackwardsAttribute </summary>
-		/// <returns>A System.Boolean </returns>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetFindBackwardsAttribute();
+		bool GetFindBackwardsAttribute();
 		
 		/// <summary>Member SetFindBackwardsAttribute </summary>
 		/// <param name='aFindBackwards'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFindBackwardsAttribute(System.Boolean  aFindBackwards);
+		void SetFindBackwardsAttribute(bool aFindBackwards);
 		
 		/// <summary>Member GetCaseSensitiveAttribute </summary>
-		/// <returns>A System.Boolean </returns>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetCaseSensitiveAttribute();
+		bool GetCaseSensitiveAttribute();
 		
 		/// <summary>Member SetCaseSensitiveAttribute </summary>
 		/// <param name='aCaseSensitive'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCaseSensitiveAttribute(System.Boolean  aCaseSensitive);
+		void SetCaseSensitiveAttribute(bool aCaseSensitive);
 		
 		/// <summary>
         /// Use "find entire words" mode by setting to a word breaker
@@ -82,7 +82,8 @@ namespace Skybound.Gecko
         /// end (forward) or start (backward).
         /// @retval             A range spanning the match that was found (or null).
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMRange Find([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aPatText, [MarshalAs(UnmanagedType.Interface)] nsIDOMRange  aSearchRange, [MarshalAs(UnmanagedType.Interface)] nsIDOMRange  aStartPoint, [MarshalAs(UnmanagedType.Interface)] nsIDOMRange  aEndPoint);
+		nsIDOMRange Find([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aPatText, [MarshalAs(UnmanagedType.Interface)] nsIDOMRange aSearchRange, [MarshalAs(UnmanagedType.Interface)] nsIDOMRange aStartPoint, [MarshalAs(UnmanagedType.Interface)] nsIDOMRange aEndPoint);
 	}
 }

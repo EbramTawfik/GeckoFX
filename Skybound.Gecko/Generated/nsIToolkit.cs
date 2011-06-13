@@ -42,6 +42,6 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init(System.IntPtr  aThread);
+		void Init(System.IntPtr aThread);
 	}
 }

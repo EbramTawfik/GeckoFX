@@ -47,14 +47,14 @@ namespace Skybound.Gecko
         /// time. See drawPreview for more information.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetWidthAttribute();
+		uint GetWidthAttribute();
 		
 		/// <summary>
         /// The height of the preview image. This value is allowed to change at any
         /// time.  See drawPreview for more information.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetHeightAttribute();
+		uint GetHeightAttribute();
 		
 		/// <summary>
         /// The aspect ratio of the thumbnail - this does not need to match the ratio
@@ -74,7 +74,7 @@ namespace Skybound.Gecko
         /// @param ctx Canvas drawing context
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool DrawPreview([MarshalAs(UnmanagedType.Interface)] nsIDOMCanvasRenderingContext2D  ctx);
+		bool DrawPreview([MarshalAs(UnmanagedType.Interface)] nsIDOMCanvasRenderingContext2D ctx);
 		
 		/// <summary>
         /// Invoked by the taskbar preview when it needs to draw the thumbnail in the
@@ -90,7 +90,7 @@ namespace Skybound.Gecko
         /// @param height The height of the surface backing the drawing context
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool DrawThumbnail([MarshalAs(UnmanagedType.Interface)] nsIDOMCanvasRenderingContext2D  ctx, System.UInt32  width, System.UInt32  height);
+		bool DrawThumbnail([MarshalAs(UnmanagedType.Interface)] nsIDOMCanvasRenderingContext2D ctx, uint width, uint height);
 		
 		/// <summary>
         /// Invoked when the user presses the close button on the tab preview.
@@ -114,6 +114,6 @@ namespace Skybound.Gecko
         /// buttons returned by nsITaskbarWindowPreview.getButton.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnClick([MarshalAs(UnmanagedType.Interface)] nsITaskbarPreviewButton  button);
+		void OnClick([MarshalAs(UnmanagedType.Interface)] nsITaskbarPreviewButton button);
 	}
 }

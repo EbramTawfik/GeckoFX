@@ -43,7 +43,7 @@ namespace Skybound.Gecko
         /// This must be called on the main thread
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Update([MarshalAs(UnmanagedType.Interface)] nsIDOMGeoPosition  position);
+		void Update([MarshalAs(UnmanagedType.Interface)] nsIDOMGeoPosition position);
 	}
 	
 	/// <summary>
@@ -70,7 +70,7 @@ namespace Skybound.Gecko
         /// When a location change is observed, notify the callback
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Watch([MarshalAs(UnmanagedType.Interface)] nsIGeolocationUpdate  callback);
+		void Watch([MarshalAs(UnmanagedType.Interface)] nsIGeolocationUpdate callback);
 		
 		/// <summary>
         /// shutdown

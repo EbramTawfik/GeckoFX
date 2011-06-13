@@ -46,7 +46,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIFile  GetNextFileAttribute();
+		nsIFile GetNextFileAttribute();
 		
 		/// <summary>
         /// Closes the directory being enumerated, releasing the system resource.

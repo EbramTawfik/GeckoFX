@@ -47,7 +47,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI  GetURIAttribute();
+		nsIURI GetURIAttribute();
 		
 		/// <summary>
         /// A readonly property that returns the title
@@ -68,6 +68,6 @@ namespace Skybound.Gecko
         /// navigation.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsSubFrameAttribute();
+		bool GetIsSubFrameAttribute();
 	}
 }

@@ -46,7 +46,7 @@ namespace Skybound.Gecko
         /// @param index - new index to add
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnIndexAvailable([MarshalAs(UnmanagedType.Interface)] nsIRequest  aRequest, [MarshalAs(UnmanagedType.Interface)] nsISupports  aCtxt, [MarshalAs(UnmanagedType.Interface)] nsIDirIndex  aIndex);
+		void OnIndexAvailable([MarshalAs(UnmanagedType.Interface)] nsIRequest aRequest, [MarshalAs(UnmanagedType.Interface)] nsISupports aCtxt, [MarshalAs(UnmanagedType.Interface)] nsIDirIndex aIndex);
 		
 		/// <summary>
         /// Called for each information line
@@ -56,7 +56,7 @@ namespace Skybound.Gecko
         /// @param info - new info to add
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnInformationAvailable([MarshalAs(UnmanagedType.Interface)] nsIRequest  aRequest, [MarshalAs(UnmanagedType.Interface)] nsISupports  aCtxt, [MarshalAs(UnmanagedType.LPStruct)] nsAString aInfo);
+		void OnInformationAvailable([MarshalAs(UnmanagedType.Interface)] nsIRequest aRequest, [MarshalAs(UnmanagedType.Interface)] nsISupports aCtxt, [MarshalAs(UnmanagedType.LPStruct)] nsAString aInfo);
 	}
 	
 	/// <summary>
@@ -78,7 +78,7 @@ namespace Skybound.Gecko
         /// causing the request to be canceled.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void OnStartRequest([MarshalAs(UnmanagedType.Interface)] nsIRequest  aRequest, [MarshalAs(UnmanagedType.Interface)] nsISupports  aContext);
+		new void OnStartRequest([MarshalAs(UnmanagedType.Interface)] nsIRequest aRequest, [MarshalAs(UnmanagedType.Interface)] nsISupports aContext);
 		
 		/// <summary>
         /// Called to signify the end of an asynchronous request.  This
@@ -91,7 +91,7 @@ namespace Skybound.Gecko
         /// An exception thrown from onStopRequest is generally ignored.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void OnStopRequest([MarshalAs(UnmanagedType.Interface)] nsIRequest  aRequest, [MarshalAs(UnmanagedType.Interface)] nsISupports  aContext, System.Int32  aStatusCode);
+		new void OnStopRequest([MarshalAs(UnmanagedType.Interface)] nsIRequest aRequest, [MarshalAs(UnmanagedType.Interface)] nsISupports aContext, int aStatusCode);
 		
 		/// <summary>
         /// Called when the next chunk of data (corresponding to the request) may
@@ -115,20 +115,20 @@ namespace Skybound.Gecko
         /// causing the request to be canceled.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void OnDataAvailable([MarshalAs(UnmanagedType.Interface)] nsIRequest  aRequest, [MarshalAs(UnmanagedType.Interface)] nsISupports  aContext, [MarshalAs(UnmanagedType.Interface)] nsIInputStream  aInputStream, System.UInt32  aOffset, System.UInt32  aCount);
+		new void OnDataAvailable([MarshalAs(UnmanagedType.Interface)] nsIRequest aRequest, [MarshalAs(UnmanagedType.Interface)] nsISupports aContext, [MarshalAs(UnmanagedType.Interface)] nsIInputStream aInputStream, uint aOffset, uint aCount);
 		
 		/// <summary>
         /// The interface to use as a callback for new entries
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDirIndexListener  GetListenerAttribute();
+		nsIDirIndexListener GetListenerAttribute();
 		
 		/// <summary>
         /// The interface to use as a callback for new entries
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetListenerAttribute([MarshalAs(UnmanagedType.Interface)] nsIDirIndexListener  aListener);
+		void SetListenerAttribute([MarshalAs(UnmanagedType.Interface)] nsIDirIndexListener aListener);
 		
 		/// <summary>
         /// The comment given, if any
@@ -137,19 +137,19 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetCommentAttribute();
+		string GetCommentAttribute();
 		
 		/// <summary>
         /// The encoding to use
         /// </summary>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetEncodingAttribute();
+		string GetEncodingAttribute();
 		
 		/// <summary>
         /// The encoding to use
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetEncodingAttribute([MarshalAs(UnmanagedType.LPStr)] System.String  aEncoding);
+		void SetEncodingAttribute([MarshalAs(UnmanagedType.LPStr)] string aEncoding);
 	}
 }

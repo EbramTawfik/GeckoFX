@@ -47,7 +47,7 @@ namespace Skybound.Gecko
         /// child process.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ConnectParent(System.UInt32  id);
+		void ConnectParent(uint id);
 		
 		/// <summary>
         /// As AsyncOpen is called on the chrome process for redirect target channels,
@@ -55,6 +55,6 @@ namespace Skybound.Gecko
         /// method.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CompleteRedirectSetup([MarshalAs(UnmanagedType.Interface)] nsIStreamListener  aListener, [MarshalAs(UnmanagedType.Interface)] nsISupports  aContext);
+		void CompleteRedirectSetup([MarshalAs(UnmanagedType.Interface)] nsIStreamListener aListener, [MarshalAs(UnmanagedType.Interface)] nsISupports aContext);
 	}
 }

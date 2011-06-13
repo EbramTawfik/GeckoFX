@@ -46,7 +46,7 @@ namespace Skybound.Gecko
         /// aValue="0x00FFFF"
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddDefaultProperty([MarshalAs(UnmanagedType.Interface)] nsIAtom  aProperty, [MarshalAs(UnmanagedType.LPStruct)] nsAString aAttribute, [MarshalAs(UnmanagedType.LPStruct)] nsAString aValue);
+		void AddDefaultProperty([MarshalAs(UnmanagedType.Interface)] nsIAtom aProperty, [MarshalAs(UnmanagedType.LPStruct)] nsAString aAttribute, [MarshalAs(UnmanagedType.LPStruct)] nsAString aValue);
 		
 		/// <summary>
         /// RemoveDefaultProperty() unregisters a default style property with the editor
@@ -60,7 +60,7 @@ namespace Skybound.Gecko
         /// aValue="0x00FFFF"
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveDefaultProperty([MarshalAs(UnmanagedType.Interface)] nsIAtom  aProperty, [MarshalAs(UnmanagedType.LPStruct)] nsAString aAttribute, [MarshalAs(UnmanagedType.LPStruct)] nsAString aValue);
+		void RemoveDefaultProperty([MarshalAs(UnmanagedType.Interface)] nsIAtom aProperty, [MarshalAs(UnmanagedType.LPStruct)] nsAString aAttribute, [MarshalAs(UnmanagedType.LPStruct)] nsAString aValue);
 		
 		/// <summary>
         /// RemoveAllDefaultProperties() unregisters all default style properties with the editor
@@ -82,14 +82,14 @@ namespace Skybound.Gecko
         /// aValue="0x00FFFF"
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCSSInlineProperty([MarshalAs(UnmanagedType.Interface)] nsIAtom  aProperty, [MarshalAs(UnmanagedType.LPStruct)] nsAString aAttribute, [MarshalAs(UnmanagedType.LPStruct)] nsAString aValue);
+		void SetCSSInlineProperty([MarshalAs(UnmanagedType.Interface)] nsIAtom aProperty, [MarshalAs(UnmanagedType.LPStruct)] nsAString aAttribute, [MarshalAs(UnmanagedType.LPStruct)] nsAString aValue);
 		
 		/// <summary>Member SetInlineProperty </summary>
 		/// <param name='aProperty'> </param>
 		/// <param name='aAttribute'> </param>
 		/// <param name='aValue'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetInlineProperty([MarshalAs(UnmanagedType.Interface)] nsIAtom  aProperty, [MarshalAs(UnmanagedType.LPStruct)] nsAString aAttribute, [MarshalAs(UnmanagedType.LPStruct)] nsAString aValue);
+		void SetInlineProperty([MarshalAs(UnmanagedType.Interface)] nsIAtom aProperty, [MarshalAs(UnmanagedType.LPStruct)] nsAString aAttribute, [MarshalAs(UnmanagedType.LPStruct)] nsAString aValue);
 		
 		/// <summary>
         /// getInlineProperty() gets aggregate properties of the current selection.
@@ -112,7 +112,7 @@ namespace Skybound.Gecko
         /// selection have the property
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetInlineProperty([MarshalAs(UnmanagedType.Interface)] nsIAtom  aProperty, [MarshalAs(UnmanagedType.LPStruct)] nsAString aAttribute, [MarshalAs(UnmanagedType.LPStruct)] nsAString aValue, out System.Boolean  aFirst, out System.Boolean  aAny, out System.Boolean  aAll);
+		void GetInlineProperty([MarshalAs(UnmanagedType.Interface)] nsIAtom aProperty, [MarshalAs(UnmanagedType.LPStruct)] nsAString aAttribute, [MarshalAs(UnmanagedType.LPStruct)] nsAString aValue, out bool aFirst, out bool aAny, out bool aAll);
 		
 		/// <summary>Member GetInlinePropertyWithAttrValue </summary>
 		/// <param name='aProperty'> </param>
@@ -122,8 +122,9 @@ namespace Skybound.Gecko
 		/// <param name='aAny'> </param>
 		/// <param name='aAll'> </param>
 		/// <returns>A nsAString</returns>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetInlinePropertyWithAttrValue([MarshalAs(UnmanagedType.Interface)] nsIAtom  aProperty, [MarshalAs(UnmanagedType.LPStruct)] nsAString aAttribute, [MarshalAs(UnmanagedType.LPStruct)] nsAString aValue, out System.Boolean  aFirst, out System.Boolean  aAny, out System.Boolean  aAll);
+		nsAString GetInlinePropertyWithAttrValue([MarshalAs(UnmanagedType.Interface)] nsIAtom aProperty, [MarshalAs(UnmanagedType.LPStruct)] nsAString aAttribute, [MarshalAs(UnmanagedType.LPStruct)] nsAString aValue, out bool aFirst, out bool aAny, out bool aAll);
 		
 		/// <summary>
         /// removeAllInlineProperties() deletes all the inline properties from all
@@ -150,7 +151,7 @@ namespace Skybound.Gecko
         /// are to be removed from the selection.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveInlineProperty([MarshalAs(UnmanagedType.Interface)] nsIAtom  aProperty, [MarshalAs(UnmanagedType.LPStruct)] nsAString aAttribute);
+		void RemoveInlineProperty([MarshalAs(UnmanagedType.Interface)] nsIAtom aProperty, [MarshalAs(UnmanagedType.LPStruct)] nsAString aAttribute);
 		
 		/// <summary>
         /// Increase font size for text in selection by 1 HTML unit
@@ -173,21 +174,21 @@ namespace Skybound.Gecko
         /// (for example, based on the current selection and mousepoint).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool CanDrag([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent  aEvent);
+		bool CanDrag([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent aEvent);
 		
 		/// <summary>
         /// doDrag transfers the relevant data (as appropriate)
         /// to a transferable so it can later be dropped.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DoDrag([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent  aEvent);
+		void DoDrag([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent aEvent);
 		
 		/// <summary>
         /// insertFromDrop looks for a dragsession and inserts the
         /// relevant data in response to a drop.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InsertFromDrop([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent  aEvent);
+		void InsertFromDrop([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent aEvent);
 		
 		/// <summary>
         /// Tests if a node is a BLOCK element according the the HTML 4.0 DTD.
@@ -196,7 +197,7 @@ namespace Skybound.Gecko
         /// @param aNode      the node to test
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool NodeIsBlock([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  node);
+		bool NodeIsBlock([MarshalAs(UnmanagedType.Interface)] nsIDOMNode node);
 		
 		/// <summary>
         /// Insert some HTML source at the current location
@@ -211,7 +212,7 @@ namespace Skybound.Gecko
         /// the selected text (if any), but strip out any HTML styles and formatting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PasteNoFormatting(System.Int32  aSelectionType);
+		void PasteNoFormatting(int aSelectionType);
 		
 		/// <summary>
         /// Rebuild the entire document from source HTML
@@ -237,7 +238,7 @@ namespace Skybound.Gecko
         /// @param aCollapseSelection  used with aDestNode during drag&drop
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InsertHTMLWithContext([MarshalAs(UnmanagedType.LPStruct)] nsAString aInputString, [MarshalAs(UnmanagedType.LPStruct)] nsAString aContextStr, [MarshalAs(UnmanagedType.LPStruct)] nsAString aInfoStr, [MarshalAs(UnmanagedType.LPStruct)] nsAString aFlavor, [MarshalAs(UnmanagedType.Interface)] nsIDOMDocument  aSourceDoc, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode  aDestinationNode, System.Int32  aDestinationOffset, System.Boolean  aDeleteSelection);
+		void InsertHTMLWithContext([MarshalAs(UnmanagedType.LPStruct)] nsAString aInputString, [MarshalAs(UnmanagedType.LPStruct)] nsAString aContextStr, [MarshalAs(UnmanagedType.LPStruct)] nsAString aInfoStr, [MarshalAs(UnmanagedType.LPStruct)] nsAString aFlavor, [MarshalAs(UnmanagedType.Interface)] nsIDOMDocument aSourceDoc, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aDestinationNode, int aDestinationOffset, bool aDeleteSelection);
 		
 		/// <summary>
         /// Insert an element, which may have child nodes, at the selection
@@ -252,7 +253,7 @@ namespace Skybound.Gecko
         /// Named Anchors, which insert before the selection
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InsertElementAtSelection([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  aElement, System.Boolean  aDeleteSelection);
+		void InsertElementAtSelection([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement, bool aDeleteSelection);
 		
 		/// <summary>
         /// Set the documents title.
@@ -276,7 +277,7 @@ namespace Skybound.Gecko
         /// @param aElement   An element in the document
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SelectElement([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  aElement);
+		void SelectElement([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement);
 		
 		/// <summary>
         /// Create a collapsed selection just after aElement
@@ -291,7 +292,7 @@ namespace Skybound.Gecko
         /// @param aElement  An element in the document
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCaretAfterElement([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  aElement);
+		void SetCaretAfterElement([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement);
 		
 		/// <summary>
         /// SetParagraphFormat       Insert a block paragraph tag around selection
@@ -306,8 +307,9 @@ namespace Skybound.Gecko
         /// @param aMixed     True if there is more than one format
         /// @return           Name of block tag. "" is returned for none.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetParagraphState(out System.Boolean  aMixed);
+		nsAString GetParagraphState(out bool aMixed);
 		
 		/// <summary>
         /// getFontFaceState returns what font face is in the selection.
@@ -315,32 +317,36 @@ namespace Skybound.Gecko
         /// @return          Name of face.  Note: "tt" is returned for
         /// tt tag.  "" is returned for none.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetFontFaceState(out System.Boolean  aMixed);
+		nsAString GetFontFaceState(out bool aMixed);
 		
 		/// <summary>
         /// getFontColorState returns what font face is in the selection.
         /// @param aMixed     True if there is more than one font color
         /// @return           Color string. "" is returned for none.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetFontColorState(out System.Boolean  aMixed);
+		nsAString GetFontColorState(out bool aMixed);
 		
 		/// <summary>
         /// getFontColorState returns what font face is in the selection.
         /// @param aMixed     True if there is more than one font color
         /// @return           Color string. "" is returned for none.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetBackgroundColorState(out System.Boolean  aMixed);
+		nsAString GetBackgroundColorState(out bool aMixed);
 		
 		/// <summary>
         /// getHighlightColorState returns what the highlight color of the selection.
         /// @param aMixed     True if there is more than one font color
         /// @return           Color string. "" is returned for none.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetHighlightColorState(out System.Boolean  aMixed);
+		nsAString GetHighlightColorState(out bool aMixed);
 		
 		/// <summary>
         /// getListState returns what list type is in the selection.
@@ -352,7 +358,7 @@ namespace Skybound.Gecko
         /// @param aDL       true if a "dl" list is selected.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetListState(out System.Boolean  aMixed, out System.Boolean  aOL, out System.Boolean  aUL, out System.Boolean  aDL);
+		void GetListState(out bool aMixed, out bool aOL, out bool aUL, out bool aDL);
 		
 		/// <summary>
         /// getListItemState returns what list item type is in the selection.
@@ -363,7 +369,7 @@ namespace Skybound.Gecko
         /// @param aDD       true if "dd" list items are selected.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetListItemState(out System.Boolean  aMixed, out System.Boolean  aLI, out System.Boolean  aDT, out System.Boolean  aDD);
+		void GetListItemState(out bool aMixed, out bool aLI, out bool aDT, out bool aDD);
 		
 		/// <summary>
         /// getAlignment     returns what alignment is in the selection.
@@ -373,21 +379,21 @@ namespace Skybound.Gecko
         /// (left/center/right)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetAlignment(out System.Boolean  aMixed, out short aAlign);
+		void GetAlignment(out bool aMixed, out short aAlign);
 		
 		/// <summary>
         /// Document me!
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetIndentState(out System.Boolean  aCanIndent, out System.Boolean  aCanOutdent);
+		void GetIndentState(out bool aCanIndent, out bool aCanOutdent);
 		
 		/// <summary>
         /// Document me!
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MakeOrChangeList([MarshalAs(UnmanagedType.LPStruct)] nsAString aListType, System.Boolean  entireList, [MarshalAs(UnmanagedType.LPStruct)] nsAString aBulletType);
+		void MakeOrChangeList([MarshalAs(UnmanagedType.LPStruct)] nsAString aListType, bool entireList, [MarshalAs(UnmanagedType.LPStruct)] nsAString aBulletType);
 		
 		/// <summary>
         /// Document me!
@@ -430,8 +436,9 @@ namespace Skybound.Gecko
         /// @return         NS_EDITOR_ELEMENT_NOT_FOUND if an element is not found
         /// (passes NS_SUCCEEDED macro)
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMElement GetElementOrParentByTagName([MarshalAs(UnmanagedType.LPStruct)] nsAString aTagName, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode  aNode);
+		nsIDOMElement GetElementOrParentByTagName([MarshalAs(UnmanagedType.LPStruct)] nsAString aTagName, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aNode);
 		
 		/// <summary>
         /// Return an element only if it is the only node selected,
@@ -452,12 +459,14 @@ namespace Skybound.Gecko
         /// @return          NS_EDITOR_ELEMENT_NOT_FOUND if an element is not found
         /// (passes NS_SUCCEEDED macro)
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMElement GetSelectedElement([MarshalAs(UnmanagedType.LPStruct)] nsAString aTagName);
 		
 		/// <summary>
         /// Output the contents of the <HEAD> section as text/HTML format
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsAString GetHeadContentsAsHTML();
 		
@@ -484,6 +493,7 @@ namespace Skybound.Gecko
         /// (an "A" tag with the "name" attribute set)
         /// @return          The new element created.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMElement CreateElementWithDefaults([MarshalAs(UnmanagedType.LPStruct)] nsAString aTagName);
 		
@@ -493,7 +503,7 @@ namespace Skybound.Gecko
         /// @param aElement   An "A" element with a non-empty "href" attribute
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InsertLinkAroundSelection([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  aAnchorElement);
+		void InsertLinkAroundSelection([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aAnchorElement);
 		
 		/// <summary>
         /// Set the value of the "bgcolor" attribute on the document's <body> element
@@ -520,7 +530,7 @@ namespace Skybound.Gecko
         /// Don't use this method! It will go away after first release!
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void IgnoreSpuriousDragEvent(System.Boolean  aIgnoreSpuriousDragEvent);
+		void IgnoreSpuriousDragEvent(bool aIgnoreSpuriousDragEvent);
 		
 		/// <summary>
         /// Find all the nodes in the document which contain references
@@ -529,6 +539,7 @@ namespace Skybound.Gecko
         ///
         /// @return aNodeList    the linked nodes found
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISupportsArray GetLinkedObjects();
 		
@@ -539,7 +550,7 @@ namespace Skybound.Gecko
         /// @return    true if CSS handled and enabled
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsCSSEnabledAttribute();
+		bool GetIsCSSEnabledAttribute();
 		
 		/// <summary>
         /// A boolean which is true is the HTMLEditor has been instantiated
@@ -548,7 +559,7 @@ namespace Skybound.Gecko
         /// @return    true if CSS handled and enabled
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetIsCSSEnabledAttribute(System.Boolean  aIsCSSEnabled);
+		void SetIsCSSEnabledAttribute(bool aIsCSSEnabled);
 		
 		/// <summary>
         /// Add listener for insertion override
@@ -579,13 +590,15 @@ namespace Skybound.Gecko
         /// is to be added to the created anonymous
         /// element
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMElement CreateAnonymousElement([MarshalAs(UnmanagedType.LPStruct)] nsAString aTag, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode  aParentNode, [MarshalAs(UnmanagedType.LPStruct)] nsAString aAnonClass, System.Boolean  aIsCreatedHidden);
+		nsIDOMElement CreateAnonymousElement([MarshalAs(UnmanagedType.LPStruct)] nsAString aTag, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aParentNode, [MarshalAs(UnmanagedType.LPStruct)] nsAString aAnonClass, bool aIsCreatedHidden);
 		
 		/// <summary>
         /// returns the deepest container of the selection
         /// @return a DOM Element
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMElement GetSelectionContainer();
 		
@@ -595,13 +608,13 @@ namespace Skybound.Gecko
         /// @param aSelection [IN] a selection
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CheckSelectionStateForAnonymousButtons([MarshalAs(UnmanagedType.Interface)] nsISelection  aSelection);
+		void CheckSelectionStateForAnonymousButtons([MarshalAs(UnmanagedType.Interface)] nsISelection aSelection);
 		
 		/// <summary>Member IsAnonymousElement </summary>
 		/// <param name='aElement'> </param>
 		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsAnonymousElement([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  aElement);
+		bool IsAnonymousElement([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement);
 		
 		/// <summary>
         /// A boolean indicating if a return key pressed in a paragraph creates
@@ -610,7 +623,7 @@ namespace Skybound.Gecko
         /// @return    true if CR in a paragraph creates a new paragraph
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetReturnInParagraphCreatesNewParagraphAttribute();
+		bool GetReturnInParagraphCreatesNewParagraphAttribute();
 		
 		/// <summary>
         /// A boolean indicating if a return key pressed in a paragraph creates
@@ -619,6 +632,6 @@ namespace Skybound.Gecko
         /// @return    true if CR in a paragraph creates a new paragraph
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetReturnInParagraphCreatesNewParagraphAttribute(System.Boolean  aReturnInParagraphCreatesNewParagraph);
+		void SetReturnInParagraphCreatesNewParagraphAttribute(bool aReturnInParagraphCreatesNewParagraph);
 	}
 }

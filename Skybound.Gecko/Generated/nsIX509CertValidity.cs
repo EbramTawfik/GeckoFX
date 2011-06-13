@@ -41,7 +41,7 @@ namespace Skybound.Gecko
         /// a certificate is valid.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetNotBeforeAttribute();
+		uint GetNotBeforeAttribute();
 		
 		/// <summary>
         /// "notBefore" attribute formatted as a time string
@@ -73,7 +73,7 @@ namespace Skybound.Gecko
         /// a certificate is valid.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetNotAfterAttribute();
+		uint GetNotAfterAttribute();
 		
 		/// <summary>
         /// "notAfter" attribute formatted as a time string

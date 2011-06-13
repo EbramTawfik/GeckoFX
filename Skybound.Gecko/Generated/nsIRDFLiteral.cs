@@ -40,7 +40,7 @@ namespace Skybound.Gecko
         /// Determine if two nodes are identical
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool EqualsNode([MarshalAs(UnmanagedType.Interface)] nsIRDFNode  aNode);
+		new bool EqualsNode([MarshalAs(UnmanagedType.Interface)] nsIRDFNode aNode);
 		
 		/// <summary>
         /// The Unicode string value of the literal.
@@ -70,13 +70,13 @@ namespace Skybound.Gecko
         /// Determine if two nodes are identical
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool EqualsNode([MarshalAs(UnmanagedType.Interface)] nsIRDFNode  aNode);
+		new bool EqualsNode([MarshalAs(UnmanagedType.Interface)] nsIRDFNode aNode);
 		
 		/// <summary>
         /// The date value of the literal
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetValueAttribute();
+		int GetValueAttribute();
 	}
 	
 	/// <summary>
@@ -92,13 +92,13 @@ namespace Skybound.Gecko
         /// Determine if two nodes are identical
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool EqualsNode([MarshalAs(UnmanagedType.Interface)] nsIRDFNode  aNode);
+		new bool EqualsNode([MarshalAs(UnmanagedType.Interface)] nsIRDFNode aNode);
 		
 		/// <summary>
         /// The integer value of the literal
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetValueAttribute();
+		int GetValueAttribute();
 	}
 	
 	/// <summary>
@@ -115,7 +115,7 @@ namespace Skybound.Gecko
         /// Determine if two nodes are identical
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool EqualsNode([MarshalAs(UnmanagedType.Interface)] nsIRDFNode  aNode);
+		new bool EqualsNode([MarshalAs(UnmanagedType.Interface)] nsIRDFNode aNode);
 		
 		/// <summary>
         /// The binary data.
@@ -127,6 +127,6 @@ namespace Skybound.Gecko
         /// The data's length.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetLengthAttribute();
+		int GetLengthAttribute();
 	}
 }

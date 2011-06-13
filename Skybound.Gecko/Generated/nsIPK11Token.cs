@@ -80,7 +80,7 @@ namespace Skybound.Gecko
 		/// <summary>Member Login </summary>
 		/// <param name='force'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Login(System.Boolean  force);
+		void Login(bool force);
 		
 		/// <summary>Member LogoutSimple </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -100,12 +100,12 @@ namespace Skybound.Gecko
         /// Password information
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetMinimumPasswordLengthAttribute();
+		int GetMinimumPasswordLengthAttribute();
 		
 		/// <summary>Member GetNeedsUserInitAttribute </summary>
-		/// <returns>A System.Boolean </returns>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetNeedsUserInitAttribute();
+		bool GetNeedsUserInitAttribute();
 		
 		/// <summary>Member CheckPassword </summary>
 		/// <param name='password'> </param>
@@ -138,7 +138,7 @@ namespace Skybound.Gecko
 		/// <param name='askTimes'> </param>
 		/// <param name='timeout'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAskPasswordDefaults(System.Int32  askTimes, System.Int32  timeout);
+		void SetAskPasswordDefaults(int askTimes, int timeout);
 		
 		/// <summary>
         /// Other attributes

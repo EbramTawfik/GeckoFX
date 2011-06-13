@@ -39,6 +39,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Corresponds to http://www.w3.org/TR/2002/WD-DOM-Level-3-XPath-20020208
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsAString LookupNamespaceURI([MarshalAs(UnmanagedType.LPStruct)] nsAString prefix);
 	}

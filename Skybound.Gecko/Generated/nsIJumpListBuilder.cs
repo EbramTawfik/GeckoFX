@@ -45,7 +45,7 @@ namespace Skybound.Gecko
         /// Indicates if a commit has already occurred in this session.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsListCommittedAttribute();
+		bool GetIsListCommittedAttribute();
 		
 		/// <summary>
         /// The maximum number of jump list items the current desktop can support.
@@ -64,7 +64,7 @@ namespace Skybound.Gecko
         /// @returns true if the operation completed successfully.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool InitListBuild([MarshalAs(UnmanagedType.Interface)] nsIMutableArray  removedItems);
+		bool InitListBuild([MarshalAs(UnmanagedType.Interface)] nsIMutableArray removedItems);
 		
 		/// <summary>
         /// Adds a list and if required, a set of items for the list.
@@ -85,7 +85,7 @@ namespace Skybound.Gecko
         /// @throw NS_ERROR_UNEXPECTED on internal errors.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool AddListToBuild(short aCatType, [MarshalAs(UnmanagedType.Interface)] nsIArray  items, [MarshalAs(UnmanagedType.LPStruct)] nsAString catName);
+		bool AddListToBuild(short aCatType, [MarshalAs(UnmanagedType.Interface)] nsIArray items, [MarshalAs(UnmanagedType.LPStruct)] nsAString catName);
 		
 		/// <summary>
         /// Aborts and clears the current jump list build.

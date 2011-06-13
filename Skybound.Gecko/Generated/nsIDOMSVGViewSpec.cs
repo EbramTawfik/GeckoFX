@@ -65,11 +65,11 @@ namespace Skybound.Gecko
         ///    nsIDOMSVGFitToViewBox </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMSVGTransformList  GetTransformAttribute();
+		nsIDOMSVGTransformList GetTransformAttribute();
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMSVGElement  GetViewTargetAttribute();
+		nsIDOMSVGElement GetViewTargetAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetViewBoxStringAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aViewBoxString);

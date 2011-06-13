@@ -47,6 +47,6 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIProxyInfo  GetProxyInfoAttribute();
+		nsIProxyInfo GetProxyInfoAttribute();
 	}
 }

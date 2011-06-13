@@ -39,13 +39,13 @@ namespace Skybound.Gecko
         /// aListener will be called once, then each time the list of wifi access points change.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void StartWatching([MarshalAs(UnmanagedType.Interface)] nsIWifiListener  aListener);
+		void StartWatching([MarshalAs(UnmanagedType.Interface)] nsIWifiListener aListener);
 		
 		/// <summary>
         /// stopWatching
         /// cancels all notifications to the |aListener|.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void StopWatching([MarshalAs(UnmanagedType.Interface)] nsIWifiListener  aListener);
+		void StopWatching([MarshalAs(UnmanagedType.Interface)] nsIWifiListener aListener);
 	}
 }

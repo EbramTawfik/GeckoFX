@@ -46,7 +46,7 @@ namespace Skybound.Gecko
         /// @return true if installation is enabled
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsInstallEnabled([MarshalAs(UnmanagedType.LPStruct)] nsAString aMimetype, [MarshalAs(UnmanagedType.Interface)] nsIURI  aReferer);
+		bool IsInstallEnabled([MarshalAs(UnmanagedType.LPStruct)] nsAString aMimetype, [MarshalAs(UnmanagedType.Interface)] nsIURI aReferer);
 		
 		/// <summary>
         /// Installs an array of add-ons at the request of a webpage
@@ -73,6 +73,6 @@ namespace Skybound.Gecko
         /// @return true if the installation was successfully started
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool InstallAddonsFromWebpage([MarshalAs(UnmanagedType.LPStruct)] nsAString aMimetype, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindowInternal  aWindow, [MarshalAs(UnmanagedType.Interface)] nsIURI  aReferer, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler", SizeParamIndex=8)] string aUris, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler", SizeParamIndex=8)] string aHashes, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler", SizeParamIndex=8)] string aNames, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler", SizeParamIndex=8)] string aIcons, amIInstallCallback  aCallback, System.UInt32  aInstallCount);
+		bool InstallAddonsFromWebpage([MarshalAs(UnmanagedType.LPStruct)] nsAString aMimetype, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindowInternal aWindow, [MarshalAs(UnmanagedType.Interface)] nsIURI aReferer, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler", SizeParamIndex=8)] string aUris, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler", SizeParamIndex=8)] string aHashes, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler", SizeParamIndex=8)] string aNames, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler", SizeParamIndex=8)] string aIcons, amIInstallCallback aCallback, uint aInstallCount);
 	}
 }

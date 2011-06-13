@@ -48,6 +48,6 @@ namespace Skybound.Gecko
         /// Any error code will stop the iteration as well.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Visit([MarshalAs(UnmanagedType.Interface)] nsIRDFNode  aSubject, [MarshalAs(UnmanagedType.Interface)] nsIRDFResource  aPredicate, [MarshalAs(UnmanagedType.Interface)] nsIRDFNode  aObject, System.Boolean  aTruthValue);
+		void Visit([MarshalAs(UnmanagedType.Interface)] nsIRDFNode aSubject, [MarshalAs(UnmanagedType.Interface)] nsIRDFResource aPredicate, [MarshalAs(UnmanagedType.Interface)] nsIRDFNode aObject, bool aTruthValue);
 	}
 }

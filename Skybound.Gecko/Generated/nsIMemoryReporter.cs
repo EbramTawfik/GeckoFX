@@ -41,21 +41,21 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetPathAttribute();
+		string GetPathAttribute();
 		
 		/// <summary>
         /// A human-readable description of this memory usage report
         /// </summary>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetDescriptionAttribute();
+		string GetDescriptionAttribute();
 		
 		/// <summary>
         /// The current amount of memory in use, as reported by this memory
         /// reporter.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetMemoryUsedAttribute();
+		int GetMemoryUsedAttribute();
 	}
 	
 	/// <summary>nsIMemoryReporterManager </summary>
@@ -68,6 +68,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Return an enumerator of nsIMemoryReporters that are currently registered.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISimpleEnumerator EnumerateReporters();
 		
@@ -78,13 +79,13 @@ namespace Skybound.Gecko
         /// Manager service will hold a strong reference to the given reporter.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RegisterReporter([MarshalAs(UnmanagedType.Interface)] nsIMemoryReporter  reporter);
+		void RegisterReporter([MarshalAs(UnmanagedType.Interface)] nsIMemoryReporter reporter);
 		
 		/// <summary>
         /// Unregister the given memory reporter.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UnregisterReporter([MarshalAs(UnmanagedType.Interface)] nsIMemoryReporter  reporter);
+		void UnregisterReporter([MarshalAs(UnmanagedType.Interface)] nsIMemoryReporter reporter);
 		
 		/// <summary>
         /// Initialize.

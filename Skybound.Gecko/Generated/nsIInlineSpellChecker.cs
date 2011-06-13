@@ -35,30 +35,30 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetSpellCheckerAttribute </summary>
-		/// <returns>A nsIEditorSpellCheck </returns>
+		/// <returns>A nsIEditorSpellCheck</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIEditorSpellCheck  GetSpellCheckerAttribute();
+		nsIEditorSpellCheck GetSpellCheckerAttribute();
 		
 		/// <summary>Member Init </summary>
 		/// <param name='aEditor'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init([MarshalAs(UnmanagedType.Interface)] nsIEditor  aEditor);
+		void Init([MarshalAs(UnmanagedType.Interface)] nsIEditor aEditor);
 		
 		/// <summary>Member Cleanup </summary>
 		/// <param name='aDestroyingFrames'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Cleanup(System.Boolean  aDestroyingFrames);
+		void Cleanup(bool aDestroyingFrames);
 		
 		/// <summary>Member GetEnableRealTimeSpellAttribute </summary>
-		/// <returns>A System.Boolean </returns>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetEnableRealTimeSpellAttribute();
+		bool GetEnableRealTimeSpellAttribute();
 		
 		/// <summary>Member SetEnableRealTimeSpellAttribute </summary>
 		/// <param name='aEnableRealTimeSpell'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetEnableRealTimeSpellAttribute(System.Boolean  aEnableRealTimeSpell);
+		void SetEnableRealTimeSpellAttribute(bool aEnableRealTimeSpell);
 		
 		/// <summary>Member SpellCheckAfterEditorChange </summary>
 		/// <param name='aAction'> </param>
@@ -70,26 +70,27 @@ namespace Skybound.Gecko
 		/// <param name='aEndNode'> </param>
 		/// <param name='aEndOffset'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SpellCheckAfterEditorChange(System.Int32  aAction, [MarshalAs(UnmanagedType.Interface)] nsISelection  aSelection, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode  aPreviousSelectedNode, System.Int32  aPreviousSelectedOffset, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode  aStartNode, System.Int32  aStartOffset, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode  aEndNode, System.Int32  aEndOffset);
+		void SpellCheckAfterEditorChange(int aAction, [MarshalAs(UnmanagedType.Interface)] nsISelection aSelection, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aPreviousSelectedNode, int aPreviousSelectedOffset, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aStartNode, int aStartOffset, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aEndNode, int aEndOffset);
 		
 		/// <summary>Member SpellCheckRange </summary>
 		/// <param name='aSelection'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SpellCheckRange([MarshalAs(UnmanagedType.Interface)] nsIDOMRange  aSelection);
+		void SpellCheckRange([MarshalAs(UnmanagedType.Interface)] nsIDOMRange aSelection);
 		
 		/// <summary>Member GetMisspelledWord </summary>
 		/// <param name='aNode'> </param>
 		/// <param name='aOffset'> </param>
 		/// <returns>A nsIDOMRange</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMRange GetMisspelledWord([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  aNode, System.Int32  aOffset);
+		nsIDOMRange GetMisspelledWord([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aNode, int aOffset);
 		
 		/// <summary>Member ReplaceWord </summary>
 		/// <param name='aNode'> </param>
 		/// <param name='aOffset'> </param>
 		/// <param name='aNewword'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ReplaceWord([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  aNode, System.Int32  aOffset, [MarshalAs(UnmanagedType.LPStruct)] nsAString aNewword);
+		void ReplaceWord([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aNode, int aOffset, [MarshalAs(UnmanagedType.LPStruct)] nsAString aNewword);
 		
 		/// <summary>Member AddWordToDictionary </summary>
 		/// <param name='aWord'> </param>
@@ -105,6 +106,6 @@ namespace Skybound.Gecko
 		/// <param name='aWordsToIgnore'> </param>
 		/// <param name='aCount'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void IgnoreWords([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler", SizeParamIndex=1)] string aWordsToIgnore, System.UInt32  aCount);
+		void IgnoreWords([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler", SizeParamIndex=1)] string aWordsToIgnore, uint aCount);
 	}
 }

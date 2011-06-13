@@ -35,26 +35,26 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetElementAttribute </summary>
-		/// <returns>A nsIDOMElement </returns>
+		/// <returns>A nsIDOMElement</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMElement  GetElementAttribute();
+		nsIDOMElement GetElementAttribute();
 		
 		/// <summary>Member GetColumnsAttribute </summary>
-		/// <returns>A nsITreeColumns </returns>
+		/// <returns>A nsITreeColumns</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsITreeColumns  GetColumnsAttribute();
+		nsITreeColumns GetColumnsAttribute();
 		
 		/// <summary>Member GetXAttribute </summary>
-		/// <returns>A System.Int32 </returns>
+		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetXAttribute();
+		int GetXAttribute();
 		
 		/// <summary>Member GetWidthAttribute </summary>
-		/// <returns>A System.Int32 </returns>
+		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetWidthAttribute();
+		int GetWidthAttribute();
 		
 		/// <summary>Member GetIdAttribute </summary>
 		/// <param name='aId'> </param>
@@ -67,35 +67,35 @@ namespace Skybound.Gecko
 		void GetIdConst([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] out string idConst);
 		
 		/// <summary>Member GetAtomAttribute </summary>
-		/// <returns>A nsIAtom </returns>
+		/// <returns>A nsIAtom</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIAtom  GetAtomAttribute();
+		nsIAtom GetAtomAttribute();
 		
 		/// <summary>Member GetIndexAttribute </summary>
-		/// <returns>A System.Int32 </returns>
+		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetIndexAttribute();
+		int GetIndexAttribute();
 		
 		/// <summary>Member GetPrimaryAttribute </summary>
-		/// <returns>A System.Boolean </returns>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetPrimaryAttribute();
+		bool GetPrimaryAttribute();
 		
 		/// <summary>Member GetCyclerAttribute </summary>
-		/// <returns>A System.Boolean </returns>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetCyclerAttribute();
+		bool GetCyclerAttribute();
 		
 		/// <summary>Member GetEditableAttribute </summary>
-		/// <returns>A System.Boolean </returns>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetEditableAttribute();
+		bool GetEditableAttribute();
 		
 		/// <summary>Member GetSelectableAttribute </summary>
-		/// <returns>A System.Boolean </returns>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetSelectableAttribute();
+		bool GetSelectableAttribute();
 		
 		/// <summary>Member GetTypeAttribute </summary>
 		/// <returns>A System.Int16</returns>
@@ -104,11 +104,13 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member GetNext </summary>
 		/// <returns>A nsITreeColumn</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsITreeColumn GetNext();
 		
 		/// <summary>Member GetPrevious </summary>
 		/// <returns>A nsITreeColumn</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsITreeColumn GetPrevious();
 		
@@ -129,65 +131,73 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsITreeBoxObject  GetTreeAttribute();
+		nsITreeBoxObject GetTreeAttribute();
 		
 		/// <summary>
         /// The number of columns.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetCountAttribute();
+		int GetCountAttribute();
 		
 		/// <summary>
         /// An alias for count (for the benefit of scripts which treat this as an
         /// array).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetLengthAttribute();
+		int GetLengthAttribute();
 		
 		/// <summary>
         /// Get the first/last column.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsITreeColumn GetFirstColumn();
 		
 		/// <summary>Member GetLastColumn </summary>
 		/// <returns>A nsITreeColumn</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsITreeColumn GetLastColumn();
 		
 		/// <summary>
         /// Attribute based column getters.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsITreeColumn GetPrimaryColumn();
 		
 		/// <summary>Member GetSortedColumn </summary>
 		/// <returns>A nsITreeColumn</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsITreeColumn GetSortedColumn();
 		
 		/// <summary>Member GetKeyColumn </summary>
 		/// <returns>A nsITreeColumn</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsITreeColumn GetKeyColumn();
 		
 		/// <summary>
         /// Get the column for the given element.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsITreeColumn GetColumnFor([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  element);
+		nsITreeColumn GetColumnFor([MarshalAs(UnmanagedType.Interface)] nsIDOMElement element);
 		
 		/// <summary>
         /// Parametric column getters.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsITreeColumn GetNamedColumn([MarshalAs(UnmanagedType.LPStruct)] nsAString id);
 		
 		/// <summary>Member GetColumnAt </summary>
 		/// <param name='index'> </param>
 		/// <returns>A nsITreeColumn</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsITreeColumn GetColumnAt(System.Int32  index);
+		nsITreeColumn GetColumnAt(int index);
 		
 		/// <summary>
         /// This method is called whenever a treecol is added or removed and

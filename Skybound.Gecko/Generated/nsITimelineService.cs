@@ -71,7 +71,7 @@ namespace Skybound.Gecko
         /// Print "<elapsed time>: <text>\n" in the timeline log file.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Mark([MarshalAs(UnmanagedType.LPStr)] System.String  text);
+		void Mark([MarshalAs(UnmanagedType.LPStr)] string text);
 		
 		/// <summary>
         /// causes subsequent marks to be indented for a more readable
@@ -91,27 +91,27 @@ namespace Skybound.Gecko
         /// well as indentation.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Enter([MarshalAs(UnmanagedType.LPStr)] System.String  text);
+		void Enter([MarshalAs(UnmanagedType.LPStr)] string text);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Leave([MarshalAs(UnmanagedType.LPStr)] System.String  text);
+		void Leave([MarshalAs(UnmanagedType.LPStr)] string text);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void StartTimer([MarshalAs(UnmanagedType.LPStr)] System.String  timerName);
+		void StartTimer([MarshalAs(UnmanagedType.LPStr)] string timerName);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void StopTimer([MarshalAs(UnmanagedType.LPStr)] System.String  timerName);
+		void StopTimer([MarshalAs(UnmanagedType.LPStr)] string timerName);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MarkTimer([MarshalAs(UnmanagedType.LPStr)] System.String  timerName);
+		void MarkTimer([MarshalAs(UnmanagedType.LPStr)] string timerName);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ResetTimer([MarshalAs(UnmanagedType.LPStr)] System.String  timerName);
+		void ResetTimer([MarshalAs(UnmanagedType.LPStr)] string timerName);
 		
 		/// <summary>
         /// Mark a timer, plus an additional comment
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MarkTimerWithComment([MarshalAs(UnmanagedType.LPStr)] System.String  timerName, [MarshalAs(UnmanagedType.LPStr)] System.String  comment);
+		void MarkTimerWithComment([MarshalAs(UnmanagedType.LPStr)] string timerName, [MarshalAs(UnmanagedType.LPStr)] string comment);
 	}
 }

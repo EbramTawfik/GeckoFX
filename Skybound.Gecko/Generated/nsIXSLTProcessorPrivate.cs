@@ -39,13 +39,13 @@ namespace Skybound.Gecko
         /// for documentation for effect of reset()
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetFlagsAttribute();
+		uint GetFlagsAttribute();
 		
 		/// <summary>
         /// Flags for this processor. Defaults to 0. See individual flags above
         /// for documentation for effect of reset()
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFlagsAttribute(System.UInt32  aFlags);
+		void SetFlagsAttribute(uint aFlags);
 	}
 }

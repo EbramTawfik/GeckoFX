@@ -41,6 +41,7 @@ namespace Skybound.Gecko
         /// Every JS module exports a single NSGetFactory symbol which is converted into this
         /// functional interface type.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIFactory Get(ref System.Guid aCID);
 	}

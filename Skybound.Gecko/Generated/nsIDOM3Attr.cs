@@ -39,12 +39,12 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOM3TypeInfo  GetSchemaTypeInfoAttribute();
+		nsIDOM3TypeInfo GetSchemaTypeInfoAttribute();
 		
 		/// <summary>
         /// Introduced in DOM Level 3:
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsIdAttribute();
+		bool GetIsIdAttribute();
 	}
 }

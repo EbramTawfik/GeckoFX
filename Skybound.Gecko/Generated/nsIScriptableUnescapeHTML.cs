@@ -41,13 +41,15 @@ namespace Skybound.Gecko
         ///
         /// @param src The HTML string to escape.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsAString Unescape([MarshalAs(UnmanagedType.LPStruct)] nsAString src);
 		
 		/// <summary>
         /// Appends the text to the element.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDocumentFragment ParseFragment([MarshalAs(UnmanagedType.LPStruct)] nsAString fragment, System.Boolean  isXML, [MarshalAs(UnmanagedType.Interface)] nsIURI  baseURI, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement  element);
+		nsIDOMDocumentFragment ParseFragment([MarshalAs(UnmanagedType.LPStruct)] nsAString fragment, bool isXML, [MarshalAs(UnmanagedType.Interface)] nsIURI baseURI, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement element);
 	}
 }

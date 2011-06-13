@@ -36,6 +36,7 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member GetSVGDocument </summary>
 		/// <returns>A nsIDOMDocument</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMDocument GetSVGDocument();
 	}

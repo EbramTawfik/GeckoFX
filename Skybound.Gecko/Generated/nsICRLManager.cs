@@ -40,7 +40,7 @@ namespace Skybound.Gecko
         /// Import a CRL into the certificate database.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ImportCrl(System.IntPtr  data, System.UInt32  length, [MarshalAs(UnmanagedType.Interface)] nsIURI  uri, System.UInt32  type, System.Boolean  doSilentDownload, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string crlKey);
+		void ImportCrl(System.IntPtr data, uint length, [MarshalAs(UnmanagedType.Interface)] nsIURI uri, uint type, bool doSilentDownload, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string crlKey);
 		
 		/// <summary>
         /// update crl from url
@@ -55,6 +55,7 @@ namespace Skybound.Gecko
         ///
         /// Get a list of Crl entries in the DB.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIArray GetCrls();
 		
@@ -64,7 +65,7 @@ namespace Skybound.Gecko
         /// Delete the crl.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DeleteCrl(System.UInt32  crlIndex);
+		void DeleteCrl(uint crlIndex);
 		
 		/// <summary>
         ///This would reschedule the autoupdate of crls with auto update enable.
@@ -80,7 +81,8 @@ namespace Skybound.Gecko
 		/// <param name='autoUpdateType'> </param>
 		/// <param name='noOfDays'> </param>
 		/// <returns>A System.String</returns>
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string ComputeNextAutoUpdateTime([MarshalAs(UnmanagedType.Interface)] nsICRLInfo  info, System.UInt32  autoUpdateType, double noOfDays);
+		string ComputeNextAutoUpdateTime([MarshalAs(UnmanagedType.Interface)] nsICRLInfo info, uint autoUpdateType, double noOfDays);
 	}
 }

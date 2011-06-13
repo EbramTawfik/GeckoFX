@@ -57,41 +57,41 @@ namespace Skybound.Gecko
 		ushort GetReadyStateAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetBufferedAmountAttribute();
+		uint GetBufferedAmountAttribute();
 		
 		/// <summary>
         /// event handler attributes
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener  GetOnopenAttribute();
+		nsIDOMEventListener GetOnopenAttribute();
 		
 		/// <summary>
         /// event handler attributes
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnopenAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener  aOnopen);
+		void SetOnopenAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnopen);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener  GetOnmessageAttribute();
+		nsIDOMEventListener GetOnmessageAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnmessageAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener  aOnmessage);
-		
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener  GetOnerrorAttribute();
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnerrorAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener  aOnerror);
+		void SetOnmessageAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnmessage);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener  GetOncloseAttribute();
+		nsIDOMEventListener GetOnerrorAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOncloseAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener  aOnclose);
+		void SetOnerrorAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnerror);
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMEventListener GetOncloseAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOncloseAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnclose);
 		
 		/// <summary>
         /// Transmits data using the connection.
@@ -126,6 +126,6 @@ namespace Skybound.Gecko
         /// specified.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init([MarshalAs(UnmanagedType.Interface)] nsIPrincipal  principal, System.IntPtr scriptContext, System.IntPtr ownerWindow, [MarshalAs(UnmanagedType.LPStruct)] nsAString url, [MarshalAs(UnmanagedType.LPStruct)] nsAString protocol);
+		void Init([MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr scriptContext, System.IntPtr ownerWindow, [MarshalAs(UnmanagedType.LPStruct)] nsAString url, [MarshalAs(UnmanagedType.LPStruct)] nsAString protocol);
 	}
 }

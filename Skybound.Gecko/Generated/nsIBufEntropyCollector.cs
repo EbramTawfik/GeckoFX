@@ -39,14 +39,14 @@ namespace Skybound.Gecko
         /// in gathering entropy.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void RandomUpdate(System.IntPtr  entropy, System.Int32  bufLen);
+		new void RandomUpdate(System.IntPtr entropy, int bufLen);
 		
 		/// <summary>
         /// Forward the entropy collected so far to |collector| and then
         /// continue forwarding new entropy as it arrives.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ForwardTo([MarshalAs(UnmanagedType.Interface)] nsIEntropyCollector  collector);
+		void ForwardTo([MarshalAs(UnmanagedType.Interface)] nsIEntropyCollector collector);
 		
 		/// <summary>
         /// No longer forward to a (possibly) previously remembered collector.

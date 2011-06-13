@@ -40,6 +40,6 @@ namespace Skybound.Gecko
         /// Constants for whatToShow
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		short AcceptNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  n);
+		short AcceptNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode n);
 	}
 }

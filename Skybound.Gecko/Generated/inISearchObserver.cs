@@ -38,23 +38,23 @@ namespace Skybound.Gecko
         /// search stopped due to an error
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnSearchStart(inISearchProcess  aModule);
+		void OnSearchStart(inISearchProcess aModule);
 		
 		/// <summary>Member OnSearchResult </summary>
 		/// <param name='aModule'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnSearchResult(inISearchProcess  aModule);
+		void OnSearchResult(inISearchProcess aModule);
 		
 		/// <summary>Member OnSearchEnd </summary>
 		/// <param name='aModule'> </param>
 		/// <param name='aResult'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnSearchEnd(inISearchProcess  aModule, short aResult);
+		void OnSearchEnd(inISearchProcess aModule, short aResult);
 		
 		/// <summary>Member OnSearchError </summary>
 		/// <param name='aModule'> </param>
 		/// <param name='aMessage'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnSearchError(inISearchProcess  aModule, [MarshalAs(UnmanagedType.LPStruct)] nsAString aMessage);
+		void OnSearchError(inISearchProcess aModule, [MarshalAs(UnmanagedType.LPStruct)] nsAString aMessage);
 	}
 }

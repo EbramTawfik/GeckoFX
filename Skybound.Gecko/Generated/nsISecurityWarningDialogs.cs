@@ -48,7 +48,7 @@ namespace Skybound.Gecko
         /// @return true if the user confirms to continue
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool ConfirmEnteringSecure([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor  ctx);
+		bool ConfirmEnteringSecure([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor ctx);
 		
 		/// <summary>
         /// Inform the user that a transition
@@ -62,7 +62,7 @@ namespace Skybound.Gecko
         /// @return true if the user confirms to continue
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool ConfirmEnteringWeak([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor  ctx);
+		bool ConfirmEnteringWeak([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor ctx);
 		
 		/// <summary>
         /// Inform the user that a transition
@@ -75,7 +75,7 @@ namespace Skybound.Gecko
         /// @return true if the user confirms to continue
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool ConfirmLeavingSecure([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor  ctx);
+		bool ConfirmLeavingSecure([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor ctx);
 		
 		/// <summary>
         /// Inform the user the currently displayed page
@@ -86,7 +86,7 @@ namespace Skybound.Gecko
         /// @return true if the user decides to show insecure objects.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool ConfirmMixedMode([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor  ctx);
+		bool ConfirmMixedMode([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor ctx);
 		
 		/// <summary>
         /// Inform the user that information is being submitted
@@ -97,7 +97,7 @@ namespace Skybound.Gecko
         /// @return true if the user confirms to submit.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool ConfirmPostToInsecure([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor  ctx);
+		bool ConfirmPostToInsecure([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor ctx);
 		
 		/// <summary>
         /// Inform the user: Although the currently displayed
@@ -110,6 +110,6 @@ namespace Skybound.Gecko
         /// @return true if the user confirms to submit.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool ConfirmPostToInsecureFromSecure([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor  ctx);
+		bool ConfirmPostToInsecureFromSecure([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor ctx);
 	}
 }

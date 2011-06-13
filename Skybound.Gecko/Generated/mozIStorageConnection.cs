@@ -67,7 +67,7 @@ namespace Skybound.Gecko
         /// If is called on a thread other than the one that opened it.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AsyncClose(mozIStorageCompletionCallback  aCallback);
+		void AsyncClose(mozIStorageCompletionCallback aCallback);
 		
 		/// <summary>
         /// Clones a database and makes the clone read only if needed.
@@ -87,14 +87,14 @@ namespace Skybound.Gecko
         /// @return the cloned database connection.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		mozIStorageConnection Clone(System.Boolean  aReadOnly);
+		mozIStorageConnection Clone(bool aReadOnly);
 		
 		/// <summary>
         /// Indicates if the connection is open and ready to use.  This will be false
         /// if the connection failed to open, or it has been closed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetConnectionReadyAttribute();
+		bool GetConnectionReadyAttribute();
 		
 		/// <summary>
         /// The current database nsIFile.  Null if the database
@@ -102,41 +102,41 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIFile  GetDatabaseFileAttribute();
+		nsIFile GetDatabaseFileAttribute();
 		
 		/// <summary>
         /// lastInsertRowID returns the row ID from the last INSERT
         /// operation.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetLastInsertRowIDAttribute();
+		int GetLastInsertRowIDAttribute();
 		
 		/// <summary>
         /// The last error SQLite error code.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetLastErrorAttribute();
+		int GetLastErrorAttribute();
 		
 		/// <summary>
         /// The last SQLite error as a string (in english, straight from the
         /// sqlite library).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetLastErrorStringAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aLastErrorString);
+		void GetLastErrorStringAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aLastErrorString);
 		
 		/// <summary>
         /// The schema version of the database.  This should not be used until the
         /// database is ready.  The schema will be reported as zero if it is not set.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetSchemaVersionAttribute();
+		int GetSchemaVersionAttribute();
 		
 		/// <summary>
         /// The schema version of the database.  This should not be used until the
         /// database is ready.  The schema will be reported as zero if it is not set.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSchemaVersionAttribute(System.Int32  aSchemaVersion);
+		void SetSchemaVersionAttribute(int aSchemaVersion);
 		
 		/// <summary>
         /// Create a mozIStorageStatement for the given SQL expression.  The
@@ -149,7 +149,7 @@ namespace Skybound.Gecko
         /// @return a new mozIStorageStatement
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		mozIStorageStatement CreateStatement([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aSQLStatement);
+		mozIStorageStatement CreateStatement([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aSQLStatement);
 		
 		/// <summary>
         /// Create an asynchronous statement (mozIStorageAsyncStatement) for the given
@@ -166,7 +166,7 @@ namespace Skybound.Gecko
         /// @return a new mozIStorageAsyncStatement
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		mozIStorageAsyncStatement CreateAsyncStatement([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aSQLStatement);
+		mozIStorageAsyncStatement CreateAsyncStatement([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aSQLStatement);
 		
 		/// <summary>
         /// Execute a SQL expression, expecting no arguments.
@@ -174,7 +174,7 @@ namespace Skybound.Gecko
         /// @param aSQLStatement  The SQL statement to execute
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ExecuteSimpleSQL([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aSQLStatement);
+		void ExecuteSimpleSQL([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aSQLStatement);
 		
 		/// <summary>
         /// Execute an array of queries created with this connection asynchronously
@@ -196,7 +196,7 @@ namespace Skybound.Gecko
         /// @return an object that can be used to cancel the statements execution.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		mozIStoragePendingStatement ExecuteAsync(mozIStorageBaseStatement  aStatements, System.UInt32  aNumStatements, mozIStorageStatementCallback  aCallback);
+		mozIStoragePendingStatement ExecuteAsync(mozIStorageBaseStatement aStatements, uint aNumStatements, mozIStorageStatementCallback aCallback);
 		
 		/// <summary>
         /// Check if the given table exists.
@@ -206,7 +206,7 @@ namespace Skybound.Gecko
         /// @return TRUE if table exists, FALSE otherwise.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool TableExists([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aTableName);
+		bool TableExists([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aTableName);
 		
 		/// <summary>
         /// Check if the given index exists.
@@ -215,13 +215,13 @@ namespace Skybound.Gecko
         /// @return TRUE if the index exists, FALSE otherwise.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IndexExists([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aIndexName);
+		bool IndexExists([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aIndexName);
 		
 		/// <summary>
         /// Returns true if a transaction is active on this connection.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetTransactionInProgressAttribute();
+		bool GetTransactionInProgressAttribute();
 		
 		/// <summary>
         /// Begin a new transaction.  sqlite default transactions are deferred.
@@ -234,7 +234,7 @@ namespace Skybound.Gecko
         /// Begins a new transaction with the given type.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BeginTransactionAs(System.Int32  transactionType);
+		void BeginTransactionAs(int transactionType);
 		
 		/// <summary>
         /// Commits the current transaction.  If no transaction is active,
@@ -271,7 +271,7 @@ namespace Skybound.Gecko
         /// reason.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CreateTable([MarshalAs(UnmanagedType.LPStr)] System.String  aTableName, [MarshalAs(UnmanagedType.LPStr)] System.String  aTableSchema);
+		void CreateTable([MarshalAs(UnmanagedType.LPStr)] string aTableName, [MarshalAs(UnmanagedType.LPStr)] string aTableSchema);
 		
 		/// <summary>
         /// Create a new SQL function.  If you use your connection on multiple threads,
@@ -288,7 +288,7 @@ namespace Skybound.Gecko
         /// in question.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CreateFunction([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aFunctionName, System.Int32  aNumArguments, mozIStorageFunction  aFunction);
+		void CreateFunction([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aFunctionName, int aNumArguments, mozIStorageFunction aFunction);
 		
 		/// <summary>
         /// Create a new SQL aggregate function.  If you use your connection on
@@ -305,7 +305,7 @@ namespace Skybound.Gecko
         /// function in question.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CreateAggregateFunction([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aFunctionName, System.Int32  aNumArguments, mozIStorageAggregateFunction  aFunction);
+		void CreateAggregateFunction([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aFunctionName, int aNumArguments, mozIStorageAggregateFunction aFunction);
 		
 		/// <summary>
         /// Delete custom SQL function (simple or aggregate one).
@@ -314,7 +314,7 @@ namespace Skybound.Gecko
         /// The name of function to remove.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveFunction([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aFunctionName);
+		void RemoveFunction([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aFunctionName);
 		
 		/// <summary>
         /// Sets a progress handler. Only one handler can be registered at a time.
@@ -330,7 +330,7 @@ namespace Skybound.Gecko
         /// @return previous registered handler.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		mozIStorageProgressHandler SetProgressHandler(System.Int32  aGranularity, mozIStorageProgressHandler  aHandler);
+		mozIStorageProgressHandler SetProgressHandler(int aGranularity, mozIStorageProgressHandler aHandler);
 		
 		/// <summary>
         /// Remove a progress handler.
@@ -351,6 +351,6 @@ namespace Skybound.Gecko
         /// See http://sqlite.org/c3ref/file_control.html for more details.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetGrowthIncrement(System.Int32  aIncrement, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aDatabaseName);
+		void SetGrowthIncrement(int aIncrement, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aDatabaseName);
 	}
 }

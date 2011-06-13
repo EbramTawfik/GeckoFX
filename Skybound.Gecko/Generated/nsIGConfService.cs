@@ -37,75 +37,78 @@ namespace Skybound.Gecko
 		/// <summary>
         ///Basic registry access </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetBool([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  key);
+		bool GetBool([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String key);
 		
 		/// <summary>Member GetString </summary>
 		/// <param name='key'> </param>
 		/// <returns>A nsAUTF8String</returns>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAUTF8String GetString([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  key);
+		nsAUTF8String GetString([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String key);
 		
 		/// <summary>Member GetInt </summary>
 		/// <param name='key'> </param>
 		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetInt([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  key);
+		int GetInt([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String key);
 		
 		/// <summary>Member GetFloat </summary>
 		/// <param name='key'> </param>
 		/// <returns>A System.Double</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetFloat([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  key);
+		double GetFloat([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String key);
 		
 		/// <summary>
         /// Use this to return any list items in GConf, this will return
         /// an array of UTF16 nsISupportsString's.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIArray GetStringList([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  key);
+		nsIArray GetStringList([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String key);
 		
 		/// <summary>Member SetBool </summary>
 		/// <param name='key'> </param>
 		/// <param name='value'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBool([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  key, System.Boolean  value);
+		void SetBool([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String key, bool value);
 		
 		/// <summary>Member SetString </summary>
 		/// <param name='key'> </param>
 		/// <param name='value'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetString([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  key, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  value);
+		void SetString([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String key, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String value);
 		
 		/// <summary>Member SetInt </summary>
 		/// <param name='key'> </param>
 		/// <param name='value'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetInt([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  key, System.Int32  value);
+		void SetInt([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String key, int value);
 		
 		/// <summary>Member SetFloat </summary>
 		/// <param name='key'> </param>
 		/// <param name='value'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFloat([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  key, double value);
+		void SetFloat([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String key, double value);
 		
 		/// <summary>
         /// Look up the handler for a protocol under the
         /// /desktop/gnome/url-handlers hierarchy.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAUTF8String GetAppForProtocol([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  scheme, out System.Boolean  enabled);
+		nsAUTF8String GetAppForProtocol([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String scheme, out bool enabled);
 		
 		/// <summary>
         /// Check whether the handler for a scheme requires a terminal to run.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool HandlerRequiresTerminal([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  scheme);
+		bool HandlerRequiresTerminal([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String scheme);
 		
 		/// <summary>
         /// Set the handler for a protocol, marking it as enabled.
         /// This removes any GnomeVFSMimeApp association for the protocol.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAppForProtocol([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  scheme, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  command);
+		void SetAppForProtocol([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String scheme, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String command);
 	}
 }

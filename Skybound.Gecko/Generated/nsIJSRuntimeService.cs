@@ -40,10 +40,10 @@ namespace Skybound.Gecko
 		System.IntPtr GetRuntimeAttribute();
 		
 		/// <summary>Member GetBackstagePassAttribute </summary>
-		/// <returns>A nsIXPCScriptable </returns>
+		/// <returns>A nsIXPCScriptable</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIXPCScriptable  GetBackstagePassAttribute();
+		nsIXPCScriptable GetBackstagePassAttribute();
 		
 		/// <summary>
         /// Register additional GC callback which will run after the

@@ -43,7 +43,7 @@ namespace Skybound.Gecko
         ///	this object.
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetChildCountAttribute();
+		int GetChildCountAttribute();
 		
 		/// <summary>
         ///Add a new child DocShellTreeItem.  Adds to the end of the list.
@@ -54,22 +54,23 @@ namespace Skybound.Gecko
         ///	@throws NS_ERROR_UNEXPECTED if this node is a leaf in the tree.
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddChild([MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeItem  child);
+		void AddChild([MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeItem child);
 		
 		/// <summary>
         ///Removes a child DocShellTreeItem.
         ///	@throws NS_ERROR_UNEXPECTED if this node is a leaf in the tree.
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveChild([MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeItem  child);
+		void RemoveChild([MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeItem child);
 		
 		/// <summary>
         /// Return the child at the index requested.  This is 0-based.
         ///
         /// @throws NS_ERROR_UNEXPECTED if the index is out of range
         ///	 </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDocShellTreeItem GetChildAt(System.Int32  index);
+		nsIDocShellTreeItem GetChildAt(int index);
 		
 		/// <summary>
         ///Return the child DocShellTreeItem with the specified name.
@@ -84,7 +85,8 @@ namespace Skybound.Gecko
         ///    	This is used to ensure that we don't run into cross-site issues.
         ///	Note the search is depth first when recursing.
         ///	 </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDocShellTreeItem FindChildWithName([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aName, System.Boolean  aRecurse, System.Boolean  aSameType, [MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeItem  aRequestor, [MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeItem  aOriginalRequestor);
+		nsIDocShellTreeItem FindChildWithName([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aName, bool aRecurse, bool aSameType, [MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeItem aRequestor, [MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeItem aOriginalRequestor);
 	}
 }

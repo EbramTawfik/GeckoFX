@@ -46,6 +46,6 @@ namespace Skybound.Gecko
         /// drawn (but actual drawing might be disabled).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetFramesNotifiedAttribute();
+		uint GetFramesNotifiedAttribute();
 	}
 }

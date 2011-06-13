@@ -54,6 +54,6 @@ namespace Skybound.Gecko
         /// @return failure cancels redirect
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnRedirect([MarshalAs(UnmanagedType.Interface)] nsIHttpChannel  httpChannel, [MarshalAs(UnmanagedType.Interface)] nsIChannel  newChannel);
+		void OnRedirect([MarshalAs(UnmanagedType.Interface)] nsIHttpChannel httpChannel, [MarshalAs(UnmanagedType.Interface)] nsIChannel newChannel);
 	}
 }

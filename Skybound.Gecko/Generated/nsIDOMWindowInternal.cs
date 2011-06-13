@@ -39,7 +39,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMDocument  GetDocumentAttribute();
+		new nsIDOMDocument GetDocumentAttribute();
 		
 		/// <summary>
         /// Accessor for this window's parent window, or the window itself if
@@ -48,7 +48,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMWindow  GetParentAttribute();
+		new nsIDOMWindow GetParentAttribute();
 		
 		/// <summary>
         /// Accessor for the root of this hierarchy of windows. This root may
@@ -59,7 +59,7 @@ namespace Skybound.Gecko
         /// This property is "replaceable" in JavaScript </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMWindow  GetTopAttribute();
+		new nsIDOMWindow GetTopAttribute();
 		
 		/// <summary>
         /// Accessor for the object that controls whether or not scrollbars
@@ -69,14 +69,14 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMBarProp  GetScrollbarsAttribute();
+		new nsIDOMBarProp GetScrollbarsAttribute();
 		
 		/// <summary>
         /// Accessor for the child windows in this window.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMWindowCollection  GetFramesAttribute();
+		new nsIDOMWindowCollection GetFramesAttribute();
 		
 		/// <summary>
         /// Set/Get the name of this window.
@@ -123,7 +123,7 @@ namespace Skybound.Gecko
         /// This attribute is "replaceable" in JavaScript
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Int32  GetScrollXAttribute();
+		new int GetScrollXAttribute();
 		
 		/// <summary>
         /// Accessor for the current y scroll position in this window in
@@ -132,24 +132,25 @@ namespace Skybound.Gecko
         /// This attribute is "replaceable" in JavaScript
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Int32  GetScrollYAttribute();
+		new int GetScrollYAttribute();
 		
 		/// <summary>
         /// Method for scrolling this window to an absolute pixel offset.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void ScrollTo(System.Int32  xScroll, System.Int32  yScroll);
+		new void ScrollTo(int xScroll, int yScroll);
 		
 		/// <summary>
         /// Method for scrolling this window to a pixel offset relative to
         /// the current scroll position.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void ScrollBy(System.Int32  xScrollDif, System.Int32  yScrollDif);
+		new void ScrollBy(int xScrollDif, int yScrollDif);
 		
 		/// <summary>
         /// Method for accessing this window's selection object.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsISelection GetSelection();
 		
@@ -157,13 +158,13 @@ namespace Skybound.Gecko
         /// Method for scrolling this window by a number of lines.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void ScrollByLines(System.Int32  numLines);
+		new void ScrollByLines(int numLines);
 		
 		/// <summary>
         /// Method for scrolling this window by a number of pages.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void ScrollByPages(System.Int32  numPages);
+		new void ScrollByPages(int numPages);
 		
 		/// <summary>
         /// Method for sizing this window to the content in the window.
@@ -178,20 +179,21 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMEventTarget  GetWindowRootAttribute();
+		new nsIDOMEventTarget GetWindowRootAttribute();
 		
 		/// <summary>
         /// Get the application cache object for this window.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMOfflineResourceList  GetApplicationCacheAttribute();
+		new nsIDOMOfflineResourceList GetApplicationCacheAttribute();
 		
 		/// <summary>
         /// Deprecated, but can't remove yet since we don't want to change interfaces.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsAString CreateBlobURL([MarshalAs(UnmanagedType.Interface)] nsIDOMBlob  blob);
+		new nsAString CreateBlobURL([MarshalAs(UnmanagedType.Interface)] nsIDOMBlob blob);
 		
 		/// <summary>Member RevokeBlobURL </summary>
 		/// <param name='URL'> </param>
@@ -199,110 +201,110 @@ namespace Skybound.Gecko
 		new void RevokeBlobURL([MarshalAs(UnmanagedType.LPStruct)] nsAString URL);
 		
 		/// <summary>Member GetWindowAttribute </summary>
-		/// <returns>A nsIDOMWindowInternal </returns>
+		/// <returns>A nsIDOMWindowInternal</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMWindowInternal  GetWindowAttribute();
+		nsIDOMWindowInternal GetWindowAttribute();
 		
 		/// <summary>
         ///[replaceable] self </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMWindowInternal  GetSelfAttribute();
+		nsIDOMWindowInternal GetSelfAttribute();
 		
 		/// <summary>Member GetNavigatorAttribute </summary>
-		/// <returns>A nsIDOMNavigator </returns>
+		/// <returns>A nsIDOMNavigator</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMNavigator  GetNavigatorAttribute();
+		nsIDOMNavigator GetNavigatorAttribute();
 		
 		/// <summary>Member GetScreenAttribute </summary>
-		/// <returns>A nsIDOMScreen </returns>
+		/// <returns>A nsIDOMScreen</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMScreen  GetScreenAttribute();
+		nsIDOMScreen GetScreenAttribute();
 		
 		/// <summary>Member GetHistoryAttribute </summary>
-		/// <returns>A nsIDOMHistory </returns>
+		/// <returns>A nsIDOMHistory</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMHistory  GetHistoryAttribute();
+		nsIDOMHistory GetHistoryAttribute();
 		
 		/// <summary>
         ///[replaceable] content </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMWindow  GetContentAttribute();
+		nsIDOMWindow GetContentAttribute();
 		
 		/// <summary>
         ///[replaceable] prompter </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIPrompt  GetPrompterAttribute();
+		nsIPrompt GetPrompterAttribute();
 		
 		/// <summary>
         ///[replaceable] menubar </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMBarProp  GetMenubarAttribute();
+		nsIDOMBarProp GetMenubarAttribute();
 		
 		/// <summary>
         ///[replaceable] toolbar </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMBarProp  GetToolbarAttribute();
+		nsIDOMBarProp GetToolbarAttribute();
 		
 		/// <summary>
         ///[replaceable] locationbar </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMBarProp  GetLocationbarAttribute();
+		nsIDOMBarProp GetLocationbarAttribute();
 		
 		/// <summary>
         ///[replaceable] personalbar </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMBarProp  GetPersonalbarAttribute();
+		nsIDOMBarProp GetPersonalbarAttribute();
 		
 		/// <summary>
         ///[replaceable] statusbar </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMBarProp  GetStatusbarAttribute();
+		nsIDOMBarProp GetStatusbarAttribute();
 		
 		/// <summary>Member GetClosedAttribute </summary>
-		/// <returns>A System.Boolean </returns>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetClosedAttribute();
+		bool GetClosedAttribute();
 		
 		/// <summary>Member GetCryptoAttribute </summary>
-		/// <returns>A nsIDOMCrypto </returns>
+		/// <returns>A nsIDOMCrypto</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMCrypto  GetCryptoAttribute();
+		nsIDOMCrypto GetCryptoAttribute();
 		
 		/// <summary>Member GetPkcs11Attribute </summary>
-		/// <returns>A nsIDOMPkcs11 </returns>
+		/// <returns>A nsIDOMPkcs11</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMPkcs11  GetPkcs11Attribute();
+		nsIDOMPkcs11 GetPkcs11Attribute();
 		
 		/// <summary>
         ///[replaceable] controllers </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIControllers  GetControllersAttribute();
+		nsIControllers GetControllersAttribute();
 		
 		/// <summary>Member GetOpenerAttribute </summary>
-		/// <returns>A nsIDOMWindowInternal </returns>
+		/// <returns>A nsIDOMWindowInternal</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMWindowInternal  GetOpenerAttribute();
+		nsIDOMWindowInternal GetOpenerAttribute();
 		
 		/// <summary>Member SetOpenerAttribute </summary>
 		/// <param name='aOpener'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOpenerAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMWindowInternal  aOpener);
+		void SetOpenerAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMWindowInternal aOpener);
 		
 		/// <summary>
         ///[replaceable] </summary>
@@ -329,67 +331,67 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMLocation  GetLocationAttribute();
+		nsIDOMLocation GetLocationAttribute();
 		
 		/// <summary>
         ///[replaceable] </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetInnerWidthAttribute();
+		int GetInnerWidthAttribute();
 		
 		/// <summary>
         ///[replaceable] </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetInnerWidthAttribute(System.Int32  aInnerWidth);
+		void SetInnerWidthAttribute(int aInnerWidth);
 		
 		/// <summary>Member GetInnerHeightAttribute </summary>
-		/// <returns>A System.Int32 </returns>
+		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetInnerHeightAttribute();
+		int GetInnerHeightAttribute();
 		
 		/// <summary>Member SetInnerHeightAttribute </summary>
 		/// <param name='aInnerHeight'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetInnerHeightAttribute(System.Int32  aInnerHeight);
+		void SetInnerHeightAttribute(int aInnerHeight);
 		
 		/// <summary>Member GetOuterWidthAttribute </summary>
-		/// <returns>A System.Int32 </returns>
+		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetOuterWidthAttribute();
+		int GetOuterWidthAttribute();
 		
 		/// <summary>Member SetOuterWidthAttribute </summary>
 		/// <param name='aOuterWidth'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOuterWidthAttribute(System.Int32  aOuterWidth);
+		void SetOuterWidthAttribute(int aOuterWidth);
 		
 		/// <summary>Member GetOuterHeightAttribute </summary>
-		/// <returns>A System.Int32 </returns>
+		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetOuterHeightAttribute();
+		int GetOuterHeightAttribute();
 		
 		/// <summary>Member SetOuterHeightAttribute </summary>
 		/// <param name='aOuterHeight'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOuterHeightAttribute(System.Int32  aOuterHeight);
+		void SetOuterHeightAttribute(int aOuterHeight);
 		
 		/// <summary>Member GetScreenXAttribute </summary>
-		/// <returns>A System.Int32 </returns>
+		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetScreenXAttribute();
+		int GetScreenXAttribute();
 		
 		/// <summary>Member SetScreenXAttribute </summary>
 		/// <param name='aScreenX'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetScreenXAttribute(System.Int32  aScreenX);
+		void SetScreenXAttribute(int aScreenX);
 		
 		/// <summary>Member GetScreenYAttribute </summary>
-		/// <returns>A System.Int32 </returns>
+		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetScreenYAttribute();
+		int GetScreenYAttribute();
 		
 		/// <summary>Member SetScreenYAttribute </summary>
 		/// <param name='aScreenY'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetScreenYAttribute(System.Int32  aScreenY);
+		void SetScreenYAttribute(int aScreenY);
 		
 		/// <summary>Member GetMozInnerScreenXAttribute </summary>
 		/// <returns>A System.Double</returns>
@@ -404,38 +406,38 @@ namespace Skybound.Gecko
 		/// <summary>
         ///The offset in pixels by which the window is scrolled </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetPageXOffsetAttribute();
+		int GetPageXOffsetAttribute();
 		
 		/// <summary>Member GetPageYOffsetAttribute </summary>
-		/// <returns>A System.Int32 </returns>
+		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetPageYOffsetAttribute();
+		int GetPageYOffsetAttribute();
 		
 		/// <summary>
         ///The maximum offset that the window can be scrolled to
         ///     (i.e., the document width/height minus the scrollport width/height) </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetScrollMaxXAttribute();
+		int GetScrollMaxXAttribute();
 		
 		/// <summary>Member GetScrollMaxYAttribute </summary>
-		/// <returns>A System.Int32 </returns>
+		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetScrollMaxYAttribute();
+		int GetScrollMaxYAttribute();
 		
 		/// <summary>
         ///[replaceable] length </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetLengthAttribute();
+		uint GetLengthAttribute();
 		
 		/// <summary>Member GetFullScreenAttribute </summary>
-		/// <returns>A System.Boolean </returns>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetFullScreenAttribute();
+		bool GetFullScreenAttribute();
 		
 		/// <summary>Member SetFullScreenAttribute </summary>
 		/// <param name='aFullScreen'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFullScreenAttribute(System.Boolean  aFullScreen);
+		void SetFullScreenAttribute(bool aFullScreen);
 		
 		/// <summary>Member Alert </summary>
 		/// <param name='text'> </param>
@@ -451,6 +453,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// prompt() should return a null string if cancel is pressed
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsAString Prompt([MarshalAs(UnmanagedType.LPStruct)] nsAString aMessage, [MarshalAs(UnmanagedType.LPStruct)] nsAString aInitial);
 		
@@ -486,31 +489,31 @@ namespace Skybound.Gecko
 		/// <param name='xPos'> </param>
 		/// <param name='yPos'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MoveTo(System.Int32  xPos, System.Int32  yPos);
+		void MoveTo(int xPos, int yPos);
 		
 		/// <summary>Member MoveBy </summary>
 		/// <param name='xDif'> </param>
 		/// <param name='yDif'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MoveBy(System.Int32  xDif, System.Int32  yDif);
+		void MoveBy(int xDif, int yDif);
 		
 		/// <summary>Member ResizeTo </summary>
 		/// <param name='width'> </param>
 		/// <param name='height'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ResizeTo(System.Int32  width, System.Int32  height);
+		void ResizeTo(int width, int height);
 		
 		/// <summary>Member ResizeBy </summary>
 		/// <param name='widthDif'> </param>
 		/// <param name='heightDif'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ResizeBy(System.Int32  widthDif, System.Int32  heightDif);
+		void ResizeBy(int widthDif, int heightDif);
 		
 		/// <summary>Member Scroll </summary>
 		/// <param name='xScroll'> </param>
 		/// <param name='yScroll'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Scroll(System.Int32  xScroll, System.Int32  yScroll);
+		void Scroll(int xScroll, int yScroll);
 		
 		/// <summary>
         /// Open a new window with this one as the parent.  This method will
@@ -519,6 +522,7 @@ namespace Skybound.Gecko
         /// name and the default character set on the newly opened window
         /// will just be the default character set of this window.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMWindow Open([MarshalAs(UnmanagedType.LPStruct)] nsAString url, [MarshalAs(UnmanagedType.LPStruct)] nsAString name, [MarshalAs(UnmanagedType.LPStruct)] nsAString options);
 		
@@ -530,8 +534,9 @@ namespace Skybound.Gecko
         /// nsISupports (nsISupportsPrimitives) types are converted to native
         /// JS types when possible.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMWindow OpenDialog([MarshalAs(UnmanagedType.LPStruct)] nsAString url, [MarshalAs(UnmanagedType.LPStruct)] nsAString name, [MarshalAs(UnmanagedType.LPStruct)] nsAString options, [MarshalAs(UnmanagedType.Interface)] nsISupports  aExtraArgument);
+		nsIDOMWindow OpenDialog([MarshalAs(UnmanagedType.LPStruct)] nsAString url, [MarshalAs(UnmanagedType.LPStruct)] nsAString name, [MarshalAs(UnmanagedType.LPStruct)] nsAString options, [MarshalAs(UnmanagedType.Interface)] nsISupports aExtraArgument);
 		
 		/// <summary>Member Close </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -554,33 +559,36 @@ namespace Skybound.Gecko
         /// @param showDialog: should we show the Find dialog
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Find([MarshalAs(UnmanagedType.LPStruct)] nsAString str, System.Boolean  caseSensitive, System.Boolean  backwards, System.Boolean  wrapAround, System.Boolean  wholeWord, System.Boolean  searchInFrames, System.Boolean  showDialog);
+		bool Find([MarshalAs(UnmanagedType.LPStruct)] nsAString str, bool caseSensitive, bool backwards, bool wrapAround, bool wholeWord, bool searchInFrames, bool showDialog);
 		
 		/// <summary>
         /// Ascii base64 data to binary data and vice versa...
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsAString Atob([MarshalAs(UnmanagedType.LPStruct)] nsAString aAsciiString);
 		
 		/// <summary>Member Btoa </summary>
 		/// <param name='aBase64Data'> </param>
 		/// <returns>A nsAString</returns>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsAString Btoa([MarshalAs(UnmanagedType.LPStruct)] nsAString aBase64Data);
 		
 		/// <summary>Member GetFrameElementAttribute </summary>
-		/// <returns>A nsIDOMElement </returns>
+		/// <returns>A nsIDOMElement</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMElement  GetFrameElementAttribute();
+		nsIDOMElement GetFrameElementAttribute();
 		
 		/// <summary>Member ShowModalDialog </summary>
 		/// <param name='aURI'> </param>
 		/// <param name='aArgs'> </param>
 		/// <param name='aOptions'> </param>
 		/// <returns>A nsIVariant</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant ShowModalDialog([MarshalAs(UnmanagedType.LPStruct)] nsAString aURI, [MarshalAs(UnmanagedType.Interface)] nsIVariant  aArgs, [MarshalAs(UnmanagedType.LPStruct)] nsAString aOptions);
+		nsIVariant ShowModalDialog([MarshalAs(UnmanagedType.LPStruct)] nsAString aURI, [MarshalAs(UnmanagedType.Interface)] nsIVariant aArgs, [MarshalAs(UnmanagedType.LPStruct)] nsAString aOptions);
 		
 		/// <summary>
         /// Implements a safe message-passing system which can cross same-origin
@@ -607,19 +615,19 @@ namespace Skybound.Gecko
         /// been painted to the screen.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetMozPaintCountAttribute();
+		uint GetMozPaintCountAttribute();
 		
 		/// <summary>
         /// Request a refresh of this browser window.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MozRequestAnimationFrame([MarshalAs(UnmanagedType.Interface)] nsIAnimationFrameListener  aListener);
+		void MozRequestAnimationFrame([MarshalAs(UnmanagedType.Interface)] nsIAnimationFrameListener aListener);
 		
 		/// <summary>
         /// The current animation start time in milliseconds since the epoch.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetMozAnimationStartTimeAttribute();
+		int GetMozAnimationStartTimeAttribute();
 	}
 	
 	/// <summary>nsIDOMMozURLProperty </summary>
@@ -632,8 +640,9 @@ namespace Skybound.Gecko
 		/// <summary>Member CreateObjectURL </summary>
 		/// <param name='blob'> </param>
 		/// <returns>A nsAString</returns>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString CreateObjectURL([MarshalAs(UnmanagedType.Interface)] nsIDOMBlob  blob);
+		nsAString CreateObjectURL([MarshalAs(UnmanagedType.Interface)] nsIDOMBlob blob);
 		
 		/// <summary>Member RevokeObjectURL </summary>
 		/// <param name='URL'> </param>
@@ -649,9 +658,9 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetURLAttribute </summary>
-		/// <returns>A nsIDOMMozURLProperty </returns>
+		/// <returns>A nsIDOMMozURLProperty</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMMozURLProperty  GetURLAttribute();
+		nsIDOMMozURLProperty GetURLAttribute();
 	}
 }

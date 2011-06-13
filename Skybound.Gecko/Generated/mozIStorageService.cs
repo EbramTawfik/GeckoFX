@@ -56,7 +56,7 @@ namespace Skybound.Gecko
         /// @throws NS_ERROR_INVALID_ARG if aStorageKey is invalid.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		mozIStorageConnection OpenSpecialDatabase([MarshalAs(UnmanagedType.LPStr)] System.String  aStorageKey);
+		mozIStorageConnection OpenSpecialDatabase([MarshalAs(UnmanagedType.LPStr)] string aStorageKey);
 		
 		/// <summary>
         /// Open a connection to the specified file.
@@ -95,7 +95,7 @@ namespace Skybound.Gecko
         /// If the database file is corrupted.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		mozIStorageConnection OpenDatabase([MarshalAs(UnmanagedType.Interface)] nsIFile  aDatabaseFile);
+		mozIStorageConnection OpenDatabase([MarshalAs(UnmanagedType.Interface)] nsIFile aDatabaseFile);
 		
 		/// <summary>
         /// Open a connection to the specified file that doesn't share a sqlite cache.
@@ -130,7 +130,7 @@ namespace Skybound.Gecko
         /// If the database file is corrupted.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		mozIStorageConnection OpenUnsharedDatabase([MarshalAs(UnmanagedType.Interface)] nsIFile  aDatabaseFile);
+		mozIStorageConnection OpenUnsharedDatabase([MarshalAs(UnmanagedType.Interface)] nsIFile aDatabaseFile);
 		
 		/// <summary>
         /// Copies the specified database file to the specified parent directory with
@@ -146,7 +146,8 @@ namespace Skybound.Gecko
         /// The directory you'd like the backup file to be placed.
         /// @return The nsIFile representing the backup file.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIFile BackupDatabaseFile([MarshalAs(UnmanagedType.Interface)] nsIFile  aDBFile, [MarshalAs(UnmanagedType.LPStruct)] nsAString aBackupFileName, [MarshalAs(UnmanagedType.Interface)] nsIFile  aBackupParentDirectory);
+		nsIFile BackupDatabaseFile([MarshalAs(UnmanagedType.Interface)] nsIFile aDBFile, [MarshalAs(UnmanagedType.LPStruct)] nsAString aBackupFileName, [MarshalAs(UnmanagedType.Interface)] nsIFile aBackupParentDirectory);
 	}
 }

@@ -40,13 +40,13 @@ namespace Skybound.Gecko
         /// Set PrintOptions
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPrintOptions(System.Int32  aType, System.Boolean  aTurnOnOff);
+		void SetPrintOptions(int aType, bool aTurnOnOff);
 		
 		/// <summary>
         /// Get PrintOptions
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetPrintOptions(System.Int32  aType);
+		bool GetPrintOptions(int aType);
 		
 		/// <summary>
         /// Set PrintOptions Bit field
@@ -64,6 +64,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Makes a new copy
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIPrintSettings Clone();
 		
@@ -71,36 +72,36 @@ namespace Skybound.Gecko
         /// Assigns the internal values from the "in" arg to the current object
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Assign([MarshalAs(UnmanagedType.Interface)] nsIPrintSettings  aPS);
+		void Assign([MarshalAs(UnmanagedType.Interface)] nsIPrintSettings aPS);
 		
 		/// <summary>
         /// Data Members
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIPrintSession  GetPrintSessionAttribute();
+		nsIPrintSession GetPrintSessionAttribute();
 		
 		/// <summary>
         /// Data Members
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPrintSessionAttribute([MarshalAs(UnmanagedType.Interface)] nsIPrintSession  aPrintSession);
+		void SetPrintSessionAttribute([MarshalAs(UnmanagedType.Interface)] nsIPrintSession aPrintSession);
 		
 		/// <summary>
         ///We hold a weak reference </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetStartPageRangeAttribute();
+		int GetStartPageRangeAttribute();
 		
 		/// <summary>
         ///We hold a weak reference </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetStartPageRangeAttribute(System.Int32  aStartPageRange);
+		void SetStartPageRangeAttribute(int aStartPageRange);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetEndPageRangeAttribute();
+		int GetEndPageRangeAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetEndPageRangeAttribute(System.Int32  aEndPageRange);
+		void SetEndPageRangeAttribute(int aEndPageRange);
 		
 		/// <summary>
         /// The edge measurements define the positioning of the headers
@@ -223,22 +224,22 @@ namespace Skybound.Gecko
 		/// <summary>
         ///values 0.0 - 1.0 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetPrintBGColorsAttribute();
+		bool GetPrintBGColorsAttribute();
 		
 		/// <summary>
         ///values 0.0 - 1.0 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPrintBGColorsAttribute(System.Boolean  aPrintBGColors);
+		void SetPrintBGColorsAttribute(bool aPrintBGColors);
 		
 		/// <summary>
         ///Print Background Colors </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetPrintBGImagesAttribute();
+		bool GetPrintBGImagesAttribute();
 		
 		/// <summary>
         ///Print Background Colors </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPrintBGImagesAttribute(System.Boolean  aPrintBGImages);
+		void SetPrintBGImagesAttribute(bool aPrintBGImages);
 		
 		/// <summary>
         ///Print Background Images </summary>
@@ -315,12 +316,12 @@ namespace Skybound.Gecko
 		/// <summary>
         ///indicates how to enable the frameset UI </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsCancelledAttribute();
+		bool GetIsCancelledAttribute();
 		
 		/// <summary>
         ///indicates how to enable the frameset UI </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetIsCancelledAttribute(System.Boolean  aIsCancelled);
+		void SetIsCancelledAttribute(bool aIsCancelled);
 		
 		/// <summary>
         ///indicates whether the print job has been cancelled </summary>
@@ -343,30 +344,30 @@ namespace Skybound.Gecko
 		void SetPrintFrameTypeAttribute(short aPrintFrameType);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetPrintSilentAttribute();
+		bool GetPrintSilentAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPrintSilentAttribute(System.Boolean  aPrintSilent);
-		
-		/// <summary>
-        ///print without putting up the dialog </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetShrinkToFitAttribute();
+		void SetPrintSilentAttribute(bool aPrintSilent);
 		
 		/// <summary>
         ///print without putting up the dialog </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetShrinkToFitAttribute(System.Boolean  aShrinkToFit);
+		bool GetShrinkToFitAttribute();
+		
+		/// <summary>
+        ///print without putting up the dialog </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetShrinkToFitAttribute(bool aShrinkToFit);
 		
 		/// <summary>
         ///shrinks content to fit on page </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetShowPrintProgressAttribute();
+		bool GetShowPrintProgressAttribute();
 		
 		/// <summary>
         ///shrinks content to fit on page </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetShowPrintProgressAttribute(System.Boolean  aShowPrintProgress);
+		void SetShowPrintProgressAttribute(bool aShowPrintProgress);
 		
 		/// <summary>
         ///Additional XP Related </summary>
@@ -469,40 +470,40 @@ namespace Skybound.Gecko
         /// (like "600", "600x300", "600x300x12", "high-res",
         /// "med-res". "low-res", etc.) </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetDownloadFontsAttribute();
+		bool GetDownloadFontsAttribute();
 		
 		/// <summary>
         ///device-specific identifer of resolution or quality
         /// (like "600", "600x300", "600x300x12", "high-res",
         /// "med-res". "low-res", etc.) </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDownloadFontsAttribute(System.Boolean  aDownloadFonts);
+		void SetDownloadFontsAttribute(bool aDownloadFonts);
 		
 		/// <summary>
         ///enable font download to printer? </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetPrintReversedAttribute();
+		bool GetPrintReversedAttribute();
 		
 		/// <summary>
         ///enable font download to printer? </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPrintReversedAttribute(System.Boolean  aPrintReversed);
+		void SetPrintReversedAttribute(bool aPrintReversed);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetPrintInColorAttribute();
+		bool GetPrintInColorAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPrintInColorAttribute(System.Boolean  aPrintInColor);
-		
-		/// <summary>
-        ///a false means grayscale </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetOrientationAttribute();
+		void SetPrintInColorAttribute(bool aPrintInColor);
 		
 		/// <summary>
         ///a false means grayscale </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOrientationAttribute(System.Int32  aOrientation);
+		int GetOrientationAttribute();
+		
+		/// <summary>
+        ///a false means grayscale </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOrientationAttribute(int aOrientation);
 		
 		/// <summary>
         ///see orientation consts </summary>
@@ -516,10 +517,10 @@ namespace Skybound.Gecko
 		void SetPrintCommandAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aPrintCommand);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetNumCopiesAttribute();
+		int GetNumCopiesAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetNumCopiesAttribute(System.Int32  aNumCopies);
+		void SetNumCopiesAttribute(int aNumCopies);
 		
 		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -531,12 +532,12 @@ namespace Skybound.Gecko
 		/// <summary>
         ///name of destination printer </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetPrintToFileAttribute();
+		bool GetPrintToFileAttribute();
 		
 		/// <summary>
         ///name of destination printer </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPrintToFileAttribute(System.Boolean  aPrintToFile);
+		void SetPrintToFileAttribute(bool aPrintToFile);
 		
 		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -552,20 +553,10 @@ namespace Skybound.Gecko
 		void SetOutputFormatAttribute(short aOutputFormat);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetPrintPageDelayAttribute();
+		int GetPrintPageDelayAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPrintPageDelayAttribute(System.Int32  aPrintPageDelay);
-		
-		/// <summary>
-        /// This attribute tracks whether the PS has been initialized
-        /// from a printer specified by the "printerName" attr.
-        /// If a different name is set into the "printerName"
-        /// attribute than the one it was initialized with the PS
-        /// will then get intialized from that printer.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsInitializedFromPrinterAttribute();
+		void SetPrintPageDelayAttribute(int aPrintPageDelay);
 		
 		/// <summary>
         /// This attribute tracks whether the PS has been initialized
@@ -575,7 +566,17 @@ namespace Skybound.Gecko
         /// will then get intialized from that printer.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetIsInitializedFromPrinterAttribute(System.Boolean  aIsInitializedFromPrinter);
+		bool GetIsInitializedFromPrinterAttribute();
+		
+		/// <summary>
+        /// This attribute tracks whether the PS has been initialized
+        /// from a printer specified by the "printerName" attr.
+        /// If a different name is set into the "printerName"
+        /// attribute than the one it was initialized with the PS
+        /// will then get intialized from that printer.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetIsInitializedFromPrinterAttribute(bool aIsInitializedFromPrinter);
 		
 		/// <summary>
         /// This attribute tracks whether the PS has been initialized
@@ -584,7 +585,7 @@ namespace Skybound.Gecko
         /// will then get intialized from prefs again.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsInitializedFromPrefsAttribute();
+		bool GetIsInitializedFromPrefsAttribute();
 		
 		/// <summary>
         /// This attribute tracks whether the PS has been initialized
@@ -593,7 +594,7 @@ namespace Skybound.Gecko
         /// will then get intialized from prefs again.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetIsInitializedFromPrefsAttribute(System.Boolean  aIsInitializedFromPrefs);
+		void SetIsInitializedFromPrefsAttribute(bool aIsInitializedFromPrefs);
 		
 		/// <summary>
         ///C++ Helper Functions </summary>

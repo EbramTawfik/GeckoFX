@@ -48,6 +48,6 @@ namespace Skybound.Gecko
         /// calls to the aOuter object.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr  CreateDelegate([MarshalAs(UnmanagedType.Interface)] nsIRDFResource  aOuter, [MarshalAs(UnmanagedType.LPStr)] System.String  aKey, ref System.Guid aIID);
+		System.IntPtr CreateDelegate([MarshalAs(UnmanagedType.Interface)] nsIRDFResource aOuter, [MarshalAs(UnmanagedType.LPStr)] string aKey, ref System.Guid aIID);
 	}
 }

@@ -37,12 +37,12 @@ namespace Skybound.Gecko
 		/// <summary>Member Init </summary>
 		/// <param name='window'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  window);
+		void Init([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window);
 		
 		/// <summary>Member GetStateAttribute </summary>
-		/// <returns>A System.UInt32 </returns>
+		/// <returns>A System.UInt32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetStateAttribute();
+		uint GetStateAttribute();
 		
 		/// <summary>Member GetTooltipTextAttribute </summary>
 		/// <param name='aTooltipText'> </param>

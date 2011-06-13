@@ -46,7 +46,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIURI  GetURIAttribute();
+		new nsIURI GetURIAttribute();
 		
 		/// <summary>
         /// A readonly property that returns the title
@@ -67,23 +67,23 @@ namespace Skybound.Gecko
         /// navigation.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Boolean  GetIsSubFrameAttribute();
+		new bool GetIsSubFrameAttribute();
 		
 		/// <summary>
         ///URI for the document </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetURI([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI);
+		void SetURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 		
 		/// <summary>
         ///Referrer URI </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI  GetReferrerURIAttribute();
+		nsIURI GetReferrerURIAttribute();
 		
 		/// <summary>
         ///Referrer URI </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetReferrerURIAttribute([MarshalAs(UnmanagedType.Interface)] nsIURI  aReferrerURI);
+		void SetReferrerURIAttribute([MarshalAs(UnmanagedType.Interface)] nsIURI aReferrerURI);
 		
 		/// <summary>
         ///Content viewer, for fast restoration of presentation </summary>
@@ -98,23 +98,23 @@ namespace Skybound.Gecko
 		/// <summary>
         ///Whether the content viewer is marked "sticky" </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetStickyAttribute();
+		bool GetStickyAttribute();
 		
 		/// <summary>
         ///Whether the content viewer is marked "sticky" </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetStickyAttribute(System.Boolean  aSticky);
+		void SetStickyAttribute(bool aSticky);
 		
 		/// <summary>
         ///Saved state of the global window object </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports  GetWindowStateAttribute();
+		nsISupports GetWindowStateAttribute();
 		
 		/// <summary>
         ///Saved state of the global window object </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetWindowStateAttribute([MarshalAs(UnmanagedType.Interface)] nsISupports  aWindowState);
+		void SetWindowStateAttribute([MarshalAs(UnmanagedType.Interface)] nsISupports aWindowState);
 		
 		/// <summary>
         /// Saved position and dimensions of the content viewer; we must adjust the
@@ -122,21 +122,22 @@ namespace Skybound.Gecko
         /// is restored.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetViewerBounds([MarshalAs(UnmanagedType.Interface)] nsIntRect  bounds);
+		void GetViewerBounds([MarshalAs(UnmanagedType.Interface)] nsIntRect bounds);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetViewerBounds([MarshalAs(UnmanagedType.Interface)] nsIntRect  bounds);
+		void SetViewerBounds([MarshalAs(UnmanagedType.Interface)] nsIntRect bounds);
 		
 		/// <summary>
         ///Append a child shell to the end of our list. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddChildShell([MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeItem  shell);
+		void AddChildShell([MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeItem shell);
 		
 		/// <summary>
         /// Get the child shell at |index|; returns null if |index| is out of bounds.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDocShellTreeItem ChildShellAt(System.Int32  index);
+		nsIDocShellTreeItem ChildShellAt(int index);
 		
 		/// <summary>
         /// Clear the child shell list.
@@ -148,12 +149,12 @@ namespace Skybound.Gecko
         ///Saved refresh URI list for the content viewer </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupportsArray  GetRefreshURIListAttribute();
+		nsISupportsArray GetRefreshURIListAttribute();
 		
 		/// <summary>
         ///Saved refresh URI list for the content viewer </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetRefreshURIListAttribute([MarshalAs(UnmanagedType.Interface)] nsISupportsArray  aRefreshURIList);
+		void SetRefreshURIListAttribute([MarshalAs(UnmanagedType.Interface)] nsISupportsArray aRefreshURIList);
 		
 		/// <summary>
         /// Ensure that the cached presentation members are self-consistent.
@@ -174,12 +175,12 @@ namespace Skybound.Gecko
         ///Post Data for the document </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIInputStream  GetPostDataAttribute();
+		nsIInputStream GetPostDataAttribute();
 		
 		/// <summary>
         ///Post Data for the document </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPostDataAttribute([MarshalAs(UnmanagedType.Interface)] nsIInputStream  aPostData);
+		void SetPostDataAttribute([MarshalAs(UnmanagedType.Interface)] nsIInputStream aPostData);
 		
 		/// <summary>
         ///LayoutHistoryState for scroll position and form values </summary>
@@ -195,40 +196,40 @@ namespace Skybound.Gecko
         ///parent of this entry </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISHEntry  GetParentAttribute();
+		nsISHEntry GetParentAttribute();
 		
 		/// <summary>
         ///parent of this entry </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetParentAttribute([MarshalAs(UnmanagedType.Interface)] nsISHEntry  aParent);
+		void SetParentAttribute([MarshalAs(UnmanagedType.Interface)] nsISHEntry aParent);
 		
 		/// <summary>
         /// The loadType for this entry. This is typically loadHistory except
         /// when reload is pressed, it has the appropriate reload flag
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetLoadTypeAttribute();
+		uint GetLoadTypeAttribute();
 		
 		/// <summary>
         /// The loadType for this entry. This is typically loadHistory except
         /// when reload is pressed, it has the appropriate reload flag
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetLoadTypeAttribute(System.UInt32  aLoadType);
+		void SetLoadTypeAttribute(uint aLoadType);
 		
 		/// <summary>
         /// An ID to help identify this entry from others during
         /// subframe navigation
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetIDAttribute();
+		uint GetIDAttribute();
 		
 		/// <summary>
         /// An ID to help identify this entry from others during
         /// subframe navigation
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetIDAttribute(System.UInt32  aID);
+		void SetIDAttribute(uint aID);
 		
 		/// <summary>
         /// pageIdentifier is an integer that should be the same for two entries
@@ -239,7 +240,7 @@ namespace Skybound.Gecko
         /// some other frame).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetPageIdentifierAttribute();
+		uint GetPageIdentifierAttribute();
 		
 		/// <summary>
         /// pageIdentifier is an integer that should be the same for two entries
@@ -250,7 +251,7 @@ namespace Skybound.Gecko
         /// some other frame).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPageIdentifierAttribute(System.UInt32  aPageIdentifier);
+		void SetPageIdentifierAttribute(uint aPageIdentifier);
 		
 		/// <summary>
         /// docIdentifier is an integer that should be the same for two entries
@@ -260,7 +261,7 @@ namespace Skybound.Gecko
         /// created by A calling history.pushState().
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetDocIdentifierAttribute();
+		uint GetDocIdentifierAttribute();
 		
 		/// <summary>
         /// docIdentifier is an integer that should be the same for two entries
@@ -270,7 +271,7 @@ namespace Skybound.Gecko
         /// created by A calling history.pushState().
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDocIdentifierAttribute(System.UInt32  aDocIdentifier);
+		void SetDocIdentifierAttribute(uint aDocIdentifier);
 		
 		/// <summary>
         /// Changes this entry's doc identifier to a new value which is unique
@@ -283,74 +284,75 @@ namespace Skybound.Gecko
         ///attribute to set and get the cache key for the entry </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports  GetCacheKeyAttribute();
+		nsISupports GetCacheKeyAttribute();
 		
 		/// <summary>
         ///attribute to set and get the cache key for the entry </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCacheKeyAttribute([MarshalAs(UnmanagedType.Interface)] nsISupports  aCacheKey);
+		void SetCacheKeyAttribute([MarshalAs(UnmanagedType.Interface)] nsISupports aCacheKey);
 		
 		/// <summary>
         ///attribute to indicate whether layoutHistoryState should be saved </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetSaveLayoutStateFlagAttribute();
+		bool GetSaveLayoutStateFlagAttribute();
 		
 		/// <summary>
         ///attribute to indicate whether layoutHistoryState should be saved </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSaveLayoutStateFlagAttribute(System.Boolean  aSaveLayoutStateFlag);
+		void SetSaveLayoutStateFlagAttribute(bool aSaveLayoutStateFlag);
 		
 		/// <summary>
         ///attribute to indicate whether the page is already expired in cache </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetExpirationStatusAttribute();
+		bool GetExpirationStatusAttribute();
 		
 		/// <summary>
         ///attribute to indicate whether the page is already expired in cache </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetExpirationStatusAttribute(System.Boolean  aExpirationStatus);
+		void SetExpirationStatusAttribute(bool aExpirationStatus);
 		
 		/// <summary>
         /// attribute to indicate the content-type of the document that this
         /// is a session history entry for
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetContentTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aContentType);
+		void GetContentTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aContentType);
 		
 		/// <summary>
         /// attribute to indicate the content-type of the document that this
         /// is a session history entry for
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetContentTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aContentType);
+		void SetContentTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aContentType);
 		
 		/// <summary>
         ///Set/Get scrollers' positon in anchored pages </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetScrollPosition(System.Int32  x, System.Int32  y);
+		void SetScrollPosition(int x, int y);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetScrollPosition(out System.Int32  x, out System.Int32  y);
+		void GetScrollPosition(out int x, out int y);
 		
 		/// <summary>
         ///Additional ways to create an entry </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Create([MarshalAs(UnmanagedType.Interface)] nsIURI  URI, [MarshalAs(UnmanagedType.LPStruct)] nsAString title, [MarshalAs(UnmanagedType.Interface)] nsIInputStream  inputStream, System.IntPtr layoutHistoryState, [MarshalAs(UnmanagedType.Interface)] nsISupports  cacheKey, [MarshalAs(UnmanagedType.LPStruct)] nsAString  contentType, [MarshalAs(UnmanagedType.Interface)] nsISupports  owner, System.UInt32  docshellID, System.Boolean  dynamicCreation);
+		void Create([MarshalAs(UnmanagedType.Interface)] nsIURI URI, [MarshalAs(UnmanagedType.LPStruct)] nsAString title, [MarshalAs(UnmanagedType.Interface)] nsIInputStream inputStream, System.IntPtr layoutHistoryState, [MarshalAs(UnmanagedType.Interface)] nsISupports cacheKey, [MarshalAs(UnmanagedType.LPStruct)] nsAString contentType, [MarshalAs(UnmanagedType.Interface)] nsISupports owner, uint docshellID, bool dynamicCreation);
 		
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISHEntry Clone();
 		
 		/// <summary>
         ///Attribute that indicates if this entry is for a subframe navigation </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetIsSubFrame(System.Boolean  aFlag);
+		void SetIsSubFrame(bool aFlag);
 		
 		/// <summary>
         ///Return any content viewer present in or below this node in the
         ///        nsSHEntry tree.  This will differ from contentViewer in the case
         ///        where a child nsSHEntry has the content viewer for this tree. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetAnyContentViewer([MarshalAs(UnmanagedType.Interface)] out nsISHEntry  ownerEntry);
+		System.IntPtr GetAnyContentViewer([MarshalAs(UnmanagedType.Interface)] out nsISHEntry ownerEntry);
 		
 		/// <summary>
         /// Get the owner, if any, that was associated with the channel
@@ -359,7 +361,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports  GetOwnerAttribute();
+		nsISupports GetOwnerAttribute();
 		
 		/// <summary>
         /// Get the owner, if any, that was associated with the channel
@@ -367,7 +369,7 @@ namespace Skybound.Gecko
         /// came from.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOwnerAttribute([MarshalAs(UnmanagedType.Interface)] nsISupports  aOwner);
+		void SetOwnerAttribute([MarshalAs(UnmanagedType.Interface)] nsISupports aOwner);
 		
 		/// <summary>
         /// Get/set data associated with this history state via a pushState() call,
@@ -422,13 +424,13 @@ namespace Skybound.Gecko
         /// The history ID of the docshell.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetDocshellIDAttribute();
+		uint GetDocshellIDAttribute();
 		
 		/// <summary>
         /// The history ID of the docshell.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDocshellIDAttribute(System.UInt32  aDocshellID);
+		void SetDocshellIDAttribute(uint aDocshellID);
 	}
 	
 	/// <summary>nsISHEntryInternal </summary>
@@ -450,12 +452,12 @@ namespace Skybound.Gecko
         /// A number that is assigned by the sHistory when the entry is activated
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetLastTouchedAttribute();
+		uint GetLastTouchedAttribute();
 		
 		/// <summary>
         /// A number that is assigned by the sHistory when the entry is activated
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetLastTouchedAttribute(System.UInt32  aLastTouched);
+		void SetLastTouchedAttribute(uint aLastTouched);
 	}
 }

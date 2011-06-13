@@ -53,7 +53,7 @@ namespace Skybound.Gecko
         /// profile name.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Startup([MarshalAs(UnmanagedType.LPStr)] System.String  appName, [MarshalAs(UnmanagedType.LPStr)] System.String  profileName);
+		void Startup([MarshalAs(UnmanagedType.LPStr)] string appName, [MarshalAs(UnmanagedType.LPStr)] string profileName);
 		
 		/// <summary>
         /// Register a XUL window with the xremote service. The window will be
@@ -61,7 +61,7 @@ namespace Skybound.Gecko
         /// before startup(), the registration will happen once startup() is called.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RegisterWindow([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  aWindow);
+		void RegisterWindow([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow);
 		
 		/// <summary>
         /// Stop the remote service from accepting additional requests.

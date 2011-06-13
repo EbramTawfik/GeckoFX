@@ -41,6 +41,7 @@ namespace Skybound.Gecko
 		/// <param name='systemId'> </param>
 		/// <param name='baseURI'> </param>
 		/// <returns>A nsIDOMLSInput</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMLSInput ResolveResource([MarshalAs(UnmanagedType.LPStruct)] nsAString type, [MarshalAs(UnmanagedType.LPStruct)] nsAString namespaceURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString publicId, [MarshalAs(UnmanagedType.LPStruct)] nsAString systemId, [MarshalAs(UnmanagedType.LPStruct)] nsAString baseURI);
 	}

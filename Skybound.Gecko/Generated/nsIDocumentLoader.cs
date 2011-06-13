@@ -51,20 +51,20 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports  GetContainerAttribute();
+		nsISupports GetContainerAttribute();
 		
 		/// <summary>
         /// The loadgroup associated with this docloader
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsILoadGroup  GetLoadGroupAttribute();
+		nsILoadGroup GetLoadGroupAttribute();
 		
 		/// <summary>
         /// The defaultLoadRequest of the loadgroup associated with this docloader
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIChannel  GetDocumentChannelAttribute();
+		nsIChannel GetDocumentChannelAttribute();
 	}
 }

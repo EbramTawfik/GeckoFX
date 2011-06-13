@@ -42,7 +42,7 @@ namespace Skybound.Gecko
         /// and should be read from aInputStream in the same order by this method.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Read([MarshalAs(UnmanagedType.Interface)] nsIObjectInputStream  aInputStream);
+		new void Read([MarshalAs(UnmanagedType.Interface)] nsIObjectInputStream aInputStream);
 		
 		/// <summary>
         /// Serialize the object implementing nsISerializable to aOutputStream, by
@@ -54,7 +54,7 @@ namespace Skybound.Gecko
         /// nsIClassInfo, in particular nsIClassInfo::GetClassID.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Write([MarshalAs(UnmanagedType.Interface)] nsIObjectOutputStream  aOutputStream);
+		new void Write([MarshalAs(UnmanagedType.Interface)] nsIObjectOutputStream aOutputStream);
 		
 		/// <summary>
         /// Returns the security preferences associated with this principal.
@@ -67,7 +67,7 @@ namespace Skybound.Gecko
         /// indicates whether this is a codebaseTrusted certificate.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPreferences([MarshalAs(UnmanagedType.LPStr)] out System.String  prefBranch, [MarshalAs(UnmanagedType.LPStr)] out System.String  id, [MarshalAs(UnmanagedType.LPStr)] out System.String  subjectName, [MarshalAs(UnmanagedType.LPStr)] out System.String  grantedList, [MarshalAs(UnmanagedType.LPStr)] out System.String  deniedList, out System.Boolean  isTrusted);
+		void GetPreferences([MarshalAs(UnmanagedType.LPStr)] out string prefBranch, [MarshalAs(UnmanagedType.LPStr)] out string id, [MarshalAs(UnmanagedType.LPStr)] out string subjectName, [MarshalAs(UnmanagedType.LPStr)] out string grantedList, [MarshalAs(UnmanagedType.LPStr)] out string deniedList, out bool isTrusted);
 		
 		/// <summary>
         /// Returns whether the other principal is equivalent to this principal.
@@ -75,53 +75,53 @@ namespace Skybound.Gecko
         /// they have the same origin, or have the same certificate fingerprint ID
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Equals([MarshalAs(UnmanagedType.Interface)] nsIPrincipal  other);
+		bool Equals([MarshalAs(UnmanagedType.Interface)] nsIPrincipal other);
 		
 		/// <summary>
         /// Returns a hash value for the principal.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetHashValueAttribute();
+		uint GetHashValueAttribute();
 		
 		/// <summary>
         /// Returns the JS equivalent of the principal.
         /// @see JSPrincipals.h
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetJSPrincipals(System.IntPtr  cx);
+		System.IntPtr GetJSPrincipals(System.IntPtr cx);
 		
 		/// <summary>
         /// method.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr  GetSecurityPolicyAttribute();
+		System.IntPtr GetSecurityPolicyAttribute();
 		
 		/// <summary>
         /// method.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSecurityPolicyAttribute(System.IntPtr  aSecurityPolicy);
+		void SetSecurityPolicyAttribute(System.IntPtr aSecurityPolicy);
 		
 		/// <summary>
         /// messes with it?  Is that OK?
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		short CanEnableCapability([MarshalAs(UnmanagedType.LPStr)] System.String  capability);
+		short CanEnableCapability([MarshalAs(UnmanagedType.LPStr)] string capability);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCanEnableCapability([MarshalAs(UnmanagedType.LPStr)] System.String  capability, short canEnable);
+		void SetCanEnableCapability([MarshalAs(UnmanagedType.LPStr)] string capability, short canEnable);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsCapabilityEnabled([MarshalAs(UnmanagedType.LPStr)] System.String  capability, System.IntPtr  annotation);
+		bool IsCapabilityEnabled([MarshalAs(UnmanagedType.LPStr)] string capability, System.IntPtr annotation);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EnableCapability([MarshalAs(UnmanagedType.LPStr)] System.String  capability, ref System.IntPtr  annotation);
+		void EnableCapability([MarshalAs(UnmanagedType.LPStr)] string capability, ref System.IntPtr annotation);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RevertCapability([MarshalAs(UnmanagedType.LPStr)] System.String  capability, ref System.IntPtr  annotation);
+		void RevertCapability([MarshalAs(UnmanagedType.LPStr)] string capability, ref System.IntPtr annotation);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DisableCapability([MarshalAs(UnmanagedType.LPStr)] System.String  capability, ref System.IntPtr  annotation);
+		void DisableCapability([MarshalAs(UnmanagedType.LPStr)] string capability, ref System.IntPtr annotation);
 		
 		/// <summary>
         /// The codebase URI to which this principal pertains.  This is
@@ -129,7 +129,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI  GetURIAttribute();
+		nsIURI GetURIAttribute();
 		
 		/// <summary>
         /// The domain URI to which this principal pertains.
@@ -138,7 +138,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI  GetDomainAttribute();
+		nsIURI GetDomainAttribute();
 		
 		/// <summary>
         /// The domain URI to which this principal pertains.
@@ -146,26 +146,26 @@ namespace Skybound.Gecko
         /// Setting this has no effect on the URI.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDomainAttribute([MarshalAs(UnmanagedType.Interface)] nsIURI  aDomain);
+		void SetDomainAttribute([MarshalAs(UnmanagedType.Interface)] nsIURI aDomain);
 		
 		/// <summary>
         /// with a chrome URI.  All of chrome should probably be the same.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetOriginAttribute();
+		string GetOriginAttribute();
 		
 		/// <summary>
         /// Whether this principal is associated with a certificate.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetHasCertificateAttribute();
+		bool GetHasCertificateAttribute();
 		
 		/// <summary>
         /// consider using something else for this....
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetFingerprintAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aFingerprint);
+		void GetFingerprintAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aFingerprint);
 		
 		/// <summary>
         /// The pretty name for the certificate.  This sort of (but not really)
@@ -177,7 +177,7 @@ namespace Skybound.Gecko
         /// Throws if there is no certificate associated with this principal.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPrettyNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aPrettyName);
+		void GetPrettyNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aPrettyName);
 		
 		/// <summary>
         /// Returns whether the other principal is equal to or weaker than this
@@ -206,7 +206,7 @@ namespace Skybound.Gecko
         /// make some code (e.g. MaybeDowngradeToCodebase) clearer.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Subsumes([MarshalAs(UnmanagedType.Interface)] nsIPrincipal  other);
+		bool Subsumes([MarshalAs(UnmanagedType.Interface)] nsIPrincipal other);
 		
 		/// <summary>
         /// Checks whether this principal is allowed to load the network resource
@@ -230,7 +230,7 @@ namespace Skybound.Gecko
         /// @throws NS_ERROR_DOM_BAD_URI if the load is not allowed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CheckMayLoad([MarshalAs(UnmanagedType.Interface)] nsIURI  uri, System.Boolean  report);
+		void CheckMayLoad([MarshalAs(UnmanagedType.Interface)] nsIURI uri, bool report);
 		
 		/// <summary>
         /// The subject name for the certificate.  This actually identifies the
@@ -242,7 +242,7 @@ namespace Skybound.Gecko
         /// Throws if there is no certificate associated with this principal.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSubjectNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aSubjectName);
+		void GetSubjectNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aSubjectName);
 		
 		/// <summary>
         /// The certificate associated with this principal, if any.  If there isn't
@@ -250,7 +250,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports  GetCertificateAttribute();
+		nsISupports GetCertificateAttribute();
 		
 		/// <summary>
         /// A Content Security Policy associated with this principal.

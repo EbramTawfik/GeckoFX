@@ -43,7 +43,7 @@ namespace Skybound.Gecko
         /// and includes a copy of the original nsISupports.h. This is all just to deal
         /// with the Mac specific ": public __comobject" thing. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr  QueryInterface(ref System.Guid uuid);
+		System.IntPtr QueryInterface(ref System.Guid uuid);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int AddRef();

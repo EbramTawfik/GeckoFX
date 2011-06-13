@@ -50,18 +50,19 @@ namespace Skybound.Gecko
         /// and null data and subject.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Login([MarshalAs(UnmanagedType.Interface)] nsIObserver  observer);
+		void Login([MarshalAs(UnmanagedType.Interface)] nsIObserver observer);
 		
 		/// <summary>
         /// The PKCS11 slot
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIPKCS11Slot  GetSlotAttribute();
+		nsIPKCS11Slot GetSlotAttribute();
 		
 		/// <summary>
         /// Gets token to be logged in name.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsAString GetTokenName();
 	}

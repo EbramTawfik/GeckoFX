@@ -44,75 +44,75 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetClassNameAttribute();
+		string GetClassNameAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetScriptableFlagsAttribute();
+		uint GetScriptableFlagsAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PreCreate([MarshalAs(UnmanagedType.Interface)] nsISupports  nativeObj, System.IntPtr  cx, System.IntPtr  globalObj, out System.IntPtr  parentObj);
+		void PreCreate([MarshalAs(UnmanagedType.Interface)] nsISupports nativeObj, System.IntPtr cx, System.IntPtr globalObj, out System.IntPtr parentObj);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Create([MarshalAs(UnmanagedType.Interface)] nsIXPConnectWrappedNative  wrapper, System.IntPtr  cx, System.IntPtr  obj);
+		void Create([MarshalAs(UnmanagedType.Interface)] nsIXPConnectWrappedNative wrapper, System.IntPtr cx, System.IntPtr obj);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PostCreate([MarshalAs(UnmanagedType.Interface)] nsIXPConnectWrappedNative  wrapper, System.IntPtr  cx, System.IntPtr  obj);
+		void PostCreate([MarshalAs(UnmanagedType.Interface)] nsIXPConnectWrappedNative wrapper, System.IntPtr cx, System.IntPtr obj);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool AddProperty([MarshalAs(UnmanagedType.Interface)] nsIXPConnectWrappedNative  wrapper, System.IntPtr  cx, System.IntPtr  obj, System.IntPtr id, System.IntPtr  vp);
+		bool AddProperty([MarshalAs(UnmanagedType.Interface)] nsIXPConnectWrappedNative wrapper, System.IntPtr cx, System.IntPtr obj, System.IntPtr id, System.IntPtr vp);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool DelProperty([MarshalAs(UnmanagedType.Interface)] nsIXPConnectWrappedNative  wrapper, System.IntPtr  cx, System.IntPtr  obj, System.IntPtr id, System.IntPtr  vp);
-		
-		/// <summary>
-        /// this method does something.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetProperty([MarshalAs(UnmanagedType.Interface)] nsIXPConnectWrappedNative  wrapper, System.IntPtr  cx, System.IntPtr  obj, System.IntPtr id, System.IntPtr  vp);
+		bool DelProperty([MarshalAs(UnmanagedType.Interface)] nsIXPConnectWrappedNative wrapper, System.IntPtr cx, System.IntPtr obj, System.IntPtr id, System.IntPtr vp);
 		
 		/// <summary>
         /// this method does something.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool SetProperty([MarshalAs(UnmanagedType.Interface)] nsIXPConnectWrappedNative  wrapper, System.IntPtr  cx, System.IntPtr  obj, System.IntPtr id, System.IntPtr  vp);
+		bool GetProperty([MarshalAs(UnmanagedType.Interface)] nsIXPConnectWrappedNative wrapper, System.IntPtr cx, System.IntPtr obj, System.IntPtr id, System.IntPtr vp);
+		
+		/// <summary>
+        /// this method does something.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool SetProperty([MarshalAs(UnmanagedType.Interface)] nsIXPConnectWrappedNative wrapper, System.IntPtr cx, System.IntPtr obj, System.IntPtr id, System.IntPtr vp);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Enumerate([MarshalAs(UnmanagedType.Interface)] nsIXPConnectWrappedNative  wrapper, System.IntPtr  cx, System.IntPtr  obj);
+		bool Enumerate([MarshalAs(UnmanagedType.Interface)] nsIXPConnectWrappedNative wrapper, System.IntPtr cx, System.IntPtr obj);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool NewEnumerate([MarshalAs(UnmanagedType.Interface)] nsIXPConnectWrappedNative  wrapper, System.IntPtr  cx, System.IntPtr  obj, System.UInt32  enum_op, System.IntPtr  statep, out System.IntPtr idp);
+		bool NewEnumerate([MarshalAs(UnmanagedType.Interface)] nsIXPConnectWrappedNative wrapper, System.IntPtr cx, System.IntPtr obj, uint enum_op, System.IntPtr statep, out System.IntPtr idp);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool NewResolve([MarshalAs(UnmanagedType.Interface)] nsIXPConnectWrappedNative  wrapper, System.IntPtr  cx, System.IntPtr  obj, System.IntPtr id, System.UInt32  flags, out System.IntPtr  objp);
+		bool NewResolve([MarshalAs(UnmanagedType.Interface)] nsIXPConnectWrappedNative wrapper, System.IntPtr cx, System.IntPtr obj, System.IntPtr id, uint flags, out System.IntPtr objp);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Convert([MarshalAs(UnmanagedType.Interface)] nsIXPConnectWrappedNative  wrapper, System.IntPtr  cx, System.IntPtr  obj, System.UInt32  type, System.IntPtr  vp);
+		bool Convert([MarshalAs(UnmanagedType.Interface)] nsIXPConnectWrappedNative wrapper, System.IntPtr cx, System.IntPtr obj, uint type, System.IntPtr vp);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Finalize([MarshalAs(UnmanagedType.Interface)] nsIXPConnectWrappedNative  wrapper, System.IntPtr  cx, System.IntPtr  obj);
+		void Finalize([MarshalAs(UnmanagedType.Interface)] nsIXPConnectWrappedNative wrapper, System.IntPtr cx, System.IntPtr obj);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool CheckAccess([MarshalAs(UnmanagedType.Interface)] nsIXPConnectWrappedNative  wrapper, System.IntPtr  cx, System.IntPtr  obj, System.IntPtr id, System.UInt32  mode, System.IntPtr  vp);
+		bool CheckAccess([MarshalAs(UnmanagedType.Interface)] nsIXPConnectWrappedNative wrapper, System.IntPtr cx, System.IntPtr obj, System.IntPtr id, uint mode, System.IntPtr vp);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Call([MarshalAs(UnmanagedType.Interface)] nsIXPConnectWrappedNative  wrapper, System.IntPtr  cx, System.IntPtr  obj, System.UInt32  argc, System.IntPtr  argv, System.IntPtr  vp);
+		bool Call([MarshalAs(UnmanagedType.Interface)] nsIXPConnectWrappedNative wrapper, System.IntPtr cx, System.IntPtr obj, uint argc, System.IntPtr argv, System.IntPtr vp);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Construct([MarshalAs(UnmanagedType.Interface)] nsIXPConnectWrappedNative  wrapper, System.IntPtr  cx, System.IntPtr  obj, System.UInt32  argc, System.IntPtr  argv, System.IntPtr  vp);
+		bool Construct([MarshalAs(UnmanagedType.Interface)] nsIXPConnectWrappedNative wrapper, System.IntPtr cx, System.IntPtr obj, uint argc, System.IntPtr argv, System.IntPtr vp);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool HasInstance([MarshalAs(UnmanagedType.Interface)] nsIXPConnectWrappedNative  wrapper, System.IntPtr  cx, System.IntPtr  obj, System.IntPtr val, out System.Boolean  bp);
+		bool HasInstance([MarshalAs(UnmanagedType.Interface)] nsIXPConnectWrappedNative wrapper, System.IntPtr cx, System.IntPtr obj, System.IntPtr val, out bool bp);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Trace([MarshalAs(UnmanagedType.Interface)] nsIXPConnectWrappedNative  wrapper, System.IntPtr trc, System.IntPtr  obj);
+		void Trace([MarshalAs(UnmanagedType.Interface)] nsIXPConnectWrappedNative wrapper, System.IntPtr trc, System.IntPtr obj);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Equality([MarshalAs(UnmanagedType.Interface)] nsIXPConnectWrappedNative  wrapper, System.IntPtr  cx, System.IntPtr  obj, System.IntPtr val);
+		bool Equality([MarshalAs(UnmanagedType.Interface)] nsIXPConnectWrappedNative wrapper, System.IntPtr cx, System.IntPtr obj, System.IntPtr val);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr OuterObject([MarshalAs(UnmanagedType.Interface)] nsIXPConnectWrappedNative  wrapper, System.IntPtr  cx, System.IntPtr  obj);
+		System.IntPtr OuterObject([MarshalAs(UnmanagedType.Interface)] nsIXPConnectWrappedNative wrapper, System.IntPtr cx, System.IntPtr obj);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PostCreatePrototype(System.IntPtr  cx, System.IntPtr  proto);
+		void PostCreatePrototype(System.IntPtr cx, System.IntPtr proto);
 	}
 }

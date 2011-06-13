@@ -46,7 +46,7 @@ namespace Skybound.Gecko
         /// @param aMetaRefresh Flag to indicate if this is a Meta refresh.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RefreshURI([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, System.Int32  aMillis, System.Boolean  aRepeat, System.Boolean  aMetaRefresh);
+		void RefreshURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, int aMillis, bool aRepeat, bool aMetaRefresh);
 		
 		/// <summary>
         /// Loads a URI immediately as if it were a refresh.
@@ -57,7 +57,7 @@ namespace Skybound.Gecko
         /// @param aMetaRefresh Flag to indicate if this is a meta refresh.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ForceRefreshURI([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, System.Int32  aMillis, System.Boolean  aMetaRefresh);
+		void ForceRefreshURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, int aMillis, bool aMetaRefresh);
 		
 		/// <summary>
         /// Checks the passed in channel to see if there is a refresh header,
@@ -72,7 +72,7 @@ namespace Skybound.Gecko
         /// @param aChannel The channel to be parsed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetupRefreshURI([MarshalAs(UnmanagedType.Interface)] nsIChannel  aChannel);
+		void SetupRefreshURI([MarshalAs(UnmanagedType.Interface)] nsIChannel aChannel);
 		
 		/// <summary>
         /// Parses the passed in header string and sets up a refreshURI if
@@ -84,7 +84,7 @@ namespace Skybound.Gecko
         /// @param aHeader  The meta refresh header string.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetupRefreshURIFromHeader([MarshalAs(UnmanagedType.Interface)] nsIURI  aBaseURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aHeader);
+		void SetupRefreshURIFromHeader([MarshalAs(UnmanagedType.Interface)] nsIURI aBaseURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString aHeader);
 		
 		/// <summary>
         /// Cancels all timer loads.
@@ -96,6 +96,6 @@ namespace Skybound.Gecko
         /// True when there are pending refreshes, false otherwise.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetRefreshPendingAttribute();
+		bool GetRefreshPendingAttribute();
 	}
 }

@@ -40,34 +40,35 @@ namespace Skybound.Gecko
         /// see nsIProgrammingLanguage for list of language consts
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetLanguageAttribute();
+		uint GetLanguageAttribute();
 		
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetLanguageNameAttribute();
+		string GetLanguageNameAttribute();
 		
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetFilenameAttribute();
+		string GetFilenameAttribute();
 		
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetNameAttribute();
+		string GetNameAttribute();
 		
 		/// <summary>
         /// Valid line numbers begin at '1'. '0' indicates unknown.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetLineNumberAttribute();
+		int GetLineNumberAttribute();
 		
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetSourceLineAttribute();
+		string GetSourceLineAttribute();
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIStackFrame  GetCallerAttribute();
+		nsIStackFrame GetCallerAttribute();
 		
+		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string ToString();
 	}
@@ -84,64 +85,65 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetMessageAttribute();
+		string GetMessageAttribute();
 		
 		/// <summary>
         /// The nsresult associated with this exception.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetResultAttribute();
+		int GetResultAttribute();
 		
 		/// <summary>
         /// The name of the error code (ie, a string repr of |result|)
         /// </summary>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetNameAttribute();
+		string GetNameAttribute();
 		
 		/// <summary>
         /// null indicates "no data"
         /// </summary>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetFilenameAttribute();
+		string GetFilenameAttribute();
 		
 		/// <summary>
         /// Valid line numbers begin at '1'. '0' indicates unknown.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetLineNumberAttribute();
+		uint GetLineNumberAttribute();
 		
 		/// <summary>
         /// We don't have an unambiguous indicator for unknown.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetColumnNumberAttribute();
+		uint GetColumnNumberAttribute();
 		
 		/// <summary>
         /// A stack trace, if available.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIStackFrame  GetLocationAttribute();
+		nsIStackFrame GetLocationAttribute();
 		
 		/// <summary>
         /// An inner exception that triggered this, if available.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIException  GetInnerAttribute();
+		nsIException GetInnerAttribute();
 		
 		/// <summary>
         /// Arbitary data for the implementation.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports  GetDataAttribute();
+		nsISupports GetDataAttribute();
 		
 		/// <summary>
         /// A generic formatter - make it suitable to print, etc.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string ToString();
 	}

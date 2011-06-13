@@ -37,7 +37,8 @@ namespace Skybound.Gecko
 		
 		/// <summary>
         ///-8172 is the error code returned by PSM </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIPrincipal VerifySignature([MarshalAs(UnmanagedType.LPStr)] System.String  aSignature, System.UInt32  aSignatureLen, [MarshalAs(UnmanagedType.LPStr)] System.String  plaintext, System.UInt32  plaintextLen, out System.Int32  errorCode);
+		nsIPrincipal VerifySignature([MarshalAs(UnmanagedType.LPStr)] string aSignature, uint aSignatureLen, [MarshalAs(UnmanagedType.LPStr)] string plaintext, uint plaintextLen, out int errorCode);
 	}
 }

@@ -40,6 +40,6 @@ namespace Skybound.Gecko
         /// See nsICacheService.idl for accessGranted values.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnCacheEntryAvailable([MarshalAs(UnmanagedType.Interface)] nsICacheEntryDescriptor  descriptor, System.IntPtr accessGranted, System.Int32  status);
+		void OnCacheEntryAvailable([MarshalAs(UnmanagedType.Interface)] nsICacheEntryDescriptor descriptor, System.IntPtr accessGranted, int status);
 	}
 }

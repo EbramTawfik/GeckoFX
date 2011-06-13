@@ -54,7 +54,7 @@ namespace Skybound.Gecko
         /// XXX shouldn't aProtocolScheme be an ACString like nsIURI::scheme?
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool ExternalProtocolHandlerExists([MarshalAs(UnmanagedType.LPStr)] System.String  aProtocolScheme);
+		bool ExternalProtocolHandlerExists([MarshalAs(UnmanagedType.LPStr)] string aProtocolScheme);
 		
 		/// <summary>
         /// Check whether a handler for a specific protocol is "exposed" as a visible
@@ -68,7 +68,7 @@ namespace Skybound.Gecko
         /// XXX shouldn't aProtocolScheme be an ACString like nsIURI::scheme?
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsExposedProtocol([MarshalAs(UnmanagedType.LPStr)] System.String  aProtocolScheme);
+		bool IsExposedProtocol([MarshalAs(UnmanagedType.LPStr)] string aProtocolScheme);
 		
 		/// <summary>
         /// Retrieve the handler for the given protocol.  If neither the application
@@ -83,8 +83,9 @@ namespace Skybound.Gecko
         ///
         /// @return the handler, if any; otherwise a default handler
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIHandlerInfo GetProtocolHandlerInfo([MarshalAs(UnmanagedType.LPStruct)] nsAString  aProtocolScheme);
+		nsIHandlerInfo GetProtocolHandlerInfo([MarshalAs(UnmanagedType.LPStruct)] nsAString aProtocolScheme);
 		
 		/// <summary>
         /// Given a scheme, looks up the protocol info from the OS.  This should be
@@ -94,8 +95,9 @@ namespace Skybound.Gecko
         /// @param aFound  Was an OS default handler for this scheme found?
         /// @return An nsIHanderInfo for the protocol.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIHandlerInfo GetProtocolHandlerInfoFromOS([MarshalAs(UnmanagedType.LPStruct)] nsAString  aProtocolScheme, out System.Boolean  aFound);
+		nsIHandlerInfo GetProtocolHandlerInfoFromOS([MarshalAs(UnmanagedType.LPStruct)] nsAString aProtocolScheme, out bool aFound);
 		
 		/// <summary>
         /// Set some sane defaults for a protocol handler object.
@@ -108,7 +110,7 @@ namespace Skybound.Gecko
         /// getProtocolHandlerInfoFromOS.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetProtocolHandlerDefaults([MarshalAs(UnmanagedType.Interface)] nsIHandlerInfo  aHandlerInfo, System.Boolean  aOSHandlerExists);
+		void SetProtocolHandlerDefaults([MarshalAs(UnmanagedType.Interface)] nsIHandlerInfo aHandlerInfo, bool aOSHandlerExists);
 		
 		/// <summary>
         /// Used to load a url via an external protocol handler (if one exists)
@@ -117,7 +119,7 @@ namespace Skybound.Gecko
         /// @deprecated Use LoadURI instead (See Bug 389565 for removal)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void LoadUrl([MarshalAs(UnmanagedType.Interface)] nsIURI  aURL);
+		void LoadUrl([MarshalAs(UnmanagedType.Interface)] nsIURI aURL);
 		
 		/// <summary>
         /// Used to load a URI via an external application. Might prompt the user for
@@ -139,7 +141,7 @@ namespace Skybound.Gecko
         /// (bug 394479).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void LoadURI([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor  aWindowContext);
+		void LoadURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor aWindowContext);
 		
 		/// <summary>
         /// Gets a human-readable description for the application responsible for
@@ -153,7 +155,8 @@ namespace Skybound.Gecko
         /// If no protocol helper exists for this scheme, or if it is not
         /// possible to get a description for it.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetApplicationDescription([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aScheme);
+		nsAString GetApplicationDescription([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aScheme);
 	}
 }

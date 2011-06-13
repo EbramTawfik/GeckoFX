@@ -43,6 +43,7 @@ namespace Skybound.Gecko
         /// If null, all windows will be enumerated.
         /// @return an enumerator of nsIDOMWindows
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISimpleEnumerator GetEnumerator([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aWindowType);
 		
@@ -50,6 +51,7 @@ namespace Skybound.Gecko
         ///Identical to getEnumerator except:
         /// @return an enumerator of nsIXULWindows
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISimpleEnumerator GetXULWindowEnumerator([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aWindowType);
 		
@@ -66,15 +68,17 @@ namespace Skybound.Gecko
         /// from front to back. back to front if false.
         /// @return an enumerator of nsIDOMWindows
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISimpleEnumerator GetZOrderDOMWindowEnumerator([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aWindowType, System.Boolean  aFrontToBack);
+		nsISimpleEnumerator GetZOrderDOMWindowEnumerator([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aWindowType, bool aFrontToBack);
 		
 		/// <summary>
         ///Identical to getZOrderDOMWindowEnumerator except:
         /// @return an enumerator of nsIXULWindows
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISimpleEnumerator GetZOrderXULWindowEnumerator([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aWindowType, System.Boolean  aFrontToBack);
+		nsISimpleEnumerator GetZOrderXULWindowEnumerator([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aWindowType, bool aFrontToBack);
 		
 		/// <summary>
         ///This is a shortcut for simply fetching the first window in
@@ -85,6 +89,7 @@ namespace Skybound.Gecko
         /// If null, return the topmost window of any type.
         /// @return the topmost window
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMWindowInternal GetMostRecentWindow([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aWindowType);
 		
@@ -94,7 +99,7 @@ namespace Skybound.Gecko
         /// @param aWindow the window to add
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RegisterWindow([MarshalAs(UnmanagedType.Interface)] nsIXULWindow  aWindow);
+		void RegisterWindow([MarshalAs(UnmanagedType.Interface)] nsIXULWindow aWindow);
 		
 		/// <summary>
         ///Remove the window from the list of known windows. Listeners (see
@@ -102,7 +107,7 @@ namespace Skybound.Gecko
         /// @param aWindow the window to remove
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UnregisterWindow([MarshalAs(UnmanagedType.Interface)] nsIXULWindow  aWindow);
+		void UnregisterWindow([MarshalAs(UnmanagedType.Interface)] nsIXULWindow aWindow);
 		
 		/// <summary>
         ///Call this method when a window gains focus. It's a primitive means of
@@ -111,7 +116,7 @@ namespace Skybound.Gecko
         /// @param aWindow the window which has gained focus
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UpdateWindowTimeStamp([MarshalAs(UnmanagedType.Interface)] nsIXULWindow  aWindow);
+		void UpdateWindowTimeStamp([MarshalAs(UnmanagedType.Interface)] nsIXULWindow aWindow);
 		
 		/// <summary>
         ///Call this method when a window's title changes. Listeners (see
@@ -120,7 +125,7 @@ namespace Skybound.Gecko
         /// @param inTitle the window's new title
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UpdateWindowTitle([MarshalAs(UnmanagedType.Interface)] nsIXULWindow  aWindow, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string inTitle);
+		void UpdateWindowTitle([MarshalAs(UnmanagedType.Interface)] nsIXULWindow aWindow, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string inTitle);
 		
 		/// <summary>
         ///A window wants to be moved in z-order. Calculate whether and how
@@ -153,7 +158,7 @@ namespace Skybound.Gecko
         /// the position given.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool CalculateZPosition([MarshalAs(UnmanagedType.Interface)] nsIXULWindow  inWindow, System.UInt32  inPosition, System.IntPtr  inBelow, out System.UInt32  outPosition, out System.IntPtr  outBelow);
+		bool CalculateZPosition([MarshalAs(UnmanagedType.Interface)] nsIXULWindow inWindow, uint inPosition, System.IntPtr inBelow, out uint outPosition, out System.IntPtr outBelow);
 		
 		/// <summary>
         ///A window has been positioned behind another. Inform WindowMediator
@@ -166,7 +171,7 @@ namespace Skybound.Gecko
         /// @param inBelow the window inWindow is behind, if zLevelBelow
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetZPosition([MarshalAs(UnmanagedType.Interface)] nsIXULWindow  inWindow, System.UInt32  inPosition, [MarshalAs(UnmanagedType.Interface)] nsIXULWindow  inBelow);
+		void SetZPosition([MarshalAs(UnmanagedType.Interface)] nsIXULWindow inWindow, uint inPosition, [MarshalAs(UnmanagedType.Interface)] nsIXULWindow inBelow);
 		
 		/// <summary>
         ///Return the window's Z level (as defined in nsIXULWindow).
@@ -174,7 +179,7 @@ namespace Skybound.Gecko
         /// @return aWindow's z level
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetZLevel([MarshalAs(UnmanagedType.Interface)] nsIXULWindow  aWindow);
+		uint GetZLevel([MarshalAs(UnmanagedType.Interface)] nsIXULWindow aWindow);
 		
 		/// <summary>
         ///Set the window's Z level (as defined in nsIXULWindow). The implementation
@@ -185,7 +190,7 @@ namespace Skybound.Gecko
         /// @param aZLevel the window's new Z level
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetZLevel([MarshalAs(UnmanagedType.Interface)] nsIXULWindow  aWindow, System.UInt32  aZLevel);
+		void SetZLevel([MarshalAs(UnmanagedType.Interface)] nsIXULWindow aWindow, uint aZLevel);
 		
 		/// <summary>
         ///Register a listener for window status changes.
@@ -193,13 +198,13 @@ namespace Skybound.Gecko
         /// @param aListener the listener to register
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddListener([MarshalAs(UnmanagedType.Interface)] nsIWindowMediatorListener  aListener);
+		void AddListener([MarshalAs(UnmanagedType.Interface)] nsIWindowMediatorListener aListener);
 		
 		/// <summary>
         ///Unregister a listener of window status changes.
         /// @param aListener the listener to unregister
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveListener([MarshalAs(UnmanagedType.Interface)] nsIWindowMediatorListener  aListener);
+		void RemoveListener([MarshalAs(UnmanagedType.Interface)] nsIWindowMediatorListener aListener);
 	}
 }

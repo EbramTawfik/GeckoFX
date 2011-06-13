@@ -53,23 +53,23 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMCSSStyleSheet  GetParentStyleSheetAttribute();
+		new nsIDOMCSSStyleSheet GetParentStyleSheetAttribute();
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMCSSRule  GetParentRuleAttribute();
+		new nsIDOMCSSRule GetParentRuleAttribute();
 		
 		/// <summary>
         /// Modified version of nsIDOMCSSMediaRule for @-moz-document rules.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMCSSRuleList  GetCssRulesAttribute();
+		nsIDOMCSSRuleList GetCssRulesAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint InsertRule([MarshalAs(UnmanagedType.LPStruct)] nsAString rule, System.UInt32  index);
+		uint InsertRule([MarshalAs(UnmanagedType.LPStruct)] nsAString rule, uint index);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DeleteRule(System.UInt32  index);
+		void DeleteRule(uint index);
 	}
 }

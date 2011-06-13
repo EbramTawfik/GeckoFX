@@ -59,13 +59,13 @@ namespace Skybound.Gecko
         /// Initialize this wrapper with aStatement.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Initialize(mozIStorageStatement  aStatement);
+		void Initialize(mozIStorageStatement aStatement);
 		
 		/// <summary>
         /// The statement that is wrapped.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		mozIStorageStatement  GetStatementAttribute();
+		mozIStorageStatement GetStatementAttribute();
 		
 		/// <summary>
         /// Step, reset, and execute the wrapped statement.
@@ -86,13 +86,13 @@ namespace Skybound.Gecko
         /// appropriate row.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		mozIStorageStatementRow  GetRowAttribute();
+		mozIStorageStatementRow GetRowAttribute();
 		
 		/// <summary>
         /// The parameters; these can be set in lieu of using the call
         /// notation on this.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		mozIStorageStatementParams  GetParamsAttribute();
+		mozIStorageStatementParams GetParamsAttribute();
 	}
 }

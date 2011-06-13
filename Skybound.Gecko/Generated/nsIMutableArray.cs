@@ -54,7 +54,7 @@ namespace Skybound.Gecko
         /// number of elements in the array.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.UInt32  GetLengthAttribute();
+		new uint GetLengthAttribute();
 		
 		/// <summary>
         /// queryElementAt()
@@ -74,7 +74,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.IntPtr  QueryElementAt(System.UInt32  index, ref System.Guid uuid);
+		new System.IntPtr QueryElementAt(uint index, ref System.Guid uuid);
 		
 		/// <summary>
         /// indexOf()
@@ -92,7 +92,7 @@ namespace Skybound.Gecko
         /// @throws NS_ERROR_NOT_FOUND if the element was not in the array.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new uint IndexOf(System.UInt32  startIndex, [MarshalAs(UnmanagedType.Interface)] nsISupports  element);
+		new uint IndexOf(uint startIndex, [MarshalAs(UnmanagedType.Interface)] nsISupports element);
 		
 		/// <summary>
         /// enumerate the array
@@ -101,6 +101,7 @@ namespace Skybound.Gecko
         /// @throws NS_ERROR_FAILURE if the array is empty (to make it easy
         /// to detect errors)
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsISimpleEnumerator Enumerate();
 		
@@ -117,7 +118,7 @@ namespace Skybound.Gecko
         /// nsIWeakReference.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AppendElement([MarshalAs(UnmanagedType.Interface)] nsISupports  element, System.Boolean  weak);
+		void AppendElement([MarshalAs(UnmanagedType.Interface)] nsISupports element, bool weak);
 		
 		/// <summary>
         /// removeElementAt()
@@ -131,7 +132,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveElementAt(System.UInt32  index);
+		void RemoveElementAt(uint index);
 		
 		/// <summary>
         /// insertElementAt()
@@ -155,7 +156,7 @@ namespace Skybound.Gecko
         /// nsIWeakReference.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InsertElementAt([MarshalAs(UnmanagedType.Interface)] nsISupports  element, System.UInt32  index, System.Boolean  weak);
+		void InsertElementAt([MarshalAs(UnmanagedType.Interface)] nsISupports element, uint index, bool weak);
 		
 		/// <summary>
         /// replaceElementAt()
@@ -181,7 +182,7 @@ namespace Skybound.Gecko
         /// nsIWeakReference.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ReplaceElementAt([MarshalAs(UnmanagedType.Interface)] nsISupports  element, System.UInt32  index, System.Boolean  weak);
+		void ReplaceElementAt([MarshalAs(UnmanagedType.Interface)] nsISupports element, uint index, bool weak);
 		
 		/// <summary>
         /// clear()

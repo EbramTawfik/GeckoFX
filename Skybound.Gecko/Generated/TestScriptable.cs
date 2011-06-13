@@ -34,34 +34,34 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetScriptable_attr1Attribute </summary>
-		/// <returns>A System.Int32 </returns>
+		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetScriptable_attr1Attribute();
+		int GetScriptable_attr1Attribute();
 		
 		/// <summary>Member GetScriptable_attr2Attribute </summary>
-		/// <returns>A System.Int32 </returns>
+		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetScriptable_attr2Attribute();
+		int GetScriptable_attr2Attribute();
 		
 		/// <summary>Member SetScriptable_attr2Attribute </summary>
 		/// <param name='aScriptable_attr2'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetScriptable_attr2Attribute(System.Int32  aScriptable_attr2);
+		void SetScriptable_attr2Attribute(int aScriptable_attr2);
 		
 		/// <summary>Member GetNotscriptable_attr1Attribute </summary>
-		/// <returns>A System.Int32 </returns>
+		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetNotscriptable_attr1Attribute();
+		int GetNotscriptable_attr1Attribute();
 		
 		/// <summary>Member GetNotscriptable_attr2Attribute </summary>
-		/// <returns>A System.Int32 </returns>
+		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetNotscriptable_attr2Attribute();
+		int GetNotscriptable_attr2Attribute();
 		
 		/// <summary>Member SetNotscriptable_attr2Attribute </summary>
 		/// <param name='aNotscriptable_attr2'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetNotscriptable_attr2Attribute(System.Int32  aNotscriptable_attr2);
+		void SetNotscriptable_attr2Attribute(int aNotscriptable_attr2);
 		
 		/// <summary>Member Scriptable_method1 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -87,19 +87,19 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetNotscriptable_attr1Attribute </summary>
-		/// <returns>A System.Int32 </returns>
+		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetNotscriptable_attr1Attribute();
+		int GetNotscriptable_attr1Attribute();
 		
 		/// <summary>Member GetNotscriptable_attr2Attribute </summary>
-		/// <returns>A System.Int32 </returns>
+		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetNotscriptable_attr2Attribute();
+		int GetNotscriptable_attr2Attribute();
 		
 		/// <summary>Member SetNotscriptable_attr2Attribute </summary>
 		/// <param name='aNotscriptable_attr2'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetNotscriptable_attr2Attribute(System.Int32  aNotscriptable_attr2);
+		void SetNotscriptable_attr2Attribute(int aNotscriptable_attr2);
 		
 		/// <summary>Member Notscriptable_method1 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

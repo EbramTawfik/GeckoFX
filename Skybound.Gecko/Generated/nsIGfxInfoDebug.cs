@@ -38,15 +38,15 @@ namespace Skybound.Gecko
 		/// <summary>
         ///NOTE: this interface is only implemented in debug builds </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SpoofVendorID(System.UInt32  aVendorID);
+		void SpoofVendorID(uint aVendorID);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SpoofDeviceID(System.UInt32  aDeviceID);
+		void SpoofDeviceID(uint aDeviceID);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SpoofDriverVersion([MarshalAs(UnmanagedType.LPStruct)] nsAString aDriverVersion);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SpoofOSVersion(System.UInt32  aVersion);
+		void SpoofOSVersion(uint aVersion);
 	}
 }

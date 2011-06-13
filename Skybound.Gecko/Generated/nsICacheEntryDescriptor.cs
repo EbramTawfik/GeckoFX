@@ -39,50 +39,50 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.String  GetClientIDAttribute();
+		new string GetClientIDAttribute();
 		
 		/// <summary>
         /// Get the id for the device that stores this cache entry.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.String  GetDeviceIDAttribute();
+		new string GetDeviceIDAttribute();
 		
 		/// <summary>
         /// Get the key identifying the cache entry.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetKeyAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aKey);
+		new void GetKeyAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aKey);
 		
 		/// <summary>
         /// Get the number of times the cache entry has been opened.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Int32  GetFetchCountAttribute();
+		new int GetFetchCountAttribute();
 		
 		/// <summary>
         /// Get the last time the cache entry was opened (in seconds since the Epoch).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.UInt32  GetLastFetchedAttribute();
+		new uint GetLastFetchedAttribute();
 		
 		/// <summary>
         /// Get the last time the cache entry was modified (in seconds since the Epoch).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.UInt32  GetLastModifiedAttribute();
+		new uint GetLastModifiedAttribute();
 		
 		/// <summary>
         /// Get the expiration time of the cache entry (in seconds since the Epoch).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.UInt32  GetExpirationTimeAttribute();
+		new uint GetExpirationTimeAttribute();
 		
 		/// <summary>
         /// Get the cache entry data size.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.UInt32  GetDataSizeAttribute();
+		new uint GetDataSizeAttribute();
 		
 		/// <summary>
         /// Find out whether or not the cache entry is stream based.
@@ -95,14 +95,14 @@ namespace Skybound.Gecko
         /// seconds since the Epoch).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetExpirationTime(System.UInt32  expirationTime);
+		void SetExpirationTime(uint expirationTime);
 		
 		/// <summary>
         /// Set the cache entry data size.  This will fail if the cache entry
         /// IS stream based.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDataSize(System.UInt32  size);
+		void SetDataSize(uint size);
 		
 		/// <summary>
         /// Open blocking input stream to cache data.  This will fail if the cache
@@ -116,8 +116,9 @@ namespace Skybound.Gecko
         ///
         /// @return blocking, unbuffered input stream.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIInputStream OpenInputStream(System.UInt32  offset);
+		nsIInputStream OpenInputStream(uint offset);
 		
 		/// <summary>
         /// Open blocking output stream to cache data.  This will fail if the cache
@@ -134,8 +135,9 @@ namespace Skybound.Gecko
         ///
         /// @return blocking, unbuffered output stream.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIOutputStream OpenOutputStream(System.UInt32  offset);
+		nsIOutputStream OpenOutputStream(uint offset);
 		
 		/// <summary>
         /// Get/set the cache data element.  This will fail if the cache entry
@@ -144,7 +146,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports  GetCacheElementAttribute();
+		nsISupports GetCacheElementAttribute();
 		
 		/// <summary>
         /// Get/set the cache data element.  This will fail if the cache entry
@@ -152,7 +154,7 @@ namespace Skybound.Gecko
         /// object.  The object will be released when the cache entry is destroyed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCacheElementAttribute([MarshalAs(UnmanagedType.Interface)] nsISupports  aCacheElement);
+		void SetCacheElementAttribute([MarshalAs(UnmanagedType.Interface)] nsISupports aCacheElement);
 		
 		/// <summary>
         /// Stores the Content-Length specified in the HTTP header for this
@@ -161,7 +163,7 @@ namespace Skybound.Gecko
         /// is going to have to be evicted anyway. See bug 588507.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int64  GetPredictedDataSizeAttribute();
+		long GetPredictedDataSizeAttribute();
 		
 		/// <summary>
         /// Stores the Content-Length specified in the HTTP header for this
@@ -170,7 +172,7 @@ namespace Skybound.Gecko
         /// is going to have to be evicted anyway. See bug 588507.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPredictedDataSizeAttribute(System.Int64  aPredictedDataSize);
+		void SetPredictedDataSizeAttribute(long aPredictedDataSize);
 		
 		/// <summary>
         /// Get the access granted to this descriptor.  See nsICache.idl for the
@@ -199,7 +201,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIFile  GetFileAttribute();
+		nsIFile GetFileAttribute();
 		
 		/// <summary>
         /// Get/set security info on the cache entry for this descriptor.  This fails
@@ -207,14 +209,14 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports  GetSecurityInfoAttribute();
+		nsISupports GetSecurityInfoAttribute();
 		
 		/// <summary>
         /// Get/set security info on the cache entry for this descriptor.  This fails
         /// if the storage policy is not STORE_IN_MEMORY.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSecurityInfoAttribute([MarshalAs(UnmanagedType.Interface)] nsISupports  aSecurityInfo);
+		void SetSecurityInfoAttribute([MarshalAs(UnmanagedType.Interface)] nsISupports aSecurityInfo);
 		
 		/// <summary>
         /// Doom the cache entry this descriptor references in order to slate it for
@@ -231,7 +233,7 @@ namespace Skybound.Gecko
 		/// <summary>Member DoomAndFailPendingRequests </summary>
 		/// <param name='status'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DoomAndFailPendingRequests(System.Int32  status);
+		void DoomAndFailPendingRequests(int status);
 		
 		/// <summary>
         /// A writer must validate this cache object before any readers are given
@@ -251,20 +253,21 @@ namespace Skybound.Gecko
         /// string pairs.  The strings do not have to conform to any particular
         /// charset, but they must be null terminated.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string GetMetaDataElement([MarshalAs(UnmanagedType.LPStr)] System.String  key);
+		string GetMetaDataElement([MarshalAs(UnmanagedType.LPStr)] string key);
 		
 		/// <summary>Member SetMetaDataElement </summary>
 		/// <param name='key'> </param>
 		/// <param name='value'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMetaDataElement([MarshalAs(UnmanagedType.LPStr)] System.String  key, [MarshalAs(UnmanagedType.LPStr)] System.String  value);
+		void SetMetaDataElement([MarshalAs(UnmanagedType.LPStr)] string key, [MarshalAs(UnmanagedType.LPStr)] string value);
 		
 		/// <summary>
         /// Visitor will be called with key/value pair for each meta data element.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void VisitMetaData([MarshalAs(UnmanagedType.Interface)] nsICacheMetaDataVisitor  visitor);
+		void VisitMetaData([MarshalAs(UnmanagedType.Interface)] nsICacheMetaDataVisitor visitor);
 	}
 	
 	/// <summary>nsICacheMetaDataVisitor </summary>
@@ -278,6 +281,6 @@ namespace Skybound.Gecko
         /// Called for each key/value pair in the meta data for a cache entry
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool VisitMetaDataElement([MarshalAs(UnmanagedType.LPStr)] System.String  key, [MarshalAs(UnmanagedType.LPStr)] System.String  value);
+		bool VisitMetaDataElement([MarshalAs(UnmanagedType.LPStr)] string key, [MarshalAs(UnmanagedType.LPStr)] string value);
 	}
 }

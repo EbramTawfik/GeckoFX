@@ -44,7 +44,7 @@ namespace Skybound.Gecko
         /// Get the type of a specified parameter
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		short GetValueType([MarshalAs(UnmanagedType.LPStr)] System.String  name);
+		short GetValueType([MarshalAs(UnmanagedType.LPStr)] string name);
 		
 		/// <summary>
         /// get_Value
@@ -59,22 +59,25 @@ namespace Skybound.Gecko
         /// one (i.e. self-containing is not allowed).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetBooleanValue([MarshalAs(UnmanagedType.LPStr)] System.String  name);
+		bool GetBooleanValue([MarshalAs(UnmanagedType.LPStr)] string name);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetLongValue([MarshalAs(UnmanagedType.LPStr)] System.String  name);
+		int GetLongValue([MarshalAs(UnmanagedType.LPStr)] string name);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetDoubleValue([MarshalAs(UnmanagedType.LPStr)] System.String  name);
+		double GetDoubleValue([MarshalAs(UnmanagedType.LPStr)] string name);
 		
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetStringValue([MarshalAs(UnmanagedType.LPStr)] System.String  name);
+		nsAString GetStringValue([MarshalAs(UnmanagedType.LPStr)] string name);
 		
+		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string GetCStringValue([MarshalAs(UnmanagedType.LPStr)] System.String  name);
+		string GetCStringValue([MarshalAs(UnmanagedType.LPStr)] string name);
 		
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports GetISupportsValue([MarshalAs(UnmanagedType.LPStr)] System.String  name);
+		nsISupports GetISupportsValue([MarshalAs(UnmanagedType.LPStr)] string name);
 		
 		/// <summary>
         /// set_Value
@@ -88,22 +91,22 @@ namespace Skybound.Gecko
         /// one (i.e. self-containing is not allowed).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBooleanValue([MarshalAs(UnmanagedType.LPStr)] System.String  name, System.Boolean  value);
+		void SetBooleanValue([MarshalAs(UnmanagedType.LPStr)] string name, bool value);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetLongValue([MarshalAs(UnmanagedType.LPStr)] System.String  name, System.Int32  value);
+		void SetLongValue([MarshalAs(UnmanagedType.LPStr)] string name, int value);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDoubleValue([MarshalAs(UnmanagedType.LPStr)] System.String  name, double value);
+		void SetDoubleValue([MarshalAs(UnmanagedType.LPStr)] string name, double value);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetStringValue([MarshalAs(UnmanagedType.LPStr)] System.String  name, [MarshalAs(UnmanagedType.LPStruct)] nsAString value);
+		void SetStringValue([MarshalAs(UnmanagedType.LPStr)] string name, [MarshalAs(UnmanagedType.LPStruct)] nsAString value);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCStringValue([MarshalAs(UnmanagedType.LPStr)] System.String  name, [MarshalAs(UnmanagedType.LPStr)] System.String  value);
+		void SetCStringValue([MarshalAs(UnmanagedType.LPStr)] string name, [MarshalAs(UnmanagedType.LPStr)] string value);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetISupportsValue([MarshalAs(UnmanagedType.LPStr)] System.String  name, [MarshalAs(UnmanagedType.Interface)] nsISupports  value);
+		void SetISupportsValue([MarshalAs(UnmanagedType.LPStr)] string name, [MarshalAs(UnmanagedType.Interface)] nsISupports value);
 		
 		/// <summary>
         /// removeValue
@@ -111,7 +114,7 @@ namespace Skybound.Gecko
         /// Remove the specified parameter from the list.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveValue([MarshalAs(UnmanagedType.LPStr)] System.String  name);
+		void RemoveValue([MarshalAs(UnmanagedType.LPStr)] string name);
 		
 		/// <summary>
         /// Enumeration methods
@@ -133,6 +136,7 @@ namespace Skybound.Gecko
         /// @return string pointer that will be allocated and is up
         /// to the caller to free
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string GetNext();
 	}

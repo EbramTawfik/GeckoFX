@@ -44,19 +44,19 @@ namespace Skybound.Gecko
         /// given iid.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr  Get([MarshalAs(UnmanagedType.LPStr)] System.String  prop, ref System.Guid iid);
+		System.IntPtr Get([MarshalAs(UnmanagedType.LPStr)] string prop, ref System.Guid iid);
 		
 		/// <summary>
         /// Sets a property with a given name to a given value.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Set([MarshalAs(UnmanagedType.LPStr)] System.String  prop, [MarshalAs(UnmanagedType.Interface)] nsISupports  value);
+		void Set([MarshalAs(UnmanagedType.LPStr)] string prop, [MarshalAs(UnmanagedType.Interface)] nsISupports value);
 		
 		/// <summary>
         /// Returns true if the property with the given name exists.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Has([MarshalAs(UnmanagedType.LPStr)] System.String  prop);
+		bool Has([MarshalAs(UnmanagedType.LPStr)] string prop);
 		
 		/// <summary>
         /// Undefines a property.
@@ -64,13 +64,13 @@ namespace Skybound.Gecko
         /// already exist.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Undefine([MarshalAs(UnmanagedType.LPStr)] System.String  prop);
+		void Undefine([MarshalAs(UnmanagedType.LPStr)] string prop);
 		
 		/// <summary>
         /// Returns an array of the keys.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.LPStr, SizeParamIndex=0)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetKeys(out System.UInt32  count);
+		string GetKeys(out uint count);
 	}
 }

@@ -59,7 +59,7 @@ namespace Skybound.Gecko
         /// shortcut: type, handler app
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Equals([MarshalAs(UnmanagedType.Interface)] nsIJumpListItem  item);
+		bool Equals([MarshalAs(UnmanagedType.Interface)] nsIJumpListItem item);
 	}
 	
 	/// <summary>
@@ -88,7 +88,7 @@ namespace Skybound.Gecko
         /// shortcut: type, handler app
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool Equals([MarshalAs(UnmanagedType.Interface)] nsIJumpListItem  item);
+		new bool Equals([MarshalAs(UnmanagedType.Interface)] nsIJumpListItem item);
 	}
 	
 	/// <summary>
@@ -120,20 +120,20 @@ namespace Skybound.Gecko
         /// shortcut: type, handler app
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool Equals([MarshalAs(UnmanagedType.Interface)] nsIJumpListItem  item);
+		new bool Equals([MarshalAs(UnmanagedType.Interface)] nsIJumpListItem item);
 		
 		/// <summary>
         /// Set or get the uri for this link item.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI  GetUriAttribute();
+		nsIURI GetUriAttribute();
 		
 		/// <summary>
         /// Set or get the uri for this link item.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetUriAttribute([MarshalAs(UnmanagedType.Interface)] nsIURI  aUri);
+		void SetUriAttribute([MarshalAs(UnmanagedType.Interface)] nsIURI aUri);
 		
 		/// <summary>
         /// Set or get the title for a link item.
@@ -154,7 +154,7 @@ namespace Skybound.Gecko
         /// the URI spec using nsICryptoHash.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetUriHashAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aUriHash);
+		void GetUriHashAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aUriHash);
 		
 		/// <summary>
         /// Compare this item's hash to another uri.
@@ -163,7 +163,7 @@ namespace Skybound.Gecko
         /// it to this item's uri spec hash.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool CompareHash([MarshalAs(UnmanagedType.Interface)] nsIURI  uri);
+		bool CompareHash([MarshalAs(UnmanagedType.Interface)] nsIURI uri);
 	}
 	
 	/// <summary>
@@ -192,7 +192,7 @@ namespace Skybound.Gecko
         /// shortcut: type, handler app
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool Equals([MarshalAs(UnmanagedType.Interface)] nsIJumpListItem  item);
+		new bool Equals([MarshalAs(UnmanagedType.Interface)] nsIJumpListItem item);
 		
 		/// <summary>
         /// Set or get the handler app for this shortcut item.
@@ -202,7 +202,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsILocalHandlerApp  GetAppAttribute();
+		nsILocalHandlerApp GetAppAttribute();
 		
 		/// <summary>
         /// Set or get the handler app for this shortcut item.
@@ -211,7 +211,7 @@ namespace Skybound.Gecko
         /// not be found on  the system.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAppAttribute([MarshalAs(UnmanagedType.Interface)] nsILocalHandlerApp  aApp);
+		void SetAppAttribute([MarshalAs(UnmanagedType.Interface)] nsILocalHandlerApp aApp);
 		
 		/// <summary>
         /// Set or get the icon displayed with the jump list item.
@@ -220,7 +220,7 @@ namespace Skybound.Gecko
         /// within the the handler executable.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetIconIndexAttribute();
+		int GetIconIndexAttribute();
 		
 		/// <summary>
         /// Set or get the icon displayed with the jump list item.
@@ -229,6 +229,6 @@ namespace Skybound.Gecko
         /// within the the handler executable.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetIconIndexAttribute(System.Int32  aIconIndex);
+		void SetIconIndexAttribute(int aIconIndex);
 	}
 }

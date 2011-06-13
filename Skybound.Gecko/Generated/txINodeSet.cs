@@ -37,29 +37,31 @@ namespace Skybound.Gecko
 		/// <summary>Member Item </summary>
 		/// <param name='index'> </param>
 		/// <returns>A nsIDOMNode</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMNode Item(System.UInt32  index);
+		nsIDOMNode Item(uint index);
 		
 		/// <summary>Member ItemAsNumber </summary>
 		/// <param name='index'> </param>
 		/// <returns>A System.Double</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double ItemAsNumber(System.UInt32  index);
+		double ItemAsNumber(uint index);
 		
 		/// <summary>Member ItemAsString </summary>
 		/// <param name='index'> </param>
 		/// <returns>A nsAString</returns>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString ItemAsString(System.UInt32  index);
+		nsAString ItemAsString(uint index);
 		
 		/// <summary>Member GetLengthAttribute </summary>
-		/// <returns>A System.UInt32 </returns>
+		/// <returns>A System.UInt32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetLengthAttribute();
+		uint GetLengthAttribute();
 		
 		/// <summary>Member Add </summary>
 		/// <param name='node'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Add([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  node);
+		void Add([MarshalAs(UnmanagedType.Interface)] nsIDOMNode node);
 	}
 }

@@ -43,13 +43,13 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIPrincipal  GetPrincipalAttribute();
+		nsIPrincipal GetPrincipalAttribute();
 		
 		/// <summary>
         /// The uri for the principal.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI  GetPrincipalUriAttribute();
+		nsIURI GetPrincipalUriAttribute();
 	}
 }

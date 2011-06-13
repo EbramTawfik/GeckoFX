@@ -74,7 +74,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMHTMLCanvasElement  GetCanvasAttribute();
+		nsIDOMHTMLCanvasElement GetCanvasAttribute();
 		
 		/// <summary>
         /// state
@@ -150,50 +150,50 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant  GetStrokeStyleAttribute();
+		nsIVariant GetStrokeStyleAttribute();
 		
 		/// <summary>
         /// code should use the _multi variants below.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetStrokeStyleAttribute([MarshalAs(UnmanagedType.Interface)] nsIVariant  aStrokeStyle);
+		void SetStrokeStyleAttribute([MarshalAs(UnmanagedType.Interface)] nsIVariant aStrokeStyle);
 		
 		/// <summary>Member GetFillStyleAttribute </summary>
-		/// <returns>A nsIVariant </returns>
+		/// <returns>A nsIVariant</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant  GetFillStyleAttribute();
+		nsIVariant GetFillStyleAttribute();
 		
 		/// <summary>Member SetFillStyleAttribute </summary>
 		/// <param name='aFillStyle'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFillStyleAttribute([MarshalAs(UnmanagedType.Interface)] nsIVariant  aFillStyle);
+		void SetFillStyleAttribute([MarshalAs(UnmanagedType.Interface)] nsIVariant aFillStyle);
 		
 		/// <summary>
         /// ifaceType is 0 if it's a string, 1 if it's a pattern, or 2 if it's a gradient
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetStrokeStyle_multi([MarshalAs(UnmanagedType.LPStruct)] nsAString str, [MarshalAs(UnmanagedType.Interface)] nsISupports  iface);
+		void SetStrokeStyle_multi([MarshalAs(UnmanagedType.LPStruct)] nsAString str, [MarshalAs(UnmanagedType.Interface)] nsISupports iface);
 		
 		/// <summary>Member GetStrokeStyle_multi </summary>
 		/// <param name='str'> </param>
 		/// <param name='iface'> </param>
 		/// <param name='type'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetStrokeStyle_multi([MarshalAs(UnmanagedType.LPStruct)] nsAString str, [MarshalAs(UnmanagedType.Interface)] out nsISupports  iface, out System.Int32  type);
+		void GetStrokeStyle_multi([MarshalAs(UnmanagedType.LPStruct)] nsAString str, [MarshalAs(UnmanagedType.Interface)] out nsISupports iface, out int type);
 		
 		/// <summary>Member SetFillStyle_multi </summary>
 		/// <param name='str'> </param>
 		/// <param name='iface'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFillStyle_multi([MarshalAs(UnmanagedType.LPStruct)] nsAString str, [MarshalAs(UnmanagedType.Interface)] nsISupports  iface);
+		void SetFillStyle_multi([MarshalAs(UnmanagedType.LPStruct)] nsAString str, [MarshalAs(UnmanagedType.Interface)] nsISupports iface);
 		
 		/// <summary>Member GetFillStyle_multi </summary>
 		/// <param name='str'> </param>
 		/// <param name='iface'> </param>
 		/// <param name='type'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetFillStyle_multi([MarshalAs(UnmanagedType.LPStruct)] nsAString str, [MarshalAs(UnmanagedType.Interface)] out nsISupports  iface, out System.Int32  type);
+		void GetFillStyle_multi([MarshalAs(UnmanagedType.LPStruct)] nsAString str, [MarshalAs(UnmanagedType.Interface)] out nsISupports iface, out int type);
 		
 		/// <summary>Member CreateLinearGradient </summary>
 		/// <param name='x0'> </param>
@@ -201,6 +201,7 @@ namespace Skybound.Gecko
 		/// <param name='x1'> </param>
 		/// <param name='y1'> </param>
 		/// <returns>A nsIDOMCanvasGradient</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMCanvasGradient CreateLinearGradient(double x0, double y0, double x1, double y1);
 		
@@ -212,6 +213,7 @@ namespace Skybound.Gecko
 		/// <param name='y1'> </param>
 		/// <param name='r1'> </param>
 		/// <returns>A nsIDOMCanvasGradient</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMCanvasGradient CreateRadialGradient(double x0, double y0, double r0, double x1, double y1, double r1);
 		
@@ -219,8 +221,9 @@ namespace Skybound.Gecko
 		/// <param name='image'> </param>
 		/// <param name='repetition'> </param>
 		/// <returns>A nsIDOMCanvasPattern</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMCanvasPattern CreatePattern([MarshalAs(UnmanagedType.Interface)] nsIDOMHTMLElement  image, [MarshalAs(UnmanagedType.LPStruct)] nsAString repetition);
+		nsIDOMCanvasPattern CreatePattern([MarshalAs(UnmanagedType.Interface)] nsIDOMHTMLElement image, [MarshalAs(UnmanagedType.LPStruct)] nsAString repetition);
 		
 		/// <summary>Member GetLineWidthAttribute </summary>
 		/// <returns>A System.Double</returns>
@@ -383,7 +386,7 @@ namespace Skybound.Gecko
 		/// <param name='endAngle'> </param>
 		/// <param name='anticlockwise'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Arc(double x, double y, double r, double startAngle, double endAngle, System.Boolean  anticlockwise);
+		void Arc(double x, double y, double r, double startAngle, double endAngle, bool anticlockwise);
 		
 		/// <summary>Member Rect </summary>
 		/// <param name='x'> </param>
@@ -456,6 +459,7 @@ namespace Skybound.Gecko
 		/// <summary>Member MeasureText </summary>
 		/// <param name='text'> </param>
 		/// <returns>A nsIDOMTextMetrics</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMTextMetrics MeasureText([MarshalAs(UnmanagedType.LPStruct)] nsAString text);
 		
@@ -489,13 +493,13 @@ namespace Skybound.Gecko
 		/// <param name='textToDraw'> </param>
 		/// <param name='stroke'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MozTextAlongPath([MarshalAs(UnmanagedType.LPStruct)] nsAString textToDraw, System.Boolean  stroke);
+		void MozTextAlongPath([MarshalAs(UnmanagedType.LPStruct)] nsAString textToDraw, bool stroke);
 		
 		/// <summary>
         /// image api
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DrawImage([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  image, double a1, double a2, double a3, double a4, double a5, double a6, double a7, double a8);
+		void DrawImage([MarshalAs(UnmanagedType.Interface)] nsIDOMElement image, double a1, double a2, double a3, double a4, double a5, double a6, double a7, double a8);
 		
 		/// <summary>
         /// point-membership test
@@ -517,7 +521,7 @@ namespace Skybound.Gecko
         /// dataLen must be == width*height*4 in both of these calls
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetImageData_explicit(System.Int32  x, System.Int32  y, System.UInt32  width, System.UInt32  height, System.IntPtr  dataPtr, System.UInt32  dataLen);
+		void GetImageData_explicit(int x, int y, uint width, uint height, System.IntPtr dataPtr, uint dataLen);
 		
 		/// <summary>Member PutImageData_explicit </summary>
 		/// <param name='x'> </param>
@@ -532,7 +536,7 @@ namespace Skybound.Gecko
 		/// <param name='dirtyWidth'> </param>
 		/// <param name='dirtyHeight'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PutImageData_explicit(System.Int32  x, System.Int32  y, System.UInt32  width, System.UInt32  height, System.IntPtr  dataPtr, System.UInt32  dataLen, System.Boolean  hasDirtyRect, System.Int32  dirtyX, System.Int32  dirtyY, System.Int32  dirtyWidth, System.Int32  dirtyHeight);
+		void PutImageData_explicit(int x, int y, uint width, uint height, System.IntPtr dataPtr, uint dataLen, bool hasDirtyRect, int dirtyX, int dirtyY, int dirtyWidth, int dirtyHeight);
 		
 		/// <summary>
         /// a separate ImageData object.
@@ -544,13 +548,13 @@ namespace Skybound.Gecko
         /// if scaled.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetMozImageSmoothingEnabledAttribute();
+		bool GetMozImageSmoothingEnabledAttribute();
 		
 		/// <summary>
         /// if scaled.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozImageSmoothingEnabledAttribute(System.Boolean  aMozImageSmoothingEnabled);
+		void SetMozImageSmoothingEnabledAttribute(bool aMozImageSmoothingEnabled);
 		
 		/// <summary>
         /// Renders a region of a window into the canvas.  The contents of
@@ -588,7 +592,7 @@ namespace Skybound.Gecko
         /// only.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DrawWindow([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  window, double x, double y, double w, double h, [MarshalAs(UnmanagedType.LPStruct)] nsAString bgColor, System.UInt32  flags);
+		void DrawWindow([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, double x, double y, double w, double h, [MarshalAs(UnmanagedType.LPStruct)] nsAString bgColor, uint flags);
 		
 		/// <summary>Member AsyncDrawXULElement </summary>
 		/// <param name='elem'> </param>
@@ -599,6 +603,6 @@ namespace Skybound.Gecko
 		/// <param name='bgColor'> </param>
 		/// <param name='flags'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AsyncDrawXULElement([MarshalAs(UnmanagedType.Interface)] nsIDOMXULElement  elem, double x, double y, double w, double h, [MarshalAs(UnmanagedType.LPStruct)] nsAString bgColor, System.UInt32  flags);
+		void AsyncDrawXULElement([MarshalAs(UnmanagedType.Interface)] nsIDOMXULElement elem, double x, double y, double w, double h, [MarshalAs(UnmanagedType.LPStruct)] nsAString bgColor, uint flags);
 	}
 }

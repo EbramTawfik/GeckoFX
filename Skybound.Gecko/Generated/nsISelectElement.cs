@@ -51,7 +51,7 @@ namespace Skybound.Gecko
         /// parent (if the parent is an optgroup, the index within the optgroup)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void WillAddOptions(System.IntPtr aOptions, System.IntPtr aParent, System.Int32  aContentIndex, System.Boolean  aNotify);
+		void WillAddOptions(System.IntPtr aOptions, System.IntPtr aParent, int aContentIndex, bool aNotify);
 		
 		/// <summary>
         /// To be called when stuff is removed under a child of the select--but
@@ -62,7 +62,7 @@ namespace Skybound.Gecko
         /// parent is an optgroup, the index within the optgroup)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void WillRemoveOptions(System.IntPtr aParent, System.Int32  aContentIndex, System.Boolean  aNotify);
+		void WillRemoveOptions(System.IntPtr aParent, int aContentIndex, bool aNotify);
 		
 		/// <summary>
         /// Checks whether an option is disabled (even if it's part of an optgroup)
@@ -71,7 +71,7 @@ namespace Skybound.Gecko
         /// @return whether the option is disabled
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsOptionDisabled(System.Int32  aIndex);
+		bool IsOptionDisabled(int aIndex);
 		
 		/// <summary>
         /// Sets multiple options (or just sets startIndex if select is single)
@@ -91,7 +91,7 @@ namespace Skybound.Gecko
         /// @return whether any options were actually changed
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool SetOptionsSelectedByIndex(System.Int32  aStartIndex, System.Int32  aEndIndex, System.Boolean  aIsSelected, System.Boolean  aClearAll, System.Boolean  aSetDisabled, System.Boolean  aNotify);
+		bool SetOptionsSelectedByIndex(int aStartIndex, int aEndIndex, bool aIsSelected, bool aClearAll, bool aSetDisabled, bool aNotify);
 		
 		/// <summary>
         /// Finds the index of a given option element
@@ -102,11 +102,11 @@ namespace Skybound.Gecko
         /// @return the option index
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetOptionIndex([MarshalAs(UnmanagedType.Interface)] nsIDOMHTMLOptionElement  aOption, System.Int32  aStartIndex, System.Boolean  aForward);
+		int GetOptionIndex([MarshalAs(UnmanagedType.Interface)] nsIDOMHTMLOptionElement aOption, int aStartIndex, bool aForward);
 		
 		/// <summary>
         ///Whether or not there are optgroups in this select </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetHasOptGroupsAttribute();
+		bool GetHasOptGroupsAttribute();
 	}
 }

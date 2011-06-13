@@ -66,7 +66,7 @@ namespace Skybound.Gecko
         /// Indicates that aListener was already registered.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddProgressListener([MarshalAs(UnmanagedType.Interface)] nsIWebProgressListener  aListener, System.UInt32  aNotifyMask);
+		void AddProgressListener([MarshalAs(UnmanagedType.Interface)] nsIWebProgressListener aListener, uint aNotifyMask);
 		
 		/// <summary>
         /// Removes a previously registered listener of progress events.
@@ -79,7 +79,7 @@ namespace Skybound.Gecko
         /// Indicates that aListener was not registered.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveProgressListener([MarshalAs(UnmanagedType.Interface)] nsIWebProgressListener  aListener);
+		void RemoveProgressListener([MarshalAs(UnmanagedType.Interface)] nsIWebProgressListener aListener);
 		
 		/// <summary>
         /// The DOM window associated with this nsIWebProgress instance.
@@ -89,13 +89,13 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMWindow  GetDOMWindowAttribute();
+		nsIDOMWindow GetDOMWindowAttribute();
 		
 		/// <summary>
         /// Indicates whether or not a document is currently being loaded
         /// in the context of this nsIWebProgress instance.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsLoadingDocumentAttribute();
+		bool GetIsLoadingDocumentAttribute();
 	}
 }

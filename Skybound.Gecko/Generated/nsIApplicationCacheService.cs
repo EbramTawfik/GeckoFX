@@ -41,32 +41,36 @@ namespace Skybound.Gecko
         /// Create a new, empty application cache for the given cache
         /// group.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIApplicationCache CreateApplicationCache([MarshalAs(UnmanagedType.LPStruct)] nsAString  group);
+		nsIApplicationCache CreateApplicationCache([MarshalAs(UnmanagedType.LPStruct)] nsAString group);
 		
 		/// <summary>
         /// Get an application cache object for the given client ID.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIApplicationCache GetApplicationCache([MarshalAs(UnmanagedType.LPStruct)] nsAString  clientID);
+		nsIApplicationCache GetApplicationCache([MarshalAs(UnmanagedType.LPStruct)] nsAString clientID);
 		
 		/// <summary>
         /// Get the currently active cache object for a cache group.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIApplicationCache GetActiveCache([MarshalAs(UnmanagedType.LPStruct)] nsAString  group);
+		nsIApplicationCache GetActiveCache([MarshalAs(UnmanagedType.LPStruct)] nsAString group);
 		
 		/// <summary>
         /// Deactivate the currently-active cache object for a cache group.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DeactivateGroup([MarshalAs(UnmanagedType.LPStruct)] nsAString  group);
+		void DeactivateGroup([MarshalAs(UnmanagedType.LPStruct)] nsAString group);
 		
 		/// <summary>
         /// Try to find the best application cache to serve a resource.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIApplicationCache ChooseApplicationCache([MarshalAs(UnmanagedType.LPStruct)] nsAString  key);
+		nsIApplicationCache ChooseApplicationCache([MarshalAs(UnmanagedType.LPStruct)] nsAString key);
 		
 		/// <summary>
         /// Flags the key as being opportunistically cached.
@@ -81,13 +85,13 @@ namespace Skybound.Gecko
         /// The cache entry key.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CacheOpportunistically([MarshalAs(UnmanagedType.Interface)] nsIApplicationCache  cache, [MarshalAs(UnmanagedType.LPStruct)] nsAString  key);
+		void CacheOpportunistically([MarshalAs(UnmanagedType.Interface)] nsIApplicationCache cache, [MarshalAs(UnmanagedType.LPStruct)] nsAString key);
 		
 		/// <summary>
         /// Get the list of application cache groups.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.LPStr, SizeParamIndex=0)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetGroups(out System.UInt32  count);
+		string GetGroups(out uint count);
 	}
 }

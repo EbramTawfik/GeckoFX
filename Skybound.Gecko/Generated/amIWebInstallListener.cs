@@ -45,15 +45,15 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMWindowInternal  GetOriginatingWindowAttribute();
+		nsIDOMWindowInternal GetOriginatingWindowAttribute();
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI  GetOriginatingURIAttribute();
+		nsIURI GetOriginatingURIAttribute();
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant  GetInstallsAttribute();
+		nsIVariant GetInstallsAttribute();
 		
 		/// <summary>
         /// Starts all installs.
@@ -87,7 +87,7 @@ namespace Skybound.Gecko
         /// The number of AddonInstalls
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnWebInstallDisabled([MarshalAs(UnmanagedType.Interface)] nsIDOMWindowInternal  aWindow, [MarshalAs(UnmanagedType.Interface)] nsIURI  aUri, nsIVariant  aInstalls, System.UInt32  aCount);
+		void OnWebInstallDisabled([MarshalAs(UnmanagedType.Interface)] nsIDOMWindowInternal aWindow, [MarshalAs(UnmanagedType.Interface)] nsIURI aUri, nsIVariant aInstalls, uint aCount);
 		
 		/// <summary>
         /// Called when the website is not allowed to directly prompt the user to
@@ -104,7 +104,7 @@ namespace Skybound.Gecko
         /// @return true if the caller should start the installs
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool OnWebInstallBlocked([MarshalAs(UnmanagedType.Interface)] nsIDOMWindowInternal  aWindow, [MarshalAs(UnmanagedType.Interface)] nsIURI  aUri, nsIVariant  aInstalls, System.UInt32  aCount);
+		bool OnWebInstallBlocked([MarshalAs(UnmanagedType.Interface)] nsIDOMWindowInternal aWindow, [MarshalAs(UnmanagedType.Interface)] nsIURI aUri, nsIVariant aInstalls, uint aCount);
 		
 		/// <summary>
         /// Called when a website wants to ask the user to install add-ons.
@@ -120,7 +120,7 @@ namespace Skybound.Gecko
         /// @return true if the caller should start the installs
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool OnWebInstallRequested([MarshalAs(UnmanagedType.Interface)] nsIDOMWindowInternal  aWindow, [MarshalAs(UnmanagedType.Interface)] nsIURI  aUri, nsIVariant  aInstalls, System.UInt32  aCount);
+		bool OnWebInstallRequested([MarshalAs(UnmanagedType.Interface)] nsIDOMWindowInternal aWindow, [MarshalAs(UnmanagedType.Interface)] nsIURI aUri, nsIVariant aInstalls, uint aCount);
 	}
 	
 	/// <summary>
@@ -147,6 +147,6 @@ namespace Skybound.Gecko
         /// The number of AddonInstalls
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Confirm([MarshalAs(UnmanagedType.Interface)] nsIDOMWindowInternal  aWindow, [MarshalAs(UnmanagedType.Interface)] nsIURI  aUri, nsIVariant  aInstalls, System.UInt32  aCount);
+		void Confirm([MarshalAs(UnmanagedType.Interface)] nsIDOMWindowInternal aWindow, [MarshalAs(UnmanagedType.Interface)] nsIURI aUri, nsIVariant aInstalls, uint aCount);
 	}
 }

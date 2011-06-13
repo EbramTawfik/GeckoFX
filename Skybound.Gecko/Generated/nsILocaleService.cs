@@ -44,6 +44,7 @@ namespace Skybound.Gecko
         /// A locale code as described in nsILocale.
         /// @return A nsILocale representing the given locale.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsILocale NewLocale([MarshalAs(UnmanagedType.LPStruct)] nsAString aLocale);
 		
@@ -52,6 +53,7 @@ namespace Skybound.Gecko
         ///
         /// @return User's OS setting for preferred locale.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsILocale GetSystemLocale();
 		
@@ -64,6 +66,7 @@ namespace Skybound.Gecko
         ///
         /// @return User's OS setting for preferred locale.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsILocale GetApplicationLocale();
 		
@@ -76,8 +79,9 @@ namespace Skybound.Gecko
         /// @return The most preferred locale according to the acceptLanguage
         /// parameter.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsILocale GetLocaleFromAcceptLanguage([MarshalAs(UnmanagedType.LPStr)] System.String  acceptLanguage);
+		nsILocale GetLocaleFromAcceptLanguage([MarshalAs(UnmanagedType.LPStr)] string acceptLanguage);
 		
 		/// <summary>
         /// Get the user preference for locale from the operating system.
@@ -88,6 +92,7 @@ namespace Skybound.Gecko
         /// @return User's OS setting for preferred locale in the format described
         /// in nsILocale.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsAString GetLocaleComponentForUserAgent();
 	}

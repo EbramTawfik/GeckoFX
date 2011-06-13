@@ -54,35 +54,38 @@ namespace Skybound.Gecko
 		
 		/// <summary>
         ///none </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIIDBObjectStore CreateObjectStore([MarshalAs(UnmanagedType.LPStruct)] nsAString name, System.IntPtr options);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void DeleteObjectStore([MarshalAs(UnmanagedType.LPStruct)] nsAString name);
 		
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIIDBRequest SetVersion([MarshalAs(UnmanagedType.LPStruct)] nsAString version);
 		
 		/// <summary>
         ///5000ms </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIIDBTransaction Transaction([MarshalAs(UnmanagedType.Interface)] nsIVariant  storeNames, ushort mode, System.UInt32  timeout);
+		nsIIDBTransaction Transaction([MarshalAs(UnmanagedType.Interface)] nsIVariant storeNames, ushort mode, uint timeout);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Close();
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener  GetOnerrorAttribute();
+		nsIDOMEventListener GetOnerrorAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnerrorAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener  aOnerror);
+		void SetOnerrorAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnerror);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener  GetOnversionchangeAttribute();
+		nsIDOMEventListener GetOnversionchangeAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnversionchangeAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener  aOnversionchange);
+		void SetOnversionchangeAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnversionchange);
 	}
 }

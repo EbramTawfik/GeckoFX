@@ -44,12 +44,13 @@ namespace Skybound.Gecko
         /// Show Native Print Options dialog, this may not be supported on all platforms
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ShowPrintSetupDialog([MarshalAs(UnmanagedType.Interface)] nsIPrintSettings  aThePrintSettings);
+		void ShowPrintSetupDialog([MarshalAs(UnmanagedType.Interface)] nsIPrintSettings aThePrintSettings);
 		
 		/// <summary>
         /// Creates a new PrintSettnigs Object
         /// and initializes it from prefs
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIPrintSettings CreatePrintSettings();
 		
@@ -57,13 +58,13 @@ namespace Skybound.Gecko
         /// Get a prefixed integer pref
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetPrinterPrefInt([MarshalAs(UnmanagedType.Interface)] nsIPrintSettings  aPrintSettings, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aPrefName);
+		int GetPrinterPrefInt([MarshalAs(UnmanagedType.Interface)] nsIPrintSettings aPrintSettings, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aPrefName);
 		
 		/// <summary>
         /// display Printer Job Properties dialog
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DisplayJobProperties([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aPrinter, [MarshalAs(UnmanagedType.Interface)] nsIPrintSettings  aPrintSettings, out System.Boolean  aDisplayed);
+		void DisplayJobProperties([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aPrinter, [MarshalAs(UnmanagedType.Interface)] nsIPrintSettings aPrintSettings, out bool aDisplayed);
 		
 		/// <summary>
         /// Native data constants
@@ -97,20 +98,20 @@ namespace Skybound.Gecko
         /// Number of Copies
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitPrintSettingsFromPrinter([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aPrinterName, [MarshalAs(UnmanagedType.Interface)] nsIPrintSettings  aPrintSettings);
+		void InitPrintSettingsFromPrinter([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aPrinterName, [MarshalAs(UnmanagedType.Interface)] nsIPrintSettings aPrintSettings);
 		
 		/// <summary>
         /// The list of printer names
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIStringEnumerator  GetPrinterNameListAttribute();
+		nsIStringEnumerator GetPrinterNameListAttribute();
 		
 		/// <summary>
         ///takes printer selected and will display job properties dlg for that printer
         /// returns true if dialog displays
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DisplayPropertiesDlg([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aPrinter, [MarshalAs(UnmanagedType.Interface)] nsIPrintSettings  aPrintSettings);
+		void DisplayPropertiesDlg([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aPrinter, [MarshalAs(UnmanagedType.Interface)] nsIPrintSettings aPrintSettings);
 	}
 }

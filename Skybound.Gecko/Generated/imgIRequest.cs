@@ -44,7 +44,7 @@ namespace Skybound.Gecko
         /// The name of the request.  Often this is the URI of the request.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName);
+		new void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName);
 		
 		/// <summary>
         /// Indicates whether the request is pending. nsIRequest::isPending is
@@ -68,7 +68,7 @@ namespace Skybound.Gecko
         /// The error status associated with the request.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Int32  GetStatusAttribute();
+		new int GetStatusAttribute();
 		
 		/// <summary>
         /// Cancels the current request.  This will close any open input or
@@ -92,7 +92,7 @@ namespace Skybound.Gecko
         /// a failure code.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Cancel(System.Int32  aStatus);
+		new void Cancel(int aStatus);
 		
 		/// <summary>
         /// Suspends the current request.  This may have the effect of closing
@@ -126,7 +126,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsILoadGroup  GetLoadGroupAttribute();
+		new nsILoadGroup GetLoadGroupAttribute();
 		
 		/// <summary>
         /// The load group of this request.  While pending, the request is a
@@ -134,7 +134,7 @@ namespace Skybound.Gecko
         /// to implement this policy.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetLoadGroupAttribute([MarshalAs(UnmanagedType.Interface)] nsILoadGroup  aLoadGroup);
+		new void SetLoadGroupAttribute([MarshalAs(UnmanagedType.Interface)] nsILoadGroup aLoadGroup);
 		
 		/// <summary>
         /// The load flags of this request.  Bits 0-15 are reserved.
@@ -143,7 +143,7 @@ namespace Skybound.Gecko
         /// the load flags of the load group.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.UInt32  GetLoadFlagsAttribute();
+		new uint GetLoadFlagsAttribute();
 		
 		/// <summary>
         /// The load flags of this request.  Bits 0-15 are reserved.
@@ -152,7 +152,7 @@ namespace Skybound.Gecko
         /// the load flags of the load group.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetLoadFlagsAttribute(System.UInt32  aLoadFlags);
+		new void SetLoadFlagsAttribute(uint aLoadFlags);
 		
 		/// <summary>
         /// the image container...
@@ -160,13 +160,13 @@ namespace Skybound.Gecko
         /// @attention NEED DOCS
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		imgIContainer  GetImageAttribute();
+		imgIContainer GetImageAttribute();
 		
 		/// <summary>
         /// Status flags of the STATUS_* variety.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetImageStatusAttribute();
+		uint GetImageStatusAttribute();
 		
 		/// <summary>
         /// The URI the image load was started with.  Note that this might not be the
@@ -175,14 +175,14 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI  GetURIAttribute();
+		nsIURI GetURIAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		imgIDecoderObserver  GetDecoderObserverAttribute();
+		imgIDecoderObserver GetDecoderObserverAttribute();
 		
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetMimeTypeAttribute();
+		string GetMimeTypeAttribute();
 		
 		/// <summary>
         /// Clone this request; the returned request will have aObserver as the
@@ -191,14 +191,14 @@ namespace Skybound.Gecko
         /// for this image load.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		imgIRequest Clone(imgIDecoderObserver  aObserver);
+		imgIRequest Clone(imgIDecoderObserver aObserver);
 		
 		/// <summary>
         /// The principal gotten from the channel the image was loaded from.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIPrincipal  GetImagePrincipalAttribute();
+		nsIPrincipal GetImagePrincipalAttribute();
 		
 		/// <summary>
         /// Cancels this request as in nsIRequest::Cancel(); further, also nulls out
@@ -210,7 +210,7 @@ namespace Skybound.Gecko
         /// you're the observer, you can't call cancel() from your destructor.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CancelAndForgetObserver(System.Int32  aStatus);
+		void CancelAndForgetObserver(int aStatus);
 		
 		/// <summary>
         /// Requests a decode for the image.

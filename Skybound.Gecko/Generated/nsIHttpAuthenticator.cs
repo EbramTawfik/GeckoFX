@@ -69,7 +69,7 @@ namespace Skybound.Gecko
         /// revised identity.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ChallengeReceived([MarshalAs(UnmanagedType.Interface)] nsIHttpAuthenticableChannel  aChannel, [MarshalAs(UnmanagedType.LPStr)] System.String  aChallenge, System.Boolean  aProxyAuth, [MarshalAs(UnmanagedType.Interface)] ref nsISupports  aSessionState, [MarshalAs(UnmanagedType.Interface)] ref nsISupports  aContinuationState, out System.Boolean  aInvalidatesIdentity);
+		void ChallengeReceived([MarshalAs(UnmanagedType.Interface)] nsIHttpAuthenticableChannel aChannel, [MarshalAs(UnmanagedType.LPStr)] string aChallenge, bool aProxyAuth, [MarshalAs(UnmanagedType.Interface)] ref nsISupports aSessionState, [MarshalAs(UnmanagedType.Interface)] ref nsISupports aContinuationState, out bool aInvalidatesIdentity);
 		
 		/// <summary>
         /// Called to generate the authentication credentials for a particular
@@ -107,13 +107,14 @@ namespace Skybound.Gecko
         /// @param aFlags
         /// authenticator may return one of the generate flags bellow.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string GenerateCredentials([MarshalAs(UnmanagedType.Interface)] nsIHttpAuthenticableChannel  aChannel, [MarshalAs(UnmanagedType.LPStr)] System.String  aChallenge, System.Boolean  aProxyAuth, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aDomain, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aUser, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aPassword, [MarshalAs(UnmanagedType.Interface)] ref nsISupports  aSessionState, [MarshalAs(UnmanagedType.Interface)] ref nsISupports  aContinuationState, out System.UInt32  aFlags);
+		string GenerateCredentials([MarshalAs(UnmanagedType.Interface)] nsIHttpAuthenticableChannel aChannel, [MarshalAs(UnmanagedType.LPStr)] string aChallenge, bool aProxyAuth, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aDomain, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aUser, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aPassword, [MarshalAs(UnmanagedType.Interface)] ref nsISupports aSessionState, [MarshalAs(UnmanagedType.Interface)] ref nsISupports aContinuationState, out uint aFlags);
 		
 		/// <summary>
         /// Flags defining various properties of the authenticator.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetAuthFlagsAttribute();
+		uint GetAuthFlagsAttribute();
 	}
 }

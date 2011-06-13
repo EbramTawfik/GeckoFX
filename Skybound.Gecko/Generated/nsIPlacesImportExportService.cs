@@ -52,13 +52,13 @@ namespace Skybound.Gecko
         /// true.  The observer subject will be null.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ImportHTMLFromFile([MarshalAs(UnmanagedType.Interface)] nsILocalFile  aFile, System.Boolean  aIsInitialImport);
+		void ImportHTMLFromFile([MarshalAs(UnmanagedType.Interface)] nsILocalFile aFile, bool aIsInitialImport);
 		
 		/// <summary>
         /// Same thing as importHTMLFromFile, but takes a URI instead
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ImportHTMLFromURI([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, System.Boolean  aIsInitialImport);
+		void ImportHTMLFromURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, bool aIsInitialImport);
 		
 		/// <summary>
         /// Loads the given bookmarks.html file and puts it in the given folder
@@ -74,13 +74,13 @@ namespace Skybound.Gecko
         /// is aFolder.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ImportHTMLFromFileToFolder([MarshalAs(UnmanagedType.Interface)] nsILocalFile  aFile, System.Int64  aFolder, System.Boolean  aIsInitialImport);
+		void ImportHTMLFromFileToFolder([MarshalAs(UnmanagedType.Interface)] nsILocalFile aFile, long aFolder, bool aIsInitialImport);
 		
 		/// <summary>
         /// Saves the current bookmarks hierarchy to a bookmarks.html file.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ExportHTMLToFile([MarshalAs(UnmanagedType.Interface)] nsILocalFile  aFile);
+		void ExportHTMLToFile([MarshalAs(UnmanagedType.Interface)] nsILocalFile aFile);
 		
 		/// <summary>
         /// Backup the bookmarks.html file.

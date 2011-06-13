@@ -45,7 +45,7 @@ namespace Skybound.Gecko
         /// window.location.href == the URI of the feed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  aWindow);
+		void Init([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow);
 		
 		/// <summary>
         /// Writes the feed content, assumes that the feed writer is initialized.

@@ -48,7 +48,7 @@ namespace Skybound.Gecko
         /// @param popup - The popup to show when autocomplete results are available
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AttachToBrowser([MarshalAs(UnmanagedType.Interface)] nsIDocShell  docShell, [MarshalAs(UnmanagedType.Interface)] nsIAutoCompletePopup  popup);
+		void AttachToBrowser([MarshalAs(UnmanagedType.Interface)] nsIDocShell docShell, [MarshalAs(UnmanagedType.Interface)] nsIAutoCompletePopup popup);
 		
 		/// <summary>
         /// Stop controlling form fill behavior for the given browser
@@ -56,7 +56,7 @@ namespace Skybound.Gecko
         /// @param docShell - The docShell to detach from
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DetachFromBrowser([MarshalAs(UnmanagedType.Interface)] nsIDocShell  docShell);
+		void DetachFromBrowser([MarshalAs(UnmanagedType.Interface)] nsIDocShell docShell);
 		
 		/// <summary>
         /// Mark the specified <input> element as being managed by password manager.
@@ -66,6 +66,6 @@ namespace Skybound.Gecko
         /// @param aInput - The HTML <input> element to tag
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MarkAsLoginManagerField([MarshalAs(UnmanagedType.Interface)] nsIDOMHTMLInputElement  aInput);
+		void MarkAsLoginManagerField([MarshalAs(UnmanagedType.Interface)] nsIDOMHTMLInputElement aInput);
 	}
 }

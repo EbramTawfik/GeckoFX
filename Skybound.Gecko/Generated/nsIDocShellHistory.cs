@@ -37,26 +37,27 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Get the SHEntry associated with a child docshell
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISHEntry GetChildSHEntry(System.Int32  aChildOffset);
+		nsISHEntry GetChildSHEntry(int aChildOffset);
 		
 		/// <summary>
         /// Add a Child SHEntry for a frameset page, given the child's loadtype.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddChildSHEntry([MarshalAs(UnmanagedType.Interface)] nsISHEntry  aCloneReference, [MarshalAs(UnmanagedType.Interface)] nsISHEntry  aHistoryEntry, System.Int32  aChildOffset, System.UInt32  aLoadType);
+		void AddChildSHEntry([MarshalAs(UnmanagedType.Interface)] nsISHEntry aCloneReference, [MarshalAs(UnmanagedType.Interface)] nsISHEntry aHistoryEntry, int aChildOffset, uint aLoadType);
 		
 		/// <summary>
         /// Whether this docshell should save entries in global history.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetUseGlobalHistoryAttribute();
+		bool GetUseGlobalHistoryAttribute();
 		
 		/// <summary>
         /// Whether this docshell should save entries in global history.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetUseGlobalHistoryAttribute(System.Boolean  aUseGlobalHistory);
+		void SetUseGlobalHistoryAttribute(bool aUseGlobalHistory);
 		
 		/// <summary>
         /// Removes nsISHEntry objects related to this docshell from session history.
@@ -69,18 +70,18 @@ namespace Skybound.Gecko
         /// Set when an iframe/frame is added dynamically.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetCreatedDynamicallyAttribute();
+		bool GetCreatedDynamicallyAttribute();
 		
 		/// <summary>
         /// Set when an iframe/frame is added dynamically.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCreatedDynamicallyAttribute(System.Boolean  aCreatedDynamically);
+		void SetCreatedDynamicallyAttribute(bool aCreatedDynamically);
 		
 		/// <summary>
         /// Returns false for mLSHE, true for mOSHE
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetCurrentSHEntry([MarshalAs(UnmanagedType.Interface)] out nsISHEntry  aEntry);
+		bool GetCurrentSHEntry([MarshalAs(UnmanagedType.Interface)] out nsISHEntry aEntry);
 	}
 }

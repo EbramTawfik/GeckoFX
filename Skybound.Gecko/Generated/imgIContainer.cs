@@ -46,14 +46,14 @@ namespace Skybound.Gecko
         /// zero is returned, and an exception will be thrown.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetWidthAttribute();
+		int GetWidthAttribute();
 		
 		/// <summary>
         /// The height of the container rectangle.  In the case of any error,
         /// zero is returned, and an exception will be thrown.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetHeightAttribute();
+		int GetHeightAttribute();
 		
 		/// <summary>
         /// The type of this image (one of the TYPE_* values above).
@@ -74,14 +74,14 @@ namespace Skybound.Gecko
         /// @throws NS_ERROR_NOT_AVAILABLE if the animated state cannot be determined.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetAnimatedAttribute();
+		bool GetAnimatedAttribute();
 		
 		/// <summary>
         /// Whether the current frame is opaque; that is, needs the background painted
         /// behind it.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetCurrentFrameIsOpaqueAttribute();
+		bool GetCurrentFrameIsOpaqueAttribute();
 		
 		/// <summary>
         /// Get a surface for the given frame. This may be a platform-native,
@@ -91,7 +91,7 @@ namespace Skybound.Gecko
         /// @param aFlags Flags of the FLAG_* variety
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetFrame(System.UInt32  aWhichFrame, System.UInt32  aFlags);
+		System.IntPtr GetFrame(uint aWhichFrame, uint aFlags);
 		
 		/// <summary>
         /// Create and return a new copy of the given frame that you can write to
@@ -101,7 +101,7 @@ namespace Skybound.Gecko
         /// @param aFlags Flags of the FLAG_* variety
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr CopyFrame(System.UInt32  aWhichFrame, System.UInt32  aFlags);
+		System.IntPtr CopyFrame(uint aWhichFrame, uint aFlags);
 		
 		/// <summary>
         /// Create a new imgContainer that contains only a single frame, which itself
@@ -113,7 +113,7 @@ namespace Skybound.Gecko
         /// @param aFlags Flags of the FLAG_* variety
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		imgIContainer ExtractFrame(System.UInt32  aWhichFrame, [MarshalAs(UnmanagedType.Interface)] nsIntRect  aRect, System.UInt32  aFlags);
+		imgIContainer ExtractFrame(uint aWhichFrame, [MarshalAs(UnmanagedType.Interface)] nsIntRect aRect, uint aFlags);
 		
 		/// <summary>
         /// Draw the current frame on to the context specified.
@@ -136,7 +136,7 @@ namespace Skybound.Gecko
         /// @param aFlags Flags of the FLAG_* variety
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Draw(System.IntPtr aContext, gfxGraphicsFilter  aFilter, gfxMatrix  aUserSpaceToImageSpace, gfxRect  aFill, [MarshalAs(UnmanagedType.Interface)] nsIntRect  aSubimage, System.UInt32  aViewportSize, System.UInt32  aFlags);
+		void Draw(System.IntPtr aContext, gfxGraphicsFilter aFilter, gfxMatrix aUserSpaceToImageSpace, gfxRect aFill, [MarshalAs(UnmanagedType.Interface)] nsIntRect aSubimage, uint aViewportSize, uint aFlags);
 		
 		/// <summary>
         /// If this image is TYPE_VECTOR, i.e. is really an embedded SVG document,

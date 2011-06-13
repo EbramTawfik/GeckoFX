@@ -40,10 +40,10 @@ namespace Skybound.Gecko
         /// Note the use of [function] for this scriptable function callback declaration
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Call([MarshalAs(UnmanagedType.LPStr)] System.String  s);
+		void Call([MarshalAs(UnmanagedType.LPStr)] string s);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CallWithThis([MarshalAs(UnmanagedType.Interface)] nsISupports  self, [MarshalAs(UnmanagedType.LPStr)] System.String  s);
+		void CallWithThis([MarshalAs(UnmanagedType.Interface)] nsISupports self, [MarshalAs(UnmanagedType.LPStr)] string s);
 	}
 	
 	/// <summary>nsITestXPCFoo </summary>
@@ -58,22 +58,22 @@ namespace Skybound.Gecko
 		/// <param name='p2'> </param>
 		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int Test(System.Int32  p1, System.Int32  p2);
+		int Test(int p1, int p2);
 		
 		/// <summary>Member Test2 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Test2();
 		
 		/// <summary>Member GetFooAttribute </summary>
-		/// <returns>A System.String </returns>
+		/// <returns>A System.String</returns>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetFooAttribute();
+		string GetFooAttribute();
 		
 		/// <summary>Member SetFooAttribute </summary>
 		/// <param name='aFoo'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFooAttribute([MarshalAs(UnmanagedType.LPStr)] System.String  aFoo);
+		void SetFooAttribute([MarshalAs(UnmanagedType.LPStr)] string aFoo);
 	}
 	
 	/// <summary>nsITestXPCFoo2 </summary>
@@ -88,22 +88,22 @@ namespace Skybound.Gecko
 		/// <param name='p2'> </param>
 		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new int Test(System.Int32  p1, System.Int32  p2);
+		new int Test(int p1, int p2);
 		
 		/// <summary>Member Test2 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void Test2();
 		
 		/// <summary>Member GetFooAttribute </summary>
-		/// <returns>A System.String </returns>
+		/// <returns>A System.String</returns>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.String  GetFooAttribute();
+		new string GetFooAttribute();
 		
 		/// <summary>Member SetFooAttribute </summary>
 		/// <param name='aFoo'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetFooAttribute([MarshalAs(UnmanagedType.LPStr)] System.String  aFoo);
+		new void SetFooAttribute([MarshalAs(UnmanagedType.LPStr)] string aFoo);
 	}
 	
 	/// <summary>nsIEcho </summary>
@@ -116,18 +116,18 @@ namespace Skybound.Gecko
 		/// <summary>Member SetReceiver </summary>
 		/// <param name='aReceiver'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetReceiver([MarshalAs(UnmanagedType.Interface)] nsIEcho  aReceiver);
+		void SetReceiver([MarshalAs(UnmanagedType.Interface)] nsIEcho aReceiver);
 		
 		/// <summary>Member SendOneString </summary>
 		/// <param name='str'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendOneString([MarshalAs(UnmanagedType.LPStr)] System.String  str);
+		void SendOneString([MarshalAs(UnmanagedType.LPStr)] string str);
 		
 		/// <summary>Member In2OutOneInt </summary>
 		/// <param name='input'> </param>
 		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int In2OutOneInt(System.Int32  input);
+		int In2OutOneInt(int input);
 		
 		/// <summary>Member In2OutAddTwoInts </summary>
 		/// <param name='input1'> </param>
@@ -136,61 +136,70 @@ namespace Skybound.Gecko
 		/// <param name='output2'> </param>
 		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int In2OutAddTwoInts(System.Int32  input1, System.Int32  input2, out System.Int32  output1, out System.Int32  output2);
+		int In2OutAddTwoInts(int input1, int input2, out int output1, out int output2);
 		
 		/// <summary>Member In2OutOneString </summary>
 		/// <param name='input'> </param>
 		/// <returns>A System.String</returns>
+		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string In2OutOneString([MarshalAs(UnmanagedType.LPStr)] System.String  input);
+		string In2OutOneString([MarshalAs(UnmanagedType.LPStr)] string input);
 		
 		/// <summary>Member In2OutOneDOMString </summary>
 		/// <param name='input'> </param>
 		/// <returns>A nsAString</returns>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsAString In2OutOneDOMString([MarshalAs(UnmanagedType.LPStruct)] nsAString input);
 		
 		/// <summary>Member EchoIn2OutOneDOMString </summary>
 		/// <param name='input'> </param>
 		/// <returns>A nsAString</returns>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsAString EchoIn2OutOneDOMString([MarshalAs(UnmanagedType.LPStruct)] nsAString input);
 		
 		/// <summary>Member In2OutOneAString </summary>
 		/// <param name='input'> </param>
 		/// <returns>A nsAString</returns>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsAString In2OutOneAString([MarshalAs(UnmanagedType.LPStruct)] nsAString input);
 		
 		/// <summary>Member EchoIn2OutOneAString </summary>
 		/// <param name='input'> </param>
 		/// <returns>A nsAString</returns>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsAString EchoIn2OutOneAString([MarshalAs(UnmanagedType.LPStruct)] nsAString input);
 		
 		/// <summary>Member In2OutOneUTF8String </summary>
 		/// <param name='input'> </param>
 		/// <returns>A nsAUTF8String</returns>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAUTF8String In2OutOneUTF8String([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  input);
+		nsAUTF8String In2OutOneUTF8String([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String input);
 		
 		/// <summary>Member EchoIn2OutOneUTF8String </summary>
 		/// <param name='input'> </param>
 		/// <returns>A nsAUTF8String</returns>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAUTF8String EchoIn2OutOneUTF8String([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  input);
+		nsAUTF8String EchoIn2OutOneUTF8String([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String input);
 		
 		/// <summary>Member In2OutOneCString </summary>
 		/// <param name='input'> </param>
 		/// <returns>A nsAString</returns>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString In2OutOneCString([MarshalAs(UnmanagedType.LPStruct)] nsAString  input);
+		nsAString In2OutOneCString([MarshalAs(UnmanagedType.LPStruct)] nsAString input);
 		
 		/// <summary>Member EchoIn2OutOneCString </summary>
 		/// <param name='input'> </param>
 		/// <returns>A nsAString</returns>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString EchoIn2OutOneCString([MarshalAs(UnmanagedType.LPStruct)] nsAString  input);
+		nsAString EchoIn2OutOneCString([MarshalAs(UnmanagedType.LPStruct)] nsAString input);
 		
 		/// <summary>Member SimpleCallNoEcho </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -215,21 +224,21 @@ namespace Skybound.Gecko
 		/// <param name='p16'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SendManyTypes(
-					System.IntPtr  p1, 
+					System.IntPtr p1, 
 					short p2, 
-					System.Int32  p3, 
-					System.Int32  p4, 
-					System.IntPtr  p5, 
+					int p3, 
+					int p4, 
+					System.IntPtr p5, 
 					ushort p6, 
-					System.UInt32  p7, 
-					System.UInt32  p8, 
+					uint p7, 
+					uint p8, 
 					double p9, 
 					double p10, 
-					System.Boolean  p11, 
-					System.Char  p12, 
-					System.Char  p13, 
+					bool p11, 
+					char p12, 
+					char p13, 
 					System.IntPtr p14, 
-					[MarshalAs(UnmanagedType.LPStr)] System.String  p15, 
+					[MarshalAs(UnmanagedType.LPStr)] string p15, 
 					[MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string p16);
 		
 		/// <summary>Member SendInOutManyTypes </summary>
@@ -251,44 +260,44 @@ namespace Skybound.Gecko
 		/// <param name='p16'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SendInOutManyTypes(
-					ref System.IntPtr  p1, 
+					ref System.IntPtr p1, 
 					ref short p2, 
-					ref System.Int32  p3, 
-					ref System.Int32  p4, 
-					ref System.IntPtr  p5, 
+					ref int p3, 
+					ref int p4, 
+					ref System.IntPtr p5, 
 					ref ushort p6, 
-					ref System.UInt32  p7, 
-					ref System.UInt32  p8, 
+					ref uint p7, 
+					ref uint p8, 
 					ref double p9, 
 					ref double p10, 
-					ref System.Boolean  p11, 
-					ref System.Char  p12, 
-					ref System.Char  p13, 
+					ref bool p11, 
+					ref char p12, 
+					ref char p13, 
 					ref System.IntPtr p14, 
-					[MarshalAs(UnmanagedType.LPStr)] ref System.String  p15, 
+					[MarshalAs(UnmanagedType.LPStr)] ref string p15, 
 					[MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] ref string p16);
 		
 		/// <summary>Member MethodWithNative </summary>
 		/// <param name='p1'> </param>
 		/// <param name='p2'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MethodWithNative(System.Int32  p1, System.IntPtr  p2);
+		void MethodWithNative(int p1, System.IntPtr p2);
 		
 		/// <summary>Member ReturnCode </summary>
 		/// <param name='code'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ReturnCode(System.Int32  code);
+		void ReturnCode(int code);
 		
 		/// <summary>Member FailInJSTest </summary>
 		/// <param name='fail'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void FailInJSTest(System.Int32  fail);
+		void FailInJSTest(int fail);
 		
 		/// <summary>Member SharedString </summary>
-		/// <returns>A System.String </returns>
+		/// <returns>A System.String</returns>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  SharedString();
+		string SharedString();
 		
 		/// <summary>Member ReturnCode_NS_OK </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -309,18 +318,20 @@ namespace Skybound.Gecko
 		/// <summary>Member ReturnInterface </summary>
 		/// <param name='obj'> </param>
 		/// <returns>A nsISupports</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports ReturnInterface([MarshalAs(UnmanagedType.Interface)] nsISupports  obj);
+		nsISupports ReturnInterface([MarshalAs(UnmanagedType.Interface)] nsISupports obj);
 		
 		/// <summary>Member GetStack </summary>
 		/// <returns>A nsIStackFrame</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIStackFrame GetStack();
 		
 		/// <summary>Member SetReceiverReturnOldReceiver </summary>
 		/// <param name='aReceiver'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetReceiverReturnOldReceiver([MarshalAs(UnmanagedType.Interface)] ref nsIEcho  aReceiver);
+		void SetReceiverReturnOldReceiver([MarshalAs(UnmanagedType.Interface)] ref nsIEcho aReceiver);
 		
 		/// <summary>Member MethodWithForwardDeclaredParam </summary>
 		/// <param name='sut'> </param>
@@ -329,9 +340,9 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member PseudoQueryInterface </summary>
 		/// <param name='uuid'> </param>
-		/// <returns>A System.IntPtr </returns>
+		/// <returns>A System.IntPtr</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr  PseudoQueryInterface(ref System.Guid uuid);
+		System.IntPtr PseudoQueryInterface(ref System.Guid uuid);
 		
 		/// <summary>Member DebugDumpJSStack </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -357,38 +368,38 @@ namespace Skybound.Gecko
 		short GetThrowInGetterAttribute();
 		
 		/// <summary>Member GetAStringAttribute </summary>
-		/// <returns>A System.String </returns>
+		/// <returns>A System.String</returns>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetAStringAttribute();
+		string GetAStringAttribute();
 		
 		/// <summary>Member SetAStringAttribute </summary>
 		/// <param name='aAString'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAStringAttribute([MarshalAs(UnmanagedType.LPStr)] System.String  aAString);
+		void SetAStringAttribute([MarshalAs(UnmanagedType.LPStr)] string aAString);
 		
 		/// <summary>Member GetSomeValueAttribute </summary>
-		/// <returns>A System.Int32 </returns>
+		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetSomeValueAttribute();
+		int GetSomeValueAttribute();
 		
 		/// <summary>Member SetSomeValueAttribute </summary>
 		/// <param name='aSomeValue'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSomeValueAttribute(System.Int32  aSomeValue);
+		void SetSomeValueAttribute(int aSomeValue);
 		
 		/// <summary>Member CallFunction </summary>
 		/// <param name='callback'> </param>
 		/// <param name='s'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CallFunction([MarshalAs(UnmanagedType.Interface)] nsITestXPCFunctionCallback  callback, [MarshalAs(UnmanagedType.LPStr)] System.String  s);
+		void CallFunction([MarshalAs(UnmanagedType.Interface)] nsITestXPCFunctionCallback callback, [MarshalAs(UnmanagedType.LPStr)] string s);
 		
 		/// <summary>Member CallFunctionWithThis </summary>
 		/// <param name='callback'> </param>
 		/// <param name='self'> </param>
 		/// <param name='s'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CallFunctionWithThis([MarshalAs(UnmanagedType.Interface)] nsITestXPCFunctionCallback  callback, [MarshalAs(UnmanagedType.Interface)] nsISupports  self, [MarshalAs(UnmanagedType.LPStr)] System.String  s);
+		void CallFunctionWithThis([MarshalAs(UnmanagedType.Interface)] nsITestXPCFunctionCallback callback, [MarshalAs(UnmanagedType.Interface)] nsISupports self, [MarshalAs(UnmanagedType.LPStr)] string s);
 	}
 	
 	/// <summary> </summary>
@@ -403,7 +414,7 @@ namespace Skybound.Gecko
 		void Method1(short i);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Method1a([MarshalAs(UnmanagedType.Interface)] nsIXPCTestParent  foo);
+		void Method1a([MarshalAs(UnmanagedType.Interface)] nsIXPCTestParent foo);
 	}
 	
 	/// <summary>nsIXPCTestChild </summary>
@@ -420,7 +431,7 @@ namespace Skybound.Gecko
 		/// <summary>Member Method1a </summary>
 		/// <param name='foo'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Method1a([MarshalAs(UnmanagedType.Interface)] nsIXPCTestParent  foo);
+		new void Method1a([MarshalAs(UnmanagedType.Interface)] nsIXPCTestParent foo);
 		
 		/// <summary>Member Method2 </summary>
 		/// <param name='i'> </param>
@@ -465,19 +476,20 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member GetStringA </summary>
 		/// <returns>A System.String</returns>
+		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string GetStringA();
 		
 		/// <summary>Member GetStringB </summary>
 		/// <param name='s'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetStringB([MarshalAs(UnmanagedType.LPStr)] out System.String  s);
+		void GetStringB([MarshalAs(UnmanagedType.LPStr)] out string s);
 		
 		/// <summary>Member GetStringC </summary>
-		/// <returns>A System.String </returns>
+		/// <returns>A System.String</returns>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetStringC();
+		string GetStringC();
 		
 		/// <summary>Member GetWStringCopied </summary>
 		/// <returns>A System.String</returns>
@@ -502,13 +514,13 @@ namespace Skybound.Gecko
 		/// <summary>Member Foo1 </summary>
 		/// <param name='p1'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Foo1(System.Int32  p1);
+		void Foo1(int p1);
 		
 		/// <summary>Member Foo2 </summary>
 		/// <param name='p1'> </param>
 		/// <param name='p2'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Foo2(System.Int32  p1, System.Int32  p2);
+		void Foo2(int p1, int p2);
 	}
 	
 	/// <summary>nsIXPCTestArray </summary>
@@ -521,77 +533,77 @@ namespace Skybound.Gecko
 		/// <summary>Member SetReceiver </summary>
 		/// <param name='aReceiver'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetReceiver([MarshalAs(UnmanagedType.Interface)] nsIXPCTestArray  aReceiver);
+		void SetReceiver([MarshalAs(UnmanagedType.Interface)] nsIXPCTestArray aReceiver);
 		
 		/// <summary>Member PrintIntegerArray </summary>
 		/// <param name='count'> </param>
 		/// <param name='valueArray'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PrintIntegerArray(System.UInt32  count, System.Int32  valueArray);
+		void PrintIntegerArray(uint count, int valueArray);
 		
 		/// <summary>Member PrintStringArray </summary>
 		/// <param name='count'> </param>
 		/// <param name='valueArray'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PrintStringArray(System.UInt32  count, [MarshalAs(UnmanagedType.LPStr, SizeParamIndex=0)] System.String  valueArray);
+		void PrintStringArray(uint count, [MarshalAs(UnmanagedType.LPStr, SizeParamIndex=0)] string valueArray);
 		
 		/// <summary>Member MultiplyEachItemInIntegerArray </summary>
 		/// <param name='val'> </param>
 		/// <param name='count'> </param>
 		/// <param name='valueArray'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MultiplyEachItemInIntegerArray(System.Int32  val, System.UInt32  count, ref System.Int32  valueArray);
+		void MultiplyEachItemInIntegerArray(int val, uint count, ref int valueArray);
 		
 		/// <summary>Member MultiplyEachItemInIntegerArrayAndAppend </summary>
 		/// <param name='val'> </param>
 		/// <param name='count'> </param>
 		/// <param name='valueArray'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MultiplyEachItemInIntegerArrayAndAppend(System.Int32  val, ref System.UInt32  count, ref System.Int32  valueArray);
+		void MultiplyEachItemInIntegerArrayAndAppend(int val, ref uint count, ref int valueArray);
 		
 		/// <summary>Member CallEchoMethodOnEachInArray </summary>
 		/// <param name='uuid'> </param>
 		/// <param name='count'> </param>
 		/// <param name='result'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CallEchoMethodOnEachInArray(ref System.Guid uuid, ref System.UInt32  count, ref System.IntPtr  result);
+		void CallEchoMethodOnEachInArray(ref System.Guid uuid, ref uint count, ref System.IntPtr result);
 		
 		/// <summary>Member CallEchoMethodOnEachInArray2 </summary>
 		/// <param name='count'> </param>
 		/// <param name='result'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CallEchoMethodOnEachInArray2(ref System.UInt32  count, ref nsIEcho  result);
+		void CallEchoMethodOnEachInArray2(ref uint count, ref nsIEcho result);
 		
 		/// <summary>Member DoubleStringArray </summary>
 		/// <param name='count'> </param>
 		/// <param name='valueArray'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DoubleStringArray(ref System.UInt32  count, [MarshalAs(UnmanagedType.LPStr, SizeParamIndex=0)] ref System.String  valueArray);
+		void DoubleStringArray(ref uint count, [MarshalAs(UnmanagedType.LPStr, SizeParamIndex=0)] ref string valueArray);
 		
 		/// <summary>Member ReverseStringArray </summary>
 		/// <param name='count'> </param>
 		/// <param name='valueArray'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ReverseStringArray(System.UInt32  count, [MarshalAs(UnmanagedType.LPStr, SizeParamIndex=0)] ref System.String  valueArray);
+		void ReverseStringArray(uint count, [MarshalAs(UnmanagedType.LPStr, SizeParamIndex=0)] ref string valueArray);
 		
 		/// <summary>Member PrintStringWithSize </summary>
 		/// <param name='count'> </param>
 		/// <param name='str'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PrintStringWithSize(System.UInt32  count, [MarshalAs(UnmanagedType.LPStr, SizeParamIndex=0)] System.String  str);
+		void PrintStringWithSize(uint count, [MarshalAs(UnmanagedType.LPStr, SizeParamIndex=0)] string str);
 		
 		/// <summary>Member DoubleString </summary>
 		/// <param name='count'> </param>
 		/// <param name='str'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DoubleString(ref System.UInt32  count, [MarshalAs(UnmanagedType.LPStr, SizeParamIndex=0)] ref System.String  str);
+		void DoubleString(ref uint count, [MarshalAs(UnmanagedType.LPStr, SizeParamIndex=0)] ref string str);
 		
 		/// <summary>Member GetStrings </summary>
 		/// <param name='count'> </param>
-		/// <returns>A System.String </returns>
+		/// <returns>A System.String</returns>
 		[return: MarshalAs(UnmanagedType.LPStr, SizeParamIndex=0)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetStrings(out System.UInt32  count);
+		string GetStrings(out uint count);
 	}
 	
 	/// <summary>nsIWrappedJSObjectTest </summary>
@@ -622,15 +634,15 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetBogusAttribute </summary>
-		/// <returns>A nsIBogus1 </returns>
+		/// <returns>A nsIBogus1</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIBogus1  GetBogusAttribute();
+		nsIBogus1 GetBogusAttribute();
 		
 		/// <summary>Member SetBogusAttribute </summary>
 		/// <param name='aBogus'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBogusAttribute([MarshalAs(UnmanagedType.Interface)] nsIBogus1  aBogus);
+		void SetBogusAttribute([MarshalAs(UnmanagedType.Interface)] nsIBogus1 aBogus);
 	}
 	
 	/// <summary>nsITestVariant </summary>
@@ -643,29 +655,32 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Just return the variant that was passed in.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant PassThruVariant([MarshalAs(UnmanagedType.Interface)] nsIVariant  value);
+		nsIVariant PassThruVariant([MarshalAs(UnmanagedType.Interface)] nsIVariant value);
 		
 		/// <summary>
         /// Just return the type of the passed in variant.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		ushort ReturnVariantType([MarshalAs(UnmanagedType.Interface)] nsIVariant  value);
+		ushort ReturnVariantType([MarshalAs(UnmanagedType.Interface)] nsIVariant value);
 		
 		/// <summary>
         /// Construct and return a default xpcom variant instance using the
         /// value of the passed in variant. Use the type of the passed in variant.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant CopyVariant([MarshalAs(UnmanagedType.Interface)] nsIVariant  value);
+		nsIVariant CopyVariant([MarshalAs(UnmanagedType.Interface)] nsIVariant value);
 		
 		/// <summary>
         /// Construct and return a default xpcom variant instance using the
         /// value of the passed in variant. Use the type as specified to get data
         /// from the passed in variant.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant CopyVariantAsType([MarshalAs(UnmanagedType.Interface)] nsIVariant  value, System.UInt16  type);
+		nsIVariant CopyVariantAsType([MarshalAs(UnmanagedType.Interface)] nsIVariant value, ushort type);
 		
 		/// <summary>
         /// Construct a default xpcom variant instance using the
@@ -674,19 +689,22 @@ namespace Skybound.Gecko
         /// xpcom variant based on that object using the type2. This allows for
         /// testing all the 'ConvertTo*' methods on the default xpcom variant class.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant CopyVariantAsTypeTwice([MarshalAs(UnmanagedType.Interface)] nsIVariant  value, System.UInt16  type1, System.UInt16  type2);
+		nsIVariant CopyVariantAsTypeTwice([MarshalAs(UnmanagedType.Interface)] nsIVariant value, ushort type1, ushort type2);
 		
 		/// <summary>
         /// Get a named property from object that will be QI'd to nsIPropertyBag.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant GetNamedProperty([MarshalAs(UnmanagedType.Interface)] nsISupports  aBag, [MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
+		nsIVariant GetNamedProperty([MarshalAs(UnmanagedType.Interface)] nsISupports aBag, [MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
 		
 		/// <summary>
         /// Get a enumerator from object that will be QI'd to nsIPropertyBag.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISimpleEnumerator GetEnumerator([MarshalAs(UnmanagedType.Interface)] nsISupports  aBag);
+		nsISimpleEnumerator GetEnumerator([MarshalAs(UnmanagedType.Interface)] nsISupports aBag);
 	}
 }

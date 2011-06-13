@@ -47,7 +47,7 @@ namespace Skybound.Gecko
         /// By default, this value is <code>true</code>.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetPropagateChangesAttribute();
+		bool GetPropagateChangesAttribute();
 		
 		/// <summary>
         /// Set this value to <code>true</code> to enable synchronization
@@ -59,6 +59,6 @@ namespace Skybound.Gecko
         /// By default, this value is <code>true</code>.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPropagateChangesAttribute(System.Boolean  aPropagateChanges);
+		void SetPropagateChangesAttribute(bool aPropagateChanges);
 	}
 }

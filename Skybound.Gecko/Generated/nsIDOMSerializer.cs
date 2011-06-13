@@ -47,8 +47,9 @@ namespace Skybound.Gecko
         /// be any node, including a Document.
         /// @returns The serialized subtree in the form of a Unicode string
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString SerializeToString([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  root);
+		nsAString SerializeToString([MarshalAs(UnmanagedType.Interface)] nsIDOMNode root);
 		
 		/// <summary>
         /// The subtree rooted by the specified element is serialized to
@@ -61,6 +62,6 @@ namespace Skybound.Gecko
         /// a document, the document's character set will be used.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SerializeToStream([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  root, [MarshalAs(UnmanagedType.Interface)] nsIOutputStream  stream, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  charset);
+		void SerializeToStream([MarshalAs(UnmanagedType.Interface)] nsIDOMNode root, [MarshalAs(UnmanagedType.Interface)] nsIOutputStream stream, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String charset);
 	}
 }

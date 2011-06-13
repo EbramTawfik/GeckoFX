@@ -47,39 +47,40 @@ namespace Skybound.Gecko
 		void CopySelection();
 		
 		/// <summary>Member GetCopyableAttribute </summary>
-		/// <returns>A System.Boolean </returns>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetCopyableAttribute();
+		bool GetCopyableAttribute();
 		
 		/// <summary>Member CopyLinkLocation </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void CopyLinkLocation();
 		
 		/// <summary>Member GetInLinkAttribute </summary>
-		/// <returns>A System.Boolean </returns>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetInLinkAttribute();
+		bool GetInLinkAttribute();
 		
 		/// <summary>Member CopyImage </summary>
 		/// <param name='aCopyFlags'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CopyImage(System.Int32  aCopyFlags);
+		void CopyImage(int aCopyFlags);
 		
 		/// <summary>Member GetInImageAttribute </summary>
-		/// <returns>A System.Boolean </returns>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetInImageAttribute();
+		bool GetInImageAttribute();
 		
 		/// <summary>Member GetContents </summary>
 		/// <param name='aMimeType'> </param>
 		/// <param name='aSelectionOnly'> </param>
 		/// <returns>A nsAString</returns>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetContents([MarshalAs(UnmanagedType.LPStr)] System.String  aMimeType, System.Boolean  aSelectionOnly);
+		nsAString GetContents([MarshalAs(UnmanagedType.LPStr)] string aMimeType, bool aSelectionOnly);
 		
 		/// <summary>Member GetCanGetContentsAttribute </summary>
-		/// <returns>A System.Boolean </returns>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetCanGetContentsAttribute();
+		bool GetCanGetContentsAttribute();
 	}
 }

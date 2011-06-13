@@ -35,41 +35,41 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetStartWithLastProfileAttribute </summary>
-		/// <returns>A System.Boolean </returns>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetStartWithLastProfileAttribute();
+		bool GetStartWithLastProfileAttribute();
 		
 		/// <summary>Member SetStartWithLastProfileAttribute </summary>
 		/// <param name='aStartWithLastProfile'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetStartWithLastProfileAttribute(System.Boolean  aStartWithLastProfile);
+		void SetStartWithLastProfileAttribute(bool aStartWithLastProfile);
 		
 		/// <summary>Member GetStartOfflineAttribute </summary>
-		/// <returns>A System.Boolean </returns>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetStartOfflineAttribute();
+		bool GetStartOfflineAttribute();
 		
 		/// <summary>Member SetStartOfflineAttribute </summary>
 		/// <param name='aStartOffline'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetStartOfflineAttribute(System.Boolean  aStartOffline);
+		void SetStartOfflineAttribute(bool aStartOffline);
 		
 		/// <summary>
         ///nsIToolkitProfile </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISimpleEnumerator  GetProfilesAttribute();
+		nsISimpleEnumerator GetProfilesAttribute();
 		
 		/// <summary>Member GetSelectedProfileAttribute </summary>
-		/// <returns>A nsIToolkitProfile </returns>
+		/// <returns>A nsIToolkitProfile</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIToolkitProfile  GetSelectedProfileAttribute();
+		nsIToolkitProfile GetSelectedProfileAttribute();
 		
 		/// <summary>Member SetSelectedProfileAttribute </summary>
 		/// <param name='aSelectedProfile'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSelectedProfileAttribute([MarshalAs(UnmanagedType.Interface)] nsIToolkitProfile  aSelectedProfile);
+		void SetSelectedProfileAttribute([MarshalAs(UnmanagedType.Interface)] nsIToolkitProfile aSelectedProfile);
 		
 		/// <summary>
         /// Get a profile by name. This is mainly for use by the -P
@@ -77,15 +77,17 @@ namespace Skybound.Gecko
         ///
         /// @param aName The profile name to find.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIToolkitProfile GetProfileByName([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName);
+		nsIToolkitProfile GetProfileByName([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName);
 		
 		/// <summary>
         /// Lock an arbitrary path as a profile. If the path does not exist, it
         /// will be created and the defaults copied from the application directory.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIProfileLock LockProfilePath([MarshalAs(UnmanagedType.Interface)] nsILocalFile  aDirectory, [MarshalAs(UnmanagedType.Interface)] nsILocalFile  aTempDirectory);
+		nsIProfileLock LockProfilePath([MarshalAs(UnmanagedType.Interface)] nsILocalFile aDirectory, [MarshalAs(UnmanagedType.Interface)] nsILocalFile aTempDirectory);
 		
 		/// <summary>
         /// Create a new profile.
@@ -100,15 +102,16 @@ namespace Skybound.Gecko
         /// @param aName
         /// The profile name.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIToolkitProfile CreateProfile([MarshalAs(UnmanagedType.Interface)] nsILocalFile  aRootDir, [MarshalAs(UnmanagedType.Interface)] nsILocalFile  aTempDir, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName);
+		nsIToolkitProfile CreateProfile([MarshalAs(UnmanagedType.Interface)] nsILocalFile aRootDir, [MarshalAs(UnmanagedType.Interface)] nsILocalFile aTempDir, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName);
 		
 		/// <summary>
         /// Returns the number of profiles.
         /// @return 0, 1, or 2. More than 2 profiles will always return 2.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetProfileCountAttribute();
+		uint GetProfileCountAttribute();
 		
 		/// <summary>
         /// Flush the profiles list file.

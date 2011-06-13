@@ -51,10 +51,11 @@ namespace Skybound.Gecko
         /// For more information on this interface please see
         /// http://www.w3.org/TR/DOM-Level-2-Core/
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMNode Item(System.UInt32  index);
+		nsIDOMNode Item(uint index);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetLengthAttribute();
+		uint GetLengthAttribute();
 	}
 }

@@ -38,7 +38,7 @@ namespace Skybound.Gecko
         /// Let the owner know what its instance is
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetInstance([MarshalAs(UnmanagedType.Interface)] nsIPluginInstance  aInstance);
+		void SetInstance([MarshalAs(UnmanagedType.Interface)] nsIPluginInstance aInstance);
 		
 		/// <summary>
         /// Get the instance associated with this owner.
@@ -57,7 +57,7 @@ namespace Skybound.Gecko
         /// Get the display mode for the plugin instance.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetModeAttribute();
+		int GetModeAttribute();
 		
 		/// <summary>
         /// Create a place for the plugin to live in the owner's
@@ -71,7 +71,7 @@ namespace Skybound.Gecko
         /// Show a status message in the host environment.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ShowStatus([MarshalAs(UnmanagedType.LPStr)] System.String  aStatusMsg);
+		void ShowStatus([MarshalAs(UnmanagedType.LPStr)] string aStatusMsg);
 		
 		/// <summary>
         /// Get the associated document.
@@ -101,13 +101,13 @@ namespace Skybound.Gecko
         /// Get NetscapeWindow, corresponds to NPNVnetscapeWindow
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNetscapeWindow(System.IntPtr  aValue);
+		void GetNetscapeWindow(System.IntPtr aValue);
 		
 		/// <summary>
         /// Show native context menu
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetEventModel(System.Int32  eventModel);
+		void SetEventModel(int eventModel);
 	}
 	
 	/// <summary>

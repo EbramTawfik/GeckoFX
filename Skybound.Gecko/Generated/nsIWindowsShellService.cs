@@ -44,7 +44,7 @@ namespace Skybound.Gecko
         /// false otherwise.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool IsDefaultBrowser(System.Boolean  aStartupCheck);
+		new bool IsDefaultBrowser(bool aStartupCheck);
 		
 		/// <summary>
         /// Registers Firefox as the "Default Browser."
@@ -57,7 +57,7 @@ namespace Skybound.Gecko
         /// users on a multi-user system.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetDefaultBrowser(System.Boolean  aClaimAllTypes, System.Boolean  aForAllUsers);
+		new void SetDefaultBrowser(bool aClaimAllTypes, bool aForAllUsers);
 		
 		/// <summary>
         /// Used to determine whether or not to show a "Set Default Browser"
@@ -66,7 +66,7 @@ namespace Skybound.Gecko
         /// is false.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Boolean  GetShouldCheckDefaultBrowserAttribute();
+		new bool GetShouldCheckDefaultBrowserAttribute();
 		
 		/// <summary>
         /// Used to determine whether or not to show a "Set Default Browser"
@@ -75,7 +75,7 @@ namespace Skybound.Gecko
         /// is false.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetShouldCheckDefaultBrowserAttribute(System.Boolean  aShouldCheckDefaultBrowser);
+		new void SetShouldCheckDefaultBrowserAttribute(bool aShouldCheckDefaultBrowser);
 		
 		/// <summary>
         /// Sets the desktop background image using either the HTML <IMG>
@@ -87,7 +87,7 @@ namespace Skybound.Gecko
         /// @param aPosition     How to place the image on the desktop
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetDesktopBackground([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  aElement, System.Int32  aPosition);
+		new void SetDesktopBackground([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement, int aPosition);
 		
 		/// <summary>
         /// Opens the application specified. If more than one application of the
@@ -95,7 +95,7 @@ namespace Skybound.Gecko
         /// application is used.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void OpenApplication(System.Int32  aApplication);
+		new void OpenApplication(int aApplication);
 		
 		/// <summary>
         /// The desktop background color, visible when no background image is
@@ -103,7 +103,7 @@ namespace Skybound.Gecko
         /// entire screen. A rgb value, where (r << 16 | g << 8 | b)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.UInt32  GetDesktopBackgroundColorAttribute();
+		new uint GetDesktopBackgroundColorAttribute();
 		
 		/// <summary>
         /// The desktop background color, visible when no background image is
@@ -111,7 +111,7 @@ namespace Skybound.Gecko
         /// entire screen. A rgb value, where (r << 16 | g << 8 | b)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetDesktopBackgroundColorAttribute(System.UInt32  aDesktopBackgroundColor);
+		new void SetDesktopBackgroundColorAttribute(uint aDesktopBackgroundColor);
 		
 		/// <summary>
         /// Opens an application with a specific URI to load.
@@ -121,14 +121,14 @@ namespace Skybound.Gecko
         /// The uri to be loaded by the application
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void OpenApplicationWithURI([MarshalAs(UnmanagedType.Interface)] nsILocalFile  aApplication, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aURI);
+		new void OpenApplicationWithURI([MarshalAs(UnmanagedType.Interface)] nsILocalFile aApplication, [MarshalAs(UnmanagedType.LPStruct)] nsAString aURI);
 		
 		/// <summary>
         /// The default system handler for web feeds
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsILocalFile  GetDefaultFeedReaderAttribute();
+		new nsILocalFile GetDefaultFeedReaderAttribute();
 		
 		/// <summary>
         /// The number of unread mail messages for the current user.
@@ -136,7 +136,7 @@ namespace Skybound.Gecko
         /// @return The number of unread (new) mail messages for the current user.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetUnreadMailCountAttribute();
+		uint GetUnreadMailCountAttribute();
 		
 		/// <summary>
         /// Provides the shell service an opportunity to do some Win7+ shortcut

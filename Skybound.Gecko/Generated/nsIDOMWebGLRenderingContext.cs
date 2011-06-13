@@ -38,12 +38,12 @@ namespace Skybound.Gecko
 		/// <summary>
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetNameAttribute();
+		uint GetNameAttribute();
 		
 		/// <summary>
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetNameAttribute(System.UInt32  aName);
+		void SetNameAttribute(uint aName);
 	}
 	
 	/// <summary>nsIWebGLBuffer </summary>
@@ -54,14 +54,14 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetNameAttribute </summary>
-		/// <returns>A System.UInt32 </returns>
+		/// <returns>A System.UInt32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetNameAttribute();
+		uint GetNameAttribute();
 		
 		/// <summary>Member SetNameAttribute </summary>
 		/// <param name='aName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetNameAttribute(System.UInt32  aName);
+		void SetNameAttribute(uint aName);
 	}
 	
 	/// <summary>nsIWebGLProgram </summary>
@@ -72,14 +72,14 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetNameAttribute </summary>
-		/// <returns>A System.UInt32 </returns>
+		/// <returns>A System.UInt32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetNameAttribute();
+		uint GetNameAttribute();
 		
 		/// <summary>Member SetNameAttribute </summary>
 		/// <param name='aName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetNameAttribute(System.UInt32  aName);
+		void SetNameAttribute(uint aName);
 	}
 	
 	/// <summary>nsIWebGLShader </summary>
@@ -90,14 +90,14 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetNameAttribute </summary>
-		/// <returns>A System.UInt32 </returns>
+		/// <returns>A System.UInt32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetNameAttribute();
+		uint GetNameAttribute();
 		
 		/// <summary>Member SetNameAttribute </summary>
 		/// <param name='aName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetNameAttribute(System.UInt32  aName);
+		void SetNameAttribute(uint aName);
 	}
 	
 	/// <summary>nsIWebGLShaderArray </summary>
@@ -108,15 +108,16 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetLengthAttribute </summary>
-		/// <returns>A System.UInt32 </returns>
+		/// <returns>A System.UInt32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetLengthAttribute();
+		uint GetLengthAttribute();
 		
 		/// <summary>Member Item </summary>
 		/// <param name='index'> </param>
 		/// <returns>A nsIWebGLShader</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIWebGLShader Item(System.UInt32  index);
+		nsIWebGLShader Item(uint index);
 	}
 	
 	/// <summary>nsIWebGLFramebuffer </summary>
@@ -127,14 +128,14 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetNameAttribute </summary>
-		/// <returns>A System.UInt32 </returns>
+		/// <returns>A System.UInt32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetNameAttribute();
+		uint GetNameAttribute();
 		
 		/// <summary>Member SetNameAttribute </summary>
 		/// <param name='aName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetNameAttribute(System.UInt32  aName);
+		void SetNameAttribute(uint aName);
 	}
 	
 	/// <summary>nsIWebGLRenderbuffer </summary>
@@ -145,14 +146,14 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetNameAttribute </summary>
-		/// <returns>A System.UInt32 </returns>
+		/// <returns>A System.UInt32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetNameAttribute();
+		uint GetNameAttribute();
 		
 		/// <summary>Member SetNameAttribute </summary>
 		/// <param name='aName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetNameAttribute(System.UInt32  aName);
+		void SetNameAttribute(uint aName);
 	}
 	
 	/// <summary>nsIWebGLActiveInfo </summary>
@@ -163,14 +164,14 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetSizeAttribute </summary>
-		/// <returns>A System.Int32 </returns>
+		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetSizeAttribute();
+		int GetSizeAttribute();
 		
 		/// <summary>Member GetTypeAttribute </summary>
-		/// <returns>A System.UInt32 </returns>
+		/// <returns>A System.UInt32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetTypeAttribute();
+		uint GetTypeAttribute();
 		
 		/// <summary>Member GetNameAttribute </summary>
 		/// <param name='aName'> </param>
@@ -186,14 +187,14 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetLocationAttribute </summary>
-		/// <returns>A System.Int32 </returns>
+		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetLocationAttribute();
+		int GetLocationAttribute();
 		
 		/// <summary>Member SetLocationAttribute </summary>
 		/// <param name='aLocation'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetLocationAttribute(System.Int32  aLocation);
+		void SetLocationAttribute(int aLocation);
 	}
 	
 	/// <summary>nsIDOMWebGLRenderingContext </summary>
@@ -207,7 +208,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMHTMLCanvasElement  GetCanvasAttribute();
+		nsIDOMHTMLCanvasElement GetCanvasAttribute();
 		
 		/// <summary>
         /// </summary>
@@ -217,44 +218,44 @@ namespace Skybound.Gecko
 		/// <summary>Member ActiveTexture </summary>
 		/// <param name='texture'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ActiveTexture(System.UInt32  texture);
+		void ActiveTexture(uint texture);
 		
 		/// <summary>Member AttachShader </summary>
 		/// <param name='program'> </param>
 		/// <param name='shader'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AttachShader([MarshalAs(UnmanagedType.Interface)] nsIWebGLProgram  program, [MarshalAs(UnmanagedType.Interface)] nsIWebGLShader  shader);
+		void AttachShader([MarshalAs(UnmanagedType.Interface)] nsIWebGLProgram program, [MarshalAs(UnmanagedType.Interface)] nsIWebGLShader shader);
 		
 		/// <summary>Member BindAttribLocation </summary>
 		/// <param name='program'> </param>
 		/// <param name='index'> </param>
 		/// <param name='name'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BindAttribLocation([MarshalAs(UnmanagedType.Interface)] nsIWebGLProgram  program, System.UInt32  index, [MarshalAs(UnmanagedType.LPStruct)] nsAString name);
+		void BindAttribLocation([MarshalAs(UnmanagedType.Interface)] nsIWebGLProgram program, uint index, [MarshalAs(UnmanagedType.LPStruct)] nsAString name);
 		
 		/// <summary>Member BindBuffer </summary>
 		/// <param name='target'> </param>
 		/// <param name='buffer'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BindBuffer(System.UInt32  target, [MarshalAs(UnmanagedType.Interface)] nsIWebGLBuffer  buffer);
+		void BindBuffer(uint target, [MarshalAs(UnmanagedType.Interface)] nsIWebGLBuffer buffer);
 		
 		/// <summary>Member BindFramebuffer </summary>
 		/// <param name='target'> </param>
 		/// <param name='framebuffer'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BindFramebuffer(System.UInt32  target, [MarshalAs(UnmanagedType.Interface)] nsIWebGLFramebuffer  framebuffer);
+		void BindFramebuffer(uint target, [MarshalAs(UnmanagedType.Interface)] nsIWebGLFramebuffer framebuffer);
 		
 		/// <summary>Member BindRenderbuffer </summary>
 		/// <param name='target'> </param>
 		/// <param name='renderbuffer'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BindRenderbuffer(System.UInt32  target, [MarshalAs(UnmanagedType.Interface)] nsIWebGLRenderbuffer  renderbuffer);
+		void BindRenderbuffer(uint target, [MarshalAs(UnmanagedType.Interface)] nsIWebGLRenderbuffer renderbuffer);
 		
 		/// <summary>Member BindTexture </summary>
 		/// <param name='target'> </param>
 		/// <param name='texture'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BindTexture(System.UInt32  target, [MarshalAs(UnmanagedType.Interface)] nsIWebGLTexture  texture);
+		void BindTexture(uint target, [MarshalAs(UnmanagedType.Interface)] nsIWebGLTexture texture);
 		
 		/// <summary>Member BlendColor </summary>
 		/// <param name='red'> </param>
@@ -262,24 +263,24 @@ namespace Skybound.Gecko
 		/// <param name='blue'> </param>
 		/// <param name='alpha'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BlendColor(System.Double  red, System.Double  green, System.Double  blue, System.Double  alpha);
+		void BlendColor(double red, double green, double blue, double alpha);
 		
 		/// <summary>Member BlendEquation </summary>
 		/// <param name='mode'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BlendEquation(System.UInt32  mode);
+		void BlendEquation(uint mode);
 		
 		/// <summary>Member BlendEquationSeparate </summary>
 		/// <param name='modeRGB'> </param>
 		/// <param name='modeAlpha'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BlendEquationSeparate(System.UInt32  modeRGB, System.UInt32  modeAlpha);
+		void BlendEquationSeparate(uint modeRGB, uint modeAlpha);
 		
 		/// <summary>Member BlendFunc </summary>
 		/// <param name='sfactor'> </param>
 		/// <param name='dfactor'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BlendFunc(System.UInt32  sfactor, System.UInt32  dfactor);
+		void BlendFunc(uint sfactor, uint dfactor);
 		
 		/// <summary>Member BlendFuncSeparate </summary>
 		/// <param name='srcRGB'> </param>
@@ -287,34 +288,34 @@ namespace Skybound.Gecko
 		/// <param name='srcAlpha'> </param>
 		/// <param name='dstAlpha'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BlendFuncSeparate(System.UInt32  srcRGB, System.UInt32  dstRGB, System.UInt32  srcAlpha, System.UInt32  dstAlpha);
+		void BlendFuncSeparate(uint srcRGB, uint dstRGB, uint srcAlpha, uint dstAlpha);
 		
 		/// <summary>
         /// Modified: void glBufferData(WebGLenum target, long size, const void* data, WebGLenum usage);
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BufferData(System.Int32  dummy);
+		void BufferData(int dummy);
 		
 		/// <summary>Member BufferData_size </summary>
 		/// <param name='target'> </param>
 		/// <param name='size'> </param>
 		/// <param name='usage'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BufferData_size(System.UInt32  target, System.Int32  size, System.UInt32  usage);
+		void BufferData_size(uint target, int size, uint usage);
 		
 		/// <summary>Member BufferData_buf </summary>
 		/// <param name='target'> </param>
 		/// <param name='data'> </param>
 		/// <param name='usage'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BufferData_buf(System.UInt32  target, System.IntPtr  data, System.UInt32  usage);
+		void BufferData_buf(uint target, System.IntPtr data, uint usage);
 		
 		/// <summary>Member BufferData_array </summary>
 		/// <param name='target'> </param>
 		/// <param name='data'> </param>
 		/// <param name='usage'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BufferData_array(System.UInt32  target, System.IntPtr  data, System.UInt32  usage);
+		void BufferData_array(uint target, System.IntPtr data, uint usage);
 		
 		/// <summary>Member BufferData_null </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -323,21 +324,21 @@ namespace Skybound.Gecko
 		/// <summary>Member BufferSubData </summary>
 		/// <param name='dummy'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BufferSubData(System.Int32  dummy);
+		void BufferSubData(int dummy);
 		
 		/// <summary>Member BufferSubData_buf </summary>
 		/// <param name='target'> </param>
 		/// <param name='offset'> </param>
 		/// <param name='data'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BufferSubData_buf(System.UInt32  target, System.Int32  offset, System.IntPtr  data);
+		void BufferSubData_buf(uint target, int offset, System.IntPtr data);
 		
 		/// <summary>Member BufferSubData_array </summary>
 		/// <param name='target'> </param>
 		/// <param name='offset'> </param>
 		/// <param name='data'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BufferSubData_array(System.UInt32  target, System.Int32  offset, System.IntPtr  data);
+		void BufferSubData_array(uint target, int offset, System.IntPtr data);
 		
 		/// <summary>Member BufferSubData_null </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -347,12 +348,12 @@ namespace Skybound.Gecko
 		/// <param name='target'> </param>
 		/// <returns>A System.UInt32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint CheckFramebufferStatus(System.UInt32  target);
+		uint CheckFramebufferStatus(uint target);
 		
 		/// <summary>Member Clear </summary>
 		/// <param name='mask'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Clear(System.UInt32  mask);
+		void Clear(uint mask);
 		
 		/// <summary>Member ClearColor </summary>
 		/// <param name='red'> </param>
@@ -360,17 +361,17 @@ namespace Skybound.Gecko
 		/// <param name='blue'> </param>
 		/// <param name='alpha'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ClearColor(System.Double  red, System.Double  green, System.Double  blue, System.Double  alpha);
+		void ClearColor(double red, double green, double blue, double alpha);
 		
 		/// <summary>Member ClearDepth </summary>
 		/// <param name='depth'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ClearDepth(System.Double  depth);
+		void ClearDepth(double depth);
 		
 		/// <summary>Member ClearStencil </summary>
 		/// <param name='s'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ClearStencil(System.Int32  s);
+		void ClearStencil(int s);
 		
 		/// <summary>Member ColorMask </summary>
 		/// <param name='red'> </param>
@@ -378,12 +379,12 @@ namespace Skybound.Gecko
 		/// <param name='blue'> </param>
 		/// <param name='alpha'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ColorMask(System.Boolean  red, System.Boolean  green, System.Boolean  blue, System.Boolean  alpha);
+		void ColorMask(bool red, bool green, bool blue, bool alpha);
 		
 		/// <summary>Member CompileShader </summary>
 		/// <param name='shader'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CompileShader([MarshalAs(UnmanagedType.Interface)] nsIWebGLShader  shader);
+		void CompileShader([MarshalAs(UnmanagedType.Interface)] nsIWebGLShader shader);
 		
 		/// <summary>Member CopyTexImage2D </summary>
 		/// <param name='target'> </param>
@@ -395,7 +396,7 @@ namespace Skybound.Gecko
 		/// <param name='height'> </param>
 		/// <param name='border'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CopyTexImage2D(System.UInt32  target, System.Int32  level, System.UInt32  internalformat, System.Int32  x, System.Int32  y, System.Int32  width, System.Int32  height, System.Int32  border);
+		void CopyTexImage2D(uint target, int level, uint internalformat, int x, int y, int width, int height, int border);
 		
 		/// <summary>Member CopyTexSubImage2D </summary>
 		/// <param name='target'> </param>
@@ -407,128 +408,134 @@ namespace Skybound.Gecko
 		/// <param name='width'> </param>
 		/// <param name='height'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CopyTexSubImage2D(System.UInt32  target, System.Int32  level, System.Int32  xoffset, System.Int32  yoffset, System.Int32  x, System.Int32  y, System.Int32  width, System.Int32  height);
+		void CopyTexSubImage2D(uint target, int level, int xoffset, int yoffset, int x, int y, int width, int height);
 		
 		/// <summary>Member CreateBuffer </summary>
 		/// <returns>A nsIWebGLBuffer</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIWebGLBuffer CreateBuffer();
 		
 		/// <summary>Member CreateProgram </summary>
 		/// <returns>A nsIWebGLProgram</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIWebGLProgram CreateProgram();
 		
 		/// <summary>Member CreateFramebuffer </summary>
 		/// <returns>A nsIWebGLFramebuffer</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIWebGLFramebuffer CreateFramebuffer();
 		
 		/// <summary>Member CreateRenderbuffer </summary>
 		/// <returns>A nsIWebGLRenderbuffer</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIWebGLRenderbuffer CreateRenderbuffer();
 		
 		/// <summary>Member CreateShader </summary>
 		/// <param name='type'> </param>
 		/// <returns>A nsIWebGLShader</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIWebGLShader CreateShader(System.UInt32  type);
+		nsIWebGLShader CreateShader(uint type);
 		
 		/// <summary>Member CreateTexture </summary>
 		/// <returns>A nsIWebGLTexture</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIWebGLTexture CreateTexture();
 		
 		/// <summary>Member CullFace </summary>
 		/// <param name='mode'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CullFace(System.UInt32  mode);
+		void CullFace(uint mode);
 		
 		/// <summary>Member DeleteBuffer </summary>
 		/// <param name='buffer'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DeleteBuffer([MarshalAs(UnmanagedType.Interface)] nsIWebGLBuffer  buffer);
+		void DeleteBuffer([MarshalAs(UnmanagedType.Interface)] nsIWebGLBuffer buffer);
 		
 		/// <summary>Member DeleteProgram </summary>
 		/// <param name='program'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DeleteProgram([MarshalAs(UnmanagedType.Interface)] nsIWebGLProgram  program);
+		void DeleteProgram([MarshalAs(UnmanagedType.Interface)] nsIWebGLProgram program);
 		
 		/// <summary>Member DeleteFramebuffer </summary>
 		/// <param name='framebuffer'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DeleteFramebuffer([MarshalAs(UnmanagedType.Interface)] nsIWebGLFramebuffer  framebuffer);
+		void DeleteFramebuffer([MarshalAs(UnmanagedType.Interface)] nsIWebGLFramebuffer framebuffer);
 		
 		/// <summary>Member DeleteRenderbuffer </summary>
 		/// <param name='renderbuffer'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DeleteRenderbuffer([MarshalAs(UnmanagedType.Interface)] nsIWebGLRenderbuffer  renderbuffer);
+		void DeleteRenderbuffer([MarshalAs(UnmanagedType.Interface)] nsIWebGLRenderbuffer renderbuffer);
 		
 		/// <summary>Member DeleteShader </summary>
 		/// <param name='shader'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DeleteShader([MarshalAs(UnmanagedType.Interface)] nsIWebGLShader  shader);
+		void DeleteShader([MarshalAs(UnmanagedType.Interface)] nsIWebGLShader shader);
 		
 		/// <summary>Member DeleteTexture </summary>
 		/// <param name='texture'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DeleteTexture([MarshalAs(UnmanagedType.Interface)] nsIWebGLTexture  texture);
+		void DeleteTexture([MarshalAs(UnmanagedType.Interface)] nsIWebGLTexture texture);
 		
 		/// <summary>Member DepthFunc </summary>
 		/// <param name='func'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DepthFunc(System.UInt32  func);
+		void DepthFunc(uint func);
 		
 		/// <summary>Member DepthMask </summary>
 		/// <param name='flag'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DepthMask(System.Boolean  flag);
+		void DepthMask(bool flag);
 		
 		/// <summary>Member DepthRange </summary>
 		/// <param name='zNear'> </param>
 		/// <param name='zFar'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DepthRange(System.Double  zNear, System.Double  zFar);
+		void DepthRange(double zNear, double zFar);
 		
 		/// <summary>Member DetachShader </summary>
 		/// <param name='program'> </param>
 		/// <param name='shader'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DetachShader([MarshalAs(UnmanagedType.Interface)] nsIWebGLProgram  program, [MarshalAs(UnmanagedType.Interface)] nsIWebGLShader  shader);
+		void DetachShader([MarshalAs(UnmanagedType.Interface)] nsIWebGLProgram program, [MarshalAs(UnmanagedType.Interface)] nsIWebGLShader shader);
 		
 		/// <summary>Member Disable </summary>
 		/// <param name='cap'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Disable(System.UInt32  cap);
+		void Disable(uint cap);
 		
 		/// <summary>Member DisableVertexAttribArray </summary>
 		/// <param name='index'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DisableVertexAttribArray(System.UInt32  index);
+		void DisableVertexAttribArray(uint index);
 		
 		/// <summary>Member DrawArrays </summary>
 		/// <param name='mode'> </param>
 		/// <param name='first'> </param>
 		/// <param name='count'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DrawArrays(System.UInt32  mode, System.Int32  first, System.Int32  count);
+		void DrawArrays(uint mode, int first, int count);
 		
 		/// <summary>
         /// Modified: void glDrawElements(WebGLenum mode, WebGLsizei count, WebGLenum type, const void* indices);
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DrawElements(System.UInt32  mode, System.Int32  count, System.UInt32  type, System.Int32  offset);
+		void DrawElements(uint mode, int count, uint type, int offset);
 		
 		/// <summary>Member Enable </summary>
 		/// <param name='cap'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Enable(System.UInt32  cap);
+		void Enable(uint cap);
 		
 		/// <summary>Member EnableVertexAttribArray </summary>
 		/// <param name='index'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EnableVertexAttribArray(System.UInt32  index);
+		void EnableVertexAttribArray(uint index);
 		
 		/// <summary>Member Finish </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -544,7 +551,7 @@ namespace Skybound.Gecko
 		/// <param name='renderbuffertarget'> </param>
 		/// <param name='renderbuffer'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void FramebufferRenderbuffer(System.UInt32  target, System.UInt32  attachment, System.UInt32  renderbuffertarget, [MarshalAs(UnmanagedType.Interface)] nsIWebGLRenderbuffer  renderbuffer);
+		void FramebufferRenderbuffer(uint target, uint attachment, uint renderbuffertarget, [MarshalAs(UnmanagedType.Interface)] nsIWebGLRenderbuffer renderbuffer);
 		
 		/// <summary>Member FramebufferTexture2D </summary>
 		/// <param name='target'> </param>
@@ -553,56 +560,61 @@ namespace Skybound.Gecko
 		/// <param name='texture'> </param>
 		/// <param name='level'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void FramebufferTexture2D(System.UInt32  target, System.UInt32  attachment, System.UInt32  textarget, [MarshalAs(UnmanagedType.Interface)] nsIWebGLTexture  texture, System.Int32  level);
+		void FramebufferTexture2D(uint target, uint attachment, uint textarget, [MarshalAs(UnmanagedType.Interface)] nsIWebGLTexture texture, int level);
 		
 		/// <summary>Member FrontFace </summary>
 		/// <param name='mode'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void FrontFace(System.UInt32  mode);
+		void FrontFace(uint mode);
 		
 		/// <summary>Member GenerateMipmap </summary>
 		/// <param name='target'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GenerateMipmap(System.UInt32  target);
+		void GenerateMipmap(uint target);
 		
 		/// <summary>Member GetActiveAttrib </summary>
 		/// <param name='program'> </param>
 		/// <param name='index'> </param>
 		/// <returns>A nsIWebGLActiveInfo</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIWebGLActiveInfo GetActiveAttrib([MarshalAs(UnmanagedType.Interface)] nsIWebGLProgram  program, System.UInt32  index);
+		nsIWebGLActiveInfo GetActiveAttrib([MarshalAs(UnmanagedType.Interface)] nsIWebGLProgram program, uint index);
 		
 		/// <summary>Member GetActiveUniform </summary>
 		/// <param name='program'> </param>
 		/// <param name='index'> </param>
 		/// <returns>A nsIWebGLActiveInfo</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIWebGLActiveInfo GetActiveUniform([MarshalAs(UnmanagedType.Interface)] nsIWebGLProgram  program, System.UInt32  index);
+		nsIWebGLActiveInfo GetActiveUniform([MarshalAs(UnmanagedType.Interface)] nsIWebGLProgram program, uint index);
 		
 		/// <summary>Member GetAttachedShaders </summary>
 		/// <param name='program'> </param>
 		/// <returns>A nsIVariant</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant GetAttachedShaders([MarshalAs(UnmanagedType.Interface)] nsIWebGLProgram  program);
+		nsIVariant GetAttachedShaders([MarshalAs(UnmanagedType.Interface)] nsIWebGLProgram program);
 		
 		/// <summary>Member GetAttribLocation </summary>
 		/// <param name='program'> </param>
 		/// <param name='name'> </param>
 		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetAttribLocation([MarshalAs(UnmanagedType.Interface)] nsIWebGLProgram  program, [MarshalAs(UnmanagedType.LPStruct)] nsAString name);
+		int GetAttribLocation([MarshalAs(UnmanagedType.Interface)] nsIWebGLProgram program, [MarshalAs(UnmanagedType.LPStruct)] nsAString name);
 		
 		/// <summary>Member GetParameter </summary>
 		/// <param name='pname'> </param>
 		/// <returns>A nsIVariant</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant GetParameter(System.UInt32  pname);
+		nsIVariant GetParameter(uint pname);
 		
 		/// <summary>
         /// Modified: void glGetBufferParameteriv(WebGLenum target, WebGLenum pname, WebGLint* params);
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant GetBufferParameter(System.UInt32  target, System.UInt32  pname);
+		nsIVariant GetBufferParameter(uint target, uint pname);
 		
 		/// <summary>Member GetError </summary>
 		/// <returns>A System.UInt32</returns>
@@ -612,154 +624,165 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Modified: void glGetFramebufferAttachmentParameteriv(WebGLenum target, WebGLenum attachment, WebGLenum pname, WebGLint* params);
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant GetFramebufferAttachmentParameter(System.UInt32  target, System.UInt32  attachment, System.UInt32  pname);
+		nsIVariant GetFramebufferAttachmentParameter(uint target, uint attachment, uint pname);
 		
 		/// <summary>
         /// Modified: void glGetProgramiv(nsIWebGLProgram program, WebGLenum pname, WebGLint* params);
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant GetProgramParameter([MarshalAs(UnmanagedType.Interface)] nsIWebGLProgram  program, System.UInt32  pname);
+		nsIVariant GetProgramParameter([MarshalAs(UnmanagedType.Interface)] nsIWebGLProgram program, uint pname);
 		
 		/// <summary>
         /// Modified: void glGetProgramInfoLog(WebGLuint program, WebGLsizei bufsize, WebGLsizei* length, char* infolog);
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetProgramInfoLog([MarshalAs(UnmanagedType.Interface)] nsIWebGLProgram  program);
+		nsAString GetProgramInfoLog([MarshalAs(UnmanagedType.Interface)] nsIWebGLProgram program);
 		
 		/// <summary>
         ///nsIWebGLIntArray getRenderbufferParameteriv(in WebGLenum target, in WebGLenum pname);
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant GetRenderbufferParameter(System.UInt32  target, System.UInt32  pname);
+		nsIVariant GetRenderbufferParameter(uint target, uint pname);
 		
 		/// <summary>Member GetShaderParameter </summary>
 		/// <param name='shader'> </param>
 		/// <param name='pname'> </param>
 		/// <returns>A nsIVariant</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant GetShaderParameter([MarshalAs(UnmanagedType.Interface)] nsIWebGLShader  shader, System.UInt32  pname);
+		nsIVariant GetShaderParameter([MarshalAs(UnmanagedType.Interface)] nsIWebGLShader shader, uint pname);
 		
 		/// <summary>
         /// Modified: void glGetShaderInfoLog(WebGLuint shader, WebGLsizei bufsize, WebGLsizei* length, char* infolog);
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetShaderInfoLog([MarshalAs(UnmanagedType.Interface)] nsIWebGLShader  shader);
+		nsAString GetShaderInfoLog([MarshalAs(UnmanagedType.Interface)] nsIWebGLShader shader);
 		
 		/// <summary>
         ///void glGetShaderPrecisionFormat(WebGLenum shadertype, WebGLenum precisiontype, WebGLint* range, WebGLint* precision);
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetShaderSource([MarshalAs(UnmanagedType.Interface)] nsIWebGLShader  shader);
+		nsAString GetShaderSource([MarshalAs(UnmanagedType.Interface)] nsIWebGLShader shader);
 		
 		/// <summary>Member GetTexParameter </summary>
 		/// <param name='target'> </param>
 		/// <param name='pname'> </param>
 		/// <returns>A nsIVariant</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant GetTexParameter(System.UInt32  target, System.UInt32  pname);
+		nsIVariant GetTexParameter(uint target, uint pname);
 		
 		/// <summary>Member GetUniform </summary>
 		/// <param name='program'> </param>
 		/// <param name='location'> </param>
 		/// <returns>A nsIVariant</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant GetUniform([MarshalAs(UnmanagedType.Interface)] nsIWebGLProgram  program, [MarshalAs(UnmanagedType.Interface)] nsIWebGLUniformLocation  location);
+		nsIVariant GetUniform([MarshalAs(UnmanagedType.Interface)] nsIWebGLProgram program, [MarshalAs(UnmanagedType.Interface)] nsIWebGLUniformLocation location);
 		
 		/// <summary>Member GetUniformLocation </summary>
 		/// <param name='program'> </param>
 		/// <param name='name'> </param>
 		/// <returns>A nsIWebGLUniformLocation</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIWebGLUniformLocation GetUniformLocation([MarshalAs(UnmanagedType.Interface)] nsIWebGLProgram  program, [MarshalAs(UnmanagedType.LPStruct)] nsAString name);
+		nsIWebGLUniformLocation GetUniformLocation([MarshalAs(UnmanagedType.Interface)] nsIWebGLProgram program, [MarshalAs(UnmanagedType.LPStruct)] nsAString name);
 		
 		/// <summary>Member GetVertexAttrib </summary>
 		/// <param name='index'> </param>
 		/// <param name='pname'> </param>
 		/// <returns>A nsIVariant</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant GetVertexAttrib(System.UInt32  index, System.UInt32  pname);
+		nsIVariant GetVertexAttrib(uint index, uint pname);
 		
 		/// <summary>
         /// void glGetVertexAttribPointerv(WebGLuint index, WebGLenum pname, void** pointer);
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetVertexAttribOffset(System.UInt32  index, System.UInt32  pname);
+		uint GetVertexAttribOffset(uint index, uint pname);
 		
 		/// <summary>Member Hint </summary>
 		/// <param name='target'> </param>
 		/// <param name='mode'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Hint(System.UInt32  target, System.UInt32  mode);
+		void Hint(uint target, uint mode);
 		
 		/// <summary>Member IsBuffer </summary>
 		/// <param name='buffer'> </param>
 		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsBuffer([MarshalAs(UnmanagedType.Interface)] nsIWebGLBuffer  buffer);
+		bool IsBuffer([MarshalAs(UnmanagedType.Interface)] nsIWebGLBuffer buffer);
 		
 		/// <summary>Member IsFramebuffer </summary>
 		/// <param name='framebuffer'> </param>
 		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsFramebuffer([MarshalAs(UnmanagedType.Interface)] nsIWebGLFramebuffer  framebuffer);
+		bool IsFramebuffer([MarshalAs(UnmanagedType.Interface)] nsIWebGLFramebuffer framebuffer);
 		
 		/// <summary>Member IsProgram </summary>
 		/// <param name='program'> </param>
 		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsProgram([MarshalAs(UnmanagedType.Interface)] nsIWebGLProgram  program);
+		bool IsProgram([MarshalAs(UnmanagedType.Interface)] nsIWebGLProgram program);
 		
 		/// <summary>Member IsRenderbuffer </summary>
 		/// <param name='renderbuffer'> </param>
 		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsRenderbuffer([MarshalAs(UnmanagedType.Interface)] nsIWebGLRenderbuffer  renderbuffer);
+		bool IsRenderbuffer([MarshalAs(UnmanagedType.Interface)] nsIWebGLRenderbuffer renderbuffer);
 		
 		/// <summary>Member IsShader </summary>
 		/// <param name='shader'> </param>
 		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsShader([MarshalAs(UnmanagedType.Interface)] nsIWebGLShader  shader);
+		bool IsShader([MarshalAs(UnmanagedType.Interface)] nsIWebGLShader shader);
 		
 		/// <summary>Member IsTexture </summary>
 		/// <param name='texture'> </param>
 		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsTexture([MarshalAs(UnmanagedType.Interface)] nsIWebGLTexture  texture);
+		bool IsTexture([MarshalAs(UnmanagedType.Interface)] nsIWebGLTexture texture);
 		
 		/// <summary>Member IsEnabled </summary>
 		/// <param name='cap'> </param>
 		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsEnabled(System.UInt32  cap);
+		bool IsEnabled(uint cap);
 		
 		/// <summary>Member LineWidth </summary>
 		/// <param name='width'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void LineWidth(System.Double  width);
+		void LineWidth(double width);
 		
 		/// <summary>Member LinkProgram </summary>
 		/// <param name='program'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void LinkProgram([MarshalAs(UnmanagedType.Interface)] nsIWebGLProgram  program);
+		void LinkProgram([MarshalAs(UnmanagedType.Interface)] nsIWebGLProgram program);
 		
 		/// <summary>Member PixelStorei </summary>
 		/// <param name='pname'> </param>
 		/// <param name='param'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PixelStorei(System.UInt32  pname, System.Int32  param);
+		void PixelStorei(uint pname, int param);
 		
 		/// <summary>Member PolygonOffset </summary>
 		/// <param name='factor'> </param>
 		/// <param name='units'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PolygonOffset(System.Double  factor, System.Double  units);
+		void PolygonOffset(double factor, double units);
 		
 		/// <summary>Member ReadPixels </summary>
 		/// <param name='dummy'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ReadPixels(System.Int32  dummy);
+		void ReadPixels(int dummy);
 		
 		/// <summary>Member ReadPixels_array </summary>
 		/// <param name='x'> </param>
@@ -770,7 +793,7 @@ namespace Skybound.Gecko
 		/// <param name='type'> </param>
 		/// <param name='pixels'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ReadPixels_array(System.Int32  x, System.Int32  y, System.Int32  width, System.Int32  height, System.UInt32  format, System.UInt32  type, System.IntPtr  pixels);
+		void ReadPixels_array(int x, int y, int width, int height, uint format, uint type, System.IntPtr pixels);
 		
 		/// <summary>Member ReadPixels_buf </summary>
 		/// <param name='x'> </param>
@@ -781,19 +804,19 @@ namespace Skybound.Gecko
 		/// <param name='type'> </param>
 		/// <param name='pixels'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ReadPixels_buf(System.Int32  x, System.Int32  y, System.Int32  width, System.Int32  height, System.UInt32  format, System.UInt32  type, System.IntPtr  pixels);
+		void ReadPixels_buf(int x, int y, int width, int height, uint format, uint type, System.IntPtr pixels);
 		
 		/// <summary>
         ///void glReleaseShaderCompiler();
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RenderbufferStorage(System.UInt32  target, System.UInt32  internalformat, System.Int32  width, System.Int32  height);
+		void RenderbufferStorage(uint target, uint internalformat, int width, int height);
 		
 		/// <summary>Member SampleCoverage </summary>
 		/// <param name='value'> </param>
 		/// <param name='invert'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SampleCoverage(System.Double  value, System.Boolean  invert);
+		void SampleCoverage(double value, bool invert);
 		
 		/// <summary>Member Scissor </summary>
 		/// <param name='x'> </param>
@@ -801,20 +824,20 @@ namespace Skybound.Gecko
 		/// <param name='width'> </param>
 		/// <param name='height'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Scissor(System.Int32  x, System.Int32  y, System.Int32  width, System.Int32  height);
+		void Scissor(int x, int y, int width, int height);
 		
 		/// <summary>
         /// Modified: void glShaderSource(WebGLuint shader, WebGLsizei count, const char** string, const WebGLint* length);
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ShaderSource([MarshalAs(UnmanagedType.Interface)] nsIWebGLShader  shader, [MarshalAs(UnmanagedType.LPStruct)] nsAString source);
+		void ShaderSource([MarshalAs(UnmanagedType.Interface)] nsIWebGLShader shader, [MarshalAs(UnmanagedType.LPStruct)] nsAString source);
 		
 		/// <summary>Member StencilFunc </summary>
 		/// <param name='func'> </param>
 		/// <param name='ref'> </param>
 		/// <param name='mask'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void StencilFunc(System.UInt32  func, System.Int32  @ref, System.UInt32  mask);
+		void StencilFunc(uint func, int @ref, uint mask);
 		
 		/// <summary>Member StencilFuncSeparate </summary>
 		/// <param name='face'> </param>
@@ -822,25 +845,25 @@ namespace Skybound.Gecko
 		/// <param name='ref'> </param>
 		/// <param name='mask'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void StencilFuncSeparate(System.UInt32  face, System.UInt32  func, System.Int32  @ref, System.UInt32  mask);
+		void StencilFuncSeparate(uint face, uint func, int @ref, uint mask);
 		
 		/// <summary>Member StencilMask </summary>
 		/// <param name='mask'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void StencilMask(System.UInt32  mask);
+		void StencilMask(uint mask);
 		
 		/// <summary>Member StencilMaskSeparate </summary>
 		/// <param name='face'> </param>
 		/// <param name='mask'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void StencilMaskSeparate(System.UInt32  face, System.UInt32  mask);
+		void StencilMaskSeparate(uint face, uint mask);
 		
 		/// <summary>Member StencilOp </summary>
 		/// <param name='fail'> </param>
 		/// <param name='zfail'> </param>
 		/// <param name='zpass'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void StencilOp(System.UInt32  fail, System.UInt32  zfail, System.UInt32  zpass);
+		void StencilOp(uint fail, uint zfail, uint zpass);
 		
 		/// <summary>Member StencilOpSeparate </summary>
 		/// <param name='face'> </param>
@@ -848,12 +871,12 @@ namespace Skybound.Gecko
 		/// <param name='zfail'> </param>
 		/// <param name='zpass'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void StencilOpSeparate(System.UInt32  face, System.UInt32  fail, System.UInt32  zfail, System.UInt32  zpass);
+		void StencilOpSeparate(uint face, uint fail, uint zfail, uint zpass);
 		
 		/// <summary>Member TexImage2D </summary>
 		/// <param name='dummy'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void TexImage2D(System.Int32  dummy);
+		void TexImage2D(int dummy);
 		
 		/// <summary>Member TexImage2D_buf </summary>
 		/// <param name='target'> </param>
@@ -866,7 +889,7 @@ namespace Skybound.Gecko
 		/// <param name='type'> </param>
 		/// <param name='pixels'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void TexImage2D_buf(System.UInt32  target, System.Int32  level, System.UInt32  internalformat, System.Int32  width, System.Int32  height, System.Int32  border, System.UInt32  format, System.UInt32  type, System.IntPtr  pixels);
+		void TexImage2D_buf(uint target, int level, uint internalformat, int width, int height, int border, uint format, uint type, System.IntPtr pixels);
 		
 		/// <summary>Member TexImage2D_array </summary>
 		/// <param name='target'> </param>
@@ -879,7 +902,7 @@ namespace Skybound.Gecko
 		/// <param name='type'> </param>
 		/// <param name='pixels'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void TexImage2D_array(System.UInt32  target, System.Int32  level, System.UInt32  internalformat, System.Int32  width, System.Int32  height, System.Int32  border, System.UInt32  format, System.UInt32  type, System.IntPtr  pixels);
+		void TexImage2D_array(uint target, int level, uint internalformat, int width, int height, int border, uint format, uint type, System.IntPtr pixels);
 		
 		/// <summary>Member TexImage2D_imageData </summary>
 		/// <param name='target'> </param>
@@ -892,18 +915,18 @@ namespace Skybound.Gecko
 		/// <param name='type'> </param>
 		/// <param name='pixels'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void TexImage2D_imageData(System.UInt32  target, System.Int32  level, System.UInt32  internalformat, System.Int32  width, System.Int32  height, System.Int32  border, System.UInt32  format, System.UInt32  type, System.IntPtr  pixels);
+		void TexImage2D_imageData(uint target, int level, uint internalformat, int width, int height, int border, uint format, uint type, System.IntPtr pixels);
 		
 		/// <summary>
         /// HTMLImageElement, HTMLCanvasElement, HTMLVideoElement
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void TexImage2D_dom(System.UInt32  target, System.Int32  level, System.UInt32  internalformat, System.UInt32  format, System.UInt32  type, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement  element);
+		void TexImage2D_dom(uint target, int level, uint internalformat, uint format, uint type, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement element);
 		
 		/// <summary>Member TexSubImage2D </summary>
 		/// <param name='dummy'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void TexSubImage2D(System.Int32  dummy);
+		void TexSubImage2D(int dummy);
 		
 		/// <summary>Member TexSubImage2D_buf </summary>
 		/// <param name='target'> </param>
@@ -916,7 +939,7 @@ namespace Skybound.Gecko
 		/// <param name='type'> </param>
 		/// <param name='pixels'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void TexSubImage2D_buf(System.UInt32  target, System.Int32  level, System.Int32  xoffset, System.Int32  yoffset, System.Int32  width, System.Int32  height, System.UInt32  format, System.UInt32  type, System.IntPtr  pixels);
+		void TexSubImage2D_buf(uint target, int level, int xoffset, int yoffset, int width, int height, uint format, uint type, System.IntPtr pixels);
 		
 		/// <summary>Member TexSubImage2D_array </summary>
 		/// <param name='target'> </param>
@@ -929,7 +952,7 @@ namespace Skybound.Gecko
 		/// <param name='type'> </param>
 		/// <param name='pixels'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void TexSubImage2D_array(System.UInt32  target, System.Int32  level, System.Int32  xoffset, System.Int32  yoffset, System.Int32  width, System.Int32  height, System.UInt32  format, System.UInt32  type, System.IntPtr  pixels);
+		void TexSubImage2D_array(uint target, int level, int xoffset, int yoffset, int width, int height, uint format, uint type, System.IntPtr pixels);
 		
 		/// <summary>Member TexSubImage2D_imageData </summary>
 		/// <param name='target'> </param>
@@ -942,52 +965,52 @@ namespace Skybound.Gecko
 		/// <param name='type'> </param>
 		/// <param name='pixels'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void TexSubImage2D_imageData(System.UInt32  target, System.Int32  level, System.Int32  xoffset, System.Int32  yoffset, System.Int32  width, System.Int32  height, System.UInt32  format, System.UInt32  type, System.IntPtr  pixels);
+		void TexSubImage2D_imageData(uint target, int level, int xoffset, int yoffset, int width, int height, uint format, uint type, System.IntPtr pixels);
 		
 		/// <summary>
         /// HTMLImageElement, HTMLCanvasElement, HTMLVideoElement
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void TexSubImage2D_dom(System.UInt32  target, System.Int32  level, System.Int32  xoffset, System.Int32  yoffset, System.UInt32  format, System.UInt32  type, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement  element);
+		void TexSubImage2D_dom(uint target, int level, int xoffset, int yoffset, uint format, uint type, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement element);
 		
 		/// <summary>
         /// Modified: This replaces glTexParameterf, glTexParameterfv, glTexParameteri and glTexParameteriv
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void TexParameterf(System.UInt32  target, System.UInt32  pname, System.Double  param);
+		void TexParameterf(uint target, uint pname, double param);
 		
 		/// <summary>Member TexParameteri </summary>
 		/// <param name='target'> </param>
 		/// <param name='pname'> </param>
 		/// <param name='param'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void TexParameteri(System.UInt32  target, System.UInt32  pname, System.Int32  param);
+		void TexParameteri(uint target, uint pname, int param);
 		
 		/// <summary>
         /// Modified: All the glUniform*v forms below are modified by replacing 'count' and 'v' with a nsIWebGLArray
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Uniform1f([MarshalAs(UnmanagedType.Interface)] nsIWebGLUniformLocation  location, System.Double  x);
+		void Uniform1f([MarshalAs(UnmanagedType.Interface)] nsIWebGLUniformLocation location, double x);
 		
 		/// <summary>Member Uniform1i </summary>
 		/// <param name='location'> </param>
 		/// <param name='x'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Uniform1i([MarshalAs(UnmanagedType.Interface)] nsIWebGLUniformLocation  location, System.Int32  x);
+		void Uniform1i([MarshalAs(UnmanagedType.Interface)] nsIWebGLUniformLocation location, int x);
 		
 		/// <summary>Member Uniform2f </summary>
 		/// <param name='location'> </param>
 		/// <param name='x'> </param>
 		/// <param name='y'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Uniform2f([MarshalAs(UnmanagedType.Interface)] nsIWebGLUniformLocation  location, System.Double  x, System.Double  y);
+		void Uniform2f([MarshalAs(UnmanagedType.Interface)] nsIWebGLUniformLocation location, double x, double y);
 		
 		/// <summary>Member Uniform2i </summary>
 		/// <param name='location'> </param>
 		/// <param name='x'> </param>
 		/// <param name='y'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Uniform2i([MarshalAs(UnmanagedType.Interface)] nsIWebGLUniformLocation  location, System.Int32  x, System.Int32  y);
+		void Uniform2i([MarshalAs(UnmanagedType.Interface)] nsIWebGLUniformLocation location, int x, int y);
 		
 		/// <summary>Member Uniform3f </summary>
 		/// <param name='location'> </param>
@@ -995,7 +1018,7 @@ namespace Skybound.Gecko
 		/// <param name='y'> </param>
 		/// <param name='z'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Uniform3f([MarshalAs(UnmanagedType.Interface)] nsIWebGLUniformLocation  location, System.Double  x, System.Double  y, System.Double  z);
+		void Uniform3f([MarshalAs(UnmanagedType.Interface)] nsIWebGLUniformLocation location, double x, double y, double z);
 		
 		/// <summary>Member Uniform3i </summary>
 		/// <param name='location'> </param>
@@ -1003,7 +1026,7 @@ namespace Skybound.Gecko
 		/// <param name='y'> </param>
 		/// <param name='z'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Uniform3i([MarshalAs(UnmanagedType.Interface)] nsIWebGLUniformLocation  location, System.Int32  x, System.Int32  y, System.Int32  z);
+		void Uniform3i([MarshalAs(UnmanagedType.Interface)] nsIWebGLUniformLocation location, int x, int y, int z);
 		
 		/// <summary>Member Uniform4f </summary>
 		/// <param name='location'> </param>
@@ -1012,7 +1035,7 @@ namespace Skybound.Gecko
 		/// <param name='z'> </param>
 		/// <param name='w'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Uniform4f([MarshalAs(UnmanagedType.Interface)] nsIWebGLUniformLocation  location, System.Double  x, System.Double  y, System.Double  z, System.Double  w);
+		void Uniform4f([MarshalAs(UnmanagedType.Interface)] nsIWebGLUniformLocation location, double x, double y, double z, double w);
 		
 		/// <summary>Member Uniform4i </summary>
 		/// <param name='location'> </param>
@@ -1021,156 +1044,156 @@ namespace Skybound.Gecko
 		/// <param name='z'> </param>
 		/// <param name='w'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Uniform4i([MarshalAs(UnmanagedType.Interface)] nsIWebGLUniformLocation  location, System.Int32  x, System.Int32  y, System.Int32  z, System.Int32  w);
+		void Uniform4i([MarshalAs(UnmanagedType.Interface)] nsIWebGLUniformLocation location, int x, int y, int z, int w);
 		
 		/// <summary>Member Uniform1fv </summary>
 		/// <param name='dummy'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Uniform1fv(System.Int32  dummy);
+		void Uniform1fv(int dummy);
 		
 		/// <summary>Member Uniform1iv </summary>
 		/// <param name='dummy'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Uniform1iv(System.Int32  dummy);
+		void Uniform1iv(int dummy);
 		
 		/// <summary>Member Uniform2fv </summary>
 		/// <param name='dummy'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Uniform2fv(System.Int32  dummy);
+		void Uniform2fv(int dummy);
 		
 		/// <summary>Member Uniform2iv </summary>
 		/// <param name='dummy'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Uniform2iv(System.Int32  dummy);
+		void Uniform2iv(int dummy);
 		
 		/// <summary>Member Uniform3fv </summary>
 		/// <param name='dummy'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Uniform3fv(System.Int32  dummy);
+		void Uniform3fv(int dummy);
 		
 		/// <summary>Member Uniform3iv </summary>
 		/// <param name='dummy'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Uniform3iv(System.Int32  dummy);
+		void Uniform3iv(int dummy);
 		
 		/// <summary>Member Uniform4fv </summary>
 		/// <param name='dummy'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Uniform4fv(System.Int32  dummy);
+		void Uniform4fv(int dummy);
 		
 		/// <summary>Member Uniform4iv </summary>
 		/// <param name='dummy'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Uniform4iv(System.Int32  dummy);
+		void Uniform4iv(int dummy);
 		
 		/// <summary>Member Uniform1fv_array </summary>
 		/// <param name='location'> </param>
 		/// <param name='v'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Uniform1fv_array([MarshalAs(UnmanagedType.Interface)] nsIWebGLUniformLocation  location, System.IntPtr  v);
+		void Uniform1fv_array([MarshalAs(UnmanagedType.Interface)] nsIWebGLUniformLocation location, System.IntPtr v);
 		
 		/// <summary>Member Uniform1iv_array </summary>
 		/// <param name='location'> </param>
 		/// <param name='v'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Uniform1iv_array([MarshalAs(UnmanagedType.Interface)] nsIWebGLUniformLocation  location, System.IntPtr  v);
+		void Uniform1iv_array([MarshalAs(UnmanagedType.Interface)] nsIWebGLUniformLocation location, System.IntPtr v);
 		
 		/// <summary>Member Uniform2fv_array </summary>
 		/// <param name='location'> </param>
 		/// <param name='v'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Uniform2fv_array([MarshalAs(UnmanagedType.Interface)] nsIWebGLUniformLocation  location, System.IntPtr  v);
+		void Uniform2fv_array([MarshalAs(UnmanagedType.Interface)] nsIWebGLUniformLocation location, System.IntPtr v);
 		
 		/// <summary>Member Uniform2iv_array </summary>
 		/// <param name='location'> </param>
 		/// <param name='v'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Uniform2iv_array([MarshalAs(UnmanagedType.Interface)] nsIWebGLUniformLocation  location, System.IntPtr  v);
+		void Uniform2iv_array([MarshalAs(UnmanagedType.Interface)] nsIWebGLUniformLocation location, System.IntPtr v);
 		
 		/// <summary>Member Uniform3fv_array </summary>
 		/// <param name='location'> </param>
 		/// <param name='v'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Uniform3fv_array([MarshalAs(UnmanagedType.Interface)] nsIWebGLUniformLocation  location, System.IntPtr  v);
+		void Uniform3fv_array([MarshalAs(UnmanagedType.Interface)] nsIWebGLUniformLocation location, System.IntPtr v);
 		
 		/// <summary>Member Uniform3iv_array </summary>
 		/// <param name='location'> </param>
 		/// <param name='v'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Uniform3iv_array([MarshalAs(UnmanagedType.Interface)] nsIWebGLUniformLocation  location, System.IntPtr  v);
+		void Uniform3iv_array([MarshalAs(UnmanagedType.Interface)] nsIWebGLUniformLocation location, System.IntPtr v);
 		
 		/// <summary>Member Uniform4fv_array </summary>
 		/// <param name='location'> </param>
 		/// <param name='v'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Uniform4fv_array([MarshalAs(UnmanagedType.Interface)] nsIWebGLUniformLocation  location, System.IntPtr  v);
+		void Uniform4fv_array([MarshalAs(UnmanagedType.Interface)] nsIWebGLUniformLocation location, System.IntPtr v);
 		
 		/// <summary>Member Uniform4iv_array </summary>
 		/// <param name='location'> </param>
 		/// <param name='v'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Uniform4iv_array([MarshalAs(UnmanagedType.Interface)] nsIWebGLUniformLocation  location, System.IntPtr  v);
+		void Uniform4iv_array([MarshalAs(UnmanagedType.Interface)] nsIWebGLUniformLocation location, System.IntPtr v);
 		
 		/// <summary>
         /// Modified. These are modified by replacing 'count' and 'value' with a WebGLArrayPtr
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UniformMatrix2fv(System.Int32  dummy);
+		void UniformMatrix2fv(int dummy);
 		
 		/// <summary>Member UniformMatrix3fv </summary>
 		/// <param name='dummy'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UniformMatrix3fv(System.Int32  dummy);
+		void UniformMatrix3fv(int dummy);
 		
 		/// <summary>Member UniformMatrix4fv </summary>
 		/// <param name='dummy'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UniformMatrix4fv(System.Int32  dummy);
+		void UniformMatrix4fv(int dummy);
 		
 		/// <summary>Member UniformMatrix2fv_array </summary>
 		/// <param name='location'> </param>
 		/// <param name='transpose'> </param>
 		/// <param name='value'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UniformMatrix2fv_array([MarshalAs(UnmanagedType.Interface)] nsIWebGLUniformLocation  location, System.Boolean  transpose, System.IntPtr  value);
+		void UniformMatrix2fv_array([MarshalAs(UnmanagedType.Interface)] nsIWebGLUniformLocation location, bool transpose, System.IntPtr value);
 		
 		/// <summary>Member UniformMatrix3fv_array </summary>
 		/// <param name='location'> </param>
 		/// <param name='transpose'> </param>
 		/// <param name='value'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UniformMatrix3fv_array([MarshalAs(UnmanagedType.Interface)] nsIWebGLUniformLocation  location, System.Boolean  transpose, System.IntPtr  value);
+		void UniformMatrix3fv_array([MarshalAs(UnmanagedType.Interface)] nsIWebGLUniformLocation location, bool transpose, System.IntPtr value);
 		
 		/// <summary>Member UniformMatrix4fv_array </summary>
 		/// <param name='location'> </param>
 		/// <param name='transpose'> </param>
 		/// <param name='value'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UniformMatrix4fv_array([MarshalAs(UnmanagedType.Interface)] nsIWebGLUniformLocation  location, System.Boolean  transpose, System.IntPtr  value);
+		void UniformMatrix4fv_array([MarshalAs(UnmanagedType.Interface)] nsIWebGLUniformLocation location, bool transpose, System.IntPtr value);
 		
 		/// <summary>
         ///ZZ void glUniformMatrix(in WebGLint location, in WebGLboolean transpose, in nsIWebGLMatrixStack value);
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UseProgram([MarshalAs(UnmanagedType.Interface)] nsIWebGLProgram  program);
+		void UseProgram([MarshalAs(UnmanagedType.Interface)] nsIWebGLProgram program);
 		
 		/// <summary>Member ValidateProgram </summary>
 		/// <param name='program'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ValidateProgram([MarshalAs(UnmanagedType.Interface)] nsIWebGLProgram  program);
+		void ValidateProgram([MarshalAs(UnmanagedType.Interface)] nsIWebGLProgram program);
 		
 		/// <summary>
         /// Modified: All the glVertexAttrib*v forms below are modified by replacing 'values' with a WebGLArrayPtr
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void VertexAttrib1f(System.UInt32  indx, System.Double  x);
+		void VertexAttrib1f(uint indx, double x);
 		
 		/// <summary>Member VertexAttrib2f </summary>
 		/// <param name='indx'> </param>
 		/// <param name='x'> </param>
 		/// <param name='y'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void VertexAttrib2f(System.UInt32  indx, System.Double  x, System.Double  y);
+		void VertexAttrib2f(uint indx, double x, double y);
 		
 		/// <summary>Member VertexAttrib3f </summary>
 		/// <param name='indx'> </param>
@@ -1178,7 +1201,7 @@ namespace Skybound.Gecko
 		/// <param name='y'> </param>
 		/// <param name='z'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void VertexAttrib3f(System.UInt32  indx, System.Double  x, System.Double  y, System.Double  z);
+		void VertexAttrib3f(uint indx, double x, double y, double z);
 		
 		/// <summary>Member VertexAttrib4f </summary>
 		/// <param name='indx'> </param>
@@ -1187,57 +1210,57 @@ namespace Skybound.Gecko
 		/// <param name='z'> </param>
 		/// <param name='w'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void VertexAttrib4f(System.UInt32  indx, System.Double  x, System.Double  y, System.Double  z, System.Double  w);
+		void VertexAttrib4f(uint indx, double x, double y, double z, double w);
 		
 		/// <summary>Member VertexAttrib1fv </summary>
 		/// <param name='dummy'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void VertexAttrib1fv(System.Int32  dummy);
+		void VertexAttrib1fv(int dummy);
 		
 		/// <summary>Member VertexAttrib2fv </summary>
 		/// <param name='dummy'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void VertexAttrib2fv(System.Int32  dummy);
+		void VertexAttrib2fv(int dummy);
 		
 		/// <summary>Member VertexAttrib3fv </summary>
 		/// <param name='dummy'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void VertexAttrib3fv(System.Int32  dummy);
+		void VertexAttrib3fv(int dummy);
 		
 		/// <summary>Member VertexAttrib4fv </summary>
 		/// <param name='dummy'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void VertexAttrib4fv(System.Int32  dummy);
+		void VertexAttrib4fv(int dummy);
 		
 		/// <summary>Member VertexAttrib1fv_array </summary>
 		/// <param name='indx'> </param>
 		/// <param name='values'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void VertexAttrib1fv_array(System.UInt32  indx, System.IntPtr  values);
+		void VertexAttrib1fv_array(uint indx, System.IntPtr values);
 		
 		/// <summary>Member VertexAttrib2fv_array </summary>
 		/// <param name='indx'> </param>
 		/// <param name='values'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void VertexAttrib2fv_array(System.UInt32  indx, System.IntPtr  values);
+		void VertexAttrib2fv_array(uint indx, System.IntPtr values);
 		
 		/// <summary>Member VertexAttrib3fv_array </summary>
 		/// <param name='indx'> </param>
 		/// <param name='values'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void VertexAttrib3fv_array(System.UInt32  indx, System.IntPtr  values);
+		void VertexAttrib3fv_array(uint indx, System.IntPtr values);
 		
 		/// <summary>Member VertexAttrib4fv_array </summary>
 		/// <param name='indx'> </param>
 		/// <param name='values'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void VertexAttrib4fv_array(System.UInt32  indx, System.IntPtr  values);
+		void VertexAttrib4fv_array(uint indx, System.IntPtr values);
 		
 		/// <summary>
         /// size is number of elements per attrib; offset, stride are in bytes
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void VertexAttribPointer(System.UInt32  idx, System.Int32  size, System.UInt32  type, System.Boolean  normalized, System.Int32  stride, System.IntPtr  offset);
+		void VertexAttribPointer(uint idx, int size, uint type, bool normalized, int stride, System.IntPtr offset);
 		
 		/// <summary>Member Viewport </summary>
 		/// <param name='x'> </param>
@@ -1245,17 +1268,19 @@ namespace Skybound.Gecko
 		/// <param name='width'> </param>
 		/// <param name='height'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Viewport(System.Int32  x, System.Int32  y, System.Int32  width, System.Int32  height);
+		void Viewport(int x, int y, int width, int height);
 		
 		/// <summary>
         /// the underlying renderer to the user.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString MozGetUnderlyingParamString(System.UInt32  pname);
+		nsAString MozGetUnderlyingParamString(uint pname);
 		
 		/// <summary>
         /// extensions
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISupports GetExtension([MarshalAs(UnmanagedType.LPStruct)] nsAString name);
 	}
@@ -1269,6 +1294,7 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member GetSupportedExtensions </summary>
 		/// <returns>A nsIVariant</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIVariant GetSupportedExtensions();
 		

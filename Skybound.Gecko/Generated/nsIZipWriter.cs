@@ -65,7 +65,7 @@ namespace Skybound.Gecko
         /// @throws NS_ERROR_NOT_INITIALIZED if no zip file has been opened
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCommentAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aComment);
+		void GetCommentAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aComment);
 		
 		/// <summary>
         /// Gets or sets the comment associated with the open zip file.
@@ -73,20 +73,20 @@ namespace Skybound.Gecko
         /// @throws NS_ERROR_NOT_INITIALIZED if no zip file has been opened
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCommentAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aComment);
+		void SetCommentAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aComment);
 		
 		/// <summary>
         /// Indicates that operations on the background queue are being performed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetInQueueAttribute();
+		bool GetInQueueAttribute();
 		
 		/// <summary>
         /// The file that the zipwriter is writing to.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIFile  GetFileAttribute();
+		nsIFile GetFileAttribute();
 		
 		/// <summary>
         /// Opens a zip file.
@@ -103,7 +103,7 @@ namespace Skybound.Gecko
         /// or unsupported form)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Open([MarshalAs(UnmanagedType.Interface)] nsIFile  aFile, System.Int32  aIoFlags);
+		void Open([MarshalAs(UnmanagedType.Interface)] nsIFile aFile, int aIoFlags);
 		
 		/// <summary>
         /// Returns a nsIZipEntry describing a specified zip entry or null if there
@@ -111,8 +111,9 @@ namespace Skybound.Gecko
         ///
         /// @param aZipEntry the path of the entry
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIZipEntry GetEntry([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aZipEntry);
+		nsIZipEntry GetEntry([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aZipEntry);
 		
 		/// <summary>
         /// Checks whether the zipfile contains an entry specified by zipEntry.
@@ -120,7 +121,7 @@ namespace Skybound.Gecko
         /// @param aZipEntry the path of the entry
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool HasEntry([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aZipEntry);
+		bool HasEntry([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aZipEntry);
 		
 		/// <summary>
         /// Adds a new directory entry to the zip file. If aZipEntry does not end with
@@ -137,7 +138,7 @@ namespace Skybound.Gecko
         /// @throws NS_ERROR_IN_PROGRESS if another operation is currently in progress
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddEntryDirectory([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aZipEntry, System.UInt32  aModTime, System.Boolean  aQueue);
+		void AddEntryDirectory([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aZipEntry, uint aModTime, bool aQueue);
 		
 		/// <summary>
         /// Adds a new file or directory to the zip file. If the specified file is
@@ -156,7 +157,7 @@ namespace Skybound.Gecko
         /// @throws NS_ERROR_FILE_NOT_FOUND if file does not exist
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddEntryFile([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aZipEntry, System.Int32  aCompression, [MarshalAs(UnmanagedType.Interface)] nsIFile  aFile, System.Boolean  aQueue);
+		void AddEntryFile([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aZipEntry, int aCompression, [MarshalAs(UnmanagedType.Interface)] nsIFile aFile, bool aQueue);
 		
 		/// <summary>
         /// Adds data from a channel to the zip file. If the operation is performed
@@ -175,7 +176,7 @@ namespace Skybound.Gecko
         /// @throws NS_ERROR_IN_PROGRESS if another operation is currently in progress
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddEntryChannel([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aZipEntry, System.UInt32  aModTime, System.Int32  aCompression, [MarshalAs(UnmanagedType.Interface)] nsIChannel  aChannel, System.Boolean  aQueue);
+		void AddEntryChannel([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aZipEntry, uint aModTime, int aCompression, [MarshalAs(UnmanagedType.Interface)] nsIChannel aChannel, bool aQueue);
 		
 		/// <summary>
         /// Adds data from an input stream to the zip file.
@@ -192,7 +193,7 @@ namespace Skybound.Gecko
         /// @throws NS_ERROR_IN_PROGRESS if another operation is currently in progress
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddEntryStream([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aZipEntry, System.UInt32  aModTime, System.Int32  aCompression, [MarshalAs(UnmanagedType.Interface)] nsIInputStream  aStream, System.Boolean  aQueue);
+		void AddEntryStream([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aZipEntry, uint aModTime, int aCompression, [MarshalAs(UnmanagedType.Interface)] nsIInputStream aStream, bool aQueue);
 		
 		/// <summary>
         /// Removes an existing entry from the zip file.
@@ -207,7 +208,7 @@ namespace Skybound.Gecko
         /// @throws <other-error> on failure to update the zip file
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveEntry([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aZipEntry, System.Boolean  aQueue);
+		void RemoveEntry([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aZipEntry, bool aQueue);
 		
 		/// <summary>
         /// Processes all queued items until complete or some error occurs. The
@@ -222,7 +223,7 @@ namespace Skybound.Gecko
         /// @throws NS_ERROR_IN_PROGRESS if the queue is already in progress
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ProcessQueue([MarshalAs(UnmanagedType.Interface)] nsIRequestObserver  aObserver, [MarshalAs(UnmanagedType.Interface)] nsISupports  aContext);
+		void ProcessQueue([MarshalAs(UnmanagedType.Interface)] nsIRequestObserver aObserver, [MarshalAs(UnmanagedType.Interface)] nsISupports aContext);
 		
 		/// <summary>
         /// Closes the zip file.

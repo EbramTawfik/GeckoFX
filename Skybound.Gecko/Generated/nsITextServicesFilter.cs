@@ -39,6 +39,6 @@ namespace Skybound.Gecko
         /// @param aNode - node to skip
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Skip([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  aNode);
+		bool Skip([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aNode);
 	}
 }

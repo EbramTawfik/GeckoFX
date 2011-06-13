@@ -126,7 +126,7 @@ namespace Skybound.Gecko
         /// startElement returns is undefined
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void StartElement([MarshalAs(UnmanagedType.LPStruct)] nsAString uri, [MarshalAs(UnmanagedType.LPStruct)] nsAString localName, [MarshalAs(UnmanagedType.LPStruct)] nsAString qName, [MarshalAs(UnmanagedType.Interface)] nsISAXAttributes  attributes);
+		void StartElement([MarshalAs(UnmanagedType.LPStruct)] nsAString uri, [MarshalAs(UnmanagedType.LPStruct)] nsAString localName, [MarshalAs(UnmanagedType.LPStruct)] nsAString qName, [MarshalAs(UnmanagedType.Interface)] nsISAXAttributes attributes);
 		
 		/// <summary>
         /// Receive notification of the end of an element.

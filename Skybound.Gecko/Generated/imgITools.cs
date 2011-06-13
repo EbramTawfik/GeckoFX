@@ -52,7 +52,7 @@ namespace Skybound.Gecko
         /// as aContainer.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DecodeImageData([MarshalAs(UnmanagedType.Interface)] nsIInputStream  aStream, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aMimeType, ref imgIContainer  aContainer);
+		void DecodeImageData([MarshalAs(UnmanagedType.Interface)] nsIInputStream aStream, [MarshalAs(UnmanagedType.LPStruct)] nsAString aMimeType, ref imgIContainer aContainer);
 		
 		/// <summary>
         /// encodeImage
@@ -64,8 +64,9 @@ namespace Skybound.Gecko
         /// @param aMimeType
         /// Type of encoded image desired (eg "image/png").
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIInputStream EncodeImage(imgIContainer  aContainer, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aMimeType);
+		nsIInputStream EncodeImage(imgIContainer aContainer, [MarshalAs(UnmanagedType.LPStruct)] nsAString aMimeType);
 		
 		/// <summary>
         /// encodeScaledImage
@@ -80,7 +81,8 @@ namespace Skybound.Gecko
         /// @param aWidth, aHeight
         /// The size (in pixels) desired for the resulting image.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIInputStream EncodeScaledImage(imgIContainer  aContainer, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aMimeType, System.Int32  aWidth, System.Int32  aHeight);
+		nsIInputStream EncodeScaledImage(imgIContainer aContainer, [MarshalAs(UnmanagedType.LPStruct)] nsAString aMimeType, int aWidth, int aHeight);
 	}
 }

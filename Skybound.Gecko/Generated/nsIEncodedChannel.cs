@@ -55,7 +55,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIUTF8StringEnumerator  GetContentEncodingsAttribute();
+		nsIUTF8StringEnumerator GetContentEncodingsAttribute();
 		
 		/// <summary>
         /// This attribute controls whether or not content conversion should be
@@ -66,7 +66,7 @@ namespace Skybound.Gecko
         /// TRUE by default.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetApplyConversionAttribute();
+		bool GetApplyConversionAttribute();
 		
 		/// <summary>
         /// This attribute controls whether or not content conversion should be
@@ -77,6 +77,6 @@ namespace Skybound.Gecko
         /// TRUE by default.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetApplyConversionAttribute(System.Boolean  aApplyConversion);
+		void SetApplyConversionAttribute(bool aApplyConversion);
 	}
 }

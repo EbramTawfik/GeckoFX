@@ -39,24 +39,24 @@ namespace Skybound.Gecko
         /// If set < 0 then caret will be placed  at the end of the text
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetCaretOffsetAttribute();
+		int GetCaretOffsetAttribute();
 		
 		/// <summary>
         /// The current current caret offset.
         /// If set < 0 then caret will be placed  at the end of the text
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCaretOffsetAttribute(System.Int32  aCaretOffset);
+		void SetCaretOffsetAttribute(int aCaretOffset);
 		
 		/// <summary>Member GetCharacterCountAttribute </summary>
-		/// <returns>A System.Int32 </returns>
+		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetCharacterCountAttribute();
+		int GetCharacterCountAttribute();
 		
 		/// <summary>Member GetSelectionCountAttribute </summary>
-		/// <returns>A System.Int32 </returns>
+		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetSelectionCountAttribute();
+		int GetSelectionCountAttribute();
 		
 		/// <summary>
         /// String methods may need to return multibyte-encoded strings,
@@ -64,8 +64,9 @@ namespace Skybound.Gecko
         /// So the methods below might return UTF-16 strings, or they could
         /// return "string" values which are UTF-8.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetText(System.Int32  startOffset, System.Int32  endOffset);
+		nsAString GetText(int startOffset, int endOffset);
 		
 		/// <summary>Member GetTextAfterOffset </summary>
 		/// <param name='offset'> </param>
@@ -73,8 +74,9 @@ namespace Skybound.Gecko
 		/// <param name='startOffset'> </param>
 		/// <param name='endOffset'> </param>
 		/// <returns>A nsAString</returns>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetTextAfterOffset(System.Int32  offset, System.IntPtr boundaryType, out System.Int32  startOffset, out System.Int32  endOffset);
+		nsAString GetTextAfterOffset(int offset, System.IntPtr boundaryType, out int startOffset, out int endOffset);
 		
 		/// <summary>Member GetTextAtOffset </summary>
 		/// <param name='offset'> </param>
@@ -82,8 +84,9 @@ namespace Skybound.Gecko
 		/// <param name='startOffset'> </param>
 		/// <param name='endOffset'> </param>
 		/// <returns>A nsAString</returns>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetTextAtOffset(System.Int32  offset, System.IntPtr boundaryType, out System.Int32  startOffset, out System.Int32  endOffset);
+		nsAString GetTextAtOffset(int offset, System.IntPtr boundaryType, out int startOffset, out int endOffset);
 		
 		/// <summary>Member GetTextBeforeOffset </summary>
 		/// <param name='offset'> </param>
@@ -91,15 +94,16 @@ namespace Skybound.Gecko
 		/// <param name='startOffset'> </param>
 		/// <param name='endOffset'> </param>
 		/// <returns>A nsAString</returns>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetTextBeforeOffset(System.Int32  offset, System.IntPtr boundaryType, out System.Int32  startOffset, out System.Int32  endOffset);
+		nsAString GetTextBeforeOffset(int offset, System.IntPtr boundaryType, out int startOffset, out int endOffset);
 		
 		/// <summary>
         /// It would be better to return an unsigned long here,
         /// to allow unicode chars > 16 bits
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		char GetCharacterAtOffset(System.Int32  offset);
+		char GetCharacterAtOffset(int offset);
 		
 		/// <summary>
         /// Get the accessible start/end offsets around the given offset,
@@ -111,15 +115,16 @@ namespace Skybound.Gecko
         /// @param  rangeStartOffset  [out] start offset of the range of text
         /// @param  rangeEndOffset    [out] end offset of the range of text
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIPersistentProperties GetTextAttributes(System.Boolean  includeDefAttrs, System.Int32  offset, out System.Int32  rangeStartOffset, out System.Int32  rangeEndOffset);
+		nsIPersistentProperties GetTextAttributes(bool includeDefAttrs, int offset, out int rangeStartOffset, out int rangeEndOffset);
 		
 		/// <summary>
         /// Return the text attributes that apply to the entire accessible.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIPersistentProperties  GetDefaultTextAttributesAttribute();
+		nsIPersistentProperties GetDefaultTextAttributesAttribute();
 		
 		/// <summary>
         /// Returns the bounding box of the specified position.
@@ -146,7 +151,7 @@ namespace Skybound.Gecko
         /// nsIAccessibleCoordinateType).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCharacterExtents(System.Int32  offset, out System.Int32  x, out System.Int32  y, out System.Int32  width, out System.Int32  height, System.UInt32  coordType);
+		void GetCharacterExtents(int offset, out int x, out int y, out int width, out int height, uint coordType);
 		
 		/// <summary>Member GetRangeExtents </summary>
 		/// <param name='startOffset'> </param>
@@ -157,7 +162,7 @@ namespace Skybound.Gecko
 		/// <param name='height'> </param>
 		/// <param name='coordType'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetRangeExtents(System.Int32  startOffset, System.Int32  endOffset, out System.Int32  x, out System.Int32  y, out System.Int32  width, out System.Int32  height, System.UInt32  coordType);
+		void GetRangeExtents(int startOffset, int endOffset, out int x, out int y, out int width, out int height, uint coordType);
 		
 		/// <summary>
         /// Get the text offset at the given point, or return -1
@@ -174,31 +179,31 @@ namespace Skybound.Gecko
         /// the point.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetOffsetAtPoint(System.Int32  x, System.Int32  y, System.UInt32  coordType);
+		int GetOffsetAtPoint(int x, int y, uint coordType);
 		
 		/// <summary>Member GetSelectionBounds </summary>
 		/// <param name='selectionNum'> </param>
 		/// <param name='startOffset'> </param>
 		/// <param name='endOffset'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSelectionBounds(System.Int32  selectionNum, out System.Int32  startOffset, out System.Int32  endOffset);
+		void GetSelectionBounds(int selectionNum, out int startOffset, out int endOffset);
 		
 		/// <summary>
         /// Set the bounds for the given selection range
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSelectionBounds(System.Int32  selectionNum, System.Int32  startOffset, System.Int32  endOffset);
+		void SetSelectionBounds(int selectionNum, int startOffset, int endOffset);
 		
 		/// <summary>Member AddSelection </summary>
 		/// <param name='startOffset'> </param>
 		/// <param name='endOffset'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddSelection(System.Int32  startOffset, System.Int32  endOffset);
+		void AddSelection(int startOffset, int endOffset);
 		
 		/// <summary>Member RemoveSelection </summary>
 		/// <param name='selectionNum'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveSelection(System.Int32  selectionNum);
+		void RemoveSelection(int selectionNum);
 		
 		/// <summary>
         /// Makes a specific part of string visible on screen.
@@ -211,7 +216,7 @@ namespace Skybound.Gecko
         /// available constants)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ScrollSubstringTo(System.Int32  startIndex, System.Int32  endIndex, System.UInt32  scrollType);
+		void ScrollSubstringTo(int startIndex, int endIndex, uint scrollType);
 		
 		/// <summary>
         /// Moves the top left of a substring to a specified location.
@@ -226,6 +231,6 @@ namespace Skybound.Gecko
         /// @param y               defines the y coordinate
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ScrollSubstringToPoint(System.Int32  startIndex, System.Int32  endIndex, System.UInt32  coordinateType, System.Int32  x, System.Int32  y);
+		void ScrollSubstringToPoint(int startIndex, int endIndex, uint coordinateType, int x, int y);
 	}
 }

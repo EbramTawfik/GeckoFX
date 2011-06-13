@@ -40,76 +40,80 @@ namespace Skybound.Gecko
         /// Returns 'true' if the property is an RDF ordinal property.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsOrdinalProperty([MarshalAs(UnmanagedType.Interface)] nsIRDFResource  aProperty);
+		bool IsOrdinalProperty([MarshalAs(UnmanagedType.Interface)] nsIRDFResource aProperty);
 		
 		/// <summary>
         /// Convert the specified index to an ordinal property.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIRDFResource IndexToOrdinalResource(System.Int32  aIndex);
+		nsIRDFResource IndexToOrdinalResource(int aIndex);
 		
 		/// <summary>
         /// Convert the specified ordinal property into an index
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int OrdinalResourceToIndex([MarshalAs(UnmanagedType.Interface)] nsIRDFResource  aOrdinal);
+		int OrdinalResourceToIndex([MarshalAs(UnmanagedType.Interface)] nsIRDFResource aOrdinal);
 		
 		/// <summary>
         /// Return 'true' if the specified resource is a container
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsContainer([MarshalAs(UnmanagedType.Interface)] nsIRDFDataSource  aDataSource, [MarshalAs(UnmanagedType.Interface)] nsIRDFResource  aResource);
+		bool IsContainer([MarshalAs(UnmanagedType.Interface)] nsIRDFDataSource aDataSource, [MarshalAs(UnmanagedType.Interface)] nsIRDFResource aResource);
 		
 		/// <summary>
         /// Return 'true' if the specified resource is a container and it is empty
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsEmpty([MarshalAs(UnmanagedType.Interface)] nsIRDFDataSource  aDataSource, [MarshalAs(UnmanagedType.Interface)] nsIRDFResource  aResource);
+		bool IsEmpty([MarshalAs(UnmanagedType.Interface)] nsIRDFDataSource aDataSource, [MarshalAs(UnmanagedType.Interface)] nsIRDFResource aResource);
 		
 		/// <summary>
         /// Return 'true' if the specified resource is a bag
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsBag([MarshalAs(UnmanagedType.Interface)] nsIRDFDataSource  aDataSource, [MarshalAs(UnmanagedType.Interface)] nsIRDFResource  aResource);
+		bool IsBag([MarshalAs(UnmanagedType.Interface)] nsIRDFDataSource aDataSource, [MarshalAs(UnmanagedType.Interface)] nsIRDFResource aResource);
 		
 		/// <summary>
         /// Return 'true' if the specified resource is a sequence
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsSeq([MarshalAs(UnmanagedType.Interface)] nsIRDFDataSource  aDataSource, [MarshalAs(UnmanagedType.Interface)] nsIRDFResource  aResource);
+		bool IsSeq([MarshalAs(UnmanagedType.Interface)] nsIRDFDataSource aDataSource, [MarshalAs(UnmanagedType.Interface)] nsIRDFResource aResource);
 		
 		/// <summary>
         /// Return 'true' if the specified resource is an alternation
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsAlt([MarshalAs(UnmanagedType.Interface)] nsIRDFDataSource  aDataSource, [MarshalAs(UnmanagedType.Interface)] nsIRDFResource  aResource);
+		bool IsAlt([MarshalAs(UnmanagedType.Interface)] nsIRDFDataSource aDataSource, [MarshalAs(UnmanagedType.Interface)] nsIRDFResource aResource);
 		
 		/// <summary>
         /// Decorates the specified resource appropriately to make it
         /// usable as an empty bag in the specified data source.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIRDFContainer MakeBag([MarshalAs(UnmanagedType.Interface)] nsIRDFDataSource  aDataSource, [MarshalAs(UnmanagedType.Interface)] nsIRDFResource  aResource);
+		nsIRDFContainer MakeBag([MarshalAs(UnmanagedType.Interface)] nsIRDFDataSource aDataSource, [MarshalAs(UnmanagedType.Interface)] nsIRDFResource aResource);
 		
 		/// <summary>
         /// Decorates the specified resource appropriately to make it
         /// usable as an empty sequence in the specified data source.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIRDFContainer MakeSeq([MarshalAs(UnmanagedType.Interface)] nsIRDFDataSource  aDataSource, [MarshalAs(UnmanagedType.Interface)] nsIRDFResource  aResource);
+		nsIRDFContainer MakeSeq([MarshalAs(UnmanagedType.Interface)] nsIRDFDataSource aDataSource, [MarshalAs(UnmanagedType.Interface)] nsIRDFResource aResource);
 		
 		/// <summary>
         /// Decorates the specified resource appropriately to make it
         /// usable as an empty alternation in the specified data source.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIRDFContainer MakeAlt([MarshalAs(UnmanagedType.Interface)] nsIRDFDataSource  aDataSource, [MarshalAs(UnmanagedType.Interface)] nsIRDFResource  aResource);
+		nsIRDFContainer MakeAlt([MarshalAs(UnmanagedType.Interface)] nsIRDFDataSource aDataSource, [MarshalAs(UnmanagedType.Interface)] nsIRDFResource aResource);
 		
 		/// <summary>
         /// Retrieve the index of element in the container. Returns -1 if
         /// the element is not in the container.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int IndexOf([MarshalAs(UnmanagedType.Interface)] nsIRDFDataSource  aDataSource, [MarshalAs(UnmanagedType.Interface)] nsIRDFResource  aContainer, [MarshalAs(UnmanagedType.Interface)] nsIRDFNode  aElement);
+		int IndexOf([MarshalAs(UnmanagedType.Interface)] nsIRDFDataSource aDataSource, [MarshalAs(UnmanagedType.Interface)] nsIRDFResource aContainer, [MarshalAs(UnmanagedType.Interface)] nsIRDFNode aElement);
 	}
 }

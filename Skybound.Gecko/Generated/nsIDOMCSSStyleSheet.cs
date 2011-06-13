@@ -51,18 +51,18 @@ namespace Skybound.Gecko
 		new void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aType);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Boolean  GetDisabledAttribute();
+		new bool GetDisabledAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetDisabledAttribute(System.Boolean  aDisabled);
-		
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMNode  GetOwnerNodeAttribute();
+		new void SetDisabledAttribute(bool aDisabled);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMStyleSheet  GetParentStyleSheetAttribute();
+		new nsIDOMNode GetOwnerNodeAttribute();
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMStyleSheet GetParentStyleSheetAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetHrefAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aHref);
@@ -72,7 +72,7 @@ namespace Skybound.Gecko
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMMediaList  GetMediaAttribute();
+		new nsIDOMMediaList GetMediaAttribute();
 		
 		/// <summary>
         /// The nsIDOMCSSStyleSheet interface is a datatype for a CSS style
@@ -83,16 +83,16 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMCSSRule  GetOwnerRuleAttribute();
+		nsIDOMCSSRule GetOwnerRuleAttribute();
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMCSSRuleList  GetCssRulesAttribute();
+		nsIDOMCSSRuleList GetCssRulesAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint InsertRule([MarshalAs(UnmanagedType.LPStruct)] nsAString rule, System.UInt32  index);
+		uint InsertRule([MarshalAs(UnmanagedType.LPStruct)] nsAString rule, uint index);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DeleteRule(System.UInt32  index);
+		void DeleteRule(uint index);
 	}
 }

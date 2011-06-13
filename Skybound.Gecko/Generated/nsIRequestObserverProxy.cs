@@ -51,7 +51,7 @@ namespace Skybound.Gecko
         /// causing the request to be canceled.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void OnStartRequest([MarshalAs(UnmanagedType.Interface)] nsIRequest  aRequest, [MarshalAs(UnmanagedType.Interface)] nsISupports  aContext);
+		new void OnStartRequest([MarshalAs(UnmanagedType.Interface)] nsIRequest aRequest, [MarshalAs(UnmanagedType.Interface)] nsISupports aContext);
 		
 		/// <summary>
         /// Called to signify the end of an asynchronous request.  This
@@ -64,7 +64,7 @@ namespace Skybound.Gecko
         /// An exception thrown from onStopRequest is generally ignored.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void OnStopRequest([MarshalAs(UnmanagedType.Interface)] nsIRequest  aRequest, [MarshalAs(UnmanagedType.Interface)] nsISupports  aContext, System.Int32  aStatusCode);
+		new void OnStopRequest([MarshalAs(UnmanagedType.Interface)] nsIRequest aRequest, [MarshalAs(UnmanagedType.Interface)] nsISupports aContext, int aStatusCode);
 		
 		/// <summary>
         /// Initializes an nsIRequestObserverProxy.
@@ -73,6 +73,6 @@ namespace Skybound.Gecko
         /// @param target - may be NULL indicating the calling thread's event target
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init([MarshalAs(UnmanagedType.Interface)] nsIRequestObserver  observer, [MarshalAs(UnmanagedType.Interface)] nsIEventTarget  target);
+		void Init([MarshalAs(UnmanagedType.Interface)] nsIRequestObserver observer, [MarshalAs(UnmanagedType.Interface)] nsIEventTarget target);
 	}
 }

@@ -47,9 +47,11 @@ namespace Skybound.Gecko
         /// For more information on this interface please see
         /// <http://dev.w3.org/2006/webapi/selectors-api/>
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMElement QuerySelector([MarshalAs(UnmanagedType.LPStruct)] nsAString selectors);
 		
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMNodeList QuerySelectorAll([MarshalAs(UnmanagedType.LPStruct)] nsAString selectors);
 	}

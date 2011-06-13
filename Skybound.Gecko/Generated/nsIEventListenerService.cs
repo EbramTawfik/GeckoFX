@@ -44,19 +44,20 @@ namespace Skybound.Gecko
 		void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aType);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetCapturingAttribute();
+		bool GetCapturingAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetAllowsUntrustedAttribute();
+		bool GetAllowsUntrustedAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetInSystemEventGroupAttribute();
+		bool GetInSystemEventGroupAttribute();
 		
 		/// <summary>
         /// Tries to serialize event listener to a string.
         /// Returns null if serialization isn't possible
         /// (for example with C++ listeners).
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsAString ToSource();
 		
@@ -64,6 +65,7 @@ namespace Skybound.Gecko
         /// If jsdIDebuggerService is active and the listener is implemented in JS,
         /// this returns the listener as a jsdIValue. Otherwise null.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISupports GetDebugObject();
 	}
@@ -80,7 +82,7 @@ namespace Skybound.Gecko
         /// If aEventTarget doesn't have any listeners, this returns null.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIEventListenerInfo  GetListenerInfoFor([MarshalAs(UnmanagedType.Interface)] nsIDOMEventTarget  aEventTarget, out System.UInt32  aCount);
+		nsIEventListenerInfo GetListenerInfoFor([MarshalAs(UnmanagedType.Interface)] nsIDOMEventTarget aEventTarget, out uint aCount);
 		
 		/// <summary>
         /// Returns an array of event targets.
@@ -91,13 +93,13 @@ namespace Skybound.Gecko
         /// event target chain than what this methods returns.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventTarget  GetEventTargetChainFor([MarshalAs(UnmanagedType.Interface)] nsIDOMEventTarget  aEventTarget, out System.UInt32  aCount);
+		nsIDOMEventTarget GetEventTargetChainFor([MarshalAs(UnmanagedType.Interface)] nsIDOMEventTarget aEventTarget, out uint aCount);
 		
 		/// <summary>
         /// Returns system event group.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventGroup  GetSystemEventGroupAttribute();
+		nsIDOMEventGroup GetSystemEventGroupAttribute();
 	}
 }

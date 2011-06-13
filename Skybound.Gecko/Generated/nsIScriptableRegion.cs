@@ -46,7 +46,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetToRegion([MarshalAs(UnmanagedType.Interface)] nsIScriptableRegion  aRegion);
+		void SetToRegion([MarshalAs(UnmanagedType.Interface)] nsIScriptableRegion aRegion);
 		
 		/// <summary>
         /// copy operator equivalent that takes a rect
@@ -59,7 +59,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetToRect(System.Int32  aX, System.Int32  aY, System.Int32  aWidth, System.Int32  aHeight);
+		void SetToRect(int aX, int aY, int aWidth, int aHeight);
 		
 		/// <summary>
         /// destructively intersect another region with this one
@@ -69,7 +69,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void IntersectRegion([MarshalAs(UnmanagedType.Interface)] nsIScriptableRegion  aRegion);
+		void IntersectRegion([MarshalAs(UnmanagedType.Interface)] nsIScriptableRegion aRegion);
 		
 		/// <summary>
         /// destructively intersect a rect with this region
@@ -82,7 +82,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void IntersectRect(System.Int32  aX, System.Int32  aY, System.Int32  aWidth, System.Int32  aHeight);
+		void IntersectRect(int aX, int aY, int aWidth, int aHeight);
 		
 		/// <summary>
         /// destructively union another region with this one
@@ -92,7 +92,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UnionRegion([MarshalAs(UnmanagedType.Interface)] nsIScriptableRegion  aRegion);
+		void UnionRegion([MarshalAs(UnmanagedType.Interface)] nsIScriptableRegion aRegion);
 		
 		/// <summary>
         /// destructively union a rect with this region
@@ -105,7 +105,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UnionRect(System.Int32  aX, System.Int32  aY, System.Int32  aWidth, System.Int32  aHeight);
+		void UnionRect(int aX, int aY, int aWidth, int aHeight);
 		
 		/// <summary>
         /// destructively subtract another region with this one
@@ -115,7 +115,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SubtractRegion([MarshalAs(UnmanagedType.Interface)] nsIScriptableRegion  aRegion);
+		void SubtractRegion([MarshalAs(UnmanagedType.Interface)] nsIScriptableRegion aRegion);
 		
 		/// <summary>
         /// destructively subtract a rect from this region
@@ -128,7 +128,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SubtractRect(System.Int32  aX, System.Int32  aY, System.Int32  aWidth, System.Int32  aHeight);
+		void SubtractRect(int aX, int aY, int aWidth, int aHeight);
 		
 		/// <summary>
         /// is this region empty? i.e. does it contain any pixels
@@ -149,7 +149,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsEqualRegion([MarshalAs(UnmanagedType.Interface)] nsIScriptableRegion  aRegion);
+		bool IsEqualRegion([MarshalAs(UnmanagedType.Interface)] nsIScriptableRegion aRegion);
 		
 		/// <summary>
         /// returns the bounding box of the region i.e. the smallest
@@ -163,7 +163,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetBoundingBox(out System.Int32  aX, out System.Int32  aY, out System.Int32  aWidth, out System.Int32  aHeight);
+		void GetBoundingBox(out int aX, out int aY, out int aWidth, out int aHeight);
 		
 		/// <summary>
         /// offsets the region in x and y
@@ -174,7 +174,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Offset(System.Int32  aXOffset, System.Int32  aYOffset);
+		void Offset(int aXOffset, int aYOffset);
 		
 		/// <summary>
         /// @return null if there are no rects,
@@ -192,7 +192,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool ContainsRect(System.Int32  aX, System.Int32  aY, System.Int32  aWidth, System.Int32  aHeight);
+		bool ContainsRect(int aX, int aY, int aWidth, int aHeight);
 		
 		/// <summary>Member GetRegionAttribute </summary>
 		/// <returns>A System.IntPtr</returns>

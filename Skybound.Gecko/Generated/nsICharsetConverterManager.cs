@@ -50,56 +50,61 @@ namespace Skybound.Gecko
         /// vulnerable to XSS attacks and should not be used with untrusted input
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetUnicodeDecoder([MarshalAs(UnmanagedType.LPStr)] System.String  charset);
+		System.IntPtr GetUnicodeDecoder([MarshalAs(UnmanagedType.LPStr)] string charset);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetUnicodeDecoderRaw([MarshalAs(UnmanagedType.LPStr)] System.String  charset);
+		System.IntPtr GetUnicodeDecoderRaw([MarshalAs(UnmanagedType.LPStr)] string charset);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetUnicodeDecoderInternal([MarshalAs(UnmanagedType.LPStr)] System.String  charset);
+		System.IntPtr GetUnicodeDecoderInternal([MarshalAs(UnmanagedType.LPStr)] string charset);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetUnicodeDecoderRawInternal([MarshalAs(UnmanagedType.LPStr)] System.String  charset);
+		System.IntPtr GetUnicodeDecoderRawInternal([MarshalAs(UnmanagedType.LPStr)] string charset);
 		
 		/// <summary>
         /// Get the Unicode encoder for the given charset.
         /// The "Raw" version skips charset alias resolution
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetUnicodeEncoder([MarshalAs(UnmanagedType.LPStr)] System.String  charset);
+		System.IntPtr GetUnicodeEncoder([MarshalAs(UnmanagedType.LPStr)] string charset);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetUnicodeEncoderRaw([MarshalAs(UnmanagedType.LPStr)] System.String  charset);
+		System.IntPtr GetUnicodeEncoderRaw([MarshalAs(UnmanagedType.LPStr)] string charset);
 		
 		/// <summary>
         /// A shortcut to calling nsICharsetAlias to do alias resolution
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetCharsetAlias([MarshalAs(UnmanagedType.LPStr)] System.String  charset);
+		nsAString GetCharsetAlias([MarshalAs(UnmanagedType.LPStr)] string charset);
 		
 		/// <summary>
         /// Get the complete list of available decoders.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIUTF8StringEnumerator GetDecoderList();
 		
 		/// <summary>
         /// Get the complete list of available encoders.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIUTF8StringEnumerator GetEncoderList();
 		
 		/// <summary>
         /// Get the complete list of available charset detectors.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIUTF8StringEnumerator GetCharsetDetectorList();
 		
 		/// <summary>
         /// Get the human-readable name for the given charset.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetCharsetTitle([MarshalAs(UnmanagedType.LPStr)] System.String  charset);
+		nsAString GetCharsetTitle([MarshalAs(UnmanagedType.LPStr)] string charset);
 		
 		/// <summary>
         /// Get some data about the given charset. This includes whether the
@@ -116,8 +121,9 @@ namespace Skybound.Gecko
         /// @param prop property desired for the character encoding.
         /// @return the value of the property, for the character encoding.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetCharsetData([MarshalAs(UnmanagedType.LPStr)] System.String  charset, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string prop);
+		nsAString GetCharsetData([MarshalAs(UnmanagedType.LPStr)] string charset, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string prop);
 		
 		/// <summary>
         /// Get the language group for the given charset. This is similar to
@@ -126,10 +132,12 @@ namespace Skybound.Gecko
         /// @param charset name of the character encoding, e.g. 'iso-8859-15'.
         /// @return the language code for the character encoding.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIAtom GetCharsetLangGroup([MarshalAs(UnmanagedType.LPStr)] System.String  charset);
+		nsIAtom GetCharsetLangGroup([MarshalAs(UnmanagedType.LPStr)] string charset);
 		
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIAtom GetCharsetLangGroupRaw([MarshalAs(UnmanagedType.LPStr)] System.String  charset);
+		nsIAtom GetCharsetLangGroupRaw([MarshalAs(UnmanagedType.LPStr)] string charset);
 	}
 }

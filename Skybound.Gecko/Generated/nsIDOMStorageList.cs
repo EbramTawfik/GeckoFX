@@ -46,6 +46,7 @@ namespace Skybound.Gecko
         /// @param domain domain to retrieve
         /// @returns a storage area for the given domain
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMStorageObsolete NamedItem([MarshalAs(UnmanagedType.LPStruct)] nsAString domain);
 	}

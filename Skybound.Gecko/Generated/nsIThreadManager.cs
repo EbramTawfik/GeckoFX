@@ -45,8 +45,9 @@ namespace Skybound.Gecko
         /// @returns
         /// The newly created nsIThread object.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIThread NewThread(System.UInt32  creationFlags);
+		nsIThread NewThread(uint creationFlags);
 		
 		/// <summary>
         /// Get the nsIThread object (if any) corresponding to the given PRThread.
@@ -59,15 +60,16 @@ namespace Skybound.Gecko
         /// The nsIThread object corresponding to the given PRThread or null if no
         /// such nsIThread exists.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIThread GetThreadFromPRThread(System.IntPtr  prthread);
+		nsIThread GetThreadFromPRThread(System.IntPtr prthread);
 		
 		/// <summary>
         /// Get the main thread.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIThread  GetMainThreadAttribute();
+		nsIThread GetMainThreadAttribute();
 		
 		/// <summary>
         /// Get the current thread.  If the calling thread does not already have a
@@ -76,20 +78,20 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIThread  GetCurrentThreadAttribute();
+		nsIThread GetCurrentThreadAttribute();
 		
 		/// <summary>
         /// This attribute is true if the calling thread is the main thread of the
         /// application process.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsMainThreadAttribute();
+		bool GetIsMainThreadAttribute();
 		
 		/// <summary>
         /// This attribute is true if the calling thread is the thread on which the
         /// cycle collector runs.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsCycleCollectorThreadAttribute();
+		bool GetIsCycleCollectorThreadAttribute();
 	}
 }

@@ -41,7 +41,7 @@ namespace Skybound.Gecko
         /// model allows only child elements optionally separated by white space.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsElementContentWhitespaceAttribute();
+		bool GetIsElementContentWhitespaceAttribute();
 		
 		/// <summary>
         /// The concatenation of all logically adjacent text nodes with this text
@@ -58,6 +58,7 @@ namespace Skybound.Gecko
         /// contents of this node with aContent and removes all other logically
         /// adjacent text nodes from the DOM tree, returning this node.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMText ReplaceWholeText([MarshalAs(UnmanagedType.LPStruct)] nsAString content);
 	}

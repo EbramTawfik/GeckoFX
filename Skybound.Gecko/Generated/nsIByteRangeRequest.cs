@@ -40,18 +40,18 @@ namespace Skybound.Gecko
         /// |startRequest| is zero and |endRange| is the content length.)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsByteRangeRequestAttribute();
+		bool GetIsByteRangeRequestAttribute();
 		
 		/// <summary>
         /// Absolute start position in remote file for this request.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetStartRangeAttribute();
+		int GetStartRangeAttribute();
 		
 		/// <summary>
         /// Absolute end postion in remote file for this request
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetEndRangeAttribute();
+		int GetEndRangeAttribute();
 	}
 }

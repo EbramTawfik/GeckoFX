@@ -46,14 +46,14 @@ namespace Skybound.Gecko
         ///                     will be cleared.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddWindow([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  aWindow, [MarshalAs(UnmanagedType.Interface)] nsIWebBrowserChrome  aChrome);
+		void AddWindow([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow, [MarshalAs(UnmanagedType.Interface)] nsIWebBrowserChrome aChrome);
 		
 		/// <summary>
         ///A window has been closed. Remove it from our list.
         ///      @param aWindow the window to remove
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveWindow([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  aWindow);
+		void RemoveWindow([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow);
 		
 		/// <summary>
         ///Like the public interface's open(), but can deal with openDialog
@@ -78,8 +78,9 @@ namespace Skybound.Gecko
         ///            (which is determined based on the JS stack and the value of
         ///            aParent).  This is not guaranteed, however.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMWindow OpenWindowJS([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  aParent, [MarshalAs(UnmanagedType.LPStr)] System.String  aUrl, [MarshalAs(UnmanagedType.LPStr)] System.String  aName, [MarshalAs(UnmanagedType.LPStr)] System.String  aFeatures, System.Boolean  aDialog, [MarshalAs(UnmanagedType.Interface)] nsIArray  aArgs);
+		nsIDOMWindow OpenWindowJS([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aParent, [MarshalAs(UnmanagedType.LPStr)] string aUrl, [MarshalAs(UnmanagedType.LPStr)] string aName, [MarshalAs(UnmanagedType.LPStr)] string aFeatures, bool aDialog, [MarshalAs(UnmanagedType.Interface)] nsIArray aArgs);
 		
 		/// <summary>
         /// Find a named docshell tree item amongst all windows registered
@@ -100,7 +101,8 @@ namespace Skybound.Gecko
         /// @see findItemWithName methods on nsIDocShellTreeItem and
         /// nsIDocShellTreeOwner
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDocShellTreeItem FindItemWithName([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aName, [MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeItem  aRequestor, [MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeItem  aOriginalRequestor);
+		nsIDocShellTreeItem FindItemWithName([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aName, [MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeItem aRequestor, [MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeItem aOriginalRequestor);
 	}
 }

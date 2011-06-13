@@ -40,13 +40,14 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISimpleEnumerator  GetEnumeratorAttribute();
+		nsISimpleEnumerator GetEnumeratorAttribute();
 		
 		/// <summary>
         /// Get a property value for the given name.
         /// @throws NS_ERROR_FAILURE if a property with that name doesn't
         /// exist.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIVariant GetProperty([MarshalAs(UnmanagedType.LPStruct)] nsAString name);
 	}

@@ -37,28 +37,29 @@ namespace Skybound.Gecko
 		/// <summary>Member GetStartPageAttribute </summary>
 		/// <param name='aStartPage'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetStartPageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aStartPage);
+		void GetStartPageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aStartPage);
 		
 		/// <summary>Member SetStartPageAttribute </summary>
 		/// <param name='aStartPage'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetStartPageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aStartPage);
+		void SetStartPageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aStartPage);
 		
 		/// <summary>Member GetDefaultArgsAttribute </summary>
 		/// <param name='aDefaultArgs'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDefaultArgsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aDefaultArgs);
+		void GetDefaultArgsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aDefaultArgs);
 		
 		/// <summary>Member SetDefaultArgsAttribute </summary>
 		/// <param name='aDefaultArgs'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDefaultArgsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aDefaultArgs);
+		void SetDefaultArgsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aDefaultArgs);
 		
 		/// <summary>
         /// Extract the width and height specified on the command line, if present.
         /// @return A feature string with a prepended comma, e.g. ",width=500,height=400"
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAUTF8String GetFeatures([MarshalAs(UnmanagedType.Interface)] nsICommandLine  aCmdLine);
+		nsAUTF8String GetFeatures([MarshalAs(UnmanagedType.Interface)] nsICommandLine aCmdLine);
 	}
 }

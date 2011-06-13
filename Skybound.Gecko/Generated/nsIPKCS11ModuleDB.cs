@@ -36,43 +36,48 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member GetInternal </summary>
 		/// <returns>A nsIPKCS11Module</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIPKCS11Module GetInternal();
 		
 		/// <summary>Member GetInternalFIPS </summary>
 		/// <returns>A nsIPKCS11Module</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIPKCS11Module GetInternalFIPS();
 		
 		/// <summary>Member FindModuleByName </summary>
 		/// <param name='name'> </param>
 		/// <returns>A nsIPKCS11Module</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIPKCS11Module FindModuleByName([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string name);
 		
 		/// <summary>Member FindSlotByName </summary>
 		/// <param name='name'> </param>
 		/// <returns>A nsIPKCS11Slot</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIPKCS11Slot FindSlotByName([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string name);
 		
 		/// <summary>Member ListModules </summary>
 		/// <returns>A nsIEnumerator</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIEnumerator ListModules();
 		
 		/// <summary>Member GetCanToggleFIPSAttribute </summary>
-		/// <returns>A System.Boolean </returns>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetCanToggleFIPSAttribute();
+		bool GetCanToggleFIPSAttribute();
 		
 		/// <summary>Member ToggleFIPSMode </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ToggleFIPSMode();
 		
 		/// <summary>Member GetIsFIPSEnabledAttribute </summary>
-		/// <returns>A System.Boolean </returns>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsFIPSEnabledAttribute();
+		bool GetIsFIPSEnabledAttribute();
 	}
 }

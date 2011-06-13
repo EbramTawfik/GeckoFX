@@ -42,8 +42,9 @@ namespace Skybound.Gecko
         /// references in the RDF/XML
         /// @return an nsIStreamListener object to handle the data
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIStreamListener ParseAsync([MarshalAs(UnmanagedType.Interface)] nsIRDFDataSource  aSink, [MarshalAs(UnmanagedType.Interface)] nsIURI  aBaseURI);
+		nsIStreamListener ParseAsync([MarshalAs(UnmanagedType.Interface)] nsIRDFDataSource aSink, [MarshalAs(UnmanagedType.Interface)] nsIURI aBaseURI);
 		
 		/// <summary>
         /// Parse a string of RDF/XML
@@ -53,6 +54,6 @@ namespace Skybound.Gecko
         /// @param aSource a UTF8 string containing RDF/XML data.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ParseString([MarshalAs(UnmanagedType.Interface)] nsIRDFDataSource  aSink, [MarshalAs(UnmanagedType.Interface)] nsIURI  aBaseURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aSource);
+		void ParseString([MarshalAs(UnmanagedType.Interface)] nsIRDFDataSource aSink, [MarshalAs(UnmanagedType.Interface)] nsIURI aBaseURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aSource);
 	}
 }

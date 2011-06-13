@@ -41,7 +41,7 @@ namespace Skybound.Gecko
         /// Returns the offset of the link within the parent accessible.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetStartIndexAttribute();
+		int GetStartIndexAttribute();
 		
 		/// <summary>
         /// Returns the end index of the link within the parent accessible.
@@ -50,7 +50,7 @@ namespace Skybound.Gecko
         /// parent text, so the endIndex should be startIndex + 1.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetEndIndexAttribute();
+		int GetEndIndexAttribute();
 		
 		/// <summary>
         /// Determines whether the link is valid (e. g. points to a valid URL).
@@ -60,7 +60,7 @@ namespace Skybound.Gecko
         /// In all other cases, TRUE is returned.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetValidAttribute();
+		bool GetValidAttribute();
 		
 		/// <summary>
         /// Determines whether the element currently has the focus, e. g. after
@@ -71,7 +71,7 @@ namespace Skybound.Gecko
         /// for this link.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetSelectedAttribute();
+		bool GetSelectedAttribute();
 		
 		/// <summary>
         /// The numbber of anchors within this Hyperlink. Is normally 1 for anchors.
@@ -79,7 +79,7 @@ namespace Skybound.Gecko
         /// With an Image Map, reflects the actual areas within the map.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetAnchorCountAttribute();
+		int GetAnchorCountAttribute();
 		
 		/// <summary>
         /// Returns the URI at the given index.
@@ -92,8 +92,9 @@ namespace Skybound.Gecko
         ///
         /// @return the nsIURI object containing the specifications for the URI.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI GetURI(System.Int32  index);
+		nsIURI GetURI(int index);
 		
 		/// <summary>
         /// Returns a reference to the object at the given index.
@@ -102,7 +103,8 @@ namespace Skybound.Gecko
         ///
         /// @return the nsIAccessible object at the desired index.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIAccessible GetAnchor(System.Int32  index);
+		nsIAccessible GetAnchor(int index);
 	}
 }

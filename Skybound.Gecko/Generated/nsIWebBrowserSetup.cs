@@ -48,6 +48,6 @@ namespace Skybound.Gecko
         /// @param aValue The value of the property.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetProperty(System.UInt32  aId, System.UInt32  aValue);
+		void SetProperty(uint aId, uint aValue);
 	}
 }

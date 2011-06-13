@@ -40,7 +40,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetURIAttribute();
+		string GetURIAttribute();
 		
 		/// <summary>
         ///Find an RDF resource that points to a given node over the
@@ -49,8 +49,9 @@ namespace Skybound.Gecko
         /// @return NS_RDF_NO_VALUE if there is no source that leads
         /// to the target with the specified property.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIRDFResource GetSource([MarshalAs(UnmanagedType.Interface)] nsIRDFResource  aProperty, [MarshalAs(UnmanagedType.Interface)] nsIRDFNode  aTarget, System.Boolean  aTruthValue);
+		nsIRDFResource GetSource([MarshalAs(UnmanagedType.Interface)] nsIRDFResource aProperty, [MarshalAs(UnmanagedType.Interface)] nsIRDFNode aTarget, bool aTruthValue);
 		
 		/// <summary>
         /// Find all RDF resources that point to a given node over the
@@ -60,8 +61,9 @@ namespace Skybound.Gecko
         /// method returns NS_OK, you may assume that nsISimpleEnumerator points
         /// to a valid (but possibly empty) cursor.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISimpleEnumerator GetSources([MarshalAs(UnmanagedType.Interface)] nsIRDFResource  aProperty, [MarshalAs(UnmanagedType.Interface)] nsIRDFNode  aTarget, System.Boolean  aTruthValue);
+		nsISimpleEnumerator GetSources([MarshalAs(UnmanagedType.Interface)] nsIRDFResource aProperty, [MarshalAs(UnmanagedType.Interface)] nsIRDFNode aTarget, bool aTruthValue);
 		
 		/// <summary>
         /// Find a child of that is related to the source by the given arc
@@ -70,8 +72,9 @@ namespace Skybound.Gecko
         /// @return NS_RDF_NO_VALUE if there is no target accessible from the
         /// source via the specified property.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIRDFNode GetTarget([MarshalAs(UnmanagedType.Interface)] nsIRDFResource  aSource, [MarshalAs(UnmanagedType.Interface)] nsIRDFResource  aProperty, System.Boolean  aTruthValue);
+		nsIRDFNode GetTarget([MarshalAs(UnmanagedType.Interface)] nsIRDFResource aSource, [MarshalAs(UnmanagedType.Interface)] nsIRDFResource aProperty, bool aTruthValue);
 		
 		/// <summary>
         /// Find all children of that are related to the source by the given arc
@@ -81,20 +84,21 @@ namespace Skybound.Gecko
         /// method returns NS_OK, you may assume that nsISimpleEnumerator points
         /// to a valid (but possibly empty) cursor.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISimpleEnumerator GetTargets([MarshalAs(UnmanagedType.Interface)] nsIRDFResource  aSource, [MarshalAs(UnmanagedType.Interface)] nsIRDFResource  aProperty, System.Boolean  aTruthValue);
+		nsISimpleEnumerator GetTargets([MarshalAs(UnmanagedType.Interface)] nsIRDFResource aSource, [MarshalAs(UnmanagedType.Interface)] nsIRDFResource aProperty, bool aTruthValue);
 		
 		/// <summary>
         /// Add an assertion to the graph.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Assert([MarshalAs(UnmanagedType.Interface)] nsIRDFResource  aSource, [MarshalAs(UnmanagedType.Interface)] nsIRDFResource  aProperty, [MarshalAs(UnmanagedType.Interface)] nsIRDFNode  aTarget, System.Boolean  aTruthValue);
+		void Assert([MarshalAs(UnmanagedType.Interface)] nsIRDFResource aSource, [MarshalAs(UnmanagedType.Interface)] nsIRDFResource aProperty, [MarshalAs(UnmanagedType.Interface)] nsIRDFNode aTarget, bool aTruthValue);
 		
 		/// <summary>
         /// Remove an assertion from the graph.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Unassert([MarshalAs(UnmanagedType.Interface)] nsIRDFResource  aSource, [MarshalAs(UnmanagedType.Interface)] nsIRDFResource  aProperty, [MarshalAs(UnmanagedType.Interface)] nsIRDFNode  aTarget);
+		void Unassert([MarshalAs(UnmanagedType.Interface)] nsIRDFResource aSource, [MarshalAs(UnmanagedType.Interface)] nsIRDFResource aProperty, [MarshalAs(UnmanagedType.Interface)] nsIRDFNode aTarget);
 		
 		/// <summary>
         /// Change an assertion from
@@ -106,7 +110,7 @@ namespace Skybound.Gecko
         /// [aSource]--[aProperty]-->[aNewTarget]
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Change([MarshalAs(UnmanagedType.Interface)] nsIRDFResource  aSource, [MarshalAs(UnmanagedType.Interface)] nsIRDFResource  aProperty, [MarshalAs(UnmanagedType.Interface)] nsIRDFNode  aOldTarget, [MarshalAs(UnmanagedType.Interface)] nsIRDFNode  aNewTarget);
+		void Change([MarshalAs(UnmanagedType.Interface)] nsIRDFResource aSource, [MarshalAs(UnmanagedType.Interface)] nsIRDFResource aProperty, [MarshalAs(UnmanagedType.Interface)] nsIRDFNode aOldTarget, [MarshalAs(UnmanagedType.Interface)] nsIRDFNode aNewTarget);
 		
 		/// <summary>
         /// 'Move' an assertion from
@@ -118,13 +122,13 @@ namespace Skybound.Gecko
         /// [aNewSource]--[aProperty]-->[aTarget]
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Move([MarshalAs(UnmanagedType.Interface)] nsIRDFResource  aOldSource, [MarshalAs(UnmanagedType.Interface)] nsIRDFResource  aNewSource, [MarshalAs(UnmanagedType.Interface)] nsIRDFResource  aProperty, [MarshalAs(UnmanagedType.Interface)] nsIRDFNode  aTarget);
+		void Move([MarshalAs(UnmanagedType.Interface)] nsIRDFResource aOldSource, [MarshalAs(UnmanagedType.Interface)] nsIRDFResource aNewSource, [MarshalAs(UnmanagedType.Interface)] nsIRDFResource aProperty, [MarshalAs(UnmanagedType.Interface)] nsIRDFNode aTarget);
 		
 		/// <summary>
         /// Query whether an assertion exists in this graph.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool HasAssertion([MarshalAs(UnmanagedType.Interface)] nsIRDFResource  aSource, [MarshalAs(UnmanagedType.Interface)] nsIRDFResource  aProperty, [MarshalAs(UnmanagedType.Interface)] nsIRDFNode  aTarget, System.Boolean  aTruthValue);
+		bool HasAssertion([MarshalAs(UnmanagedType.Interface)] nsIRDFResource aSource, [MarshalAs(UnmanagedType.Interface)] nsIRDFResource aProperty, [MarshalAs(UnmanagedType.Interface)] nsIRDFNode aTarget, bool aTruthValue);
 		
 		/// <summary>
         /// Add an observer to this data source. If the datasource
@@ -132,13 +136,13 @@ namespace Skybound.Gecko
         /// reference to the observer.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddObserver([MarshalAs(UnmanagedType.Interface)] nsIRDFObserver  aObserver);
+		void AddObserver([MarshalAs(UnmanagedType.Interface)] nsIRDFObserver aObserver);
 		
 		/// <summary>
         /// Remove an observer from this data source.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveObserver([MarshalAs(UnmanagedType.Interface)] nsIRDFObserver  aObserver);
+		void RemoveObserver([MarshalAs(UnmanagedType.Interface)] nsIRDFObserver aObserver);
 		
 		/// <summary>
         /// Get a cursor to iterate over all the arcs that point into a node.
@@ -147,8 +151,9 @@ namespace Skybound.Gecko
         /// returns NS_OK, you may assume that labels points to a valid (but
         /// possible empty) nsISimpleEnumerator object.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISimpleEnumerator ArcLabelsIn([MarshalAs(UnmanagedType.Interface)] nsIRDFNode  aNode);
+		nsISimpleEnumerator ArcLabelsIn([MarshalAs(UnmanagedType.Interface)] nsIRDFNode aNode);
 		
 		/// <summary>
         /// Get a cursor to iterate over all the arcs that originate in
@@ -158,13 +163,15 @@ namespace Skybound.Gecko
         /// returns NS_OK, you may assume that labels points to a valid (but
         /// possible empty) nsISimpleEnumerator object.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISimpleEnumerator ArcLabelsOut([MarshalAs(UnmanagedType.Interface)] nsIRDFResource  aSource);
+		nsISimpleEnumerator ArcLabelsOut([MarshalAs(UnmanagedType.Interface)] nsIRDFResource aSource);
 		
 		/// <summary>
         /// Retrieve all of the resources that the data source currently
         /// refers to.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISimpleEnumerator GetAllResources();
 		
@@ -172,33 +179,34 @@ namespace Skybound.Gecko
         /// Returns whether a given command is enabled for a set of sources.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsCommandEnabled([MarshalAs(UnmanagedType.Interface)] nsISupportsArray  aSources, [MarshalAs(UnmanagedType.Interface)] nsIRDFResource  aCommand, [MarshalAs(UnmanagedType.Interface)] nsISupportsArray  aArguments);
+		bool IsCommandEnabled([MarshalAs(UnmanagedType.Interface)] nsISupportsArray aSources, [MarshalAs(UnmanagedType.Interface)] nsIRDFResource aCommand, [MarshalAs(UnmanagedType.Interface)] nsISupportsArray aArguments);
 		
 		/// <summary>
         /// Perform the specified command on set of sources.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DoCommand([MarshalAs(UnmanagedType.Interface)] nsISupportsArray  aSources, [MarshalAs(UnmanagedType.Interface)] nsIRDFResource  aCommand, [MarshalAs(UnmanagedType.Interface)] nsISupportsArray  aArguments);
+		void DoCommand([MarshalAs(UnmanagedType.Interface)] nsISupportsArray aSources, [MarshalAs(UnmanagedType.Interface)] nsIRDFResource aCommand, [MarshalAs(UnmanagedType.Interface)] nsISupportsArray aArguments);
 		
 		/// <summary>
         /// Returns the set of all commands defined for a given source.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISimpleEnumerator GetAllCmds([MarshalAs(UnmanagedType.Interface)] nsIRDFResource  aSource);
+		nsISimpleEnumerator GetAllCmds([MarshalAs(UnmanagedType.Interface)] nsIRDFResource aSource);
 		
 		/// <summary>
         /// Returns true if the specified node is pointed to by the specified arc.
         /// Equivalent to enumerating ArcLabelsIn and comparing for the specified arc.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool HasArcIn([MarshalAs(UnmanagedType.Interface)] nsIRDFNode  aNode, [MarshalAs(UnmanagedType.Interface)] nsIRDFResource  aArc);
+		bool HasArcIn([MarshalAs(UnmanagedType.Interface)] nsIRDFNode aNode, [MarshalAs(UnmanagedType.Interface)] nsIRDFResource aArc);
 		
 		/// <summary>
         /// Returns true if the specified node has the specified outward arc.
         /// Equivalent to enumerating ArcLabelsOut and comparing for the specified arc.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool HasArcOut([MarshalAs(UnmanagedType.Interface)] nsIRDFResource  aSource, [MarshalAs(UnmanagedType.Interface)] nsIRDFResource  aArc);
+		bool HasArcOut([MarshalAs(UnmanagedType.Interface)] nsIRDFResource aSource, [MarshalAs(UnmanagedType.Interface)] nsIRDFResource aArc);
 		
 		/// <summary>
         /// Notify observers that the datasource is about to send several

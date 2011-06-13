@@ -35,14 +35,14 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetInterlinePositionAttribute </summary>
-		/// <returns>A System.Boolean </returns>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetInterlinePositionAttribute();
+		bool GetInterlinePositionAttribute();
 		
 		/// <summary>Member SetInterlinePositionAttribute </summary>
 		/// <param name='aInterlinePosition'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetInterlinePositionAttribute(System.Boolean  aInterlinePosition);
+		void SetInterlinePositionAttribute(bool aInterlinePosition);
 		
 		/// <summary>
         ///startBatchChanges
@@ -60,6 +60,7 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member GetEnumerator </summary>
 		/// <returns>A nsIEnumerator</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIEnumerator GetEnumerator();
 		
@@ -68,18 +69,19 @@ namespace Skybound.Gecko
 		/// <param name='flags'> </param>
 		/// <param name='wrapColumn'> </param>
 		/// <returns>A System.String</returns>
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string ToStringWithFormat([MarshalAs(UnmanagedType.LPStr)] System.String  formatType, System.UInt32  flags, System.Int32  wrapColumn);
+		string ToStringWithFormat([MarshalAs(UnmanagedType.LPStr)] string formatType, uint flags, int wrapColumn);
 		
 		/// <summary>Member AddSelectionListener </summary>
 		/// <param name='newListener'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddSelectionListener([MarshalAs(UnmanagedType.Interface)] nsISelectionListener  newListener);
+		void AddSelectionListener([MarshalAs(UnmanagedType.Interface)] nsISelectionListener newListener);
 		
 		/// <summary>Member RemoveSelectionListener </summary>
 		/// <param name='listenerToRemove'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveSelectionListener([MarshalAs(UnmanagedType.Interface)] nsISelectionListener  listenerToRemove);
+		void RemoveSelectionListener([MarshalAs(UnmanagedType.Interface)] nsISelectionListener listenerToRemove);
 		
 		/// <summary>
         ///Test if supplied range points to a single table element:
@@ -87,7 +89,7 @@ namespace Skybound.Gecko
         /// a table element isn't selected.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetTableSelectionType([MarshalAs(UnmanagedType.Interface)] nsIDOMRange  range);
+		int GetTableSelectionType([MarshalAs(UnmanagedType.Interface)] nsIDOMRange range);
 		
 		/// <summary>
         ///Internal utility method to set the pres shell on a newly created selection </summary>
@@ -102,7 +104,7 @@ namespace Skybound.Gecko
         /// see bugs 35296 and 199412
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetCanCacheFrameOffsetAttribute();
+		bool GetCanCacheFrameOffsetAttribute();
 		
 		/// <summary>
         ///canCacheFrameOffset
@@ -112,14 +114,14 @@ namespace Skybound.Gecko
         /// see bugs 35296 and 199412
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCanCacheFrameOffsetAttribute(System.Boolean  aCanCacheFrameOffset);
+		void SetCanCacheFrameOffsetAttribute(bool aCanCacheFrameOffset);
 		
 		/// <summary>
         ///GetCachedOffsetForFrame
         /// Returns cached value for nsTextFrame::GetPointFromOffset.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCachedFrameOffset(System.IntPtr aFrame, System.Int32  inOffset, System.IntPtr aPoint);
+		void GetCachedFrameOffset(System.IntPtr aFrame, int inOffset, System.IntPtr aPoint);
 		
 		/// <summary>
         ///getFrameSelection
@@ -139,6 +141,6 @@ namespace Skybound.Gecko
         /// when it is painting the selection.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTextRangeStyle([MarshalAs(UnmanagedType.Interface)] nsIDOMRange  range, System.IntPtr textRangeStyle);
+		void SetTextRangeStyle([MarshalAs(UnmanagedType.Interface)] nsIDOMRange range, System.IntPtr textRangeStyle);
 	}
 }

@@ -40,14 +40,14 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIInputStream  GetPostDataAttribute();
+		nsIInputStream GetPostDataAttribute();
 		
 		/// <summary>
         /// The URI to submit a search to.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI  GetUriAttribute();
+		nsIURI GetUriAttribute();
 	}
 	
 	/// <summary>nsISearchEngine </summary>
@@ -73,6 +73,7 @@ namespace Skybound.Gecko
         /// to send to the search engine.  If no submission can be
         /// obtained for the given responseType, returns null.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISearchSubmission GetSubmission([MarshalAs(UnmanagedType.LPStruct)] nsAString data, [MarshalAs(UnmanagedType.LPStruct)] nsAString responseType);
 		
@@ -135,20 +136,20 @@ namespace Skybound.Gecko
         /// Whether the engine should be hidden from the user.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetHiddenAttribute();
+		bool GetHiddenAttribute();
 		
 		/// <summary>
         /// Whether the engine should be hidden from the user.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetHiddenAttribute(System.Boolean  aHidden);
+		void SetHiddenAttribute(bool aHidden);
 		
 		/// <summary>
         /// A nsIURI corresponding to the engine's icon, stored locally. May be null.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI  GetIconURIAttribute();
+		nsIURI GetIconURIAttribute();
 		
 		/// <summary>
         /// The display name of the search engine. This is a unique identifier.
@@ -166,7 +167,7 @@ namespace Skybound.Gecko
         /// The search engine type.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetTypeAttribute();
+		int GetTypeAttribute();
 	}
 	
 	/// <summary>nsIBrowserSearchService </summary>
@@ -205,7 +206,7 @@ namespace Skybound.Gecko
         /// file cannot be successfully loaded.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddEngine([MarshalAs(UnmanagedType.LPStruct)] nsAString engineURL, System.Int32  dataType, [MarshalAs(UnmanagedType.LPStruct)] nsAString iconURL, System.Boolean  confirm);
+		void AddEngine([MarshalAs(UnmanagedType.LPStruct)] nsAString engineURL, int dataType, [MarshalAs(UnmanagedType.LPStruct)] nsAString iconURL, bool confirm);
 		
 		/// <summary>
         /// Adds a new search engine, without asking the user for confirmation and
@@ -252,6 +253,7 @@ namespace Skybound.Gecko
         /// @returns The corresponding nsISearchEngine object, or null if it doesn't
         /// exist.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISearchEngine GetEngineByAlias([MarshalAs(UnmanagedType.LPStruct)] nsAString alias);
 		
@@ -263,6 +265,7 @@ namespace Skybound.Gecko
         /// @returns The corresponding nsISearchEngine object, or null if it doesn't
         /// exist.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISearchEngine GetEngineByName([MarshalAs(UnmanagedType.LPStruct)] nsAString aEngineName);
 		
@@ -272,7 +275,7 @@ namespace Skybound.Gecko
         /// @returns an array of nsISearchEngine objects.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISearchEngine  GetEngines(out System.UInt32  engineCount);
+		nsISearchEngine GetEngines(out uint engineCount);
 		
 		/// <summary>
         /// Returns an array of all installed search engines whose hidden attribute is
@@ -281,7 +284,7 @@ namespace Skybound.Gecko
         /// @returns an array of nsISearchEngine objects.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISearchEngine  GetVisibleEngines(out System.UInt32  engineCount);
+		nsISearchEngine GetVisibleEngines(out uint engineCount);
 		
 		/// <summary>
         /// Returns an array of all default search engines. This includes all loaded
@@ -291,7 +294,7 @@ namespace Skybound.Gecko
         /// @returns an array of nsISearchEngine objects.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISearchEngine  GetDefaultEngines(out System.UInt32  engineCount);
+		nsISearchEngine GetDefaultEngines(out uint engineCount);
 		
 		/// <summary>
         /// Moves a visible search engine.
@@ -305,7 +308,7 @@ namespace Skybound.Gecko
         /// hidden.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MoveEngine([MarshalAs(UnmanagedType.Interface)] nsISearchEngine  engine, System.Int32  newIndex);
+		void MoveEngine([MarshalAs(UnmanagedType.Interface)] nsISearchEngine engine, int newIndex);
 		
 		/// <summary>
         /// Removes the search engine. If the search engine is installed in a global
@@ -316,7 +319,7 @@ namespace Skybound.Gecko
         /// The engine to remove.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveEngine([MarshalAs(UnmanagedType.Interface)] nsISearchEngine  engine);
+		void RemoveEngine([MarshalAs(UnmanagedType.Interface)] nsISearchEngine engine);
 		
 		/// <summary>
         /// The default search engine. Returns the first visible engine if the default
@@ -324,7 +327,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISearchEngine  GetDefaultEngineAttribute();
+		nsISearchEngine GetDefaultEngineAttribute();
 		
 		/// <summary>
         /// The currently active search engine. May be null if there are no visible
@@ -332,14 +335,14 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISearchEngine  GetCurrentEngineAttribute();
+		nsISearchEngine GetCurrentEngineAttribute();
 		
 		/// <summary>
         /// The currently active search engine. May be null if there are no visible
         /// search engines.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCurrentEngineAttribute([MarshalAs(UnmanagedType.Interface)] nsISearchEngine  aCurrentEngine);
+		void SetCurrentEngineAttribute([MarshalAs(UnmanagedType.Interface)] nsISearchEngine aCurrentEngine);
 		
 		/// <summary>
         /// The original default engine. This differs from the "defaultEngine"
@@ -348,6 +351,6 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISearchEngine  GetOriginalDefaultEngineAttribute();
+		nsISearchEngine GetOriginalDefaultEngineAttribute();
 	}
 }

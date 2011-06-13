@@ -44,7 +44,7 @@ namespace Skybound.Gecko
         /// @retval false Not all bytes of the character could be written.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Write(System.UInt32  aCount, [MarshalAs(UnmanagedType.LPWStr, SizeParamIndex=0)] System.String  c);
+		bool Write(uint aCount, [MarshalAs(UnmanagedType.LPWStr, SizeParamIndex=0)] string c);
 		
 		/// <summary>
         /// Write a string to the stream.

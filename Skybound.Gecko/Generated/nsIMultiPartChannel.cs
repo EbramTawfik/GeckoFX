@@ -42,7 +42,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIChannel  GetBaseChannelAttribute();
+		nsIChannel GetBaseChannelAttribute();
 		
 		/// <summary>
         /// Access to the Content-Disposition header field of this part of
@@ -50,7 +50,7 @@ namespace Skybound.Gecko
         /// handling method, preferred filename, etc.  See RFC 2183.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetContentDispositionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aContentDisposition);
+		void GetContentDispositionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aContentDisposition);
 		
 		/// <summary>
         /// Access to the Content-Disposition header field of this part of
@@ -58,14 +58,14 @@ namespace Skybound.Gecko
         /// handling method, preferred filename, etc.  See RFC 2183.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetContentDispositionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aContentDisposition);
+		void SetContentDispositionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aContentDisposition);
 		
 		/// <summary>
         /// Attribute guaranteed to be different for different parts of
         /// the same multipart document.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetPartIDAttribute();
+		uint GetPartIDAttribute();
 		
 		/// <summary>
         /// Set to true when onStopRequest is received from the base channel.
@@ -73,6 +73,6 @@ namespace Skybound.Gecko
         /// whether more data can be expected.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsLastPartAttribute();
+		bool GetIsLastPartAttribute();
 	}
 }

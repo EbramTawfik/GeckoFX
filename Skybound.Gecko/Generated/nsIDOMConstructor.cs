@@ -36,6 +36,7 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member ToString </summary>
 		/// <returns>A nsAString</returns>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsAString ToString();
 	}

@@ -47,7 +47,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIEditor  GetEditorAttribute();
+		nsIEditor GetEditorAttribute();
 		
 		/// <summary>
         /// nsIEditorDocShell provides a way to get an editor from
@@ -56,15 +56,15 @@ namespace Skybound.Gecko
         /// from out side.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetEditorAttribute([MarshalAs(UnmanagedType.Interface)] nsIEditor  aEditor);
+		void SetEditorAttribute([MarshalAs(UnmanagedType.Interface)] nsIEditor aEditor);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetEditableAttribute();
+		bool GetEditableAttribute();
 		
 		/// <summary>
         ///this docShell is editable </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetHasEditingSessionAttribute();
+		bool GetHasEditingSessionAttribute();
 		
 		/// <summary>
         /// Make this docShell editable, setting a flag that causes
@@ -74,6 +74,6 @@ namespace Skybound.Gecko
         /// creating the editor.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MakeEditable(System.Boolean  inWaitForUriLoad);
+		void MakeEditable(bool inWaitForUriLoad);
 	}
 }

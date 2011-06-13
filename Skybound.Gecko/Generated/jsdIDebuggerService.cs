@@ -46,139 +46,139 @@ namespace Skybound.Gecko
         /// Called when an error or warning occurs.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		jsdIErrorHook  GetErrorHookAttribute();
+		jsdIErrorHook GetErrorHookAttribute();
 		
 		/// <summary>
         /// Called when an error or warning occurs.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetErrorHookAttribute(jsdIErrorHook  aErrorHook);
+		void SetErrorHookAttribute(jsdIErrorHook aErrorHook);
 		
 		/// <summary>
         /// Called when a jsdIScript is created or destroyed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		jsdIScriptHook  GetScriptHookAttribute();
+		jsdIScriptHook GetScriptHookAttribute();
 		
 		/// <summary>
         /// Called when a jsdIScript is created or destroyed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetScriptHookAttribute(jsdIScriptHook  aScriptHook);
+		void SetScriptHookAttribute(jsdIScriptHook aScriptHook);
 		
 		/// <summary>
         /// Called when the engine encounters a breakpoint.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		jsdIExecutionHook  GetBreakpointHookAttribute();
+		jsdIExecutionHook GetBreakpointHookAttribute();
 		
 		/// <summary>
         /// Called when the engine encounters a breakpoint.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBreakpointHookAttribute(jsdIExecutionHook  aBreakpointHook);
+		void SetBreakpointHookAttribute(jsdIExecutionHook aBreakpointHook);
 		
 		/// <summary>
         /// Called when the engine encounters the debugger keyword.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		jsdIExecutionHook  GetDebuggerHookAttribute();
+		jsdIExecutionHook GetDebuggerHookAttribute();
 		
 		/// <summary>
         /// Called when the engine encounters the debugger keyword.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDebuggerHookAttribute(jsdIExecutionHook  aDebuggerHook);
+		void SetDebuggerHookAttribute(jsdIExecutionHook aDebuggerHook);
 		
 		/// <summary>
         /// Called when the errorHook returns false.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		jsdIExecutionHook  GetDebugHookAttribute();
+		jsdIExecutionHook GetDebugHookAttribute();
 		
 		/// <summary>
         /// Called when the errorHook returns false.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDebugHookAttribute(jsdIExecutionHook  aDebugHook);
+		void SetDebugHookAttribute(jsdIExecutionHook aDebugHook);
 		
 		/// <summary>
         /// Called before the next PC is executed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		jsdIExecutionHook  GetInterruptHookAttribute();
+		jsdIExecutionHook GetInterruptHookAttribute();
 		
 		/// <summary>
         /// Called before the next PC is executed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetInterruptHookAttribute(jsdIExecutionHook  aInterruptHook);
+		void SetInterruptHookAttribute(jsdIExecutionHook aInterruptHook);
 		
 		/// <summary>
         /// Called when an exception is thrown (even if it will be caught.)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		jsdIExecutionHook  GetThrowHookAttribute();
+		jsdIExecutionHook GetThrowHookAttribute();
 		
 		/// <summary>
         /// Called when an exception is thrown (even if it will be caught.)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetThrowHookAttribute(jsdIExecutionHook  aThrowHook);
+		void SetThrowHookAttribute(jsdIExecutionHook aThrowHook);
 		
 		/// <summary>
         /// Called before and after a toplevel script is evaluated.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		jsdICallHook  GetTopLevelHookAttribute();
+		jsdICallHook GetTopLevelHookAttribute();
 		
 		/// <summary>
         /// Called before and after a toplevel script is evaluated.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTopLevelHookAttribute(jsdICallHook  aTopLevelHook);
+		void SetTopLevelHookAttribute(jsdICallHook aTopLevelHook);
 		
 		/// <summary>
         /// Called before and after a function is called.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		jsdICallHook  GetFunctionHookAttribute();
+		jsdICallHook GetFunctionHookAttribute();
 		
 		/// <summary>
         /// Called before and after a function is called.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFunctionHookAttribute(jsdICallHook  aFunctionHook);
+		void SetFunctionHookAttribute(jsdICallHook aFunctionHook);
 		
 		/// <summary>
         /// Debugger service flags.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetFlagsAttribute();
+		uint GetFlagsAttribute();
 		
 		/// <summary>
         /// Debugger service flags.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFlagsAttribute(System.UInt32  aFlags);
+		void SetFlagsAttribute(uint aFlags);
 		
 		/// <summary>
         /// Major version number of implementation.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetImplementationMajorAttribute();
+		uint GetImplementationMajorAttribute();
 		
 		/// <summary>
         /// Minor version number of implementation.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetImplementationMinorAttribute();
+		uint GetImplementationMinorAttribute();
 		
 		/// <summary>
         /// Free form AUTF8String identifier for implementation.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetImplementationStringAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aImplementationString);
+		void GetImplementationStringAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aImplementationString);
 		
 		/// <summary>
         /// |true| if the debugger service has been turned on.  This does not
@@ -186,7 +186,7 @@ namespace Skybound.Gecko
         /// autostart pref may have turned the service on.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsOnAttribute();
+		bool GetIsOnAttribute();
 		
 		/// <summary>
         /// Synchronous activation of the debugger is no longer supported,
@@ -204,7 +204,7 @@ namespace Skybound.Gecko
         /// on the stack when code is to be re-compiled for debug mode.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AsyncOn(jsdIActivationCallback  callback);
+		void AsyncOn(jsdIActivationCallback callback);
 		
 		/// <summary>
         /// Called by nsIXPConnect after it's had a chance to recompile for
@@ -223,7 +223,7 @@ namespace Skybound.Gecko
         /// Recompile all active scripts in the runtime for debugMode.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RecompileForDebugMode(System.IntPtr  cx, System.IntPtr comp, System.Boolean  mode);
+		void RecompileForDebugMode(System.IntPtr cx, System.IntPtr comp, bool mode);
 		
 		/// <summary>
         /// Turn the debugger off.  This will invalidate all of your jsdIEphemeral
@@ -240,7 +240,7 @@ namespace Skybound.Gecko
         /// @return depth Number of pause() calls still waiting to be unPause()d.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetPauseDepthAttribute();
+		uint GetPauseDepthAttribute();
 		
 		/// <summary>
         /// Temporarily disable the debugger.  Hooks will not be called while the
@@ -288,13 +288,13 @@ namespace Skybound.Gecko
         /// the beginning.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InsertFilter(jsdIFilter  filter, jsdIFilter  after);
+		void InsertFilter(jsdIFilter filter, jsdIFilter after);
 		
 		/// <summary>
         /// Same as insertFilter, except always add to the end of the list.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AppendFilter(jsdIFilter  filter);
+		void AppendFilter(jsdIFilter filter);
 		
 		/// <summary>
         /// Remove a filter.
@@ -306,7 +306,7 @@ namespace Skybound.Gecko
         /// properties.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveFilter(jsdIFilter  filter);
+		void RemoveFilter(jsdIFilter filter);
 		
 		/// <summary>
         /// Swap position of two filters.
@@ -316,7 +316,7 @@ namespace Skybound.Gecko
         /// If |filter_a| == |filter_b|, then filter is refreshed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SwapFilters(jsdIFilter  filter_a, jsdIFilter  filter_b);
+		void SwapFilters(jsdIFilter filter_a, jsdIFilter filter_b);
 		
 		/// <summary>
         /// Enumerate registered filters.  This routine refreshes each filter before
@@ -327,7 +327,7 @@ namespace Skybound.Gecko
         /// enumeration.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EnumerateFilters(jsdIFilterEnumerator  enumerator);
+		void EnumerateFilters(jsdIFilterEnumerator enumerator);
 		
 		/// <summary>
         /// Force the debugger to resync its internal filter cache with the
@@ -348,7 +348,7 @@ namespace Skybound.Gecko
         /// Enumerate all known contexts.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EnumerateContexts(jsdIContextEnumerator  enumerator);
+		void EnumerateContexts(jsdIContextEnumerator enumerator);
 		
 		/// <summary>
         /// Enumerate all scripts the debugger knows about.  Any scripts created
@@ -359,7 +359,7 @@ namespace Skybound.Gecko
         /// the enumeration.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EnumerateScripts(jsdIScriptEnumerator  enumerator);
+		void EnumerateScripts(jsdIScriptEnumerator enumerator);
 		
 		/// <summary>
         /// Clear all breakpoints in all scripts.
@@ -387,7 +387,7 @@ namespace Skybound.Gecko
         /// nested.  your code can use it for sanity checks.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint EnterNestedEventLoop(jsdINestCallback  callback);
+		uint EnterNestedEventLoop(jsdINestCallback callback);
 		
 		/// <summary>
         /// Exit the current nested event loop after the current iteration completes,
@@ -405,7 +405,7 @@ namespace Skybound.Gecko
         /// @param fileName Filename to dump the heap into.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DumpHeap([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  fileName);
+		void DumpHeap([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String fileName);
 	}
 	
 	/// <summary>
@@ -423,13 +423,13 @@ namespace Skybound.Gecko
         /// FLAG_* values from above, OR'd together.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetFlagsAttribute();
+		uint GetFlagsAttribute();
 		
 		/// <summary>
         /// FLAG_* values from above, OR'd together.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFlagsAttribute(System.UInt32  aFlags);
+		void SetFlagsAttribute(uint aFlags);
 		
 		/// <summary>
         /// An nsISupports version of the global object to be filtered.  A null glob
@@ -441,7 +441,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports  GetGlobalObjectAttribute();
+		nsISupports GetGlobalObjectAttribute();
 		
 		/// <summary>
         /// An nsISupports version of the global object to be filtered.  A null glob
@@ -452,7 +452,7 @@ namespace Skybound.Gecko
         /// swap the filter with itself using jsdIService::swapFilters.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetGlobalObjectAttribute([MarshalAs(UnmanagedType.Interface)] nsISupports  aGlobalObject);
+		void SetGlobalObjectAttribute([MarshalAs(UnmanagedType.Interface)] nsISupports aGlobalObject);
 		
 		/// <summary>
         /// String representing the url pattern to be filtered.  Supports limited
@@ -465,7 +465,7 @@ namespace Skybound.Gecko
         /// swap the filter with itself using jsdIService::swapFilters.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetUrlPatternAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aUrlPattern);
+		void GetUrlPatternAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aUrlPattern);
 		
 		/// <summary>
         /// String representing the url pattern to be filtered.  Supports limited
@@ -478,7 +478,7 @@ namespace Skybound.Gecko
         /// swap the filter with itself using jsdIService::swapFilters.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetUrlPatternAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aUrlPattern);
+		void SetUrlPatternAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aUrlPattern);
 		
 		/// <summary>
         /// Line number for the start of this filter.  Line numbers are one based.
@@ -486,7 +486,7 @@ namespace Skybound.Gecko
         /// entire file.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetStartLineAttribute();
+		uint GetStartLineAttribute();
 		
 		/// <summary>
         /// Line number for the start of this filter.  Line numbers are one based.
@@ -494,7 +494,7 @@ namespace Skybound.Gecko
         /// entire file.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetStartLineAttribute(System.UInt32  aStartLine);
+		void SetStartLineAttribute(uint aStartLine);
 		
 		/// <summary>
         /// Line number for the end of this filter.  Line numbers are one based.
@@ -502,7 +502,7 @@ namespace Skybound.Gecko
         /// |startLine| to the end of the file.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetEndLineAttribute();
+		uint GetEndLineAttribute();
 		
 		/// <summary>
         /// Line number for the end of this filter.  Line numbers are one based.
@@ -510,7 +510,7 @@ namespace Skybound.Gecko
         /// |startLine| to the end of the file.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetEndLineAttribute(System.UInt32  aEndLine);
+		void SetEndLineAttribute(uint aEndLine);
 	}
 	
 	/// <summary>
@@ -561,7 +561,7 @@ namespace Skybound.Gecko
         /// debugger knows about.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EnumerateFilter(jsdIFilter  filter);
+		void EnumerateFilter(jsdIFilter filter);
 	}
 	
 	/// <summary>
@@ -578,7 +578,7 @@ namespace Skybound.Gecko
         /// debugger knows about.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EnumerateScript(jsdIScript  script);
+		void EnumerateScript(jsdIScript script);
 	}
 	
 	/// <summary>
@@ -595,7 +595,7 @@ namespace Skybound.Gecko
         /// currently in use.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EnumerateContext(jsdIContext  executionContext);
+		void EnumerateContext(jsdIContext executionContext);
 	}
 	
 	/// <summary>
@@ -611,14 +611,14 @@ namespace Skybound.Gecko
         /// Called when scripts are created.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnScriptCreated(jsdIScript  script);
+		void OnScriptCreated(jsdIScript script);
 		
 		/// <summary>
         /// Called when the JavaScript engine destroys a script.  The jsdIScript
         /// object passed in will already be invalidated.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnScriptDestroyed(jsdIScript  script);
+		void OnScriptDestroyed(jsdIScript script);
 	}
 	
 	/// <summary>
@@ -636,7 +636,7 @@ namespace Skybound.Gecko
         /// a function.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnCall(jsdIStackFrame  frame, System.UInt32  type);
+		void OnCall(jsdIStackFrame frame, uint type);
 	}
 	
 	/// <summary>jsdIErrorHook </summary>
@@ -651,7 +651,7 @@ namespace Skybound.Gecko
         /// to pass the error along, |false| to invoke the debugHook.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool OnError([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  message, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  fileName, System.UInt32  line, System.UInt32  pos, System.UInt32  flags, System.UInt32  errnum, jsdIValue  exc);
+		bool OnError([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String message, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String fileName, uint line, uint pos, uint flags, uint errnum, jsdIValue exc);
 	}
 	
 	/// <summary>
@@ -676,7 +676,7 @@ namespace Skybound.Gecko
         /// @retval      One of the jsdIExecutionHook::RETURN_* constants.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint OnExecute(jsdIStackFrame  frame, System.UInt32  type, ref jsdIValue  val);
+		uint OnExecute(jsdIStackFrame frame, uint type, ref jsdIValue val);
 	}
 	
 	/// <summary>
@@ -695,7 +695,7 @@ namespace Skybound.Gecko
         /// and/or properties of the inheritor may no longer be callable.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsValidAttribute();
+		bool GetIsValidAttribute();
 		
 		/// <summary>
         /// Mark this instance as invalid.
@@ -719,7 +719,7 @@ namespace Skybound.Gecko
         /// and/or properties of the inheritor may no longer be callable.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Boolean  GetIsValidAttribute();
+		new bool GetIsValidAttribute();
 		
 		/// <summary>
         /// Mark this instance as invalid.
@@ -730,19 +730,19 @@ namespace Skybound.Gecko
 		/// <summary>
         ///Internal use only. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr  GetJSContextAttribute();
+		System.IntPtr GetJSContextAttribute();
 		
 		/// <summary>
         /// OPT_* values above, OR'd together.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetOptionsAttribute();
+		uint GetOptionsAttribute();
 		
 		/// <summary>
         /// OPT_* values above, OR'd together.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOptionsAttribute(System.UInt32  aOptions);
+		void SetOptionsAttribute(uint aOptions);
 		
 		/// <summary>
         /// Last version set on this context.
@@ -750,7 +750,7 @@ namespace Skybound.Gecko
         /// See the VERSION_* consts on jsdIDebuggerService.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetVersionAttribute();
+		int GetVersionAttribute();
 		
 		/// <summary>
         /// Last version set on this context.
@@ -758,33 +758,33 @@ namespace Skybound.Gecko
         /// See the VERSION_* consts on jsdIDebuggerService.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetVersionAttribute(System.Int32  aVersion);
+		void SetVersionAttribute(int aVersion);
 		
 		/// <summary>
         /// Unique tag among all valid jsdIContext objects, useful as a hash key.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetTagAttribute();
+		uint GetTagAttribute();
 		
 		/// <summary>
         /// Private data for this context, if it is an nsISupports, |null| otherwise.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports  GetPrivateDataAttribute();
+		nsISupports GetPrivateDataAttribute();
 		
 		/// <summary>
         /// Retrieve the underlying context wrapped by this jsdIContext.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports  GetWrappedContextAttribute();
+		nsISupports GetWrappedContextAttribute();
 		
 		/// <summary>
         /// Top of the scope chain for this context.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		jsdIValue  GetGlobalObjectAttribute();
+		jsdIValue GetGlobalObjectAttribute();
 		
 		/// <summary>
         /// |true| if this context should be allowed to run scripts, |false|
@@ -793,7 +793,7 @@ namespace Skybound.Gecko
         /// context will throw a NS_ERROR_NO_INTERFACE exception.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetScriptsEnabledAttribute();
+		bool GetScriptsEnabledAttribute();
 		
 		/// <summary>
         /// |true| if this context should be allowed to run scripts, |false|
@@ -802,7 +802,7 @@ namespace Skybound.Gecko
         /// context will throw a NS_ERROR_NO_INTERFACE exception.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetScriptsEnabledAttribute(System.Boolean  aScriptsEnabled);
+		void SetScriptsEnabledAttribute(bool aScriptsEnabled);
 	}
 	
 	/// <summary>
@@ -823,7 +823,7 @@ namespace Skybound.Gecko
         /// and/or properties of the inheritor may no longer be callable.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Boolean  GetIsValidAttribute();
+		new bool GetIsValidAttribute();
 		
 		/// <summary>
         /// Mark this instance as invalid.
@@ -851,67 +851,67 @@ namespace Skybound.Gecko
         /// evaluation.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsDebuggerAttribute();
+		bool GetIsDebuggerAttribute();
 		
 		/// <summary>
         /// True if stack frame is constructing a new object.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsConstructingAttribute();
+		bool GetIsConstructingAttribute();
 		
 		/// <summary>
         /// Link to the caller's stack frame.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		jsdIStackFrame  GetCallingFrameAttribute();
+		jsdIStackFrame GetCallingFrameAttribute();
 		
 		/// <summary>
         /// Executon context.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		jsdIContext  GetExecutionContextAttribute();
+		jsdIContext GetExecutionContextAttribute();
 		
 		/// <summary>
         /// Function name executing in this stack frame.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetFunctionNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aFunctionName);
+		void GetFunctionNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aFunctionName);
 		
 		/// <summary>
         /// Script running in this stack frame, null for native frames.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		jsdIScript  GetScriptAttribute();
+		jsdIScript GetScriptAttribute();
 		
 		/// <summary>
         /// Current program counter in this stack frame.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetPcAttribute();
+		uint GetPcAttribute();
 		
 		/// <summary>
         /// Current line number (using the script's pc to line map.)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetLineAttribute();
+		uint GetLineAttribute();
 		
 		/// <summary>
         /// Function object running in this stack frame.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		jsdIValue  GetCalleeAttribute();
+		jsdIValue GetCalleeAttribute();
 		
 		/// <summary>
         /// Top object in the scope chain.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		jsdIValue  GetScopeAttribute();
+		jsdIValue GetScopeAttribute();
 		
 		/// <summary>
         /// |this| object for this stack frame.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		jsdIValue  GetThisValueAttribute();
+		jsdIValue GetThisValueAttribute();
 		
 		/// <summary>
         /// Evaluate arbitrary JavaScript in this stack frame.
@@ -922,7 +922,7 @@ namespace Skybound.Gecko
         /// @retval         Result of evaluating the script.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Eval([MarshalAs(UnmanagedType.LPStruct)] nsAString bytes, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  fileName, System.UInt32  line, out jsdIValue  result);
+		bool Eval([MarshalAs(UnmanagedType.LPStruct)] nsAString bytes, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String fileName, uint line, out jsdIValue result);
 	}
 	
 	/// <summary>
@@ -940,7 +940,7 @@ namespace Skybound.Gecko
         /// and/or properties of the inheritor may no longer be callable.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Boolean  GetIsValidAttribute();
+		new bool GetIsValidAttribute();
 		
 		/// <summary>
         /// Mark this instance as invalid.
@@ -964,26 +964,26 @@ namespace Skybound.Gecko
         /// See the VERSION_* consts on jsdIDebuggerService.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetVersionAttribute();
+		int GetVersionAttribute();
 		
 		/// <summary>
         /// Tag value guaranteed unique among jsdIScript objects.  Useful as a
         /// hash key in script.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetTagAttribute();
+		uint GetTagAttribute();
 		
 		/// <summary>
         /// FLAG_* attributes from above, OR'd together.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetFlagsAttribute();
+		uint GetFlagsAttribute();
 		
 		/// <summary>
         /// FLAG_* attributes from above, OR'd together.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFlagsAttribute(System.UInt32  aFlags);
+		void SetFlagsAttribute(uint aFlags);
 		
 		/// <summary>
         /// Filename given for this script when it was compiled.
@@ -992,7 +992,7 @@ namespace Skybound.Gecko
         /// invalidated.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetFileNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aFileName);
+		void GetFileNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aFileName);
 		
 		/// <summary>
         /// Function name for this script.  "anonymous" for unnamed functions (or
@@ -1002,7 +1002,7 @@ namespace Skybound.Gecko
         /// invalidated.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetFunctionNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aFunctionName);
+		void GetFunctionNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aFunctionName);
 		
 		/// <summary>
         /// The names of the arguments for this function; empty if this is
@@ -1010,13 +1010,13 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler", SizeParamIndex=0)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string GetParameterNames(out System.UInt32  count);
+		string GetParameterNames(out uint count);
 		
 		/// <summary>
         /// Fetch the function object as a jsdIValue.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		jsdIValue  GetFunctionObjectAttribute();
+		jsdIValue GetFunctionObjectAttribute();
 		
 		/// <summary>
         /// Source code for this script, without function declaration.
@@ -1031,7 +1031,7 @@ namespace Skybound.Gecko
         /// invalidated.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetBaseLineNumberAttribute();
+		uint GetBaseLineNumberAttribute();
 		
 		/// <summary>
         /// Total number of lines in this script.
@@ -1040,19 +1040,19 @@ namespace Skybound.Gecko
         /// invalidated.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetLineExtentAttribute();
+		uint GetLineExtentAttribute();
 		
 		/// <summary>
         /// Number of times this script has been called.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetCallCountAttribute();
+		uint GetCallCountAttribute();
 		
 		/// <summary>
         /// Number of times this script called itself, directly or indirectly.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetMaxRecurseDepthAttribute();
+		uint GetMaxRecurseDepthAttribute();
 		
 		/// <summary>
         /// Shortest execution time recorded, in milliseconds.
@@ -1104,14 +1104,14 @@ namespace Skybound.Gecko
         /// The |pcmap| argument specifies which pc to source line map to use.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint PcToLine(System.UInt32  pc, System.UInt32  pcmap);
+		uint PcToLine(uint pc, uint pcmap);
 		
 		/// <summary>
         /// Get the first PC associated with a line.
         /// The |pcmap| argument specifies which pc to source line map to use.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint LineToPc(System.UInt32  line, System.UInt32  pcmap);
+		uint LineToPc(uint line, uint pcmap);
 		
 		/// <summary>
         /// Determine is a particular line is executable, like checking that
@@ -1119,19 +1119,19 @@ namespace Skybound.Gecko
         /// The |pcmap| argument specifies which pc to source line map to use.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsLineExecutable(System.UInt32  line, System.UInt32  pcmap);
+		bool IsLineExecutable(uint line, uint pcmap);
 		
 		/// <summary>
         /// Set a breakpoint at a PC in this script.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBreakpoint(System.UInt32  pc);
+		void SetBreakpoint(uint pc);
 		
 		/// <summary>
         /// Clear a breakpoint at a PC in this script.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ClearBreakpoint(System.UInt32  pc);
+		void ClearBreakpoint(uint pc);
 		
 		/// <summary>
         /// Clear all breakpoints set in this script.
@@ -1143,7 +1143,7 @@ namespace Skybound.Gecko
         /// Call interrupt hook at least once per source line
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EnableSingleStepInterrupts(System.Boolean  mode);
+		void EnableSingleStepInterrupts(bool mode);
 	}
 	
 	/// <summary>
@@ -1163,7 +1163,7 @@ namespace Skybound.Gecko
         /// and/or properties of the inheritor may no longer be callable.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Boolean  GetIsValidAttribute();
+		new bool GetIsValidAttribute();
 		
 		/// <summary>
         /// Mark this instance as invalid.
@@ -1185,7 +1185,7 @@ namespace Skybound.Gecko
         /// |false| unless the value is a function declared in script.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsNativeAttribute();
+		bool GetIsNativeAttribute();
 		
 		/// <summary>
         /// |true| if the value represents a number, either double or integer.
@@ -1193,60 +1193,60 @@ namespace Skybound.Gecko
         /// (eg. x = "1";)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsNumberAttribute();
+		bool GetIsNumberAttribute();
 		
 		/// <summary>
         /// |true| if the value represents a JavaScript primitive number or AUTF8String
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsPrimitiveAttribute();
+		bool GetIsPrimitiveAttribute();
 		
 		/// <summary>
         /// One of the TYPE_* values above.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetJsTypeAttribute();
+		uint GetJsTypeAttribute();
 		
 		/// <summary>
         /// Prototype value if this value represents an object, null if the value is
         /// not an object or the object has no prototype.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		jsdIValue  GetJsPrototypeAttribute();
+		jsdIValue GetJsPrototypeAttribute();
 		
 		/// <summary>
         /// Parent value if this value represents an object, null if the value is not
         /// an object or the object has no parent.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		jsdIValue  GetJsParentAttribute();
+		jsdIValue GetJsParentAttribute();
 		
 		/// <summary>
         /// Class name if this value represents an object.  Empty AUTF8String if the value
         /// is not an object.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetJsClassNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aJsClassName);
+		void GetJsClassNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aJsClassName);
 		
 		/// <summary>
         /// Constructor name if this value represents an object.  Empty AUTF8String if the
         /// value is not an object.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		jsdIValue  GetJsConstructorAttribute();
+		jsdIValue GetJsConstructorAttribute();
 		
 		/// <summary>
         /// Function name if this value represents a function.  Empty AUTF8String if the
         /// value is not a function.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetJsFunctionNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aJsFunctionName);
+		void GetJsFunctionNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aJsFunctionName);
 		
 		/// <summary>
         /// Value if interpreted as a boolean.  Converts if necessary.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetBooleanValueAttribute();
+		bool GetBooleanValueAttribute();
 		
 		/// <summary>
         /// Value if interpreted as a double.  Converts if necessary.
@@ -1258,26 +1258,26 @@ namespace Skybound.Gecko
         /// Value if interpreted as an integer.  Converts if necessary.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetIntValueAttribute();
+		int GetIntValueAttribute();
 		
 		/// <summary>
         /// Value if interpreted as an object.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		jsdIObject  GetObjectValueAttribute();
+		jsdIObject GetObjectValueAttribute();
 		
 		/// <summary>
         /// Value if interpreted as a AUTF8String.  Converts if necessary.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetStringValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aStringValue);
+		void GetStringValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aStringValue);
 		
 		/// <summary>
         /// Number of properties.  0 if the value is not an object, or the value is
         /// an object but has no properties.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetPropertyCountAttribute();
+		int GetPropertyCountAttribute();
 		
 		/// <summary>
         /// Retrieves all properties if this value represents an object.  If this
@@ -1286,7 +1286,7 @@ namespace Skybound.Gecko
         /// @param length    Size of array.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetProperties(out jsdIProperty  propArray, out System.UInt32  length);
+		void GetProperties(out jsdIProperty propArray, out uint length);
 		
 		/// <summary>
         /// Retrieves a single property from the value.  Only valid if the value
@@ -1296,7 +1296,7 @@ namespace Skybound.Gecko
         /// property exists for the requested name.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		jsdIProperty GetProperty([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  name);
+		jsdIProperty GetProperty([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String name);
 		
 		/// <summary>
         /// jsdIValues are wrappers around JavaScript engine structures.  Much of the
@@ -1321,7 +1321,7 @@ namespace Skybound.Gecko
         /// Otherwise, return null.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		jsdIScript  GetScriptAttribute();
+		jsdIScript GetScriptAttribute();
 	}
 	
 	/// <summary>
@@ -1354,32 +1354,32 @@ namespace Skybound.Gecko
         /// to be created.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCreatorURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aCreatorURL);
+		void GetCreatorURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aCreatorURL);
 		
 		/// <summary>
         /// Line number in the creatorURL where this object was created.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetCreatorLineAttribute();
+		uint GetCreatorLineAttribute();
 		
 		/// <summary>
         /// The URL (filename) that contains the script which defined the constructor
         /// used to create this object.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetConstructorURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aConstructorURL);
+		void GetConstructorURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aConstructorURL);
 		
 		/// <summary>
         /// Line number in the creatorURL where this object was created.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetConstructorLineAttribute();
+		uint GetConstructorLineAttribute();
 		
 		/// <summary>
         /// jsdIValue for this object.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		jsdIValue  GetValueAttribute();
+		jsdIValue GetValueAttribute();
 	}
 	
 	/// <summary>
@@ -1397,7 +1397,7 @@ namespace Skybound.Gecko
         /// and/or properties of the inheritor may no longer be callable.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Boolean  GetIsValidAttribute();
+		new bool GetIsValidAttribute();
 		
 		/// <summary>
         /// Mark this instance as invalid.
@@ -1418,26 +1418,26 @@ namespace Skybound.Gecko
 		/// <summary>
         ///FLAG_* values OR'd together, representing the flags for this property. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetFlagsAttribute();
+		uint GetFlagsAttribute();
 		
 		/// <summary>
         ///jsdIValue representing the alias for this property. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		jsdIValue  GetAliasAttribute();
+		jsdIValue GetAliasAttribute();
 		
 		/// <summary>
         ///name for this property. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		jsdIValue  GetNameAttribute();
+		jsdIValue GetNameAttribute();
 		
 		/// <summary>
         ///value of this property. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		jsdIValue  GetValueAttribute();
+		jsdIValue GetValueAttribute();
 		
 		/// <summary>
         ///slot number if this property is a local variable or parameter. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetVarArgSlotAttribute();
+		uint GetVarArgSlotAttribute();
 	}
 }

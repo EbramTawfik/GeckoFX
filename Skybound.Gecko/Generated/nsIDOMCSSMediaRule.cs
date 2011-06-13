@@ -55,36 +55,36 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMCSSStyleSheet  GetParentStyleSheetAttribute();
+		new nsIDOMCSSStyleSheet GetParentStyleSheetAttribute();
 		
 		/// <summary>Member GetParentRuleAttribute </summary>
-		/// <returns>A nsIDOMCSSRule </returns>
+		/// <returns>A nsIDOMCSSRule</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMCSSRule  GetParentRuleAttribute();
+		new nsIDOMCSSRule GetParentRuleAttribute();
 		
 		/// <summary>Member GetMediaAttribute </summary>
-		/// <returns>A nsIDOMMediaList </returns>
+		/// <returns>A nsIDOMMediaList</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMMediaList  GetMediaAttribute();
+		nsIDOMMediaList GetMediaAttribute();
 		
 		/// <summary>Member GetCssRulesAttribute </summary>
-		/// <returns>A nsIDOMCSSRuleList </returns>
+		/// <returns>A nsIDOMCSSRuleList</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMCSSRuleList  GetCssRulesAttribute();
+		nsIDOMCSSRuleList GetCssRulesAttribute();
 		
 		/// <summary>Member InsertRule </summary>
 		/// <param name='rule'> </param>
 		/// <param name='index'> </param>
 		/// <returns>A System.UInt32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint InsertRule([MarshalAs(UnmanagedType.LPStruct)] nsAString rule, System.UInt32  index);
+		uint InsertRule([MarshalAs(UnmanagedType.LPStruct)] nsAString rule, uint index);
 		
 		/// <summary>Member DeleteRule </summary>
 		/// <param name='index'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DeleteRule(System.UInt32  index);
+		void DeleteRule(uint index);
 	}
 }

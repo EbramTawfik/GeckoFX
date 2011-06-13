@@ -51,8 +51,9 @@ namespace Skybound.Gecko
         ///
         /// @param aChromeURL the URL that is to be converted.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIURI ConvertChromeURL([MarshalAs(UnmanagedType.Interface)] nsIURI  aChromeURL);
+		new nsIURI ConvertChromeURL([MarshalAs(UnmanagedType.Interface)] nsIURI aChromeURL);
 		
 		/// <summary>
         /// refresh the chrome list at runtime, looking for new packages/etc
@@ -64,7 +65,7 @@ namespace Skybound.Gecko
         /// returns whether XPCNativeWrappers are enabled for aURI.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool WrappersEnabled([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI);
+		new bool WrappersEnabled([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 		
 		/// <summary>
         ///Should be called when locales change to reload all chrome (including XUL). </summary>
@@ -74,14 +75,15 @@ namespace Skybound.Gecko
 		/// <summary>Member GetSelectedLocale </summary>
 		/// <param name='packageName'> </param>
 		/// <returns>A nsAString</returns>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsAString GetSelectedLocale([MarshalAs(UnmanagedType.LPStruct)] nsAString  packageName);
+		new nsAString GetSelectedLocale([MarshalAs(UnmanagedType.LPStruct)] nsAString packageName);
 		
 		/// <summary>
         /// Get the direction of the locale via the intl.uidirection.<locale> pref
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool IsLocaleRTL([MarshalAs(UnmanagedType.LPStruct)] nsAString  package);
+		new bool IsLocaleRTL([MarshalAs(UnmanagedType.LPStruct)] nsAString package);
 		
 		/// <summary>
         ///Should be called when skins change. Reloads only stylesheets. </summary>
@@ -95,7 +97,7 @@ namespace Skybound.Gecko
         /// method.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool AllowScriptsForPackage([MarshalAs(UnmanagedType.Interface)] nsIURI  url);
+		new bool AllowScriptsForPackage([MarshalAs(UnmanagedType.Interface)] nsIURI url);
 		
 		/// <summary>
         /// Content should only be allowed to load chrome JS from certain packages.
@@ -103,7 +105,7 @@ namespace Skybound.Gecko
         /// Do not pass non-chrome URIs to this method.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool AllowContentToAccess([MarshalAs(UnmanagedType.Interface)] nsIURI  url);
+		new bool AllowContentToAccess([MarshalAs(UnmanagedType.Interface)] nsIURI url);
 		
 		/// <summary>
         /// If the OS has a "high-visibility" or "disabled-friendly" theme set,
@@ -119,7 +121,8 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Get a list of locales available for the specified package.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIUTF8StringEnumerator GetLocalesForPackage([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aPackage);
+		nsIUTF8StringEnumerator GetLocalesForPackage([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aPackage);
 	}
 }

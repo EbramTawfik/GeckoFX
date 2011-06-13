@@ -44,14 +44,14 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI  GetBaseAttribute();
+		nsIURI GetBaseAttribute();
 		
 		/// <summary>
         /// If the text construct contains (X)HTML, relative references in
         /// the content should be resolved against this base URI.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBaseAttribute([MarshalAs(UnmanagedType.Interface)] nsIURI  aBase);
+		void SetBaseAttribute([MarshalAs(UnmanagedType.Interface)] nsIURI aBase);
 		
 		/// <summary>
         /// The language of the text. For example, "en-US" for US English.
@@ -102,13 +102,15 @@ namespace Skybound.Gecko
         /// and all entities decoded. If the type attribute's value is "text",
         /// this function returns the value of the text attribute unchanged.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsAString PlainText();
 		
 		/// <summary>
         /// Return an nsIDocumentFragment containing the text and markup.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDocumentFragment CreateDocumentFragment([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  element);
+		nsIDOMDocumentFragment CreateDocumentFragment([MarshalAs(UnmanagedType.Interface)] nsIDOMElement element);
 	}
 }

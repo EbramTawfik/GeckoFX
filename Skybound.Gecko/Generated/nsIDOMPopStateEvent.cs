@@ -47,7 +47,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMEventTarget  GetTargetAttribute();
+		new nsIDOMEventTarget GetTargetAttribute();
 		
 		/// <summary>
         /// Used to indicate the EventTarget whose EventListeners are currently
@@ -56,7 +56,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMEventTarget  GetCurrentTargetAttribute();
+		new nsIDOMEventTarget GetCurrentTargetAttribute();
 		
 		/// <summary>
         /// Used to indicate which phase of event flow is currently being
@@ -70,7 +70,7 @@ namespace Skybound.Gecko
         /// event can bubble the value is true, else the value is false.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Boolean  GetBubblesAttribute();
+		new bool GetBubblesAttribute();
 		
 		/// <summary>
         /// Used to indicate whether or not an event can have its default action
@@ -78,7 +78,7 @@ namespace Skybound.Gecko
         /// else the value is false.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Boolean  GetCancelableAttribute();
+		new bool GetCancelableAttribute();
 		
 		/// <summary>
         /// Used to specify the time (in milliseconds relative to the epoch) at
@@ -89,7 +89,7 @@ namespace Skybound.Gecko
         /// 0:0:0 UTC 1st January 1970.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Int64  GetTimeStampAttribute();
+		new long GetTimeStampAttribute();
 		
 		/// <summary>
         /// The stopPropagation method is used prevent further propagation of an
@@ -144,14 +144,14 @@ namespace Skybound.Gecko
         /// action can be prevented.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void InitEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString eventTypeArg, System.Boolean  canBubbleArg, System.Boolean  cancelableArg);
+		new void InitEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString eventTypeArg, bool canBubbleArg, bool cancelableArg);
 		
 		/// <summary>
         /// The state associated with this popstate event
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant  GetStateAttribute();
+		nsIVariant GetStateAttribute();
 		
 		/// <summary>Member InitPopStateEvent </summary>
 		/// <param name='typeArg'> </param>
@@ -159,6 +159,6 @@ namespace Skybound.Gecko
 		/// <param name='cancelableArg'> </param>
 		/// <param name='stateArg'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitPopStateEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString typeArg, System.Boolean  canBubbleArg, System.Boolean  cancelableArg, [MarshalAs(UnmanagedType.Interface)] nsIVariant  stateArg);
+		void InitPopStateEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString typeArg, bool canBubbleArg, bool cancelableArg, [MarshalAs(UnmanagedType.Interface)] nsIVariant stateArg);
 	}
 }

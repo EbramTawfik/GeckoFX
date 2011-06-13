@@ -54,6 +54,7 @@ namespace Skybound.Gecko
         ///
         /// @return The formatted URL.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsAString FormatURL([MarshalAs(UnmanagedType.LPStruct)] nsAString aFormat);
 		
@@ -67,6 +68,7 @@ namespace Skybound.Gecko
         ///
         /// @return The formatted URL returned by formatURL(), or "about:blank".
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsAString FormatURLPref([MarshalAs(UnmanagedType.LPStruct)] nsAString aPref);
 	}

@@ -46,7 +46,7 @@ namespace Skybound.Gecko
         /// nsresult code with NS_ERROR_GET_MODULE.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RegisterErrorStringBundle(short errorModule, [MarshalAs(UnmanagedType.LPStr)] System.String  stringBundleURL);
+		void RegisterErrorStringBundle(short errorModule, [MarshalAs(UnmanagedType.LPStr)] string stringBundleURL);
 		
 		/// <summary>
         /// Registers a string bundle URL for an error module.
@@ -57,6 +57,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Retrieves a string bundle URL for an error module.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string GetErrorStringBundle(short errorModule);
 		
@@ -66,20 +67,21 @@ namespace Skybound.Gecko
         /// string bundle key is used to look up internationalized messages in the string bundle.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RegisterErrorStringBundleKey(System.Int32  error, [MarshalAs(UnmanagedType.LPStr)] System.String  stringBundleKey);
+		void RegisterErrorStringBundleKey(int error, [MarshalAs(UnmanagedType.LPStr)] string stringBundleKey);
 		
 		/// <summary>
         /// Unregisters a key in a string bundle for an nsresult error code.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UnregisterErrorStringBundleKey(System.Int32  error);
+		void UnregisterErrorStringBundleKey(int error);
 		
 		/// <summary>
         /// Retrieves a key in a string bundle for an nsresult error code. If no key is registered
         /// for the specified nsresult's code (obtained with NS_ERROR_GET_CODE), then the stringified
         /// version of the nsresult code is returned.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string GetErrorStringBundleKey(System.Int32  error);
+		string GetErrorStringBundleKey(int error);
 	}
 }

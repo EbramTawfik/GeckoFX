@@ -39,95 +39,102 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMNode  GetRootAttribute();
+		new nsIDOMNode GetRootAttribute();
 		
 		/// <summary>Member GetWhatToShowAttribute </summary>
-		/// <returns>A System.UInt32 </returns>
+		/// <returns>A System.UInt32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.UInt32  GetWhatToShowAttribute();
+		new uint GetWhatToShowAttribute();
 		
 		/// <summary>Member GetFilterAttribute </summary>
-		/// <returns>A nsIDOMNodeFilter </returns>
+		/// <returns>A nsIDOMNodeFilter</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMNodeFilter  GetFilterAttribute();
+		new nsIDOMNodeFilter GetFilterAttribute();
 		
 		/// <summary>Member GetExpandEntityReferencesAttribute </summary>
-		/// <returns>A System.Boolean </returns>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Boolean  GetExpandEntityReferencesAttribute();
+		new bool GetExpandEntityReferencesAttribute();
 		
 		/// <summary>Member GetCurrentNodeAttribute </summary>
-		/// <returns>A nsIDOMNode </returns>
+		/// <returns>A nsIDOMNode</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMNode  GetCurrentNodeAttribute();
+		new nsIDOMNode GetCurrentNodeAttribute();
 		
 		/// <summary>Member SetCurrentNodeAttribute </summary>
 		/// <param name='aCurrentNode'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetCurrentNodeAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  aCurrentNode);
+		new void SetCurrentNodeAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aCurrentNode);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMNode ParentNode();
 		
 		/// <summary>Member FirstChild </summary>
 		/// <returns>A nsIDOMNode</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMNode FirstChild();
 		
 		/// <summary>Member LastChild </summary>
 		/// <returns>A nsIDOMNode</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMNode LastChild();
 		
 		/// <summary>Member PreviousSibling </summary>
 		/// <returns>A nsIDOMNode</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMNode PreviousSibling();
 		
 		/// <summary>Member NextSibling </summary>
 		/// <returns>A nsIDOMNode</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMNode NextSibling();
 		
 		/// <summary>Member PreviousNode </summary>
 		/// <returns>A nsIDOMNode</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMNode PreviousNode();
 		
 		/// <summary>Member NextNode </summary>
 		/// <returns>A nsIDOMNode</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMNode NextNode();
 		
 		/// <summary>Member GetShowAnonymousContentAttribute </summary>
-		/// <returns>A System.Boolean </returns>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetShowAnonymousContentAttribute();
+		bool GetShowAnonymousContentAttribute();
 		
 		/// <summary>Member SetShowAnonymousContentAttribute </summary>
 		/// <param name='aShowAnonymousContent'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetShowAnonymousContentAttribute(System.Boolean  aShowAnonymousContent);
+		void SetShowAnonymousContentAttribute(bool aShowAnonymousContent);
 		
 		/// <summary>Member GetShowSubDocumentsAttribute </summary>
-		/// <returns>A System.Boolean </returns>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetShowSubDocumentsAttribute();
+		bool GetShowSubDocumentsAttribute();
 		
 		/// <summary>Member SetShowSubDocumentsAttribute </summary>
 		/// <param name='aShowSubDocuments'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetShowSubDocumentsAttribute(System.Boolean  aShowSubDocuments);
+		void SetShowSubDocumentsAttribute(bool aShowSubDocuments);
 		
 		/// <summary>Member Init </summary>
 		/// <param name='aRoot'> </param>
 		/// <param name='aWhatToShow'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  aRoot, System.UInt32  aWhatToShow);
+		void Init([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aRoot, uint aWhatToShow);
 	}
 }

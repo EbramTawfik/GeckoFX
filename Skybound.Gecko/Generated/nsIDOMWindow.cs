@@ -47,7 +47,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDocument  GetDocumentAttribute();
+		nsIDOMDocument GetDocumentAttribute();
 		
 		/// <summary>
         /// Accessor for this window's parent window, or the window itself if
@@ -56,7 +56,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMWindow  GetParentAttribute();
+		nsIDOMWindow GetParentAttribute();
 		
 		/// <summary>
         /// Accessor for the root of this hierarchy of windows. This root may
@@ -67,7 +67,7 @@ namespace Skybound.Gecko
         /// This property is "replaceable" in JavaScript </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMWindow  GetTopAttribute();
+		nsIDOMWindow GetTopAttribute();
 		
 		/// <summary>
         /// Accessor for the object that controls whether or not scrollbars
@@ -77,14 +77,14 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMBarProp  GetScrollbarsAttribute();
+		nsIDOMBarProp GetScrollbarsAttribute();
 		
 		/// <summary>
         /// Accessor for the child windows in this window.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMWindowCollection  GetFramesAttribute();
+		nsIDOMWindowCollection GetFramesAttribute();
 		
 		/// <summary>
         /// Set/Get the name of this window.
@@ -131,7 +131,7 @@ namespace Skybound.Gecko
         /// This attribute is "replaceable" in JavaScript
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetScrollXAttribute();
+		int GetScrollXAttribute();
 		
 		/// <summary>
         /// Accessor for the current y scroll position in this window in
@@ -140,24 +140,25 @@ namespace Skybound.Gecko
         /// This attribute is "replaceable" in JavaScript
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetScrollYAttribute();
+		int GetScrollYAttribute();
 		
 		/// <summary>
         /// Method for scrolling this window to an absolute pixel offset.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ScrollTo(System.Int32  xScroll, System.Int32  yScroll);
+		void ScrollTo(int xScroll, int yScroll);
 		
 		/// <summary>
         /// Method for scrolling this window to a pixel offset relative to
         /// the current scroll position.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ScrollBy(System.Int32  xScrollDif, System.Int32  yScrollDif);
+		void ScrollBy(int xScrollDif, int yScrollDif);
 		
 		/// <summary>
         /// Method for accessing this window's selection object.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISelection GetSelection();
 		
@@ -165,13 +166,13 @@ namespace Skybound.Gecko
         /// Method for scrolling this window by a number of lines.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ScrollByLines(System.Int32  numLines);
+		void ScrollByLines(int numLines);
 		
 		/// <summary>
         /// Method for scrolling this window by a number of pages.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ScrollByPages(System.Int32  numPages);
+		void ScrollByPages(int numPages);
 		
 		/// <summary>
         /// Method for sizing this window to the content in the window.

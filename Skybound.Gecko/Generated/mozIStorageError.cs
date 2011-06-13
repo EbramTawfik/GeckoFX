@@ -38,12 +38,12 @@ namespace Skybound.Gecko
         /// Indicates what type of error occurred.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetResultAttribute();
+		int GetResultAttribute();
 		
 		/// <summary>
         /// An error string the gives more details, if available.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMessageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aMessage);
+		void GetMessageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aMessage);
 	}
 }

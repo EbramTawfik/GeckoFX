@@ -44,21 +44,21 @@ namespace Skybound.Gecko
         /// @status DEPRECATED  Replaced by the NS_Log* functions.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void LogAddRef(System.IntPtr  aPtr, System.Int32  aNewRefcnt, [MarshalAs(UnmanagedType.LPStr)] System.String  aTypeName, System.UInt32  aInstanceSize);
+		void LogAddRef(System.IntPtr aPtr, int aNewRefcnt, [MarshalAs(UnmanagedType.LPStr)] string aTypeName, uint aInstanceSize);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void LogRelease(System.IntPtr  aPtr, System.Int32  aNewRefcnt, [MarshalAs(UnmanagedType.LPStr)] System.String  aTypeName);
+		void LogRelease(System.IntPtr aPtr, int aNewRefcnt, [MarshalAs(UnmanagedType.LPStr)] string aTypeName);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void LogCtor(System.IntPtr  aPtr, [MarshalAs(UnmanagedType.LPStr)] System.String  aTypeName, System.UInt32  aInstanceSize);
+		void LogCtor(System.IntPtr aPtr, [MarshalAs(UnmanagedType.LPStr)] string aTypeName, uint aInstanceSize);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void LogDtor(System.IntPtr  aPtr, [MarshalAs(UnmanagedType.LPStr)] System.String  aTypeName, System.UInt32  aInstanceSize);
+		void LogDtor(System.IntPtr aPtr, [MarshalAs(UnmanagedType.LPStr)] string aTypeName, uint aInstanceSize);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void LogAddCOMPtr(System.IntPtr  aPtr, [MarshalAs(UnmanagedType.Interface)] nsISupports  aObject);
+		void LogAddCOMPtr(System.IntPtr aPtr, [MarshalAs(UnmanagedType.Interface)] nsISupports aObject);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void LogReleaseCOMPtr(System.IntPtr  aPtr, [MarshalAs(UnmanagedType.Interface)] nsISupports  aObject);
+		void LogReleaseCOMPtr(System.IntPtr aPtr, [MarshalAs(UnmanagedType.Interface)] nsISupports aObject);
 	}
 }

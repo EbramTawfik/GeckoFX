@@ -48,7 +48,7 @@ namespace Skybound.Gecko
         /// @note To read more than 2^32 characters, call this method multiple times.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new uint Read([MarshalAs(UnmanagedType.LPWStr, SizeParamIndex=1)] System.String  aBuf, System.UInt32  aCount);
+		new uint Read([MarshalAs(UnmanagedType.LPWStr, SizeParamIndex=1)] string aBuf, uint aCount);
 		
 		/// <summary>
         /// Low-level read method that has access to the stream's underlying buffer.
@@ -72,7 +72,7 @@ namespace Skybound.Gecko
         /// buffer
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new uint ReadSegments(System.IntPtr aWriter, System.IntPtr  aClosure, System.UInt32  aCount);
+		new uint ReadSegments(System.IntPtr aWriter, System.IntPtr aClosure, uint aCount);
 		
 		/// <summary>
         /// Read into a string object.
@@ -80,7 +80,7 @@ namespace Skybound.Gecko
         /// @return The number of characters that were read.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new uint ReadString(System.UInt32  aCount, [MarshalAs(UnmanagedType.LPStruct)] nsAString aString);
+		new uint ReadString(uint aCount, [MarshalAs(UnmanagedType.LPStruct)] nsAString aString);
 		
 		/// <summary>
         /// Close the stream and free associated resources. This also closes the
@@ -105,6 +105,6 @@ namespace Skybound.Gecko
         /// byte sequences are encountered in the stream.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init([MarshalAs(UnmanagedType.Interface)] nsIInputStream  aStream, [MarshalAs(UnmanagedType.LPStr)] System.String  aCharset, System.Int32  aBufferSize, [MarshalAs(UnmanagedType.LPWStr)] System.String  aReplacementChar);
+		void Init([MarshalAs(UnmanagedType.Interface)] nsIInputStream aStream, [MarshalAs(UnmanagedType.LPStr)] string aCharset, int aBufferSize, [MarshalAs(UnmanagedType.LPWStr)] string aReplacementChar);
 	}
 }

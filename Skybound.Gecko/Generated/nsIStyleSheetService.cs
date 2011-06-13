@@ -55,14 +55,14 @@ namespace Skybound.Gecko
         /// already-loaded ones, immediately.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void LoadAndRegisterSheet([MarshalAs(UnmanagedType.Interface)] nsIURI  sheetURI, System.UInt32  type);
+		void LoadAndRegisterSheet([MarshalAs(UnmanagedType.Interface)] nsIURI sheetURI, uint type);
 		
 		/// <summary>
         /// Returns true if a style sheet at |sheetURI| has previously been
         /// added to the list of style sheets specified by |type|.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool SheetRegistered([MarshalAs(UnmanagedType.Interface)] nsIURI  sheetURI, System.UInt32  type);
+		bool SheetRegistered([MarshalAs(UnmanagedType.Interface)] nsIURI sheetURI, uint type);
 		
 		/// <summary>
         /// Remove the style sheet at |sheetURI| from the list of style sheets
@@ -70,6 +70,6 @@ namespace Skybound.Gecko
         /// already-loaded documents.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UnregisterSheet([MarshalAs(UnmanagedType.Interface)] nsIURI  sheetURI, System.UInt32  type);
+		void UnregisterSheet([MarshalAs(UnmanagedType.Interface)] nsIURI sheetURI, uint type);
 	}
 }

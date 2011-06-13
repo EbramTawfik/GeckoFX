@@ -46,6 +46,6 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MigrateAndAddLogin([MarshalAs(UnmanagedType.Interface)] nsILoginInfo  aLogin);
+		void MigrateAndAddLogin([MarshalAs(UnmanagedType.Interface)] nsILoginInfo aLogin);
 	}
 }

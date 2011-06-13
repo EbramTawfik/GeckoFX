@@ -43,6 +43,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Return application accessible.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIAccessible GetApplicationAccessible();
 		
@@ -53,16 +54,18 @@ namespace Skybound.Gecko
         /// @param aNode The DOM node to get an accessible for.
         /// @return The nsIAccessible for the given DOM node.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIAccessible GetAccessibleFor([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  aNode);
+		nsIAccessible GetAccessibleFor([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aNode);
 		
 		/// <summary>
         /// Returns accessible role as a string.
         ///
         /// @param aRole - the accessible role constants.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetStringRole(System.UInt32  aRole);
+		nsAString GetStringRole(uint aRole);
 		
 		/// <summary>
         /// Returns list which contains accessible states as a strings.
@@ -71,7 +74,7 @@ namespace Skybound.Gecko
         /// @param aExtraStates - accessible extra states.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetStringStates(System.UInt32  aStates, System.UInt32  aExtraStates);
+		System.IntPtr GetStringStates(uint aStates, uint aExtraStates);
 		
 		/// <summary>
         /// Get the type of accessible event as a string.
@@ -79,8 +82,9 @@ namespace Skybound.Gecko
         /// @param aEventType - the accessible event type constant
         /// @return - accessible event type presented as human readable string
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetStringEventType(System.UInt32  aEventType);
+		nsAString GetStringEventType(uint aEventType);
 		
 		/// <summary>
         /// Get the type of accessible relation as a string.
@@ -88,8 +92,9 @@ namespace Skybound.Gecko
         /// @param aRelationType - the accessible relation type constant
         /// @return - accessible relation type presented as human readable string
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetStringRelationType(System.UInt32  aRelationType);
+		nsAString GetStringRelationType(uint aRelationType);
 		
 		/// <summary>
         /// Return an accessible for the given DOM node from the cache.
@@ -99,7 +104,8 @@ namespace Skybound.Gecko
         ///
         /// @return       cached accessible for the given DOM node if any
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIAccessible GetAccessibleFromCache([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  aNode);
+		nsIAccessible GetAccessibleFromCache([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aNode);
 	}
 }

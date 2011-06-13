@@ -38,17 +38,17 @@ namespace Skybound.Gecko
         /// Constants returned by startElement and acceptNode
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint StartElement([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  elementArg);
+		uint StartElement([MarshalAs(UnmanagedType.Interface)] nsIDOMElement elementArg);
 		
 		/// <summary>Member AcceptNode </summary>
 		/// <param name='nodeArg'> </param>
 		/// <returns>A System.UInt32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint AcceptNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  nodeArg);
+		uint AcceptNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode nodeArg);
 		
 		/// <summary>Member GetWhatToShowAttribute </summary>
-		/// <returns>A System.UInt32 </returns>
+		/// <returns>A System.UInt32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetWhatToShowAttribute();
+		uint GetWhatToShowAttribute();
 	}
 }

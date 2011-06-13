@@ -144,14 +144,14 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMWindow  GetContentAttribute();
+		nsIDOMWindow GetContentAttribute();
 		
 		/// <summary>
         /// The top level docshell or null.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDocShell  GetDocShellAttribute();
+		nsIDocShell GetDocShellAttribute();
 		
 		/// <summary>
         /// Print a string to stdout.
@@ -201,14 +201,14 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMWindow  GetContentAttribute();
+		new nsIDOMWindow GetContentAttribute();
 		
 		/// <summary>
         /// The top level docshell or null.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDocShell  GetDocShellAttribute();
+		new nsIDocShell GetDocShellAttribute();
 		
 		/// <summary>
         /// Print a string to stdout.
@@ -261,6 +261,6 @@ namespace Skybound.Gecko
         /// only if the frame is already available.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void LoadFrameScript([MarshalAs(UnmanagedType.LPStruct)] nsAString aURL, System.Boolean  aAllowDelayedLoad);
+		void LoadFrameScript([MarshalAs(UnmanagedType.LPStruct)] nsAString aURL, bool aAllowDelayedLoad);
 	}
 }

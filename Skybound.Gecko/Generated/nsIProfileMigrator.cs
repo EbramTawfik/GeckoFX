@@ -47,7 +47,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIFile  GetDirectoryAttribute();
+		nsIFile GetDirectoryAttribute();
 		
 		/// <summary>
         /// Do profile-startup by setting NS_APP_USER_PROFILE_50_DIR in the directory
@@ -100,6 +100,6 @@ namespace Skybound.Gecko
         /// The startup code ignores COM exceptions thrown from this method.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Migrate([MarshalAs(UnmanagedType.Interface)] nsIProfileStartup  aStartup);
+		void Migrate([MarshalAs(UnmanagedType.Interface)] nsIProfileStartup aStartup);
 	}
 }

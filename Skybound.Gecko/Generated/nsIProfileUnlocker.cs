@@ -42,6 +42,6 @@ namespace Skybound.Gecko
         /// @throws NS_ERROR_FAILURE if unlocking failed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Unlock(System.UInt32  aSeverity);
+		void Unlock(uint aSeverity);
 	}
 }

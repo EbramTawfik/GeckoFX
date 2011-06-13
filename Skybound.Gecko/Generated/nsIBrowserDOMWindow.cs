@@ -51,8 +51,9 @@ namespace Skybound.Gecko
         /// is used only when aWhere == OPEN_DEFAULTWINDOW.
         /// @return the window into which the URI was opened.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMWindow OpenURI([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  aOpener, short aWhere, short aContext);
+		nsIDOMWindow OpenURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aOpener, short aWhere, short aContext);
 		
 		/// <summary>
         /// As above, but return the nsIFrameLoaderOwner for the new window.
@@ -60,7 +61,7 @@ namespace Skybound.Gecko
         ///   // See bug 537428
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr OpenURIInFrame([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  aOpener, short aWhere, short aContext);
+		System.IntPtr OpenURIInFrame([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aOpener, short aWhere, short aContext);
 		
 		/// <summary>
         /// @param  aWindow the window to test.
@@ -68,6 +69,6 @@ namespace Skybound.Gecko
         /// currently open tab in this toplevel browser window.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsTabContentWindow([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  aWindow);
+		bool IsTabContentWindow([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow);
 	}
 }

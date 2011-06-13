@@ -40,14 +40,14 @@ namespace Skybound.Gecko
         /// GetBuffer, PutBuffer, and InvalidateCache act as described
         /// in that file. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetBuffer([MarshalAs(UnmanagedType.LPStr)] System.String  aID, out System.IntPtr  aBuffer);
+		uint GetBuffer([MarshalAs(UnmanagedType.LPStr)] string aID, out System.IntPtr aBuffer);
 		
 		/// <summary>Member PutBuffer </summary>
 		/// <param name='aID'> </param>
 		/// <param name='aBuffer'> </param>
 		/// <param name='aLength'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PutBuffer([MarshalAs(UnmanagedType.LPStr)] System.String  aID, System.IntPtr  aBuffer, System.UInt32  aLength);
+		void PutBuffer([MarshalAs(UnmanagedType.LPStr)] string aID, System.IntPtr aBuffer, uint aLength);
 		
 		/// <summary>Member InvalidateCache </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -58,8 +58,9 @@ namespace Skybound.Gecko
         /// detect and prevent the write of a multiply-referenced non-singleton object
         /// during serialization. In non-debug, returns an add-ref'd pointer to
         /// original stream, unwrapped. </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIObjectOutputStream GetDebugObjectOutputStream([MarshalAs(UnmanagedType.Interface)] nsIObjectOutputStream  aStream);
+		nsIObjectOutputStream GetDebugObjectOutputStream([MarshalAs(UnmanagedType.Interface)] nsIObjectOutputStream aStream);
 		
 		/// <summary>
         ///Allows clients to check whether the one-time writeout after startup
@@ -77,6 +78,6 @@ namespace Skybound.Gecko
         ///Allows clients to simulate the behavior of ObserverService. </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIObserver  GetObserverAttribute();
+		nsIObserver GetObserverAttribute();
 	}
 }

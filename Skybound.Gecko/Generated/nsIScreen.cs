@@ -40,7 +40,7 @@ namespace Skybound.Gecko
 		/// <param name='width'> </param>
 		/// <param name='height'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetRect(out System.Int32  left, out System.Int32  top, out System.Int32  width, out System.Int32  height);
+		void GetRect(out int left, out int top, out int width, out int height);
 		
 		/// <summary>Member GetAvailRect </summary>
 		/// <param name='left'> </param>
@@ -48,17 +48,17 @@ namespace Skybound.Gecko
 		/// <param name='width'> </param>
 		/// <param name='height'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetAvailRect(out System.Int32  left, out System.Int32  top, out System.Int32  width, out System.Int32  height);
+		void GetAvailRect(out int left, out int top, out int width, out int height);
 		
 		/// <summary>Member GetPixelDepthAttribute </summary>
-		/// <returns>A System.Int32 </returns>
+		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetPixelDepthAttribute();
+		int GetPixelDepthAttribute();
 		
 		/// <summary>Member GetColorDepthAttribute </summary>
-		/// <returns>A System.Int32 </returns>
+		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetColorDepthAttribute();
+		int GetColorDepthAttribute();
 	}
 	
 	/// <summary>nsIScreen_MOZILLA_2_0_BRANCH </summary>
@@ -77,7 +77,7 @@ namespace Skybound.Gecko
         /// @param brightness A brightness level, one of the above constants.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void LockMinimumBrightness(System.UInt32  brightness);
+		void LockMinimumBrightness(uint brightness);
 		
 		/// <summary>
         /// Releases a lock on the screen brightness. This must be called
@@ -86,6 +86,6 @@ namespace Skybound.Gecko
         /// @param brightness A brightness level, one of the above constants.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UnlockMinimumBrightness(System.UInt32  brightness);
+		void UnlockMinimumBrightness(uint brightness);
 	}
 }

@@ -88,7 +88,7 @@ namespace Skybound.Gecko
         /// @returns The STATE constant.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetPluginBlocklistState([MarshalAs(UnmanagedType.Interface)] nsIPluginTag  plugin, [MarshalAs(UnmanagedType.LPStruct)] nsAString appVersion, [MarshalAs(UnmanagedType.LPStruct)] nsAString toolkitVersion);
+		uint GetPluginBlocklistState([MarshalAs(UnmanagedType.Interface)] nsIPluginTag plugin, [MarshalAs(UnmanagedType.LPStruct)] nsAString appVersion, [MarshalAs(UnmanagedType.LPStruct)] nsAString toolkitVersion);
 	}
 	
 	/// <summary>
@@ -120,6 +120,6 @@ namespace Skybound.Gecko
         /// The number of addons
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Prompt(nsIVariant  aAddons, System.UInt32  aCount);
+		void Prompt(nsIVariant aAddons, uint aCount);
 	}
 }

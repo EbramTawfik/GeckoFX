@@ -40,7 +40,7 @@ namespace Skybound.Gecko
         /// The nsIPrintPreviewNavigation
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetPageCountAttribute();
+		int GetPageCountAttribute();
 		
 		/// <summary>
         /// Preview the next Page
@@ -65,7 +65,7 @@ namespace Skybound.Gecko
         /// Return - PR_TRUE if success
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GoToPage(System.UInt32  aPageNumber);
+		bool GoToPage(uint aPageNumber);
 		
 		/// <summary>
         /// Skip pages
@@ -74,6 +74,6 @@ namespace Skybound.Gecko
         /// Return - true if success
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool SkipPages(System.Int32  aNumPages);
+		bool SkipPages(int aNumPages);
 	}
 }

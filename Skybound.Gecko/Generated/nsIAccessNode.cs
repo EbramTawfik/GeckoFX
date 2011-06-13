@@ -50,21 +50,21 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMNode  GetDOMNodeAttribute();
+		nsIDOMNode GetDOMNodeAttribute();
 		
 		/// <summary>
         /// The document accessible that this access node resides in.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIAccessibleDocument  GetDocumentAttribute();
+		nsIAccessibleDocument GetDocumentAttribute();
 		
 		/// <summary>
         /// The root document accessible that this access node resides in.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIAccessibleDocument  GetRootDocumentAttribute();
+		nsIAccessibleDocument GetRootDocumentAttribute();
 		
 		/// <summary>
         /// The innerHTML for the DOM node
@@ -82,7 +82,7 @@ namespace Skybound.Gecko
         /// available constants).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ScrollTo(System.UInt32  aScrollType);
+		void ScrollTo(uint aScrollType);
 		
 		/// <summary>
         /// Moves the top left of an object to a specified location.
@@ -94,21 +94,21 @@ namespace Skybound.Gecko
         /// @param aY - defines the y coordinate
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ScrollToPoint(System.UInt32  aCoordinateType, System.Int32  aX, System.Int32  aY);
+		void ScrollToPoint(uint aCoordinateType, int aX, int aY);
 		
 		/// <summary>
         /// The OS window handle for the window this node
         /// is being displayed in.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr  GetOwnerWindowAttribute();
+		System.IntPtr GetOwnerWindowAttribute();
 		
 		/// <summary>
         /// A unique ID calculated for this DOM node, for the
         /// purposes of caching and referencing this object.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr  GetUniqueIDAttribute();
+		System.IntPtr GetUniqueIDAttribute();
 		
 		/// <summary>
         /// Retrieve the computed style value for this DOM node, if it is a DOM element.
@@ -120,6 +120,7 @@ namespace Skybound.Gecko
         /// @param propertyName Retrieve the computed style value for this property name,
         /// for example "border-bottom".
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsAString GetComputedStyleValue([MarshalAs(UnmanagedType.LPStruct)] nsAString pseudoElt, [MarshalAs(UnmanagedType.LPStruct)] nsAString propertyName);
 		
@@ -127,6 +128,7 @@ namespace Skybound.Gecko
         /// The method is similar to getComputedStyleValue() excepting that this one
         /// returns nsIDOMCSSPrimitiveValue.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMCSSPrimitiveValue GetComputedStyleCSSValue([MarshalAs(UnmanagedType.LPStruct)] nsAString pseudoElt, [MarshalAs(UnmanagedType.LPStruct)] nsAString propertyName);
 		

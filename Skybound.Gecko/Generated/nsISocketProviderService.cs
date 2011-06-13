@@ -45,7 +45,8 @@ namespace Skybound.Gecko
         /// Provides a mapping between a socket type and its associated socket provider
         /// instance.  One could also use the service manager directly.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISocketProvider GetSocketProvider([MarshalAs(UnmanagedType.LPStr)] System.String  socketType);
+		nsISocketProvider GetSocketProvider([MarshalAs(UnmanagedType.LPStr)] string socketType);
 	}
 }

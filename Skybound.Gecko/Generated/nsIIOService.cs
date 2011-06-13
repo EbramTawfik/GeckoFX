@@ -48,8 +48,9 @@ namespace Skybound.Gecko
         /// @param aScheme the URI scheme
         /// @return reference to corresponding nsIProtocolHandler
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIProtocolHandler GetProtocolHandler([MarshalAs(UnmanagedType.LPStr)] System.String  aScheme);
+		nsIProtocolHandler GetProtocolHandler([MarshalAs(UnmanagedType.LPStr)] string aScheme);
 		
 		/// <summary>
         /// Returns the protocol flags for a given scheme.
@@ -58,7 +59,7 @@ namespace Skybound.Gecko
         /// @return value of corresponding nsIProtocolHandler::protocolFlags
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetProtocolFlags([MarshalAs(UnmanagedType.LPStr)] System.String  aScheme);
+		uint GetProtocolFlags([MarshalAs(UnmanagedType.LPStr)] string aScheme);
 		
 		/// <summary>
         /// This method constructs a new URI by determining the scheme of the
@@ -68,8 +69,9 @@ namespace Skybound.Gecko
         ///
         /// @see nsIProtocolHandler::newURI
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI NewURI([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aSpec, [MarshalAs(UnmanagedType.LPStr)] System.String  aOriginCharset, [MarshalAs(UnmanagedType.Interface)] nsIURI  aBaseURI);
+		nsIURI NewURI([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aSpec, [MarshalAs(UnmanagedType.LPStr)] string aOriginCharset, [MarshalAs(UnmanagedType.Interface)] nsIURI aBaseURI);
 		
 		/// <summary>
         /// This method constructs a new URI from a nsIFile.
@@ -81,8 +83,9 @@ namespace Skybound.Gecko
         /// callers to specify whether this is a file or directory by
         /// splitting this  into newDirURI() and newActualFileURI().
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI NewFileURI([MarshalAs(UnmanagedType.Interface)] nsIFile  aFile);
+		nsIURI NewFileURI([MarshalAs(UnmanagedType.Interface)] nsIFile aFile);
 		
 		/// <summary>
         /// Creates a channel for a given URI.
@@ -90,14 +93,16 @@ namespace Skybound.Gecko
         /// @param aURI nsIURI from which to make a channel
         /// @return reference to the new nsIChannel object
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIChannel NewChannelFromURI([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI);
+		nsIChannel NewChannelFromURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 		
 		/// <summary>
         /// Equivalent to newChannelFromURI(newURI(...))
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIChannel NewChannel([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aSpec, [MarshalAs(UnmanagedType.LPStr)] System.String  aOriginCharset, [MarshalAs(UnmanagedType.Interface)] nsIURI  aBaseURI);
+		nsIChannel NewChannel([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aSpec, [MarshalAs(UnmanagedType.LPStr)] string aOriginCharset, [MarshalAs(UnmanagedType.Interface)] nsIURI aBaseURI);
 		
 		/// <summary>
         /// Returns true if networking is in "offline" mode. When in offline mode,
@@ -109,7 +114,7 @@ namespace Skybound.Gecko
         /// Changing this fires observer notifications ... see below.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetOfflineAttribute();
+		bool GetOfflineAttribute();
 		
 		/// <summary>
         /// Returns true if networking is in "offline" mode. When in offline mode,
@@ -121,7 +126,7 @@ namespace Skybound.Gecko
         /// Changing this fires observer notifications ... see below.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOfflineAttribute(System.Boolean  aOffline);
+		void SetOfflineAttribute(bool aOffline);
 		
 		/// <summary>
         /// Checks if a port number is banned. This involves consulting a list of
@@ -135,7 +140,7 @@ namespace Skybound.Gecko
         /// @see nsIProtocolHandler::allowPort
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool AllowPort(System.Int32  aPort, [MarshalAs(UnmanagedType.LPStr)] System.String  aScheme);
+		bool AllowPort(int aPort, [MarshalAs(UnmanagedType.LPStr)] string aScheme);
 		
 		/// <summary>
         /// Utility to extract the scheme from a URL string, consistently and
@@ -150,7 +155,8 @@ namespace Skybound.Gecko
         ///
         /// @throws NS_ERROR_MALFORMED_URI if URL string is not of the right form.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString ExtractScheme([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  urlString);
+		nsAString ExtractScheme([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String urlString);
 	}
 }

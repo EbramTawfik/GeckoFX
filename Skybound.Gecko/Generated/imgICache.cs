@@ -47,7 +47,7 @@ namespace Skybound.Gecko
         /// If FALSE, evict everything except chrome images.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ClearCache(System.Boolean  chrome);
+		void ClearCache(bool chrome);
 		
 		/// <summary>
         /// Evict images from the cache.
@@ -57,7 +57,7 @@ namespace Skybound.Gecko
         /// NS_ERROR_NOT_AVAILABLE if \a uri was unable to be removed from the cache.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveEntry([MarshalAs(UnmanagedType.Interface)] nsIURI  uri);
+		void RemoveEntry([MarshalAs(UnmanagedType.Interface)] nsIURI uri);
 		
 		/// <summary>
         /// Find Properties
@@ -70,7 +70,8 @@ namespace Skybound.Gecko
         /// @param uri The URI to look up.
         /// @returns NULL if the URL was not found in the cache
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIProperties FindEntryProperties([MarshalAs(UnmanagedType.Interface)] nsIURI  uri);
+		nsIProperties FindEntryProperties([MarshalAs(UnmanagedType.Interface)] nsIURI uri);
 	}
 }

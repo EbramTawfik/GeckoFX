@@ -47,7 +47,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMEventTarget  GetTargetAttribute();
+		new nsIDOMEventTarget GetTargetAttribute();
 		
 		/// <summary>
         /// Used to indicate the EventTarget whose EventListeners are currently
@@ -56,7 +56,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMEventTarget  GetCurrentTargetAttribute();
+		new nsIDOMEventTarget GetCurrentTargetAttribute();
 		
 		/// <summary>
         /// Used to indicate which phase of event flow is currently being
@@ -70,7 +70,7 @@ namespace Skybound.Gecko
         /// event can bubble the value is true, else the value is false.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Boolean  GetBubblesAttribute();
+		new bool GetBubblesAttribute();
 		
 		/// <summary>
         /// Used to indicate whether or not an event can have its default action
@@ -78,7 +78,7 @@ namespace Skybound.Gecko
         /// else the value is false.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Boolean  GetCancelableAttribute();
+		new bool GetCancelableAttribute();
 		
 		/// <summary>
         /// Used to specify the time (in milliseconds relative to the epoch) at
@@ -89,7 +89,7 @@ namespace Skybound.Gecko
         /// 0:0:0 UTC 1st January 1970.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Int64  GetTimeStampAttribute();
+		new long GetTimeStampAttribute();
 		
 		/// <summary>
         /// The stopPropagation method is used prevent further propagation of an
@@ -144,7 +144,7 @@ namespace Skybound.Gecko
         /// action can be prevented.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void InitEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString eventTypeArg, System.Boolean  canBubbleArg, System.Boolean  cancelableArg);
+		new void InitEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString eventTypeArg, bool canBubbleArg, bool cancelableArg);
 		
 		/// <summary>
         /// The nsIDOMUIEvent interface is the datatype for all UI events in the
@@ -155,12 +155,12 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMAbstractView  GetViewAttribute();
+		new nsIDOMAbstractView GetViewAttribute();
 		
 		/// <summary>Member GetDetailAttribute </summary>
-		/// <returns>A System.Int32 </returns>
+		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Int32  GetDetailAttribute();
+		new int GetDetailAttribute();
 		
 		/// <summary>Member InitUIEvent </summary>
 		/// <param name='typeArg'> </param>
@@ -169,38 +169,38 @@ namespace Skybound.Gecko
 		/// <param name='viewArg'> </param>
 		/// <param name='detailArg'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void InitUIEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString typeArg, System.Boolean  canBubbleArg, System.Boolean  cancelableArg, [MarshalAs(UnmanagedType.Interface)] nsIDOMAbstractView  viewArg, System.Int32  detailArg);
+		new void InitUIEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString typeArg, bool canBubbleArg, bool cancelableArg, [MarshalAs(UnmanagedType.Interface)] nsIDOMAbstractView viewArg, int detailArg);
 		
 		/// <summary>
         /// DOM_VK_A - DOM_VK_Z match their ascii values
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetCharCodeAttribute();
+		uint GetCharCodeAttribute();
 		
 		/// <summary>Member GetKeyCodeAttribute </summary>
-		/// <returns>A System.UInt32 </returns>
+		/// <returns>A System.UInt32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetKeyCodeAttribute();
+		uint GetKeyCodeAttribute();
 		
 		/// <summary>Member GetAltKeyAttribute </summary>
-		/// <returns>A System.Boolean </returns>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetAltKeyAttribute();
+		bool GetAltKeyAttribute();
 		
 		/// <summary>Member GetCtrlKeyAttribute </summary>
-		/// <returns>A System.Boolean </returns>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetCtrlKeyAttribute();
+		bool GetCtrlKeyAttribute();
 		
 		/// <summary>Member GetShiftKeyAttribute </summary>
-		/// <returns>A System.Boolean </returns>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetShiftKeyAttribute();
+		bool GetShiftKeyAttribute();
 		
 		/// <summary>Member GetMetaKeyAttribute </summary>
-		/// <returns>A System.Boolean </returns>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetMetaKeyAttribute();
+		bool GetMetaKeyAttribute();
 		
 		/// <summary>Member InitKeyEvent </summary>
 		/// <param name='typeArg'> </param>
@@ -214,6 +214,6 @@ namespace Skybound.Gecko
 		/// <param name='keyCodeArg'> </param>
 		/// <param name='charCodeArg'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitKeyEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString typeArg, System.Boolean  canBubbleArg, System.Boolean  cancelableArg, [MarshalAs(UnmanagedType.Interface)] nsIDOMAbstractView  viewArg, System.Boolean  ctrlKeyArg, System.Boolean  altKeyArg, System.Boolean  shiftKeyArg, System.Boolean  metaKeyArg, System.UInt32  keyCodeArg, System.UInt32  charCodeArg);
+		void InitKeyEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString typeArg, bool canBubbleArg, bool cancelableArg, [MarshalAs(UnmanagedType.Interface)] nsIDOMAbstractView viewArg, bool ctrlKeyArg, bool altKeyArg, bool shiftKeyArg, bool metaKeyArg, uint keyCodeArg, uint charCodeArg);
 	}
 }

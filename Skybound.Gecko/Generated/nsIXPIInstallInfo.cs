@@ -54,7 +54,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMWindowInternal  GetOriginatingWindowAttribute();
+		nsIDOMWindowInternal GetOriginatingWindowAttribute();
 		
 		/// <summary>
         /// The original URI calling the install. This is the URI that would have been
@@ -62,12 +62,12 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI  GetOriginatingURIAttribute();
+		nsIURI GetOriginatingURIAttribute();
 		
 		/// <summary>
         /// The chome type of the install.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetChromeTypeAttribute();
+		uint GetChromeTypeAttribute();
 	}
 }

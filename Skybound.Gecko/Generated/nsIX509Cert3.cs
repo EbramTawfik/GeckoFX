@@ -57,7 +57,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler", SizeParamIndex=0)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new string GetEmailAddresses(out System.UInt32  length);
+		new string GetEmailAddresses(out uint length);
 		
 		/// <summary>
         /// Check whether a given address is contained in the certificate.
@@ -151,28 +151,28 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIX509Cert  GetIssuerAttribute();
+		new nsIX509Cert GetIssuerAttribute();
 		
 		/// <summary>
         /// This certificate's validity period.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIX509CertValidity  GetValidityAttribute();
+		new nsIX509CertValidity GetValidityAttribute();
 		
 		/// <summary>
         /// A unique identifier of this certificate within the local storage.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.String  GetDbKeyAttribute();
+		new string GetDbKeyAttribute();
 		
 		/// <summary>
         /// A human readable identifier to label this certificate.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.String  GetWindowTitleAttribute();
+		new string GetWindowTitleAttribute();
 		
 		/// <summary>
         /// Obtain a list of certificates that contains this certificate
@@ -181,6 +181,7 @@ namespace Skybound.Gecko
         ///
         /// @return The chain of certifficates including the issuers.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIArray GetChain();
 		
@@ -194,7 +195,7 @@ namespace Skybound.Gecko
         /// @param usages The array of human readable usages.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetUsagesArray(System.Boolean  ignoreOcsp, out System.UInt32  verified, out System.UInt32  count, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler", SizeParamIndex=2)] out string usages);
+		new void GetUsagesArray(bool ignoreOcsp, out uint verified, out uint count, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler", SizeParamIndex=2)] out string usages);
 		
 		/// <summary>
         /// Obtain a single comma separated human readable string describing
@@ -205,7 +206,7 @@ namespace Skybound.Gecko
         /// @param purposes The string listing the usages.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetUsagesString(System.Boolean  ignoreOcsp, out System.UInt32  verified, [MarshalAs(UnmanagedType.LPStruct)] nsAString usages);
+		new void GetUsagesString(bool ignoreOcsp, out uint verified, [MarshalAs(UnmanagedType.LPStruct)] nsAString usages);
 		
 		/// <summary>
         /// Verify the certificate for a particular usage.
@@ -213,7 +214,7 @@ namespace Skybound.Gecko
         /// @return The certificate verification result, see constants.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new uint VerifyForUsage(System.UInt32  usage);
+		new uint VerifyForUsage(uint usage);
 		
 		/// <summary>
         /// This is the attribute which describes the ASN1 layout
@@ -222,7 +223,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIASN1Object  GetASN1StructureAttribute();
+		new nsIASN1Object GetASN1StructureAttribute();
 		
 		/// <summary>
         /// Obtain a raw binary encoding of this certificate
@@ -232,7 +233,7 @@ namespace Skybound.Gecko
         /// @param data The bytes representing the DER encoded certificate.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.IntPtr  GetRawDER(out System.UInt32  length);
+		new System.IntPtr GetRawDER(out uint length);
 		
 		/// <summary>
         /// Test whether two certificate instances represent the
@@ -241,13 +242,13 @@ namespace Skybound.Gecko
         /// @return Whether the certificates are equal
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool Equals([MarshalAs(UnmanagedType.Interface)] nsIX509Cert  other);
+		new bool Equals([MarshalAs(UnmanagedType.Interface)] nsIX509Cert other);
 		
 		/// <summary>
         /// Additional constants to classify the type of a certificate.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.UInt32  GetCertTypeAttribute();
+		new uint GetCertTypeAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void MarkForPermDeletion();
@@ -262,7 +263,7 @@ namespace Skybound.Gecko
         /// availability of results will be notified.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RequestUsagesArrayAsync([MarshalAs(UnmanagedType.Interface)] nsICertVerificationListener  cvl);
+		void RequestUsagesArrayAsync([MarshalAs(UnmanagedType.Interface)] nsICertVerificationListener cvl);
 		
 		/// <summary>
         /// Obtain the certificate wrapped in a PKCS#7 SignedData structure,
@@ -274,10 +275,10 @@ namespace Skybound.Gecko
         /// @param data The bytes representing the PKCS#7 wrapped certificate.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr  ExportAsCMS(System.UInt32  chainMode, out System.UInt32  length);
+		System.IntPtr ExportAsCMS(uint chainMode, out uint length);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsSelfSignedAttribute();
+		bool GetIsSelfSignedAttribute();
 		
 		/// <summary>
         /// Human readable names identifying all hardware or
@@ -290,7 +291,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler", SizeParamIndex=0)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string GetAllTokenNames(out System.UInt32  length);
+		string GetAllTokenNames(out uint length);
 	}
 	
 	/// <summary>nsICertVerificationResult </summary>
@@ -322,7 +323,7 @@ namespace Skybound.Gecko
         /// @param usages The array of human readable usages.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetUsagesArrayResult(out System.UInt32  verified, out System.UInt32  count, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler", SizeParamIndex=1)] out string usages);
+		void GetUsagesArrayResult(out uint verified, out uint count, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler", SizeParamIndex=1)] out string usages);
 	}
 	
 	/// <summary>nsICertVerificationListener </summary>
@@ -337,6 +338,6 @@ namespace Skybound.Gecko
         /// using nsIX509Cert3::requestUsagesArrayAsync()
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Notify([MarshalAs(UnmanagedType.Interface)] nsIX509Cert3  verifiedCert, [MarshalAs(UnmanagedType.Interface)] nsICertVerificationResult  result);
+		void Notify([MarshalAs(UnmanagedType.Interface)] nsIX509Cert3 verifiedCert, [MarshalAs(UnmanagedType.Interface)] nsICertVerificationResult result);
 	}
 }

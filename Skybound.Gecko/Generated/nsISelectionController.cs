@@ -52,6 +52,7 @@ namespace Skybound.Gecko
         /// @param aType will hold the type of selection //SelectionType
         /// @param _return will hold the return value
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISelection GetSelection(short type);
 		
@@ -90,7 +91,7 @@ namespace Skybound.Gecko
         /// @return always NS_OK
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCaretEnabled(System.Boolean  enabled);
+		void SetCaretEnabled(bool enabled);
 		
 		/// <summary>
         /// Set the caret readonly or not. An readonly caret will
@@ -99,7 +100,7 @@ namespace Skybound.Gecko
         /// @return always NS_OK
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCaretReadOnly(System.Boolean  readOnly);
+		void SetCaretReadOnly(bool readOnly);
 		
 		/// <summary>
         /// Gets the current state of the caret.
@@ -116,7 +117,7 @@ namespace Skybound.Gecko
         /// blink cycle.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetCaretVisibleAttribute();
+		bool GetCaretVisibleAttribute();
 		
 		/// <summary>
         /// Show the caret even in selections. By default the caret is hidden unless the
@@ -125,7 +126,7 @@ namespace Skybound.Gecko
         /// @return always NS_OK
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCaretVisibilityDuringSelection(System.Boolean  visibility);
+		void SetCaretVisibilityDuringSelection(bool visibility);
 		
 		/// <summary>
         ///CharacterMove will move the selection one character forward/backward in the document.
@@ -136,7 +137,7 @@ namespace Skybound.Gecko
         /// @param aExtend  should it collapse the selection of extend it?
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CharacterMove(System.Boolean  forward, System.Boolean  extend);
+		void CharacterMove(bool forward, bool extend);
 		
 		/// <summary>
         /// CharacterExtendForDelete will extend the selection one character cell
@@ -164,7 +165,7 @@ namespace Skybound.Gecko
         /// @param aExtend  should it collapse the selection of extend it?
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void WordMove(System.Boolean  forward, System.Boolean  extend);
+		void WordMove(bool forward, bool extend);
 		
 		/// <summary>
         ///wordExtendForDelete will extend the selection one word forward/backward in the document.
@@ -172,7 +173,7 @@ namespace Skybound.Gecko
         /// @param aForward forward or backward if PR_FALSE
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void WordExtendForDelete(System.Boolean  forward);
+		void WordExtendForDelete(bool forward);
 		
 		/// <summary>
         ///LineMove will move the selection one line forward/backward in the document.
@@ -183,7 +184,7 @@ namespace Skybound.Gecko
         /// @param aExtend  should it collapse the selection of extend it?
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void LineMove(System.Boolean  forward, System.Boolean  extend);
+		void LineMove(bool forward, bool extend);
 		
 		/// <summary>
         ///IntraLineMove will move the selection to the front of the line or end of the line
@@ -195,7 +196,7 @@ namespace Skybound.Gecko
         /// @param aExtend  should it collapse the selection of extend it?
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void IntraLineMove(System.Boolean  forward, System.Boolean  extend);
+		void IntraLineMove(bool forward, bool extend);
 		
 		/// <summary>
         ///PageMove will move the selection one page forward/backward in the document.
@@ -206,14 +207,14 @@ namespace Skybound.Gecko
         /// @param aExtend  should it collapse the selection of extend it?
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PageMove(System.Boolean  forward, System.Boolean  extend);
+		void PageMove(bool forward, bool extend);
 		
 		/// <summary>
         ///CompleteScroll will move page view to the top or bottom of the document
         /// @param aForward forward or backward if PR_FALSE
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CompleteScroll(System.Boolean  forward);
+		void CompleteScroll(bool forward);
 		
 		/// <summary>
         ///CompleteMove will move page view to the top or bottom of the document
@@ -224,28 +225,28 @@ namespace Skybound.Gecko
         /// @param aExtend  should it collapse the selection of extend it?
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CompleteMove(System.Boolean  forward, System.Boolean  extend);
+		void CompleteMove(bool forward, bool extend);
 		
 		/// <summary>
         ///ScrollPage will scroll the page without affecting the selection.
         /// @param aForward scroll forward or backwards in selection
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ScrollPage(System.Boolean  forward);
+		void ScrollPage(bool forward);
 		
 		/// <summary>
         ///ScrolLine will scroll line up or down dependent on the boolean
         /// @param aForward scroll forward or backwards in selection
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ScrollLine(System.Boolean  forward);
+		void ScrollLine(bool forward);
 		
 		/// <summary>
         ///ScrolHorizontal will scroll left or right dependent on the boolean
         /// @param aLeft if true will scroll left. if not will scroll right.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ScrollHorizontal(System.Boolean  left);
+		void ScrollHorizontal(bool left);
 		
 		/// <summary>
         ///SelectAll will select the whole page
@@ -262,6 +263,6 @@ namespace Skybound.Gecko
         /// @param aReturnBool   boolean returned TRUE if visible FALSE if not
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool CheckVisibility([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  node, short startOffset, short endOffset);
+		bool CheckVisibility([MarshalAs(UnmanagedType.Interface)] nsIDOMNode node, short startOffset, short endOffset);
 	}
 }

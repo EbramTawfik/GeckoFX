@@ -51,6 +51,6 @@ namespace Skybound.Gecko
         /// 2 == accept cookie for current session
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int CookieDialog([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  parent, [MarshalAs(UnmanagedType.Interface)] nsICookie  cookie, [MarshalAs(UnmanagedType.LPStruct)] nsAString  hostname, System.Int32  cookiesFromHost, System.Boolean  changingCookie, out System.Boolean  rememberDecision);
+		int CookieDialog([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow parent, [MarshalAs(UnmanagedType.Interface)] nsICookie cookie, [MarshalAs(UnmanagedType.LPStruct)] nsAString hostname, int cookiesFromHost, bool changingCookie, out bool rememberDecision);
 	}
 }

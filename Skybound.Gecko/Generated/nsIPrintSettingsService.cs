@@ -46,7 +46,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIPrintSettings  GetGlobalPrintSettingsAttribute();
+		nsIPrintSettings GetGlobalPrintSettingsAttribute();
 		
 		/// <summary>
         /// Returns a new, unique PrintSettings object each time.
@@ -63,7 +63,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIPrintSettings  GetNewPrintSettingsAttribute();
+		nsIPrintSettings GetNewPrintSettingsAttribute();
 		
 		/// <summary>
         /// The name of the last printer used, or else the system default printer.
@@ -81,7 +81,7 @@ namespace Skybound.Gecko
         /// Number of Copies
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitPrintSettingsFromPrinter([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aPrinterName, [MarshalAs(UnmanagedType.Interface)] nsIPrintSettings  aPrintSettings);
+		void InitPrintSettingsFromPrinter([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aPrinterName, [MarshalAs(UnmanagedType.Interface)] nsIPrintSettings aPrintSettings);
 		
 		/// <summary>
         /// Reads PrintSettings values from Prefs,
@@ -105,7 +105,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitPrintSettingsFromPrefs([MarshalAs(UnmanagedType.Interface)] nsIPrintSettings  aPrintSettings, System.Boolean  aUsePrinterNamePrefix, System.UInt32  aFlags);
+		void InitPrintSettingsFromPrefs([MarshalAs(UnmanagedType.Interface)] nsIPrintSettings aPrintSettings, bool aUsePrinterNamePrefix, uint aFlags);
 		
 		/// <summary>
         /// Writes PrintSettings values to Prefs,
@@ -126,6 +126,6 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SavePrintSettingsToPrefs([MarshalAs(UnmanagedType.Interface)] nsIPrintSettings  aPrintSettings, System.Boolean  aUsePrinterNamePrefix, System.UInt32  aFlags);
+		void SavePrintSettingsToPrefs([MarshalAs(UnmanagedType.Interface)] nsIPrintSettings aPrintSettings, bool aUsePrinterNamePrefix, uint aFlags);
 	}
 }

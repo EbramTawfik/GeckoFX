@@ -54,6 +54,6 @@ namespace Skybound.Gecko
         /// content should be tried.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void HandleContent([MarshalAs(UnmanagedType.LPStr)] System.String  aContentType, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor  aWindowContext, [MarshalAs(UnmanagedType.Interface)] nsIRequest  aRequest);
+		void HandleContent([MarshalAs(UnmanagedType.LPStr)] string aContentType, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor aWindowContext, [MarshalAs(UnmanagedType.Interface)] nsIRequest aRequest);
 	}
 }

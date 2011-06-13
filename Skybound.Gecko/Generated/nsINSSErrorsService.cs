@@ -39,7 +39,7 @@ namespace Skybound.Gecko
         /// @return True if it is error code defined by the NSS library
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsNSSErrorCode(System.Int32  aNSPRCode);
+		bool IsNSSErrorCode(int aNSPRCode);
 		
 		/// <summary>
         /// Function will fail if aNSPRCode is not an NSS error code.
@@ -47,15 +47,16 @@ namespace Skybound.Gecko
         /// @return The result of the conversion, an XPCOM error code
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetXPCOMFromNSSError(System.Int32  aNSPRCode);
+		int GetXPCOMFromNSSError(int aNSPRCode);
 		
 		/// <summary>
         /// Function will fail if aXPCOMErrorCode is not an NSS error code.
         /// @param aXPCOMErrorCode An error code obtain using getXPCOMFromNSSError
         /// return A localized human readable error explanation.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetErrorMessage(System.Int32  aXPCOMErrorCode);
+		nsAString GetErrorMessage(int aXPCOMErrorCode);
 		
 		/// <summary>
         /// Function will fail if aXPCOMErrorCode is not an NSS error code.
@@ -63,6 +64,6 @@ namespace Skybound.Gecko
         /// return the
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetErrorClass(System.Int32  aXPCOMErrorCode);
+		uint GetErrorClass(int aXPCOMErrorCode);
 	}
 }

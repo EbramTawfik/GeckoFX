@@ -40,7 +40,7 @@ namespace Skybound.Gecko
         /// @param val The jsval to receive the converted value.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void COMVariant2JSVal(System.IntPtr  comvar, out System.IntPtr val);
+		void COMVariant2JSVal(System.IntPtr comvar, out System.IntPtr val);
 		
 		/// <summary>
         /// Converts a jsval to a COM Variant
@@ -48,7 +48,7 @@ namespace Skybound.Gecko
         /// @param comvar The COM Variant to receive the converted value
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void JSVal2COMVariant(System.IntPtr var, out System.IntPtr  comvar);
+		void JSVal2COMVariant(System.IntPtr var, out System.IntPtr comvar);
 		
 		/// <summary>
         /// Test if the class is safe to host.
@@ -57,7 +57,7 @@ namespace Skybound.Gecko
         /// not registered.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsClassSafeToHost(System.IntPtr  cx, ref System.Guid cid, System.Boolean  capsCheck, out System.Boolean  classExists);
+		bool IsClassSafeToHost(System.IntPtr cx, ref System.Guid cid, bool capsCheck, out bool classExists);
 		
 		/// <summary>
         /// Test if the specified class is marked safe for scripting.
@@ -66,7 +66,7 @@ namespace Skybound.Gecko
         /// registered.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsClassMarkedSafeForScripting(ref System.Guid cid, out System.Boolean  classExists);
+		bool IsClassMarkedSafeForScripting(ref System.Guid cid, out bool classExists);
 		
 		/// <summary>
         /// Test if the instantiated object is safe for scripting on the specified
@@ -75,7 +75,7 @@ namespace Skybound.Gecko
         /// @param iid The interface to test if it is safe for scripting on.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsObjectSafeForScripting(System.IntPtr  theObject, ref System.Guid id);
+		bool IsObjectSafeForScripting(System.IntPtr theObject, ref System.Guid id);
 		
 		/// <summary>
         /// Return the ActiveX security and hosting flags. See nsIActiveXSecurityPolicy
@@ -84,6 +84,6 @@ namespace Skybound.Gecko
         /// only valid value is nsnull.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetHostingFlags([MarshalAs(UnmanagedType.LPStr)] System.String  aContext);
+		uint GetHostingFlags([MarshalAs(UnmanagedType.LPStr)] string aContext);
 	}
 }

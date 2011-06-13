@@ -39,14 +39,14 @@ namespace Skybound.Gecko
         /// restrictions enabled.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetParentalControlsEnabledAttribute();
+		bool GetParentalControlsEnabledAttribute();
 		
 		/// <summary>
         /// @returns true if the current user account parental controls
         /// restrictions include the blocking of all file downloads.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetBlockFileDownloadsEnabledAttribute();
+		bool GetBlockFileDownloadsEnabledAttribute();
 		
 		/// <summary>
         /// Request that blocked URI(s) be allowed through parental
@@ -59,14 +59,14 @@ namespace Skybound.Gecko
         /// @param window              Window that generates the event.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool RequestURIOverride([MarshalAs(UnmanagedType.Interface)] nsIURI  aTarget, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor  aWindowContext);
+		bool RequestURIOverride([MarshalAs(UnmanagedType.Interface)] nsIURI aTarget, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor aWindowContext);
 		
 		/// <summary>Member RequestURIOverrides </summary>
 		/// <param name='aTargets'> </param>
 		/// <param name='aWindowContext'> </param>
 		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool RequestURIOverrides([MarshalAs(UnmanagedType.Interface)] nsIArray  aTargets, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor  aWindowContext);
+		bool RequestURIOverrides([MarshalAs(UnmanagedType.Interface)] nsIArray aTargets, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor aWindowContext);
 		
 		/// <summary>
         /// @returns true if the current user account has parental controls
@@ -74,7 +74,7 @@ namespace Skybound.Gecko
         /// using 'log'.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetLoggingEnabledAttribute();
+		bool GetLoggingEnabledAttribute();
 		
 		/// <summary>
         /// Log an application specific parental controls
@@ -88,6 +88,6 @@ namespace Skybound.Gecko
         /// no blocking occurred.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Log(short aEntryType, System.Boolean  aFlag, [MarshalAs(UnmanagedType.Interface)] nsIURI  aSource, [MarshalAs(UnmanagedType.Interface)] nsIFile  aTarget);
+		void Log(short aEntryType, bool aFlag, [MarshalAs(UnmanagedType.Interface)] nsIURI aSource, [MarshalAs(UnmanagedType.Interface)] nsIFile aTarget);
 	}
 }

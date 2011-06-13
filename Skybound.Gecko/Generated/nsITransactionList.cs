@@ -45,7 +45,7 @@ namespace Skybound.Gecko
         /// The number of transactions contained in this list.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetNumItemsAttribute();
+		int GetNumItemsAttribute();
 		
 		/// <summary>
         /// itemIsBatch() returns true if the item at aIndex is a batch. Note that
@@ -57,7 +57,7 @@ namespace Skybound.Gecko
         /// @param aIndex The index of the item in the list.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool ItemIsBatch(System.Int32  aIndex);
+		bool ItemIsBatch(int aIndex);
 		
 		/// <summary>
         /// getItem() returns the transaction at the given index in the list. Note that
@@ -66,8 +66,9 @@ namespace Skybound.Gecko
         /// when it is done.
         /// @param aIndex The index of the item in the list.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsITransaction GetItem(System.Int32  aIndex);
+		nsITransaction GetItem(int aIndex);
 		
 		/// <summary>
         /// getNumChildrenForItem() returns the number of child (auto-aggreated)
@@ -75,7 +76,7 @@ namespace Skybound.Gecko
         /// @param aIndex The index of the item in the list.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetNumChildrenForItem(System.Int32  aIndex);
+		int GetNumChildrenForItem(int aIndex);
 		
 		/// <summary>
         /// getChildListForItem() returns the list of children associated with the
@@ -84,7 +85,8 @@ namespace Skybound.Gecko
         /// to Release the transaction when it is done.
         /// @param aIndex The index of the item in the list.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsITransactionList GetChildListForItem(System.Int32  aIndex);
+		nsITransactionList GetChildListForItem(int aIndex);
 	}
 }

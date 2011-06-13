@@ -53,8 +53,9 @@ namespace Skybound.Gecko
         ///      @param chromeFlags chrome features from nsIWebBrowserChrome
         ///      @return the new window
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIWebBrowserChrome CreateChromeWindow([MarshalAs(UnmanagedType.Interface)] nsIWebBrowserChrome  parent, System.UInt32  chromeFlags);
+		new nsIWebBrowserChrome CreateChromeWindow([MarshalAs(UnmanagedType.Interface)] nsIWebBrowserChrome parent, uint chromeFlags);
 		
 		/// <summary>
         ///Create a new window. Gecko will/may call this method, if made
@@ -76,7 +77,8 @@ namespace Skybound.Gecko
         ///                    to any possible backup scheme for creating the window.
         ///      @return the new window. Will be null if canceled or an error occurred.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIWebBrowserChrome CreateChromeWindow2([MarshalAs(UnmanagedType.Interface)] nsIWebBrowserChrome  parent, System.UInt32  chromeFlags, System.UInt32  contextFlags, [MarshalAs(UnmanagedType.Interface)] nsIURI  uri, out System.Boolean  cancel);
+		nsIWebBrowserChrome CreateChromeWindow2([MarshalAs(UnmanagedType.Interface)] nsIWebBrowserChrome parent, uint chromeFlags, uint contextFlags, [MarshalAs(UnmanagedType.Interface)] nsIURI uri, out bool cancel);
 	}
 }

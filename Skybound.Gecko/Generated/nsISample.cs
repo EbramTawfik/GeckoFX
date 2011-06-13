@@ -59,7 +59,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetValueAttribute();
+		string GetValueAttribute();
 		
 		/// <summary>
         /// The uuid is a unique number identifying the interface normally
@@ -74,12 +74,12 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetValueAttribute([MarshalAs(UnmanagedType.LPStr)] System.String  aValue);
+		void SetValueAttribute([MarshalAs(UnmanagedType.LPStr)] string aValue);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void WriteValue([MarshalAs(UnmanagedType.LPStr)] System.String  aPrefix);
+		void WriteValue([MarshalAs(UnmanagedType.LPStr)] string aPrefix);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Poke([MarshalAs(UnmanagedType.LPStr)] System.String  aValue);
+		void Poke([MarshalAs(UnmanagedType.LPStr)] string aValue);
 	}
 }

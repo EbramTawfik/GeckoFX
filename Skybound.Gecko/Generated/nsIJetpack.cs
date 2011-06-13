@@ -65,6 +65,7 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member CreateHandle </summary>
 		/// <returns>A nsIVariant</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIVariant CreateHandle();
 		

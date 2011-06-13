@@ -65,15 +65,16 @@ namespace Skybound.Gecko
 		string GetFWVersionAttribute();
 		
 		/// <summary>Member GetStatusAttribute </summary>
-		/// <returns>A System.UInt32 </returns>
+		/// <returns>A System.UInt32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetStatusAttribute();
+		uint GetStatusAttribute();
 		
 		/// <summary>
         ///This is really a workaround for now.  All of the "slot" functions
         /// (isTokenPresent(), etc.) are in nsIPK11Token.  For now, return the
         /// token and handle those things there.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIPK11Token GetToken();
 		

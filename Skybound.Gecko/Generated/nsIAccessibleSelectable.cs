@@ -40,6 +40,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Return an nsIArray of selected nsIAccessible children
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIArray GetSelectedChildren();
 		
@@ -47,7 +48,7 @@ namespace Skybound.Gecko
         /// Returns the number of accessible children currently selected.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetSelectionCountAttribute();
+		int GetSelectionCountAttribute();
 		
 		/// <summary>
         /// Adds the specified accessible child of the object to the
@@ -56,7 +57,7 @@ namespace Skybound.Gecko
         /// @throws NS_ERROR_FAILURE if the specified object is not selectable.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddChildToSelection(System.Int32  index);
+		void AddChildToSelection(int index);
 		
 		/// <summary>
         /// Removes the specified child of the object from the object's selection.
@@ -64,7 +65,7 @@ namespace Skybound.Gecko
         /// @throws NS_ERROR_FAILURE if the specified object is not selectable.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveChildFromSelection(System.Int32  index);
+		void RemoveChildFromSelection(int index);
 		
 		/// <summary>
         /// Clears the selection in the object so that no children in the object
@@ -79,8 +80,9 @@ namespace Skybound.Gecko
         /// @param index Zero-based selected accessible child index
         /// @return The nth selected accessible child
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIAccessible RefSelection(System.Int32  index);
+		nsIAccessible RefSelection(int index);
 		
 		/// <summary>
         /// Determines if the current child of this object is selected
@@ -88,7 +90,7 @@ namespace Skybound.Gecko
         /// @return Returns true if the child is selected, false if not.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsChildSelected(System.Int32  index);
+		bool IsChildSelected(int index);
 		
 		/// <summary>
         /// Select all children

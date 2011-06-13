@@ -38,7 +38,7 @@ namespace Skybound.Gecko
         /// The scheme of this protocol (e.g., "file").
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetSchemeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aScheme);
+		new void GetSchemeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aScheme);
 		
 		/// <summary>
         /// The default port is the port that this protocol normally uses.
@@ -46,13 +46,13 @@ namespace Skybound.Gecko
         /// then -1 will be returned.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Int32  GetDefaultPortAttribute();
+		new int GetDefaultPortAttribute();
 		
 		/// <summary>
         /// Returns the protocol specific flags (see flag definitions below).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.UInt32  GetProtocolFlagsAttribute();
+		new uint GetProtocolFlagsAttribute();
 		
 		/// <summary>
         /// Makes a URI object that is suitable for loading by this protocol,
@@ -79,14 +79,16 @@ namespace Skybound.Gecko
         /// If the protocol has no concept of relative
         /// URI aBaseURI will simply be ignored.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIURI NewURI([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aSpec, [MarshalAs(UnmanagedType.LPStr)] System.String  aOriginCharset, [MarshalAs(UnmanagedType.Interface)] nsIURI  aBaseURI);
+		new nsIURI NewURI([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aSpec, [MarshalAs(UnmanagedType.LPStr)] string aOriginCharset, [MarshalAs(UnmanagedType.Interface)] nsIURI aBaseURI);
 		
 		/// <summary>
         /// Constructs a new channel from the given URI for this protocol handler.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIChannel NewChannel([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI);
+		new nsIChannel NewChannel([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 		
 		/// <summary>
         /// Allows a protocol to override blacklisted ports.
@@ -98,7 +100,7 @@ namespace Skybound.Gecko
         /// protocol handler wants to override the ban.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool AllowPort(System.Int32  port, [MarshalAs(UnmanagedType.LPStr)] System.String  scheme);
+		new bool AllowPort(int port, [MarshalAs(UnmanagedType.LPStr)] string scheme);
 		
 		/// <summary>
         /// This method checks if the external handler exists for a given scheme.
@@ -107,6 +109,6 @@ namespace Skybound.Gecko
         /// @return TRUE if the external handler exists for the input scheme, FALSE otherwise.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool ExternalAppExistsForScheme([MarshalAs(UnmanagedType.LPStruct)] nsAString  scheme);
+		bool ExternalAppExistsForScheme([MarshalAs(UnmanagedType.LPStruct)] nsAString scheme);
 	}
 }

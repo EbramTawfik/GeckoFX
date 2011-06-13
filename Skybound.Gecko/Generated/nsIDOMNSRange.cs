@@ -37,6 +37,7 @@ namespace Skybound.Gecko
 		/// <summary>Member CreateContextualFragment </summary>
 		/// <param name='fragment'> </param>
 		/// <returns>A nsIDOMDocumentFragment</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMDocumentFragment CreateContextualFragment([MarshalAs(UnmanagedType.LPStruct)] nsAString fragment);
 		
@@ -44,21 +45,23 @@ namespace Skybound.Gecko
         /// of the boundary points or is between them.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsPointInRange([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  parent, System.Int32  offset);
+		bool IsPointInRange([MarshalAs(UnmanagedType.Interface)] nsIDOMNode parent, int offset);
 		
 		/// <summary>
         /// Sort of a strcmp for ranges.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		short ComparePoint([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  parent, System.Int32  offset);
+		short ComparePoint([MarshalAs(UnmanagedType.Interface)] nsIDOMNode parent, int offset);
 		
 		/// <summary>Member GetClientRects </summary>
 		/// <returns>A nsIDOMClientRectList</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMClientRectList GetClientRects();
 		
 		/// <summary>Member GetBoundingClientRect </summary>
 		/// <returns>A nsIDOMClientRect</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMClientRect GetBoundingClientRect();
 	}

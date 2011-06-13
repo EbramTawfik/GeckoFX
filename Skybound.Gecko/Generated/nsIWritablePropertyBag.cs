@@ -40,13 +40,14 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsISimpleEnumerator  GetEnumeratorAttribute();
+		new nsISimpleEnumerator GetEnumeratorAttribute();
 		
 		/// <summary>
         /// Get a property value for the given name.
         /// @throws NS_ERROR_FAILURE if a property with that name doesn't
         /// exist.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIVariant GetProperty([MarshalAs(UnmanagedType.LPStruct)] nsAString name);
 		
@@ -56,7 +57,7 @@ namespace Skybound.Gecko
         /// overwritten.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetProperty([MarshalAs(UnmanagedType.LPStruct)] nsAString name, [MarshalAs(UnmanagedType.Interface)] nsIVariant  value);
+		void SetProperty([MarshalAs(UnmanagedType.LPStruct)] nsAString name, [MarshalAs(UnmanagedType.Interface)] nsIVariant value);
 		
 		/// <summary>
         /// Delete a property with the given name.

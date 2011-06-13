@@ -49,7 +49,7 @@ namespace Skybound.Gecko
         /// The URI to register as an open page.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RegisterOpenPage([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI);
+		void RegisterOpenPage([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 		
 		/// <summary>
         /// Mark a page as no longer being open (either by closing the window or tab,
@@ -63,6 +63,6 @@ namespace Skybound.Gecko
         /// The URI to unregister as an open page.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UnregisterOpenPage([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI);
+		void UnregisterOpenPage([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 	}
 }

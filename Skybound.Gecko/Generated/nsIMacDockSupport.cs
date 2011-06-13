@@ -41,13 +41,13 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIStandaloneNativeMenu  GetDockMenuAttribute();
+		nsIStandaloneNativeMenu GetDockMenuAttribute();
 		
 		/// <summary>
         /// Menu to use for application-specific dock menu items.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDockMenuAttribute([MarshalAs(UnmanagedType.Interface)] nsIStandaloneNativeMenu  aDockMenu);
+		void SetDockMenuAttribute([MarshalAs(UnmanagedType.Interface)] nsIStandaloneNativeMenu aDockMenu);
 		
 		/// <summary>
         /// Activate the application. This should be used by an application to
@@ -59,6 +59,6 @@ namespace Skybound.Gecko
         /// application activates regardless.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ActivateApplication(System.Boolean  aIgnoreOtherApplications);
+		void ActivateApplication(bool aIgnoreOtherApplications);
 	}
 }

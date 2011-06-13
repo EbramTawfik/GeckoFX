@@ -69,25 +69,25 @@ namespace Skybound.Gecko
         /// @{
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void BindUTF8StringParameter(System.UInt32  aParamIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aValue);
+		new void BindUTF8StringParameter(uint aParamIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aValue);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void BindStringParameter(System.UInt32  aParamIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAString aValue);
+		new void BindStringParameter(uint aParamIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAString aValue);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void BindDoubleParameter(System.UInt32  aParamIndex, double aValue);
+		new void BindDoubleParameter(uint aParamIndex, double aValue);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void BindInt32Parameter(System.UInt32  aParamIndex, System.Int32  aValue);
+		new void BindInt32Parameter(uint aParamIndex, int aValue);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void BindInt64Parameter(System.UInt32  aParamIndex, System.Int32  aValue);
+		new void BindInt64Parameter(uint aParamIndex, int aValue);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void BindNullParameter(System.UInt32  aParamIndex);
+		new void BindNullParameter(uint aParamIndex);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void BindBlobParameter(System.UInt32  aParamIndex, System.IntPtr  aValue, System.UInt32  aValueSize);
+		new void BindBlobParameter(uint aParamIndex, System.IntPtr aValue, uint aValueSize);
 		
 		/// <summary>
         /// Binds the array of parameters to the statement.  When executeAsync is
@@ -99,7 +99,7 @@ namespace Skybound.Gecko
         /// @note This is only works on statements being used asynchronously.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void BindParameters(mozIStorageBindingParamsArray  aParameters);
+		new void BindParameters(mozIStorageBindingParamsArray aParameters);
 		
 		/// <summary>
         /// Creates a new mozIStorageBindingParamsArray that can be used to bind
@@ -126,13 +126,13 @@ namespace Skybound.Gecko
         /// @return an object that can be used to cancel the statements execution.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new mozIStoragePendingStatement ExecuteAsync(mozIStorageStatementCallback  aCallback);
+		new mozIStoragePendingStatement ExecuteAsync(mozIStorageStatementCallback aCallback);
 		
 		/// <summary>
         /// Find out whether the statement is usable (has not been finalized).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Int32  GetStateAttribute();
+		new int GetStateAttribute();
 		
 		/// <summary>
         /// Escape a string for SQL LIKE search.
@@ -149,8 +149,9 @@ namespace Skybound.Gecko
         /// For example, we will convert "foo/bar_baz%20cheese"
         /// into "foo//bar/_baz/%20cheese" (if the escape char is '/').
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsAString EscapeStringForLIKE([MarshalAs(UnmanagedType.LPStruct)] nsAString aValue, System.Char  aEscapeChar);
+		new nsAString EscapeStringForLIKE([MarshalAs(UnmanagedType.LPStruct)] nsAString aValue, char aEscapeChar);
 		
 		/// <summary>
         /// Create a clone of this statement, by initializing a new statement
@@ -166,13 +167,14 @@ namespace Skybound.Gecko
         /// Number of parameters
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetParameterCountAttribute();
+		uint GetParameterCountAttribute();
 		
 		/// <summary>
         /// Name of nth parameter, if given
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAUTF8String GetParameterName(System.UInt32  aParamIndex);
+		nsAUTF8String GetParameterName(uint aParamIndex);
 		
 		/// <summary>
         /// Returns the index of the named parameter.
@@ -183,19 +185,20 @@ namespace Skybound.Gecko
         /// @return the index of the named parameter.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetParameterIndex([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName);
+		uint GetParameterIndex([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName);
 		
 		/// <summary>
         /// Number of columns returned
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetColumnCountAttribute();
+		uint GetColumnCountAttribute();
 		
 		/// <summary>
         /// Name of nth column
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAUTF8String GetColumnName(System.UInt32  aColumnIndex);
+		nsAUTF8String GetColumnName(uint aColumnIndex);
 		
 		/// <summary>
         /// Obtains the index of the column with the specified name.
@@ -205,7 +208,7 @@ namespace Skybound.Gecko
         /// @return The index of the column with the specified name.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetColumnIndex([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName);
+		uint GetColumnIndex([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName);
 		
 		/// <summary>
         /// Obtains the declared column type of a prepared statement.
@@ -215,8 +218,9 @@ namespace Skybound.Gecko
         /// interested in.
         /// @return the declared index type.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAUTF8String GetColumnDecltype(System.UInt32  aParamIndex);
+		nsAUTF8String GetColumnDecltype(uint aParamIndex);
 		
 		/// <summary>
         /// Reset parameters/statement execution
@@ -251,7 +255,7 @@ namespace Skybound.Gecko
         /// database row)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetNumEntriesAttribute();
+		uint GetNumEntriesAttribute();
 		
 		/// <summary>
         /// Indicate the data type of the current result row for the the given column.
@@ -265,7 +269,7 @@ namespace Skybound.Gecko
         /// VALUE_TYPE_TEXT, VALUE_TYPE_BLOB.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetTypeOfIndex(System.UInt32  aIndex);
+		int GetTypeOfIndex(uint aIndex);
 		
 		/// <summary>
         /// Retrieve the contents of a column from the current result row as an
@@ -277,10 +281,10 @@ namespace Skybound.Gecko
         /// @{
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetInt32(System.UInt32  aIndex);
+		int GetInt32(uint aIndex);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetInt64(System.UInt32  aIndex);
+		int GetInt64(uint aIndex);
 		
 		/// <summary>
         /// Retrieve the contents of a column from the current result row as a
@@ -291,7 +295,7 @@ namespace Skybound.Gecko
         /// @return Column value interpreted as a double per type conversion rules.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetDouble(System.UInt32  aIndex);
+		double GetDouble(uint aIndex);
 		
 		/// <summary>
         /// Retrieve the contents of a column from the current result row as a
@@ -304,11 +308,13 @@ namespace Skybound.Gecko
         /// to distinguish it from an explicitly set empty string.
         /// @{
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAUTF8String GetUTF8String(System.UInt32  aIndex);
+		nsAUTF8String GetUTF8String(uint aIndex);
 		
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetString(System.UInt32  aIndex);
+		nsAString GetString(uint aIndex);
 		
 		/// <summary>
         /// Retrieve the contents of a column from the current result row as a
@@ -322,7 +328,7 @@ namespace Skybound.Gecko
         /// The contents of the BLOB.  This will be NULL if aDataSize == 0.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetBlob(System.UInt32  aIndex, out System.UInt32  aDataSize, out System.IntPtr  aData);
+		void GetBlob(uint aIndex, out uint aDataSize, out System.IntPtr aData);
 		
 		/// <summary>
         /// Check whether the given column in the current result row is NULL.
@@ -332,20 +338,20 @@ namespace Skybound.Gecko
         /// @return true if the value for the result column is null.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetIsNull(System.UInt32  aIndex);
+		bool GetIsNull(uint aIndex);
 		
 		/// <summary>
         /// Returns a shared string pointer
         /// </summary>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetSharedUTF8String(System.UInt32  aIndex, out System.UInt32  aLength);
+		string GetSharedUTF8String(uint aIndex, out uint aLength);
 		
 		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string GetSharedString(System.UInt32  aIndex, out System.UInt32  aLength);
+		string GetSharedString(uint aIndex, out uint aLength);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr  GetSharedBlob(System.UInt32  aIndex, out System.UInt32  aLength);
+		System.IntPtr GetSharedBlob(uint aIndex, out uint aLength);
 	}
 }

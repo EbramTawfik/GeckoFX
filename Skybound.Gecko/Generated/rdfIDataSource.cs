@@ -48,7 +48,7 @@ namespace Skybound.Gecko
         /// datasource will not be possible.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void VisitAllSubjects(rdfITripleVisitor  aVisitor);
+		void VisitAllSubjects(rdfITripleVisitor aVisitor);
 		
 		/// <summary>
         /// Visit all the triples in the datasource. The order is
@@ -58,6 +58,6 @@ namespace Skybound.Gecko
         /// datasource will not be possible.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void VisitAllTriples(rdfITripleVisitor  aVisitor);
+		void VisitAllTriples(rdfITripleVisitor aVisitor);
 	}
 }

@@ -57,19 +57,19 @@ namespace Skybound.Gecko
 		void Begin();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NoteObject(System.UInt32  aAddress, [MarshalAs(UnmanagedType.LPStr)] System.String  aObjectDescription);
+		void NoteObject(uint aAddress, [MarshalAs(UnmanagedType.LPStr)] string aObjectDescription);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NoteEdge(System.UInt32  aFromAddress, System.UInt32  aToAddress, [MarshalAs(UnmanagedType.LPStr)] System.String  aEdgeName);
+		void NoteEdge(uint aFromAddress, uint aToAddress, [MarshalAs(UnmanagedType.LPStr)] string aEdgeName);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void BeginDescriptions();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DescribeRefcountedObject(System.UInt32  aAddress, System.UInt32  aKnownEdges, System.UInt32  aTotalEdges);
+		void DescribeRefcountedObject(uint aAddress, uint aKnownEdges, uint aTotalEdges);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DescribeGCedObject(System.UInt32  aAddress, System.Boolean  aMarked);
+		void DescribeGCedObject(uint aAddress, bool aMarked);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void End();

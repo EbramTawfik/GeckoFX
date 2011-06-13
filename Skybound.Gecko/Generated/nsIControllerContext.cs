@@ -44,7 +44,7 @@ namespace Skybound.Gecko
         /// a new, empty table.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init([MarshalAs(UnmanagedType.Interface)] nsIControllerCommandTable  aCommandTable);
+		void Init([MarshalAs(UnmanagedType.Interface)] nsIControllerCommandTable aCommandTable);
 		
 		/// <summary>
         /// Set a context on this controller, which is passed
@@ -56,6 +56,6 @@ namespace Skybound.Gecko
         /// or be nulled out.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCommandContext([MarshalAs(UnmanagedType.Interface)] nsISupports  aCommandContext);
+		void SetCommandContext([MarshalAs(UnmanagedType.Interface)] nsISupports aCommandContext);
 	}
 }

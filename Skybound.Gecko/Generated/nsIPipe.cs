@@ -81,21 +81,21 @@ namespace Skybound.Gecko
         /// allocator (pass null to use the default allocator)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init(System.Boolean  nonBlockingInput, System.Boolean  nonBlockingOutput, System.UInt32  segmentSize, System.UInt32  segmentCount, [MarshalAs(UnmanagedType.Interface)] nsIMemory  segmentAllocator);
+		void Init(bool nonBlockingInput, bool nonBlockingOutput, uint segmentSize, uint segmentCount, [MarshalAs(UnmanagedType.Interface)] nsIMemory segmentAllocator);
 		
 		/// <summary>
         /// The pipe's input end, which also implements nsISearchableInputStream.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIAsyncInputStream  GetInputStreamAttribute();
+		nsIAsyncInputStream GetInputStreamAttribute();
 		
 		/// <summary>
         /// The pipe's output end.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIAsyncOutputStream  GetOutputStreamAttribute();
+		nsIAsyncOutputStream GetOutputStreamAttribute();
 	}
 	
 	/// <summary>
@@ -119,6 +119,6 @@ namespace Skybound.Gecko
         /// byte not searched will correspond to the length of the buffer.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Search([MarshalAs(UnmanagedType.LPStr)] System.String  forString, System.Boolean  ignoreCase, out System.Boolean  found, out System.UInt32  offsetSearchedTo);
+		void Search([MarshalAs(UnmanagedType.LPStr)] string forString, bool ignoreCase, out bool found, out uint offsetSearchedTo);
 	}
 }

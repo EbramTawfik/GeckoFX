@@ -39,7 +39,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIAutoCompleteInput  GetInputAttribute();
+		nsIAutoCompleteInput GetInputAttribute();
 		
 		/// <summary>
         /// An alternative value to be used when text is entered, rather than the
@@ -52,19 +52,19 @@ namespace Skybound.Gecko
         /// The index of the result item that is currently selected
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetSelectedIndexAttribute();
+		int GetSelectedIndexAttribute();
 		
 		/// <summary>
         /// The index of the result item that is currently selected
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSelectedIndexAttribute(System.Int32  aSelectedIndex);
+		void SetSelectedIndexAttribute(int aSelectedIndex);
 		
 		/// <summary>
         /// Indicates if the popup is currently open
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetPopupOpenAttribute();
+		bool GetPopupOpenAttribute();
 		
 		/// <summary>
         /// Bind the popup to an input object and display it with the given coordinates
@@ -73,7 +73,7 @@ namespace Skybound.Gecko
         /// @param element - The element that the popup will be aligned with
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OpenAutocompletePopup([MarshalAs(UnmanagedType.Interface)] nsIAutoCompleteInput  input, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement  element);
+		void OpenAutocompletePopup([MarshalAs(UnmanagedType.Interface)] nsIAutoCompleteInput input, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement element);
 		
 		/// <summary>
         /// Close the popup and detach from the bound input
@@ -97,6 +97,6 @@ namespace Skybound.Gecko
         /// @return The currently selected result item index
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SelectBy(System.Boolean  reverse, System.Boolean  page);
+		void SelectBy(bool reverse, bool page);
 	}
 }

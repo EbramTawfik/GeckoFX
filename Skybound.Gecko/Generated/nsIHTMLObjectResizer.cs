@@ -39,26 +39,26 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMElement  GetResizedObjectAttribute();
+		nsIDOMElement GetResizedObjectAttribute();
 		
 		/// <summary>
         /// a boolean indicating if object resizing is enabled in the editor
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetObjectResizingEnabledAttribute();
+		bool GetObjectResizingEnabledAttribute();
 		
 		/// <summary>
         /// a boolean indicating if object resizing is enabled in the editor
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetObjectResizingEnabledAttribute(System.Boolean  aObjectResizingEnabled);
+		void SetObjectResizingEnabledAttribute(bool aObjectResizingEnabled);
 		
 		/// <summary>
         /// Shows active resizers around an element's frame
         /// @param aResizedElement [IN] a DOM Element
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ShowResizers([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  aResizedElement);
+		void ShowResizers([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aResizedElement);
 		
 		/// <summary>
         /// Hide resizers if they are visible
@@ -80,7 +80,7 @@ namespace Skybound.Gecko
         /// @param aMouseEvent [IN] the event
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MouseDown(System.Int32  aX, System.Int32  aY, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement  aTarget, [MarshalAs(UnmanagedType.Interface)] nsIDOMEvent  aMouseEvent);
+		void MouseDown(int aX, int aY, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement aTarget, [MarshalAs(UnmanagedType.Interface)] nsIDOMEvent aMouseEvent);
 		
 		/// <summary>
         /// event callback when a mouse button is released
@@ -89,14 +89,14 @@ namespace Skybound.Gecko
         /// @param aTarget [IN] the element triggering the event
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MouseUp(System.Int32  aX, System.Int32  aY, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement  aTarget);
+		void MouseUp(int aX, int aY, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement aTarget);
 		
 		/// <summary>
         /// event callback when the mouse pointer is moved
         /// @param aMouseEvent [IN] the event
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MouseMove([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent  aMouseEvent);
+		void MouseMove([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent aMouseEvent);
 		
 		/// <summary>
         /// Creates a resize listener that can be used to get notifications
@@ -104,13 +104,13 @@ namespace Skybound.Gecko
         /// @param aListener [IN] an instance of nsIHTMLObjectResizeListener
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddObjectResizeEventListener([MarshalAs(UnmanagedType.Interface)] nsIHTMLObjectResizeListener  aListener);
+		void AddObjectResizeEventListener([MarshalAs(UnmanagedType.Interface)] nsIHTMLObjectResizeListener aListener);
 		
 		/// <summary>
         /// Deletes a resize listener
         /// @param aListener [IN] an instance of nsIHTMLObjectResizeListener
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveObjectResizeEventListener([MarshalAs(UnmanagedType.Interface)] nsIHTMLObjectResizeListener  aListener);
+		void RemoveObjectResizeEventListener([MarshalAs(UnmanagedType.Interface)] nsIHTMLObjectResizeListener aListener);
 	}
 }

@@ -54,8 +54,9 @@ namespace Skybound.Gecko
         ///
         /// @return An object that can be used to cancel the host lookup.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsICancelable AsyncResolve([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aHostName, System.UInt32  aFlags, [MarshalAs(UnmanagedType.Interface)] nsIDNSListener  aListener, [MarshalAs(UnmanagedType.Interface)] nsIEventTarget  aListenerTarget);
+		nsICancelable AsyncResolve([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aHostName, uint aFlags, [MarshalAs(UnmanagedType.Interface)] nsIDNSListener aListener, [MarshalAs(UnmanagedType.Interface)] nsIEventTarget aListenerTarget);
 		
 		/// <summary>
         /// called to synchronously resolve a hostname.  warning this method may
@@ -70,13 +71,14 @@ namespace Skybound.Gecko
         /// @return DNS record corresponding to the given hostname.
         /// @throws NS_ERROR_UNKNOWN_HOST if host could not be resolved.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDNSRecord Resolve([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aHostName, System.UInt32  aFlags);
+		nsIDNSRecord Resolve([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aHostName, uint aFlags);
 		
 		/// <summary>
         /// @return the hostname of the operating system.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMyHostNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aMyHostName);
+		void GetMyHostNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aMyHostName);
 	}
 }

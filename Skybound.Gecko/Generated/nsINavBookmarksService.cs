@@ -70,7 +70,7 @@ namespace Skybound.Gecko
         /// null otherwise.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnItemAdded(System.Int32  aItemId, System.Int32  aParentId, System.Int32  aIndex, ushort aItemType, [MarshalAs(UnmanagedType.Interface)] nsIURI  aURI);
+		void OnItemAdded(int aItemId, int aParentId, int aIndex, ushort aItemType, [MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 		
 		/// <summary>
         /// Notify this observer that an item is about to be removed.  Called before
@@ -83,7 +83,7 @@ namespace Skybound.Gecko
         /// defined above).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnBeforeItemRemoved(System.Int32  aItemId, ushort aItemType);
+		void OnBeforeItemRemoved(int aItemId, ushort aItemType);
 		
 		/// <summary>
         /// Notify this observer that an item was removed.  Called after the actual
@@ -101,7 +101,7 @@ namespace Skybound.Gecko
         /// defined above).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnItemRemoved(System.Int32  aItemId, System.Int32  aParentId, System.Int32  aIndex, ushort aItemType);
+		void OnItemRemoved(int aItemId, int aParentId, int aIndex, ushort aItemType);
 		
 		/// <summary>
         /// Notify this observer that an item's information has changed.  This
@@ -137,7 +137,7 @@ namespace Skybound.Gecko
         /// aIsAnnotationProperty = true: value = empty string.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnItemChanged(System.Int32  aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aProperty, System.Boolean  aIsAnnotationProperty, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aNewValue, System.UInt32  aLastModified, ushort aItemType);
+		void OnItemChanged(int aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAString aProperty, bool aIsAnnotationProperty, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aNewValue, uint aLastModified, ushort aItemType);
 		
 		/// <summary>
         /// Notify that the item was visited. Normally in bookmarks we use the last
@@ -151,7 +151,7 @@ namespace Skybound.Gecko
         /// deleted for the URI.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnItemVisited(System.Int32  aBookmarkId, System.Int32  aVisitID, System.UInt32  time);
+		void OnItemVisited(int aBookmarkId, int aVisitID, uint time);
 		
 		/// <summary>
         /// Notify this observer that an item has been moved.
@@ -170,7 +170,7 @@ namespace Skybound.Gecko
         /// defined above).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnItemMoved(System.Int32  aItemId, System.Int32  aOldParentId, System.Int32  aOldIndex, System.Int32  aNewParentId, System.Int32  aNewIndex, ushort aItemType);
+		void OnItemMoved(int aItemId, int aOldParentId, int aOldIndex, int aNewParentId, int aNewIndex, ushort aItemType);
 	}
 	
 	/// <summary>
@@ -188,31 +188,31 @@ namespace Skybound.Gecko
         /// The item ID of the Places root.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetPlacesRootAttribute();
+		int GetPlacesRootAttribute();
 		
 		/// <summary>
         /// The item ID of the bookmarks menu folder.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetBookmarksMenuFolderAttribute();
+		int GetBookmarksMenuFolderAttribute();
 		
 		/// <summary>
         /// The item ID of the top-level folder that contain the tag "folders".
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetTagsFolderAttribute();
+		int GetTagsFolderAttribute();
 		
 		/// <summary>
         /// The item ID of the unfiled-bookmarks folder.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetUnfiledBookmarksFolderAttribute();
+		int GetUnfiledBookmarksFolderAttribute();
 		
 		/// <summary>
         /// The item ID of the personal toolbar folder.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetToolbarFolderAttribute();
+		int GetToolbarFolderAttribute();
 		
 		/// <summary>
         /// Inserts a child bookmark into the given folder.
@@ -228,7 +228,7 @@ namespace Skybound.Gecko
         /// @return The ID of the newly-created bookmark.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int InsertBookmark(System.Int32  aParentId, [MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, System.Int32  aIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aTitle);
+		int InsertBookmark(int aParentId, [MarshalAs(UnmanagedType.Interface)] nsIURI aURI, int aIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aTitle);
 		
 		/// <summary>
         /// Removes a child item. Used to delete a bookmark or separator.
@@ -236,7 +236,7 @@ namespace Skybound.Gecko
         /// The child item to remove
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveItem(System.Int32  aItemId);
+		void RemoveItem(int aItemId);
 		
 		/// <summary>
         /// Creates a new child folder and inserts it under the given parent.
@@ -249,7 +249,7 @@ namespace Skybound.Gecko
         /// @return The ID of the newly-inserted folder.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int CreateFolder(System.Int32  aParentFolder, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  name, System.Int32  index);
+		int CreateFolder(int aParentFolder, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String name, int index);
 		
 		/// <summary>
         /// Creates a dynamic container under the given parent folder.
@@ -267,7 +267,7 @@ namespace Skybound.Gecko
         /// @return The ID of the newly-inserted folder.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int CreateDynamicContainer(System.Int32  aParentFolder, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName, [MarshalAs(UnmanagedType.LPStruct)] nsAString aContractId, System.Int32  aIndex);
+		int CreateDynamicContainer(int aParentFolder, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName, [MarshalAs(UnmanagedType.LPStruct)] nsAString aContractId, int aIndex);
 		
 		/// <summary>
         /// Gets an undo-able transaction for removing a folder from the bookmarks
@@ -285,8 +285,9 @@ namespace Skybound.Gecko
         /// specific IDs (potentially dangerous if abused by other code!) in the
         /// public API.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsITransaction GetRemoveFolderTransaction(System.Int32  aItemId);
+		nsITransaction GetRemoveFolderTransaction(int aItemId);
 		
 		/// <summary>
         /// Convenience function for container services.  Removes
@@ -295,7 +296,7 @@ namespace Skybound.Gecko
         /// The id of the folder to remove children from.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveFolderChildren(System.Int32  aItemId);
+		void RemoveFolderChildren(int aItemId);
 		
 		/// <summary>
         /// Moves an item to a different container, preserving its contents.
@@ -311,7 +312,7 @@ namespace Skybound.Gecko
         /// index Y > X you must use moveItem(id, folder, Y + 1)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MoveItem(System.Int32  aItemId, System.Int32  aNewParentId, System.Int32  aIndex);
+		void MoveItem(int aItemId, int aNewParentId, int aIndex);
 		
 		/// <summary>
         /// Inserts a bookmark separator into the given folder at the given index.
@@ -323,7 +324,7 @@ namespace Skybound.Gecko
         /// @return The ID of the new separator.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int InsertSeparator(System.Int32  aParentId, System.Int32  aIndex);
+		int InsertSeparator(int aParentId, int aIndex);
 		
 		/// <summary>
         /// Get the itemId given the containing folder and the index.
@@ -335,7 +336,7 @@ namespace Skybound.Gecko
         /// @return The ID of the found item, -1 if the item does not exists.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetIdForItemAt(System.Int32  aParentId, System.Int32  aIndex);
+		int GetIdForItemAt(int aParentId, int aIndex);
 		
 		/// <summary>
         /// Get a globally unique identifier for an item, meant to be used in
@@ -346,8 +347,9 @@ namespace Skybound.Gecko
         /// The ID of the item to get the GUID for
         /// @return The GUID string.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetItemGUID(System.Int32  aItemId);
+		nsAString GetItemGUID(int aItemId);
 		
 		/// <summary>
         /// Set a globally unique identifier.  This can be useful when a sync
@@ -359,7 +361,7 @@ namespace Skybound.Gecko
         /// The GUID string
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetItemGUID(System.Int32  aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAString aGUID);
+		void SetItemGUID(int aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAString aGUID);
 		
 		/// <summary>
         /// Get the ID of the item with the given GUID.
@@ -378,7 +380,7 @@ namespace Skybound.Gecko
         /// The new title for the bookmark.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetItemTitle(System.Int32  aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aTitle);
+		void SetItemTitle(int aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aTitle);
 		
 		/// <summary>
         /// Get the title for an item.
@@ -389,20 +391,21 @@ namespace Skybound.Gecko
         /// The id of the item whose title should be retrieved
         /// @return The title of the item.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAUTF8String GetItemTitle(System.Int32  aItemId);
+		nsAUTF8String GetItemTitle(int aItemId);
 		
 		/// <summary>
         /// Set the date added time for an item.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetItemDateAdded(System.Int32  aItemId, System.UInt32  aDateAdded);
+		void SetItemDateAdded(int aItemId, uint aDateAdded);
 		
 		/// <summary>
         /// Get the date added time for an item.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetItemDateAdded(System.Int32  aItemId);
+		uint GetItemDateAdded(int aItemId);
 		
 		/// <summary>
         /// Set the last modified time for an item.
@@ -413,7 +416,7 @@ namespace Skybound.Gecko
         /// the corresponding itemChanged notification instead.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetItemLastModified(System.Int32  aItemId, System.UInt32  aLastModified);
+		void SetItemLastModified(int aItemId, uint aLastModified);
 		
 		/// <summary>
         /// Get the last modified time for an item.
@@ -422,19 +425,20 @@ namespace Skybound.Gecko
         /// dateAdded.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetItemLastModified(System.Int32  aItemId);
+		uint GetItemLastModified(int aItemId);
 		
 		/// <summary>
         /// Get the URI for a bookmark item.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI GetBookmarkURI(System.Int32  aItemId);
+		nsIURI GetBookmarkURI(int aItemId);
 		
 		/// <summary>
         /// Get the index for an item.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetItemIndex(System.Int32  aItemId);
+		int GetItemIndex(int aItemId);
 		
 		/// <summary>
         /// Changes the index for a item. This method does not change the indices of
@@ -452,14 +456,14 @@ namespace Skybound.Gecko
         /// @throws If aNewIndex is out of bounds.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetItemIndex(System.Int32  aItemId, System.Int32  aNewIndex);
+		void SetItemIndex(int aItemId, int aNewIndex);
 		
 		/// <summary>
         /// Get an item's type (bookmark, separator, folder).
         /// The type is one of the TYPE_* constants defined above.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetItemType(System.Int32  aItemId);
+		uint GetItemType(int aItemId);
 		
 		/// <summary>
         /// Checks whether a folder is marked as read-only.
@@ -471,7 +475,7 @@ namespace Skybound.Gecko
         /// the item-id of the folder.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetFolderReadonly(System.Int32  aItemId);
+		bool GetFolderReadonly(int aItemId);
 		
 		/// <summary>
         /// Sets or unsets the readonly flag from a folder.
@@ -485,14 +489,14 @@ namespace Skybound.Gecko
         /// the read-only state (boolean).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFolderReadonly(System.Int32  aFolder, System.Boolean  aReadOnly);
+		void SetFolderReadonly(int aFolder, bool aReadOnly);
 		
 		/// <summary>
         /// Returns true if the given URI is in any bookmark folder. If you want the
         /// results to be redirect-aware, use getBookmarkedURIFor()
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsBookmarked([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI);
+		bool IsBookmarked([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 		
 		/// <summary>
         /// Used to see if the given URI is bookmarked, or any page that redirected to
@@ -507,8 +511,9 @@ namespace Skybound.Gecko
         /// @note The function will only return bookmarks in the first 3 levels of
         /// redirection (1 -> 2 -> 3 -> aURI).
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI GetBookmarkedURIFor([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI);
+		nsIURI GetBookmarkedURIFor([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 		
 		/// <summary>
         /// Change the bookmarked URI for a bookmark.
@@ -516,19 +521,19 @@ namespace Skybound.Gecko
         /// which means all annotations, etc are carried along.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ChangeBookmarkURI(System.Int32  aItemId, [MarshalAs(UnmanagedType.Interface)] nsIURI  aNewURI);
+		void ChangeBookmarkURI(int aItemId, [MarshalAs(UnmanagedType.Interface)] nsIURI aNewURI);
 		
 		/// <summary>
         /// Get the parent folder's id for an item.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetFolderIdForItem(System.Int32  aItemId);
+		int GetFolderIdForItem(int aItemId);
 		
 		/// <summary>
         /// Returns the list of bookmark ids that contain the given URI.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetBookmarkIdsForURI([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, out System.UInt32  count);
+		int GetBookmarkIdsForURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, out uint count);
 		
 		/// <summary>
         /// Associates the given keyword with the given bookmark.
@@ -537,26 +542,29 @@ namespace Skybound.Gecko
         /// In both of these cases, succeeds but does nothing if the URL/keyword is not found.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetKeywordForBookmark(System.Int32  aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAString aKeyword);
+		void SetKeywordForBookmark(int aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAString aKeyword);
 		
 		/// <summary>
         /// Retrieves the keyword for the given URI. Will be void string
         /// (null in JS) if no such keyword is found.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetKeywordForURI([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI);
+		nsAString GetKeywordForURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 		
 		/// <summary>
         /// Retrieves the keyword for the given bookmark. Will be void string
         /// (null in JS) if no such keyword is found.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetKeywordForBookmark(System.Int32  aItemId);
+		nsAString GetKeywordForBookmark(int aItemId);
 		
 		/// <summary>
         /// Returns the URI associated with the given keyword. Empty if no such
         /// keyword is found.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIURI GetURIForKeyword([MarshalAs(UnmanagedType.LPStruct)] nsAString keyword);
 		
@@ -567,13 +575,13 @@ namespace Skybound.Gecko
         /// service will keep a weak reference to the observer.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddObserver([MarshalAs(UnmanagedType.Interface)] nsINavBookmarkObserver  observer, System.Boolean  ownsWeak);
+		void AddObserver([MarshalAs(UnmanagedType.Interface)] nsINavBookmarkObserver observer, bool ownsWeak);
 		
 		/// <summary>
         /// Removes a bookmark observer.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveObserver([MarshalAs(UnmanagedType.Interface)] nsINavBookmarkObserver  observer);
+		void RemoveObserver([MarshalAs(UnmanagedType.Interface)] nsINavBookmarkObserver observer);
 		
 		/// <summary>
         /// Runs the passed callback inside of a database transaction.
@@ -588,6 +596,6 @@ namespace Skybound.Gecko
         /// Opaque parameter passed to nsINavBookmarksBatchCallback
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RunInBatchMode([MarshalAs(UnmanagedType.Interface)] nsINavHistoryBatchCallback  aCallback, [MarshalAs(UnmanagedType.Interface)] nsISupports  aUserData);
+		void RunInBatchMode([MarshalAs(UnmanagedType.Interface)] nsINavHistoryBatchCallback aCallback, [MarshalAs(UnmanagedType.Interface)] nsISupports aUserData);
 	}
 }

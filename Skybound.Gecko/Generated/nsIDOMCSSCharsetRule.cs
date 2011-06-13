@@ -55,13 +55,13 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMCSSStyleSheet  GetParentStyleSheetAttribute();
+		new nsIDOMCSSStyleSheet GetParentStyleSheetAttribute();
 		
 		/// <summary>Member GetParentRuleAttribute </summary>
-		/// <returns>A nsIDOMCSSRule </returns>
+		/// <returns>A nsIDOMCSSRule</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMCSSRule  GetParentRuleAttribute();
+		new nsIDOMCSSRule GetParentRuleAttribute();
 		
 		/// <summary>Member GetEncodingAttribute </summary>
 		/// <param name='aEncoding'> </param>

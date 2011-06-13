@@ -40,13 +40,15 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Create a unicode input stream from a unicode string.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIUnicharInputStream CreateInstanceFromString([MarshalAs(UnmanagedType.LPStruct)] nsAString aString);
 		
 		/// <summary>
         /// Create a unicode stream from an input stream in UTF8.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIUnicharInputStream CreateInstanceFromUTF8Stream([MarshalAs(UnmanagedType.Interface)] nsIInputStream  aStream);
+		nsIUnicharInputStream CreateInstanceFromUTF8Stream([MarshalAs(UnmanagedType.Interface)] nsIInputStream aStream);
 	}
 }

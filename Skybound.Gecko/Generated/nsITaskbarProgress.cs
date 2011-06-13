@@ -47,6 +47,6 @@ namespace Skybound.Gecko
         /// @throws NS_ERROR_ILLEGAL_VALUE if currentValue is greater than maxValue.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetProgressState(System.IntPtr state, System.UInt32  currentValue, System.UInt32  maxValue);
+		void SetProgressState(System.IntPtr state, uint currentValue, uint maxValue);
 	}
 }

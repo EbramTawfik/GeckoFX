@@ -60,7 +60,7 @@ namespace Skybound.Gecko
 		/// <summary>Member OnAccelerationChange </summary>
 		/// <param name='aAcceleration'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnAccelerationChange([MarshalAs(UnmanagedType.Interface)] nsIAcceleration  aAcceleration);
+		void OnAccelerationChange([MarshalAs(UnmanagedType.Interface)] nsIAcceleration aAcceleration);
 	}
 	
 	/// <summary>nsIAccelerometer </summary>
@@ -73,22 +73,22 @@ namespace Skybound.Gecko
 		/// <summary>Member AddListener </summary>
 		/// <param name='aListener'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddListener([MarshalAs(UnmanagedType.Interface)] nsIAccelerationListener  aListener);
+		void AddListener([MarshalAs(UnmanagedType.Interface)] nsIAccelerationListener aListener);
 		
 		/// <summary>Member RemoveListener </summary>
 		/// <param name='aListener'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveListener([MarshalAs(UnmanagedType.Interface)] nsIAccelerationListener  aListener);
+		void RemoveListener([MarshalAs(UnmanagedType.Interface)] nsIAccelerationListener aListener);
 		
 		/// <summary>Member AddWindowListener </summary>
 		/// <param name='aWindow'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddWindowListener([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  aWindow);
+		void AddWindowListener([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow);
 		
 		/// <summary>Member RemoveWindowListener </summary>
 		/// <param name='aWindow'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveWindowListener([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  aWindow);
+		void RemoveWindowListener([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow);
 	}
 	
 	/// <summary>
@@ -102,16 +102,16 @@ namespace Skybound.Gecko
 	{
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void AddListener([MarshalAs(UnmanagedType.Interface)] nsIAccelerationListener  aListener);
+		new void AddListener([MarshalAs(UnmanagedType.Interface)] nsIAccelerationListener aListener);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void RemoveListener([MarshalAs(UnmanagedType.Interface)] nsIAccelerationListener  aListener);
+		new void RemoveListener([MarshalAs(UnmanagedType.Interface)] nsIAccelerationListener aListener);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void AddWindowListener([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  aWindow);
+		new void AddWindowListener([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void RemoveWindowListener([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  aWindow);
+		new void RemoveWindowListener([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow);
 		
 		/// <summary>
         ///must be called on the main thread or else </summary>

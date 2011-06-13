@@ -39,13 +39,16 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Corresponds to http://www.w3.org/TR/2002/WD-DOM-Level-3-XPath-20020208
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMXPathExpression CreateExpression([MarshalAs(UnmanagedType.LPStruct)] nsAString expression, [MarshalAs(UnmanagedType.Interface)] nsIDOMXPathNSResolver  resolver);
+		nsIDOMXPathExpression CreateExpression([MarshalAs(UnmanagedType.LPStruct)] nsAString expression, [MarshalAs(UnmanagedType.Interface)] nsIDOMXPathNSResolver resolver);
 		
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMXPathNSResolver CreateNSResolver([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  nodeResolver);
+		nsIDOMXPathNSResolver CreateNSResolver([MarshalAs(UnmanagedType.Interface)] nsIDOMNode nodeResolver);
 		
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports Evaluate([MarshalAs(UnmanagedType.LPStruct)] nsAString expression, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode  contextNode, [MarshalAs(UnmanagedType.Interface)] nsIDOMXPathNSResolver  resolver, ushort type, [MarshalAs(UnmanagedType.Interface)] nsISupports  result);
+		nsISupports Evaluate([MarshalAs(UnmanagedType.LPStruct)] nsAString expression, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode contextNode, [MarshalAs(UnmanagedType.Interface)] nsIDOMXPathNSResolver resolver, ushort type, [MarshalAs(UnmanagedType.Interface)] nsISupports result);
 	}
 }

@@ -58,6 +58,6 @@ namespace Skybound.Gecko
         /// errors thrown by validators will be silently ignored.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Validate([MarshalAs(UnmanagedType.Interface)] nsICommandLine  aCommandLine);
+		void Validate([MarshalAs(UnmanagedType.Interface)] nsICommandLine aCommandLine);
 	}
 }

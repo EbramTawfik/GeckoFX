@@ -44,6 +44,6 @@ namespace Skybound.Gecko
 		/// <summary>Member Write </summary>
 		/// <param name='msg'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Write(Message  msg);
+		void Write(Message msg);
 	}
 }

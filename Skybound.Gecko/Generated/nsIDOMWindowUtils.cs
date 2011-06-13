@@ -86,7 +86,7 @@ namespace Skybound.Gecko
         /// Cannot be accessed from unprivileged context (not content-accessible)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetDocCharsetIsForcedAttribute();
+		bool GetDocCharsetIsForcedAttribute();
 		
 		/// <summary>
         /// Get current cursor type from this window
@@ -103,6 +103,7 @@ namespace Skybound.Gecko
         /// Will throw a DOM security error if called without UniversalXPConnect
         /// privileges.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsAString GetDocumentMetadata([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
 		
@@ -113,7 +114,7 @@ namespace Skybound.Gecko
         /// or is 0, it is taken to be 1.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint Redraw(System.UInt32  aCount);
+		uint Redraw(uint aCount);
 		
 		/// <summary>
         /// Set the CSS viewport to be |widthPx| x |heightPx| in units of CSS
@@ -215,14 +216,14 @@ namespace Skybound.Gecko
         /// during dispatch
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendMouseEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString aType, double aX, double aY, System.Int32  aButton, System.Int32  aClickCount, System.Int32  aModifiers, System.Boolean  aIgnoreRootScrollFrame);
+		void SendMouseEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString aType, double aX, double aY, int aButton, int aClickCount, int aModifiers, bool aIgnoreRootScrollFrame);
 		
 		/// <summary>
         ///The same as sendMouseEvent but ensures that the event is dispatched to
         /// this DOM window or one of its children.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendMouseEventToWindow([MarshalAs(UnmanagedType.LPStruct)] nsAString aType, double aX, double aY, System.Int32  aButton, System.Int32  aClickCount, System.Int32  aModifiers, System.Boolean  aIgnoreRootScrollFrame);
+		void SendMouseEventToWindow([MarshalAs(UnmanagedType.LPStruct)] nsAString aType, double aX, double aY, int aButton, int aClickCount, int aModifiers, bool aIgnoreRootScrollFrame);
 		
 		/// <summary>
         ///Synthesize a mouse scroll event for a window. The event types supported
@@ -246,7 +247,7 @@ namespace Skybound.Gecko
         /// @param aModifiers modifiers pressed, using constants defined in nsIDOMNSEvent
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendMouseScrollEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString aType, double aX, double aY, System.Int32  aButton, System.Int32  aScrollFlags, System.Int32  aDelta, System.Int32  aModifiers);
+		void SendMouseScrollEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString aType, double aX, double aY, int aButton, int aScrollFlags, int aDelta, int aModifiers);
 		
 		/// <summary>
         /// Synthesize a key event to the window. The event types supported are:
@@ -269,7 +270,7 @@ namespace Skybound.Gecko
         /// default action was taken.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool SendKeyEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString aType, System.Int32  aKeyCode, System.Int32  aCharCode, System.Int32  aModifiers, System.Boolean  aPreventDefault);
+		bool SendKeyEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString aType, int aKeyCode, int aCharCode, int aModifiers, bool aPreventDefault);
 		
 		/// <summary>
         /// See nsIWidget::SynthesizeNativeKeyEvent
@@ -279,7 +280,7 @@ namespace Skybound.Gecko
         /// privileges.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendNativeKeyEvent(System.Int32  aNativeKeyboardLayout, System.Int32  aNativeKeyCode, System.Int32  aModifierFlags, [MarshalAs(UnmanagedType.LPStruct)] nsAString aCharacters, [MarshalAs(UnmanagedType.LPStruct)] nsAString aUnmodifiedCharacters);
+		void SendNativeKeyEvent(int aNativeKeyboardLayout, int aNativeKeyCode, int aModifierFlags, [MarshalAs(UnmanagedType.LPStruct)] nsAString aCharacters, [MarshalAs(UnmanagedType.LPStruct)] nsAString aUnmodifiedCharacters);
 		
 		/// <summary>
         /// See nsIWidget::SynthesizeNativeMouseEvent
@@ -290,7 +291,7 @@ namespace Skybound.Gecko
         /// privileges.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendNativeMouseEvent(System.Int32  aScreenX, System.Int32  aScreenY, System.Int32  aNativeMessage, System.Int32  aModifierFlags, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement  aElement);
+		void SendNativeMouseEvent(int aScreenX, int aScreenY, int aNativeMessage, int aModifierFlags, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement);
 		
 		/// <summary>
         /// See nsIWidget::ActivateNativeMenuItemAt
@@ -328,7 +329,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Focus([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  aElement);
+		void Focus([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement);
 		
 		/// <summary>
         /// Force a garbage collection followed by a cycle collection.
@@ -341,7 +342,7 @@ namespace Skybound.Gecko
         /// component)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GarbageCollect([MarshalAs(UnmanagedType.Interface)] nsICycleCollectorListener  aListener);
+		void GarbageCollect([MarshalAs(UnmanagedType.Interface)] nsICycleCollectorListener aListener);
 		
 		/// <summary>
         /// Force processing of any queued paints
@@ -368,7 +369,7 @@ namespace Skybound.Gecko
         /// @param aModifiers modifiers pressed, using constants defined in nsIDOMNSEvent
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendSimpleGestureEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString aType, double aX, double aY, System.UInt32  aDirection, double aDelta, System.Int32  aModifiers);
+		void SendSimpleGestureEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString aType, double aX, double aY, uint aDirection, double aDelta, int aModifiers);
 		
 		/// <summary>
         /// Retrieve the element at point aX, aY in the window's document.
@@ -378,8 +379,9 @@ namespace Skybound.Gecko
         /// null for coordinates outside of the viewport.
         /// @param aFlushLayout flushes layout if true. Otherwise, no flush occurs.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMElement ElementFromPoint(double aX, double aY, System.Boolean  aIgnoreRootScrollFrame, System.Boolean  aFlushLayout);
+		nsIDOMElement ElementFromPoint(double aX, double aY, bool aIgnoreRootScrollFrame, bool aFlushLayout);
 		
 		/// <summary>
         /// Retrieve all nodes that intersect a rect in the window's document.
@@ -395,8 +397,9 @@ namespace Skybound.Gecko
         /// null for coordinates outside of the viewport.
         /// @param aFlushLayout flushes layout if true. Otherwise, no flush occurs.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMNodeList NodesFromRect(double aX, double aY, double aTopSize, double aRightSize, double aBottomSize, double aLeftSize, System.Boolean  aIgnoreRootScrollFrame, System.Boolean  aFlushLayout);
+		nsIDOMNodeList NodesFromRect(double aX, double aY, double aTopSize, double aRightSize, double aBottomSize, double aLeftSize, bool aIgnoreRootScrollFrame, bool aFlushLayout);
 		
 		/// <summary>
         /// Compare the two canvases, returning the number of differing pixels and
@@ -406,14 +409,14 @@ namespace Skybound.Gecko
         /// This method requires UniversalXPConnect privileges.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint CompareCanvases([MarshalAs(UnmanagedType.Interface)] nsIDOMHTMLCanvasElement  aCanvas1, [MarshalAs(UnmanagedType.Interface)] nsIDOMHTMLCanvasElement  aCanvas2, out System.UInt32  aMaxDifference);
+		uint CompareCanvases([MarshalAs(UnmanagedType.Interface)] nsIDOMHTMLCanvasElement aCanvas1, [MarshalAs(UnmanagedType.Interface)] nsIDOMHTMLCanvasElement aCanvas2, out uint aMaxDifference);
 		
 		/// <summary>
         /// Returns true if a MozAfterPaint event has been queued but not yet
         /// fired.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsMozAfterPaintPendingAttribute();
+		bool GetIsMozAfterPaintPendingAttribute();
 		
 		/// <summary>
         /// Suppresses/unsuppresses user initiated event handling in window's document
@@ -423,7 +426,7 @@ namespace Skybound.Gecko
         /// privileges and NS_ERROR_FAILURE if window doesn't have a document.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SuppressEventHandling(System.Boolean  aSuppress);
+		void SuppressEventHandling(bool aSuppress);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ClearMozAfterPaintEvents();
@@ -439,7 +442,7 @@ namespace Skybound.Gecko
         /// on all windows.  Otherwise, enable them.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DisableNonTestMouseEvents(System.Boolean  aDisable);
+		void DisableNonTestMouseEvents(bool aDisable);
 		
 		/// <summary>
         /// Returns the scroll position of the window's currently loaded document.
@@ -448,20 +451,20 @@ namespace Skybound.Gecko
         /// @see nsIDOMWindow::scrollX/Y
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetScrollXY(System.Boolean  aFlushLayout, out System.Int32  aScrollX, out System.Int32  aScrollY);
+		void GetScrollXY(bool aFlushLayout, out int aScrollX, out int aScrollY);
 		
 		/// <summary>
         /// Get IME open state. TRUE means 'Open', otherwise, 'Close'.
         /// This property works only when IMEEnabled is IME_STATUS_ENABLED.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIMEIsOpenAttribute();
+		bool GetIMEIsOpenAttribute();
 		
 		/// <summary>
         /// Get IME status, see above IME_STATUS_* definitions.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetIMEStatusAttribute();
+		uint GetIMEStatusAttribute();
 		
 		/// <summary>
         /// Get the number of screen pixels per CSS pixel.
@@ -482,10 +485,11 @@ namespace Skybound.Gecko
         /// Also, aEvent should not be reused.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool DispatchDOMEventViaPresShell([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  aTarget, [MarshalAs(UnmanagedType.Interface)] nsIDOMEvent  aEvent, System.Boolean  aTrusted);
+		bool DispatchDOMEventViaPresShell([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aTarget, [MarshalAs(UnmanagedType.Interface)] nsIDOMEvent aEvent, bool aTrusted);
 		
 		/// <summary>
         ///in JSObjectPtr aObj </summary>
+		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string GetClassName();
 		
@@ -502,7 +506,7 @@ namespace Skybound.Gecko
         /// "pasteTransferable"
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendContentCommandEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString aType, [MarshalAs(UnmanagedType.Interface)] nsITransferable  aTransferable);
+		void SendContentCommandEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString aType, [MarshalAs(UnmanagedType.Interface)] nsITransferable aTransferable);
 		
 		/// <summary>
         /// Synthesize a composition event to the window.
@@ -520,7 +524,7 @@ namespace Skybound.Gecko
         /// NOTE: These values must be same to NS_TEXTRANGE_* in nsGUIEvent.h
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendTextEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString aCompositionString, System.Int32  aFirstClauseLength, System.UInt32  aFirstClauseAttr, System.Int32  aSecondClauseLength, System.UInt32  aSecondClauseAttr, System.Int32  aThirdClauseLength, System.UInt32  aThirdClauseAttr, System.Int32  aCaretStart, System.Int32  aCaretLength);
+		void SendTextEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString aCompositionString, int aFirstClauseLength, uint aFirstClauseAttr, int aSecondClauseLength, uint aSecondClauseAttr, int aThirdClauseLength, uint aThirdClauseAttr, int aCaretStart, int aCaretLength);
 		
 		/// <summary>
         /// Synthesize a query content event.
@@ -528,8 +532,9 @@ namespace Skybound.Gecko
         /// @param aType  On of the following const values.  And see also each comment
         /// for the other parameters and the result.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIQueryContentEventResult SendQueryContentEvent(System.UInt32  aType, System.UInt32  aOffset, System.UInt32  aLength, System.Int32  aX, System.Int32  aY);
+		nsIQueryContentEventResult SendQueryContentEvent(uint aType, uint aOffset, uint aLength, int aX, int aY);
 		
 		/// <summary>
         /// Synthesize a selection set event to the window.
@@ -545,7 +550,7 @@ namespace Skybound.Gecko
         /// @return True, if succeeded.  Otherwise, false.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool SendSelectionSetEvent(System.UInt32  aOffset, System.UInt32  aLength, System.Boolean  aReverse);
+		bool SendSelectionSetEvent(uint aOffset, uint aLength, bool aReverse);
 		
 		/// <summary>
         /// Perform the equivalent of:
@@ -561,8 +566,9 @@ namespace Skybound.Gecko
         /// to this API, and is sufficient for the present testing
         /// requirements (which are essentially testing 'color').
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetVisitedDependentComputedStyle([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  aElement, [MarshalAs(UnmanagedType.LPStruct)] nsAString aPseudoElement, [MarshalAs(UnmanagedType.LPStruct)] nsAString aPropertyName);
+		nsAString GetVisitedDependentComputedStyle([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement, [MarshalAs(UnmanagedType.LPStruct)] nsAString aPseudoElement, [MarshalAs(UnmanagedType.LPStruct)] nsAString aPropertyName);
 		
 		/// <summary>
         ///obj </summary>
@@ -573,14 +579,14 @@ namespace Skybound.Gecko
         /// Get the id of the outer window of this window.  This will never throw.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetOuterWindowIDAttribute();
+		uint GetOuterWindowIDAttribute();
 		
 		/// <summary>
         /// Get the id of the current inner window of this window.  If there
         /// is no current inner window, throws NS_ERROR_NOT_AVAILABLE.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetCurrentInnerWindowIDAttribute();
+		uint GetCurrentInnerWindowIDAttribute();
 		
 		/// <summary>
         /// Put the window into a state where scripts are frozen and events
@@ -628,11 +634,12 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Return the outer window with the given ID, if any.  Can return null.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMWindow GetOuterWindowWithId(System.UInt32  aOuterWindowID);
+		nsIDOMWindow GetOuterWindowWithId(uint aOuterWindowID);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RenderDocument(nsConstRect  aRect, System.UInt32  aFlags, nscolor  aBackgroundColor, System.IntPtr aThebesContext);
+		void RenderDocument(nsConstRect aRect, uint aFlags, nscolor aBackgroundColor, System.IntPtr aThebesContext);
 		
 		/// <summary>
         /// Method for testing nsStyleAnimation::ComputeDistance.
@@ -642,7 +649,7 @@ namespace Skybound.Gecko
         /// property.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double ComputeAnimationDistance([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  element, [MarshalAs(UnmanagedType.LPStruct)] nsAString property, [MarshalAs(UnmanagedType.LPStruct)] nsAString value1, [MarshalAs(UnmanagedType.LPStruct)] nsAString value2);
+		double ComputeAnimationDistance([MarshalAs(UnmanagedType.Interface)] nsIDOMElement element, [MarshalAs(UnmanagedType.LPStruct)] nsAString property, [MarshalAs(UnmanagedType.LPStruct)] nsAString value1, [MarshalAs(UnmanagedType.LPStruct)] nsAString value2);
 	}
 	
 	/// <summary>nsIDOMWindowUtils_MOZILLA_2_0_BRANCH </summary>
@@ -657,13 +664,14 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetFocusedInputTypeAttribute();
+		string GetFocusedInputTypeAttribute();
 		
 		/// <summary>
         /// Given a view ID from the compositor process, retrieve the element
         /// associated with a view. For scrollpanes for documents, the root
         /// element of the document is returned.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMElement FindElementWithViewId(System.IntPtr aId);
 		
@@ -671,6 +679,7 @@ namespace Skybound.Gecko
         /// Same as enterModalState, but returns the window associated with the
         /// current JS context.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMWindow EnterModalStateWithWindow();
 		
@@ -680,7 +689,7 @@ namespace Skybound.Gecko
         /// might be different at the moment (see bug 621764).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void LeaveModalStateWithWindow([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  aWindow);
+		void LeaveModalStateWithWindow([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow);
 		
 		/// <summary>
         /// Checks the layer tree for this window and returns true

@@ -39,12 +39,12 @@ namespace Skybound.Gecko
 		/// <summary>
         ///readonly attribute boolean printable; </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetPrintableAttribute();
+		bool GetPrintableAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Print(System.Boolean  aSilent, System.IntPtr aDebugFile, [MarshalAs(UnmanagedType.Interface)] nsIPrintSettings  aPrintSettings);
+		void Print(bool aSilent, System.IntPtr aDebugFile, [MarshalAs(UnmanagedType.Interface)] nsIPrintSettings aPrintSettings);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PrintWithParent([MarshalAs(UnmanagedType.Interface)] nsIDOMWindowInternal  aParentWin, [MarshalAs(UnmanagedType.Interface)] nsIPrintSettings  aThePrintSettings, [MarshalAs(UnmanagedType.Interface)] nsIWebProgressListener  aWPListener);
+		void PrintWithParent([MarshalAs(UnmanagedType.Interface)] nsIDOMWindowInternal aParentWin, [MarshalAs(UnmanagedType.Interface)] nsIPrintSettings aThePrintSettings, [MarshalAs(UnmanagedType.Interface)] nsIWebProgressListener aWPListener);
 	}
 }

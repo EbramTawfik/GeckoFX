@@ -54,7 +54,7 @@ namespace Skybound.Gecko
         /// Javascript program text.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init([MarshalAs(UnmanagedType.LPStruct)] nsAString  aPACURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString aPACScript);
+		void Init([MarshalAs(UnmanagedType.LPStruct)] nsAString aPACURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString aPACScript);
 		
 		/// <summary>
         /// Get the proxy string for the specified URI.  The proxy string is
@@ -89,7 +89,8 @@ namespace Skybound.Gecko
         ///
         /// @return PAC result string as defined above.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetProxyForURI([MarshalAs(UnmanagedType.LPStruct)] nsAString  aTestURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aTestHost);
+		nsAString GetProxyForURI([MarshalAs(UnmanagedType.LPStruct)] nsAString aTestURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString aTestHost);
 	}
 }

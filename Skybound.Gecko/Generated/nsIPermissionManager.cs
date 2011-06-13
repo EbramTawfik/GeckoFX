@@ -83,7 +83,7 @@ namespace Skybound.Gecko
         /// should be forgotten (milliseconds since Jan 1 1970 0:00:00).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Add([MarshalAs(UnmanagedType.Interface)] nsIURI  uri, [MarshalAs(UnmanagedType.LPStr)] System.String  type, System.UInt32  permission, System.UInt32  expireType, System.Int64  expireTime);
+		void Add([MarshalAs(UnmanagedType.Interface)] nsIURI uri, [MarshalAs(UnmanagedType.LPStr)] string type, uint permission, uint expireType, long expireTime);
 		
 		/// <summary>
         /// Remove permission information for a given host string and permission type.
@@ -97,7 +97,7 @@ namespace Skybound.Gecko
         /// add() method.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Remove([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  host, [MarshalAs(UnmanagedType.LPStr)] System.String  type);
+		void Remove([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String host, [MarshalAs(UnmanagedType.LPStr)] string type);
 		
 		/// <summary>
         /// Clear permission information for all websites.
@@ -113,7 +113,7 @@ namespace Skybound.Gecko
         /// there is no stored permission for this uri and / or type.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint TestPermission([MarshalAs(UnmanagedType.Interface)] nsIURI  uri, [MarshalAs(UnmanagedType.LPStr)] System.String  type);
+		uint TestPermission([MarshalAs(UnmanagedType.Interface)] nsIURI uri, [MarshalAs(UnmanagedType.LPStr)] string type);
 		
 		/// <summary>
         /// Test whether a website has permission to perform the given action.
@@ -124,7 +124,7 @@ namespace Skybound.Gecko
         /// there is no stored permission for this uri and / or type.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint TestExactPermission([MarshalAs(UnmanagedType.Interface)] nsIURI  uri, [MarshalAs(UnmanagedType.LPStr)] System.String  type);
+		uint TestExactPermission([MarshalAs(UnmanagedType.Interface)] nsIURI uri, [MarshalAs(UnmanagedType.LPStr)] string type);
 		
 		/// <summary>
         /// Allows enumeration of all stored permissions
@@ -133,6 +133,6 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISimpleEnumerator  GetEnumeratorAttribute();
+		nsISimpleEnumerator GetEnumeratorAttribute();
 	}
 }

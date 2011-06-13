@@ -60,7 +60,7 @@ namespace Skybound.Gecko
         /// Default: false
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetDismissOnClickAttribute();
+		bool GetDismissOnClickAttribute();
 		
 		/// <summary>
         /// True if the array of previews should be dismissed when this button is clicked.
@@ -68,7 +68,7 @@ namespace Skybound.Gecko
         /// Default: false
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDismissOnClickAttribute(System.Boolean  aDismissOnClick);
+		void SetDismissOnClickAttribute(bool aDismissOnClick);
 		
 		/// <summary>
         /// True if the taskbar should draw a border around this button's image.
@@ -76,7 +76,7 @@ namespace Skybound.Gecko
         /// Default: true
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetHasBorderAttribute();
+		bool GetHasBorderAttribute();
 		
 		/// <summary>
         /// True if the taskbar should draw a border around this button's image.
@@ -84,7 +84,7 @@ namespace Skybound.Gecko
         /// Default: true
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetHasBorderAttribute(System.Boolean  aHasBorder);
+		void SetHasBorderAttribute(bool aHasBorder);
 		
 		/// <summary>
         /// True if the button is disabled. This is not the same as visible.
@@ -92,7 +92,7 @@ namespace Skybound.Gecko
         /// Default: false
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetDisabledAttribute();
+		bool GetDisabledAttribute();
 		
 		/// <summary>
         /// True if the button is disabled. This is not the same as visible.
@@ -100,7 +100,7 @@ namespace Skybound.Gecko
         /// Default: false
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDisabledAttribute(System.Boolean  aDisabled);
+		void SetDisabledAttribute(bool aDisabled);
 		
 		/// <summary>
         /// The icon used for the button.
@@ -108,7 +108,7 @@ namespace Skybound.Gecko
         /// Default: null
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		imgIContainer  GetImageAttribute();
+		imgIContainer GetImageAttribute();
 		
 		/// <summary>
         /// The icon used for the button.
@@ -116,7 +116,7 @@ namespace Skybound.Gecko
         /// Default: null
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetImageAttribute(imgIContainer  aImage);
+		void SetImageAttribute(imgIContainer aImage);
 		
 		/// <summary>
         /// True if the button is shown. Buttons that are invisible do not
@@ -125,7 +125,7 @@ namespace Skybound.Gecko
         /// Default: false
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetVisibleAttribute();
+		bool GetVisibleAttribute();
 		
 		/// <summary>
         /// True if the button is shown. Buttons that are invisible do not
@@ -134,6 +134,6 @@ namespace Skybound.Gecko
         /// Default: false
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetVisibleAttribute(System.Boolean  aVisible);
+		void SetVisibleAttribute(bool aVisible);
 	}
 }

@@ -37,43 +37,46 @@ namespace Skybound.Gecko
 		/// <summary>
         /// CSS utilities
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupportsArray GetCSSStyleRules([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  aElement);
+		nsISupportsArray GetCSSStyleRules([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement);
 		
 		/// <summary>Member GetRuleLine </summary>
 		/// <param name='aRule'> </param>
 		/// <returns>A System.UInt32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetRuleLine([MarshalAs(UnmanagedType.Interface)] nsIDOMCSSStyleRule  aRule);
+		uint GetRuleLine([MarshalAs(UnmanagedType.Interface)] nsIDOMCSSStyleRule aRule);
 		
 		/// <summary>
         /// DOM Node utilities
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsIgnorableWhitespace([MarshalAs(UnmanagedType.Interface)] nsIDOMCharacterData  aDataNode);
+		bool IsIgnorableWhitespace([MarshalAs(UnmanagedType.Interface)] nsIDOMCharacterData aDataNode);
 		
 		/// <summary>
         /// whether we are showing anonymous content.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMNode GetParentForNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  aNode, System.Boolean  aShowingAnonymousContent);
+		nsIDOMNode GetParentForNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aNode, bool aShowingAnonymousContent);
 		
 		/// <summary>
         /// XBL utilities
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIArray GetBindingURLs([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  aElement);
+		nsIArray GetBindingURLs([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement);
 		
 		/// <summary>
         /// content state utilities
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetContentState([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  aElement);
+		uint GetContentState([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement);
 		
 		/// <summary>Member SetContentState </summary>
 		/// <param name='aElement'> </param>
 		/// <param name='aState'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetContentState([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  aElement, System.UInt32  aState);
+		void SetContentState([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement, uint aState);
 	}
 }

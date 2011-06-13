@@ -35,10 +35,10 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetDomConfigAttribute </summary>
-		/// <returns>A nsIDOMDOMConfiguration </returns>
+		/// <returns>A nsIDOMDOMConfiguration</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMConfiguration  GetDomConfigAttribute();
+		nsIDOMDOMConfiguration GetDomConfigAttribute();
 		
 		/// <summary>Member GetNewLineAttribute </summary>
 		/// <param name='aNewLine'> </param>
@@ -51,34 +51,35 @@ namespace Skybound.Gecko
 		void SetNewLineAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aNewLine);
 		
 		/// <summary>Member GetFilterAttribute </summary>
-		/// <returns>A nsIDOMLSSerializerFilter </returns>
+		/// <returns>A nsIDOMLSSerializerFilter</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMLSSerializerFilter  GetFilterAttribute();
+		nsIDOMLSSerializerFilter GetFilterAttribute();
 		
 		/// <summary>Member SetFilterAttribute </summary>
 		/// <param name='aFilter'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFilterAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMLSSerializerFilter  aFilter);
+		void SetFilterAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMLSSerializerFilter aFilter);
 		
 		/// <summary>Member Write </summary>
 		/// <param name='nodeArg'> </param>
 		/// <param name='destination'> </param>
 		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Write([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  nodeArg, [MarshalAs(UnmanagedType.Interface)] nsIDOMLSOutput  destination);
+		bool Write([MarshalAs(UnmanagedType.Interface)] nsIDOMNode nodeArg, [MarshalAs(UnmanagedType.Interface)] nsIDOMLSOutput destination);
 		
 		/// <summary>Member WriteToURI </summary>
 		/// <param name='nodeArg'> </param>
 		/// <param name='uri'> </param>
 		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool WriteToURI([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  nodeArg, [MarshalAs(UnmanagedType.LPStruct)] nsAString uri);
+		bool WriteToURI([MarshalAs(UnmanagedType.Interface)] nsIDOMNode nodeArg, [MarshalAs(UnmanagedType.LPStruct)] nsAString uri);
 		
 		/// <summary>Member WriteToString </summary>
 		/// <param name='nodeArg'> </param>
 		/// <returns>A nsAString</returns>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString WriteToString([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  nodeArg);
+		nsAString WriteToString([MarshalAs(UnmanagedType.Interface)] nsIDOMNode nodeArg);
 	}
 }

@@ -45,7 +45,7 @@ namespace Skybound.Gecko
         /// be used instead.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddLogin([MarshalAs(UnmanagedType.Interface)] nsILoginInfo  aLogin);
+		void AddLogin([MarshalAs(UnmanagedType.Interface)] nsILoginInfo aLogin);
 		
 		/// <summary>
         /// Remove a login from the login manager.
@@ -57,7 +57,7 @@ namespace Skybound.Gecko
         /// values of any nsILoginMetaInfo properties are ignored.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveLogin([MarshalAs(UnmanagedType.Interface)] nsILoginInfo  aLogin);
+		void RemoveLogin([MarshalAs(UnmanagedType.Interface)] nsILoginInfo aLogin);
 		
 		/// <summary>
         /// Modify an existing login in the login manager.
@@ -79,7 +79,7 @@ namespace Skybound.Gecko
         /// login's timesUsed property will be incremented by the item's value.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ModifyLogin([MarshalAs(UnmanagedType.Interface)] nsILoginInfo  oldLogin, [MarshalAs(UnmanagedType.Interface)] nsISupports  newLoginData);
+		void ModifyLogin([MarshalAs(UnmanagedType.Interface)] nsILoginInfo oldLogin, [MarshalAs(UnmanagedType.Interface)] nsISupports newLoginData);
 		
 		/// <summary>
         /// Remove all logins known to login manager.
@@ -107,7 +107,7 @@ namespace Skybound.Gecko
         /// (|logins| is an array).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsILoginInfo  GetAllLogins(out System.UInt32  count);
+		nsILoginInfo GetAllLogins(out uint count);
 		
 		/// <summary>
         /// Obtain a list of all hosts for which password saving is disabled.
@@ -124,7 +124,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler", SizeParamIndex=0)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string GetAllDisabledHosts(out System.UInt32  count);
+		string GetAllDisabledHosts(out uint count);
 		
 		/// <summary>
         /// Check to see if saving logins has been disabled for a host.
@@ -149,7 +149,7 @@ namespace Skybound.Gecko
         /// disabled (false)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetLoginSavingEnabled([MarshalAs(UnmanagedType.LPStruct)] nsAString aHost, System.Boolean  isEnabled);
+		void SetLoginSavingEnabled([MarshalAs(UnmanagedType.LPStruct)] nsAString aHost, bool isEnabled);
 		
 		/// <summary>
         /// Search for logins matching the specified criteria. Called when looking
@@ -182,7 +182,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsILoginInfo  FindLogins(out System.UInt32  count, [MarshalAs(UnmanagedType.LPStruct)] nsAString aHostname, [MarshalAs(UnmanagedType.LPStruct)] nsAString aActionURL, [MarshalAs(UnmanagedType.LPStruct)] nsAString aHttpRealm);
+		nsILoginInfo FindLogins(out uint count, [MarshalAs(UnmanagedType.LPStruct)] nsAString aHostname, [MarshalAs(UnmanagedType.LPStruct)] nsAString aActionURL, [MarshalAs(UnmanagedType.LPStruct)] nsAString aHttpRealm);
 		
 		/// <summary>
         /// Search for logins matching the specified criteria, as with
@@ -214,8 +214,9 @@ namespace Skybound.Gecko
         /// which calls it directly. This isn't really ideal, it should
         /// probably be callback registered through the FFC.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIAutoCompleteResult AutoCompleteSearch([MarshalAs(UnmanagedType.LPStruct)] nsAString aSearchString, [MarshalAs(UnmanagedType.Interface)] nsIAutoCompleteResult  aPreviousResult, [MarshalAs(UnmanagedType.Interface)] nsIDOMHTMLInputElement  aElement);
+		nsIAutoCompleteResult AutoCompleteSearch([MarshalAs(UnmanagedType.LPStruct)] nsAString aSearchString, [MarshalAs(UnmanagedType.Interface)] nsIAutoCompleteResult aPreviousResult, [MarshalAs(UnmanagedType.Interface)] nsIDOMHTMLInputElement aElement);
 		
 		/// <summary>
         /// Fill a form with login information if we have it. This method will fill
@@ -226,7 +227,7 @@ namespace Skybound.Gecko
         /// @return Success of attempt fill form
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool FillForm([MarshalAs(UnmanagedType.Interface)] nsIDOMHTMLFormElement  aForm);
+		bool FillForm([MarshalAs(UnmanagedType.Interface)] nsIDOMHTMLFormElement aForm);
 		
 		/// <summary>
         /// Search for logins in the login manager. An array is always returned;
@@ -248,12 +249,12 @@ namespace Skybound.Gecko
         /// (|logins| is an array).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsILoginInfo  SearchLogins(out System.UInt32  count, [MarshalAs(UnmanagedType.Interface)] nsIPropertyBag  matchData);
+		nsILoginInfo SearchLogins(out uint count, [MarshalAs(UnmanagedType.Interface)] nsIPropertyBag matchData);
 		
 		/// <summary>
         /// True when a master password prompt is being displayed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetUiBusyAttribute();
+		bool GetUiBusyAttribute();
 	}
 }

@@ -37,52 +37,52 @@ namespace Skybound.Gecko
 		/// <summary>Member GetLongNameAttribute </summary>
 		/// <param name='aLongName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetLongNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aLongName);
+		void GetLongNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aLongName);
 		
 		/// <summary>Member GetIsSSL2Attribute </summary>
-		/// <returns>A System.Boolean </returns>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsSSL2Attribute();
+		bool GetIsSSL2Attribute();
 		
 		/// <summary>Member GetIsFIPSAttribute </summary>
-		/// <returns>A System.Boolean </returns>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsFIPSAttribute();
+		bool GetIsFIPSAttribute();
 		
 		/// <summary>Member GetIsExportableAttribute </summary>
-		/// <returns>A System.Boolean </returns>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsExportableAttribute();
+		bool GetIsExportableAttribute();
 		
 		/// <summary>Member GetNonStandardAttribute </summary>
-		/// <returns>A System.Boolean </returns>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetNonStandardAttribute();
+		bool GetNonStandardAttribute();
 		
 		/// <summary>Member GetSymCipherNameAttribute </summary>
 		/// <param name='aSymCipherName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSymCipherNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aSymCipherName);
+		void GetSymCipherNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aSymCipherName);
 		
 		/// <summary>Member GetAuthAlgorithmNameAttribute </summary>
 		/// <param name='aAuthAlgorithmName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetAuthAlgorithmNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aAuthAlgorithmName);
+		void GetAuthAlgorithmNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aAuthAlgorithmName);
 		
 		/// <summary>Member GetKeaTypeNameAttribute </summary>
 		/// <param name='aKeaTypeName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetKeaTypeNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aKeaTypeName);
+		void GetKeaTypeNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aKeaTypeName);
 		
 		/// <summary>Member GetMacAlgorithmNameAttribute </summary>
 		/// <param name='aMacAlgorithmName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMacAlgorithmNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aMacAlgorithmName);
+		void GetMacAlgorithmNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMacAlgorithmName);
 		
 		/// <summary>Member GetEffectiveKeyBitsAttribute </summary>
-		/// <returns>A System.Int32 </returns>
+		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetEffectiveKeyBitsAttribute();
+		int GetEffectiveKeyBitsAttribute();
 	}
 	
 	/// <summary>nsICipherInfoService </summary>
@@ -95,7 +95,8 @@ namespace Skybound.Gecko
 		/// <summary>Member GetCipherInfoByPrefString </summary>
 		/// <param name='aPrefString'> </param>
 		/// <returns>A nsICipherInfo</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsICipherInfo GetCipherInfoByPrefString([MarshalAs(UnmanagedType.LPStruct)] nsAString  aPrefString);
+		nsICipherInfo GetCipherInfoByPrefString([MarshalAs(UnmanagedType.LPStruct)] nsAString aPrefString);
 	}
 }

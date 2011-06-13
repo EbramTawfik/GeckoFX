@@ -54,20 +54,21 @@ namespace Skybound.Gecko
         /// also be reloaded
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ReloadPlugins(System.Boolean  reloadPages);
+		void ReloadPlugins(bool reloadPages);
 		
 		/// <summary>Member GetPlugin </summary>
 		/// <param name='aMimeType'> </param>
 		/// <returns>A nsIPlugin</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIPlugin GetPlugin([MarshalAs(UnmanagedType.LPStr)] System.String  aMimeType);
+		nsIPlugin GetPlugin([MarshalAs(UnmanagedType.LPStr)] string aMimeType);
 		
 		/// <summary>Member InstantiateEmbeddedPlugin </summary>
 		/// <param name='aMimeType'> </param>
 		/// <param name='aURL'> </param>
 		/// <param name='aOwner'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InstantiateEmbeddedPlugin([MarshalAs(UnmanagedType.LPStr)] System.String  aMimeType, [MarshalAs(UnmanagedType.Interface)] nsIURI  aURL, [MarshalAs(UnmanagedType.Interface)] nsIPluginInstanceOwner  aOwner);
+		void InstantiateEmbeddedPlugin([MarshalAs(UnmanagedType.LPStr)] string aMimeType, [MarshalAs(UnmanagedType.Interface)] nsIURI aURL, [MarshalAs(UnmanagedType.Interface)] nsIPluginInstanceOwner aOwner);
 		
 		/// <summary>Member InstantiateFullPagePlugin </summary>
 		/// <param name='aMimeType'> </param>
@@ -75,61 +76,62 @@ namespace Skybound.Gecko
 		/// <param name='aOwner'> </param>
 		/// <param name='aStreamListener'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InstantiateFullPagePlugin([MarshalAs(UnmanagedType.LPStr)] System.String  aMimeType, [MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, [MarshalAs(UnmanagedType.Interface)] nsIPluginInstanceOwner  aOwner, [MarshalAs(UnmanagedType.Interface)] out nsIStreamListener  aStreamListener);
+		void InstantiateFullPagePlugin([MarshalAs(UnmanagedType.LPStr)] string aMimeType, [MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIPluginInstanceOwner aOwner, [MarshalAs(UnmanagedType.Interface)] out nsIStreamListener aStreamListener);
 		
 		/// <summary>
         /// Instantiate an embedded plugin for an existing channel. The caller is
         /// responsible for opening the channel. It may or may not be already opened
         /// when this function is called.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIStreamListener InstantiatePluginForChannel([MarshalAs(UnmanagedType.Interface)] nsIChannel  aChannel, [MarshalAs(UnmanagedType.Interface)] nsIPluginInstanceOwner  aOwner);
+		nsIStreamListener InstantiatePluginForChannel([MarshalAs(UnmanagedType.Interface)] nsIChannel aChannel, [MarshalAs(UnmanagedType.Interface)] nsIPluginInstanceOwner aOwner);
 		
 		/// <summary>Member SetUpPluginInstance </summary>
 		/// <param name='aMimeType'> </param>
 		/// <param name='aURL'> </param>
 		/// <param name='aOwner'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetUpPluginInstance([MarshalAs(UnmanagedType.LPStr)] System.String  aMimeType, [MarshalAs(UnmanagedType.Interface)] nsIURI  aURL, [MarshalAs(UnmanagedType.Interface)] nsIPluginInstanceOwner  aOwner);
+		void SetUpPluginInstance([MarshalAs(UnmanagedType.LPStr)] string aMimeType, [MarshalAs(UnmanagedType.Interface)] nsIURI aURL, [MarshalAs(UnmanagedType.Interface)] nsIPluginInstanceOwner aOwner);
 		
 		/// <summary>
         /// NS_ERROR_FAILURE if there is no plugin for this type.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void IsPluginEnabledForType([MarshalAs(UnmanagedType.LPStr)] System.String  aMimeType);
+		void IsPluginEnabledForType([MarshalAs(UnmanagedType.LPStr)] string aMimeType);
 		
 		/// <summary>
         /// the plugin is explicitly disabled or there is no plugin.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void IsPluginEnabledForExtension([MarshalAs(UnmanagedType.LPStr)] System.String  aExtension, System.IntPtr aMimeType);
+		void IsPluginEnabledForExtension([MarshalAs(UnmanagedType.LPStr)] string aExtension, System.IntPtr aMimeType);
 		
 		/// <summary>Member GetPluginCountAttribute </summary>
-		/// <returns>A System.UInt32 </returns>
+		/// <returns>A System.UInt32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetPluginCountAttribute();
+		uint GetPluginCountAttribute();
 		
 		/// <summary>
         ///array </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPlugins(System.UInt32  aPluginCount, [MarshalAs(UnmanagedType.Interface)] out nsIDOMPlugin  aPluginArray);
+		void GetPlugins(uint aPluginCount, [MarshalAs(UnmanagedType.Interface)] out nsIDOMPlugin aPluginArray);
 		
 		/// <summary>Member GetPluginTags </summary>
 		/// <param name='aPluginCount'> </param>
-		/// <returns>A nsIPluginTag </returns>
+		/// <returns>A nsIPluginTag</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIPluginTag  GetPluginTags(out System.UInt32  aPluginCount);
+		nsIPluginTag GetPluginTags(out uint aPluginCount);
 		
 		/// <summary>Member StopPluginInstance </summary>
 		/// <param name='aInstance'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void StopPluginInstance([MarshalAs(UnmanagedType.Interface)] nsIPluginInstance  aInstance);
+		void StopPluginInstance([MarshalAs(UnmanagedType.Interface)] nsIPluginInstance aInstance);
 		
 		/// <summary>Member HandleBadPlugin </summary>
 		/// <param name='aLibrary'> </param>
 		/// <param name='instance'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void HandleBadPlugin(System.IntPtr aLibrary, [MarshalAs(UnmanagedType.Interface)] nsIPluginInstance  instance);
+		void HandleBadPlugin(System.IntPtr aLibrary, [MarshalAs(UnmanagedType.Interface)] nsIPluginInstance instance);
 		
 		/// <summary>
         /// Returns the proxy info for a given URL. The caller is required to
@@ -145,7 +147,7 @@ namespace Skybound.Gecko
         /// Which proxy/SOCKS to use is determined by the plugin.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void FindProxyForURL([MarshalAs(UnmanagedType.LPStr)] System.String  aURL, [MarshalAs(UnmanagedType.LPStr)] out System.String  aResult);
+		void FindProxyForURL([MarshalAs(UnmanagedType.LPStr)] string aURL, [MarshalAs(UnmanagedType.LPStr)] out string aResult);
 		
 		/// <summary>Member UserAgent </summary>
 		/// <param name='resultingAgentString'> </param>
@@ -176,13 +178,14 @@ namespace Skybound.Gecko
         /// @param aOutPostDataLen  - the length of aOutPostData
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ParsePostBufferToFixHeaders([MarshalAs(UnmanagedType.LPStr)] System.String  aInPostData, System.UInt32  aInPostDataLen, [MarshalAs(UnmanagedType.LPStr)] out System.String  aOutPostData, out System.UInt32  aOutPostDataLen);
+		void ParsePostBufferToFixHeaders([MarshalAs(UnmanagedType.LPStr)] string aInPostData, uint aInPostDataLen, [MarshalAs(UnmanagedType.LPStr)] out string aOutPostData, out uint aOutPostDataLen);
 		
 		/// <summary>
         /// To create temp file with Content len header in, it will use by http POST
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIFile CreateTempFileToPost([MarshalAs(UnmanagedType.LPStr)] System.String  aPostDataURL);
+		nsIFile CreateTempFileToPost([MarshalAs(UnmanagedType.LPStr)] string aPostDataURL);
 		
 		/// <summary>
         /// Creates a new plugin native window object
@@ -204,7 +207,7 @@ namespace Skybound.Gecko
         /// be non-null, if not, it will be null.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InstantiateDummyJavaPlugin([MarshalAs(UnmanagedType.Interface)] nsIPluginInstanceOwner  aOwner);
+		void InstantiateDummyJavaPlugin([MarshalAs(UnmanagedType.Interface)] nsIPluginInstanceOwner aOwner);
 		
 		/// <summary>
         /// Get the plugin name for the plugin instance.
@@ -214,15 +217,16 @@ namespace Skybound.Gecko
         /// copy the string value if you need it longer than that.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPluginName([MarshalAs(UnmanagedType.Interface)] nsIPluginInstance  aInstance, [MarshalAs(UnmanagedType.LPStr)] out System.String  aPluginName);
+		void GetPluginName([MarshalAs(UnmanagedType.Interface)] nsIPluginInstance aInstance, [MarshalAs(UnmanagedType.LPStr)] out string aPluginName);
 		
 		/// <summary>
         /// Get the plugin tag associated with a given plugin instance.
         /// @param aInstance the plugin instance object
         /// @return plugin tag object
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIPluginTag GetPluginTagForInstance([MarshalAs(UnmanagedType.Interface)] nsIPluginInstance  aInstance);
+		nsIPluginTag GetPluginTagForInstance([MarshalAs(UnmanagedType.Interface)] nsIPluginInstance aInstance);
 	}
 	
 	/// <summary>
@@ -256,7 +260,7 @@ namespace Skybound.Gecko
         /// general or for that particular site and/or flag combination.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ClearSiteData([MarshalAs(UnmanagedType.Interface)] nsIPluginTag  plugin, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  domain, System.UInt64  flags, System.Int64  maxAge);
+		void ClearSiteData([MarshalAs(UnmanagedType.Interface)] nsIPluginTag plugin, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String domain, ulong flags, long maxAge);
 		
 		/// <summary>
         /// Determine if a plugin has stored data for a given site.
@@ -269,6 +273,6 @@ namespace Skybound.Gecko
         /// subdomains is found, return true.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool SiteHasData([MarshalAs(UnmanagedType.Interface)] nsIPluginTag  plugin, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  domain);
+		bool SiteHasData([MarshalAs(UnmanagedType.Interface)] nsIPluginTag plugin, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String domain);
 	}
 }

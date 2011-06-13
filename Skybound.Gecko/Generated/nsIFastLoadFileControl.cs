@@ -49,7 +49,7 @@ namespace Skybound.Gecko
         /// Get the recorded checksum value from the FastLoad file header.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetChecksumAttribute();
+		uint GetChecksumAttribute();
 		
 		/// <summary>
         /// Multiplexed document control methods.  A FastLoad file may contain
@@ -72,20 +72,21 @@ namespace Skybound.Gecko
         /// the nested select/write/reselect.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void StartMuxedDocument([MarshalAs(UnmanagedType.Interface)] nsISupports  aURI, [MarshalAs(UnmanagedType.LPStr)] System.String  aURISpec);
+		void StartMuxedDocument([MarshalAs(UnmanagedType.Interface)] nsISupports aURI, [MarshalAs(UnmanagedType.LPStr)] string aURISpec);
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsISupports SelectMuxedDocument([MarshalAs(UnmanagedType.Interface)] nsISupports aURI);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports SelectMuxedDocument([MarshalAs(UnmanagedType.Interface)] nsISupports  aURI);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EndMuxedDocument([MarshalAs(UnmanagedType.Interface)] nsISupports  aURI);
+		void EndMuxedDocument([MarshalAs(UnmanagedType.Interface)] nsISupports aURI);
 		
 		/// <summary>
         /// Return true if aURISpec identifies a muxed document in the FastLoad
         /// file, false otherwise.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool HasMuxedDocument([MarshalAs(UnmanagedType.LPStr)] System.String  aURISpec);
+		bool HasMuxedDocument([MarshalAs(UnmanagedType.LPStr)] string aURISpec);
 	}
 	
 	/// <summary>nsIFastLoadReadControl </summary>
@@ -99,7 +100,7 @@ namespace Skybound.Gecko
         /// Get the recorded checksum value from the FastLoad file header.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.UInt32  GetChecksumAttribute();
+		new uint GetChecksumAttribute();
 		
 		/// <summary>
         /// Multiplexed document control methods.  A FastLoad file may contain
@@ -122,25 +123,26 @@ namespace Skybound.Gecko
         /// the nested select/write/reselect.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void StartMuxedDocument([MarshalAs(UnmanagedType.Interface)] nsISupports  aURI, [MarshalAs(UnmanagedType.LPStr)] System.String  aURISpec);
+		new void StartMuxedDocument([MarshalAs(UnmanagedType.Interface)] nsISupports aURI, [MarshalAs(UnmanagedType.LPStr)] string aURISpec);
 		
 		/// <summary>Member SelectMuxedDocument </summary>
 		/// <param name='aURI'> </param>
 		/// <returns>A nsISupports</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsISupports SelectMuxedDocument([MarshalAs(UnmanagedType.Interface)] nsISupports  aURI);
+		new nsISupports SelectMuxedDocument([MarshalAs(UnmanagedType.Interface)] nsISupports aURI);
 		
 		/// <summary>Member EndMuxedDocument </summary>
 		/// <param name='aURI'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void EndMuxedDocument([MarshalAs(UnmanagedType.Interface)] nsISupports  aURI);
+		new void EndMuxedDocument([MarshalAs(UnmanagedType.Interface)] nsISupports aURI);
 		
 		/// <summary>
         /// Return true if aURISpec identifies a muxed document in the FastLoad
         /// file, false otherwise.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool HasMuxedDocument([MarshalAs(UnmanagedType.LPStr)] System.String  aURISpec);
+		new bool HasMuxedDocument([MarshalAs(UnmanagedType.LPStr)] string aURISpec);
 		
 		/// <summary>
         /// Computes the correct checksum of the FastLoad file, independent of the
@@ -157,7 +159,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISimpleEnumerator  GetDependenciesAttribute();
+		nsISimpleEnumerator GetDependenciesAttribute();
 	}
 	
 	/// <summary>nsIFastLoadWriteControl </summary>
@@ -171,7 +173,7 @@ namespace Skybound.Gecko
         /// Get the recorded checksum value from the FastLoad file header.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.UInt32  GetChecksumAttribute();
+		new uint GetChecksumAttribute();
 		
 		/// <summary>
         /// Multiplexed document control methods.  A FastLoad file may contain
@@ -194,25 +196,26 @@ namespace Skybound.Gecko
         /// the nested select/write/reselect.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void StartMuxedDocument([MarshalAs(UnmanagedType.Interface)] nsISupports  aURI, [MarshalAs(UnmanagedType.LPStr)] System.String  aURISpec);
+		new void StartMuxedDocument([MarshalAs(UnmanagedType.Interface)] nsISupports aURI, [MarshalAs(UnmanagedType.LPStr)] string aURISpec);
 		
 		/// <summary>Member SelectMuxedDocument </summary>
 		/// <param name='aURI'> </param>
 		/// <returns>A nsISupports</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsISupports SelectMuxedDocument([MarshalAs(UnmanagedType.Interface)] nsISupports  aURI);
+		new nsISupports SelectMuxedDocument([MarshalAs(UnmanagedType.Interface)] nsISupports aURI);
 		
 		/// <summary>Member EndMuxedDocument </summary>
 		/// <param name='aURI'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void EndMuxedDocument([MarshalAs(UnmanagedType.Interface)] nsISupports  aURI);
+		new void EndMuxedDocument([MarshalAs(UnmanagedType.Interface)] nsISupports aURI);
 		
 		/// <summary>
         /// Return true if aURISpec identifies a muxed document in the FastLoad
         /// file, false otherwise.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool HasMuxedDocument([MarshalAs(UnmanagedType.LPStr)] System.String  aURISpec);
+		new bool HasMuxedDocument([MarshalAs(UnmanagedType.LPStr)] string aURISpec);
 		
 		/// <summary>
         /// Add a file dependency of the FastLoad file (e.g., a .jar file) to the
@@ -220,6 +223,6 @@ namespace Skybound.Gecko
         /// last-modified-time greater than the FastLoad file's mtime.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddDependency([MarshalAs(UnmanagedType.Interface)] nsIFile  aFile);
+		void AddDependency([MarshalAs(UnmanagedType.Interface)] nsIFile aFile);
 	}
 }

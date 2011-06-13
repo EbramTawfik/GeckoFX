@@ -41,7 +41,7 @@ namespace Skybound.Gecko
         /// Default is AES_256_CBC.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetAlgorithmAttribute();
+		uint GetAlgorithmAttribute();
 		
 		/// <summary>
         /// One of the above constants. Used as the mechanism for encrypting bulk
@@ -50,7 +50,7 @@ namespace Skybound.Gecko
         /// Default is AES_256_CBC.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAlgorithmAttribute(System.UInt32  aAlgorithm);
+		void SetAlgorithmAttribute(uint aAlgorithm);
 		
 		/// <summary>
         /// The size of the RSA key to create with generateKeypair().
@@ -58,7 +58,7 @@ namespace Skybound.Gecko
         /// Default is 2048.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetKeypairBitsAttribute();
+		uint GetKeypairBitsAttribute();
 		
 		/// <summary>
         /// The size of the RSA key to create with generateKeypair().
@@ -66,7 +66,7 @@ namespace Skybound.Gecko
         /// Default is 2048.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetKeypairBitsAttribute(System.UInt32  aKeypairBits);
+		void SetKeypairBitsAttribute(uint aKeypairBits);
 		
 		/// <summary>
         /// Encrypt data using a symmetric key.
@@ -80,8 +80,9 @@ namespace Skybound.Gecko
         /// A base64-encoded initialization vector
         /// @returns Encrypted data, base64 encoded
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString Encrypt([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  clearText, [MarshalAs(UnmanagedType.LPStruct)] nsAString  symmetricKey, [MarshalAs(UnmanagedType.LPStruct)] nsAString  iv);
+		nsAString Encrypt([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String clearText, [MarshalAs(UnmanagedType.LPStruct)] nsAString symmetricKey, [MarshalAs(UnmanagedType.LPStruct)] nsAString iv);
 		
 		/// <summary>
         /// Encrypt data using a symmetric key.
@@ -95,8 +96,9 @@ namespace Skybound.Gecko
         /// A base64-encoded initialization vector
         /// @returns Decrypted data (not base64-encoded)
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAUTF8String Decrypt([MarshalAs(UnmanagedType.LPStruct)] nsAString  cipherText, [MarshalAs(UnmanagedType.LPStruct)] nsAString  symmetricKey, [MarshalAs(UnmanagedType.LPStruct)] nsAString  iv);
+		nsAUTF8String Decrypt([MarshalAs(UnmanagedType.LPStruct)] nsAString cipherText, [MarshalAs(UnmanagedType.LPStruct)] nsAString symmetricKey, [MarshalAs(UnmanagedType.LPStruct)] nsAString iv);
 		
 		/// <summary>
         /// Generate a RSA public/private keypair.
@@ -114,13 +116,14 @@ namespace Skybound.Gecko
         /// The public key, encrypted with the user's passphrase, and base-64 encoded.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GenerateKeypair([MarshalAs(UnmanagedType.LPStruct)] nsAString  aPassphrase, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aSalt, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aIV, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aEncodedPublicKey, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aWrappedPrivateKey);
+		void GenerateKeypair([MarshalAs(UnmanagedType.LPStruct)] nsAString aPassphrase, [MarshalAs(UnmanagedType.LPStruct)] nsAString aSalt, [MarshalAs(UnmanagedType.LPStruct)] nsAString aIV, [MarshalAs(UnmanagedType.LPStruct)] nsAString aEncodedPublicKey, [MarshalAs(UnmanagedType.LPStruct)] nsAString aWrappedPrivateKey);
 		
 		/// <summary>
         /// Generate a random symmetric key.
         ///
         /// @returns The random key, base64 encoded
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsAString GenerateRandomKey();
 		
@@ -132,6 +135,7 @@ namespace Skybound.Gecko
         ///
         /// @returns The random IV, base64 encoded
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsAString GenerateRandomIV();
 		
@@ -142,8 +146,9 @@ namespace Skybound.Gecko
         /// The number of bytes of random data to generate.
         /// @returns The random bytes, base64-encoded
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GenerateRandomBytes(System.UInt32  aByteCount);
+		nsAString GenerateRandomBytes(uint aByteCount);
 		
 		/// <summary>
         /// Encrypts a symmetric key with a user's public key.
@@ -156,8 +161,9 @@ namespace Skybound.Gecko
         ///
         /// For RSA, the unencoded public key is a PKCS#1 object.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString WrapSymmetricKey([MarshalAs(UnmanagedType.LPStruct)] nsAString  aSymmetricKey, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aEncodedPublicKey);
+		nsAString WrapSymmetricKey([MarshalAs(UnmanagedType.LPStruct)] nsAString aSymmetricKey, [MarshalAs(UnmanagedType.LPStruct)] nsAString aEncodedPublicKey);
 		
 		/// <summary>
         /// Decrypts a symmetric key with a user's private key.
@@ -176,8 +182,9 @@ namespace Skybound.Gecko
         ///
         /// For RSA, the unencoded, decrypted key is a PKCS#1 object.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString UnwrapSymmetricKey([MarshalAs(UnmanagedType.LPStruct)] nsAString  aWrappedSymmetricKey, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aWrappedPrivateKey, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aPassphrase, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aSalt, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aIV);
+		nsAString UnwrapSymmetricKey([MarshalAs(UnmanagedType.LPStruct)] nsAString aWrappedSymmetricKey, [MarshalAs(UnmanagedType.LPStruct)] nsAString aWrappedPrivateKey, [MarshalAs(UnmanagedType.LPStruct)] nsAString aPassphrase, [MarshalAs(UnmanagedType.LPStruct)] nsAString aSalt, [MarshalAs(UnmanagedType.LPStruct)] nsAString aIV);
 		
 		/// <summary>
         /// Rewrap a private key with a new user passphrase.
@@ -195,8 +202,9 @@ namespace Skybound.Gecko
         /// @returns The (re)wrapped private key, base64 encoded
         ///
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString RewrapPrivateKey([MarshalAs(UnmanagedType.LPStruct)] nsAString  aWrappedPrivateKey, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aPassphrase, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aSalt, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aIV, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aNewPassphrase);
+		nsAString RewrapPrivateKey([MarshalAs(UnmanagedType.LPStruct)] nsAString aWrappedPrivateKey, [MarshalAs(UnmanagedType.LPStruct)] nsAString aPassphrase, [MarshalAs(UnmanagedType.LPStruct)] nsAString aSalt, [MarshalAs(UnmanagedType.LPStruct)] nsAString aIV, [MarshalAs(UnmanagedType.LPStruct)] nsAString aNewPassphrase);
 		
 		/// <summary>
         /// Verify a user's passphrase against a private key.
@@ -213,6 +221,6 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool VerifyPassphrase([MarshalAs(UnmanagedType.LPStruct)] nsAString  aWrappedPrivateKey, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aPassphrase, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aSalt, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aIV);
+		bool VerifyPassphrase([MarshalAs(UnmanagedType.LPStruct)] nsAString aWrappedPrivateKey, [MarshalAs(UnmanagedType.LPStruct)] nsAString aPassphrase, [MarshalAs(UnmanagedType.LPStruct)] nsAString aSalt, [MarshalAs(UnmanagedType.LPStruct)] nsAString aIV);
 	}
 }

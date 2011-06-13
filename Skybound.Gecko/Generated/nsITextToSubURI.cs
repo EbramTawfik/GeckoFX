@@ -38,15 +38,17 @@ namespace Skybound.Gecko
 		/// <param name='charset'> </param>
 		/// <param name='text'> </param>
 		/// <returns>A System.String</returns>
+		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string ConvertAndEscape([MarshalAs(UnmanagedType.LPStr)] System.String  charset, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string text);
+		string ConvertAndEscape([MarshalAs(UnmanagedType.LPStr)] string charset, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string text);
 		
 		/// <summary>Member UnEscapeAndConvert </summary>
 		/// <param name='charset'> </param>
 		/// <param name='text'> </param>
 		/// <returns>A System.String</returns>
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string UnEscapeAndConvert([MarshalAs(UnmanagedType.LPStr)] System.String  charset, [MarshalAs(UnmanagedType.LPStr)] System.String  text);
+		string UnEscapeAndConvert([MarshalAs(UnmanagedType.LPStr)] string charset, [MarshalAs(UnmanagedType.LPStr)] string text);
 		
 		/// <summary>
         /// Unescapes the given URI fragment (for UI purpose only)
@@ -63,8 +65,9 @@ namespace Skybound.Gecko
         /// @param aURIFragment the URI (or URI fragment) to unescape
         /// @return Unescaped aURIFragment  converted to unicode
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString UnEscapeURIForUI([MarshalAs(UnmanagedType.LPStruct)] nsAString  aCharset, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aURIFragment);
+		nsAString UnEscapeURIForUI([MarshalAs(UnmanagedType.LPStruct)] nsAString aCharset, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aURIFragment);
 		
 		/// <summary>
         /// Unescapes only non ASCII characters in the given URI fragment
@@ -77,7 +80,8 @@ namespace Skybound.Gecko
         /// @throws NS_ERROR_UCONV_NOCONV when there is no decoder for aCharset
         /// or error code of nsIUnicodeDecoder in case of conversion failure
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString UnEscapeNonAsciiURI([MarshalAs(UnmanagedType.LPStruct)] nsAString  aCharset, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aURIFragment);
+		nsAString UnEscapeNonAsciiURI([MarshalAs(UnmanagedType.LPStruct)] nsAString aCharset, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aURIFragment);
 	}
 }

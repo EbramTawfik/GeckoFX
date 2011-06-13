@@ -37,6 +37,6 @@ namespace Skybound.Gecko
 		/// <summary>Member RunTests </summary>
 		/// <param name='tests'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RunTests([MarshalAs(UnmanagedType.Interface)] nsISupports  tests);
+		void RunTests([MarshalAs(UnmanagedType.Interface)] nsISupports tests);
 	}
 }

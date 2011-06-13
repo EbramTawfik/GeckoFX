@@ -44,14 +44,14 @@ namespace Skybound.Gecko
         /// there is back session history available for navigation.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetCanGoBackAttribute();
+		bool GetCanGoBackAttribute();
 		
 		/// <summary>
         /// Indicates if the object can go forward.  If true this indicates that
         /// there is forward session history available for navigation
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetCanGoForwardAttribute();
+		bool GetCanGoForwardAttribute();
 		
 		/// <summary>
         /// Tells the object to navigate to the previous session history item.  When a
@@ -87,7 +87,7 @@ namespace Skybound.Gecko
         /// that session history entry at the given index does not exist.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GotoIndex(System.Int32  index);
+		void GotoIndex(int index);
 		
 		/// <summary>
         /// Loads a given URI.  This will give priority to loading the requested URI
@@ -121,7 +121,7 @@ namespace Skybound.Gecko
         /// This parameter is optional and may be null.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void LoadURI([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aURI, System.UInt32  aLoadFlags, [MarshalAs(UnmanagedType.Interface)] nsIURI  aReferrer, [MarshalAs(UnmanagedType.Interface)] nsIInputStream  aPostData, [MarshalAs(UnmanagedType.Interface)] nsIInputStream  aHeaders);
+		void LoadURI([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aURI, uint aLoadFlags, [MarshalAs(UnmanagedType.Interface)] nsIURI aReferrer, [MarshalAs(UnmanagedType.Interface)] nsIInputStream aPostData, [MarshalAs(UnmanagedType.Interface)] nsIInputStream aHeaders);
 		
 		/// <summary>
         /// Tells the Object to reload the current page.  There may be cases where the
@@ -138,7 +138,7 @@ namespace Skybound.Gecko
         /// Indicating that the user canceled the reload.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Reload(System.UInt32  aReloadFlags);
+		void Reload(uint aReloadFlags);
 		
 		/// <summary>
         /// Stops a load of a URI.
@@ -147,7 +147,7 @@ namespace Skybound.Gecko
         /// This parameter is one of the stop flags defined above.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Stop(System.UInt32  aStopFlags);
+		void Stop(uint aStopFlags);
 		
 		/// <summary>
         /// Retrieves the current DOM document for the frame, or lazily creates a
@@ -156,33 +156,33 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDocument  GetDocumentAttribute();
+		nsIDOMDocument GetDocumentAttribute();
 		
 		/// <summary>
         /// The currently loaded URI or null.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI  GetCurrentURIAttribute();
+		nsIURI GetCurrentURIAttribute();
 		
 		/// <summary>
         /// The referring URI for the currently loaded URI or null.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI  GetReferringURIAttribute();
+		nsIURI GetReferringURIAttribute();
 		
 		/// <summary>
         /// The session history object used by this web navigation instance.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISHistory  GetSessionHistoryAttribute();
+		nsISHistory GetSessionHistoryAttribute();
 		
 		/// <summary>
         /// The session history object used by this web navigation instance.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSessionHistoryAttribute([MarshalAs(UnmanagedType.Interface)] nsISHistory  aSessionHistory);
+		void SetSessionHistoryAttribute([MarshalAs(UnmanagedType.Interface)] nsISHistory aSessionHistory);
 	}
 }

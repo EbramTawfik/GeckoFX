@@ -43,6 +43,7 @@ namespace Skybound.Gecko
         /// http://dvcs.w3.org/hg/IndexedDB/raw-file/tip/Overview.html#idl-def-IDBFactory
         /// for more information.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIIDBRequest Open([MarshalAs(UnmanagedType.LPStruct)] nsAString name);
 	}

@@ -44,14 +44,14 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsINavHistoryContainerResultNode  GetParentAttribute();
+		nsINavHistoryContainerResultNode GetParentAttribute();
 		
 		/// <summary>
         /// The history-result to which this node belongs.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsINavHistoryResult  GetParentResultAttribute();
+		nsINavHistoryResult GetParentResultAttribute();
 		
 		/// <summary>
         /// URI of the resource in question. For visits and URLs, this is the URL of
@@ -60,19 +60,19 @@ namespace Skybound.Gecko
         /// objects like host containers.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetUriAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aUri);
+		void GetUriAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aUri);
 		
 		/// <summary>
         /// nsINavHistoryQueryResultNode
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetTypeAttribute();
+		uint GetTypeAttribute();
 		
 		/// <summary>
         /// Title of the web page, or of the node's query (day, host, folder, etc)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTitleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aTitle);
+		void GetTitleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aTitle);
 		
 		/// <summary>
         /// Total number of times the URI has ever been accessed. For hosts, this
@@ -81,7 +81,7 @@ namespace Skybound.Gecko
         /// by default when most of the time it is never needed).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetAccessCountAttribute();
+		uint GetAccessCountAttribute();
 		
 		/// <summary>
         /// This is the time the user accessed the page.
@@ -99,7 +99,7 @@ namespace Skybound.Gecko
         /// visit time to fit in the day range.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetTimeAttribute();
+		uint GetTimeAttribute();
 		
 		/// <summary>
         /// This URI can be used as an image source URI and will give you the favicon
@@ -112,7 +112,7 @@ namespace Skybound.Gecko
         /// be the original chrome URI of the icon.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetIconAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aIcon);
+		void GetIconAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aIcon);
 		
 		/// <summary>
         /// This is the number of levels between this node and the top of the
@@ -121,7 +121,7 @@ namespace Skybound.Gecko
         /// set to -1.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetIndentLevelAttribute();
+		int GetIndentLevelAttribute();
 		
 		/// <summary>
         /// When this item is in a bookmark folder (parent is of type folder), this is
@@ -130,7 +130,7 @@ namespace Skybound.Gecko
         /// that are not in a bookmark folder, this value is -1.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetBookmarkIndexAttribute();
+		int GetBookmarkIndexAttribute();
 		
 		/// <summary>
         /// If the node is an item (bookmark, folder or a separator) this value is the
@@ -138,14 +138,14 @@ namespace Skybound.Gecko
         /// set to -1.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetItemIdAttribute();
+		int GetItemIdAttribute();
 		
 		/// <summary>
         /// If the node is an item (bookmark, folder or a separator) this value is the
         /// time that the item was created. For other nodes, this value is 0.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetDateAddedAttribute();
+		uint GetDateAddedAttribute();
 		
 		/// <summary>
         /// If the node is an item (bookmark, folder or a separator) this value is the
@@ -155,7 +155,7 @@ namespace Skybound.Gecko
         /// dateAdded.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetLastModifiedAttribute();
+		uint GetLastModifiedAttribute();
 		
 		/// <summary>
         /// For uri nodes, this is a sorted list of the tags, delimited with commans,
@@ -182,14 +182,14 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsINavHistoryContainerResultNode  GetParentAttribute();
+		new nsINavHistoryContainerResultNode GetParentAttribute();
 		
 		/// <summary>
         /// The history-result to which this node belongs.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsINavHistoryResult  GetParentResultAttribute();
+		new nsINavHistoryResult GetParentResultAttribute();
 		
 		/// <summary>
         /// URI of the resource in question. For visits and URLs, this is the URL of
@@ -198,19 +198,19 @@ namespace Skybound.Gecko
         /// objects like host containers.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetUriAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aUri);
+		new void GetUriAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aUri);
 		
 		/// <summary>
         /// nsINavHistoryQueryResultNode
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.UInt32  GetTypeAttribute();
+		new uint GetTypeAttribute();
 		
 		/// <summary>
         /// Title of the web page, or of the node's query (day, host, folder, etc)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetTitleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aTitle);
+		new void GetTitleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aTitle);
 		
 		/// <summary>
         /// Total number of times the URI has ever been accessed. For hosts, this
@@ -219,7 +219,7 @@ namespace Skybound.Gecko
         /// by default when most of the time it is never needed).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.UInt32  GetAccessCountAttribute();
+		new uint GetAccessCountAttribute();
 		
 		/// <summary>
         /// This is the time the user accessed the page.
@@ -237,7 +237,7 @@ namespace Skybound.Gecko
         /// visit time to fit in the day range.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.UInt32  GetTimeAttribute();
+		new uint GetTimeAttribute();
 		
 		/// <summary>
         /// This URI can be used as an image source URI and will give you the favicon
@@ -250,7 +250,7 @@ namespace Skybound.Gecko
         /// be the original chrome URI of the icon.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetIconAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aIcon);
+		new void GetIconAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aIcon);
 		
 		/// <summary>
         /// This is the number of levels between this node and the top of the
@@ -259,7 +259,7 @@ namespace Skybound.Gecko
         /// set to -1.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Int32  GetIndentLevelAttribute();
+		new int GetIndentLevelAttribute();
 		
 		/// <summary>
         /// When this item is in a bookmark folder (parent is of type folder), this is
@@ -268,7 +268,7 @@ namespace Skybound.Gecko
         /// that are not in a bookmark folder, this value is -1.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Int32  GetBookmarkIndexAttribute();
+		new int GetBookmarkIndexAttribute();
 		
 		/// <summary>
         /// If the node is an item (bookmark, folder or a separator) this value is the
@@ -276,14 +276,14 @@ namespace Skybound.Gecko
         /// set to -1.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Int32  GetItemIdAttribute();
+		new int GetItemIdAttribute();
 		
 		/// <summary>
         /// If the node is an item (bookmark, folder or a separator) this value is the
         /// time that the item was created. For other nodes, this value is 0.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.UInt32  GetDateAddedAttribute();
+		new uint GetDateAddedAttribute();
 		
 		/// <summary>
         /// If the node is an item (bookmark, folder or a separator) this value is the
@@ -293,7 +293,7 @@ namespace Skybound.Gecko
         /// dateAdded.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.UInt32  GetLastModifiedAttribute();
+		new uint GetLastModifiedAttribute();
 		
 		/// <summary>
         /// For uri nodes, this is a sorted list of the tags, delimited with commans,
@@ -307,7 +307,7 @@ namespace Skybound.Gecko
         /// grouping when a tree view is sorted by date.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetSessionIdAttribute();
+		int GetSessionIdAttribute();
 	}
 	
 	/// <summary>
@@ -327,14 +327,14 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsINavHistoryContainerResultNode  GetParentAttribute();
+		new nsINavHistoryContainerResultNode GetParentAttribute();
 		
 		/// <summary>
         /// The history-result to which this node belongs.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsINavHistoryResult  GetParentResultAttribute();
+		new nsINavHistoryResult GetParentResultAttribute();
 		
 		/// <summary>
         /// URI of the resource in question. For visits and URLs, this is the URL of
@@ -343,19 +343,19 @@ namespace Skybound.Gecko
         /// objects like host containers.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetUriAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aUri);
+		new void GetUriAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aUri);
 		
 		/// <summary>
         /// nsINavHistoryQueryResultNode
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.UInt32  GetTypeAttribute();
+		new uint GetTypeAttribute();
 		
 		/// <summary>
         /// Title of the web page, or of the node's query (day, host, folder, etc)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetTitleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aTitle);
+		new void GetTitleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aTitle);
 		
 		/// <summary>
         /// Total number of times the URI has ever been accessed. For hosts, this
@@ -364,7 +364,7 @@ namespace Skybound.Gecko
         /// by default when most of the time it is never needed).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.UInt32  GetAccessCountAttribute();
+		new uint GetAccessCountAttribute();
 		
 		/// <summary>
         /// This is the time the user accessed the page.
@@ -382,7 +382,7 @@ namespace Skybound.Gecko
         /// visit time to fit in the day range.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.UInt32  GetTimeAttribute();
+		new uint GetTimeAttribute();
 		
 		/// <summary>
         /// This URI can be used as an image source URI and will give you the favicon
@@ -395,7 +395,7 @@ namespace Skybound.Gecko
         /// be the original chrome URI of the icon.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetIconAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aIcon);
+		new void GetIconAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aIcon);
 		
 		/// <summary>
         /// This is the number of levels between this node and the top of the
@@ -404,7 +404,7 @@ namespace Skybound.Gecko
         /// set to -1.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Int32  GetIndentLevelAttribute();
+		new int GetIndentLevelAttribute();
 		
 		/// <summary>
         /// When this item is in a bookmark folder (parent is of type folder), this is
@@ -413,7 +413,7 @@ namespace Skybound.Gecko
         /// that are not in a bookmark folder, this value is -1.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Int32  GetBookmarkIndexAttribute();
+		new int GetBookmarkIndexAttribute();
 		
 		/// <summary>
         /// If the node is an item (bookmark, folder or a separator) this value is the
@@ -421,14 +421,14 @@ namespace Skybound.Gecko
         /// set to -1.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Int32  GetItemIdAttribute();
+		new int GetItemIdAttribute();
 		
 		/// <summary>
         /// If the node is an item (bookmark, folder or a separator) this value is the
         /// time that the item was created. For other nodes, this value is 0.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.UInt32  GetDateAddedAttribute();
+		new uint GetDateAddedAttribute();
 		
 		/// <summary>
         /// If the node is an item (bookmark, folder or a separator) this value is the
@@ -438,7 +438,7 @@ namespace Skybound.Gecko
         /// dateAdded.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.UInt32  GetLastModifiedAttribute();
+		new uint GetLastModifiedAttribute();
 		
 		/// <summary>
         /// For uri nodes, this is a sorted list of the tags, delimited with commans,
@@ -452,27 +452,27 @@ namespace Skybound.Gecko
         /// grouping when a tree view is sorted by date.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Int32  GetSessionIdAttribute();
+		new int GetSessionIdAttribute();
 		
 		/// <summary>
         /// This indicates the visit ID of the visit.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetVisitIdAttribute();
+		int GetVisitIdAttribute();
 		
 		/// <summary>
         /// This indicates the referring visit ID of the visit. The referrer should
         /// have the same sessionId.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetReferringVisitIdAttribute();
+		int GetReferringVisitIdAttribute();
 		
 		/// <summary>
         /// Indicates the transition type of the visit.
         /// One of nsINavHistoryService.TRANSITION_*
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetTransitionTypeAttribute();
+		int GetTransitionTypeAttribute();
 	}
 	
 	/// <summary>
@@ -492,14 +492,14 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsINavHistoryContainerResultNode  GetParentAttribute();
+		new nsINavHistoryContainerResultNode GetParentAttribute();
 		
 		/// <summary>
         /// The history-result to which this node belongs.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsINavHistoryResult  GetParentResultAttribute();
+		new nsINavHistoryResult GetParentResultAttribute();
 		
 		/// <summary>
         /// URI of the resource in question. For visits and URLs, this is the URL of
@@ -508,19 +508,19 @@ namespace Skybound.Gecko
         /// objects like host containers.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetUriAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aUri);
+		new void GetUriAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aUri);
 		
 		/// <summary>
         /// nsINavHistoryQueryResultNode
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.UInt32  GetTypeAttribute();
+		new uint GetTypeAttribute();
 		
 		/// <summary>
         /// Title of the web page, or of the node's query (day, host, folder, etc)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetTitleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aTitle);
+		new void GetTitleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aTitle);
 		
 		/// <summary>
         /// Total number of times the URI has ever been accessed. For hosts, this
@@ -529,7 +529,7 @@ namespace Skybound.Gecko
         /// by default when most of the time it is never needed).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.UInt32  GetAccessCountAttribute();
+		new uint GetAccessCountAttribute();
 		
 		/// <summary>
         /// This is the time the user accessed the page.
@@ -547,7 +547,7 @@ namespace Skybound.Gecko
         /// visit time to fit in the day range.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.UInt32  GetTimeAttribute();
+		new uint GetTimeAttribute();
 		
 		/// <summary>
         /// This URI can be used as an image source URI and will give you the favicon
@@ -560,7 +560,7 @@ namespace Skybound.Gecko
         /// be the original chrome URI of the icon.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetIconAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aIcon);
+		new void GetIconAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aIcon);
 		
 		/// <summary>
         /// This is the number of levels between this node and the top of the
@@ -569,7 +569,7 @@ namespace Skybound.Gecko
         /// set to -1.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Int32  GetIndentLevelAttribute();
+		new int GetIndentLevelAttribute();
 		
 		/// <summary>
         /// When this item is in a bookmark folder (parent is of type folder), this is
@@ -578,7 +578,7 @@ namespace Skybound.Gecko
         /// that are not in a bookmark folder, this value is -1.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Int32  GetBookmarkIndexAttribute();
+		new int GetBookmarkIndexAttribute();
 		
 		/// <summary>
         /// If the node is an item (bookmark, folder or a separator) this value is the
@@ -586,14 +586,14 @@ namespace Skybound.Gecko
         /// set to -1.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Int32  GetItemIdAttribute();
+		new int GetItemIdAttribute();
 		
 		/// <summary>
         /// If the node is an item (bookmark, folder or a separator) this value is the
         /// time that the item was created. For other nodes, this value is 0.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.UInt32  GetDateAddedAttribute();
+		new uint GetDateAddedAttribute();
 		
 		/// <summary>
         /// If the node is an item (bookmark, folder or a separator) this value is the
@@ -603,7 +603,7 @@ namespace Skybound.Gecko
         /// dateAdded.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.UInt32  GetLastModifiedAttribute();
+		new uint GetLastModifiedAttribute();
 		
 		/// <summary>
         /// For uri nodes, this is a sorted list of the tags, delimited with commans,
@@ -623,7 +623,7 @@ namespace Skybound.Gecko
         /// as needed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetContainerOpenAttribute();
+		bool GetContainerOpenAttribute();
 		
 		/// <summary>
         /// Set this to allow descent into the container. When closed, attempting
@@ -636,7 +636,7 @@ namespace Skybound.Gecko
         /// as needed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetContainerOpenAttribute(System.Boolean  aContainerOpen);
+		void SetContainerOpenAttribute(bool aContainerOpen);
 		
 		/// <summary>
         /// Indicates whether the container is closed, loading, or opened.  Loading
@@ -656,7 +656,7 @@ namespace Skybound.Gecko
         /// to a tree item.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetHasChildrenAttribute();
+		bool GetHasChildrenAttribute();
 		
 		/// <summary>
         /// This gives you the children of the nodes. It is preferrable to use this
@@ -666,10 +666,11 @@ namespace Skybound.Gecko
         /// @throws NS_ERROR_NOT_AVAILABLE if containerOpen is false.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetChildCountAttribute();
+		uint GetChildCountAttribute();
 		
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsINavHistoryResultNode GetChild(System.UInt32  aIndex);
+		nsINavHistoryResultNode GetChild(uint aIndex);
 		
 		/// <summary>
         /// Get the index of a direct child in this container.
@@ -683,7 +684,7 @@ namespace Skybound.Gecko
         /// container.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetChildIndex([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode  aNode);
+		uint GetChildIndex([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode aNode);
 		
 		/// <summary>
         /// Look for a node in the container by some of its details.  Does not search
@@ -702,8 +703,9 @@ namespace Skybound.Gecko
         /// @return a result node that matches the given details if any, null
         /// otherwise.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsINavHistoryResultNode FindNodeByDetails([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aURIString, System.UInt32  aTime, System.Int32  aItemId, System.Boolean  aRecursive);
+		nsINavHistoryResultNode FindNodeByDetails([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aURIString, uint aTime, int aItemId, bool aRecursive);
 		
 		/// <summary>
         /// Returns false if this node's list of children can be modified
@@ -713,7 +715,7 @@ namespace Skybound.Gecko
         /// been called to override it, and true for non-folder nodes.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetChildrenReadOnlyAttribute();
+		bool GetChildrenReadOnlyAttribute();
 		
 		/// <summary>
         /// This is a string representing the dynamic container API service that is
@@ -721,7 +723,7 @@ namespace Skybound.Gecko
         /// container.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDynamicContainerTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aDynamicContainerType);
+		void GetDynamicContainerTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aDynamicContainerType);
 		
 		/// <summary>
         /// Appends a full visit node to this container and returns it. For the dynamic
@@ -730,8 +732,9 @@ namespace Skybound.Gecko
         ///
         /// @see nsINavHistoryURIResultNode for parameters.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsINavHistoryResultNode AppendURINode([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aTitle, System.UInt32  aAccessCount, System.UInt32  aTime, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aIconURI);
+		nsINavHistoryResultNode AppendURINode([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aTitle, uint aAccessCount, uint aTime, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aIconURI);
 		
 		/// <summary>
         /// Appends a bookmark folder node to this container and returns it. For the
@@ -741,8 +744,9 @@ namespace Skybound.Gecko
         /// All container attributes will come from the boomkarks service for this
         /// folder.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsINavHistoryContainerResultNode AppendFolderNode(System.Int64  aFolderId);
+		nsINavHistoryContainerResultNode AppendFolderNode(long aFolderId);
 	}
 	
 	/// <summary>
@@ -764,14 +768,14 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsINavHistoryContainerResultNode  GetParentAttribute();
+		new nsINavHistoryContainerResultNode GetParentAttribute();
 		
 		/// <summary>
         /// The history-result to which this node belongs.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsINavHistoryResult  GetParentResultAttribute();
+		new nsINavHistoryResult GetParentResultAttribute();
 		
 		/// <summary>
         /// URI of the resource in question. For visits and URLs, this is the URL of
@@ -780,19 +784,19 @@ namespace Skybound.Gecko
         /// objects like host containers.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetUriAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aUri);
+		new void GetUriAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aUri);
 		
 		/// <summary>
         /// nsINavHistoryQueryResultNode
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.UInt32  GetTypeAttribute();
+		new uint GetTypeAttribute();
 		
 		/// <summary>
         /// Title of the web page, or of the node's query (day, host, folder, etc)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetTitleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aTitle);
+		new void GetTitleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aTitle);
 		
 		/// <summary>
         /// Total number of times the URI has ever been accessed. For hosts, this
@@ -801,7 +805,7 @@ namespace Skybound.Gecko
         /// by default when most of the time it is never needed).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.UInt32  GetAccessCountAttribute();
+		new uint GetAccessCountAttribute();
 		
 		/// <summary>
         /// This is the time the user accessed the page.
@@ -819,7 +823,7 @@ namespace Skybound.Gecko
         /// visit time to fit in the day range.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.UInt32  GetTimeAttribute();
+		new uint GetTimeAttribute();
 		
 		/// <summary>
         /// This URI can be used as an image source URI and will give you the favicon
@@ -832,7 +836,7 @@ namespace Skybound.Gecko
         /// be the original chrome URI of the icon.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetIconAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aIcon);
+		new void GetIconAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aIcon);
 		
 		/// <summary>
         /// This is the number of levels between this node and the top of the
@@ -841,7 +845,7 @@ namespace Skybound.Gecko
         /// set to -1.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Int32  GetIndentLevelAttribute();
+		new int GetIndentLevelAttribute();
 		
 		/// <summary>
         /// When this item is in a bookmark folder (parent is of type folder), this is
@@ -850,7 +854,7 @@ namespace Skybound.Gecko
         /// that are not in a bookmark folder, this value is -1.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Int32  GetBookmarkIndexAttribute();
+		new int GetBookmarkIndexAttribute();
 		
 		/// <summary>
         /// If the node is an item (bookmark, folder or a separator) this value is the
@@ -858,14 +862,14 @@ namespace Skybound.Gecko
         /// set to -1.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Int32  GetItemIdAttribute();
+		new int GetItemIdAttribute();
 		
 		/// <summary>
         /// If the node is an item (bookmark, folder or a separator) this value is the
         /// time that the item was created. For other nodes, this value is 0.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.UInt32  GetDateAddedAttribute();
+		new uint GetDateAddedAttribute();
 		
 		/// <summary>
         /// If the node is an item (bookmark, folder or a separator) this value is the
@@ -875,7 +879,7 @@ namespace Skybound.Gecko
         /// dateAdded.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.UInt32  GetLastModifiedAttribute();
+		new uint GetLastModifiedAttribute();
 		
 		/// <summary>
         /// For uri nodes, this is a sorted list of the tags, delimited with commans,
@@ -895,7 +899,7 @@ namespace Skybound.Gecko
         /// as needed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Boolean  GetContainerOpenAttribute();
+		new bool GetContainerOpenAttribute();
 		
 		/// <summary>
         /// Set this to allow descent into the container. When closed, attempting
@@ -908,7 +912,7 @@ namespace Skybound.Gecko
         /// as needed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetContainerOpenAttribute(System.Boolean  aContainerOpen);
+		new void SetContainerOpenAttribute(bool aContainerOpen);
 		
 		/// <summary>
         /// Indicates whether the container is closed, loading, or opened.  Loading
@@ -928,7 +932,7 @@ namespace Skybound.Gecko
         /// to a tree item.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Boolean  GetHasChildrenAttribute();
+		new bool GetHasChildrenAttribute();
 		
 		/// <summary>
         /// This gives you the children of the nodes. It is preferrable to use this
@@ -938,10 +942,11 @@ namespace Skybound.Gecko
         /// @throws NS_ERROR_NOT_AVAILABLE if containerOpen is false.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.UInt32  GetChildCountAttribute();
+		new uint GetChildCountAttribute();
 		
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsINavHistoryResultNode GetChild(System.UInt32  aIndex);
+		new nsINavHistoryResultNode GetChild(uint aIndex);
 		
 		/// <summary>
         /// Get the index of a direct child in this container.
@@ -955,7 +960,7 @@ namespace Skybound.Gecko
         /// container.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new uint GetChildIndex([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode  aNode);
+		new uint GetChildIndex([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode aNode);
 		
 		/// <summary>
         /// Look for a node in the container by some of its details.  Does not search
@@ -974,8 +979,9 @@ namespace Skybound.Gecko
         /// @return a result node that matches the given details if any, null
         /// otherwise.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsINavHistoryResultNode FindNodeByDetails([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aURIString, System.UInt32  aTime, System.Int32  aItemId, System.Boolean  aRecursive);
+		new nsINavHistoryResultNode FindNodeByDetails([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aURIString, uint aTime, int aItemId, bool aRecursive);
 		
 		/// <summary>
         /// Returns false if this node's list of children can be modified
@@ -985,7 +991,7 @@ namespace Skybound.Gecko
         /// been called to override it, and true for non-folder nodes.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Boolean  GetChildrenReadOnlyAttribute();
+		new bool GetChildrenReadOnlyAttribute();
 		
 		/// <summary>
         /// This is a string representing the dynamic container API service that is
@@ -993,7 +999,7 @@ namespace Skybound.Gecko
         /// container.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetDynamicContainerTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aDynamicContainerType);
+		new void GetDynamicContainerTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aDynamicContainerType);
 		
 		/// <summary>
         /// Appends a full visit node to this container and returns it. For the dynamic
@@ -1002,8 +1008,9 @@ namespace Skybound.Gecko
         ///
         /// @see nsINavHistoryURIResultNode for parameters.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsINavHistoryResultNode AppendURINode([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aTitle, System.UInt32  aAccessCount, System.UInt32  aTime, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aIconURI);
+		new nsINavHistoryResultNode AppendURINode([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aTitle, uint aAccessCount, uint aTime, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aIconURI);
 		
 		/// <summary>
         /// Appends a bookmark folder node to this container and returns it. For the
@@ -1013,15 +1020,16 @@ namespace Skybound.Gecko
         /// All container attributes will come from the boomkarks service for this
         /// folder.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsINavHistoryContainerResultNode AppendFolderNode(System.Int64  aFolderId);
+		new nsINavHistoryContainerResultNode AppendFolderNode(long aFolderId);
 		
 		/// <summary>
         /// Get the queries which build this node's children.
         /// Only valid for RESULT_TYPE_QUERY nodes.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsINavHistoryQuery  GetQueries(out System.UInt32  queryCount);
+		nsINavHistoryQuery GetQueries(out uint queryCount);
 		
 		/// <summary>
         /// Get the options which group this node's children.
@@ -1029,14 +1037,14 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsINavHistoryQueryOptions  GetQueryOptionsAttribute();
+		nsINavHistoryQueryOptions GetQueryOptionsAttribute();
 		
 		/// <summary>
         /// For both simple folder nodes and simple-folder-query nodes, this is set
         /// to the concrete itemId of the folder. Otherwise, this is set to -1.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetFolderItemIdAttribute();
+		int GetFolderItemIdAttribute();
 	}
 	
 	/// <summary>
@@ -1056,7 +1064,7 @@ namespace Skybound.Gecko
         /// been shifted down by one. The item may be a container or a leaf.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NodeInserted([MarshalAs(UnmanagedType.Interface)] nsINavHistoryContainerResultNode  aParent, [MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode  aNode, System.UInt32  aNewIndex);
+		void NodeInserted([MarshalAs(UnmanagedType.Interface)] nsINavHistoryContainerResultNode aParent, [MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode aNode, uint aNewIndex);
 		
 		/// <summary>
         /// Called whan 'aItem' is removed from 'aParent' at 'aOldIndex'. The item
@@ -1065,7 +1073,7 @@ namespace Skybound.Gecko
         /// NULLing out the item's parent) has happened.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NodeRemoved([MarshalAs(UnmanagedType.Interface)] nsINavHistoryContainerResultNode  aParent, [MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode  aItem, System.UInt32  aOldIndex);
+		void NodeRemoved([MarshalAs(UnmanagedType.Interface)] nsINavHistoryContainerResultNode aParent, [MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode aItem, uint aOldIndex);
 		
 		/// <summary>
         /// Called whan 'aItem' is moved from 'aOldParent' at 'aOldIndex' to
@@ -1077,7 +1085,7 @@ namespace Skybound.Gecko
         /// are used.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NodeMoved([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode  aNode, [MarshalAs(UnmanagedType.Interface)] nsINavHistoryContainerResultNode  aOldParent, System.UInt32  aOldIndex, [MarshalAs(UnmanagedType.Interface)] nsINavHistoryContainerResultNode  aNewParent, System.UInt32  aNewIndex);
+		void NodeMoved([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode aNode, [MarshalAs(UnmanagedType.Interface)] nsINavHistoryContainerResultNode aOldParent, uint aOldIndex, [MarshalAs(UnmanagedType.Interface)] nsINavHistoryContainerResultNode aNewParent, uint aNewIndex);
 		
 		/// <summary>
         /// Called right after aNode's title has changed.
@@ -1088,7 +1096,7 @@ namespace Skybound.Gecko
         /// the new title
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NodeTitleChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode  aNode, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aNewTitle);
+		void NodeTitleChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode aNode, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aNewTitle);
 		
 		/// <summary>
         /// Called right after aNode's uri property has changed.
@@ -1099,7 +1107,7 @@ namespace Skybound.Gecko
         /// the new uri
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NodeURIChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode  aNode, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aNewURI);
+		void NodeURIChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode aNode, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aNewURI);
 		
 		/// <summary>
         /// Called right after aNode's icon property has changed.
@@ -1110,7 +1118,7 @@ namespace Skybound.Gecko
         /// @note: The new icon is accessible through aNode.icon.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NodeIconChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode  aNode);
+		void NodeIconChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode aNode);
 		
 		/// <summary>
         /// Called right after aNode's time property or accessCount property, or both,
@@ -1124,7 +1132,7 @@ namespace Skybound.Gecko
         /// the new access-count
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NodeHistoryDetailsChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode  aNode, System.UInt32  aNewVisitDate, System.UInt32  aNewAccessCount);
+		void NodeHistoryDetailsChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode aNode, uint aNewVisitDate, uint aNewAccessCount);
 		
 		/// <summary>
         /// Called when the tags set on the uri represented by aNode have changed.
@@ -1135,7 +1143,7 @@ namespace Skybound.Gecko
         /// @note: The new tags list is accessible through aNode.tags.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NodeTagsChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode  aNode);
+		void NodeTagsChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode aNode);
 		
 		/// <summary>
         /// Called right after the aNode's keyword property has changed.
@@ -1146,7 +1154,7 @@ namespace Skybound.Gecko
         /// the new keyword
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NodeKeywordChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode  aNode, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aNewKeyword);
+		void NodeKeywordChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode aNode, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aNewKeyword);
 		
 		/// <summary>
         /// Called right after an annotation of aNode's has changed (set, altered, or
@@ -1158,7 +1166,7 @@ namespace Skybound.Gecko
         /// the name of the annotation that changed
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NodeAnnotationChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode  aNode, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aAnnoName);
+		void NodeAnnotationChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode aNode, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aAnnoName);
 		
 		/// <summary>
         /// Called right after aNode's dateAdded property has changed.
@@ -1169,7 +1177,7 @@ namespace Skybound.Gecko
         /// the new value of the dateAdded property
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NodeDateAddedChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode  aNode, System.UInt32  aNewValue);
+		void NodeDateAddedChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode aNode, uint aNewValue);
 		
 		/// <summary>
         /// Called right after aNode's dateModified property has changed.
@@ -1180,7 +1188,7 @@ namespace Skybound.Gecko
         /// the new value of the dateModified property
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NodeLastModifiedChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode  aNode, System.UInt32  aNewValue);
+		void NodeLastModifiedChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode aNode, uint aNewValue);
 		
 		/// <summary>
         /// Called when an item is being replaced with another item at the exact
@@ -1196,7 +1204,7 @@ namespace Skybound.Gecko
         /// the index in aParentNode, at which a node is being replaced
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NodeReplaced([MarshalAs(UnmanagedType.Interface)] nsINavHistoryContainerResultNode  aParentNode, [MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode  aOldNode, [MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode  aNewNode, System.UInt32  aIndex);
+		void NodeReplaced([MarshalAs(UnmanagedType.Interface)] nsINavHistoryContainerResultNode aParentNode, [MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode aOldNode, [MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode aNewNode, uint aIndex);
 		
 		/// <summary>
         /// Called after a container node went from closed to opened.
@@ -1208,7 +1216,7 @@ namespace Skybound.Gecko
         /// the container node which was opened
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ContainerOpened([MarshalAs(UnmanagedType.Interface)] nsINavHistoryContainerResultNode  aContainerNode);
+		void ContainerOpened([MarshalAs(UnmanagedType.Interface)] nsINavHistoryContainerResultNode aContainerNode);
 		
 		/// <summary>
         /// Called after a container node went from opened to closed. This will be
@@ -1222,7 +1230,7 @@ namespace Skybound.Gecko
         /// the container node which was closed
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ContainerClosed([MarshalAs(UnmanagedType.Interface)] nsINavHistoryContainerResultNode  aContainerNode);
+		void ContainerClosed([MarshalAs(UnmanagedType.Interface)] nsINavHistoryContainerResultNode aContainerNode);
 		
 		/// <summary>
         /// Called after a container changes state.
@@ -1235,7 +1243,7 @@ namespace Skybound.Gecko
         /// The state that aContainerNode has transitioned into.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ContainerStateChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryContainerResultNode  aContainerNode, System.UInt32  aOldState, System.UInt32  aNewState);
+		void ContainerStateChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryContainerResultNode aContainerNode, uint aOldState, uint aNewState);
 		
 		/// <summary>
         /// Called when something significant has happened within the container. The
@@ -1245,7 +1253,7 @@ namespace Skybound.Gecko
         /// the container node to invalidate
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InvalidateContainer([MarshalAs(UnmanagedType.Interface)] nsINavHistoryContainerResultNode  aContainerNode);
+		void InvalidateContainer([MarshalAs(UnmanagedType.Interface)] nsINavHistoryContainerResultNode aContainerNode);
 		
 		/// <summary>
         /// This is called to indicate to the UI that the sort has changed to the
@@ -1272,20 +1280,20 @@ namespace Skybound.Gecko
         /// true if a batch is starting, false if it's ending.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Batching(System.Boolean  aToggleMode);
+		void Batching(bool aToggleMode);
 		
 		/// <summary>
         /// Called by the result when this observer is added.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsINavHistoryResult  GetResultAttribute();
+		nsINavHistoryResult GetResultAttribute();
 		
 		/// <summary>
         /// Called by the result when this observer is added.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetResultAttribute([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResult  aResult);
+		void SetResultAttribute([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResult aResult);
 	}
 	
 	/// <summary>
@@ -1311,7 +1319,7 @@ namespace Skybound.Gecko
         /// been shifted down by one. The item may be a container or a leaf.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void NodeInserted([MarshalAs(UnmanagedType.Interface)] nsINavHistoryContainerResultNode  aParent, [MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode  aNode, System.UInt32  aNewIndex);
+		new void NodeInserted([MarshalAs(UnmanagedType.Interface)] nsINavHistoryContainerResultNode aParent, [MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode aNode, uint aNewIndex);
 		
 		/// <summary>
         /// Called whan 'aItem' is removed from 'aParent' at 'aOldIndex'. The item
@@ -1320,7 +1328,7 @@ namespace Skybound.Gecko
         /// NULLing out the item's parent) has happened.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void NodeRemoved([MarshalAs(UnmanagedType.Interface)] nsINavHistoryContainerResultNode  aParent, [MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode  aItem, System.UInt32  aOldIndex);
+		new void NodeRemoved([MarshalAs(UnmanagedType.Interface)] nsINavHistoryContainerResultNode aParent, [MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode aItem, uint aOldIndex);
 		
 		/// <summary>
         /// Called whan 'aItem' is moved from 'aOldParent' at 'aOldIndex' to
@@ -1332,7 +1340,7 @@ namespace Skybound.Gecko
         /// are used.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void NodeMoved([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode  aNode, [MarshalAs(UnmanagedType.Interface)] nsINavHistoryContainerResultNode  aOldParent, System.UInt32  aOldIndex, [MarshalAs(UnmanagedType.Interface)] nsINavHistoryContainerResultNode  aNewParent, System.UInt32  aNewIndex);
+		new void NodeMoved([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode aNode, [MarshalAs(UnmanagedType.Interface)] nsINavHistoryContainerResultNode aOldParent, uint aOldIndex, [MarshalAs(UnmanagedType.Interface)] nsINavHistoryContainerResultNode aNewParent, uint aNewIndex);
 		
 		/// <summary>
         /// Called right after aNode's title has changed.
@@ -1343,7 +1351,7 @@ namespace Skybound.Gecko
         /// the new title
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void NodeTitleChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode  aNode, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aNewTitle);
+		new void NodeTitleChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode aNode, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aNewTitle);
 		
 		/// <summary>
         /// Called right after aNode's uri property has changed.
@@ -1354,7 +1362,7 @@ namespace Skybound.Gecko
         /// the new uri
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void NodeURIChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode  aNode, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aNewURI);
+		new void NodeURIChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode aNode, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aNewURI);
 		
 		/// <summary>
         /// Called right after aNode's icon property has changed.
@@ -1365,7 +1373,7 @@ namespace Skybound.Gecko
         /// @note: The new icon is accessible through aNode.icon.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void NodeIconChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode  aNode);
+		new void NodeIconChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode aNode);
 		
 		/// <summary>
         /// Called right after aNode's time property or accessCount property, or both,
@@ -1379,7 +1387,7 @@ namespace Skybound.Gecko
         /// the new access-count
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void NodeHistoryDetailsChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode  aNode, System.UInt32  aNewVisitDate, System.UInt32  aNewAccessCount);
+		new void NodeHistoryDetailsChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode aNode, uint aNewVisitDate, uint aNewAccessCount);
 		
 		/// <summary>
         /// Called when the tags set on the uri represented by aNode have changed.
@@ -1390,7 +1398,7 @@ namespace Skybound.Gecko
         /// @note: The new tags list is accessible through aNode.tags.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void NodeTagsChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode  aNode);
+		new void NodeTagsChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode aNode);
 		
 		/// <summary>
         /// Called right after the aNode's keyword property has changed.
@@ -1401,7 +1409,7 @@ namespace Skybound.Gecko
         /// the new keyword
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void NodeKeywordChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode  aNode, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aNewKeyword);
+		new void NodeKeywordChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode aNode, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aNewKeyword);
 		
 		/// <summary>
         /// Called right after an annotation of aNode's has changed (set, altered, or
@@ -1413,7 +1421,7 @@ namespace Skybound.Gecko
         /// the name of the annotation that changed
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void NodeAnnotationChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode  aNode, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aAnnoName);
+		new void NodeAnnotationChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode aNode, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aAnnoName);
 		
 		/// <summary>
         /// Called right after aNode's dateAdded property has changed.
@@ -1424,7 +1432,7 @@ namespace Skybound.Gecko
         /// the new value of the dateAdded property
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void NodeDateAddedChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode  aNode, System.UInt32  aNewValue);
+		new void NodeDateAddedChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode aNode, uint aNewValue);
 		
 		/// <summary>
         /// Called right after aNode's dateModified property has changed.
@@ -1435,7 +1443,7 @@ namespace Skybound.Gecko
         /// the new value of the dateModified property
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void NodeLastModifiedChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode  aNode, System.UInt32  aNewValue);
+		new void NodeLastModifiedChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode aNode, uint aNewValue);
 		
 		/// <summary>
         /// Called when an item is being replaced with another item at the exact
@@ -1451,7 +1459,7 @@ namespace Skybound.Gecko
         /// the index in aParentNode, at which a node is being replaced
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void NodeReplaced([MarshalAs(UnmanagedType.Interface)] nsINavHistoryContainerResultNode  aParentNode, [MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode  aOldNode, [MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode  aNewNode, System.UInt32  aIndex);
+		new void NodeReplaced([MarshalAs(UnmanagedType.Interface)] nsINavHistoryContainerResultNode aParentNode, [MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode aOldNode, [MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode aNewNode, uint aIndex);
 		
 		/// <summary>
         /// Called after a container node went from closed to opened.
@@ -1463,7 +1471,7 @@ namespace Skybound.Gecko
         /// the container node which was opened
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void ContainerOpened([MarshalAs(UnmanagedType.Interface)] nsINavHistoryContainerResultNode  aContainerNode);
+		new void ContainerOpened([MarshalAs(UnmanagedType.Interface)] nsINavHistoryContainerResultNode aContainerNode);
 		
 		/// <summary>
         /// Called after a container node went from opened to closed. This will be
@@ -1477,7 +1485,7 @@ namespace Skybound.Gecko
         /// the container node which was closed
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void ContainerClosed([MarshalAs(UnmanagedType.Interface)] nsINavHistoryContainerResultNode  aContainerNode);
+		new void ContainerClosed([MarshalAs(UnmanagedType.Interface)] nsINavHistoryContainerResultNode aContainerNode);
 		
 		/// <summary>
         /// Called after a container changes state.
@@ -1490,7 +1498,7 @@ namespace Skybound.Gecko
         /// The state that aContainerNode has transitioned into.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void ContainerStateChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryContainerResultNode  aContainerNode, System.UInt32  aOldState, System.UInt32  aNewState);
+		new void ContainerStateChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryContainerResultNode aContainerNode, uint aOldState, uint aNewState);
 		
 		/// <summary>
         /// Called when something significant has happened within the container. The
@@ -1500,7 +1508,7 @@ namespace Skybound.Gecko
         /// the container node to invalidate
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void InvalidateContainer([MarshalAs(UnmanagedType.Interface)] nsINavHistoryContainerResultNode  aContainerNode);
+		new void InvalidateContainer([MarshalAs(UnmanagedType.Interface)] nsINavHistoryContainerResultNode aContainerNode);
 		
 		/// <summary>
         /// This is called to indicate to the UI that the sort has changed to the
@@ -1527,27 +1535,28 @@ namespace Skybound.Gecko
         /// true if a batch is starting, false if it's ending.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Batching(System.Boolean  aToggleMode);
+		new void Batching(bool aToggleMode);
 		
 		/// <summary>
         /// Called by the result when this observer is added.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsINavHistoryResult  GetResultAttribute();
+		new nsINavHistoryResult GetResultAttribute();
 		
 		/// <summary>
         /// Called by the result when this observer is added.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetResultAttribute([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResult  aResult);
+		new void SetResultAttribute([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResult aResult);
 		
 		/// <summary>
         /// This allows you to get at the real node for a given row index. This is
         /// only valid when a tree is attached.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsINavHistoryResultNode NodeForTreeIndex(System.UInt32  aIndex);
+		nsINavHistoryResultNode NodeForTreeIndex(uint aIndex);
 		
 		/// <summary>
         /// Reverse of nodeForFlatIndex, returns the row index for a given result node.
@@ -1562,7 +1571,7 @@ namespace Skybound.Gecko
         /// is attached to that result.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint TreeIndexForNode([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode  aNode);
+		uint TreeIndexForNode([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode aNode);
 	}
 	
 	/// <summary>
@@ -1597,14 +1606,14 @@ namespace Skybound.Gecko
         /// before setting the sortingMode attribute.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSortingAnnotationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aSortingAnnotation);
+		void GetSortingAnnotationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aSortingAnnotation);
 		
 		/// <summary>
         /// The annotation to use in SORT_BY_ANNOTATION_* sorting modes, set this
         /// before setting the sortingMode attribute.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSortingAnnotationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aSortingAnnotation);
+		void SetSortingAnnotationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aSortingAnnotation);
 		
 		/// <summary>
         /// Whether or not notifications on result changes are suppressed.
@@ -1615,7 +1624,7 @@ namespace Skybound.Gecko
         /// node recursively).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetSuppressNotificationsAttribute();
+		bool GetSuppressNotificationsAttribute();
 		
 		/// <summary>
         /// Whether or not notifications on result changes are suppressed.
@@ -1626,7 +1635,7 @@ namespace Skybound.Gecko
         /// node recursively).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSuppressNotificationsAttribute(System.Boolean  aSuppressNotifications);
+		void SetSuppressNotificationsAttribute(bool aSuppressNotifications);
 		
 		/// <summary>
         /// Adds an observer for changes done in the result.
@@ -1642,7 +1651,7 @@ namespace Skybound.Gecko
         /// @see nsINavHistoryResultObserver
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddObserver([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultObserver  aObserver, System.Boolean  aOwnsWeak);
+		void AddObserver([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultObserver aObserver, bool aOwnsWeak);
 		
 		/// <summary>
         /// Removes an observer that was added by addObserver.
@@ -1651,7 +1660,7 @@ namespace Skybound.Gecko
         /// a result observer that was added by addObserver.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveObserver([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultObserver  aObserver);
+		void RemoveObserver([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultObserver aObserver);
 		
 		/// <summary>
         /// This is the root of the results. Remember that you need to open all
@@ -1666,7 +1675,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsINavHistoryContainerResultNode  GetRootAttribute();
+		nsINavHistoryContainerResultNode GetRootAttribute();
 	}
 	
 	/// <summary>
@@ -1716,7 +1725,7 @@ namespace Skybound.Gecko
         /// It is used in places views only and can be ignored.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnVisit([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, System.Int32  aVisitID, System.UInt32  aTime, System.Int32  aSessionID, System.Int32  aReferringID, System.UInt32  aTransitionType, out System.UInt32  aAdded);
+		void OnVisit([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, int aVisitID, uint aTime, int aSessionID, int aReferringID, uint aTransitionType, out uint aAdded);
 		
 		/// <summary>
         /// Called whenever either the "real" title or the custom title of the page
@@ -1733,7 +1742,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnTitleChanged([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString aPageTitle);
+		void OnTitleChanged([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString aPageTitle);
 		
 		/// <summary>
         /// This page and all of its visits are about to be deleted.  Note: the page
@@ -1743,7 +1752,7 @@ namespace Skybound.Gecko
         /// The URI being deleted.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnBeforeDeleteURI([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI);
+		void OnBeforeDeleteURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 		
 		/// <summary>
         /// This page and all of its visits are being deleted. Note: the page may not
@@ -1756,7 +1765,7 @@ namespace Skybound.Gecko
         /// way around this.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnDeleteURI([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI);
+		void OnDeleteURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 		
 		/// <summary>
         /// Notification that all of history is being deleted.
@@ -1768,7 +1777,7 @@ namespace Skybound.Gecko
         /// favicon updated, aString = favicon annotation URI
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnPageChanged([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, System.UInt32  aWhat, [MarshalAs(UnmanagedType.LPStruct)] nsAString aValue);
+		void OnPageChanged([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, uint aWhat, [MarshalAs(UnmanagedType.LPStruct)] nsAString aValue);
 		
 		/// <summary>
         /// Called when some visits of an history entry are expired.
@@ -1785,7 +1794,7 @@ namespace Skybound.Gecko
         /// anymore visits for it.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnDeleteVisits([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, System.UInt32  aVisitTime);
+		void OnDeleteVisits([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, uint aVisitTime);
 	}
 	
 	/// <summary>
@@ -1828,7 +1837,7 @@ namespace Skybound.Gecko
         /// reference points + offset resolve to.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetBeginTimeAttribute();
+		uint GetBeginTimeAttribute();
 		
 		/// <summary>
         /// Time range for results (INCLUSIVE). The *TimeReference is one of the
@@ -1855,37 +1864,37 @@ namespace Skybound.Gecko
         /// reference points + offset resolve to.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBeginTimeAttribute(System.UInt32  aBeginTime);
+		void SetBeginTimeAttribute(uint aBeginTime);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetBeginTimeReferenceAttribute();
+		uint GetBeginTimeReferenceAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBeginTimeReferenceAttribute(System.UInt32  aBeginTimeReference);
+		void SetBeginTimeReferenceAttribute(uint aBeginTimeReference);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetHasBeginTimeAttribute();
+		bool GetHasBeginTimeAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetAbsoluteBeginTimeAttribute();
+		uint GetAbsoluteBeginTimeAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetEndTimeAttribute();
+		uint GetEndTimeAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetEndTimeAttribute(System.UInt32  aEndTime);
+		void SetEndTimeAttribute(uint aEndTime);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetEndTimeReferenceAttribute();
+		uint GetEndTimeReferenceAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetEndTimeReferenceAttribute(System.UInt32  aEndTimeReference);
+		void SetEndTimeReferenceAttribute(uint aEndTimeReference);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetHasEndTimeAttribute();
+		bool GetHasEndTimeAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetAbsoluteEndTimeAttribute();
+		uint GetAbsoluteEndTimeAttribute();
 		
 		/// <summary>
         /// Text search terms.
@@ -1900,7 +1909,7 @@ namespace Skybound.Gecko
 		void SetSearchTermsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aSearchTerms);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetHasSearchTermsAttribute();
+		bool GetHasSearchTermsAttribute();
 		
 		/// <summary>
         /// Set lower or upper limits for how many times an item has been
@@ -1908,7 +1917,7 @@ namespace Skybound.Gecko
         /// matched regardless of their visit count.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetMinVisitsAttribute();
+		int GetMinVisitsAttribute();
 		
 		/// <summary>
         /// Set lower or upper limits for how many times an item has been
@@ -1916,13 +1925,13 @@ namespace Skybound.Gecko
         /// matched regardless of their visit count.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMinVisitsAttribute(System.Int32  aMinVisits);
+		void SetMinVisitsAttribute(int aMinVisits);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetMaxVisitsAttribute();
+		int GetMaxVisitsAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMaxVisitsAttribute(System.Int32  aMaxVisits);
+		void SetMaxVisitsAttribute(int aMaxVisits);
 		
 		/// <summary>
         /// When the set of transitions is nonempty, results are limited to pages which
@@ -1932,47 +1941,47 @@ namespace Skybound.Gecko
         /// Limit results to the specified list of transition types.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTransitions(System.UInt32  transitions, System.UInt32  count);
+		void SetTransitions(uint transitions, uint count);
 		
 		/// <summary>
         /// Get the transitions set for this query.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetTransitions(out System.UInt32  count);
+		uint GetTransitions(out uint count);
 		
 		/// <summary>
         /// Get the count of the set query transitions.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetTransitionCountAttribute();
+		uint GetTransitionCountAttribute();
 		
 		/// <summary>
         /// When set, returns only bookmarked items, when unset, returns anything. Setting this
         /// is equivalent to listing all bookmark folders in the 'folders' parameter.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetOnlyBookmarkedAttribute();
+		bool GetOnlyBookmarkedAttribute();
 		
 		/// <summary>
         /// When set, returns only bookmarked items, when unset, returns anything. Setting this
         /// is equivalent to listing all bookmark folders in the 'folders' parameter.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnlyBookmarkedAttribute(System.Boolean  aOnlyBookmarked);
+		void SetOnlyBookmarkedAttribute(bool aOnlyBookmarked);
 		
 		/// <summary>
         /// This controls the meaning of 'domain', and whether it is an exact match
         /// 'domainIsHost' = true, or hierarchical (= false).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetDomainIsHostAttribute();
+		bool GetDomainIsHostAttribute();
 		
 		/// <summary>
         /// This controls the meaning of 'domain', and whether it is an exact match
         /// 'domainIsHost' = true, or hierarchical (= false).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDomainIsHostAttribute(System.Boolean  aDomainIsHost);
+		void SetDomainIsHostAttribute(bool aDomainIsHost);
 		
 		/// <summary>
         /// This is the host or domain name (controlled by domainIsHost). When
@@ -1985,7 +1994,7 @@ namespace Skybound.Gecko
         /// domain matching.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDomainAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aDomain);
+		void GetDomainAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aDomain);
 		
 		/// <summary>
         /// This is the host or domain name (controlled by domainIsHost). When
@@ -1998,19 +2007,10 @@ namespace Skybound.Gecko
         /// domain matching.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDomainAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aDomain);
+		void SetDomainAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aDomain);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetHasDomainAttribute();
-		
-		/// <summary>
-        /// Controls the interpretation of 'uri'. When unset (default), the URI will
-        /// request an exact match of the specified URI. When set, any history entry
-        /// beginning in 'uri' will match. For example "http://bar.com/foo" will match
-        /// "http://bar.com/foo" as well as "http://bar.com/foo/baz.gif".
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetUriIsPrefixAttribute();
+		bool GetHasDomainAttribute();
 		
 		/// <summary>
         /// Controls the interpretation of 'uri'. When unset (default), the URI will
@@ -2019,7 +2019,16 @@ namespace Skybound.Gecko
         /// "http://bar.com/foo" as well as "http://bar.com/foo/baz.gif".
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetUriIsPrefixAttribute(System.Boolean  aUriIsPrefix);
+		bool GetUriIsPrefixAttribute();
+		
+		/// <summary>
+        /// Controls the interpretation of 'uri'. When unset (default), the URI will
+        /// request an exact match of the specified URI. When set, any history entry
+        /// beginning in 'uri' will match. For example "http://bar.com/foo" will match
+        /// "http://bar.com/foo" as well as "http://bar.com/foo/baz.gif".
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetUriIsPrefixAttribute(bool aUriIsPrefix);
 		
 		/// <summary>
         /// This is a URI to match, to, for example, find out every time you visited
@@ -2027,17 +2036,17 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI  GetUriAttribute();
+		nsIURI GetUriAttribute();
 		
 		/// <summary>
         /// This is a URI to match, to, for example, find out every time you visited
         /// a given URI. Use uriIsPrefix to control whether this is an exact match.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetUriAttribute([MarshalAs(UnmanagedType.Interface)] nsIURI  aUri);
+		void SetUriAttribute([MarshalAs(UnmanagedType.Interface)] nsIURI aUri);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetHasUriAttribute();
+		bool GetHasUriAttribute();
 		
 		/// <summary>
         /// Test for existence or non-existence of a given annotation. We don't
@@ -2053,7 +2062,7 @@ namespace Skybound.Gecko
         /// no visits for these items.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetAnnotationIsNotAttribute();
+		bool GetAnnotationIsNotAttribute();
 		
 		/// <summary>
         /// Test for existence or non-existence of a given annotation. We don't
@@ -2069,16 +2078,16 @@ namespace Skybound.Gecko
         /// no visits for these items.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAnnotationIsNotAttribute(System.Boolean  aAnnotationIsNot);
+		void SetAnnotationIsNotAttribute(bool aAnnotationIsNot);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetAnnotationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aAnnotation);
+		void GetAnnotationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aAnnotation);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAnnotationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aAnnotation);
+		void SetAnnotationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aAnnotation);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetHasAnnotationAttribute();
+		bool GetHasAnnotationAttribute();
 		
 		/// <summary>
         /// Limit results to items that are tagged with all of the given tags.  This
@@ -2092,7 +2101,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant  GetTagsAttribute();
+		nsIVariant GetTagsAttribute();
 		
 		/// <summary>
         /// Limit results to items that are tagged with all of the given tags.  This
@@ -2105,7 +2114,7 @@ namespace Skybound.Gecko
         /// multiple queries may be passed to nsINavHistoryService.executeQueries().
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTagsAttribute([MarshalAs(UnmanagedType.Interface)] nsIVariant  aTags);
+		void SetTagsAttribute([MarshalAs(UnmanagedType.Interface)] nsIVariant aTags);
 		
 		/// <summary>
         /// If 'tagsAreNot' is true, the results are instead limited to items that
@@ -2113,7 +2122,7 @@ namespace Skybound.Gecko
         /// conjunction with the 'tags' attribute.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetTagsAreNotAttribute();
+		bool GetTagsAreNotAttribute();
 		
 		/// <summary>
         /// If 'tagsAreNot' is true, the results are instead limited to items that
@@ -2121,16 +2130,16 @@ namespace Skybound.Gecko
         /// conjunction with the 'tags' attribute.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTagsAreNotAttribute(System.Boolean  aTagsAreNot);
+		void SetTagsAreNotAttribute(bool aTagsAreNot);
 		
 		/// <summary>
         /// Limit results to items that are in all of the given folders.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetFolders(out System.UInt32  count);
+		int GetFolders(out uint count);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetFolderCountAttribute();
+		uint GetFolderCountAttribute();
 		
 		/// <summary>
         /// For the special result type RESULTS_AS_TAG_CONTENTS we can define only
@@ -2138,11 +2147,12 @@ namespace Skybound.Gecko
         /// will be returned from the first level of that folder.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFolders(System.Int32  folders, System.UInt32  folderCount);
+		void SetFolders(int folders, uint folderCount);
 		
 		/// <summary>
         /// Creates a new query item with the same parameters of this one.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsINavHistoryQuery Clone();
 	}
@@ -2174,13 +2184,13 @@ namespace Skybound.Gecko
         /// The annotation to use in SORT_BY_ANNOTATION_* sorting modes.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSortingAnnotationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aSortingAnnotation);
+		void GetSortingAnnotationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aSortingAnnotation);
 		
 		/// <summary>
         /// The annotation to use in SORT_BY_ANNOTATION_* sorting modes.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSortingAnnotationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aSortingAnnotation);
+		void SetSortingAnnotationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aSortingAnnotation);
 		
 		/// <summary>
         /// Sets the result type. One of RESULT_TYPE_* which includes how URIs are
@@ -2203,7 +2213,7 @@ namespace Skybound.Gecko
         /// Defaults to false.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetExcludeItemsAttribute();
+		bool GetExcludeItemsAttribute();
 		
 		/// <summary>
         /// This option excludes all URIs and separators from a bookmarks query.
@@ -2212,7 +2222,7 @@ namespace Skybound.Gecko
         /// Defaults to false.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetExcludeItemsAttribute(System.Boolean  aExcludeItems);
+		void SetExcludeItemsAttribute(bool aExcludeItems);
 		
 		/// <summary>
         /// Set to true to exclude queries ("place:" URIs) from the query results.
@@ -2220,7 +2230,7 @@ namespace Skybound.Gecko
         /// Defaults to false.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetExcludeQueriesAttribute();
+		bool GetExcludeQueriesAttribute();
 		
 		/// <summary>
         /// Set to true to exclude queries ("place:" URIs) from the query results.
@@ -2228,7 +2238,7 @@ namespace Skybound.Gecko
         /// Defaults to false.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetExcludeQueriesAttribute(System.Boolean  aExcludeQueries);
+		void SetExcludeQueriesAttribute(bool aExcludeQueries);
 		
 		/// <summary>
         /// Set to true to exclude read-only folders from the query results. This is
@@ -2239,7 +2249,7 @@ namespace Skybound.Gecko
         /// queries (such as "folders with annotation X").
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetExcludeReadOnlyFoldersAttribute();
+		bool GetExcludeReadOnlyFoldersAttribute();
 		
 		/// <summary>
         /// Set to true to exclude read-only folders from the query results. This is
@@ -2250,7 +2260,7 @@ namespace Skybound.Gecko
         /// queries (such as "folders with annotation X").
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetExcludeReadOnlyFoldersAttribute(System.Boolean  aExcludeReadOnlyFolders);
+		void SetExcludeReadOnlyFoldersAttribute(bool aExcludeReadOnlyFolders);
 		
 		/// <summary>
         /// This option excludes items from a bookmarks query
@@ -2260,7 +2270,7 @@ namespace Skybound.Gecko
         /// Ignored for queries over history.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetExcludeItemIfParentHasAnnotationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aExcludeItemIfParentHasAnnotation);
+		void GetExcludeItemIfParentHasAnnotationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aExcludeItemIfParentHasAnnotation);
 		
 		/// <summary>
         /// This option excludes items from a bookmarks query
@@ -2270,7 +2280,7 @@ namespace Skybound.Gecko
         /// Ignored for queries over history.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetExcludeItemIfParentHasAnnotationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aExcludeItemIfParentHasAnnotation);
+		void SetExcludeItemIfParentHasAnnotationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aExcludeItemIfParentHasAnnotation);
 		
 		/// <summary>
         /// When set, allows items with "place:" URIs to appear as containers,
@@ -2283,7 +2293,7 @@ namespace Skybound.Gecko
         /// and will appear as bookmark folders.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetExpandQueriesAttribute();
+		bool GetExpandQueriesAttribute();
 		
 		/// <summary>
         /// When set, allows items with "place:" URIs to appear as containers,
@@ -2296,7 +2306,7 @@ namespace Skybound.Gecko
         /// and will appear as bookmark folders.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetExpandQueriesAttribute(System.Boolean  aExpandQueries);
+		void SetExpandQueriesAttribute(bool aExpandQueries);
 		
 		/// <summary>
         /// Most items in history are marked "hidden." Only toplevel pages that the
@@ -2306,7 +2316,7 @@ namespace Skybound.Gecko
         /// ones. Does nothing for bookmark queries. Defaults to false.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIncludeHiddenAttribute();
+		bool GetIncludeHiddenAttribute();
 		
 		/// <summary>
         /// Most items in history are marked "hidden." Only toplevel pages that the
@@ -2316,7 +2326,7 @@ namespace Skybound.Gecko
         /// ones. Does nothing for bookmark queries. Defaults to false.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetIncludeHiddenAttribute(System.Boolean  aIncludeHidden);
+		void SetIncludeHiddenAttribute(bool aIncludeHidden);
 		
 		/// <summary>
         /// Defines how redirects should be handled, see REDIRECTS_MODE_* constants
@@ -2349,7 +2359,7 @@ namespace Skybound.Gecko
         /// ones, and THEN sort by title.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetMaxResultsAttribute();
+		uint GetMaxResultsAttribute();
 		
 		/// <summary>
         /// This is the maximum number of results that you want. The query is exeucted,
@@ -2364,7 +2374,7 @@ namespace Skybound.Gecko
         /// ones, and THEN sort by title.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMaxResultsAttribute(System.UInt32  aMaxResults);
+		void SetMaxResultsAttribute(uint aMaxResults);
 		
 		/// <summary>
         /// The type of search to use when querying the DB; This attribute is only
@@ -2389,7 +2399,7 @@ namespace Skybound.Gecko
         /// asynchronously.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetAsyncEnabledAttribute();
+		bool GetAsyncEnabledAttribute();
 		
 		/// <summary>
         /// When this is true, the root container node generated by these options and
@@ -2400,11 +2410,12 @@ namespace Skybound.Gecko
         /// asynchronously.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAsyncEnabledAttribute(System.Boolean  aAsyncEnabled);
+		void SetAsyncEnabledAttribute(bool aAsyncEnabled);
 		
 		/// <summary>
         /// Creates a new options item with the same parameters of this one.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsINavHistoryQueryOptions Clone();
 	}
@@ -2429,13 +2440,14 @@ namespace Skybound.Gecko
         /// a lot of history (it must enumerate each item). This is pretty fast.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetHasHistoryEntriesAttribute();
+		bool GetHasHistoryEntriesAttribute();
 		
 		/// <summary>
         /// Gets the original title of the page.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetPageTitle([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI);
+		nsAString GetPageTitle([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 		
 		/// <summary>
         /// This is just like markPageAsTyped (in nsIBrowserHistory, also implemented
@@ -2445,7 +2457,7 @@ namespace Skybound.Gecko
         /// as following a bookmark.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MarkPageAsFollowedBookmark([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI);
+		void MarkPageAsFollowedBookmark([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 		
 		/// <summary>
         /// Gets the stored character-set for an URI.
@@ -2454,8 +2466,9 @@ namespace Skybound.Gecko
         /// URI to retrieve character-set for
         /// @return character-set, empty string if not found
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetCharsetForURI([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI);
+		nsAString GetCharsetForURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 		
 		/// <summary>
         /// Sets the character-set for an URI.
@@ -2466,7 +2479,7 @@ namespace Skybound.Gecko
         /// character-set to be set
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCharsetForURI([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString aCharset);
+		void SetCharsetForURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString aCharset);
 		
 		/// <summary>
         /// Returns true if this URI would be added to the history. You don't have to
@@ -2476,7 +2489,7 @@ namespace Skybound.Gecko
         /// annotations).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool CanAddURI([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI);
+		bool CanAddURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 		
 		/// <summary>
         /// Call to manually add a visit for a specific page. This will probably not
@@ -2503,12 +2516,13 @@ namespace Skybound.Gecko
         /// persistent (TRANSITION_EMBED).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int AddVisit([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, System.UInt32  aTime, [MarshalAs(UnmanagedType.Interface)] nsIURI  aReferringURI, System.Int32  aTransitionType, System.Boolean  aIsRedirect, System.Int32  aSessionID);
+		int AddVisit([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, uint aTime, [MarshalAs(UnmanagedType.Interface)] nsIURI aReferringURI, int aTransitionType, bool aIsRedirect, int aSessionID);
 		
 		/// <summary>
         /// This returns a new query object that you can pass to executeQuer[y/ies].
         /// It will be initialized to all empty (so using it will give you all history).
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsINavHistoryQuery GetNewQuery();
 		
@@ -2516,22 +2530,25 @@ namespace Skybound.Gecko
         /// This returns a new options object that you can pass to executeQuer[y/ies]
         /// after setting the desired options.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsINavHistoryQueryOptions GetNewQueryOptions();
 		
 		/// <summary>
         /// Executes a single query.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsINavHistoryResult ExecuteQuery([MarshalAs(UnmanagedType.Interface)] nsINavHistoryQuery  aQuery, [MarshalAs(UnmanagedType.Interface)] nsINavHistoryQueryOptions  options);
+		nsINavHistoryResult ExecuteQuery([MarshalAs(UnmanagedType.Interface)] nsINavHistoryQuery aQuery, [MarshalAs(UnmanagedType.Interface)] nsINavHistoryQueryOptions options);
 		
 		/// <summary>
         /// Executes an array of queries. All of the query objects are ORed
         /// together. Within a query, all the terms are ANDed together as in
         /// executeQuery. See executeQuery()
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsINavHistoryResult ExecuteQueries(nsINavHistoryQuery  aQueries, System.UInt32  aQueryCount, [MarshalAs(UnmanagedType.Interface)] nsINavHistoryQueryOptions  options);
+		nsINavHistoryResult ExecuteQueries(nsINavHistoryQuery aQueries, uint aQueryCount, [MarshalAs(UnmanagedType.Interface)] nsINavHistoryQueryOptions options);
 		
 		/// <summary>
         /// Converts a query URI-like string to an array of actual query objects for
@@ -2540,14 +2557,15 @@ namespace Skybound.Gecko
         /// (if nothing is defined, it will just have the default values).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void QueryStringToQueries([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aQueryString, out nsINavHistoryQuery  aQueries, out System.UInt32  aResultCount, [MarshalAs(UnmanagedType.Interface)] out nsINavHistoryQueryOptions  options);
+		void QueryStringToQueries([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aQueryString, out nsINavHistoryQuery aQueries, out uint aResultCount, [MarshalAs(UnmanagedType.Interface)] out nsINavHistoryQueryOptions options);
 		
 		/// <summary>
         /// Converts a query into an equivalent string that can be persisted. Inverse
         /// of queryStringToQueries()
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAUTF8String QueriesToQueryString(nsINavHistoryQuery  aQueries, System.UInt32  aQueryCount, [MarshalAs(UnmanagedType.Interface)] nsINavHistoryQueryOptions  options);
+		nsAUTF8String QueriesToQueryString(nsINavHistoryQuery aQueries, uint aQueryCount, [MarshalAs(UnmanagedType.Interface)] nsINavHistoryQueryOptions options);
 		
 		/// <summary>
         /// Adds a history observer. If ownsWeak is false, the history service will
@@ -2556,13 +2574,13 @@ namespace Skybound.Gecko
         /// will keep a weak reference to the observer.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddObserver([MarshalAs(UnmanagedType.Interface)] nsINavHistoryObserver  observer, System.Boolean  ownsWeak);
+		void AddObserver([MarshalAs(UnmanagedType.Interface)] nsINavHistoryObserver observer, bool ownsWeak);
 		
 		/// <summary>
         /// Removes a history observer.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveObserver([MarshalAs(UnmanagedType.Interface)] nsINavHistoryObserver  observer);
+		void RemoveObserver([MarshalAs(UnmanagedType.Interface)] nsINavHistoryObserver observer);
 		
 		/// <summary>
         /// Runs the passed callback in batch mode. Use this when a lot of things
@@ -2575,21 +2593,21 @@ namespace Skybound.Gecko
         /// Opaque parameter passed to nsINavBookmarksBatchCallback
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RunInBatchMode([MarshalAs(UnmanagedType.Interface)] nsINavHistoryBatchCallback  aCallback, [MarshalAs(UnmanagedType.Interface)] nsISupports  aClosure);
+		void RunInBatchMode([MarshalAs(UnmanagedType.Interface)] nsINavHistoryBatchCallback aCallback, [MarshalAs(UnmanagedType.Interface)] nsISupports aClosure);
 		
 		/// <summary>
         /// True if history is disabled. currently,
         /// history is disabled if the places.history.enabled pref is false.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetHistoryDisabledAttribute();
+		bool GetHistoryDisabledAttribute();
 		
 		/// <summary>
         /// Import the given Mork history file.
         /// @param file     The Mork history file to import
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ImportHistory([MarshalAs(UnmanagedType.Interface)] nsIFile  file);
+		void ImportHistory([MarshalAs(UnmanagedType.Interface)] nsIFile file);
 	}
 	
 	/// <summary>
@@ -2605,6 +2623,6 @@ namespace Skybound.Gecko
         /// @see runInBatchMode of nsINavHistoryService/nsINavBookmarksService
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RunBatched([MarshalAs(UnmanagedType.Interface)] nsISupports  aUserData);
+		void RunBatched([MarshalAs(UnmanagedType.Interface)] nsISupports aUserData);
 	}
 }

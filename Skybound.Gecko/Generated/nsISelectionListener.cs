@@ -37,6 +37,6 @@ namespace Skybound.Gecko
 		/// <summary>
         ///bitflags </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NotifySelectionChanged([MarshalAs(UnmanagedType.Interface)] nsIDOMDocument  doc, [MarshalAs(UnmanagedType.Interface)] nsISelection  sel, short reason);
+		void NotifySelectionChanged([MarshalAs(UnmanagedType.Interface)] nsIDOMDocument doc, [MarshalAs(UnmanagedType.Interface)] nsISelection sel, short reason);
 	}
 }

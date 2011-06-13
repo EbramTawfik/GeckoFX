@@ -85,7 +85,7 @@ namespace Skybound.Gecko
         /// NOTE: this method should not throw NS_BASE_STREAM_CLOSED.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new uint Read(System.IntPtr  aBuf, System.UInt32  aCount);
+		new uint Read(System.IntPtr aBuf, uint aCount);
 		
 		/// <summary>
         /// Low-level read method that provides access to the stream's underlying
@@ -112,7 +112,7 @@ namespace Skybound.Gecko
         /// NOTE: this method should not throw NS_BASE_STREAM_CLOSED.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new uint ReadSegments(nsWriteSegmentFun  aWriter, System.IntPtr  aClosure, System.UInt32  aCount);
+		new uint ReadSegments(nsWriteSegmentFun aWriter, System.IntPtr aClosure, uint aCount);
 		
 		/// <summary>
         /// @return true if stream is non-blocking
@@ -131,7 +131,7 @@ namespace Skybound.Gecko
         /// Number of streams in this multiplex-stream
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetCountAttribute();
+		uint GetCountAttribute();
 		
 		/// <summary>
         /// Appends a stream to the end of the streams. The cursor of the stream
@@ -140,7 +140,7 @@ namespace Skybound.Gecko
         /// @param stream  stream to append
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AppendStream([MarshalAs(UnmanagedType.Interface)] nsIInputStream  stream);
+		void AppendStream([MarshalAs(UnmanagedType.Interface)] nsIInputStream stream);
 		
 		/// <summary>
         /// Insert a stream at specified index.  If the cursor of this stream is at
@@ -153,7 +153,7 @@ namespace Skybound.Gecko
         /// @param index   index to insert stream at, must be <= count
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InsertStream([MarshalAs(UnmanagedType.Interface)] nsIInputStream  stream, System.UInt32  index);
+		void InsertStream([MarshalAs(UnmanagedType.Interface)] nsIInputStream stream, uint index);
 		
 		/// <summary>
         /// Remove stream at specified index. If this stream is the one currently
@@ -162,14 +162,15 @@ namespace Skybound.Gecko
         /// @param index   remove stream at this index, must be < count
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveStream(System.UInt32  index);
+		void RemoveStream(uint index);
 		
 		/// <summary>
         /// Get stream at specified index.
         /// @param index   return stream at this index, must be < count
         /// @return        stream at specified index
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIInputStream GetStream(System.UInt32  index);
+		nsIInputStream GetStream(uint index);
 	}
 }

@@ -45,7 +45,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  parent, [MarshalAs(UnmanagedType.LPStruct)] nsAString title, short mode);
+		void Init([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow parent, [MarshalAs(UnmanagedType.LPStruct)] nsAString title, short mode);
 		
 		/// <summary>
         /// Append to the  filter list with things from the predefined list
@@ -54,7 +54,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AppendFilters(System.Int32  filterMask);
+		void AppendFilters(int filterMask);
 		
 		/// <summary>
         /// Add a filter
@@ -106,7 +106,7 @@ namespace Skybound.Gecko
         /// @return Returns the index (0 based) of the selected filter in the filter list.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetFilterIndexAttribute();
+		int GetFilterIndexAttribute();
 		
 		/// <summary>
         /// The filter which is currently selected in the File Picker dialog
@@ -114,7 +114,7 @@ namespace Skybound.Gecko
         /// @return Returns the index (0 based) of the selected filter in the filter list.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFilterIndexAttribute(System.Int32  aFilterIndex);
+		void SetFilterIndexAttribute(int aFilterIndex);
 		
 		/// <summary>
         /// Set the directory that the file open/save dialog initially displays
@@ -124,7 +124,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsILocalFile  GetDisplayDirectoryAttribute();
+		nsILocalFile GetDisplayDirectoryAttribute();
 		
 		/// <summary>
         /// Set the directory that the file open/save dialog initially displays
@@ -133,7 +133,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDisplayDirectoryAttribute([MarshalAs(UnmanagedType.Interface)] nsILocalFile  aDisplayDirectory);
+		void SetDisplayDirectoryAttribute([MarshalAs(UnmanagedType.Interface)] nsILocalFile aDisplayDirectory);
 		
 		/// <summary>
         /// Get the nsILocalFile for the file or directory.
@@ -142,7 +142,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsILocalFile  GetFileAttribute();
+		nsILocalFile GetFileAttribute();
 		
 		/// <summary>
         /// Get the nsIURI for the file or directory.
@@ -151,7 +151,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI  GetFileURLAttribute();
+		nsIURI GetFileURLAttribute();
 		
 		/// <summary>
         /// Get the enumerator for the selected files
@@ -161,7 +161,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISimpleEnumerator  GetFilesAttribute();
+		nsISimpleEnumerator GetFilesAttribute();
 		
 		/// <summary>
         /// Show File Dialog. The dialog is displayed modally.

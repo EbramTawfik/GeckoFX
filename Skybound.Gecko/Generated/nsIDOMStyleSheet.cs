@@ -51,18 +51,18 @@ namespace Skybound.Gecko
 		void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aType);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetDisabledAttribute();
+		bool GetDisabledAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDisabledAttribute(System.Boolean  aDisabled);
-		
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMNode  GetOwnerNodeAttribute();
+		void SetDisabledAttribute(bool aDisabled);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMStyleSheet  GetParentStyleSheetAttribute();
+		nsIDOMNode GetOwnerNodeAttribute();
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMStyleSheet GetParentStyleSheetAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetHrefAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aHref);
@@ -72,6 +72,6 @@ namespace Skybound.Gecko
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMMediaList  GetMediaAttribute();
+		nsIDOMMediaList GetMediaAttribute();
 	}
 }

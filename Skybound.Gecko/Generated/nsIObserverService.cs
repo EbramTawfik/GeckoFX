@@ -56,7 +56,7 @@ namespace Skybound.Gecko
         /// returned.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddObserver([MarshalAs(UnmanagedType.Interface)] nsIObserver  anObserver, [MarshalAs(UnmanagedType.LPStr)] System.String  aTopic, System.Boolean  ownsWeak);
+		void AddObserver([MarshalAs(UnmanagedType.Interface)] nsIObserver anObserver, [MarshalAs(UnmanagedType.LPStr)] string aTopic, bool ownsWeak);
 		
 		/// <summary>
         /// removeObserver
@@ -69,7 +69,7 @@ namespace Skybound.Gecko
         /// @param aTopic     : The notification topic or subject.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveObserver([MarshalAs(UnmanagedType.Interface)] nsIObserver  anObserver, [MarshalAs(UnmanagedType.LPStr)] System.String  aTopic);
+		void RemoveObserver([MarshalAs(UnmanagedType.Interface)] nsIObserver anObserver, [MarshalAs(UnmanagedType.LPStr)] string aTopic);
 		
 		/// <summary>
         /// notifyObservers
@@ -81,7 +81,7 @@ namespace Skybound.Gecko
         /// @param someData : Notification specific wide string.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NotifyObservers([MarshalAs(UnmanagedType.Interface)] nsISupports  aSubject, [MarshalAs(UnmanagedType.LPStr)] System.String  aTopic, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string someData);
+		void NotifyObservers([MarshalAs(UnmanagedType.Interface)] nsISupports aSubject, [MarshalAs(UnmanagedType.LPStr)] string aTopic, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string someData);
 		
 		/// <summary>
         /// enumerateObservers
@@ -90,7 +90,8 @@ namespace Skybound.Gecko
         ///
         /// @param aTopic   : The notification topic or subject.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISimpleEnumerator EnumerateObservers([MarshalAs(UnmanagedType.LPStr)] System.String  aTopic);
+		nsISimpleEnumerator EnumerateObservers([MarshalAs(UnmanagedType.LPStr)] string aTopic);
 	}
 }

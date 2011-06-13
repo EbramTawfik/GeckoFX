@@ -107,23 +107,27 @@ namespace Skybound.Gecko
 		/// <summary>
         /// raises DOMException on setting
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMSVGMatrix Multiply([MarshalAs(UnmanagedType.Interface)] nsIDOMSVGMatrix  secondMatrix);
+		nsIDOMSVGMatrix Multiply([MarshalAs(UnmanagedType.Interface)] nsIDOMSVGMatrix secondMatrix);
 		
 		/// <summary>Member Inverse </summary>
 		/// <returns>A nsIDOMSVGMatrix</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMSVGMatrix Inverse();
 		
 		/// <summary>
         /// raises( SVGException );
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMSVGMatrix Translate(double x, double y);
 		
 		/// <summary>Member Scale </summary>
 		/// <param name='scaleFactor'> </param>
 		/// <returns>A nsIDOMSVGMatrix</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMSVGMatrix Scale(double scaleFactor);
 		
@@ -131,12 +135,14 @@ namespace Skybound.Gecko
 		/// <param name='scaleFactorX'> </param>
 		/// <param name='scaleFactorY'> </param>
 		/// <returns>A nsIDOMSVGMatrix</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMSVGMatrix ScaleNonUniform(double scaleFactorX, double scaleFactorY);
 		
 		/// <summary>Member Rotate </summary>
 		/// <param name='angle'> </param>
 		/// <returns>A nsIDOMSVGMatrix</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMSVGMatrix Rotate(double angle);
 		
@@ -144,29 +150,34 @@ namespace Skybound.Gecko
 		/// <param name='x'> </param>
 		/// <param name='y'> </param>
 		/// <returns>A nsIDOMSVGMatrix</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMSVGMatrix RotateFromVector(double x, double y);
 		
 		/// <summary>
         /// raises( SVGException );
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMSVGMatrix FlipX();
 		
 		/// <summary>Member FlipY </summary>
 		/// <returns>A nsIDOMSVGMatrix</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMSVGMatrix FlipY();
 		
 		/// <summary>Member SkewX </summary>
 		/// <param name='angle'> </param>
 		/// <returns>A nsIDOMSVGMatrix</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMSVGMatrix SkewX(double angle);
 		
 		/// <summary>Member SkewY </summary>
 		/// <param name='angle'> </param>
 		/// <returns>A nsIDOMSVGMatrix</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMSVGMatrix SkewY(double angle);
 	}

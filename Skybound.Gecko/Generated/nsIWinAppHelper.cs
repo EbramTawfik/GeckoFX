@@ -48,6 +48,6 @@ namespace Skybound.Gecko
         /// future releases.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetUserCanElevateAttribute();
+		bool GetUserCanElevateAttribute();
 	}
 }

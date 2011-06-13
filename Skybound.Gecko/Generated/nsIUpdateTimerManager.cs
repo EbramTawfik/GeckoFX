@@ -72,6 +72,6 @@ namespace Skybound.Gecko
         /// interval   : the default interval in seconds for the timer.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RegisterTimer([MarshalAs(UnmanagedType.LPStruct)] nsAString id, [MarshalAs(UnmanagedType.Interface)] nsITimerCallback  callback, System.UInt32  interval);
+		void RegisterTimer([MarshalAs(UnmanagedType.LPStruct)] nsAString id, [MarshalAs(UnmanagedType.Interface)] nsITimerCallback callback, uint interval);
 	}
 }

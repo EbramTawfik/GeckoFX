@@ -81,7 +81,7 @@ namespace Skybound.Gecko
         /// constructed from the constants defined above.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Quit(System.UInt32  aMode);
+		void Quit(uint aMode);
 	}
 	
 	/// <summary>nsIAppStartup2 </summary>
@@ -138,13 +138,13 @@ namespace Skybound.Gecko
         /// constructed from the constants defined above.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Quit(System.UInt32  aMode);
+		new void Quit(uint aMode);
 		
 		/// <summary>
         /// True if the application is in the process of shutting down.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetShuttingDownAttribute();
+		bool GetShuttingDownAttribute();
 	}
 	
 	/// <summary>nsIAppStartup_MOZILLA_2_0 </summary>
@@ -201,13 +201,13 @@ namespace Skybound.Gecko
         /// constructed from the constants defined above.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Quit(System.UInt32  aMode);
+		new void Quit(uint aMode);
 		
 		/// <summary>
         /// True if the application is in the process of shutting down.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Boolean  GetShuttingDownAttribute();
+		new bool GetShuttingDownAttribute();
 		
 		/// <summary>
         /// Returns an object with main, process, firstPaint, sessionRestored properties.

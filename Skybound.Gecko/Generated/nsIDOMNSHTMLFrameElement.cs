@@ -35,9 +35,9 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetContentWindowAttribute </summary>
-		/// <returns>A nsIDOMWindow </returns>
+		/// <returns>A nsIDOMWindow</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMWindow  GetContentWindowAttribute();
+		nsIDOMWindow GetContentWindowAttribute();
 	}
 }

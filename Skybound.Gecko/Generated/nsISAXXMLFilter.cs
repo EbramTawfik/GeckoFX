@@ -51,7 +51,7 @@ namespace Skybound.Gecko
         /// causing the request to be canceled.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void OnStartRequest([MarshalAs(UnmanagedType.Interface)] nsIRequest  aRequest, [MarshalAs(UnmanagedType.Interface)] nsISupports  aContext);
+		new void OnStartRequest([MarshalAs(UnmanagedType.Interface)] nsIRequest aRequest, [MarshalAs(UnmanagedType.Interface)] nsISupports aContext);
 		
 		/// <summary>
         /// Called to signify the end of an asynchronous request.  This
@@ -64,7 +64,7 @@ namespace Skybound.Gecko
         /// An exception thrown from onStopRequest is generally ignored.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void OnStopRequest([MarshalAs(UnmanagedType.Interface)] nsIRequest  aRequest, [MarshalAs(UnmanagedType.Interface)] nsISupports  aContext, System.Int32  aStatusCode);
+		new void OnStopRequest([MarshalAs(UnmanagedType.Interface)] nsIRequest aRequest, [MarshalAs(UnmanagedType.Interface)] nsISupports aContext, int aStatusCode);
 		
 		/// <summary>
         /// Called when the next chunk of data (corresponding to the request) may
@@ -88,20 +88,20 @@ namespace Skybound.Gecko
         /// causing the request to be canceled.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void OnDataAvailable([MarshalAs(UnmanagedType.Interface)] nsIRequest  aRequest, [MarshalAs(UnmanagedType.Interface)] nsISupports  aContext, [MarshalAs(UnmanagedType.Interface)] nsIInputStream  aInputStream, System.UInt32  aOffset, System.UInt32  aCount);
+		new void OnDataAvailable([MarshalAs(UnmanagedType.Interface)] nsIRequest aRequest, [MarshalAs(UnmanagedType.Interface)] nsISupports aContext, [MarshalAs(UnmanagedType.Interface)] nsIInputStream aInputStream, uint aOffset, uint aCount);
 		
 		/// <summary>
         /// The base URI.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIURI  GetBaseURIAttribute();
+		new nsIURI GetBaseURIAttribute();
 		
 		/// <summary>
         /// The base URI.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetBaseURIAttribute([MarshalAs(UnmanagedType.Interface)] nsIURI  aBaseURI);
+		new void SetBaseURIAttribute([MarshalAs(UnmanagedType.Interface)] nsIURI aBaseURI);
 		
 		/// <summary>
         /// If the application does not register a content handler, all
@@ -114,7 +114,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsISAXContentHandler  GetContentHandlerAttribute();
+		new nsISAXContentHandler GetContentHandlerAttribute();
 		
 		/// <summary>
         /// If the application does not register a content handler, all
@@ -126,7 +126,7 @@ namespace Skybound.Gecko
         /// handler immediately.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetContentHandlerAttribute([MarshalAs(UnmanagedType.Interface)] nsISAXContentHandler  aContentHandler);
+		new void SetContentHandlerAttribute([MarshalAs(UnmanagedType.Interface)] nsISAXContentHandler aContentHandler);
 		
 		/// <summary>
         /// If the application does not register a DTD handler, all DTD
@@ -138,7 +138,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsISAXDTDHandler  GetDtdHandlerAttribute();
+		new nsISAXDTDHandler GetDtdHandlerAttribute();
 		
 		/// <summary>
         /// If the application does not register a DTD handler, all DTD
@@ -149,7 +149,7 @@ namespace Skybound.Gecko
         /// handler immediately.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetDtdHandlerAttribute([MarshalAs(UnmanagedType.Interface)] nsISAXDTDHandler  aDtdHandler);
+		new void SetDtdHandlerAttribute([MarshalAs(UnmanagedType.Interface)] nsISAXDTDHandler aDtdHandler);
 		
 		/// <summary>
         /// If the application does not register an error handler, all
@@ -164,7 +164,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsISAXErrorHandler  GetErrorHandlerAttribute();
+		new nsISAXErrorHandler GetErrorHandlerAttribute();
 		
 		/// <summary>
         /// If the application does not register an error handler, all
@@ -178,7 +178,7 @@ namespace Skybound.Gecko
         /// handler immediately.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetErrorHandlerAttribute([MarshalAs(UnmanagedType.Interface)] nsISAXErrorHandler  aErrorHandler);
+		new void SetErrorHandlerAttribute([MarshalAs(UnmanagedType.Interface)] nsISAXErrorHandler aErrorHandler);
 		
 		/// <summary>
         /// If the application does not register a lexical handler, all
@@ -191,7 +191,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsISAXLexicalHandler  GetLexicalHandlerAttribute();
+		new nsISAXLexicalHandler GetLexicalHandlerAttribute();
 		
 		/// <summary>
         /// If the application does not register a lexical handler, all
@@ -203,7 +203,7 @@ namespace Skybound.Gecko
         /// handler immediately.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetLexicalHandlerAttribute([MarshalAs(UnmanagedType.Interface)] nsISAXLexicalHandler  aLexicalHandler);
+		new void SetLexicalHandlerAttribute([MarshalAs(UnmanagedType.Interface)] nsISAXLexicalHandler aLexicalHandler);
 		
 		/// <summary>
         /// Set the value of a feature flag. NOT CURRENTLY IMPLEMENTED.
@@ -222,7 +222,7 @@ namespace Skybound.Gecko
         /// @param value Turn the feature on/off.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetFeature([MarshalAs(UnmanagedType.LPStruct)] nsAString name, System.Boolean  value);
+		new void SetFeature([MarshalAs(UnmanagedType.LPStruct)] nsAString name, bool value);
 		
 		/// <summary>
         /// Look up the value of a feature flag. NOT CURRENTLY IMPLEMENTED.
@@ -261,7 +261,7 @@ namespace Skybound.Gecko
         /// @param value Turn the feature on/off.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetProperty([MarshalAs(UnmanagedType.LPStruct)] nsAString name, [MarshalAs(UnmanagedType.Interface)] nsISupports  value);
+		new void SetProperty([MarshalAs(UnmanagedType.LPStruct)] nsAString name, [MarshalAs(UnmanagedType.Interface)] nsISupports value);
 		
 		/// <summary>
         /// Look up the value of a property. NOT CURRENTLY IMPLEMENTED.
@@ -292,7 +292,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void ParseFromString([MarshalAs(UnmanagedType.LPStruct)] nsAString str, [MarshalAs(UnmanagedType.LPStr)] System.String  contentType);
+		new void ParseFromString([MarshalAs(UnmanagedType.LPStruct)] nsAString str, [MarshalAs(UnmanagedType.LPStr)] string contentType);
 		
 		/// <summary>
         ///
@@ -305,7 +305,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void ParseFromStream([MarshalAs(UnmanagedType.Interface)] nsIInputStream  stream, [MarshalAs(UnmanagedType.LPStr)] System.String  charset, [MarshalAs(UnmanagedType.LPStr)] System.String  contentType);
+		new void ParseFromStream([MarshalAs(UnmanagedType.Interface)] nsIInputStream stream, [MarshalAs(UnmanagedType.LPStr)] string charset, [MarshalAs(UnmanagedType.LPStr)] string contentType);
 		
 		/// <summary>
         /// Begin an asynchronous parse. This method initializes the parser,
@@ -318,7 +318,7 @@ namespace Skybound.Gecko
         /// Can be NULL.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void ParseAsync([MarshalAs(UnmanagedType.Interface)] nsIRequestObserver  observer);
+		new void ParseAsync([MarshalAs(UnmanagedType.Interface)] nsIRequestObserver observer);
 		
 		/// <summary>
         /// The parent reader.
@@ -330,7 +330,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISAXXMLReader  GetParentAttribute();
+		nsISAXXMLReader GetParentAttribute();
 		
 		/// <summary>
         /// The parent reader.
@@ -341,6 +341,6 @@ namespace Skybound.Gecko
         /// through this filter.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetParentAttribute([MarshalAs(UnmanagedType.Interface)] nsISAXXMLReader  aParent);
+		void SetParentAttribute([MarshalAs(UnmanagedType.Interface)] nsISAXXMLReader aParent);
 	}
 }

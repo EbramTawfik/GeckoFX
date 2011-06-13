@@ -52,13 +52,13 @@ namespace Skybound.Gecko
         /// True if the result represents a container.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsContainerAttribute();
+		bool GetIsContainerAttribute();
 		
 		/// <summary>
         /// True if the result represents an empty container.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsEmptyAttribute();
+		bool GetIsEmptyAttribute();
 		
 		/// <summary>
         /// True if the template builder may use this result as the reference point
@@ -70,7 +70,7 @@ namespace Skybound.Gecko
         /// overriden by syntax used in the template.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetMayProcessChildrenAttribute();
+		bool GetMayProcessChildrenAttribute();
 		
 		/// <summary>
         /// ID of the result. The DOM element created for this result, if any, will
@@ -86,7 +86,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIRDFResource  GetResourceAttribute();
+		nsIRDFResource GetResourceAttribute();
 		
 		/// <summary>
         /// The type of the object. The predefined value 'separator' may be used
@@ -108,8 +108,9 @@ namespace Skybound.Gecko
         ///
         /// @return the value for the variable or a null string if it has no value
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetBindingFor([MarshalAs(UnmanagedType.Interface)] nsIAtom  aVar);
+		nsAString GetBindingFor([MarshalAs(UnmanagedType.Interface)] nsIAtom aVar);
 		
 		/// <summary>
         /// Get an object value for a variable such as ?name for this result.
@@ -122,8 +123,9 @@ namespace Skybound.Gecko
         ///
         /// @return the value for the variable or null if it has no value
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports GetBindingObjectFor([MarshalAs(UnmanagedType.Interface)] nsIAtom  aVar);
+		nsISupports GetBindingObjectFor([MarshalAs(UnmanagedType.Interface)] nsIAtom aVar);
 		
 		/// <summary>
         /// Indicate that a particular rule of a query has matched and that output
@@ -137,7 +139,7 @@ namespace Skybound.Gecko
         /// @param aRuleNode the rule node that matched
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RuleMatched([MarshalAs(UnmanagedType.Interface)] nsISupports  aQuery, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode  aRuleNode);
+		void RuleMatched([MarshalAs(UnmanagedType.Interface)] nsISupports aQuery, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aRuleNode);
 		
 		/// <summary>
         /// Indicate that the output for a result has beeen removed and that the

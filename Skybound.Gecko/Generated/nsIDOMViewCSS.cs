@@ -43,12 +43,13 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMDocumentView  GetDocumentAttribute();
+		new nsIDOMDocumentView GetDocumentAttribute();
 		
 		/// <summary>
         /// @see <http://dev.w3.org/csswg/cssom/#dom-window-getcomputedstyle>
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMCSSStyleDeclaration GetComputedStyle([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  elt, [MarshalAs(UnmanagedType.LPStruct)] nsAString pseudoElt);
+		nsIDOMCSSStyleDeclaration GetComputedStyle([MarshalAs(UnmanagedType.Interface)] nsIDOMElement elt, [MarshalAs(UnmanagedType.LPStruct)] nsAString pseudoElt);
 	}
 }

@@ -48,7 +48,7 @@ namespace Skybound.Gecko
         /// @param aURL the url to the page
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddPage([MarshalAs(UnmanagedType.LPStr)] System.String  aURL);
+		void AddPage([MarshalAs(UnmanagedType.LPStr)] string aURL);
 		
 		/// <summary>
         /// isVisited
@@ -58,6 +58,6 @@ namespace Skybound.Gecko
         /// @param aURL the url to the page
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsVisited([MarshalAs(UnmanagedType.LPStr)] System.String  aURL);
+		bool IsVisited([MarshalAs(UnmanagedType.LPStr)] string aURL);
 	}
 }

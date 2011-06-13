@@ -35,9 +35,9 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetSheetAttribute </summary>
-		/// <returns>A nsIDOMStyleSheet </returns>
+		/// <returns>A nsIDOMStyleSheet</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMStyleSheet  GetSheetAttribute();
+		nsIDOMStyleSheet GetSheetAttribute();
 	}
 }

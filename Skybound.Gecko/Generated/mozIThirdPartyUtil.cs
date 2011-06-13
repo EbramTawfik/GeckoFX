@@ -58,7 +58,7 @@ namespace Skybound.Gecko
         /// and is not a file:// URI.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsThirdPartyURI([MarshalAs(UnmanagedType.Interface)] nsIURI  aFirstURI, [MarshalAs(UnmanagedType.Interface)] nsIURI  aSecondURI);
+		bool IsThirdPartyURI([MarshalAs(UnmanagedType.Interface)] nsIURI aFirstURI, [MarshalAs(UnmanagedType.Interface)] nsIURI aSecondURI);
 		
 		/// <summary>
         /// isThirdPartyWindow
@@ -99,7 +99,7 @@ namespace Skybound.Gecko
         /// @see isThirdPartyURI
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsThirdPartyWindow([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  aWindow, [MarshalAs(UnmanagedType.Interface)] nsIURI  aURI);
+		bool IsThirdPartyWindow([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow, [MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 		
 		/// <summary>
         /// isThirdPartyChannel
@@ -146,6 +146,6 @@ namespace Skybound.Gecko
         /// @see isThirdPartyWindow
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsThirdPartyChannel([MarshalAs(UnmanagedType.Interface)] nsIChannel  aChannel, [MarshalAs(UnmanagedType.Interface)] nsIURI  aURI);
+		bool IsThirdPartyChannel([MarshalAs(UnmanagedType.Interface)] nsIChannel aChannel, [MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 	}
 }

@@ -42,7 +42,7 @@ namespace Skybound.Gecko
         /// The database connection used by Places.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		mozIStorageConnection  GetDBConnectionAttribute();
+		mozIStorageConnection GetDBConnectionAttribute();
 		
 		/// <summary>
         /// Asynchronously executes the statement created from queries.
@@ -57,6 +57,6 @@ namespace Skybound.Gecko
         /// your use-case.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		mozIStoragePendingStatement AsyncExecuteLegacyQueries(nsINavHistoryQuery  aQueries, System.UInt32  aQueryCount, [MarshalAs(UnmanagedType.Interface)] nsINavHistoryQueryOptions  aOptions, mozIStorageStatementCallback  aCallback);
+		mozIStoragePendingStatement AsyncExecuteLegacyQueries(nsINavHistoryQuery aQueries, uint aQueryCount, [MarshalAs(UnmanagedType.Interface)] nsINavHistoryQueryOptions aOptions, mozIStorageStatementCallback aCallback);
 	}
 }

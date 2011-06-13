@@ -37,34 +37,37 @@ namespace Skybound.Gecko
 		/// <summary>
         /// See the MDC documentation for what these methods do.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMNodeList GetAnonymousNodes([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  elt);
+		nsIDOMNodeList GetAnonymousNodes([MarshalAs(UnmanagedType.Interface)] nsIDOMElement elt);
 		
 		/// <summary>Member GetAnonymousElementByAttribute </summary>
 		/// <param name='elt'> </param>
 		/// <param name='attrName'> </param>
 		/// <param name='attrValue'> </param>
 		/// <returns>A nsIDOMElement</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMElement GetAnonymousElementByAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  elt, [MarshalAs(UnmanagedType.LPStruct)] nsAString attrName, [MarshalAs(UnmanagedType.LPStruct)] nsAString attrValue);
+		nsIDOMElement GetAnonymousElementByAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMElement elt, [MarshalAs(UnmanagedType.LPStruct)] nsAString attrName, [MarshalAs(UnmanagedType.LPStruct)] nsAString attrValue);
 		
 		/// <summary>Member AddBinding </summary>
 		/// <param name='elt'> </param>
 		/// <param name='bindingURL'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddBinding([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  elt, [MarshalAs(UnmanagedType.LPStruct)] nsAString bindingURL);
+		void AddBinding([MarshalAs(UnmanagedType.Interface)] nsIDOMElement elt, [MarshalAs(UnmanagedType.LPStruct)] nsAString bindingURL);
 		
 		/// <summary>Member RemoveBinding </summary>
 		/// <param name='elt'> </param>
 		/// <param name='bindingURL'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveBinding([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  elt, [MarshalAs(UnmanagedType.LPStruct)] nsAString bindingURL);
+		void RemoveBinding([MarshalAs(UnmanagedType.Interface)] nsIDOMElement elt, [MarshalAs(UnmanagedType.LPStruct)] nsAString bindingURL);
 		
 		/// <summary>Member GetBindingParent </summary>
 		/// <param name='node'> </param>
 		/// <returns>A nsIDOMElement</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMElement GetBindingParent([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  node);
+		nsIDOMElement GetBindingParent([MarshalAs(UnmanagedType.Interface)] nsIDOMNode node);
 		
 		/// <summary>Member LoadBindingDocument </summary>
 		/// <param name='documentURL'> </param>

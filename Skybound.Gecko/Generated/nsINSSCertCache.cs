@@ -45,11 +45,12 @@ namespace Skybound.Gecko
 		/// <summary>Member CacheCertList </summary>
 		/// <param name='list'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CacheCertList([MarshalAs(UnmanagedType.Interface)] nsIX509CertList  list);
+		void CacheCertList([MarshalAs(UnmanagedType.Interface)] nsIX509CertList list);
 		
 		/// <summary>
         /// get an X509CertList
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIX509CertList GetX509CachedCerts();
 		

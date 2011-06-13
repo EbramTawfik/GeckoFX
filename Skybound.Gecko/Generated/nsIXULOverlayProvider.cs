@@ -39,12 +39,14 @@ namespace Skybound.Gecko
 		
 		/// <summary>
         ///nsIURI </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISimpleEnumerator GetXULOverlays([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI);
+		nsISimpleEnumerator GetXULOverlays([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 		
 		/// <summary>
         ///nsIURI </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISimpleEnumerator GetStyleOverlays([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI);
+		nsISimpleEnumerator GetStyleOverlays([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 	}
 }

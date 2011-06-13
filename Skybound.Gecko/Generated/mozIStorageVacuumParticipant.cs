@@ -50,13 +50,13 @@ namespace Skybound.Gecko
         /// The suggested value is mozIStorageConnection::DEFAULT_PAGE_SIZE.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetExpectedDatabasePageSizeAttribute();
+		int GetExpectedDatabasePageSizeAttribute();
 		
 		/// <summary>
         /// Connection to the database file to be vacuumed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		mozIStorageConnection  GetDatabaseConnectionAttribute();
+		mozIStorageConnection GetDatabaseConnectionAttribute();
 		
 		/// <summary>
         /// Notifies when a vacuum operation begins.  Listeners should avoid using the
@@ -80,6 +80,6 @@ namespace Skybound.Gecko
         /// reports if the vacuum succeeded or failed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnEndVacuum(System.Boolean  aSucceeded);
+		void OnEndVacuum(bool aSucceeded);
 	}
 }

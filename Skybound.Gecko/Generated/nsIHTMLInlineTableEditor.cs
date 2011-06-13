@@ -41,7 +41,7 @@ namespace Skybound.Gecko
         /// a line/column are available on the cell's border.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetInlineTableEditingEnabledAttribute();
+		bool GetInlineTableEditingEnabledAttribute();
 		
 		/// <summary>
         /// boolean indicating if inline table editing is enabled in the editor.
@@ -50,14 +50,14 @@ namespace Skybound.Gecko
         /// a line/column are available on the cell's border.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetInlineTableEditingEnabledAttribute(System.Boolean  aInlineTableEditingEnabled);
+		void SetInlineTableEditingEnabledAttribute(bool aInlineTableEditingEnabled);
 		
 		/// <summary>
         /// Shows inline table editing UI around a table cell
         /// @param aCell [IN] a DOM Element being a table cell, td or th
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ShowInlineTableEditingUI([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  aCell);
+		void ShowInlineTableEditingUI([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aCell);
 		
 		/// <summary>
         /// Hide all inline table editing UI
@@ -71,7 +71,7 @@ namespace Skybound.Gecko
         /// @param aUIAnonymousElement [IN] the inline table editing UI element
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DoInlineTableEditingAction([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  aUIAnonymousElement);
+		void DoInlineTableEditingAction([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aUIAnonymousElement);
 		
 		/// <summary>
         /// Refresh already visible inline table editing UI

@@ -51,7 +51,7 @@ namespace Skybound.Gecko
         /// multiple times.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddCommandObserver([MarshalAs(UnmanagedType.Interface)] nsIObserver  aCommandObserver, [MarshalAs(UnmanagedType.LPStr)] System.String  aCommandToObserve);
+		void AddCommandObserver([MarshalAs(UnmanagedType.Interface)] nsIObserver aCommandObserver, [MarshalAs(UnmanagedType.LPStr)] string aCommandToObserve);
 		
 		/// <summary>
         /// Stop an observer from observering the specified command. If the observer
@@ -61,7 +61,7 @@ namespace Skybound.Gecko
         /// from all commands.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveCommandObserver([MarshalAs(UnmanagedType.Interface)] nsIObserver  aCommandObserver, [MarshalAs(UnmanagedType.LPStr)] System.String  aCommandObserved);
+		void RemoveCommandObserver([MarshalAs(UnmanagedType.Interface)] nsIObserver aCommandObserver, [MarshalAs(UnmanagedType.LPStr)] string aCommandObserved);
 		
 		/// <summary>
         /// Ask the command manager if the specified command is supported.
@@ -69,7 +69,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsCommandSupported([MarshalAs(UnmanagedType.LPStr)] System.String  aCommandName, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  aTargetWindow);
+		bool IsCommandSupported([MarshalAs(UnmanagedType.LPStr)] string aCommandName, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aTargetWindow);
 		
 		/// <summary>
         /// Ask the command manager if the specified command is currently.
@@ -77,12 +77,12 @@ namespace Skybound.Gecko
         /// If aTargetWindow is null, the focused window is used.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsCommandEnabled([MarshalAs(UnmanagedType.LPStr)] System.String  aCommandName, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  aTargetWindow);
+		bool IsCommandEnabled([MarshalAs(UnmanagedType.LPStr)] string aCommandName, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aTargetWindow);
 		
 		/// <summary>
         ///inout </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCommandState([MarshalAs(UnmanagedType.LPStr)] System.String  aCommandName, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  aTargetWindow, [MarshalAs(UnmanagedType.Interface)] nsICommandParams  aCommandParams);
+		void GetCommandState([MarshalAs(UnmanagedType.LPStr)] string aCommandName, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aTargetWindow, [MarshalAs(UnmanagedType.Interface)] nsICommandParams aCommandParams);
 		
 		/// <summary>
         /// Execute the specified command.
@@ -94,6 +94,6 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DoCommand([MarshalAs(UnmanagedType.LPStr)] System.String  aCommandName, [MarshalAs(UnmanagedType.Interface)] nsICommandParams  aCommandParams, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  aTargetWindow);
+		void DoCommand([MarshalAs(UnmanagedType.LPStr)] string aCommandName, [MarshalAs(UnmanagedType.Interface)] nsICommandParams aCommandParams, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aTargetWindow);
 	}
 }

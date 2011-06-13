@@ -58,10 +58,10 @@ namespace Skybound.Gecko
         /// @param result : resulting service
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr  GetService(ref System.Guid aClass, ref System.Guid aIID);
+		System.IntPtr GetService(ref System.Guid aClass, ref System.Guid aIID);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr  GetServiceByContractID([MarshalAs(UnmanagedType.LPStr)] System.String  aContractID, ref System.Guid aIID);
+		System.IntPtr GetServiceByContractID([MarshalAs(UnmanagedType.LPStr)] string aContractID, ref System.Guid aIID);
 		
 		/// <summary>
         /// isServiceInstantiated
@@ -78,6 +78,6 @@ namespace Skybound.Gecko
 		bool IsServiceInstantiated(ref System.Guid aClass, ref System.Guid aIID);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsServiceInstantiatedByContractID([MarshalAs(UnmanagedType.LPStr)] System.String  aContractID, ref System.Guid aIID);
+		bool IsServiceInstantiatedByContractID([MarshalAs(UnmanagedType.LPStr)] string aContractID, ref System.Guid aIID);
 	}
 }

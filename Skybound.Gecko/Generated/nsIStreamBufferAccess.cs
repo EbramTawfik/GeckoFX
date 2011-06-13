@@ -70,7 +70,7 @@ namespace Skybound.Gecko
         /// after the current position that satisfies (A & aAlignMask) == 0.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetBuffer(System.UInt32  aLength, System.UInt32  aAlignMask);
+		System.IntPtr GetBuffer(uint aLength, uint aAlignMask);
 		
 		/// <summary>
         /// Relinquish access to the stream's buffer, filling if at end of an input
@@ -86,7 +86,7 @@ namespace Skybound.Gecko
         /// returned aBuffer.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PutBuffer(System.IntPtr  aBuffer, System.UInt32  aLength);
+		void PutBuffer(System.IntPtr aBuffer, uint aLength);
 		
 		/// <summary>
         /// Disable and enable buffering on the stream implementing this interface.
@@ -104,6 +104,6 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports  GetUnbufferedStreamAttribute();
+		nsISupports GetUnbufferedStreamAttribute();
 	}
 }

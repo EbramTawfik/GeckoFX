@@ -65,7 +65,7 @@ namespace Skybound.Gecko
         /// return value of false.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool PromptAuth([MarshalAs(UnmanagedType.Interface)] nsIChannel  aChannel, System.UInt32  level, [MarshalAs(UnmanagedType.Interface)] nsIAuthInformation  authInfo);
+		bool PromptAuth([MarshalAs(UnmanagedType.Interface)] nsIChannel aChannel, uint level, [MarshalAs(UnmanagedType.Interface)] nsIAuthInformation authInfo);
 		
 		/// <summary>
         /// Asynchronously prompt the user for a username and password.
@@ -98,7 +98,8 @@ namespace Skybound.Gecko
         /// prevent multiple dialogs shown to the user because consumer may fall
         /// back to synchronous prompt on synchronous failure of this method.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsICancelable AsyncPromptAuth([MarshalAs(UnmanagedType.Interface)] nsIChannel  aChannel, [MarshalAs(UnmanagedType.Interface)] nsIAuthPromptCallback  aCallback, [MarshalAs(UnmanagedType.Interface)] nsISupports  aContext, System.UInt32  level, [MarshalAs(UnmanagedType.Interface)] nsIAuthInformation  authInfo);
+		nsICancelable AsyncPromptAuth([MarshalAs(UnmanagedType.Interface)] nsIChannel aChannel, [MarshalAs(UnmanagedType.Interface)] nsIAuthPromptCallback aCallback, [MarshalAs(UnmanagedType.Interface)] nsISupports aContext, uint level, [MarshalAs(UnmanagedType.Interface)] nsIAuthInformation authInfo);
 	}
 }

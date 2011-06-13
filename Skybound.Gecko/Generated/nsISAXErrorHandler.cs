@@ -70,7 +70,7 @@ namespace Skybound.Gecko
         /// @param error The error message.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Error([MarshalAs(UnmanagedType.Interface)] nsISAXLocator  locator, [MarshalAs(UnmanagedType.LPStruct)] nsAString error);
+		void Error([MarshalAs(UnmanagedType.Interface)] nsISAXLocator locator, [MarshalAs(UnmanagedType.LPStruct)] nsAString error);
 		
 		/// <summary>
         /// Receive notification of a non-recoverable error.
@@ -97,7 +97,7 @@ namespace Skybound.Gecko
         /// @param error The error message.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void FatalError([MarshalAs(UnmanagedType.Interface)] nsISAXLocator  locator, [MarshalAs(UnmanagedType.LPStruct)] nsAString error);
+		void FatalError([MarshalAs(UnmanagedType.Interface)] nsISAXLocator locator, [MarshalAs(UnmanagedType.LPStruct)] nsAString error);
 		
 		/// <summary>
         /// Receive notification of a warning.
@@ -117,6 +117,6 @@ namespace Skybound.Gecko
         /// @param error The warning message.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void IgnorableWarning([MarshalAs(UnmanagedType.Interface)] nsISAXLocator  locator, [MarshalAs(UnmanagedType.LPStruct)] nsAString error);
+		void IgnorableWarning([MarshalAs(UnmanagedType.Interface)] nsISAXLocator locator, [MarshalAs(UnmanagedType.LPStruct)] nsAString error);
 	}
 }

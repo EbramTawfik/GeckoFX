@@ -37,13 +37,13 @@ namespace Skybound.Gecko
 		/// <summary>
         ///The number of ranges represented by the object </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetLengthAttribute();
+		uint GetLengthAttribute();
 		
 		/// <summary>
         ///The start(index) method must return the position of the first
         ///     byte of the indexth range represented by the object. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint Start(System.UInt32  index);
+		uint Start(uint index);
 		
 		/// <summary>
         ///The end(index) method must return the position of the byte
@@ -55,6 +55,6 @@ namespace Skybound.Gecko
         ///     method for that range will be the same as the number of bytes in
         ///     the stream.) </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint End(System.UInt32  index);
+		uint End(uint index);
 	}
 }

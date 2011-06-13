@@ -39,13 +39,13 @@ namespace Skybound.Gecko
 		/// <param name='aCommand'> </param>
 		/// <param name='aExtraInfo'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Embed(System.IntPtr aDocViewer, [MarshalAs(UnmanagedType.LPStr)] System.String  aCommand, [MarshalAs(UnmanagedType.Interface)] nsISupports  aExtraInfo);
+		void Embed(System.IntPtr aDocViewer, [MarshalAs(UnmanagedType.LPStr)] string aCommand, [MarshalAs(UnmanagedType.Interface)] nsISupports aExtraInfo);
 		
 		/// <summary>
         /// Allows the PrintEngine to make this call on
         /// an internal interface to the DocShell
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetIsPrinting(System.Boolean  aIsPrinting);
+		void SetIsPrinting(bool aIsPrinting);
 	}
 }

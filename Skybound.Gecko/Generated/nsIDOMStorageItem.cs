@@ -44,13 +44,13 @@ namespace Skybound.Gecko
         /// Indicates whether a key is available only in a secure context.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetSecureAttribute();
+		bool GetSecureAttribute();
 		
 		/// <summary>
         /// Indicates whether a key is available only in a secure context.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSecureAttribute(System.Boolean  aSecure);
+		void SetSecureAttribute(bool aSecure);
 		
 		/// <summary>
         /// The value associated with the item.

@@ -54,7 +54,7 @@ namespace Skybound.Gecko
         /// NS_ERROR* - Method failure.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr  CreateInstance([MarshalAs(UnmanagedType.Interface)] nsISupports  aOuter, ref System.Guid iid);
+		System.IntPtr CreateInstance([MarshalAs(UnmanagedType.Interface)] nsISupports aOuter, ref System.Guid iid);
 		
 		/// <summary>
         /// LockFactory provides the client a way to keep the component
@@ -67,6 +67,6 @@ namespace Skybound.Gecko
         /// NS_ERROR* - Method failure.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void LockFactory(System.Boolean  @lock);
+		void LockFactory(bool @lock);
 	}
 }

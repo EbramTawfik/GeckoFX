@@ -37,18 +37,18 @@ namespace Skybound.Gecko
 		/// <summary>Member ReadAsBinaryString </summary>
 		/// <param name='filedata'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ReadAsBinaryString([MarshalAs(UnmanagedType.Interface)] nsIDOMBlob  filedata);
+		void ReadAsBinaryString([MarshalAs(UnmanagedType.Interface)] nsIDOMBlob filedata);
 		
 		/// <summary>Member ReadAsText </summary>
 		/// <param name='filedata'> </param>
 		/// <param name='encoding'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ReadAsText([MarshalAs(UnmanagedType.Interface)] nsIDOMBlob  filedata, [MarshalAs(UnmanagedType.LPStruct)] nsAString encoding);
+		void ReadAsText([MarshalAs(UnmanagedType.Interface)] nsIDOMBlob filedata, [MarshalAs(UnmanagedType.LPStruct)] nsAString encoding);
 		
 		/// <summary>Member ReadAsDataURL </summary>
 		/// <param name='file'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ReadAsDataURL([MarshalAs(UnmanagedType.Interface)] nsIDOMBlob  file);
+		void ReadAsDataURL([MarshalAs(UnmanagedType.Interface)] nsIDOMBlob file);
 		
 		/// <summary>Member Abort </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -65,22 +65,22 @@ namespace Skybound.Gecko
 		void GetResultAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aResult);
 		
 		/// <summary>Member GetErrorAttribute </summary>
-		/// <returns>A nsIDOMFileError </returns>
+		/// <returns>A nsIDOMFileError</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMFileError  GetErrorAttribute();
+		nsIDOMFileError GetErrorAttribute();
 		
 		/// <summary>
         /// event handler attributes
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener  GetOnloadendAttribute();
+		nsIDOMEventListener GetOnloadendAttribute();
 		
 		/// <summary>
         /// event handler attributes
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnloadendAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener  aOnloadend);
+		void SetOnloadendAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnloadend);
 	}
 }

@@ -44,44 +44,45 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMNode  GetAnchorNodeAttribute();
+		nsIDOMNode GetAnchorNodeAttribute();
 		
 		/// <summary>
         /// The offset within the (text) node where the selection begins.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetAnchorOffsetAttribute();
+		int GetAnchorOffsetAttribute();
 		
 		/// <summary>
         /// Returns the node in which the selection ends.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMNode  GetFocusNodeAttribute();
+		nsIDOMNode GetFocusNodeAttribute();
 		
 		/// <summary>
         /// The offset within the (text) node where the selection ends.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetFocusOffsetAttribute();
+		int GetFocusOffsetAttribute();
 		
 		/// <summary>
         /// Indicates if the selection is collapsed or not.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsCollapsedAttribute();
+		bool GetIsCollapsedAttribute();
 		
 		/// <summary>
         /// Returns the number of ranges in the selection.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetRangeCountAttribute();
+		int GetRangeCountAttribute();
 		
 		/// <summary>
         /// Returns the range at the specified index.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMRange GetRangeAt(System.Int32  index);
+		nsIDOMRange GetRangeAt(int index);
 		
 		/// <summary>
         /// Collapses the selection to a single point, at the specified offset
@@ -91,7 +92,7 @@ namespace Skybound.Gecko
         /// @param offset          Where in given dom node to place the selection (the offset into the given node)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Collapse([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  parentNode, System.Int32  offset);
+		void Collapse([MarshalAs(UnmanagedType.Interface)] nsIDOMNode parentNode, int offset);
 		
 		/// <summary>
         /// Extends the selection by moving the selection end to the specified node and offset,
@@ -101,7 +102,7 @@ namespace Skybound.Gecko
         /// @param offset          Where in node to place the offset in the new selection end
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Extend([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  parentNode, System.Int32  offset);
+		void Extend([MarshalAs(UnmanagedType.Interface)] nsIDOMNode parentNode, int offset);
 		
 		/// <summary>
         /// Collapses the whole selection to a single point at the start
@@ -126,26 +127,26 @@ namespace Skybound.Gecko
         /// function only returns true when the entire node is part of the selection.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool ContainsNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  node, System.Boolean  partlyContained);
+		bool ContainsNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode node, bool partlyContained);
 		
 		/// <summary>
         /// Adds all children of the specified node to the selection.
         /// @param parentNode  the parent of the children to be added to the selection.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SelectAllChildren([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  parentNode);
+		void SelectAllChildren([MarshalAs(UnmanagedType.Interface)] nsIDOMNode parentNode);
 		
 		/// <summary>
         /// Adds a range to the current selection.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddRange([MarshalAs(UnmanagedType.Interface)] nsIDOMRange  range);
+		void AddRange([MarshalAs(UnmanagedType.Interface)] nsIDOMRange range);
 		
 		/// <summary>
         /// Removes a range from the current selection.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveRange([MarshalAs(UnmanagedType.Interface)] nsIDOMRange  range);
+		void RemoveRange([MarshalAs(UnmanagedType.Interface)] nsIDOMRange range);
 		
 		/// <summary>
         /// Removes all ranges from the current selection.
@@ -165,11 +166,12 @@ namespace Skybound.Gecko
         /// PR_FALSE if the new language is left-to-right.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SelectionLanguageChange(System.Boolean  langRTL);
+		void SelectionLanguageChange(bool langRTL);
 		
 		/// <summary>
         /// Returns the whole selection into a plain text string.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string ToString();
 	}

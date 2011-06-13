@@ -56,6 +56,6 @@ namespace Skybound.Gecko
         /// indicates the reason for the failure and aProxyInfo will be null.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnProxyAvailable([MarshalAs(UnmanagedType.Interface)] nsICancelable  aRequest, [MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, [MarshalAs(UnmanagedType.Interface)] nsIProxyInfo  aProxyInfo, System.Int32  aStatus);
+		void OnProxyAvailable([MarshalAs(UnmanagedType.Interface)] nsICancelable aRequest, [MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIProxyInfo aProxyInfo, int aStatus);
 	}
 }

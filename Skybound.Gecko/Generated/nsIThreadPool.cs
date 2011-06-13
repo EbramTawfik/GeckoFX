@@ -77,7 +77,7 @@ namespace Skybound.Gecko
         /// events, so this event would never run and has not been dispatched.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Dispatch([MarshalAs(UnmanagedType.Interface)] nsIRunnable  @event, System.UInt32  flags);
+		new void Dispatch([MarshalAs(UnmanagedType.Interface)] nsIRunnable @event, uint flags);
 		
 		/// <summary>
         /// Check to see if this event target is associated with the current thread.
@@ -104,39 +104,39 @@ namespace Skybound.Gecko
         /// Get/set the maximum number of threads allowed at one time in this pool.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetThreadLimitAttribute();
+		uint GetThreadLimitAttribute();
 		
 		/// <summary>
         /// Get/set the maximum number of threads allowed at one time in this pool.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetThreadLimitAttribute(System.UInt32  aThreadLimit);
+		void SetThreadLimitAttribute(uint aThreadLimit);
 		
 		/// <summary>
         /// Get/set the maximum number of idle threads kept alive.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetIdleThreadLimitAttribute();
+		uint GetIdleThreadLimitAttribute();
 		
 		/// <summary>
         /// Get/set the maximum number of idle threads kept alive.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetIdleThreadLimitAttribute(System.UInt32  aIdleThreadLimit);
+		void SetIdleThreadLimitAttribute(uint aIdleThreadLimit);
 		
 		/// <summary>
         /// Get/set the amount of time in milliseconds before an idle thread is
         /// destroyed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetIdleThreadTimeoutAttribute();
+		uint GetIdleThreadTimeoutAttribute();
 		
 		/// <summary>
         /// Get/set the amount of time in milliseconds before an idle thread is
         /// destroyed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetIdleThreadTimeoutAttribute(System.UInt32  aIdleThreadTimeout);
+		void SetIdleThreadTimeoutAttribute(uint aIdleThreadTimeout);
 		
 		/// <summary>
         /// An optional listener that will be notified when a thread is created or
@@ -155,7 +155,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIThreadPoolListener  GetListenerAttribute();
+		nsIThreadPoolListener GetListenerAttribute();
 		
 		/// <summary>
         /// An optional listener that will be notified when a thread is created or
@@ -173,6 +173,6 @@ namespace Skybound.Gecko
         /// long enough to receive the guaranteed onThreadShuttingDown() notification.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetListenerAttribute([MarshalAs(UnmanagedType.Interface)] nsIThreadPoolListener  aListener);
+		void SetListenerAttribute([MarshalAs(UnmanagedType.Interface)] nsIThreadPoolListener aListener);
 	}
 }

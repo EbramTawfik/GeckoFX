@@ -35,27 +35,27 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetPathSegListAttribute </summary>
-		/// <returns>A nsIDOMSVGPathSegList </returns>
+		/// <returns>A nsIDOMSVGPathSegList</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMSVGPathSegList  GetPathSegListAttribute();
+		nsIDOMSVGPathSegList GetPathSegListAttribute();
 		
 		/// <summary>Member GetNormalizedPathSegListAttribute </summary>
-		/// <returns>A nsIDOMSVGPathSegList </returns>
+		/// <returns>A nsIDOMSVGPathSegList</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMSVGPathSegList  GetNormalizedPathSegListAttribute();
+		nsIDOMSVGPathSegList GetNormalizedPathSegListAttribute();
 		
 		/// <summary>Member GetAnimatedPathSegListAttribute </summary>
-		/// <returns>A nsIDOMSVGPathSegList </returns>
+		/// <returns>A nsIDOMSVGPathSegList</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMSVGPathSegList  GetAnimatedPathSegListAttribute();
+		nsIDOMSVGPathSegList GetAnimatedPathSegListAttribute();
 		
 		/// <summary>Member GetAnimatedNormalizedPathSegListAttribute </summary>
-		/// <returns>A nsIDOMSVGPathSegList </returns>
+		/// <returns>A nsIDOMSVGPathSegList</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMSVGPathSegList  GetAnimatedNormalizedPathSegListAttribute();
+		nsIDOMSVGPathSegList GetAnimatedNormalizedPathSegListAttribute();
 	}
 }

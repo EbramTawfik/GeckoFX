@@ -41,7 +41,7 @@ namespace Skybound.Gecko
         /// fully loaded itself.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetLoadedAttribute();
+		bool GetLoadedAttribute();
 		
 		/// <summary>
         /// Specify the URI for the data source: this is the prefix
@@ -50,7 +50,7 @@ namespace Skybound.Gecko
         /// @param aURI the URI to load
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init([MarshalAs(UnmanagedType.LPStr)] System.String  aURI);
+		void Init([MarshalAs(UnmanagedType.LPStr)] string aURI);
 		
 		/// <summary>
         /// Refresh the remote datasource, re-loading its contents
@@ -60,7 +60,7 @@ namespace Skybound.Gecko
         /// until the datasource has completely reloaded.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Refresh(System.Boolean  aBlocking);
+		void Refresh(bool aBlocking);
 		
 		/// <summary>
         /// Request that a data source write its contents out to
@@ -70,6 +70,6 @@ namespace Skybound.Gecko
 		void Flush();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void FlushTo([MarshalAs(UnmanagedType.LPStr)] System.String  aURI);
+		void FlushTo([MarshalAs(UnmanagedType.LPStr)] string aURI);
 	}
 }

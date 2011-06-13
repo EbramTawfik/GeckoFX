@@ -41,7 +41,7 @@ namespace Skybound.Gecko
         /// and should be read from aInputStream in the same order by this method.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Read([MarshalAs(UnmanagedType.Interface)] nsIObjectInputStream  aInputStream);
+		new void Read([MarshalAs(UnmanagedType.Interface)] nsIObjectInputStream aInputStream);
 		
 		/// <summary>
         /// Serialize the object implementing nsISerializable to aOutputStream, by
@@ -53,7 +53,7 @@ namespace Skybound.Gecko
         /// nsIClassInfo, in particular nsIClassInfo::GetClassID.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Write([MarshalAs(UnmanagedType.Interface)] nsIObjectOutputStream  aOutputStream);
+		new void Write([MarshalAs(UnmanagedType.Interface)] nsIObjectOutputStream aOutputStream);
 		
 		/// <summary>Member Count </summary>
 		/// <returns>A System.UInt32</returns>
@@ -63,34 +63,36 @@ namespace Skybound.Gecko
 		/// <summary>Member GetElementAt </summary>
 		/// <param name='index'> </param>
 		/// <returns>A nsISupports</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports GetElementAt(System.UInt32  index);
+		nsISupports GetElementAt(uint index);
 		
 		/// <summary>Member QueryElementAt </summary>
 		/// <param name='index'> </param>
 		/// <param name='uuid'> </param>
-		/// <returns>A System.IntPtr </returns>
+		/// <returns>A System.IntPtr</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr  QueryElementAt(System.UInt32  index, ref System.Guid uuid);
+		System.IntPtr QueryElementAt(uint index, ref System.Guid uuid);
 		
 		/// <summary>Member SetElementAt </summary>
 		/// <param name='index'> </param>
 		/// <param name='item'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetElementAt(System.UInt32  index, [MarshalAs(UnmanagedType.Interface)] nsISupports  item);
+		void SetElementAt(uint index, [MarshalAs(UnmanagedType.Interface)] nsISupports item);
 		
 		/// <summary>Member AppendElement </summary>
 		/// <param name='item'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AppendElement([MarshalAs(UnmanagedType.Interface)] nsISupports  item);
+		void AppendElement([MarshalAs(UnmanagedType.Interface)] nsISupports item);
 		
 		/// <summary>Member RemoveElement </summary>
 		/// <param name='item'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveElement([MarshalAs(UnmanagedType.Interface)] nsISupports  item);
+		void RemoveElement([MarshalAs(UnmanagedType.Interface)] nsISupports item);
 		
 		/// <summary>Member Enumerate </summary>
 		/// <returns>A nsIEnumerator</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIEnumerator Enumerate();
 		

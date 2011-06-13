@@ -57,7 +57,7 @@ namespace Skybound.Gecko
         /// JS type anyway.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt16  GetDataTypeAttribute();
+		ushort GetDataTypeAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		byte GetAsInt8();
@@ -101,24 +101,31 @@ namespace Skybound.Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetAsID(out System.IntPtr retval);
 		
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsAString GetAsAString();
 		
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsAString GetAsDOMString();
 		
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsAString GetAsACString();
 		
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsAUTF8String GetAsAUTF8String();
 		
+		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string GetAsString();
 		
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string GetAsWString();
 		
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISupports GetAsISupports();
 		
@@ -126,18 +133,18 @@ namespace Skybound.Gecko
 		System.IntPtr GetAsJSVal();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr  GetAsInterface(out System.Guid iid);
+		System.IntPtr GetAsInterface(out System.Guid iid);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetAsArray(out System.UInt16  type, out System.Guid iid, out System.UInt32  count, out System.IntPtr  ptr);
+		int GetAsArray(out ushort type, out System.Guid iid, out uint count, out System.IntPtr ptr);
 		
 		[return: MarshalAs(UnmanagedType.LPStr, SizeParamIndex=0)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetAsStringWithSize(out System.UInt32  size);
+		string GetAsStringWithSize(out uint size);
 		
 		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler", SizeParamIndex=0)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string GetAsWStringWithSize(out System.UInt32  size);
+		string GetAsWStringWithSize(out uint size);
 	}
 	
 	/// <summary>
@@ -163,7 +170,7 @@ namespace Skybound.Gecko
         /// JS type anyway.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.UInt16  GetDataTypeAttribute();
+		new ushort GetDataTypeAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new byte GetAsInt8();
@@ -207,24 +214,31 @@ namespace Skybound.Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new int GetAsID(out System.IntPtr retval);
 		
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsAString GetAsAString();
 		
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsAString GetAsDOMString();
 		
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsAString GetAsACString();
 		
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsAUTF8String GetAsAUTF8String();
 		
+		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new string GetAsString();
 		
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new string GetAsWString();
 		
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsISupports GetAsISupports();
 		
@@ -232,18 +246,18 @@ namespace Skybound.Gecko
 		new System.IntPtr GetAsJSVal();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.IntPtr  GetAsInterface(out System.Guid iid);
+		new System.IntPtr GetAsInterface(out System.Guid iid);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new int GetAsArray(out System.UInt16  type, out System.Guid iid, out System.UInt32  count, out System.IntPtr  ptr);
+		new int GetAsArray(out ushort type, out System.Guid iid, out uint count, out System.IntPtr ptr);
 		
 		[return: MarshalAs(UnmanagedType.LPStr, SizeParamIndex=0)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.String  GetAsStringWithSize(out System.UInt32  size);
+		new string GetAsStringWithSize(out uint size);
 		
 		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler", SizeParamIndex=0)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new string GetAsWStringWithSize(out System.UInt32  size);
+		new string GetAsWStringWithSize(out uint size);
 		
 		/// <summary>
         /// An object that implements nsIVariant may or may NOT also implement this
@@ -255,7 +269,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetWritableAttribute();
+		bool GetWritableAttribute();
 		
 		/// <summary>
         /// An object that implements nsIVariant may or may NOT also implement this
@@ -267,31 +281,31 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetWritableAttribute(System.Boolean  aWritable);
+		void SetWritableAttribute(bool aWritable);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetAsInt8(byte aValue);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAsInt16(System.Int16  aValue);
+		void SetAsInt16(short aValue);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAsInt32(System.Int32  aValue);
+		void SetAsInt32(int aValue);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAsInt64(System.Int64  aValue);
+		void SetAsInt64(long aValue);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetAsUint8(byte aValue);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAsUint16(System.UInt16  aValue);
+		void SetAsUint16(ushort aValue);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAsUint32(System.UInt32  aValue);
+		void SetAsUint32(uint aValue);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAsUint64(System.UInt64  aValue);
+		void SetAsUint64(ulong aValue);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetAsFloat(double aValue);
@@ -300,13 +314,13 @@ namespace Skybound.Gecko
 		void SetAsDouble(double aValue);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAsBool(System.Boolean  aValue);
+		void SetAsBool(bool aValue);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAsChar(System.Char  aValue);
+		void SetAsChar(char aValue);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAsWChar(System.Char  aValue);
+		void SetAsWChar(char aValue);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetAsID(System.IntPtr aValue);
@@ -318,31 +332,31 @@ namespace Skybound.Gecko
 		void SetAsDOMString([MarshalAs(UnmanagedType.LPStruct)] nsAString aValue);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAsACString([MarshalAs(UnmanagedType.LPStruct)] nsAString  aValue);
+		void SetAsACString([MarshalAs(UnmanagedType.LPStruct)] nsAString aValue);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAsAUTF8String([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aValue);
+		void SetAsAUTF8String([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aValue);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAsString([MarshalAs(UnmanagedType.LPStr)] System.String  aValue);
+		void SetAsString([MarshalAs(UnmanagedType.LPStr)] string aValue);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetAsWString([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aValue);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAsISupports([MarshalAs(UnmanagedType.Interface)] nsISupports  aValue);
+		void SetAsISupports([MarshalAs(UnmanagedType.Interface)] nsISupports aValue);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAsInterface(ref System.Guid iid, System.IntPtr  iface);
+		void SetAsInterface(ref System.Guid iid, System.IntPtr iface);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAsArray(System.UInt16  type, System.Guid iid, System.UInt32  count, System.IntPtr  ptr);
+		void SetAsArray(ushort type, System.Guid iid, uint count, System.IntPtr ptr);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAsStringWithSize(System.UInt32  size, [MarshalAs(UnmanagedType.LPStr, SizeParamIndex=0)] System.String  str);
+		void SetAsStringWithSize(uint size, [MarshalAs(UnmanagedType.LPStr, SizeParamIndex=0)] string str);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAsWStringWithSize(System.UInt32  size, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler", SizeParamIndex=0)] string str);
+		void SetAsWStringWithSize(uint size, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler", SizeParamIndex=0)] string str);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetAsVoid();
@@ -354,6 +368,6 @@ namespace Skybound.Gecko
 		void SetAsEmptyArray();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFromVariant([MarshalAs(UnmanagedType.Interface)] nsIVariant  aValue);
+		void SetFromVariant([MarshalAs(UnmanagedType.Interface)] nsIVariant aValue);
 	}
 }

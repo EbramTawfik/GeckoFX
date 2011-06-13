@@ -41,9 +41,11 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Get the Unicode or UTF8 value for the string
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsAString ToString();
 		
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsAUTF8String ToUTF8String();
 		
@@ -55,7 +57,7 @@ namespace Skybound.Gecko
 		bool Equals([MarshalAs(UnmanagedType.LPStruct)] nsAString aString);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool EqualsUTF8([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aString);
+		bool EqualsUTF8([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aString);
 		
 		/// <summary>
         /// Returns true if the atom is static and false otherwise.

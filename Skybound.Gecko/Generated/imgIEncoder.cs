@@ -84,7 +84,7 @@ namespace Skybound.Gecko
         /// NOTE: this method should not throw NS_BASE_STREAM_CLOSED.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new uint Read(System.IntPtr  aBuf, System.UInt32  aCount);
+		new uint Read(System.IntPtr aBuf, uint aCount);
 		
 		/// <summary>
         /// Low-level read method that provides access to the stream's underlying
@@ -111,7 +111,7 @@ namespace Skybound.Gecko
         /// NOTE: this method should not throw NS_BASE_STREAM_CLOSED.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new uint ReadSegments(nsWriteSegmentFun  aWriter, System.IntPtr  aClosure, System.UInt32  aCount);
+		new uint ReadSegments(nsWriteSegmentFun aWriter, System.IntPtr aClosure, uint aCount);
 		
 		/// <summary>
         /// @return true if stream is non-blocking
@@ -145,7 +145,7 @@ namespace Skybound.Gecko
         /// it has been closed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void CloseWithStatus(System.Int32  aStatus);
+		new void CloseWithStatus(int aStatus);
 		
 		/// <summary>
         /// Asynchronously wait for the stream to be readable or closed.  The
@@ -179,7 +179,7 @@ namespace Skybound.Gecko
         /// target.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void AsyncWait([MarshalAs(UnmanagedType.Interface)] nsIInputStreamCallback  aCallback, System.UInt32  aFlags, System.UInt32  aRequestedCount, [MarshalAs(UnmanagedType.Interface)] nsIEventTarget  aEventTarget);
+		new void AsyncWait([MarshalAs(UnmanagedType.Interface)] nsIInputStreamCallback aCallback, uint aFlags, uint aRequestedCount, [MarshalAs(UnmanagedType.Interface)] nsIEventTarget aEventTarget);
 		
 		/// <summary>
         ///data - list of bytes in the format specified by inputFormat
@@ -195,7 +195,7 @@ namespace Skybound.Gecko
         /// specific. Just give empty string for default behavior.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitFromData(byte data, System.UInt32  length, System.UInt32  width, System.UInt32  height, System.UInt32  stride, System.UInt32  inputFormat, [MarshalAs(UnmanagedType.LPStruct)] nsAString outputOptions);
+		void InitFromData(byte data, uint length, uint width, uint height, uint stride, uint inputFormat, [MarshalAs(UnmanagedType.LPStruct)] nsAString outputOptions);
 		
 		/// <summary>
         /// For encoding images which may contain multiple frames, the 1-shot
@@ -206,10 +206,10 @@ namespace Skybound.Gecko
         /// The arguments are basically the same as in initFromData().
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void StartImageEncode(System.UInt32  width, System.UInt32  height, System.UInt32  inputFormat, [MarshalAs(UnmanagedType.LPStruct)] nsAString outputOptions);
+		void StartImageEncode(uint width, uint height, uint inputFormat, [MarshalAs(UnmanagedType.LPStruct)] nsAString outputOptions);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddImageFrame(byte data, System.UInt32  length, System.UInt32  width, System.UInt32  height, System.UInt32  stride, System.UInt32  frameFormat, [MarshalAs(UnmanagedType.LPStruct)] nsAString frameOptions);
+		void AddImageFrame(byte data, uint length, uint width, uint height, uint stride, uint frameFormat, [MarshalAs(UnmanagedType.LPStruct)] nsAString frameOptions);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void EndImageEncode();

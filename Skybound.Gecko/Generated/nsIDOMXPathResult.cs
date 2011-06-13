@@ -55,31 +55,33 @@ namespace Skybound.Gecko
         /// raises(XPathException) on retrieval
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetBooleanValueAttribute();
+		bool GetBooleanValueAttribute();
 		
 		/// <summary>
         /// raises(XPathException) on retrieval
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMNode  GetSingleNodeValueAttribute();
+		nsIDOMNode GetSingleNodeValueAttribute();
 		
 		/// <summary>
         /// raises(XPathException) on retrieval
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetInvalidIteratorStateAttribute();
+		bool GetInvalidIteratorStateAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetSnapshotLengthAttribute();
+		uint GetSnapshotLengthAttribute();
 		
 		/// <summary>
         /// raises(XPathException) on retrieval
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMNode IterateNext();
 		
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMNode SnapshotItem(System.UInt32  index);
+		nsIDOMNode SnapshotItem(uint index);
 	}
 }

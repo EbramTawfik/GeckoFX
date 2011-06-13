@@ -41,14 +41,14 @@ namespace Skybound.Gecko
         /// request) for the element.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetActualTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aActualType);
+		void GetActualTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aActualType);
 		
 		/// <summary>
         /// Gets the type of the content that's currently loaded. See
         /// the constants above for the list of possible values.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetDisplayedTypeAttribute();
+		uint GetDisplayedTypeAttribute();
 		
 		/// <summary>
         /// Gets the content type that corresponds to the give MIME type.  See the
@@ -56,7 +56,7 @@ namespace Skybound.Gecko
         /// TYPE_NULL will be returned.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetContentTypeForMIMEType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aMimeType);
+		uint GetContentTypeForMIMEType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aMimeType);
 		
 		/// <summary>
         /// Returns the plugin instance if it has already been instantiated. This
@@ -65,7 +65,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIPluginInstance  GetPluginInstanceAttribute();
+		nsIPluginInstance GetPluginInstanceAttribute();
 		
 		/// <summary>
         /// Makes sure that a frame for this object exists, and that the plugin is
@@ -83,6 +83,7 @@ namespace Skybound.Gecko
         /// trigger fallback to replacement content, and the type will change (and
         /// this method will return a failure code)
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIPluginInstance EnsureInstantiation();
 		
@@ -101,7 +102,7 @@ namespace Skybound.Gecko
         /// positioning information that may have been provided otherwise
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAbsoluteScreenPosition([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  element, [MarshalAs(UnmanagedType.Interface)] nsIDOMClientRect  position, [MarshalAs(UnmanagedType.Interface)] nsIDOMClientRect  clip);
+		void SetAbsoluteScreenPosition([MarshalAs(UnmanagedType.Interface)] nsIDOMElement element, [MarshalAs(UnmanagedType.Interface)] nsIDOMClientRect position, [MarshalAs(UnmanagedType.Interface)] nsIDOMClientRect clip);
 		
 		/// <summary>
         /// If this object is in going to be printed, this method
@@ -113,6 +114,6 @@ namespace Skybound.Gecko
 		System.IntPtr GetPrintFrame();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PluginCrashed([MarshalAs(UnmanagedType.Interface)] nsIPluginTag  pluginTag, [MarshalAs(UnmanagedType.LPStruct)] nsAString pluginDumpID, [MarshalAs(UnmanagedType.LPStruct)] nsAString browserDumpID, System.Boolean  submittedCrashReport);
+		void PluginCrashed([MarshalAs(UnmanagedType.Interface)] nsIPluginTag pluginTag, [MarshalAs(UnmanagedType.LPStruct)] nsAString pluginDumpID, [MarshalAs(UnmanagedType.LPStruct)] nsAString browserDumpID, bool submittedCrashReport);
 	}
 }

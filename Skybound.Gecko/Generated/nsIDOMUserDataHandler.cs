@@ -40,6 +40,6 @@ namespace Skybound.Gecko
         /// OperationType
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Handle(ushort operation, [MarshalAs(UnmanagedType.LPStruct)] nsAString key, [MarshalAs(UnmanagedType.Interface)] nsIVariant  data, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode  src, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode  dst);
+		void Handle(ushort operation, [MarshalAs(UnmanagedType.LPStruct)] nsAString key, [MarshalAs(UnmanagedType.Interface)] nsIVariant data, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode src, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode dst);
 	}
 }

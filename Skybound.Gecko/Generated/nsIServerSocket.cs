@@ -57,7 +57,7 @@ namespace Skybound.Gecko
         /// Pass -1 to use the default value.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init(System.Int32  aPort, System.Boolean  aLoopbackOnly, System.Int32  aBackLog);
+		void Init(int aPort, bool aLoopbackOnly, int aBackLog);
 		
 		/// <summary>
         /// initWithAddress
@@ -73,7 +73,7 @@ namespace Skybound.Gecko
         /// Pass -1 to use the default value.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitWithAddress(System.IntPtr  aAddr, System.Int32  aBackLog);
+		void InitWithAddress(System.IntPtr aAddr, int aBackLog);
 		
 		/// <summary>
         /// close
@@ -102,13 +102,13 @@ namespace Skybound.Gecko
         /// The listener to be notified when client connections are accepted.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AsyncListen([MarshalAs(UnmanagedType.Interface)] nsIServerSocketListener  aListener);
+		void AsyncListen([MarshalAs(UnmanagedType.Interface)] nsIServerSocketListener aListener);
 		
 		/// <summary>
         /// Returns the port of this server socket.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetPortAttribute();
+		int GetPortAttribute();
 		
 		/// <summary>
         /// Returns the address to which this server socket is bound.  Since a
@@ -150,7 +150,7 @@ namespace Skybound.Gecko
         /// The connected socket transport.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnSocketAccepted([MarshalAs(UnmanagedType.Interface)] nsIServerSocket  aServ, [MarshalAs(UnmanagedType.Interface)] nsISocketTransport  aTransport);
+		void OnSocketAccepted([MarshalAs(UnmanagedType.Interface)] nsIServerSocket aServ, [MarshalAs(UnmanagedType.Interface)] nsISocketTransport aTransport);
 		
 		/// <summary>
         /// onStopListening
@@ -166,6 +166,6 @@ namespace Skybound.Gecko
         /// NS_BINDING_ABORTED.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnStopListening([MarshalAs(UnmanagedType.Interface)] nsIServerSocket  aServ, System.Int32  aStatus);
+		void OnStopListening([MarshalAs(UnmanagedType.Interface)] nsIServerSocket aServ, int aStatus);
 	}
 }

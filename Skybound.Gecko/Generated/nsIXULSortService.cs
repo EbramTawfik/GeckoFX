@@ -52,6 +52,6 @@ namespace Skybound.Gecko
         /// twostate: don't allow the natural (unordered state)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Sort([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  aNode, [MarshalAs(UnmanagedType.LPStruct)] nsAString aSortKey, [MarshalAs(UnmanagedType.LPStruct)] nsAString aSortHints);
+		void Sort([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aNode, [MarshalAs(UnmanagedType.LPStruct)] nsAString aSortKey, [MarshalAs(UnmanagedType.LPStruct)] nsAString aSortHints);
 	}
 }

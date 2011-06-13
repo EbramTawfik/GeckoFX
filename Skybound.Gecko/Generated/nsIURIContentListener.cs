@@ -50,7 +50,7 @@ namespace Skybound.Gecko
         /// <code>true</code> if the open should be aborted.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool OnStartURIOpen([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI);
+		bool OnStartURIOpen([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 		
 		/// <summary>
         /// Notifies the content listener to hook up an nsIStreamListener capable of
@@ -73,7 +73,7 @@ namespace Skybound.Gecko
         /// returned streamlistener's methods.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool DoContent([MarshalAs(UnmanagedType.LPStr)] System.String  aContentType, System.Boolean  aIsContentPreferred, [MarshalAs(UnmanagedType.Interface)] nsIRequest  aRequest, [MarshalAs(UnmanagedType.Interface)] out nsIStreamListener  aContentHandler);
+		bool DoContent([MarshalAs(UnmanagedType.LPStr)] string aContentType, bool aIsContentPreferred, [MarshalAs(UnmanagedType.Interface)] nsIRequest aRequest, [MarshalAs(UnmanagedType.Interface)] out nsIStreamListener aContentHandler);
 		
 		/// <summary>
         /// When given a uri to dispatch, if the URI is specified as 'preferred
@@ -100,7 +100,7 @@ namespace Skybound.Gecko
         /// <code>false<code> otherwise.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsPreferred([MarshalAs(UnmanagedType.LPStr)] System.String  aContentType, [MarshalAs(UnmanagedType.LPStr)] out System.String  aDesiredContentType);
+		bool IsPreferred([MarshalAs(UnmanagedType.LPStr)] string aContentType, [MarshalAs(UnmanagedType.LPStr)] out string aDesiredContentType);
 		
 		/// <summary>
         /// When given a uri to dispatch, if the URI is not specified as 'preferred
@@ -128,7 +128,7 @@ namespace Skybound.Gecko
         /// hierarchy.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool CanHandleContent([MarshalAs(UnmanagedType.LPStr)] System.String  aContentType, System.Boolean  aIsContentPreferred, [MarshalAs(UnmanagedType.LPStr)] out System.String  aDesiredContentType);
+		bool CanHandleContent([MarshalAs(UnmanagedType.LPStr)] string aContentType, bool aIsContentPreferred, [MarshalAs(UnmanagedType.LPStr)] out string aDesiredContentType);
 		
 		/// <summary>
         /// The load context associated with a particular content listener.
@@ -136,14 +136,14 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports  GetLoadCookieAttribute();
+		nsISupports GetLoadCookieAttribute();
 		
 		/// <summary>
         /// The load context associated with a particular content listener.
         /// The URI Loader stores and accesses this value as needed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetLoadCookieAttribute([MarshalAs(UnmanagedType.Interface)] nsISupports  aLoadCookie);
+		void SetLoadCookieAttribute([MarshalAs(UnmanagedType.Interface)] nsISupports aLoadCookie);
 		
 		/// <summary>
         /// The parent content listener if this particular listener is part of a chain
@@ -159,7 +159,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURIContentListener  GetParentContentListenerAttribute();
+		nsIURIContentListener GetParentContentListenerAttribute();
 		
 		/// <summary>
         /// The parent content listener if this particular listener is part of a chain
@@ -174,6 +174,6 @@ namespace Skybound.Gecko
         /// parent content listener is destroyed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetParentContentListenerAttribute([MarshalAs(UnmanagedType.Interface)] nsIURIContentListener  aParentContentListener);
+		void SetParentContentListenerAttribute([MarshalAs(UnmanagedType.Interface)] nsIURIContentListener aParentContentListener);
 	}
 }

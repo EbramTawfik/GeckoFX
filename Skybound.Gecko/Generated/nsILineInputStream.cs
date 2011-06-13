@@ -48,6 +48,6 @@ namespace Skybound.Gecko
         /// Doing so can cause various problems and is not supported.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool ReadLine([MarshalAs(UnmanagedType.LPStruct)] nsAString  aLine);
+		bool ReadLine([MarshalAs(UnmanagedType.LPStruct)] nsAString aLine);
 	}
 }

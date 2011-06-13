@@ -63,7 +63,7 @@ namespace Skybound.Gecko
         /// @return The column number, or -1 if none is available.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetColumnNumberAttribute();
+		int GetColumnNumberAttribute();
 		
 		/// <summary>
         /// Return the line number where the current document event ends.
@@ -88,7 +88,7 @@ namespace Skybound.Gecko
         /// @return The line number, or -1 if none is available.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetLineNumberAttribute();
+		int GetLineNumberAttribute();
 		
 		/// <summary>
         /// Return the public identifier for the current document event.

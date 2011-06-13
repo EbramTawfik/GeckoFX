@@ -37,13 +37,14 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Retrieve the content item associated with the specified index.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMElement GetItemAtIndex(System.Int32  index);
+		nsIDOMElement GetItemAtIndex(int index);
 		
 		/// <summary>
         /// Retrieve the index associated with the specified content item.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetIndexOfItem([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  item);
+		int GetIndexOfItem([MarshalAs(UnmanagedType.Interface)] nsIDOMElement item);
 	}
 }

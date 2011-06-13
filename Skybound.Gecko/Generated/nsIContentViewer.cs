@@ -38,28 +38,28 @@ namespace Skybound.Gecko
 		/// <param name='aParentWidget'> </param>
 		/// <param name='aBounds'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init(System.IntPtr  aParentWidget, System.IntPtr  aBounds);
+		void Init(System.IntPtr aParentWidget, System.IntPtr aBounds);
 		
 		/// <summary>Member GetContainerAttribute </summary>
-		/// <returns>A nsISupports </returns>
+		/// <returns>A nsISupports</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports  GetContainerAttribute();
+		nsISupports GetContainerAttribute();
 		
 		/// <summary>Member SetContainerAttribute </summary>
 		/// <param name='aContainer'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetContainerAttribute([MarshalAs(UnmanagedType.Interface)] nsISupports  aContainer);
+		void SetContainerAttribute([MarshalAs(UnmanagedType.Interface)] nsISupports aContainer);
 		
 		/// <summary>Member LoadStart </summary>
 		/// <param name='aDoc'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void LoadStart([MarshalAs(UnmanagedType.Interface)] nsISupports  aDoc);
+		void LoadStart([MarshalAs(UnmanagedType.Interface)] nsISupports aDoc);
 		
 		/// <summary>Member LoadComplete </summary>
 		/// <param name='aStatus'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void LoadComplete(System.UInt32  aStatus);
+		void LoadComplete(uint aStatus);
 		
 		/// <summary>
         /// Checks if the document wants to prevent unloading by firing beforeunload on
@@ -70,7 +70,7 @@ namespace Skybound.Gecko
         /// ignored.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool PermitUnload(System.Boolean  aCallerClosesWindow);
+		bool PermitUnload(bool aCallerClosesWindow);
 		
 		/// <summary>
         /// Works in tandem with permitUnload, if the caller decides not to close the
@@ -87,7 +87,7 @@ namespace Skybound.Gecko
 		/// <summary>Member PageHide </summary>
 		/// <param name='isUnload'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PageHide(System.Boolean  isUnload);
+		void PageHide(bool isUnload);
 		
 		/// <summary>
         /// All users of a content viewer are responsible for calling both
@@ -111,7 +111,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Close([MarshalAs(UnmanagedType.Interface)] nsISHEntry  historyEntry);
+		void Close([MarshalAs(UnmanagedType.Interface)] nsISHEntry historyEntry);
 		
 		/// <summary>Member Destroy </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -122,15 +122,15 @@ namespace Skybound.Gecko
 		void Stop();
 		
 		/// <summary>Member GetDOMDocumentAttribute </summary>
-		/// <returns>A nsIDOMDocument </returns>
+		/// <returns>A nsIDOMDocument</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDocument  GetDOMDocumentAttribute();
+		nsIDOMDocument GetDOMDocumentAttribute();
 		
 		/// <summary>Member SetDOMDocumentAttribute </summary>
 		/// <param name='aDOMDocument'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDOMDocumentAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMDocument  aDOMDocument);
+		void SetDOMDocumentAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMDocument aDOMDocument);
 		
 		/// <summary>
         /// Returns DOMDocument as nsIDocument and without addrefing.
@@ -141,12 +141,12 @@ namespace Skybound.Gecko
 		/// <summary>Member GetBounds </summary>
 		/// <param name='aBounds'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetBounds(System.IntPtr  aBounds);
+		void GetBounds(System.IntPtr aBounds);
 		
 		/// <summary>Member SetBounds </summary>
 		/// <param name='aBounds'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBounds(System.IntPtr  aBounds);
+		void SetBounds(System.IntPtr aBounds);
 		
 		/// <summary>
         /// The previous content viewer, which has been |close|d but not
@@ -166,7 +166,7 @@ namespace Skybound.Gecko
 		/// <param name='aX'> </param>
 		/// <param name='aY'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Move(System.Int32  aX, System.Int32  aY);
+		void Move(int aX, int aY);
 		
 		/// <summary>Member Show </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -177,14 +177,14 @@ namespace Skybound.Gecko
 		void Hide();
 		
 		/// <summary>Member GetStickyAttribute </summary>
-		/// <returns>A System.Boolean </returns>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetStickyAttribute();
+		bool GetStickyAttribute();
 		
 		/// <summary>Member SetStickyAttribute </summary>
 		/// <param name='aSticky'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetStickyAttribute(System.Boolean  aSticky);
+		void SetStickyAttribute(bool aSticky);
 		
 		/// <summary>
         /// This is called when the DOM window wants to be closed.  Returns true
@@ -203,7 +203,7 @@ namespace Skybound.Gecko
         /// documents stored in its child shell list.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Open([MarshalAs(UnmanagedType.Interface)] nsISupports  aState, [MarshalAs(UnmanagedType.Interface)] nsISHEntry  aSHEntry);
+		void Open([MarshalAs(UnmanagedType.Interface)] nsISupports aState, [MarshalAs(UnmanagedType.Interface)] nsISHEntry aSHEntry);
 		
 		/// <summary>
         /// Clears the current history entry.  This is used if we need to clear out
@@ -217,7 +217,7 @@ namespace Skybound.Gecko
         /// dynamic and editable (like Galley layout).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPageMode(System.Boolean  aPageMode, [MarshalAs(UnmanagedType.Interface)] nsIPrintSettings  aPrintSettings);
+		void SetPageMode(bool aPageMode, [MarshalAs(UnmanagedType.Interface)] nsIPrintSettings aPrintSettings);
 		
 		/// <summary>
         /// Get the history entry that this viewer will save itself into when
@@ -225,7 +225,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISHEntry  GetHistoryEntryAttribute();
+		nsISHEntry GetHistoryEntryAttribute();
 	}
 	
 	/// <summary>nsIContentViewer_MOZILLA_2_0_BRANCH </summary>
@@ -243,6 +243,6 @@ namespace Skybound.Gecko
         /// See bug 613800.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsTabModalPromptAllowedAttribute();
+		bool GetIsTabModalPromptAllowedAttribute();
 	}
 }

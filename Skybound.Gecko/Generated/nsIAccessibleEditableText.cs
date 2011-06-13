@@ -45,7 +45,7 @@ namespace Skybound.Gecko
         /// attributes of the specified text portion.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAttributes(System.Int32  startPos, System.Int32  endPos, [MarshalAs(UnmanagedType.Interface)] nsISupports  attributes);
+		void SetAttributes(int startPos, int endPos, [MarshalAs(UnmanagedType.Interface)] nsISupports attributes);
 		
 		/// <summary>
         /// Replaces the text represented by this object by the given text.
@@ -60,7 +60,7 @@ namespace Skybound.Gecko
         /// @param position - index at which to insert the text.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InsertText([MarshalAs(UnmanagedType.LPStruct)] nsAString text, System.Int32  position);
+		void InsertText([MarshalAs(UnmanagedType.LPStruct)] nsAString text, int position);
 		
 		/// <summary>
         /// Copies the text range into the clipboard.
@@ -69,7 +69,7 @@ namespace Skybound.Gecko
         /// @param endPos - end index of the text to moved into the clipboard.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CopyText(System.Int32  startPos, System.Int32  endPos);
+		void CopyText(int startPos, int endPos);
 		
 		/// <summary>
         /// Deletes a range of text and copies it to the clipboard.
@@ -78,7 +78,7 @@ namespace Skybound.Gecko
         /// @param endOffset - end index of the text to be deleted.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CutText(System.Int32  startPos, System.Int32  endPos);
+		void CutText(int startPos, int endPos);
 		
 		/// <summary>
         /// Deletes a range of text.
@@ -87,7 +87,7 @@ namespace Skybound.Gecko
         /// @param endPos - end index of the text to be deleted.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DeleteText(System.Int32  startPos, System.Int32  endPos);
+		void DeleteText(int startPos, int endPos);
 		
 		/// <summary>
         /// Pastes text from the clipboard.
@@ -96,13 +96,13 @@ namespace Skybound.Gecko
         /// clipboard into the text represented by this object.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PasteText(System.Int32  position);
+		void PasteText(int position);
 		
 		/// <summary>
         /// Returns an editor associated with the accessible.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIEditor  GetAssociatedEditorAttribute();
+		nsIEditor GetAssociatedEditorAttribute();
 	}
 }

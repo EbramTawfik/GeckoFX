@@ -43,7 +43,7 @@ namespace Skybound.Gecko
         /// @return            An HPOINTER representing the icon.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint IconFromExtension([MarshalAs(UnmanagedType.LPStr)] System.String  aExt, System.Boolean  aNeedMini);
+		uint IconFromExtension([MarshalAs(UnmanagedType.LPStr)] string aExt, bool aNeedMini);
 		
 		/// <summary>
         /// Retrieves the icon for a specific file or abstract object.
@@ -54,7 +54,7 @@ namespace Skybound.Gecko
         /// @return            An HPOINTER representing the icon.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint IconFromPath([MarshalAs(UnmanagedType.LPStr)] System.String  aPath, System.Boolean  aAbstract, System.Boolean  aNeedMini);
+		uint IconFromPath([MarshalAs(UnmanagedType.LPStr)] string aPath, bool aAbstract, bool aNeedMini);
 		
 		/// <summary>
         /// Retrieves a file or abstract object's icon using its WPS object handle.
@@ -64,7 +64,7 @@ namespace Skybound.Gecko
         /// @return            An HPOINTER representing the icon.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint IconFromHandle(System.UInt32  aHandle, System.Boolean  aNeedMini);
+		uint IconFromHandle(uint aHandle, bool aNeedMini);
 		
 		/// <summary>
         /// Returns the name of the default handler for files with the
@@ -79,8 +79,9 @@ namespace Skybound.Gecko
         /// @return            Either the unqualified title of a program or
         /// the name of the WPS class' default viewer/player.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString HandlerFromExtension([MarshalAs(UnmanagedType.LPStr)] System.String  aExt, out System.UInt32  aHandle);
+		nsAString HandlerFromExtension([MarshalAs(UnmanagedType.LPStr)] string aExt, out uint aHandle);
 		
 		/// <summary>
         /// Returns the name of the default handler for a specific file.
@@ -94,8 +95,9 @@ namespace Skybound.Gecko
         /// @return            Either the unqualified title of a program or
         /// the name of the WPS class' default viewer/player.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString HandlerFromPath([MarshalAs(UnmanagedType.LPStr)] System.String  aPath, out System.UInt32  aHandle);
+		nsAString HandlerFromPath([MarshalAs(UnmanagedType.LPStr)] string aPath, out uint aHandle);
 		
 		/// <summary>
         /// Returns the unqualified title of the specified object.
@@ -103,8 +105,9 @@ namespace Skybound.Gecko
         /// @param aHandle     A WPS object handle.
         /// @return            The title of this object.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString TitleFromHandle(System.UInt32  aHandle);
+		nsAString TitleFromHandle(uint aHandle);
 		
 		/// <summary>
         /// Displays the WPS object menu for the specified file or abstract object.
@@ -113,7 +116,7 @@ namespace Skybound.Gecko
         /// @param aAbstract   False for filesystem objects, true for abstract objects.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MenuFromPath([MarshalAs(UnmanagedType.LPStr)] System.String  aPath, System.Boolean  aAbstract);
+		void MenuFromPath([MarshalAs(UnmanagedType.LPStr)] string aPath, bool aAbstract);
 		
 		/// <summary>
         /// Opens a file using the specified program file.  The effect
@@ -123,7 +126,7 @@ namespace Skybound.Gecko
         /// @param aAppPath    The fully-qualified name of a program file.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OpenWithAppPath([MarshalAs(UnmanagedType.LPStr)] System.String  aFilePath, [MarshalAs(UnmanagedType.LPStr)] System.String  aAppPath);
+		void OpenWithAppPath([MarshalAs(UnmanagedType.LPStr)] string aFilePath, [MarshalAs(UnmanagedType.LPStr)] string aAppPath);
 		
 		/// <summary>
         /// Opens a file using the specified WPS object handle.  The effect
@@ -133,6 +136,6 @@ namespace Skybound.Gecko
         /// @param aAppHandle  A WPS object handle.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OpenWithAppHandle([MarshalAs(UnmanagedType.LPStr)] System.String  aFilePath, System.UInt32  aAppHandle);
+		void OpenWithAppHandle([MarshalAs(UnmanagedType.LPStr)] string aFilePath, uint aAppHandle);
 	}
 }

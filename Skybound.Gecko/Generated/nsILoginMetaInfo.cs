@@ -70,54 +70,54 @@ namespace Skybound.Gecko
         /// The time, in Unix Epoch milliseconds, when the login was first created.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetTimeCreatedAttribute();
+		uint GetTimeCreatedAttribute();
 		
 		/// <summary>
         /// The time, in Unix Epoch milliseconds, when the login was first created.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTimeCreatedAttribute(System.UInt32  aTimeCreated);
+		void SetTimeCreatedAttribute(uint aTimeCreated);
 		
 		/// <summary>
         /// The time, in Unix Epoch milliseconds, when the login was last submitted
         /// in a form or used to begin an HTTP auth session.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetTimeLastUsedAttribute();
+		uint GetTimeLastUsedAttribute();
 		
 		/// <summary>
         /// The time, in Unix Epoch milliseconds, when the login was last submitted
         /// in a form or used to begin an HTTP auth session.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTimeLastUsedAttribute(System.UInt32  aTimeLastUsed);
+		void SetTimeLastUsedAttribute(uint aTimeLastUsed);
 		
 		/// <summary>
         /// The time, in Unix Epoch milliseconds, when the login's password was
         /// last modified.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetTimePasswordChangedAttribute();
+		uint GetTimePasswordChangedAttribute();
 		
 		/// <summary>
         /// The time, in Unix Epoch milliseconds, when the login's password was
         /// last modified.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTimePasswordChangedAttribute(System.UInt32  aTimePasswordChanged);
+		void SetTimePasswordChangedAttribute(uint aTimePasswordChanged);
 		
 		/// <summary>
         /// The number of times the login was submitted in a form or used to begin
         /// an HTTP auth session.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetTimesUsedAttribute();
+		uint GetTimesUsedAttribute();
 		
 		/// <summary>
         /// The number of times the login was submitted in a form or used to begin
         /// an HTTP auth session.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTimesUsedAttribute(System.UInt32  aTimesUsed);
+		void SetTimesUsedAttribute(uint aTimesUsed);
 	}
 }

@@ -52,7 +52,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Assertion([MarshalAs(UnmanagedType.LPStr)] System.String  aStr, [MarshalAs(UnmanagedType.LPStr)] System.String  aExpr, [MarshalAs(UnmanagedType.LPStr)] System.String  aFile, System.Int32  aLine);
+		void Assertion([MarshalAs(UnmanagedType.LPStr)] string aStr, [MarshalAs(UnmanagedType.LPStr)] string aExpr, [MarshalAs(UnmanagedType.LPStr)] string aFile, int aLine);
 		
 		/// <summary>
         /// Show a warning.
@@ -62,7 +62,7 @@ namespace Skybound.Gecko
         /// @param aLine line number of assertion
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Warning([MarshalAs(UnmanagedType.LPStr)] System.String  aStr, [MarshalAs(UnmanagedType.LPStr)] System.String  aFile, System.Int32  aLine);
+		void Warning([MarshalAs(UnmanagedType.LPStr)] string aStr, [MarshalAs(UnmanagedType.LPStr)] string aFile, int aLine);
 		
 		/// <summary>
         /// Request to break into a debugger.
@@ -71,7 +71,7 @@ namespace Skybound.Gecko
         /// @param aLine line number of break request
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Break([MarshalAs(UnmanagedType.LPStr)] System.String  aFile, System.Int32  aLine);
+		void Break([MarshalAs(UnmanagedType.LPStr)] string aFile, int aLine);
 		
 		/// <summary>
         /// Request the process to trigger a fatal abort.
@@ -80,6 +80,6 @@ namespace Skybound.Gecko
         /// @param aLine line number of abort request
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Abort([MarshalAs(UnmanagedType.LPStr)] System.String  aFile, System.Int32  aLine);
+		void Abort([MarshalAs(UnmanagedType.LPStr)] string aFile, int aLine);
 	}
 }

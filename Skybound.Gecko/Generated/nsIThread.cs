@@ -59,7 +59,7 @@ namespace Skybound.Gecko
         /// events, so this event would never run and has not been dispatched.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Dispatch([MarshalAs(UnmanagedType.Interface)] nsIRunnable  @event, System.UInt32  flags);
+		new void Dispatch([MarshalAs(UnmanagedType.Interface)] nsIRunnable @event, uint flags);
 		
 		/// <summary>
         /// Check to see if this event target is associated with the current thread.
@@ -77,7 +77,7 @@ namespace Skybound.Gecko
         /// The NSPR thread object corresponding to this nsIThread.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr  GetPRThreadAttribute();
+		System.IntPtr GetPRThreadAttribute();
 		
 		/// <summary>
         /// Shutdown the thread.  This method prevents further dispatch of events to
@@ -137,6 +137,6 @@ namespace Skybound.Gecko
         /// not the current thread.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool ProcessNextEvent(System.Boolean  mayWait);
+		bool ProcessNextEvent(bool mayWait);
 	}
 }

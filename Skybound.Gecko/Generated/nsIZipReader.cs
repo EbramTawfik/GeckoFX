@@ -46,31 +46,31 @@ namespace Skybound.Gecko
         /// The compressed size of the data in the item.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetSizeAttribute();
+		uint GetSizeAttribute();
 		
 		/// <summary>
         /// The uncompressed size of the data in the item.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetRealSizeAttribute();
+		uint GetRealSizeAttribute();
 		
 		/// <summary>
         /// The CRC-32 hash of the file in the entry.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetCRC32Attribute();
+		uint GetCRC32Attribute();
 		
 		/// <summary>
         /// True if the name of the entry ends with '/' and false otherwise.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsDirectoryAttribute();
+		bool GetIsDirectoryAttribute();
 		
 		/// <summary>
         /// The time at which this item was last modified.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetLastModifiedTimeAttribute();
+		uint GetLastModifiedTimeAttribute();
 		
 		/// <summary>
         /// Use this attribute to determine whether this item is an actual zip entry
@@ -83,7 +83,7 @@ namespace Skybound.Gecko
         /// It is impossible for a file to be synthetic.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsSyntheticAttribute();
+		bool GetIsSyntheticAttribute();
 	}
 	
 	/// <summary>nsIZipReader </summary>
@@ -99,13 +99,13 @@ namespace Skybound.Gecko
         /// but it needs to be closed first with close().
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Open([MarshalAs(UnmanagedType.Interface)] nsIFile  zipFile);
+		void Open([MarshalAs(UnmanagedType.Interface)] nsIFile zipFile);
 		
 		/// <summary>
         /// Opens a zip file inside a zip file for reading.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OpenInner([MarshalAs(UnmanagedType.Interface)] nsIZipReader  zipReader, [MarshalAs(UnmanagedType.LPStr)] System.String  zipEntry);
+		void OpenInner([MarshalAs(UnmanagedType.Interface)] nsIZipReader zipReader, [MarshalAs(UnmanagedType.LPStr)] string zipEntry);
 		
 		/// <summary>
         /// The file that represents the zip with which this zip reader was
@@ -113,7 +113,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIFile  GetFileAttribute();
+		nsIFile GetFileAttribute();
 		
 		/// <summary>
         /// Closes a zip reader. Subsequent attempts to extract files or read from
@@ -129,7 +129,7 @@ namespace Skybound.Gecko
         /// in the integrity of all items in the archive are tested.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Test([MarshalAs(UnmanagedType.LPStr)] System.String  aEntryName);
+		void Test([MarshalAs(UnmanagedType.LPStr)] string aEntryName);
 		
 		/// <summary>
         /// Extracts a zip entry into a local file specified by outFile.
@@ -139,19 +139,20 @@ namespace Skybound.Gecko
         /// non-recursively.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Extract([MarshalAs(UnmanagedType.LPStr)] System.String  zipEntry, [MarshalAs(UnmanagedType.Interface)] nsIFile  outFile);
+		void Extract([MarshalAs(UnmanagedType.LPStr)] string zipEntry, [MarshalAs(UnmanagedType.Interface)] nsIFile outFile);
 		
 		/// <summary>
         /// Returns a nsIZipEntry describing a specified zip entry.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIZipEntry GetEntry([MarshalAs(UnmanagedType.LPStr)] System.String  zipEntry);
+		nsIZipEntry GetEntry([MarshalAs(UnmanagedType.LPStr)] string zipEntry);
 		
 		/// <summary>
         /// Checks whether the zipfile contains an entry specified by entryName.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool HasEntry([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  zipEntry);
+		bool HasEntry([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String zipEntry);
 		
 		/// <summary>
         /// Returns a string enumerator containing the matching entry names.
@@ -195,16 +196,18 @@ namespace Skybound.Gecko
         /// @throws NS_ERROR_ILLEGAL_VALUE on many but not all invalid aPattern
         /// values.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIUTF8StringEnumerator FindEntries([MarshalAs(UnmanagedType.LPStr)] System.String  aPattern);
+		nsIUTF8StringEnumerator FindEntries([MarshalAs(UnmanagedType.LPStr)] string aPattern);
 		
 		/// <summary>
         /// Returns an input stream containing the contents of the specified zip
         /// entry.
         /// @param zipEntry the name of the entry to open the stream from
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIInputStream GetInputStream([MarshalAs(UnmanagedType.LPStr)] System.String  zipEntry);
+		nsIInputStream GetInputStream([MarshalAs(UnmanagedType.LPStr)] string zipEntry);
 		
 		/// <summary>
         /// Returns an input stream containing the contents of the specified zip
@@ -213,8 +216,9 @@ namespace Skybound.Gecko
         /// @param aJarSpec the Spec of the URI for the JAR (only used for directory streams)
         /// @param zipEntry the name of the entry to open the stream from
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIInputStream GetInputStreamWithSpec([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aJarSpec, [MarshalAs(UnmanagedType.LPStr)] System.String  zipEntry);
+		nsIInputStream GetInputStreamWithSpec([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aJarSpec, [MarshalAs(UnmanagedType.LPStr)] string zipEntry);
 		
 		/// <summary>
         /// Returns an object describing the entity which signed
@@ -224,13 +228,14 @@ namespace Skybound.Gecko
         /// stored in the jar, verifyExternalFile (not yet implemented) must
         /// be called before getPrincipal.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIPrincipal GetCertificatePrincipal([MarshalAs(UnmanagedType.LPStr)] System.String  aEntryName);
+		nsIPrincipal GetCertificatePrincipal([MarshalAs(UnmanagedType.LPStr)] string aEntryName);
 		
 		/// <summary>Member GetManifestEntriesCountAttribute </summary>
-		/// <returns>A System.UInt32 </returns>
+		/// <returns>A System.UInt32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetManifestEntriesCountAttribute();
+		uint GetManifestEntriesCountAttribute();
 	}
 	
 	/// <summary>
@@ -250,7 +255,7 @@ namespace Skybound.Gecko
         /// for those otherwise unused entries)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init(System.UInt32  cacheSize);
+		void Init(uint cacheSize);
 		
 		/// <summary>
         /// Returns a (possibly shared) nsIZipReader for an nsIFile.
@@ -263,15 +268,17 @@ namespace Skybound.Gecko
         /// @note If someone called close() on the shared nsIZipReader, this method
         /// will return the closed zip reader.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIZipReader GetZip([MarshalAs(UnmanagedType.Interface)] nsIFile  zipFile);
+		nsIZipReader GetZip([MarshalAs(UnmanagedType.Interface)] nsIFile zipFile);
 		
 		/// <summary>
         /// Returns a (possibly shared) nsIZipReader for a zip inside another zip
         ///
         /// See getZip
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIZipReader GetInnerZip([MarshalAs(UnmanagedType.Interface)] nsIFile  zipFile, [MarshalAs(UnmanagedType.LPStr)] System.String  zipEntry);
+		nsIZipReader GetInnerZip([MarshalAs(UnmanagedType.Interface)] nsIFile zipFile, [MarshalAs(UnmanagedType.LPStr)] string zipEntry);
 	}
 }

@@ -42,7 +42,7 @@ namespace Skybound.Gecko
         ///Scrolls to a given DOM content node.
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ScrollToNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  node);
+		void ScrollToNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode node);
 		
 		/// <summary>
         ///The amount by which to scale all text. Default is 1.0. </summary>
@@ -67,72 +67,72 @@ namespace Skybound.Gecko
 		/// <summary>
         ///Disable entire author style level (including HTML presentation hints) </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetAuthorStyleDisabledAttribute();
+		bool GetAuthorStyleDisabledAttribute();
 		
 		/// <summary>
         ///Disable entire author style level (including HTML presentation hints) </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAuthorStyleDisabledAttribute(System.Boolean  aAuthorStyleDisabled);
+		void SetAuthorStyleDisabledAttribute(bool aAuthorStyleDisabled);
 		
 		/// <summary>
         ///XXX Comment here!
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDefaultCharacterSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aDefaultCharacterSet);
+		void GetDefaultCharacterSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDefaultCharacterSet);
 		
 		/// <summary>
         ///XXX Comment here!
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDefaultCharacterSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aDefaultCharacterSet);
+		void SetDefaultCharacterSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDefaultCharacterSet);
 		
 		/// <summary>
         ///XXX Comment here!
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetForceCharacterSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aForceCharacterSet);
+		void GetForceCharacterSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aForceCharacterSet);
 		
 		/// <summary>
         ///XXX Comment here!
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetForceCharacterSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aForceCharacterSet);
+		void SetForceCharacterSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aForceCharacterSet);
 		
 		/// <summary>
         ///XXX Comment here!
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetHintCharacterSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aHintCharacterSet);
+		void GetHintCharacterSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aHintCharacterSet);
 		
 		/// <summary>
         ///XXX Comment here!
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetHintCharacterSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aHintCharacterSet);
+		void SetHintCharacterSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aHintCharacterSet);
 		
 		/// <summary>
         ///XXX Comment here!
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetHintCharacterSetSourceAttribute();
+		int GetHintCharacterSetSourceAttribute();
 		
 		/// <summary>
         ///XXX Comment here!
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetHintCharacterSetSourceAttribute(System.Int32  aHintCharacterSetSource);
+		void SetHintCharacterSetSourceAttribute(int aHintCharacterSetSource);
 		
 		/// <summary>
         ///character set from prev document
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPrevDocCharacterSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aPrevDocCharacterSet);
+		void GetPrevDocCharacterSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aPrevDocCharacterSet);
 		
 		/// <summary>
         ///character set from prev document
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPrevDocCharacterSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aPrevDocCharacterSet);
+		void SetPrevDocCharacterSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aPrevDocCharacterSet);
 		
 		/// <summary>
         /// Tell the container to shrink-to-fit or grow-to-fit its contents
@@ -146,7 +146,7 @@ namespace Skybound.Gecko
         /// 2 - right to left
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr  GetBidiTextDirectionAttribute();
+		System.IntPtr GetBidiTextDirectionAttribute();
 		
 		/// <summary>
         /// bidiTextDirection: the default direction for the layout of bidirectional text.
@@ -154,7 +154,7 @@ namespace Skybound.Gecko
         /// 2 - right to left
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBidiTextDirectionAttribute(System.IntPtr  aBidiTextDirection);
+		void SetBidiTextDirectionAttribute(System.IntPtr aBidiTextDirection);
 		
 		/// <summary>
         /// bidiTextType: the ordering of bidirectional text. This may be either "logical"
@@ -165,7 +165,7 @@ namespace Skybound.Gecko
         /// 3 - visual order
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr  GetBidiTextTypeAttribute();
+		System.IntPtr GetBidiTextTypeAttribute();
 		
 		/// <summary>
         /// bidiTextType: the ordering of bidirectional text. This may be either "logical"
@@ -176,7 +176,7 @@ namespace Skybound.Gecko
         /// 3 - visual order
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBidiTextTypeAttribute(System.IntPtr  aBidiTextType);
+		void SetBidiTextTypeAttribute(System.IntPtr aBidiTextType);
 		
 		/// <summary>
         /// bidiNumeral: the type of numerals to display.
@@ -186,7 +186,7 @@ namespace Skybound.Gecko
         /// 4 - Hindi numerals
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr  GetBidiNumeralAttribute();
+		System.IntPtr GetBidiNumeralAttribute();
 		
 		/// <summary>
         /// bidiNumeral: the type of numerals to display.
@@ -196,7 +196,7 @@ namespace Skybound.Gecko
         /// 4 - Hindi numerals
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBidiNumeralAttribute(System.IntPtr  aBidiNumeral);
+		void SetBidiNumeralAttribute(System.IntPtr aBidiNumeral);
 		
 		/// <summary>
         /// bidiSupport: whether to use platform bidi support or Mozilla's bidi support
@@ -205,7 +205,7 @@ namespace Skybound.Gecko
         /// 3 - Disable bidi support
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr  GetBidiSupportAttribute();
+		System.IntPtr GetBidiSupportAttribute();
 		
 		/// <summary>
         /// bidiSupport: whether to use platform bidi support or Mozilla's bidi support
@@ -214,7 +214,7 @@ namespace Skybound.Gecko
         /// 3 - Disable bidi support
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBidiSupportAttribute(System.IntPtr  aBidiSupport);
+		void SetBidiSupportAttribute(System.IntPtr aBidiSupport);
 		
 		/// <summary>
         /// bidiCharacterSet: whether to force the user's character set
@@ -222,7 +222,7 @@ namespace Skybound.Gecko
         /// 2 - use the character set chosen by the user
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr  GetBidiCharacterSetAttribute();
+		System.IntPtr GetBidiCharacterSetAttribute();
 		
 		/// <summary>
         /// bidiCharacterSet: whether to force the user's character set
@@ -230,18 +230,18 @@ namespace Skybound.Gecko
         /// 2 - use the character set chosen by the user
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBidiCharacterSetAttribute(System.IntPtr  aBidiCharacterSet);
+		void SetBidiCharacterSetAttribute(System.IntPtr aBidiCharacterSet);
 		
 		/// <summary>
         /// Use this attribute to access all the Bidi options in one operation
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetBidiOptionsAttribute();
+		uint GetBidiOptionsAttribute();
 		
 		/// <summary>
         /// Use this attribute to access all the Bidi options in one operation
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBidiOptionsAttribute(System.UInt32  aBidiOptions);
+		void SetBidiOptionsAttribute(uint aBidiOptions);
 	}
 }

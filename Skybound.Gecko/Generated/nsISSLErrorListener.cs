@@ -46,6 +46,6 @@ namespace Skybound.Gecko
         /// related to the error (the connection will still get canceled).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool NotifySSLError([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor  socketInfo, System.Int32  error, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  targetSite);
+		bool NotifySSLError([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor socketInfo, int error, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String targetSite);
 	}
 }

@@ -58,6 +58,6 @@ namespace Skybound.Gecko
         /// True if the stream already contains headers for the HTTP request.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ExplicitSetUploadStream([MarshalAs(UnmanagedType.Interface)] nsIInputStream  aStream, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aContentType, System.Int32  aContentLength, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aMethod, System.Boolean  aStreamHasHeaders);
+		void ExplicitSetUploadStream([MarshalAs(UnmanagedType.Interface)] nsIInputStream aStream, [MarshalAs(UnmanagedType.LPStruct)] nsAString aContentType, int aContentLength, [MarshalAs(UnmanagedType.LPStruct)] nsAString aMethod, bool aStreamHasHeaders);
 	}
 }

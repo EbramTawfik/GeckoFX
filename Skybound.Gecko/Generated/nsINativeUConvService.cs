@@ -45,7 +45,8 @@ namespace Skybound.Gecko
         /// nsIUnicodeDecoder
         /// nsIUnicodeEncoder
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports GetNativeConverter([MarshalAs(UnmanagedType.LPStr)] System.String  from, [MarshalAs(UnmanagedType.LPStr)] System.String  to);
+		nsISupports GetNativeConverter([MarshalAs(UnmanagedType.LPStr)] string from, [MarshalAs(UnmanagedType.LPStr)] string to);
 	}
 }

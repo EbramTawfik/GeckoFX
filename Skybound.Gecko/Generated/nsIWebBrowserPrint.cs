@@ -47,7 +47,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIPrintSettings  GetGlobalPrintSettingsAttribute();
+		nsIPrintSettings GetGlobalPrintSettingsAttribute();
 		
 		/// <summary>
         /// Returns a pointer to the PrintSettings object that
@@ -58,7 +58,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIPrintSettings  GetCurrentPrintSettingsAttribute();
+		nsIPrintSettings GetCurrentPrintSettingsAttribute();
 		
 		/// <summary>
         /// Returns a pointer to the current child DOMWindow
@@ -72,49 +72,49 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMWindow  GetCurrentChildDOMWindowAttribute();
+		nsIDOMWindow GetCurrentChildDOMWindowAttribute();
 		
 		/// <summary>
         /// Returns whether it is in Print mode
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetDoingPrintAttribute();
+		bool GetDoingPrintAttribute();
 		
 		/// <summary>
         /// Returns whether it is in Print Preview mode
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetDoingPrintPreviewAttribute();
+		bool GetDoingPrintPreviewAttribute();
 		
 		/// <summary>
         /// This returns whether the current document is a frameset document
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsFramesetDocumentAttribute();
+		bool GetIsFramesetDocumentAttribute();
 		
 		/// <summary>
         /// This returns whether the current document is a frameset document
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsFramesetFrameSelectedAttribute();
+		bool GetIsFramesetFrameSelectedAttribute();
 		
 		/// <summary>
         /// This returns whether there is an IFrame selected
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsIFrameSelectedAttribute();
+		bool GetIsIFrameSelectedAttribute();
 		
 		/// <summary>
         /// This returns whether there is a "range" selection
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsRangeSelectionAttribute();
+		bool GetIsRangeSelectionAttribute();
 		
 		/// <summary>
         /// This returns the total number of pages for the Print Preview
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetPrintPreviewNumPagesAttribute();
+		int GetPrintPreviewNumPagesAttribute();
 		
 		/// <summary>
         /// Print the specified DOM window
@@ -125,7 +125,7 @@ namespace Skybound.Gecko
         /// @return void
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Print([MarshalAs(UnmanagedType.Interface)] nsIPrintSettings  aThePrintSettings, [MarshalAs(UnmanagedType.Interface)] nsIWebProgressListener  aWPListener);
+		void Print([MarshalAs(UnmanagedType.Interface)] nsIPrintSettings aThePrintSettings, [MarshalAs(UnmanagedType.Interface)] nsIWebProgressListener aWPListener);
 		
 		/// <summary>
         /// Print Preview the specified DOM window
@@ -137,7 +137,7 @@ namespace Skybound.Gecko
         /// @return void
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PrintPreview([MarshalAs(UnmanagedType.Interface)] nsIPrintSettings  aThePrintSettings, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  aChildDOMWin, [MarshalAs(UnmanagedType.Interface)] nsIWebProgressListener  aWPListener);
+		void PrintPreview([MarshalAs(UnmanagedType.Interface)] nsIPrintSettings aThePrintSettings, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aChildDOMWin, [MarshalAs(UnmanagedType.Interface)] nsIWebProgressListener aWPListener);
 		
 		/// <summary>
         /// Print Preview - Navigates within the window
@@ -147,7 +147,7 @@ namespace Skybound.Gecko
         /// @return void
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PrintPreviewNavigate(short aNavType, System.Int32  aPageNum);
+		void PrintPreviewNavigate(short aNavType, int aPageNum);
 		
 		/// <summary>
         /// Cancels the current print
@@ -167,7 +167,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler", SizeParamIndex=0)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string EnumerateDocumentNames(out System.UInt32  aCount);
+		string EnumerateDocumentNames(out uint aCount);
 		
 		/// <summary>
         /// This exists PrintPreview mode and returns browser window to galley mode

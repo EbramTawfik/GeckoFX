@@ -49,7 +49,7 @@ namespace Skybound.Gecko
         /// the new cookie access for the URI.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAccess([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, System.IntPtr aAccess);
+		void SetAccess([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, System.IntPtr aAccess);
 		
 		/// <summary>
         /// canAccess
@@ -66,7 +66,7 @@ namespace Skybound.Gecko
         /// ACCESS_DEFAULT, ACCESS_ALLOW, or ACCESS_DENY
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr CanAccess([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, [MarshalAs(UnmanagedType.Interface)] nsIChannel  aChannel);
+		System.IntPtr CanAccess([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIChannel aChannel);
 		
 		/// <summary>
         /// canSetCookie
@@ -96,7 +96,7 @@ namespace Skybound.Gecko
         /// @return true if the cookie can be set.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool CanSetCookie([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, [MarshalAs(UnmanagedType.Interface)] nsIChannel  aChannel, [MarshalAs(UnmanagedType.Interface)] nsICookie2  aCookie, ref System.Boolean  aIsSession, ref System.Int64  aExpiry);
+		bool CanSetCookie([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIChannel aChannel, [MarshalAs(UnmanagedType.Interface)] nsICookie2 aCookie, ref bool aIsSession, ref long aExpiry);
 		
 		/// <summary>
         /// getOriginatingURI
@@ -114,7 +114,8 @@ namespace Skybound.Gecko
         ///
         /// @status DEPRECATED -- use mozIThirdPartyUtil instead.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI GetOriginatingURI([MarshalAs(UnmanagedType.Interface)] nsIChannel  aChannel);
+		nsIURI GetOriginatingURI([MarshalAs(UnmanagedType.Interface)] nsIChannel aChannel);
 	}
 }

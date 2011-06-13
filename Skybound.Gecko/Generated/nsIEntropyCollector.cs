@@ -42,6 +42,6 @@ namespace Skybound.Gecko
         /// in gathering entropy.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RandomUpdate(System.IntPtr  entropy, System.Int32  bufLen);
+		void RandomUpdate(System.IntPtr entropy, int bufLen);
 	}
 }

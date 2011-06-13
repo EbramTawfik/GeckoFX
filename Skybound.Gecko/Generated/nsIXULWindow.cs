@@ -44,19 +44,19 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDocShell  GetDocShellAttribute();
+		nsIDocShell GetDocShellAttribute();
 		
 		/// <summary>
         /// Indicates if this window is instrinsically sized.	
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIntrinsicallySizedAttribute();
+		bool GetIntrinsicallySizedAttribute();
 		
 		/// <summary>
         /// Indicates if this window is instrinsically sized.	
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetIntrinsicallySizedAttribute(System.Boolean  aIntrinsicallySized);
+		void SetIntrinsicallySizedAttribute(bool aIntrinsicallySized);
 		
 		/// <summary>
         /// The primary content shell.
@@ -68,7 +68,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDocShellTreeItem  GetPrimaryContentShellAttribute();
+		nsIDocShellTreeItem GetPrimaryContentShellAttribute();
 		
 		/// <summary>
         /// The content shell specified by the supplied id.
@@ -78,6 +78,7 @@ namespace Skybound.Gecko
         /// Or down the road any other object that supports being a DocShellTreeItem
         /// Query accordingly to determine the capabilities.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDocShellTreeItem GetContentShellById([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string ID);
 		
@@ -86,14 +87,14 @@ namespace Skybound.Gecko
         /// @param aChild the child window being added
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddChildWindow([MarshalAs(UnmanagedType.Interface)] nsIXULWindow  aChild);
+		void AddChildWindow([MarshalAs(UnmanagedType.Interface)] nsIXULWindow aChild);
 		
 		/// <summary>
         /// Tell this window that it has lost a child XUL window
         /// @param aChild the child window being removed
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveChildWindow([MarshalAs(UnmanagedType.Interface)] nsIXULWindow  aChild);
+		void RemoveChildWindow([MarshalAs(UnmanagedType.Interface)] nsIXULWindow aChild);
 		
 		/// <summary>
         /// Move the window to a centered position.
@@ -110,7 +111,7 @@ namespace Skybound.Gecko
         /// generally centered horizontally and 1/3 down from the top.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Center([MarshalAs(UnmanagedType.Interface)] nsIXULWindow  aRelative, System.Boolean  aScreen, System.Boolean  aAlert);
+		void Center([MarshalAs(UnmanagedType.Interface)] nsIXULWindow aRelative, bool aScreen, bool aAlert);
 		
 		/// <summary>
         /// Shows the window as a modal window. That is, ensures that it is visible
@@ -122,30 +123,30 @@ namespace Skybound.Gecko
 		/// <summary>
         ///"alwaysRaised" attribute </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetZLevelAttribute();
+		uint GetZLevelAttribute();
 		
 		/// <summary>
         ///"alwaysRaised" attribute </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetZLevelAttribute(System.UInt32  aZLevel);
+		void SetZLevelAttribute(uint aZLevel);
 		
 		/// <summary>
         /// contextFlags are from nsIWindowCreator2
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetContextFlagsAttribute();
+		uint GetContextFlagsAttribute();
 		
 		/// <summary>
         /// contextFlags are from nsIWindowCreator2
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetContextFlagsAttribute(System.UInt32  aContextFlags);
+		void SetContextFlagsAttribute(uint aContextFlags);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetChromeFlagsAttribute();
+		uint GetChromeFlagsAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetChromeFlagsAttribute(System.UInt32  aChromeFlags);
+		void SetChromeFlagsAttribute(uint aChromeFlags);
 		
 		/// <summary>
         /// Begin assuming |chromeFlags| don't change hereafter, and assert
@@ -159,15 +160,16 @@ namespace Skybound.Gecko
         /// @param aChromeFlags see nsIWebBrowserChrome
         /// @return the newly minted window
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIXULWindow CreateNewWindow(System.Int32  aChromeFlags, [MarshalAs(UnmanagedType.Interface)] nsIAppShell  aAppShell);
+		nsIXULWindow CreateNewWindow(int aChromeFlags, [MarshalAs(UnmanagedType.Interface)] nsIAppShell aAppShell);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIXULBrowserWindow  GetXULBrowserWindowAttribute();
+		nsIXULBrowserWindow GetXULBrowserWindowAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetXULBrowserWindowAttribute([MarshalAs(UnmanagedType.Interface)] nsIXULBrowserWindow  aXULBrowserWindow);
+		void SetXULBrowserWindowAttribute([MarshalAs(UnmanagedType.Interface)] nsIXULBrowserWindow aXULBrowserWindow);
 		
 		/// <summary>
         /// Back-door method to force application of chrome flags at a particular

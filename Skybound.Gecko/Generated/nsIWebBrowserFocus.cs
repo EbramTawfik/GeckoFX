@@ -92,14 +92,14 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMWindow  GetFocusedWindowAttribute();
+		nsIDOMWindow GetFocusedWindowAttribute();
 		
 		/// <summary>
         /// The currently focused nsDOMWindow when the browser is active,
         /// or the last focused nsDOMWindow when the browser is inactive.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFocusedWindowAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  aFocusedWindow);
+		void SetFocusedWindowAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aFocusedWindow);
 		
 		/// <summary>
         /// The currently focused nsDOMElement when the browser is active,
@@ -107,13 +107,13 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMElement  GetFocusedElementAttribute();
+		nsIDOMElement GetFocusedElementAttribute();
 		
 		/// <summary>
         /// The currently focused nsDOMElement when the browser is active,
         /// or the last focused nsDOMElement when the browser is inactive.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFocusedElementAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  aFocusedElement);
+		void SetFocusedElementAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aFocusedElement);
 	}
 }

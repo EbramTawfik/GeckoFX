@@ -37,6 +37,6 @@ namespace Skybound.Gecko
 		/// <summary>Member EnsureFastContainment </summary>
 		/// <param name='aSource'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EnsureFastContainment([MarshalAs(UnmanagedType.Interface)] nsIRDFResource  aSource);
+		void EnsureFastContainment([MarshalAs(UnmanagedType.Interface)] nsIRDFResource aSource);
 	}
 }

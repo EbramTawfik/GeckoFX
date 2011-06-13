@@ -43,7 +43,7 @@ namespace Skybound.Gecko
         /// The name of the request.  Often this is the URI of the request.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName);
+		new void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName);
 		
 		/// <summary>
         /// Indicates whether the request is pending. nsIRequest::isPending is
@@ -67,7 +67,7 @@ namespace Skybound.Gecko
         /// The error status associated with the request.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Int32  GetStatusAttribute();
+		new int GetStatusAttribute();
 		
 		/// <summary>
         /// Cancels the current request.  This will close any open input or
@@ -91,7 +91,7 @@ namespace Skybound.Gecko
         /// a failure code.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Cancel(System.Int32  aStatus);
+		new void Cancel(int aStatus);
 		
 		/// <summary>
         /// Suspends the current request.  This may have the effect of closing
@@ -125,7 +125,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsILoadGroup  GetLoadGroupAttribute();
+		new nsILoadGroup GetLoadGroupAttribute();
 		
 		/// <summary>
         /// The load group of this request.  While pending, the request is a
@@ -133,7 +133,7 @@ namespace Skybound.Gecko
         /// to implement this policy.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetLoadGroupAttribute([MarshalAs(UnmanagedType.Interface)] nsILoadGroup  aLoadGroup);
+		new void SetLoadGroupAttribute([MarshalAs(UnmanagedType.Interface)] nsILoadGroup aLoadGroup);
 		
 		/// <summary>
         /// The load flags of this request.  Bits 0-15 are reserved.
@@ -142,7 +142,7 @@ namespace Skybound.Gecko
         /// the load flags of the load group.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.UInt32  GetLoadFlagsAttribute();
+		new uint GetLoadFlagsAttribute();
 		
 		/// <summary>
         /// The load flags of this request.  Bits 0-15 are reserved.
@@ -151,7 +151,7 @@ namespace Skybound.Gecko
         /// the load flags of the load group.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetLoadFlagsAttribute(System.UInt32  aLoadFlags);
+		new void SetLoadFlagsAttribute(uint aLoadFlags);
 		
 		/// <summary>
         /// The original URI used to construct the channel. This is used in
@@ -166,7 +166,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIURI  GetOriginalURIAttribute();
+		new nsIURI GetOriginalURIAttribute();
 		
 		/// <summary>
         /// The original URI used to construct the channel. This is used in
@@ -180,14 +180,14 @@ namespace Skybound.Gecko
         /// from nsIHttpChannel).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetOriginalURIAttribute([MarshalAs(UnmanagedType.Interface)] nsIURI  aOriginalURI);
+		new void SetOriginalURIAttribute([MarshalAs(UnmanagedType.Interface)] nsIURI aOriginalURI);
 		
 		/// <summary>
         /// The URI corresponding to the channel.  Its value is immutable.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIURI  GetURIAttribute();
+		new nsIURI GetURIAttribute();
 		
 		/// <summary>
         /// The owner, corresponding to the entity that is responsible for this
@@ -200,7 +200,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsISupports  GetOwnerAttribute();
+		new nsISupports GetOwnerAttribute();
 		
 		/// <summary>
         /// The owner, corresponding to the entity that is responsible for this
@@ -212,7 +212,7 @@ namespace Skybound.Gecko
         /// explicitly drop its reference to the channel.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetOwnerAttribute([MarshalAs(UnmanagedType.Interface)] nsISupports  aOwner);
+		new void SetOwnerAttribute([MarshalAs(UnmanagedType.Interface)] nsISupports aOwner);
 		
 		/// <summary>
         /// The notification callbacks for the channel.  This is set by clients, who
@@ -235,7 +235,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIInterfaceRequestor  GetNotificationCallbacksAttribute();
+		new nsIInterfaceRequestor GetNotificationCallbacksAttribute();
 		
 		/// <summary>
         /// The notification callbacks for the channel.  This is set by clients, who
@@ -257,14 +257,14 @@ namespace Skybound.Gecko
         /// become invalid and may therefore need to be re-queried.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetNotificationCallbacksAttribute([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor  aNotificationCallbacks);
+		new void SetNotificationCallbacksAttribute([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor aNotificationCallbacks);
 		
 		/// <summary>
         /// Transport-level security information (if any) corresponding to the channel.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsISupports  GetSecurityInfoAttribute();
+		new nsISupports GetSecurityInfoAttribute();
 		
 		/// <summary>
         /// The MIME type of the channel's content if available.
@@ -292,7 +292,7 @@ namespace Skybound.Gecko
         /// Any implementation of nsIChannel must follow these rules.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetContentTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aContentType);
+		new void GetContentTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aContentType);
 		
 		/// <summary>
         /// The MIME type of the channel's content if available.
@@ -320,7 +320,7 @@ namespace Skybound.Gecko
         /// Any implementation of nsIChannel must follow these rules.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetContentTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aContentType);
+		new void SetContentTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aContentType);
 		
 		/// <summary>
         /// The character set of the channel's content if available and if applicable.
@@ -329,7 +329,7 @@ namespace Skybound.Gecko
         /// The value of the contentCharset attribute is a mixedcase string.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetContentCharsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aContentCharset);
+		new void GetContentCharsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aContentCharset);
 		
 		/// <summary>
         /// The character set of the channel's content if available and if applicable.
@@ -338,7 +338,7 @@ namespace Skybound.Gecko
         /// The value of the contentCharset attribute is a mixedcase string.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetContentCharsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aContentCharset);
+		new void SetContentCharsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aContentCharset);
 		
 		/// <summary>
         /// The length of the data associated with the channel if available.  A value
@@ -349,7 +349,7 @@ namespace Skybound.Gecko
         /// if that interface is exposed by the channel.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Int32  GetContentLengthAttribute();
+		new int GetContentLengthAttribute();
 		
 		/// <summary>
         /// The length of the data associated with the channel if available.  A value
@@ -360,7 +360,7 @@ namespace Skybound.Gecko
         /// if that interface is exposed by the channel.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetContentLengthAttribute(System.Int32  aContentLength);
+		new void SetContentLengthAttribute(int aContentLength);
 		
 		/// <summary>
         /// Synchronously open the channel.
@@ -376,6 +376,7 @@ namespace Skybound.Gecko
         /// NOTE: Implementations should throw NS_ERROR_IN_PROGRESS if the channel
         /// is reopened.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIInputStream Open();
 		
@@ -411,7 +412,7 @@ namespace Skybound.Gecko
         /// @see nsIChannelEventSink for onChannelRedirect
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void AsyncOpen([MarshalAs(UnmanagedType.Interface)] nsIStreamListener  aListener, [MarshalAs(UnmanagedType.Interface)] nsISupports  aContext);
+		new void AsyncOpen([MarshalAs(UnmanagedType.Interface)] nsIStreamListener aListener, [MarshalAs(UnmanagedType.Interface)] nsISupports aContext);
 		
 		/// <summary>
         /// Append data to the cache entry; opens the cache entry if necessary.
@@ -423,13 +424,13 @@ namespace Skybound.Gecko
         /// Close the cache entry; subsequent writes have undefined behavior.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CloseCacheEntry(System.Int32  reason);
+		void CloseCacheEntry(int reason);
 		
 		/// <summary>
         /// Set the wyciwyg channels security info
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSecurityInfo([MarshalAs(UnmanagedType.Interface)] nsISupports  aSecurityInfo);
+		void SetSecurityInfo([MarshalAs(UnmanagedType.Interface)] nsISupports aSecurityInfo);
 		
 		/// <summary>
         /// Store and read a charset and charset source on the wyciwyg channel.  These
@@ -437,14 +438,15 @@ namespace Skybound.Gecko
         /// they mean.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCharsetAndSource(System.Int32  aSource, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aCharset);
+		void SetCharsetAndSource(int aSource, [MarshalAs(UnmanagedType.LPStruct)] nsAString aCharset);
 		
 		/// <summary>
         /// The return value is the charset.  Throws if either the charset or the
         /// source cannot be retrieved.  This is guaranteed to return a nonzero source
         /// and a nonempty charset if it does not throw.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetCharsetAndSource(out System.Int32  aSource);
+		nsAString GetCharsetAndSource(out int aSource);
 	}
 }

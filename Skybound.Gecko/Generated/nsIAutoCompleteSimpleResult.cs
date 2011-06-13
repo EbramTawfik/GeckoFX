@@ -55,7 +55,7 @@ namespace Skybound.Gecko
         /// Index of the default item that should be entered if none is selected
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Int32  GetDefaultIndexAttribute();
+		new int GetDefaultIndexAttribute();
 		
 		/// <summary>
         /// A string describing the cause of a search failure
@@ -67,37 +67,42 @@ namespace Skybound.Gecko
         /// The number of matches
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.UInt32  GetMatchCountAttribute();
+		new uint GetMatchCountAttribute();
 		
 		/// <summary>
         /// Get the value of the result at the given index
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsAString GetValueAt(System.Int32  index);
+		new nsAString GetValueAt(int index);
 		
 		/// <summary>
         /// This returns the string that is displayed in the dropdown
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsAString GetLabelAt(System.Int32  index);
+		new nsAString GetLabelAt(int index);
 		
 		/// <summary>
         /// Get the comment of the result at the given index
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsAString GetCommentAt(System.Int32  index);
+		new nsAString GetCommentAt(int index);
 		
 		/// <summary>
         /// Get the style hint for the result at the given index
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsAString GetStyleAt(System.Int32  index);
+		new nsAString GetStyleAt(int index);
 		
 		/// <summary>
         /// Get the image of the result at the given index
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsAString GetImageAt(System.Int32  index);
+		new nsAString GetImageAt(int index);
 		
 		/// <summary>
         /// Remove the value at the given index from the autocomplete results.
@@ -105,7 +110,7 @@ namespace Skybound.Gecko
         /// persistent storage as well.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void RemoveValueAt(System.Int32  rowIndex, System.Boolean  removeFromDb);
+		new void RemoveValueAt(int rowIndex, bool removeFromDb);
 		
 		/// <summary>
         /// A writer for the readonly attribute 'searchString' which should contain
@@ -125,7 +130,7 @@ namespace Skybound.Gecko
         /// the index of the list that will be selected by default (normally 0).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDefaultIndex(System.Int32  aDefaultIndex);
+		void SetDefaultIndex(int aDefaultIndex);
 		
 		/// <summary>
         /// A writer for the readonly attribute 'searchResult' which should contain
@@ -146,7 +151,7 @@ namespace Skybound.Gecko
         /// Sets a listener for changes in the result.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetListener([MarshalAs(UnmanagedType.Interface)] nsIAutoCompleteSimpleResultListener  aListener);
+		void SetListener([MarshalAs(UnmanagedType.Interface)] nsIAutoCompleteSimpleResultListener aListener);
 	}
 	
 	/// <summary>nsIAutoCompleteSimpleResultListener </summary>
@@ -166,6 +171,6 @@ namespace Skybound.Gecko
         /// Whether the value should be removed from persistent storage as well.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnValueRemoved([MarshalAs(UnmanagedType.Interface)] nsIAutoCompleteSimpleResult  aResult, [MarshalAs(UnmanagedType.LPStruct)] nsAString aValue, System.Boolean  aRemoveFromDb);
+		void OnValueRemoved([MarshalAs(UnmanagedType.Interface)] nsIAutoCompleteSimpleResult aResult, [MarshalAs(UnmanagedType.LPStruct)] nsAString aValue, bool aRemoveFromDb);
 	}
 }

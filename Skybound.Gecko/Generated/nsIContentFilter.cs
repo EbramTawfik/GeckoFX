@@ -92,6 +92,6 @@ namespace Skybound.Gecko
         /// @param continueWithInsertion  flag to cancel insertion (if desired)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NotifyOfInsertion([MarshalAs(UnmanagedType.LPStruct)] nsAString mimeType, [MarshalAs(UnmanagedType.Interface)] nsIURL  contentSourceURL, [MarshalAs(UnmanagedType.Interface)] nsIDOMDocument  sourceDocument, System.Boolean  willDeleteSelection, [MarshalAs(UnmanagedType.Interface)] ref nsIDOMNode  docFragment, [MarshalAs(UnmanagedType.Interface)] ref nsIDOMNode  contentStartNode, ref System.Int32  contentStartOffset, [MarshalAs(UnmanagedType.Interface)] ref nsIDOMNode  contentEndNode, ref System.Int32  contentEndOffset, [MarshalAs(UnmanagedType.Interface)] ref nsIDOMNode  insertionPointNode, ref System.Int32  insertionPointOffset, out System.Boolean  continueWithInsertion);
+		void NotifyOfInsertion([MarshalAs(UnmanagedType.LPStruct)] nsAString mimeType, [MarshalAs(UnmanagedType.Interface)] nsIURL contentSourceURL, [MarshalAs(UnmanagedType.Interface)] nsIDOMDocument sourceDocument, bool willDeleteSelection, [MarshalAs(UnmanagedType.Interface)] ref nsIDOMNode docFragment, [MarshalAs(UnmanagedType.Interface)] ref nsIDOMNode contentStartNode, ref int contentStartOffset, [MarshalAs(UnmanagedType.Interface)] ref nsIDOMNode contentEndNode, ref int contentEndOffset, [MarshalAs(UnmanagedType.Interface)] ref nsIDOMNode insertionPointNode, ref int insertionPointOffset, out bool continueWithInsertion);
 	}
 }

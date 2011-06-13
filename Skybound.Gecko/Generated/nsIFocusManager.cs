@@ -70,7 +70,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMWindow  GetActiveWindowAttribute();
+		nsIDOMWindow GetActiveWindowAttribute();
 		
 		/// <summary>
         /// The most active (frontmost) window, or null if no window that is part of
@@ -80,7 +80,7 @@ namespace Skybound.Gecko
         /// exception.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetActiveWindowAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  aActiveWindow);
+		void SetActiveWindowAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aActiveWindow);
 		
 		/// <summary>
         /// The child window within the activeWindow that is focused. This will
@@ -94,7 +94,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMWindow  GetFocusedWindowAttribute();
+		nsIDOMWindow GetFocusedWindowAttribute();
 		
 		/// <summary>
         /// The child window within the activeWindow that is focused. This will
@@ -107,7 +107,7 @@ namespace Skybound.Gecko
         /// non-frame element is found.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFocusedWindowAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  aFocusedWindow);
+		void SetFocusedWindowAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aFocusedWindow);
 		
 		/// <summary>
         /// The element that is currently focused. This will always be an element
@@ -116,7 +116,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMElement  GetFocusedElementAttribute();
+		nsIDOMElement GetFocusedElementAttribute();
 		
 		/// <summary>
         /// Returns the method that was used to focus the element in window. This
@@ -126,14 +126,14 @@ namespace Skybound.Gecko
         /// element.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetLastFocusMethod([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  window);
+		uint GetLastFocusMethod([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window);
 		
 		/// <summary>
         /// Changes the focused element reference within the window containing
         /// aElement to aElement.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFocus([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  aElement, System.UInt32  aFlags);
+		void SetFocus([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement, uint aFlags);
 		
 		/// <summary>
         /// Move the focus to another element. If aStartElement is specified, then
@@ -152,8 +152,9 @@ namespace Skybound.Gecko
         ///
         /// Returns the element that was focused.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMElement MoveFocus([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  aWindow, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement  aStartElement, System.UInt32  aType, System.UInt32  aFlags);
+		nsIDOMElement MoveFocus([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement aStartElement, uint aType, uint aFlags);
 		
 		/// <summary>
         /// Clears the focused element within aWindow. If the current focusedWindow
@@ -162,7 +163,7 @@ namespace Skybound.Gecko
         /// @throws NS_ERROR_INVALID_ARG if aWindow is null
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ClearFocus([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  aWindow);
+		void ClearFocus([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow);
 		
 		/// <summary>
         /// Returns the currently focused element within aWindow. If aWindow is equal
@@ -181,26 +182,27 @@ namespace Skybound.Gecko
         ///
         /// @throws NS_ERROR_INVALID_ARG if aWindow is null
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMElement GetFocusedElementForWindow([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  aWindow, System.Boolean  aDeep, [MarshalAs(UnmanagedType.Interface)] out nsIDOMWindow  aFocusedWindow);
+		nsIDOMElement GetFocusedElementForWindow([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow, bool aDeep, [MarshalAs(UnmanagedType.Interface)] out nsIDOMWindow aFocusedWindow);
 		
 		/// <summary>
         /// Moves the selection caret within aWindow to the current focus.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MoveCaretToFocus([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  aWindow);
+		void MoveCaretToFocus([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow);
 		
 		/// <summary>
         /// Called when a window has been raised.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void WindowRaised([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  aWindow);
+		void WindowRaised([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow);
 		
 		/// <summary>
         /// Called when a window has been lowered.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void WindowLowered([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  aWindow);
+		void WindowLowered([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow);
 		
 		/// <summary>
         /// Called when a new document in a window is shown.
@@ -209,14 +211,14 @@ namespace Skybound.Gecko
         /// window if this window is in the focused window chain.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void WindowShown([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  aWindow, System.Boolean  aNeedsFocus);
+		void WindowShown([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow, bool aNeedsFocus);
 		
 		/// <summary>
         /// Called when a document in a window has been hidden or otherwise can no
         /// longer accept focus.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void WindowHidden([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  aWindow);
+		void WindowHidden([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow);
 		
 		/// <summary>
         /// Fire any events that have been delayed due to synchronized actions.

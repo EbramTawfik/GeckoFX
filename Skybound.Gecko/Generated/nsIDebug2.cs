@@ -45,7 +45,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Assertion([MarshalAs(UnmanagedType.LPStr)] System.String  aStr, [MarshalAs(UnmanagedType.LPStr)] System.String  aExpr, [MarshalAs(UnmanagedType.LPStr)] System.String  aFile, System.Int32  aLine);
+		new void Assertion([MarshalAs(UnmanagedType.LPStr)] string aStr, [MarshalAs(UnmanagedType.LPStr)] string aExpr, [MarshalAs(UnmanagedType.LPStr)] string aFile, int aLine);
 		
 		/// <summary>
         /// Show a warning.
@@ -55,7 +55,7 @@ namespace Skybound.Gecko
         /// @param aLine line number of assertion
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Warning([MarshalAs(UnmanagedType.LPStr)] System.String  aStr, [MarshalAs(UnmanagedType.LPStr)] System.String  aFile, System.Int32  aLine);
+		new void Warning([MarshalAs(UnmanagedType.LPStr)] string aStr, [MarshalAs(UnmanagedType.LPStr)] string aFile, int aLine);
 		
 		/// <summary>
         /// Request to break into a debugger.
@@ -64,7 +64,7 @@ namespace Skybound.Gecko
         /// @param aLine line number of break request
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Break([MarshalAs(UnmanagedType.LPStr)] System.String  aFile, System.Int32  aLine);
+		new void Break([MarshalAs(UnmanagedType.LPStr)] string aFile, int aLine);
 		
 		/// <summary>
         /// Request the process to trigger a fatal abort.
@@ -73,7 +73,7 @@ namespace Skybound.Gecko
         /// @param aLine line number of abort request
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Abort([MarshalAs(UnmanagedType.LPStr)] System.String  aFile, System.Int32  aLine);
+		new void Abort([MarshalAs(UnmanagedType.LPStr)] string aFile, int aLine);
 		
 		/// <summary>
         /// Whether XPCOM was compiled with DEBUG defined.  This often
@@ -81,12 +81,12 @@ namespace Skybound.Gecko
         /// compiled with DEBUG defined.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsDebugBuildAttribute();
+		bool GetIsDebugBuildAttribute();
 		
 		/// <summary>
         /// The number of assertions since process start.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetAssertionCountAttribute();
+		int GetAssertionCountAttribute();
 	}
 }

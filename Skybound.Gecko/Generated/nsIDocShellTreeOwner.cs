@@ -49,8 +49,9 @@ namespace Skybound.Gecko
         ///	aOriginalRequestor - The original treeitem that made the request, if any.
         ///	This is used to ensure that we don't run into cross-site issues.
         ///	 </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDocShellTreeItem FindItemWithName([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string name, [MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeItem  aRequestor, [MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeItem  aOriginalRequestor);
+		nsIDocShellTreeItem FindItemWithName([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string name, [MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeItem aRequestor, [MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeItem aOriginalRequestor);
 		
 		/// <summary>
         /// Called when a content shell is added to the docshell tree.  This is
@@ -65,7 +66,7 @@ namespace Skybound.Gecko
         /// undefined. Don't rely on this for anything.
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ContentShellAdded([MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeItem  aContentShell, System.Boolean  aPrimary, System.Boolean  aTargetable, [MarshalAs(UnmanagedType.LPStruct)] nsAString aID);
+		void ContentShellAdded([MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeItem aContentShell, bool aPrimary, bool aTargetable, [MarshalAs(UnmanagedType.LPStruct)] nsAString aID);
 		
 		/// <summary>
         /// Called when a content shell is removed from the docshell tree.  This is
@@ -76,32 +77,32 @@ namespace Skybound.Gecko
         /// @param aContentShell the shell being removed.
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ContentShellRemoved([MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeItem  aContentShell);
+		void ContentShellRemoved([MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeItem aContentShell);
 		
 		/// <summary>
         ///Returns the Primary Content Shell
         ///	 </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDocShellTreeItem  GetPrimaryContentShellAttribute();
+		nsIDocShellTreeItem GetPrimaryContentShellAttribute();
 		
 		/// <summary>
         ///Tells the tree owner to size its window or parent window in such a way
         ///	that the shell passed along will be the size specified.
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SizeShellTo([MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeItem  shell, System.Int32  cx, System.Int32  cy);
+		void SizeShellTo([MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeItem shell, int cx, int cy);
 		
 		/// <summary>
         ///Sets the persistence of different attributes of the window.
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPersistence(System.Boolean  aPersistPosition, System.Boolean  aPersistSize, System.Boolean  aPersistSizeMode);
+		void SetPersistence(bool aPersistPosition, bool aPersistSize, bool aPersistSizeMode);
 		
 		/// <summary>
         ///Gets the current persistence states of the window.
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPersistence(out System.Boolean  aPersistPosition, out System.Boolean  aPersistSize, out System.Boolean  aPersistSizeMode);
+		void GetPersistence(out bool aPersistPosition, out bool aPersistSize, out bool aPersistSizeMode);
 	}
 }

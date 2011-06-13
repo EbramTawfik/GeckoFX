@@ -45,7 +45,7 @@ namespace Skybound.Gecko
         /// @return false to advance to the next device.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool VisitDevice([MarshalAs(UnmanagedType.LPStr)] System.String  deviceID, [MarshalAs(UnmanagedType.Interface)] nsICacheDeviceInfo  deviceInfo);
+		bool VisitDevice([MarshalAs(UnmanagedType.LPStr)] string deviceID, [MarshalAs(UnmanagedType.Interface)] nsICacheDeviceInfo deviceInfo);
 		
 		/// <summary>
         /// Called to provide information about a cache entry.
@@ -58,7 +58,7 @@ namespace Skybound.Gecko
         /// @return false to advance to the next device.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool VisitEntry([MarshalAs(UnmanagedType.LPStr)] System.String  deviceID, [MarshalAs(UnmanagedType.Interface)] nsICacheEntryInfo  entryInfo);
+		bool VisitEntry([MarshalAs(UnmanagedType.LPStr)] string deviceID, [MarshalAs(UnmanagedType.Interface)] nsICacheEntryInfo entryInfo);
 	}
 	
 	/// <summary>nsICacheDeviceInfo </summary>
@@ -73,7 +73,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetDescriptionAttribute();
+		string GetDescriptionAttribute();
 		
 		/// <summary>
         /// Get a usage report, statistics, miscellaneous data about
@@ -81,25 +81,25 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetUsageReportAttribute();
+		string GetUsageReportAttribute();
 		
 		/// <summary>
         /// Get the number of stored cache entries.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetEntryCountAttribute();
+		uint GetEntryCountAttribute();
 		
 		/// <summary>
         /// Get the total size of the stored cache entries.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetTotalSizeAttribute();
+		uint GetTotalSizeAttribute();
 		
 		/// <summary>
         /// Get the upper limit of the size of the data the cache can store.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetMaximumSizeAttribute();
+		uint GetMaximumSizeAttribute();
 	}
 	
 	/// <summary>nsICacheEntryInfo </summary>
@@ -114,50 +114,50 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetClientIDAttribute();
+		string GetClientIDAttribute();
 		
 		/// <summary>
         /// Get the id for the device that stores this cache entry.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetDeviceIDAttribute();
+		string GetDeviceIDAttribute();
 		
 		/// <summary>
         /// Get the key identifying the cache entry.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetKeyAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aKey);
+		void GetKeyAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aKey);
 		
 		/// <summary>
         /// Get the number of times the cache entry has been opened.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetFetchCountAttribute();
+		int GetFetchCountAttribute();
 		
 		/// <summary>
         /// Get the last time the cache entry was opened (in seconds since the Epoch).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetLastFetchedAttribute();
+		uint GetLastFetchedAttribute();
 		
 		/// <summary>
         /// Get the last time the cache entry was modified (in seconds since the Epoch).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetLastModifiedAttribute();
+		uint GetLastModifiedAttribute();
 		
 		/// <summary>
         /// Get the expiration time of the cache entry (in seconds since the Epoch).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetExpirationTimeAttribute();
+		uint GetExpirationTimeAttribute();
 		
 		/// <summary>
         /// Get the cache entry data size.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetDataSizeAttribute();
+		uint GetDataSizeAttribute();
 		
 		/// <summary>
         /// Find out whether or not the cache entry is stream based.

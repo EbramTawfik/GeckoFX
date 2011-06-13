@@ -69,13 +69,13 @@ namespace Skybound.Gecko
         /// determined by calling the stream's |available| method.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetUploadStream([MarshalAs(UnmanagedType.Interface)] nsIInputStream  aStream, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aContentType, System.Int32  aContentLength);
+		void SetUploadStream([MarshalAs(UnmanagedType.Interface)] nsIInputStream aStream, [MarshalAs(UnmanagedType.LPStruct)] nsAString aContentType, int aContentLength);
 		
 		/// <summary>
         /// Get the stream (to be) uploaded by this channel.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIInputStream  GetUploadStreamAttribute();
+		nsIInputStream GetUploadStreamAttribute();
 	}
 }

@@ -45,7 +45,7 @@ namespace Skybound.Gecko
         /// @retval false Not all bytes of the character could be written.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool Write(System.UInt32  aCount, [MarshalAs(UnmanagedType.LPWStr, SizeParamIndex=0)] System.String  c);
+		new bool Write(uint aCount, [MarshalAs(UnmanagedType.LPWStr, SizeParamIndex=0)] string c);
 		
 		/// <summary>
         /// Write a string to the stream.
@@ -99,6 +99,6 @@ namespace Skybound.Gecko
         /// attempts to write unsupported characters.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init([MarshalAs(UnmanagedType.Interface)] nsIOutputStream  aOutStream, [MarshalAs(UnmanagedType.LPStr)] System.String  aCharset, System.UInt32  aBufferSize, [MarshalAs(UnmanagedType.LPWStr)] System.String  aReplacementCharacter);
+		void Init([MarshalAs(UnmanagedType.Interface)] nsIOutputStream aOutStream, [MarshalAs(UnmanagedType.LPStr)] string aCharset, uint aBufferSize, [MarshalAs(UnmanagedType.LPWStr)] string aReplacementCharacter);
 	}
 }

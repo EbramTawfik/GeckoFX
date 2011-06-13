@@ -38,6 +38,6 @@ namespace Skybound.Gecko
 		/// <param name='icon'> </param>
 		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int Convert([MarshalAs(UnmanagedType.LPStr)] System.String  icon);
+		int Convert([MarshalAs(UnmanagedType.LPStr)] string icon);
 	}
 }

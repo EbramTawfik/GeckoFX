@@ -61,43 +61,43 @@ namespace Skybound.Gecko
 		void SetReplaceStringAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aReplaceString);
 		
 		/// <summary>Member GetFindBackwardsAttribute </summary>
-		/// <returns>A System.Boolean </returns>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetFindBackwardsAttribute();
+		bool GetFindBackwardsAttribute();
 		
 		/// <summary>Member SetFindBackwardsAttribute </summary>
 		/// <param name='aFindBackwards'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFindBackwardsAttribute(System.Boolean  aFindBackwards);
+		void SetFindBackwardsAttribute(bool aFindBackwards);
 		
 		/// <summary>Member GetWrapFindAttribute </summary>
-		/// <returns>A System.Boolean </returns>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetWrapFindAttribute();
+		bool GetWrapFindAttribute();
 		
 		/// <summary>Member SetWrapFindAttribute </summary>
 		/// <param name='aWrapFind'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetWrapFindAttribute(System.Boolean  aWrapFind);
+		void SetWrapFindAttribute(bool aWrapFind);
 		
 		/// <summary>Member GetEntireWordAttribute </summary>
-		/// <returns>A System.Boolean </returns>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetEntireWordAttribute();
+		bool GetEntireWordAttribute();
 		
 		/// <summary>Member SetEntireWordAttribute </summary>
 		/// <param name='aEntireWord'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetEntireWordAttribute(System.Boolean  aEntireWord);
+		void SetEntireWordAttribute(bool aEntireWord);
 		
 		/// <summary>Member GetMatchCaseAttribute </summary>
-		/// <returns>A System.Boolean </returns>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetMatchCaseAttribute();
+		bool GetMatchCaseAttribute();
 		
 		/// <summary>Member SetMatchCaseAttribute </summary>
 		/// <param name='aMatchCase'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMatchCaseAttribute(System.Boolean  aMatchCase);
+		void SetMatchCaseAttribute(bool aMatchCase);
 	}
 }

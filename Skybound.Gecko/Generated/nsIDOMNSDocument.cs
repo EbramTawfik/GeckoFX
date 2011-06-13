@@ -50,10 +50,10 @@ namespace Skybound.Gecko
 		void SetDirAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDir);
 		
 		/// <summary>Member GetLocationAttribute </summary>
-		/// <returns>A nsIDOMLocation </returns>
+		/// <returns>A nsIDOMLocation</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMLocation  GetLocationAttribute();
+		nsIDOMLocation GetLocationAttribute();
 		
 		/// <summary>Member GetTitleAttribute </summary>
 		/// <param name='aTitle'> </param>
@@ -91,16 +91,16 @@ namespace Skybound.Gecko
 		bool HasFocus();
 		
 		/// <summary>Member GetActiveElementAttribute </summary>
-		/// <returns>A nsIDOMElement </returns>
+		/// <returns>A nsIDOMElement</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMElement  GetActiveElementAttribute();
+		nsIDOMElement GetActiveElementAttribute();
 		
 		/// <summary>Member GetCurrentScriptAttribute </summary>
-		/// <returns>A nsIDOMElement </returns>
+		/// <returns>A nsIDOMElement</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMElement  GetCurrentScriptAttribute();
+		nsIDOMElement GetCurrentScriptAttribute();
 		
 		/// <summary>
         /// Retrieve elements matching all classes listed in a
@@ -108,6 +108,7 @@ namespace Skybound.Gecko
         ///
         /// See <http://whatwg.org/specs/web-apps/current-work/>
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMNodeList GetElementsByClassName([MarshalAs(UnmanagedType.LPStruct)] nsAString classes);
 		
@@ -130,6 +131,7 @@ namespace Skybound.Gecko
         ///
         /// See <http://www.w3.org/TR/cssom-view/#the-documentview-interface>
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMElement ElementFromPoint(double x, double y);
 		
@@ -168,7 +170,7 @@ namespace Skybound.Gecko
         /// unregister the image element ID |aImageElementId|.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MozSetImageElement([MarshalAs(UnmanagedType.LPStruct)] nsAString aImageElementId, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement  aImageElement);
+		void MozSetImageElement([MarshalAs(UnmanagedType.LPStruct)] nsAString aImageElementId, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement aImageElement);
 	}
 	
 	/// <summary>
@@ -185,6 +187,6 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant  GetMozCurrentStateObjectAttribute();
+		nsIVariant GetMozCurrentStateObjectAttribute();
 	}
 }

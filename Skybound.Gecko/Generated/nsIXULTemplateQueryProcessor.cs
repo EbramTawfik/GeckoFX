@@ -124,8 +124,9 @@ namespace Skybound.Gecko
         /// build the content or not
         /// @returns a datasource object
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports GetDatasource([MarshalAs(UnmanagedType.Interface)] nsIArray  aDataSources, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode  aRootNode, System.Boolean  aIsTrusted, [MarshalAs(UnmanagedType.Interface)] nsIXULTemplateBuilder  aBuilder, out System.Boolean  aShouldDelayBuilding);
+		nsISupports GetDatasource([MarshalAs(UnmanagedType.Interface)] nsIArray aDataSources, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aRootNode, bool aIsTrusted, [MarshalAs(UnmanagedType.Interface)] nsIXULTemplateBuilder aBuilder, out bool aShouldDelayBuilding);
 		
 		/// <summary>
         /// Initialize for query generation. This will be called before the rules are
@@ -141,7 +142,7 @@ namespace Skybound.Gecko
         /// NS_ERROR_UNEXPECTED if generateResults has already been called.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitializeForBuilding([MarshalAs(UnmanagedType.Interface)] nsISupports  aDatasource, [MarshalAs(UnmanagedType.Interface)] nsIXULTemplateBuilder  aBuilder, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode  aRootNode);
+		void InitializeForBuilding([MarshalAs(UnmanagedType.Interface)] nsISupports aDatasource, [MarshalAs(UnmanagedType.Interface)] nsIXULTemplateBuilder aBuilder, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aRootNode);
 		
 		/// <summary>
         /// Called when the template builder is being destroyed so that the query
@@ -177,8 +178,9 @@ namespace Skybound.Gecko
         ///
         /// @returns a compiled query object
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports CompileQuery([MarshalAs(UnmanagedType.Interface)] nsIXULTemplateBuilder  aBuilder, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode  aQuery, [MarshalAs(UnmanagedType.Interface)] nsIAtom  aRefVariable, [MarshalAs(UnmanagedType.Interface)] nsIAtom  aMemberVariable);
+		nsISupports CompileQuery([MarshalAs(UnmanagedType.Interface)] nsIXULTemplateBuilder aBuilder, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aQuery, [MarshalAs(UnmanagedType.Interface)] nsIAtom aRefVariable, [MarshalAs(UnmanagedType.Interface)] nsIAtom aMemberVariable);
 		
 		/// <summary>
         /// Generate the results of a query and return them in an enumerator. The
@@ -201,8 +203,9 @@ namespace Skybound.Gecko
         ///
         /// @throws NS_ERROR_INVALID_ARG if aQuery is invalid
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISimpleEnumerator GenerateResults([MarshalAs(UnmanagedType.Interface)] nsISupports  aDatasource, [MarshalAs(UnmanagedType.Interface)] nsIXULTemplateResult  aRef, [MarshalAs(UnmanagedType.Interface)] nsISupports  aQuery);
+		nsISimpleEnumerator GenerateResults([MarshalAs(UnmanagedType.Interface)] nsISupports aDatasource, [MarshalAs(UnmanagedType.Interface)] nsIXULTemplateResult aRef, [MarshalAs(UnmanagedType.Interface)] nsISupports aQuery);
 		
 		/// <summary>
         /// Add a variable binding for a particular rule. A binding allows an
@@ -235,7 +238,7 @@ namespace Skybound.Gecko
         /// @param aExpr expression used to compute the value to assign
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddBinding([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  aRuleNode, [MarshalAs(UnmanagedType.Interface)] nsIAtom  aVar, [MarshalAs(UnmanagedType.Interface)] nsIAtom  aRef, [MarshalAs(UnmanagedType.LPStruct)] nsAString aExpr);
+		void AddBinding([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aRuleNode, [MarshalAs(UnmanagedType.Interface)] nsIAtom aVar, [MarshalAs(UnmanagedType.Interface)] nsIAtom aRef, [MarshalAs(UnmanagedType.LPStruct)] nsAString aExpr);
 		
 		/// <summary>
         /// Translate a ref attribute string into a result. This is used as the
@@ -254,8 +257,9 @@ namespace Skybound.Gecko
         ///
         /// @return the translated ref
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIXULTemplateResult TranslateRef([MarshalAs(UnmanagedType.Interface)] nsISupports  aDatasource, [MarshalAs(UnmanagedType.LPStruct)] nsAString aRefString);
+		nsIXULTemplateResult TranslateRef([MarshalAs(UnmanagedType.Interface)] nsISupports aDatasource, [MarshalAs(UnmanagedType.LPStruct)] nsAString aRefString);
 		
 		/// <summary>
         /// Compare two results to determine their order, used when sorting results.
@@ -280,6 +284,6 @@ namespace Skybound.Gecko
         /// @param returns -1 if less, 0 if equal, or 1 if greater
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int CompareResults([MarshalAs(UnmanagedType.Interface)] nsIXULTemplateResult  aLeft, [MarshalAs(UnmanagedType.Interface)] nsIXULTemplateResult  aRight, [MarshalAs(UnmanagedType.Interface)] nsIAtom  aVar, System.UInt32  aSortHints);
+		int CompareResults([MarshalAs(UnmanagedType.Interface)] nsIXULTemplateResult aLeft, [MarshalAs(UnmanagedType.Interface)] nsIXULTemplateResult aRight, [MarshalAs(UnmanagedType.Interface)] nsIAtom aVar, uint aSortHints);
 	}
 }

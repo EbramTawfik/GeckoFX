@@ -47,7 +47,7 @@ namespace Skybound.Gecko
         /// and its metadata.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void HandleResult([MarshalAs(UnmanagedType.Interface)] nsIFeedResult  result);
+		void HandleResult([MarshalAs(UnmanagedType.Interface)] nsIFeedResult result);
 	}
 	
 	/// <summary>
@@ -70,7 +70,7 @@ namespace Skybound.Gecko
         /// and its metadata.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void HandleResult([MarshalAs(UnmanagedType.Interface)] nsIFeedResult  result);
+		new void HandleResult([MarshalAs(UnmanagedType.Interface)] nsIFeedResult result);
 		
 		/// <summary>
         /// ReportError will be called in the event of fatal
@@ -83,7 +83,7 @@ namespace Skybound.Gecko
         /// The line on which the error occurred.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ReportError([MarshalAs(UnmanagedType.LPStruct)] nsAString errorText, System.Int32  lineNumber, System.Boolean  bozo);
+		void ReportError([MarshalAs(UnmanagedType.LPStruct)] nsAString errorText, int lineNumber, bool bozo);
 		
 		/// <summary>
         /// StartFeed will be called as soon as a reasonable start to
@@ -95,7 +95,7 @@ namespace Skybound.Gecko
         /// information.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void HandleStartFeed([MarshalAs(UnmanagedType.Interface)] nsIFeedResult  result);
+		void HandleStartFeed([MarshalAs(UnmanagedType.Interface)] nsIFeedResult result);
 		
 		/// <summary>
         /// Called when the first entry/item is encountered. In Atom, all
@@ -109,7 +109,7 @@ namespace Skybound.Gecko
         /// most of its feed-level metadata.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void HandleFeedAtFirstEntry([MarshalAs(UnmanagedType.Interface)] nsIFeedResult  result);
+		void HandleFeedAtFirstEntry([MarshalAs(UnmanagedType.Interface)] nsIFeedResult result);
 		
 		/// <summary>
         /// Called after each entry/item. If the document is a standalone
@@ -124,6 +124,6 @@ namespace Skybound.Gecko
         /// and its metadata.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void HandleEntry([MarshalAs(UnmanagedType.Interface)] nsIFeedEntry  entry, [MarshalAs(UnmanagedType.Interface)] nsIFeedResult  result);
+		void HandleEntry([MarshalAs(UnmanagedType.Interface)] nsIFeedEntry entry, [MarshalAs(UnmanagedType.Interface)] nsIFeedResult result);
 	}
 }

@@ -41,6 +41,6 @@ namespace Skybound.Gecko
         /// and false if the user cancels the action.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool ConfirmKeyEscrow([MarshalAs(UnmanagedType.Interface)] nsIX509Cert  escrowAuthority);
+		bool ConfirmKeyEscrow([MarshalAs(UnmanagedType.Interface)] nsIX509Cert escrowAuthority);
 	}
 }

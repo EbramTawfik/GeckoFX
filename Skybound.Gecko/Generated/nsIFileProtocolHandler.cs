@@ -38,7 +38,7 @@ namespace Skybound.Gecko
         /// The scheme of this protocol (e.g., "file").
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetSchemeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aScheme);
+		new void GetSchemeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aScheme);
 		
 		/// <summary>
         /// The default port is the port that this protocol normally uses.
@@ -46,13 +46,13 @@ namespace Skybound.Gecko
         /// then -1 will be returned.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Int32  GetDefaultPortAttribute();
+		new int GetDefaultPortAttribute();
 		
 		/// <summary>
         /// Returns the protocol specific flags (see flag definitions below).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.UInt32  GetProtocolFlagsAttribute();
+		new uint GetProtocolFlagsAttribute();
 		
 		/// <summary>
         /// Makes a URI object that is suitable for loading by this protocol,
@@ -79,14 +79,16 @@ namespace Skybound.Gecko
         /// If the protocol has no concept of relative
         /// URI aBaseURI will simply be ignored.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIURI NewURI([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aSpec, [MarshalAs(UnmanagedType.LPStr)] System.String  aOriginCharset, [MarshalAs(UnmanagedType.Interface)] nsIURI  aBaseURI);
+		new nsIURI NewURI([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aSpec, [MarshalAs(UnmanagedType.LPStr)] string aOriginCharset, [MarshalAs(UnmanagedType.Interface)] nsIURI aBaseURI);
 		
 		/// <summary>
         /// Constructs a new channel from the given URI for this protocol handler.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIChannel NewChannel([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI);
+		new nsIChannel NewChannel([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 		
 		/// <summary>
         /// Allows a protocol to override blacklisted ports.
@@ -98,7 +100,7 @@ namespace Skybound.Gecko
         /// protocol handler wants to override the ban.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool AllowPort(System.Int32  port, [MarshalAs(UnmanagedType.LPStr)] System.String  scheme);
+		new bool AllowPort(int port, [MarshalAs(UnmanagedType.LPStr)] string scheme);
 		
 		/// <summary>
         /// This method constructs a new file URI
@@ -106,8 +108,9 @@ namespace Skybound.Gecko
         /// @param aFile nsIFile
         /// @return reference to a new nsIURI object
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI NewFileURI([MarshalAs(UnmanagedType.Interface)] nsIFile  aFile);
+		nsIURI NewFileURI([MarshalAs(UnmanagedType.Interface)] nsIFile aFile);
 		
 		/// <summary>
         /// Converts the nsIFile to the corresponding URL string.  NOTE: under
@@ -119,8 +122,9 @@ namespace Skybound.Gecko
         /// NOTE: Callers should use getURLSpecFromActualFile or
         /// getURLSpecFromDirFile if possible, for performance reasons.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAUTF8String GetURLSpecFromFile([MarshalAs(UnmanagedType.Interface)] nsIFile  file);
+		nsAUTF8String GetURLSpecFromFile([MarshalAs(UnmanagedType.Interface)] nsIFile file);
 		
 		/// <summary>
         /// Converts the nsIFile to the corresponding URL string. Should
@@ -128,8 +132,9 @@ namespace Skybound.Gecko
         /// identical to getURLSpecFromFile, but is usually more efficient.
         /// WARNING: This restriction may not be enforced at runtime!
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAUTF8String GetURLSpecFromActualFile([MarshalAs(UnmanagedType.Interface)] nsIFile  file);
+		nsAUTF8String GetURLSpecFromActualFile([MarshalAs(UnmanagedType.Interface)] nsIFile file);
 		
 		/// <summary>
         /// Converts the nsIFile to the corresponding URL string. Should
@@ -137,15 +142,17 @@ namespace Skybound.Gecko
         /// identical to getURLSpecFromFile, but is usually more efficient.
         /// WARNING: This restriction may not be enforced at runtime!
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAUTF8String GetURLSpecFromDir([MarshalAs(UnmanagedType.Interface)] nsIFile  file);
+		nsAUTF8String GetURLSpecFromDir([MarshalAs(UnmanagedType.Interface)] nsIFile file);
 		
 		/// <summary>
         /// Converts the URL string into the corresponding nsIFile if possible.
         /// A local file will be created if the URL string begins with file://.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIFile GetFileFromURLSpec([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  url);
+		nsIFile GetFileFromURLSpec([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String url);
 		
 		/// <summary>
         /// Takes a local file and tries to interpret it as an internet shortcut
@@ -156,7 +163,8 @@ namespace Skybound.Gecko
         /// @throw NS_ERROR_NOT_AVAILABLE if the OS does not support such files.
         /// @throw NS_ERROR_NOT_AVAILABLE if this file is not an internet shortcut.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI ReadURLFile([MarshalAs(UnmanagedType.Interface)] nsIFile  file);
+		nsIURI ReadURLFile([MarshalAs(UnmanagedType.Interface)] nsIFile file);
 	}
 }

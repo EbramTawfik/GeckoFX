@@ -49,7 +49,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMNode  GetNodeAttribute();
+		nsIDOMNode GetNodeAttribute();
 		
 		/// <summary>
         ///A class which can represent any node which points to an
@@ -59,7 +59,7 @@ namespace Skybound.Gecko
         /// Used by the editor but not dependant on it.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetNodeAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  aNode);
+		void SetNodeAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aNode);
 		
 		/// <summary>
         /// Go back to the beginning of the attribute list.
@@ -70,6 +70,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Return the next rewritable URI.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsAString GetNextURI();
 		
@@ -81,6 +82,6 @@ namespace Skybound.Gecko
         /// @param aMakeRel Rewrite links as relative vs. absolute
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RewriteAllURIs([MarshalAs(UnmanagedType.LPStruct)] nsAString aOldPat, [MarshalAs(UnmanagedType.LPStruct)] nsAString aNewPat, System.Boolean  aMakeRel);
+		void RewriteAllURIs([MarshalAs(UnmanagedType.LPStruct)] nsAString aOldPat, [MarshalAs(UnmanagedType.LPStruct)] nsAString aNewPat, bool aMakeRel);
 	}
 }

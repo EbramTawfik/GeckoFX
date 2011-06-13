@@ -43,7 +43,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISAXAttributes  GetAttributesAttribute();
+		nsISAXAttributes GetAttributesAttribute();
 		
 		/// <summary>
         /// The attributes found on the element. Most interfaces provide convenience
@@ -51,19 +51,19 @@ namespace Skybound.Gecko
         /// an extension.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAttributesAttribute([MarshalAs(UnmanagedType.Interface)] nsISAXAttributes  aAttributes);
+		void SetAttributesAttribute([MarshalAs(UnmanagedType.Interface)] nsISAXAttributes aAttributes);
 		
 		/// <summary>
         /// The baseURI for the Entry or Feed.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI  GetBaseURIAttribute();
+		nsIURI GetBaseURIAttribute();
 		
 		/// <summary>
         /// The baseURI for the Entry or Feed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBaseURIAttribute([MarshalAs(UnmanagedType.Interface)] nsIURI  aBaseURI);
+		void SetBaseURIAttribute([MarshalAs(UnmanagedType.Interface)] nsIURI aBaseURI);
 	}
 }

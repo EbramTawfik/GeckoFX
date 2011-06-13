@@ -47,7 +47,7 @@ namespace Skybound.Gecko
         /// and should be read from aInputStream in the same order by this method.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Read([MarshalAs(UnmanagedType.Interface)] nsIObjectInputStream  aInputStream);
+		new void Read([MarshalAs(UnmanagedType.Interface)] nsIObjectInputStream aInputStream);
 		
 		/// <summary>
         /// Serialize the object implementing nsISerializable to aOutputStream, by
@@ -59,7 +59,7 @@ namespace Skybound.Gecko
         /// nsIClassInfo, in particular nsIClassInfo::GetClassID.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Write([MarshalAs(UnmanagedType.Interface)] nsIObjectOutputStream  aOutputStream);
+		new void Write([MarshalAs(UnmanagedType.Interface)] nsIObjectOutputStream aOutputStream);
 		
 		/// <summary>Member Count </summary>
 		/// <returns>A System.UInt32</returns>
@@ -69,34 +69,36 @@ namespace Skybound.Gecko
 		/// <summary>Member GetElementAt </summary>
 		/// <param name='index'> </param>
 		/// <returns>A nsISupports</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsISupports GetElementAt(System.UInt32  index);
+		new nsISupports GetElementAt(uint index);
 		
 		/// <summary>Member QueryElementAt </summary>
 		/// <param name='index'> </param>
 		/// <param name='uuid'> </param>
-		/// <returns>A System.IntPtr </returns>
+		/// <returns>A System.IntPtr</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.IntPtr  QueryElementAt(System.UInt32  index, ref System.Guid uuid);
+		new System.IntPtr QueryElementAt(uint index, ref System.Guid uuid);
 		
 		/// <summary>Member SetElementAt </summary>
 		/// <param name='index'> </param>
 		/// <param name='item'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetElementAt(System.UInt32  index, [MarshalAs(UnmanagedType.Interface)] nsISupports  item);
+		new void SetElementAt(uint index, [MarshalAs(UnmanagedType.Interface)] nsISupports item);
 		
 		/// <summary>Member AppendElement </summary>
 		/// <param name='item'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void AppendElement([MarshalAs(UnmanagedType.Interface)] nsISupports  item);
+		new void AppendElement([MarshalAs(UnmanagedType.Interface)] nsISupports item);
 		
 		/// <summary>Member RemoveElement </summary>
 		/// <param name='item'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void RemoveElement([MarshalAs(UnmanagedType.Interface)] nsISupports  item);
+		new void RemoveElement([MarshalAs(UnmanagedType.Interface)] nsISupports item);
 		
 		/// <summary>Member Enumerate </summary>
 		/// <returns>A nsIEnumerator</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIEnumerator Enumerate();
 		
@@ -112,78 +114,80 @@ namespace Skybound.Gecko
         /// http://groups.google.com/groups?q=nsisupportsarray+group:netscape.public.mozilla.xpcom&hl=en&lr=&ie=UTF-8&oe=UTF-8&selm=al8412%245ab2%40ripley.netscape.com&rnum=8
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Equals([MarshalAs(UnmanagedType.Interface)] nsISupportsArray  other);
+		bool Equals([MarshalAs(UnmanagedType.Interface)] nsISupportsArray other);
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsISupports ElementAt(uint aIndex);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports ElementAt(System.UInt32  aIndex);
+		int IndexOf([MarshalAs(UnmanagedType.Interface)] nsISupports aPossibleElement);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int IndexOf([MarshalAs(UnmanagedType.Interface)] nsISupports  aPossibleElement);
+		int IndexOfStartingAt([MarshalAs(UnmanagedType.Interface)] nsISupports aPossibleElement, uint aStartIndex);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int IndexOfStartingAt([MarshalAs(UnmanagedType.Interface)] nsISupports  aPossibleElement, System.UInt32  aStartIndex);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int LastIndexOf([MarshalAs(UnmanagedType.Interface)] nsISupports  aPossibleElement);
-		
-		/// <summary>
-        /// xpcom-compatible versions
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetIndexOf([MarshalAs(UnmanagedType.Interface)] nsISupports  aPossibleElement);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetIndexOfStartingAt([MarshalAs(UnmanagedType.Interface)] nsISupports  aPossibleElement, System.UInt32  aStartIndex);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetLastIndexOf([MarshalAs(UnmanagedType.Interface)] nsISupports  aPossibleElement);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool InsertElementAt([MarshalAs(UnmanagedType.Interface)] nsISupports  aElement, System.UInt32  aIndex);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool ReplaceElementAt([MarshalAs(UnmanagedType.Interface)] nsISupports  aElement, System.UInt32  aIndex);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool RemoveElementAt(System.UInt32  aIndex);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool RemoveLastElement([MarshalAs(UnmanagedType.Interface)] nsISupports  aElement);
+		int LastIndexOf([MarshalAs(UnmanagedType.Interface)] nsISupports aPossibleElement);
 		
 		/// <summary>
         /// xpcom-compatible versions
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DeleteLastElement([MarshalAs(UnmanagedType.Interface)] nsISupports  aElement);
+		int GetIndexOf([MarshalAs(UnmanagedType.Interface)] nsISupports aPossibleElement);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DeleteElementAt(System.UInt32  aIndex);
+		int GetIndexOfStartingAt([MarshalAs(UnmanagedType.Interface)] nsISupports aPossibleElement, uint aStartIndex);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool AppendElements([MarshalAs(UnmanagedType.Interface)] nsISupportsArray  aElements);
+		int GetLastIndexOf([MarshalAs(UnmanagedType.Interface)] nsISupports aPossibleElement);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool InsertElementAt([MarshalAs(UnmanagedType.Interface)] nsISupports aElement, uint aIndex);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool ReplaceElementAt([MarshalAs(UnmanagedType.Interface)] nsISupports aElement, uint aIndex);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool RemoveElementAt(uint aIndex);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool RemoveLastElement([MarshalAs(UnmanagedType.Interface)] nsISupports aElement);
+		
+		/// <summary>
+        /// xpcom-compatible versions
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void DeleteLastElement([MarshalAs(UnmanagedType.Interface)] nsISupports aElement);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void DeleteElementAt(uint aIndex);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool AppendElements([MarshalAs(UnmanagedType.Interface)] nsISupportsArray aElements);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Compact();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool EnumerateForwards(System.IntPtr aFunc, System.IntPtr  aData);
+		bool EnumerateForwards(System.IntPtr aFunc, System.IntPtr aData);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool EnumerateBackwards(System.IntPtr aFunc, System.IntPtr  aData);
+		bool EnumerateBackwards(System.IntPtr aFunc, System.IntPtr aData);
 		
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISupportsArray Clone();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool MoveElement(System.Int32  aFrom, System.Int32  aTo);
+		bool MoveElement(int aFrom, int aTo);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool InsertElementsAt([MarshalAs(UnmanagedType.Interface)] nsISupportsArray  aOther, System.UInt32  aIndex);
+		bool InsertElementsAt([MarshalAs(UnmanagedType.Interface)] nsISupportsArray aOther, uint aIndex);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool RemoveElementsAt(System.UInt32  aIndex, System.UInt32  aCount);
+		bool RemoveElementsAt(uint aIndex, uint aCount);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool SizeTo(System.Int32  aSize);
+		bool SizeTo(int aSize);
 	}
 }

@@ -46,7 +46,7 @@ namespace Skybound.Gecko
         /// @param aTarget the object of the assertion
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnAssert([MarshalAs(UnmanagedType.Interface)] nsIRDFDataSource  aDataSource, [MarshalAs(UnmanagedType.Interface)] nsIRDFResource  aSource, [MarshalAs(UnmanagedType.Interface)] nsIRDFResource  aProperty, [MarshalAs(UnmanagedType.Interface)] nsIRDFNode  aTarget);
+		void OnAssert([MarshalAs(UnmanagedType.Interface)] nsIRDFDataSource aDataSource, [MarshalAs(UnmanagedType.Interface)] nsIRDFResource aSource, [MarshalAs(UnmanagedType.Interface)] nsIRDFResource aProperty, [MarshalAs(UnmanagedType.Interface)] nsIRDFNode aTarget);
 		
 		/// <summary>
         /// This method is called whenever an assertion is removed
@@ -58,7 +58,7 @@ namespace Skybound.Gecko
         /// @param aTarget the object of the assertion
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnUnassert([MarshalAs(UnmanagedType.Interface)] nsIRDFDataSource  aDataSource, [MarshalAs(UnmanagedType.Interface)] nsIRDFResource  aSource, [MarshalAs(UnmanagedType.Interface)] nsIRDFResource  aProperty, [MarshalAs(UnmanagedType.Interface)] nsIRDFNode  aTarget);
+		void OnUnassert([MarshalAs(UnmanagedType.Interface)] nsIRDFDataSource aDataSource, [MarshalAs(UnmanagedType.Interface)] nsIRDFResource aSource, [MarshalAs(UnmanagedType.Interface)] nsIRDFResource aProperty, [MarshalAs(UnmanagedType.Interface)] nsIRDFNode aTarget);
 		
 		/// <summary>
         /// This method is called when the object of an assertion
@@ -71,7 +71,7 @@ namespace Skybound.Gecko
         /// @param aNewTarget the new object of the assertion
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnChange([MarshalAs(UnmanagedType.Interface)] nsIRDFDataSource  aDataSource, [MarshalAs(UnmanagedType.Interface)] nsIRDFResource  aSource, [MarshalAs(UnmanagedType.Interface)] nsIRDFResource  aProperty, [MarshalAs(UnmanagedType.Interface)] nsIRDFNode  aOldTarget, [MarshalAs(UnmanagedType.Interface)] nsIRDFNode  aNewTarget);
+		void OnChange([MarshalAs(UnmanagedType.Interface)] nsIRDFDataSource aDataSource, [MarshalAs(UnmanagedType.Interface)] nsIRDFResource aSource, [MarshalAs(UnmanagedType.Interface)] nsIRDFResource aProperty, [MarshalAs(UnmanagedType.Interface)] nsIRDFNode aOldTarget, [MarshalAs(UnmanagedType.Interface)] nsIRDFNode aNewTarget);
 		
 		/// <summary>
         /// This method is called when the subject of an assertion
@@ -84,7 +84,7 @@ namespace Skybound.Gecko
         /// @param aTarget the object of the assertion
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnMove([MarshalAs(UnmanagedType.Interface)] nsIRDFDataSource  aDataSource, [MarshalAs(UnmanagedType.Interface)] nsIRDFResource  aOldSource, [MarshalAs(UnmanagedType.Interface)] nsIRDFResource  aNewSource, [MarshalAs(UnmanagedType.Interface)] nsIRDFResource  aProperty, [MarshalAs(UnmanagedType.Interface)] nsIRDFNode  aTarget);
+		void OnMove([MarshalAs(UnmanagedType.Interface)] nsIRDFDataSource aDataSource, [MarshalAs(UnmanagedType.Interface)] nsIRDFResource aOldSource, [MarshalAs(UnmanagedType.Interface)] nsIRDFResource aNewSource, [MarshalAs(UnmanagedType.Interface)] nsIRDFResource aProperty, [MarshalAs(UnmanagedType.Interface)] nsIRDFNode aTarget);
 		
 		/// <summary>
         /// This method is called when a datasource is about to
@@ -96,7 +96,7 @@ namespace Skybound.Gecko
         /// be issuing the notifications.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnBeginUpdateBatch([MarshalAs(UnmanagedType.Interface)] nsIRDFDataSource  aDataSource);
+		void OnBeginUpdateBatch([MarshalAs(UnmanagedType.Interface)] nsIRDFDataSource aDataSource);
 		
 		/// <summary>
         /// This method is called when a datasource has completed
@@ -105,6 +105,6 @@ namespace Skybound.Gecko
         /// issuing a group of notifications
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnEndUpdateBatch([MarshalAs(UnmanagedType.Interface)] nsIRDFDataSource  aDataSource);
+		void OnEndUpdateBatch([MarshalAs(UnmanagedType.Interface)] nsIRDFDataSource aDataSource);
 	}
 }

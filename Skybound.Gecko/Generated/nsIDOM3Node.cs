@@ -44,7 +44,7 @@ namespace Skybound.Gecko
         /// Introduced in DOM Level 3:
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint CompareDocumentPosition([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  other);
+		uint CompareDocumentPosition([MarshalAs(UnmanagedType.Interface)] nsIDOMNode other);
 		
 		/// <summary>
         /// Introduced in DOM Level 3:
@@ -62,11 +62,12 @@ namespace Skybound.Gecko
         /// Introduced in DOM Level 3:
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsSameNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  other);
+		bool IsSameNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode other);
 		
 		/// <summary>
         /// Introduced in DOM Level 3:
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsAString LookupPrefix([MarshalAs(UnmanagedType.LPStruct)] nsAString namespaceURI);
 		
@@ -79,6 +80,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Introduced in DOM Level 3:
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsAString LookupNamespaceURI([MarshalAs(UnmanagedType.LPStruct)] nsAString prefix);
 		
@@ -86,23 +88,26 @@ namespace Skybound.Gecko
         /// Introduced in DOM Level 3:
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsEqualNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  arg);
+		bool IsEqualNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode arg);
 		
 		/// <summary>
         /// Introduced in DOM Level 3:
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISupports GetFeature([MarshalAs(UnmanagedType.LPStruct)] nsAString feature, [MarshalAs(UnmanagedType.LPStruct)] nsAString version);
 		
 		/// <summary>
         /// Introduced in DOM Level 3:
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant SetUserData([MarshalAs(UnmanagedType.LPStruct)] nsAString key, [MarshalAs(UnmanagedType.Interface)] nsIVariant  data, [MarshalAs(UnmanagedType.Interface)] nsIDOMUserDataHandler  handler);
+		nsIVariant SetUserData([MarshalAs(UnmanagedType.LPStruct)] nsAString key, [MarshalAs(UnmanagedType.Interface)] nsIVariant data, [MarshalAs(UnmanagedType.Interface)] nsIDOMUserDataHandler handler);
 		
 		/// <summary>
         /// Introduced in DOM Level 3:
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIVariant GetUserData([MarshalAs(UnmanagedType.LPStruct)] nsAString key);
 	}

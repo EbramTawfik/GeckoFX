@@ -44,7 +44,7 @@ namespace Skybound.Gecko
         /// @throws NS_ERROR_INVALID_POINTER if null is passed in.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool InputStreamIsBuffered([MarshalAs(UnmanagedType.Interface)] nsIInputStream  aStream);
+		bool InputStreamIsBuffered([MarshalAs(UnmanagedType.Interface)] nsIInputStream aStream);
 		
 		/// <summary>
         /// Test whether an output stream is buffered.  See nsStreamUtils.h
@@ -54,6 +54,6 @@ namespace Skybound.Gecko
         /// @throws NS_ERROR_INVALID_POINTER if null is passed in.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool OutputStreamIsBuffered([MarshalAs(UnmanagedType.Interface)] nsIOutputStream  aStream);
+		bool OutputStreamIsBuffered([MarshalAs(UnmanagedType.Interface)] nsIOutputStream aStream);
 	}
 }

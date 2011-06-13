@@ -43,24 +43,25 @@ namespace Skybound.Gecko
         /// current SHEntry
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetChildCountAttribute();
+		int GetChildCountAttribute();
 		
 		/// <summary>
         /// Add a new child SHEntry.  If offset is -1 adds to the end of the list.
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddChild([MarshalAs(UnmanagedType.Interface)] nsISHEntry  child, System.Int32  offset);
+		void AddChild([MarshalAs(UnmanagedType.Interface)] nsISHEntry child, int offset);
 		
 		/// <summary>
         /// Removes a child SHEntry
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveChild([MarshalAs(UnmanagedType.Interface)] nsISHEntry  child);
+		void RemoveChild([MarshalAs(UnmanagedType.Interface)] nsISHEntry child);
 		
 		/// <summary>
         /// Get child at an index
         ///	 </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISHEntry GetChildAt(System.Int32  index);
+		nsISHEntry GetChildAt(int index);
 	}
 }

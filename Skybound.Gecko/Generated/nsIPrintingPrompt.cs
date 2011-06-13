@@ -48,7 +48,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ShowPrintDialog([MarshalAs(UnmanagedType.Interface)] nsIWebBrowserPrint  webBrowserPrint, [MarshalAs(UnmanagedType.Interface)] nsIPrintSettings  printSettings);
+		void ShowPrintDialog([MarshalAs(UnmanagedType.Interface)] nsIWebBrowserPrint webBrowserPrint, [MarshalAs(UnmanagedType.Interface)] nsIPrintSettings printSettings);
 		
 		/// <summary>
         /// Shows the print progress dialog
@@ -65,7 +65,7 @@ namespace Skybound.Gecko
         /// For Print Preview Progress there is intermediate progress
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ShowProgress([MarshalAs(UnmanagedType.Interface)] nsIWebBrowserPrint  webBrowserPrint, [MarshalAs(UnmanagedType.Interface)] nsIPrintSettings  printSettings, [MarshalAs(UnmanagedType.Interface)] nsIObserver  openDialogObserver, System.Boolean  isForPrinting, [MarshalAs(UnmanagedType.Interface)] out nsIWebProgressListener  webProgressListener, [MarshalAs(UnmanagedType.Interface)] out nsIPrintProgressParams  printProgressParams, out System.Boolean  notifyOnOpen);
+		void ShowProgress([MarshalAs(UnmanagedType.Interface)] nsIWebBrowserPrint webBrowserPrint, [MarshalAs(UnmanagedType.Interface)] nsIPrintSettings printSettings, [MarshalAs(UnmanagedType.Interface)] nsIObserver openDialogObserver, bool isForPrinting, [MarshalAs(UnmanagedType.Interface)] out nsIWebProgressListener webProgressListener, [MarshalAs(UnmanagedType.Interface)] out nsIPrintProgressParams printProgressParams, out bool notifyOnOpen);
 		
 		/// <summary>
         /// Shows the print progress dialog
@@ -76,7 +76,7 @@ namespace Skybound.Gecko
         /// For example, some platforms may implement an "Apply" button (not required)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ShowPageSetup([MarshalAs(UnmanagedType.Interface)] nsIPrintSettings  printSettings, [MarshalAs(UnmanagedType.Interface)] nsIObserver  aObs);
+		void ShowPageSetup([MarshalAs(UnmanagedType.Interface)] nsIPrintSettings printSettings, [MarshalAs(UnmanagedType.Interface)] nsIObserver aObs);
 		
 		/// <summary>
         /// Sometimes platforms need to bring up a special properties dialog for showing
@@ -88,6 +88,6 @@ namespace Skybound.Gecko
         /// @param printSettings - PrintSettings for page setup (required)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ShowPrinterProperties([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string printerName, [MarshalAs(UnmanagedType.Interface)] nsIPrintSettings  printSettings);
+		void ShowPrinterProperties([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string printerName, [MarshalAs(UnmanagedType.Interface)] nsIPrintSettings printSettings);
 	}
 }

@@ -66,7 +66,7 @@ namespace Skybound.Gecko
         ///					receive what they are needing.
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitWindow(System.IntPtr parentNativeWindow, System.IntPtr  parentWidget, System.Int32  x, System.Int32  y, System.Int32  cx, System.Int32  cy);
+		void InitWindow(System.IntPtr parentNativeWindow, System.IntPtr parentWidget, int x, int y, int cx, int cy);
 		
 		/// <summary>
         ///Tells the window that intialization and setup is complete.  When this is
@@ -97,40 +97,40 @@ namespace Skybound.Gecko
         ///	the parent window.
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPosition(System.Int32  x, System.Int32  y);
+		void SetPosition(int x, int y);
 		
 		/// <summary>
         ///Gets the current x and y coordinates of the control.  This is relatie to the
         ///	parent window.
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPosition(out System.Int32  x, out System.Int32  y);
+		void GetPosition(out int x, out int y);
 		
 		/// <summary>
         ///Sets the width and height of the control.
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSize(System.Int32  cx, System.Int32  cy, System.Boolean  fRepaint);
+		void SetSize(int cx, int cy, bool fRepaint);
 		
 		/// <summary>
         ///Gets the width and height of the control.
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSize(out System.Int32  cx, out System.Int32  cy);
+		void GetSize(out int cx, out int cy);
 		
 		/// <summary>
         ///Convenience function combining the SetPosition and SetSize into one call.
         ///	Also is more efficient than calling both.
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPositionAndSize(System.Int32  x, System.Int32  y, System.Int32  cx, System.Int32  cy, System.Boolean  fRepaint);
+		void SetPositionAndSize(int x, int y, int cx, int cy, bool fRepaint);
 		
 		/// <summary>
         ///Convenience function combining the GetPosition and GetSize into one call.
         ///	Also is more efficient than calling both.
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPositionAndSize(out System.Int32  x, out System.Int32  y, out System.Int32  cx, out System.Int32  cy);
+		void GetPositionAndSize(out int x, out int y, out int cx, out int cy);
 		
 		/// <summary>
         /// Tell the window to repaint itself
@@ -138,7 +138,7 @@ namespace Skybound.Gecko
         /// if false, the window may defer repainting as it sees fit.
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Repaint(System.Boolean  force);
+		void Repaint(bool force);
 		
 		/// <summary>
         ///This is the parenting widget for the control.  This may be null if the
@@ -151,7 +151,7 @@ namespace Skybound.Gecko
         ///	NS_ERROR_NOT_IMPLEMENTED error.
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr  GetParentWidgetAttribute();
+		System.IntPtr GetParentWidgetAttribute();
 		
 		/// <summary>
         ///This is the parenting widget for the control.  This may be null if the
@@ -164,7 +164,7 @@ namespace Skybound.Gecko
         ///	NS_ERROR_NOT_IMPLEMENTED error.
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetParentWidgetAttribute(System.IntPtr  aParentWidget);
+		void SetParentWidgetAttribute(System.IntPtr aParentWidget);
 		
 		/// <summary>
         ///This is the native window parent of the control.
@@ -192,7 +192,7 @@ namespace Skybound.Gecko
         ///	true will show it.
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetVisibilityAttribute();
+		bool GetVisibilityAttribute();
 		
 		/// <summary>
         ///Attribute controls the visibility of the object behind this interface.
@@ -200,21 +200,21 @@ namespace Skybound.Gecko
         ///	true will show it.
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetVisibilityAttribute(System.Boolean  aVisibility);
+		void SetVisibilityAttribute(bool aVisibility);
 		
 		/// <summary>
         ///a disabled window should accept no user interaction; it's a dead window,
         ///    like the parent of a modal window.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetEnabledAttribute();
+		bool GetEnabledAttribute();
 		
 		/// <summary>
         ///a disabled window should accept no user interaction; it's a dead window,
         ///    like the parent of a modal window.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetEnabledAttribute(System.Boolean  aEnabled);
+		void SetEnabledAttribute(bool aEnabled);
 		
 		/// <summary>
         ///set blurSuppression to true to suppress handling of blur events.
@@ -223,7 +223,7 @@ namespace Skybound.Gecko
         /// for blur events to be suppressed multiple times.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetBlurSuppressionAttribute();
+		bool GetBlurSuppressionAttribute();
 		
 		/// <summary>
         ///set blurSuppression to true to suppress handling of blur events.
@@ -232,7 +232,7 @@ namespace Skybound.Gecko
         /// for blur events to be suppressed multiple times.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBlurSuppressionAttribute(System.Boolean  aBlurSuppression);
+		void SetBlurSuppressionAttribute(bool aBlurSuppression);
 		
 		/// <summary>
         ///Allows you to find out what the widget is of a given object.  Depending
@@ -240,7 +240,7 @@ namespace Skybound.Gecko
         ///	lives if it has not had to create its own widget.
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr  GetMainWidgetAttribute();
+		System.IntPtr GetMainWidgetAttribute();
 		
 		/// <summary>
         /// Give the window focus.

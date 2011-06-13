@@ -48,7 +48,7 @@ namespace Skybound.Gecko
         /// encoded in (can be NULL)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Start([MarshalAs(UnmanagedType.LPStr)] System.String  characterSet);
+		void Start([MarshalAs(UnmanagedType.LPStr)] string characterSet);
 		
 		/// <summary>
         /// next()
@@ -63,6 +63,6 @@ namespace Skybound.Gecko
         /// @return has more unit in the current text
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Next([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string text, System.Int32  length, System.Int32  pos, System.Boolean  isLastBuffer, out System.Int32  begin, out System.Int32  end);
+		bool Next([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string text, int length, int pos, bool isLastBuffer, out int begin, out int end);
 	}
 }

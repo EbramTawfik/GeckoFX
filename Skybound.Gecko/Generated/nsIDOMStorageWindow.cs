@@ -45,21 +45,21 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMStorage  GetSessionStorageAttribute();
+		nsIDOMStorage GetSessionStorageAttribute();
 		
 		/// <summary>
         /// Global storage, accessible by domain.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMStorageList  GetGlobalStorageAttribute();
+		nsIDOMStorageList GetGlobalStorageAttribute();
 		
 		/// <summary>
         /// Local storage for the current browsing context.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMStorage  GetLocalStorageAttribute();
+		nsIDOMStorage GetLocalStorageAttribute();
 		
 		/// <summary>
         /// Indexed Databases for the current browsing context.
@@ -67,6 +67,6 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIIDBFactory  GetMozIndexedDBAttribute();
+		nsIIDBFactory GetMozIndexedDBAttribute();
 	}
 }

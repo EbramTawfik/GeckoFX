@@ -45,6 +45,6 @@ namespace Skybound.Gecko
 		/// <summary>Member NotifyDocumentStateChanged </summary>
 		/// <param name='nowDirty'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NotifyDocumentStateChanged(System.Boolean  nowDirty);
+		void NotifyDocumentStateChanged(bool nowDirty);
 	}
 }

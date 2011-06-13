@@ -50,6 +50,6 @@ namespace Skybound.Gecko
         /// event's flow and default action.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void HandleEvent([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent  @event);
+		void HandleEvent([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent @event);
 	}
 }

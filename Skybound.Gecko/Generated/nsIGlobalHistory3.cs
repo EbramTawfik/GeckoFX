@@ -52,7 +52,7 @@ namespace Skybound.Gecko
         /// referrer.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void AddURI([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, System.Boolean  aRedirect, System.Boolean  aToplevel, [MarshalAs(UnmanagedType.Interface)] nsIURI  aReferrer);
+		new void AddURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, bool aRedirect, bool aToplevel, [MarshalAs(UnmanagedType.Interface)] nsIURI aReferrer);
 		
 		/// <summary>
         /// Checks to see whether the given URI is in history.
@@ -61,7 +61,7 @@ namespace Skybound.Gecko
         /// @return true if a URI has been visited
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool IsVisited([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI);
+		new bool IsVisited([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 		
 		/// <summary>
         /// Set the page title for the given uri. URIs that are not already in
@@ -71,7 +71,7 @@ namespace Skybound.Gecko
         /// @param aTitle  the page title
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetPageTitle([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString aTitle);
+		new void SetPageTitle([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString aTitle);
 		
 		/// <summary>
         /// Notifies the history system that the page loading via aOldChannel
@@ -103,7 +103,7 @@ namespace Skybound.Gecko
         /// NS_ERROR_NOT_IMPLEMENTED result.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddDocumentRedirect([MarshalAs(UnmanagedType.Interface)] nsIChannel  aOldChannel, [MarshalAs(UnmanagedType.Interface)] nsIChannel  aNewChannel, System.Int32  aFlags, System.Boolean  aTopLevel);
+		void AddDocumentRedirect([MarshalAs(UnmanagedType.Interface)] nsIChannel aOldChannel, [MarshalAs(UnmanagedType.Interface)] nsIChannel aNewChannel, int aFlags, bool aTopLevel);
 		
 		/// <summary>
         /// Get the Gecko flags for this URI. These flags are used by Gecko as hints
@@ -112,13 +112,13 @@ namespace Skybound.Gecko
         /// and should not be interpreted by the history engine.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetURIGeckoFlags([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI);
+		uint GetURIGeckoFlags([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 		
 		/// <summary>
         /// Set the Gecko flags for this URI. May fail if the history entry
         /// doesn't have any flags or if there is no entry for the URI.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetURIGeckoFlags([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, System.UInt32  aFlags);
+		void SetURIGeckoFlags([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, uint aFlags);
 	}
 }

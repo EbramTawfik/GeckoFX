@@ -39,6 +39,7 @@ namespace Skybound.Gecko
         /// in otherwords, the flavors that this converter can convert "from" (the
         /// incoming data to the converter).
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISupportsArray GetInputDataFlavors();
 		
@@ -49,6 +50,7 @@ namespace Skybound.Gecko
         ///
         /// @param  aDataFlavorList fills list with supported flavors
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISupportsArray GetOutputDataFlavors();
 		
@@ -59,7 +61,7 @@ namespace Skybound.Gecko
         /// @param  aFromFormatConverter flavor to convert to
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool CanConvert([MarshalAs(UnmanagedType.LPStr)] System.String  aFromDataFlavor, [MarshalAs(UnmanagedType.LPStr)] System.String  aToDataFlavor);
+		bool CanConvert([MarshalAs(UnmanagedType.LPStr)] string aFromDataFlavor, [MarshalAs(UnmanagedType.LPStr)] string aToDataFlavor);
 		
 		/// <summary>
         /// Converts from one flavor to another.
@@ -69,6 +71,6 @@ namespace Skybound.Gecko
         /// @returns returns NS_OK if it was converted
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Convert([MarshalAs(UnmanagedType.LPStr)] System.String  aFromDataFlavor, [MarshalAs(UnmanagedType.Interface)] nsISupports  aFromData, System.UInt32  aDataLen, [MarshalAs(UnmanagedType.LPStr)] System.String  aToDataFlavor, [MarshalAs(UnmanagedType.Interface)] out nsISupports  aToData, out System.UInt32  aDataToLen);
+		void Convert([MarshalAs(UnmanagedType.LPStr)] string aFromDataFlavor, [MarshalAs(UnmanagedType.Interface)] nsISupports aFromData, uint aDataLen, [MarshalAs(UnmanagedType.LPStr)] string aToDataFlavor, [MarshalAs(UnmanagedType.Interface)] out nsISupports aToData, out uint aDataToLen);
 	}
 }

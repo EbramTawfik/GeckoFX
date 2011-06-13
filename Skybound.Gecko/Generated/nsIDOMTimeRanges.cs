@@ -37,18 +37,18 @@ namespace Skybound.Gecko
 		/// <summary>
         ///The number of ranges represented by the time range object </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetLengthAttribute();
+		uint GetLengthAttribute();
 		
 		/// <summary>
         ///The position of the start of the index'd range, in seconds measured
         ///     from the start of the timeline that this object represents </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double Start(System.UInt32  index);
+		double Start(uint index);
 		
 		/// <summary>
         ///The position of the end of the index'd range, in seconds measured
         ///     from the start of the timeline that this object represents </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double End(System.UInt32  index);
+		double End(uint index);
 	}
 }

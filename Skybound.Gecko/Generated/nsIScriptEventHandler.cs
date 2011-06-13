@@ -48,7 +48,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsSameEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString aObjectName, [MarshalAs(UnmanagedType.LPStruct)] nsAString aEventName, System.UInt32  aArgCount);
+		bool IsSameEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString aObjectName, [MarshalAs(UnmanagedType.LPStruct)] nsAString aEventName, uint aArgCount);
 		
 		/// <summary>
         /// Invoke:
@@ -64,6 +64,6 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Invoke([MarshalAs(UnmanagedType.Interface)] nsISupports  aTargetObject, System.IntPtr  aArgs, System.UInt32  aArgCount);
+		void Invoke([MarshalAs(UnmanagedType.Interface)] nsISupports aTargetObject, System.IntPtr aArgs, uint aArgCount);
 	}
 }

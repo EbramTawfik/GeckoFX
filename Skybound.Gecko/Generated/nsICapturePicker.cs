@@ -45,7 +45,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  parent, [MarshalAs(UnmanagedType.LPStruct)] nsAString title, System.UInt32  mode);
+		void Init([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow parent, [MarshalAs(UnmanagedType.LPStruct)] nsAString title, uint mode);
 		
 		/// <summary>
         /// Show file dialog.  The dialog is displayed modally.
@@ -66,7 +66,7 @@ namespace Skybound.Gecko
         /// true otherwise.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool ModeMayBeAvailable(System.UInt32  mode);
+		bool ModeMayBeAvailable(uint mode);
 		
 		/// <summary>
         /// Get the captured image/video/audio.  This may be a data URI, file URI,
@@ -74,7 +74,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMFile  GetFileAttribute();
+		nsIDOMFile GetFileAttribute();
 		
 		/// <summary>
         /// The MIME type of the captured content.  Cannot be set after calling show()

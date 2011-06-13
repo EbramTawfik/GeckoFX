@@ -39,38 +39,38 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIAutoCompletePopup  GetPopupAttribute();
+		nsIAutoCompletePopup GetPopupAttribute();
 		
 		/// <summary>
         /// The controller.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIAutoCompleteController  GetControllerAttribute();
+		nsIAutoCompleteController GetControllerAttribute();
 		
 		/// <summary>
         /// Indicates if the popup is currently open
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetPopupOpenAttribute();
+		bool GetPopupOpenAttribute();
 		
 		/// <summary>
         /// Indicates if the popup is currently open
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPopupOpenAttribute(System.Boolean  aPopupOpen);
+		void SetPopupOpenAttribute(bool aPopupOpen);
 		
 		/// <summary>
         /// Option to disable autocomplete functionality
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetDisableAutoCompleteAttribute();
+		bool GetDisableAutoCompleteAttribute();
 		
 		/// <summary>
         /// Option to disable autocomplete functionality
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDisableAutoCompleteAttribute(System.Boolean  aDisableAutoComplete);
+		void SetDisableAutoCompleteAttribute(bool aDisableAutoComplete);
 		
 		/// <summary>
         /// If a search result has its defaultIndex set, this will optionally
@@ -78,7 +78,7 @@ namespace Skybound.Gecko
         /// result at the default index as the user types
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetCompleteDefaultIndexAttribute();
+		bool GetCompleteDefaultIndexAttribute();
 		
 		/// <summary>
         /// If a search result has its defaultIndex set, this will optionally
@@ -86,99 +86,99 @@ namespace Skybound.Gecko
         /// result at the default index as the user types
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCompleteDefaultIndexAttribute(System.Boolean  aCompleteDefaultIndex);
+		void SetCompleteDefaultIndexAttribute(bool aCompleteDefaultIndex);
 		
 		/// <summary>
         /// complete text in the textbox as the user selects from the dropdown
         /// options if set to true
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetCompleteSelectedIndexAttribute();
+		bool GetCompleteSelectedIndexAttribute();
 		
 		/// <summary>
         /// complete text in the textbox as the user selects from the dropdown
         /// options if set to true
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCompleteSelectedIndexAttribute(System.Boolean  aCompleteSelectedIndex);
+		void SetCompleteSelectedIndexAttribute(bool aCompleteSelectedIndex);
 		
 		/// <summary>
         /// Option for completing to the default result whenever the user hits
         /// enter or the textbox loses focus
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetForceCompleteAttribute();
+		bool GetForceCompleteAttribute();
 		
 		/// <summary>
         /// Option for completing to the default result whenever the user hits
         /// enter or the textbox loses focus
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetForceCompleteAttribute(System.Boolean  aForceComplete);
+		void SetForceCompleteAttribute(bool aForceComplete);
 		
 		/// <summary>
         /// Option to open the popup only after a certain number of results are available
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetMinResultsForPopupAttribute();
+		uint GetMinResultsForPopupAttribute();
 		
 		/// <summary>
         /// Option to open the popup only after a certain number of results are available
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMinResultsForPopupAttribute(System.UInt32  aMinResultsForPopup);
+		void SetMinResultsForPopupAttribute(uint aMinResultsForPopup);
 		
 		/// <summary>
         /// The maximum number of rows to show in the autocomplete popup.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetMaxRowsAttribute();
+		uint GetMaxRowsAttribute();
 		
 		/// <summary>
         /// The maximum number of rows to show in the autocomplete popup.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMaxRowsAttribute(System.UInt32  aMaxRows);
+		void SetMaxRowsAttribute(uint aMaxRows);
 		
 		/// <summary>
         /// Option to show a second column in the popup which contains
         /// the comment for each autocomplete result
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetShowCommentColumnAttribute();
+		bool GetShowCommentColumnAttribute();
 		
 		/// <summary>
         /// Option to show a second column in the popup which contains
         /// the comment for each autocomplete result
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetShowCommentColumnAttribute(System.Boolean  aShowCommentColumn);
+		void SetShowCommentColumnAttribute(bool aShowCommentColumn);
 		
 		/// <summary>
         /// Option to show a third column in the popup which contains
         /// an additional image for each autocomplete result
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetShowImageColumnAttribute();
+		bool GetShowImageColumnAttribute();
 		
 		/// <summary>
         /// Option to show a third column in the popup which contains
         /// an additional image for each autocomplete result
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetShowImageColumnAttribute(System.Boolean  aShowImageColumn);
+		void SetShowImageColumnAttribute(bool aShowImageColumn);
 		
 		/// <summary>
         /// Number of milliseconds after a keystroke before a search begins
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetTimeoutAttribute();
+		uint GetTimeoutAttribute();
 		
 		/// <summary>
         /// Number of milliseconds after a keystroke before a search begins
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTimeoutAttribute(System.UInt32  aTimeout);
+		void SetTimeoutAttribute(uint aTimeout);
 		
 		/// <summary>
         /// An extra parameter to configure searches with.
@@ -196,13 +196,14 @@ namespace Skybound.Gecko
         /// The number of autocomplete session to search
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetSearchCountAttribute();
+		uint GetSearchCountAttribute();
 		
 		/// <summary>
         /// Get the name of one of the autocomplete search session objects
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetSearchAt(System.UInt32  index);
+		nsAString GetSearchAt(uint index);
 		
 		/// <summary>
         /// The value of text in the autocomplete textbox
@@ -220,19 +221,19 @@ namespace Skybound.Gecko
         /// Report the starting index of the cursor in the textbox
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetSelectionStartAttribute();
+		int GetSelectionStartAttribute();
 		
 		/// <summary>
         /// Report the ending index of the cursor in the textbox
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetSelectionEndAttribute();
+		int GetSelectionEndAttribute();
 		
 		/// <summary>
         /// Select a range of text in the autocomplete textbox
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SelectTextRange(System.Int32  startIndex, System.Int32  endIndex);
+		void SelectTextRange(int startIndex, int endIndex);
 		
 		/// <summary>
         /// Notification that the search has started
@@ -267,6 +268,6 @@ namespace Skybound.Gecko
         /// TRUE: should consume; FALSE: should dispatch.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetConsumeRollupEventAttribute();
+		bool GetConsumeRollupEventAttribute();
 	}
 }

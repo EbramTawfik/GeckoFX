@@ -54,17 +54,17 @@ namespace Skybound.Gecko
         ///					minPos and maxPos.
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetCurScrollPos(System.Int32  scrollOrientation);
+		int GetCurScrollPos(int scrollOrientation);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCurScrollPos(System.Int32  scrollOrientation, System.Int32  curPos);
+		void SetCurScrollPos(int scrollOrientation, int curPos);
 		
 		/// <summary>
         ///This function atomizes the ability to scroll in two dimensions at the same
         ///	time.
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCurScrollPosEx(System.Int32  curHorizontalPos, System.Int32  curVerticalPos);
+		void SetCurScrollPosEx(int curHorizontalPos, int curVerticalPos);
 		
 		/// <summary>
         ///Retrieves or Sets the valid ranges for the thumb.  When maxPos is set to
@@ -74,17 +74,17 @@ namespace Skybound.Gecko
         ///					minPos and maxPos.
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetScrollRange(System.Int32  scrollOrientation, out System.Int32  minPos, out System.Int32  maxPos);
+		void GetScrollRange(int scrollOrientation, out int minPos, out int maxPos);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetScrollRange(System.Int32  scrollOrientation, System.Int32  minPos, System.Int32  maxPos);
+		void SetScrollRange(int scrollOrientation, int minPos, int maxPos);
 		
 		/// <summary>
         ///This function atomizes the ability to set the ranges in two dimensions at
         ///	the same time.
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetScrollRangeEx(System.Int32  minHorizontalPos, System.Int32  maxHorizontalPos, System.Int32  minVerticalPos, System.Int32  maxVerticalPos);
+		void SetScrollRangeEx(int minHorizontalPos, int maxHorizontalPos, int minVerticalPos, int maxVerticalPos);
 		
 		/// <summary>
         ///Retrieves or Set the preferences for the scroll bar.
@@ -93,10 +93,10 @@ namespace Skybound.Gecko
         ///	resetScrollbarPreferences resets current to default
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetDefaultScrollbarPreferences(System.Int32  scrollOrientation);
+		int GetDefaultScrollbarPreferences(int scrollOrientation);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDefaultScrollbarPreferences(System.Int32  scrollOrientation, System.Int32  scrollbarPref);
+		void SetDefaultScrollbarPreferences(int scrollOrientation, int scrollbarPref);
 		
 		/// <summary>
         ///Get information about whether the vertical and horizontal scrollbars are
@@ -105,6 +105,6 @@ namespace Skybound.Gecko
         ///	interested in.
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetScrollbarVisibility(out System.Boolean  verticalVisible, out System.Boolean  horizontalVisible);
+		void GetScrollbarVisibility(out bool verticalVisible, out bool horizontalVisible);
 	}
 }

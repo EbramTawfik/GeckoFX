@@ -60,13 +60,13 @@ namespace Skybound.Gecko
         /// Does the engine provide its own personal dictionary?
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetProvidesPersonalDictionaryAttribute();
+		bool GetProvidesPersonalDictionaryAttribute();
 		
 		/// <summary>
         /// Does the engine provide its own word utils?
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetProvidesWordUtilsAttribute();
+		bool GetProvidesWordUtilsAttribute();
 		
 		/// <summary>
         /// The name of the engine
@@ -86,19 +86,19 @@ namespace Skybound.Gecko
         /// the personal dictionary
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		mozIPersonalDictionary  GetPersonalDictionaryAttribute();
+		mozIPersonalDictionary GetPersonalDictionaryAttribute();
 		
 		/// <summary>
         /// the personal dictionary
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPersonalDictionaryAttribute(mozIPersonalDictionary  aPersonalDictionary);
+		void SetPersonalDictionaryAttribute(mozIPersonalDictionary aPersonalDictionary);
 		
 		/// <summary>
         /// Get the list of dictionaries
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDictionaryList([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler", SizeParamIndex=1)] out string dictionaries, out System.UInt32  count);
+		void GetDictionaryList([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler", SizeParamIndex=1)] out string dictionaries, out uint count);
 		
 		/// <summary>
         /// check a word
@@ -110,6 +110,6 @@ namespace Skybound.Gecko
         /// get a list of suggestions for a misspelled word
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Suggest([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string word, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler", SizeParamIndex=2)] out string suggestions, out System.UInt32  count);
+		void Suggest([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string word, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler", SizeParamIndex=2)] out string suggestions, out uint count);
 	}
 }

@@ -39,24 +39,24 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports  GetCharacterStreamAttribute();
+		nsISupports GetCharacterStreamAttribute();
 		
 		/// <summary>
         /// this attribute may not be available.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCharacterStreamAttribute([MarshalAs(UnmanagedType.Interface)] nsISupports  aCharacterStream);
+		void SetCharacterStreamAttribute([MarshalAs(UnmanagedType.Interface)] nsISupports aCharacterStream);
 		
 		/// <summary>Member GetByteStreamAttribute </summary>
-		/// <returns>A nsIOutputStream </returns>
+		/// <returns>A nsIOutputStream</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIOutputStream  GetByteStreamAttribute();
+		nsIOutputStream GetByteStreamAttribute();
 		
 		/// <summary>Member SetByteStreamAttribute </summary>
 		/// <param name='aByteStream'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetByteStreamAttribute([MarshalAs(UnmanagedType.Interface)] nsIOutputStream  aByteStream);
+		void SetByteStreamAttribute([MarshalAs(UnmanagedType.Interface)] nsIOutputStream aByteStream);
 		
 		/// <summary>Member GetSystemIdAttribute </summary>
 		/// <param name='aSystemId'> </param>

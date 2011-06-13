@@ -68,7 +68,7 @@ namespace Skybound.Gecko
         /// @see nsIContextMenuInfo
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnShowContextMenu(System.UInt32  aContextFlags, [MarshalAs(UnmanagedType.Interface)] nsIContextMenuInfo  aUtils);
+		void OnShowContextMenu(uint aContextFlags, [MarshalAs(UnmanagedType.Interface)] nsIContextMenuInfo aUtils);
 	}
 	
 	/// <summary>
@@ -87,14 +87,14 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEvent  GetMouseEventAttribute();
+		nsIDOMEvent GetMouseEventAttribute();
 		
 		/// <summary>
         /// The DOM node most relevant to the context.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMNode  GetTargetNodeAttribute();
+		nsIDOMNode GetTargetNodeAttribute();
 		
 		/// <summary>
         /// Given the <CODE>CONTEXT_LINK</CODE> flag, <CODE>targetNode</CODE> may not
@@ -113,11 +113,11 @@ namespace Skybound.Gecko
         /// is an image, but for some reason it cannot be returned.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		imgIContainer  GetImageContainerAttribute();
+		imgIContainer GetImageContainerAttribute();
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI  GetImageSrcAttribute();
+		nsIURI GetImageSrcAttribute();
 		
 		/// <summary>
         /// Given the <CODE>CONTEXT_BACKGROUND_IMAGE</CODE> flag, these methods can be
@@ -128,10 +128,10 @@ namespace Skybound.Gecko
         /// background image, but for some reason it cannot be returned.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		imgIContainer  GetBackgroundImageContainerAttribute();
+		imgIContainer GetBackgroundImageContainerAttribute();
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI  GetBackgroundImageSrcAttribute();
+		nsIURI GetBackgroundImageSrcAttribute();
 	}
 }

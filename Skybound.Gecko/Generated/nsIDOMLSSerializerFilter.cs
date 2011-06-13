@@ -38,11 +38,11 @@ namespace Skybound.Gecko
         /// Constants for whatToShow
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new short AcceptNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  n);
+		new short AcceptNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode n);
 		
 		/// <summary>Member GetWhatToShowAttribute </summary>
-		/// <returns>A System.UInt32 </returns>
+		/// <returns>A System.UInt32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetWhatToShowAttribute();
+		uint GetWhatToShowAttribute();
 	}
 }

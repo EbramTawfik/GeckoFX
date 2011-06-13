@@ -39,13 +39,13 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports  GetSecurityInfoAttribute();
+		nsISupports GetSecurityInfoAttribute();
 		
 		/// <summary>
         /// Whether this provider has transferred data.  If it hasn't, its
         /// security info should be ignored.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetHasTransferredDataAttribute();
+		bool GetHasTransferredDataAttribute();
 	}
 }

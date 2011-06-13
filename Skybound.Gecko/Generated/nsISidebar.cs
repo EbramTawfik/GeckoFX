@@ -38,16 +38,16 @@ namespace Skybound.Gecko
 		/// <summary>
         ///The Sidebar API for 3rd parties </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddPanel([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aTitle, [MarshalAs(UnmanagedType.LPStr)] System.String  aContentURL, [MarshalAs(UnmanagedType.LPStr)] System.String  aCustomizeURL);
+		void AddPanel([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aTitle, [MarshalAs(UnmanagedType.LPStr)] string aContentURL, [MarshalAs(UnmanagedType.LPStr)] string aCustomizeURL);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddPersistentPanel([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aTitle, [MarshalAs(UnmanagedType.LPStr)] System.String  aContentURL, [MarshalAs(UnmanagedType.LPStr)] System.String  aCustomizeURL);
+		void AddPersistentPanel([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aTitle, [MarshalAs(UnmanagedType.LPStr)] string aContentURL, [MarshalAs(UnmanagedType.LPStr)] string aCustomizeURL);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddSearchEngine([MarshalAs(UnmanagedType.LPStr)] System.String  engineURL, [MarshalAs(UnmanagedType.LPStr)] System.String  iconURL, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string suggestedTitle, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string suggestedCategory);
+		void AddSearchEngine([MarshalAs(UnmanagedType.LPStr)] string engineURL, [MarshalAs(UnmanagedType.LPStr)] string iconURL, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string suggestedTitle, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string suggestedCategory);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddMicrosummaryGenerator([MarshalAs(UnmanagedType.LPStr)] System.String  generatorURL);
+		void AddMicrosummaryGenerator([MarshalAs(UnmanagedType.LPStr)] string generatorURL);
 	}
 	
 	/// <summary>nsISidebarExternal </summary>
@@ -60,12 +60,12 @@ namespace Skybound.Gecko
 		/// <summary>Member AddSearchProvider </summary>
 		/// <param name='aDescriptionURL'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddSearchProvider([MarshalAs(UnmanagedType.LPStr)] System.String  aDescriptionURL);
+		void AddSearchProvider([MarshalAs(UnmanagedType.LPStr)] string aDescriptionURL);
 		
 		/// <summary>Member IsSearchProviderInstalled </summary>
 		/// <param name='aSearchURL'> </param>
 		/// <returns>A System.UInt32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint IsSearchProviderInstalled([MarshalAs(UnmanagedType.LPStr)] System.String  aSearchURL);
+		uint IsSearchProviderInstalled([MarshalAs(UnmanagedType.LPStr)] string aSearchURL);
 	}
 }

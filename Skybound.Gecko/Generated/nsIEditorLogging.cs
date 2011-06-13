@@ -39,7 +39,7 @@ namespace Skybound.Gecko
         /// @param aLogFile     The file to which the log should be written.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void StartLogging([MarshalAs(UnmanagedType.Interface)] nsIFile  aLogFile);
+		void StartLogging([MarshalAs(UnmanagedType.Interface)] nsIFile aLogFile);
 		
 		/// <summary>
         ///Stop logging.

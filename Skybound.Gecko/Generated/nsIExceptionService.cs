@@ -38,8 +38,9 @@ namespace Skybound.Gecko
 		
 		/// <summary>
         ///Gets an nsIException or returns NULL if not possible. </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIException GetException(System.Int32  result, [MarshalAs(UnmanagedType.Interface)] nsIException  defaultException);
+		nsIException GetException(int result, [MarshalAs(UnmanagedType.Interface)] nsIException defaultException);
 	}
 	
 	/// <summary>
@@ -54,18 +55,20 @@ namespace Skybound.Gecko
 		/// <summary>
         ///Sets (or clears with nsnull) the current error on the this thread. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCurrentException([MarshalAs(UnmanagedType.Interface)] nsIException  error);
+		void SetCurrentException([MarshalAs(UnmanagedType.Interface)] nsIException error);
 		
 		/// <summary>
         ///Gets the current error for the current thread, or NULL if no error </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIException GetCurrentException();
 		
 		/// <summary>
         ///Gets an exception from a registered exception provider..
         ///        This has no effect on the "current exception" </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIException GetExceptionFromProvider(System.Int32  rc, [MarshalAs(UnmanagedType.Interface)] nsIException  defaultException);
+		nsIException GetExceptionFromProvider(int rc, [MarshalAs(UnmanagedType.Interface)] nsIException defaultException);
 	}
 	
 	/// <summary>
@@ -80,24 +83,26 @@ namespace Skybound.Gecko
 		/// <summary>
         ///Sets (or clears with nsnull) the current error on the this thread. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetCurrentException([MarshalAs(UnmanagedType.Interface)] nsIException  error);
+		new void SetCurrentException([MarshalAs(UnmanagedType.Interface)] nsIException error);
 		
 		/// <summary>
         ///Gets the current error for the current thread, or NULL if no error </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIException GetCurrentException();
 		
 		/// <summary>
         ///Gets an exception from a registered exception provider..
         ///        This has no effect on the "current exception" </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIException GetExceptionFromProvider(System.Int32  rc, [MarshalAs(UnmanagedType.Interface)] nsIException  defaultException);
+		new nsIException GetExceptionFromProvider(int rc, [MarshalAs(UnmanagedType.Interface)] nsIException defaultException);
 		
 		/// <summary>
         ///Obtains an exception manager for the current thread. </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIExceptionManager  GetCurrentExceptionManagerAttribute();
+		nsIExceptionManager GetCurrentExceptionManagerAttribute();
 		
 		/// <summary>
         ///Installs an "exception provider" which is capable of
@@ -109,9 +114,9 @@ namespace Skybound.Gecko
         ///        NOTE: This interface must be thread-safe - it will be called
         ///        on whatever thread needs the error translation performed. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RegisterExceptionProvider([MarshalAs(UnmanagedType.Interface)] nsIExceptionProvider  provider, System.UInt32  moduleCode);
+		void RegisterExceptionProvider([MarshalAs(UnmanagedType.Interface)] nsIExceptionProvider provider, uint moduleCode);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UnregisterExceptionProvider([MarshalAs(UnmanagedType.Interface)] nsIExceptionProvider  provider, System.UInt32  moduleCode);
+		void UnregisterExceptionProvider([MarshalAs(UnmanagedType.Interface)] nsIExceptionProvider provider, uint moduleCode);
 	}
 }

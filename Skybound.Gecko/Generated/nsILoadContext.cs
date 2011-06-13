@@ -47,7 +47,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMWindow  GetAssociatedWindowAttribute();
+		nsIDOMWindow GetAssociatedWindowAttribute();
 		
 		/// <summary>
         /// topWindow is the top window which is of same type as associatedWindow.
@@ -57,7 +57,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMWindow  GetTopWindowAttribute();
+		nsIDOMWindow GetTopWindowAttribute();
 		
 		/// <summary>
         /// Check whether the load is happening in a particular type of application.
@@ -69,7 +69,7 @@ namespace Skybound.Gecko
         /// the given app type.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsAppOfType(System.UInt32  appType);
+		bool IsAppOfType(uint appType);
 		
 		/// <summary>
         /// True if the load context is content (as opposed to chrome).  This is
@@ -77,6 +77,6 @@ namespace Skybound.Gecko
         /// on any URIs that might be around.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsContentAttribute();
+		bool GetIsContentAttribute();
 	}
 }

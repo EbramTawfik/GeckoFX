@@ -44,7 +44,7 @@ namespace Skybound.Gecko
         /// @param listener - A listener to notify when the search is complete
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void StartSearch([MarshalAs(UnmanagedType.LPStruct)] nsAString searchString, [MarshalAs(UnmanagedType.LPStruct)] nsAString searchParam, [MarshalAs(UnmanagedType.Interface)] nsIAutoCompleteResult  previousResult, [MarshalAs(UnmanagedType.Interface)] nsIAutoCompleteObserver  listener);
+		void StartSearch([MarshalAs(UnmanagedType.LPStruct)] nsAString searchString, [MarshalAs(UnmanagedType.LPStruct)] nsAString searchParam, [MarshalAs(UnmanagedType.Interface)] nsIAutoCompleteResult previousResult, [MarshalAs(UnmanagedType.Interface)] nsIAutoCompleteObserver listener);
 		
 		/// <summary>
         /// Stop all searches that are in progress
@@ -67,7 +67,7 @@ namespace Skybound.Gecko
         /// @param result - The search result object
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnSearchResult([MarshalAs(UnmanagedType.Interface)] nsIAutoCompleteSearch  search, [MarshalAs(UnmanagedType.Interface)] nsIAutoCompleteResult  result);
+		void OnSearchResult([MarshalAs(UnmanagedType.Interface)] nsIAutoCompleteSearch search, [MarshalAs(UnmanagedType.Interface)] nsIAutoCompleteResult result);
 		
 		/// <summary>
         /// Called to update with new results
@@ -76,6 +76,6 @@ namespace Skybound.Gecko
         /// @param result - The search result object
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnUpdateSearchResult([MarshalAs(UnmanagedType.Interface)] nsIAutoCompleteSearch  search, [MarshalAs(UnmanagedType.Interface)] nsIAutoCompleteResult  result);
+		void OnUpdateSearchResult([MarshalAs(UnmanagedType.Interface)] nsIAutoCompleteSearch search, [MarshalAs(UnmanagedType.Interface)] nsIAutoCompleteResult result);
 	}
 }

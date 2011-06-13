@@ -45,16 +45,16 @@ namespace Skybound.Gecko
 		bool CallMethodNoArgs();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Evaluate([MarshalAs(UnmanagedType.LPStr)] System.String  s);
+		void Evaluate([MarshalAs(UnmanagedType.LPStr)] string s);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int EvaluateAndReturnError(System.Int32  s);
+		int EvaluateAndReturnError(int s);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetJSObject([MarshalAs(UnmanagedType.Interface)] nsIXPCTestCallJS  o);
+		void SetJSObject([MarshalAs(UnmanagedType.Interface)] nsIXPCTestCallJS o);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EvaluateAndEatErrors([MarshalAs(UnmanagedType.LPStr)] System.String  s);
+		void EvaluateAndEatErrors([MarshalAs(UnmanagedType.LPStr)] string s);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void UnscriptableMethod();

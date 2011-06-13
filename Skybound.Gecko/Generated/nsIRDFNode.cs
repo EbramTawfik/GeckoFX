@@ -40,6 +40,6 @@ namespace Skybound.Gecko
         /// Determine if two nodes are identical
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool EqualsNode([MarshalAs(UnmanagedType.Interface)] nsIRDFNode  aNode);
+		bool EqualsNode([MarshalAs(UnmanagedType.Interface)] nsIRDFNode aNode);
 	}
 }

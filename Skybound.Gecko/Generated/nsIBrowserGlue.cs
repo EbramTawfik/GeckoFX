@@ -57,7 +57,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Sanitize([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  aParentWindow);
+		void Sanitize([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aParentWindow);
 		
 		/// <summary>
         /// Add Smart Bookmarks special queries to bookmarks menu and toolbar folder.
@@ -68,6 +68,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Gets the most recent window that's a browser (but not a popup)
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMWindow GetMostRecentBrowserWindow();
 	}

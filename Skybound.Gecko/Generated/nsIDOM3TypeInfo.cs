@@ -49,6 +49,6 @@ namespace Skybound.Gecko
         /// DerivationMethods
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsDerivedFrom([MarshalAs(UnmanagedType.LPStruct)] nsAString typeNamespaceArg, [MarshalAs(UnmanagedType.LPStruct)] nsAString typeNameArg, System.UInt32  derivationMethod);
+		bool IsDerivedFrom([MarshalAs(UnmanagedType.LPStruct)] nsAString typeNamespaceArg, [MarshalAs(UnmanagedType.LPStruct)] nsAString typeNameArg, uint derivationMethod);
 	}
 }

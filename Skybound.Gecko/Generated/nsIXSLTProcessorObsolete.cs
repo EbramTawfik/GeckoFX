@@ -40,6 +40,6 @@ namespace Skybound.Gecko
         /// @deprecated Use nsIXSLTProcessor instead!!
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void TransformDocument([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  aSourceDOM, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode  aStyleDOM, [MarshalAs(UnmanagedType.Interface)] nsIDOMDocument  aOutputDOC, [MarshalAs(UnmanagedType.Interface)] nsISupports  aObserver);
+		void TransformDocument([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aSourceDOM, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aStyleDOM, [MarshalAs(UnmanagedType.Interface)] nsIDOMDocument aOutputDOC, [MarshalAs(UnmanagedType.Interface)] nsISupports aObserver);
 	}
 }

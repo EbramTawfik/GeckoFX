@@ -43,6 +43,6 @@ namespace Skybound.Gecko
         /// @return  one of the enumerated permission actions defined above
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint TestPermission([MarshalAs(UnmanagedType.Interface)] nsIURI  uri);
+		uint TestPermission([MarshalAs(UnmanagedType.Interface)] nsIURI uri);
 	}
 }

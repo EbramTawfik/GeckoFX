@@ -68,10 +68,10 @@ namespace Skybound.Gecko
         /// @see the nsIURILoader class description
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RegisterContentListener([MarshalAs(UnmanagedType.Interface)] nsIURIContentListener  aContentListener);
+		void RegisterContentListener([MarshalAs(UnmanagedType.Interface)] nsIURIContentListener aContentListener);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UnRegisterContentListener([MarshalAs(UnmanagedType.Interface)] nsIURIContentListener  aContentListener);
+		void UnRegisterContentListener([MarshalAs(UnmanagedType.Interface)] nsIURIContentListener aContentListener);
 		
 		/// <summary>
         /// OpenURI requires the following parameters.....
@@ -91,7 +91,7 @@ namespace Skybound.Gecko
         /// <b>Must not be null!</b>
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OpenURI([MarshalAs(UnmanagedType.Interface)] nsIChannel  aChannel, System.Boolean  aIsContentPreferred, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor  aWindowContext);
+		void OpenURI([MarshalAs(UnmanagedType.Interface)] nsIChannel aChannel, bool aIsContentPreferred, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor aWindowContext);
 		
 		/// <summary>
         /// Loads data from a channel. This differs from openURI in that the channel
@@ -128,13 +128,14 @@ namespace Skybound.Gecko
         /// to get at the progress event sink interface.
         /// <b>Must not be null!</b>
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIStreamListener OpenChannel([MarshalAs(UnmanagedType.Interface)] nsIChannel  aChannel, System.UInt32  aFlags, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor  aWindowContext);
+		nsIStreamListener OpenChannel([MarshalAs(UnmanagedType.Interface)] nsIChannel aChannel, uint aFlags, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor aWindowContext);
 		
 		/// <summary>
         /// Stops an in progress load
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Stop([MarshalAs(UnmanagedType.Interface)] nsISupports  aLoadCookie);
+		void Stop([MarshalAs(UnmanagedType.Interface)] nsISupports aLoadCookie);
 	}
 }

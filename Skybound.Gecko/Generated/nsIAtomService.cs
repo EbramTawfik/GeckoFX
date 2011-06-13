@@ -42,6 +42,7 @@ namespace Skybound.Gecko
         /// Version of NS_NewAtom that doesn't require linking against the
         /// XPCOM library.  See nsIAtom.idl.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIAtom GetAtom([MarshalAs(UnmanagedType.LPStruct)] nsAString value);
 		
@@ -49,16 +50,19 @@ namespace Skybound.Gecko
         /// Version of NS_NewPermanentAtom that doesn't require linking against
         /// the XPCOM library.  See nsIAtom.idl.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIAtom GetPermanentAtom([MarshalAs(UnmanagedType.LPStruct)] nsAString value);
 		
 		/// <summary>
         /// Get an atom with a utf8 string.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIAtom GetAtomUTF8([MarshalAs(UnmanagedType.LPStr)] System.String  value);
+		nsIAtom GetAtomUTF8([MarshalAs(UnmanagedType.LPStr)] string value);
 		
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIAtom GetPermanentAtomUTF8([MarshalAs(UnmanagedType.LPStr)] System.String  value);
+		nsIAtom GetPermanentAtomUTF8([MarshalAs(UnmanagedType.LPStr)] string value);
 	}
 }

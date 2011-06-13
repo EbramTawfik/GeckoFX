@@ -37,7 +37,8 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Generate results for a form input autocomplete menu.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIAutoCompleteResult AutoCompleteSearch([MarshalAs(UnmanagedType.Interface)] nsIAutoCompleteResult  aResult, [MarshalAs(UnmanagedType.LPStruct)] nsAString aSearchString, [MarshalAs(UnmanagedType.Interface)] nsIDOMHTMLInputElement  aField);
+		nsIAutoCompleteResult AutoCompleteSearch([MarshalAs(UnmanagedType.Interface)] nsIAutoCompleteResult aResult, [MarshalAs(UnmanagedType.LPStruct)] nsAString aSearchString, [MarshalAs(UnmanagedType.Interface)] nsIDOMHTMLInputElement aField);
 	}
 }

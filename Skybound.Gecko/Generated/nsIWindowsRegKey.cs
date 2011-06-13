@@ -92,7 +92,7 @@ namespace Skybound.Gecko
         /// above.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Open(System.UInt32  rootKey, [MarshalAs(UnmanagedType.LPStruct)] nsAString relPath, System.UInt32  mode);
+		void Open(uint rootKey, [MarshalAs(UnmanagedType.LPStruct)] nsAString relPath, uint mode);
 		
 		/// <summary>
         /// This method opens an existing key or creates a new key.
@@ -110,7 +110,7 @@ namespace Skybound.Gecko
         /// above.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Create(System.UInt32  rootKey, [MarshalAs(UnmanagedType.LPStruct)] nsAString relPath, System.UInt32  mode);
+		void Create(uint rootKey, [MarshalAs(UnmanagedType.LPStruct)] nsAString relPath, uint mode);
 		
 		/// <summary>
         /// This method opens a subkey relative to this key.  This method fails if the
@@ -118,22 +118,24 @@ namespace Skybound.Gecko
         ///
         /// @return nsIWindowsRegKey for the newly opened subkey.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIWindowsRegKey OpenChild([MarshalAs(UnmanagedType.LPStruct)] nsAString relPath, System.UInt32  mode);
+		nsIWindowsRegKey OpenChild([MarshalAs(UnmanagedType.LPStruct)] nsAString relPath, uint mode);
 		
 		/// <summary>
         /// This method opens or creates a subkey relative to this key.
         ///
         /// @return nsIWindowsRegKey for the newly opened or created subkey.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIWindowsRegKey CreateChild([MarshalAs(UnmanagedType.LPStruct)] nsAString relPath, System.UInt32  mode);
+		nsIWindowsRegKey CreateChild([MarshalAs(UnmanagedType.LPStruct)] nsAString relPath, uint mode);
 		
 		/// <summary>
         /// This attribute returns the number of child keys.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetChildCountAttribute();
+		uint GetChildCountAttribute();
 		
 		/// <summary>
         /// This method returns the name of the n'th child key.
@@ -141,8 +143,9 @@ namespace Skybound.Gecko
         /// @param index
         /// The index of the requested child key.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetChildName(System.UInt32  index);
+		nsAString GetChildName(uint index);
 		
 		/// <summary>
         /// This method checks to see if the key has a child by the given name.
@@ -157,7 +160,7 @@ namespace Skybound.Gecko
         /// This attribute returns the number of values under this key.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetValueCountAttribute();
+		uint GetValueCountAttribute();
 		
 		/// <summary>
         /// This method returns the name of the n'th value under this key.
@@ -165,8 +168,9 @@ namespace Skybound.Gecko
         /// @param index
         /// The index of the requested value.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetValueName(System.UInt32  index);
+		nsAString GetValueName(uint index);
 		
 		/// <summary>
         /// This method checks to see if the key has a value by the given name.
@@ -214,6 +218,7 @@ namespace Skybound.Gecko
         /// The name of the value to query.  This parameter can be the empty
         /// string to request the key's default value.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsAString ReadStringValue([MarshalAs(UnmanagedType.LPStruct)] nsAString name);
 		
@@ -245,6 +250,7 @@ namespace Skybound.Gecko
         /// @param name
         /// The name of the value to query.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsAString ReadBinaryValue([MarshalAs(UnmanagedType.LPStruct)] nsAString name);
 		
@@ -271,7 +277,7 @@ namespace Skybound.Gecko
         /// The data for the value to modify.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void WriteIntValue([MarshalAs(UnmanagedType.LPStruct)] nsAString name, System.UInt32  data);
+		void WriteIntValue([MarshalAs(UnmanagedType.LPStruct)] nsAString name, uint data);
 		
 		/// <summary>
         /// This method writes the 64-bit integer contents of the named value.  The
@@ -283,7 +289,7 @@ namespace Skybound.Gecko
         /// The data for the value to modify.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void WriteInt64Value([MarshalAs(UnmanagedType.LPStruct)] nsAString name, System.UInt32  data);
+		void WriteInt64Value([MarshalAs(UnmanagedType.LPStruct)] nsAString name, uint data);
 		
 		/// <summary>
         /// This method writes the binary contents of the named value.  The value will
@@ -302,7 +308,7 @@ namespace Skybound.Gecko
         /// The data for the value to modify.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void WriteBinaryValue([MarshalAs(UnmanagedType.LPStruct)] nsAString name, [MarshalAs(UnmanagedType.LPStruct)] nsAString  data);
+		void WriteBinaryValue([MarshalAs(UnmanagedType.LPStruct)] nsAString name, [MarshalAs(UnmanagedType.LPStruct)] nsAString data);
 		
 		/// <summary>
         /// This method starts watching the key to see if any of its values have
@@ -314,7 +320,7 @@ namespace Skybound.Gecko
         /// Indicates whether or not to also watch child keys.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void StartWatching(System.Boolean  recurse);
+		void StartWatching(bool recurse);
 		
 		/// <summary>
         /// This method stops any watching of the key initiated by a call to

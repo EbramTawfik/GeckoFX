@@ -41,6 +41,6 @@ namespace Skybound.Gecko
         /// Return one of constants declared above.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetAccessibleTypeAttribute();
+		int GetAccessibleTypeAttribute();
 	}
 }

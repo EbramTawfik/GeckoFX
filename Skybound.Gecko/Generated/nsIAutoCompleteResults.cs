@@ -73,27 +73,27 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetClassNameAttribute();
+		string GetClassNameAttribute();
 		
 		/// <summary>
         /// class name used to define some style through
         /// css like the colors, an icon url, etc...
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetClassNameAttribute([MarshalAs(UnmanagedType.LPStr)] System.String  aClassName);
+		void SetClassNameAttribute([MarshalAs(UnmanagedType.LPStr)] string aClassName);
 		
 		/// <summary>
         /// parameter use by the search engine
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports  GetParamAttribute();
+		nsISupports GetParamAttribute();
 		
 		/// <summary>
         /// parameter use by the search engine
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetParamAttribute([MarshalAs(UnmanagedType.Interface)] nsISupports  aParam);
+		void SetParamAttribute([MarshalAs(UnmanagedType.Interface)] nsISupports aParam);
 	}
 	
 	/// <summary>nsIAutoCompleteResults </summary>
@@ -121,39 +121,39 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupportsArray  GetItemsAttribute();
+		nsISupportsArray GetItemsAttribute();
 		
 		/// <summary>
         /// Array of result items (nsIAutoCompleteItem)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetItemsAttribute([MarshalAs(UnmanagedType.Interface)] nsISupportsArray  aItems);
+		void SetItemsAttribute([MarshalAs(UnmanagedType.Interface)] nsISupportsArray aItems);
 		
 		/// <summary>
         /// Index (0 base) of the default item that
         /// will be preselected and displayed
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetDefaultItemIndexAttribute();
+		int GetDefaultItemIndexAttribute();
 		
 		/// <summary>
         /// Index (0 base) of the default item that
         /// will be preselected and displayed
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDefaultItemIndexAttribute(System.Int32  aDefaultItemIndex);
+		void SetDefaultItemIndexAttribute(int aDefaultItemIndex);
 		
 		/// <summary>
         /// param use by the the search engine
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports  GetParamAttribute();
+		nsISupports GetParamAttribute();
 		
 		/// <summary>
         /// param use by the the search engine
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetParamAttribute([MarshalAs(UnmanagedType.Interface)] nsISupports  aParam);
+		void SetParamAttribute([MarshalAs(UnmanagedType.Interface)] nsISupports aParam);
 	}
 }

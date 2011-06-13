@@ -50,7 +50,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetBaseValAttribute();
+		int GetBaseValAttribute();
 		
 		/// <summary>
         /// The nsIDOMSVGAnimatedNumber interface is the interface to an SVG
@@ -61,12 +61,12 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBaseValAttribute(System.Int32  aBaseVal);
+		void SetBaseValAttribute(int aBaseVal);
 		
 		/// <summary>
         /// raises DOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetAnimValAttribute();
+		int GetAnimValAttribute();
 	}
 }

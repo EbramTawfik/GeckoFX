@@ -40,13 +40,13 @@ namespace Skybound.Gecko
         /// This attribute specifies the hostname of the proxy server.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetHostAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aHost);
+		void GetHostAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aHost);
 		
 		/// <summary>
         /// This attribute specifies the port number of the proxy server.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetPortAttribute();
+		int GetPortAttribute();
 		
 		/// <summary>
         /// This attribute specifies the type of the proxy server as an ASCII string.
@@ -62,7 +62,7 @@ namespace Skybound.Gecko
         /// A future version of this interface may define additional types.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aType);
+		void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aType);
 		
 		/// <summary>
         /// This attribute specifies flags that modify the proxy type.  The value of
@@ -70,7 +70,7 @@ namespace Skybound.Gecko
         /// below.  Any undefined bits are reserved for future use.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetFlagsAttribute();
+		uint GetFlagsAttribute();
 		
 		/// <summary>
         /// This attribute specifies the failover timeout in seconds for this proxy.
@@ -79,19 +79,19 @@ namespace Skybound.Gecko
         /// many seconds.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetFailoverTimeoutAttribute();
+		uint GetFailoverTimeoutAttribute();
 		
 		/// <summary>
         /// This attribute specifies the proxy to failover to when this proxy fails.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIProxyInfo  GetFailoverProxyAttribute();
+		nsIProxyInfo GetFailoverProxyAttribute();
 		
 		/// <summary>
         /// This attribute specifies the proxy to failover to when this proxy fails.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFailoverProxyAttribute([MarshalAs(UnmanagedType.Interface)] nsIProxyInfo  aFailoverProxy);
+		void SetFailoverProxyAttribute([MarshalAs(UnmanagedType.Interface)] nsIProxyInfo aFailoverProxy);
 	}
 }

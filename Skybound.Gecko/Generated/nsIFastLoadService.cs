@@ -35,16 +35,16 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetInputStreamAttribute </summary>
-		/// <returns>A nsIInputStream </returns>
+		/// <returns>A nsIInputStream</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIInputStream  GetInputStreamAttribute();
+		nsIInputStream GetInputStreamAttribute();
 		
 		/// <summary>Member GetOutputStreamAttribute </summary>
-		/// <returns>A nsIOutputStream </returns>
+		/// <returns>A nsIOutputStream</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIOutputStream  GetOutputStreamAttribute();
+		nsIOutputStream GetOutputStreamAttribute();
 		
 		/// <summary>
         /// Causes outputStream to be created in non-truncating mode
@@ -63,60 +63,63 @@ namespace Skybound.Gecko
 		/// <summary>Member NewFastLoadFile </summary>
 		/// <param name='aBaseName'> </param>
 		/// <returns>A nsIFile</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIFile NewFastLoadFile([MarshalAs(UnmanagedType.LPStr)] System.String  aBaseName);
+		nsIFile NewFastLoadFile([MarshalAs(UnmanagedType.LPStr)] string aBaseName);
 		
 		/// <summary>Member NewInputStream </summary>
 		/// <param name='aFile'> </param>
 		/// <returns>A nsIObjectInputStream</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIObjectInputStream NewInputStream([MarshalAs(UnmanagedType.Interface)] nsIFile  aFile);
+		nsIObjectInputStream NewInputStream([MarshalAs(UnmanagedType.Interface)] nsIFile aFile);
 		
 		/// <summary>Member NewOutputStream </summary>
 		/// <param name='aDestStream'> </param>
 		/// <returns>A nsIObjectOutputStream</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIObjectOutputStream NewOutputStream([MarshalAs(UnmanagedType.Interface)] nsIOutputStream  aDestStream);
+		nsIObjectOutputStream NewOutputStream([MarshalAs(UnmanagedType.Interface)] nsIOutputStream aDestStream);
 		
 		/// <summary>
         /// parameter to startMuxedDocument.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIObjectInputStream  GetInputStreamAttribute();
+		nsIObjectInputStream GetInputStreamAttribute();
 		
 		/// <summary>
         /// parameter to startMuxedDocument.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetInputStreamAttribute([MarshalAs(UnmanagedType.Interface)] nsIObjectInputStream  aInputStream);
+		void SetInputStreamAttribute([MarshalAs(UnmanagedType.Interface)] nsIObjectInputStream aInputStream);
 		
 		/// <summary>Member GetOutputStreamAttribute </summary>
-		/// <returns>A nsIObjectOutputStream </returns>
+		/// <returns>A nsIObjectOutputStream</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIObjectOutputStream  GetOutputStreamAttribute();
+		nsIObjectOutputStream GetOutputStreamAttribute();
 		
 		/// <summary>Member SetOutputStreamAttribute </summary>
 		/// <param name='aOutputStream'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOutputStreamAttribute([MarshalAs(UnmanagedType.Interface)] nsIObjectOutputStream  aOutputStream);
+		void SetOutputStreamAttribute([MarshalAs(UnmanagedType.Interface)] nsIObjectOutputStream aOutputStream);
 		
 		/// <summary>Member GetFileIOAttribute </summary>
-		/// <returns>A nsIFastLoadFileIO </returns>
+		/// <returns>A nsIFastLoadFileIO</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIFastLoadFileIO  GetFileIOAttribute();
+		nsIFastLoadFileIO GetFileIOAttribute();
 		
 		/// <summary>Member SetFileIOAttribute </summary>
 		/// <param name='aFileIO'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFileIOAttribute([MarshalAs(UnmanagedType.Interface)] nsIFastLoadFileIO  aFileIO);
+		void SetFileIOAttribute([MarshalAs(UnmanagedType.Interface)] nsIFastLoadFileIO aFileIO);
 		
 		/// <summary>Member GetDirectionAttribute </summary>
-		/// <returns>A System.Int32 </returns>
+		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetDirectionAttribute();
+		int GetDirectionAttribute();
 		
 		/// <summary>
         /// These methods associate a URI object with its spec, for faster select
@@ -134,59 +137,60 @@ namespace Skybound.Gecko
         /// their data to the current output stream.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void StartMuxedDocument([MarshalAs(UnmanagedType.Interface)] nsISupports  aURI, [MarshalAs(UnmanagedType.LPStr)] System.String  aURISpec, System.Int32  aDirectionFlags);
+		void StartMuxedDocument([MarshalAs(UnmanagedType.Interface)] nsISupports aURI, [MarshalAs(UnmanagedType.LPStr)] string aURISpec, int aDirectionFlags);
 		
 		/// <summary>Member SelectMuxedDocument </summary>
 		/// <param name='aURI'> </param>
 		/// <returns>A nsISupports</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports SelectMuxedDocument([MarshalAs(UnmanagedType.Interface)] nsISupports  aURI);
+		nsISupports SelectMuxedDocument([MarshalAs(UnmanagedType.Interface)] nsISupports aURI);
 		
 		/// <summary>Member EndMuxedDocument </summary>
 		/// <param name='aURI'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EndMuxedDocument([MarshalAs(UnmanagedType.Interface)] nsISupports  aURI);
+		void EndMuxedDocument([MarshalAs(UnmanagedType.Interface)] nsISupports aURI);
 		
 		/// <summary>Member AddDependency </summary>
 		/// <param name='aFile'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddDependency([MarshalAs(UnmanagedType.Interface)] nsIFile  aFile);
+		void AddDependency([MarshalAs(UnmanagedType.Interface)] nsIFile aFile);
 		
 		/// <summary>Member ComputeChecksum </summary>
 		/// <param name='aFile'> </param>
 		/// <param name='aControl'> </param>
 		/// <returns>A System.UInt32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint ComputeChecksum([MarshalAs(UnmanagedType.Interface)] nsIFile  aFile, [MarshalAs(UnmanagedType.Interface)] nsIFastLoadReadControl  aControl);
+		uint ComputeChecksum([MarshalAs(UnmanagedType.Interface)] nsIFile aFile, [MarshalAs(UnmanagedType.Interface)] nsIFastLoadReadControl aControl);
 		
 		/// <summary>Member CacheChecksum </summary>
 		/// <param name='aFile'> </param>
 		/// <param name='aStream'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CacheChecksum([MarshalAs(UnmanagedType.Interface)] nsIFile  aFile, [MarshalAs(UnmanagedType.Interface)] nsIObjectOutputStream  aStream);
+		void CacheChecksum([MarshalAs(UnmanagedType.Interface)] nsIFile aFile, [MarshalAs(UnmanagedType.Interface)] nsIObjectOutputStream aStream);
 		
 		/// <summary>Member GetFastLoadReferent </summary>
 		/// <param name='aPtr'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetFastLoadReferent([MarshalAs(UnmanagedType.Interface)] ref nsISupports  aPtr);
+		void GetFastLoadReferent([MarshalAs(UnmanagedType.Interface)] ref nsISupports aPtr);
 		
 		/// <summary>Member ReadFastLoadPtr </summary>
 		/// <param name='aInputStream'> </param>
 		/// <param name='aPtr'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ReadFastLoadPtr([MarshalAs(UnmanagedType.Interface)] nsIObjectInputStream  aInputStream, [MarshalAs(UnmanagedType.Interface)] ref nsISupports  aPtr);
+		void ReadFastLoadPtr([MarshalAs(UnmanagedType.Interface)] nsIObjectInputStream aInputStream, [MarshalAs(UnmanagedType.Interface)] ref nsISupports aPtr);
 		
 		/// <summary>Member WriteFastLoadPtr </summary>
 		/// <param name='aOutputStream'> </param>
 		/// <param name='aPtr'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void WriteFastLoadPtr([MarshalAs(UnmanagedType.Interface)] nsIObjectOutputStream  aOutputStream, [MarshalAs(UnmanagedType.Interface)] nsISupports  aPtr);
+		void WriteFastLoadPtr([MarshalAs(UnmanagedType.Interface)] nsIObjectOutputStream aOutputStream, [MarshalAs(UnmanagedType.Interface)] nsISupports aPtr);
 		
 		/// <summary>
         /// Return true if aURISpec identifies a muxed document in the FastLoad
         /// file, false otherwise.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool HasMuxedDocument([MarshalAs(UnmanagedType.LPStr)] System.String  aURISpec);
+		bool HasMuxedDocument([MarshalAs(UnmanagedType.LPStr)] string aURISpec);
 	}
 }

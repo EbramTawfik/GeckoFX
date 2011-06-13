@@ -38,30 +38,31 @@ namespace Skybound.Gecko
         /// constant for its complete lifetime.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool HandlesAttribute([MarshalAs(UnmanagedType.Interface)] nsIAtom  name);
+		bool HandlesAttribute([MarshalAs(UnmanagedType.Interface)] nsIAtom name);
 		
 		/// <summary>Member SetAttribute </summary>
 		/// <param name='name'> </param>
 		/// <param name='newValue'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAttribute([MarshalAs(UnmanagedType.Interface)] nsIAtom  name, [MarshalAs(UnmanagedType.LPStruct)] nsAString newValue);
+		void SetAttribute([MarshalAs(UnmanagedType.Interface)] nsIAtom name, [MarshalAs(UnmanagedType.LPStruct)] nsAString newValue);
 		
 		/// <summary>Member RemoveAttribute </summary>
 		/// <param name='name'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveAttribute([MarshalAs(UnmanagedType.Interface)] nsIAtom  name);
+		void RemoveAttribute([MarshalAs(UnmanagedType.Interface)] nsIAtom name);
 		
 		/// <summary>
         /// the attribute having no value.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetAttribute([MarshalAs(UnmanagedType.Interface)] nsIAtom  name);
+		nsAString GetAttribute([MarshalAs(UnmanagedType.Interface)] nsIAtom name);
 		
 		/// <summary>Member HasAttribute </summary>
 		/// <param name='name'> </param>
 		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool HasAttribute([MarshalAs(UnmanagedType.Interface)] nsIAtom  name);
+		bool HasAttribute([MarshalAs(UnmanagedType.Interface)] nsIAtom name);
 		
 		/// <summary>Member GetAttributeCount </summary>
 		/// <returns>A System.UInt32</returns>
@@ -71,7 +72,8 @@ namespace Skybound.Gecko
 		/// <summary>
         /// note that this method should return an *atom* not a string.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIAtom GetAttributeNameAt(System.UInt32  index);
+		nsIAtom GetAttributeNameAt(uint index);
 	}
 }

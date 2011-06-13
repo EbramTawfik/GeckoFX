@@ -40,28 +40,28 @@ namespace Skybound.Gecko
         /// Test the 'inout' keyword.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EchoLong(System.Int32  li, out System.Int32  lo);
+		void EchoLong(int li, out int lo);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void EchoShort(short si, out short so);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EchoChar(System.Char  ci, out System.Char  co);
+		void EchoChar(char ci, out char co);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EchoBoolean(System.Boolean  bi, out System.Boolean  bo);
+		void EchoBoolean(bool bi, out bool bo);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EchoOctet(System.IntPtr  oi, out System.IntPtr  oo);
+		void EchoOctet(System.IntPtr oi, out System.IntPtr oo);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EchoLongLong(System.Int32  lli, out System.Int32  llo);
+		void EchoLongLong(int lli, out int llo);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void EchoUnsignedShort(ushort usi, out ushort uso);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EchoUnsignedLong(System.UInt32  uli, out System.UInt32  ulo);
+		void EchoUnsignedLong(uint uli, out uint ulo);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void EchoFloat(double fi, out double fo);
@@ -70,46 +70,46 @@ namespace Skybound.Gecko
 		void EchoDouble(double di, out double dout);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EchoWchar(System.Char  wci, out System.Char  wco);
+		void EchoWchar(char wci, out char wco);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void EchoString([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string wsi, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] out string wso);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EchoPRBool(System.Boolean  bi, out System.Boolean  bo);
+		void EchoPRBool(bool bi, out bool bo);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EchoPRInt32(System.Int32  li, out System.Int32  lo);
+		void EchoPRInt32(int li, out int lo);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EchoPRInt16(System.Int16  li, out System.Int16  lo);
+		void EchoPRInt16(short li, out short lo);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EchoPRInt64(System.Int64  ii, out System.Int64  io);
+		void EchoPRInt64(long ii, out long io);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void EchoPRUint8(byte ii, out byte io);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EchoPRUint16(System.UInt16  ii, out System.UInt16  io);
+		void EchoPRUint16(ushort ii, out ushort io);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EchoPRUint32(System.UInt32  ii, out System.UInt32  io);
+		void EchoPRUint32(uint ii, out uint io);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EchoPRUint32_2(System.UInt32  ii, out System.UInt32  io);
+		void EchoPRUint32_2(uint ii, out uint io);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EchoPRUint64(System.UInt64  ii, out System.UInt64  io);
+		void EchoPRUint64(ulong ii, out ulong io);
 		
 		/// <summary>
         /// compiler
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EchoVoidPtr(System.IntPtr  vsi, out System.IntPtr  vso);
+		void EchoVoidPtr(System.IntPtr vsi, out System.IntPtr vso);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EchoCharPtr(System.IntPtr  csi, out System.IntPtr  cso);
+		void EchoCharPtr(System.IntPtr csi, out System.IntPtr cso);
 		
 		/// <summary>
         ///[noscript] void EchoNsCIDRef( in nsCIDRef ri, out nsCIDRef ro );
@@ -124,7 +124,7 @@ namespace Skybound.Gecko
 		void EchoNsCIDPtr(System.IntPtr pi, out System.IntPtr po);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EchoNsQIResult(System.IntPtr  ri, out System.IntPtr  ro);
+		void EchoNsQIResult(System.IntPtr ri, out System.IntPtr ro);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void EchoVoid();

@@ -41,6 +41,6 @@ namespace Skybound.Gecko
         /// indicate whether feedback is for a long press (vs. short press)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PerformSimpleAction(System.Int32  isLongPress);
+		void PerformSimpleAction(int isLongPress);
 	}
 }

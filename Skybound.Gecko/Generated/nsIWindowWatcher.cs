@@ -77,8 +77,9 @@ namespace Skybound.Gecko
         ///      @note This method may dispatch a "toplevel-window-ready" notification
         ///            via nsIObserverService if the window did not already exist.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMWindow OpenWindow([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  aParent, [MarshalAs(UnmanagedType.LPStr)] System.String  aUrl, [MarshalAs(UnmanagedType.LPStr)] System.String  aName, [MarshalAs(UnmanagedType.LPStr)] System.String  aFeatures, [MarshalAs(UnmanagedType.Interface)] nsISupports  aArguments);
+		nsIDOMWindow OpenWindow([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aParent, [MarshalAs(UnmanagedType.LPStr)] string aUrl, [MarshalAs(UnmanagedType.LPStr)] string aName, [MarshalAs(UnmanagedType.LPStr)] string aFeatures, [MarshalAs(UnmanagedType.Interface)] nsISupports aArguments);
 		
 		/// <summary>
         ///Clients of this service can register themselves to be notified
@@ -95,7 +96,7 @@ namespace Skybound.Gecko
         ///      someData not used.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RegisterNotification([MarshalAs(UnmanagedType.Interface)] nsIObserver  aObserver);
+		void RegisterNotification([MarshalAs(UnmanagedType.Interface)] nsIObserver aObserver);
 		
 		/// <summary>
         ///Clients of this service can register themselves to be notified
@@ -105,7 +106,7 @@ namespace Skybound.Gecko
         ///      @param aObserver the observer to be removed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UnregisterNotification([MarshalAs(UnmanagedType.Interface)] nsIObserver  aObserver);
+		void UnregisterNotification([MarshalAs(UnmanagedType.Interface)] nsIObserver aObserver);
 		
 		/// <summary>
         ///Get an iterator for currently open windows in the order they were opened,
@@ -113,6 +114,7 @@ namespace Skybound.Gecko
         ///      @return an enumerator which will itself return nsISupports objects which
         ///              can be QIed to an nsIDOMWindow
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISimpleEnumerator GetWindowEnumerator();
 		
@@ -121,16 +123,18 @@ namespace Skybound.Gecko
         ///      @param aParent the parent window used for posing alerts. can be null.
         ///      @return a new nsIPrompt object
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIPrompt GetNewPrompter([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  aParent);
+		nsIPrompt GetNewPrompter([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aParent);
 		
 		/// <summary>
         ///Return a newly created nsIAuthPrompt implementation.
         ///      @param aParent the parent window used for posing alerts. can be null.
         ///      @return a new nsIAuthPrompt object
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIAuthPrompt GetNewAuthPrompter([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  aParent);
+		nsIAuthPrompt GetNewAuthPrompter([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aParent);
 		
 		/// <summary>
         ///Set the window creator callback. It must be filled in by the app.
@@ -139,7 +143,7 @@ namespace Skybound.Gecko
         ///                     and window creation capabilities lost.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetWindowCreator([MarshalAs(UnmanagedType.Interface)] nsIWindowCreator  creator);
+		void SetWindowCreator([MarshalAs(UnmanagedType.Interface)] nsIWindowCreator creator);
 		
 		/// <summary>
         ///Retrieve the chrome window mapped to the given DOM window. Window
@@ -150,8 +154,9 @@ namespace Skybound.Gecko
         ///      @param aWindow the DOM window whose chrome window the caller needs
         ///      @return the corresponding chrome window
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIWebBrowserChrome GetChromeForWindow([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  aWindow);
+		nsIWebBrowserChrome GetChromeForWindow([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow);
 		
 		/// <summary>
         ///Retrieve an existing window (or frame).
@@ -163,8 +168,9 @@ namespace Skybound.Gecko
         ///      frame with the given window name. Make sure you understand the
         ///      security implications of this before using this method!
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMWindow GetWindowByName([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aTargetName, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  aCurrentWindow);
+		nsIDOMWindow GetWindowByName([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aTargetName, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aCurrentWindow);
 		
 		/// <summary>
         ///The Watcher serves as a global storage facility for the current active
@@ -176,7 +182,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMWindow  GetActiveWindowAttribute();
+		nsIDOMWindow GetActiveWindowAttribute();
 		
 		/// <summary>
         ///The Watcher serves as a global storage facility for the current active
@@ -187,6 +193,6 @@ namespace Skybound.Gecko
         ///      window.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetActiveWindowAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  aActiveWindow);
+		void SetActiveWindowAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aActiveWindow);
 	}
 }

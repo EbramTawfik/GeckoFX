@@ -35,9 +35,9 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetCountAttribute </summary>
-		/// <returns>A System.Int32 </returns>
+		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetCountAttribute();
+		int GetCountAttribute();
 		
 		/// <summary>Member Peek </summary>
 		/// <returns>A System.IntPtr</returns>
@@ -52,7 +52,7 @@ namespace Skybound.Gecko
 		/// <summary>Member Push </summary>
 		/// <param name='cx'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Push(System.IntPtr  cx);
+		void Push(System.IntPtr cx);
 	}
 	
 	/// <summary>nsIJSContextStackIterator </summary>
@@ -66,7 +66,7 @@ namespace Skybound.Gecko
         /// Resets this iterator to the beginning of this thread's stack.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Reset([MarshalAs(UnmanagedType.Interface)] nsIJSContextStack  stack);
+		void Reset([MarshalAs(UnmanagedType.Interface)] nsIJSContextStack stack);
 		
 		/// <summary>
         /// Returns true if this iterator is at the end of its stack's contexts.
@@ -96,9 +96,9 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetCountAttribute </summary>
-		/// <returns>A System.Int32 </returns>
+		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Int32  GetCountAttribute();
+		new int GetCountAttribute();
 		
 		/// <summary>Member Peek </summary>
 		/// <returns>A System.IntPtr</returns>
@@ -113,16 +113,16 @@ namespace Skybound.Gecko
 		/// <summary>Member Push </summary>
 		/// <param name='cx'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Push(System.IntPtr  cx);
+		new void Push(System.IntPtr cx);
 		
 		/// <summary>
         ///inherits methods of nsIJSContextStack </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr  GetSafeJSContextAttribute();
+		System.IntPtr GetSafeJSContextAttribute();
 		
 		/// <summary>
         ///inherits methods of nsIJSContextStack </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSafeJSContextAttribute(System.IntPtr  aSafeJSContext);
+		void SetSafeJSContextAttribute(System.IntPtr aSafeJSContext);
 	}
 }

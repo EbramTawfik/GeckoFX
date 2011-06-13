@@ -45,14 +45,14 @@ namespace Skybound.Gecko
 		void SetColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aColor);
 		
 		/// <summary>Member GetInvertAttribute </summary>
-		/// <returns>A System.Boolean </returns>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetInvertAttribute();
+		bool GetInvertAttribute();
 		
 		/// <summary>Member SetInvertAttribute </summary>
 		/// <param name='aInvert'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetInvertAttribute(System.Boolean  aInvert);
+		void SetInvertAttribute(bool aInvert);
 		
 		/// <summary>Member GetThicknessAttribute </summary>
 		/// <returns>A System.UInt16</returns>
@@ -67,16 +67,16 @@ namespace Skybound.Gecko
 		/// <summary>Member DrawElementOutline </summary>
 		/// <param name='aElement'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DrawElementOutline([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  aElement);
+		void DrawElementOutline([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement);
 		
 		/// <summary>Member RepaintElement </summary>
 		/// <param name='aElement'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RepaintElement([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  aElement);
+		void RepaintElement([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement);
 		
 		/// <summary>Member ScrollElementIntoView </summary>
 		/// <param name='aElement'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ScrollElementIntoView([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  aElement);
+		void ScrollElementIntoView([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement);
 	}
 }

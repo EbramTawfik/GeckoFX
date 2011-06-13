@@ -53,7 +53,7 @@ namespace Skybound.Gecko
         /// case a default allocator will be used.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init(System.UInt32  segmentSize, System.UInt32  maxSize, [MarshalAs(UnmanagedType.Interface)] nsIMemory  segmentAllocator);
+		void Init(uint segmentSize, uint maxSize, [MarshalAs(UnmanagedType.Interface)] nsIMemory segmentAllocator);
 		
 		/// <summary>
         /// Get a reference to the one and only output stream for this instance.
@@ -62,16 +62,18 @@ namespace Skybound.Gecko
         /// current buffer length.  Calling this method has the side-effect of
         /// truncating the internal buffer to startPosition bytes.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIOutputStream GetOutputStream(System.Int32  startPosition);
+		nsIOutputStream GetOutputStream(int startPosition);
 		
 		/// <summary>
         /// Create a new input stream to read data (written by the singleton output
         /// stream) from the internal buffer.  Multiple, independent input streams
         /// can be created.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIInputStream NewInputStream(System.Int32  startPosition);
+		nsIInputStream NewInputStream(int startPosition);
 		
 		/// <summary>
         /// The length attribute indicates the total number of bytes stored in the
@@ -82,7 +84,7 @@ namespace Skybound.Gecko
         ///
         /// @See #writeInProgress </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetLengthAttribute();
+		uint GetLengthAttribute();
 		
 		/// <summary>
         /// The length attribute indicates the total number of bytes stored in the
@@ -93,12 +95,12 @@ namespace Skybound.Gecko
         ///
         /// @See #writeInProgress </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetLengthAttribute(System.UInt32  aLength);
+		void SetLengthAttribute(uint aLength);
 		
 		/// <summary>
         /// True, when output stream has not yet been Close'ed
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetWriteInProgressAttribute();
+		bool GetWriteInProgressAttribute();
 	}
 }

@@ -123,7 +123,7 @@ namespace Skybound.Gecko
 		/// <summary>Member Reload </summary>
 		/// <param name='forceget'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Reload(System.Boolean  forceget);
+		void Reload(bool forceget);
 		
 		/// <summary>Member Replace </summary>
 		/// <param name='url'> </param>
@@ -137,6 +137,7 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member ToString </summary>
 		/// <returns>A nsAString</returns>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsAString ToString();
 	}

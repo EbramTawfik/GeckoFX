@@ -82,7 +82,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsITaskbarPreviewController  GetControllerAttribute();
+		new nsITaskbarPreviewController GetControllerAttribute();
 		
 		/// <summary>
         /// The controller for this preview. A controller is required to provide
@@ -99,7 +99,7 @@ namespace Skybound.Gecko
         /// @see nsITaskbarPreviewController
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetControllerAttribute([MarshalAs(UnmanagedType.Interface)] nsITaskbarPreviewController  aController);
+		new void SetControllerAttribute([MarshalAs(UnmanagedType.Interface)] nsITaskbarPreviewController aController);
 		
 		/// <summary>
         /// The tooltip displayed above the preview when the user hovers over it
@@ -129,7 +129,7 @@ namespace Skybound.Gecko
         /// Default: false
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Boolean  GetVisibleAttribute();
+		new bool GetVisibleAttribute();
 		
 		/// <summary>
         /// Whether or not the preview is visible.
@@ -143,21 +143,21 @@ namespace Skybound.Gecko
         /// Default: false
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetVisibleAttribute(System.Boolean  aVisible);
+		new void SetVisibleAttribute(bool aVisible);
 		
 		/// <summary>
         /// Gets/sets whether or not the preview is marked active (selected) in the
         /// taskbar.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Boolean  GetActiveAttribute();
+		new bool GetActiveAttribute();
 		
 		/// <summary>
         /// Gets/sets whether or not the preview is marked active (selected) in the
         /// taskbar.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetActiveAttribute(System.Boolean  aActive);
+		new void SetActiveAttribute(bool aActive);
 		
 		/// <summary>
         /// Invalidates the taskbar's cached image of this preview, forcing a redraw
@@ -175,8 +175,9 @@ namespace Skybound.Gecko
         /// @param index The index into the button array. Must be >= 0 and <
         /// MAX_TOOLBAR_BUTTONS.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsITaskbarPreviewButton GetButton(System.UInt32  index);
+		nsITaskbarPreviewButton GetButton(uint index);
 		
 		/// <summary>
         /// Enables/disables custom drawing of thumbnails and previews
@@ -184,7 +185,7 @@ namespace Skybound.Gecko
         /// Default value: false
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetEnableCustomDrawingAttribute();
+		bool GetEnableCustomDrawingAttribute();
 		
 		/// <summary>
         /// Enables/disables custom drawing of thumbnails and previews
@@ -192,6 +193,6 @@ namespace Skybound.Gecko
         /// Default value: false
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetEnableCustomDrawingAttribute(System.Boolean  aEnableCustomDrawing);
+		void SetEnableCustomDrawingAttribute(bool aEnableCustomDrawing);
 	}
 }

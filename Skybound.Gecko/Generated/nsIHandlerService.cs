@@ -41,6 +41,7 @@ namespace Skybound.Gecko
         ///
         /// @returns a list of all handlers in the datastore
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISimpleEnumerator Enumerate();
 		
@@ -88,7 +89,7 @@ namespace Skybound.Gecko
         /// console with XPCOM exception errors.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void FillHandlerInfo([MarshalAs(UnmanagedType.Interface)] nsIHandlerInfo  aHandlerInfo, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aOverrideType);
+		void FillHandlerInfo([MarshalAs(UnmanagedType.Interface)] nsIHandlerInfo aHandlerInfo, [MarshalAs(UnmanagedType.LPStruct)] nsAString aOverrideType);
 		
 		/// <summary>
         /// Save the preferred action, preferred handler, possible handlers, and
@@ -101,7 +102,7 @@ namespace Skybound.Gecko
         /// @param aHandlerInfo  the handler info object
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Store([MarshalAs(UnmanagedType.Interface)] nsIHandlerInfo  aHandlerInfo);
+		void Store([MarshalAs(UnmanagedType.Interface)] nsIHandlerInfo aHandlerInfo);
 		
 		/// <summary>
         /// Whether or not a record for the given handler info object exists
@@ -113,7 +114,7 @@ namespace Skybound.Gecko
         /// @returns whether or not a record exists
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Exists([MarshalAs(UnmanagedType.Interface)] nsIHandlerInfo  aHandlerInfo);
+		bool Exists([MarshalAs(UnmanagedType.Interface)] nsIHandlerInfo aHandlerInfo);
 		
 		/// <summary>
         /// Remove the given handler info object from the datastore.  Deletes all
@@ -124,7 +125,7 @@ namespace Skybound.Gecko
         /// @param aHandlerInfo  the handler info object
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Remove([MarshalAs(UnmanagedType.Interface)] nsIHandlerInfo  aHandlerInfo);
+		void Remove([MarshalAs(UnmanagedType.Interface)] nsIHandlerInfo aHandlerInfo);
 		
 		/// <summary>
         /// Get the MIME type mapped to the given file extension in the datastore.
@@ -141,7 +142,8 @@ namespace Skybound.Gecko
         ///
         /// @returns the MIME type, if any; otherwise returns an empty string ("").
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetTypeFromExtension([MarshalAs(UnmanagedType.LPStruct)] nsAString  aFileExtension);
+		nsAString GetTypeFromExtension([MarshalAs(UnmanagedType.LPStruct)] nsAString aFileExtension);
 	}
 }

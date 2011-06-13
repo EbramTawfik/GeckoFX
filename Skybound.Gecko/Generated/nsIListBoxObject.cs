@@ -52,28 +52,29 @@ namespace Skybound.Gecko
 		/// <summary>Member EnsureIndexIsVisible </summary>
 		/// <param name='rowIndex'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EnsureIndexIsVisible(System.Int32  rowIndex);
+		void EnsureIndexIsVisible(int rowIndex);
 		
 		/// <summary>Member ScrollToIndex </summary>
 		/// <param name='rowIndex'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ScrollToIndex(System.Int32  rowIndex);
+		void ScrollToIndex(int rowIndex);
 		
 		/// <summary>Member ScrollByLines </summary>
 		/// <param name='numLines'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ScrollByLines(System.Int32  numLines);
+		void ScrollByLines(int numLines);
 		
 		/// <summary>Member GetItemAtIndex </summary>
 		/// <param name='index'> </param>
 		/// <returns>A nsIDOMElement</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMElement GetItemAtIndex(System.Int32  index);
+		nsIDOMElement GetItemAtIndex(int index);
 		
 		/// <summary>Member GetIndexOfItem </summary>
 		/// <param name='item'> </param>
 		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetIndexOfItem([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  item);
+		int GetIndexOfItem([MarshalAs(UnmanagedType.Interface)] nsIDOMElement item);
 	}
 }

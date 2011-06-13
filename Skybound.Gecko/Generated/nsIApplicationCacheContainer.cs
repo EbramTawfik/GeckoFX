@@ -43,13 +43,13 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIApplicationCache  GetApplicationCacheAttribute();
+		nsIApplicationCache GetApplicationCacheAttribute();
 		
 		/// <summary>
         /// Interface used by objects that can be associated with an
         /// application cache.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetApplicationCacheAttribute([MarshalAs(UnmanagedType.Interface)] nsIApplicationCache  aApplicationCache);
+		void SetApplicationCacheAttribute([MarshalAs(UnmanagedType.Interface)] nsIApplicationCache aApplicationCache);
 	}
 }

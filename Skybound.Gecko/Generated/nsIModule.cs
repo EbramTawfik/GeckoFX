@@ -49,7 +49,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr  GetClassObject([MarshalAs(UnmanagedType.Interface)] nsIComponentManager  aCompMgr, ref System.Guid aClass, ref System.Guid aIID);
+		System.IntPtr GetClassObject([MarshalAs(UnmanagedType.Interface)] nsIComponentManager aCompMgr, ref System.Guid aClass, ref System.Guid aIID);
 		
 		/// <summary>
         /// One time registration callback
@@ -63,7 +63,7 @@ namespace Skybound.Gecko
         /// @param aType     : Loader Type being used to load this module
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RegisterSelf([MarshalAs(UnmanagedType.Interface)] nsIComponentManager  aCompMgr, [MarshalAs(UnmanagedType.Interface)] nsIFile  aLocation, [MarshalAs(UnmanagedType.LPStr)] System.String  aLoaderStr, [MarshalAs(UnmanagedType.LPStr)] System.String  aType);
+		void RegisterSelf([MarshalAs(UnmanagedType.Interface)] nsIComponentManager aCompMgr, [MarshalAs(UnmanagedType.Interface)] nsIFile aLocation, [MarshalAs(UnmanagedType.LPStr)] string aLoaderStr, [MarshalAs(UnmanagedType.LPStr)] string aType);
 		
 		/// <summary>
         /// One time unregistration callback
@@ -77,7 +77,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UnregisterSelf([MarshalAs(UnmanagedType.Interface)] nsIComponentManager  aCompMgr, [MarshalAs(UnmanagedType.Interface)] nsIFile  aLocation, [MarshalAs(UnmanagedType.LPStr)] System.String  aLoaderStr);
+		void UnregisterSelf([MarshalAs(UnmanagedType.Interface)] nsIComponentManager aCompMgr, [MarshalAs(UnmanagedType.Interface)] nsIFile aLocation, [MarshalAs(UnmanagedType.LPStr)] string aLoaderStr);
 		
 		/// <summary>
         /// Module load management
@@ -93,6 +93,6 @@ namespace Skybound.Gecko
         /// Returning PR_FALSE guaratees that the module won't be unloaded.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool CanUnload([MarshalAs(UnmanagedType.Interface)] nsIComponentManager  aCompMgr);
+		bool CanUnload([MarshalAs(UnmanagedType.Interface)] nsIComponentManager aCompMgr);
 	}
 }

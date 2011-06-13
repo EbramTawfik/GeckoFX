@@ -41,7 +41,7 @@ namespace Skybound.Gecko
         /// cached content).  This attribute defaults to true.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetDoomEntriesIfExpiredAttribute();
+		bool GetDoomEntriesIfExpiredAttribute();
 		
 		/// <summary>
         /// Expired entries will be doomed or evicted if this attribute is set to
@@ -50,7 +50,7 @@ namespace Skybound.Gecko
         /// cached content).  This attribute defaults to true.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDoomEntriesIfExpiredAttribute(System.Boolean  aDoomEntriesIfExpired);
+		void SetDoomEntriesIfExpiredAttribute(bool aDoomEntriesIfExpired);
 		
 		/// <summary>
         /// Synchronous cache access.  This returns a unique descriptor each
@@ -60,8 +60,9 @@ namespace Skybound.Gecko
         /// return NS_ERROR_CACHE_WAIT_FOR_VALIDATION rather than block when another
         /// descriptor has been given WRITE access but hasn't validated the entry yet.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsICacheEntryDescriptor OpenCacheEntry([MarshalAs(UnmanagedType.LPStruct)] nsAString  key, System.IntPtr accessRequested, System.Boolean  blockingMode);
+		nsICacheEntryDescriptor OpenCacheEntry([MarshalAs(UnmanagedType.LPStruct)] nsAString key, System.IntPtr accessRequested, bool blockingMode);
 		
 		/// <summary>
         /// Asynchronous cache access. Does not block the calling thread.
@@ -69,7 +70,7 @@ namespace Skybound.Gecko
         /// available.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AsyncOpenCacheEntry([MarshalAs(UnmanagedType.LPStruct)] nsAString  key, System.IntPtr accessRequested, [MarshalAs(UnmanagedType.Interface)] nsICacheListener  listener);
+		void AsyncOpenCacheEntry([MarshalAs(UnmanagedType.LPStruct)] nsAString key, System.IntPtr accessRequested, [MarshalAs(UnmanagedType.Interface)] nsICacheListener listener);
 		
 		/// <summary>
         /// Evict all entries for this session's clientID according to its storagePolicy.

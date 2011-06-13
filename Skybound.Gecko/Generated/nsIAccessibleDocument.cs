@@ -74,18 +74,19 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDocument  GetDOMDocumentAttribute();
+		nsIDOMDocument GetDOMDocumentAttribute();
 		
 		/// <summary>
         /// The nsIDOMWindow that the document resides in.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMWindow  GetWindowAttribute();
+		nsIDOMWindow GetWindowAttribute();
 		
 		/// <summary>
         /// The namespace for each ID that is handed back.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsAString GetNameSpaceURIForID(short nameSpaceID);
 		
@@ -94,25 +95,26 @@ namespace Skybound.Gecko
         /// For example, in Windows you can static cast it to an HWND.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr  GetWindowHandleAttribute();
+		System.IntPtr GetWindowHandleAttribute();
 		
 		/// <summary>
         /// Return the parent document accessible.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIAccessibleDocument  GetParentDocumentAttribute();
+		nsIAccessibleDocument GetParentDocumentAttribute();
 		
 		/// <summary>
         /// Return the count of child document accessibles.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetChildDocumentCountAttribute();
+		uint GetChildDocumentCountAttribute();
 		
 		/// <summary>
         /// Return the child document accessible at the given index.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIAccessibleDocument GetChildDocumentAt(System.UInt32  index);
+		nsIAccessibleDocument GetChildDocumentAt(uint index);
 	}
 }

@@ -54,7 +54,7 @@ namespace Skybound.Gecko
         /// @param  aDataLen the length of the data
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetFlavorData([MarshalAs(UnmanagedType.Interface)] nsITransferable  aTransferable, [MarshalAs(UnmanagedType.LPStr)] System.String  aFlavor, [MarshalAs(UnmanagedType.Interface)] out nsISupports  aData, out System.UInt32  aDataLen);
+		void GetFlavorData([MarshalAs(UnmanagedType.Interface)] nsITransferable aTransferable, [MarshalAs(UnmanagedType.LPStr)] string aFlavor, [MarshalAs(UnmanagedType.Interface)] out nsISupports aData, out uint aDataLen);
 	}
 	
 	/// <summary>nsITransferable </summary>
@@ -71,6 +71,7 @@ namespace Skybound.Gecko
         /// @param  aDataFlavorList fills list with supported flavors. This is a copy of
         /// the internal list, so it may be edited w/out affecting the transferable.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISupportsArray FlavorsTransferableCanExport();
 		
@@ -82,7 +83,7 @@ namespace Skybound.Gecko
         /// @param  aDataLen the length of the data
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTransferData([MarshalAs(UnmanagedType.LPStr)] System.String  aFlavor, [MarshalAs(UnmanagedType.Interface)] out nsISupports  aData, out System.UInt32  aDataLen);
+		void GetTransferData([MarshalAs(UnmanagedType.LPStr)] string aFlavor, [MarshalAs(UnmanagedType.Interface)] out nsISupports aData, out uint aDataLen);
 		
 		/// <summary>
         /// Returns the best flavor in the transferable, given those that have
@@ -93,7 +94,7 @@ namespace Skybound.Gecko
         /// @param  aDataLen the length of the data
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetAnyTransferData([MarshalAs(UnmanagedType.LPStr)] out System.String  aFlavor, [MarshalAs(UnmanagedType.Interface)] out nsISupports  aData, out System.UInt32  aDataLen);
+		void GetAnyTransferData([MarshalAs(UnmanagedType.LPStr)] out string aFlavor, [MarshalAs(UnmanagedType.Interface)] out nsISupports aData, out uint aDataLen);
 		
 		/// <summary>
         /// Returns true if the data is large.
@@ -108,6 +109,7 @@ namespace Skybound.Gecko
         /// @param  outFlavorList fills list with supported flavors. This is a copy of
         /// the internal list, so it may be edited w/out affecting the transferable.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISupportsArray FlavorsTransferableCanImport();
 		
@@ -121,7 +123,7 @@ namespace Skybound.Gecko
         /// @param  aDataLen the length of the data, or 0 if passing a nsIFlavorDataProvider
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTransferData([MarshalAs(UnmanagedType.LPStr)] System.String  aFlavor, [MarshalAs(UnmanagedType.Interface)] nsISupports  aData, System.UInt32  aDataLen);
+		void SetTransferData([MarshalAs(UnmanagedType.LPStr)] string aFlavor, [MarshalAs(UnmanagedType.Interface)] nsISupports aData, uint aDataLen);
 		
 		/// <summary>
         /// Add the data flavor, indicating that this transferable
@@ -130,7 +132,7 @@ namespace Skybound.Gecko
         /// @param  aDataFlavor a new data flavor to handle
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddDataFlavor([MarshalAs(UnmanagedType.LPStr)] System.String  aDataFlavor);
+		void AddDataFlavor([MarshalAs(UnmanagedType.LPStr)] string aDataFlavor);
 		
 		/// <summary>
         /// Removes the data flavor matching the given one (string compare) and the data
@@ -139,17 +141,17 @@ namespace Skybound.Gecko
         /// @param  aDataFlavor a data flavor to remove
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveDataFlavor([MarshalAs(UnmanagedType.LPStr)] System.String  aDataFlavor);
+		void RemoveDataFlavor([MarshalAs(UnmanagedType.LPStr)] string aDataFlavor);
 		
 		/// <summary>Member GetConverterAttribute </summary>
-		/// <returns>A nsIFormatConverter </returns>
+		/// <returns>A nsIFormatConverter</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIFormatConverter  GetConverterAttribute();
+		nsIFormatConverter GetConverterAttribute();
 		
 		/// <summary>Member SetConverterAttribute </summary>
 		/// <param name='aConverter'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetConverterAttribute([MarshalAs(UnmanagedType.Interface)] nsIFormatConverter  aConverter);
+		void SetConverterAttribute([MarshalAs(UnmanagedType.Interface)] nsIFormatConverter aConverter);
 	}
 }

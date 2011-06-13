@@ -70,24 +70,24 @@ namespace Skybound.Gecko
         /// its implementation is a no-op
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetResizable(System.Boolean  resizable);
+		void SetResizable(bool resizable);
 		
 		/// <summary>
         /// @deprecated These are old Netscape 4 methods. Do not use,
         /// the implementation is no-op.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CaptureEvents(System.Int32  eventFlags);
+		void CaptureEvents(int eventFlags);
 		
 		/// <summary>Member ReleaseEvents </summary>
 		/// <param name='eventFlags'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ReleaseEvents(System.Int32  eventFlags);
+		void ReleaseEvents(int eventFlags);
 		
 		/// <summary>Member RouteEvent </summary>
 		/// <param name='evt'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RouteEvent([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent  evt);
+		void RouteEvent([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent evt);
 		
 		/// <summary>Member EnableExternalCapture </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -107,6 +107,7 @@ namespace Skybound.Gecko
         ///
         /// IOW, DO NOT CALL THIS FROM C++
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMWindow Open([MarshalAs(UnmanagedType.LPStruct)] nsAString url, [MarshalAs(UnmanagedType.LPStruct)] nsAString name, [MarshalAs(UnmanagedType.LPStruct)] nsAString options);
 		
@@ -116,6 +117,7 @@ namespace Skybound.Gecko
         /// arguments, plus any additional arguments are passed on as
         /// arguments on the dialog's window object (window.arguments).
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMWindow OpenDialog([MarshalAs(UnmanagedType.LPStruct)] nsAString url, [MarshalAs(UnmanagedType.LPStruct)] nsAString name, [MarshalAs(UnmanagedType.LPStruct)] nsAString options);
 		
@@ -129,6 +131,6 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMWindow  GetFramesAttribute();
+		nsIDOMWindow GetFramesAttribute();
 	}
 }

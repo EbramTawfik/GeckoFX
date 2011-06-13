@@ -48,7 +48,7 @@ namespace Skybound.Gecko
         /// e.g., www.mozilla.org --> rheet.mozilla.org
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCanonicalNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aCanonicalName);
+		void GetCanonicalNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aCanonicalName);
 		
 		/// <summary>
         /// this function copies the value of the next IP address into the
@@ -61,7 +61,7 @@ namespace Skybound.Gecko
         /// the record.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetNextAddr(System.UInt16  aPort);
+		System.IntPtr GetNextAddr(ushort aPort);
 		
 		/// <summary>
         /// this function returns the value of the next IP address as a
@@ -70,6 +70,7 @@ namespace Skybound.Gecko
         /// @throws NS_ERROR_NOT_AVAILABLE if there is not another IP address in
         /// the record.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsAString GetNextAddrAsString();
 		

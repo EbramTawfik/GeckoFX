@@ -55,13 +55,13 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMCSSStyleSheet  GetParentStyleSheetAttribute();
+		new nsIDOMCSSStyleSheet GetParentStyleSheetAttribute();
 		
 		/// <summary>Member GetParentRuleAttribute </summary>
-		/// <returns>A nsIDOMCSSRule </returns>
+		/// <returns>A nsIDOMCSSRule</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMCSSRule  GetParentRuleAttribute();
+		new nsIDOMCSSRule GetParentRuleAttribute();
 		
 		/// <summary>Member GetHrefAttribute </summary>
 		/// <param name='aHref'> </param>
@@ -69,15 +69,15 @@ namespace Skybound.Gecko
 		void GetHrefAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aHref);
 		
 		/// <summary>Member GetMediaAttribute </summary>
-		/// <returns>A nsIDOMMediaList </returns>
+		/// <returns>A nsIDOMMediaList</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMMediaList  GetMediaAttribute();
+		nsIDOMMediaList GetMediaAttribute();
 		
 		/// <summary>Member GetStyleSheetAttribute </summary>
-		/// <returns>A nsIDOMCSSStyleSheet </returns>
+		/// <returns>A nsIDOMCSSStyleSheet</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMCSSStyleSheet  GetStyleSheetAttribute();
+		nsIDOMCSSStyleSheet GetStyleSheetAttribute();
 	}
 }

@@ -47,6 +47,7 @@ namespace Skybound.Gecko
         /// @param aHostNameWithPort The host:port whose entry should be tested
         /// @return null or a recently seen bad ssl status with cert
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISSLStatus GetRecentBadCert([MarshalAs(UnmanagedType.LPStruct)] nsAString aHostNameWithPort);
 		
@@ -59,6 +60,6 @@ namespace Skybound.Gecko
         /// @param aCert The bad ssl status with certificate
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddBadCert([MarshalAs(UnmanagedType.LPStruct)] nsAString aHostNameWithPort, [MarshalAs(UnmanagedType.Interface)] nsISSLStatus  aStatus);
+		void AddBadCert([MarshalAs(UnmanagedType.LPStruct)] nsAString aHostNameWithPort, [MarshalAs(UnmanagedType.Interface)] nsISSLStatus aStatus);
 	}
 }

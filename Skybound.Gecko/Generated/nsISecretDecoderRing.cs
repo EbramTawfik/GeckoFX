@@ -42,7 +42,7 @@ namespace Skybound.Gecko
         /// @return The length of the data in the output buffer.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int Encrypt(System.IntPtr  data, System.Int32  dataLen, out System.IntPtr  result);
+		int Encrypt(System.IntPtr data, int dataLen, out System.IntPtr result);
 		
 		/// <summary>
         /// Decrypt a buffer - callable only from C++.
@@ -50,20 +50,22 @@ namespace Skybound.Gecko
         /// @return The length of the data in the output buffer.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int Decrypt(System.IntPtr  data, System.Int32  dataLen, out System.IntPtr  result);
+		int Decrypt(System.IntPtr data, int dataLen, out System.IntPtr result);
 		
 		/// <summary>
         /// Encrypt nul-terminated string to BASE64 output.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string EncryptString([MarshalAs(UnmanagedType.LPStr)] System.String  text);
+		string EncryptString([MarshalAs(UnmanagedType.LPStr)] string text);
 		
 		/// <summary>
         /// Decrypt BASE64 input to nul-terminated string output.  There is
         /// no check for embedded nul values in the decrypted output.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string DecryptString([MarshalAs(UnmanagedType.LPStr)] System.String  crypt);
+		string DecryptString([MarshalAs(UnmanagedType.LPStr)] string crypt);
 		
 		/// <summary>
         /// Prompt the user to change the password on the SDR key.
@@ -102,6 +104,6 @@ namespace Skybound.Gecko
         /// used as parent for dialog windows (such as password prompts)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetWindow([MarshalAs(UnmanagedType.Interface)] nsISupports  w);
+		void SetWindow([MarshalAs(UnmanagedType.Interface)] nsISupports w);
 	}
 }

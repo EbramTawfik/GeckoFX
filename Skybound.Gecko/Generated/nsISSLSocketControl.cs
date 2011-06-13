@@ -35,15 +35,15 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetNotificationCallbacksAttribute </summary>
-		/// <returns>A nsIInterfaceRequestor </returns>
+		/// <returns>A nsIInterfaceRequestor</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIInterfaceRequestor  GetNotificationCallbacksAttribute();
+		nsIInterfaceRequestor GetNotificationCallbacksAttribute();
 		
 		/// <summary>Member SetNotificationCallbacksAttribute </summary>
 		/// <param name='aNotificationCallbacks'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetNotificationCallbacksAttribute([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor  aNotificationCallbacks);
+		void SetNotificationCallbacksAttribute([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor aNotificationCallbacks);
 		
 		/// <summary>Member ProxyStartSSL </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

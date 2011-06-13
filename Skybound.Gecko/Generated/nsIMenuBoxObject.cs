@@ -37,24 +37,24 @@ namespace Skybound.Gecko
 		/// <summary>Member OpenMenu </summary>
 		/// <param name='openFlag'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OpenMenu(System.Boolean  openFlag);
+		void OpenMenu(bool openFlag);
 		
 		/// <summary>Member GetActiveChildAttribute </summary>
-		/// <returns>A nsIDOMElement </returns>
+		/// <returns>A nsIDOMElement</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMElement  GetActiveChildAttribute();
+		nsIDOMElement GetActiveChildAttribute();
 		
 		/// <summary>Member SetActiveChildAttribute </summary>
 		/// <param name='aActiveChild'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetActiveChildAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  aActiveChild);
+		void SetActiveChildAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aActiveChild);
 		
 		/// <summary>Member HandleKeyPress </summary>
 		/// <param name='keyEvent'> </param>
 		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool HandleKeyPress([MarshalAs(UnmanagedType.Interface)] nsIDOMKeyEvent  keyEvent);
+		bool HandleKeyPress([MarshalAs(UnmanagedType.Interface)] nsIDOMKeyEvent keyEvent);
 	}
 	
 	/// <summary>
@@ -70,6 +70,6 @@ namespace Skybound.Gecko
         /// true if the menu or menubar was opened via a keypress.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetOpenedWithKeyAttribute();
+		bool GetOpenedWithKeyAttribute();
 	}
 }

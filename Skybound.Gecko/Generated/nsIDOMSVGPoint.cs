@@ -59,7 +59,8 @@ namespace Skybound.Gecko
 		/// <summary>
         /// raises DOMException on setting
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMSVGPoint MatrixTransform([MarshalAs(UnmanagedType.Interface)] nsIDOMSVGMatrix  matrix);
+		nsIDOMSVGPoint MatrixTransform([MarshalAs(UnmanagedType.Interface)] nsIDOMSVGMatrix matrix);
 	}
 }

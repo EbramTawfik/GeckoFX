@@ -57,6 +57,6 @@ namespace Skybound.Gecko
         /// nsIGlobalHistory and friends.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddDownload([MarshalAs(UnmanagedType.Interface)] nsIURI  aSource, [MarshalAs(UnmanagedType.Interface)] nsIURI  aReferrer, System.UInt32  aStartTime);
+		void AddDownload([MarshalAs(UnmanagedType.Interface)] nsIURI aSource, [MarshalAs(UnmanagedType.Interface)] nsIURI aReferrer, uint aStartTime);
 	}
 }

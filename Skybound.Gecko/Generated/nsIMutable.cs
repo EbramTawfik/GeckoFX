@@ -44,7 +44,7 @@ namespace Skybound.Gecko
         /// NS_ERROR_INVALID_ARG.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetMutableAttribute();
+		bool GetMutableAttribute();
 		
 		/// <summary>
         /// Control whether or not this object can be modified.  If the flag is
@@ -53,6 +53,6 @@ namespace Skybound.Gecko
         /// NS_ERROR_INVALID_ARG.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMutableAttribute(System.Boolean  aMutable);
+		void SetMutableAttribute(bool aMutable);
 	}
 }

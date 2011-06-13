@@ -52,7 +52,7 @@ namespace Skybound.Gecko
         /// a case it is loaded from this object stored in nsIChannel.securityInfo.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetCountSubRequestsHighSecurityAttribute();
+		int GetCountSubRequestsHighSecurityAttribute();
 		
 		/// <summary>
         /// This interface is used to cache associated (sub) content security
@@ -64,25 +64,25 @@ namespace Skybound.Gecko
         /// a case it is loaded from this object stored in nsIChannel.securityInfo.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCountSubRequestsHighSecurityAttribute(System.Int32  aCountSubRequestsHighSecurity);
+		void SetCountSubRequestsHighSecurityAttribute(int aCountSubRequestsHighSecurity);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetCountSubRequestsLowSecurityAttribute();
+		int GetCountSubRequestsLowSecurityAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCountSubRequestsLowSecurityAttribute(System.Int32  aCountSubRequestsLowSecurity);
+		void SetCountSubRequestsLowSecurityAttribute(int aCountSubRequestsLowSecurity);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetCountSubRequestsBrokenSecurityAttribute();
+		int GetCountSubRequestsBrokenSecurityAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCountSubRequestsBrokenSecurityAttribute(System.Int32  aCountSubRequestsBrokenSecurity);
+		void SetCountSubRequestsBrokenSecurityAttribute(int aCountSubRequestsBrokenSecurity);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetCountSubRequestsNoSecurityAttribute();
+		int GetCountSubRequestsNoSecurityAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCountSubRequestsNoSecurityAttribute(System.Int32  aCountSubRequestsNoSecurity);
+		void SetCountSubRequestsNoSecurityAttribute(int aCountSubRequestsNoSecurity);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Flush();

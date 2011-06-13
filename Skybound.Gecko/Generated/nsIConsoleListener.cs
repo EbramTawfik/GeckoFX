@@ -40,6 +40,6 @@ namespace Skybound.Gecko
         /// Used by the console service to notify listeners of new console messages.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Observe([MarshalAs(UnmanagedType.Interface)] nsIConsoleMessage  aMessage);
+		void Observe([MarshalAs(UnmanagedType.Interface)] nsIConsoleMessage aMessage);
 	}
 }

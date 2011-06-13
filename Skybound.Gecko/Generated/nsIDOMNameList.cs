@@ -39,14 +39,16 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Corresponds to http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetName(System.UInt32  index);
+		nsAString GetName(uint index);
+		
+		[return: MarshalAs(UnmanagedType.LPStruct)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsAString GetNamespaceURI(uint index);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetNamespaceURI(System.UInt32  index);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetLengthAttribute();
+		uint GetLengthAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool Contains([MarshalAs(UnmanagedType.LPStruct)] nsAString str);

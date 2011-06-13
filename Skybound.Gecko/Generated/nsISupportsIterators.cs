@@ -47,7 +47,7 @@ namespace Skybound.Gecko
         /// @param anElementToPut the element to place into the underlying container or sequence
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PutElement([MarshalAs(UnmanagedType.Interface)] nsISupports  anElementToPut);
+		void PutElement([MarshalAs(UnmanagedType.Interface)] nsISupports anElementToPut);
 		
 		/// <summary>
         /// Advance this iterator to the next position in the underlying container or sequence.
@@ -73,6 +73,7 @@ namespace Skybound.Gecko
         ///
         /// @result a new reference to the element this iterator currently points to (if any)
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISupports GetElement();
 		
@@ -91,7 +92,7 @@ namespace Skybound.Gecko
         /// @result true if |anotherIterator| points to the same position in the underlying container or sequence
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsEqualTo([MarshalAs(UnmanagedType.Interface)] nsISupports  anotherIterator);
+		bool IsEqualTo([MarshalAs(UnmanagedType.Interface)] nsISupports anotherIterator);
 		
 		/// <summary>
         /// Create a new iterator pointing to the same position in the underlying container or sequence to which this iterator currently points.
@@ -99,6 +100,7 @@ namespace Skybound.Gecko
         ///
         /// @result a new iterator pointing at the same position in the same underlying container or sequence as this iterator
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISupports Clone();
 	}
@@ -120,6 +122,7 @@ namespace Skybound.Gecko
         ///
         /// @result a new reference to the element this iterator currently points to (if any)
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISupports GetElement();
 		
@@ -134,7 +137,7 @@ namespace Skybound.Gecko
         /// @param anElementToPut the element to place into the underlying container or sequence
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PutElement([MarshalAs(UnmanagedType.Interface)] nsISupports  anElementToPut);
+		void PutElement([MarshalAs(UnmanagedType.Interface)] nsISupports anElementToPut);
 		
 		/// <summary>
         /// Advance this iterator to the next position in the underlying container or sequence.
@@ -151,7 +154,7 @@ namespace Skybound.Gecko
         /// @result true if |anotherIterator| points to the same position in the underlying container or sequence
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsEqualTo([MarshalAs(UnmanagedType.Interface)] nsISupports  anotherIterator);
+		bool IsEqualTo([MarshalAs(UnmanagedType.Interface)] nsISupports anotherIterator);
 		
 		/// <summary>
         /// Create a new iterator pointing to the same position in the underlying container or sequence to which this iterator currently points.
@@ -159,6 +162,7 @@ namespace Skybound.Gecko
         ///
         /// @result a new iterator pointing at the same position in the same underlying container or sequence as this iterator
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISupports Clone();
 	}
@@ -180,6 +184,7 @@ namespace Skybound.Gecko
         ///
         /// @result a new reference to the element this iterator currently points to (if any)
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISupports GetElement();
 		
@@ -194,7 +199,7 @@ namespace Skybound.Gecko
         /// @param anElementToPut the element to place into the underlying container or sequence
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PutElement([MarshalAs(UnmanagedType.Interface)] nsISupports  anElementToPut);
+		void PutElement([MarshalAs(UnmanagedType.Interface)] nsISupports anElementToPut);
 		
 		/// <summary>
         /// Advance this iterator to the next position in the underlying container or sequence.
@@ -217,7 +222,7 @@ namespace Skybound.Gecko
         /// @result true if |anotherIterator| points to the same position in the underlying container or sequence
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsEqualTo([MarshalAs(UnmanagedType.Interface)] nsISupports  anotherIterator);
+		bool IsEqualTo([MarshalAs(UnmanagedType.Interface)] nsISupports anotherIterator);
 		
 		/// <summary>
         /// Create a new iterator pointing to the same position in the underlying container or sequence to which this iterator currently points.
@@ -225,6 +230,7 @@ namespace Skybound.Gecko
         ///
         /// @result a new iterator pointing at the same position in the same underlying container or sequence as this iterator
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISupports Clone();
 	}
@@ -246,6 +252,7 @@ namespace Skybound.Gecko
         ///
         /// @result a new reference to the element this iterator currently points to (if any)
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISupports GetElement();
 		
@@ -259,8 +266,9 @@ namespace Skybound.Gecko
         /// @param anOffset a |0|-based offset from the position to which this iterator currently points
         /// @result a new reference to the indicated element (if any)
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports GetElementAt(System.Int32  anOffset);
+		nsISupports GetElementAt(int anOffset);
 		
 		/// <summary>
         /// Put |anElementToPut| into the underlying container or sequence at the position currently pointed to by this iterator.
@@ -273,7 +281,7 @@ namespace Skybound.Gecko
         /// @param anElementToPut the element to place into the underlying container or sequence
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PutElement([MarshalAs(UnmanagedType.Interface)] nsISupports  anElementToPut);
+		void PutElement([MarshalAs(UnmanagedType.Interface)] nsISupports anElementToPut);
 		
 		/// <summary>
         /// Put |anElementToPut| into the underlying container or sequence at the position |anOffset| away from that currently pointed to by this iterator.
@@ -288,7 +296,7 @@ namespace Skybound.Gecko
         /// @param anElementToPut the element to place into the underlying container or sequence
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PutElementAt(System.Int32  anOffset, [MarshalAs(UnmanagedType.Interface)] nsISupports  anElementToPut);
+		void PutElementAt(int anOffset, [MarshalAs(UnmanagedType.Interface)] nsISupports anElementToPut);
 		
 		/// <summary>
         /// Advance this iterator to the next position in the underlying container or sequence.
@@ -304,7 +312,7 @@ namespace Skybound.Gecko
         /// @param anOffset a |0|-based offset from the position to which this iterator currently points
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void StepForwardBy(System.Int32  anOffset);
+		void StepForwardBy(int anOffset);
 		
 		/// <summary>
         /// Move this iterator to the previous position in the underlying container or sequence.
@@ -320,7 +328,7 @@ namespace Skybound.Gecko
         /// @param anOffset a |0|-based offset from the position to which this iterator currently points
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void StepBackwardBy(System.Int32  anOffset);
+		void StepBackwardBy(int anOffset);
 		
 		/// <summary>
         /// Test if |anotherIterator| points to the same position in the underlying container or sequence.
@@ -331,7 +339,7 @@ namespace Skybound.Gecko
         /// @result true if |anotherIterator| points to the same position in the underlying container or sequence
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsEqualTo([MarshalAs(UnmanagedType.Interface)] nsISupports  anotherIterator);
+		bool IsEqualTo([MarshalAs(UnmanagedType.Interface)] nsISupports anotherIterator);
 		
 		/// <summary>
         /// Create a new iterator pointing to the same position in the underlying container or sequence to which this iterator currently points.
@@ -339,6 +347,7 @@ namespace Skybound.Gecko
         ///
         /// @result a new iterator pointing at the same position in the same underlying container or sequence as this iterator
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISupports Clone();
 	}

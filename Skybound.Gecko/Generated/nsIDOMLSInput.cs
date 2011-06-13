@@ -39,24 +39,24 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports  GetCharacterStreamAttribute();
+		nsISupports GetCharacterStreamAttribute();
 		
 		/// <summary>
         /// this attribute may not be available.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCharacterStreamAttribute([MarshalAs(UnmanagedType.Interface)] nsISupports  aCharacterStream);
+		void SetCharacterStreamAttribute([MarshalAs(UnmanagedType.Interface)] nsISupports aCharacterStream);
 		
 		/// <summary>Member GetByteStreamAttribute </summary>
-		/// <returns>A nsIInputStream </returns>
+		/// <returns>A nsIInputStream</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIInputStream  GetByteStreamAttribute();
+		nsIInputStream GetByteStreamAttribute();
 		
 		/// <summary>Member SetByteStreamAttribute </summary>
 		/// <param name='aByteStream'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetByteStreamAttribute([MarshalAs(UnmanagedType.Interface)] nsIInputStream  aByteStream);
+		void SetByteStreamAttribute([MarshalAs(UnmanagedType.Interface)] nsIInputStream aByteStream);
 		
 		/// <summary>Member GetStringDataAttribute </summary>
 		/// <param name='aStringData'> </param>
@@ -109,13 +109,13 @@ namespace Skybound.Gecko
 		void SetEncodingAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aEncoding);
 		
 		/// <summary>Member GetCertifiedTextAttribute </summary>
-		/// <returns>A System.Boolean </returns>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetCertifiedTextAttribute();
+		bool GetCertifiedTextAttribute();
 		
 		/// <summary>Member SetCertifiedTextAttribute </summary>
 		/// <param name='aCertifiedText'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCertifiedTextAttribute(System.Boolean  aCertifiedText);
+		void SetCertifiedTextAttribute(bool aCertifiedText);
 	}
 }

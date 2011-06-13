@@ -56,7 +56,7 @@ namespace Skybound.Gecko
         /// they're trusted
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddEventListener([MarshalAs(UnmanagedType.LPStruct)] nsAString type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener  listener, System.Boolean  useCapture, System.Boolean  wantsUntrusted);
+		void AddEventListener([MarshalAs(UnmanagedType.LPStruct)] nsAString type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener listener, bool useCapture, bool wantsUntrusted);
 		
 		/// <summary>
         /// The default script type (language) for events firing on this target.
@@ -69,7 +69,7 @@ namespace Skybound.Gecko
         /// support event handlers written in their default language.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetScriptTypeIDAttribute();
+		uint GetScriptTypeIDAttribute();
 		
 		/// <summary>
         /// The default script type (language) for events firing on this target.
@@ -82,6 +82,6 @@ namespace Skybound.Gecko
         /// support event handlers written in their default language.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetScriptTypeIDAttribute(System.UInt32  aScriptTypeID);
+		void SetScriptTypeIDAttribute(uint aScriptTypeID);
 	}
 }

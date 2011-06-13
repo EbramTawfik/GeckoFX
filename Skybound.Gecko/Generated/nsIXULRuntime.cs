@@ -43,7 +43,7 @@ namespace Skybound.Gecko
         /// Whether the application was launched in safe mode.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetInSafeModeAttribute();
+		bool GetInSafeModeAttribute();
 		
 		/// <summary>
         /// Whether to write console errors to a log file. If a component
@@ -51,7 +51,7 @@ namespace Skybound.Gecko
         /// proper UI, it should set this flag to "true".
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetLogConsoleErrorsAttribute();
+		bool GetLogConsoleErrorsAttribute();
 		
 		/// <summary>
         /// Whether to write console errors to a log file. If a component
@@ -59,14 +59,14 @@ namespace Skybound.Gecko
         /// proper UI, it should set this flag to "true".
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetLogConsoleErrorsAttribute(System.Boolean  aLogConsoleErrors);
+		void SetLogConsoleErrorsAttribute(bool aLogConsoleErrors);
 		
 		/// <summary>
         /// A string tag identifying the current operating system. This is taken
         /// from the OS_TARGET configure variable. It will always be available.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetOSAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aOS);
+		void GetOSAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aOS);
 		
 		/// <summary>
         /// A string tag identifying the binary ABI of the current processor and
@@ -83,20 +83,20 @@ namespace Skybound.Gecko
         /// @throw NS_ERROR_NOT_AVAILABLE if not available.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetXPCOMABIAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aXPCOMABI);
+		void GetXPCOMABIAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aXPCOMABI);
 		
 		/// <summary>
         /// A string tag identifying the target widget toolkit in use.
         /// This is taken from the MOZ_WIDGET_TOOLKIT configure variable.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetWidgetToolkitAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aWidgetToolkit);
+		void GetWidgetToolkitAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aWidgetToolkit);
 		
 		/// <summary>
         /// The type of the caller's process.  Returns one of the values above.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetProcessTypeAttribute();
+		uint GetProcessTypeAttribute();
 		
 		/// <summary>
         /// Signal the apprunner to invalidate caches on the next restart.

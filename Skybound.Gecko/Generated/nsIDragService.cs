@@ -43,7 +43,7 @@ namespace Skybound.Gecko
         /// @param  aActionType - specified which of copy/move/link are allowed
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InvokeDragSession([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  aDOMNode, [MarshalAs(UnmanagedType.Interface)] nsISupportsArray  aTransferables, [MarshalAs(UnmanagedType.Interface)] nsIScriptableRegion  aRegion, System.UInt32  aActionType);
+		void InvokeDragSession([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aDOMNode, [MarshalAs(UnmanagedType.Interface)] nsISupportsArray aTransferables, [MarshalAs(UnmanagedType.Interface)] nsIScriptableRegion aRegion, uint aActionType);
 		
 		/// <summary>
         /// Starts a modal drag session using an image. The first four arguments are
@@ -71,7 +71,7 @@ namespace Skybound.Gecko
         /// event are needed to calculate the image location.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InvokeDragSessionWithImage([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  aDOMNode, [MarshalAs(UnmanagedType.Interface)] nsISupportsArray  aTransferableArray, [MarshalAs(UnmanagedType.Interface)] nsIScriptableRegion  aRegion, System.UInt32  aActionType, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode  aImage, System.Int32  aImageX, System.Int32  aImageY, [MarshalAs(UnmanagedType.Interface)] nsIDOMDragEvent  aDragEvent, [MarshalAs(UnmanagedType.Interface)] nsIDOMDataTransfer  aDataTransfer);
+		void InvokeDragSessionWithImage([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aDOMNode, [MarshalAs(UnmanagedType.Interface)] nsISupportsArray aTransferableArray, [MarshalAs(UnmanagedType.Interface)] nsIScriptableRegion aRegion, uint aActionType, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aImage, int aImageX, int aImageY, [MarshalAs(UnmanagedType.Interface)] nsIDOMDragEvent aDragEvent, [MarshalAs(UnmanagedType.Interface)] nsIDOMDataTransfer aDataTransfer);
 		
 		/// <summary>
         /// Start a modal drag session using the selection as the drag image.
@@ -79,11 +79,12 @@ namespace Skybound.Gecko
         /// event are needed to calculate the image location.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InvokeDragSessionWithSelection([MarshalAs(UnmanagedType.Interface)] nsISelection  aSelection, [MarshalAs(UnmanagedType.Interface)] nsISupportsArray  aTransferableArray, System.UInt32  aActionType, [MarshalAs(UnmanagedType.Interface)] nsIDOMDragEvent  aDragEvent, [MarshalAs(UnmanagedType.Interface)] nsIDOMDataTransfer  aDataTransfer);
+		void InvokeDragSessionWithSelection([MarshalAs(UnmanagedType.Interface)] nsISelection aSelection, [MarshalAs(UnmanagedType.Interface)] nsISupportsArray aTransferableArray, uint aActionType, [MarshalAs(UnmanagedType.Interface)] nsIDOMDragEvent aDragEvent, [MarshalAs(UnmanagedType.Interface)] nsIDOMDataTransfer aDataTransfer);
 		
 		/// <summary>
         /// Returns the current Drag Session
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDragSession GetCurrentSession();
 		
@@ -102,13 +103,13 @@ namespace Skybound.Gecko
         /// just left the window.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EndDragSession(System.Boolean  aDoneDrag);
+		void EndDragSession(bool aDoneDrag);
 		
 		/// <summary>
         /// Fire a drag event at the source of the drag
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void FireDragEventAtSource(System.UInt32  aMsg);
+		void FireDragEventAtSource(uint aMsg);
 		
 		/// <summary>
         /// Increase/decrease dragging suppress level by one.

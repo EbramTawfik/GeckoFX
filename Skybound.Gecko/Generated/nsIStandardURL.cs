@@ -46,7 +46,7 @@ namespace Skybound.Gecko
         /// NS_ERROR_INVALID_ARG.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Boolean  GetMutableAttribute();
+		new bool GetMutableAttribute();
 		
 		/// <summary>
         /// Control whether or not this object can be modified.  If the flag is
@@ -55,7 +55,7 @@ namespace Skybound.Gecko
         /// NS_ERROR_INVALID_ARG.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetMutableAttribute(System.Boolean  aMutable);
+		new void SetMutableAttribute(bool aMutable);
 		
 		/// <summary>
         /// Initialize a standard URL.
@@ -78,6 +78,6 @@ namespace Skybound.Gecko
         /// to aBaseURI.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init(System.UInt32  aUrlType, System.Int32  aDefaultPort, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aSpec, [MarshalAs(UnmanagedType.LPStr)] System.String  aOriginCharset, [MarshalAs(UnmanagedType.Interface)] nsIURI  aBaseURI);
+		void Init(uint aUrlType, int aDefaultPort, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aSpec, [MarshalAs(UnmanagedType.LPStr)] string aOriginCharset, [MarshalAs(UnmanagedType.Interface)] nsIURI aBaseURI);
 	}
 }

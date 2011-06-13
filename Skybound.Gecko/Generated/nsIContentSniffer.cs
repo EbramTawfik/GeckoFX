@@ -53,7 +53,8 @@ namespace Skybound.Gecko
         /// they should not attempt to set the content type property that subclasses of
         /// nsIRequest might offer.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetMIMETypeFromContent([MarshalAs(UnmanagedType.Interface)] nsIRequest  aRequest, System.IntPtr  aData, System.UInt32  aLength);
+		nsAString GetMIMETypeFromContent([MarshalAs(UnmanagedType.Interface)] nsIRequest aRequest, System.IntPtr aData, uint aLength);
 	}
 }

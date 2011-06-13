@@ -39,6 +39,7 @@ namespace Skybound.Gecko
 		/// <param name='description'> </param>
 		/// <param name='iconURL'> </param>
 		/// <returns>A nsIDOMDesktopNotification</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMDesktopNotification CreateNotification([MarshalAs(UnmanagedType.LPStruct)] nsAString title, [MarshalAs(UnmanagedType.LPStruct)] nsAString description, [MarshalAs(UnmanagedType.LPStruct)] nsAString iconURL);
 	}
@@ -55,25 +56,25 @@ namespace Skybound.Gecko
 		void Show();
 		
 		/// <summary>Member GetOnclickAttribute </summary>
-		/// <returns>A nsIDOMEventListener </returns>
+		/// <returns>A nsIDOMEventListener</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener  GetOnclickAttribute();
+		nsIDOMEventListener GetOnclickAttribute();
 		
 		/// <summary>Member SetOnclickAttribute </summary>
 		/// <param name='aOnclick'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnclickAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener  aOnclick);
+		void SetOnclickAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnclick);
 		
 		/// <summary>Member GetOncloseAttribute </summary>
-		/// <returns>A nsIDOMEventListener </returns>
+		/// <returns>A nsIDOMEventListener</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener  GetOncloseAttribute();
+		nsIDOMEventListener GetOncloseAttribute();
 		
 		/// <summary>Member SetOncloseAttribute </summary>
 		/// <param name='aOnclose'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOncloseAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener  aOnclose);
+		void SetOncloseAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnclose);
 	}
 }

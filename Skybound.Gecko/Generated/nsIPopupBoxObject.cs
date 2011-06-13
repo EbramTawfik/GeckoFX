@@ -38,7 +38,7 @@ namespace Skybound.Gecko
         /// This method is deprecated. Use openPopup or openPopupAtScreen instead.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ShowPopup([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  srcContent, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement  popupContent, System.Int32  xpos, System.Int32  ypos, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string popupType, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string anchorAlignment, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string popupAlignment);
+		void ShowPopup([MarshalAs(UnmanagedType.Interface)] nsIDOMElement srcContent, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement popupContent, int xpos, int ypos, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string popupType, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string anchorAlignment, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string popupAlignment);
 		
 		/// <summary>
         /// Hide the popup if it is open.
@@ -50,13 +50,13 @@ namespace Skybound.Gecko
         /// Allow the popup to automatically position itself.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetAutoPositionAttribute();
+		bool GetAutoPositionAttribute();
 		
 		/// <summary>
         /// Allow the popup to automatically position itself.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAutoPositionAttribute(System.Boolean  aAutoPosition);
+		void SetAutoPositionAttribute(bool aAutoPosition);
 		
 		/// <summary>
         /// If keyboard navigation is enabled, the keyboard may be used to navigate
@@ -70,31 +70,31 @@ namespace Skybound.Gecko
         /// navigation, and is recommended over calling this method.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EnableKeyboardNavigator(System.Boolean  enableKeyboardNavigator);
+		void EnableKeyboardNavigator(bool enableKeyboardNavigator);
 		
 		/// <summary>
         /// Enable automatic popup dismissal. This only has effect when called
         /// on an open popup.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EnableRollup(System.Boolean  enableRollup);
+		void EnableRollup(bool enableRollup);
 		
 		/// <summary>
         ///don't consume the rollup event </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetConsumeRollupEvent(System.UInt32  consume);
+		void SetConsumeRollupEvent(uint consume);
 		
 		/// <summary>
         /// Size the popup to the given dimensions
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SizeTo(System.Int32  width, System.Int32  height);
+		void SizeTo(int width, int height);
 		
 		/// <summary>
         /// Move the popup to a point on screen in CSS pixels.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MoveTo(System.Int32  left, System.Int32  top);
+		void MoveTo(int left, int top);
 		
 		/// <summary>
         /// Open the popup relative to a specified node at a specific location.
@@ -133,7 +133,7 @@ namespace Skybound.Gecko
         /// @param triggerEvent the event that triggered this popup (mouse click for example)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OpenPopup([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  anchorElement, [MarshalAs(UnmanagedType.LPStruct)] nsAString position, System.Int32  x, System.Int32  y, System.Boolean  isContextMenu, System.Boolean  attributesOverride, [MarshalAs(UnmanagedType.Interface)] nsIDOMEvent  triggerEvent);
+		void OpenPopup([MarshalAs(UnmanagedType.Interface)] nsIDOMElement anchorElement, [MarshalAs(UnmanagedType.LPStruct)] nsAString position, int x, int y, bool isContextMenu, bool attributesOverride, [MarshalAs(UnmanagedType.Interface)] nsIDOMEvent triggerEvent);
 		
 		/// <summary>
         /// Open the popup at a specific screen position specified by x and y. This
@@ -148,7 +148,7 @@ namespace Skybound.Gecko
         /// @param triggerEvent the event that triggered this popup (mouse click for example)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OpenPopupAtScreen(System.Int32  x, System.Int32  y, System.Boolean  isContextMenu, [MarshalAs(UnmanagedType.Interface)] nsIDOMEvent  triggerEvent);
+		void OpenPopupAtScreen(int x, int y, bool isContextMenu, [MarshalAs(UnmanagedType.Interface)] nsIDOMEvent triggerEvent);
 		
 		/// <summary>
         /// Returns the state of the popup:
@@ -166,7 +166,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMNode  GetTriggerNodeAttribute();
+		nsIDOMNode GetTriggerNodeAttribute();
 		
 		/// <summary>
         /// Retrieve the anchor that was specified to openPopup or for menupopups in a
@@ -174,6 +174,6 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMElement  GetAnchorNodeAttribute();
+		nsIDOMElement GetAnchorNodeAttribute();
 	}
 }

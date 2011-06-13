@@ -38,20 +38,20 @@ namespace Skybound.Gecko
         /// The total number of rows in the tree (including the offscreen rows).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetRowCountAttribute();
+		int GetRowCountAttribute();
 		
 		/// <summary>
         /// The selection for this view.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsITreeSelection  GetSelectionAttribute();
+		nsITreeSelection GetSelectionAttribute();
 		
 		/// <summary>
         /// The selection for this view.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSelectionAttribute([MarshalAs(UnmanagedType.Interface)] nsITreeSelection  aSelection);
+		void SetSelectionAttribute([MarshalAs(UnmanagedType.Interface)] nsITreeSelection aSelection);
 		
 		/// <summary>
         /// An atomized list of properties for a given row.  Each property, x, that
@@ -59,7 +59,7 @@ namespace Skybound.Gecko
         /// to be matched on the pseudoelement ::moz-tree-row.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetRowProperties(System.Int32  index, [MarshalAs(UnmanagedType.Interface)] nsISupportsArray  properties);
+		void GetRowProperties(int index, [MarshalAs(UnmanagedType.Interface)] nsISupportsArray properties);
 		
 		/// <summary>
         /// An atomized list of properties for a given cell.  Each property, x, that
@@ -67,33 +67,33 @@ namespace Skybound.Gecko
         /// to be matched on the ::moz-tree-cell pseudoelement.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCellProperties(System.Int32  row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn  col, [MarshalAs(UnmanagedType.Interface)] nsISupportsArray  properties);
+		void GetCellProperties(int row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn col, [MarshalAs(UnmanagedType.Interface)] nsISupportsArray properties);
 		
 		/// <summary>
         /// Called to get properties to paint a column background.  For shading the sort
         /// column, etc.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetColumnProperties([MarshalAs(UnmanagedType.Interface)] nsITreeColumn  col, [MarshalAs(UnmanagedType.Interface)] nsISupportsArray  properties);
+		void GetColumnProperties([MarshalAs(UnmanagedType.Interface)] nsITreeColumn col, [MarshalAs(UnmanagedType.Interface)] nsISupportsArray properties);
 		
 		/// <summary>
         /// Methods that can be used to test whether or not a twisty should be drawn,
         /// and if so, whether an open or closed twisty should be used.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsContainer(System.Int32  index);
+		bool IsContainer(int index);
 		
 		/// <summary>Member IsContainerOpen </summary>
 		/// <param name='index'> </param>
 		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsContainerOpen(System.Int32  index);
+		bool IsContainerOpen(int index);
 		
 		/// <summary>Member IsContainerEmpty </summary>
 		/// <param name='index'> </param>
 		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsContainerEmpty(System.Int32  index);
+		bool IsContainerEmpty(int index);
 		
 		/// <summary>
         /// isSeparator is used to determine if the row at index is a separator.
@@ -101,7 +101,7 @@ namespace Skybound.Gecko
         /// The tree uses the ::moz-tree-separator pseudoclass to draw the separator.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsSeparator(System.Int32  index);
+		bool IsSeparator(int index);
 		
 		/// <summary>
         /// Specifies if there is currently a sort on any column. Used mostly by dragdrop
@@ -117,14 +117,14 @@ namespace Skybound.Gecko
         /// the orientation is not DROP_ON.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool CanDrop(System.Int32  index, System.Int32  orientation, [MarshalAs(UnmanagedType.Interface)] nsIDOMDataTransfer  dataTransfer);
+		bool CanDrop(int index, int orientation, [MarshalAs(UnmanagedType.Interface)] nsIDOMDataTransfer dataTransfer);
 		
 		/// <summary>
         /// Called when the user drops something on this view. The |orientation| param
         /// specifies before/on/after the given |row|.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Drop(System.Int32  row, System.Int32  orientation, [MarshalAs(UnmanagedType.Interface)] nsIDOMDataTransfer  dataTransfer);
+		void Drop(int row, int orientation, [MarshalAs(UnmanagedType.Interface)] nsIDOMDataTransfer dataTransfer);
 		
 		/// <summary>
         /// Methods used by the tree to draw thread lines in the tree.
@@ -132,7 +132,7 @@ namespace Skybound.Gecko
         /// If there is no parent row, getParentIndex returns -1.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetParentIndex(System.Int32  rowIndex);
+		int GetParentIndex(int rowIndex);
 		
 		/// <summary>
         /// hasNextSibling is used to determine if the row at rowIndex has a nextSibling
@@ -141,7 +141,7 @@ namespace Skybound.Gecko
         /// at afterIndex+1.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool HasNextSibling(System.Int32  rowIndex, System.Int32  afterIndex);
+		bool HasNextSibling(int rowIndex, int afterIndex);
 		
 		/// <summary>
         /// The level is an integer value that represents
@@ -149,54 +149,57 @@ namespace Skybound.Gecko
         /// :moz-tree-indentation pseudoelement to compute the exact indendation.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetLevel(System.Int32  index);
+		int GetLevel(int index);
 		
 		/// <summary>
         /// The image path for a given cell. For defining an icon for a cell.
         /// If the empty string is returned, the :moz-tree-image pseudoelement
         /// will be used.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetImageSrc(System.Int32  row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn  col);
+		nsAString GetImageSrc(int row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn col);
 		
 		/// <summary>
         /// The progress mode for a given cell. This method is only called for
         /// columns of type |progressmeter|.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetProgressMode(System.Int32  row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn  col);
+		int GetProgressMode(int row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn col);
 		
 		/// <summary>
         /// The value for a given cell. This method is only called for columns
         /// of type other than |text|.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetCellValue(System.Int32  row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn  col);
+		nsAString GetCellValue(int row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn col);
 		
 		/// <summary>
         /// The text for a given cell.  If a column consists only of an image, then
         /// the empty string is returned.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetCellText(System.Int32  row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn  col);
+		nsAString GetCellText(int row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn col);
 		
 		/// <summary>
         /// Called during initialization to link the view to the front end box object.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTree([MarshalAs(UnmanagedType.Interface)] nsITreeBoxObject  tree);
+		void SetTree([MarshalAs(UnmanagedType.Interface)] nsITreeBoxObject tree);
 		
 		/// <summary>
         /// Called on the view when an item is opened or closed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ToggleOpenState(System.Int32  index);
+		void ToggleOpenState(int index);
 		
 		/// <summary>
         /// Called on the view when a header is clicked.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CycleHeader([MarshalAs(UnmanagedType.Interface)] nsITreeColumn  col);
+		void CycleHeader([MarshalAs(UnmanagedType.Interface)] nsITreeColumn col);
 		
 		/// <summary>
         /// Should be called from a XUL onselect handler whenever the selection changes.
@@ -208,7 +211,7 @@ namespace Skybound.Gecko
         /// Called on the view when a cell in a non-selectable cycling column (e.g., unread/flag/etc.) is clicked.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CycleCell(System.Int32  row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn  col);
+		void CycleCell(int row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn col);
 		
 		/// <summary>
         /// isEditable is called to ask the view if the cell contents are editable.
@@ -216,7 +219,7 @@ namespace Skybound.Gecko
         /// the user tries to inline edit the cell.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsEditable(System.Int32  row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn  col);
+		bool IsEditable(int row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn col);
 		
 		/// <summary>
         /// isSelectable is called to ask the view if the cell is selectable.
@@ -224,20 +227,20 @@ namespace Skybound.Gecko
         /// XXXvarga shouldn't this be called isCellSelectable?
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsSelectable(System.Int32  row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn  col);
+		bool IsSelectable(int row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn col);
 		
 		/// <summary>
         /// setCellValue is called when the value of the cell has been set by the user.
         /// This method is only called for columns of type other than |text|.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCellValue(System.Int32  row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn  col, [MarshalAs(UnmanagedType.LPStruct)] nsAString value);
+		void SetCellValue(int row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn col, [MarshalAs(UnmanagedType.LPStruct)] nsAString value);
 		
 		/// <summary>
         /// setCellText is called when the contents of the cell have been edited by the user.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCellText(System.Int32  row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn  col, [MarshalAs(UnmanagedType.LPStruct)] nsAString value);
+		void SetCellText(int row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn col, [MarshalAs(UnmanagedType.LPStruct)] nsAString value);
 		
 		/// <summary>
         /// A command API that can be used to invoke commands on the selection.  The tree
@@ -251,13 +254,13 @@ namespace Skybound.Gecko
         /// A command API that can be used to invoke commands on a specific row.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PerformActionOnRow([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string action, System.Int32  row);
+		void PerformActionOnRow([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string action, int row);
 		
 		/// <summary>
         /// A command API that can be used to invoke commands on a specific cell.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PerformActionOnCell([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string action, System.Int32  row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn  col);
+		void PerformActionOnCell([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string action, int row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn col);
 	}
 	
 	/// <summary>
@@ -275,20 +278,20 @@ namespace Skybound.Gecko
         /// The total number of rows in the tree (including the offscreen rows).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Int32  GetRowCountAttribute();
+		new int GetRowCountAttribute();
 		
 		/// <summary>
         /// The selection for this view.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsITreeSelection  GetSelectionAttribute();
+		new nsITreeSelection GetSelectionAttribute();
 		
 		/// <summary>
         /// The selection for this view.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetSelectionAttribute([MarshalAs(UnmanagedType.Interface)] nsITreeSelection  aSelection);
+		new void SetSelectionAttribute([MarshalAs(UnmanagedType.Interface)] nsITreeSelection aSelection);
 		
 		/// <summary>
         /// An atomized list of properties for a given row.  Each property, x, that
@@ -296,7 +299,7 @@ namespace Skybound.Gecko
         /// to be matched on the pseudoelement ::moz-tree-row.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetRowProperties(System.Int32  index, [MarshalAs(UnmanagedType.Interface)] nsISupportsArray  properties);
+		new void GetRowProperties(int index, [MarshalAs(UnmanagedType.Interface)] nsISupportsArray properties);
 		
 		/// <summary>
         /// An atomized list of properties for a given cell.  Each property, x, that
@@ -304,27 +307,27 @@ namespace Skybound.Gecko
         /// to be matched on the ::moz-tree-cell pseudoelement.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetCellProperties(System.Int32  row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn  col, [MarshalAs(UnmanagedType.Interface)] nsISupportsArray  properties);
+		new void GetCellProperties(int row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn col, [MarshalAs(UnmanagedType.Interface)] nsISupportsArray properties);
 		
 		/// <summary>
         /// Called to get properties to paint a column background.  For shading the sort
         /// column, etc.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetColumnProperties([MarshalAs(UnmanagedType.Interface)] nsITreeColumn  col, [MarshalAs(UnmanagedType.Interface)] nsISupportsArray  properties);
+		new void GetColumnProperties([MarshalAs(UnmanagedType.Interface)] nsITreeColumn col, [MarshalAs(UnmanagedType.Interface)] nsISupportsArray properties);
 		
 		/// <summary>
         /// Methods that can be used to test whether or not a twisty should be drawn,
         /// and if so, whether an open or closed twisty should be used.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool IsContainer(System.Int32  index);
+		new bool IsContainer(int index);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool IsContainerOpen(System.Int32  index);
+		new bool IsContainerOpen(int index);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool IsContainerEmpty(System.Int32  index);
+		new bool IsContainerEmpty(int index);
 		
 		/// <summary>
         /// isSeparator is used to determine if the row at index is a separator.
@@ -332,7 +335,7 @@ namespace Skybound.Gecko
         /// The tree uses the ::moz-tree-separator pseudoclass to draw the separator.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool IsSeparator(System.Int32  index);
+		new bool IsSeparator(int index);
 		
 		/// <summary>
         /// Specifies if there is currently a sort on any column. Used mostly by dragdrop
@@ -348,14 +351,14 @@ namespace Skybound.Gecko
         /// the orientation is not DROP_ON.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool CanDrop(System.Int32  index, System.Int32  orientation, [MarshalAs(UnmanagedType.Interface)] nsIDOMDataTransfer  dataTransfer);
+		new bool CanDrop(int index, int orientation, [MarshalAs(UnmanagedType.Interface)] nsIDOMDataTransfer dataTransfer);
 		
 		/// <summary>
         /// Called when the user drops something on this view. The |orientation| param
         /// specifies before/on/after the given |row|.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Drop(System.Int32  row, System.Int32  orientation, [MarshalAs(UnmanagedType.Interface)] nsIDOMDataTransfer  dataTransfer);
+		new void Drop(int row, int orientation, [MarshalAs(UnmanagedType.Interface)] nsIDOMDataTransfer dataTransfer);
 		
 		/// <summary>
         /// Methods used by the tree to draw thread lines in the tree.
@@ -363,7 +366,7 @@ namespace Skybound.Gecko
         /// If there is no parent row, getParentIndex returns -1.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new int GetParentIndex(System.Int32  rowIndex);
+		new int GetParentIndex(int rowIndex);
 		
 		/// <summary>
         /// hasNextSibling is used to determine if the row at rowIndex has a nextSibling
@@ -372,7 +375,7 @@ namespace Skybound.Gecko
         /// at afterIndex+1.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool HasNextSibling(System.Int32  rowIndex, System.Int32  afterIndex);
+		new bool HasNextSibling(int rowIndex, int afterIndex);
 		
 		/// <summary>
         /// The level is an integer value that represents
@@ -380,54 +383,57 @@ namespace Skybound.Gecko
         /// :moz-tree-indentation pseudoelement to compute the exact indendation.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new int GetLevel(System.Int32  index);
+		new int GetLevel(int index);
 		
 		/// <summary>
         /// The image path for a given cell. For defining an icon for a cell.
         /// If the empty string is returned, the :moz-tree-image pseudoelement
         /// will be used.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsAString GetImageSrc(System.Int32  row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn  col);
+		new nsAString GetImageSrc(int row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn col);
 		
 		/// <summary>
         /// The progress mode for a given cell. This method is only called for
         /// columns of type |progressmeter|.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new int GetProgressMode(System.Int32  row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn  col);
+		new int GetProgressMode(int row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn col);
 		
 		/// <summary>
         /// The value for a given cell. This method is only called for columns
         /// of type other than |text|.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsAString GetCellValue(System.Int32  row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn  col);
+		new nsAString GetCellValue(int row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn col);
 		
 		/// <summary>
         /// The text for a given cell.  If a column consists only of an image, then
         /// the empty string is returned.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsAString GetCellText(System.Int32  row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn  col);
+		new nsAString GetCellText(int row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn col);
 		
 		/// <summary>
         /// Called during initialization to link the view to the front end box object.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetTree([MarshalAs(UnmanagedType.Interface)] nsITreeBoxObject  tree);
+		new void SetTree([MarshalAs(UnmanagedType.Interface)] nsITreeBoxObject tree);
 		
 		/// <summary>
         /// Called on the view when an item is opened or closed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void ToggleOpenState(System.Int32  index);
+		new void ToggleOpenState(int index);
 		
 		/// <summary>
         /// Called on the view when a header is clicked.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void CycleHeader([MarshalAs(UnmanagedType.Interface)] nsITreeColumn  col);
+		new void CycleHeader([MarshalAs(UnmanagedType.Interface)] nsITreeColumn col);
 		
 		/// <summary>
         /// Should be called from a XUL onselect handler whenever the selection changes.
@@ -439,7 +445,7 @@ namespace Skybound.Gecko
         /// Called on the view when a cell in a non-selectable cycling column (e.g., unread/flag/etc.) is clicked.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void CycleCell(System.Int32  row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn  col);
+		new void CycleCell(int row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn col);
 		
 		/// <summary>
         /// isEditable is called to ask the view if the cell contents are editable.
@@ -447,7 +453,7 @@ namespace Skybound.Gecko
         /// the user tries to inline edit the cell.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool IsEditable(System.Int32  row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn  col);
+		new bool IsEditable(int row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn col);
 		
 		/// <summary>
         /// isSelectable is called to ask the view if the cell is selectable.
@@ -455,20 +461,20 @@ namespace Skybound.Gecko
         /// XXXvarga shouldn't this be called isCellSelectable?
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool IsSelectable(System.Int32  row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn  col);
+		new bool IsSelectable(int row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn col);
 		
 		/// <summary>
         /// setCellValue is called when the value of the cell has been set by the user.
         /// This method is only called for columns of type other than |text|.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetCellValue(System.Int32  row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn  col, [MarshalAs(UnmanagedType.LPStruct)] nsAString value);
+		new void SetCellValue(int row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn col, [MarshalAs(UnmanagedType.LPStruct)] nsAString value);
 		
 		/// <summary>
         /// setCellText is called when the contents of the cell have been edited by the user.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetCellText(System.Int32  row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn  col, [MarshalAs(UnmanagedType.LPStruct)] nsAString value);
+		new void SetCellText(int row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn col, [MarshalAs(UnmanagedType.LPStruct)] nsAString value);
 		
 		/// <summary>
         /// A command API that can be used to invoke commands on the selection.  The tree
@@ -482,13 +488,13 @@ namespace Skybound.Gecko
         /// A command API that can be used to invoke commands on a specific row.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void PerformActionOnRow([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string action, System.Int32  row);
+		new void PerformActionOnRow([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string action, int row);
 		
 		/// <summary>
         /// A command API that can be used to invoke commands on a specific cell.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void PerformActionOnCell([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string action, System.Int32  row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn  col);
+		new void PerformActionOnCell([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string action, int row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn col);
 		
 		/// <summary>
         /// The following interface is not scriptable and MUST NEVER BE MADE scriptable.

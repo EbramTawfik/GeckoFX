@@ -58,7 +58,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitWithFile([MarshalAs(UnmanagedType.Interface)] nsIFile  aInputFile, [MarshalAs(UnmanagedType.Interface)] nsIFile  aOutputFile);
+		void InitWithFile([MarshalAs(UnmanagedType.Interface)] nsIFile aInputFile, [MarshalAs(UnmanagedType.Interface)] nsIFile aOutputFile);
 		
 		/// <summary>
         /// Store a new login in the storage module.
@@ -71,7 +71,7 @@ namespace Skybound.Gecko
         /// be used instead.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddLogin([MarshalAs(UnmanagedType.Interface)] nsILoginInfo  aLogin);
+		void AddLogin([MarshalAs(UnmanagedType.Interface)] nsILoginInfo aLogin);
 		
 		/// <summary>
         /// Remove a login from the storage module.
@@ -83,7 +83,7 @@ namespace Skybound.Gecko
         /// values of any nsILoginMetaInfo properties are ignored.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveLogin([MarshalAs(UnmanagedType.Interface)] nsILoginInfo  aLogin);
+		void RemoveLogin([MarshalAs(UnmanagedType.Interface)] nsILoginInfo aLogin);
 		
 		/// <summary>
         /// Modify an existing login in the storage module.
@@ -105,7 +105,7 @@ namespace Skybound.Gecko
         /// login's timesUsed property will be incremented by the item's value.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ModifyLogin([MarshalAs(UnmanagedType.Interface)] nsILoginInfo  oldLogin, [MarshalAs(UnmanagedType.Interface)] nsISupports  newLoginData);
+		void ModifyLogin([MarshalAs(UnmanagedType.Interface)] nsILoginInfo oldLogin, [MarshalAs(UnmanagedType.Interface)] nsISupports newLoginData);
 		
 		/// <summary>
         /// Remove all stored logins.
@@ -133,7 +133,7 @@ namespace Skybound.Gecko
         /// (|logins| is an array).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsILoginInfo  GetAllLogins(out System.UInt32  count);
+		nsILoginInfo GetAllLogins(out uint count);
 		
 		/// <summary>
         /// Fetch all logins in the login manager. An array is always returned;
@@ -151,7 +151,7 @@ namespace Skybound.Gecko
         /// (|logins| is an array).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsILoginInfo  GetAllEncryptedLogins(out System.UInt32  count);
+		nsILoginInfo GetAllEncryptedLogins(out uint count);
 		
 		/// <summary>
         /// Search for logins in the login manager. An array is always returned;
@@ -173,7 +173,7 @@ namespace Skybound.Gecko
         /// (|logins| is an array).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsILoginInfo  SearchLogins(out System.UInt32  count, [MarshalAs(UnmanagedType.Interface)] nsIPropertyBag  matchData);
+		nsILoginInfo SearchLogins(out uint count, [MarshalAs(UnmanagedType.Interface)] nsIPropertyBag matchData);
 		
 		/// <summary>
         /// Obtain a list of all hosts for which password saving is disabled.
@@ -190,7 +190,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler", SizeParamIndex=0)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string GetAllDisabledHosts(out System.UInt32  count);
+		string GetAllDisabledHosts(out uint count);
 		
 		/// <summary>
         /// Check to see if saving logins has been disabled for a host.
@@ -215,7 +215,7 @@ namespace Skybound.Gecko
         /// disabled (false)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetLoginSavingEnabled([MarshalAs(UnmanagedType.LPStruct)] nsAString aHost, System.Boolean  isEnabled);
+		void SetLoginSavingEnabled([MarshalAs(UnmanagedType.LPStruct)] nsAString aHost, bool isEnabled);
 		
 		/// <summary>
         /// Search for logins matching the specified criteria. Called when looking
@@ -244,7 +244,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsILoginInfo  FindLogins(out System.UInt32  count, [MarshalAs(UnmanagedType.LPStruct)] nsAString aHostname, [MarshalAs(UnmanagedType.LPStruct)] nsAString aActionURL, [MarshalAs(UnmanagedType.LPStruct)] nsAString aHttpRealm);
+		nsILoginInfo FindLogins(out uint count, [MarshalAs(UnmanagedType.LPStruct)] nsAString aHostname, [MarshalAs(UnmanagedType.LPStruct)] nsAString aActionURL, [MarshalAs(UnmanagedType.LPStruct)] nsAString aHttpRealm);
 		
 		/// <summary>
         /// Search for logins matching the specified criteria, as with
@@ -273,6 +273,6 @@ namespace Skybound.Gecko
         /// True when a master password prompt is being shown.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetUiBusyAttribute();
+		bool GetUiBusyAttribute();
 	}
 }

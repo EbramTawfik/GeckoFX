@@ -39,7 +39,7 @@ namespace Skybound.Gecko
         /// Value is one of the above error codes
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetEditorStatusAttribute();
+		uint GetEditorStatusAttribute();
 		
 		/// <summary>
         /// Make this window editable
@@ -52,7 +52,7 @@ namespace Skybound.Gecko
         /// @param aInteractive if PR_FALSE turn off scripting and plugins
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MakeWindowEditable([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  window, [MarshalAs(UnmanagedType.LPStr)] System.String  aEditorType, System.Boolean  doAfterUriLoad, System.Boolean  aMakeWholeDocumentEditable, System.Boolean  aInteractive);
+		void MakeWindowEditable([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, [MarshalAs(UnmanagedType.LPStr)] string aEditorType, bool doAfterUriLoad, bool aMakeWholeDocumentEditable, bool aInteractive);
 		
 		/// <summary>
         /// Test whether a specific window has had its editable flag set; it may have an editor
@@ -62,63 +62,64 @@ namespace Skybound.Gecko
         /// for this content.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool WindowIsEditable([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  window);
+		bool WindowIsEditable([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window);
 		
 		/// <summary>
         /// Get the editor for this window. May return null
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIEditor GetEditorForWindow([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  window);
+		nsIEditor GetEditorForWindow([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window);
 		
 		/// <summary>
         /// Setup editor and related support objects
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetupEditorOnWindow([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  window);
+		void SetupEditorOnWindow([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window);
 		
 		/// <summary>
         /// Destroy editor and related support objects
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void TearDownEditorOnWindow([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  window);
+		void TearDownEditorOnWindow([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window);
 		
 		/// <summary>Member SetEditorOnControllers </summary>
 		/// <param name='aWindow'> </param>
 		/// <param name='aEditor'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetEditorOnControllers([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  aWindow, [MarshalAs(UnmanagedType.Interface)] nsIEditor  aEditor);
+		void SetEditorOnControllers([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow, [MarshalAs(UnmanagedType.Interface)] nsIEditor aEditor);
 		
 		/// <summary>
         /// Disable scripts and plugins in aWindow.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DisableJSAndPlugins([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  aWindow);
+		void DisableJSAndPlugins([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow);
 		
 		/// <summary>
         /// Restore JS and plugins (enable/disable them) according to the state they
         /// were before the last call to disableJSAndPlugins.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RestoreJSAndPlugins([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  aWindow);
+		void RestoreJSAndPlugins([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow);
 		
 		/// <summary>
         /// Removes all the editor's controllers/listeners etc and makes the window
         /// uneditable.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DetachFromWindow([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  aWindow);
+		void DetachFromWindow([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow);
 		
 		/// <summary>
         /// Undos detachFromWindow(), reattaches this editing session/editor
         /// to the window.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ReattachToWindow([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow  aWindow);
+		void ReattachToWindow([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow);
 		
 		/// <summary>
         /// Whether this session has disabled JS and plugins.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetJsAndPluginsDisabledAttribute();
+		bool GetJsAndPluginsDisabledAttribute();
 	}
 }

@@ -62,7 +62,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMEventTarget  GetTargetAttribute();
+		new nsIDOMEventTarget GetTargetAttribute();
 		
 		/// <summary>
         /// Used to indicate the EventTarget whose EventListeners are currently
@@ -71,7 +71,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMEventTarget  GetCurrentTargetAttribute();
+		new nsIDOMEventTarget GetCurrentTargetAttribute();
 		
 		/// <summary>
         /// Used to indicate which phase of event flow is currently being
@@ -85,7 +85,7 @@ namespace Skybound.Gecko
         /// event can bubble the value is true, else the value is false.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Boolean  GetBubblesAttribute();
+		new bool GetBubblesAttribute();
 		
 		/// <summary>
         /// Used to indicate whether or not an event can have its default action
@@ -93,7 +93,7 @@ namespace Skybound.Gecko
         /// else the value is false.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Boolean  GetCancelableAttribute();
+		new bool GetCancelableAttribute();
 		
 		/// <summary>
         /// Used to specify the time (in milliseconds relative to the epoch) at
@@ -104,7 +104,7 @@ namespace Skybound.Gecko
         /// 0:0:0 UTC 1st January 1970.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Int64  GetTimeStampAttribute();
+		new long GetTimeStampAttribute();
 		
 		/// <summary>
         /// The stopPropagation method is used prevent further propagation of an
@@ -159,7 +159,7 @@ namespace Skybound.Gecko
         /// action can be prevented.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void InitEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString eventTypeArg, System.Boolean  canBubbleArg, System.Boolean  cancelableArg);
+		new void InitEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString eventTypeArg, bool canBubbleArg, bool cancelableArg);
 		
 		/// <summary>Member GetDataAttribute </summary>
 		/// <param name='aData'> </param>
@@ -172,10 +172,10 @@ namespace Skybound.Gecko
 		void GetOriginAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aOrigin);
 		
 		/// <summary>Member GetSourceAttribute </summary>
-		/// <returns>A nsISupports </returns>
+		/// <returns>A nsISupports</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports  GetSourceAttribute();
+		nsISupports GetSourceAttribute();
 		
 		/// <summary>Member InitMessageEvent </summary>
 		/// <param name='aTypeArg'> </param>
@@ -185,7 +185,7 @@ namespace Skybound.Gecko
 		/// <param name='aOriginArg'> </param>
 		/// <param name='aSourceArg'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitMessageEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString aTypeArg, System.Boolean  aCanBubbleArg, System.Boolean  aCancelableArg, [MarshalAs(UnmanagedType.LPStruct)] nsAString aDataArg, [MarshalAs(UnmanagedType.LPStruct)] nsAString aOriginArg, [MarshalAs(UnmanagedType.Interface)] nsISupports  aSourceArg);
+		void InitMessageEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString aTypeArg, bool aCanBubbleArg, bool aCancelableArg, [MarshalAs(UnmanagedType.LPStruct)] nsAString aDataArg, [MarshalAs(UnmanagedType.LPStruct)] nsAString aOriginArg, [MarshalAs(UnmanagedType.Interface)] nsISupports aSourceArg);
 	}
 	
 	/// <summary>nsIWorkerErrorEvent </summary>
@@ -208,7 +208,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMEventTarget  GetTargetAttribute();
+		new nsIDOMEventTarget GetTargetAttribute();
 		
 		/// <summary>
         /// Used to indicate the EventTarget whose EventListeners are currently
@@ -217,7 +217,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMEventTarget  GetCurrentTargetAttribute();
+		new nsIDOMEventTarget GetCurrentTargetAttribute();
 		
 		/// <summary>
         /// Used to indicate which phase of event flow is currently being
@@ -231,7 +231,7 @@ namespace Skybound.Gecko
         /// event can bubble the value is true, else the value is false.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Boolean  GetBubblesAttribute();
+		new bool GetBubblesAttribute();
 		
 		/// <summary>
         /// Used to indicate whether or not an event can have its default action
@@ -239,7 +239,7 @@ namespace Skybound.Gecko
         /// else the value is false.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Boolean  GetCancelableAttribute();
+		new bool GetCancelableAttribute();
 		
 		/// <summary>
         /// Used to specify the time (in milliseconds relative to the epoch) at
@@ -250,7 +250,7 @@ namespace Skybound.Gecko
         /// 0:0:0 UTC 1st January 1970.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Int64  GetTimeStampAttribute();
+		new long GetTimeStampAttribute();
 		
 		/// <summary>
         /// The stopPropagation method is used prevent further propagation of an
@@ -305,7 +305,7 @@ namespace Skybound.Gecko
         /// action can be prevented.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void InitEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString eventTypeArg, System.Boolean  canBubbleArg, System.Boolean  cancelableArg);
+		new void InitEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString eventTypeArg, bool canBubbleArg, bool cancelableArg);
 		
 		/// <summary>Member GetMessageAttribute </summary>
 		/// <param name='aMessage'> </param>
@@ -318,9 +318,9 @@ namespace Skybound.Gecko
 		void GetFilenameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aFilename);
 		
 		/// <summary>Member GetLinenoAttribute </summary>
-		/// <returns>A System.UInt32 </returns>
+		/// <returns>A System.UInt32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetLinenoAttribute();
+		uint GetLinenoAttribute();
 		
 		/// <summary>Member InitErrorEvent </summary>
 		/// <param name='aTypeArg'> </param>
@@ -330,7 +330,7 @@ namespace Skybound.Gecko
 		/// <param name='aFilenameArg'> </param>
 		/// <param name='aLinenoArg'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitErrorEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString aTypeArg, System.Boolean  aCanBubbleArg, System.Boolean  aCancelableArg, [MarshalAs(UnmanagedType.LPStruct)] nsAString aMessageArg, [MarshalAs(UnmanagedType.LPStruct)] nsAString aFilenameArg, System.UInt32  aLinenoArg);
+		void InitErrorEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString aTypeArg, bool aCanBubbleArg, bool aCancelableArg, [MarshalAs(UnmanagedType.LPStruct)] nsAString aMessageArg, [MarshalAs(UnmanagedType.LPStruct)] nsAString aFilenameArg, uint aLinenoArg);
 	}
 	
 	/// <summary>nsIWorkerLocation </summary>
@@ -343,45 +343,46 @@ namespace Skybound.Gecko
 		/// <summary>Member GetHrefAttribute </summary>
 		/// <param name='aHref'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetHrefAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aHref);
+		void GetHrefAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aHref);
 		
 		/// <summary>Member GetProtocolAttribute </summary>
 		/// <param name='aProtocol'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetProtocolAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aProtocol);
+		void GetProtocolAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aProtocol);
 		
 		/// <summary>Member GetHostAttribute </summary>
 		/// <param name='aHost'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetHostAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aHost);
+		void GetHostAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aHost);
 		
 		/// <summary>Member GetHostnameAttribute </summary>
 		/// <param name='aHostname'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetHostnameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aHostname);
+		void GetHostnameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aHostname);
 		
 		/// <summary>Member GetPortAttribute </summary>
 		/// <param name='aPort'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPortAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aPort);
+		void GetPortAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aPort);
 		
 		/// <summary>Member GetPathnameAttribute </summary>
 		/// <param name='aPathname'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPathnameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aPathname);
+		void GetPathnameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aPathname);
 		
 		/// <summary>Member GetSearchAttribute </summary>
 		/// <param name='aSearch'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSearchAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aSearch);
+		void GetSearchAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aSearch);
 		
 		/// <summary>Member GetHashAttribute </summary>
 		/// <param name='aHash'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetHashAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aHash);
+		void GetHashAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aHash);
 		
 		/// <summary>Member ToString </summary>
 		/// <returns>A nsAUTF8String</returns>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsAUTF8String ToString();
 	}
@@ -422,33 +423,33 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetSelfAttribute </summary>
-		/// <returns>A nsIWorkerGlobalScope </returns>
+		/// <returns>A nsIWorkerGlobalScope</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIWorkerGlobalScope  GetSelfAttribute();
+		nsIWorkerGlobalScope GetSelfAttribute();
 		
 		/// <summary>Member GetNavigatorAttribute </summary>
-		/// <returns>A nsIWorkerNavigator </returns>
+		/// <returns>A nsIWorkerNavigator</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIWorkerNavigator  GetNavigatorAttribute();
+		nsIWorkerNavigator GetNavigatorAttribute();
 		
 		/// <summary>Member GetLocationAttribute </summary>
-		/// <returns>A nsIWorkerLocation </returns>
+		/// <returns>A nsIWorkerLocation</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIWorkerLocation  GetLocationAttribute();
+		nsIWorkerLocation GetLocationAttribute();
 		
 		/// <summary>Member GetOnerrorAttribute </summary>
-		/// <returns>A nsIDOMEventListener </returns>
+		/// <returns>A nsIDOMEventListener</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener  GetOnerrorAttribute();
+		nsIDOMEventListener GetOnerrorAttribute();
 		
 		/// <summary>Member SetOnerrorAttribute </summary>
 		/// <param name='aOnerror'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnerrorAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener  aOnerror);
+		void SetOnerrorAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnerror);
 	}
 	
 	/// <summary>nsIWorkerScope </summary>
@@ -459,33 +460,33 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetSelfAttribute </summary>
-		/// <returns>A nsIWorkerGlobalScope </returns>
+		/// <returns>A nsIWorkerGlobalScope</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIWorkerGlobalScope  GetSelfAttribute();
+		new nsIWorkerGlobalScope GetSelfAttribute();
 		
 		/// <summary>Member GetNavigatorAttribute </summary>
-		/// <returns>A nsIWorkerNavigator </returns>
+		/// <returns>A nsIWorkerNavigator</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIWorkerNavigator  GetNavigatorAttribute();
+		new nsIWorkerNavigator GetNavigatorAttribute();
 		
 		/// <summary>Member GetLocationAttribute </summary>
-		/// <returns>A nsIWorkerLocation </returns>
+		/// <returns>A nsIWorkerLocation</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIWorkerLocation  GetLocationAttribute();
+		new nsIWorkerLocation GetLocationAttribute();
 		
 		/// <summary>Member GetOnerrorAttribute </summary>
-		/// <returns>A nsIDOMEventListener </returns>
+		/// <returns>A nsIDOMEventListener</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMEventListener  GetOnerrorAttribute();
+		new nsIDOMEventListener GetOnerrorAttribute();
 		
 		/// <summary>Member SetOnerrorAttribute </summary>
 		/// <param name='aOnerror'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetOnerrorAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener  aOnerror);
+		new void SetOnerrorAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnerror);
 		
 		/// <summary>
         ///in JSObject aMessage </summary>
@@ -497,26 +498,26 @@ namespace Skybound.Gecko
 		void Close();
 		
 		/// <summary>Member GetOnmessageAttribute </summary>
-		/// <returns>A nsIDOMEventListener </returns>
+		/// <returns>A nsIDOMEventListener</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener  GetOnmessageAttribute();
+		nsIDOMEventListener GetOnmessageAttribute();
 		
 		/// <summary>Member SetOnmessageAttribute </summary>
 		/// <param name='aOnmessage'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnmessageAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener  aOnmessage);
+		void SetOnmessageAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnmessage);
 		
 		/// <summary>Member GetOncloseAttribute </summary>
-		/// <returns>A nsIDOMEventListener </returns>
+		/// <returns>A nsIDOMEventListener</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener  GetOncloseAttribute();
+		nsIDOMEventListener GetOncloseAttribute();
 		
 		/// <summary>Member SetOncloseAttribute </summary>
 		/// <param name='aOnclose'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOncloseAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener  aOnclose);
+		void SetOncloseAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnclose);
 	}
 	
 	/// <summary>nsIAbstractWorker </summary>
@@ -552,7 +553,7 @@ namespace Skybound.Gecko
         /// EventListener designated to use capture.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void AddEventListener([MarshalAs(UnmanagedType.LPStruct)] nsAString type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener  listener, System.Boolean  useCapture);
+		new void AddEventListener([MarshalAs(UnmanagedType.LPStruct)] nsAString type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener listener, bool useCapture);
 		
 		/// <summary>
         /// This method allows the removal of event listeners from the event
@@ -575,7 +576,7 @@ namespace Skybound.Gecko
         /// listener, and vice versa.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void RemoveEventListener([MarshalAs(UnmanagedType.LPStruct)] nsAString type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener  listener, System.Boolean  useCapture);
+		new void RemoveEventListener([MarshalAs(UnmanagedType.LPStruct)] nsAString type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener listener, bool useCapture);
 		
 		/// <summary>
         /// This method allows the dispatch of events into the implementations
@@ -596,18 +597,18 @@ namespace Skybound.Gecko
         /// exception.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool DispatchEvent([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent  evt);
+		new bool DispatchEvent([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent evt);
 		
 		/// <summary>Member GetOnerrorAttribute </summary>
-		/// <returns>A nsIDOMEventListener </returns>
+		/// <returns>A nsIDOMEventListener</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener  GetOnerrorAttribute();
+		nsIDOMEventListener GetOnerrorAttribute();
 		
 		/// <summary>Member SetOnerrorAttribute </summary>
 		/// <param name='aOnerror'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnerrorAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener  aOnerror);
+		void SetOnerrorAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnerror);
 	}
 	
 	/// <summary>nsIWorker </summary>
@@ -643,7 +644,7 @@ namespace Skybound.Gecko
         /// EventListener designated to use capture.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void AddEventListener([MarshalAs(UnmanagedType.LPStruct)] nsAString type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener  listener, System.Boolean  useCapture);
+		new void AddEventListener([MarshalAs(UnmanagedType.LPStruct)] nsAString type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener listener, bool useCapture);
 		
 		/// <summary>
         /// This method allows the removal of event listeners from the event
@@ -666,7 +667,7 @@ namespace Skybound.Gecko
         /// listener, and vice versa.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void RemoveEventListener([MarshalAs(UnmanagedType.LPStruct)] nsAString type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener  listener, System.Boolean  useCapture);
+		new void RemoveEventListener([MarshalAs(UnmanagedType.LPStruct)] nsAString type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener listener, bool useCapture);
 		
 		/// <summary>
         /// This method allows the dispatch of events into the implementations
@@ -687,18 +688,18 @@ namespace Skybound.Gecko
         /// exception.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool DispatchEvent([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent  evt);
+		new bool DispatchEvent([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent evt);
 		
 		/// <summary>Member GetOnerrorAttribute </summary>
-		/// <returns>A nsIDOMEventListener </returns>
+		/// <returns>A nsIDOMEventListener</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMEventListener  GetOnerrorAttribute();
+		new nsIDOMEventListener GetOnerrorAttribute();
 		
 		/// <summary>Member SetOnerrorAttribute </summary>
 		/// <param name='aOnerror'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetOnerrorAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener  aOnerror);
+		new void SetOnerrorAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnerror);
 		
 		/// <summary>
         ///in JSObject aMessage </summary>
@@ -706,15 +707,15 @@ namespace Skybound.Gecko
 		void PostMessage();
 		
 		/// <summary>Member GetOnmessageAttribute </summary>
-		/// <returns>A nsIDOMEventListener </returns>
+		/// <returns>A nsIDOMEventListener</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener  GetOnmessageAttribute();
+		nsIDOMEventListener GetOnmessageAttribute();
 		
 		/// <summary>Member SetOnmessageAttribute </summary>
 		/// <param name='aOnmessage'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnmessageAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener  aOnmessage);
+		void SetOnmessageAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnmessage);
 		
 		/// <summary>Member Terminate </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -730,6 +731,7 @@ namespace Skybound.Gecko
 		
 		/// <summary>
         ///in DOMString aScriptURL </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIWorker NewChromeWorker();
 	}

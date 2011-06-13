@@ -44,7 +44,7 @@ namespace Skybound.Gecko
         /// Should set *count = 0 and *array = null and return NS_OK if getting the
         /// list is not supported.
         /// </summary>
-		System.Guid GetInterfaces(out System.UInt32  count);
+		System.Guid GetInterfaces(out uint count);
 		
 		/// <summary>
         /// Get a language mapping specific helper object that may assist in using
@@ -58,8 +58,9 @@ namespace Skybound.Gecko
         ///
         /// Should return null if no helper available for given language.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports GetHelperForLanguage(System.UInt32  language);
+		nsISupports GetHelperForLanguage(uint language);
 		
 		/// <summary>
         /// A contract ID through which an instance of this class can be created
@@ -67,14 +68,14 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetContractIDAttribute();
+		string GetContractIDAttribute();
 		
 		/// <summary>
         /// A human readable string naming the class, or null.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetClassDescriptionAttribute();
+		string GetClassDescriptionAttribute();
 		
 		/// <summary>
         /// A class ID through which an instance of this class can be created
@@ -87,13 +88,13 @@ namespace Skybound.Gecko
         /// Return language type from list in nsIProgrammingLanguage
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetImplementationLanguageAttribute();
+		uint GetImplementationLanguageAttribute();
 		
 		/// <summary>
         /// with this bit set.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetFlagsAttribute();
+		uint GetFlagsAttribute();
 		
 		/// <summary>
         /// Also a class ID through which an instance of this class can be created

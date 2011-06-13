@@ -58,7 +58,7 @@ namespace Skybound.Gecko
         /// folder nodes to the container. DO NOT MODIFY THIS VALUE.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnContainerNodeOpening([MarshalAs(UnmanagedType.Interface)] nsINavHistoryContainerResultNode  aContainer, [MarshalAs(UnmanagedType.Interface)] nsINavHistoryQueryOptions  aOptions);
+		void OnContainerNodeOpening([MarshalAs(UnmanagedType.Interface)] nsINavHistoryContainerResultNode aContainer, [MarshalAs(UnmanagedType.Interface)] nsINavHistoryQueryOptions aOptions);
 		
 		/// <summary>
         /// Called when the given container has just been collapsed so that the
@@ -74,7 +74,7 @@ namespace Skybound.Gecko
         /// automatically removed when this call completes.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnContainerNodeClosed([MarshalAs(UnmanagedType.Interface)] nsINavHistoryContainerResultNode  aContainer);
+		void OnContainerNodeClosed([MarshalAs(UnmanagedType.Interface)] nsINavHistoryContainerResultNode aContainer);
 		
 		/// <summary>
         /// Called when the given container is about to be deleted from the bookmarks
@@ -85,7 +85,7 @@ namespace Skybound.Gecko
         /// The item-id of the container item.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnContainerRemoving(System.Int32  aItemId);
+		void OnContainerRemoving(int aItemId);
 		
 		/// <summary>
         /// Called when the given container has just been moved, in case
@@ -99,6 +99,6 @@ namespace Skybound.Gecko
         /// The index the container will be inserted at, or -1 for append.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnContainerMoved(System.Int32  aItemId, System.Int32  aNewParent, System.Int32  aNewIndex);
+		void OnContainerMoved(int aItemId, int aNewParent, int aNewIndex);
 	}
 }

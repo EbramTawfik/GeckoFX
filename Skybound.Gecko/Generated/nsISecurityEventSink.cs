@@ -42,6 +42,6 @@ namespace Skybound.Gecko
         /// changed. State flags are in nsIWebProgressListener.idl
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnSecurityChange([MarshalAs(UnmanagedType.Interface)] nsISupports  i_Context, System.UInt32  state);
+		void OnSecurityChange([MarshalAs(UnmanagedType.Interface)] nsISupports i_Context, uint state);
 	}
 }

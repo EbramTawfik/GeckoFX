@@ -56,7 +56,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsITaskbarPreviewController  GetControllerAttribute();
+		nsITaskbarPreviewController GetControllerAttribute();
 		
 		/// <summary>
         /// The controller for this preview. A controller is required to provide
@@ -73,7 +73,7 @@ namespace Skybound.Gecko
         /// @see nsITaskbarPreviewController
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetControllerAttribute([MarshalAs(UnmanagedType.Interface)] nsITaskbarPreviewController  aController);
+		void SetControllerAttribute([MarshalAs(UnmanagedType.Interface)] nsITaskbarPreviewController aController);
 		
 		/// <summary>
         /// The tooltip displayed above the preview when the user hovers over it
@@ -103,7 +103,7 @@ namespace Skybound.Gecko
         /// Default: false
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetVisibleAttribute();
+		bool GetVisibleAttribute();
 		
 		/// <summary>
         /// Whether or not the preview is visible.
@@ -117,21 +117,21 @@ namespace Skybound.Gecko
         /// Default: false
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetVisibleAttribute(System.Boolean  aVisible);
+		void SetVisibleAttribute(bool aVisible);
 		
 		/// <summary>
         /// Gets/sets whether or not the preview is marked active (selected) in the
         /// taskbar.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetActiveAttribute();
+		bool GetActiveAttribute();
 		
 		/// <summary>
         /// Gets/sets whether or not the preview is marked active (selected) in the
         /// taskbar.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetActiveAttribute(System.Boolean  aActive);
+		void SetActiveAttribute(bool aActive);
 		
 		/// <summary>
         /// Invalidates the taskbar's cached image of this preview, forcing a redraw

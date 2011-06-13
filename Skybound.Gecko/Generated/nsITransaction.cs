@@ -73,7 +73,7 @@ namespace Skybound.Gecko
         /// transaction manager.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsTransientAttribute();
+		bool GetIsTransientAttribute();
 		
 		/// <summary>
         /// Attempts to merge a transaction into "this" transaction. Both transactions
@@ -88,6 +88,6 @@ namespace Skybound.Gecko
         /// @param aTransaction the previously executed transaction to merge.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Merge([MarshalAs(UnmanagedType.Interface)] nsITransaction  aTransaction);
+		bool Merge([MarshalAs(UnmanagedType.Interface)] nsITransaction aTransaction);
 	}
 }

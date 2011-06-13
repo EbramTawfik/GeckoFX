@@ -41,7 +41,7 @@ namespace Skybound.Gecko
         /// and should be read from aInputStream in the same order by this method.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Read([MarshalAs(UnmanagedType.Interface)] nsIObjectInputStream  aInputStream);
+		void Read([MarshalAs(UnmanagedType.Interface)] nsIObjectInputStream aInputStream);
 		
 		/// <summary>
         /// Serialize the object implementing nsISerializable to aOutputStream, by
@@ -53,6 +53,6 @@ namespace Skybound.Gecko
         /// nsIClassInfo, in particular nsIClassInfo::GetClassID.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Write([MarshalAs(UnmanagedType.Interface)] nsIObjectOutputStream  aOutputStream);
+		void Write([MarshalAs(UnmanagedType.Interface)] nsIObjectOutputStream aOutputStream);
 	}
 }

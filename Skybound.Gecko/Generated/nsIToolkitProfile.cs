@@ -42,7 +42,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsILocalFile  GetDirectoryAttribute();
+		nsILocalFile GetDirectoryAttribute();
 		
 		/// <summary>
         /// A directory corresponding to the main profile directory that exists for
@@ -54,7 +54,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsILocalFile  GetLocalDirectoryAttribute();
+		nsILocalFile GetLocalDirectoryAttribute();
 		
 		/// <summary>
         /// Unlock the profile.
@@ -79,7 +79,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsILocalFile  GetRootDirAttribute();
+		nsILocalFile GetRootDirAttribute();
 		
 		/// <summary>
         /// The location of the profile local directory, which may be the same as
@@ -87,19 +87,19 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsILocalFile  GetLocalDirAttribute();
+		nsILocalFile GetLocalDirAttribute();
 		
 		/// <summary>
         /// The name of the profile.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName);
+		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName);
 		
 		/// <summary>
         /// The name of the profile.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aName);
+		void SetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName);
 		
 		/// <summary>
         /// Removes the profile from the registry of profiles.
@@ -109,7 +109,7 @@ namespace Skybound.Gecko
         /// removed in addition.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Remove(System.Boolean  removeFiles);
+		void Remove(bool removeFiles);
 		
 		/// <summary>
         /// Lock this profile using platform-specific locking methods.
@@ -122,7 +122,8 @@ namespace Skybound.Gecko
         /// it.
         /// @throws NS_ERROR_FILE_ACCESS_DENIED if the profile was already locked.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIProfileLock Lock([MarshalAs(UnmanagedType.Interface)] out nsIProfileUnlocker  aUnlocker);
+		nsIProfileLock Lock([MarshalAs(UnmanagedType.Interface)] out nsIProfileUnlocker aUnlocker);
 	}
 }

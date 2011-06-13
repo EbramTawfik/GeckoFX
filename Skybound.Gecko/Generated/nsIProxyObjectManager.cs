@@ -62,6 +62,6 @@ namespace Skybound.Gecko
         /// This param holds the resulting proxy object upon successful return.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr  GetProxyForObject([MarshalAs(UnmanagedType.Interface)] nsIEventTarget  target, ref System.Guid iid, [MarshalAs(UnmanagedType.Interface)] nsISupports  @object, System.Int32  proxyType);
+		System.IntPtr GetProxyForObject([MarshalAs(UnmanagedType.Interface)] nsIEventTarget target, ref System.Guid iid, [MarshalAs(UnmanagedType.Interface)] nsISupports @object, int proxyType);
 	}
 }

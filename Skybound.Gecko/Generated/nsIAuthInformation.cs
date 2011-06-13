@@ -52,7 +52,7 @@ namespace Skybound.Gecko
         /// should not throw an exception because of an unsupported flag.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetFlagsAttribute();
+		uint GetFlagsAttribute();
 		
 		/// <summary>
         /// The server-supplied realm of the authentication as defined in RFC 2617.
@@ -69,7 +69,7 @@ namespace Skybound.Gecko
         /// "digest". This string will always be in lowercase.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetAuthenticationSchemeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aAuthenticationScheme);
+		void GetAuthenticationSchemeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aAuthenticationScheme);
 		
 		/// <summary>
         /// The initial value should be used to prefill the dialog or be shown

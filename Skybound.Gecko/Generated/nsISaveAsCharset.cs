@@ -39,17 +39,18 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetCharsetAttribute();
+		string GetCharsetAttribute();
 		
 		/// <summary>
         /// see nsIEntityConverter.idl for possible value of entityVersion (entityNone for plain text).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init([MarshalAs(UnmanagedType.LPStr)] System.String  charset, System.UInt32  attr, System.UInt32  entityVersion);
+		void Init([MarshalAs(UnmanagedType.LPStr)] string charset, uint attr, uint entityVersion);
 		
 		/// <summary>
         /// if the attribute does not specify any fall back (e.g. attrPlainTextDefault)
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string Convert([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string inString);
 	}

@@ -44,6 +44,7 @@ namespace Skybound.Gecko
         /// Returns the converted string. After converting, Finish should be called
         /// and its return value appended to this return value.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsAString ConvertFromUnicode([MarshalAs(UnmanagedType.LPStruct)] nsAString aSrc);
 		
@@ -52,33 +53,37 @@ namespace Skybound.Gecko
         /// Should be called after ConvertFromUnicode() and appended to that
         /// function's return value.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsAString Finish();
 		
 		/// <summary>
         /// Converts the data from one Charset to Unicode.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString ConvertToUnicode([MarshalAs(UnmanagedType.LPStruct)] nsAString  aSrc);
+		nsAString ConvertToUnicode([MarshalAs(UnmanagedType.LPStruct)] nsAString aSrc);
 		
 		/// <summary>
         /// Converts an array of bytes to a unicode string.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString ConvertFromByteArray(System.IntPtr  aData, System.UInt32  aCount);
+		nsAString ConvertFromByteArray(System.IntPtr aData, uint aCount);
 		
 		/// <summary>
         /// Convert a unicode string to an array of bytes. Finish does not need to be
         /// called.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr  ConvertToByteArray([MarshalAs(UnmanagedType.LPStruct)] nsAString aString, out System.UInt32  aLen);
+		System.IntPtr ConvertToByteArray([MarshalAs(UnmanagedType.LPStruct)] nsAString aString, out uint aLen);
 		
 		/// <summary>
         /// Converts a unicode string to an input stream. The bytes in the stream are
         /// encoded according to the charset attribute.
         /// The returned stream will be nonblocking.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIInputStream ConvertToInputStream([MarshalAs(UnmanagedType.LPStruct)] nsAString aString);
 		
@@ -90,7 +95,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetCharsetAttribute();
+		string GetCharsetAttribute();
 		
 		/// <summary>
         /// Current character set.
@@ -99,7 +104,7 @@ namespace Skybound.Gecko
         /// The requested charset is not supported.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCharsetAttribute([MarshalAs(UnmanagedType.LPStr)] System.String  aCharset);
+		void SetCharsetAttribute([MarshalAs(UnmanagedType.LPStr)] string aCharset);
 		
 		/// <summary>
         /// Internal use
@@ -109,7 +114,7 @@ namespace Skybound.Gecko
         /// may not be accessed
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsInternalAttribute();
+		bool GetIsInternalAttribute();
 		
 		/// <summary>
         /// Internal use
@@ -119,6 +124,6 @@ namespace Skybound.Gecko
         /// may not be accessed
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetIsInternalAttribute(System.Boolean  aIsInternal);
+		void SetIsInternalAttribute(bool aIsInternal);
 	}
 }

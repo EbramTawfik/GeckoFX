@@ -39,50 +39,50 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsITreeBoxObject  GetTreeAttribute();
+		nsITreeBoxObject GetTreeAttribute();
 		
 		/// <summary>
         /// The tree widget for this selection.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTreeAttribute([MarshalAs(UnmanagedType.Interface)] nsITreeBoxObject  aTree);
+		void SetTreeAttribute([MarshalAs(UnmanagedType.Interface)] nsITreeBoxObject aTree);
 		
 		/// <summary>
         /// This attribute is a boolean indicating single selection.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetSingleAttribute();
+		bool GetSingleAttribute();
 		
 		/// <summary>
         /// The number of rows currently selected in this tree.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetCountAttribute();
+		int GetCountAttribute();
 		
 		/// <summary>
         /// Indicates whether or not the row at the specified index is
         /// part of the selection.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsSelected(System.Int32  index);
+		bool IsSelected(int index);
 		
 		/// <summary>
         /// Deselect all rows and select the row at the specified index.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Select(System.Int32  index);
+		void Select(int index);
 		
 		/// <summary>
         /// Perform a timed select.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void TimedSelect(System.Int32  index, System.Int32  delay);
+		void TimedSelect(int index, int delay);
 		
 		/// <summary>
         /// Toggle the selection state of the row at the specified index.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ToggleSelect(System.Int32  index);
+		void ToggleSelect(int index);
 		
 		/// <summary>
         /// Select the range specified by the indices.  If augment is true,
@@ -90,13 +90,13 @@ namespace Skybound.Gecko
         /// else.  If augment is false, everything is cleared except for the specified range.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RangedSelect(System.Int32  startIndex, System.Int32  endIndex, System.Boolean  augment);
+		void RangedSelect(int startIndex, int endIndex, bool augment);
 		
 		/// <summary>
         /// Clears the range.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ClearRange(System.Int32  startIndex, System.Int32  endIndex);
+		void ClearRange(int startIndex, int endIndex);
 		
 		/// <summary>
         /// Clears the selection.
@@ -127,7 +127,7 @@ namespace Skybound.Gecko
 		/// <param name='min'> </param>
 		/// <param name='max'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetRangeAt(System.Int32  i, out System.Int32  min, out System.Int32  max);
+		void GetRangeAt(int i, out int min, out int max);
 		
 		/// <summary>
         /// Can be used to invalidate the selection.
@@ -139,7 +139,7 @@ namespace Skybound.Gecko
         /// Called when the row count changes to adjust selection indices.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AdjustSelection(System.Int32  index, System.Int32  count);
+		void AdjustSelection(int index, int count);
 		
 		/// <summary>
         /// This attribute is a boolean indicating whether or not the
@@ -150,7 +150,7 @@ namespace Skybound.Gecko
         /// Note: setting this attribute to false will fire a select event.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetSelectEventsSuppressedAttribute();
+		bool GetSelectEventsSuppressedAttribute();
 		
 		/// <summary>
         /// This attribute is a boolean indicating whether or not the
@@ -161,41 +161,41 @@ namespace Skybound.Gecko
         /// Note: setting this attribute to false will fire a select event.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSelectEventsSuppressedAttribute(System.Boolean  aSelectEventsSuppressed);
+		void SetSelectEventsSuppressedAttribute(bool aSelectEventsSuppressed);
 		
 		/// <summary>
         /// The current item (the one that gets a focus rect in addition to being
         /// selected).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetCurrentIndexAttribute();
+		int GetCurrentIndexAttribute();
 		
 		/// <summary>
         /// The current item (the one that gets a focus rect in addition to being
         /// selected).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCurrentIndexAttribute(System.Int32  aCurrentIndex);
+		void SetCurrentIndexAttribute(int aCurrentIndex);
 		
 		/// <summary>
         /// The current column.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsITreeColumn  GetCurrentColumnAttribute();
+		nsITreeColumn GetCurrentColumnAttribute();
 		
 		/// <summary>
         /// The current column.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCurrentColumnAttribute([MarshalAs(UnmanagedType.Interface)] nsITreeColumn  aCurrentColumn);
+		void SetCurrentColumnAttribute([MarshalAs(UnmanagedType.Interface)] nsITreeColumn aCurrentColumn);
 		
 		/// <summary>
         /// The selection "pivot".  This is the first item the user selected as
         /// part of a ranged select.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetShiftSelectPivotAttribute();
+		int GetShiftSelectPivotAttribute();
 	}
 	
 	/// <summary>
@@ -214,50 +214,50 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsITreeBoxObject  GetTreeAttribute();
+		new nsITreeBoxObject GetTreeAttribute();
 		
 		/// <summary>
         /// The tree widget for this selection.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetTreeAttribute([MarshalAs(UnmanagedType.Interface)] nsITreeBoxObject  aTree);
+		new void SetTreeAttribute([MarshalAs(UnmanagedType.Interface)] nsITreeBoxObject aTree);
 		
 		/// <summary>
         /// This attribute is a boolean indicating single selection.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Boolean  GetSingleAttribute();
+		new bool GetSingleAttribute();
 		
 		/// <summary>
         /// The number of rows currently selected in this tree.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Int32  GetCountAttribute();
+		new int GetCountAttribute();
 		
 		/// <summary>
         /// Indicates whether or not the row at the specified index is
         /// part of the selection.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool IsSelected(System.Int32  index);
+		new bool IsSelected(int index);
 		
 		/// <summary>
         /// Deselect all rows and select the row at the specified index.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Select(System.Int32  index);
+		new void Select(int index);
 		
 		/// <summary>
         /// Perform a timed select.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void TimedSelect(System.Int32  index, System.Int32  delay);
+		new void TimedSelect(int index, int delay);
 		
 		/// <summary>
         /// Toggle the selection state of the row at the specified index.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void ToggleSelect(System.Int32  index);
+		new void ToggleSelect(int index);
 		
 		/// <summary>
         /// Select the range specified by the indices.  If augment is true,
@@ -265,13 +265,13 @@ namespace Skybound.Gecko
         /// else.  If augment is false, everything is cleared except for the specified range.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void RangedSelect(System.Int32  startIndex, System.Int32  endIndex, System.Boolean  augment);
+		new void RangedSelect(int startIndex, int endIndex, bool augment);
 		
 		/// <summary>
         /// Clears the range.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void ClearRange(System.Int32  startIndex, System.Int32  endIndex);
+		new void ClearRange(int startIndex, int endIndex);
 		
 		/// <summary>
         /// Clears the selection.
@@ -298,7 +298,7 @@ namespace Skybound.Gecko
 		new int GetRangeCount();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetRangeAt(System.Int32  i, out System.Int32  min, out System.Int32  max);
+		new void GetRangeAt(int i, out int min, out int max);
 		
 		/// <summary>
         /// Can be used to invalidate the selection.
@@ -310,7 +310,7 @@ namespace Skybound.Gecko
         /// Called when the row count changes to adjust selection indices.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void AdjustSelection(System.Int32  index, System.Int32  count);
+		new void AdjustSelection(int index, int count);
 		
 		/// <summary>
         /// This attribute is a boolean indicating whether or not the
@@ -321,7 +321,7 @@ namespace Skybound.Gecko
         /// Note: setting this attribute to false will fire a select event.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Boolean  GetSelectEventsSuppressedAttribute();
+		new bool GetSelectEventsSuppressedAttribute();
 		
 		/// <summary>
         /// This attribute is a boolean indicating whether or not the
@@ -332,41 +332,41 @@ namespace Skybound.Gecko
         /// Note: setting this attribute to false will fire a select event.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetSelectEventsSuppressedAttribute(System.Boolean  aSelectEventsSuppressed);
+		new void SetSelectEventsSuppressedAttribute(bool aSelectEventsSuppressed);
 		
 		/// <summary>
         /// The current item (the one that gets a focus rect in addition to being
         /// selected).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Int32  GetCurrentIndexAttribute();
+		new int GetCurrentIndexAttribute();
 		
 		/// <summary>
         /// The current item (the one that gets a focus rect in addition to being
         /// selected).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetCurrentIndexAttribute(System.Int32  aCurrentIndex);
+		new void SetCurrentIndexAttribute(int aCurrentIndex);
 		
 		/// <summary>
         /// The current column.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsITreeColumn  GetCurrentColumnAttribute();
+		new nsITreeColumn GetCurrentColumnAttribute();
 		
 		/// <summary>
         /// The current column.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetCurrentColumnAttribute([MarshalAs(UnmanagedType.Interface)] nsITreeColumn  aCurrentColumn);
+		new void SetCurrentColumnAttribute([MarshalAs(UnmanagedType.Interface)] nsITreeColumn aCurrentColumn);
 		
 		/// <summary>
         /// The selection "pivot".  This is the first item the user selected as
         /// part of a ranged select.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Int32  GetShiftSelectPivotAttribute();
+		new int GetShiftSelectPivotAttribute();
 		
 		/// <summary>
         /// The following interface is not scriptable and MUST NEVER BE MADE scriptable.

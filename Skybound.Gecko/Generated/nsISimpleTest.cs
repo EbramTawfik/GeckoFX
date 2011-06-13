@@ -38,6 +38,6 @@ namespace Skybound.Gecko
         /// This interface adds two numbers together and returns the result.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int Add(System.Int32  a, System.Int32  b);
+		int Add(int a, int b);
 	}
 }

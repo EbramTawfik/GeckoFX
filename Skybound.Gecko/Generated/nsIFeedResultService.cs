@@ -42,14 +42,14 @@ namespace Skybound.Gecko
         /// of the user's preferences.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetForcePreviewPageAttribute();
+		bool GetForcePreviewPageAttribute();
 		
 		/// <summary>
         /// When set to true, forces the preview page to be displayed, regardless
         /// of the user's preferences.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetForcePreviewPageAttribute(System.Boolean  aForcePreviewPage);
+		void SetForcePreviewPageAttribute(bool aForcePreviewPage);
 		
 		/// <summary>
         /// Adds a URI to the user's specified external feed handler, or live
@@ -64,7 +64,7 @@ namespace Skybound.Gecko
         /// The nsIFeed type of the feed.  See nsIFeed.idl
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddToClientReader([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  uri, [MarshalAs(UnmanagedType.LPStruct)] nsAString title, [MarshalAs(UnmanagedType.LPStruct)] nsAString subtitle, System.UInt32  feedType);
+		void AddToClientReader([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String uri, [MarshalAs(UnmanagedType.LPStruct)] nsAString title, [MarshalAs(UnmanagedType.LPStruct)] nsAString subtitle, uint feedType);
 		
 		/// <summary>
         /// Registers a Feed Result object with a globally accessible service
@@ -75,7 +75,7 @@ namespace Skybound.Gecko
         /// An object implementing nsIFeedResult representing the feed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddFeedResult([MarshalAs(UnmanagedType.Interface)] nsIFeedResult  feedResult);
+		void AddFeedResult([MarshalAs(UnmanagedType.Interface)] nsIFeedResult feedResult);
 		
 		/// <summary>
         /// Gets a Feed Handler object registered using addFeedResult.
@@ -83,8 +83,9 @@ namespace Skybound.Gecko
         /// @param   uri
         /// The URI of the feed a handler is being requested for
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIFeedResult GetFeedResult([MarshalAs(UnmanagedType.Interface)] nsIURI  uri);
+		nsIFeedResult GetFeedResult([MarshalAs(UnmanagedType.Interface)] nsIURI uri);
 		
 		/// <summary>
         /// Unregisters a Feed Handler object registered using addFeedResult.
@@ -93,6 +94,6 @@ namespace Skybound.Gecko
         /// the same *instance* the feed was registered under.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveFeedResult([MarshalAs(UnmanagedType.Interface)] nsIURI  uri);
+		void RemoveFeedResult([MarshalAs(UnmanagedType.Interface)] nsIURI uri);
 	}
 }

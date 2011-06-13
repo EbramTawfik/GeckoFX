@@ -41,21 +41,21 @@ namespace Skybound.Gecko
 		string GetFullnameAttribute();
 		
 		/// <summary>Member GetEmailAddressAttribute </summary>
-		/// <returns>A System.String </returns>
+		/// <returns>A System.String</returns>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetEmailAddressAttribute();
+		string GetEmailAddressAttribute();
 		
 		/// <summary>
         ///should this be a wstring? </summary>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetUsernameAttribute();
+		string GetUsernameAttribute();
 		
 		/// <summary>Member GetDomainAttribute </summary>
-		/// <returns>A System.String </returns>
+		/// <returns>A System.String</returns>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetDomainAttribute();
+		string GetDomainAttribute();
 	}
 }

@@ -38,6 +38,6 @@ namespace Skybound.Gecko
         /// Checks whether a BR node is visible to the user.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool BreakIsVisible([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  aNode);
+		bool BreakIsVisible([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aNode);
 	}
 }

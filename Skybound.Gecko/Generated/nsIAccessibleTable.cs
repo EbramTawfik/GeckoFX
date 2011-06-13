@@ -40,7 +40,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIAccessible  GetCaptionAttribute();
+		nsIAccessible GetCaptionAttribute();
 		
 		/// <summary>
         /// Return summary description for the table. For example, @summary attribute
@@ -53,13 +53,13 @@ namespace Skybound.Gecko
         /// Return columns count in the table.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetColumnCountAttribute();
+		int GetColumnCountAttribute();
 		
 		/// <summary>
         /// Return rows count in the table.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetRowCountAttribute();
+		int GetRowCountAttribute();
 		
 		/// <summary>
         /// Return the accessible object at the specified row and column in the table.
@@ -70,8 +70,9 @@ namespace Skybound.Gecko
         /// @param  rowIndex     [in] the row index to retrieve the cell at
         /// @param  columnIndex  [in] the column index to retrieve the cell at
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIAccessible GetCellAt(System.Int32  rowIndex, System.Int32  columnIndex);
+		nsIAccessible GetCellAt(int rowIndex, int columnIndex);
 		
 		/// <summary>
         /// Translate the given row and column indices into the corresponding cell
@@ -81,7 +82,7 @@ namespace Skybound.Gecko
         /// @param  columnIndex [in] the column index to return cell index at
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetCellIndexAt(System.Int32  rowIndex, System.Int32  columnIndex);
+		int GetCellIndexAt(int rowIndex, int columnIndex);
 		
 		/// <summary>
         /// Translate the given cell index into the corresponding column index.
@@ -89,7 +90,7 @@ namespace Skybound.Gecko
         /// @param  cellIndex  [in] index of the table cell to return column index for
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetColumnIndexAt(System.Int32  cellIndex);
+		int GetColumnIndexAt(int cellIndex);
 		
 		/// <summary>
         /// Translate the given cell index into the corresponding row index.
@@ -97,7 +98,7 @@ namespace Skybound.Gecko
         /// @param cellIndex  [in] index of the table cell to return row index for
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetRowIndexAt(System.Int32  cellIndex);
+		int GetRowIndexAt(int cellIndex);
 		
 		/// <summary>
         /// Translate the given cell index into the corresponding row and column
@@ -108,7 +109,7 @@ namespace Skybound.Gecko
         /// @param columnIndex  [out] column index at the given cell index
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetRowAndColumnIndicesAt(System.Int32  cellIndex, out System.Int32  rowIndex, out System.Int32  columnIndex);
+		void GetRowAndColumnIndicesAt(int cellIndex, out int rowIndex, out int columnIndex);
 		
 		/// <summary>
         /// Return the number of columns occupied by the accessible cell at
@@ -120,7 +121,7 @@ namespace Skybound.Gecko
         /// for
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetColumnExtentAt(System.Int32  row, System.Int32  column);
+		int GetColumnExtentAt(int row, int column);
 		
 		/// <summary>
         /// Return the number of rows occupied by the accessible cell at the specified
@@ -132,23 +133,25 @@ namespace Skybound.Gecko
         /// for
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetRowExtentAt(System.Int32  row, System.Int32  column);
+		int GetRowExtentAt(int row, int column);
 		
 		/// <summary>
         /// Return the description text of the specified column in the table.
         ///
         /// @param  columnIndex  [in] the column index to retrieve description for
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetColumnDescription(System.Int32  columnIndex);
+		nsAString GetColumnDescription(int columnIndex);
 		
 		/// <summary>
         /// Return the description text of the specified row in the table.
         ///
         /// @param  rowIndex  [in] the row index to retrieve description for
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetRowDescription(System.Int32  rowIndex);
+		nsAString GetRowDescription(int rowIndex);
 		
 		/// <summary>
         /// Return a boolean value indicating whether the specified column is
@@ -157,7 +160,7 @@ namespace Skybound.Gecko
         /// @param  columnIndex  [in] the column index to determine if it's selected
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsColumnSelected(System.Int32  columnIndex);
+		bool IsColumnSelected(int columnIndex);
 		
 		/// <summary>
         /// Return a boolean value indicating whether the specified row is selected,
@@ -166,7 +169,7 @@ namespace Skybound.Gecko
         /// @param  rowIndex  [in] the row index to determine whether it's selected
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsRowSelected(System.Int32  rowIndex);
+		bool IsRowSelected(int rowIndex);
 		
 		/// <summary>
         /// Return a boolean value indicating whether the specified cell is selected.
@@ -175,32 +178,32 @@ namespace Skybound.Gecko
         /// @param  columnIndex  [in] the column index of the cell
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsCellSelected(System.Int32  rowIndex, System.Int32  columnIndex);
+		bool IsCellSelected(int rowIndex, int columnIndex);
 		
 		/// <summary>
         /// Return the total number of selected cells.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetSelectedCellCountAttribute();
+		uint GetSelectedCellCountAttribute();
 		
 		/// <summary>
         /// Return the total number of selected columns.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetSelectedColumnCountAttribute();
+		uint GetSelectedColumnCountAttribute();
 		
 		/// <summary>
         /// Return the total number of selected rows.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetSelectedRowCountAttribute();
+		uint GetSelectedRowCountAttribute();
 		
 		/// <summary>
         /// Return an array of selected cells.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIArray  GetSelectedCellsAttribute();
+		nsIArray GetSelectedCellsAttribute();
 		
 		/// <summary>
         /// Return an array of cell indices currently selected.
@@ -209,7 +212,7 @@ namespace Skybound.Gecko
         /// @param  cellsArray      [in] array of indexes of selected cells
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetSelectedCellIndices(out System.UInt32  cellsArraySize);
+		int GetSelectedCellIndices(out uint cellsArraySize);
 		
 		/// <summary>
         /// Return an array of column indices currently selected.
@@ -218,7 +221,7 @@ namespace Skybound.Gecko
         /// @param  columnsArray      [in] array of indices of selected columns
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetSelectedColumnIndices(out System.UInt32  columnsArraySize);
+		int GetSelectedColumnIndices(out uint columnsArraySize);
 		
 		/// <summary>
         /// Return an array of row indices currently selected.
@@ -227,7 +230,7 @@ namespace Skybound.Gecko
         /// @param  rowsArray      [in] array of indices of selected rows
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetSelectedRowIndices(out System.UInt32  rowsArraySize);
+		int GetSelectedRowIndices(out uint rowsArraySize);
 		
 		/// <summary>
         /// Select a row and unselects all previously selected rows.
@@ -235,7 +238,7 @@ namespace Skybound.Gecko
         /// @param  rowIndex  [in] the row index to select
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SelectRow(System.Int32  rowIndex);
+		void SelectRow(int rowIndex);
 		
 		/// <summary>
         /// Select a column and unselects all previously selected columns.
@@ -243,7 +246,7 @@ namespace Skybound.Gecko
         /// @param  columnIndex  [in] the column index to select
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SelectColumn(System.Int32  columnIndex);
+		void SelectColumn(int columnIndex);
 		
 		/// <summary>
         /// Unselect the given row, leaving other selected rows selected (if any).
@@ -251,7 +254,7 @@ namespace Skybound.Gecko
         /// @param  rowIndex  [in] the row index to select
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UnselectRow(System.Int32  rowIndex);
+		void UnselectRow(int rowIndex);
 		
 		/// <summary>
         /// Unselect the given column, leaving other selected columns selected (if any).
@@ -259,7 +262,7 @@ namespace Skybound.Gecko
         /// @param  columnIndex  [in] the column index to select
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UnselectColumn(System.Int32  columnIndex);
+		void UnselectColumn(int columnIndex);
 		
 		/// <summary>
         /// Use heuristics to determine if table is most likely used for layout.
@@ -280,47 +283,47 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIAccessibleTable  GetTableAttribute();
+		nsIAccessibleTable GetTableAttribute();
 		
 		/// <summary>
         /// Return column index of this cell.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetColumnIndexAttribute();
+		int GetColumnIndexAttribute();
 		
 		/// <summary>
         /// Return row index of this cell.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetRowIndexAttribute();
+		int GetRowIndexAttribute();
 		
 		/// <summary>
         /// Return the number of columns occupied by this cell. The result differs
         /// from 1 if the specified cell spans multiple columns.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetColumnExtentAttribute();
+		int GetColumnExtentAttribute();
 		
 		/// <summary>
         /// Return the number of rows occupied by this accessible cell. The result
         /// differs from 1 if the specified cell spans multiple rows.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetRowExtentAttribute();
+		int GetRowExtentAttribute();
 		
 		/// <summary>
         /// Return an array of column header cells for this cell.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIArray  GetColumnHeaderCellsAttribute();
+		nsIArray GetColumnHeaderCellsAttribute();
 		
 		/// <summary>
         /// Return an array of row header cells for this cell.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIArray  GetRowHeaderCellsAttribute();
+		nsIArray GetRowHeaderCellsAttribute();
 		
 		/// <summary>
         /// Return a boolean value indicating whether this cell is selected.

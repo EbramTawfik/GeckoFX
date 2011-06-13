@@ -42,37 +42,37 @@ namespace Skybound.Gecko
         /// the name of the cookie
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aName);
+		new void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
 		
 		/// <summary>
         /// the cookie value
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aValue);
+		new void GetValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aValue);
 		
 		/// <summary>
         /// true if the cookie is a domain cookie, false otherwise
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Boolean  GetIsDomainAttribute();
+		new bool GetIsDomainAttribute();
 		
 		/// <summary>
         /// the host (possibly fully qualified) of the cookie
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetHostAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aHost);
+		new void GetHostAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aHost);
 		
 		/// <summary>
         /// the path pertaining to the cookie
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetPathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aPath);
+		new void GetPathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aPath);
 		
 		/// <summary>
         /// true if the cookie was transmitted over ssl, false otherwise
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Boolean  GetIsSecureAttribute();
+		new bool GetIsSecureAttribute();
 		
 		/// <summary>
         /// @DEPRECATED use nsICookie2.expiry and nsICookie2.isSession instead.
@@ -82,7 +82,7 @@ namespace Skybound.Gecko
         /// expires = 1 represents an expiration time earlier than Jan 1, 1970.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.UInt64  GetExpiresAttribute();
+		new ulong GetExpiresAttribute();
 		
 		/// <summary>
         /// @DEPRECATED status implementation will return STATUS_UNKNOWN in all cases.
@@ -102,7 +102,7 @@ namespace Skybound.Gecko
         /// domain cookie.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetRawHostAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aRawHost);
+		void GetRawHostAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aRawHost);
 		
 		/// <summary>
         /// true if the cookie is a session cookie.
@@ -111,7 +111,7 @@ namespace Skybound.Gecko
         /// the more restrictive of the two will take effect.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsSessionAttribute();
+		bool GetIsSessionAttribute();
 		
 		/// <summary>
         /// the actual expiry time of the cookie, in seconds
@@ -121,20 +121,20 @@ namespace Skybound.Gecko
         /// has different and obsolete semantics.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int64  GetExpiryAttribute();
+		long GetExpiryAttribute();
 		
 		/// <summary>
         /// true if the cookie is an http only cookie
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsHttpOnlyAttribute();
+		bool GetIsHttpOnlyAttribute();
 		
 		/// <summary>
         /// the creation time of the cookie, in microseconds
         /// since midnight (00:00:00), January 1, 1970 UTC.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int64  GetCreationTimeAttribute();
+		long GetCreationTimeAttribute();
 		
 		/// <summary>
         /// the last time the cookie was accessed (i.e. created,
@@ -144,6 +144,6 @@ namespace Skybound.Gecko
         /// note that this time may be approximate.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int64  GetLastAccessedAttribute();
+		long GetLastAccessedAttribute();
 	}
 }

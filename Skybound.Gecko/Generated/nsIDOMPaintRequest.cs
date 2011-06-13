@@ -42,7 +42,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMClientRect  GetClientRectAttribute();
+		nsIDOMClientRect GetClientRectAttribute();
 		
 		/// <summary>
         /// The reason for the request, as a string. If an empty string, then we don't know

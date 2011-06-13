@@ -52,7 +52,7 @@ namespace Skybound.Gecko
         /// different initial value.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetPriorityAttribute();
+		int GetPriorityAttribute();
 		
 		/// <summary>
         /// This attribute may be modified to change the priority of this object.  The
@@ -62,7 +62,7 @@ namespace Skybound.Gecko
         /// different initial value.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPriorityAttribute(System.Int32  aPriority);
+		void SetPriorityAttribute(int aPriority);
 		
 		/// <summary>
         /// This method adjusts the priority attribute by a given delta.  It helps
@@ -70,6 +70,6 @@ namespace Skybound.Gecko
         /// of the priority attribute.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AdjustPriority(System.Int32  delta);
+		void AdjustPriority(int delta);
 	}
 }

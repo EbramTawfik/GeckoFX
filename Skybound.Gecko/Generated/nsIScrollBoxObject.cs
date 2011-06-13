@@ -41,66 +41,66 @@ namespace Skybound.Gecko
         /// Values will be clamped to legal values.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ScrollTo(System.Int32  x, System.Int32  y);
+		void ScrollTo(int x, int y);
 		
 		/// <summary>
         /// Scroll the given amount of device pixels to the right and down.
         /// Values will be clamped to make the resuling position legal.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ScrollBy(System.Int32  dx, System.Int32  dy);
+		void ScrollBy(int dx, int dy);
 		
 		/// <summary>Member ScrollByLine </summary>
 		/// <param name='dlines'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ScrollByLine(System.Int32  dlines);
+		void ScrollByLine(int dlines);
 		
 		/// <summary>Member ScrollByIndex </summary>
 		/// <param name='dindexes'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ScrollByIndex(System.Int32  dindexes);
+		void ScrollByIndex(int dindexes);
 		
 		/// <summary>Member ScrollToLine </summary>
 		/// <param name='line'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ScrollToLine(System.Int32  line);
+		void ScrollToLine(int line);
 		
 		/// <summary>Member ScrollToElement </summary>
 		/// <param name='child'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ScrollToElement([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  child);
+		void ScrollToElement([MarshalAs(UnmanagedType.Interface)] nsIDOMElement child);
 		
 		/// <summary>Member ScrollToIndex </summary>
 		/// <param name='index'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ScrollToIndex(System.Int32  index);
+		void ScrollToIndex(int index);
 		
 		/// <summary>
         /// Get the current scroll position in css pixels.
         /// @see scrollTo for the definition of x and y.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPosition(out System.Int32  x, out System.Int32  y);
+		void GetPosition(out int x, out int y);
 		
 		/// <summary>Member GetScrolledSize </summary>
 		/// <param name='width'> </param>
 		/// <param name='height'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetScrolledSize(out System.Int32  width, out System.Int32  height);
+		void GetScrolledSize(out int width, out int height);
 		
 		/// <summary>Member EnsureElementIsVisible </summary>
 		/// <param name='child'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EnsureElementIsVisible([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  child);
+		void EnsureElementIsVisible([MarshalAs(UnmanagedType.Interface)] nsIDOMElement child);
 		
 		/// <summary>Member EnsureIndexIsVisible </summary>
 		/// <param name='index'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EnsureIndexIsVisible(System.Int32  index);
+		void EnsureIndexIsVisible(int index);
 		
 		/// <summary>Member EnsureLineIsVisible </summary>
 		/// <param name='line'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EnsureLineIsVisible(System.Int32  line);
+		void EnsureLineIsVisible(int line);
 	}
 }

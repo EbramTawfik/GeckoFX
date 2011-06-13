@@ -44,14 +44,14 @@ namespace Skybound.Gecko
         /// @param aExplicit the link element has an explicit prefetch link type
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PrefetchURI([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, [MarshalAs(UnmanagedType.Interface)] nsIURI  aReferrerURI, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode  aSource, System.Boolean  aExplicit);
+		void PrefetchURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIURI aReferrerURI, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aSource, bool aExplicit);
 		
 		/// <summary>
         /// @status DEPRECATED This method is no longer used, and will throw
         /// NS_ERROR_NOT_IMPLEMENTED.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PrefetchURIForOfflineUse([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, [MarshalAs(UnmanagedType.Interface)] nsIURI  aReferrerURI, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode  aSource, System.Boolean  aExplicit);
+		void PrefetchURIForOfflineUse([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIURI aReferrerURI, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aSource, bool aExplicit);
 		
 		/// <summary>
         /// Enumerate the items in the prefetch queue.  Each element in the
@@ -64,7 +64,8 @@ namespace Skybound.Gecko
         /// use.  This parameter is deprecated and must be FALSE,
         /// or NS_ERROR_NOT_IMPLEMENTED will be thrown.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISimpleEnumerator EnumerateQueue(System.Boolean  aIncludeNormalItems, System.Boolean  aIncludeOfflineItems);
+		nsISimpleEnumerator EnumerateQueue(bool aIncludeNormalItems, bool aIncludeOfflineItems);
 	}
 }

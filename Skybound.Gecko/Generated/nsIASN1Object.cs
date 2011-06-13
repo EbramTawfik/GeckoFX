@@ -47,25 +47,25 @@ namespace Skybound.Gecko
         /// "type" will be equal to one of the defined object identifiers.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetTypeAttribute();
+		uint GetTypeAttribute();
 		
 		/// <summary>
         /// "type" will be equal to one of the defined object identifiers.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTypeAttribute(System.UInt32  aType);
+		void SetTypeAttribute(uint aType);
 		
 		/// <summary>
         /// This contains a tag as explained in ASN.1 standards documents.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetTagAttribute();
+		uint GetTagAttribute();
 		
 		/// <summary>
         /// This contains a tag as explained in ASN.1 standards documents.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTagAttribute(System.UInt32  aTag);
+		void SetTagAttribute(uint aTag);
 		
 		/// <summary>
         /// "displayName" contains a human readable explanatory label.

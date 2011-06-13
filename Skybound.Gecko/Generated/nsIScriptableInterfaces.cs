@@ -41,13 +41,13 @@ namespace Skybound.Gecko
         /// (interesting stuff only reflected into JavaScript) </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIInterfaceInfoManager  GetManagerAttribute();
+		nsIInterfaceInfoManager GetManagerAttribute();
 		
 		/// <summary>
         /// Interface used as Components.interfaces (and elsewhere)
         /// (interesting stuff only reflected into JavaScript) </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetManagerAttribute([MarshalAs(UnmanagedType.Interface)] nsIInterfaceInfoManager  aManager);
+		void SetManagerAttribute([MarshalAs(UnmanagedType.Interface)] nsIInterfaceInfoManager aManager);
 	}
 	
 	/// <summary>

@@ -46,7 +46,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIBrowserDOMWindow  GetBrowserDOMWindowAttribute();
+		nsIBrowserDOMWindow GetBrowserDOMWindowAttribute();
 		
 		/// <summary>
         /// browserDOMWindow provides access to yet another layer of
@@ -54,7 +54,7 @@ namespace Skybound.Gecko
         /// for DOMWindows not corresponding to browsers.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBrowserDOMWindowAttribute([MarshalAs(UnmanagedType.Interface)] nsIBrowserDOMWindow  aBrowserDOMWindow);
+		void SetBrowserDOMWindowAttribute([MarshalAs(UnmanagedType.Interface)] nsIBrowserDOMWindow aBrowserDOMWindow);
 		
 		/// <summary>Member GetAttention </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -63,7 +63,7 @@ namespace Skybound.Gecko
 		/// <summary>Member GetAttentionWithCycleCount </summary>
 		/// <param name='aCycleCount'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetAttentionWithCycleCount(System.Int32  aCycleCount);
+		void GetAttentionWithCycleCount(int aCycleCount);
 		
 		/// <summary>Member SetCursor </summary>
 		/// <param name='cursor'> </param>
@@ -87,13 +87,13 @@ namespace Skybound.Gecko
         /// defaultButton is the default button.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NotifyDefaultButtonLoaded([MarshalAs(UnmanagedType.Interface)] nsIDOMElement  defaultButton);
+		void NotifyDefaultButtonLoaded([MarshalAs(UnmanagedType.Interface)] nsIDOMElement defaultButton);
 		
 		/// <summary>Member GetMessageManagerAttribute </summary>
-		/// <returns>A nsIChromeFrameMessageManager </returns>
+		/// <returns>A nsIChromeFrameMessageManager</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIChromeFrameMessageManager  GetMessageManagerAttribute();
+		nsIChromeFrameMessageManager GetMessageManagerAttribute();
 		
 		/// <summary>
         /// On some operating systems, we must allow the window manager to
@@ -105,6 +105,6 @@ namespace Skybound.Gecko
         /// doesn't support this.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BeginWindowMove([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent  mouseDownEvent);
+		void BeginWindowMove([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent mouseDownEvent);
 	}
 }

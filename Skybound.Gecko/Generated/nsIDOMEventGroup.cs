@@ -44,6 +44,6 @@ namespace Skybound.Gecko
         /// Introduced in DOM Level 3:
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsSameEventGroup([MarshalAs(UnmanagedType.Interface)] nsIDOMEventGroup  other);
+		bool IsSameEventGroup([MarshalAs(UnmanagedType.Interface)] nsIDOMEventGroup other);
 	}
 }

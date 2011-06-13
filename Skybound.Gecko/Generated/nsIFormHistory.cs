@@ -47,7 +47,7 @@ namespace Skybound.Gecko
         /// Returns true if the form history has any entries.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetHasEntriesAttribute();
+		bool GetHasEntriesAttribute();
 		
 		/// <summary>
         /// Adds a name and value pair to the form history.
@@ -94,12 +94,12 @@ namespace Skybound.Gecko
         /// The end of the timeframe, in microseconds
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveEntriesByTimeframe(System.Int32  aBeginTime, System.Int32  aEndTime);
+		void RemoveEntriesByTimeframe(int aBeginTime, int aEndTime);
 		
 		/// <summary>
         /// Returns the underlying DB connection the form history module is using.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		mozIStorageConnection  GetDBConnectionAttribute();
+		mozIStorageConnection GetDBConnectionAttribute();
 	}
 }

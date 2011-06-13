@@ -54,6 +54,6 @@ namespace Skybound.Gecko
         /// The reason why we are asking (see above).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Ask([MarshalAs(UnmanagedType.Interface)] nsIHandlerInfo  aHandler, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor  aWindowContext, [MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, System.UInt32  aReason);
+		void Ask([MarshalAs(UnmanagedType.Interface)] nsIHandlerInfo aHandler, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor aWindowContext, [MarshalAs(UnmanagedType.Interface)] nsIURI aURI, uint aReason);
 	}
 }

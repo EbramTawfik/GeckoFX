@@ -42,7 +42,7 @@ namespace Skybound.Gecko
         /// The name of the host for which the permission is set
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetHostAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aHost);
+		void GetHostAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aHost);
 		
 		/// <summary>
         /// a case-sensitive ASCII string, indicating the type of permission
@@ -52,13 +52,13 @@ namespace Skybound.Gecko
         /// @see nsIPermissionManager
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aType);
+		void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aType);
 		
 		/// <summary>
         /// The permission (see nsIPermissionManager.idl for allowed values)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetCapabilityAttribute();
+		uint GetCapabilityAttribute();
 		
 		/// <summary>
         /// The expiration type of the permission (session, time-based or none).
@@ -66,13 +66,13 @@ namespace Skybound.Gecko
         /// @see nsIPermissionManager
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetExpireTypeAttribute();
+		uint GetExpireTypeAttribute();
 		
 		/// <summary>
         /// The expiration time of the permission (milliseconds since Jan 1 1970
         /// 0:00:00).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int64  GetExpireTimeAttribute();
+		long GetExpireTimeAttribute();
 	}
 }

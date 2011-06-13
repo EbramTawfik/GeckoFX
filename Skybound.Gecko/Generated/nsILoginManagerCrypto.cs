@@ -48,6 +48,7 @@ namespace Skybound.Gecko
         ///
         /// Can throw if the user cancels entry of their master password.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsAString Encrypt([MarshalAs(UnmanagedType.LPStruct)] nsAString plainText);
 		
@@ -63,6 +64,7 @@ namespace Skybound.Gecko
         /// cipherText value can not be successfully decrypted (eg, if it was
         /// encrypted with some other key).
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsAString Decrypt([MarshalAs(UnmanagedType.LPStruct)] nsAString cipherText);
 		
@@ -72,7 +74,7 @@ namespace Skybound.Gecko
         /// True when a master password prompt is being displayed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetUiBusyAttribute();
+		bool GetUiBusyAttribute();
 		
 		/// <summary>
         /// isLoggedIn
@@ -82,6 +84,6 @@ namespace Skybound.Gecko
         /// password prompt.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsLoggedInAttribute();
+		bool GetIsLoggedInAttribute();
 	}
 }

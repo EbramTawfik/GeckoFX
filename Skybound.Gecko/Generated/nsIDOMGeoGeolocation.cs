@@ -39,7 +39,7 @@ namespace Skybound.Gecko
 		/// <param name='errorCallback'> </param>
 		/// <param name='options'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCurrentPosition([MarshalAs(UnmanagedType.Interface)] nsIDOMGeoPositionCallback  successCallback, [MarshalAs(UnmanagedType.Interface)] nsIDOMGeoPositionErrorCallback  errorCallback, [MarshalAs(UnmanagedType.Interface)] nsIDOMGeoPositionOptions  options);
+		void GetCurrentPosition([MarshalAs(UnmanagedType.Interface)] nsIDOMGeoPositionCallback successCallback, [MarshalAs(UnmanagedType.Interface)] nsIDOMGeoPositionErrorCallback errorCallback, [MarshalAs(UnmanagedType.Interface)] nsIDOMGeoPositionOptions options);
 		
 		/// <summary>Member WatchPosition </summary>
 		/// <param name='successCallback'> </param>
@@ -47,11 +47,11 @@ namespace Skybound.Gecko
 		/// <param name='options'> </param>
 		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int WatchPosition([MarshalAs(UnmanagedType.Interface)] nsIDOMGeoPositionCallback  successCallback, [MarshalAs(UnmanagedType.Interface)] nsIDOMGeoPositionErrorCallback  errorCallback, [MarshalAs(UnmanagedType.Interface)] nsIDOMGeoPositionOptions  options);
+		int WatchPosition([MarshalAs(UnmanagedType.Interface)] nsIDOMGeoPositionCallback successCallback, [MarshalAs(UnmanagedType.Interface)] nsIDOMGeoPositionErrorCallback errorCallback, [MarshalAs(UnmanagedType.Interface)] nsIDOMGeoPositionOptions options);
 		
 		/// <summary>Member ClearWatch </summary>
 		/// <param name='watchId'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ClearWatch(System.Int32  watchId);
+		void ClearWatch(int watchId);
 	}
 }

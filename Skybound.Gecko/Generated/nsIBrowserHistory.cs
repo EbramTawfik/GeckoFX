@@ -52,7 +52,7 @@ namespace Skybound.Gecko
         /// referrer.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void AddURI([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, System.Boolean  aRedirect, System.Boolean  aToplevel, [MarshalAs(UnmanagedType.Interface)] nsIURI  aReferrer);
+		new void AddURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, bool aRedirect, bool aToplevel, [MarshalAs(UnmanagedType.Interface)] nsIURI aReferrer);
 		
 		/// <summary>
         /// Checks to see whether the given URI is in history.
@@ -61,7 +61,7 @@ namespace Skybound.Gecko
         /// @return true if a URI has been visited
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool IsVisited([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI);
+		new bool IsVisited([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 		
 		/// <summary>
         /// Set the page title for the given uri. URIs that are not already in
@@ -71,7 +71,7 @@ namespace Skybound.Gecko
         /// @param aTitle  the page title
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetPageTitle([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString aTitle);
+		new void SetPageTitle([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString aTitle);
 		
 		/// <summary>
         /// addPageWithDetails
@@ -80,7 +80,7 @@ namespace Skybound.Gecko
         /// the History migrator.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddPageWithDetails([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aTitle, System.Int32  aLastVisited);
+		void AddPageWithDetails([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aTitle, int aLastVisited);
 		
 		/// <summary>
         /// lastPageVisited
@@ -88,7 +88,7 @@ namespace Skybound.Gecko
         /// The last page that was visited in a top-level window.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetLastPageVisitedAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aLastPageVisited);
+		void GetLastPageVisitedAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aLastPageVisited);
 		
 		/// <summary>
         /// count
@@ -97,7 +97,7 @@ namespace Skybound.Gecko
         /// For performance reasons this does not return the real number of entries
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetCountAttribute();
+		uint GetCountAttribute();
 		
 		/// <summary>
         /// removePage
@@ -105,7 +105,7 @@ namespace Skybound.Gecko
         /// Remove a page from history
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemovePage([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI);
+		void RemovePage([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 		
 		/// <summary>
         /// removePages
@@ -115,7 +115,7 @@ namespace Skybound.Gecko
         /// instead setting aDoBatchNotify true will send Begin/EndUpdateBatch
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemovePages(nsIURI  aURIs, System.UInt32  aLength, System.Boolean  aDoBatchNotify);
+		void RemovePages(nsIURI aURIs, uint aLength, bool aDoBatchNotify);
 		
 		/// <summary>
         /// removePagesFromHost
@@ -132,7 +132,7 @@ namespace Skybound.Gecko
         /// but will send Begin/EndUpdateBatch.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemovePagesFromHost([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aHost, System.Boolean  aEntireDomain);
+		void RemovePagesFromHost([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aHost, bool aEntireDomain);
 		
 		/// <summary>
         /// removePagesByTimeframe
@@ -143,7 +143,7 @@ namespace Skybound.Gecko
         /// instead it will send Begin/EndUpdateBatch
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemovePagesByTimeframe(System.Int32  aBeginTime, System.Int32  aEndTime);
+		void RemovePagesByTimeframe(int aBeginTime, int aEndTime);
 		
 		/// <summary>
         /// removeVisitsByTimeframe
@@ -157,7 +157,7 @@ namespace Skybound.Gecko
         /// notified onBeginUpdateBatch and onEndUpdateBatch.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveVisitsByTimeframe(System.Int32  aBeginTime, System.Int32  aEndTime);
+		void RemoveVisitsByTimeframe(int aBeginTime, int aEndTime);
 		
 		/// <summary>
         /// removeAllPages
@@ -176,7 +176,7 @@ namespace Skybound.Gecko
         /// as if it was visited, and then marked as hidden
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void HidePage([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI);
+		void HidePage([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 		
 		/// <summary>
         /// markPageAsTyped
@@ -185,7 +185,7 @@ namespace Skybound.Gecko
         /// the user, so it's okay to be an autocomplete result.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MarkPageAsTyped([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI);
+		void MarkPageAsTyped([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 		
 		/// <summary>
         /// markPageAsFollowedLink
@@ -194,7 +194,7 @@ namespace Skybound.Gecko
         /// the user (for example by clicking on it).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MarkPageAsFollowedLink([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI);
+		void MarkPageAsFollowedLink([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 		
 		/// <summary>
         /// Mark a page as being currently open.
@@ -208,7 +208,7 @@ namespace Skybound.Gecko
         /// @status DEPRECATED
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RegisterOpenPage([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI);
+		void RegisterOpenPage([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 		
 		/// <summary>
         /// Mark a page as no longer being open (either by closing the window or tab,
@@ -224,6 +224,6 @@ namespace Skybound.Gecko
         /// @status DEPRECATED
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UnregisterOpenPage([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI);
+		void UnregisterOpenPage([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 	}
 }

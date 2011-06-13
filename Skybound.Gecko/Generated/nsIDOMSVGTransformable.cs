@@ -35,42 +35,46 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetNearestViewportElementAttribute </summary>
-		/// <returns>A nsIDOMSVGElement </returns>
+		/// <returns>A nsIDOMSVGElement</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMSVGElement  GetNearestViewportElementAttribute();
+		new nsIDOMSVGElement GetNearestViewportElementAttribute();
 		
 		/// <summary>Member GetFarthestViewportElementAttribute </summary>
-		/// <returns>A nsIDOMSVGElement </returns>
+		/// <returns>A nsIDOMSVGElement</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMSVGElement  GetFarthestViewportElementAttribute();
+		new nsIDOMSVGElement GetFarthestViewportElementAttribute();
 		
 		/// <summary>Member GetBBox </summary>
 		/// <returns>A nsIDOMSVGRect</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMSVGRect GetBBox();
 		
 		/// <summary>Member GetCTM </summary>
 		/// <returns>A nsIDOMSVGMatrix</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMSVGMatrix GetCTM();
 		
 		/// <summary>Member GetScreenCTM </summary>
 		/// <returns>A nsIDOMSVGMatrix</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMSVGMatrix GetScreenCTM();
 		
 		/// <summary>Member GetTransformToElement </summary>
 		/// <param name='element'> </param>
 		/// <returns>A nsIDOMSVGMatrix</returns>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMSVGMatrix GetTransformToElement([MarshalAs(UnmanagedType.Interface)] nsIDOMSVGElement  element);
-		
-		/// <summary>Member GetTransformAttribute </summary>
-		/// <returns>A nsIDOMSVGAnimatedTransformList </returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMSVGAnimatedTransformList  GetTransformAttribute();
+		new nsIDOMSVGMatrix GetTransformToElement([MarshalAs(UnmanagedType.Interface)] nsIDOMSVGElement element);
+		
+		/// <summary>Member GetTransformAttribute </summary>
+		/// <returns>A nsIDOMSVGAnimatedTransformList</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMSVGAnimatedTransformList GetTransformAttribute();
 	}
 }

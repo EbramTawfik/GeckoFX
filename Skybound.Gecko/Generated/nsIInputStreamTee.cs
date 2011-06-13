@@ -86,7 +86,7 @@ namespace Skybound.Gecko
         /// NOTE: this method should not throw NS_BASE_STREAM_CLOSED.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new uint Read(System.IntPtr  aBuf, System.UInt32  aCount);
+		new uint Read(System.IntPtr aBuf, uint aCount);
 		
 		/// <summary>
         /// Low-level read method that provides access to the stream's underlying
@@ -113,7 +113,7 @@ namespace Skybound.Gecko
         /// NOTE: this method should not throw NS_BASE_STREAM_CLOSED.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new uint ReadSegments(nsWriteSegmentFun  aWriter, System.IntPtr  aClosure, System.UInt32  aCount);
+		new uint ReadSegments(nsWriteSegmentFun aWriter, System.IntPtr aClosure, uint aCount);
 		
 		/// <summary>
         /// @return true if stream is non-blocking
@@ -135,7 +135,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIInputStream  GetSourceAttribute();
+		nsIInputStream GetSourceAttribute();
 		
 		/// <summary>
         /// A nsIInputStreamTee is a wrapper for an input stream, that when read
@@ -143,14 +143,14 @@ namespace Skybound.Gecko
         /// data to its |sink|.  |sink| must be a blocking output stream.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSourceAttribute([MarshalAs(UnmanagedType.Interface)] nsIInputStream  aSource);
+		void SetSourceAttribute([MarshalAs(UnmanagedType.Interface)] nsIInputStream aSource);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIOutputStream  GetSinkAttribute();
+		nsIOutputStream GetSinkAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSinkAttribute([MarshalAs(UnmanagedType.Interface)] nsIOutputStream  aSink);
+		void SetSinkAttribute([MarshalAs(UnmanagedType.Interface)] nsIOutputStream aSink);
 		
 		/// <summary>
         /// If |eventTarget| is set, copying to sink is done asynchronously using
@@ -160,7 +160,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIEventTarget  GetEventTargetAttribute();
+		nsIEventTarget GetEventTargetAttribute();
 		
 		/// <summary>
         /// If |eventTarget| is set, copying to sink is done asynchronously using
@@ -169,6 +169,6 @@ namespace Skybound.Gecko
         /// synchronously while reading from the source.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetEventTargetAttribute([MarshalAs(UnmanagedType.Interface)] nsIEventTarget  aEventTarget);
+		void SetEventTargetAttribute([MarshalAs(UnmanagedType.Interface)] nsIEventTarget aEventTarget);
 	}
 }

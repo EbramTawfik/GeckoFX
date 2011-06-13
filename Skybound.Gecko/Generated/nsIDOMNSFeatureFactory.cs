@@ -40,14 +40,15 @@ namespace Skybound.Gecko
         /// @param version: the version of the feature
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool HasFeature([MarshalAs(UnmanagedType.Interface)] nsISupports  @object, [MarshalAs(UnmanagedType.LPStruct)] nsAString feature, [MarshalAs(UnmanagedType.LPStruct)] nsAString version);
+		bool HasFeature([MarshalAs(UnmanagedType.Interface)] nsISupports @object, [MarshalAs(UnmanagedType.LPStruct)] nsAString feature, [MarshalAs(UnmanagedType.LPStruct)] nsAString version);
 		
 		/// <summary>
         /// @param object: usually either nsIDOMNode or nsIDOMDOMImplementation
         /// @param feature: the name of the feature
         /// @param version: the version of the feature
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports GetFeature([MarshalAs(UnmanagedType.Interface)] nsISupports  @object, [MarshalAs(UnmanagedType.LPStruct)] nsAString feature, [MarshalAs(UnmanagedType.LPStruct)] nsAString version);
+		nsISupports GetFeature([MarshalAs(UnmanagedType.Interface)] nsISupports @object, [MarshalAs(UnmanagedType.LPStruct)] nsAString feature, [MarshalAs(UnmanagedType.LPStruct)] nsAString version);
 	}
 }

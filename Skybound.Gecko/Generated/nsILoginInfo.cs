@@ -184,7 +184,7 @@ namespace Skybound.Gecko
         /// The other object to test.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Equals([MarshalAs(UnmanagedType.Interface)] nsILoginInfo  aLoginInfo);
+		bool Equals([MarshalAs(UnmanagedType.Interface)] nsILoginInfo aLoginInfo);
 		
 		/// <summary>
         /// Test for loose equivalency with another nsILoginInfo object. The
@@ -199,7 +199,7 @@ namespace Skybound.Gecko
         /// If true, ignore the password when checking for match.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Matches([MarshalAs(UnmanagedType.Interface)] nsILoginInfo  aLoginInfo, System.Boolean  ignorePassword);
+		bool Matches([MarshalAs(UnmanagedType.Interface)] nsILoginInfo aLoginInfo, bool ignorePassword);
 		
 		/// <summary>
         /// Create an identical copy of the login, duplicating all of the login's
@@ -208,6 +208,7 @@ namespace Skybound.Gecko
         /// This allows code to be forwards-compatible, when additional properties
         /// are added to nsILoginMetaInfo (or nsILoginInfo) in the future.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsILoginInfo Clone();
 	}

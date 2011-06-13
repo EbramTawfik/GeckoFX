@@ -67,6 +67,7 @@ namespace Skybound.Gecko
         ///
         /// @return wstring The string containing the data stored within this object.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string ToString();
 		
@@ -85,6 +86,6 @@ namespace Skybound.Gecko
         /// @return NS_OK The data was successfully stored.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDataWithLength(System.UInt32  length, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler", SizeParamIndex=0)] string data);
+		void SetDataWithLength(uint length, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler", SizeParamIndex=0)] string data);
 	}
 }

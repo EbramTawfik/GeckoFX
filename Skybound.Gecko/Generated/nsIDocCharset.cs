@@ -72,7 +72,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.String  GetCharsetAttribute();
+		string GetCharsetAttribute();
 		
 		/// <summary>
         /// Get/sets the encoding (converter) used to read the
@@ -84,6 +84,6 @@ namespace Skybound.Gecko
         /// A force also sets the fallback encoding for this frame.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCharsetAttribute([MarshalAs(UnmanagedType.LPStr)] System.String  aCharset);
+		void SetCharsetAttribute([MarshalAs(UnmanagedType.LPStr)] string aCharset);
 	}
 }

@@ -46,7 +46,7 @@ namespace Skybound.Gecko
         /// is no longer supported.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AutoRegister([MarshalAs(UnmanagedType.Interface)] nsIFile  aSpec);
+		void AutoRegister([MarshalAs(UnmanagedType.Interface)] nsIFile aSpec);
 		
 		/// <summary>
         /// autoUnregister
@@ -55,7 +55,7 @@ namespace Skybound.Gecko
         /// Mozilla 1.9.2.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AutoUnregister([MarshalAs(UnmanagedType.Interface)] nsIFile  aSpec);
+		void AutoUnregister([MarshalAs(UnmanagedType.Interface)] nsIFile aSpec);
 		
 		/// <summary>
         /// registerFactory
@@ -71,7 +71,7 @@ namespace Skybound.Gecko
         /// with a previously registered CID.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RegisterFactory(ref System.Guid aClass, [MarshalAs(UnmanagedType.LPStr)] System.String  aClassName, [MarshalAs(UnmanagedType.LPStr)] System.String  aContractID, [MarshalAs(UnmanagedType.Interface)] nsIFactory  aFactory);
+		void RegisterFactory(ref System.Guid aClass, [MarshalAs(UnmanagedType.LPStr)] string aClassName, [MarshalAs(UnmanagedType.LPStr)] string aContractID, [MarshalAs(UnmanagedType.Interface)] nsIFactory aFactory);
 		
 		/// <summary>
         /// unregisterFactory
@@ -86,7 +86,7 @@ namespace Skybound.Gecko
         /// NS_ERROR* Method failure.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UnregisterFactory(ref System.Guid aClass, [MarshalAs(UnmanagedType.Interface)] nsIFactory  aFactory);
+		void UnregisterFactory(ref System.Guid aClass, [MarshalAs(UnmanagedType.Interface)] nsIFactory aFactory);
 		
 		/// <summary>
         /// registerFactoryLocation
@@ -95,7 +95,7 @@ namespace Skybound.Gecko
         /// Mozilla 1.9.2.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RegisterFactoryLocation(ref System.Guid aClass, [MarshalAs(UnmanagedType.LPStr)] System.String  aClassName, [MarshalAs(UnmanagedType.LPStr)] System.String  aContractID, [MarshalAs(UnmanagedType.Interface)] nsIFile  aFile, [MarshalAs(UnmanagedType.LPStr)] System.String  aLoaderStr, [MarshalAs(UnmanagedType.LPStr)] System.String  aType);
+		void RegisterFactoryLocation(ref System.Guid aClass, [MarshalAs(UnmanagedType.LPStr)] string aClassName, [MarshalAs(UnmanagedType.LPStr)] string aContractID, [MarshalAs(UnmanagedType.Interface)] nsIFile aFile, [MarshalAs(UnmanagedType.LPStr)] string aLoaderStr, [MarshalAs(UnmanagedType.LPStr)] string aType);
 		
 		/// <summary>
         /// unregisterFactoryLocation
@@ -104,7 +104,7 @@ namespace Skybound.Gecko
         /// Mozilla 1.9.2.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UnregisterFactoryLocation(ref System.Guid aClass, [MarshalAs(UnmanagedType.Interface)] nsIFile  aFile);
+		void UnregisterFactoryLocation(ref System.Guid aClass, [MarshalAs(UnmanagedType.Interface)] nsIFile aFile);
 		
 		/// <summary>
         /// isCIDRegistered
@@ -128,7 +128,7 @@ namespace Skybound.Gecko
         /// false otherwise.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsContractIDRegistered([MarshalAs(UnmanagedType.LPStr)] System.String  aContractID);
+		bool IsContractIDRegistered([MarshalAs(UnmanagedType.LPStr)] string aContractID);
 		
 		/// <summary>
         /// enumerateCIDs
@@ -139,6 +139,7 @@ namespace Skybound.Gecko
         /// for the nsISupportsID interface.  From the nsISupportsID, you
         /// can obtain the actual CID.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISimpleEnumerator EnumerateCIDs();
 		
@@ -152,6 +153,7 @@ namespace Skybound.Gecko
         /// nsISupportsCString interface, you can obtain the actual
         /// Contract ID string.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISimpleEnumerator EnumerateContractIDs();
 		
@@ -161,6 +163,7 @@ namespace Skybound.Gecko
         /// in this interface for binary compatibility with
         /// Mozilla 1.9.2.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string CIDToContractID(ref System.Guid aClass);
 		
@@ -172,6 +175,6 @@ namespace Skybound.Gecko
         /// @return : Contract ID.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr ContractIDToCID([MarshalAs(UnmanagedType.LPStr)] System.String  aContractID);
+		System.IntPtr ContractIDToCID([MarshalAs(UnmanagedType.LPStr)] string aContractID);
 	}
 }

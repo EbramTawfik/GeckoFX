@@ -48,55 +48,55 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIAccessible  GetParentAttribute();
+		nsIAccessible GetParentAttribute();
 		
 		/// <summary>
         /// Next sibling in accessible tree
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIAccessible  GetNextSiblingAttribute();
+		nsIAccessible GetNextSiblingAttribute();
 		
 		/// <summary>
         /// Previous sibling in accessible tree
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIAccessible  GetPreviousSiblingAttribute();
+		nsIAccessible GetPreviousSiblingAttribute();
 		
 		/// <summary>
         /// First child in accessible tree
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIAccessible  GetFirstChildAttribute();
+		nsIAccessible GetFirstChildAttribute();
 		
 		/// <summary>
         /// Last child in accessible tree
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIAccessible  GetLastChildAttribute();
+		nsIAccessible GetLastChildAttribute();
 		
 		/// <summary>
         /// Array of all this element's children.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIArray  GetChildrenAttribute();
+		nsIArray GetChildrenAttribute();
 		
 		/// <summary>
         /// Number of accessible children
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetChildCountAttribute();
+		int GetChildCountAttribute();
 		
 		/// <summary>
         /// The 0-based index of this accessible in its parent's list of children,
         /// or -1 if this accessible does not have a parent.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetIndexInParentAttribute();
+		int GetIndexInParentAttribute();
 		
 		/// <summary>
         /// Accessible name -- the main text equivalent for this node. The name is
@@ -168,7 +168,7 @@ namespace Skybound.Gecko
         /// can use ARIA role attribute to force the final role.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetRoleAttribute();
+		uint GetRoleAttribute();
 		
 		/// <summary>
         /// Accessible states -- bit fields which describe boolean properties of node.
@@ -181,7 +181,7 @@ namespace Skybound.Gecko
         /// (see nsIAccessibleStates::EXT_STATE_* constants)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetState(out System.UInt32  aState, out System.UInt32  aExtraState);
+		void GetState(out uint aState, out uint aExtraState);
 		
 		/// <summary>
         /// Help text associated with node
@@ -194,14 +194,14 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIAccessible  GetFocusedChildAttribute();
+		nsIAccessible GetFocusedChildAttribute();
 		
 		/// <summary>
         /// Attributes of accessible
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIPersistentProperties  GetAttributesAttribute();
+		nsIPersistentProperties GetAttributesAttribute();
 		
 		/// <summary>
         /// Returns grouping information. Used for tree items, list items, tab panel
@@ -213,7 +213,7 @@ namespace Skybound.Gecko
         /// @param positionInGroup - 1-based, similar to ARIA 'posinset' property
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GroupPosition(out System.Int32  aGroupLevel, out System.Int32  aSimilarItemsInGroup, out System.Int32  aPositionInGroup);
+		void GroupPosition(out int aGroupLevel, out int aSimilarItemsInGroup, out int aPositionInGroup);
 		
 		/// <summary>
         /// Accessible child which contains the coordinate at (x, y) in screen pixels.
@@ -226,8 +226,9 @@ namespace Skybound.Gecko
         /// @param y  screen's y coordinate
         /// @return   the deepest accessible child containing the given point
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIAccessible GetChildAtPoint(System.Int32  x, System.Int32  y);
+		nsIAccessible GetChildAtPoint(int x, int y);
 		
 		/// <summary>
         /// Deepest accessible child which contains the coordinate at (x, y) in screen
@@ -239,36 +240,42 @@ namespace Skybound.Gecko
         /// @param y  screen's y coordinate
         /// @return   the deepest accessible child containing the given point
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIAccessible GetDeepestChildAtPoint(System.Int32  x, System.Int32  y);
+		nsIAccessible GetDeepestChildAtPoint(int x, int y);
 		
 		/// <summary>
         /// Nth accessible child using zero-based index or last child if index less than zero
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIAccessible GetChildAt(System.Int32  aChildIndex);
+		nsIAccessible GetChildAt(int aChildIndex);
 		
 		/// <summary>
         /// Accessible node geometrically to the right of this one
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIAccessible GetAccessibleToRight();
 		
 		/// <summary>
         /// Accessible node geometrically to the left of this one
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIAccessible GetAccessibleToLeft();
 		
 		/// <summary>
         /// Accessible node geometrically above this one
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIAccessible GetAccessibleAbove();
 		
 		/// <summary>
         /// Accessible node geometrically below this one
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIAccessible GetAccessibleBelow();
 		
@@ -276,26 +283,29 @@ namespace Skybound.Gecko
         /// Return accessible relation by the given relation type (see.
         /// constants defined in nsIAccessibleRelation).
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIAccessibleRelation GetRelationByType(System.UInt32  aRelationType);
+		nsIAccessibleRelation GetRelationByType(uint aRelationType);
 		
 		/// <summary>
         /// Returns the number of accessible relations for this object.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.UInt32  GetRelationsCountAttribute();
+		uint GetRelationsCountAttribute();
 		
 		/// <summary>
         /// Returns one accessible relation for this object.
         ///
         /// @param index - relation index (0-based)
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIAccessibleRelation GetRelation(System.UInt32  index);
+		nsIAccessibleRelation GetRelation(uint index);
 		
 		/// <summary>
         /// Returns multiple accessible relations for this object.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIArray GetRelations();
 		
@@ -304,13 +314,13 @@ namespace Skybound.Gecko
         /// accessible's width and height.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetBounds(out System.Int32  x, out System.Int32  y, out System.Int32  width, out System.Int32  height);
+		void GetBounds(out int x, out int y, out int width, out int height);
 		
 		/// <summary>
         /// Add or remove this accessible to the current selection
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSelected(System.Boolean  isSelected);
+		void SetSelected(bool isSelected);
 		
 		/// <summary>
         /// Extend the current selection from its current accessible anchor node
@@ -345,12 +355,14 @@ namespace Skybound.Gecko
 		/// <summary>
         /// The name of the accessible action at the given zero-based index
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsAString GetActionName(byte index);
 		
 		/// <summary>
         /// The description of the accessible action at the given zero-based index
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsAString GetActionDescription(byte aIndex);
 		
@@ -366,6 +378,6 @@ namespace Skybound.Gecko
         /// to the OS/accessibility toolkit we're running on.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNativeInterface(out System.IntPtr  aOutAccessible);
+		void GetNativeInterface(out System.IntPtr aOutAccessible);
 	}
 }

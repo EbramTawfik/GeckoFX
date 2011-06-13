@@ -57,7 +57,7 @@ namespace Skybound.Gecko
         /// openStream was called twice without an intermediate closeStream.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OpenStream([MarshalAs(UnmanagedType.Interface)] nsIURI  aBaseURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString  aContentType);
+		void OpenStream([MarshalAs(UnmanagedType.Interface)] nsIURI aBaseURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString aContentType);
 		
 		/// <summary>
         /// Append data to this stream.
@@ -67,7 +67,7 @@ namespace Skybound.Gecko
         /// @note To append more than 4 GB of data, call this method multiple times.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AppendToStream(System.IntPtr  aData, System.UInt32  aLen);
+		void AppendToStream(System.IntPtr aData, uint aLen);
 		
 		/// <summary>
         /// Notifies the browser that all the data has been appended. This may notify

@@ -45,7 +45,7 @@ namespace Skybound.Gecko
         /// <http://www.tbray.org/ongoing/When/200x/2004/01/11/PostelPilgrim>
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetBozoAttribute();
+		bool GetBozoAttribute();
 		
 		/// <summary>
         /// The Feed parser will set the bozo bit when a feed triggers a fatal
@@ -55,7 +55,7 @@ namespace Skybound.Gecko
         /// <http://www.tbray.org/ongoing/When/200x/2004/01/11/PostelPilgrim>
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBozoAttribute(System.Boolean  aBozo);
+		void SetBozoAttribute(bool aBozo);
 		
 		/// <summary>
         /// The parsed feed or entry.
@@ -64,7 +64,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIFeedContainer  GetDocAttribute();
+		nsIFeedContainer GetDocAttribute();
 		
 		/// <summary>
         /// The parsed feed or entry.
@@ -72,20 +72,20 @@ namespace Skybound.Gecko
         /// Will be null if a non-feed is processed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDocAttribute([MarshalAs(UnmanagedType.Interface)] nsIFeedContainer  aDoc);
+		void SetDocAttribute([MarshalAs(UnmanagedType.Interface)] nsIFeedContainer aDoc);
 		
 		/// <summary>
         /// The address from which the feed was fetched.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI  GetUriAttribute();
+		nsIURI GetUriAttribute();
 		
 		/// <summary>
         /// The address from which the feed was fetched.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetUriAttribute([MarshalAs(UnmanagedType.Interface)] nsIURI  aUri);
+		void SetUriAttribute([MarshalAs(UnmanagedType.Interface)] nsIURI aUri);
 		
 		/// <summary>
         /// Feed Version:
@@ -115,7 +115,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI  GetStylesheetAttribute();
+		nsIURI GetStylesheetAttribute();
 		
 		/// <summary>
         /// An XSLT stylesheet available to transform the source of the
@@ -124,20 +124,20 @@ namespace Skybound.Gecko
         /// feed capabilities.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetStylesheetAttribute([MarshalAs(UnmanagedType.Interface)] nsIURI  aStylesheet);
+		void SetStylesheetAttribute([MarshalAs(UnmanagedType.Interface)] nsIURI aStylesheet);
 		
 		/// <summary>
         /// HTTP response headers that accompanied the feed.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIProperties  GetHeadersAttribute();
+		nsIProperties GetHeadersAttribute();
 		
 		/// <summary>
         /// HTTP response headers that accompanied the feed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetHeadersAttribute([MarshalAs(UnmanagedType.Interface)] nsIProperties  aHeaders);
+		void SetHeadersAttribute([MarshalAs(UnmanagedType.Interface)] nsIProperties aHeaders);
 		
 		/// <summary>
         /// Registers a prefix used to access an extension in the feed/entry

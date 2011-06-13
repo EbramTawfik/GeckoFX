@@ -51,8 +51,9 @@ namespace Skybound.Gecko
         /// can be an empty string. At least one of aMIMEType and aFileExt
         /// must be nonempty.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIMIMEInfo GetFromTypeAndExtension([MarshalAs(UnmanagedType.LPStruct)] nsAString  aMIMEType, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aFileExt);
+		nsIMIMEInfo GetFromTypeAndExtension([MarshalAs(UnmanagedType.LPStruct)] nsAString aMIMEType, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aFileExt);
 		
 		/// <summary>
         /// Retrieves a ACString representation of the MIME type
@@ -61,8 +62,9 @@ namespace Skybound.Gecko
         /// @param  A file extension (excluding the dot ('.')).
         /// @return The MIME type, if any.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetTypeFromExtension([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aFileExt);
+		nsAString GetTypeFromExtension([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aFileExt);
 		
 		/// <summary>
         /// Retrieves a ACString representation of the MIME type
@@ -73,13 +75,15 @@ namespace Skybound.Gecko
         /// @param  The URI the user wants MIME info on.
         /// @return The MIME type, if any.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetTypeFromURI([MarshalAs(UnmanagedType.Interface)] nsIURI  aURI);
+		nsAString GetTypeFromURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 		
 		/// <summary>
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetTypeFromFile([MarshalAs(UnmanagedType.Interface)] nsIFile  aFile);
+		nsAString GetTypeFromFile([MarshalAs(UnmanagedType.Interface)] nsIFile aFile);
 		
 		/// <summary>
         /// Given a Type/Extension combination, returns the default extension
@@ -88,7 +92,8 @@ namespace Skybound.Gecko
         /// @param aMIMEType The Type to get information on. Must not be empty.
         /// @param aFileExt  File Extension. Can be empty.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAUTF8String GetPrimaryExtension([MarshalAs(UnmanagedType.LPStruct)] nsAString  aMIMEType, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String  aFileExt);
+		nsAUTF8String GetPrimaryExtension([MarshalAs(UnmanagedType.LPStruct)] nsAString aMIMEType, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aFileExt);
 	}
 }

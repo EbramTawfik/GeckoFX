@@ -35,33 +35,33 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetDestinationAddrAttribute </summary>
-		/// <returns>A System.IntPtr </returns>
+		/// <returns>A System.IntPtr</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr  GetDestinationAddrAttribute();
+		System.IntPtr GetDestinationAddrAttribute();
 		
 		/// <summary>Member SetDestinationAddrAttribute </summary>
 		/// <param name='aDestinationAddr'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDestinationAddrAttribute(System.IntPtr  aDestinationAddr);
+		void SetDestinationAddrAttribute(System.IntPtr aDestinationAddr);
 		
 		/// <summary>Member GetExternalProxyAddrAttribute </summary>
-		/// <returns>A System.IntPtr </returns>
+		/// <returns>A System.IntPtr</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr  GetExternalProxyAddrAttribute();
+		System.IntPtr GetExternalProxyAddrAttribute();
 		
 		/// <summary>Member SetExternalProxyAddrAttribute </summary>
 		/// <param name='aExternalProxyAddr'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetExternalProxyAddrAttribute(System.IntPtr  aExternalProxyAddr);
+		void SetExternalProxyAddrAttribute(System.IntPtr aExternalProxyAddr);
 		
 		/// <summary>Member GetInternalProxyAddrAttribute </summary>
-		/// <returns>A System.IntPtr </returns>
+		/// <returns>A System.IntPtr</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr  GetInternalProxyAddrAttribute();
+		System.IntPtr GetInternalProxyAddrAttribute();
 		
 		/// <summary>Member SetInternalProxyAddrAttribute </summary>
 		/// <param name='aInternalProxyAddr'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetInternalProxyAddrAttribute(System.IntPtr  aInternalProxyAddr);
+		void SetInternalProxyAddrAttribute(System.IntPtr aInternalProxyAddr);
 	}
 }

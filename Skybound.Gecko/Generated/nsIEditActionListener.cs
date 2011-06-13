@@ -52,7 +52,7 @@ namespace Skybound.Gecko
         /// any number > number of current children = last child
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void WillCreateNode([MarshalAs(UnmanagedType.LPStruct)] nsAString aTag, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode  aParent, System.Int32  aPosition);
+		void WillCreateNode([MarshalAs(UnmanagedType.LPStruct)] nsAString aTag, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aParent, int aPosition);
 		
 		/// <summary>
         /// Called after the editor creates a node.
@@ -65,7 +65,7 @@ namespace Skybound.Gecko
         /// @param aResult   The result of the create node operation.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DidCreateNode([MarshalAs(UnmanagedType.LPStruct)] nsAString aTag, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode  aNode, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode  aParent, System.Int32  aPosition, System.Int32  aResult);
+		void DidCreateNode([MarshalAs(UnmanagedType.LPStruct)] nsAString aTag, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aNode, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aParent, int aPosition, int aResult);
 		
 		/// <summary>
         /// Called before the editor inserts a node.
@@ -76,7 +76,7 @@ namespace Skybound.Gecko
         /// any number > number of current children = last child
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void WillInsertNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  aNode, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode  aParent, System.Int32  aPosition);
+		void WillInsertNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aNode, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aParent, int aPosition);
 		
 		/// <summary>
         /// Called after the editor inserts a node.
@@ -88,14 +88,14 @@ namespace Skybound.Gecko
         /// @param aResult   The result of the insert node operation.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DidInsertNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  aNode, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode  aParent, System.Int32  aPosition, System.Int32  aResult);
+		void DidInsertNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aNode, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aParent, int aPosition, int aResult);
 		
 		/// <summary>
         /// Called before the editor deletes a node.
         /// @param aChild    The node to delete
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void WillDeleteNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  aChild);
+		void WillDeleteNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aChild);
 		
 		/// <summary>
         /// Called after the editor deletes a node.
@@ -103,7 +103,7 @@ namespace Skybound.Gecko
         /// @param aResult   The result of the delete node operation.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DidDeleteNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  aChild, System.Int32  aResult);
+		void DidDeleteNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aChild, int aResult);
 		
 		/// <summary>
         /// Called before the editor splits a node.
@@ -112,7 +112,7 @@ namespace Skybound.Gecko
         /// @param aNewLeftNode         [OUT] the new node resulting from the split, becomes aExistingRightNode's previous sibling.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void WillSplitNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  aExistingRightNode, System.Int32  aOffset);
+		void WillSplitNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aExistingRightNode, int aOffset);
 		
 		/// <summary>
         /// Called after the editor splits a node.
@@ -121,7 +121,7 @@ namespace Skybound.Gecko
         /// @param aNewLeftNode         [OUT] the new node resulting from the split, becomes aExistingRightNode's previous sibling.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DidSplitNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  aExistingRightNode, System.Int32  aOffset, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode  aNewLeftNode, System.Int32  aResult);
+		void DidSplitNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aExistingRightNode, int aOffset, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aNewLeftNode, int aResult);
 		
 		/// <summary>
         /// Called before the editor joins 2 nodes.
@@ -132,7 +132,7 @@ namespace Skybound.Gecko
         /// @param aParent     The parent of aRightNode
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void WillJoinNodes([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  aLeftNode, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode  aRightNode, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode  aParent);
+		void WillJoinNodes([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aLeftNode, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aRightNode, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aParent);
 		
 		/// <summary>
         /// Called after the editor joins 2 nodes.
@@ -144,7 +144,7 @@ namespace Skybound.Gecko
         /// @param aResult     The result of the join operation.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DidJoinNodes([MarshalAs(UnmanagedType.Interface)] nsIDOMNode  aLeftNode, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode  aRightNode, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode  aParent, System.Int32  aResult);
+		void DidJoinNodes([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aLeftNode, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aRightNode, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aParent, int aResult);
 		
 		/// <summary>
         /// Called before the editor inserts text.
@@ -153,7 +153,7 @@ namespace Skybound.Gecko
         /// @param aString     The string that gets inserted.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void WillInsertText([MarshalAs(UnmanagedType.Interface)] nsIDOMCharacterData  aTextNode, System.Int32  aOffset, [MarshalAs(UnmanagedType.LPStruct)] nsAString aString);
+		void WillInsertText([MarshalAs(UnmanagedType.Interface)] nsIDOMCharacterData aTextNode, int aOffset, [MarshalAs(UnmanagedType.LPStruct)] nsAString aString);
 		
 		/// <summary>
         /// Called after the editor inserts text.
@@ -163,7 +163,7 @@ namespace Skybound.Gecko
         /// @param aResult     The result of the insert text operation.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DidInsertText([MarshalAs(UnmanagedType.Interface)] nsIDOMCharacterData  aTextNode, System.Int32  aOffset, [MarshalAs(UnmanagedType.LPStruct)] nsAString aString, System.Int32  aResult);
+		void DidInsertText([MarshalAs(UnmanagedType.Interface)] nsIDOMCharacterData aTextNode, int aOffset, [MarshalAs(UnmanagedType.LPStruct)] nsAString aString, int aResult);
 		
 		/// <summary>
         /// Called before the editor deletes text.
@@ -172,7 +172,7 @@ namespace Skybound.Gecko
         /// @param aLength     The amount of text to delete.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void WillDeleteText([MarshalAs(UnmanagedType.Interface)] nsIDOMCharacterData  aTextNode, System.Int32  aOffset, System.Int32  aLength);
+		void WillDeleteText([MarshalAs(UnmanagedType.Interface)] nsIDOMCharacterData aTextNode, int aOffset, int aLength);
 		
 		/// <summary>
         /// Called before the editor deletes text.
@@ -182,20 +182,20 @@ namespace Skybound.Gecko
         /// @param aResult     The result of the delete text operation.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DidDeleteText([MarshalAs(UnmanagedType.Interface)] nsIDOMCharacterData  aTextNode, System.Int32  aOffset, System.Int32  aLength, System.Int32  aResult);
+		void DidDeleteText([MarshalAs(UnmanagedType.Interface)] nsIDOMCharacterData aTextNode, int aOffset, int aLength, int aResult);
 		
 		/// <summary>
         /// Called before the editor deletes the selection.
         /// @param aSelection   The selection to be deleted
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void WillDeleteSelection([MarshalAs(UnmanagedType.Interface)] nsISelection  aSelection);
+		void WillDeleteSelection([MarshalAs(UnmanagedType.Interface)] nsISelection aSelection);
 		
 		/// <summary>
         /// Called after the editor deletes the selection.
         /// @param aSelection   The selection, after deletion
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DidDeleteSelection([MarshalAs(UnmanagedType.Interface)] nsISelection  aSelection);
+		void DidDeleteSelection([MarshalAs(UnmanagedType.Interface)] nsISelection aSelection);
 	}
 }

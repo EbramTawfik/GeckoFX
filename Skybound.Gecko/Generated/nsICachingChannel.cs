@@ -48,7 +48,7 @@ namespace Skybound.Gecko
         /// nsICachingChannel.cacheToken.expirationTime.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.UInt32  GetCacheTokenExpirationTimeAttribute();
+		new uint GetCacheTokenExpirationTimeAttribute();
 		
 		/// <summary>
         /// Set/get charset of cache entry. Accessing this attribute is equivalent to
@@ -56,7 +56,7 @@ namespace Skybound.Gecko
         /// nsICachingChannel.cacheToken.setMetaDataElement("charset").
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetCacheTokenCachedCharsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aCacheTokenCachedCharset);
+		new void GetCacheTokenCachedCharsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aCacheTokenCachedCharset);
 		
 		/// <summary>
         /// Set/get charset of cache entry. Accessing this attribute is equivalent to
@@ -64,7 +64,7 @@ namespace Skybound.Gecko
         /// nsICachingChannel.cacheToken.setMetaDataElement("charset").
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetCacheTokenCachedCharsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aCacheTokenCachedCharset);
+		new void SetCacheTokenCachedCharsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aCacheTokenCachedCharset);
 		
 		/// <summary>
         /// TRUE if this channel's data is being loaded from the cache.  This value
@@ -90,7 +90,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports  GetCacheTokenAttribute();
+		nsISupports GetCacheTokenAttribute();
 		
 		/// <summary>
         /// Set/get the cache token... uniquely identifies the data in the cache.
@@ -107,7 +107,7 @@ namespace Skybound.Gecko
         /// about the cache entry is needed (e.g., expiration time).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCacheTokenAttribute([MarshalAs(UnmanagedType.Interface)] nsISupports  aCacheToken);
+		void SetCacheTokenAttribute([MarshalAs(UnmanagedType.Interface)] nsISupports aCacheToken);
 		
 		/// <summary>
         /// The same as above but accessing the offline app cache token if there
@@ -118,7 +118,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports  GetOfflineCacheTokenAttribute();
+		nsISupports GetOfflineCacheTokenAttribute();
 		
 		/// <summary>
         /// The same as above but accessing the offline app cache token if there
@@ -128,7 +128,7 @@ namespace Skybound.Gecko
         /// NS_ERROR_NOT_AVAILABLE when there is not offline cache token
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOfflineCacheTokenAttribute([MarshalAs(UnmanagedType.Interface)] nsISupports  aOfflineCacheToken);
+		void SetOfflineCacheTokenAttribute([MarshalAs(UnmanagedType.Interface)] nsISupports aOfflineCacheToken);
 		
 		/// <summary>
         /// Set/get the cache key... uniquely identifies the data in the cache
@@ -149,7 +149,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports  GetCacheKeyAttribute();
+		nsISupports GetCacheKeyAttribute();
 		
 		/// <summary>
         /// Set/get the cache key... uniquely identifies the data in the cache
@@ -169,7 +169,7 @@ namespace Skybound.Gecko
         /// is likewise valid.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCacheKeyAttribute([MarshalAs(UnmanagedType.Interface)] nsISupports  aCacheKey);
+		void SetCacheKeyAttribute([MarshalAs(UnmanagedType.Interface)] nsISupports aCacheKey);
 		
 		/// <summary>
         /// Specifies whether or not the data should be cached to a file.  This
@@ -179,7 +179,7 @@ namespace Skybound.Gecko
         /// particular implementation of nsICachingChannel.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetCacheAsFileAttribute();
+		bool GetCacheAsFileAttribute();
 		
 		/// <summary>
         /// Specifies whether or not the data should be cached to a file.  This
@@ -189,7 +189,7 @@ namespace Skybound.Gecko
         /// particular implementation of nsICachingChannel.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCacheAsFileAttribute(System.Boolean  aCacheAsFile);
+		void SetCacheAsFileAttribute(bool aCacheAsFile);
 		
 		/// <summary>
         /// Specifies whether or not the data should be placed in the offline cache,
@@ -198,7 +198,7 @@ namespace Skybound.Gecko
         /// opening the channel.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetCacheForOfflineUseAttribute();
+		bool GetCacheForOfflineUseAttribute();
 		
 		/// <summary>
         /// Specifies whether or not the data should be placed in the offline cache,
@@ -207,21 +207,21 @@ namespace Skybound.Gecko
         /// opening the channel.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCacheForOfflineUseAttribute(System.Boolean  aCacheForOfflineUse);
+		void SetCacheForOfflineUseAttribute(bool aCacheForOfflineUse);
 		
 		/// <summary>
         /// The session into which to cache offline data.  If not specified,
         /// data will be placed in "HTTP-offline"
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetOfflineCacheClientIDAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aOfflineCacheClientID);
+		void GetOfflineCacheClientIDAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aOfflineCacheClientID);
 		
 		/// <summary>
         /// The session into which to cache offline data.  If not specified,
         /// data will be placed in "HTTP-offline"
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOfflineCacheClientIDAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString  aOfflineCacheClientID);
+		void SetOfflineCacheClientIDAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aOfflineCacheClientID);
 		
 		/// <summary>
         /// Get the "file" where the cached data can be found.  This is valid for
@@ -230,6 +230,6 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIFile  GetCacheFileAttribute();
+		nsIFile GetCacheFileAttribute();
 	}
 }

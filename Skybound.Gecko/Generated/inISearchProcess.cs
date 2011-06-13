@@ -38,25 +38,25 @@ namespace Skybound.Gecko
         /// indicates if an asynchronous search is in progress
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetIsActiveAttribute();
+		bool GetIsActiveAttribute();
 		
 		/// <summary>
         /// the number of results returned
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Int32  GetResultCountAttribute();
+		int GetResultCountAttribute();
 		
 		/// <summary>
         /// other than the most recent one, and getResults will return null always.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Boolean  GetHoldResultsAttribute();
+		bool GetHoldResultsAttribute();
 		
 		/// <summary>
         /// other than the most recent one, and getResults will return null always.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetHoldResultsAttribute(System.Boolean  aHoldResults);
+		void SetHoldResultsAttribute(bool aHoldResults);
 		
 		/// <summary>
         /// start a synchronous search
@@ -68,7 +68,7 @@ namespace Skybound.Gecko
         /// start an asynchronous search
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SearchAsync(inISearchObserver  aObserver);
+		void SearchAsync(inISearchObserver aObserver);
 		
 		/// <summary>
         /// command an async process to stop immediately
@@ -85,19 +85,20 @@ namespace Skybound.Gecko
 		/// <summary>
         /// methods for getting results of specific types
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetStringResultAt(System.Int32  aIndex);
+		nsAString GetStringResultAt(int aIndex);
 		
 		/// <summary>Member GetIntResultAt </summary>
 		/// <param name='aIndex'> </param>
 		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetIntResultAt(System.Int32  aIndex);
+		int GetIntResultAt(int aIndex);
 		
 		/// <summary>Member GetUIntResultAt </summary>
 		/// <param name='aIndex'> </param>
 		/// <returns>A System.UInt32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetUIntResultAt(System.Int32  aIndex);
+		uint GetUIntResultAt(int aIndex);
 	}
 }

@@ -39,64 +39,65 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.String  GetMessageAttribute();
+		new string GetMessageAttribute();
 		
 		/// <summary>
         /// The nsresult associated with this exception.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Int32  GetResultAttribute();
+		new int GetResultAttribute();
 		
 		/// <summary>
         /// The name of the error code (ie, a string repr of |result|)
         /// </summary>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.String  GetNameAttribute();
+		new string GetNameAttribute();
 		
 		/// <summary>
         /// null indicates "no data"
         /// </summary>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.String  GetFilenameAttribute();
+		new string GetFilenameAttribute();
 		
 		/// <summary>
         /// Valid line numbers begin at '1'. '0' indicates unknown.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.UInt32  GetLineNumberAttribute();
+		new uint GetLineNumberAttribute();
 		
 		/// <summary>
         /// We don't have an unambiguous indicator for unknown.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.UInt32  GetColumnNumberAttribute();
+		new uint GetColumnNumberAttribute();
 		
 		/// <summary>
         /// A stack trace, if available.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIStackFrame  GetLocationAttribute();
+		new nsIStackFrame GetLocationAttribute();
 		
 		/// <summary>
         /// An inner exception that triggered this, if available.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIException  GetInnerAttribute();
+		new nsIException GetInnerAttribute();
 		
 		/// <summary>
         /// Arbitary data for the implementation.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsISupports  GetDataAttribute();
+		new nsISupports GetDataAttribute();
 		
 		/// <summary>
         /// A generic formatter - make it suitable to print, etc.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new string ToString();
 		
@@ -104,7 +105,7 @@ namespace Skybound.Gecko
         /// inherits methods from nsIException
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Initialize([MarshalAs(UnmanagedType.LPStr)] System.String  aMessage, System.Int32  aResult, [MarshalAs(UnmanagedType.LPStr)] System.String  aName, [MarshalAs(UnmanagedType.Interface)] nsIStackFrame  aLocation, [MarshalAs(UnmanagedType.Interface)] nsISupports  aData, [MarshalAs(UnmanagedType.Interface)] nsIException  aInner);
+		void Initialize([MarshalAs(UnmanagedType.LPStr)] string aMessage, int aResult, [MarshalAs(UnmanagedType.LPStr)] string aName, [MarshalAs(UnmanagedType.Interface)] nsIStackFrame aLocation, [MarshalAs(UnmanagedType.Interface)] nsISupports aData, [MarshalAs(UnmanagedType.Interface)] nsIException aInner);
 		
 		/// <summary>Member StealJSVal </summary>
 		/// <returns>A System.IntPtr</returns>
@@ -115,6 +116,6 @@ namespace Skybound.Gecko
 		/// <param name='cx'> </param>
 		/// <param name='val'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void StowJSVal(System.IntPtr  cx, System.IntPtr  val);
+		void StowJSVal(System.IntPtr cx, System.IntPtr val);
 	}
 }
