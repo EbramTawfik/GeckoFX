@@ -48,7 +48,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAUTF8String ParseContentType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aTypeHeader, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aCharset, out bool aHadCharset);
+		nsAUTF8String ParseContentType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aTypeHeader, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aCharset, [MarshalAs(UnmanagedType.Bool)] out bool aHadCharset);
 		
 		/// <summary>
         /// Test whether the given URI's handler has the given protocol flags.
@@ -59,6 +59,7 @@ namespace Skybound.Gecko
         /// @return whether the protocol handler for aURI has all the flags
         /// in aFlags.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool ProtocolHasFlags([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, uint aFlag);
 		
@@ -73,6 +74,7 @@ namespace Skybound.Gecko
         /// @return whether any of the protocol handlers involved have all the flags
         /// in aFlags.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool URIChainHasFlags([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, uint aFlags);
 		
@@ -150,6 +152,7 @@ namespace Skybound.Gecko
         /// cases when parseContentType would claim to have a charset, if the type
         /// that won out does not have a charset parameter specified.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool ExtractCharsetFromContentType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aTypeHeader, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aCharset, out int aCharsetStart, out int aCharsetEnd);
 	}

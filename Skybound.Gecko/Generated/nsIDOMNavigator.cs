@@ -108,11 +108,13 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member GetCookieEnabledAttribute </summary>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetCookieEnabledAttribute();
 		
 		/// <summary>Member GetOnLineAttribute </summary>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetOnLineAttribute();
 		
@@ -123,11 +125,13 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member JavaEnabled </summary>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool JavaEnabled();
 		
 		/// <summary>Member TaintEnabled </summary>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool TaintEnabled();
 	}

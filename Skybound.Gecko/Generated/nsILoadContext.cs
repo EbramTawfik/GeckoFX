@@ -68,6 +68,7 @@ namespace Skybound.Gecko
         /// @return whether there is some ancestor of the associatedWindow that is of
         /// the given app type.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsAppOfType(uint appType);
 		
@@ -76,6 +77,7 @@ namespace Skybound.Gecko
         /// determined based on the type of window the load is performed in, NOT based
         /// on any URIs that might be around.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsContentAttribute();
 	}

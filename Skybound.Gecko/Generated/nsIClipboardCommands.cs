@@ -45,6 +45,7 @@ namespace Skybound.Gecko
         /// @return <code>true</code> if the current selection can be cut,
         /// <code>false</code> otherwise.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool CanCutSelection();
 		
@@ -54,6 +55,7 @@ namespace Skybound.Gecko
         /// @return <code>true</code> if there is a selection,
         /// <code>false</code> otherwise.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool CanCopySelection();
 		
@@ -63,6 +65,7 @@ namespace Skybound.Gecko
         /// @return <code>true</code> if a link is selected,
         /// <code>false</code> otherwise.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool CanCopyLinkLocation();
 		
@@ -72,6 +75,7 @@ namespace Skybound.Gecko
         /// @return <code>true</code> if an image is selected,
         ///              <code>false</code> otherwise.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool CanCopyImageLocation();
 		
@@ -81,6 +85,7 @@ namespace Skybound.Gecko
         /// @return <code>true</code> if an image is selected,
         /// <code>false</code> otherwise
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool CanCopyImageContents();
 		
@@ -92,6 +97,7 @@ namespace Skybound.Gecko
         /// and the current selection is not read-only,
         /// <code>false</code> otherwise
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool CanPaste();
 		

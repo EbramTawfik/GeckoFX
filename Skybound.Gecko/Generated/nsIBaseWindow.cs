@@ -110,7 +110,7 @@ namespace Skybound.Gecko
         ///Sets the width and height of the control.
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSize(int cx, int cy, bool fRepaint);
+		void SetSize(int cx, int cy, [MarshalAs(UnmanagedType.Bool)] bool fRepaint);
 		
 		/// <summary>
         ///Gets the width and height of the control.
@@ -123,7 +123,7 @@ namespace Skybound.Gecko
         ///	Also is more efficient than calling both.
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPositionAndSize(int x, int y, int cx, int cy, bool fRepaint);
+		void SetPositionAndSize(int x, int y, int cx, int cy, [MarshalAs(UnmanagedType.Bool)] bool fRepaint);
 		
 		/// <summary>
         ///Convenience function combining the GetPosition and GetSize into one call.
@@ -138,7 +138,7 @@ namespace Skybound.Gecko
         /// if false, the window may defer repainting as it sees fit.
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Repaint(bool force);
+		void Repaint([MarshalAs(UnmanagedType.Bool)] bool force);
 		
 		/// <summary>
         ///This is the parenting widget for the control.  This may be null if the
@@ -191,6 +191,7 @@ namespace Skybound.Gecko
         ///	Setting this attribute to false will hide the control.  Setting it to
         ///	true will show it.
         ///	 </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetVisibilityAttribute();
 		
@@ -200,12 +201,13 @@ namespace Skybound.Gecko
         ///	true will show it.
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetVisibilityAttribute(bool aVisibility);
+		void SetVisibilityAttribute([MarshalAs(UnmanagedType.Bool)] bool aVisibility);
 		
 		/// <summary>
         ///a disabled window should accept no user interaction; it's a dead window,
         ///    like the parent of a modal window.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetEnabledAttribute();
 		
@@ -214,7 +216,7 @@ namespace Skybound.Gecko
         ///    like the parent of a modal window.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetEnabledAttribute(bool aEnabled);
+		void SetEnabledAttribute([MarshalAs(UnmanagedType.Bool)] bool aEnabled);
 		
 		/// <summary>
         ///set blurSuppression to true to suppress handling of blur events.
@@ -222,6 +224,7 @@ namespace Skybound.Gecko
         /// blur events are suppressed. The implementation should allow
         /// for blur events to be suppressed multiple times.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetBlurSuppressionAttribute();
 		
@@ -232,7 +235,7 @@ namespace Skybound.Gecko
         /// for blur events to be suppressed multiple times.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBlurSuppressionAttribute(bool aBlurSuppression);
+		void SetBlurSuppressionAttribute([MarshalAs(UnmanagedType.Bool)] bool aBlurSuppression);
 		
 		/// <summary>
         ///Allows you to find out what the widget is of a given object.  Depending

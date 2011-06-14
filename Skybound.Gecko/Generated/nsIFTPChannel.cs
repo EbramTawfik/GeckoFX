@@ -64,6 +64,6 @@ namespace Skybound.Gecko
         /// XXX document this method!  (see bug 328915)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnFTPControlLog(bool server, [MarshalAs(UnmanagedType.LPStr)] string msg);
+		void OnFTPControlLog([MarshalAs(UnmanagedType.Bool)] bool server, [MarshalAs(UnmanagedType.LPStr)] string msg);
 	}
 }

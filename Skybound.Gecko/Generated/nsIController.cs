@@ -37,12 +37,14 @@ namespace Skybound.Gecko
 		/// <summary>Member IsCommandEnabled </summary>
 		/// <param name='command'> </param>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsCommandEnabled([MarshalAs(UnmanagedType.LPStr)] string command);
 		
 		/// <summary>Member SupportsCommand </summary>
 		/// <param name='command'> </param>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool SupportsCommand([MarshalAs(UnmanagedType.LPStr)] string command);
 		
@@ -96,6 +98,7 @@ namespace Skybound.Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RemoveCommandFromGroup([MarshalAs(UnmanagedType.LPStr)] string aCommand, [MarshalAs(UnmanagedType.LPStr)] string aGroup);
 		
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsCommandInGroup([MarshalAs(UnmanagedType.LPStr)] string aCommand, [MarshalAs(UnmanagedType.LPStr)] string aGroup);
 		

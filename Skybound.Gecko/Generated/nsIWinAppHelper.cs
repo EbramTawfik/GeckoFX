@@ -47,6 +47,7 @@ namespace Skybound.Gecko
         /// @status UNSTABLE - This interface is not frozen and will probably change in
         /// future releases.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetUserCanElevateAttribute();
 	}

@@ -52,6 +52,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Indicates if the UI is visible or not.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetVisibleAttribute();
 		

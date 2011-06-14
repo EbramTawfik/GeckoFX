@@ -45,7 +45,7 @@ namespace Skybound.Gecko
 		/// <summary>
         ///in JSObject value </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EncodeToStream([MarshalAs(UnmanagedType.Interface)] nsIOutputStream stream, [MarshalAs(UnmanagedType.LPStr)] string charset, bool writeBOM);
+		void EncodeToStream([MarshalAs(UnmanagedType.Interface)] nsIOutputStream stream, [MarshalAs(UnmanagedType.LPStr)] string charset, [MarshalAs(UnmanagedType.Bool)] bool writeBOM);
 		
 		/// <summary>
         ///JSObject </summary>

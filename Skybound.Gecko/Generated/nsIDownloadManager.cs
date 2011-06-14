@@ -163,6 +163,7 @@ namespace Skybound.Gecko
         /// Whether or not there are downloads that can be cleaned up (removed)
         /// i.e. downloads that have completed, have failed or have been canceled.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetCanCleanUpAttribute();
 		

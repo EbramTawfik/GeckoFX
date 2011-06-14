@@ -70,6 +70,7 @@ namespace Skybound.Gecko
         /// "heavy-io-task" notification through the observer service with the
         /// data argument being either "vacuum-begin" or "vacuum-end".
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool OnBeginVacuum();
 		
@@ -80,6 +81,6 @@ namespace Skybound.Gecko
         /// reports if the vacuum succeeded or failed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnEndVacuum(bool aSucceeded);
+		void OnEndVacuum([MarshalAs(UnmanagedType.Bool)] bool aSucceeded);
 	}
 }

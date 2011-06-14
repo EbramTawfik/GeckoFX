@@ -57,6 +57,7 @@ namespace Skybound.Gecko
         /// e.g. in case of fallback of load of an entry matching bypass
         /// namespace.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetLoadedFromApplicationCacheAttribute();
 		
@@ -68,6 +69,7 @@ namespace Skybound.Gecko
         /// NS_ERROR_ALREADY_OPENED will be thrown if set after AsyncOpen()
         /// is called.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetInheritApplicationCacheAttribute();
 		
@@ -80,7 +82,7 @@ namespace Skybound.Gecko
         /// is called.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetInheritApplicationCacheAttribute(bool aInheritApplicationCache);
+		void SetInheritApplicationCacheAttribute([MarshalAs(UnmanagedType.Bool)] bool aInheritApplicationCache);
 		
 		/// <summary>
         /// When true, the channel will choose an application cache if one
@@ -92,6 +94,7 @@ namespace Skybound.Gecko
         /// NS_ERROR_ALREADY_OPENED will be thrown if set after AsyncOpen()
         /// is called.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetChooseApplicationCacheAttribute();
 		
@@ -106,7 +109,7 @@ namespace Skybound.Gecko
         /// is called.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetChooseApplicationCacheAttribute(bool aChooseApplicationCache);
+		void SetChooseApplicationCacheAttribute([MarshalAs(UnmanagedType.Bool)] bool aChooseApplicationCache);
 		
 		/// <summary>
         /// A shortcut method to mark the cache item of this channel as 'foreign'.

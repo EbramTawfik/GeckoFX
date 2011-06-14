@@ -36,6 +36,7 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member GetIsFIPSModeActiveAttribute </summary>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsFIPSModeActiveAttribute();
 	}

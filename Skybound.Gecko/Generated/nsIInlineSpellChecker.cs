@@ -48,17 +48,18 @@ namespace Skybound.Gecko
 		/// <summary>Member Cleanup </summary>
 		/// <param name='aDestroyingFrames'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Cleanup(bool aDestroyingFrames);
+		void Cleanup([MarshalAs(UnmanagedType.Bool)] bool aDestroyingFrames);
 		
 		/// <summary>Member GetEnableRealTimeSpellAttribute </summary>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetEnableRealTimeSpellAttribute();
 		
 		/// <summary>Member SetEnableRealTimeSpellAttribute </summary>
 		/// <param name='aEnableRealTimeSpell'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetEnableRealTimeSpellAttribute(bool aEnableRealTimeSpell);
+		void SetEnableRealTimeSpellAttribute([MarshalAs(UnmanagedType.Bool)] bool aEnableRealTimeSpell);
 		
 		/// <summary>Member SpellCheckAfterEditorChange </summary>
 		/// <param name='aAction'> </param>

@@ -105,6 +105,6 @@ namespace Skybound.Gecko
         ///	interested in.
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetScrollbarVisibility(out bool verticalVisible, out bool horizontalVisible);
+		void GetScrollbarVisibility([MarshalAs(UnmanagedType.Bool)] out bool verticalVisible, [MarshalAs(UnmanagedType.Bool)] out bool horizontalVisible);
 	}
 }

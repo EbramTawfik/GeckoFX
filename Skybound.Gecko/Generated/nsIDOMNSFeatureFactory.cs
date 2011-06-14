@@ -39,6 +39,7 @@ namespace Skybound.Gecko
         /// @param feature: the name of the feature
         /// @param version: the version of the feature
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool HasFeature([MarshalAs(UnmanagedType.Interface)] nsISupports @object, [MarshalAs(UnmanagedType.LPStruct)] nsAString feature, [MarshalAs(UnmanagedType.LPStruct)] nsAString version);
 		

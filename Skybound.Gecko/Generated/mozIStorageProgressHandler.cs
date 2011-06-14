@@ -45,6 +45,7 @@ namespace Skybound.Gecko
         ///
         /// @return true to abort request, false to continue work.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool OnProgress(mozIStorageConnection aConnection);
 	}

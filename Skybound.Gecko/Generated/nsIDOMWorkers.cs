@@ -84,6 +84,7 @@ namespace Skybound.Gecko
         /// Used to indicate whether or not an event is a bubbling event. If the
         /// event can bubble the value is true, else the value is false.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetBubblesAttribute();
 		
@@ -92,6 +93,7 @@ namespace Skybound.Gecko
         /// prevented. If the default action can be prevented the value is true,
         /// else the value is false.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetCancelableAttribute();
 		
@@ -159,7 +161,7 @@ namespace Skybound.Gecko
         /// action can be prevented.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void InitEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString eventTypeArg, bool canBubbleArg, bool cancelableArg);
+		new void InitEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString eventTypeArg, [MarshalAs(UnmanagedType.Bool)] bool canBubbleArg, [MarshalAs(UnmanagedType.Bool)] bool cancelableArg);
 		
 		/// <summary>Member GetDataAttribute </summary>
 		/// <param name='aData'> </param>
@@ -185,7 +187,7 @@ namespace Skybound.Gecko
 		/// <param name='aOriginArg'> </param>
 		/// <param name='aSourceArg'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitMessageEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString aTypeArg, bool aCanBubbleArg, bool aCancelableArg, [MarshalAs(UnmanagedType.LPStruct)] nsAString aDataArg, [MarshalAs(UnmanagedType.LPStruct)] nsAString aOriginArg, [MarshalAs(UnmanagedType.Interface)] nsISupports aSourceArg);
+		void InitMessageEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString aTypeArg, [MarshalAs(UnmanagedType.Bool)] bool aCanBubbleArg, [MarshalAs(UnmanagedType.Bool)] bool aCancelableArg, [MarshalAs(UnmanagedType.LPStruct)] nsAString aDataArg, [MarshalAs(UnmanagedType.LPStruct)] nsAString aOriginArg, [MarshalAs(UnmanagedType.Interface)] nsISupports aSourceArg);
 	}
 	
 	/// <summary>nsIWorkerErrorEvent </summary>
@@ -230,6 +232,7 @@ namespace Skybound.Gecko
         /// Used to indicate whether or not an event is a bubbling event. If the
         /// event can bubble the value is true, else the value is false.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetBubblesAttribute();
 		
@@ -238,6 +241,7 @@ namespace Skybound.Gecko
         /// prevented. If the default action can be prevented the value is true,
         /// else the value is false.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetCancelableAttribute();
 		
@@ -305,7 +309,7 @@ namespace Skybound.Gecko
         /// action can be prevented.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void InitEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString eventTypeArg, bool canBubbleArg, bool cancelableArg);
+		new void InitEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString eventTypeArg, [MarshalAs(UnmanagedType.Bool)] bool canBubbleArg, [MarshalAs(UnmanagedType.Bool)] bool cancelableArg);
 		
 		/// <summary>Member GetMessageAttribute </summary>
 		/// <param name='aMessage'> </param>
@@ -330,7 +334,7 @@ namespace Skybound.Gecko
 		/// <param name='aFilenameArg'> </param>
 		/// <param name='aLinenoArg'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitErrorEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString aTypeArg, bool aCanBubbleArg, bool aCancelableArg, [MarshalAs(UnmanagedType.LPStruct)] nsAString aMessageArg, [MarshalAs(UnmanagedType.LPStruct)] nsAString aFilenameArg, uint aLinenoArg);
+		void InitErrorEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString aTypeArg, [MarshalAs(UnmanagedType.Bool)] bool aCanBubbleArg, [MarshalAs(UnmanagedType.Bool)] bool aCancelableArg, [MarshalAs(UnmanagedType.LPStruct)] nsAString aMessageArg, [MarshalAs(UnmanagedType.LPStruct)] nsAString aFilenameArg, uint aLinenoArg);
 	}
 	
 	/// <summary>nsIWorkerLocation </summary>
@@ -553,7 +557,7 @@ namespace Skybound.Gecko
         /// EventListener designated to use capture.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void AddEventListener([MarshalAs(UnmanagedType.LPStruct)] nsAString type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener listener, bool useCapture);
+		new void AddEventListener([MarshalAs(UnmanagedType.LPStruct)] nsAString type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener listener, [MarshalAs(UnmanagedType.Bool)] bool useCapture);
 		
 		/// <summary>
         /// This method allows the removal of event listeners from the event
@@ -576,7 +580,7 @@ namespace Skybound.Gecko
         /// listener, and vice versa.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void RemoveEventListener([MarshalAs(UnmanagedType.LPStruct)] nsAString type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener listener, bool useCapture);
+		new void RemoveEventListener([MarshalAs(UnmanagedType.LPStruct)] nsAString type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener listener, [MarshalAs(UnmanagedType.Bool)] bool useCapture);
 		
 		/// <summary>
         /// This method allows the dispatch of events into the implementations
@@ -596,6 +600,7 @@ namespace Skybound.Gecko
         /// type as null or an empty string will also trigger this
         /// exception.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool DispatchEvent([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent evt);
 		
@@ -644,7 +649,7 @@ namespace Skybound.Gecko
         /// EventListener designated to use capture.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void AddEventListener([MarshalAs(UnmanagedType.LPStruct)] nsAString type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener listener, bool useCapture);
+		new void AddEventListener([MarshalAs(UnmanagedType.LPStruct)] nsAString type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener listener, [MarshalAs(UnmanagedType.Bool)] bool useCapture);
 		
 		/// <summary>
         /// This method allows the removal of event listeners from the event
@@ -667,7 +672,7 @@ namespace Skybound.Gecko
         /// listener, and vice versa.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void RemoveEventListener([MarshalAs(UnmanagedType.LPStruct)] nsAString type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener listener, bool useCapture);
+		new void RemoveEventListener([MarshalAs(UnmanagedType.LPStruct)] nsAString type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener listener, [MarshalAs(UnmanagedType.Bool)] bool useCapture);
 		
 		/// <summary>
         /// This method allows the dispatch of events into the implementations
@@ -687,6 +692,7 @@ namespace Skybound.Gecko
         /// type as null or an empty string will also trigger this
         /// exception.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool DispatchEvent([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent evt);
 		

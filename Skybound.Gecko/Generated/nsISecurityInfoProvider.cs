@@ -45,6 +45,7 @@ namespace Skybound.Gecko
         /// Whether this provider has transferred data.  If it hasn't, its
         /// security info should be ignored.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetHasTransferredDataAttribute();
 	}

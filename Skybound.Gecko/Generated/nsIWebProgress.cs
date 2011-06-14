@@ -95,6 +95,7 @@ namespace Skybound.Gecko
         /// Indicates whether or not a document is currently being loaded
         /// in the context of this nsIWebProgress instance.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsLoadingDocumentAttribute();
 	}

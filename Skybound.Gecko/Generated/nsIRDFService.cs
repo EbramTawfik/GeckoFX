@@ -89,6 +89,7 @@ namespace Skybound.Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIRDFBlob GetBlobLiteral(System.IntPtr aValue, int aLength);
 		
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsAnonymousResource([MarshalAs(UnmanagedType.Interface)] nsIRDFResource aResource);
 		
@@ -117,7 +118,7 @@ namespace Skybound.Gecko
         /// cache rather than copying the resource URI itself.)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RegisterResource([MarshalAs(UnmanagedType.Interface)] nsIRDFResource aResource, bool aReplace);
+		void RegisterResource([MarshalAs(UnmanagedType.Interface)] nsIRDFResource aResource, [MarshalAs(UnmanagedType.Bool)] bool aReplace);
 		
 		/// <summary>
         /// Called to notify the resource manager that a resource is no
@@ -147,7 +148,7 @@ namespace Skybound.Gecko
         /// last reference to the data source is released.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RegisterDataSource([MarshalAs(UnmanagedType.Interface)] nsIRDFDataSource aDataSource, bool aReplace);
+		void RegisterDataSource([MarshalAs(UnmanagedType.Interface)] nsIRDFDataSource aDataSource, [MarshalAs(UnmanagedType.Bool)] bool aReplace);
 		
 		/// <summary>
         /// Unregister a <i>named data source</i>. The RDF service will call

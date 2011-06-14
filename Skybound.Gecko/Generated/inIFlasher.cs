@@ -46,13 +46,14 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member GetInvertAttribute </summary>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetInvertAttribute();
 		
 		/// <summary>Member SetInvertAttribute </summary>
 		/// <param name='aInvert'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetInvertAttribute(bool aInvert);
+		void SetInvertAttribute([MarshalAs(UnmanagedType.Bool)] bool aInvert);
 		
 		/// <summary>Member GetThicknessAttribute </summary>
 		/// <returns>A System.UInt16</returns>

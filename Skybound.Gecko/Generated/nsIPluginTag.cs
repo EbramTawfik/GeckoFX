@@ -61,22 +61,24 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member GetDisabledAttribute </summary>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetDisabledAttribute();
 		
 		/// <summary>Member SetDisabledAttribute </summary>
 		/// <param name='aDisabled'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDisabledAttribute(bool aDisabled);
+		void SetDisabledAttribute([MarshalAs(UnmanagedType.Bool)] bool aDisabled);
 		
 		/// <summary>Member GetBlocklistedAttribute </summary>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetBlocklistedAttribute();
 		
 		/// <summary>Member SetBlocklistedAttribute </summary>
 		/// <param name='aBlocklisted'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBlocklistedAttribute(bool aBlocklisted);
+		void SetBlocklistedAttribute([MarshalAs(UnmanagedType.Bool)] bool aBlocklisted);
 	}
 }

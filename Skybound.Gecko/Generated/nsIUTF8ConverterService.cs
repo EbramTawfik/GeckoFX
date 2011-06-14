@@ -55,7 +55,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAUTF8String ConvertStringToUTF8([MarshalAs(UnmanagedType.LPStruct)] nsAString aString, [MarshalAs(UnmanagedType.LPStr)] string aCharset, bool aSkipCheck);
+		nsAUTF8String ConvertStringToUTF8([MarshalAs(UnmanagedType.LPStruct)] nsAString aString, [MarshalAs(UnmanagedType.LPStr)] string aCharset, [MarshalAs(UnmanagedType.Bool)] bool aSkipCheck);
 		
 		/// <summary>
         /// Ensure that |aSpec| (after URL-unescaping it) is encoded in UTF-8.

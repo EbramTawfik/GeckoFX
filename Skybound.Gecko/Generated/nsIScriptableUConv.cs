@@ -113,6 +113,7 @@ namespace Skybound.Gecko
         /// When it is not set (the default), charsets with the isXSSVulnerable flag
         /// may not be accessed
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsInternalAttribute();
 		
@@ -124,6 +125,6 @@ namespace Skybound.Gecko
         /// may not be accessed
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetIsInternalAttribute(bool aIsInternal);
+		void SetIsInternalAttribute([MarshalAs(UnmanagedType.Bool)] bool aIsInternal);
 	}
 }

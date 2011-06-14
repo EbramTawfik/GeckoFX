@@ -91,6 +91,7 @@ namespace Skybound.Gecko
         /// @param anotherIterator another iterator to compare against, created by or for the same underlying container or sequence
         /// @result true if |anotherIterator| points to the same position in the underlying container or sequence
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsEqualTo([MarshalAs(UnmanagedType.Interface)] nsISupports anotherIterator);
 		
@@ -153,6 +154,7 @@ namespace Skybound.Gecko
         /// @param anotherIterator another iterator to compare against, created by or for the same underlying container or sequence
         /// @result true if |anotherIterator| points to the same position in the underlying container or sequence
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsEqualTo([MarshalAs(UnmanagedType.Interface)] nsISupports anotherIterator);
 		
@@ -221,6 +223,7 @@ namespace Skybound.Gecko
         /// @param anotherIterator another iterator to compare against, created by or for the same underlying container or sequence
         /// @result true if |anotherIterator| points to the same position in the underlying container or sequence
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsEqualTo([MarshalAs(UnmanagedType.Interface)] nsISupports anotherIterator);
 		
@@ -338,6 +341,7 @@ namespace Skybound.Gecko
         /// @param anotherIterator another iterator to compare against, created by or for the same underlying container or sequence
         /// @result true if |anotherIterator| points to the same position in the underlying container or sequence
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsEqualTo([MarshalAs(UnmanagedType.Interface)] nsISupports anotherIterator);
 		

@@ -58,6 +58,7 @@ namespace Skybound.Gecko
         /// for it to contain nsICommandParams, but not *this*
         /// one (i.e. self-containing is not allowed).
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetBooleanValue([MarshalAs(UnmanagedType.LPStr)] string name);
 		
@@ -91,7 +92,7 @@ namespace Skybound.Gecko
         /// one (i.e. self-containing is not allowed).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBooleanValue([MarshalAs(UnmanagedType.LPStr)] string name, bool value);
+		void SetBooleanValue([MarshalAs(UnmanagedType.LPStr)] string name, [MarshalAs(UnmanagedType.Bool)] bool value);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetLongValue([MarshalAs(UnmanagedType.LPStr)] string name, int value);
@@ -124,6 +125,7 @@ namespace Skybound.Gecko
         /// getValueType() and then getMumbleValue to get its
         /// value.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool HasMoreElements();
 		

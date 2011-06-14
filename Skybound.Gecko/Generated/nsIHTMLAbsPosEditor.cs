@@ -37,6 +37,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// true if the selection container is absolutely positioned
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetSelectionContainerAbsolutelyPositionedAttribute();
 		
@@ -51,6 +52,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// true if Absolute Positioning handling is enabled in the editor
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetAbsolutePositioningEnabledAttribute();
 		
@@ -58,11 +60,12 @@ namespace Skybound.Gecko
         /// true if Absolute Positioning handling is enabled in the editor
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAbsolutePositioningEnabledAttribute(bool aAbsolutePositioningEnabled);
+		void SetAbsolutePositioningEnabledAttribute([MarshalAs(UnmanagedType.Bool)] bool aAbsolutePositioningEnabled);
 		
 		/// <summary>
         /// true if Snap To Grid is enabled in the editor.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetSnapToGridEnabledAttribute();
 		
@@ -70,7 +73,7 @@ namespace Skybound.Gecko
         /// true if Snap To Grid is enabled in the editor.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSnapToGridEnabledAttribute(bool aSnapToGridEnabled);
+		void SetSnapToGridEnabledAttribute([MarshalAs(UnmanagedType.Bool)] bool aSnapToGridEnabled);
 		
 		/// <summary>
         /// sets the grid size in pixels.
@@ -101,7 +104,7 @@ namespace Skybound.Gecko
         /// false to put it back in the normal flow
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AbsolutePositionSelection(bool aEnabled);
+		void AbsolutePositionSelection([MarshalAs(UnmanagedType.Bool)] bool aEnabled);
 		
 		/// <summary>
         /// adds aChange to the z-index of the currently positioned element.
@@ -118,7 +121,7 @@ namespace Skybound.Gecko
         /// false to put it back in the normal flow
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AbsolutelyPositionElement([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement, bool aEnabled);
+		void AbsolutelyPositionElement([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement, [MarshalAs(UnmanagedType.Bool)] bool aEnabled);
 		
 		/// <summary>
         /// sets the position of an element; warning it does NOT check if the

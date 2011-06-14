@@ -113,6 +113,7 @@ namespace Skybound.Gecko
         ///
         /// @returns whether or not a record exists
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool Exists([MarshalAs(UnmanagedType.Interface)] nsIHandlerInfo aHandlerInfo);
 		

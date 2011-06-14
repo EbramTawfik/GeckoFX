@@ -40,6 +40,7 @@ namespace Skybound.Gecko
         /// was successfully verified as an Extended Validation (EV) cert.
         /// The test is bound to SSL Server Cert Usage.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsExtendedValidationAttribute();
 		

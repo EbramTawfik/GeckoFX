@@ -75,8 +75,9 @@ namespace Skybound.Gecko
         /// string of the format provider_name-semantic_type-table_type.  For
         /// example, goog-white-enchash or goog-black-url.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool RegisterTable([MarshalAs(UnmanagedType.LPStruct)] nsAString tableName, bool requireMac);
+		bool RegisterTable([MarshalAs(UnmanagedType.LPStruct)] nsAString tableName, [MarshalAs(UnmanagedType.Bool)] bool requireMac);
 		
 		/// <summary>
         /// Turn on update checking for a table.  I.e., during the next server

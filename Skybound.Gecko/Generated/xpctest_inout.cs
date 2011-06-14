@@ -49,7 +49,7 @@ namespace Skybound.Gecko
 		void EchoChar(char ci, out char co);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EchoBoolean(bool bi, out bool bo);
+		void EchoBoolean([MarshalAs(UnmanagedType.Bool)] bool bi, [MarshalAs(UnmanagedType.Bool)] out bool bo);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void EchoOctet(System.IntPtr oi, out System.IntPtr oo);
@@ -76,7 +76,7 @@ namespace Skybound.Gecko
 		void EchoString([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string wsi, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] out string wso);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EchoPRBool(bool bi, out bool bo);
+		void EchoPRBool([MarshalAs(UnmanagedType.Bool)] bool bi, [MarshalAs(UnmanagedType.Bool)] out bool bo);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void EchoPRInt32(int li, out int lo);

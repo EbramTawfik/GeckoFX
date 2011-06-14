@@ -43,6 +43,7 @@ namespace Skybound.Gecko
 		
 		System.Guid GetInterfaceIIDAttribute();
 		
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsScriptable();
 		
@@ -98,6 +99,7 @@ namespace Skybound.Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		byte GetInterfaceIsArgNumberForParam(ushort methodIndex, System.IntPtr param);
 		
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsIID(System.Guid IID);
 		
@@ -107,9 +109,11 @@ namespace Skybound.Gecko
 		
 		System.Guid GetIIDShared();
 		
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsFunction();
 		
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool HasAncestor(System.Guid iid);
 		

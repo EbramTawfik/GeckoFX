@@ -75,6 +75,7 @@ namespace Skybound.Gecko
         ///
         /// See <http://www.whatwg.org/html5/#the-hidden-attribute>.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetHiddenAttribute();
 		
@@ -84,7 +85,7 @@ namespace Skybound.Gecko
         /// See <http://www.whatwg.org/html5/#the-hidden-attribute>.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetHiddenAttribute(bool aHidden);
+		void SetHiddenAttribute([MarshalAs(UnmanagedType.Bool)] bool aHidden);
 		
 		/// <summary>Member GetTabIndexAttribute </summary>
 		/// <returns>A System.Int32</returns>
@@ -108,12 +109,14 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member GetIsContentEditableAttribute </summary>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsContentEditableAttribute();
 		
 		/// <summary>
         /// for WHAT-WG drag and drop
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetDraggableAttribute();
 		
@@ -121,7 +124,7 @@ namespace Skybound.Gecko
         /// for WHAT-WG drag and drop
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDraggableAttribute(bool aDraggable);
+		void SetDraggableAttribute([MarshalAs(UnmanagedType.Bool)] bool aDraggable);
 		
 		/// <summary>Member Blur </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -134,16 +137,17 @@ namespace Skybound.Gecko
 		/// <summary>Member ScrollIntoView </summary>
 		/// <param name='top'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ScrollIntoView(bool top);
+		void ScrollIntoView([MarshalAs(UnmanagedType.Bool)] bool top);
 		
 		/// <summary>Member GetSpellcheckAttribute </summary>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetSpellcheckAttribute();
 		
 		/// <summary>Member SetSpellcheckAttribute </summary>
 		/// <param name='aSpellcheck'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSpellcheckAttribute(bool aSpellcheck);
+		void SetSpellcheckAttribute([MarshalAs(UnmanagedType.Bool)] bool aSpellcheck);
 	}
 }

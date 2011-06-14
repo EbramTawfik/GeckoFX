@@ -38,6 +38,7 @@ namespace Skybound.Gecko
         /// Determines if the current keyboard language is right-to-left
         /// @throws NS_ERROR_FAILURE if no right-to-left keyboards are installed
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsLangRTL();
 		

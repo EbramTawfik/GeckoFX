@@ -101,12 +101,13 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member GetSuppressFocusScrollAttribute </summary>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetSuppressFocusScrollAttribute();
 		
 		/// <summary>Member SetSuppressFocusScrollAttribute </summary>
 		/// <param name='aSuppressFocusScroll'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSuppressFocusScrollAttribute(bool aSuppressFocusScroll);
+		void SetSuppressFocusScrollAttribute([MarshalAs(UnmanagedType.Bool)] bool aSuppressFocusScroll);
 	}
 }

@@ -46,19 +46,19 @@ namespace Skybound.Gecko
         /// else insert before current cell
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InsertTableCell(int aNumber, bool aAfter);
+		void InsertTableCell(int aNumber, [MarshalAs(UnmanagedType.Bool)] bool aAfter);
 		
 		/// <summary>Member InsertTableColumn </summary>
 		/// <param name='aNumber'> </param>
 		/// <param name='aAfter'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InsertTableColumn(int aNumber, bool aAfter);
+		void InsertTableColumn(int aNumber, [MarshalAs(UnmanagedType.Bool)] bool aAfter);
 		
 		/// <summary>Member InsertTableRow </summary>
 		/// <param name='aNumber'> </param>
 		/// <param name='aAfter'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InsertTableRow(int aNumber, bool aAfter);
+		void InsertTableRow(int aNumber, [MarshalAs(UnmanagedType.Bool)] bool aAfter);
 		
 		/// <summary>
         ///Delete table methods
@@ -176,7 +176,7 @@ namespace Skybound.Gecko
         /// are merged
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void JoinTableCells(bool aMergeNonContiguousContents);
+		void JoinTableCells([MarshalAs(UnmanagedType.Bool)] bool aMergeNonContiguousContents);
 		
 		/// <summary>
         ///Split a cell that has rowspan and/or colspan > 0
@@ -265,7 +265,7 @@ namespace Skybound.Gecko
         /// passes NS_SUCCEEDED macro)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCellDataAt([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aTable, int aRowIndex, int aColIndex, [MarshalAs(UnmanagedType.Interface)] out nsIDOMElement aCell, out int aStartRowIndex, out int aStartColIndex, out int aRowSpan, out int aColSpan, out int aActualRowSpan, out int aActualColSpan, out bool aIsSelected);
+		void GetCellDataAt([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aTable, int aRowIndex, int aColIndex, [MarshalAs(UnmanagedType.Interface)] out nsIDOMElement aCell, out int aStartRowIndex, out int aStartColIndex, out int aRowSpan, out int aColSpan, out int aActualRowSpan, out int aActualColSpan, [MarshalAs(UnmanagedType.Bool)] out bool aIsSelected);
 		
 		/// <summary>
         ///Get the first row element in a table
@@ -313,7 +313,7 @@ namespace Skybound.Gecko
         /// object to insure we reset the caret in a table-editing method.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSelectionAfterTableEdit([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aTable, int aRow, int aCol, int aDirection, bool aSelected);
+		void SetSelectionAfterTableEdit([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aTable, int aRow, int aCol, int aDirection, [MarshalAs(UnmanagedType.Bool)] bool aSelected);
 		
 		/// <summary>
         ///Examine the current selection and find

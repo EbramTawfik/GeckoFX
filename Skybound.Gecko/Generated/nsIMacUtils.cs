@@ -40,6 +40,7 @@ namespace Skybound.Gecko
         /// True when the main executable is a fat file supporting at least
         /// ppc and x86 (universal binary).
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsUniversalBinaryAttribute();
 		
@@ -54,6 +55,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// True when running under binary translation (Rosetta).
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsTranslatedAttribute();
 	}

@@ -65,6 +65,7 @@ namespace Skybound.Gecko
         /// @return false if the requested mode can definitely not be captured,
         /// true otherwise.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool ModeMayBeAvailable(uint mode);
 		

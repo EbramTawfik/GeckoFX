@@ -56,7 +56,7 @@ namespace Skybound.Gecko
 		string GetContentTypeAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void IsSeekable(out bool aSeekable);
+		void IsSeekable([MarshalAs(UnmanagedType.Bool)] out bool aSeekable);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetLengthAttribute();

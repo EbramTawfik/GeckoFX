@@ -79,6 +79,7 @@ namespace Skybound.Gecko
         /// be called. It is present for compatibility reasons and should be
         /// implemented only by nsHttpActivityDistributor.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsActiveAttribute();
 	}
@@ -135,6 +136,7 @@ namespace Skybound.Gecko
         /// be called. It is present for compatibility reasons and should be
         /// implemented only by nsHttpActivityDistributor.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetIsActiveAttribute();
 		

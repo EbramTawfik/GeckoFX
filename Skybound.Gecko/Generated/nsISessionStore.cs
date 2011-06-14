@@ -60,6 +60,7 @@ namespace Skybound.Gecko
         /// Is it possible to restore the previous session. Will always be false when
         /// in Private Browsing mode.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetCanRestoreLastSessionAttribute();
 		
@@ -68,7 +69,7 @@ namespace Skybound.Gecko
         /// in Private Browsing mode.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCanRestoreLastSessionAttribute(bool aCanRestoreLastSession);
+		void SetCanRestoreLastSessionAttribute([MarshalAs(UnmanagedType.Bool)] bool aCanRestoreLastSession);
 		
 		/// <summary>
         /// Restore the previous session if possible. This will not overwrite the
@@ -116,7 +117,7 @@ namespace Skybound.Gecko
         /// @param aOverwrite boolean overwrite existing tabs
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetWindowState([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow, [MarshalAs(UnmanagedType.LPStruct)] nsAString aState, bool aOverwrite);
+		void SetWindowState([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow, [MarshalAs(UnmanagedType.LPStruct)] nsAString aState, [MarshalAs(UnmanagedType.Bool)] bool aOverwrite);
 		
 		/// <summary>
         /// @param aTab is the tabbrowser tab whose state is to be returned.

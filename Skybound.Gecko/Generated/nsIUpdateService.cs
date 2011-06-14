@@ -135,6 +135,7 @@ namespace Skybound.Gecko
         /// installed for this update transaction, false if another patch from this
         /// update has been selected.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetSelectedAttribute();
 		
@@ -144,7 +145,7 @@ namespace Skybound.Gecko
         /// update has been selected.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSelectedAttribute(bool aSelected);
+		void SetSelectedAttribute([MarshalAs(UnmanagedType.Bool)] bool aSelected);
 		
 		/// <summary>
         /// Serializes this patch object into a DOM Element
@@ -348,6 +349,7 @@ namespace Skybound.Gecko
         /// update is found during a background update check. This overrides the
         /// default setting to download the update in the background.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetShowPromptAttribute();
 		
@@ -357,13 +359,14 @@ namespace Skybound.Gecko
         /// default setting to download the update in the background.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetShowPromptAttribute(bool aShowPrompt);
+		void SetShowPromptAttribute([MarshalAs(UnmanagedType.Bool)] bool aShowPrompt);
 		
 		/// <summary>
         /// Whether to show the "No Thanks" button in the update prompt. This allows
         /// the user to never receive a notification for that specific update version
         /// again.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetShowNeverForVersionAttribute();
 		
@@ -373,12 +376,13 @@ namespace Skybound.Gecko
         /// again.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetShowNeverForVersionAttribute(bool aShowNeverForVersion);
+		void SetShowNeverForVersionAttribute([MarshalAs(UnmanagedType.Bool)] bool aShowNeverForVersion);
 		
 		/// <summary>
         /// Whether to show the survey link in the update prompt. The url must also be
         /// present in the app.update.surveyURL preference.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetShowSurveyAttribute();
 		
@@ -387,13 +391,14 @@ namespace Skybound.Gecko
         /// present in the app.update.surveyURL preference.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetShowSurveyAttribute(bool aShowSurvey);
+		void SetShowSurveyAttribute([MarshalAs(UnmanagedType.Bool)] bool aShowSurvey);
 		
 		/// <summary>
         /// Whether or not the update being downloaded is a complete replacement of
         /// the user's existing installation or a patch representing the difference
         /// between the new version and the previous version.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsCompleteUpdateAttribute();
 		
@@ -403,13 +408,14 @@ namespace Skybound.Gecko
         /// between the new version and the previous version.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetIsCompleteUpdateAttribute(bool aIsCompleteUpdate);
+		void SetIsCompleteUpdateAttribute([MarshalAs(UnmanagedType.Bool)] bool aIsCompleteUpdate);
 		
 		/// <summary>
         /// Whether or not the update is a security update or not. If this is true,
         /// then we present more serious sounding user interface messages to the
         /// user.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsSecurityUpdateAttribute();
 		
@@ -419,7 +425,7 @@ namespace Skybound.Gecko
         /// user.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetIsSecurityUpdateAttribute(bool aIsSecurityUpdate);
+		void SetIsSecurityUpdateAttribute([MarshalAs(UnmanagedType.Bool)] bool aIsSecurityUpdate);
 		
 		/// <summary>
         /// When the update was installed.
@@ -598,7 +604,7 @@ namespace Skybound.Gecko
         /// the app.update.enabled preference.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CheckForUpdates([MarshalAs(UnmanagedType.Interface)] nsIUpdateCheckListener listener, bool force);
+		void CheckForUpdates([MarshalAs(UnmanagedType.Interface)] nsIUpdateCheckListener listener, [MarshalAs(UnmanagedType.Bool)] bool force);
 		
 		/// <summary>
         /// Ends any pending update check.
@@ -664,7 +670,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString DownloadUpdate([MarshalAs(UnmanagedType.Interface)] nsIUpdate update, bool background);
+		nsAString DownloadUpdate([MarshalAs(UnmanagedType.Interface)] nsIUpdate update, [MarshalAs(UnmanagedType.Bool)] bool background);
 		
 		/// <summary>
         /// Pauses the active update download process
@@ -675,6 +681,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Whether or not there is an download happening at the moment.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsDownloadingAttribute();
 		
@@ -683,6 +690,7 @@ namespace Skybound.Gecko
         /// of whether or not application update is disabled by the application and the
         /// platform the application is running on.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetCanCheckForUpdatesAttribute();
 		
@@ -691,6 +699,7 @@ namespace Skybound.Gecko
         /// This is a function of whether or not the current user has access
         /// privileges to the install directory.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetCanApplyUpdatesAttribute();
 	}
@@ -780,7 +789,7 @@ namespace Skybound.Gecko
         /// Less obtrusive UI, starting with a non-modal notification alert
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ShowUpdateDownloaded([MarshalAs(UnmanagedType.Interface)] nsIUpdate update, bool background);
+		void ShowUpdateDownloaded([MarshalAs(UnmanagedType.Interface)] nsIUpdate update, [MarshalAs(UnmanagedType.Bool)] bool background);
 		
 		/// <summary>
         /// Shows the application update installed user interface advising that an

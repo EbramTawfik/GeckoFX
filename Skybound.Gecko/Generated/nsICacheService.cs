@@ -56,7 +56,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsICacheSession CreateSession([MarshalAs(UnmanagedType.LPStr)] string clientID, System.IntPtr storagePolicy, bool streamBased);
+		nsICacheSession CreateSession([MarshalAs(UnmanagedType.LPStr)] string clientID, System.IntPtr storagePolicy, [MarshalAs(UnmanagedType.Bool)] bool streamBased);
 		
 		/// <summary>
         /// Visit entries stored in the cache.  Used to implement about:cache.

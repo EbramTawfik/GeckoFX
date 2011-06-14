@@ -208,6 +208,7 @@ namespace Skybound.Gecko
         ///
         /// eg. http://foo.com:80/ == http://foo.com/
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool Equals([MarshalAs(UnmanagedType.Interface)] nsIURI other);
 		
@@ -216,6 +217,7 @@ namespace Skybound.Gecko
         /// to GetScheme, thereby saving extra allocating and freeing. Returns true if
         /// the schemes match (case ignored).
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool SchemeIs([MarshalAs(UnmanagedType.LPStr)] string scheme);
 		

@@ -62,7 +62,8 @@ namespace Skybound.Gecko
         /// @param begin the end offset of the next unit
         /// @return has more unit in the current text
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Next([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string text, int length, int pos, bool isLastBuffer, out int begin, out int end);
+		bool Next([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string text, int length, int pos, [MarshalAs(UnmanagedType.Bool)] bool isLastBuffer, out int begin, out int end);
 	}
 }

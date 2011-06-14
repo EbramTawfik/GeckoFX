@@ -111,7 +111,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString Finish(bool aASCII);
+		nsAString Finish([MarshalAs(UnmanagedType.Bool)] bool aASCII);
 		
 		/// <summary>
         /// Reinitialize HMAC context to be reused with the same

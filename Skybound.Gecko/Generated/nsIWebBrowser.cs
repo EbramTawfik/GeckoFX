@@ -226,6 +226,7 @@ namespace Skybound.Gecko
         /// Defaults to true. For optimal performance, set it to false when
         /// appropriate.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsActiveAttribute();
 		
@@ -239,6 +240,6 @@ namespace Skybound.Gecko
         /// appropriate.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetIsActiveAttribute(bool aIsActive);
+		void SetIsActiveAttribute([MarshalAs(UnmanagedType.Bool)] bool aIsActive);
 	}
 }

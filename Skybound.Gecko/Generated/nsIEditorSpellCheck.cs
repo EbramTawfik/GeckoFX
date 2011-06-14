@@ -38,6 +38,7 @@ namespace Skybound.Gecko
         /// Returns true if we can enable spellchecking. If there are no available
         /// dictionaries, this will return false.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool CanSpellCheck();
 		
@@ -49,7 +50,7 @@ namespace Skybound.Gecko
         /// matter
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitSpellChecker([MarshalAs(UnmanagedType.Interface)] nsIEditor editor, bool enableSelectionChecking);
+		void InitSpellChecker([MarshalAs(UnmanagedType.Interface)] nsIEditor editor, [MarshalAs(UnmanagedType.Bool)] bool enableSelectionChecking);
 		
 		/// <summary>
         /// When interactively spell checking the document, this will return the
@@ -83,6 +84,7 @@ namespace Skybound.Gecko
         ///
         /// @see nsISpellChecker::CheckCurrentWord
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool CheckCurrentWord([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string suggestedWord);
 		
@@ -92,7 +94,7 @@ namespace Skybound.Gecko
         /// @see nsISpellChecker::CheckCurrentWord
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ReplaceWord([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string misspelledWord, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string replaceWord, bool allOccurrences);
+		void ReplaceWord([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string misspelledWord, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string replaceWord, [MarshalAs(UnmanagedType.Bool)] bool allOccurrences);
 		
 		/// <summary>
         /// @see nsISpellChecker::IgnoreAll
@@ -196,6 +198,7 @@ namespace Skybound.Gecko
         /// calls to CheckCurrentWord, so there may be suggestions, but they will be
         /// invalid.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool CheckCurrentWordNoSuggest([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string suggestedWord);
 	}

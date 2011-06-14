@@ -49,6 +49,7 @@ namespace Skybound.Gecko
         /// http://www.w3.org/TR/SVG11/types.html
         ///
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetBaseValAttribute();
 		
@@ -61,11 +62,12 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBaseValAttribute(bool aBaseVal);
+		void SetBaseValAttribute([MarshalAs(UnmanagedType.Bool)] bool aBaseVal);
 		
 		/// <summary>
         /// raises DOMException on setting
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetAnimValAttribute();
 	}

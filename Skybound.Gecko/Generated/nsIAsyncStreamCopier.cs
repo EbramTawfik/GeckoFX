@@ -55,6 +55,7 @@ namespace Skybound.Gecko
         /// OnStopRequest has fired).
         /// @note Suspended requests are still considered pending.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsPending();
 		
@@ -175,7 +176,7 @@ namespace Skybound.Gecko
         /// NOTE: at least one of the streams must be buffered.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init([MarshalAs(UnmanagedType.Interface)] nsIInputStream aSource, [MarshalAs(UnmanagedType.Interface)] nsIOutputStream aSink, [MarshalAs(UnmanagedType.Interface)] nsIEventTarget aTarget, bool aSourceBuffered, bool aSinkBuffered, uint aChunkSize, bool aCloseSource, bool aCloseSink);
+		void Init([MarshalAs(UnmanagedType.Interface)] nsIInputStream aSource, [MarshalAs(UnmanagedType.Interface)] nsIOutputStream aSink, [MarshalAs(UnmanagedType.Interface)] nsIEventTarget aTarget, [MarshalAs(UnmanagedType.Bool)] bool aSourceBuffered, [MarshalAs(UnmanagedType.Bool)] bool aSinkBuffered, uint aChunkSize, [MarshalAs(UnmanagedType.Bool)] bool aCloseSource, [MarshalAs(UnmanagedType.Bool)] bool aCloseSink);
 		
 		/// <summary>
         /// asyncCopy triggers the start of the copy.  The observer will be notified

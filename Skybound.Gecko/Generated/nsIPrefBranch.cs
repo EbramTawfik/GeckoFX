@@ -76,6 +76,7 @@ namespace Skybound.Gecko
         ///
         /// @see setBoolPref
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetBoolPref([MarshalAs(UnmanagedType.LPStr)] string aPrefName);
 		
@@ -245,6 +246,7 @@ namespace Skybound.Gecko
         /// @return boolean  true  The preference has a user set value.
         /// false The preference only has a default value.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool PrefHasUserValue([MarshalAs(UnmanagedType.LPStr)] string aPrefName);
 		
@@ -264,6 +266,7 @@ namespace Skybound.Gecko
         /// @see lockPref
         /// @see unlockPref
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool PrefIsLocked([MarshalAs(UnmanagedType.LPStr)] string aPrefName);
 		

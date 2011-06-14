@@ -220,6 +220,7 @@ namespace Skybound.Gecko
         /// @returns Boolean true if the passphrase decrypted the key correctly.
         ///
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool VerifyPassphrase([MarshalAs(UnmanagedType.LPStruct)] nsAString aWrappedPrivateKey, [MarshalAs(UnmanagedType.LPStruct)] nsAString aPassphrase, [MarshalAs(UnmanagedType.LPStruct)] nsAString aSalt, [MarshalAs(UnmanagedType.LPStruct)] nsAString aIV);
 	}

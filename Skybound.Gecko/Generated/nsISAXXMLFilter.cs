@@ -222,7 +222,7 @@ namespace Skybound.Gecko
         /// @param value Turn the feature on/off.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetFeature([MarshalAs(UnmanagedType.LPStruct)] nsAString name, bool value);
+		new void SetFeature([MarshalAs(UnmanagedType.LPStruct)] nsAString name, [MarshalAs(UnmanagedType.Bool)] bool value);
 		
 		/// <summary>
         /// Look up the value of a feature flag. NOT CURRENTLY IMPLEMENTED.
@@ -239,6 +239,7 @@ namespace Skybound.Gecko
         ///
         /// @param name String flag for a parser feature.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetFeature([MarshalAs(UnmanagedType.LPStruct)] nsAString name);
 		
@@ -282,6 +283,7 @@ namespace Skybound.Gecko
         /// @param name The property name, which is a fully-qualified URI.
         /// @return The current value of the property.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetProperty([MarshalAs(UnmanagedType.LPStruct)] nsAString name);
 		

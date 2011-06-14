@@ -40,13 +40,14 @@ namespace Skybound.Gecko
         /// Import a CRL into the certificate database.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ImportCrl(System.IntPtr data, uint length, [MarshalAs(UnmanagedType.Interface)] nsIURI uri, uint type, bool doSilentDownload, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string crlKey);
+		void ImportCrl(System.IntPtr data, uint length, [MarshalAs(UnmanagedType.Interface)] nsIURI uri, uint type, [MarshalAs(UnmanagedType.Bool)] bool doSilentDownload, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string crlKey);
 		
 		/// <summary>
         /// update crl from url
         /// update an existing crl from the last fetched url. Needed for the update
         /// button in crl manager
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool UpdateCRLFromURL([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string url, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string key);
 		

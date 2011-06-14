@@ -103,7 +103,7 @@ namespace Skybound.Gecko
         /// just left the window.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EndDragSession(bool aDoneDrag);
+		void EndDragSession([MarshalAs(UnmanagedType.Bool)] bool aDoneDrag);
 		
 		/// <summary>
         /// Fire a drag event at the source of the drag

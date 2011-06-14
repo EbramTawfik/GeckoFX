@@ -44,6 +44,7 @@ namespace Skybound.Gecko
         ///
         /// returns true if the user confirmed, false on cancel
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool ConfirmSignText([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor ctxt, [MarshalAs(UnmanagedType.LPStruct)] nsAString host, [MarshalAs(UnmanagedType.LPStruct)] nsAString signText, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler", SizeParamIndex=5)] string certNickList, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler", SizeParamIndex=5)] string certDetailsList, uint count, out int selectedIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAString password);
 	}

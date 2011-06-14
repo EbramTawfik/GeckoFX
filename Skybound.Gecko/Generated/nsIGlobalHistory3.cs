@@ -52,7 +52,7 @@ namespace Skybound.Gecko
         /// referrer.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void AddURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, bool aRedirect, bool aToplevel, [MarshalAs(UnmanagedType.Interface)] nsIURI aReferrer);
+		new void AddURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Bool)] bool aRedirect, [MarshalAs(UnmanagedType.Bool)] bool aToplevel, [MarshalAs(UnmanagedType.Interface)] nsIURI aReferrer);
 		
 		/// <summary>
         /// Checks to see whether the given URI is in history.
@@ -60,6 +60,7 @@ namespace Skybound.Gecko
         /// @param aURI the uri to the page
         /// @return true if a URI has been visited
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsVisited([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 		
@@ -103,7 +104,7 @@ namespace Skybound.Gecko
         /// NS_ERROR_NOT_IMPLEMENTED result.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddDocumentRedirect([MarshalAs(UnmanagedType.Interface)] nsIChannel aOldChannel, [MarshalAs(UnmanagedType.Interface)] nsIChannel aNewChannel, int aFlags, bool aTopLevel);
+		void AddDocumentRedirect([MarshalAs(UnmanagedType.Interface)] nsIChannel aOldChannel, [MarshalAs(UnmanagedType.Interface)] nsIChannel aNewChannel, int aFlags, [MarshalAs(UnmanagedType.Bool)] bool aTopLevel);
 		
 		/// <summary>
         /// Get the Gecko flags for this URI. These flags are used by Gecko as hints

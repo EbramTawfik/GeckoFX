@@ -320,7 +320,7 @@ namespace Skybound.Gecko
         /// Add or remove this accessible to the current selection
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSelected(bool isSelected);
+		void SetSelected([MarshalAs(UnmanagedType.Bool)] bool isSelected);
 		
 		/// <summary>
         /// Extend the current selection from its current accessible anchor node

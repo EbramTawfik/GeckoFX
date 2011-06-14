@@ -43,6 +43,7 @@ namespace Skybound.Gecko
         /// Indicates if the object can go back.  If true this indicates that
         /// there is back session history available for navigation.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetCanGoBackAttribute();
 		
@@ -50,6 +51,7 @@ namespace Skybound.Gecko
         /// Indicates if the object can go forward.  If true this indicates that
         /// there is forward session history available for navigation
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetCanGoForwardAttribute();
 		

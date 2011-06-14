@@ -43,6 +43,7 @@ namespace Skybound.Gecko
         ///
         /// @throws NS_ERROR_INVALID_POINTER if null is passed in.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool InputStreamIsBuffered([MarshalAs(UnmanagedType.Interface)] nsIInputStream aStream);
 		
@@ -53,6 +54,7 @@ namespace Skybound.Gecko
         ///
         /// @throws NS_ERROR_INVALID_POINTER if null is passed in.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool OutputStreamIsBuffered([MarshalAs(UnmanagedType.Interface)] nsIOutputStream aStream);
 	}

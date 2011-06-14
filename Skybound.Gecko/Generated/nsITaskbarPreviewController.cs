@@ -73,6 +73,7 @@ namespace Skybound.Gecko
         ///
         /// @param ctx Canvas drawing context
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool DrawPreview([MarshalAs(UnmanagedType.Interface)] nsIDOMCanvasRenderingContext2D ctx);
 		
@@ -89,6 +90,7 @@ namespace Skybound.Gecko
         /// @param width The width of the surface backing the drawing context
         /// @param height The height of the surface backing the drawing context
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool DrawThumbnail([MarshalAs(UnmanagedType.Interface)] nsIDOMCanvasRenderingContext2D ctx, uint width, uint height);
 		
@@ -104,6 +106,7 @@ namespace Skybound.Gecko
         /// @return true if the top level window corresponding to the preview should
         /// be activated, false if activation is not accepted.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool OnActivate();
 		

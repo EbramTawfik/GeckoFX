@@ -36,23 +36,25 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member GetStartWithLastProfileAttribute </summary>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetStartWithLastProfileAttribute();
 		
 		/// <summary>Member SetStartWithLastProfileAttribute </summary>
 		/// <param name='aStartWithLastProfile'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetStartWithLastProfileAttribute(bool aStartWithLastProfile);
+		void SetStartWithLastProfileAttribute([MarshalAs(UnmanagedType.Bool)] bool aStartWithLastProfile);
 		
 		/// <summary>Member GetStartOfflineAttribute </summary>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetStartOfflineAttribute();
 		
 		/// <summary>Member SetStartOfflineAttribute </summary>
 		/// <param name='aStartOffline'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetStartOfflineAttribute(bool aStartOffline);
+		void SetStartOfflineAttribute([MarshalAs(UnmanagedType.Bool)] bool aStartOffline);
 		
 		/// <summary>
         ///nsIToolkitProfile </summary>

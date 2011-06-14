@@ -37,6 +37,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// indicates if an asynchronous search is in progress
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsActiveAttribute();
 		
@@ -49,6 +50,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// other than the most recent one, and getResults will return null always.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetHoldResultsAttribute();
 		
@@ -56,7 +58,7 @@ namespace Skybound.Gecko
         /// other than the most recent one, and getResults will return null always.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetHoldResultsAttribute(bool aHoldResults);
+		void SetHoldResultsAttribute([MarshalAs(UnmanagedType.Bool)] bool aHoldResults);
 		
 		/// <summary>
         /// start a synchronous search
@@ -79,6 +81,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// and is not for use by those who just wish to call searchAsync
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool SearchStep();
 		

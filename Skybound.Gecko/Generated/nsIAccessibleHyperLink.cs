@@ -59,6 +59,7 @@ namespace Skybound.Gecko
         /// specify that the link is invalid via the aria-invalid="true" attribute.
         /// In all other cases, TRUE is returned.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetValidAttribute();
 		
@@ -70,6 +71,7 @@ namespace Skybound.Gecko
         /// attribute set.  Also, state_focused should then be set on the accessible
         /// for this link.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetSelectedAttribute();
 		

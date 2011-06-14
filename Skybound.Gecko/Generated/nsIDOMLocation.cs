@@ -123,7 +123,7 @@ namespace Skybound.Gecko
 		/// <summary>Member Reload </summary>
 		/// <param name='forceget'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Reload(bool forceget);
+		void Reload([MarshalAs(UnmanagedType.Bool)] bool forceget);
 		
 		/// <summary>Member Replace </summary>
 		/// <param name='url'> </param>

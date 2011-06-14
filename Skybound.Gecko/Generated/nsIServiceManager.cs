@@ -74,9 +74,11 @@ namespace Skybound.Gecko
         /// @param aIID : IID of interface requested
         /// @param aIID : IID of interface requested
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsServiceInstantiated(ref System.Guid aClass, ref System.Guid aIID);
 		
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsServiceInstantiatedByContractID([MarshalAs(UnmanagedType.LPStr)] string aContractID, ref System.Guid aIID);
 	}

@@ -81,6 +81,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Returns true if the property with the given name exists.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool Has([MarshalAs(UnmanagedType.LPStr)] string prop);
 		

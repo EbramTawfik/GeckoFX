@@ -48,6 +48,7 @@ namespace Skybound.Gecko
         ///
         /// @return true if the user allows to import the certificate.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool ConfirmDownloadCACert([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor ctx, [MarshalAs(UnmanagedType.Interface)] nsIX509Cert cert, out uint trust);
 		
@@ -75,6 +76,7 @@ namespace Skybound.Gecko
         ///
         /// @return false if the user requests to cancel.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool SetPKCS12FilePassword([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor ctx, [MarshalAs(UnmanagedType.LPStruct)] nsAString password);
 		
@@ -89,6 +91,7 @@ namespace Skybound.Gecko
         ///
         /// @return false if the user requests to cancel.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetPKCS12FilePassword([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor ctx, [MarshalAs(UnmanagedType.LPStruct)] nsAString password);
 		

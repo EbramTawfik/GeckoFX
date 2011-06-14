@@ -56,6 +56,7 @@ namespace Skybound.Gecko
         /// getChildListForItem().
         /// @param aIndex The index of the item in the list.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool ItemIsBatch(int aIndex);
 		

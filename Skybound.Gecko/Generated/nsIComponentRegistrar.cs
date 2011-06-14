@@ -115,6 +115,7 @@ namespace Skybound.Gecko
         /// @return       : true if a factory is registered for CID
         /// false otherwise.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsCIDRegistered(ref System.Guid aClass);
 		
@@ -127,6 +128,7 @@ namespace Skybound.Gecko
         /// @return       : true if a factory is registered for contract id
         /// false otherwise.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsContractIDRegistered([MarshalAs(UnmanagedType.LPStr)] string aContractID);
 		

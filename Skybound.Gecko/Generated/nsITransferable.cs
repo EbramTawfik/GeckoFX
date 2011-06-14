@@ -99,6 +99,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Returns true if the data is large.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsLargeDataSet();
 		

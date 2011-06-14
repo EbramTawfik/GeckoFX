@@ -51,6 +51,7 @@ namespace Skybound.Gecko
         /// @returns true if an annotation exists with the given name,
         /// false otherwise.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool Has([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
 		
@@ -518,6 +519,7 @@ namespace Skybound.Gecko
         /// Quits the application (if nobody objects to quit-application-requested).
         /// @returns whether quitting will proceed
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool Quit();
 		
@@ -525,6 +527,7 @@ namespace Skybound.Gecko
         /// Restarts the application (if nobody objects to quit-application-requested).
         /// @returns whether restarting will proceed
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool Restart();
 		

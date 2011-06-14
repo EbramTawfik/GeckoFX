@@ -99,7 +99,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIHistoryEntry GetEntryAtIndex(int index, bool modifyIndex);
+		nsIHistoryEntry GetEntryAtIndex(int index, [MarshalAs(UnmanagedType.Bool)] bool modifyIndex);
 		
 		/// <summary>
         /// Called to purge older documents from history.
@@ -240,7 +240,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIHistoryEntry GetEntryAtIndex(int index, bool modifyIndex);
+		new nsIHistoryEntry GetEntryAtIndex(int index, [MarshalAs(UnmanagedType.Bool)] bool modifyIndex);
 		
 		/// <summary>
         /// Called to purge older documents from history.

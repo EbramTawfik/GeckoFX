@@ -72,6 +72,7 @@ namespace Skybound.Gecko
         /// The listener can check this from its onStopRequest to determine
         /// whether more data can be expected.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsLastPartAttribute();
 	}

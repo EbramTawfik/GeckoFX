@@ -69,7 +69,7 @@ namespace Skybound.Gecko
 		void DescribeRefcountedObject(uint aAddress, uint aKnownEdges, uint aTotalEdges);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DescribeGCedObject(uint aAddress, bool aMarked);
+		void DescribeGCedObject(uint aAddress, [MarshalAs(UnmanagedType.Bool)] bool aMarked);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void End();

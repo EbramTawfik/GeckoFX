@@ -387,7 +387,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports TranslateThis([MarshalAs(UnmanagedType.Interface)] nsISupports aInitialThis, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceInfo aInterfaceInfo, ushort aMethodIndex, out bool aHideFirstParamFromJS, out System.Guid aIIDOfResult);
+		nsISupports TranslateThis([MarshalAs(UnmanagedType.Interface)] nsISupports aInitialThis, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceInfo aInterfaceInfo, ushort aMethodIndex, [MarshalAs(UnmanagedType.Bool)] out bool aHideFirstParamFromJS, out System.Guid aIIDOfResult);
 	}
 	
 	/// <summary> </summary>
@@ -479,7 +479,7 @@ namespace Skybound.Gecko
         /// aJSContext.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void WrapNativeToJSVal(System.IntPtr aJSContext, System.IntPtr aScope, [MarshalAs(UnmanagedType.Interface)] nsISupports aCOMObj, System.IntPtr aCache, System.Guid aIID, bool aAllowWrapper, out System.IntPtr aVal, [MarshalAs(UnmanagedType.Interface)] out nsIXPConnectJSObjectHolder aHolder);
+		void WrapNativeToJSVal(System.IntPtr aJSContext, System.IntPtr aScope, [MarshalAs(UnmanagedType.Interface)] nsISupports aCOMObj, System.IntPtr aCache, System.Guid aIID, [MarshalAs(UnmanagedType.Bool)] bool aAllowWrapper, out System.IntPtr aVal, [MarshalAs(UnmanagedType.Interface)] out nsIXPConnectJSObjectHolder aHolder);
 		
 		/// <summary>
         /// wrapJS will yield a new or previously existing xpcom interface pointer
@@ -580,7 +580,7 @@ namespace Skybound.Gecko
 		void DebugDumpObject([MarshalAs(UnmanagedType.Interface)] nsISupports aCOMObj, short depth);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DebugDumpJSStack(bool showArgs, bool showLocals, bool showThisProps);
+		void DebugDumpJSStack([MarshalAs(UnmanagedType.Bool)] bool showArgs, [MarshalAs(UnmanagedType.Bool)] bool showLocals, [MarshalAs(UnmanagedType.Bool)] bool showThisProps);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void DebugDumpEvalInJSStackFrame(uint aFrameNumber, [MarshalAs(UnmanagedType.LPStr)] string aSourceText);
@@ -643,7 +643,7 @@ namespace Skybound.Gecko
 		nsIXPConnectJSObjectHolder GetWrappedNativePrototype(System.IntPtr aJSContext, System.IntPtr aScope, [MarshalAs(UnmanagedType.Interface)] nsIClassInfo aClassInfo);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ReleaseJSContext(System.IntPtr aJSContext, bool noGC);
+		void ReleaseJSContext(System.IntPtr aJSContext, [MarshalAs(UnmanagedType.Bool)] bool noGC);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr VariantToJS(System.IntPtr ctx, System.IntPtr scope, [MarshalAs(UnmanagedType.Interface)] nsIVariant value);
@@ -665,7 +665,7 @@ namespace Skybound.Gecko
         /// with this prefix
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void FlagSystemFilenamePrefix([MarshalAs(UnmanagedType.LPStr)] string aFilenamePrefix, bool aWantNativeWrappers);
+		void FlagSystemFilenamePrefix([MarshalAs(UnmanagedType.LPStr)] string aFilenamePrefix, [MarshalAs(UnmanagedType.Bool)] bool aWantNativeWrappers);
 		
 		/// <summary>
         /// Restore an old prototype for wrapped natives of type
@@ -707,7 +707,7 @@ namespace Skybound.Gecko
         /// to this method.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr EvalInSandboxObject([MarshalAs(UnmanagedType.LPStruct)] nsAString source, System.IntPtr cx, [MarshalAs(UnmanagedType.Interface)] nsIXPConnectJSObjectHolder sandbox, bool returnStringOnly);
+		System.IntPtr EvalInSandboxObject([MarshalAs(UnmanagedType.LPStruct)] nsAString source, System.IntPtr cx, [MarshalAs(UnmanagedType.Interface)] nsIXPConnectJSObjectHolder sandbox, [MarshalAs(UnmanagedType.Bool)] bool returnStringOnly);
 		
 		/// <summary>
         /// Root JS objects held by aHolder.
@@ -747,7 +747,7 @@ namespace Skybound.Gecko
         /// passed here.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetReportAllJSExceptions(bool reportAllJSExceptions);
+		void SetReportAllJSExceptions([MarshalAs(UnmanagedType.Bool)] bool reportAllJSExceptions);
 		
 		/// <summary>
         /// Trigger a JS garbage collection.
@@ -772,6 +772,7 @@ namespace Skybound.Gecko
         /// The interfaces the class implements; interfaceArray and
         /// interfaceCount are like what nsIClassInfo.getInterfaces returns.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool DefineDOMQuickStubs(System.IntPtr cx, System.IntPtr proto, uint flags, uint interfaceCount, System.Guid interfaceArray);
 		
@@ -797,6 +798,6 @@ namespace Skybound.Gecko
         /// stack reaches zero length.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDebugModeWhenPossible(bool mode);
+		void SetDebugModeWhenPossible([MarshalAs(UnmanagedType.Bool)] bool mode);
 	}
 }

@@ -71,6 +71,7 @@ namespace Skybound.Gecko
         /// is undefined before the channel fires its OnStartRequest notification
         /// and after the channel fires its OnStopRequest notification.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsFromCache();
 		
@@ -178,6 +179,7 @@ namespace Skybound.Gecko
         /// OnStartRequest.  The default value of this attribute depends on the
         /// particular implementation of nsICachingChannel.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetCacheAsFileAttribute();
 		
@@ -189,7 +191,7 @@ namespace Skybound.Gecko
         /// particular implementation of nsICachingChannel.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCacheAsFileAttribute(bool aCacheAsFile);
+		void SetCacheAsFileAttribute([MarshalAs(UnmanagedType.Bool)] bool aCacheAsFile);
 		
 		/// <summary>
         /// Specifies whether or not the data should be placed in the offline cache,
@@ -197,6 +199,7 @@ namespace Skybound.Gecko
         /// cache is not present.  The value of this attribute should be set before
         /// opening the channel.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetCacheForOfflineUseAttribute();
 		
@@ -207,7 +210,7 @@ namespace Skybound.Gecko
         /// opening the channel.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCacheForOfflineUseAttribute(bool aCacheForOfflineUse);
+		void SetCacheForOfflineUseAttribute([MarshalAs(UnmanagedType.Bool)] bool aCacheForOfflineUse);
 		
 		/// <summary>
         /// The session into which to cache offline data.  If not specified,

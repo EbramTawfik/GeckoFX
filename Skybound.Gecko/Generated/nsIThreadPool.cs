@@ -87,6 +87,7 @@ namespace Skybound.Gecko
         /// event target will run on the current thread (i.e., the thread calling
         /// this method).
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsOnCurrentThread();
 		

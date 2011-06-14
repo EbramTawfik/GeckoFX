@@ -49,6 +49,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// whether this editor has active IME transaction
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetComposingAttribute();
 	}

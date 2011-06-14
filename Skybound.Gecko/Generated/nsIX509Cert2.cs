@@ -68,6 +68,7 @@ namespace Skybound.Gecko
         ///
         /// @return True if the address is contained in the certificate.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool ContainsEmailAddress([MarshalAs(UnmanagedType.LPStruct)] nsAString aEmailAddress);
 		
@@ -195,7 +196,7 @@ namespace Skybound.Gecko
         /// @param usages The array of human readable usages.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetUsagesArray(bool ignoreOcsp, out uint verified, out uint count, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler", SizeParamIndex=2)] out string usages);
+		new void GetUsagesArray([MarshalAs(UnmanagedType.Bool)] bool ignoreOcsp, out uint verified, out uint count, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler", SizeParamIndex=2)] out string usages);
 		
 		/// <summary>
         /// Obtain a single comma separated human readable string describing
@@ -206,7 +207,7 @@ namespace Skybound.Gecko
         /// @param purposes The string listing the usages.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetUsagesString(bool ignoreOcsp, out uint verified, [MarshalAs(UnmanagedType.LPStruct)] nsAString usages);
+		new void GetUsagesString([MarshalAs(UnmanagedType.Bool)] bool ignoreOcsp, out uint verified, [MarshalAs(UnmanagedType.LPStruct)] nsAString usages);
 		
 		/// <summary>
         /// Verify the certificate for a particular usage.
@@ -241,6 +242,7 @@ namespace Skybound.Gecko
         ///
         /// @return Whether the certificates are equal
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool Equals([MarshalAs(UnmanagedType.Interface)] nsIX509Cert other);
 		

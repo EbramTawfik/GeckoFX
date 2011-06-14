@@ -49,6 +49,7 @@ namespace Skybound.Gecko
         /// For more information on this interface please see
         /// http://www.w3.org/TR/DOM-Level-2-Core/
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool HasFeature([MarshalAs(UnmanagedType.LPStruct)] nsAString feature, [MarshalAs(UnmanagedType.LPStruct)] nsAString version);
 		

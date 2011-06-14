@@ -39,6 +39,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Is this object the equivalent of the other object?
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool Equals([MarshalAs(UnmanagedType.Interface)] nsIHashable aOther);
 		

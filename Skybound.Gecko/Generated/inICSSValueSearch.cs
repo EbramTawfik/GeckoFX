@@ -37,6 +37,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// indicates if an asynchronous search is in progress
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetIsActiveAttribute();
 		
@@ -49,6 +50,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// other than the most recent one, and getResults will return null always.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetHoldResultsAttribute();
 		
@@ -56,7 +58,7 @@ namespace Skybound.Gecko
         /// other than the most recent one, and getResults will return null always.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetHoldResultsAttribute(bool aHoldResults);
+		new void SetHoldResultsAttribute([MarshalAs(UnmanagedType.Bool)] bool aHoldResults);
 		
 		/// <summary>
         /// start a synchronous search
@@ -79,6 +81,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// and is not for use by those who just wish to call searchAsync
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool SearchStep();
 		
@@ -128,6 +131,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// strip off the baseURL for all URL results if true
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetReturnRelativeURLsAttribute();
 		
@@ -135,11 +139,12 @@ namespace Skybound.Gecko
         /// strip off the baseURL for all URL results if true
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetReturnRelativeURLsAttribute(bool aReturnRelativeURLs);
+		void SetReturnRelativeURLsAttribute([MarshalAs(UnmanagedType.Bool)] bool aReturnRelativeURLs);
 		
 		/// <summary>
         /// correct the paths on a chrome url, such as turning global/skin/blah into global/blah
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetNormalizeChromeURLsAttribute();
 		
@@ -147,7 +152,7 @@ namespace Skybound.Gecko
         /// correct the paths on a chrome url, such as turning global/skin/blah into global/blah
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetNormalizeChromeURLsAttribute(bool aNormalizeChromeURLs);
+		void SetNormalizeChromeURLsAttribute([MarshalAs(UnmanagedType.Bool)] bool aNormalizeChromeURLs);
 		
 		/// <summary>
         /// add a css property to search for

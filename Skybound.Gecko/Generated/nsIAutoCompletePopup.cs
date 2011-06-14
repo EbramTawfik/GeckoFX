@@ -63,6 +63,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Indicates if the popup is currently open
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetPopupOpenAttribute();
 		
@@ -97,6 +98,6 @@ namespace Skybound.Gecko
         /// @return The currently selected result item index
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SelectBy(bool reverse, bool page);
+		void SelectBy([MarshalAs(UnmanagedType.Bool)] bool reverse, [MarshalAs(UnmanagedType.Bool)] bool page);
 	}
 }

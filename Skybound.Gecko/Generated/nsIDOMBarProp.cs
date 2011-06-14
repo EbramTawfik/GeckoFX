@@ -43,6 +43,7 @@ namespace Skybound.Gecko
         /// accessing the visibility of certain UI items (scrollbars, menubars,
         /// toolbars, ...) through the DOM.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetVisibleAttribute();
 		
@@ -52,6 +53,6 @@ namespace Skybound.Gecko
         /// toolbars, ...) through the DOM.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetVisibleAttribute(bool aVisible);
+		void SetVisibleAttribute([MarshalAs(UnmanagedType.Bool)] bool aVisible);
 	}
 }

@@ -56,7 +56,7 @@ namespace Skybound.Gecko
         /// be allowed.  Use at your own risk.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void LoadURI([MarshalAs(UnmanagedType.Interface)] nsIURI uri, [MarshalAs(UnmanagedType.Interface)] nsIDocShellLoadInfo loadInfo, uint aLoadFlags, bool firstParty);
+		void LoadURI([MarshalAs(UnmanagedType.Interface)] nsIURI uri, [MarshalAs(UnmanagedType.Interface)] nsIDocShellLoadInfo loadInfo, uint aLoadFlags, [MarshalAs(UnmanagedType.Bool)] bool firstParty);
 		
 		/// <summary>
         /// Loads a given stream. This will give priority to loading the requested
@@ -102,14 +102,14 @@ namespace Skybound.Gecko
         /// @param aSHEntry        - Active Session History entry (if loading from SH)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InternalLoad([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIURI aReferrer, [MarshalAs(UnmanagedType.Interface)] nsISupports aOwner, uint aFlags, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aWindowTarget, [MarshalAs(UnmanagedType.LPStr)] string aTypeHint, [MarshalAs(UnmanagedType.Interface)] nsIInputStream aPostDataStream, [MarshalAs(UnmanagedType.Interface)] nsIInputStream aHeadersStream, uint aLoadFlags, [MarshalAs(UnmanagedType.Interface)] nsISHEntry aSHEntry, bool firstParty, [MarshalAs(UnmanagedType.Interface)] out nsIDocShell aDocShell, [MarshalAs(UnmanagedType.Interface)] out nsIRequest aRequest);
+		void InternalLoad([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIURI aReferrer, [MarshalAs(UnmanagedType.Interface)] nsISupports aOwner, uint aFlags, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aWindowTarget, [MarshalAs(UnmanagedType.LPStr)] string aTypeHint, [MarshalAs(UnmanagedType.Interface)] nsIInputStream aPostDataStream, [MarshalAs(UnmanagedType.Interface)] nsIInputStream aHeadersStream, uint aLoadFlags, [MarshalAs(UnmanagedType.Interface)] nsISHEntry aSHEntry, [MarshalAs(UnmanagedType.Bool)] bool firstParty, [MarshalAs(UnmanagedType.Interface)] out nsIDocShell aDocShell, [MarshalAs(UnmanagedType.Interface)] out nsIRequest aRequest);
 		
 		/// <summary>
         /// Do either a history.pushState() or history.replaceState() operation,
         /// depending on the value of aReplace.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddState([MarshalAs(UnmanagedType.Interface)] nsIVariant aData, [MarshalAs(UnmanagedType.LPStruct)] nsAString aTitle, [MarshalAs(UnmanagedType.LPStruct)] nsAString aURL, bool aReplace);
+		void AddState([MarshalAs(UnmanagedType.Interface)] nsIVariant aData, [MarshalAs(UnmanagedType.LPStruct)] nsAString aTitle, [MarshalAs(UnmanagedType.LPStruct)] nsAString aURL, [MarshalAs(UnmanagedType.Bool)] bool aReplace);
 		
 		/// <summary>
         /// Creates a DocShellLoadInfo object that you can manipulate and then pass
@@ -142,7 +142,7 @@ namespace Skybound.Gecko
         /// event.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void FirePageHideNotification(bool isUnload);
+		void FirePageHideNotification([MarshalAs(UnmanagedType.Bool)] bool isUnload);
 		
 		/// <summary>
         /// Presentation context for the currently loaded document.  This may be null.
@@ -202,6 +202,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Whether to allow plugin execution
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetAllowPluginsAttribute();
 		
@@ -209,11 +210,12 @@ namespace Skybound.Gecko
         /// Whether to allow plugin execution
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAllowPluginsAttribute(bool aAllowPlugins);
+		void SetAllowPluginsAttribute([MarshalAs(UnmanagedType.Bool)] bool aAllowPlugins);
 		
 		/// <summary>
         /// Whether to allow Javascript execution
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetAllowJavascriptAttribute();
 		
@@ -221,11 +223,12 @@ namespace Skybound.Gecko
         /// Whether to allow Javascript execution
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAllowJavascriptAttribute(bool aAllowJavascript);
+		void SetAllowJavascriptAttribute([MarshalAs(UnmanagedType.Bool)] bool aAllowJavascript);
 		
 		/// <summary>
         /// Attribute stating if refresh based redirects can be allowed
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetAllowMetaRedirectsAttribute();
 		
@@ -233,11 +236,12 @@ namespace Skybound.Gecko
         /// Attribute stating if refresh based redirects can be allowed
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAllowMetaRedirectsAttribute(bool aAllowMetaRedirects);
+		void SetAllowMetaRedirectsAttribute([MarshalAs(UnmanagedType.Bool)] bool aAllowMetaRedirects);
 		
 		/// <summary>
         /// Attribute stating if it should allow subframes (framesets/iframes) or not
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetAllowSubframesAttribute();
 		
@@ -245,11 +249,12 @@ namespace Skybound.Gecko
         /// Attribute stating if it should allow subframes (framesets/iframes) or not
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAllowSubframesAttribute(bool aAllowSubframes);
+		void SetAllowSubframesAttribute([MarshalAs(UnmanagedType.Bool)] bool aAllowSubframes);
 		
 		/// <summary>
         /// Attribute stating whether or not images should be loaded.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetAllowImagesAttribute();
 		
@@ -257,13 +262,14 @@ namespace Skybound.Gecko
         /// Attribute stating whether or not images should be loaded.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAllowImagesAttribute(bool aAllowImages);
+		void SetAllowImagesAttribute([MarshalAs(UnmanagedType.Bool)] bool aAllowImages);
 		
 		/// <summary>
         /// Attribute that determines whether DNS prefetch is allowed for this subtree
         /// of the docshell tree.  Defaults to true.  Setting this will make it take
         /// effect starting with the next document loaded in the docshell.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetAllowDNSPrefetchAttribute();
 		
@@ -273,7 +279,7 @@ namespace Skybound.Gecko
         /// effect starting with the next document loaded in the docshell.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAllowDNSPrefetchAttribute(bool aAllowDNSPrefetch);
+		void SetAllowDNSPrefetchAttribute([MarshalAs(UnmanagedType.Bool)] bool aAllowDNSPrefetch);
 		
 		/// <summary>
         /// Get an enumerator over this docShell and its children.
@@ -304,6 +310,7 @@ namespace Skybound.Gecko
         /// should not throw up auth dialogs
         /// because it can act as a password trojan
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetAllowAuthAttribute();
 		
@@ -313,7 +320,7 @@ namespace Skybound.Gecko
         /// because it can act as a password trojan
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAllowAuthAttribute(bool aAllowAuth);
+		void SetAllowAuthAttribute([MarshalAs(UnmanagedType.Bool)] bool aAllowAuth);
 		
 		/// <summary>
         /// Set/Get the document scale factor.  When setting this attribute, a
@@ -378,7 +385,7 @@ namespace Skybound.Gecko
         /// This is currently only necessary for embedding chrome.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void TabToTreeOwner(bool forward, out bool tookFocus);
+		void TabToTreeOwner([MarshalAs(UnmanagedType.Bool)] bool forward, [MarshalAs(UnmanagedType.Bool)] out bool tookFocus);
 		
 		/// <summary>
         /// History.pushState()
@@ -401,12 +408,14 @@ namespace Skybound.Gecko
 		/// <summary>
         /// returns true if the docshell is being destroyed, false otherwise
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsBeingDestroyed();
 		
 		/// <summary>
         /// Returns true if the docshell is currently executing the onLoad Handler
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsExecutingOnLoadHandlerAttribute();
 		
@@ -416,6 +425,7 @@ namespace Skybound.Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetLayoutHistoryStateAttribute(System.IntPtr aLayoutHistoryState);
 		
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetShouldSaveLayoutStateAttribute();
 		
@@ -461,7 +471,7 @@ namespace Skybound.Gecko
         /// complete the simulated load after returning to the event loop.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BeginRestore(System.IntPtr viewer, bool top);
+		void BeginRestore(System.IntPtr viewer, [MarshalAs(UnmanagedType.Bool)] bool top);
 		
 		/// <summary>
         /// Finish firing WebProgressListener notifications and DOM events for
@@ -473,18 +483,20 @@ namespace Skybound.Gecko
 		
 		/// <summary>
         ///Track whether we're currently restoring a document presentation. </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetRestoringDocumentAttribute();
 		
 		/// <summary>
         ///attribute to access whether error pages are enabled </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetUseErrorPagesAttribute();
 		
 		/// <summary>
         ///attribute to access whether error pages are enabled </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetUseErrorPagesAttribute(bool aUseErrorPages);
+		void SetUseErrorPagesAttribute([MarshalAs(UnmanagedType.Bool)] bool aUseErrorPages);
 		
 		/// <summary>
         /// Keeps track of the previous SHTransaction index and the current
@@ -529,7 +541,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMStorage GetSessionStorageForPrincipal([MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, [MarshalAs(UnmanagedType.LPStruct)] nsAString documentURI, bool create);
+		nsIDOMStorage GetSessionStorageForPrincipal([MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, [MarshalAs(UnmanagedType.LPStruct)] nsAString documentURI, [MarshalAs(UnmanagedType.Bool)] bool create);
 		
 		/// <summary>
         /// Add a WebApps session storage object to the docshell.
@@ -559,6 +571,7 @@ namespace Skybound.Gecko
         /// Find out whether the docshell is currently in the middle of a page
         /// transition. This is set just before the pagehide/unload events fire.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsInUnloadAttribute();
 		
@@ -567,6 +580,7 @@ namespace Skybound.Gecko
         /// (such as a JAR channel where the server-returned content type isn't a
         /// known JAR type).
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetChannelIsUnsafeAttribute();
 		
@@ -583,6 +597,7 @@ namespace Skybound.Gecko
         /// is actively being rendered to the screen (ex. painted on a canvas)
         /// and should be treated accordingly.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsOffScreenBrowserAttribute();
 		
@@ -592,7 +607,7 @@ namespace Skybound.Gecko
         /// and should be treated accordingly.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetIsOffScreenBrowserAttribute(bool aIsOffScreenBrowser);
+		void SetIsOffScreenBrowserAttribute([MarshalAs(UnmanagedType.Bool)] bool aIsOffScreenBrowser);
 		
 		/// <summary>
         /// If the current content viewer isn't initialized for print preview,
@@ -611,6 +626,7 @@ namespace Skybound.Gecko
         /// is in design mode.  In that case, we explicitly allow scripting on the
         /// current docshell.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetCanExecuteScriptsAttribute();
 		
@@ -619,6 +635,7 @@ namespace Skybound.Gecko
         /// visible, and thus is not a good candidate for certain optimizations
         /// like image frame discarding. Docshells are active unless told otherwise.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsActiveAttribute();
 		
@@ -628,7 +645,7 @@ namespace Skybound.Gecko
         /// like image frame discarding. Docshells are active unless told otherwise.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetIsActiveAttribute(bool aIsActive);
+		void SetIsActiveAttribute([MarshalAs(UnmanagedType.Bool)] bool aIsActive);
 		
 		/// <summary>
         /// The ID of the docshell in the session history.
@@ -641,6 +658,7 @@ namespace Skybound.Gecko
         /// differently than a non-app tab docshell in some cases, such as when
         /// handling link clicks. Docshells are not app tabs unless told otherwise.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsAppTabAttribute();
 		
@@ -650,7 +668,7 @@ namespace Skybound.Gecko
         /// handling link clicks. Docshells are not app tabs unless told otherwise.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetIsAppTabAttribute(bool aIsAppTab);
+		void SetIsAppTabAttribute([MarshalAs(UnmanagedType.Bool)] bool aIsAppTab);
 	}
 	
 	/// <summary>nsIDocShell_MOZILLA_2_0_BRANCH </summary>

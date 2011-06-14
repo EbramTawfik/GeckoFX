@@ -78,6 +78,7 @@ namespace Skybound.Gecko
         /// PR_TRUE. If the variable was not defined in the
         /// environment PR_FALSE will be returned.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool Exists([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
 	}

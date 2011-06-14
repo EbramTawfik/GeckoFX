@@ -92,6 +92,7 @@ namespace Skybound.Gecko
         /// PR_TRUE.
         /// Returning PR_FALSE guaratees that the module won't be unloaded.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool CanUnload([MarshalAs(UnmanagedType.Interface)] nsIComponentManager aCompMgr);
 	}

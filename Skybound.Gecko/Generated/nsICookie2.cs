@@ -53,6 +53,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// true if the cookie is a domain cookie, false otherwise
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetIsDomainAttribute();
 		
@@ -71,6 +72,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// true if the cookie was transmitted over ssl, false otherwise
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetIsSecureAttribute();
 		
@@ -110,6 +112,7 @@ namespace Skybound.Gecko
         /// for session cookies (see below); thus, whichever is
         /// the more restrictive of the two will take effect.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsSessionAttribute();
 		
@@ -126,6 +129,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// true if the cookie is an http only cookie
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsHttpOnlyAttribute();
 		

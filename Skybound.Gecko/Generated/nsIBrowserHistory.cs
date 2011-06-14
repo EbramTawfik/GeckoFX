@@ -52,7 +52,7 @@ namespace Skybound.Gecko
         /// referrer.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void AddURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, bool aRedirect, bool aToplevel, [MarshalAs(UnmanagedType.Interface)] nsIURI aReferrer);
+		new void AddURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Bool)] bool aRedirect, [MarshalAs(UnmanagedType.Bool)] bool aToplevel, [MarshalAs(UnmanagedType.Interface)] nsIURI aReferrer);
 		
 		/// <summary>
         /// Checks to see whether the given URI is in history.
@@ -60,6 +60,7 @@ namespace Skybound.Gecko
         /// @param aURI the uri to the page
         /// @return true if a URI has been visited
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsVisited([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 		
@@ -115,7 +116,7 @@ namespace Skybound.Gecko
         /// instead setting aDoBatchNotify true will send Begin/EndUpdateBatch
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemovePages(nsIURI aURIs, uint aLength, bool aDoBatchNotify);
+		void RemovePages(nsIURI aURIs, uint aLength, [MarshalAs(UnmanagedType.Bool)] bool aDoBatchNotify);
 		
 		/// <summary>
         /// removePagesFromHost
@@ -132,7 +133,7 @@ namespace Skybound.Gecko
         /// but will send Begin/EndUpdateBatch.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemovePagesFromHost([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aHost, bool aEntireDomain);
+		void RemovePagesFromHost([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aHost, [MarshalAs(UnmanagedType.Bool)] bool aEntireDomain);
 		
 		/// <summary>
         /// removePagesByTimeframe

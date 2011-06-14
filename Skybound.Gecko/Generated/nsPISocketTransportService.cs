@@ -111,6 +111,7 @@ namespace Skybound.Gecko
         /// controls whether or not the socket transport service should poke
         /// the autodialer on connection failure.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetAutodialEnabledAttribute();
 		
@@ -119,7 +120,7 @@ namespace Skybound.Gecko
         /// the autodialer on connection failure.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAutodialEnabledAttribute(bool aAutodialEnabled);
+		void SetAutodialEnabledAttribute([MarshalAs(UnmanagedType.Bool)] bool aAutodialEnabled);
 		
 		/// <summary>
         /// controls the TCP sender window clamp

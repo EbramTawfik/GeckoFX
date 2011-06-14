@@ -373,6 +373,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Test for annotation existence.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool PageHasAnnotation([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName);
 		
@@ -380,6 +381,7 @@ namespace Skybound.Gecko
 		/// <param name='aItemId'> </param>
 		/// <param name='aName'> </param>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool ItemHasAnnotation(int aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName);
 		
@@ -419,14 +421,14 @@ namespace Skybound.Gecko
         /// any more, use removePageAnnotations on that URI.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CopyPageAnnotations([MarshalAs(UnmanagedType.Interface)] nsIURI aSourceURI, [MarshalAs(UnmanagedType.Interface)] nsIURI aDestURI, bool aOverwriteDest);
+		void CopyPageAnnotations([MarshalAs(UnmanagedType.Interface)] nsIURI aSourceURI, [MarshalAs(UnmanagedType.Interface)] nsIURI aDestURI, [MarshalAs(UnmanagedType.Bool)] bool aOverwriteDest);
 		
 		/// <summary>Member CopyItemAnnotations </summary>
 		/// <param name='aSourceItemId'> </param>
 		/// <param name='aDestItemId'> </param>
 		/// <param name='aOverwriteDest'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CopyItemAnnotations(int aSourceItemId, int aDestItemId, bool aOverwriteDest);
+		void CopyItemAnnotations(int aSourceItemId, int aDestItemId, [MarshalAs(UnmanagedType.Bool)] bool aOverwriteDest);
 		
 		/// <summary>
         /// Adds an annotation observer. The annotation service will keep an owning

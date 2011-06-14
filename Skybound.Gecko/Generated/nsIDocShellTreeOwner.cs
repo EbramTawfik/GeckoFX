@@ -66,7 +66,7 @@ namespace Skybound.Gecko
         /// undefined. Don't rely on this for anything.
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ContentShellAdded([MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeItem aContentShell, bool aPrimary, bool aTargetable, [MarshalAs(UnmanagedType.LPStruct)] nsAString aID);
+		void ContentShellAdded([MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeItem aContentShell, [MarshalAs(UnmanagedType.Bool)] bool aPrimary, [MarshalAs(UnmanagedType.Bool)] bool aTargetable, [MarshalAs(UnmanagedType.LPStruct)] nsAString aID);
 		
 		/// <summary>
         /// Called when a content shell is removed from the docshell tree.  This is
@@ -97,12 +97,12 @@ namespace Skybound.Gecko
         ///Sets the persistence of different attributes of the window.
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPersistence(bool aPersistPosition, bool aPersistSize, bool aPersistSizeMode);
+		void SetPersistence([MarshalAs(UnmanagedType.Bool)] bool aPersistPosition, [MarshalAs(UnmanagedType.Bool)] bool aPersistSize, [MarshalAs(UnmanagedType.Bool)] bool aPersistSizeMode);
 		
 		/// <summary>
         ///Gets the current persistence states of the window.
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPersistence(out bool aPersistPosition, out bool aPersistSize, out bool aPersistSizeMode);
+		void GetPersistence([MarshalAs(UnmanagedType.Bool)] out bool aPersistPosition, [MarshalAs(UnmanagedType.Bool)] out bool aPersistSize, [MarshalAs(UnmanagedType.Bool)] out bool aPersistSizeMode);
 	}
 }

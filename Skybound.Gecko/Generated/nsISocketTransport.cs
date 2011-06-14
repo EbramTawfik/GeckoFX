@@ -194,6 +194,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Test if this socket transport is (still) connected.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsAlive();
 		

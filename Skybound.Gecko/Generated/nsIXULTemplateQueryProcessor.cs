@@ -126,7 +126,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports GetDatasource([MarshalAs(UnmanagedType.Interface)] nsIArray aDataSources, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aRootNode, bool aIsTrusted, [MarshalAs(UnmanagedType.Interface)] nsIXULTemplateBuilder aBuilder, out bool aShouldDelayBuilding);
+		nsISupports GetDatasource([MarshalAs(UnmanagedType.Interface)] nsIArray aDataSources, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aRootNode, [MarshalAs(UnmanagedType.Bool)] bool aIsTrusted, [MarshalAs(UnmanagedType.Interface)] nsIXULTemplateBuilder aBuilder, [MarshalAs(UnmanagedType.Bool)] out bool aShouldDelayBuilding);
 		
 		/// <summary>
         /// Initialize for query generation. This will be called before the rules are

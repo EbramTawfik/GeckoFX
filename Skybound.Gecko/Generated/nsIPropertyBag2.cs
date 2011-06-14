@@ -81,6 +81,7 @@ namespace Skybound.Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsAUTF8String GetPropertyAsAUTF8String([MarshalAs(UnmanagedType.LPStruct)] nsAString prop);
 		
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetPropertyAsBool([MarshalAs(UnmanagedType.LPStruct)] nsAString prop);
 		
@@ -101,6 +102,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Check for the existence of a key.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool HasKey([MarshalAs(UnmanagedType.LPStruct)] nsAString prop);
 	}

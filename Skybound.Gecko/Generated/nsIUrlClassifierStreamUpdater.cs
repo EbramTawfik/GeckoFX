@@ -63,6 +63,7 @@ namespace Skybound.Gecko
         /// @param aDownloadErrorCallback Called if we get an http error or a
         /// connection refused error.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool DownloadUpdates([MarshalAs(UnmanagedType.LPStruct)] nsAString aRequestTables, [MarshalAs(UnmanagedType.LPStruct)] nsAString aRequestBody, [MarshalAs(UnmanagedType.LPStruct)] nsAString aClientKey, [MarshalAs(UnmanagedType.Interface)] nsIUrlClassifierCallback aSuccessCallback, [MarshalAs(UnmanagedType.Interface)] nsIUrlClassifierCallback aUpdateErrorCallback, [MarshalAs(UnmanagedType.Interface)] nsIUrlClassifierCallback aDownloadErrorCallback);
 	}

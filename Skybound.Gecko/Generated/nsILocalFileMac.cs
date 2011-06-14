@@ -210,7 +210,7 @@ namespace Skybound.Gecko
         /// This will not resolve any symlinks.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Remove(bool recursive);
+		new void Remove([MarshalAs(UnmanagedType.Bool)] bool recursive);
 		
 		/// <summary>
         /// Attributes of nsIFile.
@@ -328,47 +328,56 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member Exists </summary>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool Exists();
 		
 		/// <summary>Member IsWritable </summary>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsWritable();
 		
 		/// <summary>Member IsReadable </summary>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsReadable();
 		
 		/// <summary>Member IsExecutable </summary>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsExecutable();
 		
 		/// <summary>Member IsHidden </summary>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsHidden();
 		
 		/// <summary>Member IsDirectory </summary>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsDirectory();
 		
 		/// <summary>Member IsFile </summary>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsFile();
 		
 		/// <summary>Member IsSymlink </summary>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsSymlink();
 		
 		/// <summary>
         /// Not a regular file, not a directory, not a symlink.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsSpecial();
 		
@@ -418,6 +427,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Will determine if the inFile equals this.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool Equals([MarshalAs(UnmanagedType.Interface)] nsIFile inFile);
 		
@@ -425,8 +435,9 @@ namespace Skybound.Gecko
         /// Will determine if inFile is a descendant of this file
         /// If |recur| is true, look in subdirectories too
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool Contains([MarshalAs(UnmanagedType.Interface)] nsIFile inFile, bool recur);
+		new bool Contains([MarshalAs(UnmanagedType.Interface)] nsIFile inFile, [MarshalAs(UnmanagedType.Bool)] bool recur);
 		
 		/// <summary>
         /// Parent will be null when this is at the top of the volume.
@@ -486,6 +497,7 @@ namespace Skybound.Gecko
         /// on all non unix systems.  On unix, this attribute is effectively
         /// a noop.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetFollowLinksAttribute();
 		
@@ -498,7 +510,7 @@ namespace Skybound.Gecko
         /// a noop.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetFollowLinksAttribute(bool aFollowLinks);
+		new void SetFollowLinksAttribute([MarshalAs(UnmanagedType.Bool)] bool aFollowLinks);
 		
 		/// <summary>
         /// Return the result of PR_Open on the file.  The caller is
@@ -752,7 +764,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void LaunchWithDoc([MarshalAs(UnmanagedType.Interface)] nsILocalFile aDocToLoad, bool aLaunchInBackground);
+		void LaunchWithDoc([MarshalAs(UnmanagedType.Interface)] nsILocalFile aDocToLoad, [MarshalAs(UnmanagedType.Bool)] bool aLaunchInBackground);
 		
 		/// <summary>
         /// openDocWithApp
@@ -766,7 +778,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OpenDocWithApp([MarshalAs(UnmanagedType.Interface)] nsILocalFile aAppToOpenWith, bool aLaunchInBackground);
+		void OpenDocWithApp([MarshalAs(UnmanagedType.Interface)] nsILocalFile aAppToOpenWith, [MarshalAs(UnmanagedType.Bool)] bool aLaunchInBackground);
 		
 		/// <summary>
         /// isPackage
@@ -774,6 +786,7 @@ namespace Skybound.Gecko
         /// returns true if a directory is determined to be a package under Mac OS 9/X
         ///
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsPackage();
 		

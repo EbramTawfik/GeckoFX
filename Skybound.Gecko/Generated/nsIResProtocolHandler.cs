@@ -101,6 +101,7 @@ namespace Skybound.Gecko
         /// port number is encountered, this function will be called to ask if the
         /// protocol handler wants to override the ban.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool AllowPort(int port, [MarshalAs(UnmanagedType.LPStr)] string scheme);
 		
@@ -128,6 +129,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Returns TRUE if the substitution exists and FALSE otherwise.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool HasSubstitution([MarshalAs(UnmanagedType.LPStruct)] nsAString root);
 		

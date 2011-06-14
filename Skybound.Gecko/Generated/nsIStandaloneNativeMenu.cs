@@ -51,6 +51,7 @@ namespace Skybound.Gecko
         ///
         /// @return true if the menu can be shown, false if it should not be shown
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool MenuWillOpen();
 		

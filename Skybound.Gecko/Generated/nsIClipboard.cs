@@ -77,6 +77,7 @@ namespace Skybound.Gecko
         /// @outResult - if data is present matching one of
         /// @result NS_OK if successful.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool HasDataMatchingFlavors([MarshalAs(UnmanagedType.LPStr, SizeParamIndex=1)] string aFlavorList, uint aLength, int aWhichClipboard);
 		
@@ -87,6 +88,7 @@ namespace Skybound.Gecko
         /// @outResult - true if
         /// @result NS_OK if successful.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool SupportsSelectionClipboard();
 	}

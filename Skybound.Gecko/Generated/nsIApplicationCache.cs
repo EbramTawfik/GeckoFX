@@ -112,6 +112,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// TRUE if the cache is the active cache for this group.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetActiveAttribute();
 		

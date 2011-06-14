@@ -46,6 +46,7 @@ namespace Skybound.Gecko
         ///
         /// By default, this value is <code>true</code>.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetPropagateChangesAttribute();
 		
@@ -59,6 +60,6 @@ namespace Skybound.Gecko
         /// By default, this value is <code>true</code>.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPropagateChangesAttribute(bool aPropagateChanges);
+		void SetPropagateChangesAttribute([MarshalAs(UnmanagedType.Bool)] bool aPropagateChanges);
 	}
 }

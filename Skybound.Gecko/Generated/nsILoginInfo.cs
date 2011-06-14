@@ -183,6 +183,7 @@ namespace Skybound.Gecko
         /// @param aLoginInfo
         /// The other object to test.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool Equals([MarshalAs(UnmanagedType.Interface)] nsILoginInfo aLoginInfo);
 		
@@ -198,8 +199,9 @@ namespace Skybound.Gecko
         /// @param ignorePassword
         /// If true, ignore the password when checking for match.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Matches([MarshalAs(UnmanagedType.Interface)] nsILoginInfo aLoginInfo, bool ignorePassword);
+		bool Matches([MarshalAs(UnmanagedType.Interface)] nsILoginInfo aLoginInfo, [MarshalAs(UnmanagedType.Bool)] bool ignorePassword);
 		
 		/// <summary>
         /// Create an identical copy of the login, duplicating all of the login's

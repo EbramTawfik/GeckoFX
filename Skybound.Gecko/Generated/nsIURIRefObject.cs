@@ -82,6 +82,6 @@ namespace Skybound.Gecko
         /// @param aMakeRel Rewrite links as relative vs. absolute
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RewriteAllURIs([MarshalAs(UnmanagedType.LPStruct)] nsAString aOldPat, [MarshalAs(UnmanagedType.LPStruct)] nsAString aNewPat, bool aMakeRel);
+		void RewriteAllURIs([MarshalAs(UnmanagedType.LPStruct)] nsAString aOldPat, [MarshalAs(UnmanagedType.LPStruct)] nsAString aNewPat, [MarshalAs(UnmanagedType.Bool)] bool aMakeRel);
 	}
 }

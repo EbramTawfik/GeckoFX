@@ -143,6 +143,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// True if the application is in the process of shutting down.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetShuttingDownAttribute();
 	}
@@ -206,6 +207,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// True if the application is in the process of shutting down.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetShuttingDownAttribute();
 		

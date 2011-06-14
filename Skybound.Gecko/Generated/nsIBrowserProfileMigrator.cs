@@ -52,13 +52,14 @@ namespace Skybound.Gecko
         /// @returns bit field containing profile items (see above)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetMigrateData([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aProfile, bool aDoingStartup);
+		uint GetMigrateData([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aProfile, [MarshalAs(UnmanagedType.Bool)] bool aDoingStartup);
 		
 		/// <summary>
         /// Whether or not there is any data that can be imported from this
         /// browser (i.e. whether or not it is installed, and there exists
         /// a user profile)
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetSourceExistsAttribute();
 		
@@ -66,6 +67,7 @@ namespace Skybound.Gecko
         /// Whether or not the import source implementing this interface
         /// has multiple user profiles configured.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetSourceHasMultipleProfilesAttribute();
 		

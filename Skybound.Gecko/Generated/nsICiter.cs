@@ -51,6 +51,6 @@ namespace Skybound.Gecko
 		
 		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString Rewrap([MarshalAs(UnmanagedType.LPStruct)] nsAString aInString, uint aWrapCol, uint aFirstLineOffset, bool aRespectNewlines);
+		nsAString Rewrap([MarshalAs(UnmanagedType.LPStruct)] nsAString aInString, uint aWrapCol, uint aFirstLineOffset, [MarshalAs(UnmanagedType.Bool)] bool aRespectNewlines);
 	}
 }

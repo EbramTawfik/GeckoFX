@@ -109,6 +109,7 @@ namespace Skybound.Gecko
         /// @param responseType
         /// The MIME type to check for
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool SupportsResponseType([MarshalAs(UnmanagedType.LPStruct)] nsAString responseType);
 		
@@ -135,6 +136,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Whether the engine should be hidden from the user.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetHiddenAttribute();
 		
@@ -142,7 +144,7 @@ namespace Skybound.Gecko
         /// Whether the engine should be hidden from the user.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetHiddenAttribute(bool aHidden);
+		void SetHiddenAttribute([MarshalAs(UnmanagedType.Bool)] bool aHidden);
 		
 		/// <summary>
         /// A nsIURI corresponding to the engine's icon, stored locally. May be null.
@@ -206,7 +208,7 @@ namespace Skybound.Gecko
         /// file cannot be successfully loaded.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddEngine([MarshalAs(UnmanagedType.LPStruct)] nsAString engineURL, int dataType, [MarshalAs(UnmanagedType.LPStruct)] nsAString iconURL, bool confirm);
+		void AddEngine([MarshalAs(UnmanagedType.LPStruct)] nsAString engineURL, int dataType, [MarshalAs(UnmanagedType.LPStruct)] nsAString iconURL, [MarshalAs(UnmanagedType.Bool)] bool confirm);
 		
 		/// <summary>
         /// Adds a new search engine, without asking the user for confirmation and

@@ -63,6 +63,7 @@ namespace Skybound.Gecko
         /// Checks if the given security info is for an STS host with a broken
         /// transport layer (certificate errors like invalid CN).
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool ShouldIgnoreStsHeader([MarshalAs(UnmanagedType.Interface)] nsISupports aSecurityInfo);
 		
@@ -73,6 +74,7 @@ namespace Skybound.Gecko
         ///
         /// @param aHost the hostname (punycode) to query for STS state.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsStsHost([MarshalAs(UnmanagedType.LPStr)] string aHost);
 		
@@ -86,6 +88,7 @@ namespace Skybound.Gecko
         ///
         /// @param aURI the URI to query for STS state.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsStsURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 	}

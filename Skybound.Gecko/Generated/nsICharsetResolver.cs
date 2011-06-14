@@ -58,7 +58,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString RequestCharset([MarshalAs(UnmanagedType.Interface)] nsIWebNavigation aWebNavigation, [MarshalAs(UnmanagedType.Interface)] nsIChannel aChannel, out bool aWantCharset, [MarshalAs(UnmanagedType.Interface)] out nsISupports aClosure);
+		nsAString RequestCharset([MarshalAs(UnmanagedType.Interface)] nsIWebNavigation aWebNavigation, [MarshalAs(UnmanagedType.Interface)] nsIChannel aChannel, [MarshalAs(UnmanagedType.Bool)] out bool aWantCharset, [MarshalAs(UnmanagedType.Interface)] out nsISupports aClosure);
 		
 		/// <summary>
         /// notifyResolvedCharset

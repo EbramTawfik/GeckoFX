@@ -51,6 +51,7 @@ namespace Skybound.Gecko
         /// @returns true if the item is compatible with this version of the
         /// application or this version of the toolkit, false, otherwise.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsAddonBlocklisted([MarshalAs(UnmanagedType.LPStruct)] nsAString id, [MarshalAs(UnmanagedType.LPStruct)] nsAString version, [MarshalAs(UnmanagedType.LPStruct)] nsAString appVersion, [MarshalAs(UnmanagedType.LPStruct)] nsAString toolkitVersion);
 		

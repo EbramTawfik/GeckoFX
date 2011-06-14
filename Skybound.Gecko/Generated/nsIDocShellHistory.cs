@@ -50,6 +50,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Whether this docshell should save entries in global history.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetUseGlobalHistoryAttribute();
 		
@@ -57,7 +58,7 @@ namespace Skybound.Gecko
         /// Whether this docshell should save entries in global history.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetUseGlobalHistoryAttribute(bool aUseGlobalHistory);
+		void SetUseGlobalHistoryAttribute([MarshalAs(UnmanagedType.Bool)] bool aUseGlobalHistory);
 		
 		/// <summary>
         /// Removes nsISHEntry objects related to this docshell from session history.
@@ -69,6 +70,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Set when an iframe/frame is added dynamically.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetCreatedDynamicallyAttribute();
 		
@@ -76,11 +78,12 @@ namespace Skybound.Gecko
         /// Set when an iframe/frame is added dynamically.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCreatedDynamicallyAttribute(bool aCreatedDynamically);
+		void SetCreatedDynamicallyAttribute([MarshalAs(UnmanagedType.Bool)] bool aCreatedDynamically);
 		
 		/// <summary>
         /// Returns false for mLSHE, true for mOSHE
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetCurrentSHEntry([MarshalAs(UnmanagedType.Interface)] out nsISHEntry aEntry);
 	}

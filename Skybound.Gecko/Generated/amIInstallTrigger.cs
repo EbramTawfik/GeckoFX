@@ -63,12 +63,14 @@ namespace Skybound.Gecko
         ///
         /// @deprecated Use "enabled" in the future.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool UpdateEnabled();
 		
 		/// <summary>
         /// Tests if installation is enabled.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool Enabled();
 		
@@ -87,6 +89,7 @@ namespace Skybound.Gecko
         /// A callback to call as each installation succeeds or fails
         /// @return true if the installations were successfully started
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool Install([MarshalAs(UnmanagedType.Interface)] nsIVariant aArgs, amIInstallCallback aCallback);
 		
@@ -102,6 +105,7 @@ namespace Skybound.Gecko
         /// Unused, retained for backwards compatibility
         /// @return true if the installation was successfully started
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool InstallChrome(uint aType, [MarshalAs(UnmanagedType.LPStruct)] nsAString aUrl, [MarshalAs(UnmanagedType.LPStruct)] nsAString aSkin);
 		
@@ -116,6 +120,7 @@ namespace Skybound.Gecko
         /// Unused, retained for backwards compatibility
         /// @return true if the installation was successfully started
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool StartSoftwareUpdate([MarshalAs(UnmanagedType.LPStruct)] nsAString aUrl, int aFlags);
 	}

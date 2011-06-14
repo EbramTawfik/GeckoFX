@@ -47,6 +47,7 @@ namespace Skybound.Gecko
         ///
         /// Return - PR_TRUE if success
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool NextPage();
 		
@@ -55,6 +56,7 @@ namespace Skybound.Gecko
         ///
         /// Return - PR_TRUE if success
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool PreviousPage();
 		
@@ -64,6 +66,7 @@ namespace Skybound.Gecko
         /// aPageNumber - Page to go preview
         /// Return - PR_TRUE if success
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GoToPage(uint aPageNumber);
 		
@@ -73,6 +76,7 @@ namespace Skybound.Gecko
         /// aNumPages - number of pages to skip including the current page. Neg. goes back
         /// Return - true if success
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool SkipPages(int aNumPages);
 	}

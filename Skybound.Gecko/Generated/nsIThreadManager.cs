@@ -84,6 +84,7 @@ namespace Skybound.Gecko
         /// This attribute is true if the calling thread is the main thread of the
         /// application process.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsMainThreadAttribute();
 		
@@ -91,6 +92,7 @@ namespace Skybound.Gecko
         /// This attribute is true if the calling thread is the thread on which the
         /// cycle collector runs.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsCycleCollectorThreadAttribute();
 	}

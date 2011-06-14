@@ -59,12 +59,14 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Does the engine provide its own personal dictionary?
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetProvidesPersonalDictionaryAttribute();
 		
 		/// <summary>
         /// Does the engine provide its own word utils?
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetProvidesWordUtilsAttribute();
 		
@@ -103,6 +105,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// check a word
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool Check([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string word);
 		

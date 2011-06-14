@@ -199,6 +199,7 @@ namespace Skybound.Gecko
         /// The hostname to check. This argument should be in the origin
         /// URL format, without a pathname. For example: "http://foo.com".
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetLoginSavingEnabled([MarshalAs(UnmanagedType.LPStruct)] nsAString aHost);
 		
@@ -215,7 +216,7 @@ namespace Skybound.Gecko
         /// disabled (false)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetLoginSavingEnabled([MarshalAs(UnmanagedType.LPStruct)] nsAString aHost, bool isEnabled);
+		void SetLoginSavingEnabled([MarshalAs(UnmanagedType.LPStruct)] nsAString aHost, [MarshalAs(UnmanagedType.Bool)] bool isEnabled);
 		
 		/// <summary>
         /// Search for logins matching the specified criteria. Called when looking
@@ -272,6 +273,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// True when a master password prompt is being shown.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetUiBusyAttribute();
 	}

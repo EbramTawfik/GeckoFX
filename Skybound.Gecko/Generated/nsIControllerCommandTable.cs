@@ -82,6 +82,7 @@ namespace Skybound.Gecko
         /// @param aCommandName    the name of the command to test
         /// @param aCommandRefCon  the command context data
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsCommandEnabled([MarshalAs(UnmanagedType.LPStr)] string aCommandName, [MarshalAs(UnmanagedType.Interface)] nsISupports aCommandRefCon);
 		
@@ -100,6 +101,7 @@ namespace Skybound.Gecko
         /// @param aCommandName    the name of the command to test
         /// @param aCommandRefCon  the command context data
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool SupportsCommand([MarshalAs(UnmanagedType.LPStr)] string aCommandName, [MarshalAs(UnmanagedType.Interface)] nsISupports aCommandRefCon);
 		

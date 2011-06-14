@@ -44,6 +44,6 @@ namespace Skybound.Gecko
         /// has been canceled, or failed).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnRedirectResult(bool proceeding);
+		void OnRedirectResult([MarshalAs(UnmanagedType.Bool)] bool proceeding);
 	}
 }

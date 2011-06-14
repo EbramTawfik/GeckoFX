@@ -38,16 +38,19 @@ namespace Skybound.Gecko
 		
 		/// <summary>
         ///Whether the pref for image resizing has been set. </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetImageResizingEnabledAttribute();
 		
 		/// <summary>
         ///Whether the image is overflowing visible area. </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetImageIsOverflowingAttribute();
 		
 		/// <summary>
         ///Whether the image has been resized to fit visible area. </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetImageIsResizedAttribute();
 		

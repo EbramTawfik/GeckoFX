@@ -113,6 +113,7 @@ namespace Skybound.Gecko
         /// Is the window modal (that is, currently executing a modal loop)?
         /// @return true if it's a modal window
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsWindowModal();
 		

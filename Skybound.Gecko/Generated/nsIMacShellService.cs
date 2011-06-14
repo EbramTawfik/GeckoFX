@@ -43,8 +43,9 @@ namespace Skybound.Gecko
         /// by the first browser window at startup,
         /// false otherwise.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool IsDefaultBrowser(bool aStartupCheck);
+		new bool IsDefaultBrowser([MarshalAs(UnmanagedType.Bool)] bool aStartupCheck);
 		
 		/// <summary>
         /// Registers Firefox as the "Default Browser."
@@ -57,7 +58,7 @@ namespace Skybound.Gecko
         /// users on a multi-user system.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetDefaultBrowser(bool aClaimAllTypes, bool aForAllUsers);
+		new void SetDefaultBrowser([MarshalAs(UnmanagedType.Bool)] bool aClaimAllTypes, [MarshalAs(UnmanagedType.Bool)] bool aForAllUsers);
 		
 		/// <summary>
         /// Used to determine whether or not to show a "Set Default Browser"
@@ -65,6 +66,7 @@ namespace Skybound.Gecko
         /// up and "browser.shell.checkDefaultBrowser" is true, otherwise it
         /// is false.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetShouldCheckDefaultBrowserAttribute();
 		
@@ -75,7 +77,7 @@ namespace Skybound.Gecko
         /// is false.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetShouldCheckDefaultBrowserAttribute(bool aShouldCheckDefaultBrowser);
+		new void SetShouldCheckDefaultBrowserAttribute([MarshalAs(UnmanagedType.Bool)] bool aShouldCheckDefaultBrowser);
 		
 		/// <summary>
         /// Sets the desktop background image using either the HTML <IMG>

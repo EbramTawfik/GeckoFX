@@ -58,10 +58,10 @@ namespace Skybound.Gecko
 		void GetChar(out char c);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetBoolean(out bool b);
+		void GetBoolean([MarshalAs(UnmanagedType.Bool)] out bool b);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBoolean(bool b);
+		void SetBoolean([MarshalAs(UnmanagedType.Bool)] bool b);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetOctet(out System.IntPtr o);
@@ -109,10 +109,10 @@ namespace Skybound.Gecko
         ///void SetString( in wstring ws );
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPRBool(out bool b);
+		void GetPRBool([MarshalAs(UnmanagedType.Bool)] out bool b);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPRBool(bool b);
+		void SetPRBool([MarshalAs(UnmanagedType.Bool)] bool b);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetPRInt32(out int l);

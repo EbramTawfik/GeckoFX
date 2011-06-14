@@ -100,6 +100,7 @@ namespace Skybound.Gecko
         /// @return if the connection is still established (and the data was queued or
         /// sent successfully).
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool Send([MarshalAs(UnmanagedType.LPStruct)] nsAString data);
 		

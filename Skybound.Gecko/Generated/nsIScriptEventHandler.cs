@@ -47,6 +47,7 @@ namespace Skybound.Gecko
         /// @param aArgCount    Number of arguments expected by the event handler.
         ///
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsSameEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString aObjectName, [MarshalAs(UnmanagedType.LPStruct)] nsAString aEventName, uint aArgCount);
 		

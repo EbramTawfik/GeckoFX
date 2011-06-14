@@ -84,6 +84,7 @@ namespace Skybound.Gecko
         /// Force relevant cookies to be sent with this load even if normally they
         /// wouldn't be.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetForceAllowThirdPartyCookieAttribute();
 		
@@ -92,17 +93,19 @@ namespace Skybound.Gecko
         /// wouldn't be.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetForceAllowThirdPartyCookieAttribute(bool aForceAllowThirdPartyCookie);
+		void SetForceAllowThirdPartyCookieAttribute([MarshalAs(UnmanagedType.Bool)] bool aForceAllowThirdPartyCookie);
 		
 		/// <summary>
         /// Returns true iff the channel has been canceled.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetCanceledAttribute();
 		
 		/// <summary>
         /// Lets externalhandler tell the channel it is open on behalf of a download
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetChannelIsForDownloadAttribute();
 		
@@ -110,6 +113,6 @@ namespace Skybound.Gecko
         /// Lets externalhandler tell the channel it is open on behalf of a download
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetChannelIsForDownloadAttribute(bool aChannelIsForDownload);
+		void SetChannelIsForDownloadAttribute([MarshalAs(UnmanagedType.Bool)] bool aChannelIsForDownload);
 	}
 }

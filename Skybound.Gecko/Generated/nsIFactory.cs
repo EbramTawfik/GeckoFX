@@ -67,6 +67,6 @@ namespace Skybound.Gecko
         /// NS_ERROR* - Method failure.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void LockFactory(bool @lock);
+		void LockFactory([MarshalAs(UnmanagedType.Bool)] bool @lock);
 	}
 }

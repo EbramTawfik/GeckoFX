@@ -49,6 +49,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Indicates if this window is instrinsically sized.	
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIntrinsicallySizedAttribute();
 		
@@ -56,7 +57,7 @@ namespace Skybound.Gecko
         /// Indicates if this window is instrinsically sized.	
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetIntrinsicallySizedAttribute(bool aIntrinsicallySized);
+		void SetIntrinsicallySizedAttribute([MarshalAs(UnmanagedType.Bool)] bool aIntrinsicallySized);
 		
 		/// <summary>
         /// The primary content shell.
@@ -111,7 +112,7 @@ namespace Skybound.Gecko
         /// generally centered horizontally and 1/3 down from the top.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Center([MarshalAs(UnmanagedType.Interface)] nsIXULWindow aRelative, bool aScreen, bool aAlert);
+		void Center([MarshalAs(UnmanagedType.Interface)] nsIXULWindow aRelative, [MarshalAs(UnmanagedType.Bool)] bool aScreen, [MarshalAs(UnmanagedType.Bool)] bool aAlert);
 		
 		/// <summary>
         /// Shows the window as a modal window. That is, ensures that it is visible

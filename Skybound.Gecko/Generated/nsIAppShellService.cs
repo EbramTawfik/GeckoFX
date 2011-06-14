@@ -101,6 +101,7 @@ namespace Skybound.Gecko
         /// application. If it wasn't, the default hidden window was used. This will
         /// usually be false on all non-mac platforms.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetApplicationProvidedHiddenWindowAttribute();
 		

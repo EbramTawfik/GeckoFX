@@ -40,6 +40,7 @@ namespace Skybound.Gecko
         /// mode and clients, such as HTTP, that can update the valid lifetime of
         /// cached content).  This attribute defaults to true.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetDoomEntriesIfExpiredAttribute();
 		
@@ -50,7 +51,7 @@ namespace Skybound.Gecko
         /// cached content).  This attribute defaults to true.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDoomEntriesIfExpiredAttribute(bool aDoomEntriesIfExpired);
+		void SetDoomEntriesIfExpiredAttribute([MarshalAs(UnmanagedType.Bool)] bool aDoomEntriesIfExpired);
 		
 		/// <summary>
         /// Synchronous cache access.  This returns a unique descriptor each
@@ -62,7 +63,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsICacheEntryDescriptor OpenCacheEntry([MarshalAs(UnmanagedType.LPStruct)] nsAString key, System.IntPtr accessRequested, bool blockingMode);
+		nsICacheEntryDescriptor OpenCacheEntry([MarshalAs(UnmanagedType.LPStruct)] nsAString key, System.IntPtr accessRequested, [MarshalAs(UnmanagedType.Bool)] bool blockingMode);
 		
 		/// <summary>
         /// Asynchronous cache access. Does not block the calling thread.
@@ -82,6 +83,7 @@ namespace Skybound.Gecko
         /// Return whether any of the cache devices implied by the session storage policy
         /// are currently enabled for instantiation if they don't already exist.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsStorageEnabled();
 	}

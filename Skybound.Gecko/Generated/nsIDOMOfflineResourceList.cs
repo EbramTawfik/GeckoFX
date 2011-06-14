@@ -46,6 +46,7 @@ namespace Skybound.Gecko
         /// @param uri
         /// The resource to check.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool MozHasItem([MarshalAs(UnmanagedType.LPStruct)] nsAString uri);
 		

@@ -61,6 +61,6 @@ namespace Skybound.Gecko
         /// it, we are not allowed to close it.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UserCanceled(out bool threadAlreadyClosedDialog);
+		void UserCanceled([MarshalAs(UnmanagedType.Bool)] out bool threadAlreadyClosedDialog);
 	}
 }

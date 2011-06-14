@@ -87,6 +87,7 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member HasFocus </summary>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool HasFocus();
 		

@@ -78,11 +78,13 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member GetPreventDefault </summary>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetPreventDefault();
 		
 		/// <summary>Member GetIsTrustedAttribute </summary>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetIsTrustedAttribute();
 		
@@ -124,16 +126,18 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member GetCancelBubbleAttribute </summary>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetCancelBubbleAttribute();
 		
 		/// <summary>Member SetCancelBubbleAttribute </summary>
 		/// <param name='aCancelBubble'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCancelBubbleAttribute(bool aCancelBubble);
+		void SetCancelBubbleAttribute([MarshalAs(UnmanagedType.Bool)] bool aCancelBubble);
 		
 		/// <summary>Member GetIsCharAttribute </summary>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsCharAttribute();
 	}

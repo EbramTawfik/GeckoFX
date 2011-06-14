@@ -43,6 +43,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Indicates whether a key is available only in a secure context.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetSecureAttribute();
 		
@@ -50,7 +51,7 @@ namespace Skybound.Gecko
         /// Indicates whether a key is available only in a secure context.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSecureAttribute(bool aSecure);
+		void SetSecureAttribute([MarshalAs(UnmanagedType.Bool)] bool aSecure);
 		
 		/// <summary>
         /// The value associated with the item.

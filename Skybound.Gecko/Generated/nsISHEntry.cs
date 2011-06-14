@@ -66,6 +66,7 @@ namespace Skybound.Gecko
         /// history entries created as a result of a subframe
         /// navigation.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetIsSubFrameAttribute();
 		
@@ -97,13 +98,14 @@ namespace Skybound.Gecko
 		
 		/// <summary>
         ///Whether the content viewer is marked "sticky" </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetStickyAttribute();
 		
 		/// <summary>
         ///Whether the content viewer is marked "sticky" </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetStickyAttribute(bool aSticky);
+		void SetStickyAttribute([MarshalAs(UnmanagedType.Bool)] bool aSticky);
 		
 		/// <summary>
         ///Saved state of the global window object </summary>
@@ -293,23 +295,25 @@ namespace Skybound.Gecko
 		
 		/// <summary>
         ///attribute to indicate whether layoutHistoryState should be saved </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetSaveLayoutStateFlagAttribute();
 		
 		/// <summary>
         ///attribute to indicate whether layoutHistoryState should be saved </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSaveLayoutStateFlagAttribute(bool aSaveLayoutStateFlag);
+		void SetSaveLayoutStateFlagAttribute([MarshalAs(UnmanagedType.Bool)] bool aSaveLayoutStateFlag);
 		
 		/// <summary>
         ///attribute to indicate whether the page is already expired in cache </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetExpirationStatusAttribute();
 		
 		/// <summary>
         ///attribute to indicate whether the page is already expired in cache </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetExpirationStatusAttribute(bool aExpirationStatus);
+		void SetExpirationStatusAttribute([MarshalAs(UnmanagedType.Bool)] bool aExpirationStatus);
 		
 		/// <summary>
         /// attribute to indicate the content-type of the document that this
@@ -336,7 +340,7 @@ namespace Skybound.Gecko
 		/// <summary>
         ///Additional ways to create an entry </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Create([MarshalAs(UnmanagedType.Interface)] nsIURI URI, [MarshalAs(UnmanagedType.LPStruct)] nsAString title, [MarshalAs(UnmanagedType.Interface)] nsIInputStream inputStream, System.IntPtr layoutHistoryState, [MarshalAs(UnmanagedType.Interface)] nsISupports cacheKey, [MarshalAs(UnmanagedType.LPStruct)] nsAString contentType, [MarshalAs(UnmanagedType.Interface)] nsISupports owner, uint docshellID, bool dynamicCreation);
+		void Create([MarshalAs(UnmanagedType.Interface)] nsIURI URI, [MarshalAs(UnmanagedType.LPStruct)] nsAString title, [MarshalAs(UnmanagedType.Interface)] nsIInputStream inputStream, System.IntPtr layoutHistoryState, [MarshalAs(UnmanagedType.Interface)] nsISupports cacheKey, [MarshalAs(UnmanagedType.LPStruct)] nsAString contentType, [MarshalAs(UnmanagedType.Interface)] nsISupports owner, uint docshellID, [MarshalAs(UnmanagedType.Bool)] bool dynamicCreation);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -345,7 +349,7 @@ namespace Skybound.Gecko
 		/// <summary>
         ///Attribute that indicates if this entry is for a subframe navigation </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetIsSubFrame(bool aFlag);
+		void SetIsSubFrame([MarshalAs(UnmanagedType.Bool)] bool aFlag);
 		
 		/// <summary>
         ///Return any content viewer present in or below this node in the
@@ -403,6 +407,7 @@ namespace Skybound.Gecko
 		
 		/// <summary>
         ///Returns true if this shistory entry is storing a detached editor. </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool HasDetachedEditor();
 		
@@ -410,6 +415,7 @@ namespace Skybound.Gecko
         /// Returns true if the related docshell was added because of
         /// dynamic addition of an iframe/frame.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsDynamicallyAdded();
 		
@@ -417,6 +423,7 @@ namespace Skybound.Gecko
         /// Returns true if any of the child entries returns true
         /// when isDynamicallyAdded is called on it.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool HasDynamicallyAddedChild();
 		

@@ -52,7 +52,7 @@ namespace Skybound.Gecko
         /// @param aInteractive if PR_FALSE turn off scripting and plugins
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MakeWindowEditable([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, [MarshalAs(UnmanagedType.LPStr)] string aEditorType, bool doAfterUriLoad, bool aMakeWholeDocumentEditable, bool aInteractive);
+		void MakeWindowEditable([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, [MarshalAs(UnmanagedType.LPStr)] string aEditorType, [MarshalAs(UnmanagedType.Bool)] bool doAfterUriLoad, [MarshalAs(UnmanagedType.Bool)] bool aMakeWholeDocumentEditable, [MarshalAs(UnmanagedType.Bool)] bool aInteractive);
 		
 		/// <summary>
         /// Test whether a specific window has had its editable flag set; it may have an editor
@@ -61,6 +61,7 @@ namespace Skybound.Gecko
         /// Use this, passing the content root window, to test if we've set up editing
         /// for this content.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool WindowIsEditable([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window);
 		
@@ -119,6 +120,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Whether this session has disabled JS and plugins.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetJsAndPluginsDisabledAttribute();
 	}

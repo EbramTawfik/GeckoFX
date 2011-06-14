@@ -91,6 +91,7 @@ namespace Skybound.Gecko
         /// i.e. whether launchWithFile with action = useSystemDefault is possible
         /// and defaultDescription will contain usable information.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetHasDefaultHandlerAttribute();
 		
@@ -148,6 +149,7 @@ namespace Skybound.Gecko
         /// alwaysAskBeforeHandling: if true, we should always give the user a
         /// dialog asking how to dispose of this content.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetAlwaysAskBeforeHandlingAttribute();
 		
@@ -156,7 +158,7 @@ namespace Skybound.Gecko
         /// dialog asking how to dispose of this content.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAlwaysAskBeforeHandlingAttribute(bool aAlwaysAskBeforeHandling);
+		void SetAlwaysAskBeforeHandlingAttribute([MarshalAs(UnmanagedType.Bool)] bool aAlwaysAskBeforeHandling);
 	}
 	
 	/// <summary>
@@ -228,6 +230,7 @@ namespace Skybound.Gecko
         /// i.e. whether launchWithFile with action = useSystemDefault is possible
         /// and defaultDescription will contain usable information.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetHasDefaultHandlerAttribute();
 		
@@ -285,6 +288,7 @@ namespace Skybound.Gecko
         /// alwaysAskBeforeHandling: if true, we should always give the user a
         /// dialog asking how to dispose of this content.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetAlwaysAskBeforeHandlingAttribute();
 		
@@ -293,7 +297,7 @@ namespace Skybound.Gecko
         /// dialog asking how to dispose of this content.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetAlwaysAskBeforeHandlingAttribute(bool aAlwaysAskBeforeHandling);
+		new void SetAlwaysAskBeforeHandlingAttribute([MarshalAs(UnmanagedType.Bool)] bool aAlwaysAskBeforeHandling);
 		
 		/// <summary>
         /// Gives you an array of file types associated with this type.
@@ -317,6 +321,7 @@ namespace Skybound.Gecko
         ///
         /// @return TRUE if the association exists.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool ExtensionExists([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aExtension);
 		
@@ -360,6 +365,7 @@ namespace Skybound.Gecko
         ///
         /// @returns PR_TRUE if the two are considered equal
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool Equals([MarshalAs(UnmanagedType.Interface)] nsIMIMEInfo aMIMEInfo);
 		
@@ -442,6 +448,7 @@ namespace Skybound.Gecko
         ///
         /// @returns true if the two are logically equivalent, false otherwise
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool Equals([MarshalAs(UnmanagedType.Interface)] nsIHandlerApp aHandlerApp);
 		
@@ -514,6 +521,7 @@ namespace Skybound.Gecko
         ///
         /// @returns true if the two are logically equivalent, false otherwise
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool Equals([MarshalAs(UnmanagedType.Interface)] nsIHandlerApp aHandlerApp);
 		
@@ -593,6 +601,7 @@ namespace Skybound.Gecko
         ///
         /// @return TRUE if the parameter exists in the current list.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool ParameterExists([MarshalAs(UnmanagedType.LPStruct)] nsAString param);
 	}
@@ -647,6 +656,7 @@ namespace Skybound.Gecko
         ///
         /// @returns true if the two are logically equivalent, false otherwise
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool Equals([MarshalAs(UnmanagedType.Interface)] nsIHandlerApp aHandlerApp);
 		
@@ -736,6 +746,7 @@ namespace Skybound.Gecko
         ///
         /// @returns true if the two are logically equivalent, false otherwise
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool Equals([MarshalAs(UnmanagedType.Interface)] nsIHandlerApp aHandlerApp);
 		

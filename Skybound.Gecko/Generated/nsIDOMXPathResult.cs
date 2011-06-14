@@ -54,6 +54,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// raises(XPathException) on retrieval
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetBooleanValueAttribute();
 		
@@ -67,6 +68,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// raises(XPathException) on retrieval
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetInvalidIteratorStateAttribute();
 		

@@ -53,6 +53,7 @@ namespace Skybound.Gecko
         ///
         /// XXX shouldn't aProtocolScheme be an ACString like nsIURI::scheme?
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool ExternalProtocolHandlerExists([MarshalAs(UnmanagedType.LPStr)] string aProtocolScheme);
 		
@@ -67,6 +68,7 @@ namespace Skybound.Gecko
         /// Instead, it would be deferred to the system's external protocol handler.
         /// XXX shouldn't aProtocolScheme be an ACString like nsIURI::scheme?
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsExposedProtocol([MarshalAs(UnmanagedType.LPStr)] string aProtocolScheme);
 		
@@ -97,7 +99,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIHandlerInfo GetProtocolHandlerInfoFromOS([MarshalAs(UnmanagedType.LPStruct)] nsAString aProtocolScheme, out bool aFound);
+		nsIHandlerInfo GetProtocolHandlerInfoFromOS([MarshalAs(UnmanagedType.LPStruct)] nsAString aProtocolScheme, [MarshalAs(UnmanagedType.Bool)] out bool aFound);
 		
 		/// <summary>
         /// Set some sane defaults for a protocol handler object.
@@ -110,7 +112,7 @@ namespace Skybound.Gecko
         /// getProtocolHandlerInfoFromOS.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetProtocolHandlerDefaults([MarshalAs(UnmanagedType.Interface)] nsIHandlerInfo aHandlerInfo, bool aOSHandlerExists);
+		void SetProtocolHandlerDefaults([MarshalAs(UnmanagedType.Interface)] nsIHandlerInfo aHandlerInfo, [MarshalAs(UnmanagedType.Bool)] bool aOSHandlerExists);
 		
 		/// <summary>
         /// Used to load a url via an external protocol handler (if one exists)

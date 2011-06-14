@@ -103,6 +103,7 @@ namespace Skybound.Gecko
         /// The number of AddonInstalls
         /// @return true if the caller should start the installs
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool OnWebInstallBlocked([MarshalAs(UnmanagedType.Interface)] nsIDOMWindowInternal aWindow, [MarshalAs(UnmanagedType.Interface)] nsIURI aUri, nsIVariant aInstalls, uint aCount);
 		
@@ -119,6 +120,7 @@ namespace Skybound.Gecko
         /// The number of AddonInstalls
         /// @return true if the caller should start the installs
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool OnWebInstallRequested([MarshalAs(UnmanagedType.Interface)] nsIDOMWindowInternal aWindow, [MarshalAs(UnmanagedType.Interface)] nsIURI aUri, nsIVariant aInstalls, uint aCount);
 	}

@@ -329,6 +329,7 @@ namespace Skybound.Gecko
         /// @returns
         /// true if the given name was a name for this server, false otherwise
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool Remove([MarshalAs(UnmanagedType.LPStr)] string scheme, [MarshalAs(UnmanagedType.LPStr)] string host, int port);
 		
@@ -339,6 +340,7 @@ namespace Skybound.Gecko
         /// if scheme or host do not match the scheme or host productions imported
         /// into RFC 2616 from RFC 2396, or if port is not a valid port number
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool Has([MarshalAs(UnmanagedType.LPStr)] string scheme, [MarshalAs(UnmanagedType.LPStr)] string host, int port);
 		
@@ -513,6 +515,7 @@ namespace Skybound.Gecko
         /// @throws NS_ERROR_INVALID_ARG
         /// if fieldName does not constitute a valid header field name
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool HasHeader([MarshalAs(UnmanagedType.LPStr)] string fieldName);
 		
@@ -590,7 +593,7 @@ namespace Skybound.Gecko
         /// this
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetHeader([MarshalAs(UnmanagedType.LPStr)] string name, [MarshalAs(UnmanagedType.LPStr)] string value, bool merge);
+		void SetHeader([MarshalAs(UnmanagedType.LPStr)] string name, [MarshalAs(UnmanagedType.LPStr)] string value, [MarshalAs(UnmanagedType.Bool)] bool merge);
 		
 		/// <summary>
         /// A stream to which data appearing in the body of this response (or in the

@@ -54,7 +54,7 @@ namespace Skybound.Gecko
         /// also be reloaded
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ReloadPlugins(bool reloadPages);
+		void ReloadPlugins([MarshalAs(UnmanagedType.Bool)] bool reloadPages);
 		
 		/// <summary>Member GetPlugin </summary>
 		/// <param name='aMimeType'> </param>
@@ -272,6 +272,7 @@ namespace Skybound.Gecko
         /// will be determined; if any data for the base domain or its
         /// subdomains is found, return true.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool SiteHasData([MarshalAs(UnmanagedType.Interface)] nsIPluginTag plugin, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String domain);
 	}

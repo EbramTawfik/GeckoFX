@@ -69,8 +69,9 @@ namespace Skybound.Gecko
         /// window. If the method returns true, all subsequent calls will be
         /// ignored.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool PermitUnload(bool aCallerClosesWindow);
+		bool PermitUnload([MarshalAs(UnmanagedType.Bool)] bool aCallerClosesWindow);
 		
 		/// <summary>
         /// Works in tandem with permitUnload, if the caller decides not to close the
@@ -87,7 +88,7 @@ namespace Skybound.Gecko
 		/// <summary>Member PageHide </summary>
 		/// <param name='isUnload'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PageHide(bool isUnload);
+		void PageHide([MarshalAs(UnmanagedType.Bool)] bool isUnload);
 		
 		/// <summary>
         /// All users of a content viewer are responsible for calling both
@@ -178,19 +179,21 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member GetStickyAttribute </summary>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetStickyAttribute();
 		
 		/// <summary>Member SetStickyAttribute </summary>
 		/// <param name='aSticky'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetStickyAttribute(bool aSticky);
+		void SetStickyAttribute([MarshalAs(UnmanagedType.Bool)] bool aSticky);
 		
 		/// <summary>
         /// This is called when the DOM window wants to be closed.  Returns true
         /// if the window can close immediately.  Otherwise, returns false and will
         /// close the DOM window as soon as practical.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool RequestWindowClose();
 		
@@ -217,7 +220,7 @@ namespace Skybound.Gecko
         /// dynamic and editable (like Galley layout).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPageMode(bool aPageMode, [MarshalAs(UnmanagedType.Interface)] nsIPrintSettings aPrintSettings);
+		void SetPageMode([MarshalAs(UnmanagedType.Bool)] bool aPageMode, [MarshalAs(UnmanagedType.Interface)] nsIPrintSettings aPrintSettings);
 		
 		/// <summary>
         /// Get the history entry that this viewer will save itself into when
@@ -242,6 +245,7 @@ namespace Skybound.Gecko
         /// rentrant if the user closes the tab while the prompt is showing.
         /// See bug 613800.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsTabModalPromptAllowedAttribute();
 	}

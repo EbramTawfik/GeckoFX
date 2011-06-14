@@ -87,14 +87,16 @@ namespace Skybound.Gecko
         ///
         /// @return True if the controller wishes to prevent event propagation and default event
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool HandleEnter(bool aIsPopupSelection);
+		bool HandleEnter([MarshalAs(UnmanagedType.Bool)] bool aIsPopupSelection);
 		
 		/// <summary>
         /// Notify the controller that the user wishes to revert autocomplete
         ///
         /// @return True if the controller wishes to prevent event propagation and default event
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool HandleEscape();
 		
@@ -122,6 +124,7 @@ namespace Skybound.Gecko
         ///
         /// @return True if the controller wishes to prevent event propagation and default event
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool HandleKeyNavigation(uint key);
 		
@@ -129,6 +132,7 @@ namespace Skybound.Gecko
         /// Notify the controller that the user chose to delete the current
         /// auto-complete result.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool HandleDelete();
 		

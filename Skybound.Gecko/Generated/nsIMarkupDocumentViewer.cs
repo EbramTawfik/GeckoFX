@@ -66,13 +66,14 @@ namespace Skybound.Gecko
 		
 		/// <summary>
         ///Disable entire author style level (including HTML presentation hints) </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetAuthorStyleDisabledAttribute();
 		
 		/// <summary>
         ///Disable entire author style level (including HTML presentation hints) </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAuthorStyleDisabledAttribute(bool aAuthorStyleDisabled);
+		void SetAuthorStyleDisabledAttribute([MarshalAs(UnmanagedType.Bool)] bool aAuthorStyleDisabled);
 		
 		/// <summary>
         ///XXX Comment here!

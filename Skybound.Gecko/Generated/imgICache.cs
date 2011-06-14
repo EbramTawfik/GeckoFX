@@ -47,7 +47,7 @@ namespace Skybound.Gecko
         /// If FALSE, evict everything except chrome images.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ClearCache(bool chrome);
+		void ClearCache([MarshalAs(UnmanagedType.Bool)] bool chrome);
 		
 		/// <summary>
         /// Evict images from the cache.

@@ -50,6 +50,7 @@ namespace Skybound.Gecko
         /// @param uri the uri of the web app
         /// @return true if the web app is installed, false if it's not installed
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsApplicationInstalled([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string uri);
 	}

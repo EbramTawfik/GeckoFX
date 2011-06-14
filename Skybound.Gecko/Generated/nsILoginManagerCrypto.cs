@@ -73,6 +73,7 @@ namespace Skybound.Gecko
         ///
         /// True when a master password prompt is being displayed.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetUiBusyAttribute();
 		
@@ -83,6 +84,7 @@ namespace Skybound.Gecko
         /// not logged in, performing a crypto operation will result in a master
         /// password prompt.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsLoggedInAttribute();
 	}

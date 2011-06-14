@@ -159,6 +159,7 @@ namespace Skybound.Gecko
         ///
         /// @param  columnIndex  [in] the column index to determine if it's selected
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsColumnSelected(int columnIndex);
 		
@@ -168,6 +169,7 @@ namespace Skybound.Gecko
         ///
         /// @param  rowIndex  [in] the row index to determine whether it's selected
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsRowSelected(int rowIndex);
 		
@@ -177,6 +179,7 @@ namespace Skybound.Gecko
         /// @param  rowIndex     [in] the row index of the cell
         /// @param  columnIndex  [in] the column index of the cell
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsCellSelected(int rowIndex, int columnIndex);
 		
@@ -267,6 +270,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Use heuristics to determine if table is most likely used for layout.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsProbablyForLayout();
 	}
@@ -328,6 +332,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Return a boolean value indicating whether this cell is selected.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsSelected();
 	}

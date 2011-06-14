@@ -65,6 +65,7 @@ namespace Skybound.Gecko
 		/// <param name='nodeArg'> </param>
 		/// <param name='destination'> </param>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool Write([MarshalAs(UnmanagedType.Interface)] nsIDOMNode nodeArg, [MarshalAs(UnmanagedType.Interface)] nsIDOMLSOutput destination);
 		
@@ -72,6 +73,7 @@ namespace Skybound.Gecko
 		/// <param name='nodeArg'> </param>
 		/// <param name='uri'> </param>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool WriteToURI([MarshalAs(UnmanagedType.Interface)] nsIDOMNode nodeArg, [MarshalAs(UnmanagedType.LPStruct)] nsAString uri);
 		

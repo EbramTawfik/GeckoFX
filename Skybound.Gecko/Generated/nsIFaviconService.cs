@@ -87,7 +87,7 @@ namespace Skybound.Gecko
         /// it will always try to reload the favicon.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAndLoadFaviconForPage([MarshalAs(UnmanagedType.Interface)] nsIURI aPageURI, [MarshalAs(UnmanagedType.Interface)] nsIURI aFaviconURI, bool aForceReload, [MarshalAs(UnmanagedType.Interface)] nsIFaviconDataCallback aCallback);
+		void SetAndLoadFaviconForPage([MarshalAs(UnmanagedType.Interface)] nsIURI aPageURI, [MarshalAs(UnmanagedType.Interface)] nsIURI aFaviconURI, [MarshalAs(UnmanagedType.Bool)] bool aForceReload, [MarshalAs(UnmanagedType.Interface)] nsIFaviconDataCallback aCallback);
 		
 		/// <summary>
         /// Stores the data for a given favicon URI.
@@ -300,6 +300,7 @@ namespace Skybound.Gecko
         /// @param aFaviconURI
         /// The URI of an icon in the favicon service.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsFailedFavicon([MarshalAs(UnmanagedType.Interface)] nsIURI aFaviconURI);
 		

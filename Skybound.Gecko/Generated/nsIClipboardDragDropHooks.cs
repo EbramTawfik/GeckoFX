@@ -71,6 +71,7 @@ namespace Skybound.Gecko
         /// @return TRUE  drag can proceed
         /// @return FALSE drag is cancelled, does not go to OS
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool AllowStartDrag([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent @event);
 		
@@ -86,6 +87,7 @@ namespace Skybound.Gecko
         /// @return FALSE indicates to OS drop is not allowed. On win32, this
         /// will change the cursor to "reject".
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool AllowDrop([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent @event, [MarshalAs(UnmanagedType.Interface)] nsIDragSession session);
 		
@@ -103,6 +105,7 @@ namespace Skybound.Gecko
         /// @return TRUE  copy/drag can proceed
         /// @return FALSE copy/drag is cancelled, does not go to OS
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool OnCopyOrDrag([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent aEvent, [MarshalAs(UnmanagedType.Interface)] nsITransferable trans);
 		
@@ -118,6 +121,7 @@ namespace Skybound.Gecko
         /// behavior
         /// @return FALSE action was not overridden, do built-in behavior
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool OnPasteOrDrop([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent @event, [MarshalAs(UnmanagedType.Interface)] nsITransferable trans);
 	}

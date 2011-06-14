@@ -40,6 +40,7 @@ namespace Skybound.Gecko
         /// This value is <code>true</code> when the datasource has
         /// fully loaded itself.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetLoadedAttribute();
 		
@@ -60,7 +61,7 @@ namespace Skybound.Gecko
         /// until the datasource has completely reloaded.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Refresh(bool aBlocking);
+		void Refresh([MarshalAs(UnmanagedType.Bool)] bool aBlocking);
 		
 		/// <summary>
         /// Request that a data source write its contents out to

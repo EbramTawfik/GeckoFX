@@ -62,20 +62,20 @@ namespace Skybound.Gecko
         /// If TRUE, returns properites for media as set in nsIDOMDocument::set_alternateViewMediaTypes
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		ushort get_ComputedStyle(ushort maxStyleProperties, bool useAlternateView, [MarshalAs(UnmanagedType.BStr, SizeParamIndex=0)] out string styleProperties, [MarshalAs(UnmanagedType.BStr, SizeParamIndex=0)] out string styleValues);
+		ushort get_ComputedStyle(ushort maxStyleProperties, [MarshalAs(UnmanagedType.Bool)] bool useAlternateView, [MarshalAs(UnmanagedType.BStr, SizeParamIndex=0)] out string styleProperties, [MarshalAs(UnmanagedType.BStr, SizeParamIndex=0)] out string styleValues);
 		
 		/// <summary>
         /// If TRUE, returns properites for media as set in nsIDOMDocument::set_alternateViewMediaTypes
         /// </summary>
 		[return: MarshalAs(UnmanagedType.BStr, SizeParamIndex=0)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string get_ComputedStyleForProperties(ushort numStyleProperties, bool useAlternateView, [MarshalAs(UnmanagedType.BStr, SizeParamIndex=0)] string styleProperties);
+		string get_ComputedStyleForProperties(ushort numStyleProperties, [MarshalAs(UnmanagedType.Bool)] bool useAlternateView, [MarshalAs(UnmanagedType.BStr, SizeParamIndex=0)] string styleProperties);
 		
 		/// <summary>Member ScrollTo </summary>
 		/// <param name='placeTopLeft'> </param>
 		/// <returns>A System.UInt32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint ScrollTo(bool placeTopLeft);
+		uint ScrollTo([MarshalAs(UnmanagedType.Bool)] bool placeTopLeft);
 		
 		/// <summary>Gets a ParentNode </summary>
 		/// <returns>A ISimpleDOMNode </returns>

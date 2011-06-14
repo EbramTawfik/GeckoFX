@@ -51,6 +51,7 @@ namespace Skybound.Gecko
         /// This is cheaper than calling convert()/asyncConvertData(); it is not
         /// necessary to call this function before calling one of those, though.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool CanConvert([MarshalAs(UnmanagedType.LPStr)] string aFromType, [MarshalAs(UnmanagedType.LPStr)] string aToType);
 		

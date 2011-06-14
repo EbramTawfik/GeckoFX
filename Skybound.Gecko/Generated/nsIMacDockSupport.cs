@@ -59,6 +59,6 @@ namespace Skybound.Gecko
         /// application activates regardless.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ActivateApplication(bool aIgnoreOtherApplications);
+		void ActivateApplication([MarshalAs(UnmanagedType.Bool)] bool aIgnoreOtherApplications);
 	}
 }

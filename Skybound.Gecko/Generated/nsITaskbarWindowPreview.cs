@@ -128,6 +128,7 @@ namespace Skybound.Gecko
         ///
         /// Default: false
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetVisibleAttribute();
 		
@@ -143,12 +144,13 @@ namespace Skybound.Gecko
         /// Default: false
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetVisibleAttribute(bool aVisible);
+		new void SetVisibleAttribute([MarshalAs(UnmanagedType.Bool)] bool aVisible);
 		
 		/// <summary>
         /// Gets/sets whether or not the preview is marked active (selected) in the
         /// taskbar.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetActiveAttribute();
 		
@@ -157,7 +159,7 @@ namespace Skybound.Gecko
         /// taskbar.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetActiveAttribute(bool aActive);
+		new void SetActiveAttribute([MarshalAs(UnmanagedType.Bool)] bool aActive);
 		
 		/// <summary>
         /// Invalidates the taskbar's cached image of this preview, forcing a redraw
@@ -184,6 +186,7 @@ namespace Skybound.Gecko
         ///
         /// Default value: false
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetEnableCustomDrawingAttribute();
 		
@@ -193,6 +196,6 @@ namespace Skybound.Gecko
         /// Default value: false
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetEnableCustomDrawingAttribute(bool aEnableCustomDrawing);
+		void SetEnableCustomDrawingAttribute([MarshalAs(UnmanagedType.Bool)] bool aEnableCustomDrawing);
 	}
 }

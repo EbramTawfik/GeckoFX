@@ -274,6 +274,7 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member GetClosedAttribute </summary>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetClosedAttribute();
 		
@@ -431,13 +432,14 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member GetFullScreenAttribute </summary>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetFullScreenAttribute();
 		
 		/// <summary>Member SetFullScreenAttribute </summary>
 		/// <param name='aFullScreen'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFullScreenAttribute(bool aFullScreen);
+		void SetFullScreenAttribute([MarshalAs(UnmanagedType.Bool)] bool aFullScreen);
 		
 		/// <summary>Member Alert </summary>
 		/// <param name='text'> </param>
@@ -447,6 +449,7 @@ namespace Skybound.Gecko
 		/// <summary>Member Confirm </summary>
 		/// <param name='text'> </param>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool Confirm([MarshalAs(UnmanagedType.LPStruct)] nsAString text);
 		
@@ -558,8 +561,9 @@ namespace Skybound.Gecko
         /// @param searchInFrames: should we search through all frames
         /// @param showDialog: should we show the Find dialog
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Find([MarshalAs(UnmanagedType.LPStruct)] nsAString str, bool caseSensitive, bool backwards, bool wrapAround, bool wholeWord, bool searchInFrames, bool showDialog);
+		bool Find([MarshalAs(UnmanagedType.LPStruct)] nsAString str, [MarshalAs(UnmanagedType.Bool)] bool caseSensitive, [MarshalAs(UnmanagedType.Bool)] bool backwards, [MarshalAs(UnmanagedType.Bool)] bool wrapAround, [MarshalAs(UnmanagedType.Bool)] bool wholeWord, [MarshalAs(UnmanagedType.Bool)] bool searchInFrames, [MarshalAs(UnmanagedType.Bool)] bool showDialog);
 		
 		/// <summary>
         /// Ascii base64 data to binary data and vice versa...

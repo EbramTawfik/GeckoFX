@@ -117,7 +117,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIPersistentProperties GetTextAttributes(bool includeDefAttrs, int offset, out int rangeStartOffset, out int rangeEndOffset);
+		nsIPersistentProperties GetTextAttributes([MarshalAs(UnmanagedType.Bool)] bool includeDefAttrs, int offset, out int rangeStartOffset, out int rangeEndOffset);
 		
 		/// <summary>
         /// Return the text attributes that apply to the entire accessible.

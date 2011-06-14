@@ -74,6 +74,7 @@ namespace Skybound.Gecko
         /// <code>true</code> if classification will be performed.  The
         /// callback will be called.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool Classify([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIURIClassifierCallback aCallback);
 	}

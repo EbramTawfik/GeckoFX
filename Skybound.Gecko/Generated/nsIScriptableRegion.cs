@@ -137,6 +137,7 @@ namespace Skybound.Gecko
         /// @return     returns whether the region is empty
         ///
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsEmpty();
 		
@@ -148,6 +149,7 @@ namespace Skybound.Gecko
         /// @return     whether the regions are identical
         ///
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsEqualRegion([MarshalAs(UnmanagedType.Interface)] nsIScriptableRegion aRegion);
 		
@@ -191,6 +193,7 @@ namespace Skybound.Gecko
         /// @return     true if the region intersects the rect
         ///
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool ContainsRect(int aX, int aY, int aWidth, int aHeight);
 		

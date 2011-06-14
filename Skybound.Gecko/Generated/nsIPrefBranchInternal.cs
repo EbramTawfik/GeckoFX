@@ -67,6 +67,7 @@ namespace Skybound.Gecko
         ///
         /// @see setBoolPref
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetBoolPref([MarshalAs(UnmanagedType.LPStr)] string aPrefName);
 		
@@ -236,6 +237,7 @@ namespace Skybound.Gecko
         /// @return boolean  true  The preference has a user set value.
         /// false The preference only has a default value.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool PrefHasUserValue([MarshalAs(UnmanagedType.LPStr)] string aPrefName);
 		
@@ -255,6 +257,7 @@ namespace Skybound.Gecko
         /// @see lockPref
         /// @see unlockPref
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool PrefIsLocked([MarshalAs(UnmanagedType.LPStr)] string aPrefName);
 		
@@ -394,7 +397,7 @@ namespace Skybound.Gecko
         /// @see removeObserver
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void AddObserver([MarshalAs(UnmanagedType.LPStr)] string aDomain, [MarshalAs(UnmanagedType.Interface)] nsIObserver aObserver, bool aHoldWeak);
+		new void AddObserver([MarshalAs(UnmanagedType.LPStr)] string aDomain, [MarshalAs(UnmanagedType.Interface)] nsIObserver aObserver, [MarshalAs(UnmanagedType.Bool)] bool aHoldWeak);
 		
 		/// <summary>
         /// Remove a preference change observer.

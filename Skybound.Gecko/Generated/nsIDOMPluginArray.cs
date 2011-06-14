@@ -56,6 +56,6 @@ namespace Skybound.Gecko
 		/// <summary>Member Refresh </summary>
 		/// <param name='reloadDocuments'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Refresh(bool reloadDocuments);
+		void Refresh([MarshalAs(UnmanagedType.Bool)] bool reloadDocuments);
 	}
 }

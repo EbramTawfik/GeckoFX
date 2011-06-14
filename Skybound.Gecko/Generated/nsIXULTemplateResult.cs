@@ -51,12 +51,14 @@ namespace Skybound.Gecko
 		/// <summary>
         /// True if the result represents a container.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsContainerAttribute();
 		
 		/// <summary>
         /// True if the result represents an empty container.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsEmptyAttribute();
 		
@@ -69,6 +71,7 @@ namespace Skybound.Gecko
         /// processed. This property identifies only the default handling and may be
         /// overriden by syntax used in the template.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetMayProcessChildrenAttribute();
 		

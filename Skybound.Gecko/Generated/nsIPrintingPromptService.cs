@@ -62,7 +62,7 @@ namespace Skybound.Gecko
         /// For Print Preview Progress there is intermediate progress
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ShowProgress([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow parent, [MarshalAs(UnmanagedType.Interface)] nsIWebBrowserPrint webBrowserPrint, [MarshalAs(UnmanagedType.Interface)] nsIPrintSettings printSettings, [MarshalAs(UnmanagedType.Interface)] nsIObserver openDialogObserver, bool isForPrinting, [MarshalAs(UnmanagedType.Interface)] out nsIWebProgressListener webProgressListener, [MarshalAs(UnmanagedType.Interface)] out nsIPrintProgressParams printProgressParams, out bool notifyOnOpen);
+		void ShowProgress([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow parent, [MarshalAs(UnmanagedType.Interface)] nsIWebBrowserPrint webBrowserPrint, [MarshalAs(UnmanagedType.Interface)] nsIPrintSettings printSettings, [MarshalAs(UnmanagedType.Interface)] nsIObserver openDialogObserver, [MarshalAs(UnmanagedType.Bool)] bool isForPrinting, [MarshalAs(UnmanagedType.Interface)] out nsIWebProgressListener webProgressListener, [MarshalAs(UnmanagedType.Interface)] out nsIPrintProgressParams printProgressParams, [MarshalAs(UnmanagedType.Bool)] out bool notifyOnOpen);
 		
 		/// <summary>
         /// Shows the print progress dialog

@@ -68,6 +68,7 @@ namespace Skybound.Gecko
         /// Returns true if the operating system supports Win7+ taskbar features.
         /// This property acts as a replacement for in-place os version checking.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetAvailableAttribute();
 		

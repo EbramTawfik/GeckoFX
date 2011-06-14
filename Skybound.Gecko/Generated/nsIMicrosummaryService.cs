@@ -80,6 +80,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Has the generator itself, which may be a remote resource, been loaded.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetLoadedAttribute();
 		
@@ -100,6 +101,7 @@ namespace Skybound.Gecko
         /// microsummary-generator equivalence test
         /// generators equal if their canonical locations equal, see uri attribute.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool Equals([MarshalAs(UnmanagedType.Interface)] nsIMicrosummaryGenerator aOther);
 		
@@ -113,6 +115,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// do not.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetNeedsPageContentAttribute();
 		
@@ -190,6 +193,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// associated generator) will no longer be available.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetNeedsRemovalAttribute();
 		
@@ -220,6 +224,7 @@ namespace Skybound.Gecko
         ///
         /// Note: this method returns false if either objects don't have a generator
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool Equals([MarshalAs(UnmanagedType.Interface)] nsIMicrosummary aOther);
 		
@@ -418,6 +423,7 @@ namespace Skybound.Gecko
         /// has a current microsummary
         ///
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool HasMicrosummary(int bookmarkID);
 		
@@ -435,6 +441,7 @@ namespace Skybound.Gecko
         /// for the bookmark
         ///
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsMicrosummary(int bookmarkID, [MarshalAs(UnmanagedType.Interface)] nsIMicrosummary microsummary);
 		

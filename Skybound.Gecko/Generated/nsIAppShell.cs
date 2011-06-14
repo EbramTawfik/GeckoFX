@@ -65,7 +65,7 @@ namespace Skybound.Gecko
         /// PR_FALSE actually takes effect.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void FavorPerformanceHint(bool favorPerfOverStarvation, uint starvationDelay);
+		void FavorPerformanceHint([MarshalAs(UnmanagedType.Bool)] bool favorPerfOverStarvation, uint starvationDelay);
 		
 		/// <summary>
         /// Suspends the use of additional platform-specific methods (besides the

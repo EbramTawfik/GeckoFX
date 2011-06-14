@@ -117,6 +117,6 @@ namespace Skybound.Gecko
         /// as mActiveChannel and mRedirectChannel in that class.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CompleteRedirect(bool succeeded);
+		void CompleteRedirect([MarshalAs(UnmanagedType.Bool)] bool succeeded);
 	}
 }

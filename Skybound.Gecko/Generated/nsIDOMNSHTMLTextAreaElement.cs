@@ -36,13 +36,14 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member GetAutofocusAttribute </summary>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetAutofocusAttribute();
 		
 		/// <summary>Member SetAutofocusAttribute </summary>
 		/// <param name='aAutofocus'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAutofocusAttribute(bool aAutofocus);
+		void SetAutofocusAttribute([MarshalAs(UnmanagedType.Bool)] bool aAutofocus);
 		
 		/// <summary>Member GetControllersAttribute </summary>
 		/// <returns>A nsIControllers</returns>
@@ -97,13 +98,14 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member GetRequiredAttribute </summary>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetRequiredAttribute();
 		
 		/// <summary>Member SetRequiredAttribute </summary>
 		/// <param name='aRequired'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetRequiredAttribute(bool aRequired);
+		void SetRequiredAttribute([MarshalAs(UnmanagedType.Bool)] bool aRequired);
 		
 		/// <summary>
         /// Reflects the wrap content attribute. Possible values are "soft, "hard" and
@@ -122,6 +124,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// http://www.whatwg.org/specs/web-apps/current-work/#the-constraint-validation-api
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetWillValidateAttribute();
 		
@@ -138,6 +141,7 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member CheckValidity </summary>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool CheckValidity();
 		

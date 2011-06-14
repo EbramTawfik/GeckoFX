@@ -60,6 +60,7 @@ namespace Skybound.Gecko
         /// and subscribed to receive further messages of that name as
         /// well.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool RequestWakeup([MarshalAs(UnmanagedType.LPStruct)] nsAString aMessageName, [MarshalAs(UnmanagedType.LPStruct)] nsAString aCid, [MarshalAs(UnmanagedType.LPStruct)] nsAString aIid, [MarshalAs(UnmanagedType.LPStruct)] nsAString aMethod);
 	}

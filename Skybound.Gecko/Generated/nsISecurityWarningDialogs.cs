@@ -47,6 +47,7 @@ namespace Skybound.Gecko
         ///
         /// @return true if the user confirms to continue
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool ConfirmEnteringSecure([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor ctx);
 		
@@ -61,6 +62,7 @@ namespace Skybound.Gecko
         ///
         /// @return true if the user confirms to continue
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool ConfirmEnteringWeak([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor ctx);
 		
@@ -74,6 +76,7 @@ namespace Skybound.Gecko
         ///
         /// @return true if the user confirms to continue
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool ConfirmLeavingSecure([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor ctx);
 		
@@ -85,6 +88,7 @@ namespace Skybound.Gecko
         ///
         /// @return true if the user decides to show insecure objects.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool ConfirmMixedMode([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor ctx);
 		
@@ -96,6 +100,7 @@ namespace Skybound.Gecko
         ///
         /// @return true if the user confirms to submit.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool ConfirmPostToInsecure([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor ctx);
 		
@@ -109,6 +114,7 @@ namespace Skybound.Gecko
         ///
         /// @return true if the user confirms to submit.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool ConfirmPostToInsecureFromSecure([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor ctx);
 	}

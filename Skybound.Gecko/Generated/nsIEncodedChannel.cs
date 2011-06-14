@@ -65,6 +65,7 @@ namespace Skybound.Gecko
         ///
         /// TRUE by default.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetApplyConversionAttribute();
 		
@@ -77,6 +78,6 @@ namespace Skybound.Gecko
         /// TRUE by default.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetApplyConversionAttribute(bool aApplyConversion);
+		void SetApplyConversionAttribute([MarshalAs(UnmanagedType.Bool)] bool aApplyConversion);
 	}
 }

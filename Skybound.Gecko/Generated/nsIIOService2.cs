@@ -108,6 +108,7 @@ namespace Skybound.Gecko
         ///
         /// Changing this fires observer notifications ... see below.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetOfflineAttribute();
 		
@@ -121,7 +122,7 @@ namespace Skybound.Gecko
         /// Changing this fires observer notifications ... see below.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetOfflineAttribute(bool aOffline);
+		new void SetOfflineAttribute([MarshalAs(UnmanagedType.Bool)] bool aOffline);
 		
 		/// <summary>
         /// Checks if a port number is banned. This involves consulting a list of
@@ -134,6 +135,7 @@ namespace Skybound.Gecko
         ///
         /// @see nsIProtocolHandler::allowPort
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool AllowPort(int aPort, [MarshalAs(UnmanagedType.LPStr)] string aScheme);
 		
@@ -166,6 +168,7 @@ namespace Skybound.Gecko
         /// if there is no link, until application code runs and can turn off
         /// this management.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetManageOfflineStatusAttribute();
 		
@@ -182,6 +185,6 @@ namespace Skybound.Gecko
         /// this management.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetManageOfflineStatusAttribute(bool aManageOfflineStatus);
+		void SetManageOfflineStatusAttribute([MarshalAs(UnmanagedType.Bool)] bool aManageOfflineStatus);
 	}
 }

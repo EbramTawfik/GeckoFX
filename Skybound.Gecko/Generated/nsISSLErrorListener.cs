@@ -45,6 +45,7 @@ namespace Skybound.Gecko
         /// @return The consumer shall return true if it wants to suppress the error message
         /// related to the error (the connection will still get canceled).
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool NotifySSLError([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor socketInfo, int error, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String targetSite);
 	}

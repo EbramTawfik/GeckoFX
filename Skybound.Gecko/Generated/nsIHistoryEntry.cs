@@ -67,6 +67,7 @@ namespace Skybound.Gecko
         /// history entries created as a result of a subframe
         /// navigation.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsSubFrameAttribute();
 	}

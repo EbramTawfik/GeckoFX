@@ -58,11 +58,13 @@ namespace Skybound.Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetEditorAttribute([MarshalAs(UnmanagedType.Interface)] nsIEditor aEditor);
 		
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetEditableAttribute();
 		
 		/// <summary>
         ///this docShell is editable </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetHasEditingSessionAttribute();
 		
@@ -74,6 +76,6 @@ namespace Skybound.Gecko
         /// creating the editor.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MakeEditable(bool inWaitForUriLoad);
+		void MakeEditable([MarshalAs(UnmanagedType.Bool)] bool inWaitForUriLoad);
 	}
 }

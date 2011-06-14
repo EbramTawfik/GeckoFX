@@ -44,6 +44,7 @@ namespace Skybound.Gecko
         /// suggesting this terminology.
         /// <http://www.tbray.org/ongoing/When/200x/2004/01/11/PostelPilgrim>
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetBozoAttribute();
 		
@@ -55,7 +56,7 @@ namespace Skybound.Gecko
         /// <http://www.tbray.org/ongoing/When/200x/2004/01/11/PostelPilgrim>
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBozoAttribute(bool aBozo);
+		void SetBozoAttribute([MarshalAs(UnmanagedType.Bool)] bool aBozo);
 		
 		/// <summary>
         /// The parsed feed or entry.

@@ -121,7 +121,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDocument Open([MarshalAs(UnmanagedType.LPStruct)] nsAString aContentType, bool aReplace);
+		nsIDOMDocument Open([MarshalAs(UnmanagedType.LPStruct)] nsAString aContentType, [MarshalAs(UnmanagedType.Bool)] bool aReplace);
 		
 		/// <summary>
         /// Scriptable version of clear().
@@ -176,36 +176,42 @@ namespace Skybound.Gecko
 		/// <param name='doShowUI'> </param>
 		/// <param name='value'> </param>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool ExecCommand([MarshalAs(UnmanagedType.LPStruct)] nsAString commandID, bool doShowUI, [MarshalAs(UnmanagedType.LPStruct)] nsAString value);
+		bool ExecCommand([MarshalAs(UnmanagedType.LPStruct)] nsAString commandID, [MarshalAs(UnmanagedType.Bool)] bool doShowUI, [MarshalAs(UnmanagedType.LPStruct)] nsAString value);
 		
 		/// <summary>
         /// returns true if the help is being shown for command (false if not)
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool ExecCommandShowHelp([MarshalAs(UnmanagedType.LPStruct)] nsAString commandID);
 		
 		/// <summary>
         /// returns true if the command is enabled (false otherwise)
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool QueryCommandEnabled([MarshalAs(UnmanagedType.LPStruct)] nsAString commandID);
 		
 		/// <summary>
         /// returns true if the command is in a indeterminate state (false otherwise)
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool QueryCommandIndeterm([MarshalAs(UnmanagedType.LPStruct)] nsAString commandID);
 		
 		/// <summary>
         /// returns true if the command has been executed (false otherwise)
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool QueryCommandState([MarshalAs(UnmanagedType.LPStruct)] nsAString commandID);
 		
 		/// <summary>
         /// returns true if the command is supported on the current range
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool QueryCommandSupported([MarshalAs(UnmanagedType.LPStruct)] nsAString commandID);
 		

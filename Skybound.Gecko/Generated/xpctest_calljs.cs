@@ -41,6 +41,7 @@ namespace Skybound.Gecko
         /// Test that calls a JavaScript object's methods and gets and
         /// sets property values.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool CallMethodNoArgs();
 		

@@ -190,6 +190,7 @@ namespace Skybound.Gecko
         /// Return true if aURISpec identifies a muxed document in the FastLoad
         /// file, false otherwise.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool HasMuxedDocument([MarshalAs(UnmanagedType.LPStr)] string aURISpec);
 	}

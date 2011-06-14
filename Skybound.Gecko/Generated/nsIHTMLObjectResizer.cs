@@ -44,6 +44,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// a boolean indicating if object resizing is enabled in the editor
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetObjectResizingEnabledAttribute();
 		
@@ -51,7 +52,7 @@ namespace Skybound.Gecko
         /// a boolean indicating if object resizing is enabled in the editor
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetObjectResizingEnabledAttribute(bool aObjectResizingEnabled);
+		void SetObjectResizingEnabledAttribute([MarshalAs(UnmanagedType.Bool)] bool aObjectResizingEnabled);
 		
 		/// <summary>
         /// Shows active resizers around an element's frame

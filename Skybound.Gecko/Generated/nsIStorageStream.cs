@@ -100,6 +100,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// True, when output stream has not yet been Close'ed
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetWriteInProgressAttribute();
 	}

@@ -122,6 +122,7 @@ namespace Skybound.Gecko
         /// sequence contains sub elements understood by the
         /// application.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsValidContainerAttribute();
 		
@@ -131,13 +132,14 @@ namespace Skybound.Gecko
         /// application.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetIsValidContainerAttribute(bool aIsValidContainer);
+		void SetIsValidContainerAttribute([MarshalAs(UnmanagedType.Bool)] bool aIsValidContainer);
 		
 		/// <summary>
         /// Whether the contained objects should be shown or hidden.
         /// A UI implementation can use this flag to store the current
         /// expansion state when shown in a tree widget.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsExpandedAttribute();
 		
@@ -147,6 +149,6 @@ namespace Skybound.Gecko
         /// expansion state when shown in a tree widget.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetIsExpandedAttribute(bool aIsExpanded);
+		void SetIsExpandedAttribute([MarshalAs(UnmanagedType.Bool)] bool aIsExpanded);
 	}
 }

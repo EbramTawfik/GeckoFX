@@ -36,23 +36,25 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member GetShowHiddenFilesAttribute </summary>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetShowHiddenFilesAttribute();
 		
 		/// <summary>Member SetShowHiddenFilesAttribute </summary>
 		/// <param name='aShowHiddenFiles'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetShowHiddenFilesAttribute(bool aShowHiddenFiles);
+		void SetShowHiddenFilesAttribute([MarshalAs(UnmanagedType.Bool)] bool aShowHiddenFiles);
 		
 		/// <summary>Member GetShowOnlyDirectoriesAttribute </summary>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetShowOnlyDirectoriesAttribute();
 		
 		/// <summary>Member SetShowOnlyDirectoriesAttribute </summary>
 		/// <param name='aShowOnlyDirectories'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetShowOnlyDirectoriesAttribute(bool aShowOnlyDirectories);
+		void SetShowOnlyDirectoriesAttribute([MarshalAs(UnmanagedType.Bool)] bool aShowOnlyDirectories);
 		
 		/// <summary>Member GetSortTypeAttribute </summary>
 		/// <returns>A System.Int16</returns>
@@ -61,6 +63,7 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member GetReverseSortAttribute </summary>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetReverseSortAttribute();
 		
@@ -68,7 +71,7 @@ namespace Skybound.Gecko
 		/// <param name='sortType'> </param>
 		/// <param name='reverseSort'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Sort(short sortType, bool reverseSort);
+		void Sort(short sortType, [MarshalAs(UnmanagedType.Bool)] bool reverseSort);
 		
 		/// <summary>Member SetDirectory </summary>
 		/// <param name='directory'> </param>

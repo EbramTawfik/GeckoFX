@@ -41,13 +41,14 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member GetEnableSmartCardEventsAttribute </summary>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetEnableSmartCardEventsAttribute();
 		
 		/// <summary>Member SetEnableSmartCardEventsAttribute </summary>
 		/// <param name='aEnableSmartCardEvents'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetEnableSmartCardEventsAttribute(bool aEnableSmartCardEvents);
+		void SetEnableSmartCardEventsAttribute([MarshalAs(UnmanagedType.Bool)] bool aEnableSmartCardEvents);
 		
 		/// <summary>
         ///... </summary>
@@ -62,7 +63,7 @@ namespace Skybound.Gecko
 		/// <returns>A nsAString</returns>
 		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString ImportUserCertificates([MarshalAs(UnmanagedType.LPStruct)] nsAString nickname, [MarshalAs(UnmanagedType.LPStruct)] nsAString cmmfResponse, bool doForcedBackup);
+		nsAString ImportUserCertificates([MarshalAs(UnmanagedType.LPStruct)] nsAString nickname, [MarshalAs(UnmanagedType.LPStruct)] nsAString cmmfResponse, [MarshalAs(UnmanagedType.Bool)] bool doForcedBackup);
 		
 		/// <summary>Member PopChallengeResponse </summary>
 		/// <param name='challenge'> </param>

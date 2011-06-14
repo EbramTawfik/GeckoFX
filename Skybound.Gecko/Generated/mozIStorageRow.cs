@@ -101,6 +101,7 @@ namespace Skybound.Gecko
 		/// <summary>Member GetIsNull </summary>
 		/// <param name='aIndex'> </param>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetIsNull(uint aIndex);
 		

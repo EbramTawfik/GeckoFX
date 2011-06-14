@@ -92,6 +92,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Visibility of the window.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetVisibilityAttribute();
 		
@@ -99,7 +100,7 @@ namespace Skybound.Gecko
         /// Visibility of the window.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetVisibilityAttribute(bool aVisibility);
+		void SetVisibilityAttribute([MarshalAs(UnmanagedType.Bool)] bool aVisibility);
 		
 		/// <summary>
         /// Title of the window.

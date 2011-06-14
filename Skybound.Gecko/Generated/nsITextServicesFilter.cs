@@ -38,6 +38,7 @@ namespace Skybound.Gecko
         /// Indicates whether the content node should be skipped by the iterator
         /// @param aNode - node to skip
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool Skip([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aNode);
 	}

@@ -217,7 +217,7 @@ namespace Skybound.Gecko
 		/// <summary>Member PushPopupsEnabledState </summary>
 		/// <param name='aEnabled'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PushPopupsEnabledState(bool aEnabled);
+		void PushPopupsEnabledState([MarshalAs(UnmanagedType.Bool)] bool aEnabled);
 		
 		/// <summary>Member PopPopupsEnabledState </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -234,16 +234,19 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member ShouldCache </summary>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool ShouldCache();
 		
 		/// <summary>Member IsWindowless </summary>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsWindowless();
 		
 		/// <summary>Member IsTransparent </summary>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsTransparent();
 		
@@ -282,6 +285,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// @return true if plugin module supports async rendering
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool UseAsyncPainting();
 	}
@@ -467,7 +471,7 @@ namespace Skybound.Gecko
 		new void GetFormValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aFormValue);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void PushPopupsEnabledState(bool aEnabled);
+		new void PushPopupsEnabledState([MarshalAs(UnmanagedType.Bool)] bool aEnabled);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void PopPopupsEnabledState();
@@ -478,12 +482,15 @@ namespace Skybound.Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void DefineJavaProperties();
 		
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool ShouldCache();
 		
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsWindowless();
 		
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsTransparent();
 		
@@ -517,12 +524,14 @@ namespace Skybound.Gecko
 		/// <summary>
         /// @return true if plugin module supports async rendering
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool UseAsyncPainting();
 		
 		/// <summary>
         /// XXX kill me after branching
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsRemoteDrawingCoreAnimation();
 		

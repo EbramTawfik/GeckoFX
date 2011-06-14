@@ -89,6 +89,7 @@ namespace Skybound.Gecko
         /// Set to <code>true</code> if the sink is read-only and cannot
         /// be modified
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetReadOnlyAttribute();
 		
@@ -97,7 +98,7 @@ namespace Skybound.Gecko
         /// be modified
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetReadOnlyAttribute(bool aReadOnly);
+		void SetReadOnlyAttribute([MarshalAs(UnmanagedType.Bool)] bool aReadOnly);
 		
 		/// <summary>
         /// Initiate the RDF/XML load.

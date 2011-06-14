@@ -63,6 +63,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Indicates if the selection is collapsed or not.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetIsCollapsedAttribute();
 		
@@ -121,8 +122,9 @@ namespace Skybound.Gecko
         /// is part of the selection. If partlyContained is set to PR_FALSE, the
         /// function only returns true when the entire node is part of the selection.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool ContainsNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode node, bool partlyContained);
+		new bool ContainsNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode node, [MarshalAs(UnmanagedType.Bool)] bool partlyContained);
 		
 		/// <summary>
         /// Adds all children of the specified node to the selection.
@@ -161,7 +163,7 @@ namespace Skybound.Gecko
         /// PR_FALSE if the new language is left-to-right.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SelectionLanguageChange(bool langRTL);
+		new void SelectionLanguageChange([MarshalAs(UnmanagedType.Bool)] bool langRTL);
 		
 		/// <summary>
         /// Returns the whole selection into a plain text string.
@@ -181,7 +183,7 @@ namespace Skybound.Gecko
         /// Return array of ranges intersecting with the given DOM interval.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMRange GetRangesForInterval([MarshalAs(UnmanagedType.Interface)] nsIDOMNode beginNode, int beginOffset, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode endNode, int endOffset, bool allowAdjacent, out uint resultCount);
+		nsIDOMRange GetRangesForInterval([MarshalAs(UnmanagedType.Interface)] nsIDOMNode beginNode, int beginOffset, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode endNode, int endOffset, [MarshalAs(UnmanagedType.Bool)] bool allowAdjacent, out uint resultCount);
 		
 		/// <summary>Member GetRangesForIntervalCOMArray </summary>
 		/// <param name='beginNode'> </param>
@@ -191,7 +193,7 @@ namespace Skybound.Gecko
 		/// <param name='allowAdjacent'> </param>
 		/// <param name='results'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetRangesForIntervalCOMArray([MarshalAs(UnmanagedType.Interface)] nsIDOMNode beginNode, int beginOffset, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode endNode, int endOffset, bool allowAdjacent, System.IntPtr results);
+		void GetRangesForIntervalCOMArray([MarshalAs(UnmanagedType.Interface)] nsIDOMNode beginNode, int beginOffset, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode endNode, int endOffset, [MarshalAs(UnmanagedType.Bool)] bool allowAdjacent, System.IntPtr results);
 		
 		/// <summary>
         /// Scrolls a region of the selection, so that it is visible in
@@ -226,6 +228,6 @@ namespace Skybound.Gecko
         /// (if possible).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ScrollIntoView(short aRegion, bool aIsSynchronous, short aVPercent, short aHPercent);
+		void ScrollIntoView(short aRegion, [MarshalAs(UnmanagedType.Bool)] bool aIsSynchronous, short aVPercent, short aHPercent);
 	}
 }

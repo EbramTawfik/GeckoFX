@@ -68,6 +68,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Checks if the input string is ACE encoded or not.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsACE([MarshalAs(UnmanagedType.LPStruct)] nsAString input);
 		
@@ -87,6 +88,6 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAUTF8String ConvertToDisplayIDN([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String input, out bool isASCII);
+		nsAUTF8String ConvertToDisplayIDN([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String input, [MarshalAs(UnmanagedType.Bool)] out bool isASCII);
 	}
 }

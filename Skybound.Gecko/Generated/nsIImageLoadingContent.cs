@@ -108,7 +108,7 @@ namespace Skybound.Gecko
         /// called when there is more to paint.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void OnDataAvailable(imgIRequest aRequest, bool aCurrentFrame, [MarshalAs(UnmanagedType.Interface)] nsIntRect aRect);
+		new void OnDataAvailable(imgIRequest aRequest, [MarshalAs(UnmanagedType.Bool)] bool aCurrentFrame, [MarshalAs(UnmanagedType.Interface)] nsIntRect aRect);
 		
 		/// <summary>
         /// Decode notification.
@@ -147,7 +147,7 @@ namespace Skybound.Gecko
         /// not imgIDecoder objects)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void OnStopRequest(imgIRequest aRequest, bool aIsLastPart);
+		new void OnStopRequest(imgIRequest aRequest, [MarshalAs(UnmanagedType.Bool)] bool aIsLastPart);
 		
 		/// <summary>
         /// Called when the decoded image data is discarded. This means that the frames
@@ -162,6 +162,7 @@ namespace Skybound.Gecko
         /// situations where loading images is unwanted.  Note that enabling
         /// loading will *not* automatically trigger an image load.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetLoadingEnabledAttribute();
 		
@@ -171,7 +172,7 @@ namespace Skybound.Gecko
         /// loading will *not* automatically trigger an image load.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetLoadingEnabledAttribute(bool aLoadingEnabled);
+		void SetLoadingEnabledAttribute([MarshalAs(UnmanagedType.Bool)] bool aLoadingEnabled);
 		
 		/// <summary>
         /// Returns the image blocking status (@see nsIContentPolicy).  This
@@ -271,7 +272,7 @@ namespace Skybound.Gecko
         /// as PR_FALSE to revert ImageState() to its original behaviour.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ForceImageState(bool aForce, uint aState);
+		void ForceImageState([MarshalAs(UnmanagedType.Bool)] bool aForce, uint aState);
 		
 		/// <summary>
         /// We need to be notified when our document changes.

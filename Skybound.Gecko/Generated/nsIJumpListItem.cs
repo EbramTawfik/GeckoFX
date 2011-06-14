@@ -58,6 +58,7 @@ namespace Skybound.Gecko
         /// link: type, uri, title
         /// shortcut: type, handler app
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool Equals([MarshalAs(UnmanagedType.Interface)] nsIJumpListItem item);
 	}
@@ -87,6 +88,7 @@ namespace Skybound.Gecko
         /// link: type, uri, title
         /// shortcut: type, handler app
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool Equals([MarshalAs(UnmanagedType.Interface)] nsIJumpListItem item);
 	}
@@ -119,6 +121,7 @@ namespace Skybound.Gecko
         /// link: type, uri, title
         /// shortcut: type, handler app
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool Equals([MarshalAs(UnmanagedType.Interface)] nsIJumpListItem item);
 		
@@ -162,6 +165,7 @@ namespace Skybound.Gecko
         /// Generates a spec hash of the incoming uri and compares
         /// it to this item's uri spec hash.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool CompareHash([MarshalAs(UnmanagedType.Interface)] nsIURI uri);
 	}
@@ -191,6 +195,7 @@ namespace Skybound.Gecko
         /// link: type, uri, title
         /// shortcut: type, handler app
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool Equals([MarshalAs(UnmanagedType.Interface)] nsIJumpListItem item);
 		

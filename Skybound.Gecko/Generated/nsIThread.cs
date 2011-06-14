@@ -69,6 +69,7 @@ namespace Skybound.Gecko
         /// event target will run on the current thread (i.e., the thread calling
         /// this method).
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsOnCurrentThread();
 		
@@ -116,6 +117,7 @@ namespace Skybound.Gecko
         /// Indicates that this method was erroneously called when this thread was
         /// not the current thread.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool HasPendingEvents();
 		
@@ -136,7 +138,8 @@ namespace Skybound.Gecko
         /// Indicates that this method was erroneously called when this thread was
         /// not the current thread.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool ProcessNextEvent(bool mayWait);
+		bool ProcessNextEvent([MarshalAs(UnmanagedType.Bool)] bool mayWait);
 	}
 }

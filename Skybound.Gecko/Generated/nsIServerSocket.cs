@@ -57,7 +57,7 @@ namespace Skybound.Gecko
         /// Pass -1 to use the default value.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init(int aPort, bool aLoopbackOnly, int aBackLog);
+		void Init(int aPort, [MarshalAs(UnmanagedType.Bool)] bool aLoopbackOnly, int aBackLog);
 		
 		/// <summary>
         /// initWithAddress

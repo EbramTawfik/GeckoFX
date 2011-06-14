@@ -42,10 +42,10 @@ namespace Skybound.Gecko
         /// Interface to a CMS Message
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ContentIsSigned(out bool aSigned);
+		void ContentIsSigned([MarshalAs(UnmanagedType.Bool)] out bool aSigned);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ContentIsEncrypted(out bool aEncrypted);
+		void ContentIsEncrypted([MarshalAs(UnmanagedType.Bool)] out bool aEncrypted);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetSignerCommonName([MarshalAs(UnmanagedType.LPStr)] out string aName);

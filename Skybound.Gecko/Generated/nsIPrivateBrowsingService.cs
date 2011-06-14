@@ -37,6 +37,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// by the private browsing service throws NS_ERROR_FAILURE.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetPrivateBrowsingEnabledAttribute();
 		
@@ -44,17 +45,19 @@ namespace Skybound.Gecko
         /// by the private browsing service throws NS_ERROR_FAILURE.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPrivateBrowsingEnabledAttribute(bool aPrivateBrowsingEnabled);
+		void SetPrivateBrowsingEnabledAttribute([MarshalAs(UnmanagedType.Bool)] bool aPrivateBrowsingEnabled);
 		
 		/// <summary>
         /// This value will never be true if privateBrowsingEnabled is false.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetAutoStartedAttribute();
 		
 		/// <summary>
         /// the command line (using either the -private or -private-toggle switches).
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetLastChangedByCommandLineAttribute();
 		

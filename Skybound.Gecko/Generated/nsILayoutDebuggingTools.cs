@@ -52,61 +52,70 @@ namespace Skybound.Gecko
 		
 		/// <summary>
         ///Toggle various debugging states </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetVisualDebuggingAttribute();
 		
 		/// <summary>
         ///Toggle various debugging states </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetVisualDebuggingAttribute(bool aVisualDebugging);
+		void SetVisualDebuggingAttribute([MarshalAs(UnmanagedType.Bool)] bool aVisualDebugging);
 		
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetVisualEventDebuggingAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetVisualEventDebuggingAttribute(bool aVisualEventDebugging);
+		void SetVisualEventDebuggingAttribute([MarshalAs(UnmanagedType.Bool)] bool aVisualEventDebugging);
 		
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetPaintFlashingAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPaintFlashingAttribute(bool aPaintFlashing);
+		void SetPaintFlashingAttribute([MarshalAs(UnmanagedType.Bool)] bool aPaintFlashing);
 		
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetPaintDumpingAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPaintDumpingAttribute(bool aPaintDumping);
+		void SetPaintDumpingAttribute([MarshalAs(UnmanagedType.Bool)] bool aPaintDumping);
 		
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetInvalidateDumpingAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetInvalidateDumpingAttribute(bool aInvalidateDumping);
+		void SetInvalidateDumpingAttribute([MarshalAs(UnmanagedType.Bool)] bool aInvalidateDumping);
 		
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetEventDumpingAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetEventDumpingAttribute(bool aEventDumping);
+		void SetEventDumpingAttribute([MarshalAs(UnmanagedType.Bool)] bool aEventDumping);
 		
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetMotionEventDumpingAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMotionEventDumpingAttribute(bool aMotionEventDumping);
+		void SetMotionEventDumpingAttribute([MarshalAs(UnmanagedType.Bool)] bool aMotionEventDumping);
 		
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetCrossingEventDumpingAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCrossingEventDumpingAttribute(bool aCrossingEventDumping);
+		void SetCrossingEventDumpingAttribute([MarshalAs(UnmanagedType.Bool)] bool aCrossingEventDumping);
 		
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetReflowCountsAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetReflowCountsAttribute(bool aReflowCounts);
+		void SetReflowCountsAttribute([MarshalAs(UnmanagedType.Bool)] bool aReflowCounts);
 		
 		/// <summary>
         ///Run various tests. </summary>

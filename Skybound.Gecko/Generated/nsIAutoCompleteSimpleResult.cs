@@ -110,7 +110,7 @@ namespace Skybound.Gecko
         /// persistent storage as well.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void RemoveValueAt(int rowIndex, bool removeFromDb);
+		new void RemoveValueAt(int rowIndex, [MarshalAs(UnmanagedType.Bool)] bool removeFromDb);
 		
 		/// <summary>
         /// A writer for the readonly attribute 'searchString' which should contain
@@ -171,6 +171,6 @@ namespace Skybound.Gecko
         /// Whether the value should be removed from persistent storage as well.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnValueRemoved([MarshalAs(UnmanagedType.Interface)] nsIAutoCompleteSimpleResult aResult, [MarshalAs(UnmanagedType.LPStruct)] nsAString aValue, bool aRemoveFromDb);
+		void OnValueRemoved([MarshalAs(UnmanagedType.Interface)] nsIAutoCompleteSimpleResult aResult, [MarshalAs(UnmanagedType.LPStruct)] nsAString aValue, [MarshalAs(UnmanagedType.Bool)] bool aRemoveFromDb);
 	}
 }

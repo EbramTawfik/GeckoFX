@@ -153,12 +153,12 @@ namespace Skybound.Gecko
         ///     you can specify parameters through an xpcom object
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OpenProgressDialog([MarshalAs(UnmanagedType.Interface)] nsIDOMWindowInternal parent, [MarshalAs(UnmanagedType.LPStr)] string dialogURL, [MarshalAs(UnmanagedType.Interface)] nsISupports parameters, [MarshalAs(UnmanagedType.Interface)] nsIObserver openDialogObserver, out bool notifyOnOpen);
+		void OpenProgressDialog([MarshalAs(UnmanagedType.Interface)] nsIDOMWindowInternal parent, [MarshalAs(UnmanagedType.LPStr)] string dialogURL, [MarshalAs(UnmanagedType.Interface)] nsISupports parameters, [MarshalAs(UnmanagedType.Interface)] nsIObserver openDialogObserver, [MarshalAs(UnmanagedType.Bool)] out bool notifyOnOpen);
 		
 		/// <summary>
         ///Close the progress dialog </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CloseProgressDialog(bool forceClose);
+		void CloseProgressDialog([MarshalAs(UnmanagedType.Bool)] bool forceClose);
 		
 		/// <summary>
         ///Register a Web Progress Listener </summary>
@@ -184,12 +184,13 @@ namespace Skybound.Gecko
 		
 		/// <summary>
         ///Indicated if the user asked to cancel the current process </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetProcessCanceledByUserAttribute();
 		
 		/// <summary>
         ///Indicated if the user asked to cancel the current process </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetProcessCanceledByUserAttribute(bool aProcessCanceledByUser);
+		void SetProcessCanceledByUserAttribute([MarshalAs(UnmanagedType.Bool)] bool aProcessCanceledByUser);
 	}
 }

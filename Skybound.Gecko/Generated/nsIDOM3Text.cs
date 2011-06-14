@@ -40,6 +40,7 @@ namespace Skybound.Gecko
         /// white space characters and is a child of an element whose content
         /// model allows only child elements optionally separated by white space.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsElementContentWhitespaceAttribute();
 		

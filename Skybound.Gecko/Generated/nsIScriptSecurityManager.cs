@@ -146,6 +146,7 @@ namespace Skybound.Gecko
         /// Return true if content from the given principal is allowed to
         /// execute scripts.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool CanExecuteScripts(System.IntPtr cx, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal);
 		
@@ -196,6 +197,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Return true if the currently executing script has 'capability' enabled.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsCapabilityEnabled([MarshalAs(UnmanagedType.LPStr)] string capability);
 		
@@ -238,6 +240,7 @@ namespace Skybound.Gecko
         /// Returns true if the principal of the currently running script is the
         /// system principal, false otherwise.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool SubjectPrincipalIsSystem();
 		
@@ -255,7 +258,7 @@ namespace Skybound.Gecko
         /// don't need reporting.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CheckSameOriginURI([MarshalAs(UnmanagedType.Interface)] nsIURI aSourceURI, [MarshalAs(UnmanagedType.Interface)] nsIURI aTargetURI, bool reportError);
+		void CheckSameOriginURI([MarshalAs(UnmanagedType.Interface)] nsIURI aSourceURI, [MarshalAs(UnmanagedType.Interface)] nsIURI aTargetURI, [MarshalAs(UnmanagedType.Bool)] bool reportError);
 		
 		/// <summary>
         /// Returns the principal of the global object of the given context, or null
@@ -279,6 +282,7 @@ namespace Skybound.Gecko
         /// to avoid handing back the system principal to script while allowing
         /// script to check whether a given principal is system.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsSystemPrincipal([MarshalAs(UnmanagedType.Interface)] nsIPrincipal aPrincipal);
 		

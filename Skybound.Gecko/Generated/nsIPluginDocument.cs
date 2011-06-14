@@ -49,6 +49,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// XXXbz once we move plug-in loading to content, this can go away.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetWillHandleInstantiationAttribute();
 	}

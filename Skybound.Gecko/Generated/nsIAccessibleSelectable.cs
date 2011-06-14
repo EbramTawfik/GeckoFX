@@ -89,6 +89,7 @@ namespace Skybound.Gecko
         /// @param The zero-based accessible child index
         /// @return Returns true if the child is selected, false if not.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsChildSelected(int index);
 		
@@ -97,6 +98,7 @@ namespace Skybound.Gecko
         /// @return If the object does not accept multiple selection, return false.
         /// Otherwise, returns true.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool SelectAllSelection();
 	}

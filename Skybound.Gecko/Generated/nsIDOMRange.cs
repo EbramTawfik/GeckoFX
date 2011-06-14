@@ -71,6 +71,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// raises(DOMException) on retrieval
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetCollapsedAttribute();
 		
@@ -103,7 +104,7 @@ namespace Skybound.Gecko
 		void SetEndAfter([MarshalAs(UnmanagedType.Interface)] nsIDOMNode refNode);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Collapse(bool toStart);
+		void Collapse([MarshalAs(UnmanagedType.Bool)] bool toStart);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SelectNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode refNode);

@@ -63,6 +63,7 @@ namespace Skybound.Gecko
         /// @param aBackURI    The URI of the session history entry being navigated to.
         /// @return            Whether the operation can proceed.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool OnHistoryGoBack([MarshalAs(UnmanagedType.Interface)] nsIURI aBackURI);
 		
@@ -73,6 +74,7 @@ namespace Skybound.Gecko
         /// @param aForwardURI   The URI of the session history entry being navigated to.
         /// @return              Whether the operation can proceed.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool OnHistoryGoForward([MarshalAs(UnmanagedType.Interface)] nsIURI aForwardURI);
 		
@@ -88,6 +90,7 @@ namespace Skybound.Gecko
         ///
         /// @see  nsIWebNavigation
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool OnHistoryReload([MarshalAs(UnmanagedType.Interface)] nsIURI aReloadURI, uint aReloadFlags);
 		
@@ -99,6 +102,7 @@ namespace Skybound.Gecko
         /// @param aGotoURI      The URI of the session history entry to be loaded.
         /// @return              Whether the operation can proceed.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool OnHistoryGotoIndex(int aIndex, [MarshalAs(UnmanagedType.Interface)] nsIURI aGotoURI);
 		
@@ -113,6 +117,7 @@ namespace Skybound.Gecko
         /// @param aNumEntries   The number of entries to be removed from session history.
         /// @return              Whether the operation can proceed.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool OnHistoryPurge(int aNumEntries);
 	}

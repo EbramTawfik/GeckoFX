@@ -70,7 +70,7 @@ namespace Skybound.Gecko
         /// its implementation is a no-op
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetResizable(bool resizable);
+		void SetResizable([MarshalAs(UnmanagedType.Bool)] bool resizable);
 		
 		/// <summary>
         /// @deprecated These are old Netscape 4 methods. Do not use,

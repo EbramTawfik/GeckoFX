@@ -106,7 +106,7 @@ namespace Skybound.Gecko
         /// @param aEnable true to enable, or false to disable the style sheet
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EnableStyleSheet([MarshalAs(UnmanagedType.LPStruct)] nsAString aURL, bool aEnable);
+		void EnableStyleSheet([MarshalAs(UnmanagedType.LPStruct)] nsAString aURL, [MarshalAs(UnmanagedType.Bool)] bool aEnable);
 		
 		/// <summary>
         ///Get the nsCSSStyleSheet associated with the given URL.

@@ -42,6 +42,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Enable or disable the crashreporter at runtime.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetEnabledAttribute();
 		
@@ -49,7 +50,7 @@ namespace Skybound.Gecko
         /// Enable or disable the crashreporter at runtime.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetEnabledAttribute(bool aEnabled);
+		void SetEnabledAttribute([MarshalAs(UnmanagedType.Bool)] bool aEnabled);
 		
 		/// <summary>
         /// Get or set the URL to which crash reports will be submitted.
@@ -146,6 +147,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// User preference for submitting crash reports.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetSubmitReportsAttribute();
 		
@@ -153,6 +155,6 @@ namespace Skybound.Gecko
         /// User preference for submitting crash reports.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSubmitReportsAttribute(bool aSubmitReports);
+		void SetSubmitReportsAttribute([MarshalAs(UnmanagedType.Bool)] bool aSubmitReports);
 	}
 }

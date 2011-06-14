@@ -86,7 +86,7 @@ namespace Skybound.Gecko
         /// until disconnect be called.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ProcessAuthentication(uint httpStatus, bool sslConnectFailed);
+		void ProcessAuthentication(uint httpStatus, [MarshalAs(UnmanagedType.Bool)] bool sslConnectFailed);
 		
 		/// <summary>
         /// Add credentials from the http auth cache.

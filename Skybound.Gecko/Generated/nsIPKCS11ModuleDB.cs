@@ -68,6 +68,7 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member GetCanToggleFIPSAttribute </summary>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetCanToggleFIPSAttribute();
 		
@@ -77,6 +78,7 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member GetIsFIPSEnabledAttribute </summary>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsFIPSEnabledAttribute();
 	}

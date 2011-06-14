@@ -74,13 +74,14 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Login information
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsLoggedIn();
 		
 		/// <summary>Member Login </summary>
 		/// <param name='force'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Login(bool force);
+		void Login([MarshalAs(UnmanagedType.Bool)] bool force);
 		
 		/// <summary>Member LogoutSimple </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -104,12 +105,14 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member GetNeedsUserInitAttribute </summary>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetNeedsUserInitAttribute();
 		
 		/// <summary>Member CheckPassword </summary>
 		/// <param name='password'> </param>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool CheckPassword([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string password);
 		
@@ -143,16 +146,19 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Other attributes
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsHardwareToken();
 		
 		/// <summary>Member NeedsLogin </summary>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool NeedsLogin();
 		
 		/// <summary>Member IsFriendly </summary>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsFriendly();
 	}

@@ -47,6 +47,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Determine if session should be restored
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool DoRestore();
 		

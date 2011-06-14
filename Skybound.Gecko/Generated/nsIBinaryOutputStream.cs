@@ -132,6 +132,7 @@ namespace Skybound.Gecko
         /// provide consumers with a way to wait for the stream to accept more data
         /// once its write method is unable to accept any data without blocking.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsNonBlocking();
 		
@@ -153,7 +154,7 @@ namespace Skybound.Gecko
         /// Write a boolean as an 8-bit char to the stream.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void WriteBoolean(bool aBoolean);
+		void WriteBoolean([MarshalAs(UnmanagedType.Bool)] bool aBoolean);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Write8(byte aByte);

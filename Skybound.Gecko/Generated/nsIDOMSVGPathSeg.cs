@@ -538,6 +538,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetLargeArcFlagAttribute();
 		
@@ -545,11 +546,12 @@ namespace Skybound.Gecko
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetLargeArcFlagAttribute(bool aLargeArcFlag);
+		void SetLargeArcFlagAttribute([MarshalAs(UnmanagedType.Bool)] bool aLargeArcFlag);
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetSweepFlagAttribute();
 		
@@ -557,7 +559,7 @@ namespace Skybound.Gecko
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSweepFlagAttribute(bool aSweepFlag);
+		void SetSweepFlagAttribute([MarshalAs(UnmanagedType.Bool)] bool aSweepFlag);
 	}
 	
 	/// <summary>
@@ -632,6 +634,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetLargeArcFlagAttribute();
 		
@@ -639,11 +642,12 @@ namespace Skybound.Gecko
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetLargeArcFlagAttribute(bool aLargeArcFlag);
+		void SetLargeArcFlagAttribute([MarshalAs(UnmanagedType.Bool)] bool aLargeArcFlag);
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetSweepFlagAttribute();
 		
@@ -651,7 +655,7 @@ namespace Skybound.Gecko
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSweepFlagAttribute(bool aSweepFlag);
+		void SetSweepFlagAttribute([MarshalAs(UnmanagedType.Bool)] bool aSweepFlag);
 	}
 	
 	/// <summary>

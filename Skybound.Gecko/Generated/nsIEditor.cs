@@ -64,14 +64,14 @@ namespace Skybound.Gecko
 		/// <param name='sourceAttrValue'> </param>
 		/// <param name='aSuppressTransaction'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAttributeOrEquivalent([MarshalAs(UnmanagedType.Interface)] nsIDOMElement element, [MarshalAs(UnmanagedType.LPStruct)] nsAString sourceAttrName, [MarshalAs(UnmanagedType.LPStruct)] nsAString sourceAttrValue, bool aSuppressTransaction);
+		void SetAttributeOrEquivalent([MarshalAs(UnmanagedType.Interface)] nsIDOMElement element, [MarshalAs(UnmanagedType.LPStruct)] nsAString sourceAttrName, [MarshalAs(UnmanagedType.LPStruct)] nsAString sourceAttrValue, [MarshalAs(UnmanagedType.Bool)] bool aSuppressTransaction);
 		
 		/// <summary>Member RemoveAttributeOrEquivalent </summary>
 		/// <param name='element'> </param>
 		/// <param name='sourceAttrName'> </param>
 		/// <param name='aSuppressTransaction'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveAttributeOrEquivalent([MarshalAs(UnmanagedType.Interface)] nsIDOMElement element, [MarshalAs(UnmanagedType.LPStruct)] nsAString sourceAttrName, bool aSuppressTransaction);
+		void RemoveAttributeOrEquivalent([MarshalAs(UnmanagedType.Interface)] nsIDOMElement element, [MarshalAs(UnmanagedType.LPStruct)] nsAString sourceAttrName, [MarshalAs(UnmanagedType.Bool)] bool aSuppressTransaction);
 		
 		/// <summary>
         /// postCreate should be called after Init, and is the time that the editor
@@ -88,7 +88,7 @@ namespace Skybound.Gecko
         /// nor is it safe to do so)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PreDestroy(bool aDestroyingFrames);
+		void PreDestroy([MarshalAs(UnmanagedType.Bool)] bool aDestroyingFrames);
 		
 		/// <summary>
         ///edit flags for this editor.  May be set at any time. </summary>
@@ -115,6 +115,7 @@ namespace Skybound.Gecko
 		
 		/// <summary>
         ///Returns true if we have a document that is not marked read-only </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsDocumentEditableAttribute();
 		
@@ -149,11 +150,13 @@ namespace Skybound.Gecko
 		
 		/// <summary>
         ///Returns true if the document has no *meaningful* content </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetDocumentIsEmptyAttribute();
 		
 		/// <summary>
         ///Returns true if the document is modifed and needs saving </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetDocumentModifiedAttribute();
 		
@@ -225,7 +228,7 @@ namespace Skybound.Gecko
         /// if aEnable is PR_FALSE, returns NS_OK.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EnableUndo(bool enable);
+		void EnableUndo([MarshalAs(UnmanagedType.Bool)] bool enable);
 		
 		/// <summary>
         ///undo reverses the effects of the last Do operation,
@@ -248,7 +251,7 @@ namespace Skybound.Gecko
         /// currently ready to be undone.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CanUndo(out bool isEnabled, out bool canUndo);
+		void CanUndo([MarshalAs(UnmanagedType.Bool)] out bool isEnabled, [MarshalAs(UnmanagedType.Bool)] out bool canUndo);
 		
 		/// <summary>
         ///redo reverses the effects of the last Undo operation
@@ -271,7 +274,7 @@ namespace Skybound.Gecko
         ///                              currently ready to be redone.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CanRedo(out bool isEnabled, out bool canRedo);
+		void CanRedo([MarshalAs(UnmanagedType.Bool)] out bool isEnabled, [MarshalAs(UnmanagedType.Bool)] out bool canRedo);
 		
 		/// <summary>
         ///beginTransaction is a signal from the caller to the editor that
@@ -308,6 +311,7 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member ShouldTxnSetSelection </summary>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool ShouldTxnSetSelection();
 		
@@ -321,7 +325,7 @@ namespace Skybound.Gecko
         /// for further editing.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetShouldTxnSetSelection(bool should);
+		void SetShouldTxnSetSelection([MarshalAs(UnmanagedType.Bool)] bool should);
 		
 		/// <summary>
         ///Returns the inline spell checker associated with this object. The spell
@@ -334,7 +338,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIInlineSpellChecker GetInlineSpellChecker(bool autoCreate);
+		nsIInlineSpellChecker GetInlineSpellChecker([MarshalAs(UnmanagedType.Bool)] bool autoCreate);
 		
 		/// <summary>
         ///Resyncs spellchecking state (enabled/disabled).  This should be called
@@ -351,7 +355,7 @@ namespace Skybound.Gecko
         /// requested by the user.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSpellcheckUserOverride(bool enable);
+		void SetSpellcheckUserOverride([MarshalAs(UnmanagedType.Bool)] bool enable);
 		
 		/// <summary>
         ///cut the currently selected text, putting it into the OS clipboard
@@ -366,6 +370,7 @@ namespace Skybound.Gecko
         ///Can we cut? True if the doc is modifiable, and we have a non-
         /// collapsed selection.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool CanCut();
 		
@@ -381,6 +386,7 @@ namespace Skybound.Gecko
 		/// <summary>
         ///Can we copy? True if we have a non-collapsed selection.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool CanCopy();
 		
@@ -402,6 +408,7 @@ namespace Skybound.Gecko
         ///Can we paste? True if the doc is modifiable, and we have
         /// pasteable data in the clipboard.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool CanPaste(int aSelectionType);
 		
@@ -411,6 +418,7 @@ namespace Skybound.Gecko
         /// nsITransferable then? True if the doc is modifiable, and, if
         /// |aTransfeable| is non-null, we have pasteable data in |aTransfeable|.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool CanPasteTransferable([MarshalAs(UnmanagedType.Interface)] nsITransferable aTransferable);
 		
@@ -433,6 +441,7 @@ namespace Skybound.Gecko
         /// canDrag decides if a drag should be started
         /// (for example, based on the current selection and mousepoint).
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool CanDrag([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent aEvent);
 		
@@ -472,6 +481,7 @@ namespace Skybound.Gecko
         /// @return              PR_TRUE if aAttribute is set on the current node,
         /// PR_FALSE if it is not.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetAttributeValue([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement, [MarshalAs(UnmanagedType.LPStruct)] nsAString attributestr, [MarshalAs(UnmanagedType.LPStruct)] nsAString resultValue);
 		
@@ -651,6 +661,7 @@ namespace Skybound.Gecko
 		
 		/// <summary>
         ///checks if a node is read-only or not </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsModifiableNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aNode);
 	}
@@ -667,6 +678,7 @@ namespace Skybound.Gecko
         /// has been trusted.  The value will only be valid when the edit action listeners
         /// are being called, and will throw upon access at all other times.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetLastKeypressEventTrustedAttribute();
 	}

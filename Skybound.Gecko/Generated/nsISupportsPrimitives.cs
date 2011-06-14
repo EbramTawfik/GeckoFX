@@ -175,6 +175,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Scriptable storage for booleans
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetDataAttribute();
 		
@@ -182,7 +183,7 @@ namespace Skybound.Gecko
         /// Scriptable storage for booleans
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDataAttribute(bool aData);
+		void SetDataAttribute([MarshalAs(UnmanagedType.Bool)] bool aData);
 		
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

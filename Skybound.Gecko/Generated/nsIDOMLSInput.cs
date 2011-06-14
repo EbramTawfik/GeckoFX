@@ -110,12 +110,13 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member GetCertifiedTextAttribute </summary>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetCertifiedTextAttribute();
 		
 		/// <summary>Member SetCertifiedTextAttribute </summary>
 		/// <param name='aCertifiedText'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCertifiedTextAttribute(bool aCertifiedText);
+		void SetCertifiedTextAttribute([MarshalAs(UnmanagedType.Bool)] bool aCertifiedText);
 	}
 }

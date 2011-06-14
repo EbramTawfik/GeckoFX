@@ -77,6 +77,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// this function returns true if there is another address in the record.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool HasMore();
 		

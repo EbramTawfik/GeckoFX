@@ -185,6 +185,7 @@ namespace Skybound.Gecko
         /// necessarily mean another app is actively using the service, as the
         /// autostart pref may have turned the service on.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsOnAttribute();
 		
@@ -223,7 +224,7 @@ namespace Skybound.Gecko
         /// Recompile all active scripts in the runtime for debugMode.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RecompileForDebugMode(System.IntPtr cx, System.IntPtr comp, bool mode);
+		void RecompileForDebugMode(System.IntPtr cx, System.IntPtr comp, [MarshalAs(UnmanagedType.Bool)] bool mode);
 		
 		/// <summary>
         /// Turn the debugger off.  This will invalidate all of your jsdIEphemeral
@@ -650,6 +651,7 @@ namespace Skybound.Gecko
         /// Called when the JavaScript engine encounters an error.  Return |true|
         /// to pass the error along, |false| to invoke the debugHook.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool OnError([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String message, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String fileName, uint line, uint pos, uint flags, uint errnum, jsdIValue exc);
 	}
@@ -694,6 +696,7 @@ namespace Skybound.Gecko
         /// |true| if this object is still valid.  If not, many or all of the methods
         /// and/or properties of the inheritor may no longer be callable.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsValidAttribute();
 		
@@ -718,6 +721,7 @@ namespace Skybound.Gecko
         /// |true| if this object is still valid.  If not, many or all of the methods
         /// and/or properties of the inheritor may no longer be callable.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetIsValidAttribute();
 		
@@ -792,6 +796,7 @@ namespace Skybound.Gecko
         /// nsIScriptContext.  Setting or getting this attribute on any other
         /// context will throw a NS_ERROR_NO_INTERFACE exception.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetScriptsEnabledAttribute();
 		
@@ -802,7 +807,7 @@ namespace Skybound.Gecko
         /// context will throw a NS_ERROR_NO_INTERFACE exception.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetScriptsEnabledAttribute(bool aScriptsEnabled);
+		void SetScriptsEnabledAttribute([MarshalAs(UnmanagedType.Bool)] bool aScriptsEnabled);
 	}
 	
 	/// <summary>
@@ -822,6 +827,7 @@ namespace Skybound.Gecko
         /// |true| if this object is still valid.  If not, many or all of the methods
         /// and/or properties of the inheritor may no longer be callable.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetIsValidAttribute();
 		
@@ -850,12 +856,14 @@ namespace Skybound.Gecko
         /// True if stack frame represents a frame created as a result of a debugger
         /// evaluation.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsDebuggerAttribute();
 		
 		/// <summary>
         /// True if stack frame is constructing a new object.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsConstructingAttribute();
 		
@@ -921,6 +929,7 @@ namespace Skybound.Gecko
         /// @param line     Starting line number for this script.  One based.
         /// @retval         Result of evaluating the script.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool Eval([MarshalAs(UnmanagedType.LPStruct)] nsAString bytes, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String fileName, uint line, out jsdIValue result);
 	}
@@ -939,6 +948,7 @@ namespace Skybound.Gecko
         /// |true| if this object is still valid.  If not, many or all of the methods
         /// and/or properties of the inheritor may no longer be callable.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetIsValidAttribute();
 		
@@ -1118,6 +1128,7 @@ namespace Skybound.Gecko
         /// lineToPc == pcToLine, except in one call.
         /// The |pcmap| argument specifies which pc to source line map to use.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsLineExecutable(uint line, uint pcmap);
 		
@@ -1143,7 +1154,7 @@ namespace Skybound.Gecko
         /// Call interrupt hook at least once per source line
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EnableSingleStepInterrupts(bool mode);
+		void EnableSingleStepInterrupts([MarshalAs(UnmanagedType.Bool)] bool mode);
 	}
 	
 	/// <summary>
@@ -1162,6 +1173,7 @@ namespace Skybound.Gecko
         /// |true| if this object is still valid.  If not, many or all of the methods
         /// and/or properties of the inheritor may no longer be callable.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetIsValidAttribute();
 		
@@ -1184,6 +1196,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// |false| unless the value is a function declared in script.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsNativeAttribute();
 		
@@ -1192,12 +1205,14 @@ namespace Skybound.Gecko
         /// |false| for all other values, including numbers assigned as strings
         /// (eg. x = "1";)
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsNumberAttribute();
 		
 		/// <summary>
         /// |true| if the value represents a JavaScript primitive number or AUTF8String
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsPrimitiveAttribute();
 		
@@ -1245,6 +1260,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Value if interpreted as a boolean.  Converts if necessary.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetBooleanValueAttribute();
 		
@@ -1396,6 +1412,7 @@ namespace Skybound.Gecko
         /// |true| if this object is still valid.  If not, many or all of the methods
         /// and/or properties of the inheritor may no longer be callable.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetIsValidAttribute();
 		

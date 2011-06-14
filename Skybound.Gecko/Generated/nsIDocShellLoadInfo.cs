@@ -67,6 +67,7 @@ namespace Skybound.Gecko
         ///If this attribute is true and no owner is specified, copy
         /// the owner from the referring document.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetInheritOwnerAttribute();
 		
@@ -75,7 +76,7 @@ namespace Skybound.Gecko
         /// the owner from the referring document.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetInheritOwnerAttribute(bool aInheritOwner);
+		void SetInheritOwnerAttribute([MarshalAs(UnmanagedType.Bool)] bool aInheritOwner);
 		
 		/// <summary>
         ///If this attribute is true only ever use the owner specify by
@@ -84,6 +85,7 @@ namespace Skybound.Gecko
         /// as trying to use a systemprincipal owner for a content docshell
         /// the load fails.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetOwnerIsExplicitAttribute();
 		
@@ -95,7 +97,7 @@ namespace Skybound.Gecko
         /// the load fails.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOwnerIsExplicitAttribute(bool aOwnerIsExplicit);
+		void SetOwnerIsExplicitAttribute([MarshalAs(UnmanagedType.Bool)] bool aOwnerIsExplicit);
 		
 		/// <summary>
         ///Contains a load type as specified by the load* constants </summary>
@@ -155,6 +157,7 @@ namespace Skybound.Gecko
         ///True if the referrer should be sent, false if it shouldn't be
         /// sent, even if it's available. This attribute defaults to true.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetSendReferrerAttribute();
 		
@@ -163,6 +166,6 @@ namespace Skybound.Gecko
         /// sent, even if it's available. This attribute defaults to true.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSendReferrerAttribute(bool aSendReferrer);
+		void SetSendReferrerAttribute([MarshalAs(UnmanagedType.Bool)] bool aSendReferrer);
 	}
 }

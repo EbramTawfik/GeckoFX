@@ -58,7 +58,7 @@ namespace Skybound.Gecko
         /// @param count      The length of the args array.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Run(bool blocking, [MarshalAs(UnmanagedType.LPStr, SizeParamIndex=2)] string args, uint count);
+		void Run([MarshalAs(UnmanagedType.Bool)] bool blocking, [MarshalAs(UnmanagedType.LPStr, SizeParamIndex=2)] string args, uint count);
 		
 		/// <summary>
         /// Executes the file this object was initialized with optionally calling
@@ -73,7 +73,7 @@ namespace Skybound.Gecko
         /// @param holdWeak   Whether to use a weak reference to hold the observer.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RunAsync([MarshalAs(UnmanagedType.LPStr, SizeParamIndex=1)] string args, uint count, [MarshalAs(UnmanagedType.Interface)] nsIObserver observer, bool holdWeak);
+		void RunAsync([MarshalAs(UnmanagedType.LPStr, SizeParamIndex=1)] string args, uint count, [MarshalAs(UnmanagedType.Interface)] nsIObserver observer, [MarshalAs(UnmanagedType.Bool)] bool holdWeak);
 		
 		/// <summary>
         /// Executes the file this object was initialized with
@@ -83,7 +83,7 @@ namespace Skybound.Gecko
         /// @param count      The length of the args array.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Runw(bool blocking, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler", SizeParamIndex=2)] string args, uint count);
+		void Runw([MarshalAs(UnmanagedType.Bool)] bool blocking, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler", SizeParamIndex=2)] string args, uint count);
 		
 		/// <summary>
         /// Executes the file this object was initialized with optionally calling
@@ -97,7 +97,7 @@ namespace Skybound.Gecko
         /// @param holdWeak   Whether to use a weak reference to hold the observer.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RunwAsync([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler", SizeParamIndex=1)] string args, uint count, [MarshalAs(UnmanagedType.Interface)] nsIObserver observer, bool holdWeak);
+		void RunwAsync([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler", SizeParamIndex=1)] string args, uint count, [MarshalAs(UnmanagedType.Interface)] nsIObserver observer, [MarshalAs(UnmanagedType.Bool)] bool holdWeak);
 		
 		/// <summary>
         /// The process identifier of the currently running process. This will only
@@ -117,6 +117,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Returns whether the process is currently running or not.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsRunningAttribute();
 	}

@@ -99,6 +99,7 @@ namespace Skybound.Gecko
         /// port number is encountered, this function will be called to ask if the
         /// protocol handler wants to override the ban.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool AllowPort(int port, [MarshalAs(UnmanagedType.LPStr)] string scheme);
 		
@@ -108,6 +109,7 @@ namespace Skybound.Gecko
         /// @param scheme external scheme.
         /// @return TRUE if the external handler exists for the input scheme, FALSE otherwise.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool ExternalAppExistsForScheme([MarshalAs(UnmanagedType.LPStruct)] nsAString scheme);
 	}

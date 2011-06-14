@@ -36,13 +36,14 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member GetEnableHighAccuracyAttribute </summary>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetEnableHighAccuracyAttribute();
 		
 		/// <summary>Member SetEnableHighAccuracyAttribute </summary>
 		/// <param name='aEnableHighAccuracy'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetEnableHighAccuracyAttribute(bool aEnableHighAccuracy);
+		void SetEnableHighAccuracyAttribute([MarshalAs(UnmanagedType.Bool)] bool aEnableHighAccuracy);
 		
 		/// <summary>Member GetTimeoutAttribute </summary>
 		/// <returns>A System.Int32</returns>

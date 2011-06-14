@@ -46,12 +46,12 @@ namespace Skybound.Gecko
         ///Find aSearchString in page.  If aLinksOnly is true, only search the page's
         /// hyperlinks for the string. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint Find([MarshalAs(UnmanagedType.LPStruct)] nsAString aSearchString, bool aLinksOnly);
+		uint Find([MarshalAs(UnmanagedType.LPStruct)] nsAString aSearchString, [MarshalAs(UnmanagedType.Bool)] bool aLinksOnly);
 		
 		/// <summary>
         ///Find another match in the page. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint FindAgain(bool findBackwards, bool aLinksOnly);
+		uint FindAgain([MarshalAs(UnmanagedType.Bool)] bool findBackwards, [MarshalAs(UnmanagedType.Bool)] bool aLinksOnly);
 		
 		/// <summary>
         ///Change searched docShell.  This happens when e.g. we use the same
@@ -80,6 +80,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Most recent search string
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetCaseSensitiveAttribute();
 		
@@ -87,7 +88,7 @@ namespace Skybound.Gecko
         /// Most recent search string
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCaseSensitiveAttribute(bool aCaseSensitive);
+		void SetCaseSensitiveAttribute([MarshalAs(UnmanagedType.Bool)] bool aCaseSensitive);
 		
 		/// <summary>
         /// Searches are case sensitive

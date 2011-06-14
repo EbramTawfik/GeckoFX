@@ -78,7 +78,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString Finish(bool aASCII);
+		nsAString Finish([MarshalAs(UnmanagedType.Bool)] bool aASCII);
 		
 		/// <summary>
         /// Discard aLen bytes of the keystream.

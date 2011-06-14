@@ -47,6 +47,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// If the channel being authenticated is using SSL.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsSSLAttribute();
 		
@@ -54,6 +55,7 @@ namespace Skybound.Gecko
         /// Returns if the proxy HTTP method used is CONNECT. If no proxy is being
         /// used it must return PR_FALSE.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetProxyMethodIsConnectAttribute();
 		
@@ -153,6 +155,6 @@ namespace Skybound.Gecko
         /// If the user was cancelled has cancelled the authentication prompt.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnAuthCancelled(bool userCancel);
+		void OnAuthCancelled([MarshalAs(UnmanagedType.Bool)] bool userCancel);
 	}
 }

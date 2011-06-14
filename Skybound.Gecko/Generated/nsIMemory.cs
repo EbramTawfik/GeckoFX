@@ -111,7 +111,7 @@ namespace Skybound.Gecko
         /// was not on the application's main thread.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void HeapMinimize(bool immediate);
+		void HeapMinimize([MarshalAs(UnmanagedType.Bool)] bool immediate);
 		
 		/// <summary>
         /// This predicate can be used to determine if we're in a low-memory
@@ -120,6 +120,7 @@ namespace Skybound.Gecko
         ///
         /// DEPRECATED - Always returns false.  See bug 592308.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsLowMemory();
 	}

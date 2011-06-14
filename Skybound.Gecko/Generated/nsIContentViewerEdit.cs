@@ -48,6 +48,7 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member GetCopyableAttribute </summary>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetCopyableAttribute();
 		
@@ -57,6 +58,7 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member GetInLinkAttribute </summary>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetInLinkAttribute();
 		
@@ -67,6 +69,7 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member GetInImageAttribute </summary>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetInImageAttribute();
 		
@@ -76,10 +79,11 @@ namespace Skybound.Gecko
 		/// <returns>A nsAString</returns>
 		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetContents([MarshalAs(UnmanagedType.LPStr)] string aMimeType, bool aSelectionOnly);
+		nsAString GetContents([MarshalAs(UnmanagedType.LPStr)] string aMimeType, [MarshalAs(UnmanagedType.Bool)] bool aSelectionOnly);
 		
 		/// <summary>Member GetCanGetContentsAttribute </summary>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetCanGetContentsAttribute();
 	}

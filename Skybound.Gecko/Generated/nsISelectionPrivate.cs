@@ -36,13 +36,14 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member GetInterlinePositionAttribute </summary>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetInterlinePositionAttribute();
 		
 		/// <summary>Member SetInterlinePositionAttribute </summary>
 		/// <param name='aInterlinePosition'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetInterlinePositionAttribute(bool aInterlinePosition);
+		void SetInterlinePositionAttribute([MarshalAs(UnmanagedType.Bool)] bool aInterlinePosition);
 		
 		/// <summary>
         ///startBatchChanges
@@ -103,6 +104,7 @@ namespace Skybound.Gecko
         /// of nsTextFrame::GetPointFromOffset whose return value is to be cached.
         /// see bugs 35296 and 199412
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetCanCacheFrameOffsetAttribute();
 		
@@ -114,7 +116,7 @@ namespace Skybound.Gecko
         /// see bugs 35296 and 199412
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCanCacheFrameOffsetAttribute(bool aCanCacheFrameOffset);
+		void SetCanCacheFrameOffsetAttribute([MarshalAs(UnmanagedType.Bool)] bool aCanCacheFrameOffset);
 		
 		/// <summary>
         ///GetCachedOffsetForFrame

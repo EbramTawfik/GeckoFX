@@ -48,6 +48,7 @@ namespace Skybound.Gecko
         /// return true if they want to interrupt normal control flow, without
         /// throwing an error.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool WillDo([MarshalAs(UnmanagedType.Interface)] nsITransactionManager aManager, [MarshalAs(UnmanagedType.Interface)] nsITransaction aTransaction);
 		
@@ -73,6 +74,7 @@ namespace Skybound.Gecko
         /// throwing an error. Note that listeners can also interrupt normal
         /// control flow by throwing an nsresult that indicates an error.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool WillUndo([MarshalAs(UnmanagedType.Interface)] nsITransactionManager aManager, [MarshalAs(UnmanagedType.Interface)] nsITransaction aTransaction);
 		
@@ -97,6 +99,7 @@ namespace Skybound.Gecko
         /// throwing an error. Note that listeners can also interrupt normal
         /// control flow by throwing an nsresult that indicates an error.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool WillRedo([MarshalAs(UnmanagedType.Interface)] nsITransactionManager aManager, [MarshalAs(UnmanagedType.Interface)] nsITransaction aTransaction);
 		
@@ -119,6 +122,7 @@ namespace Skybound.Gecko
         /// throwing an error. Note that listeners can also interrupt normal
         /// control flow by throwing an nsresult that indicates an error.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool WillBeginBatch([MarshalAs(UnmanagedType.Interface)] nsITransactionManager aManager);
 		
@@ -139,6 +143,7 @@ namespace Skybound.Gecko
         /// throwing an error. Note that listeners can also interrupt normal
         /// control flow by throwing an nsresult that indicates an error.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool WillEndBatch([MarshalAs(UnmanagedType.Interface)] nsITransactionManager aManager);
 		
@@ -163,6 +168,7 @@ namespace Skybound.Gecko
         /// throwing an error. Note that listeners can also interrupt normal
         /// control flow by throwing an nsresult that indicates an error.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool WillMerge([MarshalAs(UnmanagedType.Interface)] nsITransactionManager aManager, [MarshalAs(UnmanagedType.Interface)] nsITransaction aTopTransaction, [MarshalAs(UnmanagedType.Interface)] nsITransaction aTransactionToMerge);
 		
@@ -179,6 +185,6 @@ namespace Skybound.Gecko
         /// want to interrupt normal control flow, without throwing an error.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DidMerge([MarshalAs(UnmanagedType.Interface)] nsITransactionManager aManager, [MarshalAs(UnmanagedType.Interface)] nsITransaction aTopTransaction, [MarshalAs(UnmanagedType.Interface)] nsITransaction aTransactionToMerge, bool aDidMerge, int aMergeResult);
+		void DidMerge([MarshalAs(UnmanagedType.Interface)] nsITransactionManager aManager, [MarshalAs(UnmanagedType.Interface)] nsITransaction aTopTransaction, [MarshalAs(UnmanagedType.Interface)] nsITransaction aTransactionToMerge, [MarshalAs(UnmanagedType.Bool)] bool aDidMerge, int aMergeResult);
 	}
 }

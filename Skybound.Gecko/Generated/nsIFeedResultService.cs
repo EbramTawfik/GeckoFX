@@ -41,6 +41,7 @@ namespace Skybound.Gecko
         /// When set to true, forces the preview page to be displayed, regardless
         /// of the user's preferences.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetForcePreviewPageAttribute();
 		
@@ -49,7 +50,7 @@ namespace Skybound.Gecko
         /// of the user's preferences.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetForcePreviewPageAttribute(bool aForcePreviewPage);
+		void SetForcePreviewPageAttribute([MarshalAs(UnmanagedType.Bool)] bool aForcePreviewPage);
 		
 		/// <summary>
         /// Adds a URI to the user's specified external feed handler, or live

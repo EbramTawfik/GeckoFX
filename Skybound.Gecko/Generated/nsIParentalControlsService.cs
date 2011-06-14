@@ -38,6 +38,7 @@ namespace Skybound.Gecko
         /// @returns true if the current user account has parental controls
         /// restrictions enabled.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetParentalControlsEnabledAttribute();
 		
@@ -45,6 +46,7 @@ namespace Skybound.Gecko
         /// @returns true if the current user account parental controls
         /// restrictions include the blocking of all file downloads.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetBlockFileDownloadsEnabledAttribute();
 		
@@ -58,6 +60,7 @@ namespace Skybound.Gecko
         /// should be the root URI of the site.
         /// @param window              Window that generates the event.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool RequestURIOverride([MarshalAs(UnmanagedType.Interface)] nsIURI aTarget, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor aWindowContext);
 		
@@ -65,6 +68,7 @@ namespace Skybound.Gecko
 		/// <param name='aTargets'> </param>
 		/// <param name='aWindowContext'> </param>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool RequestURIOverrides([MarshalAs(UnmanagedType.Interface)] nsIArray aTargets, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor aWindowContext);
 		
@@ -73,6 +77,7 @@ namespace Skybound.Gecko
         /// logging enabled. If true, applications should log relevent events
         /// using 'log'.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetLoggingEnabledAttribute();
 		
@@ -88,6 +93,6 @@ namespace Skybound.Gecko
         /// no blocking occurred.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Log(short aEntryType, bool aFlag, [MarshalAs(UnmanagedType.Interface)] nsIURI aSource, [MarshalAs(UnmanagedType.Interface)] nsIFile aTarget);
+		void Log(short aEntryType, [MarshalAs(UnmanagedType.Bool)] bool aFlag, [MarshalAs(UnmanagedType.Interface)] nsIURI aSource, [MarshalAs(UnmanagedType.Interface)] nsIFile aTarget);
 	}
 }

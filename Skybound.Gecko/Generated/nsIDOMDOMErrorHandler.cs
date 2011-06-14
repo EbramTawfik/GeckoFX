@@ -47,6 +47,7 @@ namespace Skybound.Gecko
         /// For more information on this interface please see
         /// http://www.w3.org/TR/2002/WD-DOM-Level-3-Core-20020409/core.html
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool HandleError([MarshalAs(UnmanagedType.Interface)] nsIDOMDOMError error);
 	}

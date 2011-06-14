@@ -37,7 +37,7 @@ namespace Skybound.Gecko
 		/// <summary>Member OpenMenu </summary>
 		/// <param name='openFlag'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OpenMenu(bool openFlag);
+		void OpenMenu([MarshalAs(UnmanagedType.Bool)] bool openFlag);
 		
 		/// <summary>Member GetActiveChildAttribute </summary>
 		/// <returns>A nsIDOMElement</returns>
@@ -53,6 +53,7 @@ namespace Skybound.Gecko
 		/// <summary>Member HandleKeyPress </summary>
 		/// <param name='keyEvent'> </param>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool HandleKeyPress([MarshalAs(UnmanagedType.Interface)] nsIDOMKeyEvent keyEvent);
 	}
@@ -69,6 +70,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// true if the menu or menubar was opened via a keypress.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetOpenedWithKeyAttribute();
 	}

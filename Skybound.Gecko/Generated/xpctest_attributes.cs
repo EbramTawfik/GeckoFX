@@ -45,6 +45,7 @@ namespace Skybound.Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string GetStrReadOnlyAttribute();
 		
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetBoolReadOnlyAttribute();
 		
@@ -85,13 +86,14 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member GetBooleanPropertyAttribute </summary>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetBooleanPropertyAttribute();
 		
 		/// <summary>Member SetBooleanPropertyAttribute </summary>
 		/// <param name='aBooleanProperty'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBooleanPropertyAttribute(bool aBooleanProperty);
+		void SetBooleanPropertyAttribute([MarshalAs(UnmanagedType.Bool)] bool aBooleanProperty);
 		
 		/// <summary>Member GetShortPropertyAttribute </summary>
 		/// <returns>A System.Int16</returns>

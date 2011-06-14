@@ -77,36 +77,42 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Returns whether it is in Print mode
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetDoingPrintAttribute();
 		
 		/// <summary>
         /// Returns whether it is in Print Preview mode
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetDoingPrintPreviewAttribute();
 		
 		/// <summary>
         /// This returns whether the current document is a frameset document
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsFramesetDocumentAttribute();
 		
 		/// <summary>
         /// This returns whether the current document is a frameset document
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsFramesetFrameSelectedAttribute();
 		
 		/// <summary>
         /// This returns whether there is an IFrame selected
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsIFrameSelectedAttribute();
 		
 		/// <summary>
         /// This returns whether there is a "range" selection
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsRangeSelectionAttribute();
 		

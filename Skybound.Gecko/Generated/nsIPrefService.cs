@@ -181,6 +181,7 @@ namespace Skybound.Gecko
 		/// <summary>Member PrefHasUserValue </summary>
 		/// <param name='aPrefName'> </param>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool PrefHasUserValue([MarshalAs(UnmanagedType.LPStruct)] nsAString aPrefName);
 		

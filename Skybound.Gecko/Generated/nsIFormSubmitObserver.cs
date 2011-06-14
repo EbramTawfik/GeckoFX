@@ -40,7 +40,7 @@ namespace Skybound.Gecko
 		/// <param name='actionURL'> </param>
 		/// <param name='cancelSubmit'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Notify([MarshalAs(UnmanagedType.Interface)] nsIDOMHTMLFormElement formNode, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindowInternal window, [MarshalAs(UnmanagedType.Interface)] nsIURI actionURL, out bool cancelSubmit);
+		void Notify([MarshalAs(UnmanagedType.Interface)] nsIDOMHTMLFormElement formNode, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindowInternal window, [MarshalAs(UnmanagedType.Interface)] nsIURI actionURL, [MarshalAs(UnmanagedType.Bool)] out bool cancelSubmit);
 		
 		/// <summary>Member NotifyInvalidSubmit </summary>
 		/// <param name='formNode'> </param>

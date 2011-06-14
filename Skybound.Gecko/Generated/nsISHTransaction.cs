@@ -79,6 +79,7 @@ namespace Skybound.Gecko
         /// Specifies if this transaction should persist.  If not it will be replaced
         /// by new additions to the list.
         ///	 </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetPersistAttribute();
 		
@@ -87,7 +88,7 @@ namespace Skybound.Gecko
         /// by new additions to the list.
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPersistAttribute(bool aPersist);
+		void SetPersistAttribute([MarshalAs(UnmanagedType.Bool)] bool aPersist);
 		
 		/// <summary>
         /// Create a transaction with parent and History Entry

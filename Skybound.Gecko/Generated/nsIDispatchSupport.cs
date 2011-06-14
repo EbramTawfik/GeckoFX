@@ -56,8 +56,9 @@ namespace Skybound.Gecko
         /// @param classExists Returns containing PR_FALSE if the class is
         /// not registered.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsClassSafeToHost(System.IntPtr cx, ref System.Guid cid, bool capsCheck, out bool classExists);
+		bool IsClassSafeToHost(System.IntPtr cx, ref System.Guid cid, [MarshalAs(UnmanagedType.Bool)] bool capsCheck, [MarshalAs(UnmanagedType.Bool)] out bool classExists);
 		
 		/// <summary>
         /// Test if the specified class is marked safe for scripting.
@@ -65,8 +66,9 @@ namespace Skybound.Gecko
         /// @param classExists Returns containing PR_FALSE if the class is not
         /// registered.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsClassMarkedSafeForScripting(ref System.Guid cid, out bool classExists);
+		bool IsClassMarkedSafeForScripting(ref System.Guid cid, [MarshalAs(UnmanagedType.Bool)] out bool classExists);
 		
 		/// <summary>
         /// Test if the instantiated object is safe for scripting on the specified
@@ -74,6 +76,7 @@ namespace Skybound.Gecko
         /// @param theObject The object to test (an IUnknown cast into a void *).
         /// @param iid The interface to test if it is safe for scripting on.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsObjectSafeForScripting(System.IntPtr theObject, ref System.Guid id);
 		

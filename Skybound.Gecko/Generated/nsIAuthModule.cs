@@ -95,7 +95,7 @@ namespace Skybound.Gecko
         /// mechanism does not support security layers.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Wrap(System.IntPtr aInToken, uint aInTokenLength, bool confidential, out System.IntPtr aOutToken, out uint aOutTokenLength);
+		void Wrap(System.IntPtr aInToken, uint aInTokenLength, [MarshalAs(UnmanagedType.Bool)] bool confidential, out System.IntPtr aOutToken, out uint aOutTokenLength);
 		
 		/// <summary>
         /// Unwrap() is used to unpack, decrypt, and verify the checksums on data

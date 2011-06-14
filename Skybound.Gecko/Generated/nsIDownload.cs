@@ -208,8 +208,9 @@ namespace Skybound.Gecko
         /// @return True if the refresh may proceed.
         /// False if the refresh should be aborted.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool OnRefreshAttempted([MarshalAs(UnmanagedType.Interface)] nsIWebProgress aWebProgress, [MarshalAs(UnmanagedType.Interface)] nsIURI aRefreshURI, int aMillis, bool aSameURI);
+		new bool OnRefreshAttempted([MarshalAs(UnmanagedType.Interface)] nsIWebProgress aWebProgress, [MarshalAs(UnmanagedType.Interface)] nsIURI aRefreshURI, int aMillis, [MarshalAs(UnmanagedType.Bool)] bool aSameURI);
 		
 		/// <summary>
         /// Initializes the transfer with certain properties.  This function must
@@ -348,6 +349,7 @@ namespace Skybound.Gecko
         /// is only the case if the download is over HTTP/1.1 or FTP and if the
         /// server supports it.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetResumableAttribute();
 	}

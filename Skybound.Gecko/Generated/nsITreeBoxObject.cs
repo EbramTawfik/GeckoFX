@@ -61,6 +61,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Whether or not we are currently focused.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetFocusedAttribute();
 		
@@ -68,7 +69,7 @@ namespace Skybound.Gecko
         /// Whether or not we are currently focused.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFocusedAttribute(bool aFocused);
+		void SetFocusedAttribute([MarshalAs(UnmanagedType.Bool)] bool aFocused);
 		
 		/// <summary>
         /// Obtain the treebody content node
@@ -241,6 +242,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Determine if the text of a cell is being cropped or not.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsCellCropped(int row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn col);
 		

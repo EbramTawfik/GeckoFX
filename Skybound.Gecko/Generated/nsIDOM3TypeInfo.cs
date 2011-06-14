@@ -48,6 +48,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// DerivationMethods
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsDerivedFrom([MarshalAs(UnmanagedType.LPStruct)] nsAString typeNamespaceArg, [MarshalAs(UnmanagedType.LPStruct)] nsAString typeNameArg, uint derivationMethod);
 	}

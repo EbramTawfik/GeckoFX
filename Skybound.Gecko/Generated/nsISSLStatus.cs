@@ -58,11 +58,13 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member GetIsDomainMismatchAttribute </summary>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsDomainMismatchAttribute();
 		
 		/// <summary>Member GetIsNotValidAtThisTimeAttribute </summary>
 		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsNotValidAtThisTimeAttribute();
 		
@@ -73,6 +75,7 @@ namespace Skybound.Gecko
         /// "untrusted because self signed"
         /// query nsIX509Cert3::isSelfSigned
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsUntrustedAttribute();
 	}

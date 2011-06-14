@@ -137,7 +137,7 @@ namespace Skybound.Gecko
         /// aIsAnnotationProperty = true: value = empty string.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnItemChanged(int aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAString aProperty, bool aIsAnnotationProperty, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aNewValue, uint aLastModified, ushort aItemType);
+		void OnItemChanged(int aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAString aProperty, [MarshalAs(UnmanagedType.Bool)] bool aIsAnnotationProperty, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aNewValue, uint aLastModified, ushort aItemType);
 		
 		/// <summary>
         /// Notify that the item was visited. Normally in bookmarks we use the last
@@ -474,6 +474,7 @@ namespace Skybound.Gecko
         /// @param aItemId
         /// the item-id of the folder.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetFolderReadonly(int aItemId);
 		
@@ -489,12 +490,13 @@ namespace Skybound.Gecko
         /// the read-only state (boolean).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFolderReadonly(int aFolder, bool aReadOnly);
+		void SetFolderReadonly(int aFolder, [MarshalAs(UnmanagedType.Bool)] bool aReadOnly);
 		
 		/// <summary>
         /// Returns true if the given URI is in any bookmark folder. If you want the
         /// results to be redirect-aware, use getBookmarkedURIFor()
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsBookmarked([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 		
@@ -575,7 +577,7 @@ namespace Skybound.Gecko
         /// service will keep a weak reference to the observer.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddObserver([MarshalAs(UnmanagedType.Interface)] nsINavBookmarkObserver observer, bool ownsWeak);
+		void AddObserver([MarshalAs(UnmanagedType.Interface)] nsINavBookmarkObserver observer, [MarshalAs(UnmanagedType.Bool)] bool ownsWeak);
 		
 		/// <summary>
         /// Removes a bookmark observer.

@@ -81,6 +81,7 @@ namespace Skybound.Gecko
         /// Setting this property after asyncOpen has been called on the
         /// channel has no effect.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetExecuteAsyncAttribute();
 		
@@ -97,6 +98,6 @@ namespace Skybound.Gecko
         /// channel has no effect.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetExecuteAsyncAttribute(bool aExecuteAsync);
+		void SetExecuteAsyncAttribute([MarshalAs(UnmanagedType.Bool)] bool aExecuteAsync);
 	}
 }

@@ -73,6 +73,7 @@ namespace Skybound.Gecko
         /// @throws NS_ERROR_NOT_INITIALIZED If there has not been a previous call
         /// to reset.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool Done();
 		

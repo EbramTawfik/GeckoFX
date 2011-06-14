@@ -124,6 +124,7 @@ namespace Skybound.Gecko
         /// provide consumers with a way to wait for the stream to have more data
         /// once its read method is unable to return any data without blocking.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsNonBlocking();
 		
@@ -145,6 +146,7 @@ namespace Skybound.Gecko
         ///
         /// @return that byte to be treated as a boolean.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool ReadBoolean();
 		
@@ -215,7 +217,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports ReadObject(bool aIsStrongRef);
+		nsISupports ReadObject([MarshalAs(UnmanagedType.Bool)] bool aIsStrongRef);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int ReadID(out System.IntPtr aID);

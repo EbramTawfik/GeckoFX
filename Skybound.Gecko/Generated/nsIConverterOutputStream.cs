@@ -44,6 +44,7 @@ namespace Skybound.Gecko
         /// @retval true The character was written successfully
         /// @retval false Not all bytes of the character could be written.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool Write(uint aCount, [MarshalAs(UnmanagedType.LPWStr, SizeParamIndex=0)] string c);
 		
@@ -53,6 +54,7 @@ namespace Skybound.Gecko
         /// @retval true The string was written successfully
         /// @retval false Not all bytes of the string could be written.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool WriteString([MarshalAs(UnmanagedType.LPStruct)] nsAString str);
 		

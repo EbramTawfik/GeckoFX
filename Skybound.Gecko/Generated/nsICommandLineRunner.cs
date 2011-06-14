@@ -76,7 +76,7 @@ namespace Skybound.Gecko
         /// @return               The position of the flag in the command line.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new int FindFlag([MarshalAs(UnmanagedType.LPStruct)] nsAString aFlag, bool aCaseSensitive);
+		new int FindFlag([MarshalAs(UnmanagedType.LPStruct)] nsAString aFlag, [MarshalAs(UnmanagedType.Bool)] bool aCaseSensitive);
 		
 		/// <summary>
         /// Remove arguments from the command line. This normally occurs after
@@ -95,8 +95,9 @@ namespace Skybound.Gecko
         /// @param aCaseSensitive Whether to do case-sensitive comparisons.
         /// @return       Whether the flag was found.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool HandleFlag([MarshalAs(UnmanagedType.LPStruct)] nsAString aFlag, bool aCaseSensitive);
+		new bool HandleFlag([MarshalAs(UnmanagedType.LPStruct)] nsAString aFlag, [MarshalAs(UnmanagedType.Bool)] bool aCaseSensitive);
 		
 		/// <summary>
         /// Find a flag with a parameter and remove both. This is a helper
@@ -111,7 +112,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsAString HandleFlagWithParam([MarshalAs(UnmanagedType.LPStruct)] nsAString aFlag, bool aCaseSensitive);
+		new nsAString HandleFlagWithParam([MarshalAs(UnmanagedType.LPStruct)] nsAString aFlag, [MarshalAs(UnmanagedType.Bool)] bool aCaseSensitive);
 		
 		/// <summary>
         /// The type of command line being processed.
@@ -130,6 +131,7 @@ namespace Skybound.Gecko
         /// there was no explicit action on the command line (open a default browser
         /// window, for example). This flag allows the default action to be prevented.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetPreventDefaultAttribute();
 		
@@ -139,7 +141,7 @@ namespace Skybound.Gecko
         /// window, for example). This flag allows the default action to be prevented.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetPreventDefaultAttribute(bool aPreventDefault);
+		new void SetPreventDefaultAttribute([MarshalAs(UnmanagedType.Bool)] bool aPreventDefault);
 		
 		/// <summary>
         /// The working directory for this command line. Use this property instead

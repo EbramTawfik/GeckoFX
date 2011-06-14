@@ -59,6 +59,7 @@ namespace Skybound.Gecko
         ///
         /// Default: false
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetDismissOnClickAttribute();
 		
@@ -68,13 +69,14 @@ namespace Skybound.Gecko
         /// Default: false
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDismissOnClickAttribute(bool aDismissOnClick);
+		void SetDismissOnClickAttribute([MarshalAs(UnmanagedType.Bool)] bool aDismissOnClick);
 		
 		/// <summary>
         /// True if the taskbar should draw a border around this button's image.
         ///
         /// Default: true
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetHasBorderAttribute();
 		
@@ -84,13 +86,14 @@ namespace Skybound.Gecko
         /// Default: true
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetHasBorderAttribute(bool aHasBorder);
+		void SetHasBorderAttribute([MarshalAs(UnmanagedType.Bool)] bool aHasBorder);
 		
 		/// <summary>
         /// True if the button is disabled. This is not the same as visible.
         ///
         /// Default: false
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetDisabledAttribute();
 		
@@ -100,7 +103,7 @@ namespace Skybound.Gecko
         /// Default: false
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDisabledAttribute(bool aDisabled);
+		void SetDisabledAttribute([MarshalAs(UnmanagedType.Bool)] bool aDisabled);
 		
 		/// <summary>
         /// The icon used for the button.
@@ -124,6 +127,7 @@ namespace Skybound.Gecko
         ///
         /// Default: false
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetVisibleAttribute();
 		
@@ -134,6 +138,6 @@ namespace Skybound.Gecko
         /// Default: false
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetVisibleAttribute(bool aVisible);
+		void SetVisibleAttribute([MarshalAs(UnmanagedType.Bool)] bool aVisible);
 	}
 }

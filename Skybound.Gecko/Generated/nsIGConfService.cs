@@ -36,6 +36,7 @@ namespace Skybound.Gecko
 		
 		/// <summary>
         ///Basic registry access </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetBool([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String key);
 		
@@ -70,7 +71,7 @@ namespace Skybound.Gecko
 		/// <param name='key'> </param>
 		/// <param name='value'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBool([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String key, bool value);
+		void SetBool([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String key, [MarshalAs(UnmanagedType.Bool)] bool value);
 		
 		/// <summary>Member SetString </summary>
 		/// <param name='key'> </param>
@@ -96,11 +97,12 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAUTF8String GetAppForProtocol([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String scheme, out bool enabled);
+		nsAUTF8String GetAppForProtocol([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String scheme, [MarshalAs(UnmanagedType.Bool)] out bool enabled);
 		
 		/// <summary>
         /// Check whether the handler for a scheme requires a terminal to run.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool HandlerRequiresTerminal([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String scheme);
 		

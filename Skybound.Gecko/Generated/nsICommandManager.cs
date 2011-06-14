@@ -68,6 +68,7 @@ namespace Skybound.Gecko
         /// If aTargetWindow is null, the focused window is used.
         ///
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsCommandSupported([MarshalAs(UnmanagedType.LPStr)] string aCommandName, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aTargetWindow);
 		
@@ -76,6 +77,7 @@ namespace Skybound.Gecko
         /// enabled.
         /// If aTargetWindow is null, the focused window is used.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsCommandEnabled([MarshalAs(UnmanagedType.LPStr)] string aCommandName, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aTargetWindow);
 		

@@ -61,7 +61,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsITransport CreateInputTransport([MarshalAs(UnmanagedType.Interface)] nsIInputStream aStream, int aStartOffset, int aReadLimit, bool aCloseWhenDone);
+		nsITransport CreateInputTransport([MarshalAs(UnmanagedType.Interface)] nsIInputStream aStream, int aStartOffset, int aReadLimit, [MarshalAs(UnmanagedType.Bool)] bool aCloseWhenDone);
 		
 		/// <summary>
         /// CreateOutputTransport
@@ -84,6 +84,6 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsITransport CreateOutputTransport([MarshalAs(UnmanagedType.Interface)] nsIOutputStream aStream, int aStartOffset, int aWriteLimit, bool aCloseWhenDone);
+		nsITransport CreateOutputTransport([MarshalAs(UnmanagedType.Interface)] nsIOutputStream aStream, int aStartOffset, int aWriteLimit, [MarshalAs(UnmanagedType.Bool)] bool aCloseWhenDone);
 	}
 }

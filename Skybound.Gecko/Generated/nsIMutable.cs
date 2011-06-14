@@ -43,6 +43,7 @@ namespace Skybound.Gecko
         /// it cannot be reset back to true -- attempts to do so throw
         /// NS_ERROR_INVALID_ARG.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetMutableAttribute();
 		
@@ -53,6 +54,6 @@ namespace Skybound.Gecko
         /// NS_ERROR_INVALID_ARG.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMutableAttribute(bool aMutable);
+		void SetMutableAttribute([MarshalAs(UnmanagedType.Bool)] bool aMutable);
 	}
 }
