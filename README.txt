@@ -2,6 +2,10 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v2.0.1-0.4 ==
+
+1. bool types, in Generated Files, now have the MarshalAs(UnmanagedType.Bool) attribute applied.
+
 == v2.0.1-0.3 ==
 
 1. Generated Files now contain correct License block.
