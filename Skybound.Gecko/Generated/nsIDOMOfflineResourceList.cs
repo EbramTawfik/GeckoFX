@@ -63,9 +63,8 @@ namespace Skybound.Gecko
         /// @status DEPRECATED
         /// Clients should use the "items" attribute.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString MozItem(uint index);
+		void MozItem(uint index, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Add an item to the list of dynamically-managed entries.  The resource

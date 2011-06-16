@@ -62,9 +62,8 @@ namespace Skybound.Gecko
         /// @param  A file extension (excluding the dot ('.')).
         /// @return The MIME type, if any.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetTypeFromExtension([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aFileExt);
+		void GetTypeFromExtension([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aFileExt, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Retrieves a ACString representation of the MIME type
@@ -75,15 +74,13 @@ namespace Skybound.Gecko
         /// @param  The URI the user wants MIME info on.
         /// @return The MIME type, if any.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetTypeFromURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
+		void GetTypeFromURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetTypeFromFile([MarshalAs(UnmanagedType.Interface)] nsIFile aFile);
+		void GetTypeFromFile([MarshalAs(UnmanagedType.Interface)] nsIFile aFile, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Given a Type/Extension combination, returns the default extension
@@ -92,8 +89,7 @@ namespace Skybound.Gecko
         /// @param aMIMEType The Type to get information on. Must not be empty.
         /// @param aFileExt  File Extension. Can be empty.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAUTF8String GetPrimaryExtension([MarshalAs(UnmanagedType.LPStruct)] nsAString aMIMEType, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aFileExt);
+		void GetPrimaryExtension([MarshalAs(UnmanagedType.LPStruct)] nsAString aMIMEType, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aFileExt, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
 	}
 }

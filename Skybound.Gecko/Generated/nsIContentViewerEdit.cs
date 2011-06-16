@@ -76,10 +76,9 @@ namespace Skybound.Gecko
 		/// <summary>Member GetContents </summary>
 		/// <param name='aMimeType'> </param>
 		/// <param name='aSelectionOnly'> </param>
-		/// <returns>A nsAString</returns>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
+		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetContents([MarshalAs(UnmanagedType.LPStr)] string aMimeType, [MarshalAs(UnmanagedType.Bool)] bool aSelectionOnly);
+		void GetContents([MarshalAs(UnmanagedType.LPStr)] string aMimeType, [MarshalAs(UnmanagedType.Bool)] bool aSelectionOnly, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>Member GetCanGetContentsAttribute </summary>
 		/// <returns>A System.Boolean</returns>

@@ -58,9 +58,8 @@ namespace Skybound.Gecko
         /// if the host is a numeric IPv4 or IPv6 address (as determined by
         /// the success of a call to PR_StringToNetAddr()).
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetPublicSuffix([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
+		void GetPublicSuffix([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Returns the base domain of a URI; that is, the public suffix with a given
@@ -102,9 +101,8 @@ namespace Skybound.Gecko
         ///
         /// @see    getPublicSuffix()
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetBaseDomain([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, uint aAdditionalParts);
+		void GetBaseDomain([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, uint aAdditionalParts, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// NOTE: It is strongly recommended to use getPublicSuffix() above if a suitable
@@ -119,9 +117,8 @@ namespace Skybound.Gecko
         ///
         /// @see     getPublicSuffix()
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetPublicSuffixFromHost([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aHost);
+		void GetPublicSuffixFromHost([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aHost, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// NOTE: It is strongly recommended to use getBaseDomain() above if a suitable
@@ -136,8 +133,7 @@ namespace Skybound.Gecko
         ///
         /// @see     getBaseDomain()
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetBaseDomainFromHost([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aHost, uint aAdditionalParts);
+		void GetBaseDomainFromHost([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aHost, uint aAdditionalParts, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 	}
 }

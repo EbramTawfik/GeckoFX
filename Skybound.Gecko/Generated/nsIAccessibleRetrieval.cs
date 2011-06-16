@@ -63,9 +63,8 @@ namespace Skybound.Gecko
         ///
         /// @param aRole - the accessible role constants.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetStringRole(uint aRole);
+		void GetStringRole(uint aRole, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Returns list which contains accessible states as a strings.
@@ -82,9 +81,8 @@ namespace Skybound.Gecko
         /// @param aEventType - the accessible event type constant
         /// @return - accessible event type presented as human readable string
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetStringEventType(uint aEventType);
+		void GetStringEventType(uint aEventType, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Get the type of accessible relation as a string.
@@ -92,9 +90,8 @@ namespace Skybound.Gecko
         /// @param aRelationType - the accessible relation type constant
         /// @return - accessible relation type presented as human readable string
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetStringRelationType(uint aRelationType);
+		void GetStringRelationType(uint aRelationType, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Return an accessible for the given DOM node from the cache.

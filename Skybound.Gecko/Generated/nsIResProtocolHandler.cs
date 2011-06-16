@@ -140,8 +140,7 @@ namespace Skybound.Gecko
         ///
         /// @throws NS_ERROR_NOT_AVAILABLE if resURI.host() is an unknown root key.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAUTF8String ResolveURI([MarshalAs(UnmanagedType.Interface)] nsIURI resURI);
+		void ResolveURI([MarshalAs(UnmanagedType.Interface)] nsIURI resURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
 	}
 }

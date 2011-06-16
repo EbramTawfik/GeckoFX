@@ -571,9 +571,8 @@ namespace Skybound.Gecko
         /// the file from which the descriptor is relative.
         /// There is no defined result if this param is null.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetRelativeDescriptor([MarshalAs(UnmanagedType.Interface)] nsILocalFile fromFile);
+		void GetRelativeDescriptor([MarshalAs(UnmanagedType.Interface)] nsILocalFile fromFile, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// setRelativeDescriptor

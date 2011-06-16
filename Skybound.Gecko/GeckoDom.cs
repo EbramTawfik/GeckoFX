@@ -352,7 +352,9 @@ namespace Skybound.Gecko
 			if (string.IsNullOrEmpty(attributeName))
 				throw new ArgumentException("attributeName");
 
-			return DomElement.GetAttribute(new nsAString(attributeName)).ToString();			
+			var retval = new nsAString();
+			DomElement.GetAttribute(new nsAString(attributeName), retval);
+			return retval.ToString();
 		}
 		
 		/// <summary>
@@ -367,8 +369,9 @@ namespace Skybound.Gecko
 			
 			if (string.IsNullOrEmpty(attributeName))
 				throw new ArgumentException("attributeName");
-
-			return DomElement.GetAttributeNS(new nsAString(namespaceUri), new nsAString(attributeName)).ToString();			
+			nsAString retval = new nsAString();
+			DomElement.GetAttributeNS(new nsAString(namespaceUri), new nsAString(attributeName), retval);
+			return retval.ToString();
 		}
 		
 		/// <summary>

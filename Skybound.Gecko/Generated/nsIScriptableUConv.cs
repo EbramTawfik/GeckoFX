@@ -44,32 +44,28 @@ namespace Skybound.Gecko
         /// Returns the converted string. After converting, Finish should be called
         /// and its return value appended to this return value.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString ConvertFromUnicode([MarshalAs(UnmanagedType.LPStruct)] nsAString aSrc);
+		void ConvertFromUnicode([MarshalAs(UnmanagedType.LPStruct)] nsAString aSrc, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Returns the terminator string.
         /// Should be called after ConvertFromUnicode() and appended to that
         /// function's return value.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString Finish();
+		void Finish([MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Converts the data from one Charset to Unicode.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString ConvertToUnicode([MarshalAs(UnmanagedType.LPStruct)] nsAString aSrc);
+		void ConvertToUnicode([MarshalAs(UnmanagedType.LPStruct)] nsAString aSrc, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Converts an array of bytes to a unicode string.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString ConvertFromByteArray(System.IntPtr aData, uint aCount);
+		void ConvertFromByteArray(System.IntPtr aData, uint aCount, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Convert a unicode string to an array of bytes. Finish does not need to be

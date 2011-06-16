@@ -123,8 +123,7 @@ namespace Skybound.Gecko
         /// @param aStyleSheet  The style sheet
         /// @return             the style sheet's URL
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetURLForStyleSheet(System.IntPtr aStyleSheet);
+		void GetURLForStyleSheet(System.IntPtr aStyleSheet, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 	}
 }

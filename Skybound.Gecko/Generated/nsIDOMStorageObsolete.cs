@@ -59,9 +59,8 @@ namespace Skybound.Gecko
         /// @returns the key at index
         /// @throws INDEX_SIZE_ERR if there is no key at that index
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString Key(uint index);
+		void Key(uint index, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Retrieve an item with a given key

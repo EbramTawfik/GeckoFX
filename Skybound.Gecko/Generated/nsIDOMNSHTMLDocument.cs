@@ -111,10 +111,9 @@ namespace Skybound.Gecko
 		nsIDOMHTMLCollection GetEmbedsAttribute();
 		
 		/// <summary>Member GetSelection </summary>
-		/// <returns>A nsAString</returns>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
+		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetSelection();
+		void GetSelection([MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// document in session history; pass false for normal history handling.
@@ -217,16 +216,14 @@ namespace Skybound.Gecko
 		
 		/// <summary>
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString QueryCommandText([MarshalAs(UnmanagedType.LPStruct)] nsAString commandID);
+		void QueryCommandText([MarshalAs(UnmanagedType.LPStruct)] nsAString commandID, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// returns the current value of the document or current selection for command
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString QueryCommandValue([MarshalAs(UnmanagedType.LPStruct)] nsAString commandID);
+		void QueryCommandValue([MarshalAs(UnmanagedType.LPStruct)] nsAString commandID, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>Member GetHeadAttribute </summary>
 		/// <returns>A nsIDOMHTMLHeadElement</returns>

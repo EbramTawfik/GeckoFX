@@ -89,8 +89,7 @@ namespace Skybound.Gecko
         ///
         /// @return PAC result string as defined above.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetProxyForURI([MarshalAs(UnmanagedType.LPStruct)] nsAString aTestURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString aTestHost);
+		void GetProxyForURI([MarshalAs(UnmanagedType.LPStruct)] nsAString aTestURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString aTestHost, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 	}
 }

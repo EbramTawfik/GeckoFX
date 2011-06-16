@@ -347,9 +347,8 @@ namespace Skybound.Gecko
         /// The ID of the item to get the GUID for
         /// @return The GUID string.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetItemGUID(int aItemId);
+		void GetItemGUID(int aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Set a globally unique identifier.  This can be useful when a sync
@@ -391,9 +390,8 @@ namespace Skybound.Gecko
         /// The id of the item whose title should be retrieved
         /// @return The title of the item.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAUTF8String GetItemTitle(int aItemId);
+		void GetItemTitle(int aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
 		
 		/// <summary>
         /// Set the date added time for an item.
@@ -550,17 +548,15 @@ namespace Skybound.Gecko
         /// Retrieves the keyword for the given URI. Will be void string
         /// (null in JS) if no such keyword is found.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetKeywordForURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
+		void GetKeywordForURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Retrieves the keyword for the given bookmark. Will be void string
         /// (null in JS) if no such keyword is found.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetKeywordForBookmark(int aItemId);
+		void GetKeywordForBookmark(int aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Returns the URI associated with the given keyword. Empty if no such

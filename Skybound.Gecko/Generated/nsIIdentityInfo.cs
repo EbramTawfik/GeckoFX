@@ -54,8 +54,7 @@ namespace Skybound.Gecko
         /// If isExtendedValidation is false, this function will return
         /// an empty (length string) value.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetValidEVPolicyOid();
+		void GetValidEVPolicyOid([MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 	}
 }

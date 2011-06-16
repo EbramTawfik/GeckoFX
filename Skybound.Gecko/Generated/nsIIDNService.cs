@@ -51,9 +51,8 @@ namespace Skybound.Gecko
         /// Prepares the input hostname according to IDNA ToASCII operation,
         /// the input hostname is assumed to be UTF8-encoded.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString ConvertUTF8toACE([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String input);
+		void ConvertUTF8toACE([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String input, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// This is the ToUnicode operation as specified in the IDNA proposal,
@@ -61,9 +60,8 @@ namespace Skybound.Gecko
         /// It takes an ACE-encoded hostname and performs ToUnicode to it, then
         /// encodes the resulting string into UTF8.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAUTF8String ConvertACEtoUTF8([MarshalAs(UnmanagedType.LPStruct)] nsAString input);
+		void ConvertACEtoUTF8([MarshalAs(UnmanagedType.LPStruct)] nsAString input, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
 		
 		/// <summary>
         /// Checks if the input string is ACE encoded or not.
@@ -76,9 +74,8 @@ namespace Skybound.Gecko
         /// Performs the unicode normalization needed for hostnames in IDN,
         /// for callers that want early normalization.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAUTF8String Normalize([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String input);
+		void Normalize([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String input, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
 		
 		/// <summary>
         /// Normalizes and converts a host to UTF-8 if the host is in the IDN
@@ -86,8 +83,7 @@ namespace Skybound.Gecko
         /// purposes and to ensure an encoding consistent with nsIURI::GetHost().
         /// If the result is ASCII or ACE encoded, |isASCII| will be true.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAUTF8String ConvertToDisplayIDN([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String input, [MarshalAs(UnmanagedType.Bool)] out bool isASCII);
+		void ConvertToDisplayIDN([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String input, [MarshalAs(UnmanagedType.Bool)] out bool isASCII, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
 	}
 }

@@ -495,9 +495,8 @@ namespace Skybound.Gecko
         /// @return the value of the request header.
         /// @throws NS_ERROR_NOT_AVAILABLE if the header is not set.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetRequestHeader([MarshalAs(UnmanagedType.LPStruct)] nsAString aHeader);
+		void GetRequestHeader([MarshalAs(UnmanagedType.LPStruct)] nsAString aHeader, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Set the value of a particular request header.
@@ -656,9 +655,8 @@ namespace Skybound.Gecko
         /// has been received (before onStartRequest) or if the header is
         /// not set in the response.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetResponseHeader([MarshalAs(UnmanagedType.LPStruct)] nsAString header);
+		void GetResponseHeader([MarshalAs(UnmanagedType.LPStruct)] nsAString header, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Set the value of a particular response header.

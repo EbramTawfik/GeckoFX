@@ -69,10 +69,9 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member Item </summary>
 		/// <param name='index'> </param>
-		/// <returns>A nsAString</returns>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
+		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString Item(uint index);
+		void Item(uint index, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>Member PushState </summary>
 		/// <param name='aData'> </param>

@@ -46,9 +46,8 @@ namespace Skybound.Gecko
         /// @param [out] aHadCharset whether a charset was explicitly specified.
         /// @return the MIME type specified in the header, in lower-case.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAUTF8String ParseContentType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aTypeHeader, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aCharset, [MarshalAs(UnmanagedType.Bool)] out bool aHadCharset);
+		void ParseContentType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aTypeHeader, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aCharset, [MarshalAs(UnmanagedType.Bool)] out bool aHadCharset, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
 		
 		/// <summary>
         /// Test whether the given URI's handler has the given protocol flags.
@@ -100,9 +99,8 @@ namespace Skybound.Gecko
 		/// <summary>
         /// escape a string with %00-style escaping
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString EscapeString([MarshalAs(UnmanagedType.LPStruct)] nsAString aString, uint aEscapeType);
+		void EscapeString([MarshalAs(UnmanagedType.LPStruct)] nsAString aString, uint aEscapeType, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// %XX-Escape invalid chars in a URL segment.
@@ -113,9 +111,8 @@ namespace Skybound.Gecko
         /// @return the escaped string (the string itself if escaping did not happen)
         ///
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString EscapeURL([MarshalAs(UnmanagedType.LPStruct)] nsAString aStr, uint aFlags);
+		void EscapeURL([MarshalAs(UnmanagedType.LPStruct)] nsAString aStr, uint aFlags, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Expands URL escape sequences
@@ -126,9 +123,8 @@ namespace Skybound.Gecko
         /// unescaped
         /// @return unescaped string
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString UnescapeString([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aStr, uint aFlags);
+		void UnescapeString([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aStr, uint aFlags, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Extract the charset parameter location and value from a content-type

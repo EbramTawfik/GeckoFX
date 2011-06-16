@@ -191,9 +191,8 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Deprecated, but can't remove yet since we don't want to change interfaces.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsAString CreateBlobURL([MarshalAs(UnmanagedType.Interface)] nsIDOMBlob blob);
+		new void CreateBlobURL([MarshalAs(UnmanagedType.Interface)] nsIDOMBlob blob, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>Member RevokeBlobURL </summary>
 		/// <param name='URL'> </param>
@@ -456,9 +455,8 @@ namespace Skybound.Gecko
 		/// <summary>
         /// prompt() should return a null string if cancel is pressed
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString Prompt([MarshalAs(UnmanagedType.LPStruct)] nsAString aMessage, [MarshalAs(UnmanagedType.LPStruct)] nsAString aInitial);
+		void Prompt([MarshalAs(UnmanagedType.LPStruct)] nsAString aMessage, [MarshalAs(UnmanagedType.LPStruct)] nsAString aInitial, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>Member Focus </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -568,16 +566,14 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Ascii base64 data to binary data and vice versa...
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString Atob([MarshalAs(UnmanagedType.LPStruct)] nsAString aAsciiString);
+		void Atob([MarshalAs(UnmanagedType.LPStruct)] nsAString aAsciiString, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>Member Btoa </summary>
 		/// <param name='aBase64Data'> </param>
-		/// <returns>A nsAString</returns>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
+		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString Btoa([MarshalAs(UnmanagedType.LPStruct)] nsAString aBase64Data);
+		void Btoa([MarshalAs(UnmanagedType.LPStruct)] nsAString aBase64Data, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>Member GetFrameElementAttribute </summary>
 		/// <returns>A nsIDOMElement</returns>
@@ -643,10 +639,9 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member CreateObjectURL </summary>
 		/// <param name='blob'> </param>
-		/// <returns>A nsAString</returns>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
+		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString CreateObjectURL([MarshalAs(UnmanagedType.Interface)] nsIDOMBlob blob);
+		void CreateObjectURL([MarshalAs(UnmanagedType.Interface)] nsIDOMBlob blob, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>Member RevokeObjectURL </summary>
 		/// <param name='URL'> </param>

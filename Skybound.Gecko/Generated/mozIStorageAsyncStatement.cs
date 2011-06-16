@@ -155,8 +155,7 @@ namespace Skybound.Gecko
         /// For example, we will convert "foo/bar_baz%20cheese"
         /// into "foo//bar/_baz/%20cheese" (if the escape char is '/').
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsAString EscapeStringForLIKE([MarshalAs(UnmanagedType.LPStruct)] nsAString aValue, char aEscapeChar);
+		new void EscapeStringForLIKE([MarshalAs(UnmanagedType.LPStruct)] nsAString aValue, char aEscapeChar, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 	}
 }

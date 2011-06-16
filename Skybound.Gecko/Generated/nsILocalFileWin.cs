@@ -617,9 +617,8 @@ namespace Skybound.Gecko
         /// the file from which the descriptor is relative.
         /// There is no defined result if this param is null.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsAString GetRelativeDescriptor([MarshalAs(UnmanagedType.Interface)] nsILocalFile fromFile);
+		new void GetRelativeDescriptor([MarshalAs(UnmanagedType.Interface)] nsILocalFile fromFile, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// setRelativeDescriptor
@@ -644,9 +643,8 @@ namespace Skybound.Gecko
         /// @param   aField         The field to look up.
         ///
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetVersionInfoField([MarshalAs(UnmanagedType.LPStr)] string aField);
+		void GetVersionInfoField([MarshalAs(UnmanagedType.LPStr)] string aField, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// The canonical path of the file, which avoids short/long

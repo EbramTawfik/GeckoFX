@@ -70,9 +70,8 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Return the next rewritable URI.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetNextURI();
+		void GetNextURI([MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Go back to the beginning of the attribute list

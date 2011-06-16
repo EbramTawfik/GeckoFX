@@ -43,9 +43,8 @@ namespace Skybound.Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool HasMore();
 		
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetNext();
+		void GetNext([MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 	}
 	
 	/// <summary>nsIUTF8StringEnumerator </summary>
@@ -62,9 +61,8 @@ namespace Skybound.Gecko
 		bool HasMore();
 		
 		/// <summary>Member GetNext </summary>
-		/// <returns>A nsAUTF8String</returns>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
+		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAUTF8String GetNext();
+		void GetNext([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
 	}
 }

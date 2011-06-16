@@ -189,9 +189,8 @@ namespace Skybound.Gecko
         /// @throws NS_ERROR_NOT_AVAILABLE
         /// Thrown when we have never heard of this favicon URL.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetFaviconDataAsDataURL([MarshalAs(UnmanagedType.Interface)] nsIURI aFaviconURI);
+		void GetFaviconDataAsDataURL([MarshalAs(UnmanagedType.Interface)] nsIURI aFaviconURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Retrieves the URI of the favicon for the given page.

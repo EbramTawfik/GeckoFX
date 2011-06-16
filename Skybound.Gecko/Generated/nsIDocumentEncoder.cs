@@ -158,9 +158,8 @@ namespace Skybound.Gecko
         ///
         /// @return The document encoded into a string.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString EncodeToString();
+		void EncodeToString([MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Encode the document into a string. Stores the extra context information
@@ -172,9 +171,8 @@ namespace Skybound.Gecko
         /// @return The document encoded as a string.
         ///
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString EncodeToStringWithContext([MarshalAs(UnmanagedType.LPStruct)] nsAString aContextString, [MarshalAs(UnmanagedType.LPStruct)] nsAString aInfoString);
+		void EncodeToStringWithContext([MarshalAs(UnmanagedType.LPStruct)] nsAString aContextString, [MarshalAs(UnmanagedType.LPStruct)] nsAString aInfoString, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Set the fixup object associated with node persistence.

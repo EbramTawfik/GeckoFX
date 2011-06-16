@@ -63,9 +63,8 @@ namespace Skybound.Gecko
         /// @return       The indexth argument.
         /// @throws       NS_ERROR_INVALID_ARG if aIndex is out of bounds.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsAString GetArgument(int aIndex);
+		new void GetArgument(int aIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Find a command-line flag.
@@ -110,9 +109,8 @@ namespace Skybound.Gecko
         /// @param aFlag The flag name to find and remove.
         /// @param aCaseSensitive Whether to do case-sensitive flag search.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsAString HandleFlagWithParam([MarshalAs(UnmanagedType.LPStruct)] nsAString aFlag, [MarshalAs(UnmanagedType.Bool)] bool aCaseSensitive);
+		new void HandleFlagWithParam([MarshalAs(UnmanagedType.LPStruct)] nsAString aFlag, [MarshalAs(UnmanagedType.Bool)] bool aCaseSensitive, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// The type of command line being processed.

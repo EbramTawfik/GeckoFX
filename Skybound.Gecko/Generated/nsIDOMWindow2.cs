@@ -191,9 +191,8 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Deprecated, but can't remove yet since we don't want to change interfaces.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString CreateBlobURL([MarshalAs(UnmanagedType.Interface)] nsIDOMBlob blob);
+		void CreateBlobURL([MarshalAs(UnmanagedType.Interface)] nsIDOMBlob blob, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>Member RevokeBlobURL </summary>
 		/// <param name='URL'> </param>

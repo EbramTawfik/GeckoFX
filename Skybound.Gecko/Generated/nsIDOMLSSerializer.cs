@@ -79,9 +79,8 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member WriteToString </summary>
 		/// <param name='nodeArg'> </param>
-		/// <returns>A nsAString</returns>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
+		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString WriteToString([MarshalAs(UnmanagedType.Interface)] nsIDOMNode nodeArg);
+		void WriteToString([MarshalAs(UnmanagedType.Interface)] nsIDOMNode nodeArg, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 	}
 }

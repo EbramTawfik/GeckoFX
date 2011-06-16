@@ -157,8 +157,7 @@ namespace Skybound.Gecko
         /// If no protocol helper exists for this scheme, or if it is not
         /// possible to get a description for it.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetApplicationDescription([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aScheme);
+		void GetApplicationDescription([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aScheme, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 	}
 }

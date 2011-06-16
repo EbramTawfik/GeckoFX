@@ -157,8 +157,7 @@ namespace Skybound.Gecko
         ///
         /// @throws NS_ERROR_MALFORMED_URI if URL string is not of the right form.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString ExtractScheme([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String urlString);
+		void ExtractScheme([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String urlString, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 	}
 }

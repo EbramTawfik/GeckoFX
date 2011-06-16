@@ -172,17 +172,15 @@ namespace Skybound.Gecko
         /// Read an 8-bit pascal style string from the stream.
         /// 32-bit length field, followed by length 8-bit chars.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsAString ReadCString();
+		new void ReadCString([MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Read an 16-bit pascal style string from the stream.
         /// 32-bit length field, followed by length PRUnichars.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsAString ReadString();
+		new void ReadString([MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Read an opaque byte array from the stream.

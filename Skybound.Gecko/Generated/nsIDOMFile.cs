@@ -62,9 +62,8 @@ namespace Skybound.Gecko
 		/// <summary>
         /// moz-filedata: protocol handler
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetInternalUrl([MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal);
+		void GetInternalUrl([MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 	}
 	
 	/// <summary>nsIDOMBlob_MOZILLA_2_0_BRANCH </summary>
@@ -119,9 +118,8 @@ namespace Skybound.Gecko
 		/// <summary>
         /// moz-filedata: protocol handler
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsAString GetInternalUrl([MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal);
+		new void GetInternalUrl([MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>Member GetNameAttribute </summary>
 		/// <param name='aName'> </param>
@@ -152,23 +150,20 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member GetAsText </summary>
 		/// <param name='encoding'> </param>
-		/// <returns>A nsAString</returns>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
+		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetAsText([MarshalAs(UnmanagedType.LPStruct)] nsAString encoding);
+		void GetAsText([MarshalAs(UnmanagedType.LPStruct)] nsAString encoding, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// raises(FileException) on retrieval
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetAsDataURL();
+		void GetAsDataURL([MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// raises(FileException) on retrieval
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetAsBinary();
+		void GetAsBinary([MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 	}
 }

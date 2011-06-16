@@ -355,16 +355,14 @@ namespace Skybound.Gecko
 		/// <summary>
         /// The name of the accessible action at the given zero-based index
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetActionName(byte index);
+		void GetActionName(byte index, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// The description of the accessible action at the given zero-based index
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetActionDescription(byte aIndex);
+		void GetActionDescription(byte aIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Perform the accessible action at the given zero-based index

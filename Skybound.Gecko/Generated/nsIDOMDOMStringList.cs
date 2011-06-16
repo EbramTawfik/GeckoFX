@@ -39,9 +39,8 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Corresponds to http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString Item(uint index);
+		void Item(uint index, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetLengthAttribute();

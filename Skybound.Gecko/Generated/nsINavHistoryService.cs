@@ -2470,9 +2470,8 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Gets the original title of the page.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetPageTitle([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
+		void GetPageTitle([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// This is just like markPageAsTyped (in nsIBrowserHistory, also implemented
@@ -2491,9 +2490,8 @@ namespace Skybound.Gecko
         /// URI to retrieve character-set for
         /// @return character-set, empty string if not found
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetCharsetForURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
+		void GetCharsetForURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Sets the character-set for an URI.
@@ -2589,9 +2587,8 @@ namespace Skybound.Gecko
         /// Converts a query into an equivalent string that can be persisted. Inverse
         /// of queryStringToQueries()
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAUTF8String QueriesToQueryString(nsINavHistoryQuery aQueries, uint aQueryCount, [MarshalAs(UnmanagedType.Interface)] nsINavHistoryQueryOptions options);
+		void QueriesToQueryString(nsINavHistoryQuery aQueries, uint aQueryCount, [MarshalAs(UnmanagedType.Interface)] nsINavHistoryQueryOptions options, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
 		
 		/// <summary>
         /// Adds a history observer. If ownsWeak is false, the history service will

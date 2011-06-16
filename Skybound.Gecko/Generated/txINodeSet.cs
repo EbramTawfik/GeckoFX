@@ -49,10 +49,9 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member ItemAsString </summary>
 		/// <param name='index'> </param>
-		/// <returns>A nsAString</returns>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
+		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString ItemAsString(uint index);
+		void ItemAsString(uint index, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>Member GetLengthAttribute </summary>
 		/// <returns>A System.UInt32</returns>

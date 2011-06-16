@@ -95,17 +95,15 @@ namespace Skybound.Gecko
         /// Ask about a feature, return the minimum driver version required for it if its status is
         /// FEATURE_BLOCKED_DRIVER_VERSION, otherwise return an empty string.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetFeatureSuggestedDriverVersion(int aFeature);
+		void GetFeatureSuggestedDriverVersion(int aFeature, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// WebGL info; valid params are "full-renderer", "vendor", "renderer", "version",
         /// "shading_language_version", "extensions".  These return info from
         /// underlying GL impl that's used to implement WebGL.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetWebGLParameter([MarshalAs(UnmanagedType.LPStruct)] nsAString aParam);
+		void GetWebGLParameter([MarshalAs(UnmanagedType.LPStruct)] nsAString aParam, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 	}
 }

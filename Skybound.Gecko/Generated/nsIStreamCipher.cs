@@ -76,9 +76,8 @@ namespace Skybound.Gecko
         /// encoded string.  if false, then the returned value is
         /// binary data.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString Finish([MarshalAs(UnmanagedType.Bool)] bool aASCII);
+		void Finish([MarshalAs(UnmanagedType.Bool)] bool aASCII, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Discard aLen bytes of the keystream.

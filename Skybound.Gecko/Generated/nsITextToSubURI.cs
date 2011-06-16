@@ -65,9 +65,8 @@ namespace Skybound.Gecko
         /// @param aURIFragment the URI (or URI fragment) to unescape
         /// @return Unescaped aURIFragment  converted to unicode
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString UnEscapeURIForUI([MarshalAs(UnmanagedType.LPStruct)] nsAString aCharset, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aURIFragment);
+		void UnEscapeURIForUI([MarshalAs(UnmanagedType.LPStruct)] nsAString aCharset, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aURIFragment, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Unescapes only non ASCII characters in the given URI fragment
@@ -80,8 +79,7 @@ namespace Skybound.Gecko
         /// @throws NS_ERROR_UCONV_NOCONV when there is no decoder for aCharset
         /// or error code of nsIUnicodeDecoder in case of conversion failure
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString UnEscapeNonAsciiURI([MarshalAs(UnmanagedType.LPStruct)] nsAString aCharset, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aURIFragment);
+		void UnEscapeNonAsciiURI([MarshalAs(UnmanagedType.LPStruct)] nsAString aCharset, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aURIFragment, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 	}
 }

@@ -149,9 +149,8 @@ namespace Skybound.Gecko
         /// For example, we will convert "foo/bar_baz%20cheese"
         /// into "foo//bar/_baz/%20cheese" (if the escape char is '/').
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsAString EscapeStringForLIKE([MarshalAs(UnmanagedType.LPStruct)] nsAString aValue, char aEscapeChar);
+		new void EscapeStringForLIKE([MarshalAs(UnmanagedType.LPStruct)] nsAString aValue, char aEscapeChar, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Create a clone of this statement, by initializing a new statement
@@ -172,9 +171,8 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Name of nth parameter, if given
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAUTF8String GetParameterName(uint aParamIndex);
+		void GetParameterName(uint aParamIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
 		
 		/// <summary>
         /// Returns the index of the named parameter.
@@ -196,9 +194,8 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Name of nth column
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAUTF8String GetColumnName(uint aColumnIndex);
+		void GetColumnName(uint aColumnIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
 		
 		/// <summary>
         /// Obtains the index of the column with the specified name.
@@ -218,9 +215,8 @@ namespace Skybound.Gecko
         /// interested in.
         /// @return the declared index type.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAUTF8String GetColumnDecltype(uint aParamIndex);
+		void GetColumnDecltype(uint aParamIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
 		
 		/// <summary>
         /// Reset parameters/statement execution
@@ -309,13 +305,11 @@ namespace Skybound.Gecko
         /// to distinguish it from an explicitly set empty string.
         /// @{
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAUTF8String GetUTF8String(uint aIndex);
+		void GetUTF8String(uint aIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
 		
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetString(uint aIndex);
+		void GetString(uint aIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Retrieve the contents of a column from the current result row as a

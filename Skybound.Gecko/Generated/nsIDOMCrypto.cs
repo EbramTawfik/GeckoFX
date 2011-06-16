@@ -60,30 +60,26 @@ namespace Skybound.Gecko
 		/// <param name='nickname'> </param>
 		/// <param name='cmmfResponse'> </param>
 		/// <param name='doForcedBackup'> </param>
-		/// <returns>A nsAString</returns>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
+		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString ImportUserCertificates([MarshalAs(UnmanagedType.LPStruct)] nsAString nickname, [MarshalAs(UnmanagedType.LPStruct)] nsAString cmmfResponse, [MarshalAs(UnmanagedType.Bool)] bool doForcedBackup);
+		void ImportUserCertificates([MarshalAs(UnmanagedType.LPStruct)] nsAString nickname, [MarshalAs(UnmanagedType.LPStruct)] nsAString cmmfResponse, [MarshalAs(UnmanagedType.Bool)] bool doForcedBackup, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>Member PopChallengeResponse </summary>
 		/// <param name='challenge'> </param>
-		/// <returns>A nsAString</returns>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
+		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString PopChallengeResponse([MarshalAs(UnmanagedType.LPStruct)] nsAString challenge);
+		void PopChallengeResponse([MarshalAs(UnmanagedType.LPStruct)] nsAString challenge, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>Member Random </summary>
 		/// <param name='numBytes'> </param>
-		/// <returns>A nsAString</returns>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
+		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString Random(int numBytes);
+		void Random(int numBytes, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         ///... </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString SignText([MarshalAs(UnmanagedType.LPStruct)] nsAString stringToSign, [MarshalAs(UnmanagedType.LPStruct)] nsAString caOption);
+		void SignText([MarshalAs(UnmanagedType.LPStruct)] nsAString stringToSign, [MarshalAs(UnmanagedType.LPStruct)] nsAString caOption, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>Member Logout </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

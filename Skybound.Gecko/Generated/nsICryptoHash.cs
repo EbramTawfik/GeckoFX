@@ -116,8 +116,7 @@ namespace Skybound.Gecko
         /// is called.  This call resets the object to its
         /// pre-init state.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString Finish([MarshalAs(UnmanagedType.Bool)] bool aASCII);
+		void Finish([MarshalAs(UnmanagedType.Bool)] bool aASCII, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 	}
 }

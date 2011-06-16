@@ -75,10 +75,9 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member GetSelectedLocale </summary>
 		/// <param name='packageName'> </param>
-		/// <returns>A nsAString</returns>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
+		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsAString GetSelectedLocale([MarshalAs(UnmanagedType.LPStruct)] nsAString packageName);
+		new void GetSelectedLocale([MarshalAs(UnmanagedType.LPStruct)] nsAString packageName, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Get the direction of the locale via the intl.uidirection.<locale> pref

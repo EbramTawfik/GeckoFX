@@ -133,9 +133,8 @@ namespace Skybound.Gecko
         /// @returns the text result of processing the template
         ///
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GenerateMicrosummary([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aPageContent);
+		void GenerateMicrosummary([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aPageContent, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Calculate the interval until the microsummary should be updated for

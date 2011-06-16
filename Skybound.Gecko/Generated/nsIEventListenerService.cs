@@ -60,9 +60,8 @@ namespace Skybound.Gecko
         /// Returns null if serialization isn't possible
         /// (for example with C++ listeners).
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString ToSource();
+		void ToSource([MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// If jsdIDebuggerService is active and the listener is implemented in JS,

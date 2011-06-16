@@ -147,59 +147,51 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member In2OutOneDOMString </summary>
 		/// <param name='input'> </param>
-		/// <returns>A nsAString</returns>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
+		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString In2OutOneDOMString([MarshalAs(UnmanagedType.LPStruct)] nsAString input);
+		void In2OutOneDOMString([MarshalAs(UnmanagedType.LPStruct)] nsAString input, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>Member EchoIn2OutOneDOMString </summary>
 		/// <param name='input'> </param>
-		/// <returns>A nsAString</returns>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
+		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString EchoIn2OutOneDOMString([MarshalAs(UnmanagedType.LPStruct)] nsAString input);
+		void EchoIn2OutOneDOMString([MarshalAs(UnmanagedType.LPStruct)] nsAString input, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>Member In2OutOneAString </summary>
 		/// <param name='input'> </param>
-		/// <returns>A nsAString</returns>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
+		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString In2OutOneAString([MarshalAs(UnmanagedType.LPStruct)] nsAString input);
+		void In2OutOneAString([MarshalAs(UnmanagedType.LPStruct)] nsAString input, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>Member EchoIn2OutOneAString </summary>
 		/// <param name='input'> </param>
-		/// <returns>A nsAString</returns>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
+		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString EchoIn2OutOneAString([MarshalAs(UnmanagedType.LPStruct)] nsAString input);
+		void EchoIn2OutOneAString([MarshalAs(UnmanagedType.LPStruct)] nsAString input, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>Member In2OutOneUTF8String </summary>
 		/// <param name='input'> </param>
-		/// <returns>A nsAUTF8String</returns>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
+		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAUTF8String In2OutOneUTF8String([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String input);
+		void In2OutOneUTF8String([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String input, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
 		
 		/// <summary>Member EchoIn2OutOneUTF8String </summary>
 		/// <param name='input'> </param>
-		/// <returns>A nsAUTF8String</returns>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
+		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAUTF8String EchoIn2OutOneUTF8String([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String input);
+		void EchoIn2OutOneUTF8String([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String input, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
 		
 		/// <summary>Member In2OutOneCString </summary>
 		/// <param name='input'> </param>
-		/// <returns>A nsAString</returns>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
+		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString In2OutOneCString([MarshalAs(UnmanagedType.LPStruct)] nsAString input);
+		void In2OutOneCString([MarshalAs(UnmanagedType.LPStruct)] nsAString input, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>Member EchoIn2OutOneCString </summary>
 		/// <param name='input'> </param>
-		/// <returns>A nsAString</returns>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
+		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString EchoIn2OutOneCString([MarshalAs(UnmanagedType.LPStruct)] nsAString input);
+		void EchoIn2OutOneCString([MarshalAs(UnmanagedType.LPStruct)] nsAString input, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>Member SimpleCallNoEcho </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

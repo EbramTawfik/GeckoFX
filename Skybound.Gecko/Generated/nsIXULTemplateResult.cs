@@ -111,9 +111,8 @@ namespace Skybound.Gecko
         ///
         /// @return the value for the variable or a null string if it has no value
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetBindingFor([MarshalAs(UnmanagedType.Interface)] nsIAtom aVar);
+		void GetBindingFor([MarshalAs(UnmanagedType.Interface)] nsIAtom aVar, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Get an object value for a variable such as ?name for this result.

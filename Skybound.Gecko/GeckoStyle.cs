@@ -83,7 +83,9 @@ namespace Skybound.Gecko
 		public string this[int index]
 		{
 			get {
-				return StyleDelcaration.Item((uint)index).ToString();				
+				var retval = new nsAString();
+				StyleDelcaration.Item((uint)index, retval);
+				return retval.ToString();
 			}
 		}
 		
@@ -92,7 +94,9 @@ namespace Skybound.Gecko
 		/// </summary>		
 		public string GetPropertyValue(string propertyName)
 		{
-			return StyleDelcaration.GetPropertyValue(new nsAString(propertyName)).ToString();					
+			var retval = new nsAString();
+			StyleDelcaration.GetPropertyValue(new nsAString(propertyName), retval);
+			return retval.ToString();
 		}
 		
 		/// <summary>
@@ -525,8 +529,9 @@ namespace Skybound.Gecko
 			{
 				if (index < 0 || index >= Count)
 					throw new ArgumentOutOfRangeException("index");
-
-				return MediaList.Item((uint)index).ToString();				
+				var retval = new nsAString();
+				MediaList.Item((uint)index, retval);
+				return retval.ToString();
 			}
 		}
 		

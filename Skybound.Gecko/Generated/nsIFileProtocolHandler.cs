@@ -123,9 +123,8 @@ namespace Skybound.Gecko
         /// NOTE: Callers should use getURLSpecFromActualFile or
         /// getURLSpecFromDirFile if possible, for performance reasons.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAUTF8String GetURLSpecFromFile([MarshalAs(UnmanagedType.Interface)] nsIFile file);
+		void GetURLSpecFromFile([MarshalAs(UnmanagedType.Interface)] nsIFile file, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
 		
 		/// <summary>
         /// Converts the nsIFile to the corresponding URL string. Should
@@ -133,9 +132,8 @@ namespace Skybound.Gecko
         /// identical to getURLSpecFromFile, but is usually more efficient.
         /// WARNING: This restriction may not be enforced at runtime!
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAUTF8String GetURLSpecFromActualFile([MarshalAs(UnmanagedType.Interface)] nsIFile file);
+		void GetURLSpecFromActualFile([MarshalAs(UnmanagedType.Interface)] nsIFile file, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
 		
 		/// <summary>
         /// Converts the nsIFile to the corresponding URL string. Should
@@ -143,9 +141,8 @@ namespace Skybound.Gecko
         /// identical to getURLSpecFromFile, but is usually more efficient.
         /// WARNING: This restriction may not be enforced at runtime!
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAUTF8String GetURLSpecFromDir([MarshalAs(UnmanagedType.Interface)] nsIFile file);
+		void GetURLSpecFromDir([MarshalAs(UnmanagedType.Interface)] nsIFile file, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
 		
 		/// <summary>
         /// Converts the URL string into the corresponding nsIFile if possible.

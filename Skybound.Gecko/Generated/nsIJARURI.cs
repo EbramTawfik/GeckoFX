@@ -241,9 +241,8 @@ namespace Skybound.Gecko
         ///
         /// NOTE: some implementations may have no concept of a relative URI.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsAUTF8String Resolve([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String relativePath);
+		new void Resolve([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String relativePath, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
 		
 		/// <summary>
         /// The URI spec with an ASCII compatible encoding.  Host portion follows
@@ -454,9 +453,8 @@ namespace Skybound.Gecko
         /// 8) ftp://foo.com/c.htm#i   ftp://foo.com/c.htm       ftp://foo.com/c.htm
         /// 9) file:///a/b/c.html      file:///d/e/c.html        file:///
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsAUTF8String GetCommonBaseSpec([MarshalAs(UnmanagedType.Interface)] nsIURI aURIToCompare);
+		new void GetCommonBaseSpec([MarshalAs(UnmanagedType.Interface)] nsIURI aURIToCompare, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
 		
 		/// <summary>
         /// This method tries to create a string which specifies the location of the
@@ -472,9 +470,8 @@ namespace Skybound.Gecko
         /// 4) http://foo.com/         http://foo.com/a.htm#b    a.html#b
         /// 5) http://foo.com/a/b/     http://foo.com/c          ../../c
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsAUTF8String GetRelativeSpec([MarshalAs(UnmanagedType.Interface)] nsIURI aURIToCompare);
+		new void GetRelativeSpec([MarshalAs(UnmanagedType.Interface)] nsIURI aURIToCompare, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
 		
 		/// <summary>
         /// Returns the root URI (the one for the actual JAR file) for this JAR

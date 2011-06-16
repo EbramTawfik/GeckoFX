@@ -120,9 +120,8 @@ namespace Skybound.Gecko
         /// @param propertyName Retrieve the computed style value for this property name,
         /// for example "border-bottom".
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetComputedStyleValue([MarshalAs(UnmanagedType.LPStruct)] nsAString pseudoElt, [MarshalAs(UnmanagedType.LPStruct)] nsAString propertyName);
+		void GetComputedStyleValue([MarshalAs(UnmanagedType.LPStruct)] nsAString pseudoElt, [MarshalAs(UnmanagedType.LPStruct)] nsAString propertyName, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// The method is similar to getComputedStyleValue() excepting that this one

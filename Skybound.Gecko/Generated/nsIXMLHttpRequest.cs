@@ -431,9 +431,8 @@ namespace Skybound.Gecko
         /// NULL if the response has not yet been received or the
         /// header does not exist in the response.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetResponseHeader([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String header);
+		void GetResponseHeader([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String header, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Native (non-script) method to initialize a request. Note that

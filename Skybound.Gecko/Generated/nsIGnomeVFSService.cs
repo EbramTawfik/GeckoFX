@@ -86,9 +86,8 @@ namespace Skybound.Gecko
 		/// <summary>
         ///Obtain the MIME type registered for an extension.  The extension
         ///     should not include a leading dot. </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAUTF8String GetMimeTypeFromExtension([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String extension);
+		void GetMimeTypeFromExtension([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String extension, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
 		
 		/// <summary>
         ///Obtain the preferred application for opening a given MIME type </summary>
@@ -98,9 +97,8 @@ namespace Skybound.Gecko
 		
 		/// <summary>
         ///Obtain a description for the given MIME type </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAUTF8String GetDescriptionForMimeType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String mimeType);
+		void GetDescriptionForMimeType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String mimeType, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
 		
 		/// <summary>
         ///Open the given URI in the default application </summary>

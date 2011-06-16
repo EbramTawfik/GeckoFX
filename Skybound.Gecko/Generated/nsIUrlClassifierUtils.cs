@@ -44,8 +44,7 @@ namespace Skybound.Gecko
         ///
         /// @returns String containing the canonicalized URI.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetKeyForURI([MarshalAs(UnmanagedType.Interface)] nsIURI uri);
+		void GetKeyForURI([MarshalAs(UnmanagedType.Interface)] nsIURI uri, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 	}
 }

@@ -589,9 +589,8 @@ namespace Skybound.Gecko
         ///
         /// @throw NS_ERROR_INVALID_ARG if the index is out of range.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetParameter(uint parameterIndex);
+		void GetParameter(uint parameterIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Checks to see if a parameter exists in the command line

@@ -62,8 +62,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Gets token to be logged in name.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetTokenName();
+		void GetTokenName([MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 	}
 }

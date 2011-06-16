@@ -385,10 +385,9 @@ namespace Skybound.Gecko
 		void GetHashAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aHash);
 		
 		/// <summary>Member ToString </summary>
-		/// <returns>A nsAUTF8String</returns>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
+		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAUTF8String ToString();
+		void ToString([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
 	}
 	
 	/// <summary>nsIWorkerNavigator </summary>

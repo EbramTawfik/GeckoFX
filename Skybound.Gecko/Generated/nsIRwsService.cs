@@ -79,9 +79,8 @@ namespace Skybound.Gecko
         /// @return            Either the unqualified title of a program or
         /// the name of the WPS class' default viewer/player.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString HandlerFromExtension([MarshalAs(UnmanagedType.LPStr)] string aExt, out uint aHandle);
+		void HandlerFromExtension([MarshalAs(UnmanagedType.LPStr)] string aExt, out uint aHandle, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Returns the name of the default handler for a specific file.
@@ -95,9 +94,8 @@ namespace Skybound.Gecko
         /// @return            Either the unqualified title of a program or
         /// the name of the WPS class' default viewer/player.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString HandlerFromPath([MarshalAs(UnmanagedType.LPStr)] string aPath, out uint aHandle);
+		void HandlerFromPath([MarshalAs(UnmanagedType.LPStr)] string aPath, out uint aHandle, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Returns the unqualified title of the specified object.
@@ -105,9 +103,8 @@ namespace Skybound.Gecko
         /// @param aHandle     A WPS object handle.
         /// @return            The title of this object.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString TitleFromHandle(uint aHandle);
+		void TitleFromHandle(uint aHandle, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Displays the WPS object menu for the specified file or abstract object.

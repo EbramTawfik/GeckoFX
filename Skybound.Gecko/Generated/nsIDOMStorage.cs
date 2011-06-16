@@ -59,9 +59,8 @@ namespace Skybound.Gecko
         /// @returns the key at index
         /// @throws INDEX_SIZE_ERR if there is no key at that index
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString Key(uint index);
+		void Key(uint index, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Retrieve an item with a given key
@@ -69,9 +68,8 @@ namespace Skybound.Gecko
         /// @param key key to retrieve
         /// @returns found data or empty string if the key was not found
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetItem([MarshalAs(UnmanagedType.LPStruct)] nsAString key);
+		void GetItem([MarshalAs(UnmanagedType.LPStruct)] nsAString key, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Assign a value with a key. If the key does not exist already, a new
