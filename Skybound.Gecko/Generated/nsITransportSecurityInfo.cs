@@ -41,13 +41,13 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member GetShortSecurityDescriptionAttribute </summary>
 		/// <returns>A System.String</returns>
-		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")]
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string GetShortSecurityDescriptionAttribute();
 		
 		/// <summary>Member GetErrorMessageAttribute </summary>
 		/// <returns>A System.String</returns>
-		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")]
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string GetErrorMessageAttribute();
 	}

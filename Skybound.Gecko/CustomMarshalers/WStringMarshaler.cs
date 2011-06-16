@@ -4,15 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Runtime.InteropServices;
 
-namespace Skybound.Gecko.XpCom
+namespace Skybound.Gecko.CustomMarshalers
 {
 	/// <summary>
 	/// Custom Marshaler for xpcom/xulrunner native type wstring wstring
 	/// 
 	/// To use managed type string as parameter and apply attribute:
-	/// [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string
+	/// [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")] string
 	/// or for string return types use:
-	/// [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")]
+	/// [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")]
 	/// </summary>
 	public class WStringMarshaler : ICustomMarshaler
 	{

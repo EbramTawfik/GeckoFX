@@ -239,7 +239,7 @@ namespace Skybound.Gecko
 					char p13, 
 					System.IntPtr p14, 
 					[MarshalAs(UnmanagedType.LPStr)] string p15, 
-					[MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string p16);
+					[MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")] string p16);
 		
 		/// <summary>Member SendInOutManyTypes </summary>
 		/// <param name='p1'> </param>
@@ -275,7 +275,7 @@ namespace Skybound.Gecko
 					ref char p13, 
 					ref System.IntPtr p14, 
 					[MarshalAs(UnmanagedType.LPStr)] ref string p15, 
-					[MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] ref string p16);
+					[MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")] ref string p16);
 		
 		/// <summary>Member MethodWithNative </summary>
 		/// <param name='p1'> </param>
@@ -493,13 +493,13 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member GetWStringCopied </summary>
 		/// <returns>A System.String</returns>
-		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")]
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string GetWStringCopied();
 		
 		/// <summary>Member GetWStringShared </summary>
 		/// <returns>A System.String</returns>
-		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")]
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string GetWStringShared();
 	}

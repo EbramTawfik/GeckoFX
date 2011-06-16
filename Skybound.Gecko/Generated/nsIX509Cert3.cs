@@ -55,7 +55,7 @@ namespace Skybound.Gecko
         /// @param length The number of strings in the returned array.
         /// @return An array of email addresses.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler", SizeParamIndex=0)]
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler", SizeParamIndex=0)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new string GetEmailAddresses(out uint length);
 		
@@ -196,7 +196,7 @@ namespace Skybound.Gecko
         /// @param usages The array of human readable usages.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetUsagesArray([MarshalAs(UnmanagedType.Bool)] bool ignoreOcsp, out uint verified, out uint count, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler", SizeParamIndex=2)] out string usages);
+		new void GetUsagesArray([MarshalAs(UnmanagedType.Bool)] bool ignoreOcsp, out uint verified, out uint count, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler", SizeParamIndex=2)] out string usages);
 		
 		/// <summary>
         /// Obtain a single comma separated human readable string describing
@@ -292,7 +292,7 @@ namespace Skybound.Gecko
         /// the certificate is stored on (may be empty).
         /// On failure the function throws/returns an error.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler", SizeParamIndex=0)]
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler", SizeParamIndex=0)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string GetAllTokenNames(out uint length);
 	}
@@ -326,7 +326,7 @@ namespace Skybound.Gecko
         /// @param usages The array of human readable usages.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetUsagesArrayResult(out uint verified, out uint count, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler", SizeParamIndex=1)] out string usages);
+		void GetUsagesArrayResult(out uint verified, out uint count, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler", SizeParamIndex=1)] out string usages);
 	}
 	
 	/// <summary>nsICertVerificationListener </summary>

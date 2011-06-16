@@ -51,7 +51,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDocument ParseFromString([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string str, [MarshalAs(UnmanagedType.LPStr)] string contentType);
+		nsIDOMDocument ParseFromString([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")] string str, [MarshalAs(UnmanagedType.LPStr)] string contentType);
 		
 		/// <summary>
         /// The buffer is parsed into a DOM document.

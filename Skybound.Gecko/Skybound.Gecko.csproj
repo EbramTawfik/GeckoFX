@@ -33,6 +33,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release_Windows|x86'">
     <PlatformTarget>x86</PlatformTarget>
@@ -1431,7 +1432,7 @@
     <Compile Include="BaseTypes\nscolor.cs" />
     <Compile Include="BaseTypes\nsConstRect.cs" />
     <Compile Include="BaseTypes\nsIntRect.cs" />
-    <Compile Include="Xpcom\WStringMarshaler.cs" />
+    <Compile Include="CustomMarshalers\WStringMarshaler.cs" />
     <Compile Include="GeckoDom.cs" />
     <Compile Include="GeckoDomEvents.cs" />
     <Compile Include="GeckoHistoryEntry.cs" />

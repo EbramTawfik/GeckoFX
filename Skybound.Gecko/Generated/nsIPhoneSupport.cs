@@ -44,7 +44,7 @@ namespace Skybound.Gecko
         /// before dialing
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MakeCall([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string telephoneNumber, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string telephoneDescription, [MarshalAs(UnmanagedType.Bool)] bool aPrompt);
+		void MakeCall([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")] string telephoneNumber, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")] string telephoneDescription, [MarshalAs(UnmanagedType.Bool)] bool aPrompt);
 		
 		/// <summary>
         /// This method displays a UI to switch to (or launch) a different task

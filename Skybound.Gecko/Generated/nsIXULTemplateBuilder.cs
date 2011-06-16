@@ -403,14 +403,14 @@ namespace Skybound.Gecko
         /// Called when a header is clicked.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnCycleHeader([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string colID, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement elt);
+		void OnCycleHeader([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")] string colID, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement elt);
 		
 		/// <summary>
         /// Called when a cell in a non-selectable cycling column (e.g.
         /// unread/flag/etc.) is clicked.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnCycleCell(int row, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string colID);
+		void OnCycleCell(int row, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")] string colID);
 		
 		/// <summary>
         /// Called when selection in the tree changes
@@ -425,19 +425,19 @@ namespace Skybound.Gecko
         /// will be called with the "delete" string.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnPerformAction([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string action);
+		void OnPerformAction([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")] string action);
 		
 		/// <summary>
         /// A command API that can be used to invoke commands on a specific row.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnPerformActionOnRow([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string action, int row);
+		void OnPerformActionOnRow([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")] string action, int row);
 		
 		/// <summary>
         /// A command API that can be used to invoke commands on a specific cell.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnPerformActionOnCell([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string action, int row, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string colID);
+		void OnPerformActionOnCell([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")] string action, int row, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")] string colID);
 	}
 	
 	/// <summary>nsIXULTreeBuilder </summary>

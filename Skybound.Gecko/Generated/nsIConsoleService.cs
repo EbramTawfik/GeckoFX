@@ -43,7 +43,7 @@ namespace Skybound.Gecko
         /// Convenience method for logging simple messages.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void LogStringMessage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string message);
+		void LogStringMessage([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")] string message);
 		
 		/// <summary>
         /// Get an array of all the messages logged so far.  If no messages

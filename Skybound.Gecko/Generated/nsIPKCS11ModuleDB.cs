@@ -51,14 +51,14 @@ namespace Skybound.Gecko
 		/// <returns>A nsIPKCS11Module</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIPKCS11Module FindModuleByName([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string name);
+		nsIPKCS11Module FindModuleByName([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")] string name);
 		
 		/// <summary>Member FindSlotByName </summary>
 		/// <param name='name'> </param>
 		/// <returns>A nsIPKCS11Slot</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIPKCS11Slot FindSlotByName([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string name);
+		nsIPKCS11Slot FindSlotByName([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")] string name);
 		
 		/// <summary>Member ListModules </summary>
 		/// <returns>A nsIEnumerator</returns>
