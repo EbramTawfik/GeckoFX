@@ -2,6 +2,10 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v2.0.1-0.5 ==
+
+1. Rename namespace Skybound.Gecko.XpCom to Skybound.Gecko.CustomMarshalers to prevent VB name clash.
+
 == v2.0.1-0.4 ==
 
 1. bool types, in Generated Files, now have the MarshalAs(UnmanagedType.Bool) attribute applied.
