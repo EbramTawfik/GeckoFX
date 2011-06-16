@@ -128,7 +128,7 @@ namespace Skybound.Gecko
         /// from the plain text document.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTitle([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string text);
+		void SetTitle([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")] string text);
 		
 		/// <summary>
         /// @param value: true to use an HTML header and footer on the document,

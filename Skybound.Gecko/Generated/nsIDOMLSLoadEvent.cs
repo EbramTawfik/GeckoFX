@@ -155,9 +155,8 @@ namespace Skybound.Gecko
 		nsIDOMDocument GetNewDocumentAttribute();
 		
 		/// <summary>Member GetInputAttribute </summary>
-		/// <returns>A nsIDOMLSInput</returns>
-		[return: MarshalAs(UnmanagedType.Interface)]
+		/// <returns>A System.IntPtr</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMLSInput GetInputAttribute();
+		System.IntPtr GetInputAttribute();
 	}
 }

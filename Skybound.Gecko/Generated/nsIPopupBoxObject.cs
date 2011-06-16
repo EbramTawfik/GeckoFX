@@ -38,7 +38,7 @@ namespace Skybound.Gecko
         /// This method is deprecated. Use openPopup or openPopupAtScreen instead.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ShowPopup([MarshalAs(UnmanagedType.Interface)] nsIDOMElement srcContent, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement popupContent, int xpos, int ypos, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string popupType, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string anchorAlignment, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string popupAlignment);
+		void ShowPopup([MarshalAs(UnmanagedType.Interface)] nsIDOMElement srcContent, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement popupContent, int xpos, int ypos, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")] string popupType, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")] string anchorAlignment, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")] string popupAlignment);
 		
 		/// <summary>
         /// Hide the popup if it is open.

@@ -109,7 +109,7 @@ namespace Skybound.Gecko
         /// @param aHostsWithPortsArray The array of host:port entries returned
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetAllOverrideHostsWithPorts(out uint aCount, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler", SizeParamIndex=0)] out string aHostsWithPortsArray);
+		void GetAllOverrideHostsWithPorts(out uint aCount, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler", SizeParamIndex=0)] out string aHostsWithPortsArray);
 		
 		/// <summary>
         /// Is the given cert used in rules?

@@ -41,7 +41,7 @@ namespace Skybound.Gecko
         /// @param  aResult    returns array of names
         /// @return void
         /// </summary>
-		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler", SizeParamIndex=0)]
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler", SizeParamIndex=0)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string EnumerateAllFonts(out uint aCount);
 		
@@ -55,7 +55,7 @@ namespace Skybound.Gecko
         /// @param  aResult    returns array of names
         /// @return void
         /// </summary>
-		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler", SizeParamIndex=2)]
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler", SizeParamIndex=2)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string EnumerateFonts([MarshalAs(UnmanagedType.LPStr)] string aLangGroup, [MarshalAs(UnmanagedType.LPStr)] string aGeneric, out uint aCount);
 		
@@ -72,7 +72,7 @@ namespace Skybound.Gecko
         /// @param  aGeneric CSS generic font
         /// @return suggested default font for this language group and generic family
         /// </summary>
-		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")]
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string GetDefaultFont([MarshalAs(UnmanagedType.LPStr)] string aLangGroup, [MarshalAs(UnmanagedType.LPStr)] string aGeneric);
 		
@@ -90,8 +90,8 @@ namespace Skybound.Gecko
         /// @return the standard family name on the system, if given name does not
         /// exist, returns empty string
         /// </summary>
-		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")]
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string GetStandardFamilyName([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aName);
+		string GetStandardFamilyName([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")] string aName);
 	}
 }

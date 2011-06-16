@@ -68,7 +68,7 @@ namespace Skybound.Gecko
 		/// <returns>A nsIDOMDocument</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDocument Parse([MarshalAs(UnmanagedType.Interface)] nsIDOMLSInput input);
+		nsIDOMDocument Parse(System.IntPtr input);
 		
 		/// <summary>Member ParseURI </summary>
 		/// <param name='uri'> </param>
@@ -82,7 +82,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMNode ParseWithContext([MarshalAs(UnmanagedType.Interface)] nsIDOMLSInput input, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode contextArg, ushort action);
+		nsIDOMNode ParseWithContext(System.IntPtr input, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode contextArg, ushort action);
 		
 		/// <summary>Member Abort </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

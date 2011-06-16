@@ -48,10 +48,9 @@ namespace Skybound.Gecko
 		nsIDOMLSSerializer CreateLSSerializer();
 		
 		/// <summary>Member CreateLSInput </summary>
-		/// <returns>A nsIDOMLSInput</returns>
-		[return: MarshalAs(UnmanagedType.Interface)]
+		/// <returns>A System.IntPtr</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMLSInput CreateLSInput();
+		System.IntPtr CreateLSInput();
 		
 		/// <summary>Member CreateLSOutput </summary>
 		/// <returns>A nsIDOMLSOutput</returns>

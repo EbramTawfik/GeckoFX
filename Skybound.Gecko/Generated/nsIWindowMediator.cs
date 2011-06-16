@@ -45,7 +45,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISimpleEnumerator GetEnumerator([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aWindowType);
+		nsISimpleEnumerator GetEnumerator([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")] string aWindowType);
 		
 		/// <summary>
         ///Identical to getEnumerator except:
@@ -53,7 +53,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISimpleEnumerator GetXULWindowEnumerator([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aWindowType);
+		nsISimpleEnumerator GetXULWindowEnumerator([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")] string aWindowType);
 		
 		/// <summary>
         ///Return an enumerator which iterates over all windows of type aWindowType
@@ -70,7 +70,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISimpleEnumerator GetZOrderDOMWindowEnumerator([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aWindowType, [MarshalAs(UnmanagedType.Bool)] bool aFrontToBack);
+		nsISimpleEnumerator GetZOrderDOMWindowEnumerator([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")] string aWindowType, [MarshalAs(UnmanagedType.Bool)] bool aFrontToBack);
 		
 		/// <summary>
         ///Identical to getZOrderDOMWindowEnumerator except:
@@ -78,7 +78,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISimpleEnumerator GetZOrderXULWindowEnumerator([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aWindowType, [MarshalAs(UnmanagedType.Bool)] bool aFrontToBack);
+		nsISimpleEnumerator GetZOrderXULWindowEnumerator([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")] string aWindowType, [MarshalAs(UnmanagedType.Bool)] bool aFrontToBack);
 		
 		/// <summary>
         ///This is a shortcut for simply fetching the first window in
@@ -91,7 +91,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMWindowInternal GetMostRecentWindow([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aWindowType);
+		nsIDOMWindowInternal GetMostRecentWindow([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")] string aWindowType);
 		
 		/// <summary>
         ///Add the window to the list of known windows. Listeners (see
@@ -125,7 +125,7 @@ namespace Skybound.Gecko
         /// @param inTitle the window's new title
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UpdateWindowTitle([MarshalAs(UnmanagedType.Interface)] nsIXULWindow aWindow, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string inTitle);
+		void UpdateWindowTitle([MarshalAs(UnmanagedType.Interface)] nsIXULWindow aWindow, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")] string inTitle);
 		
 		/// <summary>
         ///A window wants to be moved in z-order. Calculate whether and how

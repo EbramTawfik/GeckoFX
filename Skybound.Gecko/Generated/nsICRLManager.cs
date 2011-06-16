@@ -40,7 +40,7 @@ namespace Skybound.Gecko
         /// Import a CRL into the certificate database.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ImportCrl(System.IntPtr data, uint length, [MarshalAs(UnmanagedType.Interface)] nsIURI uri, uint type, [MarshalAs(UnmanagedType.Bool)] bool doSilentDownload, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string crlKey);
+		void ImportCrl(System.IntPtr data, uint length, [MarshalAs(UnmanagedType.Interface)] nsIURI uri, uint type, [MarshalAs(UnmanagedType.Bool)] bool doSilentDownload, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")] string crlKey);
 		
 		/// <summary>
         /// update crl from url
@@ -49,7 +49,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool UpdateCRLFromURL([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string url, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string key);
+		bool UpdateCRLFromURL([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")] string url, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")] string key);
 		
 		/// <summary>
         /// getCrls
@@ -82,7 +82,7 @@ namespace Skybound.Gecko
 		/// <param name='autoUpdateType'> </param>
 		/// <param name='noOfDays'> </param>
 		/// <returns>A System.String</returns>
-		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")]
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string ComputeNextAutoUpdateTime([MarshalAs(UnmanagedType.Interface)] nsICRLInfo info, uint autoUpdateType, double noOfDays);
 	}

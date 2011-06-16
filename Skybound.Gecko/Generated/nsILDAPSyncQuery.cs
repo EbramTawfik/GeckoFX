@@ -45,7 +45,7 @@ namespace Skybound.Gecko
         /// (nsILDAPConnection.idl has symbolic constants)
         /// @return results
         /// </summary>
-		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")]
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string GetQueryResults(System.IntPtr aServerURL, uint aProtocolVersion);
 	}

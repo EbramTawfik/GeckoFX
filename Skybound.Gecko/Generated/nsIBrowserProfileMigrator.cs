@@ -41,7 +41,7 @@ namespace Skybound.Gecko
         /// @param aProfile profile to migrate from, if there is more than one.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Migrate(ushort aItems, [MarshalAs(UnmanagedType.Interface)] nsIProfileStartup aStartup, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aProfile);
+		void Migrate(ushort aItems, [MarshalAs(UnmanagedType.Interface)] nsIProfileStartup aStartup, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")] string aProfile);
 		
 		/// <summary>
         /// A bit field containing profile items that this migrator
@@ -52,7 +52,7 @@ namespace Skybound.Gecko
         /// @returns bit field containing profile items (see above)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetMigrateData([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string aProfile, [MarshalAs(UnmanagedType.Bool)] bool aDoingStartup);
+		uint GetMigrateData([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")] string aProfile, [MarshalAs(UnmanagedType.Bool)] bool aDoingStartup);
 		
 		/// <summary>
         /// Whether or not there is any data that can be imported from this

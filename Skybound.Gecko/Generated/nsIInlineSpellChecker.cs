@@ -107,6 +107,6 @@ namespace Skybound.Gecko
 		/// <param name='aWordsToIgnore'> </param>
 		/// <param name='aCount'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void IgnoreWords([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler", SizeParamIndex=1)] string aWordsToIgnore, uint aCount);
+		void IgnoreWords([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler", SizeParamIndex=1)] string aWordsToIgnore, uint aCount);
 	}
 }

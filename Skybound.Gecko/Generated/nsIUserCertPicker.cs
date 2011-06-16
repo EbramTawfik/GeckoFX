@@ -39,6 +39,6 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIX509Cert PickByUsage([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor ctx, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string selectedNickname, int certUsage, [MarshalAs(UnmanagedType.Bool)] bool allowInvalid, [MarshalAs(UnmanagedType.Bool)] bool allowDuplicateNicknames, [MarshalAs(UnmanagedType.Bool)] out bool canceled);
+		nsIX509Cert PickByUsage([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor ctx, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")] string selectedNickname, int certUsage, [MarshalAs(UnmanagedType.Bool)] bool allowInvalid, [MarshalAs(UnmanagedType.Bool)] bool allowDuplicateNicknames, [MarshalAs(UnmanagedType.Bool)] out bool canceled);
 	}
 }

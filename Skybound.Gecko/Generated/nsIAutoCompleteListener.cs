@@ -46,7 +46,7 @@ namespace Skybound.Gecko
 		/// <summary>
         ///onStatus is called by the autocomplete session during the search </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnStatus([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.XpCom.WStringMarshaler")] string statusText);
+		void OnStatus([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")] string statusText);
 		
 		/// <summary>
         ///onAutoComplete is called by the autocomplete session when the search is done or over </summary>

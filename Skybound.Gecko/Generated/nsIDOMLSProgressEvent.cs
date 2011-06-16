@@ -149,10 +149,9 @@ namespace Skybound.Gecko
 		new void InitEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString eventTypeArg, [MarshalAs(UnmanagedType.Bool)] bool canBubbleArg, [MarshalAs(UnmanagedType.Bool)] bool cancelableArg);
 		
 		/// <summary>Member GetInputAttribute </summary>
-		/// <returns>A nsIDOMLSInput</returns>
-		[return: MarshalAs(UnmanagedType.Interface)]
+		/// <returns>A System.IntPtr</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMLSInput GetInputAttribute();
+		System.IntPtr GetInputAttribute();
 		
 		/// <summary>Member GetPositionAttribute </summary>
 		/// <returns>A System.UInt32</returns>
