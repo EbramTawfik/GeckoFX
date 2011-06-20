@@ -1445,7 +1445,6 @@
     <Compile Include="Generated\xpctest_multiple.cs" />
     <Compile Include="Generated\xpctest_out.cs" />
     <Compile Include="Generated\xptiITestInterface.cs" />
-    <Compile Include="nsIAlertsService.cs" />
     <Compile Include="BaseTypes\nscolor.cs" />
     <Compile Include="BaseTypes\nsConstRect.cs" />
     <Compile Include="BaseTypes\nsIntRect.cs" />
