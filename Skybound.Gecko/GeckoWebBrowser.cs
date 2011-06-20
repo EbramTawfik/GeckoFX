@@ -477,57 +477,52 @@ namespace Skybound.Gecko
 		{
 			if (string.IsNullOrEmpty(url))
 				return false;
-			
-			if (IsHandleCreated)
+
+			if (!IsHandleCreated)
+				throw new InvalidOperationException("Cannot call Navigate() before the window handle is created.");			
+			if (IsBusy)
+				this.Stop();
+				
+			// WebNav.LoadURI throws an exception if we try to open a file that doesn't exist...
+			Uri created;
+			if (Uri.TryCreate(url, UriKind.RelativeOrAbsolute, out created) && created.IsAbsoluteUri && created.IsFile)
 			{
-				if (IsBusy)
-					this.Stop();
+				if (!File.Exists(created.LocalPath) && !Directory.Exists(created.LocalPath))
+					return false;
+			}
 				
-				// WebNav.LoadURI throws an exception if we try to open a file that doesn't exist...
-				Uri created;
-				if (Uri.TryCreate(url, UriKind.RelativeOrAbsolute, out created) && created.IsAbsoluteUri && created.IsFile)
-				{
-					if (!File.Exists(created.LocalPath) && !Directory.Exists(created.LocalPath))
-						return false;
-				}
+			nsIInputStream postDataStream = null, headersStream = null;
 				
-				nsIInputStream postDataStream = null, headersStream = null;
+			if (postData != null)
+			{
+				// post data must start with CRLF.  actually, you can put additional headers before this, but there's no
+				// point because this method has an "additionalHeaders" argument.  so we might as well insert it automatically
+				Array.Resize(ref postData, postData.Length + 2);
+				Array.Copy(postData, 0, postData, 2, postData.Length - 2);
+				postData[0] = (byte)'\r';
+				postData[1] = (byte)'\n';
+				postDataStream = ByteArrayInputStream.Create(postData);
+			}
 				
-				if (postData != null)
-				{
-					// post data must start with CRLF.  actually, you can put additional headers before this, but there's no
-					// point because this method has an "additionalHeaders" argument.  so we might as well insert it automatically
-					Array.Resize(ref postData, postData.Length + 2);
-					Array.Copy(postData, 0, postData, 2, postData.Length - 2);
-					postData[0] = (byte)'\r';
-					postData[1] = (byte)'\n';
-					postDataStream = ByteArrayInputStream.Create(postData);
-				}
-				
-				if (!string.IsNullOrEmpty(additionalHeaders))
-				{
-					// each header must end with a CRLF (including the last one)
-					// here we simply ensure that the last header has a CRLF.  if the header has other syntax problems,
-					// they're the caller's responsibility
-					if (!additionalHeaders.EndsWith("\r\n"))
-						additionalHeaders += "\r\n";
+			if (!string.IsNullOrEmpty(additionalHeaders))
+			{
+				// each header must end with a CRLF (including the last one)
+				// here we simply ensure that the last header has a CRLF.  if the header has other syntax problems,
+				// they're the caller's responsibility
+				if (!additionalHeaders.EndsWith("\r\n"))
+					additionalHeaders += "\r\n";
 					
-					headersStream = ByteArrayInputStream.Create(Encoding.UTF8.GetBytes(additionalHeaders));
-				}
-				
-				nsIURI referrerUri = null;
-				if (!string.IsNullOrEmpty(referrer))
-				{
-					referrerUri = Xpcom.GetService<nsIIOService>("@mozilla.org/network/io-service;1").NewURI(new nsAUTF8String(referrer), null, null);
-				}
-				
-				WebNav.LoadURI(url, (uint)loadFlags, referrerUri, postDataStream, headersStream);
-				return true;
+				headersStream = ByteArrayInputStream.Create(Encoding.UTF8.GetBytes(additionalHeaders));
 			}
-			else
+				
+			nsIURI referrerUri = null;
+			if (!string.IsNullOrEmpty(referrer))
 			{
-				throw new InvalidOperationException("Cannot call Navigate() before the window handle is created.");
+				referrerUri = Xpcom.GetService<nsIIOService>("@mozilla.org/network/io-service;1").NewURI(new nsAUTF8String(referrer), null, null);
 			}
+				
+			WebNav.LoadURI(url, (uint)loadFlags, referrerUri, postDataStream, headersStream);
+			return true;					
 		}
 		
 		/// <summary>
