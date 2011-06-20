@@ -199,6 +199,21 @@ namespace Skybound.Gecko
 		{
 			get { return new GeckoNamedNodeMap(_DomObject.GetAttributesAttribute()); }
 		}
+
+		/// <summary>
+		/// Get GeckoNodes from give xpath expression.
+		/// </summary>
+		/// <param name="xpath"></param>
+		/// <returns></returns>
+		public IEnumerable<GeckoNode> GetNodes(string xpath)
+		{
+			nsIDOMXPathEvaluator evaluator = Xpcom.CreateInstance<nsIDOMXPathEvaluator>("@mozilla.org/dom/xpath-evaluator;1");
+			nsIDOMNode node = (nsIDOMNode)this.DomObject;
+			nsIDOMXPathNSResolver resolver = evaluator.CreateNSResolver(node);
+			nsIDOMXPathResult result = (nsIDOMXPathResult)evaluator.Evaluate(new nsAString(xpath), node, resolver, 0, null);
+
+			return new GeckoNodeEnumerable(result);
+		}
 	}
 	
 	/// <summary>
@@ -351,7 +366,9 @@ namespace Skybound.Gecko
 			if (string.IsNullOrEmpty(attributeName))
 				throw new ArgumentException("attributeName");
 
-			return DomElement.GetAttribute(new nsAString(attributeName)).ToString();			
+			var retval = new nsAString();
+			DomElement.GetAttribute(new nsAString(attributeName), retval);
+			return retval.ToString();
 		}
 		
 		/// <summary>
@@ -366,8 +383,9 @@ namespace Skybound.Gecko
 			
 			if (string.IsNullOrEmpty(attributeName))
 				throw new ArgumentException("attributeName");
-
-			return DomElement.GetAttributeNS(new nsAString(namespaceUri), new nsAString(attributeName)).ToString();			
+			nsAString retval = new nsAString();
+			DomElement.GetAttributeNS(new nsAString(namespaceUri), new nsAString(attributeName), retval);
+			return retval.ToString();
 		}
 		
 		/// <summary>
@@ -882,17 +900,6 @@ namespace Skybound.Gecko
 			get { return _Selection ?? (_Selection = new GeckoSelection(this._DomWindow.GetSelection())); }
 		}
 		GeckoSelection _Selection;
-		
-		//public void Print()
-		//{
-		//      if (_PrintPromptService == null)
-		//      {
-		//            _PrintPromptService = Xpcom.CreateInstance<nsIPrintingPromptService>("@mozilla.org/embedcomp/printingprompt-service;1");
-		//      }
-			
-		//      _PrintPromptService.ShowPrintDialog((nsIDOMWindow)this.DomWindow, null, null);
-		//}
-		//static nsIPrintingPromptService _PrintPromptService;
 	}
 	
 	/// <summary>
@@ -1030,4 +1037,40 @@ namespace Skybound.Gecko
 			}
 		}
 	}
+
+	/// <summary>
+	/// Represents a collection of GeckoNode's
+	/// </summary>
+	internal class GeckoNodeEnumerable : IEnumerable<GeckoNode>
+	{
+		private nsIDOMXPathResult xpathResult = null;
+
+		internal GeckoNodeEnumerable(nsIDOMXPathResult xpathResult)
+		{
+			this.xpathResult = xpathResult;
+		}
+
+		#region IEnumerable<GeckoNode> Members
+
+		public IEnumerator<GeckoNode> GetEnumerator()
+		{
+			nsIDOMNode node;
+			while ((node = xpathResult.IterateNext()) != null)
+				yield return GeckoNode.Create(node);
+		}
+
+		#endregion
+
+		#region IEnumerable Members
+
+		System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+		{
+			nsIDOMNode node;
+			while ((node = xpathResult.IterateNext()) != null)
+				yield return GeckoNode.Create(node);
+		}
+
+		#endregion
+	}
+
 }
