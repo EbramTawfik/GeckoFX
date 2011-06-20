@@ -50,6 +50,15 @@ namespace Skybound.Gecko
 		#region Native Methods
 		[DllImport("xpcom", CharSet = CharSet.Ansi)]
 		static extern int NS_InitXPCOM2([MarshalAs(UnmanagedType.Interface)] out nsIServiceManager serviceManager, [MarshalAs(UnmanagedType.IUnknown)] object binDirectory, nsIDirectoryServiceProvider appFileLocationProvider);
+
+		/// <summary>
+		/// Shutdown XPCOM. You must call this method after you are finished
+		/// using xpcom. 
+		/// </summary>
+		/// <param name="serviceManager"></param>
+		/// <returns></returns>
+		[DllImport("xpcom", CharSet = CharSet.Ansi)]
+		static extern int NS_ShutdownXPCOM([MarshalAs(UnmanagedType.Interface)] nsIServiceManager serviceManager);
 		
 		[DllImport("xpcom", CharSet = CharSet.Ansi)]
 		static extern int NS_NewNativeLocalFile(nsACString path, bool followLinks, [MarshalAs(UnmanagedType.IUnknown)] out object result);
@@ -101,7 +110,7 @@ namespace Skybound.Gecko
 		[DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
 		[return: MarshalAs(UnmanagedType.Bool)]
 		static extern bool SetDllDirectory(string lpPathName);
-			
+	
 		/// <summary>
 		/// Initializes XPCOM using the specified directory.
 		/// </summary>
@@ -182,6 +191,14 @@ namespace Skybound.Gecko
 #endif
 			
 			_IsInitialized = true;
+		}
+
+		public static void Shutdown()
+		{
+			Marshal.ReleaseComObject(ComponentRegistrar);
+			Marshal.ReleaseComObject(ComponentManager);
+			NS_ShutdownXPCOM(ServiceManager);
+			_IsInitialized = false;
 		}
 		
 		static bool _IsInitialized;
