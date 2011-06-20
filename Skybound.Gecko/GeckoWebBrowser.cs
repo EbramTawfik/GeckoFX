@@ -460,9 +460,10 @@ namespace Skybound.Gecko
 		/// <param name="loadFlags">Flags which specify how the page is loaded.</param>
 		public bool Navigate(string url, GeckoLoadFlags loadFlags)
 		{
-			return Navigate(url, loadFlags, null, null, null);
+			return Navigate(url, loadFlags, null, null);
 		}
 		
+		[Obsolete]
 		/// <summary>
 		/// Navigates to the specified URL using the given load flags, referrer, post data and headers.
 		/// </summary>
@@ -479,7 +480,8 @@ namespace Skybound.Gecko
 				return false;
 
 			if (!IsHandleCreated)
-				throw new InvalidOperationException("Cannot call Navigate() before the window handle is created.");			
+				throw new InvalidOperationException("Cannot call Navigate() before the window handle is created.");
+	
 			if (IsBusy)
 				this.Stop();
 				
@@ -520,84 +522,46 @@ namespace Skybound.Gecko
 			{
 				referrerUri = Xpcom.GetService<nsIIOService>("@mozilla.org/network/io-service;1").NewURI(new nsAUTF8String(referrer), null, null);
 			}
-				
+
 			WebNav.LoadURI(url, (uint)loadFlags, referrerUri, postDataStream, headersStream);
-			return true;					
+			return true;
 		}
 		
 		/// <summary>
-		/// Streams a byte array using nsIInputStream.
+		///  Navigates to the specified URL using the given load flags, referrer and post data
 		/// </summary>
-		#region class ByteArrayInputStream : nsIInputStream
-		class ByteArrayInputStream : nsIInputStream
+		/// <param name="url">The url to navigate to.  If the url is empty or null, the browser does not navigate and the method returns false.</param>
+		/// <param name="loadFlags">Flags which specify how the page is loaded.</param>
+		/// <param name="referrer">The referring URL, or null.</param>
+		/// <param name="postData">post data and headers, or null</param>
+		/// <returns></returns>
+		public bool Navigate(string url, GeckoLoadFlags loadFlags, string referrer, GeckoMIMEInputStream postData)
 		{
-			private ByteArrayInputStream(byte [] data)
-			{
-				Data = data;
-			}
-			
-			public static ByteArrayInputStream Create(byte [] data)
-			{
-				return (data == null) ? null : new ByteArrayInputStream(data);
-			}
-			
-			byte [] Data;
-			int Position;
-			
-			#region nsIInputStream Members
+			if (string.IsNullOrEmpty(url))
+				return false;
 
-			public void Close()
+			if (!IsHandleCreated)
+				throw new InvalidOperationException("Cannot call Navigate() before the window handle is created.");
+
+			// WebNav.LoadURI throws an exception if we try to open a file that doesn't exist...
+			Uri created;
+			if (Uri.TryCreate(url, UriKind.RelativeOrAbsolute, out created) && created.IsAbsoluteUri && created.IsFile)
 			{
-				// do nothing
-			}
-			
-			public uint Available()
-			{
-				return (uint)(Data.Length - Position);
-			}
-			
-			public uint Read(IntPtr aBuf, uint aCount)
-			{
-				uint count = Math.Min(aCount, Available());
-				
-				if (count > 0)
-				{
-					Marshal.Copy(Data, Position, aBuf, (int)count);
-					Position += (int)count;
-				}
-				
-				return count;
+				if (!File.Exists(created.LocalPath) && !Directory.Exists(created.LocalPath))
+					return false;
 			}
 
-			public unsafe uint ReadSegments(nsWriteSegmentFun aWriter, IntPtr aClosure, uint aCount)
+			nsIURI referrerUri = null;
+			if (!string.IsNullOrEmpty(referrer))
 			{
-				int length = (int)Math.Min(aCount, Available());
-				int writeCount = 0;
-				
-				if (length > 0)
-				{
-					nsWriteSegmentFun fun = aWriter;
-				      
-					fixed (byte * data = &Data[Position])
-					{
-					fun(this, aClosure, (IntPtr)data, Position, length, out writeCount);
-					}
-				      
-					Position += writeCount;
-				}
-				
-				return (uint)writeCount;
+				referrerUri = Xpcom.GetService<nsIIOService>("@mozilla.org/network/io-service;1").NewURI(new nsAUTF8String(referrer), null, null);
 			}
+			
+			WebNav.LoadURI(url, (uint)loadFlags, referrerUri, postData.InputStream, null);
 
-			public bool IsNonBlocking()
-			{
-				return true;
-			}
-
-			#endregion
+			return true;
 		}
-		#endregion
-		
+
 		/// <summary>
 		/// Gets or sets whether all default items are removed from the standard context menu.
 		/// </summary>
