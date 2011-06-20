@@ -2,6 +2,10 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v5.0-0.1 ==
+
+1. Initial version supporting xulrunner v5.0
+
 == v2.0.1-0.6 ==
 
 1. Fix issue with LPStruct marshaled nsAString return types. Fixes https://bitbucket.org/geckofx/geckofx-2.0/issue/15
