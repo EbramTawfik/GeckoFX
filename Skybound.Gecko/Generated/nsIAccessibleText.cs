@@ -64,39 +64,35 @@ namespace Skybound.Gecko
         /// So the methods below might return UTF-16 strings, or they could
         /// return "string" values which are UTF-8.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetText(int startOffset, int endOffset);
+		void GetText(int startOffset, int endOffset, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>Member GetTextAfterOffset </summary>
 		/// <param name='offset'> </param>
 		/// <param name='boundaryType'> </param>
 		/// <param name='startOffset'> </param>
 		/// <param name='endOffset'> </param>
-		/// <returns>A nsAString</returns>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
+		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetTextAfterOffset(int offset, System.IntPtr boundaryType, out int startOffset, out int endOffset);
+		void GetTextAfterOffset(int offset, System.IntPtr boundaryType, out int startOffset, out int endOffset, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>Member GetTextAtOffset </summary>
 		/// <param name='offset'> </param>
 		/// <param name='boundaryType'> </param>
 		/// <param name='startOffset'> </param>
 		/// <param name='endOffset'> </param>
-		/// <returns>A nsAString</returns>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
+		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetTextAtOffset(int offset, System.IntPtr boundaryType, out int startOffset, out int endOffset);
+		void GetTextAtOffset(int offset, System.IntPtr boundaryType, out int startOffset, out int endOffset, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>Member GetTextBeforeOffset </summary>
 		/// <param name='offset'> </param>
 		/// <param name='boundaryType'> </param>
 		/// <param name='startOffset'> </param>
 		/// <param name='endOffset'> </param>
-		/// <returns>A nsAString</returns>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
+		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetTextBeforeOffset(int offset, System.IntPtr boundaryType, out int startOffset, out int endOffset);
+		void GetTextBeforeOffset(int offset, System.IntPtr boundaryType, out int startOffset, out int endOffset, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// It would be better to return an unsigned long here,

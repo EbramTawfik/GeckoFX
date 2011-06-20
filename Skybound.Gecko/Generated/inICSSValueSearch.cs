@@ -88,9 +88,8 @@ namespace Skybound.Gecko
 		/// <summary>
         /// methods for getting results of specific types
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsAString GetStringResultAt(int aIndex);
+		new void GetStringResultAt(int aIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>Member GetIntResultAt </summary>
 		/// <param name='aIndex'> </param>

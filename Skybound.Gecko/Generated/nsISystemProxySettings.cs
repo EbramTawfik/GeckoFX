@@ -50,8 +50,7 @@ namespace Skybound.Gecko
         /// See nsIProxyAutoConfig::getProxyForURI; this function behaves exactly
         /// the same way.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAUTF8String GetProxyForURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
+		void GetProxyForURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
 	}
 }

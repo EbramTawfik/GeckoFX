@@ -41,13 +41,11 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Get the Unicode or UTF8 value for the string
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString ToString();
+		void ToString([MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAUTF8String ToUTF8String();
+		void ToUTF8String([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
 		
 		/// <summary>
         /// Compare the atom to a specific string value

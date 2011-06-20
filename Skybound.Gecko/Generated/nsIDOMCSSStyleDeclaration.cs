@@ -63,21 +63,18 @@ namespace Skybound.Gecko
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetPropertyValue([MarshalAs(UnmanagedType.LPStruct)] nsAString propertyName);
+		void GetPropertyValue([MarshalAs(UnmanagedType.LPStruct)] nsAString propertyName, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMCSSValue GetPropertyCSSValue([MarshalAs(UnmanagedType.LPStruct)] nsAString propertyName);
 		
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString RemoveProperty([MarshalAs(UnmanagedType.LPStruct)] nsAString propertyName);
+		void RemoveProperty([MarshalAs(UnmanagedType.LPStruct)] nsAString propertyName, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetPropertyPriority([MarshalAs(UnmanagedType.LPStruct)] nsAString propertyName);
+		void GetPropertyPriority([MarshalAs(UnmanagedType.LPStruct)] nsAString propertyName, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetProperty([MarshalAs(UnmanagedType.LPStruct)] nsAString propertyName, [MarshalAs(UnmanagedType.LPStruct)] nsAString value, [MarshalAs(UnmanagedType.LPStruct)] nsAString priority);
@@ -85,9 +82,8 @@ namespace Skybound.Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetLengthAttribute();
 		
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString Item(uint index);
+		void Item(uint index, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

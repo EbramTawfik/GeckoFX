@@ -56,9 +56,8 @@ namespace Skybound.Gecko
         /// @returns the resolved charset, or the empty string if no
         /// charset could be determined.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString RequestCharset([MarshalAs(UnmanagedType.Interface)] nsIWebNavigation aWebNavigation, [MarshalAs(UnmanagedType.Interface)] nsIChannel aChannel, [MarshalAs(UnmanagedType.Bool)] out bool aWantCharset, [MarshalAs(UnmanagedType.Interface)] out nsISupports aClosure);
+		void RequestCharset([MarshalAs(UnmanagedType.Interface)] nsIWebNavigation aWebNavigation, [MarshalAs(UnmanagedType.Interface)] nsIChannel aChannel, [MarshalAs(UnmanagedType.Bool)] out bool aWantCharset, [MarshalAs(UnmanagedType.Interface)] out nsISupports aClosure, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// notifyResolvedCharset

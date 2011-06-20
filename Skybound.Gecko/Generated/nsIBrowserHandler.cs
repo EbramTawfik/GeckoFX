@@ -58,8 +58,7 @@ namespace Skybound.Gecko
         /// Extract the width and height specified on the command line, if present.
         /// @return A feature string with a prepended comma, e.g. ",width=500,height=400"
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAUTF8String GetFeatures([MarshalAs(UnmanagedType.Interface)] nsICommandLine aCmdLine);
+		void GetFeatures([MarshalAs(UnmanagedType.Interface)] nsICommandLine aCmdLine, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
 	}
 }

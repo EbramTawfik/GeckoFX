@@ -121,10 +121,9 @@ namespace Skybound.Gecko
 		/// <param name='aFirst'> </param>
 		/// <param name='aAny'> </param>
 		/// <param name='aAll'> </param>
-		/// <returns>A nsAString</returns>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
+		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetInlinePropertyWithAttrValue([MarshalAs(UnmanagedType.Interface)] nsIAtom aProperty, [MarshalAs(UnmanagedType.LPStruct)] nsAString aAttribute, [MarshalAs(UnmanagedType.LPStruct)] nsAString aValue, [MarshalAs(UnmanagedType.Bool)] out bool aFirst, [MarshalAs(UnmanagedType.Bool)] out bool aAny, [MarshalAs(UnmanagedType.Bool)] out bool aAll);
+		void GetInlinePropertyWithAttrValue([MarshalAs(UnmanagedType.Interface)] nsIAtom aProperty, [MarshalAs(UnmanagedType.LPStruct)] nsAString aAttribute, [MarshalAs(UnmanagedType.LPStruct)] nsAString aValue, [MarshalAs(UnmanagedType.Bool)] out bool aFirst, [MarshalAs(UnmanagedType.Bool)] out bool aAny, [MarshalAs(UnmanagedType.Bool)] out bool aAll, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// removeAllInlineProperties() deletes all the inline properties from all
@@ -309,9 +308,8 @@ namespace Skybound.Gecko
         /// @param aMixed     True if there is more than one format
         /// @return           Name of block tag. "" is returned for none.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetParagraphState([MarshalAs(UnmanagedType.Bool)] out bool aMixed);
+		void GetParagraphState([MarshalAs(UnmanagedType.Bool)] out bool aMixed, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// getFontFaceState returns what font face is in the selection.
@@ -319,36 +317,32 @@ namespace Skybound.Gecko
         /// @return          Name of face.  Note: "tt" is returned for
         /// tt tag.  "" is returned for none.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetFontFaceState([MarshalAs(UnmanagedType.Bool)] out bool aMixed);
+		void GetFontFaceState([MarshalAs(UnmanagedType.Bool)] out bool aMixed, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// getFontColorState returns what font face is in the selection.
         /// @param aMixed     True if there is more than one font color
         /// @return           Color string. "" is returned for none.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetFontColorState([MarshalAs(UnmanagedType.Bool)] out bool aMixed);
+		void GetFontColorState([MarshalAs(UnmanagedType.Bool)] out bool aMixed, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// getFontColorState returns what font face is in the selection.
         /// @param aMixed     True if there is more than one font color
         /// @return           Color string. "" is returned for none.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetBackgroundColorState([MarshalAs(UnmanagedType.Bool)] out bool aMixed);
+		void GetBackgroundColorState([MarshalAs(UnmanagedType.Bool)] out bool aMixed, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// getHighlightColorState returns what the highlight color of the selection.
         /// @param aMixed     True if there is more than one font color
         /// @return           Color string. "" is returned for none.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetHighlightColorState([MarshalAs(UnmanagedType.Bool)] out bool aMixed);
+		void GetHighlightColorState([MarshalAs(UnmanagedType.Bool)] out bool aMixed, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// getListState returns what list type is in the selection.
@@ -468,9 +462,8 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Output the contents of the <HEAD> section as text/HTML format
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetHeadContentsAsHTML();
+		void GetHeadContentsAsHTML([MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Replace all children of <HEAD> with string of HTML source

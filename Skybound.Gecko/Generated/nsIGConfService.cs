@@ -42,10 +42,9 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member GetString </summary>
 		/// <param name='key'> </param>
-		/// <returns>A nsAUTF8String</returns>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
+		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAUTF8String GetString([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String key);
+		void GetString([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String key, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
 		
 		/// <summary>Member GetInt </summary>
 		/// <param name='key'> </param>
@@ -95,9 +94,8 @@ namespace Skybound.Gecko
         /// Look up the handler for a protocol under the
         /// /desktop/gnome/url-handlers hierarchy.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAUTF8String GetAppForProtocol([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String scheme, [MarshalAs(UnmanagedType.Bool)] out bool enabled);
+		void GetAppForProtocol([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String scheme, [MarshalAs(UnmanagedType.Bool)] out bool enabled, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
 		
 		/// <summary>
         /// Check whether the handler for a scheme requires a terminal to run.

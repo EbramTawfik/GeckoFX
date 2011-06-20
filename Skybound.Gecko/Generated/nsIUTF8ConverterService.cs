@@ -53,9 +53,8 @@ namespace Skybound.Gecko
         /// @throws NS_ERROR_UCONV_NOCONV when there is no decoder for aCharset
         /// or error code of nsIUnicodeDecoder in case of conversion failure
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAUTF8String ConvertStringToUTF8([MarshalAs(UnmanagedType.LPStruct)] nsAString aString, [MarshalAs(UnmanagedType.LPStr)] string aCharset, [MarshalAs(UnmanagedType.Bool)] bool aSkipCheck);
+		void ConvertStringToUTF8([MarshalAs(UnmanagedType.LPStruct)] nsAString aString, [MarshalAs(UnmanagedType.LPStr)] string aCharset, [MarshalAs(UnmanagedType.Bool)] bool aSkipCheck, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
 		
 		/// <summary>
         /// Ensure that |aSpec| (after URL-unescaping it) is encoded in UTF-8.
@@ -77,8 +76,7 @@ namespace Skybound.Gecko
         /// @throws NS_ERROR_UCONV_NOCONV when there is no decoder for aCharset
         /// or error code of nsIUnicodeDecoder in case of conversion failure
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAUTF8String ConvertURISpecToUTF8([MarshalAs(UnmanagedType.LPStruct)] nsAString aSpec, [MarshalAs(UnmanagedType.LPStr)] string aCharset);
+		void ConvertURISpecToUTF8([MarshalAs(UnmanagedType.LPStruct)] nsAString aSpec, [MarshalAs(UnmanagedType.LPStr)] string aCharset, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
 	}
 }

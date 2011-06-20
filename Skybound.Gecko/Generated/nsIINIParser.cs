@@ -51,9 +51,8 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Get the value of a string for a particular section and key.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAUTF8String GetString([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aSection, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aKey);
+		void GetString([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aSection, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aKey, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
 	}
 	
 	/// <summary>nsIINIParserWriter </summary>

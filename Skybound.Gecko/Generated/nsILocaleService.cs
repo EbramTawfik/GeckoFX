@@ -92,8 +92,7 @@ namespace Skybound.Gecko
         /// @return User's OS setting for preferred locale in the format described
         /// in nsILocale.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetLocaleComponentForUserAgent();
+		void GetLocaleComponentForUserAgent([MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 	}
 }

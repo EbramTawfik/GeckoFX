@@ -57,8 +57,7 @@ namespace Skybound.Gecko
         /// The category of interest.
         /// @return The locale code to be used for the given category.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetCategory([MarshalAs(UnmanagedType.LPStruct)] nsAString category);
+		void GetCategory([MarshalAs(UnmanagedType.LPStruct)] nsAString category, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 	}
 }

@@ -88,9 +88,8 @@ namespace Skybound.Gecko
         /// Get the current browsing state.
         /// @returns a JSON string representing the session state.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetBrowserState();
+		void GetBrowserState([MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Set the browsing state.
@@ -107,9 +106,8 @@ namespace Skybound.Gecko
         ///
         /// @returns a JSON string representing a session state with only one window.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetWindowState([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow);
+		void GetWindowState([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// @param aWindow    is the browser window whose state is to be set.
@@ -125,9 +123,8 @@ namespace Skybound.Gecko
         /// @returns a JSON string representing the state of the tab
         /// (note: doesn't contain cookies - if you need them, use getWindowState instead).
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetTabState([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aTab);
+		void GetTabState([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aTab, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// @param aTab   is the tabbrowser tab whose state is to be set.
@@ -160,9 +157,8 @@ namespace Skybound.Gecko
         /// @param aWindow is the browser window for which to get closed tab data
         /// @returns a JSON string representing the list of closed tabs.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetClosedTabData([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow);
+		void GetClosedTabData([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// @param aWindow is the browser window to reopen a closed tab in.
@@ -192,9 +188,8 @@ namespace Skybound.Gecko
         ///
         /// @returns a JSON string representing the list of closed windows.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetClosedWindowData();
+		void GetClosedWindowData([MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// @param aIndex is the index of the windows to be restored (FIFO ordered).
@@ -220,9 +215,8 @@ namespace Skybound.Gecko
         ///
         /// @returns A string value or an empty string if none is set.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetWindowValue([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow, [MarshalAs(UnmanagedType.LPStruct)] nsAString aKey);
+		void GetWindowValue([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow, [MarshalAs(UnmanagedType.LPStruct)] nsAString aKey, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// @param aWindow      is the browser window to set the value for.
@@ -245,9 +239,8 @@ namespace Skybound.Gecko
         ///
         /// @returns A string value or an empty string if none is set.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetTabValue([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aTab, [MarshalAs(UnmanagedType.LPStruct)] nsAString aKey);
+		void GetTabValue([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aTab, [MarshalAs(UnmanagedType.LPStruct)] nsAString aKey, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// @param aTab         is the tabbrowser tab to set the value for.

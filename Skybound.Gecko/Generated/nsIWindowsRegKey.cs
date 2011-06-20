@@ -143,9 +143,8 @@ namespace Skybound.Gecko
         /// @param index
         /// The index of the requested child key.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetChildName(uint index);
+		void GetChildName(uint index, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// This method checks to see if the key has a child by the given name.
@@ -169,9 +168,8 @@ namespace Skybound.Gecko
         /// @param index
         /// The index of the requested value.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetValueName(uint index);
+		void GetValueName(uint index, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// This method checks to see if the key has a value by the given name.
@@ -220,9 +218,8 @@ namespace Skybound.Gecko
         /// The name of the value to query.  This parameter can be the empty
         /// string to request the key's default value.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString ReadStringValue([MarshalAs(UnmanagedType.LPStruct)] nsAString name);
+		void ReadStringValue([MarshalAs(UnmanagedType.LPStruct)] nsAString name, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// This method reads the integer contents of the named value.
@@ -252,9 +249,8 @@ namespace Skybound.Gecko
         /// @param name
         /// The name of the value to query.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString ReadBinaryValue([MarshalAs(UnmanagedType.LPStruct)] nsAString name);
+		void ReadBinaryValue([MarshalAs(UnmanagedType.LPStruct)] nsAString name, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// This method writes the unicode string contents of the named value.  The

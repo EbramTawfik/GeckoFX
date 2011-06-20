@@ -86,9 +86,8 @@ namespace Skybound.Gecko
 		/// <summary>
         /// The namespace for each ID that is handed back.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetNameSpaceURIForID(short nameSpaceID);
+		void GetNameSpaceURIForID(short nameSpaceID, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// The window handle for the OS window the document is being displayed in.

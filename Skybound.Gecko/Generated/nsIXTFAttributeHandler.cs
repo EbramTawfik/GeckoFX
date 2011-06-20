@@ -55,9 +55,8 @@ namespace Skybound.Gecko
 		/// <summary>
         /// the attribute having no value.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetAttribute([MarshalAs(UnmanagedType.Interface)] nsIAtom name);
+		void GetAttribute([MarshalAs(UnmanagedType.Interface)] nsIAtom name, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>Member HasAttribute </summary>
 		/// <param name='name'> </param>

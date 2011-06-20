@@ -143,8 +143,7 @@ namespace Skybound.Gecko
         ///
         /// @returns the MIME type, if any; otherwise returns an empty string ("").
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetTypeFromExtension([MarshalAs(UnmanagedType.LPStruct)] nsAString aFileExtension);
+		void GetTypeFromExtension([MarshalAs(UnmanagedType.LPStruct)] nsAString aFileExtension, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 	}
 }

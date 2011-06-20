@@ -80,17 +80,15 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member GetUTF8String </summary>
 		/// <param name='aIndex'> </param>
-		/// <returns>A nsAUTF8String</returns>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
+		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsAUTF8String GetUTF8String(uint aIndex);
+		new void GetUTF8String(uint aIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
 		
 		/// <summary>Member GetString </summary>
 		/// <param name='aIndex'> </param>
-		/// <returns>A nsAString</returns>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
+		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsAString GetString(uint aIndex);
+		new void GetString(uint aIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// data will be NULL if dataSize = 0

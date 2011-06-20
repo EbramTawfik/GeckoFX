@@ -102,9 +102,8 @@ namespace Skybound.Gecko
         /// and all entities decoded. If the type attribute's value is "text",
         /// this function returns the value of the text attribute unchanged.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString PlainText();
+		void PlainText([MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Return an nsIDocumentFragment containing the text and markup.

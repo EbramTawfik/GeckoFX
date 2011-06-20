@@ -43,9 +43,8 @@ namespace Skybound.Gecko
         /// Get the current browsing state.
         /// @returns a JSON string representing the session state.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetBrowserState();
+		void GetBrowserState([MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Get the number of restore-able tabs for a browser window
@@ -59,9 +58,8 @@ namespace Skybound.Gecko
         /// @param aWindow is the browser window for which to get closed tab data
         /// @returns a JSON string representing the list of closed tabs.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetClosedTabData([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow);
+		void GetClosedTabData([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// @param aWindow is the browser window to reopen a closed tab in.
@@ -86,9 +84,8 @@ namespace Skybound.Gecko
         ///
         /// @returns A string value or an empty string if none is set.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetTabValue([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aTab, [MarshalAs(UnmanagedType.LPStruct)] nsAString aKey);
+		void GetTabValue([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aTab, [MarshalAs(UnmanagedType.LPStruct)] nsAString aKey, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// @param aTab         is the browser tab to set the value for.

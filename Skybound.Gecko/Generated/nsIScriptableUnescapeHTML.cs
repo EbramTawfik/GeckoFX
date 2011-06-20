@@ -41,9 +41,8 @@ namespace Skybound.Gecko
         ///
         /// @param src The HTML string to escape.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString Unescape([MarshalAs(UnmanagedType.LPStruct)] nsAString src);
+		void Unescape([MarshalAs(UnmanagedType.LPStruct)] nsAString src, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Appends the text to the element.

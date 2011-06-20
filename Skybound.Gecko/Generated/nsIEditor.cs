@@ -597,9 +597,8 @@ namespace Skybound.Gecko
         /// Output methods:
         /// aFormatType is a mime type, like text/plain.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString OutputToString([MarshalAs(UnmanagedType.LPStruct)] nsAString formatType, uint flags);
+		void OutputToString([MarshalAs(UnmanagedType.LPStruct)] nsAString formatType, uint flags, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>Member OutputToStream </summary>
 		/// <param name='aStream'> </param>

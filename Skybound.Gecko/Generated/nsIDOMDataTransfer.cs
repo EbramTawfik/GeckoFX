@@ -176,9 +176,8 @@ namespace Skybound.Gecko
         /// Retrieves the data for a given format, or an empty string if data for
         /// that format does not exist or the data transfer contains no data.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetData([MarshalAs(UnmanagedType.LPStruct)] nsAString format);
+		void GetData([MarshalAs(UnmanagedType.LPStruct)] nsAString format, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Set the image to be used for dragging if a custom one is desired. Most of

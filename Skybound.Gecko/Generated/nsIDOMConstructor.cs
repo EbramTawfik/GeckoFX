@@ -35,9 +35,8 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member ToString </summary>
-		/// <returns>A nsAString</returns>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
+		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString ToString();
+		void ToString([MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 	}
 }

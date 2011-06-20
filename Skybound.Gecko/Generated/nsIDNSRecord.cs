@@ -70,9 +70,8 @@ namespace Skybound.Gecko
         /// @throws NS_ERROR_NOT_AVAILABLE if there is not another IP address in
         /// the record.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetNextAddrAsString();
+		void GetNextAddrAsString([MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// this function returns true if there is another address in the record.

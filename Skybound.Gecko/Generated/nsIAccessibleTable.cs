@@ -140,18 +140,16 @@ namespace Skybound.Gecko
         ///
         /// @param  columnIndex  [in] the column index to retrieve description for
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetColumnDescription(int columnIndex);
+		void GetColumnDescription(int columnIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Return the description text of the specified row in the table.
         ///
         /// @param  rowIndex  [in] the row index to retrieve description for
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetRowDescription(int rowIndex);
+		void GetRowDescription(int rowIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Return a boolean value indicating whether the specified column is

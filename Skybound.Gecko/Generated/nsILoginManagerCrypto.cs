@@ -48,9 +48,8 @@ namespace Skybound.Gecko
         ///
         /// Can throw if the user cancels entry of their master password.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString Encrypt([MarshalAs(UnmanagedType.LPStruct)] nsAString plainText);
+		void Encrypt([MarshalAs(UnmanagedType.LPStruct)] nsAString plainText, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// decrypt
@@ -64,9 +63,8 @@ namespace Skybound.Gecko
         /// cipherText value can not be successfully decrypted (eg, if it was
         /// encrypted with some other key).
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString Decrypt([MarshalAs(UnmanagedType.LPStruct)] nsAString cipherText);
+		void Decrypt([MarshalAs(UnmanagedType.LPStruct)] nsAString cipherText, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// uiBusy

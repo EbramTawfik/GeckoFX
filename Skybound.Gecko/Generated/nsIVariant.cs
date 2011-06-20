@@ -102,21 +102,17 @@ namespace Skybound.Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetAsID(out System.IntPtr retval);
 		
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetAsAString();
+		void GetAsAString([MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetAsDOMString();
+		void GetAsDOMString([MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetAsACString();
+		void GetAsACString([MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAUTF8String GetAsAUTF8String();
+		void GetAsAUTF8String([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
 		
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -216,21 +212,17 @@ namespace Skybound.Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new int GetAsID(out System.IntPtr retval);
 		
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsAString GetAsAString();
+		new void GetAsAString([MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsAString GetAsDOMString();
+		new void GetAsDOMString([MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsAString GetAsACString();
+		new void GetAsACString([MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsAUTF8String GetAsAUTF8String();
+		new void GetAsAUTF8String([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
 		
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

@@ -249,9 +249,8 @@ namespace Skybound.Gecko
         ///
         /// NOTE: some implementations may have no concept of a relative URI.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAUTF8String Resolve([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String relativePath);
+		void Resolve([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String relativePath, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
 		
 		/// <summary>
         /// The URI spec with an ASCII compatible encoding.  Host portion follows

@@ -74,9 +74,8 @@ namespace Skybound.Gecko
 		/// <summary>
         /// A shortcut to calling nsICharsetAlias to do alias resolution
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetCharsetAlias([MarshalAs(UnmanagedType.LPStr)] string charset);
+		void GetCharsetAlias([MarshalAs(UnmanagedType.LPStr)] string charset, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Get the complete list of available decoders.
@@ -102,9 +101,8 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Get the human-readable name for the given charset.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetCharsetTitle([MarshalAs(UnmanagedType.LPStr)] string charset);
+		void GetCharsetTitle([MarshalAs(UnmanagedType.LPStr)] string charset, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Get some data about the given charset. This includes whether the
@@ -121,9 +119,8 @@ namespace Skybound.Gecko
         /// @param prop property desired for the character encoding.
         /// @return the value of the property, for the character encoding.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetCharsetData([MarshalAs(UnmanagedType.LPStr)] string charset, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")] string prop);
+		void GetCharsetData([MarshalAs(UnmanagedType.LPStr)] string charset, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")] string prop, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Get the language group for the given charset. This is similar to

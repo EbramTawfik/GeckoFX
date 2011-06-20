@@ -133,17 +133,15 @@ namespace Skybound.Gecko
         /// shortcut to nsIProperty's get() which retrieves a string value
         /// directly (and thus faster)
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetStringProperty([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String key);
+		void GetStringProperty([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String key, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// shortcut to nsIProperty's set() which sets a string value
         /// directly (and thus faster). If the given property already exists,
         /// then the old value will be returned
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString SetStringProperty([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String key, [MarshalAs(UnmanagedType.LPStruct)] nsAString value);
+		void SetStringProperty([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String key, [MarshalAs(UnmanagedType.LPStruct)] nsAString value, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 	}
 }

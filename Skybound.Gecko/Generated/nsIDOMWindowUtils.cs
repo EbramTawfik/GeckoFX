@@ -104,9 +104,8 @@ namespace Skybound.Gecko
         /// Will throw a DOM security error if called without UniversalXPConnect
         /// privileges.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetDocumentMetadata([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
+		void GetDocumentMetadata([MarshalAs(UnmanagedType.LPStruct)] nsAString aName, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Force an immediate redraw of this window.  The parameter specifies
@@ -572,9 +571,8 @@ namespace Skybound.Gecko
         /// to this API, and is sufficient for the present testing
         /// requirements (which are essentially testing 'color').
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetVisitedDependentComputedStyle([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement, [MarshalAs(UnmanagedType.LPStruct)] nsAString aPseudoElement, [MarshalAs(UnmanagedType.LPStruct)] nsAString aPropertyName);
+		void GetVisitedDependentComputedStyle([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement, [MarshalAs(UnmanagedType.LPStruct)] nsAString aPseudoElement, [MarshalAs(UnmanagedType.LPStruct)] nsAString aPropertyName, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         ///obj </summary>

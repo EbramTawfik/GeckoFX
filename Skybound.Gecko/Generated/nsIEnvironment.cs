@@ -56,9 +56,8 @@ namespace Skybound.Gecko
         /// |exists()| to probe whether the env variable exists
         /// or not.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString Get([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
+		void Get([MarshalAs(UnmanagedType.LPStruct)] nsAString aName, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Check the existence of an environment variable.

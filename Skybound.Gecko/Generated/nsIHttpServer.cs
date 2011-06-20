@@ -193,9 +193,8 @@ namespace Skybound.Gecko
         /// path's saved state.  All keys are initially associated with the empty
         /// string.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetState([MarshalAs(UnmanagedType.LPStruct)] nsAString path, [MarshalAs(UnmanagedType.LPStruct)] nsAString key);
+		void GetState([MarshalAs(UnmanagedType.LPStruct)] nsAString path, [MarshalAs(UnmanagedType.LPStruct)] nsAString key, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Sets the string associated with the given key in this, for the given path's
@@ -209,9 +208,8 @@ namespace Skybound.Gecko
         /// entire-server saved state.  All keys are initially associated with the
         /// empty string.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetSharedState([MarshalAs(UnmanagedType.LPStruct)] nsAString key);
+		void GetSharedState([MarshalAs(UnmanagedType.LPStruct)] nsAString key, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Sets the string associated with the given key in this, in entire-server

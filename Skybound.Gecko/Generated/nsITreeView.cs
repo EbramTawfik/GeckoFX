@@ -163,9 +163,8 @@ namespace Skybound.Gecko
         /// If the empty string is returned, the :moz-tree-image pseudoelement
         /// will be used.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetImageSrc(int row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn col);
+		void GetImageSrc(int row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn col, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// The progress mode for a given cell. This method is only called for
@@ -178,17 +177,15 @@ namespace Skybound.Gecko
         /// The value for a given cell. This method is only called for columns
         /// of type other than |text|.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetCellValue(int row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn col);
+		void GetCellValue(int row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn col, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// The text for a given cell.  If a column consists only of an image, then
         /// the empty string is returned.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetCellText(int row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn col);
+		void GetCellText(int row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn col, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Called during initialization to link the view to the front end box object.
@@ -406,9 +403,8 @@ namespace Skybound.Gecko
         /// If the empty string is returned, the :moz-tree-image pseudoelement
         /// will be used.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsAString GetImageSrc(int row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn col);
+		new void GetImageSrc(int row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn col, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// The progress mode for a given cell. This method is only called for
@@ -421,17 +417,15 @@ namespace Skybound.Gecko
         /// The value for a given cell. This method is only called for columns
         /// of type other than |text|.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsAString GetCellValue(int row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn col);
+		new void GetCellValue(int row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn col, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// The text for a given cell.  If a column consists only of an image, then
         /// the empty string is returned.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsAString GetCellText(int row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn col);
+		new void GetCellText(int row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn col, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Called during initialization to link the view to the front end box object.

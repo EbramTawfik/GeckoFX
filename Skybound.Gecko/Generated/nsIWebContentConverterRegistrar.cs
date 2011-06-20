@@ -117,9 +117,8 @@ namespace Skybound.Gecko
         /// @returns The URI of the service with the loading document URI encoded in
         /// it.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetHandlerURI([MarshalAs(UnmanagedType.LPStruct)] nsAString uri);
+		void GetHandlerURI([MarshalAs(UnmanagedType.LPStruct)] nsAString uri, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 	}
 	
 	/// <summary>nsIWebContentConverterService </summary>

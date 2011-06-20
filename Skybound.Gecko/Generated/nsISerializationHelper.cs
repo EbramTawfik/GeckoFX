@@ -40,9 +40,8 @@ namespace Skybound.Gecko
         /// Serialize the object to a base64 string. This string can be later passed
         /// as an input to deserializeObject method.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString SerializeToString([MarshalAs(UnmanagedType.Interface)] nsISerializable serializable);
+		void SerializeToString([MarshalAs(UnmanagedType.Interface)] nsISerializable serializable, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Takes base64 encoded string that cointains serialization of a single

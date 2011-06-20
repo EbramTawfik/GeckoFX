@@ -446,8 +446,7 @@ namespace Skybound.Gecko
         /// source cannot be retrieved.  This is guaranteed to return a nonzero source
         /// and a nonempty charset if it does not throw.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetCharsetAndSource(out int aSource);
+		void GetCharsetAndSource(out int aSource, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 	}
 }

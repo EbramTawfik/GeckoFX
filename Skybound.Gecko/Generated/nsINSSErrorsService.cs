@@ -55,9 +55,8 @@ namespace Skybound.Gecko
         /// @param aXPCOMErrorCode An error code obtain using getXPCOMFromNSSError
         /// return A localized human readable error explanation.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString GetErrorMessage(int aXPCOMErrorCode);
+		void GetErrorMessage(int aXPCOMErrorCode, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Function will fail if aXPCOMErrorCode is not an NSS error code.

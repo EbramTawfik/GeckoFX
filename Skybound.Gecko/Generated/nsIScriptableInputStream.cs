@@ -91,8 +91,7 @@ namespace Skybound.Gecko
         /// @throws NS_ERROR_FAILURE if there are not enough bytes available to read
         /// aCount amount of data.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString ReadBytes(uint aCount);
+		void ReadBytes(uint aCount, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 	}
 }

@@ -48,10 +48,9 @@ namespace Skybound.Gecko
 		/// <param name='aRegEx'> </param>
 		/// <param name='aFlags'> </param>
 		/// <param name='aReplace'> </param>
-		/// <returns>A nsAString</returns>
-		[return: MarshalAs(UnmanagedType.LPStruct)]
+		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsAString Replace([MarshalAs(UnmanagedType.LPStruct)] nsAString aString, [MarshalAs(UnmanagedType.LPStruct)] nsAString aRegEx, [MarshalAs(UnmanagedType.LPStruct)] nsAString aFlags, [MarshalAs(UnmanagedType.LPStruct)] nsAString aReplace);
+		void Replace([MarshalAs(UnmanagedType.LPStruct)] nsAString aString, [MarshalAs(UnmanagedType.LPStruct)] nsAString aRegEx, [MarshalAs(UnmanagedType.LPStruct)] nsAString aFlags, [MarshalAs(UnmanagedType.LPStruct)] nsAString aReplace, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>Member Test </summary>
 		/// <param name='aString'> </param>
