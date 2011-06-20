@@ -11,7 +11,7 @@ namespace GeckofxUnitTests
 	[TestFixture]
 	public class XpComTests
 	{
-		public const string XulRunnerLocation = @"C:\Program Files (x86)\Mozilla Firefox 5.05b";
+		public const string XulRunnerLocation = @"C:\Program Files (x86)\Mozilla Firefox 5.0";
 
 		[SetUp]
 		public void BeforeEachTestSetup()
