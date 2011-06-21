@@ -215,6 +215,21 @@ namespace Skybound.Gecko
 
 			return new GeckoNodeEnumerable(result);
 		}
+
+		/// <summary>
+		/// Get GeckoNodes from give xpath expression.
+		/// </summary>
+		/// <param name="xpath"></param>
+		/// <returns></returns>
+		public IEnumerable<GeckoElement> GetElements(string xpath)
+		{
+			nsIDOMXPathEvaluator evaluator = Xpcom.CreateInstance<nsIDOMXPathEvaluator>("@mozilla.org/dom/xpath-evaluator;1");
+			nsIDOMNode node = (nsIDOMNode)this.DomObject;
+			nsIDOMXPathNSResolver resolver = evaluator.CreateNSResolver(node);
+			nsIDOMXPathResult result = (nsIDOMXPathResult)evaluator.Evaluate(new nsAString(xpath), node, resolver, 0, null);
+
+			return new GeckoElementEnumerable(result);
+		}
 	}
 	
 	/// <summary>
@@ -1068,6 +1083,42 @@ namespace Skybound.Gecko
 			nsIDOMNode node;
 			while ((node = xpathResult.IterateNext()) != null)
 				yield return GeckoNode.Create(node);
+		}
+
+		#endregion
+
+		#region IEnumerable Members
+
+		System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+		{
+			nsIDOMNode node;
+			while ((node = xpathResult.IterateNext()) != null)
+				yield return GeckoNode.Create(node);
+		}
+
+		#endregion
+	}
+
+	/// <summary>
+	/// Represents a collection of GeckoNode's
+	/// </summary>
+	internal class GeckoElementEnumerable : IEnumerable<GeckoElement>
+	{
+		private nsIDOMXPathResult xpathResult = null;
+
+		internal GeckoElementEnumerable(nsIDOMXPathResult xpathResult)
+		{
+			this.xpathResult = xpathResult;
+		}
+
+		#region IEnumerable<GeckoNode> Members
+
+		public IEnumerator<GeckoElement> GetEnumerator()
+		{
+			nsIDOMNode node;
+			while ((node = xpathResult.IterateNext()) != null)
+				if (node is nsIDOMHTMLElement)
+					yield return GeckoElement.Create((nsIDOMHTMLElement)node);
 		}
 
 		#endregion
