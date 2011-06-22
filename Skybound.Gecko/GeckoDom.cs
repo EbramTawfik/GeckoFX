@@ -923,9 +923,11 @@ namespace Skybound.Gecko
 		
 		public GeckoSelection Selection
 		{
-			get { return _Selection ?? (_Selection = new GeckoSelection(this._DomWindow.GetSelection())); }
+			get 
+			{				
+				return new GeckoSelection(this._DomWindow.GetSelection());
+			}
 		}
-		GeckoSelection _Selection;
 	}
 	
 	/// <summary>
