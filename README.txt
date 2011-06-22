@@ -2,6 +2,13 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v2.0.1-0.7 ==
+
+1. Add GetNodes(xpath), GetElements(xpath) to GeckoDom.
+2. Fix Bug where GeckoSelection object was not being updated.
+3. Improved Naviagte support specifying for POST headers.
+4. Exposed NS_ShutdownXPCOM.
+
 == v2.0.1-0.6 ==
 
 1. Fix issue with LPStruct marshaled nsAString return types. Fixes https://bitbucket.org/geckofx/geckofx-2.0/issue/15
