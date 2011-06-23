@@ -386,6 +386,19 @@ namespace Skybound.Gecko
 			DomElement.GetAttribute(new nsAString(attributeName), retval);
 			return retval.ToString();
 		}
+
+		/// <summary>
+		/// Check if Element contains specified attribute.
+		/// </summary>
+		/// <param name="attributeName">The name of the attribute to look for</param>
+		/// <returns>true if attribute exists false otherwise</returns>
+		public bool HasAttribute(string attributeName)
+		{
+			if (string.IsNullOrEmpty(attributeName))
+				throw new ArgumentException("attributeName");
+
+			return DomElement.HasAttribute(new nsAString(attributeName));			
+		}
 		
 		/// <summary>
 		/// Gets the value of an attribute on this element with the specified name and namespace.
