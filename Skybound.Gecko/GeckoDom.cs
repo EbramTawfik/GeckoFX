@@ -477,6 +477,11 @@ namespace Skybound.Gecko
 			get { return nsString.Get(DomNSHTMLElement.GetInnerHTMLAttribute); }
 			set { nsString.Set(DomNSHTMLElement.SetInnerHTMLAttribute, value); }
 		}
+
+		public string OuterHtml
+		{
+			get { return String.Format("<{0}>{1}</{0}>", TagName, InnerHtml); }
+		}
 		
 		public void Focus()
 		{
