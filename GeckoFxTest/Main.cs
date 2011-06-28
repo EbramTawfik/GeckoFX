@@ -20,7 +20,7 @@ namespace GeckoFxTest
 
 			Xpcom.Initialize(XULRunnerLocator.GetXULRunnerLocation());
 #else
-			Xpcom.Initialize(@"C:\Program Files (x86)\Mozilla Firefox");
+			Xpcom.Initialize(@"C:\Program Files (x86)\Mozilla Firefox 4.0");
 #endif
 
 			Application.Run(new MyForm());

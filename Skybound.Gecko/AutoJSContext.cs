@@ -36,6 +36,7 @@
 using System;
 using System.Runtime.InteropServices;
 using System.Runtime.CompilerServices;
+using System.Text;
 
 namespace Skybound.Gecko
 {
@@ -44,69 +45,32 @@ namespace Skybound.Gecko
 	/// which prevent methods on nsIDOMCSSStyleSheet from working outside of javascript.
 	/// </summary>
 	class AutoJSContext : IDisposable
-	{
-		#region Unmanaged Interfaces
-		
-		[StructLayout(LayoutKind.Sequential)]
-		struct JSStackFrame
-		{
-			IntPtr regs;
-			IntPtr imacpc;        /* null or interpreter macro call pc */
-			IntPtr slots;         /* variables, locals and operand stack */
-			IntPtr callobj;       /* lazily created Call object */
-			IntPtr argsobj;       /* lazily created arguments object */
-			IntPtr varobj;        /* variables object, where vars go */
-			IntPtr callee;        /* function or script object */
-			public IntPtr script;        /* script being interpreted */
-			IntPtr fun;           /* function being called or null */
-			IntPtr thisp;         /* "this" pointer if in method */
-			uint argc;           /* actual argument count */
-			IntPtr argv;          /* base of argument stack slots */
-			IntPtr rval;           /* function return value */
-			public IntPtr down;          /* previous frame */
-			IntPtr annotation;    /* used by Java security */
-			IntPtr scopeChain;
-			IntPtr blockChain;
-			uint sharpDepth;     /* array/object initializer depth */
-			IntPtr sharpArray;    /* scope for #n= initializer vars */
-			uint flags;          /* frame flags -- see below */
-			IntPtr dormantNext;   /* next dormant frame chain */
-			IntPtr xmlNamespace;  /* null or default xml namespace in E4X */
-			IntPtr displaySave;   /* previous value of display entry for script->staticLevel */
-		}
-
-
-		#endregion
-		
+	{	
 		#region Native Members
-		
-		[DllImport("js3250", CharSet=CharSet.Ansi)]
+
+		[DllImport("mozjs", CharSet=CharSet.Ansi)]
 		static extern IntPtr JS_CompileScriptForPrincipals(IntPtr aJSContext, IntPtr aJSObject, IntPtr aJSPrincipals, string bytes, int length, string filename, int lineNumber);
-		
-		[DllImport("js3250")]
+
+		[DllImport("mozjs")]
 		static extern IntPtr JS_GetGlobalObject(IntPtr aJSContext);
-		
-		[DllImport("js3250")]
+
+		[DllImport("mozjs")]
 		static extern IntPtr JS_NewContext(IntPtr aJSRuntime, int stackchunksize);
-		
-		[DllImport("js3250")]
+
+		[DllImport("mozjs")]
 		static extern void JS_DestroyContextNoGC(IntPtr cx);
-		
-		[DllImport("js3250")]
+
+		[DllImport("mozjs")]
 		static extern IntPtr JS_BeginRequest(IntPtr cx);
-		
-		[DllImport("js3250")]
+
+		[DllImport("mozjs")]
 		static extern IntPtr JS_EndRequest(IntPtr cx);
 		#endregion
 		
 		public AutoJSContext()
 		{
-			// obtain the JS runtime used by gecko
-			nsIJSRuntimeService runtimeService = (nsIJSRuntimeService)Xpcom.GetService("@mozilla.org/js/xpc/RuntimeService;1");
-			IntPtr jsRuntime = runtimeService.GetRuntimeAttribute();
-			
-			// create a new JSContext
-			cx = JS_NewContext(jsRuntime, 8192);
+			var jsContextStack = Xpcom.GetService<nsIThreadJSContextStack>("@mozilla.org/js/xpc/ContextStack;1");
+			cx = jsContextStack.GetSafeJSContextAttribute();
 			
 			// begin a new request
 			JS_BeginRequest(cx);
@@ -115,45 +79,25 @@ namespace Skybound.Gecko
 			nsIJSContextStack contextStack = Xpcom.GetService<nsIJSContextStack>("@mozilla.org/js/xpc/ContextStack;1");
 			contextStack.Push(cx);
 			
-			// obtain the system principal (no security checks) which we will use when compiling the empty script below
-			nsIPrincipal system = Xpcom.GetService<nsIScriptSecurityManager>("@mozilla.org/scriptsecuritymanager;1").GetSystemPrincipal();
+			// obtain the system principal (no security checks)
+			nsIScriptSecurityManager securityManager = Xpcom.GetService<nsIScriptSecurityManager>("@mozilla.org/scriptsecuritymanager;1");
+			nsIPrincipal system = securityManager.GetSystemPrincipal();
 			IntPtr jsPrincipals = system.GetJSPrincipals(cx);
-			
-			// create a fake stack frame
-			JSStackFrame frame = new JSStackFrame();
-			frame.script = JS_CompileScriptForPrincipals(cx, JS_GetGlobalObject(cx), jsPrincipals, "", 0, "", 1);
-			
-			// put a pointer to the fake stack frame on the JSContext
-			
-			// frame.down = cx->fp
-			IntPtr old = Marshal.ReadIntPtr(cx, OfsetOfFP);
-			frame.down = old;
-			
-			IntPtr framePtr = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(JSStackFrame)));
-			Marshal.StructureToPtr(frame, framePtr, true);
-			
-			// cx->fp = framePtr;
-			Marshal.WriteIntPtr(cx, OfsetOfFP, framePtr);
-		}
-		
-		//NOTE: these hard-coded field offsets are based on the unmanaged layout of JSContext objects.  this will
-		// probably not work for versions other than 1.8, 1.9 and 1.9.1
-		const int OfsetOfFP = 0x98;
 
-		
+			securityManager.PushContextPrincipal(cx, IntPtr.Zero, system);
+		}
+
 		IntPtr cx;
 		
 		public void Dispose()
 		{
+			nsIScriptSecurityManager securityManager = Xpcom.GetService<nsIScriptSecurityManager>("@mozilla.org/scriptsecuritymanager;1");
+
+			securityManager.PopContextPrincipal(cx);
+
 			nsIJSContextStack contextStack = Xpcom.GetService<nsIJSContextStack>("@mozilla.org/js/xpc/ContextStack;1");
 			contextStack.Pop();
-			
-			// free the memory allocated for the fake stack frame
-			Marshal.FreeHGlobal(Marshal.ReadIntPtr(cx, OfsetOfFP));
-			
-			// end the request, destroy the context
 			JS_EndRequest(cx);
-			JS_DestroyContextNoGC(cx);
 		}
 	}
 }
