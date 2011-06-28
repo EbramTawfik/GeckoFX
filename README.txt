@@ -2,6 +2,12 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v2.0.1-0.8 ==
+
+1. Rewrite much of AutoJSContext to prevent crashing with FF 4 and newer.
+2. Add HasAttribute method to GeckoElement.
+3. Add very basic OuterHtml property to GeckoElement.
+
 == v2.0.1-0.7 ==
 
 1. Add GetNodes(xpath), GetElements(xpath) to GeckoDom.
