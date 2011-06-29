@@ -454,9 +454,10 @@ namespace GeckofxUnitTests
 		}
 
 		[Test]
-		public void CreateInstance_CreatingContentPrefService_ThrowsFail()
+		public void CreateInstance_CreatingContentPrefService_ReturnsNull()
 		{
-			Assert.Throws<COMException>(() => Xpcom.CreateInstance<nsIContentPrefService>("@mozilla.org/content-pref/service;1"));			
+			var instance = Xpcom.CreateInstance<nsIContentPrefService>("@mozilla.org/content-pref/service;1");
+			Assert.IsNotNull(instance);
 		}
 
 		[Test]
