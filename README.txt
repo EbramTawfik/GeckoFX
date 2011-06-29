@@ -2,6 +2,10 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v2.0.1-0.9 ==
+
+1. Fix bug which was causing Links to have wrong cursor.
+
 == v2.0.1-0.8 ==
 
 1. Rewrite much of AutoJSContext to prevent crashing with FF 4 and newer.
