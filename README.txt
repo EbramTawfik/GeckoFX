@@ -2,6 +2,19 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v5.0-0.2 ==
+
+Import changes from geckofx-2.0:
+
+1. Add GetNodes(xpath), GetElements(xpath) to GeckoDom.
+2. Fix Bug where GeckoSelection object was not being updated.
+3. Improved Naviagte support specifying for POST headers.
+4. Exposed NS_ShutdownXPCOM.
+5. Rewrite much of AutoJSContext to prevent crashing with FF 4 and newer.
+6. Add HasAttribute method to GeckoElement.
+7. Add very basic OuterHtml property to GeckoElement.
+8. Fix bug which was causing Links to have wrong cursor.
+
 == v5.0-0.1 ==
 
 1. Initial version supporting xulrunner v5.0
