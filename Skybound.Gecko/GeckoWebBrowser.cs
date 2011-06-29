@@ -460,7 +460,7 @@ namespace Skybound.Gecko
 		/// <param name="loadFlags">Flags which specify how the page is loaded.</param>
 		public bool Navigate(string url, GeckoLoadFlags loadFlags)
 		{
-			return Navigate(url, loadFlags, null, null);
+			return Navigate(url, loadFlags, null, null, null);
 		}
 		
 		[Obsolete]
