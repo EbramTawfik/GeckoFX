@@ -181,14 +181,10 @@ namespace Skybound.Gecko
 			NS_GetComponentManager(out ComponentManager);
 			NS_GetComponentRegistrar(out ComponentRegistrar);
 			
-#if false
-			// a bug in Mozilla 1.8 (https://bugzilla.mozilla.org/show_bug.cgi?id=309877) causes the PSM to
-			// crash when loading a site over HTTPS.  in order to work around this bug, we must register an nsIDirectoryServiceProvider
-			// which will provide the location of a profile
+			// RegisterProvider is neccessary to get link styles etc.
 			nsIDirectoryService directoryService = GetService<nsIDirectoryService>("@mozilla.org/file/directory_service;1");
 			if (directoryService != null)
 				directoryService.RegisterProvider(new ProfileProvider());
-#endif
 			
 			_IsInitialized = true;
 		}
