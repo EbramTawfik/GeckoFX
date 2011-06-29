@@ -50,6 +50,15 @@ namespace Skybound.Gecko
 		#region Native Methods
 		[DllImport("xpcom", CharSet = CharSet.Ansi)]
 		static extern int NS_InitXPCOM2([MarshalAs(UnmanagedType.Interface)] out nsIServiceManager serviceManager, [MarshalAs(UnmanagedType.IUnknown)] object binDirectory, nsIDirectoryServiceProvider appFileLocationProvider);
+
+		/// <summary>
+		/// Shutdown XPCOM. You must call this method after you are finished
+		/// using xpcom. 
+		/// </summary>
+		/// <param name="serviceManager"></param>
+		/// <returns></returns>
+		[DllImport("xpcom", CharSet = CharSet.Ansi)]
+		static extern int NS_ShutdownXPCOM([MarshalAs(UnmanagedType.Interface)] nsIServiceManager serviceManager);
 		
 		[DllImport("xpcom", CharSet = CharSet.Ansi)]
 		static extern int NS_NewNativeLocalFile(nsACString path, bool followLinks, [MarshalAs(UnmanagedType.IUnknown)] out object result);
@@ -101,7 +110,7 @@ namespace Skybound.Gecko
 		[DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
 		[return: MarshalAs(UnmanagedType.Bool)]
 		static extern bool SetDllDirectory(string lpPathName);
-			
+	
 		/// <summary>
 		/// Initializes XPCOM using the specified directory.
 		/// </summary>
@@ -172,16 +181,20 @@ namespace Skybound.Gecko
 			NS_GetComponentManager(out ComponentManager);
 			NS_GetComponentRegistrar(out ComponentRegistrar);
 			
-#if false
-			// a bug in Mozilla 1.8 (https://bugzilla.mozilla.org/show_bug.cgi?id=309877) causes the PSM to
-			// crash when loading a site over HTTPS.  in order to work around this bug, we must register an nsIDirectoryServiceProvider
-			// which will provide the location of a profile
+			// RegisterProvider is neccessary to get link styles etc.
 			nsIDirectoryService directoryService = GetService<nsIDirectoryService>("@mozilla.org/file/directory_service;1");
 			if (directoryService != null)
 				directoryService.RegisterProvider(new ProfileProvider());
-#endif
 			
 			_IsInitialized = true;
+		}
+
+		public static void Shutdown()
+		{
+			Marshal.ReleaseComObject(ComponentRegistrar);
+			Marshal.ReleaseComObject(ComponentManager);
+			NS_ShutdownXPCOM(ServiceManager);
+			_IsInitialized = false;
 		}
 		
 		static bool _IsInitialized;

@@ -214,6 +214,21 @@ namespace Skybound.Gecko
 
 			return new GeckoNodeEnumerable(result);
 		}
+
+		/// <summary>
+		/// Get GeckoNodes from give xpath expression.
+		/// </summary>
+		/// <param name="xpath"></param>
+		/// <returns></returns>
+		public IEnumerable<GeckoElement> GetElements(string xpath)
+		{
+			nsIDOMXPathEvaluator evaluator = Xpcom.CreateInstance<nsIDOMXPathEvaluator>("@mozilla.org/dom/xpath-evaluator;1");
+			nsIDOMNode node = (nsIDOMNode)this.DomObject;
+			nsIDOMXPathNSResolver resolver = evaluator.CreateNSResolver(node);
+			nsIDOMXPathResult result = (nsIDOMXPathResult)evaluator.Evaluate(new nsAString(xpath), node, resolver, 0, null);
+
+			return new GeckoElementEnumerable(result);
+		}
 	}
 	
 	/// <summary>
@@ -370,6 +385,19 @@ namespace Skybound.Gecko
 			DomElement.GetAttribute(new nsAString(attributeName), retval);
 			return retval.ToString();
 		}
+
+		/// <summary>
+		/// Check if Element contains specified attribute.
+		/// </summary>
+		/// <param name="attributeName">The name of the attribute to look for</param>
+		/// <returns>true if attribute exists false otherwise</returns>
+		public bool HasAttribute(string attributeName)
+		{
+			if (string.IsNullOrEmpty(attributeName))
+				throw new ArgumentException("attributeName");
+
+			return DomElement.HasAttribute(new nsAString(attributeName));			
+		}
 		
 		/// <summary>
 		/// Gets the value of an attribute on this element with the specified name and namespace.
@@ -460,6 +488,11 @@ namespace Skybound.Gecko
 		{
 			get { return nsString.Get(DomNSHTMLElement.GetInnerHTMLAttribute); }
 			set { nsString.Set(DomNSHTMLElement.SetInnerHTMLAttribute, value); }
+		}
+
+		public string OuterHtml
+		{
+			get { return String.Format("<{0}>{1}</{0}>", TagName, InnerHtml); }
 		}
 		
 		public int TabIndex
@@ -897,9 +930,11 @@ namespace Skybound.Gecko
 		
 		public GeckoSelection Selection
 		{
-			get { return _Selection ?? (_Selection = new GeckoSelection(this._DomWindow.GetSelection())); }
+			get 
+			{				
+				return new GeckoSelection(this._DomWindow.GetSelection());
+			}
 		}
-		GeckoSelection _Selection;
 	}
 	
 	/// <summary>
@@ -1057,6 +1092,45 @@ namespace Skybound.Gecko
 			nsIDOMNode node;
 			while ((node = xpathResult.IterateNext()) != null)
 				yield return GeckoNode.Create(node);
+		}
+
+		#endregion
+
+		#region IEnumerable Members
+
+		System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+		{
+			nsIDOMNode node;
+			while ((node = xpathResult.IterateNext()) != null)
+				yield return GeckoNode.Create(node);
+		}
+
+		#endregion
+	}
+
+	/// <summary>
+	/// Represents a collection of GeckoNode's
+	/// </summary>
+	internal class GeckoElementEnumerable : IEnumerable<GeckoElement>
+	{
+		private nsIDOMXPathResult xpathResult = null;
+
+		internal GeckoElementEnumerable(nsIDOMXPathResult xpathResult)
+		{
+			this.xpathResult = xpathResult;
+		}
+
+		#region IEnumerable<GeckoNode> Members
+
+		// TODO: This current implementation only also GetEnumerator to be called once!
+		// refactor so that Enumerator is inplemented in seperate class and GetEnumerator can
+		// be called multiple times.
+		public IEnumerator<GeckoElement> GetEnumerator()
+		{
+			nsIDOMNode node;
+			while ((node = xpathResult.IterateNext()) != null)
+				if (node is nsIDOMHTMLElement)
+					yield return GeckoElement.Create((nsIDOMHTMLElement)node);
 		}
 
 		#endregion
