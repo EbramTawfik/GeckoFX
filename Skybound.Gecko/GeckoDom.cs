@@ -303,7 +303,7 @@ namespace Skybound.Gecko
 		
 		internal static GeckoElement Create(nsIDOMHTMLElement element)
 		{
-			return (element == null) ? null : new GeckoElement(element);
+			return (element == null) ? null : DOM.DOMSelector.GetClassFor(element);
 		}
 		
 		nsIDOMHTMLElement DomElement;
