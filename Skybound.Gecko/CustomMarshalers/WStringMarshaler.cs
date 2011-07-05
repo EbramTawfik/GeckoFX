@@ -41,12 +41,8 @@ namespace Skybound.Gecko.CustomMarshalers
 		{			
 			var str = ManagedObj as string;
 			var bytes = System.Text.Encoding.Unicode.GetBytes(str);
-			IntPtr unmangedMemory = Xpcom.Alloc(bytes.Length + 2);
-			for (int i = 0; i < bytes.Length; ++i)
-			{
-				Marshal.WriteByte(unmangedMemory, i, bytes[i]);
-			}
-
+			IntPtr unmangedMemory = Xpcom.Alloc(bytes.Length + 2);			
+			Marshal.Copy( bytes, 0, unmangedMemory, bytes.Length );
 			Marshal.WriteByte(unmangedMemory, bytes.Length, 0);
 			Marshal.WriteByte(unmangedMemory, bytes.Length + 1, 0);
 
