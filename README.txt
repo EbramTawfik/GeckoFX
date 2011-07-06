@@ -2,6 +2,13 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v2.0.1-0.10 ==
+
+Patch from zloyprotoss that:
+
+1. Optimizes WStringMarshaler
+2. Makes DOM GeckoElements actually be their Gecko DOM type.
+
 == v2.0.1-0.9 ==
 
 1. Fix bug which was causing Links to have wrong cursor.
