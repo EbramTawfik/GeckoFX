@@ -23,6 +23,11 @@ namespace Skybound.Gecko.DOM
 			set { DOMHTMLElement.SetClearAttribute(new nsAString(value)); }
 		}
 
+		public override string OuterHtml
+		{
+			get { return "<br>"; }
+		}
+
 	}
 }
 

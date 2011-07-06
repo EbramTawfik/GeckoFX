@@ -490,7 +490,7 @@ namespace Skybound.Gecko
 			set { nsString.Set(DomNSHTMLElement.SetInnerHTMLAttribute, value); }
 		}
 
-		public string OuterHtml
+		public virtual string OuterHtml
 		{
 			get { return String.Format("<{0}>{1}</{0}>", TagName, InnerHtml); }
 		}
