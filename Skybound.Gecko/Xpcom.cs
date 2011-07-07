@@ -78,7 +78,9 @@ namespace Skybound.Gecko
 		[DllImport("xpcom", EntryPoint="NS_Free")]
 		public static extern void Free(IntPtr ptr);
 		#endregion
-		
+
+		static bool? m_isMono;
+
 		/// <summary>
 		/// Initializes XPCOM using the current directory as the XPCOM directory.
 		/// </summary>
@@ -99,7 +101,12 @@ namespace Skybound.Gecko
 		
 		public static bool IsMono
 		{
-			get { return Type.GetType ("Mono.Runtime") != null; }
+			get { 
+					if (m_isMono == null)
+						m_isMono = Type.GetType ("Mono.Runtime") != null;
+
+					return (bool)m_isMono;
+			}
 		}
 		
 		public static bool IsDotNet
