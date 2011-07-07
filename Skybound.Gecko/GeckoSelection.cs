@@ -346,7 +346,11 @@ namespace Skybound.Gecko
 		
 		public override string ToString()
 		{
-			return Range.ToString().ToString();
+			using (nsAString retval = new nsAString())
+			{
+				Range.ToString(retval);
+				return retval.ToString();
+			}
 		}
 		
 		public void Detach()
