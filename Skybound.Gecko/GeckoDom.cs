@@ -492,13 +492,18 @@ namespace Skybound.Gecko
 
 		public virtual string OuterHtml
 		{
-			get { 
+			get {
+				string idAttribute = String.Empty;
+				string id = Id;
+				if (!String.IsNullOrEmpty(id))
+					idAttribute = String.Format(" id={0}", id);
+
 				string classAttribute = String.Empty;
 				string className = ClassName;
 				if (!String.IsNullOrEmpty(className))
 					classAttribute = String.Format(" class={0}", className);
 
-				return String.Format("<{0}{2}>{1}</{0}>", TagName, InnerHtml, classAttribute); 			
+				return String.Format("<{0}{2}{3}>{1}</{0}>", TagName, InnerHtml, idAttribute, classAttribute); 			
 			}
 		}
 		
