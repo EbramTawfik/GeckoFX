@@ -357,6 +357,15 @@ namespace Skybound.Gecko
 			get { return nsString.Get(DomElement.GetClassNameAttribute); }
 			set { nsString.Set(DomElement.SetClassNameAttribute, value); }
 		}
+
+		/// <summary>
+		/// Get the value of the ContentEditable Attribute
+		/// </summary>
+		public string ContentEditable
+		{
+			get { return nsString.Get(DomNSHTMLElement.GetContentEditableAttribute); }
+			set { nsString.Set(DomNSHTMLElement.GetContentEditableAttribute, value); }
+		}
 		
 		/// <summary>
 		/// Returns a collection containing the child elements of this element with a given tag name.
@@ -493,6 +502,12 @@ namespace Skybound.Gecko
 		public virtual string OuterHtml
 		{
 			get {
+				string contenteditableAttribute = String.Empty;
+				string contentEdiableValue = ContentEditable;
+
+				if (contentEdiableValue.ToLowerInvariant() != "inherit")
+					contenteditableAttribute = String.Format(" ContentEditable={0}", contentEdiableValue);				
+
 				string idAttribute = String.Empty;
 				string id = Id;
 				if (!String.IsNullOrEmpty(id))
@@ -503,7 +518,7 @@ namespace Skybound.Gecko
 				if (!String.IsNullOrEmpty(className))
 					classAttribute = String.Format(" class={0}", className);
 
-				return String.Format("<{0}{2}{3}>{1}</{0}>", TagName, InnerHtml, idAttribute, classAttribute); 			
+				return String.Format("<{0}{2}{3}{4}>{1}</{0}>", TagName, InnerHtml, idAttribute, classAttribute, contenteditableAttribute);
 			}
 		}
 		
