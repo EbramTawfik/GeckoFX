@@ -1661,7 +1661,7 @@ namespace Skybound.Gecko
 		
 		void nsIEmbeddingSiteWindow2.SetDimensions(uint flags, int x, int y, int cx, int cy)
 		{
-			(this as nsIEmbeddingSiteWindow).SetDimensions(flags, x, y, cx, y);
+			(this as nsIEmbeddingSiteWindow).SetDimensions(flags, x, y, cx, cy);
 		}
 
 		void nsIEmbeddingSiteWindow2.GetDimensions(uint flags, out int x, out int y, out int cx, out int cy)
