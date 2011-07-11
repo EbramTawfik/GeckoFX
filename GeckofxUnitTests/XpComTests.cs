@@ -1685,6 +1685,30 @@ namespace GeckofxUnitTests
 			Marshal.ReleaseComObject(instance);
 		}
 
+		[Test]
+		public void GetDownloadManager_CleanXpComInstance_ReturnsValidInstance()
+		{
+			var instance = Xpcom.GetService<nsIDownloadManager>("@mozilla.org/download-manager;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+		[Test]
+		public void GetDownloadManagerUI_CleanXpComInstance_ReturnsValidInstance()
+		{
+			var instance = Xpcom.GetService<nsIDownloadManagerUI>("@mozilla.org/download-manager-ui;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
+
+
+		[Test]
+		public void GetHandlerService_CleanXpComInstance_ReturnsValidInstance()
+		{
+			var instance = Xpcom.GetService<nsIHandlerService>("@mozilla.org/uriloader/handler-service;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);			
+		}
 #endregion
 	}
 }
