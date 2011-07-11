@@ -238,7 +238,9 @@ namespace Skybound.Gecko
 				{
 				      // obtain the services we need
 				      nsIAppShellService appShellService = Xpcom.GetService<nsIAppShellService>("@mozilla.org/appshell/appShellService;1");
-				      nsIAppShell appShell = (nsIAppShell)Xpcom.GetService(new Guid("2d96b3df-c051-11d1-a827-0040959a28c9"));
+
+					  System.IntPtr ptr = (IntPtr)Xpcom.GetService(new Guid("2d96b3df-c051-11d1-a827-0040959a28c9"));
+					  nsIAppShell appShell = (nsIAppShell)Marshal.GetObjectForIUnknown(ptr);
 				      
 				      // create the child window
 				      nsIXULWindow xulChild = appShellService.CreateTopLevelWindow(null, null, chromeFlags, -1, -1, appShell);
@@ -273,7 +275,10 @@ namespace Skybound.Gecko
 					}
 									
 					nsIAppShellService appShellService = Xpcom.GetService<nsIAppShellService>("@mozilla.org/appshell/appShellService;1");
-					nsIAppShell appShell = (nsIAppShell)Xpcom.GetService(new Guid("2d96b3df-c051-11d1-a827-0040959a28c9"));
+
+					System.IntPtr ptr = (IntPtr)Xpcom.GetService(new Guid("2d96b3df-c051-11d1-a827-0040959a28c9"));
+					nsIAppShell appShell = (nsIAppShell)Marshal.GetObjectForIUnknown(ptr);
+
 					nsIXULWindow xulChild = appShellService.CreateTopLevelWindow(null, null, chromeFlags, -1, -1, appShell);
 					return Xpcom.QueryInterface<nsIWebBrowserChrome>(xulChild);									
 				}
