@@ -563,6 +563,16 @@ namespace Skybound.Gecko
 		}
 
 		/// <summary>
+		/// Loads supplied html string.
+		/// </summary>
+		/// <param name="htmlDocument"></param>
+		public void LoadHtml(string htmlDocument)
+		{
+			var bytes = System.Text.Encoding.UTF8.GetBytes(htmlDocument);						
+			Navigate(string.Format("data:text/html;base64,{0}", Convert.ToBase64String(bytes)));
+		}		
+
+		/// <summary>
 		/// Gets or sets whether all default items are removed from the standard context menu.
 		/// </summary>
 		[DefaultValue(false),Description("Removes default items from the standard context menu.  The ShowContextMenu event is still raised to add custom items.")]
