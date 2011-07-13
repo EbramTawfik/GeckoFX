@@ -86,6 +86,36 @@ namespace Skybound.Gecko
 		{
 			get { return GeckoElement.Create(Xpcom.QueryInterface<nsIDOMHTMLElement>(_Event.GetTargetAttribute())); }
 		}
+
+		/// <summary>
+		/// If an event is cancelable, the preventDefault method is used to
+		/// signify that the event is to be canceled, meaning any default action
+		/// normally taken by the implementation as a result of the event will
+		/// not occur. If, during any stage of event flow, the preventDefault
+		/// method is called the event is canceled. Any default action associated
+		/// with the event will not occur. Calling this method for a
+		/// non-cancelable event has no effect. Once preventDefault has been
+		/// called it will remain in effect throughout the remainder of the
+		/// event's propagation. This method may be used during any stage of
+		/// event flow.
+		/// </summary>
+		public void PreventDefault()
+		{
+			_Event.PreventDefault();
+		}
+
+		/// <summary>
+		/// The stopPropagation method is used prevent further propagation of an
+		/// event during event flow. If this method is called by any
+		/// EventListener the event will cease propagating through the tree. The
+		/// event will complete dispatch to all listeners on the current
+		/// EventTarget before event flow stops. This method may be used during
+		/// any stage of event flow.
+		/// </summary>
+		public void StopPropagation()
+		{
+			_Event.StopPropagation();
+		}		
 	};
 	
 	public class GeckoDomUIEventArgs : GeckoDomEventArgs
