@@ -358,6 +358,21 @@ namespace Skybound.Gecko
 			set { nsString.Set(DomElement.SetClassNameAttribute, value); }
 		}
 
+		public void Blur()
+		{
+			DomElement.Blur();
+		}
+
+		public void Focus()
+		{
+			DomElement.Focus();
+		}
+
+		public void Click()
+		{
+			DomElement.Click();
+		}
+	
 		/// <summary>
 		/// Get the value of the ContentEditable Attribute
 		/// </summary>
@@ -527,7 +542,6 @@ namespace Skybound.Gecko
 			get { return DomNSHTMLElement.GetTabIndexAttribute(); }
 			set { DomNSHTMLElement.SetTabIndexAttribute(value); }
 		}
-
 	}
 	
 	/// <summary>
@@ -958,7 +972,10 @@ namespace Skybound.Gecko
 		public GeckoSelection Selection
 		{
 			get 
-			{				
+			{
+				if (_DomWindow.GetSelection() == null)
+					return null;
+
 				return new GeckoSelection(this._DomWindow.GetSelection());
 			}
 		}
