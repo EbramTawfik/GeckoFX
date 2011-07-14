@@ -44,6 +44,9 @@ namespace Skybound.Gecko
 	{
 		internal GeckoSelection(nsISelection selection)
 		{
+			if (selection == null)
+				throw new ArgumentException("selection");
+
 			this.Selection = selection;
 		}
 		
