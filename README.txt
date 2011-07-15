@@ -2,6 +2,18 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v5.0-0.4 ==
+
+1. Improve OuterHtml values.
+2. Performance optimization.
+3. Fix GeckoRange.ToString method.
+4. Add ContentEditable, Blur, Focus and Click to GeckoElement
+5. Add PreventDefault and StopPropagation to GeckoDomEventsArgs
+6. Found and deleted some remaining handwritten Xulrunner interfaces.
+7. Add LoadHtml(string) function that loads page based upon a string.
+8. Fix bug where InvalidCastException was being thrown when clicking on certain links.
+9. Disallow GeckoSelection represting a null selection.
+
 == v5.0-0.3 ==
 
 Import changes from geckofx-2.0:
