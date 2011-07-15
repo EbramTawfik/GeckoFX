@@ -299,12 +299,12 @@ namespace Skybound.Gecko
 		
 		public void SelectNode(GeckoNode node)
 		{
-			Range.SelectNode((nsIDOMNode)node);
+			Range.SelectNode((nsIDOMNode)node.DomObject);
 		}
 		
 		public void SelectNodeContents(GeckoNode node)
 		{
-			Range.SelectNodeContents((nsIDOMNode)node);
+			Range.SelectNodeContents((nsIDOMNode)node.DomObject);
 		}
 		
 		public short CompareBoundaryPoints(ushort how, GeckoRange sourceRange)
