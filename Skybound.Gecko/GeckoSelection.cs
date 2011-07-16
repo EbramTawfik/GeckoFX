@@ -192,7 +192,7 @@ namespace Skybound.Gecko
 		/// <summary>
 		/// Removes all ranges from the current selection.
 		/// </summary>
-		void RemoveAllRanges()
+		public void RemoveAllRanges()
 		{
 			Selection.RemoveAllRanges();
 		}
@@ -200,7 +200,7 @@ namespace Skybound.Gecko
 		/// <summary>
 		/// Deletes this selection from the document.
 		/// </summary>
-		void DeleteFromDocument()
+		public void DeleteFromDocument()
 		{
 			Selection.DeleteFromDocument();
 		}
@@ -209,7 +209,7 @@ namespace Skybound.Gecko
 		/// Modifies the cursor BIDI level after a change in keyboard direction.
 		/// </summary>
 		/// <param name="langRtl"></param>
-		void SelectionLanguageChange(bool langRtl)
+		public void SelectionLanguageChange(bool langRtl)
 		{
 			Selection.SelectionLanguageChange(langRtl);
 		}
