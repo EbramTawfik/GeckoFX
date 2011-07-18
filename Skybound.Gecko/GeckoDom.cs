@@ -38,6 +38,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Drawing;
 using System.Diagnostics;
+using Skybound.Gecko.DOM;
 
 namespace Skybound.Gecko
 {
@@ -303,6 +304,11 @@ namespace Skybound.Gecko
 		internal static GeckoElement Create(nsIDOMHTMLElement element)
 		{
 			return (element == null) ? null : DOM.DOMSelector.GetClassFor(element);
+		}
+
+		internal static T Create<T>(nsIDOMHTMLElement element) where T : GeckoElement 
+		{
+			return (element == null) ? null : DOM.DOMSelector.GetClassFor<T>(element);
 		}
 		
 		nsIDOMHTMLElement DomElement;
@@ -573,9 +579,9 @@ namespace Skybound.Gecko
 		/// <summary>
 		/// Gets the HTML body element.
 		/// </summary>
-		public GeckoElement Body
+		public GeckoBodyElement Body
 		{
-			get { return GeckoElement.Create(DomDocument.GetBodyAttribute()); }
+			get { return GeckoElement.Create<GeckoBodyElement>(DomDocument.GetBodyAttribute()); }
 		}
 		
 		/// <summary>

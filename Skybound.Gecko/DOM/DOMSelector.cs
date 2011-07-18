@@ -88,7 +88,15 @@ namespace Skybound.Gecko.DOM
             Add(new GeckoClassDesc() { TagName = "ul", InterfaceType = typeof(nsIDOMHTMLUListElement), GeckoElement = typeof(GeckoUListElement) });
         }
 
-        internal static GeckoElement GetClassFor(nsIDOMHTMLElement element)
+		internal static GeckoElement GetClassFor(nsIDOMHTMLElement element)
+		{
+			GeckoElement ret = GetClassFor<GeckoElement>(element);
+			if (ret == null)
+				ret = new GeckoElement(element);
+			return ret;
+		}
+
+        internal static T GetClassFor<T>(nsIDOMHTMLElement element)  where T : GeckoElement
         {
         	var lowerTagName = nsString.Get( element.GetTagNameAttribute ).ToLower();
         	GeckoClassDesc desc;
@@ -98,10 +106,12 @@ namespace Skybound.Gecko.DOM
 				object HTMLElement = Xpcom.QueryInterface(element,desc.InterfaceType.GUID);
 				if(HTMLElement != null)
 				{
-					return Activator.CreateInstance( desc.GeckoElement, new object[] {HTMLElement} ) as GeckoElement;
+					object o = Activator.CreateInstance( desc.GeckoElement, new object[] {HTMLElement} );
+					if (o is T)
+						return (T)o;
 				}
 			}
-        	return new GeckoElement( element );
+			return null;
         }
     }
 }
