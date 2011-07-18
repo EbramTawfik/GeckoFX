@@ -40,6 +40,13 @@ Import changes from geckofx-2.0:
 
 1. Initial version supporting xulrunner v5.0
 
+== v2.0.1-0.10 ==
+
+Patch from zloyprotoss that:
+
+1. Optimizes WStringMarshaler
+2. Makes DOM GeckoElements actually be their Gecko DOM type.
+
 == v2.0.1-0.9 ==
 
 1. Fix bug which was causing Links to have wrong cursor.
