@@ -9,12 +9,10 @@ namespace Skybound.Gecko.DOM
 {	
 	public class GeckoBodyElement : GeckoElement
 	{
-		nsIDOMHTMLBodyElement DOMHTMLElement;
-		HtmlEventHandler m_bodyEventHandler;
+		nsIDOMHTMLBodyElement DOMHTMLElement;		
 		internal GeckoBodyElement(nsIDOMHTMLBodyElement element) : base(element)
 		{
-			this.DOMHTMLElement = element;
-			m_bodyEventHandler = new HtmlEventHandler(this);			
+			this.DOMHTMLElement = element;			
 		}
 		public GeckoBodyElement(object element) : this(element as nsIDOMHTMLBodyElement)
 		{
