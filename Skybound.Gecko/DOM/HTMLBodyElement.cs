@@ -10,13 +10,14 @@ namespace Skybound.Gecko.DOM
 	public class GeckoBodyElement : GeckoElement
 	{
 		nsIDOMHTMLBodyElement DOMHTMLElement;
+		HtmlEventHandler m_bodyEventHandler;
 		internal GeckoBodyElement(nsIDOMHTMLBodyElement element) : base(element)
 		{
 			this.DOMHTMLElement = element;
+			m_bodyEventHandler = new HtmlEventHandler(this);			
 		}
-		public GeckoBodyElement(object element) : base(element as nsIDOMHTMLElement)
+		public GeckoBodyElement(object element) : this(element as nsIDOMHTMLBodyElement)
 		{
-			this.DOMHTMLElement = element as nsIDOMHTMLBodyElement;
 		}
 		public string ALink {
 			get { return nsString.Get(DOMHTMLElement.GetALinkAttribute); }
