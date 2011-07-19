@@ -175,6 +175,7 @@
     <Compile Include="DOM\HTMLTitleElement.cs" />
     <Compile Include="DOM\HTMLUListElement.cs" />
     <Compile Include="GeckoMIMEInputStream.cs" />
+    <Compile Include="GeckoNode.cs" />
     <Compile Include="Generated\amIInstallTrigger.cs" />
     <Compile Include="Generated\amIWebInstaller.cs" />
     <Compile Include="Generated\amIWebInstallListener.cs" />
