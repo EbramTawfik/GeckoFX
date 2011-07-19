@@ -192,18 +192,15 @@ namespace Skybound.Gecko
 				target.AddEventListener(new nsAString("contextmenu"), this, true);
 				target.AddEventListener(new nsAString("DOMMouseScroll"), this, true);
 				target.AddEventListener(new nsAString("focus"), this, true);
+				// Load event added here rather than DOMDocument as DOMDocument recreated when navigating
+				// this losing attached listener.
+				target.AddEventListener(new nsAString("load"), this, true);
 				
 				// history
 				if (WebNav.GetSessionHistoryAttribute() != null)
 					WebNav.GetSessionHistoryAttribute().AddSHistoryListener(this);
 
 				BaseWindow.SetVisibilityAttribute(true);
-				
-				if ((this.ChromeFlags & (int)GeckoWindowFlags.OpenAsChrome) == 0)
-				{							
-					// navigating to about:blank allows drag & drop to work properly before a page has been loaded into the browser
-					Navigate("about:blank");					
-				}	
 				
 				// this fix prevents the browser from crashing if the first page loaded is invalid (missing file, invalid URL, etc)
 				Document.Cookie = "";
@@ -1135,8 +1132,8 @@ namespace Skybound.Gecko
 			{
 				if (WebBrowser == null)
 					return null;
-				
-				if (_Document == null)
+
+				if (_Document == null || _Document.DomObject != WebBrowser.GetContentDOMWindowAttribute().GetDocumentAttribute())
 				{
 					_Document = GeckoDocument.Create(Xpcom.QueryInterface<nsIDOMHTMLDocument>(WebBrowser.GetContentDOMWindowAttribute().GetDocumentAttribute()));
 					//FromDOMDocumentTable.Add((nsIDOMDocument)_Document.DomObject, this);
@@ -1922,6 +1919,7 @@ namespace Skybound.Gecko
 				case "contextmenu": OnDomContextMenu((GeckoDomMouseEventArgs)(ea = new GeckoDomMouseEventArgs((nsIDOMMouseEvent)e))); break;				
 				case "DOMMouseScroll": OnDomMouseScroll((GeckoDomMouseEventArgs)(ea = new GeckoDomMouseEventArgs((nsIDOMMouseEvent)e))); break;				
 				case "focus": OnDomFocus(ea = new GeckoDomEventArgs(e)); break;
+				case "load": OnLoad(ea = new GeckoDomEventArgs(e)); break;
 			}
 			
 			if (ea != null && ea.Cancelable && ea.Handled)
@@ -2176,6 +2174,24 @@ namespace Skybound.Gecko
 		{
 			if (((GeckoDomEventHandler)this.Events[DomFocusEvent]) != null)
 				((GeckoDomEventHandler)this.Events[DomFocusEvent])(this, e);
+		}
+		#endregion
+
+		#region public event GeckoDomEventHandler Load
+		[Category("DOM Events")]
+		public event GeckoDomEventHandler Load
+		{
+			add { this.Events.AddHandler(LoadEvent, value); }
+			remove { this.Events.RemoveHandler(LoadEvent, value); }
+		}
+		private static object LoadEvent = new object();
+
+		/// <summary>Raises the <see cref="LoadEvent"/> event.</summary>
+		/// <param name="e">The data for the event.</param>
+		protected virtual void OnLoad(GeckoDomEventArgs e)
+		{
+			if (((GeckoDomEventHandler)this.Events[LoadEvent]) != null)
+				((GeckoDomEventHandler)this.Events[LoadEvent])(this, e);
 		}
 		#endregion
 		
