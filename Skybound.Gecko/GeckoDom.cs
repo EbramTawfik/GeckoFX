@@ -778,7 +778,12 @@ namespace Skybound.Gecko
 			
 			return GeckoAttribute.Create(DomDocument.CreateAttributeNS(new nsAString(namespaceUri), new nsAString(qualifiedName)));
 		}
-		
+
+		public GeckoNode CreateTextNode(string data)
+		{
+			return GeckoNode.Create(DomDocument.CreateTextNode(new nsAString(data)));
+		}
+
 		public GeckoNode ImportNode(GeckoNode node, bool deep)
 		{
 			if (node == null)
