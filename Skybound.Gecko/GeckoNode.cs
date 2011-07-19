@@ -166,6 +166,16 @@ namespace Skybound.Gecko
 			get { return new GeckoNamedNodeMap(_DomObject.GetAttributesAttribute()); }
 		}
 
+		public ushort Type
+		{
+			get { return _DomObject.GetNodeTypeAttribute(); }
+		}
+
+		public GeckoNode ParentNode
+		{
+			get { return new GeckoNode(_DomObject.GetParentNodeAttribute()); }
+		}
+
 		/// <summary>
 		/// Get GeckoNodes from give xpath expression.
 		/// </summary>
