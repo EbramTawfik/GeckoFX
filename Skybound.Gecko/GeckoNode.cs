@@ -173,7 +173,9 @@ namespace Skybound.Gecko
 
 		public GeckoNode ParentNode
 		{
-			get { return new GeckoNode(_DomObject.GetParentNodeAttribute()); }
+			get { 
+				return GeckoNode.Create(_DomObject.GetParentNodeAttribute());								
+			}
 		}
 
 		/// <summary>
