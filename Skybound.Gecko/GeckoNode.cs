@@ -36,7 +36,7 @@ namespace Skybound.Gecko
 		/// <summary>
 		/// Gets the underlying XPCOM object.
 		/// </summary>
-		public object DomObject
+		public nsIDOMNode DomObject
 		{
 			get { return _DomObject; }
 		}
@@ -173,8 +173,23 @@ namespace Skybound.Gecko
 
 		public GeckoNode ParentNode
 		{
-			get { 
-				return GeckoNode.Create(_DomObject.GetParentNodeAttribute());								
+			get {
+				return GeckoNode.Create(_DomObject.GetParentNodeAttribute());
+			}
+		}
+
+		public GeckoElement ParentElement
+		{
+			get
+			{
+				nsIDOMNode node = _DomObject.GetParentNodeAttribute();
+				while (node != null && !(node is nsIDOMElement))
+					node = node.GetParentNodeAttribute();
+
+				if (node == null)
+					return null;
+
+				return (GeckoElement)GeckoNode.Create(node);
 			}
 		}
 

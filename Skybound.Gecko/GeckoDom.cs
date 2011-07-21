@@ -301,6 +301,15 @@ namespace Skybound.Gecko
 			DomElement.RemoveAttribute(new nsAString(attributeName));
 		}
 
+		public System.Drawing.Rectangle BoundingClientRect
+		{
+			get
+			{
+				nsIDOMClientRect domRect = DomNSElement.GetBoundingClientRect();
+				var r = new Rectangle((int)domRect.GetLeftAttribute(), (int)domRect.GetTopAttribute(), (int)domRect.GetWidthAttribute(), (int)domRect.GetHeightAttribute());
+				return r;				
+			}
+		}
 
 		public int ScrollLeft { get { return DomNSElement.GetScrollLeftAttribute(); } set { DomNSElement.SetScrollLeftAttribute(value); } }
 		public int ScrollTop { get { return DomNSElement.GetScrollTopAttribute(); } set { DomNSElement.SetScrollTopAttribute(value); } }
