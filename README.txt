@@ -2,6 +2,25 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v5.0-0.5 ==
+
+Bug fixes
+=========
+
+1. Fix bugs in GeckoSelection
+2. fix bug in GeckoWebBrowser nsIEmbeddingSiteWindow2.SetDimensions (Thanks zloyprotoss)
+3. Fix bug in generated xulrunner interfaces where double was being used instead of float. (Thanks Priyank)
+
+Added Features
+=============
+
+1. Expose GeckoSelection.RemoveAllRanges and GeckoSelection.DeleteFromDocument
+2. GeckoNode got the new properties: Type, ParentNode, ParentElement
+3. GeckoSelection got the new properties: BoundingClientRect, ClientRects
+4. GeckoElement got the new property: BoundingClientRect
+5. GeckoDocument got the new property: CreateTextNode
+6. GeckoWebBrowser got the new event: Load
+
 == v5.0-0.4 ==
 
 1. Improve OuterHtml values.
