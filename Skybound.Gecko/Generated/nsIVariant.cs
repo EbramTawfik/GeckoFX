@@ -84,7 +84,7 @@ namespace Skybound.Gecko
 		ulong GetAsUint64();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetAsFloat();
+		System.Single GetAsFloat();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		double GetAsDouble();
@@ -194,7 +194,7 @@ namespace Skybound.Gecko
 		new ulong GetAsUint64();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new double GetAsFloat();
+		new System.Single GetAsFloat();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new double GetAsDouble();
@@ -303,7 +303,7 @@ namespace Skybound.Gecko
 		void SetAsUint64(ulong aValue);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAsFloat(double aValue);
+		void SetAsFloat(System.Single aValue);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetAsDouble(double aValue);

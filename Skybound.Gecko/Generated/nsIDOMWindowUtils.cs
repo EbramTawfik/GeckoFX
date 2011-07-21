@@ -125,7 +125,7 @@ namespace Skybound.Gecko
         /// privileges.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCSSViewport(double aWidthPx, double aHeightPx);
+		void SetCSSViewport(System.Single aWidthPx, System.Single aHeightPx);
 		
 		/// <summary>
         /// For any scrollable element, this allows you to override the
@@ -154,7 +154,7 @@ namespace Skybound.Gecko
         /// privileges.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDisplayPortForElement(double aXPx, double aYPx, double aWidthPx, double aHeightPx, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement);
+		void SetDisplayPortForElement(System.Single aXPx, System.Single aYPx, System.Single aWidthPx, System.Single aHeightPx, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement);
 		
 		/// <summary>
         /// Get/set the resolution at which rescalable web content is drawn.
@@ -181,7 +181,7 @@ namespace Skybound.Gecko
         /// privileges.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetResolution(double aXResolution, double aYResolution);
+		void SetResolution(System.Single aXResolution, System.Single aYResolution);
 		
 		/// <summary>
         ///Synthesize a mouse event. The event types supported are:
@@ -216,14 +216,14 @@ namespace Skybound.Gecko
         /// during dispatch
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendMouseEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString aType, double aX, double aY, int aButton, int aClickCount, int aModifiers, [MarshalAs(UnmanagedType.Bool)] bool aIgnoreRootScrollFrame);
+		void SendMouseEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString aType, System.Single aX, System.Single aY, int aButton, int aClickCount, int aModifiers, [MarshalAs(UnmanagedType.Bool)] bool aIgnoreRootScrollFrame);
 		
 		/// <summary>
         ///The same as sendMouseEvent but ensures that the event is dispatched to
         /// this DOM window or one of its children.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendMouseEventToWindow([MarshalAs(UnmanagedType.LPStruct)] nsAString aType, double aX, double aY, int aButton, int aClickCount, int aModifiers, [MarshalAs(UnmanagedType.Bool)] bool aIgnoreRootScrollFrame);
+		void SendMouseEventToWindow([MarshalAs(UnmanagedType.LPStruct)] nsAString aType, System.Single aX, System.Single aY, int aButton, int aClickCount, int aModifiers, [MarshalAs(UnmanagedType.Bool)] bool aIgnoreRootScrollFrame);
 		
 		/// <summary>
         ///Synthesize a mouse scroll event for a window. The event types supported
@@ -247,7 +247,7 @@ namespace Skybound.Gecko
         /// @param aModifiers modifiers pressed, using constants defined in nsIDOMNSEvent
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendMouseScrollEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString aType, double aX, double aY, int aButton, int aScrollFlags, int aDelta, int aModifiers);
+		void SendMouseScrollEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString aType, System.Single aX, System.Single aY, int aButton, int aScrollFlags, int aDelta, int aModifiers);
 		
 		/// <summary>
         /// Synthesize a key event to the window. The event types supported are:
@@ -370,7 +370,7 @@ namespace Skybound.Gecko
         /// @param aModifiers modifiers pressed, using constants defined in nsIDOMNSEvent
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendSimpleGestureEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString aType, double aX, double aY, uint aDirection, double aDelta, int aModifiers);
+		void SendSimpleGestureEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString aType, System.Single aX, System.Single aY, uint aDirection, double aDelta, int aModifiers);
 		
 		/// <summary>
         /// Retrieve the element at point aX, aY in the window's document.
@@ -382,7 +382,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMElement ElementFromPoint(double aX, double aY, [MarshalAs(UnmanagedType.Bool)] bool aIgnoreRootScrollFrame, [MarshalAs(UnmanagedType.Bool)] bool aFlushLayout);
+		nsIDOMElement ElementFromPoint(System.Single aX, System.Single aY, [MarshalAs(UnmanagedType.Bool)] bool aIgnoreRootScrollFrame, [MarshalAs(UnmanagedType.Bool)] bool aFlushLayout);
 		
 		/// <summary>
         /// Retrieve all nodes that intersect a rect in the window's document.
@@ -400,7 +400,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMNodeList NodesFromRect(double aX, double aY, double aTopSize, double aRightSize, double aBottomSize, double aLeftSize, [MarshalAs(UnmanagedType.Bool)] bool aIgnoreRootScrollFrame, [MarshalAs(UnmanagedType.Bool)] bool aFlushLayout);
+		nsIDOMNodeList NodesFromRect(System.Single aX, System.Single aY, System.Single aTopSize, System.Single aRightSize, System.Single aBottomSize, System.Single aLeftSize, [MarshalAs(UnmanagedType.Bool)] bool aIgnoreRootScrollFrame, [MarshalAs(UnmanagedType.Bool)] bool aFlushLayout);
 		
 		/// <summary>
         /// Compare the two canvases, returning the number of differing pixels and
@@ -473,7 +473,7 @@ namespace Skybound.Gecko
         /// Get the number of screen pixels per CSS pixel.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetScreenPixelsPerCSSPixelAttribute();
+		System.Single GetScreenPixelsPerCSSPixelAttribute();
 		
 		/// <summary>
         /// Dispatches aEvent via the nsIPresShell object of the window's document.
@@ -650,7 +650,7 @@ namespace Skybound.Gecko
         /// The DPI of the display
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetDisplayDPIAttribute();
+		System.Single GetDisplayDPIAttribute();
 		
 		/// <summary>
         /// Return the outer window with the given ID, if any.  Can return null.

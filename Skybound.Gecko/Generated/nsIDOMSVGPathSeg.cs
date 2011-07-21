@@ -62,26 +62,26 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetXAttribute </summary>
-		/// <returns>A System.Double</returns>
+		/// <returns>A System.Single</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetXAttribute();
+		System.Single GetXAttribute();
 		
 		/// <summary>Member SetXAttribute </summary>
 		/// <param name='aX'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetXAttribute(double aX);
+		void SetXAttribute(System.Single aX);
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetYAttribute();
+		System.Single GetYAttribute();
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetYAttribute(double aY);
+		void SetYAttribute(System.Single aY);
 	}
 	
 	/// <summary>
@@ -97,25 +97,25 @@ namespace Skybound.Gecko
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetXAttribute();
+		System.Single GetXAttribute();
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetXAttribute(double aX);
+		void SetXAttribute(System.Single aX);
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetYAttribute();
+		System.Single GetYAttribute();
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetYAttribute(double aY);
+		void SetYAttribute(System.Single aY);
 	}
 	
 	/// <summary>
@@ -131,25 +131,25 @@ namespace Skybound.Gecko
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetXAttribute();
+		System.Single GetXAttribute();
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetXAttribute(double aX);
+		void SetXAttribute(System.Single aX);
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetYAttribute();
+		System.Single GetYAttribute();
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetYAttribute(double aY);
+		void SetYAttribute(System.Single aY);
 	}
 	
 	/// <summary>
@@ -165,25 +165,25 @@ namespace Skybound.Gecko
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetXAttribute();
+		System.Single GetXAttribute();
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetXAttribute(double aX);
+		void SetXAttribute(System.Single aX);
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetYAttribute();
+		System.Single GetYAttribute();
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetYAttribute(double aY);
+		void SetYAttribute(System.Single aY);
 	}
 	
 	/// <summary>
@@ -199,73 +199,73 @@ namespace Skybound.Gecko
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetXAttribute();
+		System.Single GetXAttribute();
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetXAttribute(double aX);
+		void SetXAttribute(System.Single aX);
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetYAttribute();
+		System.Single GetYAttribute();
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetYAttribute(double aY);
+		void SetYAttribute(System.Single aY);
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetX1Attribute();
+		System.Single GetX1Attribute();
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetX1Attribute(double aX1);
+		void SetX1Attribute(System.Single aX1);
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetY1Attribute();
+		System.Single GetY1Attribute();
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetY1Attribute(double aY1);
+		void SetY1Attribute(System.Single aY1);
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetX2Attribute();
+		System.Single GetX2Attribute();
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetX2Attribute(double aX2);
+		void SetX2Attribute(System.Single aX2);
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetY2Attribute();
+		System.Single GetY2Attribute();
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetY2Attribute(double aY2);
+		void SetY2Attribute(System.Single aY2);
 	}
 	
 	/// <summary>
@@ -281,73 +281,73 @@ namespace Skybound.Gecko
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetXAttribute();
+		System.Single GetXAttribute();
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetXAttribute(double aX);
+		void SetXAttribute(System.Single aX);
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetYAttribute();
+		System.Single GetYAttribute();
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetYAttribute(double aY);
+		void SetYAttribute(System.Single aY);
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetX1Attribute();
+		System.Single GetX1Attribute();
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetX1Attribute(double aX1);
+		void SetX1Attribute(System.Single aX1);
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetY1Attribute();
+		System.Single GetY1Attribute();
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetY1Attribute(double aY1);
+		void SetY1Attribute(System.Single aY1);
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetX2Attribute();
+		System.Single GetX2Attribute();
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetX2Attribute(double aX2);
+		void SetX2Attribute(System.Single aX2);
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetY2Attribute();
+		System.Single GetY2Attribute();
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetY2Attribute(double aY2);
+		void SetY2Attribute(System.Single aY2);
 	}
 	
 	/// <summary>
@@ -363,49 +363,49 @@ namespace Skybound.Gecko
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetXAttribute();
+		System.Single GetXAttribute();
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetXAttribute(double aX);
+		void SetXAttribute(System.Single aX);
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetYAttribute();
+		System.Single GetYAttribute();
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetYAttribute(double aY);
+		void SetYAttribute(System.Single aY);
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetX1Attribute();
+		System.Single GetX1Attribute();
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetX1Attribute(double aX1);
+		void SetX1Attribute(System.Single aX1);
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetY1Attribute();
+		System.Single GetY1Attribute();
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetY1Attribute(double aY1);
+		void SetY1Attribute(System.Single aY1);
 	}
 	
 	/// <summary>
@@ -421,49 +421,49 @@ namespace Skybound.Gecko
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetXAttribute();
+		System.Single GetXAttribute();
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetXAttribute(double aX);
+		void SetXAttribute(System.Single aX);
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetYAttribute();
+		System.Single GetYAttribute();
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetYAttribute(double aY);
+		void SetYAttribute(System.Single aY);
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetX1Attribute();
+		System.Single GetX1Attribute();
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetX1Attribute(double aX1);
+		void SetX1Attribute(System.Single aX1);
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetY1Attribute();
+		System.Single GetY1Attribute();
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetY1Attribute(double aY1);
+		void SetY1Attribute(System.Single aY1);
 	}
 	
 	/// <summary>
@@ -479,61 +479,61 @@ namespace Skybound.Gecko
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetXAttribute();
+		System.Single GetXAttribute();
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetXAttribute(double aX);
+		void SetXAttribute(System.Single aX);
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetYAttribute();
+		System.Single GetYAttribute();
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetYAttribute(double aY);
+		void SetYAttribute(System.Single aY);
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetR1Attribute();
+		System.Single GetR1Attribute();
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetR1Attribute(double aR1);
+		void SetR1Attribute(System.Single aR1);
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetR2Attribute();
+		System.Single GetR2Attribute();
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetR2Attribute(double aR2);
+		void SetR2Attribute(System.Single aR2);
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetAngleAttribute();
+		System.Single GetAngleAttribute();
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAngleAttribute(double aAngle);
+		void SetAngleAttribute(System.Single aAngle);
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
@@ -575,61 +575,61 @@ namespace Skybound.Gecko
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetXAttribute();
+		System.Single GetXAttribute();
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetXAttribute(double aX);
+		void SetXAttribute(System.Single aX);
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetYAttribute();
+		System.Single GetYAttribute();
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetYAttribute(double aY);
+		void SetYAttribute(System.Single aY);
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetR1Attribute();
+		System.Single GetR1Attribute();
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetR1Attribute(double aR1);
+		void SetR1Attribute(System.Single aR1);
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetR2Attribute();
+		System.Single GetR2Attribute();
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetR2Attribute(double aR2);
+		void SetR2Attribute(System.Single aR2);
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetAngleAttribute();
+		System.Single GetAngleAttribute();
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAngleAttribute(double aAngle);
+		void SetAngleAttribute(System.Single aAngle);
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
@@ -671,13 +671,13 @@ namespace Skybound.Gecko
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetXAttribute();
+		System.Single GetXAttribute();
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetXAttribute(double aX);
+		void SetXAttribute(System.Single aX);
 	}
 	
 	/// <summary>
@@ -693,13 +693,13 @@ namespace Skybound.Gecko
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetXAttribute();
+		System.Single GetXAttribute();
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetXAttribute(double aX);
+		void SetXAttribute(System.Single aX);
 	}
 	
 	/// <summary>
@@ -715,13 +715,13 @@ namespace Skybound.Gecko
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetYAttribute();
+		System.Single GetYAttribute();
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetYAttribute(double aY);
+		void SetYAttribute(System.Single aY);
 	}
 	
 	/// <summary>
@@ -737,13 +737,13 @@ namespace Skybound.Gecko
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetYAttribute();
+		System.Single GetYAttribute();
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetYAttribute(double aY);
+		void SetYAttribute(System.Single aY);
 	}
 	
 	/// <summary>
@@ -759,49 +759,49 @@ namespace Skybound.Gecko
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetXAttribute();
+		System.Single GetXAttribute();
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetXAttribute(double aX);
+		void SetXAttribute(System.Single aX);
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetYAttribute();
+		System.Single GetYAttribute();
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetYAttribute(double aY);
+		void SetYAttribute(System.Single aY);
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetX2Attribute();
+		System.Single GetX2Attribute();
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetX2Attribute(double aX2);
+		void SetX2Attribute(System.Single aX2);
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetY2Attribute();
+		System.Single GetY2Attribute();
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetY2Attribute(double aY2);
+		void SetY2Attribute(System.Single aY2);
 	}
 	
 	/// <summary>
@@ -817,49 +817,49 @@ namespace Skybound.Gecko
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetXAttribute();
+		System.Single GetXAttribute();
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetXAttribute(double aX);
+		void SetXAttribute(System.Single aX);
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetYAttribute();
+		System.Single GetYAttribute();
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetYAttribute(double aY);
+		void SetYAttribute(System.Single aY);
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetX2Attribute();
+		System.Single GetX2Attribute();
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetX2Attribute(double aX2);
+		void SetX2Attribute(System.Single aX2);
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetY2Attribute();
+		System.Single GetY2Attribute();
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetY2Attribute(double aY2);
+		void SetY2Attribute(System.Single aY2);
 	}
 	
 	/// <summary>
@@ -875,25 +875,25 @@ namespace Skybound.Gecko
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetXAttribute();
+		System.Single GetXAttribute();
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetXAttribute(double aX);
+		void SetXAttribute(System.Single aX);
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetYAttribute();
+		System.Single GetYAttribute();
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetYAttribute(double aY);
+		void SetYAttribute(System.Single aY);
 	}
 	
 	/// <summary>
@@ -909,24 +909,24 @@ namespace Skybound.Gecko
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetXAttribute();
+		System.Single GetXAttribute();
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetXAttribute(double aX);
+		void SetXAttribute(System.Single aX);
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetYAttribute();
+		System.Single GetYAttribute();
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetYAttribute(double aY);
+		void SetYAttribute(System.Single aY);
 	}
 }

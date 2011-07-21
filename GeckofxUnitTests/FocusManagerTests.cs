@@ -74,12 +74,12 @@ namespace GeckofxUnitTests
 			throw new NotImplementedException();
 		}
 
-		public double GetTextZoomAttribute()
+		public float GetTextZoomAttribute()
 		{
 			throw new NotImplementedException();
 		}
 
-		public void SetTextZoomAttribute(double aTextZoom)
+		public void SetTextZoomAttribute(float aTextZoom)
 		{
 			throw new NotImplementedException();
 		}

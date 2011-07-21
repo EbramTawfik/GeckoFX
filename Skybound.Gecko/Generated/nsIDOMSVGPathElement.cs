@@ -356,14 +356,14 @@ namespace Skybound.Gecko
 		nsIDOMSVGAnimatedNumber GetPathLengthAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetTotalLength();
+		System.Single GetTotalLength();
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMSVGPoint GetPointAtLength(double distance);
+		nsIDOMSVGPoint GetPointAtLength(System.Single distance);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetPathSegAtLength(double distance);
+		uint GetPathSegAtLength(System.Single distance);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -371,74 +371,74 @@ namespace Skybound.Gecko
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMSVGPathSegMovetoAbs CreateSVGPathSegMovetoAbs(double x, double y);
+		nsIDOMSVGPathSegMovetoAbs CreateSVGPathSegMovetoAbs(System.Single x, System.Single y);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMSVGPathSegMovetoRel CreateSVGPathSegMovetoRel(double x, double y);
+		nsIDOMSVGPathSegMovetoRel CreateSVGPathSegMovetoRel(System.Single x, System.Single y);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMSVGPathSegLinetoAbs CreateSVGPathSegLinetoAbs(double x, double y);
+		nsIDOMSVGPathSegLinetoAbs CreateSVGPathSegLinetoAbs(System.Single x, System.Single y);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMSVGPathSegLinetoRel CreateSVGPathSegLinetoRel(double x, double y);
+		nsIDOMSVGPathSegLinetoRel CreateSVGPathSegLinetoRel(System.Single x, System.Single y);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMSVGPathSegCurvetoCubicAbs CreateSVGPathSegCurvetoCubicAbs(double x, double y, double x1, double y1, double x2, double y2);
+		nsIDOMSVGPathSegCurvetoCubicAbs CreateSVGPathSegCurvetoCubicAbs(System.Single x, System.Single y, System.Single x1, System.Single y1, System.Single x2, System.Single y2);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMSVGPathSegCurvetoCubicRel CreateSVGPathSegCurvetoCubicRel(double x, double y, double x1, double y1, double x2, double y2);
+		nsIDOMSVGPathSegCurvetoCubicRel CreateSVGPathSegCurvetoCubicRel(System.Single x, System.Single y, System.Single x1, System.Single y1, System.Single x2, System.Single y2);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMSVGPathSegCurvetoQuadraticAbs CreateSVGPathSegCurvetoQuadraticAbs(double x, double y, double x1, double y1);
+		nsIDOMSVGPathSegCurvetoQuadraticAbs CreateSVGPathSegCurvetoQuadraticAbs(System.Single x, System.Single y, System.Single x1, System.Single y1);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMSVGPathSegCurvetoQuadraticRel CreateSVGPathSegCurvetoQuadraticRel(double x, double y, double x1, double y1);
+		nsIDOMSVGPathSegCurvetoQuadraticRel CreateSVGPathSegCurvetoQuadraticRel(System.Single x, System.Single y, System.Single x1, System.Single y1);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMSVGPathSegArcAbs CreateSVGPathSegArcAbs(double x, double y, double r1, double r2, double angle, [MarshalAs(UnmanagedType.Bool)] bool largeArcFlag, [MarshalAs(UnmanagedType.Bool)] bool sweepFlag);
+		nsIDOMSVGPathSegArcAbs CreateSVGPathSegArcAbs(System.Single x, System.Single y, System.Single r1, System.Single r2, System.Single angle, [MarshalAs(UnmanagedType.Bool)] bool largeArcFlag, [MarshalAs(UnmanagedType.Bool)] bool sweepFlag);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMSVGPathSegArcRel CreateSVGPathSegArcRel(double x, double y, double r1, double r2, double angle, [MarshalAs(UnmanagedType.Bool)] bool largeArcFlag, [MarshalAs(UnmanagedType.Bool)] bool sweepFlag);
+		nsIDOMSVGPathSegArcRel CreateSVGPathSegArcRel(System.Single x, System.Single y, System.Single r1, System.Single r2, System.Single angle, [MarshalAs(UnmanagedType.Bool)] bool largeArcFlag, [MarshalAs(UnmanagedType.Bool)] bool sweepFlag);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMSVGPathSegLinetoHorizontalAbs CreateSVGPathSegLinetoHorizontalAbs(double x);
+		nsIDOMSVGPathSegLinetoHorizontalAbs CreateSVGPathSegLinetoHorizontalAbs(System.Single x);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMSVGPathSegLinetoHorizontalRel CreateSVGPathSegLinetoHorizontalRel(double x);
+		nsIDOMSVGPathSegLinetoHorizontalRel CreateSVGPathSegLinetoHorizontalRel(System.Single x);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMSVGPathSegLinetoVerticalAbs CreateSVGPathSegLinetoVerticalAbs(double y);
+		nsIDOMSVGPathSegLinetoVerticalAbs CreateSVGPathSegLinetoVerticalAbs(System.Single y);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMSVGPathSegLinetoVerticalRel CreateSVGPathSegLinetoVerticalRel(double y);
+		nsIDOMSVGPathSegLinetoVerticalRel CreateSVGPathSegLinetoVerticalRel(System.Single y);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMSVGPathSegCurvetoCubicSmoothAbs CreateSVGPathSegCurvetoCubicSmoothAbs(double x, double y, double x2, double y2);
+		nsIDOMSVGPathSegCurvetoCubicSmoothAbs CreateSVGPathSegCurvetoCubicSmoothAbs(System.Single x, System.Single y, System.Single x2, System.Single y2);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMSVGPathSegCurvetoCubicSmoothRel CreateSVGPathSegCurvetoCubicSmoothRel(double x, double y, double x2, double y2);
+		nsIDOMSVGPathSegCurvetoCubicSmoothRel CreateSVGPathSegCurvetoCubicSmoothRel(System.Single x, System.Single y, System.Single x2, System.Single y2);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMSVGPathSegCurvetoQuadraticSmoothAbs CreateSVGPathSegCurvetoQuadraticSmoothAbs(double x, double y);
+		nsIDOMSVGPathSegCurvetoQuadraticSmoothAbs CreateSVGPathSegCurvetoQuadraticSmoothAbs(System.Single x, System.Single y);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMSVGPathSegCurvetoQuadraticSmoothRel CreateSVGPathSegCurvetoQuadraticSmoothRel(double x, double y);
+		nsIDOMSVGPathSegCurvetoQuadraticSmoothRel CreateSVGPathSegCurvetoQuadraticSmoothRel(System.Single x, System.Single y);
 	}
 }

@@ -161,9 +161,9 @@ namespace Skybound.Gecko
 		void GetAnimationNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aAnimationName);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetElapsedTimeAttribute();
+		System.Single GetElapsedTimeAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitAnimationEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString typeArg, [MarshalAs(UnmanagedType.Bool)] bool canBubbleArg, [MarshalAs(UnmanagedType.Bool)] bool cancelableArg, [MarshalAs(UnmanagedType.LPStruct)] nsAString propertyNameArg, double elapsedTimeArg);
+		void InitAnimationEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString typeArg, [MarshalAs(UnmanagedType.Bool)] bool canBubbleArg, [MarshalAs(UnmanagedType.Bool)] bool cancelableArg, [MarshalAs(UnmanagedType.LPStruct)] nsAString propertyNameArg, System.Single elapsedTimeArg);
 	}
 }

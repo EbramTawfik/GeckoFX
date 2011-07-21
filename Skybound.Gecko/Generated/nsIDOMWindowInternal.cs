@@ -103,7 +103,7 @@ namespace Skybound.Gecko
         /// i.e. no zoom.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new double GetTextZoomAttribute();
+		new System.Single GetTextZoomAttribute();
 		
 		/// <summary>
         /// Set/Get the document scale factor as a multiplier on the default
@@ -114,7 +114,7 @@ namespace Skybound.Gecko
         /// i.e. no zoom.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetTextZoomAttribute(double aTextZoom);
+		new void SetTextZoomAttribute(System.Single aTextZoom);
 		
 		/// <summary>
         /// Accessor for the current x scroll position in this window in
@@ -394,14 +394,14 @@ namespace Skybound.Gecko
 		void SetScreenYAttribute(int aScreenY);
 		
 		/// <summary>Member GetMozInnerScreenXAttribute </summary>
-		/// <returns>A System.Double</returns>
+		/// <returns>A System.Single</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetMozInnerScreenXAttribute();
+		System.Single GetMozInnerScreenXAttribute();
 		
 		/// <summary>Member GetMozInnerScreenYAttribute </summary>
-		/// <returns>A System.Double</returns>
+		/// <returns>A System.Single</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetMozInnerScreenYAttribute();
+		System.Single GetMozInnerScreenYAttribute();
 		
 		/// <summary>
         ///The offset in pixels by which the window is scrolled </summary>

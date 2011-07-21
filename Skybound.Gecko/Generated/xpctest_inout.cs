@@ -64,7 +64,7 @@ namespace Skybound.Gecko
 		void EchoUnsignedLong(uint uli, out uint ulo);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EchoFloat(double fi, out double fo);
+		void EchoFloat(System.Single fi, out System.Single fo);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void EchoDouble(double di, out double dout);

@@ -177,22 +177,22 @@ namespace Skybound.Gecko
         /// Scroll area client rect
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetXAttribute();
+		System.Single GetXAttribute();
 		
 		/// <summary>Member GetYAttribute </summary>
-		/// <returns>A System.Double</returns>
+		/// <returns>A System.Single</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetYAttribute();
+		System.Single GetYAttribute();
 		
 		/// <summary>Member GetWidthAttribute </summary>
-		/// <returns>A System.Double</returns>
+		/// <returns>A System.Single</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetWidthAttribute();
+		System.Single GetWidthAttribute();
 		
 		/// <summary>Member GetHeightAttribute </summary>
-		/// <returns>A System.Double</returns>
+		/// <returns>A System.Single</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetHeightAttribute();
+		System.Single GetHeightAttribute();
 		
 		/// <summary>Member InitScrollAreaEvent </summary>
 		/// <param name='aEventType'> </param>
@@ -205,6 +205,6 @@ namespace Skybound.Gecko
 		/// <param name='width'> </param>
 		/// <param name='height'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitScrollAreaEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString aEventType, [MarshalAs(UnmanagedType.Bool)] bool aCanBubble, [MarshalAs(UnmanagedType.Bool)] bool aCancelable, [MarshalAs(UnmanagedType.Interface)] nsIDOMAbstractView aView, int aDetail, double x, double y, double width, double height);
+		void InitScrollAreaEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString aEventType, [MarshalAs(UnmanagedType.Bool)] bool aCanBubble, [MarshalAs(UnmanagedType.Bool)] bool aCancelable, [MarshalAs(UnmanagedType.Interface)] nsIDOMAbstractView aView, int aDetail, System.Single x, System.Single y, System.Single width, System.Single height);
 	}
 }

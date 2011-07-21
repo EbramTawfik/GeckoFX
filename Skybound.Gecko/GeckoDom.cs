@@ -768,8 +768,8 @@ namespace Skybound.Gecko
 
 		public float TextZoom
 		{
-			get { return (float)_DomWindow.GetTextZoomAttribute(); }
-			set { _DomWindow.SetTextZoomAttribute((double)value); }
+			get { return _DomWindow.GetTextZoomAttribute(); }
+			set { _DomWindow.SetTextZoomAttribute(value); }
 		}
 		
 		public GeckoWindow Top

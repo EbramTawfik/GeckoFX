@@ -349,10 +349,10 @@ namespace Skybound.Gecko
 		int GetNumberOfChars();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetComputedTextLength();
+		System.Single GetComputedTextLength();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetSubStringLength(uint charnum, uint nchars);
+		System.Single GetSubStringLength(uint charnum, uint nchars);
 		
 		/// <summary>
         /// raises(DOMException);
@@ -379,7 +379,7 @@ namespace Skybound.Gecko
         /// raises(DOMException);
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetRotationOfChar(uint charnum);
+		System.Single GetRotationOfChar(uint charnum);
 		
 		/// <summary>
         /// raises(DOMException);

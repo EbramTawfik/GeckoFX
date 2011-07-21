@@ -401,16 +401,16 @@ namespace Skybound.Gecko
 		nsIDOMSVGRect GetViewportAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetPixelUnitToMillimeterXAttribute();
+		System.Single GetPixelUnitToMillimeterXAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetPixelUnitToMillimeterYAttribute();
+		System.Single GetPixelUnitToMillimeterYAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetScreenPixelToMillimeterXAttribute();
+		System.Single GetScreenPixelToMillimeterXAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetScreenPixelToMillimeterYAttribute();
+		System.Single GetScreenPixelToMillimeterYAttribute();
 		
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -427,10 +427,10 @@ namespace Skybound.Gecko
 		nsIDOMSVGViewSpec GetCurrentViewAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetCurrentScaleAttribute();
+		System.Single GetCurrentScaleAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCurrentScaleAttribute(double aCurrentScale);
+		void SetCurrentScaleAttribute(System.Single aCurrentScale);
 		
 		/// <summary>
         /// raises DOMException on setting
@@ -465,10 +465,10 @@ namespace Skybound.Gecko
 		bool AnimationsPaused();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetCurrentTime();
+		System.Single GetCurrentTime();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCurrentTime(double seconds);
+		void SetCurrentTime(System.Single seconds);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

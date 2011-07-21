@@ -35,13 +35,13 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetValueAttribute </summary>
-		/// <returns>A System.Double</returns>
+		/// <returns>A System.Single</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetValueAttribute();
+		System.Single GetValueAttribute();
 		
 		/// <summary>Member SetValueAttribute </summary>
 		/// <param name='aValue'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetValueAttribute(double aValue);
+		void SetValueAttribute(System.Single aValue);
 	}
 }

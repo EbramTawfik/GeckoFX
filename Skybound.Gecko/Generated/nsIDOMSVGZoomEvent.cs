@@ -177,14 +177,14 @@ namespace Skybound.Gecko
 		nsIDOMSVGRect GetZoomRectScreenAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetPreviousScaleAttribute();
+		System.Single GetPreviousScaleAttribute();
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMSVGPoint GetPreviousTranslateAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetNewScaleAttribute();
+		System.Single GetNewScaleAttribute();
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

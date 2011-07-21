@@ -35,74 +35,74 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetAAttribute </summary>
-		/// <returns>A System.Double</returns>
+		/// <returns>A System.Single</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetAAttribute();
+		System.Single GetAAttribute();
 		
 		/// <summary>Member SetAAttribute </summary>
 		/// <param name='aA'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAAttribute(double aA);
+		void SetAAttribute(System.Single aA);
 		
 		/// <summary>
         /// raises DOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetBAttribute();
+		System.Single GetBAttribute();
 		
 		/// <summary>
         /// raises DOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBAttribute(double aB);
+		void SetBAttribute(System.Single aB);
 		
 		/// <summary>
         /// raises DOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetCAttribute();
+		System.Single GetCAttribute();
 		
 		/// <summary>
         /// raises DOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCAttribute(double aC);
+		void SetCAttribute(System.Single aC);
 		
 		/// <summary>
         /// raises DOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetDAttribute();
+		System.Single GetDAttribute();
 		
 		/// <summary>
         /// raises DOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDAttribute(double aD);
+		void SetDAttribute(System.Single aD);
 		
 		/// <summary>
         /// raises DOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetEAttribute();
+		System.Single GetEAttribute();
 		
 		/// <summary>
         /// raises DOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetEAttribute(double aE);
+		void SetEAttribute(System.Single aE);
 		
 		/// <summary>
         /// raises DOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetFAttribute();
+		System.Single GetFAttribute();
 		
 		/// <summary>
         /// raises DOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFAttribute(double aF);
+		void SetFAttribute(System.Single aF);
 		
 		/// <summary>
         /// raises DOMException on setting
@@ -122,14 +122,14 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMSVGMatrix Translate(double x, double y);
+		nsIDOMSVGMatrix Translate(System.Single x, System.Single y);
 		
 		/// <summary>Member Scale </summary>
 		/// <param name='scaleFactor'> </param>
 		/// <returns>A nsIDOMSVGMatrix</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMSVGMatrix Scale(double scaleFactor);
+		nsIDOMSVGMatrix Scale(System.Single scaleFactor);
 		
 		/// <summary>Member ScaleNonUniform </summary>
 		/// <param name='scaleFactorX'> </param>
@@ -137,14 +137,14 @@ namespace Skybound.Gecko
 		/// <returns>A nsIDOMSVGMatrix</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMSVGMatrix ScaleNonUniform(double scaleFactorX, double scaleFactorY);
+		nsIDOMSVGMatrix ScaleNonUniform(System.Single scaleFactorX, System.Single scaleFactorY);
 		
 		/// <summary>Member Rotate </summary>
 		/// <param name='angle'> </param>
 		/// <returns>A nsIDOMSVGMatrix</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMSVGMatrix Rotate(double angle);
+		nsIDOMSVGMatrix Rotate(System.Single angle);
 		
 		/// <summary>Member RotateFromVector </summary>
 		/// <param name='x'> </param>
@@ -152,7 +152,7 @@ namespace Skybound.Gecko
 		/// <returns>A nsIDOMSVGMatrix</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMSVGMatrix RotateFromVector(double x, double y);
+		nsIDOMSVGMatrix RotateFromVector(System.Single x, System.Single y);
 		
 		/// <summary>
         /// raises( SVGException );
@@ -172,13 +172,13 @@ namespace Skybound.Gecko
 		/// <returns>A nsIDOMSVGMatrix</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMSVGMatrix SkewX(double angle);
+		nsIDOMSVGMatrix SkewX(System.Single angle);
 		
 		/// <summary>Member SkewY </summary>
 		/// <param name='angle'> </param>
 		/// <returns>A nsIDOMSVGMatrix</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMSVGMatrix SkewY(double angle);
+		nsIDOMSVGMatrix SkewY(System.Single angle);
 	}
 }

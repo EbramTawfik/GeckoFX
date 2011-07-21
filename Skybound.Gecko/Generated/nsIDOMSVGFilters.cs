@@ -2087,7 +2087,7 @@ namespace Skybound.Gecko
 		/// <param name='k3'> </param>
 		/// <param name='k4'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetK(double k1, double k2, double k3, double k4);
+		void SetK(System.Single k1, System.Single k2, System.Single k3, System.Single k4);
 	}
 	
 	/// <summary>nsIDOMSVGFEFuncRElement </summary>
@@ -3793,7 +3793,7 @@ namespace Skybound.Gecko
 		/// <param name='stdDeviationX'> </param>
 		/// <param name='stdDeviationY'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetStdDeviation(double stdDeviationX, double stdDeviationY);
+		void SetStdDeviation(System.Single stdDeviationX, System.Single stdDeviationY);
 	}
 	
 	/// <summary>nsIDOMSVGFEMergeElement </summary>
@@ -6143,7 +6143,7 @@ namespace Skybound.Gecko
 		/// <param name='rx'> </param>
 		/// <param name='ry'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetRadius(double rx, double ry);
+		void SetRadius(System.Single rx, System.Single ry);
 	}
 	
 	/// <summary>nsIDOMSVGFEConvolveMatrixElement </summary>

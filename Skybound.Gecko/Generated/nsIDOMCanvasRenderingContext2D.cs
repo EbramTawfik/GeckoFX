@@ -38,7 +38,7 @@ namespace Skybound.Gecko
 		/// <param name='offset'> </param>
 		/// <param name='color'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddColorStop(double offset, [MarshalAs(UnmanagedType.LPStruct)] nsAString color);
+		void AddColorStop(System.Single offset, [MarshalAs(UnmanagedType.LPStruct)] nsAString color);
 	}
 	
 	/// <summary>nsIDOMCanvasPattern </summary>
@@ -57,9 +57,9 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetWidthAttribute </summary>
-		/// <returns>A System.Double</returns>
+		/// <returns>A System.Single</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetWidthAttribute();
+		System.Single GetWidthAttribute();
 	}
 	
 	/// <summary>nsIDOMCanvasRenderingContext2D </summary>
@@ -90,18 +90,18 @@ namespace Skybound.Gecko
         /// transformations
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Scale(double x, double y);
+		void Scale(System.Single x, System.Single y);
 		
 		/// <summary>Member Rotate </summary>
 		/// <param name='angle'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Rotate(double angle);
+		void Rotate(System.Single angle);
 		
 		/// <summary>Member Translate </summary>
 		/// <param name='x'> </param>
 		/// <param name='y'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Translate(double x, double y);
+		void Translate(System.Single x, System.Single y);
 		
 		/// <summary>Member Transform </summary>
 		/// <param name='m11'> </param>
@@ -111,7 +111,7 @@ namespace Skybound.Gecko
 		/// <param name='dx'> </param>
 		/// <param name='dy'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Transform(double m11, double m12, double m21, double m22, double dx, double dy);
+		void Transform(System.Single m11, System.Single m12, System.Single m21, System.Single m22, System.Single dx, System.Single dy);
 		
 		/// <summary>Member SetTransform </summary>
 		/// <param name='m11'> </param>
@@ -121,19 +121,19 @@ namespace Skybound.Gecko
 		/// <param name='dx'> </param>
 		/// <param name='dy'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTransform(double m11, double m12, double m21, double m22, double dx, double dy);
+		void SetTransform(System.Single m11, System.Single m12, System.Single m21, System.Single m22, System.Single dx, System.Single dy);
 		
 		/// <summary>
         /// compositing
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetGlobalAlphaAttribute();
+		System.Single GetGlobalAlphaAttribute();
 		
 		/// <summary>
         /// compositing
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetGlobalAlphaAttribute(double aGlobalAlpha);
+		void SetGlobalAlphaAttribute(System.Single aGlobalAlpha);
 		
 		/// <summary>
         ///default 1.0 -- opaque </summary>
@@ -203,7 +203,7 @@ namespace Skybound.Gecko
 		/// <returns>A nsIDOMCanvasGradient</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMCanvasGradient CreateLinearGradient(double x0, double y0, double x1, double y1);
+		nsIDOMCanvasGradient CreateLinearGradient(System.Single x0, System.Single y0, System.Single x1, System.Single y1);
 		
 		/// <summary>Member CreateRadialGradient </summary>
 		/// <param name='x0'> </param>
@@ -215,7 +215,7 @@ namespace Skybound.Gecko
 		/// <returns>A nsIDOMCanvasGradient</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMCanvasGradient CreateRadialGradient(double x0, double y0, double r0, double x1, double y1, double r1);
+		nsIDOMCanvasGradient CreateRadialGradient(System.Single x0, System.Single y0, System.Single r0, System.Single x1, System.Single y1, System.Single r1);
 		
 		/// <summary>Member CreatePattern </summary>
 		/// <param name='image'> </param>
@@ -226,14 +226,14 @@ namespace Skybound.Gecko
 		nsIDOMCanvasPattern CreatePattern([MarshalAs(UnmanagedType.Interface)] nsIDOMHTMLElement image, [MarshalAs(UnmanagedType.LPStruct)] nsAString repetition);
 		
 		/// <summary>Member GetLineWidthAttribute </summary>
-		/// <returns>A System.Double</returns>
+		/// <returns>A System.Single</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetLineWidthAttribute();
+		System.Single GetLineWidthAttribute();
 		
 		/// <summary>Member SetLineWidthAttribute </summary>
 		/// <param name='aLineWidth'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetLineWidthAttribute(double aLineWidth);
+		void SetLineWidthAttribute(System.Single aLineWidth);
 		
 		/// <summary>
         ///default 1 </summary>
@@ -258,44 +258,44 @@ namespace Skybound.Gecko
 		/// <summary>
         ///"round", "bevel", "miter" (default) </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetMiterLimitAttribute();
+		System.Single GetMiterLimitAttribute();
 		
 		/// <summary>
         ///"round", "bevel", "miter" (default) </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMiterLimitAttribute(double aMiterLimit);
+		void SetMiterLimitAttribute(System.Single aMiterLimit);
 		
 		/// <summary>
         /// shadows
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetShadowOffsetXAttribute();
+		System.Single GetShadowOffsetXAttribute();
 		
 		/// <summary>
         /// shadows
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetShadowOffsetXAttribute(double aShadowOffsetX);
+		void SetShadowOffsetXAttribute(System.Single aShadowOffsetX);
 		
 		/// <summary>Member GetShadowOffsetYAttribute </summary>
-		/// <returns>A System.Double</returns>
+		/// <returns>A System.Single</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetShadowOffsetYAttribute();
+		System.Single GetShadowOffsetYAttribute();
 		
 		/// <summary>Member SetShadowOffsetYAttribute </summary>
 		/// <param name='aShadowOffsetY'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetShadowOffsetYAttribute(double aShadowOffsetY);
+		void SetShadowOffsetYAttribute(System.Single aShadowOffsetY);
 		
 		/// <summary>Member GetShadowBlurAttribute </summary>
-		/// <returns>A System.Double</returns>
+		/// <returns>A System.Single</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetShadowBlurAttribute();
+		System.Single GetShadowBlurAttribute();
 		
 		/// <summary>Member SetShadowBlurAttribute </summary>
 		/// <param name='aShadowBlur'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetShadowBlurAttribute(double aShadowBlur);
+		void SetShadowBlurAttribute(System.Single aShadowBlur);
 		
 		/// <summary>Member GetShadowColorAttribute </summary>
 		/// <param name='aShadowColor'> </param>
@@ -311,7 +311,7 @@ namespace Skybound.Gecko
         /// rects
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ClearRect(double x, double y, double w, double h);
+		void ClearRect(System.Single x, System.Single y, System.Single w, System.Single h);
 		
 		/// <summary>Member FillRect </summary>
 		/// <param name='x'> </param>
@@ -319,7 +319,7 @@ namespace Skybound.Gecko
 		/// <param name='w'> </param>
 		/// <param name='h'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void FillRect(double x, double y, double w, double h);
+		void FillRect(System.Single x, System.Single y, System.Single w, System.Single h);
 		
 		/// <summary>Member StrokeRect </summary>
 		/// <param name='x'> </param>
@@ -327,7 +327,7 @@ namespace Skybound.Gecko
 		/// <param name='w'> </param>
 		/// <param name='h'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void StrokeRect(double x, double y, double w, double h);
+		void StrokeRect(System.Single x, System.Single y, System.Single w, System.Single h);
 		
 		/// <summary>
         /// path API
@@ -343,13 +343,13 @@ namespace Skybound.Gecko
 		/// <param name='x'> </param>
 		/// <param name='y'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MoveTo(double x, double y);
+		void MoveTo(System.Single x, System.Single y);
 		
 		/// <summary>Member LineTo </summary>
 		/// <param name='x'> </param>
 		/// <param name='y'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void LineTo(double x, double y);
+		void LineTo(System.Single x, System.Single y);
 		
 		/// <summary>Member QuadraticCurveTo </summary>
 		/// <param name='cpx'> </param>
@@ -357,7 +357,7 @@ namespace Skybound.Gecko
 		/// <param name='x'> </param>
 		/// <param name='y'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void QuadraticCurveTo(double cpx, double cpy, double x, double y);
+		void QuadraticCurveTo(System.Single cpx, System.Single cpy, System.Single x, System.Single y);
 		
 		/// <summary>Member BezierCurveTo </summary>
 		/// <param name='cp1x'> </param>
@@ -367,7 +367,7 @@ namespace Skybound.Gecko
 		/// <param name='x'> </param>
 		/// <param name='y'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BezierCurveTo(double cp1x, double cp1y, double cp2x, double cp2y, double x, double y);
+		void BezierCurveTo(System.Single cp1x, System.Single cp1y, System.Single cp2x, System.Single cp2y, System.Single x, System.Single y);
 		
 		/// <summary>Member ArcTo </summary>
 		/// <param name='x1'> </param>
@@ -376,7 +376,7 @@ namespace Skybound.Gecko
 		/// <param name='y2'> </param>
 		/// <param name='radius'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ArcTo(double x1, double y1, double x2, double y2, double radius);
+		void ArcTo(System.Single x1, System.Single y1, System.Single x2, System.Single y2, System.Single radius);
 		
 		/// <summary>Member Arc </summary>
 		/// <param name='x'> </param>
@@ -386,7 +386,7 @@ namespace Skybound.Gecko
 		/// <param name='endAngle'> </param>
 		/// <param name='anticlockwise'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Arc(double x, double y, double r, double startAngle, double endAngle, [MarshalAs(UnmanagedType.Bool)] bool anticlockwise);
+		void Arc(System.Single x, System.Single y, System.Single r, System.Single startAngle, System.Single endAngle, [MarshalAs(UnmanagedType.Bool)] bool anticlockwise);
 		
 		/// <summary>Member Rect </summary>
 		/// <param name='x'> </param>
@@ -394,7 +394,7 @@ namespace Skybound.Gecko
 		/// <param name='w'> </param>
 		/// <param name='h'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Rect(double x, double y, double w, double h);
+		void Rect(System.Single x, System.Single y, System.Single w, System.Single h);
 		
 		/// <summary>Member Fill </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -446,7 +446,7 @@ namespace Skybound.Gecko
         ///"alphabetic" (default), "top", "hanging",
         ///                                    "middle", "ideographic", "bottom" </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void FillText([MarshalAs(UnmanagedType.LPStruct)] nsAString text, double x, double y, double maxWidth);
+		void FillText([MarshalAs(UnmanagedType.LPStruct)] nsAString text, System.Single x, System.Single y, System.Single maxWidth);
 		
 		/// <summary>Member StrokeText </summary>
 		/// <param name='text'> </param>
@@ -454,7 +454,7 @@ namespace Skybound.Gecko
 		/// <param name='y'> </param>
 		/// <param name='maxWidth'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void StrokeText([MarshalAs(UnmanagedType.LPStruct)] nsAString text, double x, double y, double maxWidth);
+		void StrokeText([MarshalAs(UnmanagedType.LPStruct)] nsAString text, System.Single x, System.Single y, System.Single maxWidth);
 		
 		/// <summary>Member MeasureText </summary>
 		/// <param name='text'> </param>
@@ -480,9 +480,9 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member MozMeasureText </summary>
 		/// <param name='textToMeasure'> </param>
-		/// <returns>A System.Double</returns>
+		/// <returns>A System.Single</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double MozMeasureText([MarshalAs(UnmanagedType.LPStruct)] nsAString textToMeasure);
+		System.Single MozMeasureText([MarshalAs(UnmanagedType.LPStruct)] nsAString textToMeasure);
 		
 		/// <summary>Member MozPathText </summary>
 		/// <param name='textToPath'> </param>
@@ -499,14 +499,14 @@ namespace Skybound.Gecko
         /// image api
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DrawImage([MarshalAs(UnmanagedType.Interface)] nsIDOMElement image, double a1, double a2, double a3, double a4, double a5, double a6, double a7, double a8);
+		void DrawImage([MarshalAs(UnmanagedType.Interface)] nsIDOMElement image, System.Single a1, System.Single a2, System.Single a3, System.Single a4, System.Single a5, System.Single a6, System.Single a7, System.Single a8);
 		
 		/// <summary>
         /// point-membership test
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsPointInPath(double x, double y);
+		bool IsPointInPath(System.Single x, System.Single y);
 		
 		/// <summary>
         /// methods directly.
@@ -594,7 +594,7 @@ namespace Skybound.Gecko
         /// only.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DrawWindow([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, double x, double y, double w, double h, [MarshalAs(UnmanagedType.LPStruct)] nsAString bgColor, uint flags);
+		void DrawWindow([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, System.Single x, System.Single y, System.Single w, System.Single h, [MarshalAs(UnmanagedType.LPStruct)] nsAString bgColor, uint flags);
 		
 		/// <summary>Member AsyncDrawXULElement </summary>
 		/// <param name='elem'> </param>
@@ -605,6 +605,6 @@ namespace Skybound.Gecko
 		/// <param name='bgColor'> </param>
 		/// <param name='flags'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AsyncDrawXULElement([MarshalAs(UnmanagedType.Interface)] nsIDOMXULElement elem, double x, double y, double w, double h, [MarshalAs(UnmanagedType.LPStruct)] nsAString bgColor, uint flags);
+		void AsyncDrawXULElement([MarshalAs(UnmanagedType.Interface)] nsIDOMXULElement elem, System.Single x, System.Single y, System.Single w, System.Single h, [MarshalAs(UnmanagedType.LPStruct)] nsAString bgColor, uint flags);
 	}
 }

@@ -47,9 +47,9 @@ namespace Skybound.Gecko
 		nsIDOMSVGMatrix GetMatrixAttribute();
 		
 		/// <summary>Member GetAngleAttribute </summary>
-		/// <returns>A System.Double</returns>
+		/// <returns>A System.Single</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetAngleAttribute();
+		System.Single GetAngleAttribute();
 		
 		/// <summary>Member SetMatrix </summary>
 		/// <param name='matrix'> </param>
@@ -60,29 +60,29 @@ namespace Skybound.Gecko
 		/// <param name='tx'> </param>
 		/// <param name='ty'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTranslate(double tx, double ty);
+		void SetTranslate(System.Single tx, System.Single ty);
 		
 		/// <summary>Member SetScale </summary>
 		/// <param name='sx'> </param>
 		/// <param name='sy'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetScale(double sx, double sy);
+		void SetScale(System.Single sx, System.Single sy);
 		
 		/// <summary>Member SetRotate </summary>
 		/// <param name='angle'> </param>
 		/// <param name='cx'> </param>
 		/// <param name='cy'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetRotate(double angle, double cx, double cy);
+		void SetRotate(System.Single angle, System.Single cx, System.Single cy);
 		
 		/// <summary>Member SetSkewX </summary>
 		/// <param name='angle'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSkewX(double angle);
+		void SetSkewX(System.Single angle);
 		
 		/// <summary>Member SetSkewY </summary>
 		/// <param name='angle'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSkewY(double angle);
+		void SetSkewY(System.Single angle);
 	}
 }

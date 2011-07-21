@@ -35,26 +35,26 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetXAttribute </summary>
-		/// <returns>A System.Double</returns>
+		/// <returns>A System.Single</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetXAttribute();
+		System.Single GetXAttribute();
 		
 		/// <summary>Member SetXAttribute </summary>
 		/// <param name='aX'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetXAttribute(double aX);
+		void SetXAttribute(System.Single aX);
 		
 		/// <summary>
         /// raises DOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetYAttribute();
+		System.Single GetYAttribute();
 		
 		/// <summary>
         /// raises DOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetYAttribute(double aY);
+		void SetYAttribute(System.Single aY);
 		
 		/// <summary>
         /// raises DOMException on setting

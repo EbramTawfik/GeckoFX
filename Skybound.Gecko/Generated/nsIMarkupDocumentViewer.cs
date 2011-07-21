@@ -47,22 +47,22 @@ namespace Skybound.Gecko
 		/// <summary>
         ///The amount by which to scale all text. Default is 1.0. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetTextZoomAttribute();
+		System.Single GetTextZoomAttribute();
 		
 		/// <summary>
         ///The amount by which to scale all text. Default is 1.0. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTextZoomAttribute(double aTextZoom);
+		void SetTextZoomAttribute(System.Single aTextZoom);
 		
 		/// <summary>
         ///The amount by which to scale all lengths. Default is 1.0. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetFullZoomAttribute();
+		System.Single GetFullZoomAttribute();
 		
 		/// <summary>
         ///The amount by which to scale all lengths. Default is 1.0. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFullZoomAttribute(double aFullZoom);
+		void SetFullZoomAttribute(System.Single aFullZoom);
 		
 		/// <summary>
         ///Disable entire author style level (including HTML presentation hints) </summary>
@@ -262,22 +262,22 @@ namespace Skybound.Gecko
 		/// <summary>
         ///The amount by which to scale all text. Default is 1.0. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new double GetTextZoomAttribute();
+		new System.Single GetTextZoomAttribute();
 		
 		/// <summary>
         ///The amount by which to scale all text. Default is 1.0. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetTextZoomAttribute(double aTextZoom);
+		new void SetTextZoomAttribute(System.Single aTextZoom);
 		
 		/// <summary>
         ///The amount by which to scale all lengths. Default is 1.0. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new double GetFullZoomAttribute();
+		new System.Single GetFullZoomAttribute();
 		
 		/// <summary>
         ///The amount by which to scale all lengths. Default is 1.0. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetFullZoomAttribute(double aFullZoom);
+		new void SetFullZoomAttribute(System.Single aFullZoom);
 		
 		/// <summary>
         ///Disable entire author style level (including HTML presentation hints) </summary>

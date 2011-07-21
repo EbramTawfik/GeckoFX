@@ -530,13 +530,13 @@ namespace Skybound.Gecko
         /// Scriptable storage for floating point numbers
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetDataAttribute();
+		System.Single GetDataAttribute();
 		
 		/// <summary>
         /// Scriptable storage for floating point numbers
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDataAttribute(double aData);
+		void SetDataAttribute(System.Single aData);
 		
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

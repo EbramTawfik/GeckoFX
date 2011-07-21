@@ -331,7 +331,7 @@ namespace Skybound.Gecko
         /// no zoom.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetZoomAttribute();
+		System.Single GetZoomAttribute();
 		
 		/// <summary>
         /// Set/Get the document scale factor.  When setting this attribute, a
@@ -342,7 +342,7 @@ namespace Skybound.Gecko
         /// no zoom.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetZoomAttribute(double aZoom);
+		void SetZoomAttribute(System.Single aZoom);
 		
 		/// <summary>
         /// The size, in CSS pixels, of the horizontal margins for the <body> of an

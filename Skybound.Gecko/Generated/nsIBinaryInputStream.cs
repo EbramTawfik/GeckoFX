@@ -169,7 +169,7 @@ namespace Skybound.Gecko
 		ulong Read64();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double ReadFloat();
+		System.Single ReadFloat();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		double ReadDouble();

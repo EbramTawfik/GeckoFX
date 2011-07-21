@@ -56,7 +56,7 @@ namespace Skybound.Gecko
 		int GetLongReadOnlyAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetFloatReadOnlyAttribute();
+		System.Single GetFloatReadOnlyAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		char GetCharReadOnlyAttribute();
@@ -116,14 +116,14 @@ namespace Skybound.Gecko
 		void SetLongPropertyAttribute(int aLongProperty);
 		
 		/// <summary>Member GetFloatPropertyAttribute </summary>
-		/// <returns>A System.Double</returns>
+		/// <returns>A System.Single</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetFloatPropertyAttribute();
+		System.Single GetFloatPropertyAttribute();
 		
 		/// <summary>Member SetFloatPropertyAttribute </summary>
 		/// <param name='aFloatProperty'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFloatPropertyAttribute(double aFloatProperty);
+		void SetFloatPropertyAttribute(System.Single aFloatProperty);
 		
 		/// <summary>Member GetCharPropertyAttribute </summary>
 		/// <returns>A System.Char</returns>

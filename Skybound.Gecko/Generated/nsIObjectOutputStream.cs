@@ -162,7 +162,7 @@ namespace Skybound.Gecko
 		new void Write64(ulong a64);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void WriteFloat(double aFloat);
+		new void WriteFloat(System.Single aFloat);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void WriteDouble(double aDouble);

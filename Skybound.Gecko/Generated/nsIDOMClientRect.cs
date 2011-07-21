@@ -35,33 +35,33 @@ namespace Skybound.Gecko
 	{
 		
 		/// <summary>Member GetLeftAttribute </summary>
-		/// <returns>A System.Double</returns>
+		/// <returns>A System.Single</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetLeftAttribute();
+		System.Single GetLeftAttribute();
 		
 		/// <summary>Member GetTopAttribute </summary>
-		/// <returns>A System.Double</returns>
+		/// <returns>A System.Single</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetTopAttribute();
+		System.Single GetTopAttribute();
 		
 		/// <summary>Member GetRightAttribute </summary>
-		/// <returns>A System.Double</returns>
+		/// <returns>A System.Single</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetRightAttribute();
+		System.Single GetRightAttribute();
 		
 		/// <summary>Member GetBottomAttribute </summary>
-		/// <returns>A System.Double</returns>
+		/// <returns>A System.Single</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetBottomAttribute();
+		System.Single GetBottomAttribute();
 		
 		/// <summary>Member GetWidthAttribute </summary>
-		/// <returns>A System.Double</returns>
+		/// <returns>A System.Single</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetWidthAttribute();
+		System.Single GetWidthAttribute();
 		
 		/// <summary>Member GetHeightAttribute </summary>
-		/// <returns>A System.Double</returns>
+		/// <returns>A System.Single</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetHeightAttribute();
+		System.Single GetHeightAttribute();
 	}
 }

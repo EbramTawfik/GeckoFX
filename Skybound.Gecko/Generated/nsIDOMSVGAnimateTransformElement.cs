@@ -339,19 +339,19 @@ namespace Skybound.Gecko
 		new nsIDOMSVGElement GetTargetElementAttribute();
 		
 		/// <summary>Member GetStartTime </summary>
-		/// <returns>A System.Double</returns>
+		/// <returns>A System.Single</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new double GetStartTime();
+		new System.Single GetStartTime();
 		
 		/// <summary>
         /// raises ( DOMException )
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new double GetCurrentTime();
+		new System.Single GetCurrentTime();
 		
 		/// <summary>Member GetSimpleDuration </summary>
-		/// <returns>A System.Double</returns>
+		/// <returns>A System.Single</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new double GetSimpleDuration();
+		new System.Single GetSimpleDuration();
 	}
 }

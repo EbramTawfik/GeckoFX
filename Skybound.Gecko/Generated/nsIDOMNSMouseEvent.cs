@@ -217,7 +217,7 @@ namespace Skybound.Gecko
         /// ranges between 0.0 and 1.0
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double GetMozPressureAttribute();
+		System.Single GetMozPressureAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		ushort GetMozInputSourceAttribute();
@@ -239,7 +239,7 @@ namespace Skybound.Gecko
 					[MarshalAs(UnmanagedType.Bool)] bool metaKeyArg, 
 					ushort buttonArg, 
 					[MarshalAs(UnmanagedType.Interface)] nsIDOMEventTarget relatedTargetArg, 
-					double pressure, 
+					System.Single pressure, 
 					ushort inputSourceArg);
 	}
 }
