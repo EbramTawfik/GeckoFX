@@ -1709,6 +1709,14 @@ namespace GeckofxUnitTests
 			Assert.IsNotNull(instance);
 			Marshal.ReleaseComObject(instance);			
 		}
+
+		[Test]
+		public void GetProtocolProxyService_CleanXpComInstance_ReturnsValidInstance()
+		{
+			var instance = Xpcom.GetService<nsIProtocolProxyService2>("@mozilla.org/network/protocol-proxy-service;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}		
 #endregion
 	}
 }
