@@ -216,6 +216,15 @@ namespace Skybound.Gecko
 		{
 			get { return _Event.GetAltKeyAttribute(); }
 		}
+
+		public int Axis
+		{
+			get { 
+				if(_Event is nsIDOMMouseScrollEvent)
+					return (_Event as nsIDOMMouseScrollEvent).GetAxisAttribute();
+				return -1;
+			}
+		}
 		
 		public bool CtrlKey
 		{
