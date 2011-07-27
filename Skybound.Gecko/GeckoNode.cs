@@ -30,6 +30,10 @@ namespace Skybound.Gecko
 			if (attr != null)
 				return GeckoAttribute.Create(attr);
 
+			nsIDOMComment comment = domObject as nsIDOMComment;
+			if (comment != null)
+				return GeckoComment.Create(comment);
+
 			return new GeckoNode(domObject);
 		}
 

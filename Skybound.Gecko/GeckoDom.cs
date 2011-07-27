@@ -91,7 +91,7 @@ namespace Skybound.Gecko
 			set { nsString.Set(DomAttr.SetValueAttribute, value); }
 		}
 	}
-	
+
 	/// <summary>
 	/// Represents a DOM element.
 	/// </summary>
