@@ -1447,6 +1447,7 @@
     <Compile Include="GeckoWebBrowser.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="NodeType.cs" />
     <Compile Include="nsInterfaces.cs" />
     <Compile Include="nsString.cs" />
     <Compile Include="nsURI.cs" />

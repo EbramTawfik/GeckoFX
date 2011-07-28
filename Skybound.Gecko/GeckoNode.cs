@@ -170,9 +170,9 @@ namespace Skybound.Gecko
 			get { return new GeckoNamedNodeMap(_DomObject.GetAttributesAttribute()); }
 		}
 
-		public ushort Type
+		public NodeType Type
 		{
-			get { return _DomObject.GetNodeTypeAttribute(); }
+			get { return (NodeType)_DomObject.GetNodeTypeAttribute(); }
 		}
 
 		public GeckoNode ParentNode
