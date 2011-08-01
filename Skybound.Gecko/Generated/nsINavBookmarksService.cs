@@ -137,7 +137,7 @@ namespace Skybound.Gecko
         /// aIsAnnotationProperty = true: value = empty string.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnItemChanged(int aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAString aProperty, [MarshalAs(UnmanagedType.Bool)] bool aIsAnnotationProperty, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aNewValue, uint aLastModified, ushort aItemType);
+		void OnItemChanged(int aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsACString aProperty, [MarshalAs(UnmanagedType.Bool)] bool aIsAnnotationProperty, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aNewValue, uint aLastModified, ushort aItemType);
 		
 		/// <summary>
         /// Notify that the item was visited. Normally in bookmarks we use the last

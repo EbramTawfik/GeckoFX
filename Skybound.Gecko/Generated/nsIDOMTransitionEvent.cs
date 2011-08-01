@@ -161,9 +161,9 @@ namespace Skybound.Gecko
 		void GetPropertyNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aPropertyName);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Single GetElapsedTimeAttribute();
+		float GetElapsedTimeAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitTransitionEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString typeArg, [MarshalAs(UnmanagedType.Bool)] bool canBubbleArg, [MarshalAs(UnmanagedType.Bool)] bool cancelableArg, [MarshalAs(UnmanagedType.LPStruct)] nsAString propertyNameArg, System.Single elapsedTimeArg);
+		void InitTransitionEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString typeArg, [MarshalAs(UnmanagedType.Bool)] bool canBubbleArg, [MarshalAs(UnmanagedType.Bool)] bool cancelableArg, [MarshalAs(UnmanagedType.LPStruct)] nsAString propertyNameArg, float elapsedTimeArg);
 	}
 }

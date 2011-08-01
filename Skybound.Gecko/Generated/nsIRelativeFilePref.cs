@@ -67,7 +67,7 @@ namespace Skybound.Gecko
         /// from which the file path is relative.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetRelativeToKeyAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aRelativeToKey);
+		void GetRelativeToKeyAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aRelativeToKey);
 		
 		/// <summary>
         /// relativeToKey
@@ -76,6 +76,6 @@ namespace Skybound.Gecko
         /// from which the file path is relative.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetRelativeToKeyAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aRelativeToKey);
+		void SetRelativeToKeyAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aRelativeToKey);
 	}
 }

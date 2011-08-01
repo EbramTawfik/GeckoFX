@@ -43,7 +43,7 @@ namespace Skybound.Gecko
         /// "geolocation".
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aType);
+		void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aType);
 		
 		/// <summary>
         /// The uri of the permission request.

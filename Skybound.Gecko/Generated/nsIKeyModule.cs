@@ -67,7 +67,7 @@ namespace Skybound.Gecko
 		/// <returns>A nsIKeyObject</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIKeyObject LookupKeyByName([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
+		nsIKeyObject LookupKeyByName([MarshalAs(UnmanagedType.LPStruct)] nsACString aName);
 		
 		/// <summary>Member UnwrapKey </summary>
 		/// <param name='aAlgorithm'> </param>
@@ -83,6 +83,6 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIKeyObject KeyFromString(short aAlgorithm, [MarshalAs(UnmanagedType.LPStruct)] nsAString aKey);
+		nsIKeyObject KeyFromString(short aAlgorithm, [MarshalAs(UnmanagedType.LPStruct)] nsACString aKey);
 	}
 }

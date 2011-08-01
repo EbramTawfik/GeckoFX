@@ -134,7 +134,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMElement ElementFromPoint(System.Single x, System.Single y);
+		nsIDOMElement ElementFromPoint(float x, float y);
 		
 		/// <summary>
         /// Release the current mouse capture if it is on an element within this

@@ -37,11 +37,11 @@ namespace Skybound.Gecko
 		/// <summary>Member GetValueAttribute </summary>
 		/// <returns>A System.Single</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Single GetValueAttribute();
+		float GetValueAttribute();
 		
 		/// <summary>Member SetValueAttribute </summary>
 		/// <param name='aValue'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetValueAttribute(System.Single aValue);
+		void SetValueAttribute(float aValue);
 	}
 }

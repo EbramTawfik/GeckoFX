@@ -157,7 +157,7 @@ namespace Skybound.Gecko
         /// the URI spec using nsICryptoHash.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetUriHashAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aUriHash);
+		void GetUriHashAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aUriHash);
 		
 		/// <summary>
         /// Compare this item's hash to another uri.

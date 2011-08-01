@@ -106,13 +106,13 @@ namespace Skybound.Gecko
         /// Scriptable storage for ASCII strings
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDataAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aData);
+		void GetDataAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aData);
 		
 		/// <summary>
         /// Scriptable storage for ASCII strings
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDataAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aData);
+		void SetDataAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aData);
 		
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -530,13 +530,13 @@ namespace Skybound.Gecko
         /// Scriptable storage for floating point numbers
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Single GetDataAttribute();
+		float GetDataAttribute();
 		
 		/// <summary>
         /// Scriptable storage for floating point numbers
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDataAttribute(System.Single aData);
+		void SetDataAttribute(float aData);
 		
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

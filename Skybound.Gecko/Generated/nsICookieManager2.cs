@@ -66,7 +66,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Remove([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aHost, [MarshalAs(UnmanagedType.LPStruct)] nsAString aName, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aPath, [MarshalAs(UnmanagedType.Bool)] bool aBlocked);
+		new void Remove([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aHost, [MarshalAs(UnmanagedType.LPStruct)] nsACString aName, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aPath, [MarshalAs(UnmanagedType.Bool)] bool aBlocked);
 		
 		/// <summary>
         /// Add a cookie. nsICookieService is the normal way to do this. This
@@ -101,7 +101,7 @@ namespace Skybound.Gecko
         /// in this way, the more restrictive of the two will take effect.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Add([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aHost, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aPath, [MarshalAs(UnmanagedType.LPStruct)] nsAString aName, [MarshalAs(UnmanagedType.LPStruct)] nsAString aValue, [MarshalAs(UnmanagedType.Bool)] bool aIsSecure, [MarshalAs(UnmanagedType.Bool)] bool aIsHttpOnly, [MarshalAs(UnmanagedType.Bool)] bool aIsSession, long aExpiry);
+		void Add([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aHost, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aPath, [MarshalAs(UnmanagedType.LPStruct)] nsACString aName, [MarshalAs(UnmanagedType.LPStruct)] nsACString aValue, [MarshalAs(UnmanagedType.Bool)] bool aIsSecure, [MarshalAs(UnmanagedType.Bool)] bool aIsHttpOnly, [MarshalAs(UnmanagedType.Bool)] bool aIsSession, long aExpiry);
 		
 		/// <summary>
         /// Find whether a given cookie already exists.

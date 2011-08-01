@@ -49,6 +49,6 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool VerifyData([MarshalAs(UnmanagedType.LPStruct)] nsAString aData, [MarshalAs(UnmanagedType.LPStruct)] nsAString aSignature, [MarshalAs(UnmanagedType.LPStruct)] nsAString aPublicKey);
+		bool VerifyData([MarshalAs(UnmanagedType.LPStruct)] nsACString aData, [MarshalAs(UnmanagedType.LPStruct)] nsACString aSignature, [MarshalAs(UnmanagedType.LPStruct)] nsACString aPublicKey);
 	}
 }

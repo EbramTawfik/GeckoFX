@@ -58,13 +58,13 @@ namespace Skybound.Gecko
         /// Fails if the view is no longer valid.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ScrollTo(System.Single xPx, System.Single yPx);
+		void ScrollTo(float xPx, float yPx);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ScrollBy(System.Single dxPx, System.Single dyPx);
+		void ScrollBy(float dxPx, float dyPx);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetScale(System.Single xScale, System.Single yScale);
+		void SetScale(float xScale, float yScale);
 		
 		/// <summary>
         /// Scroll offset in chrome-document CSS pixels.
@@ -77,28 +77,28 @@ namespace Skybound.Gecko
         /// scroll values that are reset to the default!
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Single GetScrollXAttribute();
+		float GetScrollXAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Single GetScrollYAttribute();
+		float GetScrollYAttribute();
 		
 		/// <summary>
         /// Dimensions of the viewport in chrome-document CSS pixels.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Single GetViewportWidthAttribute();
+		float GetViewportWidthAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Single GetViewportHeightAttribute();
+		float GetViewportHeightAttribute();
 		
 		/// <summary>
         /// Dimensions of scrolled content in chrome-document CSS pixels.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Single GetContentWidthAttribute();
+		float GetContentWidthAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Single GetContentHeightAttribute();
+		float GetContentHeightAttribute();
 		
 		/// <summary>
         /// ID that can be used in conjunction with nsIDOMWindowUtils to change
@@ -131,7 +131,7 @@ namespace Skybound.Gecko
         /// @param aLeftSize How much to expand left the rectangle
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIContentView GetContentViewsIn(System.Single aXPx, System.Single aYPx, System.Single aTopSize, System.Single aRightSize, System.Single aBottomSize, System.Single aLeftSize, out uint aLength);
+		nsIContentView GetContentViewsIn(float aXPx, float aYPx, float aTopSize, float aRightSize, float aBottomSize, float aLeftSize, out uint aLength);
 		
 		/// <summary>
         /// The root content view.
@@ -204,7 +204,7 @@ namespace Skybound.Gecko
         /// @see nsIDOMWindowUtils sendMouseEvent.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendCrossProcessMouseEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString aType, System.Single aX, System.Single aY, int aButton, int aClickCount, int aModifiers, [MarshalAs(UnmanagedType.Bool)] bool aIgnoreRootScrollFrame);
+		void SendCrossProcessMouseEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString aType, float aX, float aY, int aButton, int aClickCount, int aModifiers, [MarshalAs(UnmanagedType.Bool)] bool aIgnoreRootScrollFrame);
 		
 		/// <summary>
         /// Activate event forwarding from client (remote frame) to parent.

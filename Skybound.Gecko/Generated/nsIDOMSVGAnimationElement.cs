@@ -350,15 +350,15 @@ namespace Skybound.Gecko
 		nsIDOMSVGElement GetTargetElementAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Single GetStartTime();
+		float GetStartTime();
 		
 		/// <summary>
         /// raises ( DOMException )
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Single GetCurrentTime();
+		float GetCurrentTime();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Single GetSimpleDuration();
+		float GetSimpleDuration();
 	}
 }

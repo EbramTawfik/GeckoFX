@@ -288,7 +288,7 @@ namespace Skybound.Gecko
         /// Any implementation of nsIChannel must follow these rules.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetContentTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aContentType);
+		new void GetContentTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aContentType);
 		
 		/// <summary>
         /// The MIME type of the channel's content if available.
@@ -316,7 +316,7 @@ namespace Skybound.Gecko
         /// Any implementation of nsIChannel must follow these rules.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetContentTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aContentType);
+		new void SetContentTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aContentType);
 		
 		/// <summary>
         /// The character set of the channel's content if available and if applicable.
@@ -325,7 +325,7 @@ namespace Skybound.Gecko
         /// The value of the contentCharset attribute is a mixedcase string.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetContentCharsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aContentCharset);
+		new void GetContentCharsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aContentCharset);
 		
 		/// <summary>
         /// The character set of the channel's content if available and if applicable.
@@ -334,7 +334,7 @@ namespace Skybound.Gecko
         /// The value of the contentCharset attribute is a mixedcase string.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetContentCharsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aContentCharset);
+		new void SetContentCharsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aContentCharset);
 		
 		/// <summary>
         /// The length of the data associated with the channel if available.  A value

@@ -88,10 +88,10 @@ namespace Skybound.Gecko
 		void SetUnsignedLong(uint ul);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetFloat(out System.Single f);
+		void GetFloat(out float f);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFloat(System.Single f);
+		void SetFloat(float f);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetDouble(out double d);

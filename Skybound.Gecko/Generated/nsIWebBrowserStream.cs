@@ -57,7 +57,7 @@ namespace Skybound.Gecko
         /// openStream was called twice without an intermediate closeStream.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OpenStream([MarshalAs(UnmanagedType.Interface)] nsIURI aBaseURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString aContentType);
+		void OpenStream([MarshalAs(UnmanagedType.Interface)] nsIURI aBaseURI, [MarshalAs(UnmanagedType.LPStruct)] nsACString aContentType);
 		
 		/// <summary>
         /// Append data to this stream.

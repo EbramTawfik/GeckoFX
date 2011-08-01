@@ -62,7 +62,7 @@ namespace Skybound.Gecko
         /// A future version of this interface may define additional types.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aType);
+		void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aType);
 		
 		/// <summary>
         /// This attribute specifies flags that modify the proxy type.  The value of

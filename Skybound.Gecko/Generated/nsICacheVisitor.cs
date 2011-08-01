@@ -129,7 +129,7 @@ namespace Skybound.Gecko
         /// Get the key identifying the cache entry.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetKeyAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aKey);
+		void GetKeyAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aKey);
 		
 		/// <summary>
         /// Get the number of times the cache entry has been opened.

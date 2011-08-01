@@ -83,7 +83,7 @@ namespace Skybound.Gecko
 		string GetFailures(out uint failureCount);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void LogFailure([MarshalAs(UnmanagedType.LPStruct)] nsAString failure);
+		void LogFailure([MarshalAs(UnmanagedType.LPStruct)] nsACString failure);
 		
 		/// <summary>
         /// Ask about a feature, and return the status of that feature

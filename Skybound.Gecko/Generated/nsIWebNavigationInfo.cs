@@ -51,6 +51,6 @@ namespace Skybound.Gecko
         /// registered for the types they support.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint IsTypeSupported([MarshalAs(UnmanagedType.LPStruct)] nsAString aType, [MarshalAs(UnmanagedType.Interface)] nsIWebNavigation aWebNav);
+		uint IsTypeSupported([MarshalAs(UnmanagedType.LPStruct)] nsACString aType, [MarshalAs(UnmanagedType.Interface)] nsIWebNavigation aWebNav);
 	}
 }

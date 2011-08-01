@@ -401,16 +401,16 @@ namespace Skybound.Gecko
 		nsIDOMSVGRect GetViewportAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Single GetPixelUnitToMillimeterXAttribute();
+		float GetPixelUnitToMillimeterXAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Single GetPixelUnitToMillimeterYAttribute();
+		float GetPixelUnitToMillimeterYAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Single GetScreenPixelToMillimeterXAttribute();
+		float GetScreenPixelToMillimeterXAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Single GetScreenPixelToMillimeterYAttribute();
+		float GetScreenPixelToMillimeterYAttribute();
 		
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -427,10 +427,10 @@ namespace Skybound.Gecko
 		nsIDOMSVGViewSpec GetCurrentViewAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Single GetCurrentScaleAttribute();
+		float GetCurrentScaleAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCurrentScaleAttribute(System.Single aCurrentScale);
+		void SetCurrentScaleAttribute(float aCurrentScale);
 		
 		/// <summary>
         /// raises DOMException on setting
@@ -465,10 +465,10 @@ namespace Skybound.Gecko
 		bool AnimationsPaused();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Single GetCurrentTime();
+		float GetCurrentTime();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCurrentTime(System.Single seconds);
+		void SetCurrentTime(float seconds);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

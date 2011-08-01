@@ -185,13 +185,13 @@ namespace Skybound.Gecko
 		/// <param name='input'> </param>
 		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void In2OutOneCString([MarshalAs(UnmanagedType.LPStruct)] nsAString input, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void In2OutOneCString([MarshalAs(UnmanagedType.LPStruct)] nsACString input, [MarshalAs(UnmanagedType.LPStruct)] nsACString retval);
 		
 		/// <summary>Member EchoIn2OutOneCString </summary>
 		/// <param name='input'> </param>
 		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EchoIn2OutOneCString([MarshalAs(UnmanagedType.LPStruct)] nsAString input, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void EchoIn2OutOneCString([MarshalAs(UnmanagedType.LPStruct)] nsACString input, [MarshalAs(UnmanagedType.LPStruct)] nsACString retval);
 		
 		/// <summary>Member SimpleCallNoEcho </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -224,7 +224,7 @@ namespace Skybound.Gecko
 					ushort p6, 
 					uint p7, 
 					uint p8, 
-					System.Single p9, 
+					float p9, 
 					double p10, 
 					[MarshalAs(UnmanagedType.Bool)] bool p11, 
 					char p12, 
@@ -260,7 +260,7 @@ namespace Skybound.Gecko
 					ref ushort p6, 
 					ref uint p7, 
 					ref uint p8, 
-					ref System.Single p9, 
+					ref float p9, 
 					ref double p10, 
 					[MarshalAs(UnmanagedType.Bool)] ref bool p11, 
 					ref char p12, 

@@ -120,7 +120,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDocument Open([MarshalAs(UnmanagedType.LPStruct)] nsAString aContentType, [MarshalAs(UnmanagedType.Bool)] bool aReplace);
+		nsIDOMDocument Open([MarshalAs(UnmanagedType.LPStruct)] nsACString aContentType, [MarshalAs(UnmanagedType.Bool)] bool aReplace);
 		
 		/// <summary>
         /// Scriptable version of clear().

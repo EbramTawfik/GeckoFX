@@ -40,7 +40,7 @@ namespace Skybound.Gecko
         /// Interface for JS function callbacks
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void HandleEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString value);
+		void HandleEvent([MarshalAs(UnmanagedType.LPStruct)] nsACString value);
 	}
 	
 	/// <summary>
@@ -65,7 +65,7 @@ namespace Skybound.Gecko
         /// should be passed back to beginStream().
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UpdateUrlRequested([MarshalAs(UnmanagedType.LPStruct)] nsAString url, [MarshalAs(UnmanagedType.LPStruct)] nsAString table, [MarshalAs(UnmanagedType.LPStruct)] nsAString serverMAC);
+		void UpdateUrlRequested([MarshalAs(UnmanagedType.LPStruct)] nsACString url, [MarshalAs(UnmanagedType.LPStruct)] nsACString table, [MarshalAs(UnmanagedType.LPStruct)] nsACString serverMAC);
 		
 		/// <summary>
         /// The server has requested that the client get a new client key for
@@ -119,7 +119,7 @@ namespace Skybound.Gecko
         /// of tables to which the key belongs.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Lookup([MarshalAs(UnmanagedType.LPStruct)] nsAString spec, [MarshalAs(UnmanagedType.Interface)] nsIUrlClassifierCallback c);
+		void Lookup([MarshalAs(UnmanagedType.LPStruct)] nsACString spec, [MarshalAs(UnmanagedType.Interface)] nsIUrlClassifierCallback c);
 		
 		/// <summary>
         /// Lists the tables along with which chunks are available in each table.
@@ -140,7 +140,7 @@ namespace Skybound.Gecko
         /// hashes.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetHashCompleter([MarshalAs(UnmanagedType.LPStruct)] nsAString tableName, [MarshalAs(UnmanagedType.Interface)] nsIUrlClassifierHashCompleter completer);
+		void SetHashCompleter([MarshalAs(UnmanagedType.LPStruct)] nsACString tableName, [MarshalAs(UnmanagedType.Interface)] nsIUrlClassifierHashCompleter completer);
 		
 		/// <summary>
         /// Begin an update process.  Will throw NS_ERROR_NOT_AVAILABLE if there
@@ -152,7 +152,7 @@ namespace Skybound.Gecko
         /// or empty to ignore MAC.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BeginUpdate([MarshalAs(UnmanagedType.Interface)] nsIUrlClassifierUpdateObserver updater, [MarshalAs(UnmanagedType.LPStruct)] nsAString tables, [MarshalAs(UnmanagedType.LPStruct)] nsAString clientKey);
+		void BeginUpdate([MarshalAs(UnmanagedType.Interface)] nsIUrlClassifierUpdateObserver updater, [MarshalAs(UnmanagedType.LPStruct)] nsACString tables, [MarshalAs(UnmanagedType.LPStruct)] nsACString clientKey);
 		
 		/// <summary>
         /// Begin a stream update.  This should be called once per url being
@@ -165,13 +165,13 @@ namespace Skybound.Gecko
         /// for the initial stream), this will be empty.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BeginStream([MarshalAs(UnmanagedType.LPStruct)] nsAString table, [MarshalAs(UnmanagedType.LPStruct)] nsAString serverMAC);
+		void BeginStream([MarshalAs(UnmanagedType.LPStruct)] nsACString table, [MarshalAs(UnmanagedType.LPStruct)] nsACString serverMAC);
 		
 		/// <summary>
         /// Update the table incrementally.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UpdateStream([MarshalAs(UnmanagedType.LPStruct)] nsAString updateChunk);
+		void UpdateStream([MarshalAs(UnmanagedType.LPStruct)] nsACString updateChunk);
 		
 		/// <summary>
         /// Finish an individual stream update.  Must be called for every
@@ -230,7 +230,7 @@ namespace Skybound.Gecko
         /// of tables to which the key belongs.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Lookup([MarshalAs(UnmanagedType.LPStruct)] nsAString spec, [MarshalAs(UnmanagedType.Interface)] nsIUrlClassifierCallback c);
+		new void Lookup([MarshalAs(UnmanagedType.LPStruct)] nsACString spec, [MarshalAs(UnmanagedType.Interface)] nsIUrlClassifierCallback c);
 		
 		/// <summary>
         /// Lists the tables along with which chunks are available in each table.
@@ -251,7 +251,7 @@ namespace Skybound.Gecko
         /// hashes.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetHashCompleter([MarshalAs(UnmanagedType.LPStruct)] nsAString tableName, [MarshalAs(UnmanagedType.Interface)] nsIUrlClassifierHashCompleter completer);
+		new void SetHashCompleter([MarshalAs(UnmanagedType.LPStruct)] nsACString tableName, [MarshalAs(UnmanagedType.Interface)] nsIUrlClassifierHashCompleter completer);
 		
 		/// <summary>
         /// Begin an update process.  Will throw NS_ERROR_NOT_AVAILABLE if there
@@ -263,7 +263,7 @@ namespace Skybound.Gecko
         /// or empty to ignore MAC.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void BeginUpdate([MarshalAs(UnmanagedType.Interface)] nsIUrlClassifierUpdateObserver updater, [MarshalAs(UnmanagedType.LPStruct)] nsAString tables, [MarshalAs(UnmanagedType.LPStruct)] nsAString clientKey);
+		new void BeginUpdate([MarshalAs(UnmanagedType.Interface)] nsIUrlClassifierUpdateObserver updater, [MarshalAs(UnmanagedType.LPStruct)] nsACString tables, [MarshalAs(UnmanagedType.LPStruct)] nsACString clientKey);
 		
 		/// <summary>
         /// Begin a stream update.  This should be called once per url being
@@ -276,13 +276,13 @@ namespace Skybound.Gecko
         /// for the initial stream), this will be empty.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void BeginStream([MarshalAs(UnmanagedType.LPStruct)] nsAString table, [MarshalAs(UnmanagedType.LPStruct)] nsAString serverMAC);
+		new void BeginStream([MarshalAs(UnmanagedType.LPStruct)] nsACString table, [MarshalAs(UnmanagedType.LPStruct)] nsACString serverMAC);
 		
 		/// <summary>
         /// Update the table incrementally.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void UpdateStream([MarshalAs(UnmanagedType.LPStruct)] nsAString updateChunk);
+		new void UpdateStream([MarshalAs(UnmanagedType.LPStruct)] nsACString updateChunk);
 		
 		/// <summary>
         /// Finish an individual stream update.  Must be called for every

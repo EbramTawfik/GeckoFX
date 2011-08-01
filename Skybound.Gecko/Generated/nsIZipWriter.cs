@@ -65,7 +65,7 @@ namespace Skybound.Gecko
         /// @throws NS_ERROR_NOT_INITIALIZED if no zip file has been opened
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCommentAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aComment);
+		void GetCommentAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aComment);
 		
 		/// <summary>
         /// Gets or sets the comment associated with the open zip file.
@@ -73,7 +73,7 @@ namespace Skybound.Gecko
         /// @throws NS_ERROR_NOT_INITIALIZED if no zip file has been opened
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCommentAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aComment);
+		void SetCommentAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aComment);
 		
 		/// <summary>
         /// Indicates that operations on the background queue are being performed.

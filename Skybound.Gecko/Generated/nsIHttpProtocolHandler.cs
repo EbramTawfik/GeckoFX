@@ -38,7 +38,7 @@ namespace Skybound.Gecko
         /// The scheme of this protocol (e.g., "file").
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetSchemeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aScheme);
+		new void GetSchemeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aScheme);
 		
 		/// <summary>
         /// The default port is the port that this protocol normally uses.
@@ -115,7 +115,7 @@ namespace Skybound.Gecko
         /// Get the HTTP advertised user agent string.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetUserAgentAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aUserAgent);
+		void GetUserAgentAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aUserAgent);
 		
 		/// <summary>
         /// Get the application name.
@@ -123,7 +123,7 @@ namespace Skybound.Gecko
         /// @return The name of this application (eg. "Mozilla").
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetAppNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aAppName);
+		void GetAppNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aAppName);
 		
 		/// <summary>
         /// Get the application version string.
@@ -131,19 +131,19 @@ namespace Skybound.Gecko
         /// @return The complete version (major and minor) string. (eg. "5.0")
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetAppVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aAppVersion);
+		void GetAppVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aAppVersion);
 		
 		/// <summary>
         /// @return The product name.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetProductAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aProduct);
+		void GetProductAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aProduct);
 		
 		/// <summary>
         /// @return A product sub string.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetProductSubAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aProductSub);
+		void GetProductSubAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aProductSub);
 		
 		/// <summary>
         /// Get the current platform.
@@ -152,7 +152,7 @@ namespace Skybound.Gecko
         /// (eg. "Windows", "Macintosh", "X11")
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPlatformAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aPlatform);
+		void GetPlatformAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aPlatform);
 		
 		/// <summary>
         /// Get the current oscpu.
@@ -160,12 +160,12 @@ namespace Skybound.Gecko
         /// @return The oscpu this application is running on
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetOscpuAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aOscpu);
+		void GetOscpuAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aOscpu);
 		
 		/// <summary>
         /// Get the application comment misc portion.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMiscAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMisc);
+		void GetMiscAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aMisc);
 	}
 }

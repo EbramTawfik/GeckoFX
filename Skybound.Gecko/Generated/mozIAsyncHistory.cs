@@ -92,7 +92,7 @@ namespace Skybound.Gecko
         /// The globally unique id of the place.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetGuidAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aGuid);
+		void GetGuidAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aGuid);
 		
 		/// <summary>
         /// The URI of the place.

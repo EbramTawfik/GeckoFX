@@ -78,7 +78,7 @@ namespace Skybound.Gecko
         /// properties on it and then pass it to loadStream.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void LoadStream([MarshalAs(UnmanagedType.Interface)] nsIInputStream aStream, [MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString aContentType, [MarshalAs(UnmanagedType.LPStruct)] nsAString aContentCharset, [MarshalAs(UnmanagedType.Interface)] nsIDocShellLoadInfo aLoadInfo);
+		void LoadStream([MarshalAs(UnmanagedType.Interface)] nsIInputStream aStream, [MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsACString aContentType, [MarshalAs(UnmanagedType.LPStruct)] nsACString aContentCharset, [MarshalAs(UnmanagedType.Interface)] nsIDocShellLoadInfo aLoadInfo);
 		
 		/// <summary>
         /// Loads the given URI.  This method is identical to loadURI(...) except
@@ -331,7 +331,7 @@ namespace Skybound.Gecko
         /// no zoom.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Single GetZoomAttribute();
+		float GetZoomAttribute();
 		
 		/// <summary>
         /// Set/Get the document scale factor.  When setting this attribute, a
@@ -342,7 +342,7 @@ namespace Skybound.Gecko
         /// no zoom.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetZoomAttribute(System.Single aZoom);
+		void SetZoomAttribute(float aZoom);
 		
 		/// <summary>
         /// The size, in CSS pixels, of the horizontal margins for the <body> of an

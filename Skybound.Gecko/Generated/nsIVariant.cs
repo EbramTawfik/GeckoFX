@@ -84,7 +84,7 @@ namespace Skybound.Gecko
 		ulong GetAsUint64();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Single GetAsFloat();
+		float GetAsFloat();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		double GetAsDouble();
@@ -109,7 +109,7 @@ namespace Skybound.Gecko
 		void GetAsDOMString([MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetAsACString([MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetAsACString([MarshalAs(UnmanagedType.LPStruct)] nsACString retval);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetAsAUTF8String([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
@@ -194,7 +194,7 @@ namespace Skybound.Gecko
 		new ulong GetAsUint64();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Single GetAsFloat();
+		new float GetAsFloat();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new double GetAsDouble();
@@ -219,7 +219,7 @@ namespace Skybound.Gecko
 		new void GetAsDOMString([MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetAsACString([MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		new void GetAsACString([MarshalAs(UnmanagedType.LPStruct)] nsACString retval);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetAsAUTF8String([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
@@ -303,7 +303,7 @@ namespace Skybound.Gecko
 		void SetAsUint64(ulong aValue);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAsFloat(System.Single aValue);
+		void SetAsFloat(float aValue);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetAsDouble(double aValue);
@@ -327,7 +327,7 @@ namespace Skybound.Gecko
 		void SetAsDOMString([MarshalAs(UnmanagedType.LPStruct)] nsAString aValue);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAsACString([MarshalAs(UnmanagedType.LPStruct)] nsAString aValue);
+		void SetAsACString([MarshalAs(UnmanagedType.LPStruct)] nsACString aValue);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetAsAUTF8String([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aValue);

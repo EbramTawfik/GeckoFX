@@ -40,7 +40,7 @@ namespace Skybound.Gecko
         /// The scheme of this protocol (e.g., "file").
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSchemeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aScheme);
+		void GetSchemeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aScheme);
 		
 		/// <summary>
         /// The default port is the port that this protocol normally uses.

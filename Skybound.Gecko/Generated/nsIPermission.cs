@@ -52,7 +52,7 @@ namespace Skybound.Gecko
         /// @see nsIPermissionManager
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aType);
+		void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aType);
 		
 		/// <summary>
         /// The permission (see nsIPermissionManager.idl for allowed values)

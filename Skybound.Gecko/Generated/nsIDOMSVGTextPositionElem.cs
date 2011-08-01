@@ -343,14 +343,14 @@ namespace Skybound.Gecko
 		/// <summary>Member GetComputedTextLength </summary>
 		/// <returns>A System.Single</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Single GetComputedTextLength();
+		new float GetComputedTextLength();
 		
 		/// <summary>Member GetSubStringLength </summary>
 		/// <param name='charnum'> </param>
 		/// <param name='nchars'> </param>
 		/// <returns>A System.Single</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Single GetSubStringLength(uint charnum, uint nchars);
+		new float GetSubStringLength(uint charnum, uint nchars);
 		
 		/// <summary>
         /// raises(DOMException);
@@ -377,7 +377,7 @@ namespace Skybound.Gecko
         /// raises(DOMException);
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Single GetRotationOfChar(uint charnum);
+		new float GetRotationOfChar(uint charnum);
 		
 		/// <summary>
         /// raises(DOMException);

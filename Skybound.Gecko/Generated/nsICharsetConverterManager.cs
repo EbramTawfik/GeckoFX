@@ -75,7 +75,7 @@ namespace Skybound.Gecko
         /// A shortcut to calling nsICharsetAlias to do alias resolution
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCharsetAlias([MarshalAs(UnmanagedType.LPStr)] string charset, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetCharsetAlias([MarshalAs(UnmanagedType.LPStr)] string charset, [MarshalAs(UnmanagedType.LPStruct)] nsACString retval);
 		
 		/// <summary>
         /// Get the complete list of available decoders.

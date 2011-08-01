@@ -49,6 +49,6 @@ namespace Skybound.Gecko
         /// @param portNumber The error occurred when connecting to this portNumber.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ShowCertError([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor ctx, [MarshalAs(UnmanagedType.Interface)] nsISSLStatus status, [MarshalAs(UnmanagedType.Interface)] nsIX509Cert cert, [MarshalAs(UnmanagedType.LPStruct)] nsAString textErrorMessage, [MarshalAs(UnmanagedType.LPStruct)] nsAString htmlErrorMessage, [MarshalAs(UnmanagedType.LPStruct)] nsAString hostName, uint portNumber);
+		void ShowCertError([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor ctx, [MarshalAs(UnmanagedType.Interface)] nsISSLStatus status, [MarshalAs(UnmanagedType.Interface)] nsIX509Cert cert, [MarshalAs(UnmanagedType.LPStruct)] nsAString textErrorMessage, [MarshalAs(UnmanagedType.LPStruct)] nsAString htmlErrorMessage, [MarshalAs(UnmanagedType.LPStruct)] nsACString hostName, uint portNumber);
 	}
 }

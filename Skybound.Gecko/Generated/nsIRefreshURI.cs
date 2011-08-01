@@ -84,7 +84,7 @@ namespace Skybound.Gecko
         /// @param aHeader  The meta refresh header string.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetupRefreshURIFromHeader([MarshalAs(UnmanagedType.Interface)] nsIURI aBaseURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString aHeader);
+		void SetupRefreshURIFromHeader([MarshalAs(UnmanagedType.Interface)] nsIURI aBaseURI, [MarshalAs(UnmanagedType.LPStruct)] nsACString aHeader);
 		
 		/// <summary>
         /// Cancels all timer loads.

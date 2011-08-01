@@ -48,6 +48,6 @@ namespace Skybound.Gecko
         /// @throw any exception to terminate enumeration
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void VisitHeader([MarshalAs(UnmanagedType.LPStruct)] nsAString aHeader, [MarshalAs(UnmanagedType.LPStruct)] nsAString aValue);
+		void VisitHeader([MarshalAs(UnmanagedType.LPStruct)] nsACString aHeader, [MarshalAs(UnmanagedType.LPStruct)] nsACString aValue);
 	}
 }

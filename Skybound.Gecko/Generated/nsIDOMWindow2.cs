@@ -103,7 +103,7 @@ namespace Skybound.Gecko
         /// i.e. no zoom.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Single GetTextZoomAttribute();
+		new float GetTextZoomAttribute();
 		
 		/// <summary>
         /// Set/Get the document scale factor as a multiplier on the default
@@ -114,7 +114,7 @@ namespace Skybound.Gecko
         /// i.e. no zoom.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetTextZoomAttribute(System.Single aTextZoom);
+		new void SetTextZoomAttribute(float aTextZoom);
 		
 		/// <summary>
         /// Accessor for the current x scroll position in this window in

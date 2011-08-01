@@ -65,10 +65,10 @@ namespace Skybound.Gecko
 		ushort GetPrimitiveTypeAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFloatValue(ushort unitType, System.Single floatValue);
+		void SetFloatValue(ushort unitType, float floatValue);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Single GetFloatValue(ushort unitType);
+		float GetFloatValue(ushort unitType);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetStringValue(ushort stringType, [MarshalAs(UnmanagedType.LPStruct)] nsAString stringValue);

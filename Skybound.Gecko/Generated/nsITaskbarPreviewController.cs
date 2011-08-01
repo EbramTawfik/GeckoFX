@@ -62,7 +62,7 @@ namespace Skybound.Gecko
         /// drawThumbnail for more information.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Single GetThumbnailAspectRatioAttribute();
+		float GetThumbnailAspectRatioAttribute();
 		
 		/// <summary>
         /// Invoked by nsITaskbarPreview when it needs to render the preview. The

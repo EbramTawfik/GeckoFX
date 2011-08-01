@@ -40,7 +40,7 @@ namespace Skybound.Gecko
         /// The scheme of this protocol (e.g., "file").
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetSchemeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aScheme);
+		new void GetSchemeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aScheme);
 		
 		/// <summary>
         /// The default port is the port that this protocol normally uses.
@@ -115,7 +115,7 @@ namespace Skybound.Gecko
         /// enforced.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSubstitution([MarshalAs(UnmanagedType.LPStruct)] nsAString root, [MarshalAs(UnmanagedType.Interface)] nsIURI baseURI);
+		void SetSubstitution([MarshalAs(UnmanagedType.LPStruct)] nsACString root, [MarshalAs(UnmanagedType.Interface)] nsIURI baseURI);
 		
 		/// <summary>
         /// Gets the substitution for the root key.
@@ -124,14 +124,14 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI GetSubstitution([MarshalAs(UnmanagedType.LPStruct)] nsAString root);
+		nsIURI GetSubstitution([MarshalAs(UnmanagedType.LPStruct)] nsACString root);
 		
 		/// <summary>
         /// Returns TRUE if the substitution exists and FALSE otherwise.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool HasSubstitution([MarshalAs(UnmanagedType.LPStruct)] nsAString root);
+		bool HasSubstitution([MarshalAs(UnmanagedType.LPStruct)] nsACString root);
 		
 		/// <summary>
         /// Utility function to resolve a resource URI.  A resolved URI is not

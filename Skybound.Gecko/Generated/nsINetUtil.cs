@@ -100,7 +100,7 @@ namespace Skybound.Gecko
         /// escape a string with %00-style escaping
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EscapeString([MarshalAs(UnmanagedType.LPStruct)] nsAString aString, uint aEscapeType, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void EscapeString([MarshalAs(UnmanagedType.LPStruct)] nsACString aString, uint aEscapeType, [MarshalAs(UnmanagedType.LPStruct)] nsACString retval);
 		
 		/// <summary>
         /// %XX-Escape invalid chars in a URL segment.
@@ -112,7 +112,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EscapeURL([MarshalAs(UnmanagedType.LPStruct)] nsAString aStr, uint aFlags, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void EscapeURL([MarshalAs(UnmanagedType.LPStruct)] nsACString aStr, uint aFlags, [MarshalAs(UnmanagedType.LPStruct)] nsACString retval);
 		
 		/// <summary>
         /// Expands URL escape sequences
@@ -124,7 +124,7 @@ namespace Skybound.Gecko
         /// @return unescaped string
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UnescapeString([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aStr, uint aFlags, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void UnescapeString([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aStr, uint aFlags, [MarshalAs(UnmanagedType.LPStruct)] nsACString retval);
 		
 		/// <summary>
         /// Extract the charset parameter location and value from a content-type

@@ -50,7 +50,7 @@ namespace Skybound.Gecko
         /// handling method, preferred filename, etc.  See RFC 2183.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetContentDispositionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aContentDisposition);
+		void GetContentDispositionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aContentDisposition);
 		
 		/// <summary>
         /// Access to the Content-Disposition header field of this part of
@@ -58,7 +58,7 @@ namespace Skybound.Gecko
         /// handling method, preferred filename, etc.  See RFC 2183.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetContentDispositionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aContentDisposition);
+		void SetContentDispositionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aContentDisposition);
 		
 		/// <summary>
         /// Attribute guaranteed to be different for different parts of

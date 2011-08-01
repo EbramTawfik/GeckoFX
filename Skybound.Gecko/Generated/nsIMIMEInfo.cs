@@ -44,7 +44,7 @@ namespace Skybound.Gecko
         /// @return String representing the type.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aType);
+		void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aType);
 		
 		/// <summary>
         /// A human readable description of the handler type
@@ -183,7 +183,7 @@ namespace Skybound.Gecko
         /// @return String representing the type.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aType);
+		new void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aType);
 		
 		/// <summary>
         /// A human readable description of the handler type
@@ -357,7 +357,7 @@ namespace Skybound.Gecko
         /// @deprecated  use nsIHandlerInfo::type instead.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMIMETypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMIMEType);
+		void GetMIMETypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aMIMEType);
 		
 		/// <summary>
         /// Returns whether or not these two nsIMIMEInfos are logically

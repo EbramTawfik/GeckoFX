@@ -123,7 +123,7 @@ namespace Skybound.Gecko
         /// The uri to be loaded by the application
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void OpenApplicationWithURI([MarshalAs(UnmanagedType.Interface)] nsILocalFile aApplication, [MarshalAs(UnmanagedType.LPStruct)] nsAString aURI);
+		new void OpenApplicationWithURI([MarshalAs(UnmanagedType.Interface)] nsILocalFile aApplication, [MarshalAs(UnmanagedType.LPStruct)] nsACString aURI);
 		
 		/// <summary>
         /// The default system handler for web feeds

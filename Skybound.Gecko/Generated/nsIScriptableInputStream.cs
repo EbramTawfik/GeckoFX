@@ -92,6 +92,6 @@ namespace Skybound.Gecko
         /// aCount amount of data.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ReadBytes(uint aCount, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void ReadBytes(uint aCount, [MarshalAs(UnmanagedType.LPStruct)] nsACString retval);
 	}
 }

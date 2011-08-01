@@ -52,7 +52,7 @@ namespace Skybound.Gecko
         /// @param aOverrideBits The errors we want to be overriden
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RememberValidityOverride([MarshalAs(UnmanagedType.LPStruct)] nsAString aHostName, int aPort, [MarshalAs(UnmanagedType.Interface)] nsIX509Cert aCert, uint aOverrideBits, [MarshalAs(UnmanagedType.Bool)] bool aTemporary);
+		void RememberValidityOverride([MarshalAs(UnmanagedType.LPStruct)] nsACString aHostName, int aPort, [MarshalAs(UnmanagedType.Interface)] nsIX509Cert aCert, uint aOverrideBits, [MarshalAs(UnmanagedType.Bool)] bool aTemporary);
 		
 		/// <summary>
         /// The given cert should always be accepted for the given hostname:port,
@@ -71,7 +71,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool HasMatchingOverride([MarshalAs(UnmanagedType.LPStruct)] nsAString aHostName, int aPort, [MarshalAs(UnmanagedType.Interface)] nsIX509Cert aCert, out uint aOverrideBits, [MarshalAs(UnmanagedType.Bool)] out bool aIsTemporary);
+		bool HasMatchingOverride([MarshalAs(UnmanagedType.LPStruct)] nsACString aHostName, int aPort, [MarshalAs(UnmanagedType.Interface)] nsIX509Cert aCert, out uint aOverrideBits, [MarshalAs(UnmanagedType.Bool)] out bool aIsTemporary);
 		
 		/// <summary>
         /// Retrieve the stored override for the given hostname:port.
@@ -88,7 +88,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetValidityOverride([MarshalAs(UnmanagedType.LPStruct)] nsAString aHostName, int aPort, [MarshalAs(UnmanagedType.LPStruct)] nsAString aHashAlg, [MarshalAs(UnmanagedType.LPStruct)] nsAString aFingerprint, out uint aOverrideBits, [MarshalAs(UnmanagedType.Bool)] out bool aIsTemporary);
+		bool GetValidityOverride([MarshalAs(UnmanagedType.LPStruct)] nsACString aHostName, int aPort, [MarshalAs(UnmanagedType.LPStruct)] nsACString aHashAlg, [MarshalAs(UnmanagedType.LPStruct)] nsACString aFingerprint, out uint aOverrideBits, [MarshalAs(UnmanagedType.Bool)] out bool aIsTemporary);
 		
 		/// <summary>
         /// Remove a override for the given hostname:port.
@@ -100,7 +100,7 @@ namespace Skybound.Gecko
         /// then all temporary certificates should be cleared.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ClearValidityOverride([MarshalAs(UnmanagedType.LPStruct)] nsAString aHostName, int aPort);
+		void ClearValidityOverride([MarshalAs(UnmanagedType.LPStruct)] nsACString aHostName, int aPort);
 		
 		/// <summary>
         /// Obtain the full list of hostname:port for which overrides are known.

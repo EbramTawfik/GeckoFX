@@ -159,12 +159,12 @@ namespace Skybound.Gecko
 		/// <summary>
         ///Sets the current 'Save' document character set </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDocumentCharacterSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDocumentCharacterSet);
+		void GetDocumentCharacterSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aDocumentCharacterSet);
 		
 		/// <summary>
         ///Sets the current 'Save' document character set </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDocumentCharacterSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDocumentCharacterSet);
+		void SetDocumentCharacterSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aDocumentCharacterSet);
 		
 		/// <summary>
         ///to be used ONLY when we need to override the doc's modification
@@ -606,7 +606,7 @@ namespace Skybound.Gecko
 		/// <param name='charsetOverride'> </param>
 		/// <param name='flags'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OutputToStream([MarshalAs(UnmanagedType.Interface)] nsIOutputStream aStream, [MarshalAs(UnmanagedType.LPStruct)] nsAString formatType, [MarshalAs(UnmanagedType.LPStruct)] nsAString charsetOverride, uint flags);
+		void OutputToStream([MarshalAs(UnmanagedType.Interface)] nsIOutputStream aStream, [MarshalAs(UnmanagedType.LPStruct)] nsAString formatType, [MarshalAs(UnmanagedType.LPStruct)] nsACString charsetOverride, uint flags);
 		
 		/// <summary>
         ///add an EditorObserver to the editors list of observers. </summary>

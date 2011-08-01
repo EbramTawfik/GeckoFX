@@ -52,7 +52,7 @@ namespace Skybound.Gecko
         /// the input hostname is assumed to be UTF8-encoded.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ConvertUTF8toACE([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String input, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void ConvertUTF8toACE([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String input, [MarshalAs(UnmanagedType.LPStruct)] nsACString retval);
 		
 		/// <summary>
         /// This is the ToUnicode operation as specified in the IDNA proposal,
@@ -61,14 +61,14 @@ namespace Skybound.Gecko
         /// encodes the resulting string into UTF8.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ConvertACEtoUTF8([MarshalAs(UnmanagedType.LPStruct)] nsAString input, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
+		void ConvertACEtoUTF8([MarshalAs(UnmanagedType.LPStruct)] nsACString input, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
 		
 		/// <summary>
         /// Checks if the input string is ACE encoded or not.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsACE([MarshalAs(UnmanagedType.LPStruct)] nsAString input);
+		bool IsACE([MarshalAs(UnmanagedType.LPStruct)] nsACString input);
 		
 		/// <summary>
         /// Performs the unicode normalization needed for hostnames in IDN,

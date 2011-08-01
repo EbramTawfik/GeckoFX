@@ -77,14 +77,14 @@ namespace Skybound.Gecko
 		/// <param name='packageName'> </param>
 		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetSelectedLocale([MarshalAs(UnmanagedType.LPStruct)] nsAString packageName, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		new void GetSelectedLocale([MarshalAs(UnmanagedType.LPStruct)] nsACString packageName, [MarshalAs(UnmanagedType.LPStruct)] nsACString retval);
 		
 		/// <summary>
         /// Get the direction of the locale via the intl.uidirection.<locale> pref
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool IsLocaleRTL([MarshalAs(UnmanagedType.LPStruct)] nsAString package);
+		new bool IsLocaleRTL([MarshalAs(UnmanagedType.LPStruct)] nsACString package);
 		
 		/// <summary>
         ///Should be called when skins change. Reloads only stylesheets. </summary>

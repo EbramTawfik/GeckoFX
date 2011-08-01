@@ -42,13 +42,13 @@ namespace Skybound.Gecko
         /// The Url to download from.  Should be plain ascii text.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetUpdateUrlAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aUpdateUrl);
+		void GetUpdateUrlAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aUpdateUrl);
 		
 		/// <summary>
         /// The Url to download from.  Should be plain ascii text.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetUpdateUrlAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aUpdateUrl);
+		void SetUpdateUrlAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aUpdateUrl);
 		
 		/// <summary>
         /// Try to download updates from updateUrl.  Only one instance of this
@@ -65,6 +65,6 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool DownloadUpdates([MarshalAs(UnmanagedType.LPStruct)] nsAString aRequestTables, [MarshalAs(UnmanagedType.LPStruct)] nsAString aRequestBody, [MarshalAs(UnmanagedType.LPStruct)] nsAString aClientKey, [MarshalAs(UnmanagedType.Interface)] nsIUrlClassifierCallback aSuccessCallback, [MarshalAs(UnmanagedType.Interface)] nsIUrlClassifierCallback aUpdateErrorCallback, [MarshalAs(UnmanagedType.Interface)] nsIUrlClassifierCallback aDownloadErrorCallback);
+		bool DownloadUpdates([MarshalAs(UnmanagedType.LPStruct)] nsACString aRequestTables, [MarshalAs(UnmanagedType.LPStruct)] nsACString aRequestBody, [MarshalAs(UnmanagedType.LPStruct)] nsACString aClientKey, [MarshalAs(UnmanagedType.Interface)] nsIUrlClassifierCallback aSuccessCallback, [MarshalAs(UnmanagedType.Interface)] nsIUrlClassifierCallback aUpdateErrorCallback, [MarshalAs(UnmanagedType.Interface)] nsIUrlClassifierCallback aDownloadErrorCallback);
 	}
 }

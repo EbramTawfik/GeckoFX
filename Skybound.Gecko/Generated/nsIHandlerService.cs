@@ -89,7 +89,7 @@ namespace Skybound.Gecko
         /// console with XPCOM exception errors.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void FillHandlerInfo([MarshalAs(UnmanagedType.Interface)] nsIHandlerInfo aHandlerInfo, [MarshalAs(UnmanagedType.LPStruct)] nsAString aOverrideType);
+		void FillHandlerInfo([MarshalAs(UnmanagedType.Interface)] nsIHandlerInfo aHandlerInfo, [MarshalAs(UnmanagedType.LPStruct)] nsACString aOverrideType);
 		
 		/// <summary>
         /// Save the preferred action, preferred handler, possible handlers, and
@@ -144,6 +144,6 @@ namespace Skybound.Gecko
         /// @returns the MIME type, if any; otherwise returns an empty string ("").
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTypeFromExtension([MarshalAs(UnmanagedType.LPStruct)] nsAString aFileExtension, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetTypeFromExtension([MarshalAs(UnmanagedType.LPStruct)] nsACString aFileExtension, [MarshalAs(UnmanagedType.LPStruct)] nsACString retval);
 	}
 }

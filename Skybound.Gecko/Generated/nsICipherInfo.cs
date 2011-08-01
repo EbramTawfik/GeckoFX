@@ -37,7 +37,7 @@ namespace Skybound.Gecko
 		/// <summary>Member GetLongNameAttribute </summary>
 		/// <param name='aLongName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetLongNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aLongName);
+		void GetLongNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aLongName);
 		
 		/// <summary>Member GetIsSSL2Attribute </summary>
 		/// <returns>A System.Boolean</returns>
@@ -66,22 +66,22 @@ namespace Skybound.Gecko
 		/// <summary>Member GetSymCipherNameAttribute </summary>
 		/// <param name='aSymCipherName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSymCipherNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aSymCipherName);
+		void GetSymCipherNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aSymCipherName);
 		
 		/// <summary>Member GetAuthAlgorithmNameAttribute </summary>
 		/// <param name='aAuthAlgorithmName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetAuthAlgorithmNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aAuthAlgorithmName);
+		void GetAuthAlgorithmNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aAuthAlgorithmName);
 		
 		/// <summary>Member GetKeaTypeNameAttribute </summary>
 		/// <param name='aKeaTypeName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetKeaTypeNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aKeaTypeName);
+		void GetKeaTypeNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aKeaTypeName);
 		
 		/// <summary>Member GetMacAlgorithmNameAttribute </summary>
 		/// <param name='aMacAlgorithmName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMacAlgorithmNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMacAlgorithmName);
+		void GetMacAlgorithmNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aMacAlgorithmName);
 		
 		/// <summary>Member GetEffectiveKeyBitsAttribute </summary>
 		/// <returns>A System.Int32</returns>
@@ -101,6 +101,6 @@ namespace Skybound.Gecko
 		/// <returns>A nsICipherInfo</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsICipherInfo GetCipherInfoByPrefString([MarshalAs(UnmanagedType.LPStruct)] nsAString aPrefString);
+		nsICipherInfo GetCipherInfoByPrefString([MarshalAs(UnmanagedType.LPStruct)] nsACString aPrefString);
 	}
 }

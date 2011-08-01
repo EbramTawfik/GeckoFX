@@ -231,13 +231,13 @@ namespace Skybound.Gecko
         /// document this boxObject lives in, and the units are CSS pixels.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCellAt(int x, int y, out int row, [MarshalAs(UnmanagedType.Interface)] out nsITreeColumn col, [MarshalAs(UnmanagedType.LPStruct)] nsAString childElt);
+		void GetCellAt(int x, int y, out int row, [MarshalAs(UnmanagedType.Interface)] out nsITreeColumn col, [MarshalAs(UnmanagedType.LPStruct)] nsACString childElt);
 		
 		/// <summary>
         /// Find the coordinates of an element within a specific cell.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCoordsForCellItem(int row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn col, [MarshalAs(UnmanagedType.LPStruct)] nsAString element, out int x, out int y, out int width, out int height);
+		void GetCoordsForCellItem(int row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn col, [MarshalAs(UnmanagedType.LPStruct)] nsACString element, out int x, out int y, out int width, out int height);
 		
 		/// <summary>
         /// Determine if the text of a cell is being cropped or not.

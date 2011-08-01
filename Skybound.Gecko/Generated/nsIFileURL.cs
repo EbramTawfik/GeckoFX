@@ -84,7 +84,7 @@ namespace Skybound.Gecko
         /// that will generally lead to incorrect results.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetSchemeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aScheme);
+		new void GetSchemeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aScheme);
 		
 		/// <summary>
         /// The Scheme is the protocol to which this URI refers.  The scheme is
@@ -93,7 +93,7 @@ namespace Skybound.Gecko
         /// that will generally lead to incorrect results.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetSchemeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aScheme);
+		new void SetSchemeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aScheme);
 		
 		/// <summary>
         /// The username:password (or username only if value doesn't contain a ':')
@@ -246,7 +246,7 @@ namespace Skybound.Gecko
         /// RFC2396.  The result is strictly ASCII.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetAsciiSpecAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aAsciiSpec);
+		new void GetAsciiSpecAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aAsciiSpec);
 		
 		/// <summary>
         /// The URI host with an ASCII compatible encoding.  Follows the IDNA
@@ -254,7 +254,7 @@ namespace Skybound.Gecko
         /// ASCII for compatibility with existing internet infrasture.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetAsciiHostAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aAsciiHost);
+		new void GetAsciiHostAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aAsciiHost);
 		
 		/// <summary>
         /// The charset of the document from which this URI originated.  An empty
@@ -266,7 +266,7 @@ namespace Skybound.Gecko
         /// characters.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetOriginCharsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aOriginCharset);
+		new void GetOriginCharsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aOriginCharset);
 		
 		/// <summary>
         /// Returns a path including the directory and file portions of a

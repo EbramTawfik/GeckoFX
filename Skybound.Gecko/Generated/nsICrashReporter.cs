@@ -110,7 +110,7 @@ namespace Skybound.Gecko
         /// '\n'.  Invalid character for data is '\0'.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AnnotateCrashReport([MarshalAs(UnmanagedType.LPStruct)] nsAString key, [MarshalAs(UnmanagedType.LPStruct)] nsAString data);
+		void AnnotateCrashReport([MarshalAs(UnmanagedType.LPStruct)] nsACString key, [MarshalAs(UnmanagedType.LPStruct)] nsACString data);
 		
 		/// <summary>
         /// Append some data to the "Notes" field, to be submitted with a crash report.
@@ -124,7 +124,7 @@ namespace Skybound.Gecko
         /// The only invalid character is '\0'.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AppendAppNotesToCrashReport([MarshalAs(UnmanagedType.LPStruct)] nsAString data);
+		void AppendAppNotesToCrashReport([MarshalAs(UnmanagedType.LPStruct)] nsACString data);
 		
 		/// <summary>
         /// Write a minidump immediately, with the user-supplied exception

@@ -61,7 +61,7 @@ namespace Skybound.Gecko
 		void Append([MarshalAs(UnmanagedType.LPStruct)] nsAString node);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AppendNative([MarshalAs(UnmanagedType.LPStruct)] nsAString node);
+		void AppendNative([MarshalAs(UnmanagedType.LPStruct)] nsACString node);
 		
 		/// <summary>
         /// Normalize the pathName (e.g. removing .. and . components on Unix).
@@ -109,10 +109,10 @@ namespace Skybound.Gecko
 		void SetLeafNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aLeafName);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNativeLeafNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aNativeLeafName);
+		void GetNativeLeafNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aNativeLeafName);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetNativeLeafNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aNativeLeafName);
+		void SetNativeLeafNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aNativeLeafName);
 		
 		/// <summary>
         /// copyTo[Native]
@@ -145,7 +145,7 @@ namespace Skybound.Gecko
 		void CopyTo([MarshalAs(UnmanagedType.Interface)] nsIFile newParentDir, [MarshalAs(UnmanagedType.LPStruct)] nsAString newName);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CopyToNative([MarshalAs(UnmanagedType.Interface)] nsIFile newParentDir, [MarshalAs(UnmanagedType.LPStruct)] nsAString newName);
+		void CopyToNative([MarshalAs(UnmanagedType.Interface)] nsIFile newParentDir, [MarshalAs(UnmanagedType.LPStruct)] nsACString newName);
 		
 		/// <summary>
         /// copyToFollowingLinks[Native]
@@ -160,7 +160,7 @@ namespace Skybound.Gecko
 		void CopyToFollowingLinks([MarshalAs(UnmanagedType.Interface)] nsIFile newParentDir, [MarshalAs(UnmanagedType.LPStruct)] nsAString newName);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CopyToFollowingLinksNative([MarshalAs(UnmanagedType.Interface)] nsIFile newParentDir, [MarshalAs(UnmanagedType.LPStruct)] nsAString newName);
+		void CopyToFollowingLinksNative([MarshalAs(UnmanagedType.Interface)] nsIFile newParentDir, [MarshalAs(UnmanagedType.LPStruct)] nsACString newName);
 		
 		/// <summary>
         /// moveTo[Native]
@@ -198,7 +198,7 @@ namespace Skybound.Gecko
 		void MoveTo([MarshalAs(UnmanagedType.Interface)] nsIFile newParentDir, [MarshalAs(UnmanagedType.LPStruct)] nsAString newName);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MoveToNative([MarshalAs(UnmanagedType.Interface)] nsIFile newParentDir, [MarshalAs(UnmanagedType.LPStruct)] nsAString newName);
+		void MoveToNative([MarshalAs(UnmanagedType.Interface)] nsIFile newParentDir, [MarshalAs(UnmanagedType.LPStruct)] nsACString newName);
 		
 		/// <summary>
         /// This will try to delete this file.  The 'recursive' flag
@@ -299,13 +299,13 @@ namespace Skybound.Gecko
 		void GetTargetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aTarget);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNativeTargetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aNativeTarget);
+		void GetNativeTargetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aNativeTarget);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetPathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aPath);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNativePathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aNativePath);
+		void GetNativePathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aNativePath);
 		
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

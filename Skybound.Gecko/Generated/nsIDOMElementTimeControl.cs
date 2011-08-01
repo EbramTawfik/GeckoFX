@@ -59,12 +59,12 @@ namespace Skybound.Gecko
 		void BeginElement();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BeginElementAt(System.Single offset);
+		void BeginElementAt(float offset);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void EndElement();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EndElementAt(System.Single offset);
+		void EndElementAt(float offset);
 	}
 }

@@ -177,22 +177,22 @@ namespace Skybound.Gecko
         /// Scroll area client rect
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Single GetXAttribute();
+		float GetXAttribute();
 		
 		/// <summary>Member GetYAttribute </summary>
 		/// <returns>A System.Single</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Single GetYAttribute();
+		float GetYAttribute();
 		
 		/// <summary>Member GetWidthAttribute </summary>
 		/// <returns>A System.Single</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Single GetWidthAttribute();
+		float GetWidthAttribute();
 		
 		/// <summary>Member GetHeightAttribute </summary>
 		/// <returns>A System.Single</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Single GetHeightAttribute();
+		float GetHeightAttribute();
 		
 		/// <summary>Member InitScrollAreaEvent </summary>
 		/// <param name='aEventType'> </param>
@@ -205,6 +205,6 @@ namespace Skybound.Gecko
 		/// <param name='width'> </param>
 		/// <param name='height'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitScrollAreaEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString aEventType, [MarshalAs(UnmanagedType.Bool)] bool aCanBubble, [MarshalAs(UnmanagedType.Bool)] bool aCancelable, [MarshalAs(UnmanagedType.Interface)] nsIDOMAbstractView aView, int aDetail, System.Single x, System.Single y, System.Single width, System.Single height);
+		void InitScrollAreaEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString aEventType, [MarshalAs(UnmanagedType.Bool)] bool aCanBubble, [MarshalAs(UnmanagedType.Bool)] bool aCancelable, [MarshalAs(UnmanagedType.Interface)] nsIDOMAbstractView aView, int aDetail, float x, float y, float width, float height);
 	}
 }

@@ -71,7 +71,7 @@ namespace Skybound.Gecko
         /// this activity
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ObserveActivity([MarshalAs(UnmanagedType.Interface)] nsISupports aHttpChannel, uint aActivityType, uint aActivitySubtype, uint aTimestamp, ulong aExtraSizeData, [MarshalAs(UnmanagedType.LPStruct)] nsAString aExtraStringData);
+		void ObserveActivity([MarshalAs(UnmanagedType.Interface)] nsISupports aHttpChannel, uint aActivityType, uint aActivitySubtype, uint aTimestamp, ulong aExtraSizeData, [MarshalAs(UnmanagedType.LPStruct)] nsACString aExtraStringData);
 		
 		/// <summary>
         /// This attribute is true when this interface is active and should
@@ -128,7 +128,7 @@ namespace Skybound.Gecko
         /// this activity
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void ObserveActivity([MarshalAs(UnmanagedType.Interface)] nsISupports aHttpChannel, uint aActivityType, uint aActivitySubtype, uint aTimestamp, ulong aExtraSizeData, [MarshalAs(UnmanagedType.LPStruct)] nsAString aExtraStringData);
+		new void ObserveActivity([MarshalAs(UnmanagedType.Interface)] nsISupports aHttpChannel, uint aActivityType, uint aActivitySubtype, uint aTimestamp, ulong aExtraSizeData, [MarshalAs(UnmanagedType.LPStruct)] nsACString aExtraStringData);
 		
 		/// <summary>
         /// This attribute is true when this interface is active and should

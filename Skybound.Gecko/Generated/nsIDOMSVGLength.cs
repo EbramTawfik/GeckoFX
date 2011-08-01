@@ -43,24 +43,24 @@ namespace Skybound.Gecko
 		/// <summary>Member GetValueAttribute </summary>
 		/// <returns>A System.Single</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Single GetValueAttribute();
+		float GetValueAttribute();
 		
 		/// <summary>Member SetValueAttribute </summary>
 		/// <param name='aValue'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetValueAttribute(System.Single aValue);
+		void SetValueAttribute(float aValue);
 		
 		/// <summary>
         /// raises DOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Single GetValueInSpecifiedUnitsAttribute();
+		float GetValueInSpecifiedUnitsAttribute();
 		
 		/// <summary>
         /// raises DOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetValueInSpecifiedUnitsAttribute(System.Single aValueInSpecifiedUnits);
+		void SetValueInSpecifiedUnitsAttribute(float aValueInSpecifiedUnits);
 		
 		/// <summary>
         /// raises DOMException on setting
@@ -78,7 +78,7 @@ namespace Skybound.Gecko
         /// raises DOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NewValueSpecifiedUnits(ushort unitType, System.Single valueInSpecifiedUnits);
+		void NewValueSpecifiedUnits(ushort unitType, float valueInSpecifiedUnits);
 		
 		/// <summary>Member ConvertToSpecifiedUnits </summary>
 		/// <param name='unitType'> </param>

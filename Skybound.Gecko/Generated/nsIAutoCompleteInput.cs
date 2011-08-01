@@ -209,7 +209,7 @@ namespace Skybound.Gecko
         /// Get the name of one of the autocomplete search session objects
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSearchAt(uint index, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetSearchAt(uint index, [MarshalAs(UnmanagedType.LPStruct)] nsACString retval);
 		
 		/// <summary>
         /// The value of text in the autocomplete textbox

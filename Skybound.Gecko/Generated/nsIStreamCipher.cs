@@ -69,7 +69,7 @@ namespace Skybound.Gecko
         /// A more script friendly method (not in nsICryptoHash interface).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UpdateFromString([MarshalAs(UnmanagedType.LPStruct)] nsAString aInput);
+		void UpdateFromString([MarshalAs(UnmanagedType.LPStruct)] nsACString aInput);
 		
 		/// <summary>
         /// @param aASCII if true then the returned value is a base-64
@@ -77,7 +77,7 @@ namespace Skybound.Gecko
         /// binary data.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Finish([MarshalAs(UnmanagedType.Bool)] bool aASCII, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void Finish([MarshalAs(UnmanagedType.Bool)] bool aASCII, [MarshalAs(UnmanagedType.LPStruct)] nsACString retval);
 		
 		/// <summary>
         /// Discard aLen bytes of the keystream.

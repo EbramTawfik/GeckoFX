@@ -163,7 +163,7 @@ namespace Skybound.Gecko
 		new ulong Read64();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Single ReadFloat();
+		new float ReadFloat();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new double ReadDouble();
@@ -173,7 +173,7 @@ namespace Skybound.Gecko
         /// 32-bit length field, followed by length 8-bit chars.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void ReadCString([MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		new void ReadCString([MarshalAs(UnmanagedType.LPStruct)] nsACString retval);
 		
 		/// <summary>
         /// Read an 16-bit pascal style string from the stream.

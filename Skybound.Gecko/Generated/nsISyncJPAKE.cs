@@ -55,7 +55,7 @@ namespace Skybound.Gecko
         /// Schnorr signature value r2 = v2 - x2 * h, in hex representation.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Round1([MarshalAs(UnmanagedType.LPStruct)] nsAString aSignerID, [MarshalAs(UnmanagedType.LPStruct)] nsAString aGX1, [MarshalAs(UnmanagedType.LPStruct)] nsAString aGV1, [MarshalAs(UnmanagedType.LPStruct)] nsAString aR1, [MarshalAs(UnmanagedType.LPStruct)] nsAString aGX2, [MarshalAs(UnmanagedType.LPStruct)] nsAString aGV2, [MarshalAs(UnmanagedType.LPStruct)] nsAString aR2);
+		void Round1([MarshalAs(UnmanagedType.LPStruct)] nsACString aSignerID, [MarshalAs(UnmanagedType.LPStruct)] nsACString aGX1, [MarshalAs(UnmanagedType.LPStruct)] nsACString aGV1, [MarshalAs(UnmanagedType.LPStruct)] nsACString aR1, [MarshalAs(UnmanagedType.LPStruct)] nsACString aGX2, [MarshalAs(UnmanagedType.LPStruct)] nsACString aGV2, [MarshalAs(UnmanagedType.LPStruct)] nsACString aR2);
 		
 		/// <summary>
         /// Perform second round of the JPAKE exchange.
@@ -87,7 +87,7 @@ namespace Skybound.Gecko
         /// Schnorr signature value ra = va - xa * h, in hex representation.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Round2([MarshalAs(UnmanagedType.LPStruct)] nsAString aPeerID, [MarshalAs(UnmanagedType.LPStruct)] nsAString aPIN, [MarshalAs(UnmanagedType.LPStruct)] nsAString aGX3, [MarshalAs(UnmanagedType.LPStruct)] nsAString aGV3, [MarshalAs(UnmanagedType.LPStruct)] nsAString aR3, [MarshalAs(UnmanagedType.LPStruct)] nsAString aGX4, [MarshalAs(UnmanagedType.LPStruct)] nsAString aGV4, [MarshalAs(UnmanagedType.LPStruct)] nsAString aR4, [MarshalAs(UnmanagedType.LPStruct)] nsAString aA, [MarshalAs(UnmanagedType.LPStruct)] nsAString aGVA, [MarshalAs(UnmanagedType.LPStruct)] nsAString aRA);
+		void Round2([MarshalAs(UnmanagedType.LPStruct)] nsACString aPeerID, [MarshalAs(UnmanagedType.LPStruct)] nsACString aPIN, [MarshalAs(UnmanagedType.LPStruct)] nsACString aGX3, [MarshalAs(UnmanagedType.LPStruct)] nsACString aGV3, [MarshalAs(UnmanagedType.LPStruct)] nsACString aR3, [MarshalAs(UnmanagedType.LPStruct)] nsACString aGX4, [MarshalAs(UnmanagedType.LPStruct)] nsACString aGV4, [MarshalAs(UnmanagedType.LPStruct)] nsACString aR4, [MarshalAs(UnmanagedType.LPStruct)] nsACString aA, [MarshalAs(UnmanagedType.LPStruct)] nsACString aGVA, [MarshalAs(UnmanagedType.LPStruct)] nsACString aRA);
 		
 		/// <summary>
         /// Perform the final step of the JPAKE exchange. This will compute
@@ -108,6 +108,6 @@ namespace Skybound.Gecko
         /// The 256 bit HMAC key, in base64 representation.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Final([MarshalAs(UnmanagedType.LPStruct)] nsAString aB, [MarshalAs(UnmanagedType.LPStruct)] nsAString aGVB, [MarshalAs(UnmanagedType.LPStruct)] nsAString aRB, [MarshalAs(UnmanagedType.LPStruct)] nsAString aHkdfInfo, [MarshalAs(UnmanagedType.LPStruct)] nsAString aAES256Key, [MarshalAs(UnmanagedType.LPStruct)] nsAString aHMAC256Key);
+		void Final([MarshalAs(UnmanagedType.LPStruct)] nsACString aB, [MarshalAs(UnmanagedType.LPStruct)] nsACString aGVB, [MarshalAs(UnmanagedType.LPStruct)] nsACString aRB, [MarshalAs(UnmanagedType.LPStruct)] nsACString aHkdfInfo, [MarshalAs(UnmanagedType.LPStruct)] nsACString aAES256Key, [MarshalAs(UnmanagedType.LPStruct)] nsACString aHMAC256Key);
 	}
 }

@@ -341,17 +341,17 @@ namespace Skybound.Gecko
 		/// <summary>Member GetStartTime </summary>
 		/// <returns>A System.Single</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Single GetStartTime();
+		new float GetStartTime();
 		
 		/// <summary>
         /// raises ( DOMException )
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Single GetCurrentTime();
+		new float GetCurrentTime();
 		
 		/// <summary>Member GetSimpleDuration </summary>
 		/// <returns>A System.Single</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.Single GetSimpleDuration();
+		new float GetSimpleDuration();
 	}
 }

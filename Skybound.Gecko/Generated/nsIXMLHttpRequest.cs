@@ -454,7 +454,7 @@ namespace Skybound.Gecko
         /// header does not exist in the response.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetResponseHeader([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String header, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetResponseHeader([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String header, [MarshalAs(UnmanagedType.LPStruct)] nsACString retval);
 		
 		/// <summary>
         /// Meant to be a script-only method for initializing a request.
@@ -696,7 +696,7 @@ namespace Skybound.Gecko
 		/// <param name='contentType'> </param>
 		/// <param name='charset'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSendInfo([MarshalAs(UnmanagedType.Interface)] out nsIInputStream body, [MarshalAs(UnmanagedType.LPStruct)] nsAString contentType, [MarshalAs(UnmanagedType.LPStruct)] nsAString charset);
+		void GetSendInfo([MarshalAs(UnmanagedType.Interface)] out nsIInputStream body, [MarshalAs(UnmanagedType.LPStruct)] nsACString contentType, [MarshalAs(UnmanagedType.LPStruct)] nsACString charset);
 	}
 	
 	/// <summary>

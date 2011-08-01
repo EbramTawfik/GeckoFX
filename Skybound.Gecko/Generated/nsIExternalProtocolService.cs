@@ -87,7 +87,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIHandlerInfo GetProtocolHandlerInfo([MarshalAs(UnmanagedType.LPStruct)] nsAString aProtocolScheme);
+		nsIHandlerInfo GetProtocolHandlerInfo([MarshalAs(UnmanagedType.LPStruct)] nsACString aProtocolScheme);
 		
 		/// <summary>
         /// Given a scheme, looks up the protocol info from the OS.  This should be
@@ -99,7 +99,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIHandlerInfo GetProtocolHandlerInfoFromOS([MarshalAs(UnmanagedType.LPStruct)] nsAString aProtocolScheme, [MarshalAs(UnmanagedType.Bool)] out bool aFound);
+		nsIHandlerInfo GetProtocolHandlerInfoFromOS([MarshalAs(UnmanagedType.LPStruct)] nsACString aProtocolScheme, [MarshalAs(UnmanagedType.Bool)] out bool aFound);
 		
 		/// <summary>
         /// Set some sane defaults for a protocol handler object.

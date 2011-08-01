@@ -48,7 +48,7 @@ namespace Skybound.Gecko
         /// OnDataAvailable call.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnDetermineCharset([MarshalAs(UnmanagedType.Interface)] nsIUnicharStreamLoader aLoader, [MarshalAs(UnmanagedType.Interface)] nsISupports aContext, [MarshalAs(UnmanagedType.LPStr, SizeParamIndex=3)] string aFirstSegment, uint aLength, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void OnDetermineCharset([MarshalAs(UnmanagedType.Interface)] nsIUnicharStreamLoader aLoader, [MarshalAs(UnmanagedType.Interface)] nsISupports aContext, [MarshalAs(UnmanagedType.LPStr, SizeParamIndex=3)] string aFirstSegment, uint aLength, [MarshalAs(UnmanagedType.LPStruct)] nsACString retval);
 		
 		/// <summary>
         /// Called when the entire stream has been loaded.
@@ -157,6 +157,6 @@ namespace Skybound.Gecko
         /// called.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCharsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aCharset);
+		void GetCharsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aCharset);
 	}
 }

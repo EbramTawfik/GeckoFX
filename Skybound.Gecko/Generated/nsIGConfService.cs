@@ -56,7 +56,7 @@ namespace Skybound.Gecko
 		/// <param name='key'> </param>
 		/// <returns>A System.Single</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.Single GetFloat([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String key);
+		float GetFloat([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String key);
 		
 		/// <summary>
         /// Use this to return any list items in GConf, this will return
@@ -88,7 +88,7 @@ namespace Skybound.Gecko
 		/// <param name='key'> </param>
 		/// <param name='value'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFloat([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String key, System.Single value);
+		void SetFloat([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String key, float value);
 		
 		/// <summary>
         /// Look up the handler for a protocol under the

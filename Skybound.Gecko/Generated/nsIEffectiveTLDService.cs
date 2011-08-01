@@ -59,7 +59,7 @@ namespace Skybound.Gecko
         /// the success of a call to PR_StringToNetAddr()).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPublicSuffix([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetPublicSuffix([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsACString retval);
 		
 		/// <summary>
         /// Returns the base domain of a URI; that is, the public suffix with a given
@@ -102,7 +102,7 @@ namespace Skybound.Gecko
         /// @see    getPublicSuffix()
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetBaseDomain([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, uint aAdditionalParts, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetBaseDomain([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, uint aAdditionalParts, [MarshalAs(UnmanagedType.LPStruct)] nsACString retval);
 		
 		/// <summary>
         /// NOTE: It is strongly recommended to use getPublicSuffix() above if a suitable
@@ -118,7 +118,7 @@ namespace Skybound.Gecko
         /// @see     getPublicSuffix()
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPublicSuffixFromHost([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aHost, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetPublicSuffixFromHost([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aHost, [MarshalAs(UnmanagedType.LPStruct)] nsACString retval);
 		
 		/// <summary>
         /// NOTE: It is strongly recommended to use getBaseDomain() above if a suitable
@@ -134,6 +134,6 @@ namespace Skybound.Gecko
         /// @see     getBaseDomain()
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetBaseDomainFromHost([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aHost, uint aAdditionalParts, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetBaseDomainFromHost([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aHost, uint aAdditionalParts, [MarshalAs(UnmanagedType.LPStruct)] nsACString retval);
 	}
 }

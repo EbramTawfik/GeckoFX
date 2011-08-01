@@ -42,20 +42,20 @@ namespace Skybound.Gecko
         /// @returns an empty string if nsXREAppData.vendor is not set.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetVendorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aVendor);
+		void GetVendorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aVendor);
 		
 		/// <summary>
         /// @see nsXREAppData.name
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
+		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aName);
 		
 		/// <summary>
         /// @see nsXREAppData.ID
         /// @returns an empty string if nsXREAppData.ID is not set.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetIDAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aID);
+		void GetIDAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aID);
 		
 		/// <summary>
         /// The version of the XUL application. It is different than the
@@ -65,7 +65,7 @@ namespace Skybound.Gecko
         /// @returns an empty string if nsXREAppData.version is not set.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aVersion);
+		void GetVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aVersion);
 		
 		/// <summary>
         /// The build ID/date of the application. For xulrunner applications,
@@ -73,18 +73,18 @@ namespace Skybound.Gecko
         /// about which one you want.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetAppBuildIDAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aAppBuildID);
+		void GetAppBuildIDAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aAppBuildID);
 		
 		/// <summary>
         /// The version of the XULRunner platform.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPlatformVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aPlatformVersion);
+		void GetPlatformVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aPlatformVersion);
 		
 		/// <summary>
         /// The build ID/date of gecko and the XULRunner platform.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPlatformBuildIDAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aPlatformBuildID);
+		void GetPlatformBuildIDAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aPlatformBuildID);
 	}
 }

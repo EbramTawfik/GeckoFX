@@ -67,7 +67,7 @@ namespace Skybound.Gecko
         /// other method on this interface is called.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitWithString([MarshalAs(UnmanagedType.LPStruct)] nsAString aAlgorithm);
+		void InitWithString([MarshalAs(UnmanagedType.LPStruct)] nsACString aAlgorithm);
 		
 		/// <summary>
         /// @param aData a buffer to calculate the hash over
@@ -117,6 +117,6 @@ namespace Skybound.Gecko
         /// pre-init state.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Finish([MarshalAs(UnmanagedType.Bool)] bool aASCII, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void Finish([MarshalAs(UnmanagedType.Bool)] bool aASCII, [MarshalAs(UnmanagedType.LPStruct)] nsACString retval);
 	}
 }

@@ -63,7 +63,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsICacheEntryDescriptor OpenCacheEntry([MarshalAs(UnmanagedType.LPStruct)] nsAString key, System.IntPtr accessRequested, [MarshalAs(UnmanagedType.Bool)] bool blockingMode);
+		nsICacheEntryDescriptor OpenCacheEntry([MarshalAs(UnmanagedType.LPStruct)] nsACString key, System.IntPtr accessRequested, [MarshalAs(UnmanagedType.Bool)] bool blockingMode);
 		
 		/// <summary>
         /// Asynchronous cache access. Does not block the calling thread.
@@ -71,7 +71,7 @@ namespace Skybound.Gecko
         /// available.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AsyncOpenCacheEntry([MarshalAs(UnmanagedType.LPStruct)] nsAString key, System.IntPtr accessRequested, [MarshalAs(UnmanagedType.Interface)] nsICacheListener listener);
+		void AsyncOpenCacheEntry([MarshalAs(UnmanagedType.LPStruct)] nsACString key, System.IntPtr accessRequested, [MarshalAs(UnmanagedType.Interface)] nsICacheListener listener);
 		
 		/// <summary>
         /// Evict all entries for this session's clientID according to its storagePolicy.

@@ -294,7 +294,7 @@ namespace Skybound.Gecko
         /// Any implementation of nsIChannel must follow these rules.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetContentTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aContentType);
+		new void GetContentTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aContentType);
 		
 		/// <summary>
         /// The MIME type of the channel's content if available.
@@ -322,7 +322,7 @@ namespace Skybound.Gecko
         /// Any implementation of nsIChannel must follow these rules.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetContentTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aContentType);
+		new void SetContentTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aContentType);
 		
 		/// <summary>
         /// The character set of the channel's content if available and if applicable.
@@ -331,7 +331,7 @@ namespace Skybound.Gecko
         /// The value of the contentCharset attribute is a mixedcase string.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetContentCharsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aContentCharset);
+		new void GetContentCharsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aContentCharset);
 		
 		/// <summary>
         /// The character set of the channel's content if available and if applicable.
@@ -340,7 +340,7 @@ namespace Skybound.Gecko
         /// The value of the contentCharset attribute is a mixedcase string.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetContentCharsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aContentCharset);
+		new void SetContentCharsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aContentCharset);
 		
 		/// <summary>
         /// The length of the data associated with the channel if available.  A value
@@ -430,7 +430,7 @@ namespace Skybound.Gecko
         /// @throws NS_ERROR_IN_PROGRESS if set after the channel has been opened.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetRequestMethodAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aRequestMethod);
+		void GetRequestMethodAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aRequestMethod);
 		
 		/// <summary>
         /// Set/get the HTTP request method (default is "GET").  Setter is case
@@ -446,7 +446,7 @@ namespace Skybound.Gecko
         /// @throws NS_ERROR_IN_PROGRESS if set after the channel has been opened.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetRequestMethodAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aRequestMethod);
+		void SetRequestMethodAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aRequestMethod);
 		
 		/// <summary>
         /// Get/set the HTTP referrer URI.  This is the address (URI) of the
@@ -496,7 +496,7 @@ namespace Skybound.Gecko
         /// @throws NS_ERROR_NOT_AVAILABLE if the header is not set.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetRequestHeader([MarshalAs(UnmanagedType.LPStruct)] nsAString aHeader, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetRequestHeader([MarshalAs(UnmanagedType.LPStruct)] nsACString aHeader, [MarshalAs(UnmanagedType.LPStruct)] nsACString retval);
 		
 		/// <summary>
         /// Set the value of a particular request header.
@@ -526,7 +526,7 @@ namespace Skybound.Gecko
         /// opened.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetRequestHeader([MarshalAs(UnmanagedType.LPStruct)] nsAString aHeader, [MarshalAs(UnmanagedType.LPStruct)] nsAString aValue, [MarshalAs(UnmanagedType.Bool)] bool aMerge);
+		void SetRequestHeader([MarshalAs(UnmanagedType.LPStruct)] nsACString aHeader, [MarshalAs(UnmanagedType.LPStruct)] nsACString aValue, [MarshalAs(UnmanagedType.Bool)] bool aMerge);
 		
 		/// <summary>
         /// Call this method to visit all request headers.  Calling setRequestHeader
@@ -623,7 +623,7 @@ namespace Skybound.Gecko
         /// has been received (before onStartRequest).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetResponseStatusTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aResponseStatusText);
+		void GetResponseStatusTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aResponseStatusText);
 		
 		/// <summary>
         /// Returns true if the HTTP response code indicates success.  The value of
@@ -656,7 +656,7 @@ namespace Skybound.Gecko
         /// not set in the response.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetResponseHeader([MarshalAs(UnmanagedType.LPStruct)] nsAString header, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetResponseHeader([MarshalAs(UnmanagedType.LPStruct)] nsACString header, [MarshalAs(UnmanagedType.LPStruct)] nsACString retval);
 		
 		/// <summary>
         /// Set the value of a particular response header.
@@ -686,7 +686,7 @@ namespace Skybound.Gecko
         /// header is not allowed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetResponseHeader([MarshalAs(UnmanagedType.LPStruct)] nsAString header, [MarshalAs(UnmanagedType.LPStruct)] nsAString value, [MarshalAs(UnmanagedType.Bool)] bool merge);
+		void SetResponseHeader([MarshalAs(UnmanagedType.LPStruct)] nsACString header, [MarshalAs(UnmanagedType.LPStruct)] nsACString value, [MarshalAs(UnmanagedType.Bool)] bool merge);
 		
 		/// <summary>
         /// Call this method to visit all response headers.  Calling

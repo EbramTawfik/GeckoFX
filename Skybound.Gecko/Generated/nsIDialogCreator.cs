@@ -41,6 +41,6 @@ namespace Skybound.Gecko
 		/// <param name='aArguments'> </param>
 		/// <param name='aFrameElement'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OpenDialog(uint aType, [MarshalAs(UnmanagedType.LPStruct)] nsAString aName, [MarshalAs(UnmanagedType.LPStruct)] nsAString aFeatures, [MarshalAs(UnmanagedType.Interface)] nsIDialogParamBlock aArguments, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement aFrameElement);
+		void OpenDialog(uint aType, [MarshalAs(UnmanagedType.LPStruct)] nsACString aName, [MarshalAs(UnmanagedType.LPStruct)] nsACString aFeatures, [MarshalAs(UnmanagedType.Interface)] nsIDialogParamBlock aArguments, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement aFrameElement);
 	}
 }
