@@ -147,13 +147,20 @@ namespace Skybound.Gecko
 				return GeckoElement.Create(Xpcom.QueryInterface<nsIDOMHTMLElement>(DomElement.GetParentNodeAttribute()));
 			}
 		}
-		
+
+		private string m_cachedTagName;
+
 		/// <summary>
 		/// Gets the name of the tag.
 		/// </summary>
 		public string TagName
 		{
-			get { return nsString.Get(DomElement.GetTagNameAttribute); }
+			get {
+				if (m_cachedTagName != null)
+					return m_cachedTagName;
+
+				return m_cachedTagName = nsString.Get(DomElement.GetTagNameAttribute); 
+			}
 		}
 		
 		/// <summary>
