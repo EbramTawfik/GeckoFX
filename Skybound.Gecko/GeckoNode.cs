@@ -177,9 +177,16 @@ namespace Skybound.Gecko
 			get { return new GeckoNamedNodeMap(_DomObject.GetAttributesAttribute()); }
 		}
 
+		private NodeType m_cachedType;
+
 		public NodeType Type
 		{
-			get { return (NodeType)_DomObject.GetNodeTypeAttribute(); }
+			get {
+				if (m_cachedType != 0)
+					return m_cachedType;
+
+				return m_cachedType = (NodeType)_DomObject.GetNodeTypeAttribute(); 
+			}
 		}
 
 		public GeckoNode ParentNode
