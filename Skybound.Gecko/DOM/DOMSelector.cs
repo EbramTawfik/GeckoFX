@@ -18,7 +18,7 @@ namespace Skybound.Gecko.DOM
             public Type GeckoElement { get; set; }
 
 			public ObjectCreator CreationMethod { get; set; }
-			public delegate object ObjectCreator(object htmlElementInterface);
+			public delegate GeckoElement ObjectCreator(object htmlElementInterface);
         }
 
 		private static void Add(GeckoClassDesc classDesc)
@@ -151,6 +151,8 @@ namespace Skybound.Gecko.DOM
 			Add(new GeckoClassDesc() { TagName = "ul", InterfaceType = typeof(nsIDOMHTMLUListElement), GeckoElement = typeof(GeckoUListElement), 
 				CreationMethod = (x) => new GeckoUListElement((nsIDOMHTMLUListElement)x) });
         }
+		
+		static GeckoWrapperCache<nsIDOMHTMLElement, GeckoElement> m_cache = new GeckoWrapperCache<nsIDOMHTMLElement, GeckoElement>(CreateGeckoElementWrapper);
 
 		internal static GeckoElement GetClassFor(nsIDOMHTMLElement element)
 		{
@@ -162,21 +164,25 @@ namespace Skybound.Gecko.DOM
 
         internal static T GetClassFor<T>(nsIDOMHTMLElement element)  where T : GeckoElement
         {
-        	var lowerTagName = nsString.Get( element.GetTagNameAttribute ).ToLower();
+			return (T)m_cache.Get(element);
+        }
+
+		internal static GeckoElement CreateGeckoElementWrapper(nsIDOMHTMLElement instance)
+		{
+			var lowerTagName = nsString.Get(instance.GetTagNameAttribute).ToLower();
         	GeckoClassDesc desc;
 
-			if (_dictionary.TryGetValue(lowerTagName,out desc ))
+			if (_dictionary.TryGetValue(lowerTagName, out desc))
 			{
-				object HTMLElement = Xpcom.QueryInterface(element,desc.InterfaceType.GUID);
+				object HTMLElement = Xpcom.QueryInterface(instance, desc.InterfaceType.GUID);
 				if(HTMLElement != null)
 				{
-					object o = desc.CreationMethod(HTMLElement);
-					if (o is T)
-						return (T)o;
+					GeckoElement e = desc.CreationMethod(HTMLElement);
+					return e;
 				}
 			}
 			return null;
-        }
+		}
     }
 }
 

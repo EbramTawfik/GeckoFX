@@ -16,8 +16,15 @@ namespace Skybound.Gecko
 		{
 			_DomObject = domObject;
 		}
+		
+		static GeckoWrapperCache<nsIDOMNode, GeckoNode> m_nodeCache = new GeckoWrapperCache<nsIDOMNode, GeckoNode>(CreateWrapper);
 
 		internal static GeckoNode Create(nsIDOMNode domObject)
+		{
+			return m_nodeCache.Get(domObject);
+		}
+
+		internal static GeckoNode CreateWrapper(nsIDOMNode domObject)
 		{
 			if (domObject == null)
 				return null;
