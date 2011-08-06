@@ -832,7 +832,20 @@ namespace Skybound.Gecko
 		
 		bool CanPerform(CanPerformMethod method)
 		{
-			return method();			
+			// in xulrunner (tested on version 5.0)
+			// nsIController.IsCommandEnabled("cmd_copyImageContents") can return E_FAIL when clicking on certain objects.
+			// this seems to me like a xulrunner bug.
+			try
+			{
+				return method();
+			}
+			catch (COMException e)
+			{
+				if ((e.ErrorCode & 0xFFFFFFFF) != 0x80004005)
+					throw e;
+
+				return false;
+			}
 		}
 		
 		/// <summary>
@@ -875,7 +888,16 @@ namespace Skybound.Gecko
 		{
 			if (CanCopyImageLocation)
 			{
-				ClipboardCommands.CopyImageLocation();
+				try
+				{
+					ClipboardCommands.CopyImageLocation();
+				}
+				catch (COMException comException)
+				{
+					if ((comException.ErrorCode & 0xFFFFFFFF) != 0x80004005)
+						throw comException;
+				}
+
 				return true;
 			}
 			return false;
@@ -1449,23 +1471,45 @@ namespace Skybound.Gecko
 				menu.MenuItems.Add(mnuViewSource);
 				menu.MenuItems.Add(mnuProperties);
 			}
-			
+
 			// get image urls
 			Uri backgroundImageSrc = null, imageSrc = null;
-			nsIURI src = info.GetBackgroundImageSrcAttribute();			
-			backgroundImageSrc = new Uri(new nsURI(src).Spec);
+			nsIURI src;
+			try
+			{
+				src = info.GetBackgroundImageSrcAttribute();
+				backgroundImageSrc = new Uri(new nsURI(src).Spec);
+			}
+			catch (COMException comException)
+			{
+				if ((comException.ErrorCode & 0xFFFFFFFF) != 0x80004005)
+					throw comException;
+			}
 
-			src = info.GetImageSrcAttribute();			
-			imageSrc = new Uri(new nsURI(src).Spec);			
+			try
+			{
+				src = info.GetImageSrcAttribute();
+				if (src != null)
+					imageSrc = new Uri(new nsURI(src).Spec);
+			}
+			catch (COMException comException)
+			{
+				if ((comException.ErrorCode & 0xFFFFFFFF) != 0x80004005)
+					throw comException;
+			}
 			
 			// get associated link.  note that this needs to be done manually because GetAssociatedLink returns a non-zero
 			// result when no associated link is available, so an exception would be thrown by nsString.Get()
 			string associatedLink = null;
-			using (nsAString str = new nsAString())
+			try
 			{
-				info.GetAssociatedLinkAttribute(str);
-				associatedLink = str.ToString();
+				using (nsAString str = new nsAString())
+				{
+					info.GetAssociatedLinkAttribute(str);
+					associatedLink = str.ToString();
+				}
 			}
+			catch (COMException comException) { }			
 			
 			GeckoContextMenuEventArgs e = new GeckoContextMenuEventArgs(
 				PointToClient(MousePosition), menu, associatedLink, backgroundImageSrc, imageSrc,
