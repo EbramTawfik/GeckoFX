@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ByteArrayInputStreamTests.cs" />
+    <Compile Include="ControllersTests.cs" />
     <Compile Include="FocusManagerTests.cs" />
     <Compile Include="GeckoMIMEInputStreamTests.cs" />
     <Compile Include="IOServiceTests.cs" />
