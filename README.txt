@@ -2,6 +2,16 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v5.0-0.6 ==
+
+1. Add Axis property to GeckoDomMouseEventArgs. (Thanks Priyank)
+2. Add GeckoComment class.
+3. Add NodeType Enum.
+4. Fix mapping of ACString in Generated interfaces.
+5. Lots of Optimizations including weakreferences caching. This is enabled by default, to disable: GeckoWrapperCache.Enabled = false;
+6. Fix some bugs displaying the default context menu.
+
+
 == v5.0-0.5 ==
 
 Bug fixes
