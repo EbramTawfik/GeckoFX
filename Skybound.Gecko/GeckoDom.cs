@@ -782,6 +782,31 @@ namespace Skybound.Gecko
 			get { return _DomWindow.GetScrollYAttribute(); }
 		}
 
+		public void ScrollTo(int xScroll, int yScroll)
+		{
+			_DomWindow.ScrollTo(xScroll, yScroll);
+		}
+
+		public void ScrollBy(int xScrollDif, int yScrollDif)
+		{
+			_DomWindow.ScrollBy(xScrollDif, yScrollDif);
+		}
+
+		public void ScrollByLines(int numLines)
+		{
+			_DomWindow.ScrollByLines(numLines);
+		}
+
+		public void ScrollByPages(int numPages)
+		{
+			_DomWindow.ScrollByPages(numPages);
+		}
+
+		public void SizeToContent()
+		{
+			_DomWindow.SizeToContent();
+		}
+
 		public float TextZoom
 		{
 			get { return _DomWindow.GetTextZoomAttribute(); }
