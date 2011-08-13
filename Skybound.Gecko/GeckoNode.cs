@@ -16,8 +16,15 @@ namespace Skybound.Gecko
 		{
 			_DomObject = domObject;
 		}
+		
+		static GeckoWrapperCache<nsIDOMNode, GeckoNode> m_nodeCache = new GeckoWrapperCache<nsIDOMNode, GeckoNode>(CreateWrapper);
 
 		internal static GeckoNode Create(nsIDOMNode domObject)
+		{
+			return m_nodeCache.Get(domObject);
+		}
+
+		internal static GeckoNode CreateWrapper(nsIDOMNode domObject)
 		{
 			if (domObject == null)
 				return null;
@@ -170,9 +177,16 @@ namespace Skybound.Gecko
 			get { return new GeckoNamedNodeMap(_DomObject.GetAttributesAttribute()); }
 		}
 
+		private NodeType m_cachedType;
+
 		public NodeType Type
 		{
-			get { return (NodeType)_DomObject.GetNodeTypeAttribute(); }
+			get {
+				if (m_cachedType != 0)
+					return m_cachedType;
+
+				return m_cachedType = (NodeType)_DomObject.GetNodeTypeAttribute(); 
+			}
 		}
 
 		public GeckoNode ParentNode

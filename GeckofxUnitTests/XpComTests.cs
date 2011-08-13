@@ -1700,7 +1700,15 @@ namespace GeckofxUnitTests
 			var instance = Xpcom.GetService<nsIProtocolProxyService2>("@mozilla.org/network/protocol-proxy-service;1");
 			Assert.IsNotNull(instance);
 			Marshal.ReleaseComObject(instance);
-		}		
+		}
+
+		[Test]
+		public void GetControllers_CleanXpComInstance_ReturnsValidInstance()
+		{
+			var instance = Xpcom.GetService<nsIControllers>("@mozilla.org/xul/xul-controllers;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
 #endregion
 	}
 }

@@ -160,6 +160,12 @@ namespace GeckoFxTest
 			closeTab.Text = "Close";
 			closeTab.Left = 200 + nav.Width + newTab.Width;
 
+			Button scrollDown = new Button { Text = "Down", Left = closeTab.Left + 250 };
+			Button scrollUp = new Button { Text = "Up", Left = closeTab.Left + 330 };
+
+			scrollDown.Click += (s, e) => { browser.Window.ScrollByPages(1); };
+			scrollUp.Click += (s, e) => { browser.Window.ScrollByPages(-1); };
+
 			nav.Click += delegate {
 				// use javascript to warn if url box is empty.
 				if (string.IsNullOrEmpty(urlbox.Text.Trim()))
@@ -181,6 +187,8 @@ namespace GeckoFxTest
 			tabPage.Controls.Add(newTab);
 			tabPage.Controls.Add(closeTab);
 			tabPage.Controls.Add(browser);
+			tabPage.Controls.Add(scrollDown);
+			tabPage.Controls.Add(scrollUp);
 		}
 	}
 }

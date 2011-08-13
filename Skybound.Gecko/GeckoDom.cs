@@ -147,13 +147,20 @@ namespace Skybound.Gecko
 				return GeckoElement.Create(Xpcom.QueryInterface<nsIDOMHTMLElement>(DomElement.GetParentNodeAttribute()));
 			}
 		}
-		
+
+		private string m_cachedTagName;
+
 		/// <summary>
 		/// Gets the name of the tag.
 		/// </summary>
 		public string TagName
 		{
-			get { return nsString.Get(DomElement.GetTagNameAttribute); }
+			get {
+				if (m_cachedTagName != null)
+					return m_cachedTagName;
+
+				return m_cachedTagName = nsString.Get(DomElement.GetTagNameAttribute); 
+			}
 		}
 		
 		/// <summary>
@@ -773,6 +780,31 @@ namespace Skybound.Gecko
 		public int ScrollY
 		{
 			get { return _DomWindow.GetScrollYAttribute(); }
+		}
+
+		public void ScrollTo(int xScroll, int yScroll)
+		{
+			_DomWindow.ScrollTo(xScroll, yScroll);
+		}
+
+		public void ScrollBy(int xScrollDif, int yScrollDif)
+		{
+			_DomWindow.ScrollBy(xScrollDif, yScrollDif);
+		}
+
+		public void ScrollByLines(int numLines)
+		{
+			_DomWindow.ScrollByLines(numLines);
+		}
+
+		public void ScrollByPages(int numPages)
+		{
+			_DomWindow.ScrollByPages(numPages);
+		}
+
+		public void SizeToContent()
+		{
+			_DomWindow.SizeToContent();
 		}
 
 		public float TextZoom
