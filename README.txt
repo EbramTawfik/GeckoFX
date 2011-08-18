@@ -2,6 +2,11 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v6.0-0.3 ==
+
+1. Fix bug https://bitbucket.org/geckofx/geckofx-6.0/issue/4 by changing
+idl out params to ref (from out).
+
 == v6.0-0.2 ==
 
 Include changes from geckofx-5.0:
