@@ -141,6 +141,7 @@ namespace Skybound.Gecko
 				PromptServiceFactory.Register();
 				#endif
 				WindowCreator.Register();
+                LauncherDialogFactory.Register();
 				//CertificateDialogsFactory.Register();
 				//ToolTipTextProviderFactory.Register();
 				
