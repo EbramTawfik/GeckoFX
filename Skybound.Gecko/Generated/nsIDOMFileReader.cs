@@ -30,9 +30,14 @@ namespace Skybound.Gecko
 	/// <summary>nsIDOMFileReader </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("f186170f-f07c-4f0b-9e3c-08f7dd496e74")]
+	[Guid("3d77e784-1459-4206-b8a2-0855d826f569")]
 	public interface nsIDOMFileReader
 	{
+		
+		/// <summary>Member ReadAsArrayBuffer </summary>
+		/// <param name='filedata'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void ReadAsArrayBuffer([MarshalAs(UnmanagedType.Interface)] nsIDOMBlob filedata);
 		
 		/// <summary>Member ReadAsBinaryString </summary>
 		/// <param name='filedata'> </param>
@@ -60,9 +65,9 @@ namespace Skybound.Gecko
 		ushort GetReadyStateAttribute();
 		
 		/// <summary>Member GetResultAttribute </summary>
-		/// <param name='aResult'> </param>
+		/// <returns>A System.IntPtr</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetResultAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aResult);
+		System.IntPtr GetResultAttribute();
 		
 		/// <summary>Member GetErrorAttribute </summary>
 		/// <returns>A nsIDOMFileError</returns>

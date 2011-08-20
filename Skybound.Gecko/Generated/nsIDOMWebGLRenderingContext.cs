@@ -214,7 +214,7 @@ namespace Skybound.Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("44119fc2-b5f0-4acc-b836-5d28cc43e8fb")]
+	[Guid("ef15ae85-4670-4dc4-848d-51ca81e8397a")]
 	public interface nsIDOMWebGLRenderingContext
 	{
 		

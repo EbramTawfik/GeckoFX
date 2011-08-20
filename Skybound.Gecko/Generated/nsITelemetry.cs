@@ -30,7 +30,7 @@ namespace Skybound.Gecko
 	/// <summary>nsITelemetry </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("29464d3d-f838-4afb-a737-319fe0c6cc04")]
+	[Guid("db854295-478d-4de9-8211-d73ed7d81cd0")]
 	public interface nsITelemetry
 	{
 		
@@ -44,12 +44,14 @@ namespace Skybound.Gecko
         /// counts - array representing contents of the buckets in the histogram
         /// ranges -  an array with calculated bucket sizes
         /// sum - sum of the bucket contents
+        /// static - true for histograms defined in TelemetryHistograms.h, false for ones defined with newHistogram
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetHistogramSnapshotsAttribute();
 		
 		/// <summary>
         /// Create and return a histogram where bucket sizes increase exponentially. Parameters:
+        ///
         /// @param name Unique histogram name
         /// @param min - Minimal bucket size
         /// @param max - Maximum bucket size
@@ -61,5 +63,26 @@ namespace Skybound.Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr NewHistogram([MarshalAs(UnmanagedType.LPStruct)] nsACString name, uint min, uint max, uint bucket_count, uint histogram_type);
+		
+		/// <summary>
+        /// Same as newHistogram above, but for histograms registered in TelemetryHistograms.h.
+        ///
+        /// @param id - unique identifier from TelemetryHistograms.h
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		System.IntPtr GetHistogramById([MarshalAs(UnmanagedType.LPStruct)] nsACString id);
+		
+		/// <summary>
+        /// Set this to false to disable gathering of telemetry statistics.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetCanRecordAttribute();
+		
+		/// <summary>
+        /// Set this to false to disable gathering of telemetry statistics.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetCanRecordAttribute([MarshalAs(UnmanagedType.Bool)] bool aCanRecord);
 	}
 }

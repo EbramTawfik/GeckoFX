@@ -54,7 +54,8 @@ namespace Skybound.Gecko
         /// @param name        The name to show when displaying the livemark
         /// @param siteURI     The URI of the site the livemark was created from
         /// @param feedURI     The URI of the actual RSS feed
-        /// @param index       The index to insert at, or -1 to append
+        /// @param index       The index to insert at, or
+        /// nsINavBookmarksService.DEFAULT_INDEX to append.
         /// @returns the ID of the folder for the livemark
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

@@ -211,14 +211,14 @@ namespace Skybound.Gecko
 		
 		/// <summary>
         /// connectionFlags is a bitmask that can be used to modify underlying
-        /// behavior of the socket connection.
+        /// behavior of the socket connection. See the flags below.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetConnectionFlagsAttribute();
 		
 		/// <summary>
         /// connectionFlags is a bitmask that can be used to modify underlying
-        /// behavior of the socket connection.
+        /// behavior of the socket connection. See the flags below.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetConnectionFlagsAttribute(uint aConnectionFlags);

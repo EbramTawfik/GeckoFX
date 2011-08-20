@@ -31,7 +31,7 @@ namespace Skybound.Gecko
     ///this is NOT intended to be scriptable </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("215DBE04-94A7-11d2-BA58-00805F8A5DD7")]
+	[Guid("7de126a2-ef4b-4e3b-a952-78ce4c133e38")]
 	public interface nsIInterfaceInfo
 	{
 		
@@ -46,6 +46,10 @@ namespace Skybound.Gecko
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsScriptable();
+		
+		[return: MarshalAs(UnmanagedType.Bool)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool IsBuiltinClass();
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

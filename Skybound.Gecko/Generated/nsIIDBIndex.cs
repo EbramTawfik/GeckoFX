@@ -72,24 +72,24 @@ namespace Skybound.Gecko
         ///unlimited </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIIDBRequest GetAll([MarshalAs(UnmanagedType.Interface)] nsIVariant key, uint limit);
+		nsIIDBRequest GetAll([MarshalAs(UnmanagedType.Interface)] nsIVariant key, uint limit, int argc);
 		
 		/// <summary>
         ///unlimited </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIIDBRequest GetAllKeys([MarshalAs(UnmanagedType.Interface)] nsIVariant key, uint limit);
+		nsIIDBRequest GetAllKeys([MarshalAs(UnmanagedType.Interface)] nsIVariant key, uint limit, int argc);
 		
 		/// <summary>
         ///nsIIDBCursor::NEXT </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIIDBRequest OpenCursor([MarshalAs(UnmanagedType.Interface)] nsIIDBKeyRange range, ushort direction);
+		nsIIDBRequest OpenCursor([MarshalAs(UnmanagedType.Interface)] nsIIDBKeyRange range, ushort direction, int argc);
 		
 		/// <summary>
         ///nsIIDBCursor::NEXT </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIIDBRequest OpenKeyCursor([MarshalAs(UnmanagedType.Interface)] nsIIDBKeyRange range, ushort direction);
+		nsIIDBRequest OpenKeyCursor([MarshalAs(UnmanagedType.Interface)] nsIIDBKeyRange range, ushort direction, int argc);
 	}
 }

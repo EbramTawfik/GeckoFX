@@ -164,6 +164,77 @@ namespace Skybound.Gecko
 		new bool HasAttributes();
 		
 		/// <summary>
+        /// nsINode::GetBaseURI
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void GetBaseURIAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBaseURI);
+		
+		/// <summary>
+        /// Introduced in DOM Level 3:
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new uint CompareDocumentPosition([MarshalAs(UnmanagedType.Interface)] nsIDOMNode other);
+		
+		/// <summary>
+        /// Introduced in DOM Level 3:
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void GetTextContentAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aTextContent);
+		
+		/// <summary>
+        /// Introduced in DOM Level 3:
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetTextContentAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aTextContent);
+		
+		/// <summary>
+        /// Introduced in DOM Level 3:
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool IsSameNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode other);
+		
+		/// <summary>
+        /// Introduced in DOM Level 3:
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void LookupPrefix([MarshalAs(UnmanagedType.LPStruct)] nsAString namespaceURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		
+		/// <summary>
+        /// Introduced in DOM Level 3:
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool IsDefaultNamespace([MarshalAs(UnmanagedType.LPStruct)] nsAString namespaceURI);
+		
+		/// <summary>
+        /// Introduced in DOM Level 3:
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void LookupNamespaceURI([MarshalAs(UnmanagedType.LPStruct)] nsAString prefix, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		
+		/// <summary>
+        /// Introduced in DOM Level 3:
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool IsEqualNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode arg);
+		
+		/// <summary>
+        /// Introduced in DOM Level 3:
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIVariant SetUserData([MarshalAs(UnmanagedType.LPStruct)] nsAString key, [MarshalAs(UnmanagedType.Interface)] nsIVariant data, [MarshalAs(UnmanagedType.Interface)] nsIDOMUserDataHandler handler);
+		
+		/// <summary>
+        /// Introduced in DOM Level 3:
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIVariant GetUserData([MarshalAs(UnmanagedType.LPStruct)] nsAString key);
+		
+		/// <summary>
         /// The nsIDOMElement interface represents an element in an HTML or
         /// XML document.
         ///
@@ -319,20 +390,31 @@ namespace Skybound.Gecko
 		new void Click();
 		
 		/// <summary>
-        /// Modified in DOM Level 2:
+        /// The nsIDOMHTMLTextAreaElement interface is the interface to a
+        /// [X]HTML textarea element.
+        ///
+        /// This interface is trying to follow the DOM Level 2 HTML specification:
+        /// http://www.w3.org/TR/DOM-Level-2-HTML/
+        ///
+        /// with changes from the work-in-progress WHATWG HTML specification:
+        /// http://www.whatwg.org/specs/web-apps/current-work/
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDefaultValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDefaultValue);
+		bool GetAutofocusAttribute();
 		
 		/// <summary>
-        /// Modified in DOM Level 2:
+        /// The nsIDOMHTMLTextAreaElement interface is the interface to a
+        /// [X]HTML textarea element.
+        ///
+        /// This interface is trying to follow the DOM Level 2 HTML specification:
+        /// http://www.w3.org/TR/DOM-Level-2-HTML/
+        ///
+        /// with changes from the work-in-progress WHATWG HTML specification:
+        /// http://www.whatwg.org/specs/web-apps/current-work/
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDefaultValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDefaultValue);
-		
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMHTMLFormElement GetFormAttribute();
+		void SetAutofocusAttribute([MarshalAs(UnmanagedType.Bool)] bool aAutofocus);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetColsAttribute();
@@ -347,11 +429,27 @@ namespace Skybound.Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetDisabledAttribute([MarshalAs(UnmanagedType.Bool)] bool aDisabled);
 		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMHTMLFormElement GetFormAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		int GetMaxLengthAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetMaxLengthAttribute(int aMaxLength);
+		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetPlaceholderAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aPlaceholder);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetPlaceholderAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aPlaceholder);
 		
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -360,20 +458,41 @@ namespace Skybound.Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetReadOnlyAttribute([MarshalAs(UnmanagedType.Bool)] bool aReadOnly);
 		
+		[return: MarshalAs(UnmanagedType.Bool)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetRequiredAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetRequiredAttribute([MarshalAs(UnmanagedType.Bool)] bool aRequired);
+		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetRowsAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetRowsAttribute(uint aRows);
 		
+		/// <summary>
+        /// Reflects the wrap content attribute. Possible values are "soft", "hard" and
+        /// "off". "soft" is the default.
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetTabIndexAttribute();
+		void GetWrapAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aWrap);
 		
+		/// <summary>
+        /// Reflects the wrap content attribute. Possible values are "soft", "hard" and
+        /// "off". "soft" is the default.
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTabIndexAttribute(int aTabIndex);
+		void SetWrapAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aWrap);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aType);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetDefaultValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDefaultValue);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetDefaultValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDefaultValue);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aValue);
@@ -382,6 +501,64 @@ namespace Skybound.Gecko
 		void SetValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aValue);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		int GetTextLengthAttribute();
+		
+		/// <summary>
+        /// http://www.whatwg.org/specs/web-apps/current-work/#the-constraint-validation-api
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetWillValidateAttribute();
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMValidityState GetValidityAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetValidationMessageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aValidationMessage);
+		
+		[return: MarshalAs(UnmanagedType.Bool)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool CheckValidity();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetCustomValidity([MarshalAs(UnmanagedType.LPStruct)] nsAString error);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Select();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		int GetSelectionStartAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetSelectionStartAttribute(int aSelectionStart);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		int GetSelectionEndAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetSelectionEndAttribute(int aSelectionEnd);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetSelectionRange(int selectionStart, int selectionEnd);
+		
+		/// <summary>
+        /// Defined on HTMLElement in the specification.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		int GetTabIndexAttribute();
+		
+		/// <summary>
+        /// Defined on HTMLElement in the specification.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetTabIndexAttribute(int aTabIndex);
+		
+		/// <summary>
+        /// Mozilla extensions
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIControllers GetControllersAttribute();
 	}
 }

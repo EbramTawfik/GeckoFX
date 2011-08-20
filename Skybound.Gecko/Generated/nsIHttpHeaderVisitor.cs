@@ -32,7 +32,7 @@ namespace Skybound.Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("0cf40717-d7c1-4a94-8c1e-d6c9734101bb")]
+	[Guid("35412859-b9d9-423c-8866-2d4559fdd2be")]
 	public interface nsIHttpHeaderVisitor
 	{
 		

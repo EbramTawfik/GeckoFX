@@ -602,7 +602,7 @@ namespace Skybound.Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("bb722893-0f63-45c5-b547-7a0947c7b6b6")]
+	[Guid("d030d1a2-a58a-4f19-b9e3-96da4e2cdd09")]
 	public interface jsdIScriptHook
 	{
 		
@@ -817,7 +817,7 @@ namespace Skybound.Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("0633ca73-105e-4e8e-bcc5-13405d61754a")]
+	[Guid("7c95422c-7579-4a6f-8ef7-e5b391552ee5")]
 	public interface jsdIStackFrame : jsdIEphemeral
 	{
 		
@@ -938,7 +938,7 @@ namespace Skybound.Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("e7935220-7def-4c8e-832f-fbc948a97490")]
+	[Guid("721724e0-7716-4bf4-b48f-92b78d056141")]
 	public interface jsdIScript : jsdIEphemeral
 	{
 		
@@ -1131,6 +1131,14 @@ namespace Skybound.Gecko
 		bool IsLineExecutable(uint line, uint pcmap);
 		
 		/// <summary>
+        /// Return a list of all executable lines in a script.
+        /// |pcmap| specifies which pc to source line map to use.
+        /// |startLine| and |maxLines| may be used to retrieve a chunk at a time.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetExecutableLines(uint pcmap, uint startLine, uint maxLines, ref uint count);
+		
+		/// <summary>
         /// Set a breakpoint at a PC in this script.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -1163,7 +1171,7 @@ namespace Skybound.Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("fd1311f7-096c-44a3-847b-9d478c8176c3")]
+	[Guid("861c4d37-e115-4a52-9f76-273cb6b21c3b")]
 	public interface jsdIValue : jsdIEphemeral
 	{
 		

@@ -38,7 +38,7 @@ namespace Skybound.Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("6aba73aa-be22-46a9-bf81-c117557f65b5")]
+	[Guid("bf733b00-198f-4553-a061-637a21793330")]
 	public interface nsICharsetConverterManager
 	{
 		

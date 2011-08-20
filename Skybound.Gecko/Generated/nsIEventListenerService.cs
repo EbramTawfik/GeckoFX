@@ -75,7 +75,7 @@ namespace Skybound.Gecko
 	/// <summary>nsIEventListenerService </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("7be78bb6-33f7-4f31-b3f3-97eefaff2762")]
+	[Guid("0cf94aa6-ea9a-44cb-a063-be834afa679d")]
 	public interface nsIEventListenerService
 	{
 		
@@ -98,10 +98,22 @@ namespace Skybound.Gecko
 		nsIDOMEventTarget GetEventTargetChainFor([MarshalAs(UnmanagedType.Interface)] nsIDOMEventTarget aEventTarget, ref uint aCount);
 		
 		/// <summary>
-        /// Returns system event group.
+        /// Returns true if a event target has any listener for the given type.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
+		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventGroup GetSystemEventGroupAttribute();
+		bool HasListenersFor([MarshalAs(UnmanagedType.Interface)] nsIDOMEventTarget aEventTarget, [MarshalAs(UnmanagedType.LPStruct)] nsAString aType);
+		
+		/// <summary>
+        /// Add a system-group eventlistener to a event target.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void AddSystemEventListener([MarshalAs(UnmanagedType.Interface)] nsIDOMEventTarget target, [MarshalAs(UnmanagedType.LPStruct)] nsAString type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener listener, [MarshalAs(UnmanagedType.Bool)] bool useCapture);
+		
+		/// <summary>
+        /// Remove a system-group eventlistener from a event target.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RemoveSystemEventListener([MarshalAs(UnmanagedType.Interface)] nsIDOMEventTarget target, [MarshalAs(UnmanagedType.LPStruct)] nsAString type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener listener, [MarshalAs(UnmanagedType.Bool)] bool useCapture);
 	}
 }

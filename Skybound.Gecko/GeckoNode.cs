@@ -82,8 +82,8 @@ namespace Skybound.Gecko
 		/// </summary>
 		public string TextContent
 		{
-			get { return nsString.Get(((nsIDOM3Node)_DomObject).GetTextContentAttribute); }
-			set { nsString.Set(((nsIDOM3Node)_DomObject).SetTextContentAttribute, value); }
+			get { return nsString.Get(((nsIDOMNode)_DomObject).GetTextContentAttribute); }
+			set { nsString.Set(((nsIDOMNode)_DomObject).SetTextContentAttribute, value); }
 		}
 
 		/// <summary>

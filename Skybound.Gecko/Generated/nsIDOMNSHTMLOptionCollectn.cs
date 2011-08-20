@@ -59,8 +59,9 @@ namespace Skybound.Gecko
 		/// <summary>Member Add </summary>
 		/// <param name='option'> </param>
 		/// <param name='index'> </param>
+		/// <param name='argc'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Add([MarshalAs(UnmanagedType.Interface)] nsIDOMHTMLOptionElement option, int index);
+		void Add([MarshalAs(UnmanagedType.Interface)] nsIDOMHTMLOptionElement option, int index, int argc);
 		
 		/// <summary>Member Remove </summary>
 		/// <param name='index'> </param>

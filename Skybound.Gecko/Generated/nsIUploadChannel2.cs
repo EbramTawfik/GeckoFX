@@ -30,7 +30,7 @@ namespace Skybound.Gecko
 	/// <summary>nsIUploadChannel2 </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("8821E259-7252-4464-B874-A55D8EF6B222")]
+	[Guid("AD9D3F1C-A8DE-4d0b-9714-1B922297AD65")]
 	public interface nsIUploadChannel2
 	{
 		
@@ -59,5 +59,14 @@ namespace Skybound.Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ExplicitSetUploadStream([MarshalAs(UnmanagedType.Interface)] nsIInputStream aStream, [MarshalAs(UnmanagedType.LPStruct)] nsACString aContentType, int aContentLength, [MarshalAs(UnmanagedType.LPStruct)] nsACString aMethod, [MarshalAs(UnmanagedType.Bool)] bool aStreamHasHeaders);
+		
+		/// <summary>
+        /// Value of aStreamHasHeaders from the last successful call to
+        /// explicitSetUploadStream.  TRUE indicates the attached upload stream
+        /// contians request headers.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetUploadStreamHasHeadersAttribute();
 	}
 }

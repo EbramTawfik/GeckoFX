@@ -30,7 +30,7 @@ namespace Skybound.Gecko
 	/// <summary>inIDOMUtils </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("e01c9987-1ba2-44f0-a6a7-3148b55b7e6d")]
+	[Guid("70205D9E-EFD7-4658-8E9E-690400B57FD0")]
 	public interface inIDOMUtils
 	{
 		
@@ -61,6 +61,14 @@ namespace Skybound.Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMNode GetParentForNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aNode, [MarshalAs(UnmanagedType.Bool)] bool aShowingAnonymousContent);
 		
+		/// <summary>Member GetChildrenForNode </summary>
+		/// <param name='aNode'> </param>
+		/// <param name='aShowingAnonymousContent'> </param>
+		/// <returns>A nsIDOMNodeList</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMNodeList GetChildrenForNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aNode, [MarshalAs(UnmanagedType.Bool)] bool aShowingAnonymousContent);
+		
 		/// <summary>
         /// XBL utilities
         /// </summary>
@@ -79,5 +87,12 @@ namespace Skybound.Gecko
 		/// <param name='aState'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetContentState([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement, uint aState);
+		
+		/// <summary>Member GetUsedFontFaces </summary>
+		/// <param name='aRange'> </param>
+		/// <returns>A nsIDOMFontFaceList</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMFontFaceList GetUsedFontFaces([MarshalAs(UnmanagedType.Interface)] nsIDOMRange aRange);
 	}
 }

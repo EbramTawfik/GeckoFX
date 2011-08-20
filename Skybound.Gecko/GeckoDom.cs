@@ -337,7 +337,7 @@ namespace Skybound.Gecko
 		
 		public void ScrollIntoView(bool top)
 		{
-			DomNSHTMLElement.ScrollIntoView(top);
+			DomNSHTMLElement.ScrollIntoView(top, 1);
 		}
 		
 		public string InnerHtml
@@ -438,7 +438,7 @@ namespace Skybound.Gecko
 		{
 			internal StyleSheetCollection(GeckoDocument document)
 			{
-				this.List = ((nsIDOMDocumentStyle)document.DomDocument).GetStyleSheetsAttribute();
+				this.List = document.DomDocument.GetStyleSheetsAttribute();
 			}
 			nsIDOMStyleSheetList List;
 			
@@ -633,7 +633,7 @@ namespace Skybound.Gecko
 		/// </summary>
 		public GeckoElement ActiveElement
 		{
-			get { return (GeckoElement)GeckoElement.Create(((nsIDOMNSDocument)DomDocument).GetActiveElementAttribute()); }
+			get { return (GeckoElement)GeckoElement.Create(((nsIDOMDocument)DomDocument).GetActiveElementAttribute()); }
 		}
 		
 		/// <summary>
@@ -644,7 +644,7 @@ namespace Skybound.Gecko
 		public GeckoNodeCollection GetElementsByClassName(string classes)
 		{
 			using (nsAString str = new nsAString(classes))
-				return new GeckoNodeCollection(((nsIDOMNSDocument)DomDocument).GetElementsByClassName(str));
+				return new GeckoNodeCollection(((nsIDOMDocument)DomDocument).GetElementsByClassName(str));
 		}
 		
 		/// <summary>
@@ -655,7 +655,7 @@ namespace Skybound.Gecko
 		/// <returns></returns>
 		public GeckoElement ElementFromPoint(int x, int y)
 		{
-			return GeckoElement.Create((nsIDOMHTMLElement)((nsIDOMNSDocument)DomDocument).ElementFromPoint(x, y));
+			return GeckoElement.Create((nsIDOMHTMLElement)((nsIDOMDocument)DomDocument).ElementFromPoint(x, y));
 		}
 		
 		public GeckoRange CreateRange()

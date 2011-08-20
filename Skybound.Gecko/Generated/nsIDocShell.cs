@@ -32,7 +32,7 @@ namespace Skybound.Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("f77271a1-0b22-4581-af6d-529125f1901d")]
+	[Guid("0666adf8-8738-4ca7-a917-0348f47d2f40")]
 	public interface nsIDocShell
 	{
 		
@@ -280,6 +280,19 @@ namespace Skybound.Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetAllowDNSPrefetchAttribute([MarshalAs(UnmanagedType.Bool)] bool aAllowDNSPrefetch);
+		
+		/// <summary>
+        /// Attribute that determines whether window control (move/resize) is allowed.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetAllowWindowControlAttribute();
+		
+		/// <summary>
+        /// Attribute that determines whether window control (move/resize) is allowed.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetAllowWindowControlAttribute([MarshalAs(UnmanagedType.Bool)] bool aAllowWindowControl);
 		
 		/// <summary>
         /// Get an enumerator over this docShell and its children.

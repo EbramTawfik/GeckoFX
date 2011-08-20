@@ -37,7 +37,7 @@ namespace Skybound.Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("249755DF-EEFE-4AF4-8127-BE3D6BDAED2D")]
+	[Guid("7cf11a5f-4be5-4e31-b427-58d82746b5f5")]
 	public interface nsIDOMCSS2Properties
 	{
 		
@@ -1214,6 +1214,18 @@ namespace Skybound.Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetTextIndentAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aTextIndent);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetTextOverflowAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aTextOverflow);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetTextOverflowAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aTextOverflow);
 		
 		/// <summary>
         /// raises(DOMException) on setting

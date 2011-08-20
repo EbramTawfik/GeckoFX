@@ -36,7 +36,7 @@ namespace Skybound.Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("b96adaff-e02c-48da-a379-8af5d10e09af")]
+	[Guid("3b0953cd-f483-4908-8d91-282b6bda0453")]
 	public interface nsPIPlacesHistoryListenersNotifier
 	{
 		
@@ -50,8 +50,13 @@ namespace Skybound.Gecko
         /// The time, in microseconds, that the page being expired was visited.
         /// @param aWholeEntry
         /// Indicates if this is the last visit for this URI.
+        /// @param aGUID
+        /// The unique ID associated with the page.
+        /// @param aReason
+        /// Indicates the reason for the removal.
+        /// See nsINavHistoryObserver::REASON_* constants.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NotifyOnPageExpired([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, uint aVisitTime, [MarshalAs(UnmanagedType.Bool)] bool aWholeEntry);
+		void NotifyOnPageExpired([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, uint aVisitTime, [MarshalAs(UnmanagedType.Bool)] bool aWholeEntry, [MarshalAs(UnmanagedType.LPStruct)] nsACString aGUID, ushort aReason);
 	}
 }

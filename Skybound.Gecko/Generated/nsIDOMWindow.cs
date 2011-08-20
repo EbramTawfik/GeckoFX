@@ -37,7 +37,7 @@ namespace Skybound.Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("ff7d278f-93db-4078-b89a-058c8e1270b4")]
+	[Guid("90fec5b7-c58b-463f-a147-f91b6b104a96")]
 	public interface nsIDOMWindow
 	{
 		
@@ -47,43 +47,6 @@ namespace Skybound.Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMDocument GetDocumentAttribute();
-		
-		/// <summary>
-        /// Accessor for this window's parent window, or the window itself if
-        /// there is no parent, or if the parent is of different type
-        /// (i.e. this does not cross chrome-content boundaries).
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMWindow GetParentAttribute();
-		
-		/// <summary>
-        /// Accessor for the root of this hierarchy of windows. This root may
-        /// be the window itself if there is no parent, or if the parent is
-        /// of different type (i.e. this does not cross chrome-content
-        /// boundaries).
-        ///
-        /// This property is "replaceable" in JavaScript </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMWindow GetTopAttribute();
-		
-		/// <summary>
-        /// Accessor for the object that controls whether or not scrollbars
-        /// are shown in this window.
-        ///
-        /// This attribute is "replaceable" in JavaScript
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMBarProp GetScrollbarsAttribute();
-		
-		/// <summary>
-        /// Accessor for the child windows in this window.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMWindowCollection GetFramesAttribute();
 		
 		/// <summary>
         /// Set/Get the name of this window.
@@ -102,26 +65,41 @@ namespace Skybound.Gecko
 		void SetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
 		
 		/// <summary>
-        /// Set/Get the document scale factor as a multiplier on the default
-        /// size. When setting this attribute, a NS_ERROR_NOT_IMPLEMENTED
-        /// error may be returned by implementations not supporting
-        /// zoom. Implementations not supporting zoom should return 1.0 all
-        /// the time for the Get operation. 1.0 is equals normal size,
-        /// i.e. no zoom.
+        /// Accessor for the object that controls whether or not scrollbars
+        /// are shown in this window.
+        ///
+        /// This attribute is "replaceable" in JavaScript
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		float GetTextZoomAttribute();
+		nsIDOMBarProp GetScrollbarsAttribute();
 		
 		/// <summary>
-        /// Set/Get the document scale factor as a multiplier on the default
-        /// size. When setting this attribute, a NS_ERROR_NOT_IMPLEMENTED
-        /// error may be returned by implementations not supporting
-        /// zoom. Implementations not supporting zoom should return 1.0 all
-        /// the time for the Get operation. 1.0 is equals normal size,
-        /// i.e. no zoom.
-        /// </summary>
+        /// Accessor for the root of this hierarchy of windows. This root may
+        /// be the window itself if there is no parent, or if the parent is
+        /// of different type (i.e. this does not cross chrome-content
+        /// boundaries).
+        ///
+        /// This property is "replaceable" in JavaScript </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTextZoomAttribute(float aTextZoom);
+		nsIDOMWindow GetTopAttribute();
+		
+		/// <summary>
+        /// Accessor for this window's parent window, or the window itself if
+        /// there is no parent, or if the parent is of different type
+        /// (i.e. this does not cross chrome-content boundaries).
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMWindow GetParentAttribute();
+		
+		/// <summary>
+        /// Get the application cache object for this window.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMOfflineResourceList GetApplicationCacheAttribute();
 		
 		/// <summary>
         /// Accessor for the current x scroll position in this window in
@@ -162,6 +140,51 @@ namespace Skybound.Gecko
 		nsISelection GetSelection();
 		
 		/// <summary>
+        /// @see <http://dev.w3.org/csswg/cssom/#dom-window-getcomputedstyle>
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMCSSStyleDeclaration GetComputedStyle([MarshalAs(UnmanagedType.Interface)] nsIDOMElement elt, [MarshalAs(UnmanagedType.LPStruct)] nsAString pseudoElt);
+		
+		/// <summary>
+        /// Get the window root for this window. This is useful for hooking
+        /// up event listeners to this window and every other window nested
+        /// in the window root.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMEventTarget GetWindowRootAttribute();
+		
+		/// <summary>
+        /// Accessor for the child windows in this window.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMWindowCollection GetFramesAttribute();
+		
+		/// <summary>
+        /// Set/Get the document scale factor as a multiplier on the default
+        /// size. When setting this attribute, a NS_ERROR_NOT_IMPLEMENTED
+        /// error may be returned by implementations not supporting
+        /// zoom. Implementations not supporting zoom should return 1.0 all
+        /// the time for the Get operation. 1.0 is equals normal size,
+        /// i.e. no zoom.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		float GetTextZoomAttribute();
+		
+		/// <summary>
+        /// Set/Get the document scale factor as a multiplier on the default
+        /// size. When setting this attribute, a NS_ERROR_NOT_IMPLEMENTED
+        /// error may be returned by implementations not supporting
+        /// zoom. Implementations not supporting zoom should return 1.0 all
+        /// the time for the Get operation. 1.0 is equals normal size,
+        /// i.e. no zoom.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetTextZoomAttribute(float aTextZoom);
+		
+		/// <summary>
         /// Method for scrolling this window by a number of lines.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -178,12 +201,5 @@ namespace Skybound.Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SizeToContent();
-		
-		/// <summary>
-        /// @see <http://dev.w3.org/csswg/cssom/#dom-window-getcomputedstyle>
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMCSSStyleDeclaration GetComputedStyle([MarshalAs(UnmanagedType.Interface)] nsIDOMElement elt, [MarshalAs(UnmanagedType.LPStruct)] nsAString pseudoElt);
 	}
 }

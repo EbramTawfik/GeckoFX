@@ -62,7 +62,7 @@ namespace Skybound.Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("5d8a4518-bebf-4e7e-bad0-3e6737b3d7f4")]
+	[Guid("b6a47fa0-2f1e-4084-ae5f-bdebab4d1cc3")]
 	public interface nsIMozIconURI : nsIURI
 	{
 		
@@ -232,24 +232,6 @@ namespace Skybound.Gecko
 		new void SetPathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aPath);
 		
 		/// <summary>
-        /// Returns the reference portion (the part after the "#") of the URI.
-        /// If there isn't one, an empty string is returned.
-        ///
-        /// Some characters may be escaped.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetRefAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aRef);
-		
-		/// <summary>
-        /// Returns the reference portion (the part after the "#") of the URI.
-        /// If there isn't one, an empty string is returned.
-        ///
-        /// Some characters may be escaped.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetRefAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aRef);
-		
-		/// <summary>
         /// URI equivalence test (not a strict string comparison).
         ///
         /// eg. http://foo.com:80/ == http://foo.com/
@@ -257,17 +239,6 @@ namespace Skybound.Gecko
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool Equals([MarshalAs(UnmanagedType.Interface)] nsIURI other);
-		
-		/// <summary>
-        /// URI equivalence test (not a strict string comparison), ignoring
-        /// the value of the .ref member.
-        ///
-        /// eg. http://foo.com/# == http://foo.com/
-        /// http://foo.com/#aaa == http://foo.com/#bbb
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool EqualsExceptRef([MarshalAs(UnmanagedType.Interface)] nsIURI other);
 		
 		/// <summary>
         /// An optimization to do scheme checks without requiring the users of nsIURI
@@ -284,13 +255,6 @@ namespace Skybound.Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIURI Clone();
-		
-		/// <summary>
-        /// Clones the current URI, clearing the 'ref' attribute in the clone.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIURI CloneIgnoringRef();
 		
 		/// <summary>
         /// This method resolves a relative string into an absolute URI string,
@@ -328,6 +292,42 @@ namespace Skybound.Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetOriginCharsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aOriginCharset);
+		
+		/// <summary>
+        /// Returns the reference portion (the part after the "#") of the URI.
+        /// If there isn't one, an empty string is returned.
+        ///
+        /// Some characters may be escaped.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void GetRefAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aRef);
+		
+		/// <summary>
+        /// Returns the reference portion (the part after the "#") of the URI.
+        /// If there isn't one, an empty string is returned.
+        ///
+        /// Some characters may be escaped.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetRefAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aRef);
+		
+		/// <summary>
+        /// URI equivalence test (not a strict string comparison), ignoring
+        /// the value of the .ref member.
+        ///
+        /// eg. http://foo.com/# == http://foo.com/
+        /// http://foo.com/#aaa == http://foo.com/#bbb
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool EqualsExceptRef([MarshalAs(UnmanagedType.Interface)] nsIURI other);
+		
+		/// <summary>
+        /// Clones the current URI, clearing the 'ref' attribute in the clone.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIURI CloneIgnoringRef();
 		
 		/// <summary>
         /// iconFile

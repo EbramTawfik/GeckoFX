@@ -31,15 +31,11 @@ namespace Skybound.Gecko
     /// The nsIDOMHTMLDocument interface is the interface to a [X]HTML
     /// document object.
     ///
-    /// This interface is trying to follow the DOM Level 2 HTML specification:
-    /// http://www.w3.org/TR/DOM-Level-2-HTML/
-    ///
-    /// with changes from the work-in-progress WHATWG HTML specification:
-    /// http://www.whatwg.org/specs/web-apps/current-work/
+    /// @see <http://www.whatwg.org/html/>
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("eb3750ae-d156-4b97-b200-f35276c6510f")]
+	[Guid("3c0ca40f-72c5-4d15-935e-ccaff7953f2c")]
 	public interface nsIDOMHTMLDocument : nsIDOMDocument
 	{
 		
@@ -164,6 +160,77 @@ namespace Skybound.Gecko
 		new bool HasAttributes();
 		
 		/// <summary>
+        /// nsINode::GetBaseURI
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void GetBaseURIAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBaseURI);
+		
+		/// <summary>
+        /// Introduced in DOM Level 3:
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new uint CompareDocumentPosition([MarshalAs(UnmanagedType.Interface)] nsIDOMNode other);
+		
+		/// <summary>
+        /// Introduced in DOM Level 3:
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void GetTextContentAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aTextContent);
+		
+		/// <summary>
+        /// Introduced in DOM Level 3:
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetTextContentAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aTextContent);
+		
+		/// <summary>
+        /// Introduced in DOM Level 3:
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool IsSameNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode other);
+		
+		/// <summary>
+        /// Introduced in DOM Level 3:
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void LookupPrefix([MarshalAs(UnmanagedType.LPStruct)] nsAString namespaceURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		
+		/// <summary>
+        /// Introduced in DOM Level 3:
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool IsDefaultNamespace([MarshalAs(UnmanagedType.LPStruct)] nsAString namespaceURI);
+		
+		/// <summary>
+        /// Introduced in DOM Level 3:
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void LookupNamespaceURI([MarshalAs(UnmanagedType.LPStruct)] nsAString prefix, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		
+		/// <summary>
+        /// Introduced in DOM Level 3:
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool IsEqualNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode arg);
+		
+		/// <summary>
+        /// Introduced in DOM Level 3:
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIVariant SetUserData([MarshalAs(UnmanagedType.LPStruct)] nsAString key, [MarshalAs(UnmanagedType.Interface)] nsIVariant data, [MarshalAs(UnmanagedType.Interface)] nsIDOMUserDataHandler handler);
+		
+		/// <summary>
+        /// Introduced in DOM Level 3:
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIVariant GetUserData([MarshalAs(UnmanagedType.LPStruct)] nsAString key);
+		
+		/// <summary>
         /// The nsIDOMDocument interface represents the entire HTML or XML document.
         /// Conceptually, it is the root of the document tree, and provides the
         /// primary access to the document's data.
@@ -214,10 +281,6 @@ namespace Skybound.Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMAttr CreateAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString name);
-		
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMEntityReference CreateEntityReference([MarshalAs(UnmanagedType.LPStruct)] nsAString name);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -315,21 +378,6 @@ namespace Skybound.Gecko
 		new nsIDOMNode AdoptNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode source);
 		
 		/// <summary>
-        /// Introduced in DOM Level 3:
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void NormalizeDocument();
-		
-		/// <summary>
-        /// The window associated with this document.
-        ///
-        /// @see http://www.whatwg.org/html/#dom-document-defaultview
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMWindow GetDefaultViewAttribute();
-		
-		/// <summary>
         /// Create a range
         ///
         /// @see http://html5.org/specs/dom-range.html#dom-document-createrange
@@ -351,42 +399,330 @@ namespace Skybound.Gecko
 		new nsIDOMEvent CreateEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString eventType);
 		
 		/// <summary>
-        /// The nsIDOMHTMLDocument interface is the interface to a [X]HTML
-        /// document object.
+        /// The window associated with this document.
         ///
-        /// This interface is trying to follow the DOM Level 2 HTML specification:
-        /// http://www.w3.org/TR/DOM-Level-2-HTML/
-        ///
-        /// with changes from the work-in-progress WHATWG HTML specification:
-        /// http://www.whatwg.org/specs/web-apps/current-work/
+        /// @see <http://www.whatwg.org/html/#dom-document-defaultview>
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMWindow GetDefaultViewAttribute();
+		
+		/// <summary>
+        /// @see <http://www.whatwg.org/html/#dom-document-characterset>
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTitleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aTitle);
+		new void GetCharacterSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aCharacterSet);
+		
+		/// <summary>
+        /// @see <http://www.whatwg.org/html/#dom-document-dir>
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void GetDirAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDir);
+		
+		/// <summary>
+        /// @see <http://www.whatwg.org/html/#dom-document-dir>
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetDirAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDir);
+		
+		/// <summary>
+        /// @see <http://www.whatwg.org/html/#dom-document-location>
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMLocation GetLocationAttribute();
+		
+		/// <summary>
+        /// @see <http://www.whatwg.org/html/#document.title>
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void GetTitleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aTitle);
+		
+		/// <summary>
+        /// @see <http://www.whatwg.org/html/#document.title>
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetTitleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aTitle);
+		
+		/// <summary>
+        /// @see <http://www.whatwg.org/html/#dom-document-readystate>
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void GetReadyStateAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aReadyState);
+		
+		/// <summary>
+        /// @see <http://www.whatwg.org/html/#dom-document-lastmodified>
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void GetLastModifiedAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aLastModified);
+		
+		/// <summary>
+        /// @see <http://www.whatwg.org/html/#dom-document-referrer>
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void GetReferrerAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aReferrer);
+		
+		/// <summary>
+        /// @see <http://www.whatwg.org/html/#dom-document-hasfocus>
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool HasFocus();
+		
+		/// <summary>
+        /// @see <http://www.whatwg.org/html/#dom-document-activeelement>
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMElement GetActiveElementAttribute();
+		
+		/// <summary>
+        /// Retrieve elements matching all classes listed in a
+        /// space-separated string.
+        ///
+        /// @see <http://www.whatwg.org/html/#dom-document-getelementsbyclassname>
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMNodeList GetElementsByClassName([MarshalAs(UnmanagedType.LPStruct)] nsAString classes);
+		
+		/// <summary>
+        /// @see <http://dev.w3.org/csswg/cssom/#dom-document-stylesheets>
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMStyleSheetList GetStyleSheetsAttribute();
+		
+		/// <summary>
+        /// This attribute must return the preferred style sheet set as set by the
+        /// author. It is determined from the order of style sheet declarations and
+        /// the Default-Style HTTP headers, as eventually defined elsewhere in the Web
+        /// Apps 1.0 specification. If there is no preferred style sheet set, this
+        /// attribute must return the empty string. The case of this attribute must
+        /// exactly match the case given by the author where the preferred style sheet
+        /// is specified or implied. This attribute must never return null.
+        ///
+        /// @see <http://dev.w3.org/csswg/cssom/#dom-document-preferredStyleSheetSet>
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void GetPreferredStyleSheetSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aPreferredStyleSheetSet);
+		
+		/// <summary>
+        /// This attribute indicates which style sheet set is in use. This attribute
+        /// is live; changing the disabled attribute on style sheets directly will
+        /// change the value of this attribute.
+        ///
+        /// If all the sheets that are enabled and have a title have the same title
+        /// (by case-sensitive comparisons) then the value of this attribute must be
+        /// exactly equal to the title of the first enabled style sheet with a title
+        /// in the styleSheets list. Otherwise, if style sheets from different sets
+        /// are enabled, then the return value must be null (there is no way to
+        /// determine what the currently selected style sheet set is in those
+        /// conditions). Otherwise, either all style sheets that have a title are
+        /// disabled, or there are no alternate style sheets, and
+        /// selectedStyleSheetSet must return the empty string.
+        ///
+        /// Setting this attribute to the null value must have no effect.
+        ///
+        /// Setting this attribute to a non-null value must call
+        /// enableStyleSheetsForSet() with that value as the function's argument, and
+        /// set lastStyleSheetSet to that value.
+        ///
+        /// From the DOM's perspective, all views have the same
+        /// selectedStyleSheetSet. If a UA supports multiple views with different
+        /// selected alternate style sheets, then this attribute (and the StyleSheet
+        /// interface's disabled attribute) must return and set the value for the
+        /// default view.
+        ///
+        /// @see <http://dev.w3.org/csswg/cssom/#dom-document-selectedStyleSheetSet>
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void GetSelectedStyleSheetSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aSelectedStyleSheetSet);
+		
+		/// <summary>
+        /// This attribute indicates which style sheet set is in use. This attribute
+        /// is live; changing the disabled attribute on style sheets directly will
+        /// change the value of this attribute.
+        ///
+        /// If all the sheets that are enabled and have a title have the same title
+        /// (by case-sensitive comparisons) then the value of this attribute must be
+        /// exactly equal to the title of the first enabled style sheet with a title
+        /// in the styleSheets list. Otherwise, if style sheets from different sets
+        /// are enabled, then the return value must be null (there is no way to
+        /// determine what the currently selected style sheet set is in those
+        /// conditions). Otherwise, either all style sheets that have a title are
+        /// disabled, or there are no alternate style sheets, and
+        /// selectedStyleSheetSet must return the empty string.
+        ///
+        /// Setting this attribute to the null value must have no effect.
+        ///
+        /// Setting this attribute to a non-null value must call
+        /// enableStyleSheetsForSet() with that value as the function's argument, and
+        /// set lastStyleSheetSet to that value.
+        ///
+        /// From the DOM's perspective, all views have the same
+        /// selectedStyleSheetSet. If a UA supports multiple views with different
+        /// selected alternate style sheets, then this attribute (and the StyleSheet
+        /// interface's disabled attribute) must return and set the value for the
+        /// default view.
+        ///
+        /// @see <http://dev.w3.org/csswg/cssom/#dom-document-selectedStyleSheetSet>
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetSelectedStyleSheetSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aSelectedStyleSheetSet);
+		
+		/// <summary>
+        /// This property must initially have the value null. Its value changes when
+        /// the selectedStyleSheetSet attribute is set.
+        ///
+        /// @see <http://dev.w3.org/csswg/cssom/#dom-document-lastStyleSheetSet>
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void GetLastStyleSheetSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aLastStyleSheetSet);
+		
+		/// <summary>
+        /// This must return the live list of the currently available style sheet
+        /// sets. This list is constructed by enumerating all the style sheets for
+        /// this document available to the implementation, in the order they are
+        /// listed in the styleSheets attribute, adding the title of each style sheet
+        /// with a title to the list, avoiding duplicates by dropping titles that
+        /// match (case-sensitively) titles that have already been added to the
+        /// list.
+        ///
+        /// @see <http://dev.w3.org/csswg/cssom/#dom-document-styleSheetSets>
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new System.IntPtr GetStyleSheetSetsAttribute();
+		
+		/// <summary>
+        /// Calling this method must change the disabled attribute on each StyleSheet
+        /// object with a title attribute with a length greater than 0 in the
+        /// styleSheets attribute, so that all those whose title matches the name
+        /// argument are enabled, and all others are disabled. Title matches must be
+        /// case-sensitive. Calling this method with the empty string disables all
+        /// alternate and preferred style sheets (but does not change the state of
+        /// persistent style sheets, that is those with no title attribute).
+        ///
+        /// Calling this method with a null value must have no effect.
+        ///
+        /// Style sheets that do not have a title are never affected by this
+        /// method. This method does not change the values of the lastStyleSheetSet or
+        /// preferredStyleSheetSet attributes.
+        ///
+        /// @see <http://dev.w3.org/csswg/cssom/#dom-document-enableStyleSheetsForSet>
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void EnableStyleSheetsForSet([MarshalAs(UnmanagedType.LPStruct)] nsAString name);
+		
+		/// <summary>
+        /// Returns the element from the caller's document at the given point,
+        /// relative to the upper-left-most point in the (possibly scrolled)
+        /// window or frame.
+        ///
+        /// If the element at the given point belongs to another document (such as
+        /// an iframe's subdocument), the element in the calling document's DOM
+        /// (e.g. the iframe) is returned. If the element at the given point is
+        /// anonymous or XBL generated content, such as a textbox's scrollbars, then
+        /// the first non-anonymous parent element (that is, the textbox) is returned.
+        ///
+        /// This method returns null if either coordinate is negative, or if the
+        /// specified point lies outside the visible bounds of the document.
+        ///
+        /// Callers from XUL documents should wait until the onload event has fired
+        /// before calling this method.
+        ///
+        /// @see <http://dev.w3.org/csswg/cssom-view/#dom-document-elementfrompoint>
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMElement ElementFromPoint(float x, float y);
+		
+		/// <summary>
+        /// @see <https://developer.mozilla.org/en/DOM/document.contentType>
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void GetContentTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aContentType);
+		
+		/// <summary>
+        /// Returns the script element whose script is currently being processed.
+        ///
+        /// @see <https://developer.mozilla.org/en/DOM/document.currentScript>
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMElement GetCurrentScriptAttribute();
+		
+		/// <summary>
+        /// Release the current mouse capture if it is on an element within this
+        /// document.
+        ///
+        /// @see <https://developer.mozilla.org/en/DOM/document.releaseCapture>
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void ReleaseCapture();
+		
+		/// <summary>
+        /// Use the given DOM element as the source image of target |-moz-element()|.
+        ///
+        /// This function introduces a new special ID (called "image element ID"),
+        /// which is only used by |-moz-element()|, and associates it with the given
+        /// DOM element.  Image elements ID's have the higher precedence than general
+        /// HTML id's, so if |document.mozSetImageElement(<id>, <element>)| is called,
+        /// |-moz-element(#<id>)| uses |<element>| as the source image even if there
+        /// is another element with id attribute = |<id>|.  To unregister an image
+        /// element ID |<id>|, call |document.mozSetImageElement(<id>, null)|.
+        ///
+        /// Example:
+        /// <script>
+        /// canvas = document.createElement("canvas");
+        /// canvas.setAttribute("width", 100);
+        /// canvas.setAttribute("height", 100);
+        /// // draw to canvas
+        /// document.mozSetImageElement("canvasbg", canvas);
+        /// </script>
+        /// <div style="background-image: -moz-element(#canvasbg);"></div>
+        ///
+        /// @param aImageElementId an image element ID to associate with
+        /// |aImageElement|
+        /// @param aImageElement a DOM element to be used as the source image of
+        /// |-moz-element(#aImageElementId)|. If this is null, the function will
+        /// unregister the image element ID |aImageElementId|.
+        ///
+        /// @see <https://developer.mozilla.org/en/DOM/document.mozSetImageElement>
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void MozSetImageElement([MarshalAs(UnmanagedType.LPStruct)] nsAString aImageElementId, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement aImageElement);
 		
 		/// <summary>
         /// The nsIDOMHTMLDocument interface is the interface to a [X]HTML
         /// document object.
         ///
-        /// This interface is trying to follow the DOM Level 2 HTML specification:
-        /// http://www.w3.org/TR/DOM-Level-2-HTML/
-        ///
-        /// with changes from the work-in-progress WHATWG HTML specification:
-        /// http://www.whatwg.org/specs/web-apps/current-work/
+        /// @see <http://www.whatwg.org/html/>
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTitleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aTitle);
+		void GetURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aURL);
 		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetReferrerAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aReferrer);
-		
-		/// <summary>
-        /// nsIDOMNSHTMLDocument
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetDomainAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDomain);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aURL);
+		void SetDomainAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDomain);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetCookieAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aCookie);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetCookieAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aCookie);
+		
+		/// <summary>
+        /// or "CSS1Compat" if we're in strict mode
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetCompatModeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aCompatMode);
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMHTMLHeadElement GetHeadAttribute();
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -401,7 +737,14 @@ namespace Skybound.Gecko
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMHTMLCollection GetAppletsAttribute();
+		nsIDOMHTMLCollection GetEmbedsAttribute();
+		
+		/// <summary>
+        /// mapped to attribute embeds for NS4 compat
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMHTMLCollection GetPluginsAttribute();
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -413,19 +756,14 @@ namespace Skybound.Gecko
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMHTMLCollection GetAnchorsAttribute();
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCookieAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aCookie);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCookieAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aCookie);
+		nsIDOMNodeList GetElementsByName([MarshalAs(UnmanagedType.LPStruct)] nsAString elementName);
 		
 		/// <summary>
-        /// open() is defined in nsIDOMNSHTMLDocument.
+        /// document in session history; pass false for normal history handling.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Open();
+		nsISupports Open([MarshalAs(UnmanagedType.LPStruct)] nsAString aContentTypeOrUrl, [MarshalAs(UnmanagedType.LPStruct)] nsAString aReplaceOrName, [MarshalAs(UnmanagedType.LPStruct)] nsAString aFeatures, int argc);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Close();
@@ -436,8 +774,132 @@ namespace Skybound.Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Writeln([MarshalAs(UnmanagedType.LPStruct)] nsAString text);
 		
+		/// <summary>
+        /// Midas additions
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetDesignModeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDesignMode);
+		
+		/// <summary>
+        /// Midas additions
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetDesignModeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDesignMode);
+		
+		[return: MarshalAs(UnmanagedType.Bool)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool ExecCommand([MarshalAs(UnmanagedType.LPStruct)] nsAString commandID, [MarshalAs(UnmanagedType.Bool)] bool doShowUI, [MarshalAs(UnmanagedType.LPStruct)] nsAString value);
+		
+		/// <summary>
+        /// returns true if the help is being shown for command (false if not)
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool ExecCommandShowHelp([MarshalAs(UnmanagedType.LPStruct)] nsAString commandID);
+		
+		/// <summary>
+        /// returns true if the command is enabled (false otherwise)
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool QueryCommandEnabled([MarshalAs(UnmanagedType.LPStruct)] nsAString commandID);
+		
+		/// <summary>
+        /// returns true if the command is in a indeterminate state (false otherwise)
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool QueryCommandIndeterm([MarshalAs(UnmanagedType.LPStruct)] nsAString commandID);
+		
+		/// <summary>
+        /// returns true if the command has been executed (false otherwise)
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool QueryCommandState([MarshalAs(UnmanagedType.LPStruct)] nsAString commandID);
+		
+		/// <summary>
+        /// returns true if the command is supported on the current range
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool QueryCommandSupported([MarshalAs(UnmanagedType.LPStruct)] nsAString commandID);
+		
+		/// <summary>
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void QueryCommandText([MarshalAs(UnmanagedType.LPStruct)] nsAString commandID, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		
+		/// <summary>
+        /// returns the current value of the document or current selection for command
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void QueryCommandValue([MarshalAs(UnmanagedType.LPStruct)] nsAString commandID, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		
+		/// <summary>
+        /// Obsolete APIs
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetFgColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aFgColor);
+		
+		/// <summary>
+        /// Obsolete APIs
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetFgColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aFgColor);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetBgColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBgColor);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetBgColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBgColor);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetLinkColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aLinkColor);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetLinkColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aLinkColor);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetVlinkColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aVlinkColor);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetVlinkColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aVlinkColor);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetAlinkColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aAlinkColor);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetAlinkColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aAlinkColor);
+		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMNodeList GetElementsByName([MarshalAs(UnmanagedType.LPStruct)] nsAString elementName);
+		nsIDOMHTMLCollection GetAnchorsAttribute();
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMHTMLCollection GetAppletsAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Clear();
+		
+		/// <summary>
+        /// DOM Range
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetSelection([MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		
+		/// <summary>
+        /// @deprecated These are old Netscape 4 methods. Do not use,
+        /// the implementation is no-op.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void CaptureEvents(int eventFlags);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void ReleaseEvents(int eventFlags);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RouteEvent([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent evt);
 	}
 }

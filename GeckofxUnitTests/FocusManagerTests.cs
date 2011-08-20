@@ -128,6 +128,16 @@ namespace GeckofxUnitTests
 		{
 			throw new NotImplementedException();
 		}
+
+		public nsIDOMOfflineResourceList GetApplicationCacheAttribute()
+		{
+			throw new NotImplementedException();
+		}
+
+		public nsIDOMEventTarget GetWindowRootAttribute()
+		{
+			throw new NotImplementedException();
+		}
 	}
 	#endregion
 }

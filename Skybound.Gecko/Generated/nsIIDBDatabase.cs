@@ -69,7 +69,7 @@ namespace Skybound.Gecko
         ///5000ms </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIIDBTransaction Transaction([MarshalAs(UnmanagedType.Interface)] nsIVariant storeNames, ushort mode, uint timeout);
+		nsIIDBTransaction Transaction([MarshalAs(UnmanagedType.Interface)] nsIVariant storeNames, ushort mode, uint timeout, int argc);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Close();

@@ -30,7 +30,7 @@ namespace Skybound.Gecko
 	/// <summary>nsIBlocklistService </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("8439f9c0-da03-4260-8b21-dc635eed28fb")]
+	[Guid("31845f85-718a-4581-a672-a45c0327cb21")]
 	public interface nsIBlocklistService
 	{
 		
@@ -90,6 +90,24 @@ namespace Skybound.Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetPluginBlocklistState([MarshalAs(UnmanagedType.Interface)] nsIPluginTag plugin, [MarshalAs(UnmanagedType.LPStruct)] nsAString appVersion, [MarshalAs(UnmanagedType.LPStruct)] nsAString toolkitVersion);
+		
+		/// <summary>
+        /// Determine the blocklist web page of an add-on.
+        /// @param   id
+        /// The ID of the blocked add-on.
+        /// @returns The URL of the description page.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetAddonBlocklistURL([MarshalAs(UnmanagedType.LPStruct)] nsAString id, [MarshalAs(UnmanagedType.LPStruct)] nsAString version, [MarshalAs(UnmanagedType.LPStruct)] nsAString appVersion, [MarshalAs(UnmanagedType.LPStruct)] nsAString toolkitVersion, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		
+		/// <summary>
+        /// Determine the blocklist web page of a plugin.
+        /// @param   plugin
+        /// The blocked plugin that we are determining the web page for.
+        /// @returns The URL of the description page.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetPluginBlocklistURL([MarshalAs(UnmanagedType.Interface)] nsIPluginTag plugin, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 	}
 	
 	/// <summary>

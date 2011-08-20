@@ -66,12 +66,12 @@ namespace Skybound.Gecko
 		System.IntPtr DecodeToJSVal([MarshalAs(UnmanagedType.LPStruct)] nsAString str, System.IntPtr cx);
 		
 		/// <summary>
-        ///JSObject </summary>
+        ///jsval </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void LegacyDecode([MarshalAs(UnmanagedType.LPStruct)] nsAString str);
 		
 		/// <summary>
-        ///JSObject </summary>
+        ///jsval </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void LegacyDecodeFromStream([MarshalAs(UnmanagedType.Interface)] nsIInputStream stream, int contentLength);
 		

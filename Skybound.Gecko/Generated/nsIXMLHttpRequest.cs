@@ -58,9 +58,13 @@ namespace Skybound.Gecko
         /// in the tree. Events which are bubbling upward
         /// through the tree will not trigger an
         /// EventListener designated to use capture.
+        /// @param   wantsUntrusted If false, the listener will not receive any
+        /// untrusted events (see above), if true, the
+        /// listener will receive events whether or not
+        /// they're trusted
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void AddEventListener([MarshalAs(UnmanagedType.LPStruct)] nsAString type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener listener, [MarshalAs(UnmanagedType.Bool)] bool useCapture);
+		new void AddEventListener([MarshalAs(UnmanagedType.LPStruct)] nsAString type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener listener, [MarshalAs(UnmanagedType.Bool)] bool useCapture, [MarshalAs(UnmanagedType.Bool)] bool wantsUntrusted, int argc);
 		
 		/// <summary>
         /// This method allows the removal of event listeners from the event
@@ -106,6 +110,118 @@ namespace Skybound.Gecko
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool DispatchEvent([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent evt);
+		
+		/// <summary>
+        /// Returns the nsPIDOMEventTarget object which should be used as the target
+        /// of DOMEvents.
+        /// Usually |this| is returned, but for example global object returns
+        /// the outer object.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMEventTarget GetTargetForDOMEvent();
+		
+		/// <summary>
+        /// Returns the nsPIDOMEventTarget object which should be used as the target
+        /// of the event and when constructing event target chain.
+        /// Usually |this| is returned, but for example global object returns
+        /// the inner object.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMEventTarget GetTargetForEventTargetChain();
+		
+		/// <summary>
+        /// Called before the capture phase of the event flow.
+        /// This is used to create the event target chain and implementations
+        /// should set the necessary members of nsEventChainPreVisitor.
+        /// At least aVisitor.mCanHandle must be set,
+        /// usually also aVisitor.mParentTarget if mCanHandle is PR_TRUE.
+        /// First one tells that this object can handle the aVisitor.mEvent event and
+        /// the latter one is the possible parent object for the event target chain.
+        /// @see nsEventDispatcher.h for more documentation about aVisitor.
+        ///
+        /// @param aVisitor the visitor object which is used to create the
+        /// event target chain for event dispatching.
+        ///
+        /// @note Only nsEventDispatcher should call this method.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void PreHandleEvent(System.IntPtr aVisitor);
+		
+		/// <summary>
+        /// If nsEventChainPreVisitor.mWantsWillHandleEvent is set PR_TRUE,
+        /// called just before possible event handlers on this object will be called.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void WillHandleEvent(System.IntPtr aVisitor);
+		
+		/// <summary>
+        /// Called after the bubble phase of the system event group.
+        /// The default handling of the event should happen here.
+        /// @param aVisitor the visitor object which is used during post handling.
+        ///
+        /// @see nsEventDispatcher.h for documentation about aVisitor.
+        /// @note Only nsEventDispatcher should call this method.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void PostHandleEvent(System.IntPtr aVisitor);
+		
+		/// <summary>
+        /// Dispatch an event.
+        /// @param aEvent the event that is being dispatched.
+        /// @param aDOMEvent the event that is being dispatched, use if you want to
+        /// dispatch nsIDOMEvent, not only nsEvent.
+        /// @param aPresContext the current presentation context, can be nsnull.
+        /// @param aEventStatus the status returned from the function, can be nsnull.
+        ///
+        /// @note If both aEvent and aDOMEvent are used, aEvent must be the internal
+        /// event of the aDOMEvent.
+        ///
+        /// If aDOMEvent is not nsnull (in which case aEvent can be nsnull) it is used
+        /// for dispatching, otherwise aEvent is used.
+        ///
+        /// @deprecated This method is here just until all the callers outside Gecko
+        /// have been converted to use nsIDOMEventTarget::dispatchEvent.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void DispatchDOMEvent(System.IntPtr aEvent, [MarshalAs(UnmanagedType.Interface)] nsIDOMEvent aDOMEvent, System.IntPtr aPresContext, System.IntPtr aEventStatus);
+		
+		/// <summary>
+        /// Get the event listener manager, the guy you talk to to register for events
+        /// on this node.
+        /// @param aMayCreate If PR_FALSE, returns a listener manager only if
+        /// one already exists.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new System.IntPtr GetListenerManager([MarshalAs(UnmanagedType.Bool)] bool aMayCreate);
+		
+		/// <summary>
+        /// Add an event listener for nsIID.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void AddEventListenerByIID([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aListener, ref System.Guid aIID);
+		
+		/// <summary>
+        /// Remove event listener for nsIID.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void RemoveEventListenerByIID([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aListener, ref System.Guid aIID);
+		
+		/// <summary>
+        /// Get the script context in which the event handlers should be run.
+        /// May return null.
+        /// @note Caller *must* check the value of aRv.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new System.IntPtr GetContextForEventHandlers(ref int aRv);
+		
+		/// <summary>
+        /// If the method above returns null, but a success code, this method
+        /// is called.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new System.IntPtr GetJSContextForEventHandlers();
 		
 		/// <summary>
         /// event handler attributes
@@ -207,9 +323,13 @@ namespace Skybound.Gecko
         /// in the tree. Events which are bubbling upward
         /// through the tree will not trigger an
         /// EventListener designated to use capture.
+        /// @param   wantsUntrusted If false, the listener will not receive any
+        /// untrusted events (see above), if true, the
+        /// listener will receive events whether or not
+        /// they're trusted
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void AddEventListener([MarshalAs(UnmanagedType.LPStruct)] nsAString type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener listener, [MarshalAs(UnmanagedType.Bool)] bool useCapture);
+		new void AddEventListener([MarshalAs(UnmanagedType.LPStruct)] nsAString type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener listener, [MarshalAs(UnmanagedType.Bool)] bool useCapture, [MarshalAs(UnmanagedType.Bool)] bool wantsUntrusted, int argc);
 		
 		/// <summary>
         /// This method allows the removal of event listeners from the event
@@ -255,6 +375,118 @@ namespace Skybound.Gecko
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool DispatchEvent([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent evt);
+		
+		/// <summary>
+        /// Returns the nsPIDOMEventTarget object which should be used as the target
+        /// of DOMEvents.
+        /// Usually |this| is returned, but for example global object returns
+        /// the outer object.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMEventTarget GetTargetForDOMEvent();
+		
+		/// <summary>
+        /// Returns the nsPIDOMEventTarget object which should be used as the target
+        /// of the event and when constructing event target chain.
+        /// Usually |this| is returned, but for example global object returns
+        /// the inner object.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMEventTarget GetTargetForEventTargetChain();
+		
+		/// <summary>
+        /// Called before the capture phase of the event flow.
+        /// This is used to create the event target chain and implementations
+        /// should set the necessary members of nsEventChainPreVisitor.
+        /// At least aVisitor.mCanHandle must be set,
+        /// usually also aVisitor.mParentTarget if mCanHandle is PR_TRUE.
+        /// First one tells that this object can handle the aVisitor.mEvent event and
+        /// the latter one is the possible parent object for the event target chain.
+        /// @see nsEventDispatcher.h for more documentation about aVisitor.
+        ///
+        /// @param aVisitor the visitor object which is used to create the
+        /// event target chain for event dispatching.
+        ///
+        /// @note Only nsEventDispatcher should call this method.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void PreHandleEvent(System.IntPtr aVisitor);
+		
+		/// <summary>
+        /// If nsEventChainPreVisitor.mWantsWillHandleEvent is set PR_TRUE,
+        /// called just before possible event handlers on this object will be called.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void WillHandleEvent(System.IntPtr aVisitor);
+		
+		/// <summary>
+        /// Called after the bubble phase of the system event group.
+        /// The default handling of the event should happen here.
+        /// @param aVisitor the visitor object which is used during post handling.
+        ///
+        /// @see nsEventDispatcher.h for documentation about aVisitor.
+        /// @note Only nsEventDispatcher should call this method.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void PostHandleEvent(System.IntPtr aVisitor);
+		
+		/// <summary>
+        /// Dispatch an event.
+        /// @param aEvent the event that is being dispatched.
+        /// @param aDOMEvent the event that is being dispatched, use if you want to
+        /// dispatch nsIDOMEvent, not only nsEvent.
+        /// @param aPresContext the current presentation context, can be nsnull.
+        /// @param aEventStatus the status returned from the function, can be nsnull.
+        ///
+        /// @note If both aEvent and aDOMEvent are used, aEvent must be the internal
+        /// event of the aDOMEvent.
+        ///
+        /// If aDOMEvent is not nsnull (in which case aEvent can be nsnull) it is used
+        /// for dispatching, otherwise aEvent is used.
+        ///
+        /// @deprecated This method is here just until all the callers outside Gecko
+        /// have been converted to use nsIDOMEventTarget::dispatchEvent.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void DispatchDOMEvent(System.IntPtr aEvent, [MarshalAs(UnmanagedType.Interface)] nsIDOMEvent aDOMEvent, System.IntPtr aPresContext, System.IntPtr aEventStatus);
+		
+		/// <summary>
+        /// Get the event listener manager, the guy you talk to to register for events
+        /// on this node.
+        /// @param aMayCreate If PR_FALSE, returns a listener manager only if
+        /// one already exists.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new System.IntPtr GetListenerManager([MarshalAs(UnmanagedType.Bool)] bool aMayCreate);
+		
+		/// <summary>
+        /// Add an event listener for nsIID.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void AddEventListenerByIID([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aListener, ref System.Guid aIID);
+		
+		/// <summary>
+        /// Remove event listener for nsIID.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void RemoveEventListenerByIID([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aListener, ref System.Guid aIID);
+		
+		/// <summary>
+        /// Get the script context in which the event handlers should be run.
+        /// May return null.
+        /// @note Caller *must* check the value of aRv.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new System.IntPtr GetContextForEventHandlers(ref int aRv);
+		
+		/// <summary>
+        /// If the method above returns null, but a success code, this method
+        /// is called.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new System.IntPtr GetJSContextForEventHandlers();
 		
 		/// <summary>
         /// event handler attributes
@@ -500,7 +732,7 @@ namespace Skybound.Gecko
         /// The default value is the empty string
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Open([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String method, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String url, [MarshalAs(UnmanagedType.Bool)] bool async, [MarshalAs(UnmanagedType.LPStruct)] nsAString user, [MarshalAs(UnmanagedType.LPStruct)] nsAString password);
+		void Open([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String method, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String url, [MarshalAs(UnmanagedType.Bool)] bool async, [MarshalAs(UnmanagedType.LPStruct)] nsAString user, [MarshalAs(UnmanagedType.LPStruct)] nsAString password, int argc);
 		
 		/// <summary>
         /// Sends the request. If the request is asynchronous, returns

@@ -122,10 +122,26 @@ namespace Skybound.Gecko
 	}
 	
 	/// <summary>
+    /// interface for callback to be passed to Cu.schedulePreciseGC
+    /// </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("71000535-b0fd-44d1-8ce0-909760e3953c")]
+	public interface ScheduledGCCallback
+	{
+		
+		/// <summary>
+        /// interface for callback to be passed to Cu.schedulePreciseGC
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Callback();
+	}
+	
+	/// <summary>
     /// interface of Components.utils </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("c1d616fa-1875-49ba-b7b8-5861dab31a42")]
+	[Guid("fed2d752-6cb3-4135-97b0-2c290e541e2d")]
 	public interface nsIXPCComponents_Utils
 	{
 		
@@ -175,6 +191,17 @@ namespace Skybound.Gecko
 		void Import([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String registryLocation);
 		
 		/// <summary>
+        /// Unloads the JS module at 'registryLocation'. Existing references to the
+        /// module will continue to work but any subsequent import of the module will
+        /// reload it and give new reference. If the JS module hasn't yet been
+        /// imported then this method will do nothing.
+        ///
+        /// @param resourceURI A resource:// URI string to unload the module from.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Unload([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String registryLocation);
+		
+		/// <summary>
         ///in JSObject obj </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		xpcIJSWeakReference GetWeakReference();
@@ -188,9 +215,33 @@ namespace Skybound.Gecko
 		void ForceGC();
 		
 		/// <summary>
+        /// Schedule a garbage collection cycle for a point in the future when no JS
+        /// is running. Call the provided function once this has occurred.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SchedulePreciseGC(ScheduledGCCallback callback);
+		
+		/// <summary>
         ///in JSObject obj </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetGlobalForObject();
+		
+		/// <summary>
+        /// To be called from JS only.
+        ///
+        /// Returns an object created in |vobj|'s compartment.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		System.IntPtr CreateObjectIn(System.IntPtr vobj);
+		
+		/// <summary>
+        /// To be called from JS only.
+        ///
+        /// Ensures that all functions come from vobj's scope (and aren't cross
+        /// compartment wrappers).
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void MakeObjectPropsNormal(System.IntPtr vobj);
 	}
 	
 	/// <summary>

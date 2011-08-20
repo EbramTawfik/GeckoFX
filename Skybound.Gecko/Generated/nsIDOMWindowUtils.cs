@@ -36,7 +36,7 @@ namespace Skybound.Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("663e33d7-eca2-42e8-af92-5df6a5e222df")]
+	[Guid("b46050ea-6f18-11e0-bf00-f389b7004a12")]
 	public interface nsIDOMWindowUtils
 	{
 		
@@ -637,6 +637,14 @@ namespace Skybound.Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ResumeTimeouts();
+		
+		/// <summary>
+        /// Set the network status to online from the Offline mode error page.
+        ///
+        /// The caller of this method must be about:neterror.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GoOnline();
 		
 		/// <summary>
         /// What type of layer manager the widget associated with this window is

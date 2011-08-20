@@ -27,28 +27,46 @@ namespace Skybound.Gecko
 	using System.Windows.Forms;
 	
 	
-	/// <summary>nsIMemoryReporter </summary>
+	/// <summary>
+    /// An nsIMemoryReporter reports a single memory measurement as an object.
+    /// Use this when it makes sense to gather this measurement without gathering
+    /// related measurements at the same time.
+    ///
+    /// Note that the |amount| field may be implemented as a function, and so
+    /// accessing it can trigger significant computation;  the other fields can
+    /// be accessed without triggering this computation.  (Compare and contrast
+    /// this with nsIMemoryMultiReporter.)
+    /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("d298b942-3e66-4cd3-9ff5-46abc69147a7")]
+	[Guid("37d18434-9819-4ce1-922f-15d8b63da066")]
 	public interface nsIMemoryReporter
 	{
 		
 		/// <summary>
-        /// The path that this memory usage should be reported under.  Paths can
-        /// begin with a process name plus a colon, eg "Content:", but this is not
-        /// necessary for the main process.  After the process name, paths are
+        /// The name of the process containing this reporter.  Each reporter initially
+        /// has "" in this field, indicating that it applies to the current process.
+        /// (This is true even for reporters in a child process.)  When a reporter
+        /// from a child process is copied into the main process, the copy has its
+        /// 'process' field set appropriately.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStr)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		string GetProcessAttribute();
+		
+		/// <summary>
+        /// The path that this memory usage should be reported under.  Paths are
         /// '/'-delimited, eg. "a/b/c".  There are two categories of paths.
         ///
-        /// - Paths starting with "explicit" represent non-overlapping regions of
-        /// memory that have been explicitly allocated with an OS-level allocation
-        /// (eg. mmap/VirtualAlloc/vm_allocate) or a heap-level allocation (eg.
-        /// malloc/calloc/operator new).  Each one can be viewed as representing a
-        /// path in a tree from the root node ("explicit") to a node lower in the
-        /// tree; this lower node does not have to be a leaf node.
+        /// - Paths starting with "explicit" represent regions of memory that have
+        /// been explicitly allocated with an OS-level allocation (eg.
+        /// mmap/VirtualAlloc/vm_allocate) or a heap-level allocation (eg.
+        /// malloc/calloc/operator new).
         ///
-        /// So, for example, "explicit/a/b", "explicit/a/c", "explicit/d",
-        /// "explicit/d/e", and "explicit/d/f" define this tree:
+        /// Each reporter can be viewed as representing a node in a tree rooted at
+        /// "explicit".  Not all nodes of the tree need have an associated reporter.
+        /// So, for example, the reporters "explicit/a/b", "explicit/a/c",
+        /// "explicit/d", "explicit/d/e", and "explicit/d/f" define this tree:
         ///
         /// explicit
         /// |--a
@@ -58,20 +76,37 @@ namespace Skybound.Gecko
         /// |--e [*]
         /// \--f [*]
         ///
-        /// Nodes marked with a [*] have a reporter.
+        /// Nodes marked with a [*] have a reporter.  Notice that "explicit/a" is
+        /// implicitly defined.
         ///
-        /// - All other paths represent cross-cuttings memory regions, ie. ones that
-        /// may overlap arbitrarily with regions in the "explicit" tree.
+        /// A node's children divide their parent's memory into disjoint pieces.
+        /// So in the example above, |a| may not count any allocations counted by
+        /// |d|, and vice versa.
+        ///
+        /// - All other paths represent cross-cutting values and may overlap with any
+        /// other reporter.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string GetPathAttribute();
 		
 		/// <summary>
-        /// The memory kind, see MR_* above.
+        /// The reporter kind.  See KIND_* above.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetKindAttribute();
+		
+		/// <summary>
+        /// The units on the reporter's amount.  See UNITS_* above.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		int GetUnitsAttribute();
+		
+		/// <summary>
+        /// The numeric value reported by this memory reporter.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		long GetAmountAttribute();
 		
 		/// <summary>
         /// A human-readable description of this memory usage report.
@@ -79,19 +114,65 @@ namespace Skybound.Gecko
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string GetDescriptionAttribute();
+	}
+	
+	/// <summary>nsIMemoryMultiReporterCallback </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("5b15f3fa-ba15-443c-8337-7770f5f0ce5d")]
+	public interface nsIMemoryMultiReporterCallback
+	{
+		
+		/// <summary>Member Callback </summary>
+		/// <param name='process'> </param>
+		/// <param name='path'> </param>
+		/// <param name='kind'> </param>
+		/// <param name='units'> </param>
+		/// <param name='amount'> </param>
+		/// <param name='description'> </param>
+		/// <param name='closure'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Callback([MarshalAs(UnmanagedType.LPStruct)] nsACString process, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String path, int kind, int units, long amount, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String description, [MarshalAs(UnmanagedType.Interface)] nsISupports closure);
+	}
+	
+	/// <summary>
+    /// An nsIMemoryMultiReporter reports multiple memory measurements via a
+    /// callback function which is called once for each measurement.  Use this
+    /// when you want to gather multiple measurements in a single operation (eg.
+    /// a single traversal of a large data structure).
+    ///
+    /// The arguments to the callback deliberately match the fields in
+    /// nsIMemoryReporter, but note that seeing any of these arguments requires
+    /// calling collectReports which will trigger all relevant computation.
+    /// (Compare and contrast this with nsIMemoryReporter, which allows all
+    /// fields except |amount| to be accessed without triggering computation.)
+    /// </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("eae277ad-b67d-4389-95f4-03fa11c09d06")]
+	public interface nsIMemoryMultiReporter
+	{
 		
 		/// <summary>
-        /// The current amount of memory in use, as reported by this memory
-        /// reporter.
+        /// An nsIMemoryMultiReporter reports multiple memory measurements via a
+        /// callback function which is called once for each measurement.  Use this
+        /// when you want to gather multiple measurements in a single operation (eg.
+        /// a single traversal of a large data structure).
+        ///
+        /// The arguments to the callback deliberately match the fields in
+        /// nsIMemoryReporter, but note that seeing any of these arguments requires
+        /// calling collectReports which will trigger all relevant computation.
+        /// (Compare and contrast this with nsIMemoryReporter, which allows all
+        /// fields except |amount| to be accessed without triggering computation.)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetMemoryUsedAttribute();
+		void CollectReports([MarshalAs(UnmanagedType.Interface)] nsIMemoryMultiReporterCallback callback, [MarshalAs(UnmanagedType.Interface)] nsISupports closure);
 	}
 	
 	/// <summary>nsIMemoryReporterManager </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("7c62de18-1edd-40f8-9da2-a8c622763074")]
+	[Guid("80a93b4c-6fff-4acd-8598-3891074a30ab")]
 	public interface nsIMemoryReporterManager
 	{
 		
@@ -103,19 +184,41 @@ namespace Skybound.Gecko
 		nsISimpleEnumerator EnumerateReporters();
 		
 		/// <summary>
-        /// Register the given nsIMemoryReporter.  It is an error to register
-        /// more than one reporter with the same path.  After a reporter is
-        /// registered, it will be available via enumerateReporters().  The
-        /// Manager service will hold a strong reference to the given reporter.
+        /// Return an enumerator of nsIMemoryMultiReporters that are currently
+        /// registered.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsISimpleEnumerator EnumerateMultiReporters();
+		
+		/// <summary>
+        /// Register the given nsIMemoryReporter.  After a reporter is registered,
+        /// it will be available via enumerateReporters().  The Manager service
+        /// will hold a strong reference to the given reporter.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RegisterReporter([MarshalAs(UnmanagedType.Interface)] nsIMemoryReporter reporter);
+		
+		/// <summary>
+        /// Register the given nsIMemoryMultiReporter.  After a multi-reporter is
+        /// registered, it will be available via enumerateMultiReporters().  The
+        /// Manager service will hold a strong reference to the given
+        /// multi-reporter.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RegisterMultiReporter([MarshalAs(UnmanagedType.Interface)] nsIMemoryMultiReporter reporter);
 		
 		/// <summary>
         /// Unregister the given memory reporter.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void UnregisterReporter([MarshalAs(UnmanagedType.Interface)] nsIMemoryReporter reporter);
+		
+		/// <summary>
+        /// Unregister the given memory multi-reporter.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void UnregisterMultiReporter([MarshalAs(UnmanagedType.Interface)] nsIMemoryMultiReporter reporter);
 		
 		/// <summary>
         /// Initialize.

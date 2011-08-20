@@ -39,7 +39,7 @@ namespace Skybound.Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("9883609F-CDD8-4d83-9B55-868FF08AD433")]
+	[Guid("ef2c9bcb-96b8-4095-933a-cb1c506f2c58")]
 	public interface nsISHistory
 	{
 		
@@ -175,149 +175,7 @@ namespace Skybound.Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISimpleEnumerator GetSHistoryEnumeratorAttribute();
-	}
-	
-	/// <summary>nsISHistory_2_0_BRANCH </summary>
-	[ComImport()]
-	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("ac8b3eb3-2051-4cce-8303-d6e7938501dd")]
-	public interface nsISHistory_2_0_BRANCH : nsISHistory
-	{
 		
-		/// <summary>
-        /// A readonly property of the interface that returns
-        /// the number of toplevel documents currently available
-        /// in session history.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new int GetCountAttribute();
-		
-		/// <summary>
-        /// A readonly property of the interface that returns
-        /// the index of the current document in session history.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new int GetIndexAttribute();
-		
-		/// <summary>
-        /// A readonly property of the interface that returns
-        /// the index of the last document that started to load and
-        /// didn't finished yet. When document finishes the loading
-        /// value -1 is returned.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new int GetRequestedIndexAttribute();
-		
-		/// <summary>
-        /// A read/write property of the interface, used to Get/Set
-        /// the maximum number of toplevel documents, session history
-        /// can hold for each instance.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new int GetMaxLengthAttribute();
-		
-		/// <summary>
-        /// A read/write property of the interface, used to Get/Set
-        /// the maximum number of toplevel documents, session history
-        /// can hold for each instance.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetMaxLengthAttribute(int aMaxLength);
-		
-		/// <summary>
-        /// Called to obtain handle to the history entry at a
-        /// given index.
-        ///
-        /// @param index             The index value whose entry is requested.
-        /// @param modifyIndex       A boolean flag that indicates if the current
-        /// index of session history should be modified
-        /// to the parameter index.
-        ///
-        /// @return                  <code>NS_OK</code> history entry for
-        /// the index is obtained successfully.
-        /// <code>NS_ERROR_FAILURE</code> Error in obtaining
-        /// history entry for the given index.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIHistoryEntry GetEntryAtIndex(int index, [MarshalAs(UnmanagedType.Bool)] bool modifyIndex);
-		
-		/// <summary>
-        /// Called to purge older documents from history.
-        /// Documents can be removed from session history for various
-        /// reasons. For example to  control memory usage of the browser, to
-        /// prevent users from loading documents from history, to erase evidence of
-        /// prior page loads etc...
-        ///
-        /// @param numEntries        The number of toplevel documents to be
-        /// purged from history. During purge operation,
-        /// the latest documents are maintained and older
-        /// 'numEntries' documents are removed from history.
-        /// @throws                  <code>NS_SUCCESS_LOSS_OF_INSIGNIFICANT_DATA</code> Purge was vetod.
-        /// @throws                  <code>NS_ERROR_FAILURE</code> numEntries is
-        /// invalid or out of bounds with the size of history.
-        ///
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void PurgeHistory(int numEntries);
-		
-		/// <summary>
-        /// Called to register a listener for the session history component.
-        /// Listeners are notified when pages are loaded or purged from history.
-        ///
-        /// @param aListener         Listener object to be notified for all
-        /// page loads that initiate in session history.
-        ///
-        /// @note                    A listener object must implement
-        /// nsISHistoryListener and nsSupportsWeakReference
-        ///
-        /// @see nsISHistoryListener
-        /// @see nsSupportsWeakReference
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void AddSHistoryListener([MarshalAs(UnmanagedType.Interface)] nsISHistoryListener aListener);
-		
-		/// <summary>
-        /// Called to remove a listener for the session history component.
-        /// Listeners are notified when pages are loaded from history.
-        ///
-        /// @param aListener         Listener object to be removed from
-        /// session history.
-        ///
-        /// @note                    A listener object must implement
-        /// nsISHistoryListener and nsSupportsWeakReference
-        /// @see nsISHistoryListener
-        /// @see nsSupportsWeakReference
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void RemoveSHistoryListener([MarshalAs(UnmanagedType.Interface)] nsISHistoryListener aListener);
-		
-		/// <summary>
-        /// Called to obtain a enumerator for all the  documents stored in
-        /// session history. The enumerator object thus returned by this method
-        /// can be traversed using nsISimpleEnumerator.
-        ///
-        /// @note  To access individual history entries of the enumerator, perform the
-        /// following steps:
-        /// 1) Call nsISHistory->GetSHistoryEnumerator() to obtain handle
-        /// the nsISimpleEnumerator object.
-        /// 2) Use nsISimpleEnumerator->GetNext() on the object returned
-        /// by step #1 to obtain handle to the next object in the list.
-        /// The object returned by this step is of type nsISupports.
-        /// 3) Perform a QueryInterface on the object returned by step #2
-        /// to nsIHistoryEntry.
-        /// 4) Use nsIHistoryEntry to access properties of each history entry.
-        ///
-        /// @see nsISimpleEnumerator
-        /// @see nsIHistoryEntry
-        /// @see QueryInterface()
-        /// @see do_QueryInterface()
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsISimpleEnumerator GetSHistoryEnumeratorAttribute();
-		
-		/// <summary>Member ReloadCurrentEntry </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ReloadCurrentEntry();
 	}

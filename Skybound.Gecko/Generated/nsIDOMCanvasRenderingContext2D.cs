@@ -65,7 +65,7 @@ namespace Skybound.Gecko
 	/// <summary>nsIDOMCanvasRenderingContext2D </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("408be1b9-4d75-4873-b50b-9b651626e41d")]
+	[Guid("274213a8-df51-4b52-bfad-d306a1d5f642")]
 	public interface nsIDOMCanvasRenderingContext2D
 	{
 		
@@ -122,6 +122,28 @@ namespace Skybound.Gecko
 		/// <param name='dy'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetTransform(float m11, float m12, float m21, float m22, float dx, float dy);
+		
+		/// <summary>Member GetMozCurrentTransformAttribute </summary>
+		/// <returns>A System.IntPtr</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		System.IntPtr GetMozCurrentTransformAttribute();
+		
+		/// <summary>Member SetMozCurrentTransformAttribute </summary>
+		/// <param name='aMozCurrentTransform'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetMozCurrentTransformAttribute(System.IntPtr aMozCurrentTransform);
+		
+		/// <summary>
+        /// [ m11, m12, m21, m22, dx, dy ], i.e. row major
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		System.IntPtr GetMozCurrentTransformInverseAttribute();
+		
+		/// <summary>
+        /// [ m11, m12, m21, m22, dx, dy ], i.e. row major
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetMozCurrentTransformInverseAttribute(System.IntPtr aMozCurrentTransformInverse);
 		
 		/// <summary>
         /// compositing
@@ -195,12 +217,20 @@ namespace Skybound.Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetFillStyle_multi([MarshalAs(UnmanagedType.LPStruct)] nsAString str, [MarshalAs(UnmanagedType.Interface)] ref nsISupports iface, ref int type);
 		
-		/// <summary>Member CreateLinearGradient </summary>
-		/// <param name='x0'> </param>
-		/// <param name='y0'> </param>
-		/// <param name='x1'> </param>
-		/// <param name='y1'> </param>
-		/// <returns>A nsIDOMCanvasGradient</returns>
+		/// <summary>
+        ///attribute DOMString fillRule;
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetMozFillRuleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozFillRule);
+		
+		/// <summary>
+        ///attribute DOMString fillRule;
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetMozFillRuleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozFillRule);
+		
+		/// <summary>
+        ///"evenodd", "nonzero" (default) </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMCanvasGradient CreateLinearGradient(float x0, float y0, float x1, float y1);
@@ -264,6 +294,26 @@ namespace Skybound.Gecko
         ///"round", "bevel", "miter" (default) </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetMiterLimitAttribute(float aMiterLimit);
+		
+		/// <summary>
+        ///default 10 </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		System.IntPtr GetMozDashAttribute();
+		
+		/// <summary>
+        ///default 10 </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetMozDashAttribute(System.IntPtr aMozDash);
+		
+		/// <summary>
+        ///default |null| </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		float GetMozDashOffsetAttribute();
+		
+		/// <summary>
+        ///default |null| </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetMozDashOffsetAttribute(float aMozDashOffset);
 		
 		/// <summary>
         /// shadows
@@ -473,33 +523,11 @@ namespace Skybound.Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetMozTextStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozTextStyle);
 		
-		/// <summary>Member MozDrawText </summary>
-		/// <param name='textToDraw'> </param>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MozDrawText([MarshalAs(UnmanagedType.LPStruct)] nsAString textToDraw);
-		
-		/// <summary>Member MozMeasureText </summary>
-		/// <param name='textToMeasure'> </param>
-		/// <returns>A System.Single</returns>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		float MozMeasureText([MarshalAs(UnmanagedType.LPStruct)] nsAString textToMeasure);
-		
-		/// <summary>Member MozPathText </summary>
-		/// <param name='textToPath'> </param>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MozPathText([MarshalAs(UnmanagedType.LPStruct)] nsAString textToPath);
-		
-		/// <summary>Member MozTextAlongPath </summary>
-		/// <param name='textToDraw'> </param>
-		/// <param name='stroke'> </param>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MozTextAlongPath([MarshalAs(UnmanagedType.LPStruct)] nsAString textToDraw, [MarshalAs(UnmanagedType.Bool)] bool stroke);
-		
 		/// <summary>
         /// image api
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DrawImage([MarshalAs(UnmanagedType.Interface)] nsIDOMElement image, float a1, float a2, float a3, float a4, float a5, float a6, float a7, float a8);
+		void DrawImage([MarshalAs(UnmanagedType.Interface)] nsIDOMElement image, float a1, float a2, float a3, float a4, float a5, float a6, float a7, float a8, int argc);
 		
 		/// <summary>
         /// point-membership test

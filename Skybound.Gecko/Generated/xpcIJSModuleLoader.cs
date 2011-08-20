@@ -30,7 +30,7 @@ namespace Skybound.Gecko
 	/// <summary>xpcIJSModuleLoader </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("89da3673-e699-4f26-9ed7-11a528011434")]
+	[Guid("3f945a8e-58ca-47ba-a789-82d022e837fd")]
 	public interface xpcIJSModuleLoader
 	{
 		
@@ -40,11 +40,20 @@ namespace Skybound.Gecko
 		void Import([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aResourceURI);
 		
 		/// <summary>
-        /// Imports the JS module at 'registryLocation' to the JS object
+        /// Imports the JS module at aResourceURI to the JS object
         /// 'targetObj' (if != null) as described for importModule() and
         /// returns the module's global object.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr ImportInto([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aResourceURI, System.IntPtr targetObj, System.IntPtr cc);
+		
+		/// <summary>
+        /// Unloads the JS module at aResourceURI. Existing references to the module
+        /// will continue to work but any subsequent import of the module will
+        /// reload it and give new reference. If the JS module hasn't yet been imported
+        /// then this method will do nothing.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Unload([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aResourceURI);
 	}
 }

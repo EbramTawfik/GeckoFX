@@ -1694,7 +1694,7 @@ namespace Skybound.Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("0a5ce210-c803-11de-8a39-0800200c9a66")]
+	[Guid("c837f6ba-6ad7-4810-a425-8ce29e05d17e")]
 	public interface nsINavHistoryObserver
 	{
 		
@@ -1726,13 +1726,14 @@ namespace Skybound.Gecko
         /// @param aSessionID      The ID of one connected sequence of visits.
         /// @param aReferringID    The ID of the visit the user came from. 0 if empty.
         /// @param aTransitionType One of nsINavHistory.TRANSITION_*
+        /// @param aGUID           The unique ID associated with the page.
         /// @param aAdded          Incremented by query nodes when the visited uri
         /// belongs to them. If no such query exists, the
         /// history result creates a new query node dynamically.
         /// It is used in places views only and can be ignored.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnVisit([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, int aVisitID, uint aTime, int aSessionID, int aReferringID, uint aTransitionType, ref uint aAdded);
+		void OnVisit([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, int aVisitID, uint aTime, int aSessionID, int aReferringID, uint aTransitionType, [MarshalAs(UnmanagedType.LPStruct)] nsACString aGUID, ref uint aAdded);
 		
 		/// <summary>
         /// Called whenever either the "real" title or the custom title of the page
@@ -1747,9 +1748,15 @@ namespace Skybound.Gecko
         /// to see whether an empty string is "null" or not (it will always be an
         /// empty string in either case).
         ///
+        /// @param aURI
+        /// The URI of the page.
+        /// @param aPageTitle
+        /// The new title of the page.
+        /// @param aGUID
+        /// The unique ID associated with the page.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnTitleChanged([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString aPageTitle);
+		void OnTitleChanged([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString aPageTitle, [MarshalAs(UnmanagedType.LPStruct)] nsACString aGUID);
 		
 		/// <summary>
         /// This page and all of its visits are about to be deleted.  Note: the page
@@ -1757,9 +1764,13 @@ namespace Skybound.Gecko
         ///
         /// @param aURI
         /// The URI being deleted.
+        /// @param aGUID
+        /// The unique ID associated with the page.
+        /// @param aReason
+        /// Indicates the reason for the removal.  See REASON_* constants.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnBeforeDeleteURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
+		void OnBeforeDeleteURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsACString aGUID, ushort aReason);
 		
 		/// <summary>
         /// This page and all of its visits are being deleted. Note: the page may not
@@ -1770,9 +1781,16 @@ namespace Skybound.Gecko
         /// delete. If there is some error in the middle (for example, out of memory)
         /// then you'll get a notification and it won't get deleted. There's no easy
         /// way around this.
+        ///
+        /// @param aURI
+        /// The URI that was deleted.
+        /// @param aGUID
+        /// The unique ID associated with the page.
+        /// @param aReason
+        /// Indicates the reason for the removal.  see REASON_* constants.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnDeleteURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
+		void OnDeleteURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsACString aGUID, ushort aReason);
 		
 		/// <summary>
         /// Notification that all of history is being deleted.
@@ -1781,10 +1799,19 @@ namespace Skybound.Gecko
 		void OnClearHistory();
 		
 		/// <summary>
-        /// favicon updated, aString = favicon annotation URI
+        /// An attribute of this page changed.
+        ///
+        /// @param aURI
+        /// The URI of the page on which an attribute changed.
+        /// @param aChangedAttribute
+        /// The attribute whose value changed.  See ATTRIBUTE_* constants.
+        /// @param aNewValue
+        /// The attribute's new value.
+        /// @param aGUID
+        /// The unique ID associated with the page.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnPageChanged([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, uint aWhat, [MarshalAs(UnmanagedType.LPStruct)] nsAString aValue);
+		void OnPageChanged([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, uint aChangedAttribute, [MarshalAs(UnmanagedType.LPStruct)] nsAString aNewValue, [MarshalAs(UnmanagedType.LPStruct)] nsACString aGUID);
 		
 		/// <summary>
         /// Called when some visits of an history entry are expired.
@@ -1794,14 +1821,18 @@ namespace Skybound.Gecko
         /// @param aVisitTime
         /// The largest visit time in microseconds that has been expired.  We
         /// guarantee that we don't have any visit older than this date.
+        /// @param aGUID
+        /// The unique ID associated with the page.
         ///
         /// @note: when all visits for a page are expired and also the full page entry
         /// is expired, you will only get an onDeleteURI notification.  If a
         /// page entry is removed, then you can be sure that we don't have
         /// anymore visits for it.
+        /// @param aReason
+        /// Indicates the reason for the removal.  see REASON_* constants.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnDeleteVisits([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, uint aVisitTime);
+		void OnDeleteVisits([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, uint aVisitTime, [MarshalAs(UnmanagedType.LPStruct)] nsACString aGUID, ushort aReason);
 	}
 	
 	/// <summary>

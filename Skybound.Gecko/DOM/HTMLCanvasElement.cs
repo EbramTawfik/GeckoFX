@@ -36,17 +36,9 @@ namespace Skybound.Gecko.DOM
 		public string toDataURL()
 		{
 			var retval = new nsAString();
-			DOMHTMLElement.ToDataURL(null, null, retval);
+			DOMHTMLElement.ToDataURL(null, null, 2, retval);
 			return retval.ToString();
 		}
-
-		public string toDataURLAs(string mimeType, string encoderOptions)
-		{
-			var retval = new nsAString();
-			DOMHTMLElement.ToDataURLAs(new nsAString(mimeType), new nsAString(encoderOptions), retval);
-			return retval.ToString();
-		}
-
 	}
 }
 

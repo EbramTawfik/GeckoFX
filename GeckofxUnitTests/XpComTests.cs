@@ -11,7 +11,7 @@ namespace GeckofxUnitTests
 	[TestFixture]
 	public class XpComTests
 	{
-		public const string XulRunnerLocation = @"C:\Program Files (x86)\Mozilla Firefox 5.05b";
+		public const string XulRunnerLocation = @"C:\Program Files (x86)\Mozilla Firefox 7.0";
 
 		[SetUp]
 		public void BeforeEachTestSetup()
@@ -123,15 +123,7 @@ namespace GeckofxUnitTests
 			Assert.IsNotNull(instance);
 			Marshal.ReleaseComObject(instance);
 		}
-
-		[Test]
-		public void CreateInstance_CreatingSyncloadDomService_ReturnsValidInstance()
-		{
-			var instance = Xpcom.CreateInstance<nsISyncLoadDOMService>("@mozilla.org/content/syncload-dom-service;1");
-			Assert.IsNotNull(instance);
-			Marshal.ReleaseComObject(instance);
-		}
-
+		
 		[Test]
 		public void CreateInstance_CreatingEventListenerService_ReturnsValidInstance()
 		{
@@ -1490,15 +1482,7 @@ namespace GeckofxUnitTests
 			Assert.IsNotNull(instance);
 			Marshal.ReleaseComObject(instance);
 		}
-
-		[Test]
-		public void CreateInstance_CreatingFastLoadService_ReturnsValidInstance()
-		{			
-			var instance = Xpcom.CreateInstance<nsIFastLoadService>("@mozilla.org/fast-load-service;1");
-			Assert.IsNotNull(instance);
-			Marshal.ReleaseComObject(instance);
-		}
-
+	
 		[Test]
 		public void CreateInstance_CreatingMultiplexInputStream_ReturnsValidInstance()
 		{			

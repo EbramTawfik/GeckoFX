@@ -31,7 +31,7 @@ namespace Skybound.Gecko
     /// nsIHttpChannelAuthProvider
     ///
     /// This interface is intended for providing authentication for http-style
-    /// channels, like nsIHttpChannel and nsIMozWebSocket, which implement the
+    /// channels, like nsIHttpChannel and nsIWebSocket, which implement the
     /// nsIHttpAuthenticableChannel interface.
     ///
     /// When requesting pages AddAuthorizationHeaders MUST be called

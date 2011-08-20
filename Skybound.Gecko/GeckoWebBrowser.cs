@@ -176,26 +176,26 @@ namespace Skybound.Gecko
 				Guid nsIWebProgressListenerGUID = typeof(nsIWebProgressListener).GUID;
 				WebBrowser.AddWebBrowserListener(this, ref nsIWebProgressListenerGUID);
 
-				nsIDOMEventTarget target = Xpcom.QueryInterface<nsIDOMWindow2>(WebBrowser.GetContentDOMWindowAttribute()).GetWindowRootAttribute();
+				nsIDOMEventTarget target = Xpcom.QueryInterface<nsIDOMWindow>(WebBrowser.GetContentDOMWindowAttribute()).GetWindowRootAttribute();
 				
-				target.AddEventListener(new nsAString("submit"), this, true);
-				target.AddEventListener(new nsAString("keydown"), this, true);
-				target.AddEventListener(new nsAString("keyup"), this, true);
-				target.AddEventListener(new nsAString("keypress"), this, true);
-				target.AddEventListener(new nsAString("mousemove"), this, true);
-				target.AddEventListener(new nsAString("mouseover"), this, true);
-				target.AddEventListener(new nsAString("mouseout"), this, true);
-				target.AddEventListener(new nsAString("mousedown"), this, true);
-				target.AddEventListener(new nsAString("mouseup"), this, true);
-				target.AddEventListener(new nsAString("click"), this, true);
-				target.AddEventListener(new nsAString("compositionstart"), this, true);
-				target.AddEventListener(new nsAString("compositionend"), this, true);
-				target.AddEventListener(new nsAString("contextmenu"), this, true);
-				target.AddEventListener(new nsAString("DOMMouseScroll"), this, true);
-				target.AddEventListener(new nsAString("focus"), this, true);
+				target.AddEventListener(new nsAString("submit"), this, true, true, 2);
+				target.AddEventListener(new nsAString("keydown"), this, true, true, 2);
+				target.AddEventListener(new nsAString("keyup"), this, true, true, 2);
+				target.AddEventListener(new nsAString("keypress"), this, true, true, 2);
+				target.AddEventListener(new nsAString("mousemove"), this, true, true, 2);
+				target.AddEventListener(new nsAString("mouseover"), this, true, true, 2);
+				target.AddEventListener(new nsAString("mouseout"), this, true, true, 2);
+				target.AddEventListener(new nsAString("mousedown"), this, true, true, 2);
+				target.AddEventListener(new nsAString("mouseup"), this, true, true, 2);
+				target.AddEventListener(new nsAString("click"), this, true, true, 2);
+				target.AddEventListener(new nsAString("compositionstart"), this, true, true, 2);
+				target.AddEventListener(new nsAString("compositionend"), this, true, true, 2);
+				target.AddEventListener(new nsAString("contextmenu"), this, true, true, 2);
+				target.AddEventListener(new nsAString("DOMMouseScroll"), this, true, true, 2);
+				target.AddEventListener(new nsAString("focus"), this, true, true, 2);
 				// Load event added here rather than DOMDocument as DOMDocument recreated when navigating
-				// this losing attached listener.
-				target.AddEventListener(new nsAString("load"), this, true);
+				// ths losing attached listener.
+				target.AddEventListener(new nsAString("load"), this, true, true, 2);
 				
 				// history
 				if (WebNav.GetSessionHistoryAttribute() != null)

@@ -30,7 +30,7 @@ namespace Skybound.Gecko
 	/// <summary>nsIPopupBoxObject </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("548a9e3f-af78-42b0-a260-035ece15c19f")]
+	[Guid("6AD1B199-95D3-448B-98D7-896BCE3A1DCD")]
 	public interface nsIPopupBoxObject
 	{
 		
@@ -176,5 +176,13 @@ namespace Skybound.Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMElement GetAnchorNodeAttribute();
+		
+		/// <summary>
+        /// Retrieve the screen rectangle of the popup, including the area occupied by
+        /// any titlebar or borders present.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMClientRect GetOuterScreenRect();
 	}
 }

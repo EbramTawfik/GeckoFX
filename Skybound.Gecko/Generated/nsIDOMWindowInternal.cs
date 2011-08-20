@@ -27,11 +27,30 @@ namespace Skybound.Gecko
 	using System.Windows.Forms;
 	
 	
+	/// <summary>nsIDOMMozURLProperty </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("8fc58f56-f769-4368-a098-edd08550cf1a")]
+	public interface nsIDOMMozURLProperty
+	{
+		
+		/// <summary>Member CreateObjectURL </summary>
+		/// <param name='blob'> </param>
+		/// <param name='retval'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void CreateObjectURL([MarshalAs(UnmanagedType.Interface)] nsIDOMBlob blob, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		
+		/// <summary>Member RevokeObjectURL </summary>
+		/// <param name='URL'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RevokeObjectURL([MarshalAs(UnmanagedType.LPStruct)] nsAString URL);
+	}
+	
 	/// <summary>nsIDOMWindowInternal </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("3a7b0839-b9d6-42ff-8ba6-910aba60a966")]
-	public interface nsIDOMWindowInternal : nsIDOMWindow2
+	[Guid("7fec9403-7562-4ae0-8d9b-0735f0a55d7d")]
+	public interface nsIDOMWindowInternal : nsIDOMWindow
 	{
 		
 		/// <summary>
@@ -40,43 +59,6 @@ namespace Skybound.Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMDocument GetDocumentAttribute();
-		
-		/// <summary>
-        /// Accessor for this window's parent window, or the window itself if
-        /// there is no parent, or if the parent is of different type
-        /// (i.e. this does not cross chrome-content boundaries).
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMWindow GetParentAttribute();
-		
-		/// <summary>
-        /// Accessor for the root of this hierarchy of windows. This root may
-        /// be the window itself if there is no parent, or if the parent is
-        /// of different type (i.e. this does not cross chrome-content
-        /// boundaries).
-        ///
-        /// This property is "replaceable" in JavaScript </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMWindow GetTopAttribute();
-		
-		/// <summary>
-        /// Accessor for the object that controls whether or not scrollbars
-        /// are shown in this window.
-        ///
-        /// This attribute is "replaceable" in JavaScript
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMBarProp GetScrollbarsAttribute();
-		
-		/// <summary>
-        /// Accessor for the child windows in this window.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMWindowCollection GetFramesAttribute();
 		
 		/// <summary>
         /// Set/Get the name of this window.
@@ -95,26 +77,41 @@ namespace Skybound.Gecko
 		new void SetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
 		
 		/// <summary>
-        /// Set/Get the document scale factor as a multiplier on the default
-        /// size. When setting this attribute, a NS_ERROR_NOT_IMPLEMENTED
-        /// error may be returned by implementations not supporting
-        /// zoom. Implementations not supporting zoom should return 1.0 all
-        /// the time for the Get operation. 1.0 is equals normal size,
-        /// i.e. no zoom.
+        /// Accessor for the object that controls whether or not scrollbars
+        /// are shown in this window.
+        ///
+        /// This attribute is "replaceable" in JavaScript
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new float GetTextZoomAttribute();
+		new nsIDOMBarProp GetScrollbarsAttribute();
 		
 		/// <summary>
-        /// Set/Get the document scale factor as a multiplier on the default
-        /// size. When setting this attribute, a NS_ERROR_NOT_IMPLEMENTED
-        /// error may be returned by implementations not supporting
-        /// zoom. Implementations not supporting zoom should return 1.0 all
-        /// the time for the Get operation. 1.0 is equals normal size,
-        /// i.e. no zoom.
-        /// </summary>
+        /// Accessor for the root of this hierarchy of windows. This root may
+        /// be the window itself if there is no parent, or if the parent is
+        /// of different type (i.e. this does not cross chrome-content
+        /// boundaries).
+        ///
+        /// This property is "replaceable" in JavaScript </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetTextZoomAttribute(float aTextZoom);
+		new nsIDOMWindow GetTopAttribute();
+		
+		/// <summary>
+        /// Accessor for this window's parent window, or the window itself if
+        /// there is no parent, or if the parent is of different type
+        /// (i.e. this does not cross chrome-content boundaries).
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMWindow GetParentAttribute();
+		
+		/// <summary>
+        /// Get the application cache object for this window.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMOfflineResourceList GetApplicationCacheAttribute();
 		
 		/// <summary>
         /// Accessor for the current x scroll position in this window in
@@ -155,24 +152,6 @@ namespace Skybound.Gecko
 		new nsISelection GetSelection();
 		
 		/// <summary>
-        /// Method for scrolling this window by a number of lines.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void ScrollByLines(int numLines);
-		
-		/// <summary>
-        /// Method for scrolling this window by a number of pages.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void ScrollByPages(int numPages);
-		
-		/// <summary>
-        /// Method for sizing this window to the content in the window.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SizeToContent();
-		
-		/// <summary>
         /// @see <http://dev.w3.org/csswg/cssom/#dom-window-getcomputedstyle>
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
@@ -189,22 +168,51 @@ namespace Skybound.Gecko
 		new nsIDOMEventTarget GetWindowRootAttribute();
 		
 		/// <summary>
-        /// Get the application cache object for this window.
+        /// Accessor for the child windows in this window.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMOfflineResourceList GetApplicationCacheAttribute();
+		new nsIDOMWindowCollection GetFramesAttribute();
 		
 		/// <summary>
-        /// Deprecated, but can't remove yet since we don't want to change interfaces.
+        /// Set/Get the document scale factor as a multiplier on the default
+        /// size. When setting this attribute, a NS_ERROR_NOT_IMPLEMENTED
+        /// error may be returned by implementations not supporting
+        /// zoom. Implementations not supporting zoom should return 1.0 all
+        /// the time for the Get operation. 1.0 is equals normal size,
+        /// i.e. no zoom.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void CreateBlobURL([MarshalAs(UnmanagedType.Interface)] nsIDOMBlob blob, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		new float GetTextZoomAttribute();
 		
-		/// <summary>Member RevokeBlobURL </summary>
-		/// <param name='URL'> </param>
+		/// <summary>
+        /// Set/Get the document scale factor as a multiplier on the default
+        /// size. When setting this attribute, a NS_ERROR_NOT_IMPLEMENTED
+        /// error may be returned by implementations not supporting
+        /// zoom. Implementations not supporting zoom should return 1.0 all
+        /// the time for the Get operation. 1.0 is equals normal size,
+        /// i.e. no zoom.
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void RevokeBlobURL([MarshalAs(UnmanagedType.LPStruct)] nsAString URL);
+		new void SetTextZoomAttribute(float aTextZoom);
+		
+		/// <summary>
+        /// Method for scrolling this window by a number of lines.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void ScrollByLines(int numLines);
+		
+		/// <summary>
+        /// Method for scrolling this window by a number of pages.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void ScrollByPages(int numPages);
+		
+		/// <summary>
+        /// Method for sizing this window to the content in the window.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SizeToContent();
 		
 		/// <summary>Member GetWindowAttribute </summary>
 		/// <returns>A nsIDOMWindowInternal</returns>
@@ -642,38 +650,26 @@ namespace Skybound.Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMMediaQueryList MatchMedia([MarshalAs(UnmanagedType.LPStruct)] nsAString media_query_list);
-	}
-	
-	/// <summary>nsIDOMMozURLProperty </summary>
-	[ComImport()]
-	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("8fc58f56-f769-4368-a098-edd08550cf1a")]
-	public interface nsIDOMMozURLProperty
-	{
-		
-		/// <summary>Member CreateObjectURL </summary>
-		/// <param name='blob'> </param>
-		/// <param name='retval'> </param>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CreateObjectURL([MarshalAs(UnmanagedType.Interface)] nsIDOMBlob blob, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
-		
-		/// <summary>Member RevokeObjectURL </summary>
-		/// <param name='URL'> </param>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RevokeObjectURL([MarshalAs(UnmanagedType.LPStruct)] nsAString URL);
-	}
-	
-	/// <summary>nsIDOMWindow_2_0_BRANCH </summary>
-	[ComImport()]
-	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("05563c0c-b74c-41ad-91d1-bc22d580a581")]
-	public interface nsIDOMWindow_2_0_BRANCH
-	{
 		
 		/// <summary>Member GetURLAttribute </summary>
 		/// <returns>A nsIDOMMozURLProperty</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMMozURLProperty GetURLAttribute();
+	}
+	
+	/// <summary>nsIDOMWindowPerformance </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("2146c906-57f7-486c-a1b4-8cdb57ef577f")]
+	public interface nsIDOMWindowPerformance
+	{
+		
+		/// <summary>
+        /// A namespace to hold performance related data and statistics.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMPerformance GetPerformanceAttribute();
 	}
 }

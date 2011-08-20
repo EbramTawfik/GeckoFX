@@ -17,12 +17,7 @@ namespace Skybound.Gecko.DOM
 		public GeckoHeadElement(object element) : base(element as nsIDOMHTMLElement)
 		{
 			this.DOMHTMLElement = element as nsIDOMHTMLHeadElement;
-		}
-		public string Profile {
-			get { return nsString.Get(DOMHTMLElement.GetProfileAttribute); }
-			set { DOMHTMLElement.SetProfileAttribute(new nsAString(value)); }
-		}
-
+		}		
 	}
 }
 

@@ -32,7 +32,7 @@ namespace Skybound.Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("bc0eb30e-656e-491e-a7ae-7f460b660c8d")]
+	[Guid("932f9f93-8e21-4728-a527-cafc64b4d831")]
 	public interface nsIDocShellTreeOwner
 	{
 		
@@ -104,5 +104,11 @@ namespace Skybound.Gecko
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetPersistence([MarshalAs(UnmanagedType.Bool)] ref bool aPersistPosition, [MarshalAs(UnmanagedType.Bool)] ref bool aPersistSize, [MarshalAs(UnmanagedType.Bool)] ref bool aPersistSizeMode);
+		
+		/// <summary>
+        ///Gets the number of targettable docshells.
+        ///	 </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetTargetableShellCountAttribute();
 	}
 }

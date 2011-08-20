@@ -128,8 +128,9 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member ScrollIntoView </summary>
 		/// <param name='top'> </param>
+		/// <param name='argc'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ScrollIntoView([MarshalAs(UnmanagedType.Bool)] bool top);
+		void ScrollIntoView([MarshalAs(UnmanagedType.Bool)] bool top, int argc);
 		
 		/// <summary>Member GetSpellcheckAttribute </summary>
 		/// <returns>A System.Boolean</returns>

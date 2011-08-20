@@ -30,7 +30,7 @@ namespace Skybound.Gecko
 	/// <summary>nsIDOMChromeWindow </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("ec38cbaf-372f-4874-bc7a-dbf1f0b3d755")]
+	[Guid("7cfbc355-cbf9-4408-8e4c-a3c603ff1428")]
 	public interface nsIDOMChromeWindow
 	{
 		
@@ -101,10 +101,12 @@ namespace Skybound.Gecko
         /// start dragging the window. This function will fail unless called
         /// while the left mouse button is held down, callers must check this.
         ///
+        /// The optional panel argument should be set when moving a panel.
+        ///
         /// Returns NS_ERROR_NOT_IMPLEMENTED (and thus throws in JS) if the OS
         /// doesn't support this.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BeginWindowMove([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent mouseDownEvent);
+		void BeginWindowMove([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent mouseDownEvent, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement panel);
 	}
 }
