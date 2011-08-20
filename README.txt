@@ -2,6 +2,10 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v7.0-0.1 ==
+
+1. Initial version supporting xulrunner v7.0
+
 == v6.0-0.3 ==
 
 1. Fix bug https://bitbucket.org/geckofx/geckofx-6.0/issue/4 by changing
