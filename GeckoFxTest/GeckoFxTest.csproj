@@ -64,7 +64,7 @@
     <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
     <EnvironmentVariables>
       <EnvironmentVariables>
-        <Variable name="LD_LIBRARY_PATH" value="/usr/lib/xulrunner-2.0/" />
+        <Variable name="LD_LIBRARY_PATH" value="/usr/lib/firefox-7.0/" />
         <Variable name="MONO_PATH" value="/usr/lib/cli/gdk-sharp-2.0/" />
       </EnvironmentVariables>
     </EnvironmentVariables>
@@ -94,7 +94,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Skybound.Gecko\Skybound.Gecko.csproj">
-      <Project>{877D1A24-2D5E-4C46-A933-FCF11EA0403B}</Project>
+      <Project>{6AB4EEE6-1889-43AB-83F7-A4F083230BE7}</Project>
       <Name>Skybound.Gecko</Name>
     </ProjectReference>
   </ItemGroup>

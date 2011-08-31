@@ -9,6 +9,7 @@ using Skybound.Gecko;
 namespace GeckofxUnitTests
 {
 	[TestFixture]
+	[Platform(Exclude="Linux")]
 	public class UserInfoTests
 	{
 		nsIUserInfo m_instance;

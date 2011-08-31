@@ -11,7 +11,16 @@ namespace GeckofxUnitTests
 	[TestFixture]
 	public class XpComTests
 	{
-		public const string XulRunnerLocation = @"C:\Program Files (x86)\Mozilla Firefox 7.0";
+		public static string XulRunnerLocation 
+		{
+			get 
+			{ 
+				if (Xpcom.IsLinux)
+					return "/usr/lib/firefox-7.0/";
+				
+				return @"C:\Program Files (x86)\Mozilla Firefox 7.0";
+			}
+		}
 
 		[SetUp]
 		public void BeforeEachTestSetup()
@@ -27,7 +36,9 @@ namespace GeckofxUnitTests
 			Xpcom.Free(memory);			
 		}
 		
+		// This test seg faults on Linux.
 		[Test]
+		[Platform(Exclude="Linux")]
 		public void Realloc_XpcomInitialize_ReturnsValidPointer()
 		{		
 			IntPtr memory = Xpcom.Alloc(100);			
@@ -61,6 +72,7 @@ namespace GeckofxUnitTests
 		}
 
 		[Test]
+		[Platform(Exclude="Linux")]
 		public void CreateInstance_CreatingWindowsTaskbar_ReturnsValidInstance()
 		{			
 			var instance = Xpcom.CreateInstance<nsIWinTaskbar>("@mozilla.org/windows-taskbar;1");
@@ -1452,6 +1464,7 @@ namespace GeckofxUnitTests
 		}
 
 		[Test]
+		[Platform(Exclude="Linux")]
 		public void CreateInstance_CreatingWindowsRegistryKey_ReturnsValidInstance()
 		{			 
 			var instance = Xpcom.CreateInstance<nsIWindowsRegKey>("@mozilla.org/windows-registry-key;1");

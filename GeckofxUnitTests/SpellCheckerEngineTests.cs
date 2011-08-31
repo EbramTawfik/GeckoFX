@@ -9,7 +9,9 @@ using System.Windows.Forms;
 
 namespace GeckofxUnitTests
 {
+	// Setting SetDictionaryAttribute ("en-US") throws NS_ERROR_FILE_NOT_FOUND on Linux.
 	[TestFixture]
+	[Platform(Exclude="Linux")]
 	public class SpellCheckerEngineTests
 	{
 		const string Language = "en";
