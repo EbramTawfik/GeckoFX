@@ -11,10 +11,39 @@ namespace GeckoFxTest
 {
 	class MainClass
 	{
+		
+#if __MonoCS__
+		/// <summary>
+		/// If this doesn't compile you have an unpatched mono.
+		/// Either patch you mono with patch at: https://bugzilla.novell.com/show_bug.cgi?id=672879
+		/// or comment this class out and the call to 
+		/// __ComObjectReleaser.Register in the main block.
+		/// If you do that make sure to run Paratext with GC_DONT_GC environment 
+		/// variable set. (or things will go randomly wrong)
+		/// </summary>
+		class IdleComObjectRelease : System.IComObjectReleaser
+		{
+			public void Add(IntPtr pUnk)
+			{
+				if (pUnk == IntPtr.Zero)
+					return;			
+				EventHandler idleHandler = (sender, eventArgs) => 
+				{
+					Marshal.Release(pUnk); Application.Idle -= idleHandler; 
+				};
+				Application.Idle += idleHandler;
+			}
+		}
+#endif
+		
 		[STAThread]
 		public static void Main(string[] args)
 		{
-#if GTK
+#if __MonoCS__		
+		__ComObjectReleaser.Register(new IdleComObjectRelease());	
+#endif
+			
+#if GTK		
 			if (!Environment.GetEnvironmentVariable("LD_LIBRARY_PATH").Contains("/usr/lib/firefox-7.0/"))
 				throw new ApplicationException(String.Format("LD_LIBRARY_PATH must contain {0}", "/usr/lib/firefox-7.0/"));
 
