@@ -423,14 +423,15 @@ namespace Skybound.Gecko
 
 		protected override void OnEnter(EventArgs e)
 		{
-		      WebBrowserFocus.Activate();
-		      
-		      base.OnEnter(e);
+			if (WebBrowserFocus != null)			
+				WebBrowserFocus.Activate();
+			
+			base.OnEnter(e);
 		}
 
 		protected override void OnLeave(EventArgs e)
 		{
-		      if (!IsBusy)
+		      if (WebBrowserFocus != null && !IsBusy)
 		            WebBrowserFocus.Deactivate();
 		           
 		      base.OnLeave(e);
