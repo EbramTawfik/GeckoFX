@@ -30,7 +30,7 @@ namespace Skybound.Gecko
 	/// <summary>nsIDOMNSHTMLElement </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("cf76761d-2d93-4e88-aaf1-b637878bad65")]
+	[Guid("0c3b4b63-30b2-4c93-906d-f983ee9af584")]
 	public interface nsIDOMNSHTMLElement
 	{
 		
@@ -126,11 +126,23 @@ namespace Skybound.Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetDraggableAttribute([MarshalAs(UnmanagedType.Bool)] bool aDraggable);
 		
+		/// <summary>Member InsertAdjacentHTML </summary>
+		/// <param name='position'> </param>
+		/// <param name='text'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void InsertAdjacentHTML([MarshalAs(UnmanagedType.LPStruct)] nsAString position, [MarshalAs(UnmanagedType.LPStruct)] nsAString text);
+		
 		/// <summary>Member ScrollIntoView </summary>
 		/// <param name='top'> </param>
 		/// <param name='argc'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ScrollIntoView([MarshalAs(UnmanagedType.Bool)] bool top, int argc);
+		
+		/// <summary>Member GetContextMenuAttribute </summary>
+		/// <returns>A nsIDOMHTMLMenuElement</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMHTMLMenuElement GetContextMenuAttribute();
 		
 		/// <summary>Member GetSpellcheckAttribute </summary>
 		/// <returns>A System.Boolean</returns>

@@ -30,7 +30,7 @@ namespace Skybound.Gecko
 	/// <summary>nsIFormSubmitObserver </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("0b3cc84d-25d2-448e-ae71-746ee6e41c2d")]
+	[Guid("534ab795-6a99-4195-bfab-cfdd7836657d")]
 	public interface nsIFormSubmitObserver
 	{
 		
@@ -40,7 +40,7 @@ namespace Skybound.Gecko
 		/// <param name='actionURL'> </param>
 		/// <param name='cancelSubmit'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Notify([MarshalAs(UnmanagedType.Interface)] nsIDOMHTMLFormElement formNode, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindowInternal window, [MarshalAs(UnmanagedType.Interface)] nsIURI actionURL, [MarshalAs(UnmanagedType.Bool)] ref bool cancelSubmit);
+		void Notify([MarshalAs(UnmanagedType.Interface)] nsIDOMHTMLFormElement formNode, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, [MarshalAs(UnmanagedType.Interface)] nsIURI actionURL, [MarshalAs(UnmanagedType.Bool)] ref bool cancelSubmit);
 		
 		/// <summary>Member NotifyInvalidSubmit </summary>
 		/// <param name='formNode'> </param>

@@ -67,7 +67,7 @@ namespace Skybound.Gecko
         ///             with this name already exists, the openWindow call may just load
         ///             aUrl in it (if aUrl is not null) and return it.
         ///      @param aFeatures window features from JS window.open. can be null.
-        ///      @param aDialog use dialog defaults (see nsIDOMWindowInternal::openDialog)
+        ///      @param aDialog use dialog defaults (see nsIDOMWindow::openDialog)
         ///      @param aArgs Window argument
         ///      @return the new window
         ///      @note This method may examine the JS context stack for purposes of

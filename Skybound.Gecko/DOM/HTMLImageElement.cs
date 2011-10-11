@@ -38,7 +38,7 @@ namespace Skybound.Gecko.DOM
 			set { DOMHTMLElement.SetBorderAttribute(new nsAString(value)); }
 		}
 
-		public int Height {
+		public uint Height {
 			get { return DOMHTMLElement.GetHeightAttribute(); }
 			set { DOMHTMLElement.SetHeightAttribute(value); }
 		}
@@ -73,7 +73,7 @@ namespace Skybound.Gecko.DOM
 			set { DOMHTMLElement.SetVspaceAttribute(value); }
 		}
 
-		public int Width {
+		public uint Width {
 			get { return DOMHTMLElement.GetWidthAttribute(); }
 			set { DOMHTMLElement.SetWidthAttribute(value); }
 		}

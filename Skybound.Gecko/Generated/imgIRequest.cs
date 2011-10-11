@@ -36,7 +36,7 @@ namespace Skybound.Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("62f58f12-3076-44fc-a742-5b648dac21bc")]
+	[Guid("c3bf4e2a-f64b-4ac1-a84e-18631b1802ab")]
 	public interface imgIRequest : nsIRequest
 	{
 		
@@ -200,6 +200,12 @@ namespace Skybound.Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIPrincipal GetImagePrincipalAttribute();
+		
+		/// <summary>
+        /// The CORS mode that this image was loaded with.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		int GetCORSModeAttribute();
 		
 		/// <summary>
         /// Cancels this request as in nsIRequest::Cancel(); further, also nulls out

@@ -144,7 +144,7 @@ namespace Skybound.Gecko
 	/// <summary>nsIFrameLoader </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("13c512d6-fba0-402a-9244-fe7941c43965")]
+	[Guid("12905a29-4246-475a-81d4-fc389197df02")]
 	public interface nsIFrameLoader
 	{
 		
@@ -199,6 +199,13 @@ namespace Skybound.Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ActivateRemoteFrame();
+		
+		/// <summary>
+        /// Deactivate remote frame.
+        /// Throws an exception with non-remote frames.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void DeactivateRemoteFrame();
 		
 		/// <summary>
         /// @see nsIDOMWindowUtils sendMouseEvent.
@@ -257,6 +264,20 @@ namespace Skybound.Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetRenderModeAttribute(uint aRenderMode);
+		
+		/// <summary>
+        /// With this event mode, it's the application's responsability to
+        /// convert and forward events to the content process
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetEventModeAttribute();
+		
+		/// <summary>
+        /// With this event mode, it's the application's responsability to
+        /// convert and forward events to the content process
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetEventModeAttribute(uint aEventMode);
 	}
 	
 	/// <summary>nsIFrameLoaderOwner </summary>

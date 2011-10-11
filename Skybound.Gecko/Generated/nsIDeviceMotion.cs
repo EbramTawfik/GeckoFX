@@ -71,7 +71,7 @@ namespace Skybound.Gecko
 	/// <summary>nsIDeviceMotion </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("4B04E228-0B33-43FC-971F-AF60CEDB1C21")]
+	[Guid("B6E5C463-AAA6-44E2-BD07-7A7DC6192E68")]
 	public interface nsIDeviceMotion
 	{
 		
@@ -85,8 +85,9 @@ namespace Skybound.Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RemoveListener([MarshalAs(UnmanagedType.Interface)] nsIDeviceMotionListener aListener);
 		
-		/// <summary>Member AddWindowListener </summary>
-		/// <param name='aWindow'> </param>
+		/// <summary>
+        /// to call RemoveWindowListener before the window is deleted.
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void AddWindowListener([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow);
 		
@@ -112,6 +113,9 @@ namespace Skybound.Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void RemoveListener([MarshalAs(UnmanagedType.Interface)] nsIDeviceMotionListener aListener);
 		
+		/// <summary>
+        /// to call RemoveWindowListener before the window is deleted.
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void AddWindowListener([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow);
 		

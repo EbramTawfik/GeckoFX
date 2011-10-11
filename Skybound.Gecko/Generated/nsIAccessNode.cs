@@ -41,7 +41,7 @@ namespace Skybound.Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("ef16ff42-0256-4b48-ae87-b18a95b7f7d6")]
+	[Guid("bbbd5a68-bad2-48c1-ab09-beb6c34f03d9")]
 	public interface nsIAccessNode
 	{
 		
@@ -95,13 +95,6 @@ namespace Skybound.Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ScrollToPoint(uint aCoordinateType, int aX, int aY);
-		
-		/// <summary>
-        /// The OS window handle for the window this node
-        /// is being displayed in.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetOwnerWindowAttribute();
 		
 		/// <summary>
         /// A unique ID calculated for this DOM node, for the

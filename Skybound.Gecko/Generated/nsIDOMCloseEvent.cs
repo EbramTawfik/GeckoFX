@@ -36,7 +36,7 @@ namespace Skybound.Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("a94d4379-eba2-45f4-be3a-6cc2fa1453a8")]
+	[Guid("f83d9d6d-6c0c-418c-b12a-438e76d5866b")]
 	public interface nsIDOMCloseEvent : nsIDOMEvent
 	{
 		
@@ -173,6 +173,12 @@ namespace Skybound.Gecko
 		bool GetWasCleanAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitCloseEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString aType, [MarshalAs(UnmanagedType.Bool)] bool aCanBubble, [MarshalAs(UnmanagedType.Bool)] bool aCancelable, [MarshalAs(UnmanagedType.Bool)] bool aWasClean);
+		ushort GetCodeAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetReasonAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aReason);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void InitCloseEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString aType, [MarshalAs(UnmanagedType.Bool)] bool aCanBubble, [MarshalAs(UnmanagedType.Bool)] bool aCancelable, [MarshalAs(UnmanagedType.Bool)] bool aWasClean, ushort aReasonCode, [MarshalAs(UnmanagedType.LPStruct)] nsAString aReason);
 	}
 }

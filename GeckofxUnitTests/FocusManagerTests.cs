@@ -138,6 +138,391 @@ namespace GeckofxUnitTests
 		{
 			throw new NotImplementedException();
 		}
+
+		public nsIDOMWindow GetWindowAttribute()
+		{
+			throw new NotImplementedException();
+		}
+
+		public nsIDOMWindow GetSelfAttribute()
+		{
+			throw new NotImplementedException();
+		}
+
+		public nsIDOMLocation GetLocationAttribute()
+		{
+			throw new NotImplementedException();
+		}
+
+		public nsIDOMHistory GetHistoryAttribute()
+		{
+			throw new NotImplementedException();
+		}
+
+		public nsIDOMBarProp GetLocationbarAttribute()
+		{
+			throw new NotImplementedException();
+		}
+
+		public nsIDOMBarProp GetMenubarAttribute()
+		{
+			throw new NotImplementedException();
+		}
+
+		public nsIDOMBarProp GetPersonalbarAttribute()
+		{
+			throw new NotImplementedException();
+		}
+
+		public nsIDOMBarProp GetStatusbarAttribute()
+		{
+			throw new NotImplementedException();
+		}
+
+		public nsIDOMBarProp GetToolbarAttribute()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void GetStatusAttribute(nsAString aStatus)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetStatusAttribute(nsAString aStatus)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void Close()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void Stop()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void Focus()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void Blur()
+		{
+			throw new NotImplementedException();
+		}
+
+		public uint GetLengthAttribute()
+		{
+			throw new NotImplementedException();
+		}
+
+		public nsIDOMWindow GetOpenerAttribute()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetOpenerAttribute(nsIDOMWindow aOpener)
+		{
+			throw new NotImplementedException();
+		}
+
+		public nsIDOMElement GetFrameElementAttribute()
+		{
+			throw new NotImplementedException();
+		}
+
+		public nsIDOMNavigator GetNavigatorAttribute()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void Alert(nsAString text)
+		{
+			throw new NotImplementedException();
+		}
+
+		public bool Confirm(nsAString text)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void Prompt(nsAString aMessage, nsAString aInitial, nsAString retval)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void Print()
+		{
+			throw new NotImplementedException();
+		}
+
+		public nsIVariant ShowModalDialog(nsAString aURI, nsIVariant aArgs, nsAString aOptions)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void PostMessage(IntPtr message, nsAString targetOrigin)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void Atob(nsAString aAsciiString, nsAString retval)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void Btoa(nsAString aBase64Data, nsAString retval)
+		{
+			throw new NotImplementedException();
+		}
+
+		public nsIDOMStorage GetSessionStorageAttribute()
+		{
+			throw new NotImplementedException();
+		}
+
+		public nsIDOMStorage GetLocalStorageAttribute()
+		{
+			throw new NotImplementedException();
+		}
+
+		public nsIDOMMediaQueryList MatchMedia(nsAString media_query_list)
+		{
+			throw new NotImplementedException();
+		}
+
+		public nsIDOMScreen GetScreenAttribute()
+		{
+			throw new NotImplementedException();
+		}
+
+		public int GetInnerWidthAttribute()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetInnerWidthAttribute(int aInnerWidth)
+		{
+			throw new NotImplementedException();
+		}
+
+		public int GetInnerHeightAttribute()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetInnerHeightAttribute(int aInnerHeight)
+		{
+			throw new NotImplementedException();
+		}
+
+		public int GetPageXOffsetAttribute()
+		{
+			throw new NotImplementedException();
+		}
+
+		public int GetPageYOffsetAttribute()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void Scroll(int xScroll, int yScroll)
+		{
+			throw new NotImplementedException();
+		}
+
+		public int GetScreenXAttribute()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetScreenXAttribute(int aScreenX)
+		{
+			throw new NotImplementedException();
+		}
+
+		public int GetScreenYAttribute()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetScreenYAttribute(int aScreenY)
+		{
+			throw new NotImplementedException();
+		}
+
+		public int GetOuterWidthAttribute()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetOuterWidthAttribute(int aOuterWidth)
+		{
+			throw new NotImplementedException();
+		}
+
+		public int GetOuterHeightAttribute()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetOuterHeightAttribute(int aOuterHeight)
+		{
+			throw new NotImplementedException();
+		}
+
+		public nsIDOMWindow GetContentAttribute()
+		{
+			throw new NotImplementedException();
+		}
+
+		public nsIPrompt GetPrompterAttribute()
+		{
+			throw new NotImplementedException();
+		}
+
+		public bool GetClosedAttribute()
+		{
+			throw new NotImplementedException();
+		}
+
+		public nsIDOMCrypto GetCryptoAttribute()
+		{
+			throw new NotImplementedException();
+		}
+
+		public nsIDOMPkcs11 GetPkcs11Attribute()
+		{
+			throw new NotImplementedException();
+		}
+
+		public nsIControllers GetControllersAttribute()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void GetDefaultStatusAttribute(nsAString aDefaultStatus)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetDefaultStatusAttribute(nsAString aDefaultStatus)
+		{
+			throw new NotImplementedException();
+		}
+
+		public float GetMozInnerScreenXAttribute()
+		{
+			throw new NotImplementedException();
+		}
+
+		public float GetMozInnerScreenYAttribute()
+		{
+			throw new NotImplementedException();
+		}
+
+		public int GetScrollMaxXAttribute()
+		{
+			throw new NotImplementedException();
+		}
+
+		public int GetScrollMaxYAttribute()
+		{
+			throw new NotImplementedException();
+		}
+
+		public bool GetFullScreenAttribute()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetFullScreenAttribute(bool aFullScreen)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void Back()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void Forward()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void Home()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void MoveTo(int xPos, int yPos)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void MoveBy(int xDif, int yDif)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void ResizeTo(int width, int height)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void ResizeBy(int widthDif, int heightDif)
+		{
+			throw new NotImplementedException();
+		}
+
+		public nsIDOMWindow Open(nsAString url, nsAString name, nsAString options)
+		{
+			throw new NotImplementedException();
+		}
+
+		public nsIDOMWindow OpenDialog(nsAString url, nsAString name, nsAString options, nsISupports aExtraArgument)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void UpdateCommands(nsAString action)
+		{
+			throw new NotImplementedException();
+		}
+
+		public bool Find(nsAString str, bool caseSensitive, bool backwards, bool wrapAround, bool wholeWord, bool searchInFrames, bool showDialog)
+		{
+			throw new NotImplementedException();
+		}
+
+		public uint GetMozPaintCountAttribute()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void MozRequestAnimationFrame(nsIAnimationFrameListener aListener)
+		{
+			throw new NotImplementedException();
+		}
+
+		public int GetMozAnimationStartTimeAttribute()
+		{
+			throw new NotImplementedException();
+		}
+
+		public nsIDOMMozURLProperty GetURLAttribute()
+		{
+			throw new NotImplementedException();
+		}
+
+		public nsIDOMStorageList GetGlobalStorageAttribute()
+		{
+			throw new NotImplementedException();
+		}
 	}
 	#endregion
 }

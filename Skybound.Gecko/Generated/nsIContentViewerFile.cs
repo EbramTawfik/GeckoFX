@@ -32,12 +32,13 @@ namespace Skybound.Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("6317f32c-9bc7-11d3-bccc-0060b0fc76bd")]
+	[Guid("1b373597-6132-49f7-940e-6ff62fca5d35")]
 	public interface nsIContentViewerFile
 	{
 		
 		/// <summary>
-        ///readonly attribute boolean printable; </summary>
+        /// The nsIDocShellFile
+        /// </summary>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetPrintableAttribute();
@@ -46,6 +47,6 @@ namespace Skybound.Gecko
 		void Print([MarshalAs(UnmanagedType.Bool)] bool aSilent, System.IntPtr aDebugFile, [MarshalAs(UnmanagedType.Interface)] nsIPrintSettings aPrintSettings);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PrintWithParent([MarshalAs(UnmanagedType.Interface)] nsIDOMWindowInternal aParentWin, [MarshalAs(UnmanagedType.Interface)] nsIPrintSettings aThePrintSettings, [MarshalAs(UnmanagedType.Interface)] nsIWebProgressListener aWPListener);
+		void PrintWithParent([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aParentWin, [MarshalAs(UnmanagedType.Interface)] nsIPrintSettings aThePrintSettings, [MarshalAs(UnmanagedType.Interface)] nsIWebProgressListener aWPListener);
 	}
 }

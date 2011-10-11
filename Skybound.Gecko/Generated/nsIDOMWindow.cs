@@ -27,6 +27,25 @@ namespace Skybound.Gecko
 	using System.Windows.Forms;
 	
 	
+	/// <summary>nsIDOMMozURLProperty </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("8fc58f56-f769-4368-a098-edd08550cf1a")]
+	public interface nsIDOMMozURLProperty
+	{
+		
+		/// <summary>Member CreateObjectURL </summary>
+		/// <param name='blob'> </param>
+		/// <param name='retval'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void CreateObjectURL([MarshalAs(UnmanagedType.Interface)] nsIDOMBlob blob, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		
+		/// <summary>Member RevokeObjectURL </summary>
+		/// <param name='URL'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RevokeObjectURL([MarshalAs(UnmanagedType.LPStruct)] nsAString URL);
+	}
+	
 	/// <summary>
     /// The nsIDOMWindow interface is the primary interface for a DOM
     /// window object. It represents a single window object that may
@@ -37,9 +56,22 @@ namespace Skybound.Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("90fec5b7-c58b-463f-a147-f91b6b104a96")]
+	[Guid("972cb379-6bdc-4544-8b46-8d721e12e906")]
 	public interface nsIDOMWindow
 	{
+		
+		/// <summary>
+        /// the current browsing context
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMWindow GetWindowAttribute();
+		
+		/// <summary>
+        ///[replaceable] self </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMWindow GetSelfAttribute();
 		
 		/// <summary>
         /// Accessor for the document in this window.
@@ -65,6 +97,34 @@ namespace Skybound.Gecko
 		void SetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
 		
 		/// <summary>
+        ///The setter that takes a string argument needs to be special cased! </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMLocation GetLocationAttribute();
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMHistory GetHistoryAttribute();
+		
+		/// <summary>
+        ///[replaceable] locationbar </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMBarProp GetLocationbarAttribute();
+		
+		/// <summary>
+        ///[replaceable] menubar </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMBarProp GetMenubarAttribute();
+		
+		/// <summary>
+        ///[replaceable] personalbar </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMBarProp GetPersonalbarAttribute();
+		
+		/// <summary>
         /// Accessor for the object that controls whether or not scrollbars
         /// are shown in this window.
         ///
@@ -73,6 +133,45 @@ namespace Skybound.Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMBarProp GetScrollbarsAttribute();
+		
+		/// <summary>
+        ///[replaceable] statusbar </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMBarProp GetStatusbarAttribute();
+		
+		/// <summary>
+        ///[replaceable] toolbar </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMBarProp GetToolbarAttribute();
+		
+		/// <summary>
+        ///[replaceable] </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetStatusAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aStatus);
+		
+		/// <summary>
+        ///[replaceable] </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetStatusAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aStatus);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Close();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Stop();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Focus();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Blur();
+		
+		/// <summary>
+        ///[replaceable] length </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetLengthAttribute();
 		
 		/// <summary>
         /// Accessor for the root of this hierarchy of windows. This root may
@@ -85,6 +184,13 @@ namespace Skybound.Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMWindow GetTopAttribute();
 		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMWindow GetOpenerAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOpenerAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aOpener);
+		
 		/// <summary>
         /// Accessor for this window's parent window, or the window itself if
         /// there is no parent, or if the parent is of different type
@@ -94,12 +200,125 @@ namespace Skybound.Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMWindow GetParentAttribute();
 		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMElement GetFrameElementAttribute();
+		
+		/// <summary>
+        /// the user agent
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMNavigator GetNavigatorAttribute();
+		
 		/// <summary>
         /// Get the application cache object for this window.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMOfflineResourceList GetApplicationCacheAttribute();
+		
+		/// <summary>
+        /// user prompts
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Alert([MarshalAs(UnmanagedType.LPStruct)] nsAString text);
+		
+		[return: MarshalAs(UnmanagedType.Bool)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool Confirm([MarshalAs(UnmanagedType.LPStruct)] nsAString text);
+		
+		/// <summary>
+        /// prompt() should return a null string if cancel is pressed
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Prompt([MarshalAs(UnmanagedType.LPStruct)] nsAString aMessage, [MarshalAs(UnmanagedType.LPStruct)] nsAString aInitial, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Print();
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIVariant ShowModalDialog([MarshalAs(UnmanagedType.LPStruct)] nsAString aURI, [MarshalAs(UnmanagedType.Interface)] nsIVariant aArgs, [MarshalAs(UnmanagedType.LPStruct)] nsAString aOptions);
+		
+		/// <summary>
+        /// Implements a safe message-passing system which can cross same-origin
+        /// boundaries.
+        ///
+        /// This method, when called, causes a MessageEvent to be asynchronously
+        /// dispatched at the primary document for the window upon which this method is
+        /// called.  (Note that the postMessage property on windows is allAccess and
+        /// thus is readable cross-origin.)  The dispatched event will have message as
+        /// its data, the calling context's window as its source, and an origin
+        /// determined by the calling context's main document URI.  The targetOrigin
+        /// argument specifies a URI and is used to restrict the message to be sent
+        /// only when the target window has the same origin as targetOrigin (since,
+        /// when the sender and the target have different origins, neither can read the
+        /// location of the other).
+        ///
+        /// @see <http://www.whatwg.org/html/#dom-window-postmessage>
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void PostMessage(System.IntPtr message, [MarshalAs(UnmanagedType.LPStruct)] nsAString targetOrigin);
+		
+		/// <summary>
+        /// Ascii base64 data to binary data and vice versa...
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Atob([MarshalAs(UnmanagedType.LPStruct)] nsAString aAsciiString, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Btoa([MarshalAs(UnmanagedType.LPStruct)] nsAString aBase64Data, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		
+		/// <summary>
+        /// Session storage for the current browsing context.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMStorage GetSessionStorageAttribute();
+		
+		/// <summary>
+        /// Local storage for the current browsing context.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMStorage GetLocalStorageAttribute();
+		
+		/// <summary>
+        /// Method for accessing this window's selection object.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsISelection GetSelection();
+		
+		/// <summary>
+        /// http://dev.w3.org/csswg/cssom-view/#extensions-to-the-window-interface
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMMediaQueryList MatchMedia([MarshalAs(UnmanagedType.LPStruct)] nsAString media_query_list);
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMScreen GetScreenAttribute();
+		
+		/// <summary>
+        /// viewport
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		int GetInnerWidthAttribute();
+		
+		/// <summary>
+        /// viewport
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetInnerWidthAttribute(int aInnerWidth);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		int GetInnerHeightAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetInnerHeightAttribute(int aInnerHeight);
 		
 		/// <summary>
         /// Accessor for the current x scroll position in this window in
@@ -111,6 +330,11 @@ namespace Skybound.Gecko
 		int GetScrollXAttribute();
 		
 		/// <summary>
+        ///The offset in pixels by which the window is scrolled </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		int GetPageXOffsetAttribute();
+		
+		/// <summary>
         /// Accessor for the current y scroll position in this window in
         /// pixels.
         ///
@@ -118,6 +342,14 @@ namespace Skybound.Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetScrollYAttribute();
+		
+		/// <summary>
+        ///The offset in pixels by which the window is scrolled </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		int GetPageYOffsetAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Scroll(int xScroll, int yScroll);
 		
 		/// <summary>
         /// Method for scrolling this window to an absolute pixel offset.
@@ -133,11 +365,34 @@ namespace Skybound.Gecko
 		void ScrollBy(int xScrollDif, int yScrollDif);
 		
 		/// <summary>
-        /// Method for accessing this window's selection object.
+        /// client
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISelection GetSelection();
+		int GetScreenXAttribute();
+		
+		/// <summary>
+        /// client
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetScreenXAttribute(int aScreenX);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		int GetScreenYAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetScreenYAttribute(int aScreenY);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		int GetOuterWidthAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOuterWidthAttribute(int aOuterWidth);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		int GetOuterHeightAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOuterHeightAttribute(int aOuterHeight);
 		
 		/// <summary>
         /// @see <http://dev.w3.org/csswg/cssom/#dom-window-getcomputedstyle>
@@ -201,5 +456,748 @@ namespace Skybound.Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SizeToContent();
+		
+		/// <summary>
+        ///[replaceable] content </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMWindow GetContentAttribute();
+		
+		/// <summary>
+        ///[replaceable] prompter </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIPrompt GetPrompterAttribute();
+		
+		[return: MarshalAs(UnmanagedType.Bool)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetClosedAttribute();
+		
+		/// <summary>
+        /// http://wiki.whatwg.org/wiki/Crypto
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMCrypto GetCryptoAttribute();
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMPkcs11 GetPkcs11Attribute();
+		
+		/// <summary>
+        ///[replaceable] controllers </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIControllers GetControllersAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetDefaultStatusAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDefaultStatus);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetDefaultStatusAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDefaultStatus);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		float GetMozInnerScreenXAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		float GetMozInnerScreenYAttribute();
+		
+		/// <summary>
+        ///The maximum offset that the window can be scrolled to
+        ///     (i.e., the document width/height minus the scrollport width/height) </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		int GetScrollMaxXAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		int GetScrollMaxYAttribute();
+		
+		[return: MarshalAs(UnmanagedType.Bool)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetFullScreenAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetFullScreenAttribute([MarshalAs(UnmanagedType.Bool)] bool aFullScreen);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Back();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Forward();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Home();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void MoveTo(int xPos, int yPos);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void MoveBy(int xDif, int yDif);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void ResizeTo(int width, int height);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void ResizeBy(int widthDif, int heightDif);
+		
+		/// <summary>
+        /// Open a new window with this one as the parent.  This method will
+        /// NOT examine the JS stack for purposes of determining a caller.
+        /// This window will be used for security checks during the search by
+        /// name and the default character set on the newly opened window
+        /// will just be the default character set of this window.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMWindow Open([MarshalAs(UnmanagedType.LPStruct)] nsAString url, [MarshalAs(UnmanagedType.LPStruct)] nsAString name, [MarshalAs(UnmanagedType.LPStruct)] nsAString options);
+		
+		/// <summary>
+        /// This method works like open except that aExtraArgument gets
+        /// converted into the array window.arguments in JS, if
+        /// aExtraArgument is a nsISupportsArray then the individual items in
+        /// the array are inserted into window.arguments, and primitive
+        /// nsISupports (nsISupportsPrimitives) types are converted to native
+        /// JS types when possible.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMWindow OpenDialog([MarshalAs(UnmanagedType.LPStruct)] nsAString url, [MarshalAs(UnmanagedType.LPStruct)] nsAString name, [MarshalAs(UnmanagedType.LPStruct)] nsAString options, [MarshalAs(UnmanagedType.Interface)] nsISupports aExtraArgument);
+		
+		/// <summary>
+        /// XXX Should this be in nsIDOMChromeWindow?
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void UpdateCommands([MarshalAs(UnmanagedType.LPStruct)] nsAString action);
+		
+		/// <summary>
+        ///Find in page.
+        /// @param str: the search pattern
+        /// @param caseSensitive: is the search caseSensitive
+        /// @param backwards: should we search backwards
+        /// @param wrapAround: should we wrap the search
+        /// @param wholeWord: should we search only for whole words
+        /// @param searchInFrames: should we search through all frames
+        /// @param showDialog: should we show the Find dialog
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool Find([MarshalAs(UnmanagedType.LPStruct)] nsAString str, [MarshalAs(UnmanagedType.Bool)] bool caseSensitive, [MarshalAs(UnmanagedType.Bool)] bool backwards, [MarshalAs(UnmanagedType.Bool)] bool wrapAround, [MarshalAs(UnmanagedType.Bool)] bool wholeWord, [MarshalAs(UnmanagedType.Bool)] bool searchInFrames, [MarshalAs(UnmanagedType.Bool)] bool showDialog);
+		
+		/// <summary>
+        /// Returns the number of times this document for this window has
+        /// been painted to the screen.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetMozPaintCountAttribute();
+		
+		/// <summary>
+        /// Request a refresh of this browser window.
+        ///
+        /// @see <http://dvcs.w3.org/hg/webperf/raw-file/tip/specs/RequestAnimationFrame/Overview.html>
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void MozRequestAnimationFrame([MarshalAs(UnmanagedType.Interface)] nsIAnimationFrameListener aListener);
+		
+		/// <summary>
+        /// The current animation start time in milliseconds since the epoch.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		int GetMozAnimationStartTimeAttribute();
+		
+		/// <summary>
+        /// @see <http://dev.w3.org/2006/webapi/FileAPI/#creating-revoking>
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMMozURLProperty GetURLAttribute();
+		
+		/// <summary>
+        /// Global storage, accessible by domain.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMStorageList GetGlobalStorageAttribute();
+	}
+	
+	/// <summary>nsIDOMWindowPerformance </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("2146c906-57f7-486c-a1b4-8cdb57ef577f")]
+	public interface nsIDOMWindowPerformance
+	{
+		
+		/// <summary>
+        /// A namespace to hold performance related data and statistics.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMPerformance GetPerformanceAttribute();
+	}
+	
+	/// <summary>
+    /// Empty interface for compatibility with older versions.
+    /// @deprecated Use nsIDOMWindow instead
+    /// </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("8614bdb7-5b07-4d00-a7ba-4d44697a343d")]
+	public interface nsIDOMWindowInternal : nsIDOMWindow
+	{
+		
+		/// <summary>
+        /// the current browsing context
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMWindow GetWindowAttribute();
+		
+		/// <summary>
+        ///[replaceable] self </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMWindow GetSelfAttribute();
+		
+		/// <summary>
+        /// Accessor for the document in this window.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMDocument GetDocumentAttribute();
+		
+		/// <summary>
+        /// Set/Get the name of this window.
+        ///
+        /// This attribute is "replaceable" in JavaScript
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
+		
+		/// <summary>
+        /// Set/Get the name of this window.
+        ///
+        /// This attribute is "replaceable" in JavaScript
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
+		
+		/// <summary>
+        ///The setter that takes a string argument needs to be special cased! </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMLocation GetLocationAttribute();
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMHistory GetHistoryAttribute();
+		
+		/// <summary>
+        ///[replaceable] locationbar </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMBarProp GetLocationbarAttribute();
+		
+		/// <summary>
+        ///[replaceable] menubar </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMBarProp GetMenubarAttribute();
+		
+		/// <summary>
+        ///[replaceable] personalbar </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMBarProp GetPersonalbarAttribute();
+		
+		/// <summary>
+        /// Accessor for the object that controls whether or not scrollbars
+        /// are shown in this window.
+        ///
+        /// This attribute is "replaceable" in JavaScript
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMBarProp GetScrollbarsAttribute();
+		
+		/// <summary>
+        ///[replaceable] statusbar </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMBarProp GetStatusbarAttribute();
+		
+		/// <summary>
+        ///[replaceable] toolbar </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMBarProp GetToolbarAttribute();
+		
+		/// <summary>
+        ///[replaceable] </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void GetStatusAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aStatus);
+		
+		/// <summary>
+        ///[replaceable] </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetStatusAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aStatus);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void Close();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void Stop();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void Focus();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void Blur();
+		
+		/// <summary>
+        ///[replaceable] length </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new uint GetLengthAttribute();
+		
+		/// <summary>
+        /// Accessor for the root of this hierarchy of windows. This root may
+        /// be the window itself if there is no parent, or if the parent is
+        /// of different type (i.e. this does not cross chrome-content
+        /// boundaries).
+        ///
+        /// This property is "replaceable" in JavaScript </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMWindow GetTopAttribute();
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMWindow GetOpenerAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetOpenerAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aOpener);
+		
+		/// <summary>
+        /// Accessor for this window's parent window, or the window itself if
+        /// there is no parent, or if the parent is of different type
+        /// (i.e. this does not cross chrome-content boundaries).
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMWindow GetParentAttribute();
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMElement GetFrameElementAttribute();
+		
+		/// <summary>
+        /// the user agent
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMNavigator GetNavigatorAttribute();
+		
+		/// <summary>
+        /// Get the application cache object for this window.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMOfflineResourceList GetApplicationCacheAttribute();
+		
+		/// <summary>
+        /// user prompts
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void Alert([MarshalAs(UnmanagedType.LPStruct)] nsAString text);
+		
+		[return: MarshalAs(UnmanagedType.Bool)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool Confirm([MarshalAs(UnmanagedType.LPStruct)] nsAString text);
+		
+		/// <summary>
+        /// prompt() should return a null string if cancel is pressed
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void Prompt([MarshalAs(UnmanagedType.LPStruct)] nsAString aMessage, [MarshalAs(UnmanagedType.LPStruct)] nsAString aInitial, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void Print();
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIVariant ShowModalDialog([MarshalAs(UnmanagedType.LPStruct)] nsAString aURI, [MarshalAs(UnmanagedType.Interface)] nsIVariant aArgs, [MarshalAs(UnmanagedType.LPStruct)] nsAString aOptions);
+		
+		/// <summary>
+        /// Implements a safe message-passing system which can cross same-origin
+        /// boundaries.
+        ///
+        /// This method, when called, causes a MessageEvent to be asynchronously
+        /// dispatched at the primary document for the window upon which this method is
+        /// called.  (Note that the postMessage property on windows is allAccess and
+        /// thus is readable cross-origin.)  The dispatched event will have message as
+        /// its data, the calling context's window as its source, and an origin
+        /// determined by the calling context's main document URI.  The targetOrigin
+        /// argument specifies a URI and is used to restrict the message to be sent
+        /// only when the target window has the same origin as targetOrigin (since,
+        /// when the sender and the target have different origins, neither can read the
+        /// location of the other).
+        ///
+        /// @see <http://www.whatwg.org/html/#dom-window-postmessage>
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void PostMessage(System.IntPtr message, [MarshalAs(UnmanagedType.LPStruct)] nsAString targetOrigin);
+		
+		/// <summary>
+        /// Ascii base64 data to binary data and vice versa...
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void Atob([MarshalAs(UnmanagedType.LPStruct)] nsAString aAsciiString, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void Btoa([MarshalAs(UnmanagedType.LPStruct)] nsAString aBase64Data, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		
+		/// <summary>
+        /// Session storage for the current browsing context.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMStorage GetSessionStorageAttribute();
+		
+		/// <summary>
+        /// Local storage for the current browsing context.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMStorage GetLocalStorageAttribute();
+		
+		/// <summary>
+        /// Method for accessing this window's selection object.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsISelection GetSelection();
+		
+		/// <summary>
+        /// http://dev.w3.org/csswg/cssom-view/#extensions-to-the-window-interface
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMMediaQueryList MatchMedia([MarshalAs(UnmanagedType.LPStruct)] nsAString media_query_list);
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMScreen GetScreenAttribute();
+		
+		/// <summary>
+        /// viewport
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new int GetInnerWidthAttribute();
+		
+		/// <summary>
+        /// viewport
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetInnerWidthAttribute(int aInnerWidth);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new int GetInnerHeightAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetInnerHeightAttribute(int aInnerHeight);
+		
+		/// <summary>
+        /// Accessor for the current x scroll position in this window in
+        /// pixels.
+        ///
+        /// This attribute is "replaceable" in JavaScript
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new int GetScrollXAttribute();
+		
+		/// <summary>
+        ///The offset in pixels by which the window is scrolled </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new int GetPageXOffsetAttribute();
+		
+		/// <summary>
+        /// Accessor for the current y scroll position in this window in
+        /// pixels.
+        ///
+        /// This attribute is "replaceable" in JavaScript
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new int GetScrollYAttribute();
+		
+		/// <summary>
+        ///The offset in pixels by which the window is scrolled </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new int GetPageYOffsetAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void Scroll(int xScroll, int yScroll);
+		
+		/// <summary>
+        /// Method for scrolling this window to an absolute pixel offset.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void ScrollTo(int xScroll, int yScroll);
+		
+		/// <summary>
+        /// Method for scrolling this window to a pixel offset relative to
+        /// the current scroll position.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void ScrollBy(int xScrollDif, int yScrollDif);
+		
+		/// <summary>
+        /// client
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new int GetScreenXAttribute();
+		
+		/// <summary>
+        /// client
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetScreenXAttribute(int aScreenX);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new int GetScreenYAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetScreenYAttribute(int aScreenY);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new int GetOuterWidthAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetOuterWidthAttribute(int aOuterWidth);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new int GetOuterHeightAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetOuterHeightAttribute(int aOuterHeight);
+		
+		/// <summary>
+        /// @see <http://dev.w3.org/csswg/cssom/#dom-window-getcomputedstyle>
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMCSSStyleDeclaration GetComputedStyle([MarshalAs(UnmanagedType.Interface)] nsIDOMElement elt, [MarshalAs(UnmanagedType.LPStruct)] nsAString pseudoElt);
+		
+		/// <summary>
+        /// Get the window root for this window. This is useful for hooking
+        /// up event listeners to this window and every other window nested
+        /// in the window root.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMEventTarget GetWindowRootAttribute();
+		
+		/// <summary>
+        /// Accessor for the child windows in this window.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMWindowCollection GetFramesAttribute();
+		
+		/// <summary>
+        /// Set/Get the document scale factor as a multiplier on the default
+        /// size. When setting this attribute, a NS_ERROR_NOT_IMPLEMENTED
+        /// error may be returned by implementations not supporting
+        /// zoom. Implementations not supporting zoom should return 1.0 all
+        /// the time for the Get operation. 1.0 is equals normal size,
+        /// i.e. no zoom.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new float GetTextZoomAttribute();
+		
+		/// <summary>
+        /// Set/Get the document scale factor as a multiplier on the default
+        /// size. When setting this attribute, a NS_ERROR_NOT_IMPLEMENTED
+        /// error may be returned by implementations not supporting
+        /// zoom. Implementations not supporting zoom should return 1.0 all
+        /// the time for the Get operation. 1.0 is equals normal size,
+        /// i.e. no zoom.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetTextZoomAttribute(float aTextZoom);
+		
+		/// <summary>
+        /// Method for scrolling this window by a number of lines.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void ScrollByLines(int numLines);
+		
+		/// <summary>
+        /// Method for scrolling this window by a number of pages.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void ScrollByPages(int numPages);
+		
+		/// <summary>
+        /// Method for sizing this window to the content in the window.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SizeToContent();
+		
+		/// <summary>
+        ///[replaceable] content </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMWindow GetContentAttribute();
+		
+		/// <summary>
+        ///[replaceable] prompter </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIPrompt GetPrompterAttribute();
+		
+		[return: MarshalAs(UnmanagedType.Bool)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool GetClosedAttribute();
+		
+		/// <summary>
+        /// http://wiki.whatwg.org/wiki/Crypto
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMCrypto GetCryptoAttribute();
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMPkcs11 GetPkcs11Attribute();
+		
+		/// <summary>
+        ///[replaceable] controllers </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIControllers GetControllersAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void GetDefaultStatusAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDefaultStatus);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetDefaultStatusAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDefaultStatus);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new float GetMozInnerScreenXAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new float GetMozInnerScreenYAttribute();
+		
+		/// <summary>
+        ///The maximum offset that the window can be scrolled to
+        ///     (i.e., the document width/height minus the scrollport width/height) </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new int GetScrollMaxXAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new int GetScrollMaxYAttribute();
+		
+		[return: MarshalAs(UnmanagedType.Bool)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool GetFullScreenAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetFullScreenAttribute([MarshalAs(UnmanagedType.Bool)] bool aFullScreen);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void Back();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void Forward();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void Home();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void MoveTo(int xPos, int yPos);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void MoveBy(int xDif, int yDif);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void ResizeTo(int width, int height);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void ResizeBy(int widthDif, int heightDif);
+		
+		/// <summary>
+        /// Open a new window with this one as the parent.  This method will
+        /// NOT examine the JS stack for purposes of determining a caller.
+        /// This window will be used for security checks during the search by
+        /// name and the default character set on the newly opened window
+        /// will just be the default character set of this window.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMWindow Open([MarshalAs(UnmanagedType.LPStruct)] nsAString url, [MarshalAs(UnmanagedType.LPStruct)] nsAString name, [MarshalAs(UnmanagedType.LPStruct)] nsAString options);
+		
+		/// <summary>
+        /// This method works like open except that aExtraArgument gets
+        /// converted into the array window.arguments in JS, if
+        /// aExtraArgument is a nsISupportsArray then the individual items in
+        /// the array are inserted into window.arguments, and primitive
+        /// nsISupports (nsISupportsPrimitives) types are converted to native
+        /// JS types when possible.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMWindow OpenDialog([MarshalAs(UnmanagedType.LPStruct)] nsAString url, [MarshalAs(UnmanagedType.LPStruct)] nsAString name, [MarshalAs(UnmanagedType.LPStruct)] nsAString options, [MarshalAs(UnmanagedType.Interface)] nsISupports aExtraArgument);
+		
+		/// <summary>
+        /// XXX Should this be in nsIDOMChromeWindow?
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void UpdateCommands([MarshalAs(UnmanagedType.LPStruct)] nsAString action);
+		
+		/// <summary>
+        ///Find in page.
+        /// @param str: the search pattern
+        /// @param caseSensitive: is the search caseSensitive
+        /// @param backwards: should we search backwards
+        /// @param wrapAround: should we wrap the search
+        /// @param wholeWord: should we search only for whole words
+        /// @param searchInFrames: should we search through all frames
+        /// @param showDialog: should we show the Find dialog
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool Find([MarshalAs(UnmanagedType.LPStruct)] nsAString str, [MarshalAs(UnmanagedType.Bool)] bool caseSensitive, [MarshalAs(UnmanagedType.Bool)] bool backwards, [MarshalAs(UnmanagedType.Bool)] bool wrapAround, [MarshalAs(UnmanagedType.Bool)] bool wholeWord, [MarshalAs(UnmanagedType.Bool)] bool searchInFrames, [MarshalAs(UnmanagedType.Bool)] bool showDialog);
+		
+		/// <summary>
+        /// Returns the number of times this document for this window has
+        /// been painted to the screen.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new uint GetMozPaintCountAttribute();
+		
+		/// <summary>
+        /// Request a refresh of this browser window.
+        ///
+        /// @see <http://dvcs.w3.org/hg/webperf/raw-file/tip/specs/RequestAnimationFrame/Overview.html>
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void MozRequestAnimationFrame([MarshalAs(UnmanagedType.Interface)] nsIAnimationFrameListener aListener);
+		
+		/// <summary>
+        /// The current animation start time in milliseconds since the epoch.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new int GetMozAnimationStartTimeAttribute();
+		
+		/// <summary>
+        /// @see <http://dev.w3.org/2006/webapi/FileAPI/#creating-revoking>
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMMozURLProperty GetURLAttribute();
+		
+		/// <summary>
+        /// Global storage, accessible by domain.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMStorageList GetGlobalStorageAttribute();
 	}
 }

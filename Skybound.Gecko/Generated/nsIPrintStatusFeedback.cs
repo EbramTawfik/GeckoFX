@@ -30,7 +30,7 @@ namespace Skybound.Gecko
 	/// <summary>nsIPrintStatusFeedback </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("19855DFF-3248-4902-B196-93EE4C477880")]
+	[Guid("e439d3eb-b1ed-449c-aaf7-c693e399b16f")]
 	public interface nsIPrintStatusFeedback
 	{
 		
@@ -56,7 +56,7 @@ namespace Skybound.Gecko
 		/// <param name='shell'> </param>
 		/// <param name='window'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDocShell([MarshalAs(UnmanagedType.Interface)] nsIDocShell shell, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindowInternal window);
+		void SetDocShell([MarshalAs(UnmanagedType.Interface)] nsIDocShell shell, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window);
 		
 		/// <summary>Member CloseWindow </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

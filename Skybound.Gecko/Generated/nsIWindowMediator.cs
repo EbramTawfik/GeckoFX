@@ -30,7 +30,7 @@ namespace Skybound.Gecko
 	/// <summary>nsIWindowMediator </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("0659cb81-faad-11d2-8e19-b206620a657c")]
+	[Guid("292e17c8-ccc1-42e1-ac8b-af617d5413b1")]
 	public interface nsIWindowMediator
 	{
 		
@@ -91,7 +91,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMWindowInternal GetMostRecentWindow([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")] string aWindowType);
+		nsIDOMWindow GetMostRecentWindow([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")] string aWindowType);
 		
 		/// <summary>
         ///Add the window to the list of known windows. Listeners (see

@@ -586,15 +586,6 @@ namespace Skybound.Gecko
 		void DebugDumpEvalInJSStackFrame(uint aFrameNumber, [MarshalAs(UnmanagedType.LPStr)] string aSourceText);
 		
 		/// <summary>
-        /// Set fallback JSContext to use when xpconnect can't find an appropriate
-        /// context to use to execute JavaScript.
-        ///
-        /// @deprecated Use nsIThreadJSContextStack::safeJSContext instead.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSafeJSContextForCurrentThread(System.IntPtr cx);
-		
-		/// <summary>
         /// wrapJSAggregatedToNative is just like wrapJS except it is used in cases
         /// where the JSObject is also aggregated to some native xpcom Object.
         /// At present XBL is the only system that might want to do this.

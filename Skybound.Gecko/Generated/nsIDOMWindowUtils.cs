@@ -36,7 +36,7 @@ namespace Skybound.Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("b46050ea-6f18-11e0-bf00-f389b7004a12")]
+	[Guid("d95fac68-4f0d-430f-9580-6dd8041f177e")]
 	public interface nsIDOMWindowUtils
 	{
 		
@@ -344,6 +344,19 @@ namespace Skybound.Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GarbageCollect([MarshalAs(UnmanagedType.Interface)] nsICycleCollectorListener aListener);
+		
+		/// <summary>
+        /// Force a cycle collection without garbage collection.
+        ///
+        /// Will throw a DOM security error if called without UniversalXPConnect
+        /// privileges in non-debug builds. Available to all callers in debug builds.
+        ///
+        /// @param aListener listener that receives information about the CC graph
+        /// (see @mozilla.org/cycle-collector-logger;1 for a logger
+        /// component)
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void CycleCollect([MarshalAs(UnmanagedType.Interface)] nsICycleCollectorListener aListener);
 		
 		/// <summary>
         /// Force processing of any queued paints

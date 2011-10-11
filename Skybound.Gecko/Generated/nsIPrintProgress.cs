@@ -30,7 +30,7 @@ namespace Skybound.Gecko
 	/// <summary>nsIPrintProgress </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("7E46BC35-FB7D-4b45-AB35-82FD61015380")]
+	[Guid("594fd36d-5b1b-412f-a74e-ab72099a5bb2")]
 	public interface nsIPrintProgress : nsIWebProgressListener
 	{
 		
@@ -153,7 +153,7 @@ namespace Skybound.Gecko
         ///     you can specify parameters through an xpcom object
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OpenProgressDialog([MarshalAs(UnmanagedType.Interface)] nsIDOMWindowInternal parent, [MarshalAs(UnmanagedType.LPStr)] string dialogURL, [MarshalAs(UnmanagedType.Interface)] nsISupports parameters, [MarshalAs(UnmanagedType.Interface)] nsIObserver openDialogObserver, [MarshalAs(UnmanagedType.Bool)] ref bool notifyOnOpen);
+		void OpenProgressDialog([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow parent, [MarshalAs(UnmanagedType.LPStr)] string dialogURL, [MarshalAs(UnmanagedType.Interface)] nsISupports parameters, [MarshalAs(UnmanagedType.Interface)] nsIObserver openDialogObserver, [MarshalAs(UnmanagedType.Bool)] ref bool notifyOnOpen);
 		
 		/// <summary>
         ///Close the progress dialog </summary>

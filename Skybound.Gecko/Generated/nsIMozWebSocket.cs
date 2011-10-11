@@ -36,7 +36,7 @@ namespace Skybound.Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("eae76132-e4a4-4765-8494-5e136521c846")]
+	[Guid("5b124f54-7d46-4bc0-8507-e58ed22c19b9")]
 	public interface nsIMozWebSocket
 	{
 		
@@ -49,6 +49,9 @@ namespace Skybound.Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetUrlAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aUrl);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetExtensionsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aExtensions);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetProtocolAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aProtocol);
@@ -103,16 +106,15 @@ namespace Skybound.Gecko
         /// @return if the connection is still established (and the data was queued or
         /// sent successfully).
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Send([MarshalAs(UnmanagedType.LPStruct)] nsAString data);
+		void Send([MarshalAs(UnmanagedType.LPStruct)] nsAString data);
 		
 		/// <summary>
         /// Closes the Web Socket connection or connection attempt, if any.
         /// If the connection is already closed, it does nothing.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Close();
+		void Close(ushort code, [MarshalAs(UnmanagedType.LPStruct)] nsAString reason, int argc);
 		
 		/// <summary>
         /// Initialize the object for use from C++ code with the principal, script
@@ -125,11 +127,14 @@ namespace Skybound.Gecko
         /// @param ownerWindow The associated window for the request. May be null.
         /// @param url The url for opening the socket. This must not be empty, and
         /// must have an absolute url, using either the ws or wss schemes.
-        /// @param protocol  Specifies a sub-protocol that the server must support for
-        /// the connection to be successful. If empty, no protocol is
-        /// specified.
+        /// @param protocol  Specifies array of sub-protocols acceptable to the client.
+        /// If the length of the array is at least one, the server
+        /// must select one of the listed sub-protocols for the
+        /// connection to be successful. If empty, no sub-protocol is
+        /// specified. The server selected sub-protocol can be read
+        /// from the protocol attribute after connection.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init([MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr scriptContext, System.IntPtr ownerWindow, [MarshalAs(UnmanagedType.LPStruct)] nsAString url, [MarshalAs(UnmanagedType.LPStruct)] nsAString protocol);
+		void Init([MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr scriptContext, System.IntPtr ownerWindow, [MarshalAs(UnmanagedType.LPStruct)] nsAString url, System.IntPtr protocol);
 	}
 }

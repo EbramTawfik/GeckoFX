@@ -39,7 +39,7 @@ namespace Skybound.Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("37d18434-9819-4ce1-922f-15d8b63da066")]
+	[Guid("b2c39f65-1799-4b92-a806-ab3cf6af3cfa")]
 	public interface nsIMemoryReporter
 	{
 		
@@ -50,9 +50,8 @@ namespace Skybound.Gecko
         /// from a child process is copied into the main process, the copy has its
         /// 'process' field set appropriately.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string GetProcessAttribute();
+		void GetProcessAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aProcess);
 		
 		/// <summary>
         /// The path that this memory usage should be reported under.  Paths are
@@ -86,9 +85,8 @@ namespace Skybound.Gecko
         /// - All other paths represent cross-cutting values and may overlap with any
         /// other reporter.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string GetPathAttribute();
+		void GetPathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aPath);
 		
 		/// <summary>
         /// The reporter kind.  See KIND_* above.
@@ -103,7 +101,8 @@ namespace Skybound.Gecko
 		int GetUnitsAttribute();
 		
 		/// <summary>
-        /// The numeric value reported by this memory reporter.
+        /// The numeric value reported by this memory reporter.  -1 means "unknown",
+        /// ie. something went wrong when getting the amount.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		long GetAmountAttribute();
@@ -111,9 +110,8 @@ namespace Skybound.Gecko
 		/// <summary>
         /// A human-readable description of this memory usage report.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string GetDescriptionAttribute();
+		void GetDescriptionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aDescription);
 	}
 	
 	/// <summary>nsIMemoryMultiReporterCallback </summary>
@@ -172,7 +170,7 @@ namespace Skybound.Gecko
 	/// <summary>nsIMemoryReporterManager </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("80a93b4c-6fff-4acd-8598-3891074a30ab")]
+	[Guid("84ba9c85-3372-4423-b7ab-74708b9269a6")]
 	public interface nsIMemoryReporterManager
 	{
 		
@@ -225,5 +223,25 @@ namespace Skybound.Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Init();
+		
+		/// <summary>
+        /// Get the resident size (aka. RSS, physical memory used).  This reporter
+        /// is special-cased because it's interesting, is available on all
+        /// platforms, and returns a meaningful result on all common platforms.
+        /// -1 means unknown.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		long GetResidentAttribute();
+		
+		/// <summary>
+        /// Get the total size of explicit memory allocations, both at the OS-level
+        /// (eg. via mmap, VirtualAlloc) and at the heap level (eg. via malloc,
+        /// calloc, operator new).  (Nb: it covers all heap allocations, but will
+        /// miss any OS-level ones not covered by memory reporters.)  This reporter
+        /// is special-cased because it's interesting, and is moderately difficult
+        /// to compute in JS.  -1 means unknown.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		long GetExplicitAttribute();
 	}
 }

@@ -719,6 +719,14 @@ namespace Skybound.Gecko
 		new void GetContentTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aContentType);
 		
 		/// <summary>
+        /// True if this document is synthetic : stand alone image, video, audio file,
+        /// etc.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool GetMozSyntheticDocumentAttribute();
+		
+		/// <summary>
         /// Returns the script element whose script is currently being processed.
         ///
         /// @see <https://developer.mozilla.org/en/DOM/document.currentScript>

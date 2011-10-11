@@ -28,7 +28,9 @@ namespace Skybound.Gecko
 	
 	
 	/// <summary>
-    /// Provides information about a specific implementation class
+    /// Provides information about a specific implementation class.  If you want
+    /// your class to implement nsIClassInfo, see nsIClassInfo.h for instructions --
+    /// you most likely do not want to inherit from nsIClassInfo.
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]

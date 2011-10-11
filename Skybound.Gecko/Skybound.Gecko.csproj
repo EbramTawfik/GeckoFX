@@ -144,7 +144,6 @@
     <Compile Include="DOM\HTMLIFrameElement.cs" />
     <Compile Include="DOM\HTMLImageElement.cs" />
     <Compile Include="DOM\HTMLInputElement.cs" />
-    <Compile Include="DOM\HTMLIsIndexElement.cs" />
     <Compile Include="DOM\HTMLLabelElement.cs" />
     <Compile Include="DOM\HTMLLegendElement.cs" />
     <Compile Include="DOM\HTMLLIElement.cs" />
@@ -305,8 +304,8 @@
     <Compile Include="Generated\nsIAutoCompleteSimpleResult.cs" />
     <Compile Include="Generated\nsIAutoConfig.cs" />
     <Compile Include="Generated\nsIBadCertListener2.cs" />
-    <Compile Include="Generated\nsIBaseStream.cs" />
     <Compile Include="Generated\nsIBaseWindow.cs" />
+    <Compile Include="Generated\nsIBFCacheEntry.cs" />
     <Compile Include="Generated\nsIBidiKeyboard.cs" />
     <Compile Include="Generated\nsIBinaryInputStream.cs" />
     <Compile Include="Generated\nsIBinaryOutputStream.cs" />
@@ -534,6 +533,7 @@
     <Compile Include="Generated\nsIDOMHTMLByteRanges.cs" />
     <Compile Include="Generated\nsIDOMHTMLCanvasElement.cs" />
     <Compile Include="Generated\nsIDOMHTMLCollection.cs" />
+    <Compile Include="Generated\nsIDOMHTMLCommandElement.cs" />
     <Compile Include="Generated\nsIDOMHTMLDataListElement.cs" />
     <Compile Include="Generated\nsIDOMHTMLDirectoryElement.cs" />
     <Compile Include="Generated\nsIDOMHTMLDivElement.cs" />
@@ -553,7 +553,6 @@
     <Compile Include="Generated\nsIDOMHTMLIFrameElement.cs" />
     <Compile Include="Generated\nsIDOMHTMLImageElement.cs" />
     <Compile Include="Generated\nsIDOMHTMLInputElement.cs" />
-    <Compile Include="Generated\nsIDOMHTMLIsIndexElement.cs" />
     <Compile Include="Generated\nsIDOMHTMLLabelElement.cs" />
     <Compile Include="Generated\nsIDOMHTMLLegendElement.cs" />
     <Compile Include="Generated\nsIDOMHTMLLIElement.cs" />
@@ -561,6 +560,7 @@
     <Compile Include="Generated\nsIDOMHTMLMapElement.cs" />
     <Compile Include="Generated\nsIDOMHTMLMediaElement.cs" />
     <Compile Include="Generated\nsIDOMHTMLMenuElement.cs" />
+    <Compile Include="Generated\nsIDOMHTMLMenuItemElement.cs" />
     <Compile Include="Generated\nsIDOMHTMLMetaElement.cs" />
     <Compile Include="Generated\nsIDOMHTMLModElement.cs" />
     <Compile Include="Generated\nsIDOMHTMLObjectElement.cs" />
@@ -663,7 +663,6 @@
     <Compile Include="Generated\nsIDOMStorageList.cs" />
     <Compile Include="Generated\nsIDOMStorageManager.cs" />
     <Compile Include="Generated\nsIDOMStorageObsolete.cs" />
-    <Compile Include="Generated\nsIDOMStorageWindow.cs" />
     <Compile Include="Generated\nsIDOMStyleSheet.cs" />
     <Compile Include="Generated\nsIDOMStyleSheetList.cs" />
     <Compile Include="Generated\nsIDOMSVGAElement.cs" />
@@ -761,9 +760,7 @@
     <Compile Include="Generated\nsIDOMWebGLRenderingContext.cs" />
     <Compile Include="Generated\nsIDOMWindow.cs" />
     <Compile Include="Generated\nsIDOMWindowCollection.cs" />
-    <Compile Include="Generated\nsIDOMWindowInternal.cs" />
     <Compile Include="Generated\nsIDOMWindowUtils.cs" />
-    <Compile Include="Generated\nsIDOMWorkers.cs" />
     <Compile Include="Generated\nsIDOMXMLDocument.cs" />
     <Compile Include="Generated\nsIDOMXPathEvaluator.cs" />
     <Compile Include="Generated\nsIDOMXPathException.cs" />
@@ -886,6 +883,7 @@
     <Compile Include="Generated\nsIHTMLAbsPosEditor.cs" />
     <Compile Include="Generated\nsIHTMLEditor.cs" />
     <Compile Include="Generated\nsIHTMLInlineTableEditor.cs" />
+    <Compile Include="Generated\nsIHTMLMenu.cs" />
     <Compile Include="Generated\nsIHTMLObjectResizeListener.cs" />
     <Compile Include="Generated\nsIHTMLObjectResizer.cs" />
     <Compile Include="Generated\nsIHttpActivityObserver.cs" />
@@ -944,6 +942,7 @@
     <Compile Include="Generated\nsIJetpack.cs" />
     <Compile Include="Generated\nsIJetpackService.cs" />
     <Compile Include="Generated\nsIJSContextStack.cs" />
+    <Compile Include="Generated\nsIJSEngineTelemetryStats.cs" />
     <Compile Include="Generated\nsIJSON.cs" />
     <Compile Include="Generated\nsIJSRuntimeService.cs" />
     <Compile Include="Generated\nsIJumpListBuilder.cs" />
@@ -978,6 +977,7 @@
     <Compile Include="Generated\nsIMemory.cs" />
     <Compile Include="Generated\nsIMemoryReporter.cs" />
     <Compile Include="Generated\nsIMenuBoxObject.cs" />
+    <Compile Include="Generated\nsIMenuBuilder.cs" />
     <Compile Include="Generated\nsIMessageWakeupService.cs" />
     <Compile Include="Generated\nsIMIMEHeaderParam.cs" />
     <Compile Include="Generated\nsIMIMEInfo.cs" />
@@ -1012,7 +1012,6 @@
     <Compile Include="Generated\nsIPermission.cs" />
     <Compile Include="Generated\nsIPermissionManager.cs" />
     <Compile Include="Generated\nsIPersistentProperties2.cs" />
-    <Compile Include="Generated\nsIPhoneSupport.cs" />
     <Compile Include="Generated\nsIPhonetic.cs" />
     <Compile Include="Generated\nsIPipe.cs" />
     <Compile Include="Generated\nsIPK11Token.cs" />
@@ -1150,8 +1149,6 @@
     <Compile Include="Generated\nsISecurityWarningDialogs.cs" />
     <Compile Include="Generated\nsISeekableStream.cs" />
     <Compile Include="Generated\nsISelection.cs" />
-    <Compile Include="Generated\nsISelection2.cs" />
-    <Compile Include="Generated\nsISelection3.cs" />
     <Compile Include="Generated\nsISelectionController.cs" />
     <Compile Include="Generated\nsISelectionDisplay.cs" />
     <Compile Include="Generated\nsISelectionListener.cs" />
@@ -1236,7 +1233,6 @@
     <Compile Include="Generated\nsIThreadManager.cs" />
     <Compile Include="Generated\nsIThreadPool.cs" />
     <Compile Include="Generated\nsITimedChannel.cs" />
-    <Compile Include="Generated\nsITimelineService.cs" />
     <Compile Include="Generated\nsITimer.cs" />
     <Compile Include="Generated\nsITokenDialogs.cs" />
     <Compile Include="Generated\nsITokenPasswordDialogs.cs" />
@@ -1297,7 +1293,6 @@
     <Compile Include="Generated\nsIVersionComparator.cs" />
     <Compile Include="Generated\nsIViewSourceChannel.cs" />
     <Compile Include="Generated\nsIWeakReference.cs" />
-    <Compile Include="Generated\nsIWebappsSupport.cs" />
     <Compile Include="Generated\nsIWebBrowser.cs" />
     <Compile Include="Generated\nsIWebBrowserChrome.cs" />
     <Compile Include="Generated\nsIWebBrowserChrome2.cs" />
@@ -1367,6 +1362,7 @@
     <Compile Include="Generated\nsIXULAppInstall.cs" />
     <Compile Include="Generated\nsIXULBrowserWindow.cs" />
     <Compile Include="Generated\nsIXULBuilderListener.cs" />
+    <Compile Include="Generated\nsIXULContextMenuBuilder.cs" />
     <Compile Include="Generated\nsIXULOverlayProvider.cs" />
     <Compile Include="Generated\nsIXULRuntime.cs" />
     <Compile Include="Generated\nsIXULSortService.cs" />
@@ -1397,6 +1393,7 @@
     <Compile Include="Generated\txIFunctionEvaluationContext.cs" />
     <Compile Include="Generated\txINodeSet.cs" />
     <Compile Include="Generated\txIXPathObject.cs" />
+    <Compile Include="Generated\WebappsSupport.cs" />
     <Compile Include="Generated\xpccomponents.cs" />
     <Compile Include="Generated\xpcexception.cs" />
     <Compile Include="Generated\xpcIJSGetFactory.cs" />

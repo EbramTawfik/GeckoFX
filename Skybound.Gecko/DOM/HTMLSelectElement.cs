@@ -72,7 +72,7 @@ namespace Skybound.Gecko.DOM
 
         public void add(GeckoElement element, GeckoElement before)
 		{
-            DOMHTMLElement.Add(element.DomObject as nsIDOMHTMLElement, before.DomObject as nsIDOMHTMLElement);
+            DOMHTMLElement.Add(element.DomObject as nsIDOMHTMLElement, before.DomObject as nsIVariant);
 		}
 
 		public void remove(int index)

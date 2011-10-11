@@ -63,7 +63,13 @@ namespace Skybound.Gecko
 		void GetAdapterDescriptionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aAdapterDescription);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetAdapterDescription2Attribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aAdapterDescription2);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetAdapterDriverAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aAdapterDriver);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetAdapterDriver2Attribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aAdapterDriver2);
 		
 		/// <summary>
         ///These types are inspired by DXGI_ADAPTER_DESC </summary>
@@ -71,7 +77,13 @@ namespace Skybound.Gecko
 		uint GetAdapterVendorIDAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetAdapterVendorID2Attribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetAdapterDeviceIDAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetAdapterDeviceID2Attribute();
 		
 		/// <summary>
         /// The amount of RAM in MB in the display adapter.
@@ -80,10 +92,23 @@ namespace Skybound.Gecko
 		void GetAdapterRAMAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aAdapterRAM);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetAdapterRAM2Attribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aAdapterRAM2);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetAdapterDriverVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aAdapterDriverVersion);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetAdapterDriverVersion2Attribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aAdapterDriverVersion2);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetAdapterDriverDateAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aAdapterDriverDate);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetAdapterDriverDate2Attribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aAdapterDriverDate2);
+		
+		[return: MarshalAs(UnmanagedType.Bool)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetIsGPU2ActiveAttribute();
 		
 		[return: MarshalAs(UnmanagedType.LPStr, SizeParamIndex=0)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

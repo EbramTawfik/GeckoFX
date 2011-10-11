@@ -30,9 +30,168 @@ namespace Skybound.Gecko
 	/// <summary>nsISelectionPrivate </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("98552206-ad7a-4d2d-8ce3-b6fa2389298b")]
-	public interface nsISelectionPrivate
+	[Guid("1820a940-6203-4e27-bc94-fa81131722a4")]
+	public interface nsISelectionPrivate : nsISelection
 	{
+		
+		/// <summary>
+        /// Returns the node in which the selection begins.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMNode GetAnchorNodeAttribute();
+		
+		/// <summary>
+        /// The offset within the (text) node where the selection begins.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new int GetAnchorOffsetAttribute();
+		
+		/// <summary>
+        /// Returns the node in which the selection ends.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMNode GetFocusNodeAttribute();
+		
+		/// <summary>
+        /// The offset within the (text) node where the selection ends.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new int GetFocusOffsetAttribute();
+		
+		/// <summary>
+        /// Indicates if the selection is collapsed or not.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool GetIsCollapsedAttribute();
+		
+		/// <summary>
+        /// Returns the number of ranges in the selection.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new int GetRangeCountAttribute();
+		
+		/// <summary>
+        /// Returns the range at the specified index.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMRange GetRangeAt(int index);
+		
+		/// <summary>
+        /// Collapses the selection to a single point, at the specified offset
+        /// in the given DOM node. When the selection is collapsed, and the content
+        /// is focused and editable, the caret will blink there.
+        /// @param parentNode      The given dom node where the selection will be set
+        /// @param offset          Where in given dom node to place the selection (the offset into the given node)
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void Collapse([MarshalAs(UnmanagedType.Interface)] nsIDOMNode parentNode, int offset);
+		
+		/// <summary>
+        /// Extends the selection by moving the selection end to the specified node and offset,
+        /// preserving the selection begin position. The new selection end result will always
+        /// be from the anchorNode to the new focusNode, regardless of direction.
+        /// @param parentNode      The node where the selection will be extended to
+        /// @param offset          Where in node to place the offset in the new selection end
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void Extend([MarshalAs(UnmanagedType.Interface)] nsIDOMNode parentNode, int offset);
+		
+		/// <summary>
+        /// Collapses the whole selection to a single point at the start
+        /// of the current selection (irrespective of direction).  If content
+        /// is focused and editable, the caret will blink there.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void CollapseToStart();
+		
+		/// <summary>
+        /// Collapses the whole selection to a single point at the end
+        /// of the current selection (irrespective of direction).  If content
+        /// is focused and editable, the caret will blink there.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void CollapseToEnd();
+		
+		/// <summary>
+        /// Indicates whether the node is part of the selection. If partlyContained
+        /// is set to PR_TRUE, the function returns true when some part of the node
+        /// is part of the selection. If partlyContained is set to PR_FALSE, the
+        /// function only returns true when the entire node is part of the selection.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool ContainsNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode node, [MarshalAs(UnmanagedType.Bool)] bool partlyContained);
+		
+		/// <summary>
+        /// Adds all children of the specified node to the selection.
+        /// @param parentNode  the parent of the children to be added to the selection.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SelectAllChildren([MarshalAs(UnmanagedType.Interface)] nsIDOMNode parentNode);
+		
+		/// <summary>
+        /// Adds a range to the current selection.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void AddRange([MarshalAs(UnmanagedType.Interface)] nsIDOMRange range);
+		
+		/// <summary>
+        /// Removes a range from the current selection.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void RemoveRange([MarshalAs(UnmanagedType.Interface)] nsIDOMRange range);
+		
+		/// <summary>
+        /// Removes all ranges from the current selection.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void RemoveAllRanges();
+		
+		/// <summary>
+        /// Deletes this selection from document the nodes belong to.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void DeleteFromDocument();
+		
+		/// <summary>
+        /// Modifies the cursor Bidi level after a change in keyboard direction
+        /// @param langRTL is PR_TRUE if the new language is right-to-left or
+        /// PR_FALSE if the new language is left-to-right.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SelectionLanguageChange([MarshalAs(UnmanagedType.Bool)] bool langRTL);
+		
+		/// <summary>
+        /// Returns the whole selection into a plain text string.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new string ToString();
+		
+		/// <summary>
+        /// Modifies the selection.  Note that the parameters are case-insensitive.
+        ///
+        /// @param alter can be one of { "move", "extend" }
+        /// - "move" collapses the selection to the end of the selection and
+        /// applies the movement direction/granularity to the collapsed
+        /// selection.
+        /// - "extend" leaves the start of the selection unchanged, and applies
+        /// movement direction/granularity to the end of the selection.
+        /// @param direction can be one of { "forward", "backward", "left", "right" }
+        /// @param granularity can be one of { "character", "word",
+        /// "line", "lineboundary" }
+        ///
+        /// @returns NS_ERROR_NOT_IMPLEMENTED if the granularity is "sentence",
+        /// "sentenceboundary", "paragraph", "paragraphboundary", or
+        /// "documentboundary".  Returns NS_ERROR_INVALID_ARG if alter, direction,
+        /// or granularity has an unrecognized value.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void Modify([MarshalAs(UnmanagedType.LPStruct)] nsAString alter, [MarshalAs(UnmanagedType.LPStruct)] nsAString direction, [MarshalAs(UnmanagedType.LPStruct)] nsAString granularity);
 		
 		/// <summary>Member GetInterlinePositionAttribute </summary>
 		/// <returns>A System.Boolean</returns>
@@ -144,5 +303,74 @@ namespace Skybound.Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetTextRangeStyle([MarshalAs(UnmanagedType.Interface)] nsIDOMRange range, System.IntPtr textRangeStyle);
+		
+		/// <summary>
+        /// Get the direction of the selection.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsDirection GetSelectionDirection();
+		
+		/// <summary>Member SetSelectionDirection </summary>
+		/// <param name='aDirection'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetSelectionDirection(nsDirection aDirection);
+		
+		/// <summary>
+        /// Returns the type of the selection (see nsISelectionController for
+        /// available constants).
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		short GetTypeAttribute();
+		
+		/// <summary>
+        /// Return array of ranges intersecting with the given DOM interval.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMRange GetRangesForInterval([MarshalAs(UnmanagedType.Interface)] nsIDOMNode beginNode, int beginOffset, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode endNode, int endOffset, [MarshalAs(UnmanagedType.Bool)] bool allowAdjacent, ref uint resultCount);
+		
+		/// <summary>Member GetRangesForIntervalCOMArray </summary>
+		/// <param name='beginNode'> </param>
+		/// <param name='beginOffset'> </param>
+		/// <param name='endNode'> </param>
+		/// <param name='endOffset'> </param>
+		/// <param name='allowAdjacent'> </param>
+		/// <param name='results'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetRangesForIntervalCOMArray([MarshalAs(UnmanagedType.Interface)] nsIDOMNode beginNode, int beginOffset, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode endNode, int endOffset, [MarshalAs(UnmanagedType.Bool)] bool allowAdjacent, System.IntPtr results);
+		
+		/// <summary>
+        /// Scrolls a region of the selection, so that it is visible in
+        /// the scrolled view.
+        ///
+        /// @param aRegion - the region inside the selection to scroll into view
+        /// (see selection region constants defined in
+        /// nsISelectionController).
+        /// @param aIsSynchronous - when true, scrolls the selection into view
+        /// before returning. If false, posts a request which
+        /// is processed at some point after the method returns.
+        /// @param aVPercent - how to align the frame vertically. A value of 0
+        /// means the frame's upper edge is aligned with the top edge
+        /// of the visible area. A value of 100 means the frame's
+        /// bottom edge is aligned with the bottom edge of
+        /// the visible area. For values in between, the point
+        /// "aVPercent" down the frame is placed at the point
+        /// "aVPercent" down the visible area. A value of 50 centers
+        /// the frame vertically. A value of -1 means move
+        /// the frame the minimum amount necessary in order for
+        /// the entire frame to be visible vertically (if possible).
+        /// @param aHPercent - how to align the frame horizontally. A value of 0
+        /// means the frame's left edge is aligned with the left
+        /// edge of the visible area. A value of 100 means the
+        /// frame's right edge is aligned with the right edge of
+        /// the visible area. For values in between, the point
+        /// "aHPercent" across the frame is placed at the point
+        /// "aHPercent" across the visible area. A value of 50
+        /// centers the frame horizontally . A value of -1 means
+        /// move the frame the minimum amount necessary in order
+        /// for the entire frame to be visible horizontally
+        /// (if possible).
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void ScrollIntoView(short aRegion, [MarshalAs(UnmanagedType.Bool)] bool aIsSynchronous, short aVPercent, short aHPercent);
 	}
 }

@@ -35,7 +35,7 @@ namespace Skybound.Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("B2C7ED59-8634-4352-9E37-5484C8B6E4E1")]
+	[Guid("5ac0cd5d-3c08-4c4c-8e70-230c433f5d5c")]
 	public interface nsISelection
 	{
 		
@@ -176,5 +176,26 @@ namespace Skybound.Gecko
 		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string ToString();
+		
+		/// <summary>
+        /// Modifies the selection.  Note that the parameters are case-insensitive.
+        ///
+        /// @param alter can be one of { "move", "extend" }
+        /// - "move" collapses the selection to the end of the selection and
+        /// applies the movement direction/granularity to the collapsed
+        /// selection.
+        /// - "extend" leaves the start of the selection unchanged, and applies
+        /// movement direction/granularity to the end of the selection.
+        /// @param direction can be one of { "forward", "backward", "left", "right" }
+        /// @param granularity can be one of { "character", "word",
+        /// "line", "lineboundary" }
+        ///
+        /// @returns NS_ERROR_NOT_IMPLEMENTED if the granularity is "sentence",
+        /// "sentenceboundary", "paragraph", "paragraphboundary", or
+        /// "documentboundary".  Returns NS_ERROR_INVALID_ARG if alter, direction,
+        /// or granularity has an unrecognized value.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Modify([MarshalAs(UnmanagedType.LPStruct)] nsAString alter, [MarshalAs(UnmanagedType.LPStruct)] nsAString direction, [MarshalAs(UnmanagedType.LPStruct)] nsAString granularity);
 	}
 }

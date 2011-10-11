@@ -34,15 +34,15 @@ namespace Skybound.Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("e7bb7828-0e32-4995-a848-4aa35df603c7")]
+	[Guid("170c6857-7f71-46ce-bc9b-185723b1c3a8")]
 	public interface nsISessionStartup
 	{
 		
 		/// <summary>
-        /// Get session state as string
+        /// Get session state
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetStateAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aState);
+		System.IntPtr GetStateAttribute();
 		
 		/// <summary>
         /// Determine if session should be restored

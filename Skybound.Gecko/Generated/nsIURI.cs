@@ -52,7 +52,7 @@ namespace Skybound.Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("12120b20-0929-40e9-88cf-6e08766e8b23")]
+	[Guid("395fe045-7d18-4adb-a3fd-af98c8a1af11")]
 	public interface nsIURI
 	{
 		
@@ -318,5 +318,18 @@ namespace Skybound.Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIURI CloneIgnoringRef();
+		
+		/// <summary>
+        /// returns a string for the current URI with the ref element cleared.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetSpecIgnoringRefAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aSpecIgnoringRef);
+		
+		/// <summary>
+        /// Returns if there is a reference portion (the part after the "#") of the URI.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetHasRefAttribute();
 	}
 }

@@ -35,7 +35,7 @@ namespace Skybound.Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("5f3ebf43-6944-45fb-b1b1-78a05bf9370b")]
+	[Guid("6443FD72-A50F-4B8B-BB82-BB1FA04CB15D")]
 	public interface nsISHEntry : nsIHistoryEntry
 	{
 		
@@ -234,33 +234,6 @@ namespace Skybound.Gecko
 		void SetIDAttribute(uint aID);
 		
 		/// <summary>
-        /// docIdentifier is an integer that should be the same for two entries
-        /// attached to the same docshell if and only if the two entries are entries
-        /// for the same document.  In practice, two entries A and B will have the
-        /// same docIdentifier if we arrived at B by clicking an anchor link in A or
-        /// if B was created by A's calling history.pushState().
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetDocIdentifierAttribute();
-		
-		/// <summary>
-        /// docIdentifier is an integer that should be the same for two entries
-        /// attached to the same docshell if and only if the two entries are entries
-        /// for the same document.  In practice, two entries A and B will have the
-        /// same docIdentifier if we arrived at B by clicking an anchor link in A or
-        /// if B was created by A's calling history.pushState().
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDocIdentifierAttribute(uint aDocIdentifier);
-		
-		/// <summary>
-        /// Changes this entry's doc identifier to a new value which is unique
-        /// among those of all other entries.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetUniqueDocIdentifier();
-		
-		/// <summary>
         ///attribute to set and get the cache key for the entry </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -306,6 +279,35 @@ namespace Skybound.Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetContentTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aContentType);
+		
+		/// <summary>
+        /// If we created this SHEntry via history.pushState or modified it via
+        /// history.replaceState, and if we changed the SHEntry's URI via the
+        /// push/replaceState call, and if the SHEntry's new URI differs from its
+        /// old URI by more than just the hash, then we set this field to true.
+        ///
+        /// Additionally, if this SHEntry was created by calling pushState from a
+        /// SHEntry whose URI was modified, this SHEntry's URIWasModified field is
+        /// true.
+        ///
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetURIWasModifiedAttribute();
+		
+		/// <summary>
+        /// If we created this SHEntry via history.pushState or modified it via
+        /// history.replaceState, and if we changed the SHEntry's URI via the
+        /// push/replaceState call, and if the SHEntry's new URI differs from its
+        /// old URI by more than just the hash, then we set this field to true.
+        ///
+        /// Additionally, if this SHEntry was created by calling pushState from a
+        /// SHEntry whose URI was modified, this SHEntry's URIWasModified field is
+        /// true.
+        ///
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetURIWasModifiedAttribute([MarshalAs(UnmanagedType.Bool)] bool aURIWasModified);
 		
 		/// <summary>
         ///Set/Get scrollers' positon in anchored pages </summary>
@@ -417,6 +419,43 @@ namespace Skybound.Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetDocshellIDAttribute(uint aDocshellID);
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIBFCacheEntry GetBFCacheEntryAttribute();
+		
+		/// <summary>
+        /// Does this SHEntry point to the given BFCache entry?  If so, evicting
+        /// the BFCache entry will evict the SHEntry, since the two entries
+        /// correspond to the same document.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool HasBFCacheEntry([MarshalAs(UnmanagedType.Interface)] nsIBFCacheEntry aEntry);
+		
+		/// <summary>
+        /// Adopt aEntry's BFCacheEntry, so now both this and aEntry point to
+        /// aEntry's BFCacheEntry.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void AdoptBFCacheEntry([MarshalAs(UnmanagedType.Interface)] nsISHEntry aEntry);
+		
+		/// <summary>
+        /// Create a new BFCache entry and drop our reference to our old one.  This
+        /// call unlinks this SHEntry from any other SHEntries for its document.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void AbandonBFCacheEntry();
+		
+		/// <summary>
+        /// Does this SHEntry correspond to the same document as aEntry?  This is
+        /// true iff the two SHEntries have the same BFCacheEntry.  So in
+        /// particular, sharesDocumentWith(aEntry) is guaranteed to return true if
+        /// it's preceeded by a call to adoptBFCacheEntry(aEntry).
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool SharesDocumentWith([MarshalAs(UnmanagedType.Interface)] nsISHEntry aEntry);
 	}
 	
 	/// <summary>nsISHEntryInternal </summary>
@@ -445,5 +484,16 @@ namespace Skybound.Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetLastTouchedAttribute(uint aLastTouched);
+		
+		/// <summary>
+        /// Some state, particularly that related to the back/forward cache, is
+        /// shared between SHEntries which correspond to the same document.  This
+        /// method gets a pointer to that shared state.
+        ///
+        /// This shared state is the SHEntry's BFCacheEntry.  So
+        /// hasBFCacheEntry(getSharedState()) is guaranteed to return true.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		System.IntPtr GetSharedState();
 	}
 }

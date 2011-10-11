@@ -98,9 +98,9 @@ namespace Skybound.Gecko
 		void DisableExternalCapture();
 		
 		/// <summary>
-        /// This is the scriptable version of nsIDOMWindowInternal::open()
+        /// This is the scriptable version of nsIDOMWindow::open()
         /// that takes 3 optional arguments. Its binary name is OpenJS to
-        /// avoid colliding with nsIDOMWindowInternal::open(), which has the
+        /// avoid colliding with nsIDOMWindow::open(), which has the
         /// same signature. The reason we can't have that collision is that
         /// the implementation needs to know whether it was called from JS or
         /// not.
@@ -113,7 +113,7 @@ namespace Skybound.Gecko
 		
 		/// <summary>
         /// This is the scriptable version of
-        /// nsIDOMWindowInternal::openDialog() that takes 3 optional
+        /// nsIDOMWindow::openDialog() that takes 3 optional
         /// arguments, plus any additional arguments are passed on as
         /// arguments on the dialog's window object (window.arguments).
         /// </summary>

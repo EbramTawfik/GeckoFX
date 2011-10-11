@@ -30,7 +30,7 @@ namespace Skybound.Gecko
 	/// <summary>nsIWebSocketChannel </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("398a2460-a46d-11e0-8264-0800200c9a66")]
+	[Guid("e8ae0371-c28f-4d61-b257-514e014a4686")]
 	public interface nsIWebSocketChannel
 	{
 		
@@ -98,6 +98,12 @@ namespace Skybound.Gecko
 		void SetProtocolAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aProtocol);
 		
 		/// <summary>
+        /// Sec-Websocket-Extensions response header value
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetExtensionsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aExtensions);
+		
+		/// <summary>
         /// Asynchronously open the websocket connection.  Received messages are fed
         /// to the socket listener as they arrive.  The socket listener's methods
         /// are called on the thread that calls asyncOpen and are not called until
@@ -120,9 +126,13 @@ namespace Skybound.Gecko
         /// Close the websocket connection for writing - no more calls to sendMsg
         /// or sendBinaryMsg should be made after calling this. The listener object
         /// may receive more messages if a server close has not yet been received.
+        ///
+        /// @param aCode the websocket closing handshake close code. Set to 0 if
+        /// you are not providing a code.
+        /// @param aReason the websocket closing handshake close reason
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Close();
+		void Close(ushort aCode, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aReason);
 		
 		/// <summary>
         /// Use to send text message down the connection to WebSocket peer.

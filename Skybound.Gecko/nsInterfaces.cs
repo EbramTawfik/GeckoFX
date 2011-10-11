@@ -40,6 +40,12 @@ using System.Runtime.CompilerServices;
 
 namespace Skybound.Gecko
 {	
+	public enum nsDirection 
+	{
+		eDirNext = 0,
+		eDirPrevious = 1
+	};
+
 	static class nsIWebBrowserChromeConstants
 	{
 		public const int STATUS_SCRIPT = 1;

@@ -28,7 +28,7 @@ namespace Skybound.Gecko
 	
 	
 	/// <summary>
-    /// nsIWebBrowserChrome3 is an extension to nsIWebBrowserChrome2.    ///
+    /// nsIWebBrowserChrome3 is an extension to nsIWebBrowserChrome2.
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -143,18 +143,18 @@ namespace Skybound.Gecko
 		new void SetStatusWithContext(uint statusType, [MarshalAs(UnmanagedType.LPStruct)] nsAString statusText, [MarshalAs(UnmanagedType.Interface)] nsISupports statusContext);
 		
 		/// <summary>
-        /// Determines the appropriate target for a link.        ///
+        /// Determines the appropriate target for a link.
         ///
-        /// @param originalTarget        ///
-        /// The original link target.        ///
-        /// @param linkURI        ///
-        /// Link destination URI.        ///
-        /// @param aDOMNode        ///
-        /// Link DOM node.        ///
-        /// @param isAppTab        ///
-        /// Whether or not the link is in an app tab.        ///
-        /// @returns A new link target, if appropriate.        ///
-        /// Otherwise returns originalTarget.        ///
+        /// @param originalTarget
+        /// The original link target.
+        /// @param linkURI
+        /// Link destination URI.
+        /// @param aDOMNode
+        /// Link DOM node.
+        /// @param isAppTab
+        /// Whether or not the link is in an app tab.
+        /// @returns A new link target, if appropriate.
+        /// Otherwise returns originalTarget.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void OnBeforeLinkTraversal([MarshalAs(UnmanagedType.LPStruct)] nsAString originalTarget, [MarshalAs(UnmanagedType.Interface)] nsIURI linkURI, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode linkNode, [MarshalAs(UnmanagedType.Bool)] bool isAppTab, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);

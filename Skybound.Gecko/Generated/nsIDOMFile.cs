@@ -126,7 +126,7 @@ namespace Skybound.Gecko
 	/// <summary>nsIDOMMozBlobBuilder </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("c4a77171-039b-4f84-97f9-820fb51626af")]
+	[Guid("006d2cde-ec18-41d4-acc3-43682dd418e2")]
 	public interface nsIDOMMozBlobBuilder
 	{
 		
@@ -136,6 +136,14 @@ namespace Skybound.Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMBlob GetBlob([MarshalAs(UnmanagedType.LPStruct)] nsAString contentType);
+		
+		/// <summary>Member GetFile </summary>
+		/// <param name='name'> </param>
+		/// <param name='contentType'> </param>
+		/// <returns>A nsIDOMFile</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMFile GetFile([MarshalAs(UnmanagedType.LPStruct)] nsAString name, [MarshalAs(UnmanagedType.LPStruct)] nsAString contentType);
 		
 		/// <summary>Member Append </summary>
 		/// <param name='data'> </param>

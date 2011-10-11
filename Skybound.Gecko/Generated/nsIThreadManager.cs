@@ -32,7 +32,7 @@ namespace Skybound.Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("487c10bf-0a22-4148-89fa-790d819dd559")]
+	[Guid("2bbbc38c-cf96-4099-ba6b-f6a44d8b014c")]
 	public interface nsIThreadManager
 	{
 		
@@ -41,13 +41,15 @@ namespace Skybound.Gecko
         ///
         /// @param creationFlags
         /// Reserved for future use.  Pass 0.
+        /// @param stackSize
+        /// Number of bytes to reserve for the thread's stack.
         ///
         /// @returns
         /// The newly created nsIThread object.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIThread NewThread(uint creationFlags);
+		nsIThread NewThread(uint creationFlags, uint stackSize);
 		
 		/// <summary>
         /// Get the nsIThread object (if any) corresponding to the given PRThread.

@@ -32,7 +32,7 @@ namespace Skybound.Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("a88e5a60-205a-4bb1-94e1-2628daf51eae")]
+	[Guid("1d940426-5fe5-42c3-84ae-a300f2d9ebd5")]
 	public interface nsIComponentManager
 	{
 		
@@ -82,5 +82,27 @@ namespace Skybound.Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr CreateInstanceByContractID([MarshalAs(UnmanagedType.LPStr)] string aContractID, [MarshalAs(UnmanagedType.Interface)] nsISupports aDelegate, ref System.Guid aIID);
+		
+		/// <summary>
+        /// addBootstrappedManifestLocation
+        ///
+        /// Adds a bootstrapped manifest location on runtime.
+        ///
+        /// @param aLocation : A directory where chrome.manifest resides,
+        /// or an XPI with it on the root.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void AddBootstrappedManifestLocation([MarshalAs(UnmanagedType.Interface)] nsILocalFile aLocation);
+		
+		/// <summary>
+        /// removeBootstrappedManifestLocation
+        ///
+        /// Removes a bootstrapped manifest location on runtime.
+        ///
+        /// @param aLocation : A directory where chrome.manifest resides,
+        /// or an XPI with it on the root.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RemoveBootstrappedManifestLocation([MarshalAs(UnmanagedType.Interface)] nsILocalFile aLocation);
 	}
 }

@@ -31,7 +31,7 @@ namespace Skybound.Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("3b43762a-8305-11de-98ab-000c29206271")]
+	[Guid("0df9f4ed-f5ff-4e51-a6ff-2bd9785a7639")]
 	public interface nsIWebGLTexture
 	{
 		
@@ -714,7 +714,7 @@ namespace Skybound.Gecko
 		void Uniform4iv_array([MarshalAs(UnmanagedType.Interface)] nsIWebGLUniformLocation location, System.IntPtr v);
 		
 		/// <summary>
-        /// Modified. These are modified by replacing 'count' and 'value' with a WebGLArrayPtr
+        /// Modified. These are modified by replacing 'count' and 'value' with a WebGLJSObjectPtr
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void UniformMatrix2fv(int dummy);
@@ -744,7 +744,7 @@ namespace Skybound.Gecko
 		void ValidateProgram([MarshalAs(UnmanagedType.Interface)] nsIWebGLProgram program);
 		
 		/// <summary>
-        /// Modified: All the glVertexAttrib*v forms below are modified by replacing 'values' with a WebGLArrayPtr
+        /// Modified: All the glVertexAttrib*v forms below are modified by replacing 'values' with a WebGLJSObjectPtr
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void VertexAttrib1f(uint indx, double x);

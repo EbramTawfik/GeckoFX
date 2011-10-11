@@ -197,18 +197,6 @@ namespace Skybound.Gecko
 		new System.IntPtr GetListenerManager([MarshalAs(UnmanagedType.Bool)] bool aMayCreate);
 		
 		/// <summary>
-        /// Add an event listener for nsIID.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void AddEventListenerByIID([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aListener, ref System.Guid aIID);
-		
-		/// <summary>
-        /// Remove event listener for nsIID.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void RemoveEventListenerByIID([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aListener, ref System.Guid aIID);
-		
-		/// <summary>
         /// Get the script context in which the event handlers should be run.
         /// May return null.
         /// @note Caller *must* check the value of aRv.
@@ -460,18 +448,6 @@ namespace Skybound.Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new System.IntPtr GetListenerManager([MarshalAs(UnmanagedType.Bool)] bool aMayCreate);
-		
-		/// <summary>
-        /// Add an event listener for nsIID.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void AddEventListenerByIID([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aListener, ref System.Guid aIID);
-		
-		/// <summary>
-        /// Remove event listener for nsIID.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void RemoveEventListenerByIID([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aListener, ref System.Guid aIID);
 		
 		/// <summary>
         /// Get the script context in which the event handlers should be run.

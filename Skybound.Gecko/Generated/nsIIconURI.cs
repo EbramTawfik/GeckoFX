@@ -62,7 +62,7 @@ namespace Skybound.Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("b6a47fa0-2f1e-4084-ae5f-bdebab4d1cc3")]
+	[Guid("da53adda-cbe3-41bc-a57d-fdd7a0ff448b")]
 	public interface nsIMozIconURI : nsIURI
 	{
 		
@@ -328,6 +328,19 @@ namespace Skybound.Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIURI CloneIgnoringRef();
+		
+		/// <summary>
+        /// returns a string for the current URI with the ref element cleared.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void GetSpecIgnoringRefAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aSpecIgnoringRef);
+		
+		/// <summary>
+        /// Returns if there is a reference portion (the part after the "#") of the URI.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool GetHasRefAttribute();
 		
 		/// <summary>
         /// iconFile

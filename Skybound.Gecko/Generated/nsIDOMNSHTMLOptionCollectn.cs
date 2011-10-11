@@ -30,7 +30,7 @@ namespace Skybound.Gecko
 	/// <summary>nsIDOMNSHTMLOptionCollection </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("a4f2b279-8096-48ea-8a95-640c5a55b697")]
+	[Guid("03bd61d6-b851-465a-ab3f-99945f77cfa5")]
 	public interface nsIDOMNSHTMLOptionCollection
 	{
 		
@@ -56,12 +56,11 @@ namespace Skybound.Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMHTMLSelectElement GetSelectAttribute();
 		
-		/// <summary>Member Add </summary>
-		/// <param name='option'> </param>
-		/// <param name='index'> </param>
-		/// <param name='argc'> </param>
+		/// <summary>
+        ///   void add(in nsIDOMHTMLOptionElement, in long)
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Add([MarshalAs(UnmanagedType.Interface)] nsIDOMHTMLOptionElement option, int index, int argc);
+		void Add([MarshalAs(UnmanagedType.Interface)] nsIDOMHTMLOptionElement option, [MarshalAs(UnmanagedType.Interface)] nsIVariant before);
 		
 		/// <summary>Member Remove </summary>
 		/// <param name='index'> </param>

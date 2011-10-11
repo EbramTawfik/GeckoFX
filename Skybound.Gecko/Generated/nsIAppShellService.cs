@@ -84,17 +84,17 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMWindowInternal GetHiddenDOMWindowAttribute();
+		nsIDOMWindow GetHiddenDOMWindowAttribute();
 		
 		/// <summary>
-        /// Return the (singleton) application hidden window as an nsIDOMWindowInternal,
+        /// Return the (singleton) application hidden window as an nsIDOMWindow,
         /// and, the corresponding JavaScript context pointer.  This is useful
         /// if you'd like to subsequently call OpenDialog on the hidden window.
-        /// @aHiddenDOMWindow the hidden window QI'd to type nsIDOMWindowInternal
+        /// @aHiddenDOMWindow the hidden window QI'd to type nsIDOMWindow
         /// @aJSContext       the corresponding JavaScript context
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetHiddenWindowAndJSContext([MarshalAs(UnmanagedType.Interface)] ref nsIDOMWindowInternal aHiddenDOMWindow, ref System.IntPtr aJSContext);
+		void GetHiddenWindowAndJSContext([MarshalAs(UnmanagedType.Interface)] ref nsIDOMWindow aHiddenDOMWindow, ref System.IntPtr aJSContext);
 		
 		/// <summary>
         /// Return true if the application hidden window was provided by the

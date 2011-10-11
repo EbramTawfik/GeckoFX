@@ -113,7 +113,7 @@ namespace Skybound.Gecko
 	/// <summary>nsIContentFrameMessageManager </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("c56e85b8-6736-4ae2-ae90-66bcef952a82")]
+	[Guid("6f23339f-2b5c-4f22-a03f-bb7ec101f83d")]
 	public interface nsIContentFrameMessageManager : nsISyncMessageSender
 	{
 		
@@ -165,6 +165,18 @@ namespace Skybound.Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void PrivateNoteIntentionalCrash();
+		
+		/// <summary>
+        /// Ascii base64 data to binary data and vice versa
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Atob([MarshalAs(UnmanagedType.LPStruct)] nsAString aAsciiString, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		
+		/// <summary>Member Btoa </summary>
+		/// <param name='aBase64Data'> </param>
+		/// <param name='retval'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Btoa([MarshalAs(UnmanagedType.LPStruct)] nsAString aBase64Data, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 	}
 	
 	/// <summary>nsIInProcessContentFrameMessageManager </summary>
@@ -222,6 +234,18 @@ namespace Skybound.Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void PrivateNoteIntentionalCrash();
+		
+		/// <summary>
+        /// Ascii base64 data to binary data and vice versa
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void Atob([MarshalAs(UnmanagedType.LPStruct)] nsAString aAsciiString, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		
+		/// <summary>Member Btoa </summary>
+		/// <param name='aBase64Data'> </param>
+		/// <param name='retval'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void Btoa([MarshalAs(UnmanagedType.LPStruct)] nsAString aBase64Data, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>Member GetOwnerContent </summary>
 		/// <returns>A System.IntPtr</returns>

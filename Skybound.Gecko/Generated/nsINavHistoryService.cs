@@ -2478,7 +2478,7 @@ namespace Skybound.Gecko
 	/// <summary>nsINavHistoryService </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("437f539b-d541-4a0f-a200-6f9a6d45cce2")]
+	[Guid("562e698d-04f0-4df1-bd5d-1f1e5b84d7ef")]
 	public interface nsINavHistoryService
 	{
 		
@@ -2656,13 +2656,6 @@ namespace Skybound.Gecko
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetHistoryDisabledAttribute();
-		
-		/// <summary>
-        /// Import the given Mork history file.
-        /// @param file     The Mork history file to import
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ImportHistory([MarshalAs(UnmanagedType.Interface)] nsIFile file);
 	}
 	
 	/// <summary>

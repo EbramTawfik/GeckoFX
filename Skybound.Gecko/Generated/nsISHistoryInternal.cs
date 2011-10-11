@@ -30,7 +30,7 @@ namespace Skybound.Gecko
 	/// <summary>nsISHistoryInternal </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("2dede933-25e1-47a3-8f61-0127c785ea01")]
+	[Guid("e27cf38e-c19f-4294-bd31-d7e0916e7fa2")]
 	public interface nsISHistoryInternal
 	{
 		
@@ -86,21 +86,26 @@ namespace Skybound.Gecko
 		nsISHistoryListener GetListenerAttribute();
 		
 		/// <summary>
-        /// Evict content viewers until the number of content viewers per tab
-        /// is no more than gHistoryMaxViewers.  Also, count
-        /// total number of content viewers globally and evict one if we are over
-        /// our total max.  This is always called in Show(), after we destroy
-        /// the previous viewer.
+        /// Evict content viewers which don't lie in the "safe" range around aIndex.
+        /// In practice, this should leave us with no more than gHistoryMaxViewers
+        /// viewers associated with this SHistory object.
+        ///
+        /// Also make sure that the total number of content viewers in all windows is
+        /// not greater than our global max; if it is, evict viewers as appropriate.
+        ///
+        /// @param aIndex - The index around which the "safe" range is centered.  In
+        /// general, if you just navigated the history, aIndex should be the index
+        /// history was navigated to.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EvictContentViewers(int previousIndex, int index);
+		void EvictOutOfRangeContentViewers(int aIndex);
 		
 		/// <summary>
-        /// Evict the content viewer associated with a session history entry
+        /// Evict the content viewer associated with a bfcache entry
         /// that has timed out.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EvictExpiredContentViewerForEntry([MarshalAs(UnmanagedType.Interface)] nsISHEntry aEntry);
+		void EvictExpiredContentViewerForEntry([MarshalAs(UnmanagedType.Interface)] nsIBFCacheEntry aEntry);
 		
 		/// <summary>
         /// Evict all the content viewers in this session history

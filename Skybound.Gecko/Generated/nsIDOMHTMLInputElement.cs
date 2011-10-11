@@ -39,7 +39,7 @@ namespace Skybound.Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("a59ba6b8-6f8b-4003-a8a4-184a51a05050")]
+	[Guid("66819eba-89b5-4db4-8d27-6368c70761e8")]
 	public interface nsIDOMHTMLInputElement : nsIDOMHTMLElement
 	{
 		
@@ -381,6 +381,9 @@ namespace Skybound.Gecko
 		new void SetAccessKeyAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aAccessKey);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void GetAccessKeyLabelAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aAccessKeyLabel);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void Blur();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -623,7 +626,13 @@ namespace Skybound.Gecko
 		void SetSelectionEndAttribute(int aSelectionEnd);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSelectionRange(int selectionStart, int selectionEnd);
+		void SetSelectionRange(int selectionStart, int selectionEnd, [MarshalAs(UnmanagedType.LPStruct)] nsAString direction);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetSelectionDirectionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aSelectionDirection);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetSelectionDirectionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aSelectionDirection);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetTabIndexAttribute();

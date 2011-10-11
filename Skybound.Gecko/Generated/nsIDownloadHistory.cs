@@ -34,7 +34,7 @@ namespace Skybound.Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("202533cd-a8f1-4ee4-8d20-3a6a0d2c6c51")]
+	[Guid("a7a3358c-9af2-41e3-adfe-3bf0b7ac2c38")]
 	public interface nsIDownloadHistory
 	{
 		
@@ -51,12 +51,15 @@ namespace Skybound.Gecko
         /// @param aStartTime
         /// [optional] The time the download was started.  If the start time
         /// is not given, the current time is used.
+        /// @param aDestination
+        /// [optional] The target where the download is to be saved on the local
+        /// filesystem.
         /// @throws NS_ERROR_NOT_AVAILABLE
         /// In a situation where a history implementation is not available,
         /// where 'history implementation' refers to something like
         /// nsIGlobalHistory and friends.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddDownload([MarshalAs(UnmanagedType.Interface)] nsIURI aSource, [MarshalAs(UnmanagedType.Interface)] nsIURI aReferrer, uint aStartTime);
+		void AddDownload([MarshalAs(UnmanagedType.Interface)] nsIURI aSource, [MarshalAs(UnmanagedType.Interface)] nsIURI aReferrer, uint aStartTime, [MarshalAs(UnmanagedType.Interface)] nsIURI aDestination);
 	}
 }

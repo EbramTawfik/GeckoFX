@@ -41,7 +41,7 @@ namespace Skybound.Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("d53c3d3d-2413-4abc-b54e-11c5c8380776")]
+	[Guid("10034b87-384e-4e19-902c-c4edafb899be")]
 	public interface nsIDOMDocument : nsIDOMNode
 	{
 		
@@ -648,6 +648,14 @@ namespace Skybound.Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetContentTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aContentType);
+		
+		/// <summary>
+        /// True if this document is synthetic : stand alone image, video, audio file,
+        /// etc.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetMozSyntheticDocumentAttribute();
 		
 		/// <summary>
         /// Returns the script element whose script is currently being processed.

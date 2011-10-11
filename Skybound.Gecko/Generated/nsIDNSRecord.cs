@@ -37,7 +37,7 @@ namespace Skybound.Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("31c9c52e-1100-457d-abac-d2729e43f506")]
+	[Guid("ead9e9d8-7eef-4dae-a7f0-a1edcfb20478")]
 	public interface nsIDNSRecord
 	{
 		
@@ -86,5 +86,16 @@ namespace Skybound.Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Rewind();
+		
+		/// <summary>
+        /// This function indicates that the last address obtained via getNextAddr*()
+        /// was not usuable and should be skipped in future uses of this
+        /// record if other addresses are available.
+        ///
+        /// @param aPort is the port number associated with the failure, if any.
+        /// It may be zero if not applicable.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void ReportUnusable(ushort aPort);
 	}
 }

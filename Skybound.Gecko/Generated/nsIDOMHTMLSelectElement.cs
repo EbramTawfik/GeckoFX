@@ -39,7 +39,7 @@ namespace Skybound.Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("5aeb2480-cb21-4483-b9b3-0c914502eb81")]
+	[Guid("069bc0d8-d16d-406a-8555-2f84384c9b3b")]
 	public interface nsIDOMHTMLSelectElement : nsIDOMHTMLElement
 	{
 		
@@ -381,6 +381,9 @@ namespace Skybound.Gecko
 		new void SetAccessKeyAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aAccessKey);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void GetAccessKeyLabelAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aAccessKeyLabel);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void Blur();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -467,8 +470,11 @@ namespace Skybound.Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMNode NamedItem([MarshalAs(UnmanagedType.LPStruct)] nsAString name);
 		
+		/// <summary>
+        ///   void add(in nsIDOMHTMLElement, in long)
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Add([MarshalAs(UnmanagedType.Interface)] nsIDOMHTMLElement element, [MarshalAs(UnmanagedType.Interface)] nsIDOMHTMLElement before);
+		void Add([MarshalAs(UnmanagedType.Interface)] nsIDOMHTMLElement element, [MarshalAs(UnmanagedType.Interface)] nsIVariant before);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Remove(int index);

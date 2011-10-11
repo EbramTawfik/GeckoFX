@@ -82,7 +82,7 @@ namespace Skybound.Gecko
 	
 	/// <summary>
     ///An API for registering commands in groups, to allow for
-    ///  updating via nsIDOMWindowInternal::UpdateCommands. </summary>
+    ///  updating via nsIDOMWindow::UpdateCommands. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("9F82C404-1C7B-11D5-A73C-ECA43CA836FC")]
@@ -91,7 +91,7 @@ namespace Skybound.Gecko
 		
 		/// <summary>
         ///An API for registering commands in groups, to allow for
-        ///  updating via nsIDOMWindowInternal::UpdateCommands. </summary>
+        ///  updating via nsIDOMWindow::UpdateCommands. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void AddCommandToGroup([MarshalAs(UnmanagedType.LPStr)] string aCommand, [MarshalAs(UnmanagedType.LPStr)] string aGroup);
 		

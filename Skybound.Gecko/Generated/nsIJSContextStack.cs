@@ -92,7 +92,7 @@ namespace Skybound.Gecko
 	/// <summary>nsIThreadJSContextStack </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("a1339ae0-05c1-11d4-8f92-0010a4e73d9a")]
+	[Guid("b7056a2a-a02d-43b1-abb9-47f81f8bf258")]
 	public interface nsIThreadJSContextStack : nsIJSContextStack
 	{
 		
@@ -120,10 +120,5 @@ namespace Skybound.Gecko
         ///inherits methods of nsIJSContextStack </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetSafeJSContextAttribute();
-		
-		/// <summary>
-        ///inherits methods of nsIJSContextStack </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSafeJSContextAttribute(System.IntPtr aSafeJSContext);
 	}
 }

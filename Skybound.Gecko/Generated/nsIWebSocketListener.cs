@@ -33,7 +33,7 @@ namespace Skybound.Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("b0c27050-31e9-42e5-bc59-499d54b52f99")]
+	[Guid("d74c96b2-65b3-4e39-9e39-c577de5d7a73")]
 	public interface nsIWebSocketListener
 	{
 		
@@ -94,8 +94,12 @@ namespace Skybound.Gecko
         /// onBinaryMessageAvailable() or onAcknowledge() will be delievered
         /// to the listener after onServerClose(), though outgoing messages can still
         /// be sent through the nsIWebSocketChannel connection.
+        ///
+        /// @param aContext user defined context
+        /// @param aCode the websocket closing handshake close code.
+        /// @param aReason the websocket closing handshake close reason
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnServerClose([MarshalAs(UnmanagedType.Interface)] nsISupports aContext);
+		void OnServerClose([MarshalAs(UnmanagedType.Interface)] nsISupports aContext, ushort aCode, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aReason);
 	}
 }

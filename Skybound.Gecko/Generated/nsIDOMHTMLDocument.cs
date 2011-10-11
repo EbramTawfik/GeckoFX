@@ -35,7 +35,7 @@ namespace Skybound.Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("3c0ca40f-72c5-4d15-935e-ccaff7953f2c")]
+	[Guid("3ab3e856-361d-435a-8a4d-b462799945cd")]
 	public interface nsIDOMHTMLDocument : nsIDOMDocument
 	{
 		
@@ -644,6 +644,14 @@ namespace Skybound.Gecko
 		new void GetContentTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aContentType);
 		
 		/// <summary>
+        /// True if this document is synthetic : stand alone image, video, audio file,
+        /// etc.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool GetMozSyntheticDocumentAttribute();
+		
+		/// <summary>
         /// Returns the script element whose script is currently being processed.
         ///
         /// @see <https://developer.mozilla.org/en/DOM/document.currentScript>
@@ -886,8 +894,9 @@ namespace Skybound.Gecko
 		/// <summary>
         /// DOM Range
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSelection([MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		nsISelection GetSelection();
 		
 		/// <summary>
         /// @deprecated These are old Netscape 4 methods. Do not use,

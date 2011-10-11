@@ -36,7 +36,7 @@ namespace Skybound.Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("47fbc3e7-c654-4ffb-83fc-a861394145ee")]
+	[Guid("20a5e3e9-0d5b-482c-9f41-942b5f19e5a3")]
 	public interface imgILoader
 	{
 		
@@ -45,6 +45,7 @@ namespace Skybound.Gecko
         /// @param aURI the URI to load
         /// @param aInitialDocumentURI the URI that 'initiated' the load -- used for 3rd party cookie blocking
         /// @param aReferrerURI the 'referring' URI
+        /// @param aLoadingPrincipal the principal of the loading document
         /// @param aLoadGroup Loadgroup to put the image load into
         /// @param aObserver the observer (may be null)
         /// @param aCX some random data
@@ -59,7 +60,7 @@ namespace Skybound.Gecko
         /// goes away.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		imgIRequest LoadImage([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIURI aInitialDocumentURL, [MarshalAs(UnmanagedType.Interface)] nsIURI aReferrerURI, [MarshalAs(UnmanagedType.Interface)] nsILoadGroup aLoadGroup, imgIDecoderObserver aObserver, [MarshalAs(UnmanagedType.Interface)] nsISupports aCX, uint aLoadFlags, [MarshalAs(UnmanagedType.Interface)] nsISupports cacheKey, imgIRequest aRequest, [MarshalAs(UnmanagedType.Interface)] nsIChannelPolicy channelPolicy);
+		imgIRequest LoadImage([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIURI aInitialDocumentURL, [MarshalAs(UnmanagedType.Interface)] nsIURI aReferrerURI, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal aLoadingPrincipal, [MarshalAs(UnmanagedType.Interface)] nsILoadGroup aLoadGroup, imgIDecoderObserver aObserver, [MarshalAs(UnmanagedType.Interface)] nsISupports aCX, uint aLoadFlags, [MarshalAs(UnmanagedType.Interface)] nsISupports cacheKey, imgIRequest aRequest, [MarshalAs(UnmanagedType.Interface)] nsIChannelPolicy channelPolicy);
 		
 		/// <summary>
         /// Start the load and decode of an image.

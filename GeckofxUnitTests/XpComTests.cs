@@ -16,9 +16,9 @@ namespace GeckofxUnitTests
 			get 
 			{ 
 				if (Xpcom.IsLinux)
-					return "/usr/lib/firefox-7.0/";
+					return "/usr/lib/firefox-8.0/";
 				
-				return @"C:\Program Files (x86)\Mozilla Firefox 7.0";
+				return @"C:\Program Files (x86)\Mozilla Firefox BETA";
 			}
 		}
 
@@ -477,15 +477,7 @@ namespace GeckofxUnitTests
 			var instance = Xpcom.CreateInstance<nsIWebContentHandlerRegistrar>("@mozilla.org/embeddor.implemented/web-content-handler-registrar;1");
 			Assert.IsNotNull(instance);
 			Marshal.ReleaseComObject(instance);
-		}
-
-		[Test]
-		public void CreateInstance_CreatingWorkerFactory_ReturnsValidInstance()
-		{
-			var instance = Xpcom.CreateInstance<nsIWorkerFactory>("@mozilla.org/threads/workerfactory;1");
-			Assert.IsNotNull(instance);
-			Marshal.ReleaseComObject(instance);
-		}
+		}		
 
 		[Test]
 		public void CreateInstance_CreatingTxtSrvFilter_ReturnsValidInstance()
@@ -1051,46 +1043,6 @@ namespace GeckofxUnitTests
 		public void CreateInstance_CreatingDirIndexParser_ReturnsValidInstance()
 		{			
 			var instance = Xpcom.CreateInstance<nsIDirIndexParser>("@mozilla.org/dirIndexParser;1");
-			Assert.IsNotNull(instance);
-			Marshal.ReleaseComObject(instance);
-		}
-
-		[Test]
-		public void CreateInstance_CreatingHtmlFragmentSink_ReturnsValidInstance()
-		{			
-			var instance = Xpcom.CreateInstance<nsISupports>("@mozilla.org/layout/htmlfragmentsink;1");
-			Assert.IsNotNull(instance);
-			Marshal.ReleaseComObject(instance);
-		}
-
-		[Test]
-		public void CreateInstance_CreatingHtmlFragmentsSink2_ReturnsValidInstance()
-		{			
-			var instance = Xpcom.CreateInstance<nsISupports>("@mozilla.org/layout/htmlfragmentsink;2");
-			Assert.IsNotNull(instance);
-			Marshal.ReleaseComObject(instance);
-		}
-
-		[Test]
-		public void CreateInstance_CreatingHtmlParanoidGragmentSink_ReturnsValidInstance()
-		{			
-			var instance = Xpcom.CreateInstance<nsISupports>("@mozilla.org/htmlparanoidfragmentsink;1");
-			Assert.IsNotNull(instance);
-			Marshal.ReleaseComObject(instance);
-		}
-
-		[Test]
-		public void CreateInstance_CreatingHtmlParanoidGragmentSink2_ReturnsValidInstance()
-		{			
-			var instance = Xpcom.CreateInstance<nsISupports>("@mozilla.org/htmlparanoidfragmentsink;2");
-			Assert.IsNotNull(instance);
-			Marshal.ReleaseComObject(instance);
-		}
-
-		[Test]
-		public void CreateInstance_CreatingXmlFragment_ReturnsValidInstance()
-		{			
-			var instance = Xpcom.CreateInstance<nsISupports>("@mozilla.org/layout/xmlfragmentsink;1");
 			Assert.IsNotNull(instance);
 			Marshal.ReleaseComObject(instance);
 		}

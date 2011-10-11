@@ -38,7 +38,7 @@ namespace Skybound.Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("c95d481a-c0ec-43cc-8320-43842b1df597")]
+	[Guid("0d31634e-2fc9-4597-9d53-11fb3f05516a")]
 	public interface nsIJARURI : nsIURL
 	{
 		
@@ -304,6 +304,19 @@ namespace Skybound.Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIURI CloneIgnoringRef();
+		
+		/// <summary>
+        /// returns a string for the current URI with the ref element cleared.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void GetSpecIgnoringRefAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aSpecIgnoringRef);
+		
+		/// <summary>
+        /// Returns if there is a reference portion (the part after the "#") of the URI.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool GetHasRefAttribute();
 		
 		/// <summary>
         /// Returns a path including the directory and file portions of a

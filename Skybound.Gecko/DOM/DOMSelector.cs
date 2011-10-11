@@ -85,9 +85,7 @@ namespace Skybound.Gecko.DOM
 			Add(new GeckoClassDesc() { TagName = "img", InterfaceType = typeof(nsIDOMHTMLImageElement), GeckoElement = typeof(GeckoImageElement), 
 				CreationMethod = (x) => new GeckoImageElement((nsIDOMHTMLImageElement)x) });
 			Add(new GeckoClassDesc() { TagName = "input", InterfaceType = typeof(nsIDOMHTMLInputElement), GeckoElement = typeof(GeckoInputElement), 
-				CreationMethod = (x) => new GeckoInputElement((nsIDOMHTMLInputElement)x) });
-			Add(new GeckoClassDesc() { TagName = "isindex", InterfaceType = typeof(nsIDOMHTMLIsIndexElement), GeckoElement = typeof(GeckoIsIndexElement), 
-				CreationMethod = (x) => new GeckoIsIndexElement((nsIDOMHTMLIsIndexElement)x) });
+				CreationMethod = (x) => new GeckoInputElement((nsIDOMHTMLInputElement)x) });			
 			Add(new GeckoClassDesc() { TagName = "label", InterfaceType = typeof(nsIDOMHTMLLabelElement), GeckoElement = typeof(GeckoLabelElement), 
 				CreationMethod = (x) => new GeckoLabelElement((nsIDOMHTMLLabelElement)x) });
 			Add(new GeckoClassDesc() { TagName = "legend", InterfaceType = typeof(nsIDOMHTMLLegendElement), GeckoElement = typeof(GeckoLegendElement), 

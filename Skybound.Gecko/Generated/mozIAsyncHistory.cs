@@ -125,21 +125,32 @@ namespace Skybound.Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("3b97ca3c-5ea8-424f-b429-797477c52302")]
+	[Guid("eb0b406f-8f57-4f2b-b0da-8883684b138a")]
 	public interface mozIVisitInfoCallback
 	{
 		
 		/// <summary>
-        /// Called for each visit added, title change, or guid change when passed to
-        /// mozIAsyncHistory::updatePlaces.
+        /// Called when the given mozIPlaceInfo object could not be processed.
         ///
         /// @param aResultCode
-        /// nsresult of the change indicating success or failure reason.
+        /// nsresult indicating the failure reason.
         /// @param aPlaceInfo
         /// The information that was being entered into the database.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnComplete(int aResultCode, mozIPlaceInfo aPlaceInfo);
+		void HandleError(int aResultCode, mozIPlaceInfo aPlaceInfo);
+		
+		/// <summary>
+        /// Called for each visit added, title change, or guid change when passed to
+        /// mozIAsyncHistory::updatePlaces.  If more than one operation is done for
+        /// a given visit, only one callback will be given (i.e. title change and
+        /// add visit).
+        ///
+        /// @param aPlaceInfo
+        /// The information that was being entered into the database.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void HandleResult(mozIPlaceInfo aPlaceInfo);
 	}
 	
 	/// <summary>
@@ -159,9 +170,8 @@ namespace Skybound.Gecko
         /// The mozIPlaceInfo object[s] containing the information to store or
         /// update.  This can be a single object, or an array of objects.
         /// @param [optional] aCallback
-        /// Callback to be notified for each visit addition, title change, or
-        /// guid change.  If more than one operation is done for a given visit,
-        /// only one callback will be given (i.e. title change and add visit).
+        /// A mozIVisitInfoCallback object which consists of callbacks to be
+        /// notified for successful and/or failed changes.
         ///
         /// @throws NS_ERROR_INVALID_ARG
         /// - Passing in NULL for aPlaceInfo.

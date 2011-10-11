@@ -30,7 +30,7 @@ namespace Skybound.Gecko
 	/// <summary>nsIScriptableRegion </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("4d179656-a5bd-42a6-a937-c81f820dcf2f")]
+	[Guid("f390b97c-a0cf-4cb4-b9e8-bfc15df76ab5")]
 	public interface nsIScriptableRegion
 	{
 		

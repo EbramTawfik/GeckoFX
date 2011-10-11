@@ -39,7 +39,7 @@ namespace Skybound.Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("318d9314-f97b-4b7e-96ff-95f0cb203fdf")]
+	[Guid("43aa6818-f67f-420c-a400-59a2668e9fe5")]
 	public interface nsIDOMHTMLMenuElement : nsIDOMHTMLElement
 	{
 		
@@ -381,6 +381,9 @@ namespace Skybound.Gecko
 		new void SetAccessKeyAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aAccessKey);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void GetAccessKeyLabelAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aAccessKeyLabel);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void Blur();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -415,5 +418,17 @@ namespace Skybound.Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetCompactAttribute([MarshalAs(UnmanagedType.Bool)] bool aCompact);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aType);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aType);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetLabelAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aLabel);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetLabelAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aLabel);
 	}
 }

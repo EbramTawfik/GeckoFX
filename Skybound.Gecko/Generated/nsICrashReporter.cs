@@ -127,6 +127,20 @@ namespace Skybound.Gecko
 		void AppendAppNotesToCrashReport([MarshalAs(UnmanagedType.LPStruct)] nsACString data);
 		
 		/// <summary>
+        /// Register a given memory range to be included in the crash report.
+        ///
+        /// @param ptr
+        /// The starting address for the bytes.
+        /// @param size
+        /// The number of bytes to include.
+        ///
+        /// @throw NS_ERROR_NOT_INITIALIZED if crash reporting not initialized
+        /// @throw NS_ERROR_NOT_IMPLEMENTED if unavailable on the current OS
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RegisterAppMemory(uint ptr, uint size);
+		
+		/// <summary>
         /// Write a minidump immediately, with the user-supplied exception
         /// information. This is implemented on Windows only, because
         /// SEH (structured exception handling) exists on Windows only.
