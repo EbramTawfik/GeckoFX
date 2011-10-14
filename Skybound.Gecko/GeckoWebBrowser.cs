@@ -188,6 +188,7 @@ namespace Skybound.Gecko
 				target.AddEventListener(new nsAString("mousedown"), this, true, true, 2);
 				target.AddEventListener(new nsAString("mouseup"), this, true, true, 2);
 				target.AddEventListener(new nsAString("click"), this, true, true, 2);
+				target.AddEventListener(new nsAString("dblclick"), this, true, true, 2);
 				target.AddEventListener(new nsAString("compositionstart"), this, true, true, 2);
 				target.AddEventListener(new nsAString("compositionend"), this, true, true, 2);
 				target.AddEventListener(new nsAString("contextmenu"), this, true, true, 2);
@@ -1955,6 +1956,7 @@ namespace Skybound.Gecko
 				case "mouseover": OnDomMouseOver((GeckoDomMouseEventArgs)(ea = new GeckoDomMouseEventArgs((nsIDOMMouseEvent)e))); break;
 				case "mouseout": OnDomMouseOut((GeckoDomMouseEventArgs)(ea = new GeckoDomMouseEventArgs((nsIDOMMouseEvent)e))); break;
 				case "click": OnDomClick(ea = new GeckoDomEventArgs(e)); break;
+				case "dblclick": OnDomDoubleClick(ea = new GeckoDomEventArgs(e)); break;
 				case "submit": OnDomSubmit(ea = new GeckoDomEventArgs(e)); break;
 				case "compositionstart": OnDomCompositionStart(ea = new GeckoDomEventArgs(e)); break;
 				case "compositionend": OnDomCompositionEnd(ea = new GeckoDomEventArgs(e)); break;
@@ -2254,6 +2256,26 @@ namespace Skybound.Gecko
 				((GeckoDomEventHandler)this.Events[DomClickEvent])(this, e);
 		}
 		#endregion
+
+		#region public event GeckoDomEventHandler DomDoubleClick
+
+		[Category("DOM Events")]
+		public event GeckoDomEventHandler DomDoubleClick
+		{
+			add { this.Events.AddHandler(DomDoubleClickEvent, value); }
+			remove { this.Events.RemoveHandler(DomDoubleClickEvent, value); }
+		}
+		private static object DomDoubleClickEvent = new object();
+
+		/// <summary>Raises the <see cref="DomDoubleClick"/> event.</summary>
+		/// <param name="e">The data for the event.</param>
+		protected virtual void OnDomDoubleClick(GeckoDomEventArgs e)
+		{
+			if (((GeckoDomEventHandler)this.Events[DomDoubleClickEvent]) != null)
+				((GeckoDomEventHandler)this.Events[DomDoubleClickEvent])(this, e);
+		}
+
+		#endregion public event GeckoDomEventHandler DomDoubleClick
 		
 		#endregion
 		
