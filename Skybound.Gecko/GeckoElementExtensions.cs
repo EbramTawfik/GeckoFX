@@ -14,13 +14,10 @@ namespace Skybound.Gecko
 		/// <returns></returns>
 		public static string GetData(this GeckoElement node, string dataAttributeName)
 		{
-			if (String.IsNullOrEmpty(dataAttributeName) || dataAttributeName.Trim().Length == 0)
-				throw new ArgumentException("dataAttributeName");
-			
-			if (node.Attributes["data-" + dataAttributeName] == null)
-				return string.Empty;
-			
-			return node.Attributes["data-" + dataAttributeName].TextContent;			
+			if (string.IsNullOrEmpty(dataAttributeName))
+				throw new ArgumentException("attributeName");
+
+			return node.GetAttribute("data-" + dataAttributeName);			
 		} 
 	}
 }
