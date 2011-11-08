@@ -2,6 +2,10 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v8.0-0.3 ==
+
+1. Add MarkupDocumentViewer wrapper (allows setting FullZoom + lots of other options)
+
 == v8.0-0.2 ==
 
 1. Add DomDoubleClick + GetData Extenstion method (Sent by Salaros)
