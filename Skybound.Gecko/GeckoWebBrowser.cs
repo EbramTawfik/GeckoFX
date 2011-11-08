@@ -1322,6 +1322,26 @@ namespace Skybound.Gecko
 			}
 		}
 		GeckoSessionHistory _History;
+
+		public GeckoMarkupDocumentViewer GetMarkupDocumentViewer()
+		{
+			if (_MarkupDocumentViewer != null)
+				return _MarkupDocumentViewer;
+
+			if (WebNav == null)
+				return null;
+
+			nsIDocShell shell = Xpcom.QueryInterface<nsIDocShell>(WebNav);
+			nsIContentViewer contentViewer;
+			IntPtr contentViewerPtr = shell.GetContentViewerAttribute();
+			contentViewer = (nsIContentViewer)Marshal.GetObjectForIUnknown(contentViewerPtr);
+
+			_MarkupDocumentViewer = new GeckoMarkupDocumentViewer((nsIMarkupDocumentViewer)contentViewer);
+
+			return _MarkupDocumentViewer;
+		}
+
+		GeckoMarkupDocumentViewer _MarkupDocumentViewer;
 		
 		#region nsIWebBrowserChrome Members
 

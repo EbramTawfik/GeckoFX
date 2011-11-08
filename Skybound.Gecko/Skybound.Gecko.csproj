@@ -176,6 +176,7 @@
     <Compile Include="GeckoComment.cs" />
     <Compile Include="GeckoElementExtensions.cs" />
     <Compile Include="GeckoHelperAppLauncherDialog.cs" />
+    <Compile Include="GeckoMarkupDocumentViewer.cs" />
     <Compile Include="GeckoMIMEInputStream.cs" />
     <Compile Include="GeckoNode.cs" />
     <Compile Include="GeckoWrapperCache.cs" />
