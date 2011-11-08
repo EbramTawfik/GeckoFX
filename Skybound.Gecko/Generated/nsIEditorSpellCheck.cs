@@ -144,7 +144,7 @@ namespace Skybound.Gecko
         /// @see mozISpellCheckingEngine::GetDictionaryList
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDictionaryList([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler", SizeParamIndex=1)] ref string dictionaryList, ref uint count);
+		void GetDictionaryList([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] ref System.IntPtr[] dictionaryList, ref uint count);
 		
 		/// <summary>
         /// @see nsISpellChecker::GetCurrentDictionary

@@ -138,7 +138,7 @@ namespace GeckofxUnitTests
 
 		}
 
-		public void GetCorrection(string word, ref string words, ref uint count)
+		public void GetCorrection(string word, ref System.IntPtr[] words, ref uint count)
 		{			
 		}
 	}

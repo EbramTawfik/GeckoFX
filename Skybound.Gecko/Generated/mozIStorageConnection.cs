@@ -197,7 +197,7 @@ namespace Skybound.Gecko
         /// @return an object that can be used to cancel the statements execution.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		mozIStoragePendingStatement ExecuteAsync(mozIStorageBaseStatement aStatements, uint aNumStatements, mozIStorageStatementCallback aCallback);
+		mozIStoragePendingStatement ExecuteAsync([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] mozIStorageBaseStatement[] aStatements, uint aNumStatements, mozIStorageStatementCallback aCallback);
 		
 		/// <summary>
         /// Check if the given table exists.

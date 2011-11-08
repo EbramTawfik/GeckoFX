@@ -174,6 +174,6 @@ namespace Skybound.Gecko
 		/// <param name='time'> </param>
 		/// <param name='allowAudioData'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitAudioAvailableEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString typeArg, [MarshalAs(UnmanagedType.Bool)] bool canBubbleArg, [MarshalAs(UnmanagedType.Bool)] bool cancelableArg, float frameBufferPtr, uint frameBufferLength, float time, [MarshalAs(UnmanagedType.Bool)] bool allowAudioData);
+		void InitAudioAvailableEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString typeArg, [MarshalAs(UnmanagedType.Bool)] bool canBubbleArg, [MarshalAs(UnmanagedType.Bool)] bool cancelableArg, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=4)] float[] frameBufferPtr, uint frameBufferLength, float time, [MarshalAs(UnmanagedType.Bool)] bool allowAudioData);
 	}
 }

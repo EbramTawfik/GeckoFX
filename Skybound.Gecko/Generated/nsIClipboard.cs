@@ -79,7 +79,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool HasDataMatchingFlavors([MarshalAs(UnmanagedType.LPStr, SizeParamIndex=1)] string aFlavorList, uint aLength, int aWhichClipboard);
+		bool HasDataMatchingFlavors([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] string[] aFlavorList, uint aLength, int aWhichClipboard);
 		
 		/// <summary>
         /// Allows clients to determine if the implementation supports the concept of a

@@ -1016,9 +1016,8 @@ namespace Skybound.Gecko
         /// The names of the arguments for this function; empty if this is
         /// not a function.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler", SizeParamIndex=0)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string GetParameterNames(ref uint count);
+		void GetParameterNames(ref uint count, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref System.IntPtr[] paramNames);
 		
 		/// <summary>
         /// Fetch the function object as a jsdIValue.
@@ -1136,7 +1135,7 @@ namespace Skybound.Gecko
         /// |startLine| and |maxLines| may be used to retrieve a chunk at a time.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetExecutableLines(uint pcmap, uint startLine, uint maxLines, ref uint count);
+		void GetExecutableLines(uint pcmap, uint startLine, uint maxLines, ref uint count, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=3)] ref uint[] executableLines);
 		
 		/// <summary>
         /// Set a breakpoint at a PC in this script.
@@ -1308,7 +1307,7 @@ namespace Skybound.Gecko
         /// @param length    Size of array.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetProperties(ref jsdIProperty propArray, ref uint length);
+		void GetProperties(ref System.IntPtr propArray, ref uint length);
 		
 		/// <summary>
         /// Retrieves a single property from the value. Only valid if the value
@@ -1318,7 +1317,7 @@ namespace Skybound.Gecko
         /// property exists for the requested name.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		jsdIProperty GetProperty([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String name);
+		System.IntPtr GetProperty([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String name);
 		
 		/// <summary>
         /// jsdIValues are wrappers around JavaScript engine structures. Much of the

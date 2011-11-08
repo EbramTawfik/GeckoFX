@@ -100,7 +100,7 @@ namespace Skybound.Gecko
         /// Get the list of dictionaries
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDictionaryList([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler", SizeParamIndex=1)] ref string dictionaries, ref uint count);
+		void GetDictionaryList([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] ref System.IntPtr[] dictionaries, ref uint count);
 		
 		/// <summary>
         /// check a word
@@ -113,7 +113,7 @@ namespace Skybound.Gecko
         /// get a list of suggestions for a misspelled word
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Suggest([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")] string word, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler", SizeParamIndex=2)] ref string suggestions, ref uint count);
+		void Suggest([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")] string word, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] ref System.IntPtr[] suggestions, ref uint count);
 		
 		/// <summary>
         /// Load dictionaries from the specified dir

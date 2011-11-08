@@ -45,7 +45,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Write(uint aCount, [MarshalAs(UnmanagedType.LPWStr, SizeParamIndex=0)] string c);
+		bool Write(uint aCount, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] string c);
 		
 		/// <summary>
         /// Write a string to the stream.

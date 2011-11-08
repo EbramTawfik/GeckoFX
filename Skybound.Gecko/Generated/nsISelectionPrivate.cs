@@ -326,7 +326,7 @@ namespace Skybound.Gecko
         /// Return array of ranges intersecting with the given DOM interval.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMRange GetRangesForInterval([MarshalAs(UnmanagedType.Interface)] nsIDOMNode beginNode, int beginOffset, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode endNode, int endOffset, [MarshalAs(UnmanagedType.Bool)] bool allowAdjacent, ref uint resultCount);
+		void GetRangesForInterval([MarshalAs(UnmanagedType.Interface)] nsIDOMNode beginNode, int beginOffset, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode endNode, int endOffset, [MarshalAs(UnmanagedType.Bool)] bool allowAdjacent, ref uint resultCount, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=5)] ref nsIDOMRange[] results);
 		
 		/// <summary>Member GetRangesForIntervalCOMArray </summary>
 		/// <param name='beginNode'> </param>

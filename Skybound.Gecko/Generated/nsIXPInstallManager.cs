@@ -44,7 +44,7 @@ namespace Skybound.Gecko
         /// @param aListener a listener to receive status notifications
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitManagerFromChrome([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler", SizeParamIndex=1)] string aURLs, uint aURLCount, [MarshalAs(UnmanagedType.Interface)] nsIXPIProgressDialog aListener);
+		void InitManagerFromChrome([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] System.IntPtr[] aURLs, uint aURLCount, [MarshalAs(UnmanagedType.Interface)] nsIXPIProgressDialog aListener);
 		
 		/// <summary>
         /// Initiates a set of downloads and checks the supplied hashes after
@@ -59,7 +59,7 @@ namespace Skybound.Gecko
         /// @param aListener a listener to receive status notifications
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitManagerWithHashes([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler", SizeParamIndex=2)] string aURLs, [MarshalAs(UnmanagedType.LPStr, SizeParamIndex=2)] string aHashes, uint aURLCount, [MarshalAs(UnmanagedType.Interface)] nsIXPIProgressDialog aListener);
+		void InitManagerWithHashes([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] System.IntPtr[] aURLs, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] string[] aHashes, uint aURLCount, [MarshalAs(UnmanagedType.Interface)] nsIXPIProgressDialog aListener);
 		
 		/// <summary>
         /// Initiates a set of downloads based on an install info object. Will

@@ -85,7 +85,7 @@ namespace Skybound.Gecko
 		/// <param name='aValue'> </param>
 		/// <param name='aValueSize'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BindBlobByName([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName, System.IntPtr aValue, uint aValueSize);
+		void BindBlobByName([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] System.IntPtr[] aValue, uint aValueSize);
 		
 		/// <summary>
         /// Binds aValue to the parameter with the index aIndex.
@@ -138,6 +138,6 @@ namespace Skybound.Gecko
 		/// <param name='aValue'> </param>
 		/// <param name='aValueSize'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BindBlobByIndex(uint aIndex, System.IntPtr aValue, uint aValueSize);
+		void BindBlobByIndex(uint aIndex, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] System.IntPtr[] aValue, uint aValueSize);
 	}
 }

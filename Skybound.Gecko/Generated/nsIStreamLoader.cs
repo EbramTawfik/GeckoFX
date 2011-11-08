@@ -55,7 +55,7 @@ namespace Skybound.Gecko
         /// no longer required.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnStreamComplete([MarshalAs(UnmanagedType.Interface)] nsIStreamLoader loader, [MarshalAs(UnmanagedType.Interface)] nsISupports ctxt, int status, uint resultLength, System.IntPtr result);
+		void OnStreamComplete([MarshalAs(UnmanagedType.Interface)] nsIStreamLoader loader, [MarshalAs(UnmanagedType.Interface)] nsISupports ctxt, int status, uint resultLength, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=3)] System.IntPtr[] result);
 	}
 	
 	/// <summary>

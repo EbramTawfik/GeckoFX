@@ -567,7 +567,7 @@ namespace Skybound.Gecko
         /// The size of the |updates| array.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnCheckComplete([MarshalAs(UnmanagedType.Interface)] nsIXMLHttpRequest request, nsIUpdate updates, uint updateCount);
+		void OnCheckComplete([MarshalAs(UnmanagedType.Interface)] nsIXMLHttpRequest request, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] nsIUpdate[] updates, uint updateCount);
 		
 		/// <summary>
         /// An error occurred while loading the remote update service file.
@@ -642,7 +642,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIUpdate SelectUpdate(nsIUpdate updates, uint updateCount);
+		nsIUpdate SelectUpdate([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] nsIUpdate[] updates, uint updateCount);
 		
 		/// <summary>
         /// Adds a listener that receives progress and state information about the

@@ -749,7 +749,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool DefineDOMQuickStubs(System.IntPtr cx, System.IntPtr proto, uint flags, uint interfaceCount, System.Guid interfaceArray);
+		bool DefineDOMQuickStubs(System.IntPtr cx, System.IntPtr proto, uint flags, uint interfaceCount, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=3)] System.Guid[] interfaceArray);
 		
 		/// <summary>
         /// Creates a JS object holder around aObject that will hold the object

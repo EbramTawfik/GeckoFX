@@ -277,7 +277,7 @@ namespace Skybound.Gecko
         /// @returns an array of nsISearchEngine objects.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISearchEngine GetEngines(ref uint engineCount);
+		void GetEngines(ref uint engineCount, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref nsISearchEngine[] engines);
 		
 		/// <summary>
         /// Returns an array of all installed search engines whose hidden attribute is
@@ -286,7 +286,7 @@ namespace Skybound.Gecko
         /// @returns an array of nsISearchEngine objects.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISearchEngine GetVisibleEngines(ref uint engineCount);
+		void GetVisibleEngines(ref uint engineCount, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref nsISearchEngine[] engines);
 		
 		/// <summary>
         /// Returns an array of all default search engines. This includes all loaded
@@ -296,7 +296,7 @@ namespace Skybound.Gecko
         /// @returns an array of nsISearchEngine objects.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISearchEngine GetDefaultEngines(ref uint engineCount);
+		void GetDefaultEngines(ref uint engineCount, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref nsISearchEngine[] engines);
 		
 		/// <summary>
         /// Moves a visible search engine.

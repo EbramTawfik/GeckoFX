@@ -54,6 +54,6 @@ namespace Skybound.Gecko
         /// nsIRequest might offer.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMIMETypeFromContent([MarshalAs(UnmanagedType.Interface)] nsIRequest aRequest, System.IntPtr aData, uint aLength, [MarshalAs(UnmanagedType.LPStruct)] nsACString retval);
+		void GetMIMETypeFromContent([MarshalAs(UnmanagedType.Interface)] nsIRequest aRequest, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] System.IntPtr[] aData, uint aLength, [MarshalAs(UnmanagedType.LPStruct)] nsACString retval);
 	}
 }

@@ -219,7 +219,7 @@ namespace Skybound.Gecko
         /// @returns An array of nsIWebContentHandlerInfo objects
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIWebContentHandlerInfo GetContentHandlers([MarshalAs(UnmanagedType.LPStruct)] nsAString contentType, ref uint count);
+		void GetContentHandlers([MarshalAs(UnmanagedType.LPStruct)] nsAString contentType, ref uint count, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] ref nsIWebContentHandlerInfo[] handlers);
 		
 		/// <summary>
         /// Resets the list of available content handlers to the default set from

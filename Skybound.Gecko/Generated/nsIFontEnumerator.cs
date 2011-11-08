@@ -41,9 +41,8 @@ namespace Skybound.Gecko
         /// @param  aResult    returns array of names
         /// @return void
         /// </summary>
-		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler", SizeParamIndex=0)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string EnumerateAllFonts(ref uint aCount);
+		void EnumerateAllFonts(ref uint aCount, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref System.IntPtr[] aResult);
 		
 		/// <summary>
         /// Return a sorted array of names of fonts that support the given language
@@ -55,9 +54,8 @@ namespace Skybound.Gecko
         /// @param  aResult    returns array of names
         /// @return void
         /// </summary>
-		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler", SizeParamIndex=2)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string EnumerateFonts([MarshalAs(UnmanagedType.LPStr)] string aLangGroup, [MarshalAs(UnmanagedType.LPStr)] string aGeneric, ref uint aCount);
+		void EnumerateFonts([MarshalAs(UnmanagedType.LPStr)] string aLangGroup, [MarshalAs(UnmanagedType.LPStr)] string aGeneric, ref uint aCount, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] ref System.IntPtr[] aResult);
 		
 		/// <summary>
         ///@param  aLangGroup language group

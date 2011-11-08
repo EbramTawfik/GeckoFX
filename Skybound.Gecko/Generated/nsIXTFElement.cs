@@ -56,7 +56,8 @@ namespace Skybound.Gecko
 		/// <summary>
         /// @note 'Normal' DOM interfaces are always automatically scriptable.
         /// </summary>
-		System.Guid GetScriptingInterfaces(ref uint count);
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetScriptingInterfaces(ref uint count, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref System.Guid[] array);
 		
 		/// <summary>
         /// Event notifications:

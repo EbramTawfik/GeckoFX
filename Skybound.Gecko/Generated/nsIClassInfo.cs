@@ -46,7 +46,8 @@ namespace Skybound.Gecko
         /// Should set *count = 0 and *array = null and return NS_OK if getting the
         /// list is not supported.
         /// </summary>
-		System.Guid GetInterfaces(ref uint count);
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetInterfaces(ref uint count, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref System.Guid[] array);
 		
 		/// <summary>
         /// Get a language mapping specific helper object that may assist in using

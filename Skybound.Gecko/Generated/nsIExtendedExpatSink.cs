@@ -54,7 +54,7 @@ namespace Skybound.Gecko
         /// @param aLineNumber the line number of the start tag in the data stream.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void HandleStartElement([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")] string aName, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler", SizeParamIndex=2)] string aAtts, uint aAttsCount, int aIndex, uint aLineNumber);
+		new void HandleStartElement([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")] string aName, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] System.IntPtr[] aAtts, uint aAttsCount, int aIndex, uint aLineNumber);
 		
 		/// <summary>
         /// Called to handle the closing tag of an element.

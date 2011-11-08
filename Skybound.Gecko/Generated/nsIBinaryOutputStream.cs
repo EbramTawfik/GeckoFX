@@ -205,6 +205,6 @@ namespace Skybound.Gecko
         /// Write an opaque byte array to the stream.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void WriteByteArray(byte aBytes, uint aLength);
+		void WriteByteArray([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] byte[] aBytes, uint aLength);
 	}
 }

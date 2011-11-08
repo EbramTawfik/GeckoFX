@@ -1035,7 +1035,7 @@ namespace Skybound.Gecko
         /// Only valid for RESULT_TYPE_QUERY nodes.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsINavHistoryQuery GetQueries(ref uint queryCount);
+		void GetQueries(ref uint queryCount, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref nsINavHistoryQuery[] queries);
 		
 		/// <summary>
         /// Get the options which group this node's children.
@@ -1982,13 +1982,13 @@ namespace Skybound.Gecko
         /// Limit results to the specified list of transition types.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTransitions(uint transitions, uint count);
+		void SetTransitions([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] uint[] transitions, uint count);
 		
 		/// <summary>
         /// Get the transitions set for this query.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetTransitions(ref uint count);
+		void GetTransitions(ref uint count, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref uint[] transitions);
 		
 		/// <summary>
         /// Get the count of the set query transitions.
@@ -2185,7 +2185,7 @@ namespace Skybound.Gecko
         /// Limit results to items that are in all of the given folders.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetFolders(ref uint count);
+		void GetFolders(ref uint count, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref int[] folders);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetFolderCountAttribute();
@@ -2196,7 +2196,7 @@ namespace Skybound.Gecko
         /// will be returned from the first level of that folder.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFolders(int folders, uint folderCount);
+		void SetFolders([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] int[] folders, uint folderCount);
 		
 		/// <summary>
         /// Creates a new query item with the same parameters of this one.
@@ -2603,7 +2603,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsINavHistoryResult ExecuteQueries(nsINavHistoryQuery aQueries, uint aQueryCount, [MarshalAs(UnmanagedType.Interface)] nsINavHistoryQueryOptions options);
+		nsINavHistoryResult ExecuteQueries([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] nsINavHistoryQuery[] aQueries, uint aQueryCount, [MarshalAs(UnmanagedType.Interface)] nsINavHistoryQueryOptions options);
 		
 		/// <summary>
         /// Converts a query URI-like string to an array of actual query objects for
@@ -2612,14 +2612,14 @@ namespace Skybound.Gecko
         /// (if nothing is defined, it will just have the default values).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void QueryStringToQueries([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aQueryString, ref nsINavHistoryQuery aQueries, ref uint aResultCount, [MarshalAs(UnmanagedType.Interface)] ref nsINavHistoryQueryOptions options);
+		void QueryStringToQueries([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aQueryString, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] ref nsINavHistoryQuery[] aQueries, ref uint aResultCount, [MarshalAs(UnmanagedType.Interface)] ref nsINavHistoryQueryOptions options);
 		
 		/// <summary>
         /// Converts a query into an equivalent string that can be persisted. Inverse
         /// of queryStringToQueries()
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void QueriesToQueryString(nsINavHistoryQuery aQueries, uint aQueryCount, [MarshalAs(UnmanagedType.Interface)] nsINavHistoryQueryOptions options, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
+		void QueriesToQueryString([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] nsINavHistoryQuery[] aQueries, uint aQueryCount, [MarshalAs(UnmanagedType.Interface)] nsINavHistoryQueryOptions options, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
 		
 		/// <summary>
         /// Adds a history observer. If ownsWeak is false, the history service will

@@ -85,6 +85,6 @@ namespace Skybound.Gecko
         /// is called.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PromptToChangePasswordWithUsernames(nsILoginInfo logins, uint count, [MarshalAs(UnmanagedType.Interface)] nsILoginInfo aNewLogin);
+		void PromptToChangePasswordWithUsernames([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] nsILoginInfo[] logins, uint count, [MarshalAs(UnmanagedType.Interface)] nsILoginInfo aNewLogin);
 	}
 }

@@ -198,7 +198,7 @@ namespace Skybound.Gecko
         /// Write an opaque byte array to the stream.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void WriteByteArray(byte aBytes, uint aLength);
+		new void WriteByteArray([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] byte[] aBytes, uint aLength);
 		
 		/// <summary>
         /// Write the object whose "root" or XPCOM-identity nsISupports is aObject.

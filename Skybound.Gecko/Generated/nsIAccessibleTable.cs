@@ -213,7 +213,7 @@ namespace Skybound.Gecko
         /// @param  cellsArray      [in] array of indexes of selected cells
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetSelectedCellIndices(ref uint cellsArraySize);
+		void GetSelectedCellIndices(ref uint cellsArraySize, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref int[] cellsArray);
 		
 		/// <summary>
         /// Return an array of column indices currently selected.
@@ -222,7 +222,7 @@ namespace Skybound.Gecko
         /// @param  columnsArray      [in] array of indices of selected columns
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetSelectedColumnIndices(ref uint columnsArraySize);
+		void GetSelectedColumnIndices(ref uint columnsArraySize, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref int[] columnsArray);
 		
 		/// <summary>
         /// Return an array of row indices currently selected.
@@ -231,7 +231,7 @@ namespace Skybound.Gecko
         /// @param  rowsArray      [in] array of indices of selected rows
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetSelectedRowIndices(ref uint rowsArraySize);
+		void GetSelectedRowIndices(ref uint rowsArraySize, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref int[] rowsArray);
 		
 		/// <summary>
         /// Select a row and unselects all previously selected rows.

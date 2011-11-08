@@ -171,9 +171,8 @@ namespace Skybound.Gecko
         /// @param  aResult - returns array of names
         /// @return void
         /// </summary>
-		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler", SizeParamIndex=0)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string EnumerateDocumentNames(ref uint aCount);
+		void EnumerateDocumentNames(ref uint aCount, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref System.IntPtr[] aResult);
 		
 		/// <summary>
         /// This exists PrintPreview mode and returns browser window to galley mode

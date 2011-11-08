@@ -202,7 +202,7 @@ namespace Skybound.Gecko
         /// @throws NS_ERROR_FAILURE if it can't read aLength bytes
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new byte ReadByteArray(uint aLength);
+		new void ReadByteArray(uint aLength, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref byte[] aBytes);
 		
 		/// <summary>
         /// Read an object from this stream to satisfy a strong or weak reference

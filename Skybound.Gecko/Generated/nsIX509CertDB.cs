@@ -83,7 +83,7 @@ namespace Skybound.Gecko
         /// @param certNameList The returned array of certificate nicknames.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void FindCertNicknames([MarshalAs(UnmanagedType.Interface)] nsISupports aToken, uint aType, ref uint count, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler", SizeParamIndex=2)] ref string certNameList);
+		void FindCertNicknames([MarshalAs(UnmanagedType.Interface)] nsISupports aToken, uint aType, ref uint count, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] ref System.IntPtr[] certNameList);
 		
 		/// <summary>
         /// Find user's own email encryption certificate by nickname.
@@ -135,7 +135,7 @@ namespace Skybound.Gecko
         /// @param ctx A UI context.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ImportCertificates(System.IntPtr data, uint length, uint type, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor ctx);
+		void ImportCertificates([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] System.IntPtr[] data, uint length, uint type, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor ctx);
 		
 		/// <summary>
         /// Import another person's email certificate into the database.
@@ -145,7 +145,7 @@ namespace Skybound.Gecko
         /// @param ctx A UI context.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ImportEmailCertificate(System.IntPtr data, uint length, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor ctx);
+		void ImportEmailCertificate([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] System.IntPtr[] data, uint length, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor ctx);
 		
 		/// <summary>
         /// Import a server machine's certificate into the database.
@@ -155,7 +155,7 @@ namespace Skybound.Gecko
         /// @param ctx A UI context.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ImportServerCertificate(System.IntPtr data, uint length, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor ctx);
+		void ImportServerCertificate([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] System.IntPtr[] data, uint length, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor ctx);
 		
 		/// <summary>
         /// Import a personal certificate into the database, assuming
@@ -166,7 +166,7 @@ namespace Skybound.Gecko
         /// @param ctx A UI context.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ImportUserCertificate(System.IntPtr data, uint length, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor ctx);
+		void ImportUserCertificate([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] System.IntPtr[] data, uint length, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor ctx);
 		
 		/// <summary>
         /// Delete a certificate stored in the database.
@@ -242,7 +242,7 @@ namespace Skybound.Gecko
         /// @param aCerts The array of all certificates to be exported.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ExportPKCS12File([MarshalAs(UnmanagedType.Interface)] nsISupports aToken, [MarshalAs(UnmanagedType.Interface)] nsILocalFile aFile, uint count, nsIX509Cert aCerts);
+		void ExportPKCS12File([MarshalAs(UnmanagedType.Interface)] nsISupports aToken, [MarshalAs(UnmanagedType.Interface)] nsILocalFile aFile, uint count, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] nsIX509Cert[] aCerts);
 		
 		/// <summary>
         /// An array of all known OCSP responders within the scope of the

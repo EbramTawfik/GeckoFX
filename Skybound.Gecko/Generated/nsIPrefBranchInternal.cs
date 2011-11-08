@@ -313,9 +313,8 @@ namespace Skybound.Gecko
         /// @return NS_OK The preference list was successfully retrieved.
         /// @return Other The preference(s) do not exist or an error occurred.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStr, SizeParamIndex=1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new string GetChildList([MarshalAs(UnmanagedType.LPStr)] string aStartingAt, ref uint aCount);
+		new void GetChildList([MarshalAs(UnmanagedType.LPStr)] string aStartingAt, ref uint aCount, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] ref string[] aChildArray);
 		
 		/// <summary>
         /// Called to reset all of the preferences referenced by this branch to their

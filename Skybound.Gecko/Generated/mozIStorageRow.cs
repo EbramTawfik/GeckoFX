@@ -94,7 +94,7 @@ namespace Skybound.Gecko
         /// data will be NULL if dataSize = 0
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetBlob(uint aIndex, ref uint aDataSize, ref System.IntPtr aData);
+		new void GetBlob(uint aIndex, ref uint aDataSize, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] ref System.IntPtr[] aData);
 		
 		/// <summary>Member GetIsNull </summary>
 		/// <param name='aIndex'> </param>

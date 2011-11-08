@@ -51,13 +51,13 @@ namespace Skybound.Gecko
         /// @param aIVLen the length of the initialization vector
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitWithIV([MarshalAs(UnmanagedType.Interface)] nsIKeyObject aKey, System.IntPtr aIV, uint aIVLen);
+		void InitWithIV([MarshalAs(UnmanagedType.Interface)] nsIKeyObject aKey, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] System.IntPtr[] aIV, uint aIVLen);
 		
 		/// <summary>
         /// Update from an array of bytes.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Update(System.IntPtr aData, uint aLen);
+		void Update([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] System.IntPtr[] aData, uint aLen);
 		
 		/// <summary>
         /// Update from a stream.

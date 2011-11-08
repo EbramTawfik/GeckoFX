@@ -46,9 +46,9 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member GetPluginTags </summary>
 		/// <param name='aPluginCount'> </param>
-		/// <returns>A nsIPluginTag</returns>
+		/// <param name='aResults'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIPluginTag GetPluginTags(ref uint aPluginCount);
+		void GetPluginTags(ref uint aPluginCount, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref nsIPluginTag[] aResults);
 		
 		/// <summary>
         /// Clear site data for a given plugin.

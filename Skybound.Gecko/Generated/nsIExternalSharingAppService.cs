@@ -121,8 +121,8 @@ namespace Skybound.Gecko
 		/// <summary>Member GetSharingApps </summary>
 		/// <param name='aMIMEType'> </param>
 		/// <param name='aLen'> </param>
-		/// <returns>A nsISharingHandlerApp</returns>
+		/// <param name='handlerApps'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISharingHandlerApp GetSharingApps([MarshalAs(UnmanagedType.LPStruct)] nsAString aMIMEType, ref uint aLen);
+		void GetSharingApps([MarshalAs(UnmanagedType.LPStruct)] nsAString aMIMEType, ref uint aLen, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] ref nsISharingHandlerApp[] handlerApps);
 	}
 }

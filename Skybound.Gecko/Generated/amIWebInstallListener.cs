@@ -87,7 +87,7 @@ namespace Skybound.Gecko
         /// The number of AddonInstalls
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnWebInstallDisabled([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow, [MarshalAs(UnmanagedType.Interface)] nsIURI aUri, nsIVariant aInstalls, uint aCount);
+		void OnWebInstallDisabled([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow, [MarshalAs(UnmanagedType.Interface)] nsIURI aUri, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=3)] nsIVariant[] aInstalls, uint aCount);
 		
 		/// <summary>
         /// Called when the website is not allowed to directly prompt the user to
@@ -105,7 +105,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool OnWebInstallBlocked([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow, [MarshalAs(UnmanagedType.Interface)] nsIURI aUri, nsIVariant aInstalls, uint aCount);
+		bool OnWebInstallBlocked([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow, [MarshalAs(UnmanagedType.Interface)] nsIURI aUri, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=3)] nsIVariant[] aInstalls, uint aCount);
 		
 		/// <summary>
         /// Called when a website wants to ask the user to install add-ons.
@@ -122,7 +122,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool OnWebInstallRequested([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow, [MarshalAs(UnmanagedType.Interface)] nsIURI aUri, nsIVariant aInstalls, uint aCount);
+		bool OnWebInstallRequested([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow, [MarshalAs(UnmanagedType.Interface)] nsIURI aUri, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=3)] nsIVariant[] aInstalls, uint aCount);
 	}
 	
 	/// <summary>
@@ -149,6 +149,6 @@ namespace Skybound.Gecko
         /// The number of AddonInstalls
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Confirm([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow, [MarshalAs(UnmanagedType.Interface)] nsIURI aUri, nsIVariant aInstalls, uint aCount);
+		void Confirm([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow, [MarshalAs(UnmanagedType.Interface)] nsIURI aUri, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=3)] nsIVariant[] aInstalls, uint aCount);
 	}
 }

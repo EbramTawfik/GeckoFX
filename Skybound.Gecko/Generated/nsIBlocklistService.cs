@@ -139,6 +139,6 @@ namespace Skybound.Gecko
         /// The number of addons
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Prompt(nsIVariant aAddons, uint aCount);
+		void Prompt([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] nsIVariant[] aAddons, uint aCount);
 	}
 }

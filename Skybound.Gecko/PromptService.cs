@@ -215,7 +215,7 @@ namespace Skybound.Gecko
 			return false;
 		}
 		
-		public bool Select(nsIDOMWindow aParent, string aDialogTitle, string aText, uint aCount, string aSelectList, ref int aOutSelection)
+		public bool Select(nsIDOMWindow aParent, string aDialogTitle, string aText, uint aCount, System.IntPtr[] aSelectList, ref int aOutSelection)
 		{			
 			return false;
 		}

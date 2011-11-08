@@ -531,52 +531,52 @@ namespace Skybound.Gecko
 		/// <param name='count'> </param>
 		/// <param name='valueArray'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PrintIntegerArray(uint count, int valueArray);
+		void PrintIntegerArray(uint count, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] int[] valueArray);
 		
 		/// <summary>Member PrintStringArray </summary>
 		/// <param name='count'> </param>
 		/// <param name='valueArray'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PrintStringArray(uint count, [MarshalAs(UnmanagedType.LPStr, SizeParamIndex=0)] string valueArray);
+		void PrintStringArray(uint count, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] string[] valueArray);
 		
 		/// <summary>Member MultiplyEachItemInIntegerArray </summary>
 		/// <param name='val'> </param>
 		/// <param name='count'> </param>
 		/// <param name='valueArray'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MultiplyEachItemInIntegerArray(int val, uint count, ref int valueArray);
+		void MultiplyEachItemInIntegerArray(int val, uint count, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] ref int[] valueArray);
 		
 		/// <summary>Member MultiplyEachItemInIntegerArrayAndAppend </summary>
 		/// <param name='val'> </param>
 		/// <param name='count'> </param>
 		/// <param name='valueArray'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MultiplyEachItemInIntegerArrayAndAppend(int val, ref uint count, ref int valueArray);
+		void MultiplyEachItemInIntegerArrayAndAppend(int val, ref uint count, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] ref int[] valueArray);
 		
 		/// <summary>Member CallEchoMethodOnEachInArray </summary>
 		/// <param name='uuid'> </param>
 		/// <param name='count'> </param>
 		/// <param name='result'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CallEchoMethodOnEachInArray(ref System.Guid uuid, ref uint count, ref System.IntPtr result);
+		void CallEchoMethodOnEachInArray(ref System.Guid uuid, ref uint count, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] ref System.IntPtr[] result);
 		
 		/// <summary>Member CallEchoMethodOnEachInArray2 </summary>
 		/// <param name='count'> </param>
 		/// <param name='result'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CallEchoMethodOnEachInArray2(ref uint count, ref nsIEcho result);
+		void CallEchoMethodOnEachInArray2(ref uint count, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref nsIEcho[] result);
 		
 		/// <summary>Member DoubleStringArray </summary>
 		/// <param name='count'> </param>
 		/// <param name='valueArray'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DoubleStringArray(ref uint count, [MarshalAs(UnmanagedType.LPStr, SizeParamIndex=0)] ref string valueArray);
+		void DoubleStringArray(ref uint count, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref string[] valueArray);
 		
 		/// <summary>Member ReverseStringArray </summary>
 		/// <param name='count'> </param>
 		/// <param name='valueArray'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ReverseStringArray(uint count, [MarshalAs(UnmanagedType.LPStr, SizeParamIndex=0)] ref string valueArray);
+		void ReverseStringArray(uint count, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref string[] valueArray);
 		
 		/// <summary>Member PrintStringWithSize </summary>
 		/// <param name='count'> </param>
@@ -592,10 +592,9 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member GetStrings </summary>
 		/// <param name='count'> </param>
-		/// <returns>A System.String</returns>
-		[return: MarshalAs(UnmanagedType.LPStr, SizeParamIndex=0)]
+		/// <param name='str'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string GetStrings(ref uint count);
+		void GetStrings(ref uint count, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref string[] str);
 	}
 	
 	/// <summary>nsIWrappedJSObjectTest </summary>

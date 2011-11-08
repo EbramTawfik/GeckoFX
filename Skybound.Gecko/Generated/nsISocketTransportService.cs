@@ -58,7 +58,7 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISocketTransport CreateTransport([MarshalAs(UnmanagedType.LPStr, SizeParamIndex=1)] string aSocketTypes, uint aTypeCount, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aHost, int aPort, [MarshalAs(UnmanagedType.Interface)] nsIProxyInfo aProxyInfo);
+		nsISocketTransport CreateTransport([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] string[] aSocketTypes, uint aTypeCount, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aHost, int aPort, [MarshalAs(UnmanagedType.Interface)] nsIProxyInfo aProxyInfo);
 		
 		/// <summary>
         /// Adds a new socket to the list of controlled sockets.

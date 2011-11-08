@@ -90,8 +90,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Get the list of application cache groups.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStr, SizeParamIndex=0)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string GetGroups(ref uint count);
+		void GetGroups(ref uint count, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref string[] groupIDs);
 	}
 }

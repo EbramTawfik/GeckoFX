@@ -162,7 +162,7 @@ namespace Skybound.Gecko
         /// one or more of the bits in typeBits.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GatherEntries(uint typeBits, ref uint count, [MarshalAs(UnmanagedType.LPStr, SizeParamIndex=1)] ref string keys);
+		void GatherEntries(uint typeBits, ref uint count, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] ref string[] keys);
 		
 		/// <summary>
         /// Add a set of namespace entries to the application cache.

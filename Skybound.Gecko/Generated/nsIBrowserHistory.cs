@@ -116,7 +116,7 @@ namespace Skybound.Gecko
         /// instead setting aDoBatchNotify true will send Begin/EndUpdateBatch
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemovePages(nsIURI aURIs, uint aLength, [MarshalAs(UnmanagedType.Bool)] bool aDoBatchNotify);
+		void RemovePages([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] nsIURI[] aURIs, uint aLength, [MarshalAs(UnmanagedType.Bool)] bool aDoBatchNotify);
 		
 		/// <summary>
         /// removePagesFromHost

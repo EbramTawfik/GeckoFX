@@ -57,6 +57,6 @@ namespace Skybound.Gecko
         /// your use-case.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		mozIStoragePendingStatement AsyncExecuteLegacyQueries(nsINavHistoryQuery aQueries, uint aQueryCount, [MarshalAs(UnmanagedType.Interface)] nsINavHistoryQueryOptions aOptions, mozIStorageStatementCallback aCallback);
+		mozIStoragePendingStatement AsyncExecuteLegacyQueries([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] nsINavHistoryQuery[] aQueries, uint aQueryCount, [MarshalAs(UnmanagedType.Interface)] nsINavHistoryQueryOptions aOptions, mozIStorageStatementCallback aCallback);
 	}
 }

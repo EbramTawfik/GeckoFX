@@ -55,9 +55,8 @@ namespace Skybound.Gecko
         /// @param length The number of strings in the returned array.
         /// @return An array of email addresses.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler", SizeParamIndex=0)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new string GetEmailAddresses(ref uint length);
+		new void GetEmailAddresses(ref uint length, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref System.IntPtr[] addresses);
 		
 		/// <summary>
         /// Check whether a given address is contained in the certificate.
@@ -197,7 +196,7 @@ namespace Skybound.Gecko
         /// @param usages The array of human readable usages.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetUsagesArray([MarshalAs(UnmanagedType.Bool)] bool localOnly, ref uint verified, ref uint count, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler", SizeParamIndex=2)] ref string usages);
+		new void GetUsagesArray([MarshalAs(UnmanagedType.Bool)] bool localOnly, ref uint verified, ref uint count, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] ref System.IntPtr[] usages);
 		
 		/// <summary>
         /// Obtain a single comma separated human readable string describing
@@ -236,7 +235,7 @@ namespace Skybound.Gecko
         /// @param data The bytes representing the DER encoded certificate.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.IntPtr GetRawDER(ref uint length);
+		new void GetRawDER(ref uint length, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref System.IntPtr[] data);
 		
 		/// <summary>
         /// Test whether two certificate instances represent the
@@ -279,7 +278,7 @@ namespace Skybound.Gecko
         /// @param data The bytes representing the PKCS#7 wrapped certificate.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr ExportAsCMS(uint chainMode, ref uint length);
+		void ExportAsCMS(uint chainMode, ref uint length, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] ref System.IntPtr[] data);
 		
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -294,9 +293,8 @@ namespace Skybound.Gecko
         /// the certificate is stored on (may be empty).
         /// On failure the function throws/returns an error.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler", SizeParamIndex=0)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string GetAllTokenNames(ref uint length);
+		void GetAllTokenNames(ref uint length, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref System.IntPtr[] tokenNames);
 	}
 	
 	/// <summary>nsICertVerificationResult </summary>
@@ -328,7 +326,7 @@ namespace Skybound.Gecko
         /// @param usages The array of human readable usages.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetUsagesArrayResult(ref uint verified, ref uint count, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler", SizeParamIndex=1)] ref string usages);
+		void GetUsagesArrayResult(ref uint verified, ref uint count, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] ref System.IntPtr[] usages);
 	}
 	
 	/// <summary>nsICertVerificationListener </summary>

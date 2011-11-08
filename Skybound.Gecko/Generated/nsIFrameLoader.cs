@@ -131,7 +131,7 @@ namespace Skybound.Gecko
         /// @param aLeftSize How much to expand left the rectangle
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIContentView GetContentViewsIn(float aXPx, float aYPx, float aTopSize, float aRightSize, float aBottomSize, float aLeftSize, ref uint aLength);
+		void GetContentViewsIn(float aXPx, float aYPx, float aTopSize, float aRightSize, float aBottomSize, float aLeftSize, ref uint aLength, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=6)] ref nsIContentView[] aResult);
 		
 		/// <summary>
         /// The root content view.

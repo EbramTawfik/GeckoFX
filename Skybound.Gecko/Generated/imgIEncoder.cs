@@ -196,7 +196,7 @@ namespace Skybound.Gecko
         /// specific. Just give empty string for default behavior.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitFromData(byte data, uint length, uint width, uint height, uint stride, uint inputFormat, [MarshalAs(UnmanagedType.LPStruct)] nsAString outputOptions);
+		void InitFromData([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] byte[] data, uint length, uint width, uint height, uint stride, uint inputFormat, [MarshalAs(UnmanagedType.LPStruct)] nsAString outputOptions);
 		
 		/// <summary>
         /// For encoding images which may contain multiple frames, the 1-shot
@@ -210,7 +210,7 @@ namespace Skybound.Gecko
 		void StartImageEncode(uint width, uint height, uint inputFormat, [MarshalAs(UnmanagedType.LPStruct)] nsAString outputOptions);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddImageFrame(byte data, uint length, uint width, uint height, uint stride, uint frameFormat, [MarshalAs(UnmanagedType.LPStruct)] nsAString frameOptions);
+		void AddImageFrame([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] byte[] data, uint length, uint width, uint height, uint stride, uint frameFormat, [MarshalAs(UnmanagedType.LPStruct)] nsAString frameOptions);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void EndImageEncode();

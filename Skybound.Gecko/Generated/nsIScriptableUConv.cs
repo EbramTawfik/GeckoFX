@@ -65,14 +65,14 @@ namespace Skybound.Gecko
         /// Converts an array of bytes to a unicode string.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ConvertFromByteArray(System.IntPtr aData, uint aCount, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void ConvertFromByteArray([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] System.IntPtr[] aData, uint aCount, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Convert a unicode string to an array of bytes. Finish does not need to be
         /// called.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr ConvertToByteArray([MarshalAs(UnmanagedType.LPStruct)] nsAString aString, ref uint aLen);
+		void ConvertToByteArray([MarshalAs(UnmanagedType.LPStruct)] nsAString aString, ref uint aLen, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] ref System.IntPtr[] aData);
 		
 		/// <summary>
         /// Converts a unicode string to an input stream. The bytes in the stream are

@@ -133,7 +133,7 @@ namespace Skybound.Gecko
         /// (|logins| is an array).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsILoginInfo GetAllLogins(ref uint count);
+		void GetAllLogins(ref uint count, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref nsILoginInfo[] logins);
 		
 		/// <summary>
         /// Fetch all logins in the login manager. An array is always returned;
@@ -151,7 +151,7 @@ namespace Skybound.Gecko
         /// (|logins| is an array).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsILoginInfo GetAllEncryptedLogins(ref uint count);
+		void GetAllEncryptedLogins(ref uint count, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref nsILoginInfo[] logins);
 		
 		/// <summary>
         /// Search for logins in the login manager. An array is always returned;
@@ -173,7 +173,7 @@ namespace Skybound.Gecko
         /// (|logins| is an array).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsILoginInfo SearchLogins(ref uint count, [MarshalAs(UnmanagedType.Interface)] nsIPropertyBag matchData);
+		void SearchLogins(ref uint count, [MarshalAs(UnmanagedType.Interface)] nsIPropertyBag matchData, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref nsILoginInfo[] logins);
 		
 		/// <summary>
         /// Obtain a list of all hosts for which password saving is disabled.
@@ -188,9 +188,8 @@ namespace Skybound.Gecko
         /// NOTE: This can be called from JS as:
         /// var logins = pwmgr.getAllDisabledHosts();
         /// </summary>
-		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler", SizeParamIndex=0)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string GetAllDisabledHosts(ref uint count);
+		void GetAllDisabledHosts(ref uint count, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref System.IntPtr[] hostnames);
 		
 		/// <summary>
         /// Check to see if saving logins has been disabled for a host.
@@ -245,7 +244,7 @@ namespace Skybound.Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsILoginInfo FindLogins(ref uint count, [MarshalAs(UnmanagedType.LPStruct)] nsAString aHostname, [MarshalAs(UnmanagedType.LPStruct)] nsAString aActionURL, [MarshalAs(UnmanagedType.LPStruct)] nsAString aHttpRealm);
+		void FindLogins(ref uint count, [MarshalAs(UnmanagedType.LPStruct)] nsAString aHostname, [MarshalAs(UnmanagedType.LPStruct)] nsAString aActionURL, [MarshalAs(UnmanagedType.LPStruct)] nsAString aHttpRealm, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref nsILoginInfo[] logins);
 		
 		/// <summary>
         /// Search for logins matching the specified criteria, as with

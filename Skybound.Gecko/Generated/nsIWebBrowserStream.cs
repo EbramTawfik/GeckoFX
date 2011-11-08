@@ -67,7 +67,7 @@ namespace Skybound.Gecko
         /// @note To append more than 4 GB of data, call this method multiple times.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AppendToStream(System.IntPtr aData, uint aLen);
+		void AppendToStream([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] System.IntPtr[] aData, uint aLen);
 		
 		/// <summary>
         /// Notifies the browser that all the data has been appended. This may notify

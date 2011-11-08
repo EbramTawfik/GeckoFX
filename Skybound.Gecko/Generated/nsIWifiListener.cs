@@ -41,7 +41,7 @@ namespace Skybound.Gecko
         /// access points in view.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnChange(nsIWifiAccessPoint accessPoints, uint aLen);
+		void OnChange([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] nsIWifiAccessPoint[] accessPoints, uint aLen);
 		
 		/// <summary>
         /// Called when there is a problem with listening to wifi
