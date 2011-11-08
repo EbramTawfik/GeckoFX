@@ -6,12 +6,12 @@ using System.Text;
 namespace Skybound.Gecko
 {
 	/// <summary>
-	/// To disable all Caching of GeckoWrapper, 
-	/// include the include the following statement in your application: GeckoWrapperCache.Enabled = false;
+	/// To enable Caching of GeckoWrapper, 
+	/// include the include the following statement in your application: GeckoWrapperCache.Enabled = true;
 	/// </summary>
 	public static class GeckoWrapperCache
 	{
-		static public bool Enabled = true;
+		static public bool Enabled = false;
 	}
 
 	/// <summary>
