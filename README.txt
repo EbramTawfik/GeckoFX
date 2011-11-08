@@ -2,6 +2,12 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v8.0-0.2 ==
+
+1. Add DomDoubleClick + GetData Extenstion method (Sent by Salaros)
+2. Improve Generated files to handle array better. Fixes bug https://bitbucket.org/geckofx/geckofx-7.0/issue/7
+3. Disable GeckoWrapperCache by default.
+
 == v8.0-0.1 ==
 
 1. Initial version supporting xulrunner v8.0
