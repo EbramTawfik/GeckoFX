@@ -585,6 +585,36 @@ namespace Skybound.Gecko
 			Navigate(string.Format("data:text/html;base64,{0}", Convert.ToBase64String(bytes)));
 		}
 
+		/// <summary>
+		/// Return a Bitmap Image of the current WebBrowsers Rendered page.
+		/// Not supported on Linux - use OffScreenGeckoWebBrowser.
+		/// </summary>
+		/// <param name="width">Width of the bimap</param>
+		/// <param name="height">Height of the bitmap</param>
+		/// <returns></returns>
+		public Bitmap GetBitmap(int width, int height)
+		{
+			return GetBitmap(0, 0, width, height);
+		}
+
+		/// <summary>
+		/// Return a Bitmap Image of the current WebBrowsers Rendered page.
+		/// </summary>
+		/// <param name="xOffset"></param>
+		/// <param name="yOffset"></param>
+		/// <param name="width">Width of the bitmap</param>
+		/// <param name="height">Height of the bitmap</param>
+		/// <returns></returns>
+		public Bitmap GetBitmap(int xOffset, int yOffset, int width, int height)
+		{
+			if (Xpcom.IsLinux)
+				return null;
+
+			return new ImageCreator(this).GetBitmap(xOffset, yOffset, width, height);
+		}
+
+
+
 		public NavigateFinishedNotifier NavigateFinishedNotifier;
 		
 		/// <summary>
