@@ -523,8 +523,11 @@ namespace GeckofxUnitTests
 		public void CreateInstance_CreatingPromptService_ReturnsValidInstance()
 		{
 			var promptService = Xpcom.CreateInstance<nsIPromptService>("@mozilla.org/embedcomp/prompt-service;1");
-			Assert.IsNotNull(promptService);			
-			Marshal.ReleaseComObject(promptService);
+			Assert.IsNotNull(promptService);
+	
+			// GeckoWebBrowser registers a global PromptService
+			if (Marshal.IsComObject(promptService))
+				Marshal.ReleaseComObject(promptService);
 		}
 
 		[Test]
@@ -1212,7 +1215,9 @@ namespace GeckofxUnitTests
 		{			
 			var instance = Xpcom.CreateInstance<nsIHelperAppLauncherDialog>("@mozilla.org/helperapplauncherdialog;1");
 			Assert.IsNotNull(instance);
-			Marshal.ReleaseComObject(instance);
+			// GeckoWebBrowser registers LauncherDialogFactory.
+			if (Marshal.IsComObject(instance))
+				Marshal.ReleaseComObject(instance);
 		}
 
 		[Test]

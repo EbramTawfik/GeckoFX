@@ -557,9 +557,9 @@ namespace Skybound.Gecko
 		}
 		
 		/// <summary>
-		/// Returns a collection containing all elements in the document with a given name.
+		/// Returns a collection containing all elements in the document with a given name.		
 		/// </summary>
-		/// <param name="name"></param>
+		/// <param name="name">This is NOT the tagname but the name attribute.</param>
 		/// <returns></returns>
 		public GeckoElementCollection GetElementsByName(string name)
 		{

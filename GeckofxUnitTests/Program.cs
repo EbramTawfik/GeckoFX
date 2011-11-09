@@ -11,7 +11,7 @@ namespace GeckofxUnitTests
 		[STAThread]
 		static void Main(string[] args)
 		{
-			string[] my_args = { Assembly.GetExecutingAssembly().Location };
+			string[] my_args = { Assembly.GetExecutingAssembly().Location, "/nothread", "/domain=None" };			
 
 			int returnCode = NUnit.ConsoleRunner.Runner.Main(my_args);
 

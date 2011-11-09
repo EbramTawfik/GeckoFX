@@ -71,6 +71,8 @@ namespace Skybound.Gecko
 			if (Xpcom.IsMono)
 				m_wrapper = new GtkDotNet.GtkReparentingWrapperNoThread(new Gtk.Window(Gtk.WindowType.Popup), this);
 #endif
+
+			NavigateFinishedNotifier = new NavigateFinishedNotifier(this);
 		}
 		
 		//static Dictionary<nsIDOMDocument, GeckoWebBrowser> FromDOMDocumentTable = new Dictionary<nsIDOMDocument,GeckoWebBrowser>();
@@ -451,6 +453,7 @@ namespace Skybound.Gecko
 		
 		/// <summary>
 		/// Navigates to the specified URL.
+		/// In order to find out when Navigate has finished attach a handler to NavigateFinishedNotifier.NavigateFinished.
 		/// </summary>
 		/// <param name="url">The url to navigate to.</param>
 		public void Navigate(string url)
@@ -460,6 +463,7 @@ namespace Skybound.Gecko
 		
 		/// <summary>
 		/// Navigates to the specified URL using the given load flags.
+		/// In order to find out when Navigate has finished attach a handler to NavigateFinishedNotifier.NavigateFinished.
 		/// </summary>
 		/// <param name="url">The url to navigate to.  If the url is empty or null, the browser does not navigate and the method returns false.</param>
 		/// <param name="loadFlags">Flags which specify how the page is loaded.</param>
@@ -471,6 +475,7 @@ namespace Skybound.Gecko
 		[Obsolete]
 		/// <summary>
 		/// Navigates to the specified URL using the given load flags, referrer, post data and headers.
+		/// In order to find out when Navigate has finished attach a handler to NavigateFinishedNotifier.NavigateFinished.
 		/// </summary>
 		/// <param name="url">The url to navigate to.  If the url is empty or null, the browser does not navigate and the method returns false.</param>
 		/// <param name="loadFlags">Flags which specify how the page is loaded.</param>
@@ -534,6 +539,7 @@ namespace Skybound.Gecko
 		
 		/// <summary>
 		///  Navigates to the specified URL using the given load flags, referrer and post data
+		///  In order to find out when Navigate has finished attach a handler to NavigateFinishedNotifier.NavigateFinished.
 		/// </summary>
 		/// <param name="url">The url to navigate to.  If the url is empty or null, the browser does not navigate and the method returns false.</param>
 		/// <param name="loadFlags">Flags which specify how the page is loaded.</param>
@@ -561,7 +567,7 @@ namespace Skybound.Gecko
 			{
 				referrerUri = Xpcom.GetService<nsIIOService>("@mozilla.org/network/io-service;1").NewURI(new nsAUTF8String(referrer), null, null);
 			}
-			
+
 			WebNav.LoadURI(url, (uint)loadFlags, referrerUri, postData.InputStream, null);
 
 			return true;
@@ -569,14 +575,18 @@ namespace Skybound.Gecko
 
 		/// <summary>
 		/// Loads supplied html string.
+		/// Note: LoadHtml isn't intended to load complex Html Documents.		
+		/// In order to find out when LoadHtml has finished attach a handler to NavigateFinishedNotifier.NavigateFinished.
 		/// </summary>
 		/// <param name="htmlDocument"></param>
 		public void LoadHtml(string htmlDocument)
 		{
 			var bytes = System.Text.Encoding.UTF8.GetBytes(htmlDocument);						
 			Navigate(string.Format("data:text/html;base64,{0}", Convert.ToBase64String(bytes)));
-		}		
+		}
 
+		public NavigateFinishedNotifier NavigateFinishedNotifier;
+		
 		/// <summary>
 		/// Gets or sets whether all default items are removed from the standard context menu.
 		/// </summary>
