@@ -2,6 +2,10 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v8.0-0.5 ==
+
+1. Add a GetBitmap method to GeckoWebBrowser which replaces the Control.DrawToBitmap method that used to work in old versions of gecko.
+
 == v8.0-0.4 ==
 
 1. Added NavigateFinishedNotifier.NavigateFinished so that its easy to tell when a Navigation has completely finished.
