@@ -2,6 +2,10 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v8.0-0.4 ==
+
+1. Added NavigateFinishedNotifier.NavigateFinished so that its easy to tell when a Navigation has completely finished.
+
 == v8.0-0.3 ==
 
 1. Add MarkupDocumentViewer wrapper (allows setting FullZoom + lots of other options)
