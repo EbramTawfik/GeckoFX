@@ -104,5 +104,27 @@ namespace GeckofxUnitTests
 			Assert.AreEqual(1, divElement.Count());
 		}
 
+
+		// TODO: move to GeckoElementTests file.
+		[Test]
+		public void OuterHtml_AttributesHaveDoubleQuotes_()
+		{
+			string divString = "<div name=\"a\" id=\"_lv5\" class=\"none\">old value</div>";
+			LoadHtml(divString);
+
+			var divElement = (browser.Document.Body.FirstChild as GeckoElement);
+			Assert.AreEqual(divString.ToLowerInvariant(), divElement.OuterHtml.ToLowerInvariant());
+		}
+
+		// TODO: move to GeckoElementTests file.
+		[Test]
+		public void OuterHtml_AttributesHaveSingleQuotes_()
+		{
+			string divString = "<div name=\'a\' id=\'_lv5\' class='none'>old value</div>";
+			LoadHtml(divString);
+			
+			var divElement = (browser.Document.Body.FirstChild as GeckoElement);
+			Assert.AreEqual(divString.ToLowerInvariant().Replace('\'', '"'), divElement.OuterHtml.ToLowerInvariant());			
+		}
 	}
 }	
