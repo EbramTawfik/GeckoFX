@@ -33,11 +33,13 @@ namespace Skybound.Gecko.DOM
 			return DOMHTMLElement.GetContext(new nsAString(contextId), IntPtr.Zero);
 		}
 
-		public string toDataURL()
+		public string toDataURL(string type)
 		{
-			var retval = new nsAString();
-			DOMHTMLElement.ToDataURL(null, null, 2, retval);
-			return retval.ToString();
+			using (nsAString retval = new nsAString(), param = new nsAString(type))
+			{
+				DOMHTMLElement.ToDataURL(param, null, 2, retval);
+				return retval.ToString();
+			}
 		}
 	}
 }

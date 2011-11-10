@@ -592,7 +592,7 @@ namespace Skybound.Gecko
 		/// <param name="width">Width of the bimap</param>
 		/// <param name="height">Height of the bitmap</param>
 		/// <returns></returns>
-		public Bitmap GetBitmap(int width, int height)
+		public Bitmap GetBitmap(uint width, uint height)
 		{
 			return GetBitmap(0, 0, width, height);
 		}
@@ -605,11 +605,8 @@ namespace Skybound.Gecko
 		/// <param name="width">Width of the bitmap</param>
 		/// <param name="height">Height of the bitmap</param>
 		/// <returns></returns>
-		public Bitmap GetBitmap(int xOffset, int yOffset, int width, int height)
-		{
-			if (Xpcom.IsLinux)
-				return null;
-
+		public Bitmap GetBitmap(uint xOffset, uint yOffset, uint width, uint height)
+		{			
 			return new ImageCreator(this).GetBitmap(xOffset, yOffset, width, height);
 		}
 
