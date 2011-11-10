@@ -1439,6 +1439,7 @@
     <Compile Include="PasswordDialog.Designer.cs">
       <DependentUpon>PasswordDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="PrintSettings.cs" />
     <Compile Include="PromptDialog.cs">
       <SubType>Form</SubType>
     </Compile>
