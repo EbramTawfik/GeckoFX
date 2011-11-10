@@ -2,6 +2,11 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v8.0-0.6 ==
+
+1. Fix GetBitmap method to work with Invisiable windows.
+2. Add PrintSettings class which implements nsIPrintSettings.
+
 == v8.0-0.5 ==
 
 1. Add a GetBitmap method to GeckoWebBrowser which replaces the Control.DrawToBitmap method that used to work in old versions of gecko.
