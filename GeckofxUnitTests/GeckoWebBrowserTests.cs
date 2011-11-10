@@ -126,5 +126,8 @@ namespace GeckofxUnitTests
 			var divElement = (browser.Document.Body.FirstChild as GeckoElement);
 			Assert.AreEqual(divString.ToLowerInvariant().Replace('\'', '"'), divElement.OuterHtml.ToLowerInvariant());			
 		}
+
+		//[Test]
+		//public void 
 	}
 }	
