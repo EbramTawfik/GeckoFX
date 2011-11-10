@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using NUnit.Framework;
 using Skybound.Gecko;
+using System.Windows.Forms;
 
 namespace GeckofxUnitTests
 {
@@ -127,7 +128,44 @@ namespace GeckofxUnitTests
 			Assert.AreEqual(divString.ToLowerInvariant().Replace('\'', '"'), divElement.OuterHtml.ToLowerInvariant());			
 		}
 
-		//[Test]
-		//public void 
+		[Test]
+		public void DomContentChanged_ChangeContentOfTextInputWithKeyPressAndMoveToSecondInput_DomContentChangedShouldFire()
+		{
+			string html = "<input id=\"one\" type=\"text\" value=\"hello\" /><input id=\"two\" type=\"text\"  value=\"world\" />";
+			LoadHtml(html);
+
+			// Place browser on a form and show it. This is need to make the gecko accept the key press.
+			Form f = new Form();
+			f.Controls.Add(browser);
+			browser.Visible = true;
+			f.Show();			
+
+			// Focus first input box
+			browser.Document.GetElementById("one").Focus();			
+			GeckoRange range = browser.Document.CreateRange();			
+			range.SelectNode(browser.Document.GetElementById("one"));
+			browser.Window.Selection.AddRange(range);
+
+			// record if DomContentChanged event happened.
+			bool contentChangedEventReceived = false;			
+			browser.DomContentChanged += (sender, e) => contentChangedEventReceived = true;
+					
+			
+			// Modify first input by sending a keypress.
+			// TODO: create wrapper for nsIDOMWindowUtils
+			nsIDOMWindowUtils utils = Xpcom.QueryInterface<nsIDOMWindowUtils>(browser.Window.DomWindow);
+			using (nsAString type = new nsAString("keypress"))
+			{
+				utils.SendKeyEvent(type, 0, 102, 0, false);
+			}
+
+			// DomContentChanged Event should fire when we move we move to next element.
+			browser.Document.GetElementById("two").Focus();
+			range.SelectNode(browser.Document.GetElementById("two"));
+			browser.Window.Selection.RemoveAllRanges();
+			browser.Window.Selection.AddRange(range);
+
+			Assert.IsTrue(contentChangedEventReceived);			
+		}
 	}
 }	

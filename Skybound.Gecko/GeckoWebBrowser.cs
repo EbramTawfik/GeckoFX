@@ -199,6 +199,7 @@ namespace Skybound.Gecko
 				// Load event added here rather than DOMDocument as DOMDocument recreated when navigating
 				// ths losing attached listener.
 				target.AddEventListener(new nsAString("load"), this, true, true, 2);
+				target.AddEventListener(new nsAString("change"), this, true, true, 2);
 				
 				// history
 				if (WebNav.GetSessionHistoryAttribute() != null)
@@ -2021,6 +2022,7 @@ namespace Skybound.Gecko
 				case "DOMMouseScroll": OnDomMouseScroll((GeckoDomMouseEventArgs)(ea = new GeckoDomMouseEventArgs((nsIDOMMouseEvent)e))); break;				
 				case "focus": OnDomFocus(ea = new GeckoDomEventArgs(e)); break;
 				case "load": OnLoad(ea = new GeckoDomEventArgs(e)); break;
+				case "change": OnDomContentChanged(ea = new GeckoDomEventArgs(e)); break;
 			}
 			
 			if (ea != null && ea.Cancelable && ea.Handled)
@@ -2293,6 +2295,24 @@ namespace Skybound.Gecko
 		{
 			if (((GeckoDomEventHandler)this.Events[LoadEvent]) != null)
 				((GeckoDomEventHandler)this.Events[LoadEvent])(this, e);
+		}
+		#endregion
+
+		#region public event GeckoDomEventHandler DomContentChanged
+		[Category("DOM Events")]
+		public event GeckoDomEventHandler DomContentChanged
+		{
+			add { this.Events.AddHandler(DomContentChangedEvent, value); }
+			remove { this.Events.RemoveHandler(DomContentChangedEvent, value); }
+		}
+		private static object DomContentChangedEvent = new object();
+
+		/// <summary>Raises the <see cref="DomContentChangedEvent"/> event.</summary>
+		/// <param name="e">The data for the event.</param>
+		protected virtual void OnDomContentChanged(GeckoDomEventArgs e)
+		{
+			if (((GeckoDomEventHandler)this.Events[DomContentChangedEvent]) != null)
+				((GeckoDomEventHandler)this.Events[DomContentChangedEvent])(this, e);
 		}
 		#endregion
 		
