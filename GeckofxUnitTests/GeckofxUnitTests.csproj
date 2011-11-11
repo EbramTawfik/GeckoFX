@@ -67,6 +67,7 @@
     <Compile Include="SemanticUnitScannerTests.cs" />
     <Compile Include="SpellCheckerEngineTests.cs" />
     <Compile Include="UserInfoTests.cs" />
+    <Compile Include="WebBrowserPersistTests.cs" />
     <Compile Include="XpComTests.cs" />
   </ItemGroup>
   <ItemGroup>

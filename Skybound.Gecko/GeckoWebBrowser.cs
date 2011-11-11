@@ -1313,30 +1313,39 @@ namespace Skybound.Gecko
 		/// <summary>
 		/// Saves the current document to the specified file name.
 		/// </summary>
-		/// <param name="filename"></param>
+		/// <param name="path"></param>
 		/// <returns></returns>
-		public void SaveDocument(string filename)
+		public void SaveDocument(string path)
 		{
-			SaveDocument(filename, null);
+			SaveDocument(path, null);
 		}
 
 
 		/// <summary>
 		/// Saves the current document to the specified file name.
 		/// </summary>
-		/// <param name="filename"></param>
+		/// <param name="path">Patht to the file you want to save</param>
+		/// <param name="outputMimeType">the mimmtype of the save file, or null</param>
 		/// <returns></returns>
-		public void SaveDocument(string filename, string outputMimeType)//hatton added mimeType param
+		public void SaveDocument(string path, string outputMimeType)//hatton added mimeType param
 		{
-			if (!Directory.Exists(Path.GetDirectoryName(filename)))
+			if (!Directory.Exists(Path.GetDirectoryName(path)))
 				throw new System.IO.DirectoryNotFoundException();
 			else if (this.Document == null)
 				throw new InvalidOperationException("No document has been loaded into the web browser.");
 			
+			//If the file is locked, we'd like to throw a nice .net error, not just the E_FAIL we get from COM
+			//Also, this seems to get us through with no error, more often.
+			if(File.Exists(path))
+			{
+				File.Delete(path);
+			}
+
+
 			nsIWebBrowserPersist persist = Xpcom.QueryInterface<nsIWebBrowserPersist>(WebBrowser);
 			if (persist != null)
 			{
-				persist.SaveDocument((nsIDOMDocument)Document.DomObject, (nsISupports)Xpcom.NewNativeLocalFile(filename), null,
+				persist.SaveDocument((nsIDOMDocument)Document.DomObject, (nsISupports)Xpcom.NewNativeLocalFile(path), null,
 					outputMimeType, 0, 0);
 			}
 			else
