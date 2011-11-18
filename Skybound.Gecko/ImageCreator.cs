@@ -31,11 +31,18 @@ namespace Skybound.Gecko
 		/// </summary>
 		/// <param name="xOffset"></param>
 		/// <param name="yOffset"></param>
-		/// <param name="width"></param>
-		/// <param name="height"></param>
+		/// <param name="width">Width length of returned bitmap in pixels</param>
+		/// <param name="height">Height length of returned bitmap in pixels</param>
 		/// <returns></returns>
+		/// <throws>ArgumentException if width or height is zero</throws>
 		public Bitmap GetBitmap(uint xOffset, uint yOffset, uint width, uint height)
-		{	
+		{
+			if (width == 0)
+				throw new ArgumentException("width");
+
+			if (height == 0)
+				throw new ArgumentException("height");
+
 			// Use of the canvas technique was inspired by: the abduction! firefox plugin by Rowan Lewis
 			// https://addons.mozilla.org/en-US/firefox/addon/abduction/
 
@@ -43,8 +50,8 @@ namespace Skybound.Gecko
 			using (AutoJSContext jsContext = new AutoJSContext())
 			{
 				GeckoCanvasElement canvas = (GeckoCanvasElement)m_browser.Document.CreateElement("canvas");
-				canvas.Width = width - xOffset;
-				canvas.Height = height - yOffset;
+				canvas.Width = width;
+				canvas.Height = height;
 						
 				nsIDOMHTMLCanvasElement canvasPtr = (nsIDOMHTMLCanvasElement)canvas.DomObject;
 				nsIDOMCanvasRenderingContext2D context;
