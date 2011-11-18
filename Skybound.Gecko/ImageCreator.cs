@@ -34,8 +34,15 @@ namespace Skybound.Gecko
 		/// <param name="width"></param>
 		/// <param name="height"></param>
 		/// <returns></returns>
+		/// <throws>ArgumentException if width or height is zero</throws>
 		public Bitmap GetBitmap(uint xOffset, uint yOffset, uint width, uint height)
-		{	
+		{
+			if (width == 0)
+				throw new ArgumentException("width");
+
+			if (height == 0)
+				throw new ArgumentException("height");
+
 			// Use of the canvas technique was inspired by: the abduction! firefox plugin by Rowan Lewis
 			// https://addons.mozilla.org/en-US/firefox/addon/abduction/
 
