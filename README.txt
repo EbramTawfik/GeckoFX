@@ -2,6 +2,21 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v8.0-0.7 ==
+
+Bug fixes
+
+1. GeckoElement.OuterHtml property, was quoting attributes.
+3. GetBitmap using wrong width when not using origin.
+4. Fix some issues with flash plugings. (Thanks shcherba)
+5. Loading pages without a body, could throw exception.
+
+Added Features
+
+1. Added DomContentChanged event.
+2. Addws JavascriptError event
+3. Addws ConsoleMessage event.
+
 == v8.0-0.6 ==
 
 1. Fix GetBitmap method to work with Invisiable windows.
