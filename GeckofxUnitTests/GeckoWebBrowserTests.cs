@@ -189,5 +189,36 @@ namespace GeckofxUnitTests
 			string innerHtml = "hello world";
 			LoadFrameset(innerHtml);						
 		}
+
+		[Test]
+		public void JavascriptError_NaviagateWithSomeJavascriptThatThrowsException_AttachedEventHandlerShouldExecute()
+		{
+			List<JavascriptErrorEventArgs> errorEventArgs = new List<JavascriptErrorEventArgs>();
+
+			browser.JavascriptError += (object sender, JavascriptErrorEventArgs e) => errorEventArgs.Add(e);
+
+			browser.Navigate("javascript:someRandomFunctionNameThatDoesNotExist(\"2\");");
+
+			Application.DoEvents();
+
+			Assert.AreEqual(2, errorEventArgs.Count);
+			Assert.AreEqual("someRandomFunctionNameThatDoesNotExist is not defined", errorEventArgs[0].Message);
+			Assert.AreEqual("ReferenceError: someRandomFunctionNameThatDoesNotExist is not defined", errorEventArgs[1].Message);
+
+			Assert.AreEqual(1, errorEventArgs[0].ErrorNumber);
+			Assert.AreEqual(1, errorEventArgs[1].ErrorNumber);
+
+			Assert.AreEqual(1, errorEventArgs[0].Line);
+			Assert.AreEqual(1, errorEventArgs[1].Line);
+
+			Assert.AreEqual("javascript:someRandomFunctionNameThatDoesNotExist(\"2\");", errorEventArgs[0].Filename);
+			Assert.AreEqual("javascript:someRandomFunctionNameThatDoesNotExist(\"2\");", errorEventArgs[1].Filename);
+
+			Assert.AreEqual(ErrorFlags.REPORT_EXCEPTION, errorEventArgs[0].Flags);
+			Assert.AreEqual(ErrorFlags.REPORT_EXCEPTION, errorEventArgs[1].Flags);
+
+			Assert.AreEqual(0, errorEventArgs[0].Pos);
+			Assert.AreEqual(0, errorEventArgs[1].Pos);
+		}
 	}
 }	

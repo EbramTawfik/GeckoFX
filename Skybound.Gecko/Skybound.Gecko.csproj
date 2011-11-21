@@ -1429,6 +1429,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ImageCreator.cs" />
+    <Compile Include="JavascriptErrorEventArgs.cs" />
     <Compile Include="NavigateFinishedNotifier.cs" />
     <Compile Include="NodeType.cs" />
     <Compile Include="nsInterfaces.cs" />

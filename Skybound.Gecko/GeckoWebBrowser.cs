@@ -73,6 +73,8 @@ namespace Skybound.Gecko
 #endif
 
 			NavigateFinishedNotifier = new NavigateFinishedNotifier(this);
+			// Optimize: only enable Javascript debugging when event handler attached to JavascriptError event
+			EnableJavascriptDebugger();
 		}
 		
 		//static Dictionary<nsIDOMDocument, GeckoWebBrowser> FromDOMDocumentTable = new Dictionary<nsIDOMDocument,GeckoWebBrowser>();
@@ -1289,7 +1291,51 @@ namespace Skybound.Gecko
 				((EventHandler)this.Events[DocumentCompletedEvent])(this, e);
 		}
 		#endregion
-		
+
+		#region event JavascriptErrorEventHandler JavascriptError
+
+		internal class JSErrorHandler : jsdIErrorHook
+		{
+			GeckoWebBrowser m_browser;
+
+			internal JSErrorHandler(GeckoWebBrowser browser)
+			{
+				m_browser = browser;
+			}
+
+			public bool OnError(nsAUTF8String message, nsAUTF8String fileName, uint line, uint pos, uint flags, uint errnum, jsdIValue exc)
+			{
+				var eventArgs = new JavascriptErrorEventArgs(message.ToString(), fileName.ToString(), line, pos, flags, errnum);
+				m_browser.OnJavascriptError(eventArgs);
+				return true;
+			}
+		}
+
+		public void EnableJavascriptDebugger()
+		{
+			using (var a = new AutoJSContext())
+			{
+				var jsd = Xpcom.GetService<jsdIDebuggerService>("@mozilla.org/js/jsd/debugger-service;1");
+				jsd.SetErrorHookAttribute(new JSErrorHandler(this));
+				nsIJSRuntimeService runtime = Xpcom.GetService<nsIJSRuntimeService>("@mozilla.org/js/xpc/RuntimeService;1");
+				jsd.ActivateDebugger(runtime.GetRuntimeAttribute());
+				Marshal.ReleaseComObject(runtime);
+				Marshal.ReleaseComObject(jsd);
+			}
+		}
+
+		public delegate void JavascriptErrorEventHandler(object sender, JavascriptErrorEventArgs e);
+
+		public event JavascriptErrorEventHandler JavascriptError;
+
+		protected virtual void OnJavascriptError(JavascriptErrorEventArgs e)
+		{
+			if (JavascriptError != null)
+				JavascriptError(this, e);
+		}
+
+		#endregion
+
 		/// <summary>
 		/// Gets whether the browser is busy loading a page.
 		/// </summary>
