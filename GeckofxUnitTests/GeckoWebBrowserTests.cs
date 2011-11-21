@@ -64,6 +64,21 @@ namespace GeckofxUnitTests
 			browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
 		}
 
+		/// <summary>
+		/// Helper method to initalize a document with html inside a frameset and wait until document is ready.
+		/// </summary>
+		/// <param name="innerHtml"></param>
+		internal void LoadFrameset(string innerHtml)
+		{
+			browser.LoadHtml("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">"
+
+						+ "<html xmlns=\"http://www.w3.org/1999/xhtml\" >"
+
+						+ "<frameset>" + innerHtml + "</frameset></html>");
+
+			browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
+		}
+
 		// TODO: move to a GeckoDocumentTests file.
 		[Test]
 		public void GetElementsByName_SingleElementExits_ReturnsCollectionWithSingleItem()
@@ -166,6 +181,13 @@ namespace GeckofxUnitTests
 			browser.Window.Selection.AddRange(range);
 
 			Assert.IsTrue(contentChangedEventReceived);			
+		}
+		
+		[Test]
+		public void LoadFrameset_RegressionTest_ShouldNotThrowException()
+		{
+			string innerHtml = "hello world";
+			LoadFrameset(innerHtml);						
 		}
 	}
 }	
