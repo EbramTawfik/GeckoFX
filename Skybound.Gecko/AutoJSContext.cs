@@ -44,7 +44,7 @@ namespace Skybound.Gecko
 	/// Creates a scoped, fake "system principal" security context.  This class is used primarly to work around bugs in gecko
 	/// which prevent methods on nsIDOMCSSStyleSheet from working outside of javascript.
 	/// </summary>
-	class AutoJSContext : IDisposable
+	public class AutoJSContext : IDisposable
 	{	
 		#region Native Members
 
