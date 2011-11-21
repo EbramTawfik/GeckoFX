@@ -220,5 +220,23 @@ namespace GeckofxUnitTests
 			Assert.AreEqual(0, errorEventArgs[0].Pos);
 			Assert.AreEqual(0, errorEventArgs[1].Pos);
 		}
+
+		[Test]
+		public void ConsoleMessage_NavigateWithSomeInvalidCss_AttachedEventHandlerShouldExecute()
+		{
+			ConsoleMessageEventArgs eventArgs = null;
+
+			GeckoWebBrowser.ConsoleMessageEventHandler eventHandler = (object sender, ConsoleMessageEventArgs e) => eventArgs = e;
+			browser.ConsoleMessage += eventHandler;
+
+			string html = "<p style=\"background: bluse; color: white;\">hello</p>";
+			LoadHtml(html);			
+			
+			browser.ConsoleMessage -= eventHandler;
+
+			Assert.NotNull(eventArgs);
+			Assert.IsNotNullOrEmpty(eventArgs.Message);
+			Assert.IsTrue(eventArgs.Message.Contains("JavaScript Warning: \"Expected color but found 'bluse'"), eventArgs.Message);
+		}
 	}
 }	

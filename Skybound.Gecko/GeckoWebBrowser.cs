@@ -75,6 +75,9 @@ namespace Skybound.Gecko
 			NavigateFinishedNotifier = new NavigateFinishedNotifier(this);
 			// Optimize: only enable Javascript debugging when event handler attached to JavascriptError event
 			EnableJavascriptDebugger();
+
+			// Optimize: only enable Console Message Notification when event handler attached to ConsoleMessage Event.
+			EnableConsoleMessageNotfication();
 		}
 		
 		//static Dictionary<nsIDOMDocument, GeckoWebBrowser> FromDOMDocumentTable = new Dictionary<nsIDOMDocument,GeckoWebBrowser>();
@@ -1332,6 +1335,43 @@ namespace Skybound.Gecko
 		{
 			if (JavascriptError != null)
 				JavascriptError(this, e);
+		}
+
+		#endregion
+
+		#region event ConsoleMessageEventHandler ConsoleMessage
+
+		public class ConsoleListener : nsIConsoleListener
+		{
+			GeckoWebBrowser m_browser;
+
+			public ConsoleListener(GeckoWebBrowser browser)
+			{
+				m_browser = browser;
+			}
+
+			public void Observe(nsIConsoleMessage aMessage)
+			{
+				var e = new ConsoleMessageEventArgs(aMessage.GetMessageAttribute());
+				m_browser.OnConsoleMessage(e);
+			}
+		}
+
+		public void EnableConsoleMessageNotfication()
+		{
+			var consoleService = Xpcom.GetService<nsIConsoleService>("@mozilla.org/consoleservice;1");
+			consoleService.RegisterListener(new ConsoleListener(this));
+			Marshal.ReleaseComObject(consoleService);
+		}
+
+		public delegate void ConsoleMessageEventHandler(object sender, ConsoleMessageEventArgs e);
+
+		public event ConsoleMessageEventHandler ConsoleMessage;
+	
+		protected virtual void OnConsoleMessage(ConsoleMessageEventArgs e)
+		{
+			if (ConsoleMessage != null)
+				ConsoleMessage(this, e);
 		}
 
 		#endregion
