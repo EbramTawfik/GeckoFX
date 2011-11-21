@@ -353,31 +353,43 @@ namespace Skybound.Gecko
 			const int WM_MOUSEACTIVATE = 0x21;
 			const int MA_ACTIVATE = 0x1;
 			const int WM_IME_SETCONTEXT = 0x0281;
-			
+
 			if (!DesignMode)
 			{
-				if (m.Msg == WM_GETDLGCODE)
+				switch (m.Msg)
 				{
-					m.Result = (IntPtr)DLGC_WANTALLKEYS;
-					return;
-				}
-				else if (m.Msg == WM_MOUSEACTIVATE && Xpcom.IsWindows) // TODO FIXME: port for Linux
-				{
-					m.Result = (IntPtr)MA_ACTIVATE;
-					
-					if (!IsChild(Handle, GetFocus()))
-					{
-						this.Focus();
-					}
-					return;
-				}
-				else if (m.Msg == WM_IME_SETCONTEXT)
-				{					
-					WebBrowserFocus.Activate();
-					return;
+					case WM_GETDLGCODE:
+						m.Result = (IntPtr)DLGC_WANTALLKEYS;
+						return;
+					case WM_MOUSEACTIVATE:
+						// TODO FIXME: port for Linux
+						if (Xpcom.IsWindows)
+						{
+							m.Result = (IntPtr)MA_ACTIVATE;
+
+							if (!IsChild(Handle, GetFocus()))
+							{
+								this.Focus();
+							}
+							return;
+						}
+						return;
+					case WM_IME_SETCONTEXT:
+						//Console.WriteLine("WM_IME_SETCONTEXT {0} {1}", m.WParam, m.LParam.ToString("X8"));
+						if (m.WParam == IntPtr.Zero)
+						{
+							// zero
+							WebBrowserFocus.Deactivate();
+						}
+						else
+						{
+							// non-zero (1)
+							WebBrowserFocus.Activate();				
+						} 
+						return;
 				}
 			}
-			
+
 			base.WndProc(ref m);
 		}
 		#endregion
