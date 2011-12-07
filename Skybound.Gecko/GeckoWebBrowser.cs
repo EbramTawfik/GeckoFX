@@ -2039,6 +2039,7 @@ namespace Skybound.Gecko
 					Action<string> action;
 					if(_messageEventListeners.TryGetValue(type, out action))
 					{
+
 						action.Invoke(new GeckoDomMessageEventArgs((nsIDOMMessageEvent)e).Message);
 					}
 					break;

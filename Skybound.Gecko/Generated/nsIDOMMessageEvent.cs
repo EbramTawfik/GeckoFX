@@ -165,8 +165,7 @@ namespace Skybound.Gecko
         /// Custom string data associated with this event.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		//System.IntPtr GetDataAttribute();
-		void GetDataAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aData);
+		System.IntPtr GetDataAttribute();
 		
 		/// <summary>
         /// The origin of the site from which this event originated, which is the

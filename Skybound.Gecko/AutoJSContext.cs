@@ -88,7 +88,9 @@ namespace Skybound.Gecko
 		}
 
 		IntPtr cx;
-		
+
+		public IntPtr ContextPointer { get { return cx; } }
+
 		public void Dispose()
 		{
 			nsIScriptSecurityManager securityManager = Xpcom.GetService<nsIScriptSecurityManager>("@mozilla.org/scriptsecuritymanager;1");
