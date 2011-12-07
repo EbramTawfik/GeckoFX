@@ -118,6 +118,7 @@
     <Compile Include="ConfirmDialog.Designer.cs">
       <DependentUpon>ConfirmDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="GeckoMessageEvents.cs" />
     <Compile Include="DOM\DOMSelector.cs" />
     <Compile Include="DOM\HTMLAnchorElement.cs" />
     <Compile Include="DOM\HTMLAppletElement.cs" />

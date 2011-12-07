@@ -167,5 +167,28 @@ namespace GeckofxUnitTests
 
 			Assert.IsTrue(contentChangedEventReceived);			
 		}
+
+		[Test]
+		public void AddEventListener_JScriptFiresEvent_ListenerIsCalledWithMessage()
+		{
+			string payload = null;
+
+			browser.AddMessageEventListener("callMe", ((string p) => payload=p));
+
+			browser.LoadHtml(@"<!DOCTYPE html>
+			                 <html><head>
+			                 <script type='text/javascript'>
+								window.onload= function() {
+									event = document.createEvent('MessageEvent');
+									var origin = window.location.protocol + '//' + window.location.host;
+									event.initMessageEvent ('callMe', true, true, 'some data', origin, 1234, window, null);
+									document.dispatchEvent (event);
+								}
+							</script>
+							</head><body></body></html>");
+
+			browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
+			Assert.AreEqual("some data", payload);
+		}
 	}
 }	

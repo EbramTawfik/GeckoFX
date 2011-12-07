@@ -62,6 +62,8 @@ namespace Skybound.Gecko
 		nsITooltipListener
 		//nsIWindowProvider,
 	{
+		Dictionary<string, Action<string>> _messageEventListeners = new Dictionary<string, Action<string>>();
+	
 		/// <summary>
 		/// Initializes a new instance of <see cref="GeckoWebBrowser"/>.
 		/// </summary>
@@ -2032,8 +2034,18 @@ namespace Skybound.Gecko
 				case "focus": OnDomFocus(ea = new GeckoDomEventArgs(e)); break;
 				case "load": OnLoad(ea = new GeckoDomEventArgs(e)); break;
 				case "change": OnDomContentChanged(ea = new GeckoDomEventArgs(e)); break;
+
+				default:
+					Action<string> action;
+					if(_messageEventListeners.TryGetValue(type, out action))
+					{
+						action.Invoke(new GeckoDomMessageEventArgs((nsIDOMMessageEvent)e).Message);
+					}
+					break;
 			}
 			
+			
+
 			if (ea != null && ea.Cancelable && ea.Handled)
 				e.PreventDefault();
 			
@@ -2634,6 +2646,21 @@ namespace Skybound.Gecko
 		#endregion
 		
 		#endregion
+
+		/// <summary>
+		/// Register a listener for a custom jscrip-initiated MessageEvent
+		/// https://developer.mozilla.org/en/DOM/document.createEvent
+		/// http://help.dottoro.com/ljknkjqd.php
+		/// </summary>
+		/// <param name="eventName"></param>
+		/// <param name="action"></param>
+		/// <example>AddMessageEventListener("callMe", (message=>MessageBox.Show(message)));</example>
+		public void AddMessageEventListener(string eventName, Action<string> action)
+		{
+			nsIDOMEventTarget target = Xpcom.QueryInterface<nsIDOMWindow>(WebBrowser.GetContentDOMWindowAttribute()).GetWindowRootAttribute();
+			target.AddEventListener(new nsAString(eventName), this, /*Review*/ true, true, /*what's this?*/2);
+			_messageEventListeners.Add(eventName, action);
+		}
 	}
 	
 	#region public delegate void GeckoHistoryEventHandler(object sender, GeckoHistoryEventArgs e);
