@@ -9,9 +9,9 @@ using System.Windows.Forms;
 namespace GeckofxUnitTests
 {
 	[TestFixture]
-	class GeckoWebBrowserTests
+	internal class GeckoWebBrowserTests
 	{
-		GeckoWebBrowser browser;
+		private GeckoWebBrowser browser;
 
 		[SetUp]
 		public void BeforeEachTestSetup()
@@ -27,7 +27,7 @@ namespace GeckofxUnitTests
 		{
 			browser.Dispose();
 		}
-		
+
 		[Test]
 		public void LoadHtml_SomeSimpleHtml_HtmlIsLoadedAndAccessableAfterNavigationFinished()
 		{
@@ -35,14 +35,14 @@ namespace GeckofxUnitTests
 
 			browser.LoadHtml("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">"
 
-						+ "<html xmlns=\"http://www.w3.org/1999/xhtml\" >"
+			                 + "<html xmlns=\"http://www.w3.org/1999/xhtml\" >"
 
-						+ "<body>" + innerHtml + "</body></html>");
+			                 + "<body>" + innerHtml + "</body></html>");
 
 			browser.NavigateFinishedNotifier.NavigateFinished += (sender, e) =>
-			{
-				Assert.AreEqual(browser.Document.Body.InnerHtml, innerHtml);
-			};
+			                                                     	{
+			                                                     		Assert.AreEqual(browser.Document.Body.InnerHtml, innerHtml);
+			                                                     	};
 
 			browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
 
@@ -54,13 +54,13 @@ namespace GeckofxUnitTests
 		/// </summary>
 		/// <param name="innerHtml"></param>
 		internal void LoadHtml(string innerHtml)
-		{			
+		{
 			browser.LoadHtml("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">"
 
-						+ "<html xmlns=\"http://www.w3.org/1999/xhtml\" >"
+			                 + "<html xmlns=\"http://www.w3.org/1999/xhtml\" >"
 
-						+ "<body>" + innerHtml + "</body></html>");
-			
+			                 + "<body>" + innerHtml + "</body></html>");
+
 			browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
 		}
 
@@ -70,8 +70,8 @@ namespace GeckofxUnitTests
 		{
 			LoadHtml("<div name=\"a\" id=\"_lv5\">old value</div>");
 
-			 var divElement = browser.Document.GetElementsByName("a");
-			 Assert.AreEqual(1, divElement.Count);
+			var divElement = browser.Document.GetElementsByName("a");
+			Assert.AreEqual(1, divElement.Count);
 		}
 
 		// TODO: move to a GeckoDocumentTests file.
@@ -123,9 +123,9 @@ namespace GeckofxUnitTests
 		{
 			string divString = "<div name=\'a\' id=\'_lv5\' class='none'>old value</div>";
 			LoadHtml(divString);
-			
+
 			var divElement = (browser.Document.Body.FirstChild as GeckoElement);
-			Assert.AreEqual(divString.ToLowerInvariant().Replace('\'', '"'), divElement.OuterHtml.ToLowerInvariant());			
+			Assert.AreEqual(divString.ToLowerInvariant().Replace('\'', '"'), divElement.OuterHtml.ToLowerInvariant());
 		}
 
 		[Test]
@@ -138,19 +138,19 @@ namespace GeckofxUnitTests
 			Form f = new Form();
 			f.Controls.Add(browser);
 			browser.Visible = true;
-			f.Show();			
+			f.Show();
 
 			// Focus first input box
-			browser.Document.GetElementById("one").Focus();			
-			GeckoRange range = browser.Document.CreateRange();			
+			browser.Document.GetElementById("one").Focus();
+			GeckoRange range = browser.Document.CreateRange();
 			range.SelectNode(browser.Document.GetElementById("one"));
 			browser.Window.Selection.AddRange(range);
 
 			// record if DomContentChanged event happened.
-			bool contentChangedEventReceived = false;			
+			bool contentChangedEventReceived = false;
 			browser.DomContentChanged += (sender, e) => contentChangedEventReceived = true;
-					
-			
+
+
 			// Modify first input by sending a keypress.
 			// TODO: create wrapper for nsIDOMWindowUtils
 			nsIDOMWindowUtils utils = Xpcom.QueryInterface<nsIDOMWindowUtils>(browser.Window.DomWindow);
@@ -165,7 +165,7 @@ namespace GeckofxUnitTests
 			browser.Window.Selection.RemoveAllRanges();
 			browser.Window.Selection.AddRange(range);
 
-			Assert.IsTrue(contentChangedEventReceived);			
+			Assert.IsTrue(contentChangedEventReceived);
 		}
 
 		[Test]
@@ -173,9 +173,10 @@ namespace GeckofxUnitTests
 		{
 			string payload = null;
 
-			browser.AddMessageEventListener("callMe", ((string p) => payload=p));
+			browser.AddMessageEventListener("callMe", ((string p) => payload = p));
 
-			browser.LoadHtml(@"<!DOCTYPE html>
+			browser.LoadHtml(
+				@"<!DOCTYPE html>
 			                 <html><head>
 			                 <script type='text/javascript'>
 								window.onload= function() {
@@ -191,4 +192,4 @@ namespace GeckofxUnitTests
 			Assert.AreEqual("some data", payload);
 		}
 	}
-}	
+}
