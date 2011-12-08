@@ -119,6 +119,8 @@
       <DependentUpon>ConfirmDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="GeckoMessageEvents.cs" />
+    <Compile Include="ConsoleMessageEventArgs.cs" />
+    <Compile Include="CookieManager.cs" />
     <Compile Include="DOM\DOMSelector.cs" />
     <Compile Include="DOM\HTMLAnchorElement.cs" />
     <Compile Include="DOM\HTMLAppletElement.cs" />
@@ -1429,6 +1431,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ImageCreator.cs" />
+    <Compile Include="JavascriptErrorEventArgs.cs" />
     <Compile Include="NavigateFinishedNotifier.cs" />
     <Compile Include="NodeType.cs" />
     <Compile Include="nsInterfaces.cs" />

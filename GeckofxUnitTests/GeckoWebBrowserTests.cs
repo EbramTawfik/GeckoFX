@@ -64,6 +64,21 @@ namespace GeckofxUnitTests
 			browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
 		}
 
+		/// <summary>
+		/// Helper method to initalize a document with html inside a frameset and wait until document is ready.
+		/// </summary>
+		/// <param name="innerHtml"></param>
+		internal void LoadFrameset(string innerHtml)
+		{
+			browser.LoadHtml("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">"
+
+						+ "<html xmlns=\"http://www.w3.org/1999/xhtml\" >"
+
+						+ "<frameset>" + innerHtml + "</frameset></html>");
+
+			browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
+		}
+
 		// TODO: move to a GeckoDocumentTests file.
 		[Test]
 		public void GetElementsByName_SingleElementExits_ReturnsCollectionWithSingleItem()
@@ -166,6 +181,62 @@ namespace GeckofxUnitTests
 			browser.Window.Selection.AddRange(range);
 
 			Assert.IsTrue(contentChangedEventReceived);
+		}
+		
+		[Test]
+		public void LoadFrameset_RegressionTest_ShouldNotThrowException()
+		{
+			string innerHtml = "hello world";
+			LoadFrameset(innerHtml);						
+		}
+
+		[Test]
+		public void JavascriptError_NaviagateWithSomeJavascriptThatThrowsException_AttachedEventHandlerShouldExecute()
+		{
+			List<JavascriptErrorEventArgs> errorEventArgs = new List<JavascriptErrorEventArgs>();
+
+			browser.JavascriptError += (object sender, JavascriptErrorEventArgs e) => errorEventArgs.Add(e);
+
+			browser.Navigate("javascript:someRandomFunctionNameThatDoesNotExist(\"2\");");
+
+			Application.DoEvents();
+
+			Assert.AreEqual(2, errorEventArgs.Count);
+			Assert.AreEqual("someRandomFunctionNameThatDoesNotExist is not defined", errorEventArgs[0].Message);
+			Assert.AreEqual("ReferenceError: someRandomFunctionNameThatDoesNotExist is not defined", errorEventArgs[1].Message);
+
+			Assert.AreEqual(1, errorEventArgs[0].ErrorNumber);
+			Assert.AreEqual(1, errorEventArgs[1].ErrorNumber);
+
+			Assert.AreEqual(1, errorEventArgs[0].Line);
+			Assert.AreEqual(1, errorEventArgs[1].Line);
+
+			Assert.AreEqual("javascript:someRandomFunctionNameThatDoesNotExist(\"2\");", errorEventArgs[0].Filename);
+			Assert.AreEqual("javascript:someRandomFunctionNameThatDoesNotExist(\"2\");", errorEventArgs[1].Filename);
+
+			Assert.AreEqual(ErrorFlags.REPORT_EXCEPTION, errorEventArgs[0].Flags);
+			Assert.AreEqual(ErrorFlags.REPORT_EXCEPTION, errorEventArgs[1].Flags);
+
+			Assert.AreEqual(0, errorEventArgs[0].Pos);
+			Assert.AreEqual(0, errorEventArgs[1].Pos);
+		}
+
+		[Test]
+		public void ConsoleMessage_NavigateWithSomeInvalidCss_AttachedEventHandlerShouldExecute()
+		{
+			ConsoleMessageEventArgs eventArgs = null;
+
+			GeckoWebBrowser.ConsoleMessageEventHandler eventHandler = (object sender, ConsoleMessageEventArgs e) => eventArgs = e;
+			browser.ConsoleMessage += eventHandler;
+
+			string html = "<p style=\"background: bluse; color: white;\">hello</p>";
+			LoadHtml(html);			
+			
+			browser.ConsoleMessage -= eventHandler;
+
+			Assert.NotNull(eventArgs);
+			Assert.IsNotNullOrEmpty(eventArgs.Message);
+			Assert.IsTrue(eventArgs.Message.Contains("JavaScript Warning: \"Expected color but found 'bluse'"), eventArgs.Message);
 		}
 
 		[Test]

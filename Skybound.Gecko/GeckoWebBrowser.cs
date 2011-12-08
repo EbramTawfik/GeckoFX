@@ -75,6 +75,11 @@ namespace Skybound.Gecko
 #endif
 
 			NavigateFinishedNotifier = new NavigateFinishedNotifier(this);
+			// Optimize: only enable Javascript debugging when event handler attached to JavascriptError event
+			EnableJavascriptDebugger();
+
+			// Optimize: only enable Console Message Notification when event handler attached to ConsoleMessage Event.
+			EnableConsoleMessageNotfication();
 		}
 		
 		//static Dictionary<nsIDOMDocument, GeckoWebBrowser> FromDOMDocumentTable = new Dictionary<nsIDOMDocument,GeckoWebBrowser>();
@@ -355,31 +360,43 @@ namespace Skybound.Gecko
 			const int WM_MOUSEACTIVATE = 0x21;
 			const int MA_ACTIVATE = 0x1;
 			const int WM_IME_SETCONTEXT = 0x0281;
-			
+
 			if (!DesignMode)
 			{
-				if (m.Msg == WM_GETDLGCODE)
+				switch (m.Msg)
 				{
-					m.Result = (IntPtr)DLGC_WANTALLKEYS;
-					return;
-				}
-				else if (m.Msg == WM_MOUSEACTIVATE && Xpcom.IsWindows) // TODO FIXME: port for Linux
-				{
-					m.Result = (IntPtr)MA_ACTIVATE;
-					
-					if (!IsChild(Handle, GetFocus()))
-					{
-						this.Focus();
-					}
-					return;
-				}
-				else if (m.Msg == WM_IME_SETCONTEXT)
-				{					
-					WebBrowserFocus.Activate();
-					return;
+					case WM_GETDLGCODE:
+						m.Result = (IntPtr)DLGC_WANTALLKEYS;
+						return;
+					case WM_MOUSEACTIVATE:
+						// TODO FIXME: port for Linux
+						if (Xpcom.IsWindows)
+						{
+							m.Result = (IntPtr)MA_ACTIVATE;
+
+							if (!IsChild(Handle, GetFocus()))
+							{
+								this.Focus();
+							}
+							return;
+						}
+						return;
+					case WM_IME_SETCONTEXT:
+						//Console.WriteLine("WM_IME_SETCONTEXT {0} {1}", m.WParam, m.LParam.ToString("X8"));
+						if (m.WParam == IntPtr.Zero)
+						{
+							// zero
+							WebBrowserFocus.Deactivate();
+						}
+						else
+						{
+							// non-zero (1)
+							WebBrowserFocus.Activate();				
+						} 
+						return;
 				}
 			}
-			
+
 			base.WndProc(ref m);
 		}
 		#endregion
@@ -1279,7 +1296,88 @@ namespace Skybound.Gecko
 				((EventHandler)this.Events[DocumentCompletedEvent])(this, e);
 		}
 		#endregion
-		
+
+		#region event JavascriptErrorEventHandler JavascriptError
+
+		internal class JSErrorHandler : jsdIErrorHook
+		{
+			GeckoWebBrowser m_browser;
+
+			internal JSErrorHandler(GeckoWebBrowser browser)
+			{
+				m_browser = browser;
+			}
+
+			public bool OnError(nsAUTF8String message, nsAUTF8String fileName, uint line, uint pos, uint flags, uint errnum, jsdIValue exc)
+			{
+				var eventArgs = new JavascriptErrorEventArgs(message.ToString(), fileName.ToString(), line, pos, flags, errnum);
+				m_browser.OnJavascriptError(eventArgs);
+				return true;
+			}
+		}
+
+		public void EnableJavascriptDebugger()
+		{
+			using (var a = new AutoJSContext())
+			{
+				var jsd = Xpcom.GetService<jsdIDebuggerService>("@mozilla.org/js/jsd/debugger-service;1");
+				jsd.SetErrorHookAttribute(new JSErrorHandler(this));
+				nsIJSRuntimeService runtime = Xpcom.GetService<nsIJSRuntimeService>("@mozilla.org/js/xpc/RuntimeService;1");
+				jsd.ActivateDebugger(runtime.GetRuntimeAttribute());
+				Marshal.ReleaseComObject(runtime);
+				Marshal.ReleaseComObject(jsd);
+			}
+		}
+
+		public delegate void JavascriptErrorEventHandler(object sender, JavascriptErrorEventArgs e);
+
+		public event JavascriptErrorEventHandler JavascriptError;
+
+		protected virtual void OnJavascriptError(JavascriptErrorEventArgs e)
+		{
+			if (JavascriptError != null)
+				JavascriptError(this, e);
+		}
+
+		#endregion
+
+		#region event ConsoleMessageEventHandler ConsoleMessage
+
+		public class ConsoleListener : nsIConsoleListener
+		{
+			GeckoWebBrowser m_browser;
+
+			public ConsoleListener(GeckoWebBrowser browser)
+			{
+				m_browser = browser;
+			}
+
+			public void Observe(nsIConsoleMessage aMessage)
+			{
+				var e = new ConsoleMessageEventArgs(aMessage.GetMessageAttribute());
+				m_browser.OnConsoleMessage(e);
+			}
+		}
+
+		public void EnableConsoleMessageNotfication()
+		{
+			var consoleService = Xpcom.GetService<nsIConsoleService>("@mozilla.org/consoleservice;1");
+			consoleService.RegisterListener(new ConsoleListener(this));
+			Marshal.ReleaseComObject(consoleService);
+		}
+
+		public delegate void ConsoleMessageEventHandler(object sender, ConsoleMessageEventArgs e);
+
+		public event ConsoleMessageEventHandler ConsoleMessage;
+	
+		protected virtual void OnConsoleMessage(ConsoleMessageEventArgs e)
+		{
+			if (ConsoleMessage != null)
+				ConsoleMessage(this, e);
+		}
+
+		#endregion
+
 		/// <summary>
 		/// Gets whether the browser is busy loading a page.
 		/// </summary>

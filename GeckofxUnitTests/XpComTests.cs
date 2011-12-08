@@ -1663,6 +1663,17 @@ namespace GeckofxUnitTests
 			Assert.IsNotNull(instance);
 			Marshal.ReleaseComObject(instance);
 		}
+
+		[Test]
+		public void GetXPConnect_CleanXpComInstance_ReturnsValidInstance()
+		{
+			// defined in nsIXPConent.idl
+			// CB6593E0-F9B2-11d2-BDD6-000064657374
+			IntPtr instance = (IntPtr)Xpcom.GetService(new Guid("CB6593E0-F9B2-11d2-BDD6-000064657374"));
+			Assert.IsNotNull(instance);
+			var o = (nsIXPConnect)Marshal.GetObjectForIUnknown(instance);
+			Assert.IsNotNull(o);						
+		}
 #endregion
 	}
 }

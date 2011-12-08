@@ -51,7 +51,7 @@ namespace Skybound.Gecko
 		{
 			GeckoDocument document = (m_browser as GeckoWebBrowser).Document;
 			// if body contains something assume navigation complete.
-			if (!m_loadEventHandled || document == null || document.Body == null || document.ChildNodes.Count == 0)
+			if (!m_loadEventHandled || document == null || document.DocumentElement == null || document.ChildNodes.Count == 0)
 				return;
 
 			Application.Idle -= HandleApplicationIdle;
