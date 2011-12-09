@@ -1628,7 +1628,11 @@ namespace Skybound.Gecko
 				MenuItem mnuViewSource = new MenuItem("View Source");
 				mnuViewSource.Enabled = !string.IsNullOrEmpty(viewSourceUrl);
 				mnuViewSource.Click += delegate { ViewSource(viewSourceUrl); };
-				
+
+				MenuItem mnuOpenInSystemBrowser = new MenuItem("View In System Browser");//nice for debugging with firefox/firebug
+				mnuOpenInSystemBrowser.Enabled = !string.IsNullOrEmpty(viewSourceUrl);
+				mnuOpenInSystemBrowser.Click += delegate { ViewInSystemBrowser(viewSourceUrl); };
+
 				string properties = (doc != null && doc.Url == Document.Url) ? "Page Properties" : "IFRAME Properties";
 				
 				MenuItem mnuProperties = new MenuItem(properties);
@@ -1639,6 +1643,7 @@ namespace Skybound.Gecko
 				menu.MenuItems.Add(mnuSelectAll);
 				menu.MenuItems.Add("-");
 				menu.MenuItems.Add(mnuViewSource);
+				menu.MenuItems.Add(mnuOpenInSystemBrowser);
 				menu.MenuItems.Add(mnuProperties);
 			}
 
@@ -1693,7 +1698,12 @@ namespace Skybound.Gecko
 				e.ContextMenu.Show(this, e.Location);
 			}
 		}
-		
+
+		private void ViewInSystemBrowser(string url)
+		{
+			Process.Start(url);
+		}
+
 		#region public event GeckoContextMenuEventHandler ShowContextMenu
 		public event GeckoContextMenuEventHandler ShowContextMenu
 		{
