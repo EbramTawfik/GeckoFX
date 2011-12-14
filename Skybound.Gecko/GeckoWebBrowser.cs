@@ -74,9 +74,7 @@ namespace Skybound.Gecko
 				m_wrapper = new GtkDotNet.GtkReparentingWrapperNoThread(new Gtk.Window(Gtk.WindowType.Popup), this);
 #endif
 
-			NavigateFinishedNotifier = new NavigateFinishedNotifier(this);
-			// Optimize: only enable Javascript debugging when event handler attached to JavascriptError event
-			EnableJavascriptDebugger();
+			NavigateFinishedNotifier = new NavigateFinishedNotifier(this);			
 
 			// Optimize: only enable Console Message Notification when event handler attached to ConsoleMessage Event.
 			EnableConsoleMessageNotfication();
@@ -122,6 +120,7 @@ namespace Skybound.Gecko
 		nsIBaseWindow BaseWindow;
 		nsIWebNavigation WebNav;
 		uint ChromeFlags;
+		bool m_javascriptDebuggingEnabled;
 
 		public nsIWebBrowserFocus WebBrowserFocus
 		{
@@ -1318,6 +1317,9 @@ namespace Skybound.Gecko
 
 		public void EnableJavascriptDebugger()
 		{
+			if (m_javascriptDebuggingEnabled)
+				return;
+
 			using (var a = new AutoJSContext())
 			{
 				var jsd = Xpcom.GetService<jsdIDebuggerService>("@mozilla.org/js/jsd/debugger-service;1");
@@ -1327,16 +1329,28 @@ namespace Skybound.Gecko
 				Marshal.ReleaseComObject(runtime);
 				Marshal.ReleaseComObject(jsd);
 			}
+
+			m_javascriptDebuggingEnabled = true;
 		}
 
 		public delegate void JavascriptErrorEventHandler(object sender, JavascriptErrorEventArgs e);
 
-		public event JavascriptErrorEventHandler JavascriptError;
+		private JavascriptErrorEventHandler _JavascriptError;
+
+		public event JavascriptErrorEventHandler JavascriptError
+		{
+			add 
+			{ 
+				 EnableJavascriptDebugger(); 
+				_JavascriptError += value; 
+			}
+			remove { _JavascriptError -= value; }
+		}
 
 		protected virtual void OnJavascriptError(JavascriptErrorEventArgs e)
 		{
-			if (JavascriptError != null)
-				JavascriptError(this, e);
+			if (_JavascriptError != null)
+				_JavascriptError(this, e);
 		}
 
 		#endregion
