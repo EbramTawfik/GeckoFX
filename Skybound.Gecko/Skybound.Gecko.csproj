@@ -181,6 +181,7 @@
     <Compile Include="GeckoHelperAppLauncherDialog.cs" />
     <Compile Include="GeckoMarkupDocumentViewer.cs" />
     <Compile Include="GeckoMIMEInputStream.cs" />
+    <Compile Include="GeckoMouseButton.cs" />
     <Compile Include="GeckoNode.cs" />
     <Compile Include="GeckoWrapperCache.cs" />
     <Compile Include="Generated\amIInstallTrigger.cs" />

@@ -187,36 +187,57 @@ namespace Skybound.Gecko
 		
 		nsIDOMMouseEvent _Event;
 		
+		/// <summary>
+		/// The X coordinate of the mouse pointer in local (DOM content) coordinates.
+		/// </summary>
 		public int ClientX
 		{
 			get { return _Event.GetClientXAttribute(); }
 		}
 		
+		/// <summary>
+		/// The Y coordinate of the mouse pointer in local (DOM content) coordinates.
+		/// </summary>
 		public int ClientY
 		{
 			get { return _Event.GetClientYAttribute(); }
 		}
 		
+		/// <summary>
+		/// The X coordinate of the mouse pointer in global (screen) coordinates.
+		/// </summary>
 		public int ScreenX
 		{
 			get { return _Event.GetScreenXAttribute(); }
 		}
 		
+		/// <summary>
+		/// The Y coordinate of the mouse pointer in global (screen) coordinates.
+		/// </summary>
 		public int ScreenY
 		{
 			get { return _Event.GetScreenYAttribute(); }
 		}
 		
-		public ushort Button
+		/// <summary>
+		/// The button number that was pressed when the mouse event was fired.
+		/// </summary>
+		public GeckoMouseButton Button
 		{
-			get { return _Event.GetButtonAttribute(); }
+			get { return (GeckoMouseButton)_Event.GetButtonAttribute(); }
 		}
 		
+		/// <summary>
+		/// true if the alt key was down when the mouse event was fired.
+		/// </summary>
 		public bool AltKey
 		{
 			get { return _Event.GetAltKeyAttribute(); }
 		}
 
+		/// <summary>
+		/// Indicates which mouse wheel axis changed; this will be either HORIZONTAL_AXIS (1) or VERTICAL_AXIS (2).
+		/// </summary>
 		public int Axis
 		{
 			get { 
@@ -226,11 +247,17 @@ namespace Skybound.Gecko
 			}
 		}
 		
+		/// <summary>
+		/// true if the control key was down when the mouse event was fired.
+		/// </summary>
 		public bool CtrlKey
 		{
 			get { return _Event.GetCtrlKeyAttribute(); }
 		}
 		
+		/// <summary>
+		/// true if the shift key was down when the mouse event was fired.
+		/// </summary>
 		public bool ShiftKey
 		{
 			get { return _Event.GetShiftKeyAttribute(); }
