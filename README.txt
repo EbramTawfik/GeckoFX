@@ -2,6 +2,17 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v8.0-0.8 ==
+
+Bug fixes
+
+1. Make SaveDocument more robust.
+2. Only enable Javascript debugger if event handler is attached to the relevant event.
+
+Add Features
+1. new GeckoWebBrowser.AddMessageEventListener allows listening for custom javascript MessageEvents.
+2. Add "Open In System Browser" option to the default context menu.
+
 == v8.0-0.7 ==
 
 Bug fixes
