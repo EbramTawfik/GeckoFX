@@ -124,6 +124,20 @@ namespace Skybound.Gecko
 			get; protected set;
 		}
 
+		/// <summary>
+		/// returns null if window is not editable.
+		/// </summary>
+		public nsIEditor Editor
+		{
+			get
+			{
+				var editingSession = Xpcom.CreateInstance<nsIEditingSession>("@mozilla.org/editor/editingsession;1");
+				var returnValue = editingSession.GetEditorForWindow((nsIDOMWindow)Window.DomWindow);
+				Marshal.ReleaseComObject(editingSession);
+				return returnValue;
+			}
+		}
+
 #if GTK
 		// Only used on Linux.
 		protected GtkDotNet.GtkWrapperNoThread m_wrapper;

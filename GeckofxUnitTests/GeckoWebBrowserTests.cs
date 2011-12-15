@@ -55,11 +55,31 @@ namespace GeckofxUnitTests
 		/// <param name="innerHtml"></param>
 		internal void LoadHtml(string innerHtml)
 		{
+			LoadHtml(innerHtml, false);
+		}
+
+		/// <summary>
+		/// Helper method to initalize a content editable document with html and wait until document is ready.
+		/// </summary>
+		/// <param name="innerHtml"></param>
+		internal void LoadEditableHtml(string innerHtml)
+		{
+			LoadHtml(innerHtml, true);
+		}
+
+		/// <summary>
+		/// Helper method to initalize a content editable document with html and wait until document is ready.
+		/// </summary>
+		/// <param name="innerHtml"></param>
+		/// <param name="editable"></param>
+		private void LoadHtml(string innerHtml, bool editable)
+		{
+			string contenteditable = editable ? "contenteditable=\"true\"" : string.Empty;
 			browser.LoadHtml("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">"
 
-			                 + "<html xmlns=\"http://www.w3.org/1999/xhtml\" >"
+							 + "<html xmlns=\"http://www.w3.org/1999/xhtml\" >"
 
-			                 + "<body>" + innerHtml + "</body></html>");
+							 + "<body " + contenteditable + ">" + innerHtml + "</body></html>");
 
 			browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
 		}
@@ -190,6 +210,20 @@ namespace GeckofxUnitTests
 			LoadFrameset(innerHtml);						
 		}
 
+		[Test]
+		public void Editor_LoadedReadonlyocument_ReturnsNull()
+		{
+			LoadHtml("hello world.");
+			Assert.Null(browser.Editor);
+		}
+
+		[Test]
+		public void Editor_LoadedEditableDocument_ReturnsNonNull()
+		{
+			LoadEditableHtml("hello world.");
+			Assert.NotNull(browser.Editor);
+		}
+		 
 		[Test]
 		public void JavascriptError_NaviagateWithSomeJavascriptThatThrowsException_AttachedEventHandlerShouldExecute()
 		{
