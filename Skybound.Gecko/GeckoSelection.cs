@@ -215,6 +215,22 @@ namespace Skybound.Gecko
 		{
 			Selection.SelectionLanguageChange(langRtl);
 		}
+
+		/// <summary>
+		/// Match this up with EndbatchChanges. Will stop ui updates while multiple selection methods are called.
+		/// </summary>
+		public void StartBatchChanges()
+		{
+			((nsISelectionPrivate)Selection).StartBatchChanges();
+		}
+
+		/// <summary>
+		/// Match this up with startBatchChanges
+		/// </summary>
+		public void EndBatchChanges()
+		{
+			((nsISelectionPrivate)Selection).EndBatchChanges();
+		}
 		
 		/// <summary>
 		/// Returns the whole selection as a plain text string.
