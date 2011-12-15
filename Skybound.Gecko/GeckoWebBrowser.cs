@@ -74,10 +74,7 @@ namespace Skybound.Gecko
 				m_wrapper = new GtkDotNet.GtkReparentingWrapperNoThread(new Gtk.Window(Gtk.WindowType.Popup), this);
 #endif
 
-			NavigateFinishedNotifier = new NavigateFinishedNotifier(this);			
-
-			// Optimize: only enable Console Message Notification when event handler attached to ConsoleMessage Event.
-			EnableConsoleMessageNotfication();
+			NavigateFinishedNotifier = new NavigateFinishedNotifier(this);						
 		}
 		
 		//static Dictionary<nsIDOMDocument, GeckoWebBrowser> FromDOMDocumentTable = new Dictionary<nsIDOMDocument,GeckoWebBrowser>();
@@ -1382,12 +1379,23 @@ namespace Skybound.Gecko
 
 		public delegate void ConsoleMessageEventHandler(object sender, ConsoleMessageEventArgs e);
 
-		public event ConsoleMessageEventHandler ConsoleMessage;
+		private ConsoleMessageEventHandler _ConsoleMessage; 
+
+		public event ConsoleMessageEventHandler ConsoleMessage
+		{
+			add 
+			{ 
+				 EnableConsoleMessageNotfication();
+				 _ConsoleMessage += value; 
+			}
+			remove { _ConsoleMessage -= value; }
+		}
+
 	
 		protected virtual void OnConsoleMessage(ConsoleMessageEventArgs e)
 		{
-			if (ConsoleMessage != null)
-				ConsoleMessage(this, e);
+			if (_ConsoleMessage != null)
+				_ConsoleMessage(this, e);
 		}
 
 		#endregion
