@@ -2,6 +2,17 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v8.0-0.9 ==
+
+Bug fixes
+
+1. Only enable Console Message notification when an event handler is attached.
+
+Added Features
+
+1. Added nsIEditor property to GeckoWebbrowser
+2. Added StartBatchChanges +  EndBatchChanges to GeckoSelection.
+
 == v8.0-0.8 ==
 
 Bug fixes
@@ -9,7 +20,7 @@ Bug fixes
 1. Make SaveDocument more robust.
 2. Only enable Javascript debugger if event handler is attached to the relevant event.
 
-Add Features
+Added Features
 1. new GeckoWebBrowser.AddMessageEventListener allows listening for custom javascript MessageEvents.
 2. Add "Open In System Browser" option to the default context menu.
 
