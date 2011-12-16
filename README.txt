@@ -2,6 +2,14 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v9.0-0.1 ==
+
+1. Initial version supporting firefox/xulrunner v9.0
+2. Namespaces renamed from Skybound.Gecko to Gecko.
+3. GeckoFx Dll renamed to include Major version number. 
+	Skybound.Gecko.dll  -> geckofx-9.dll
+4. Generated interfaces now correctly handle implicit_jscontext attribute.
+
 == v8.0-0.9 ==
 
 Bug fixes
