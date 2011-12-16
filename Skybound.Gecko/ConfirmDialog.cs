@@ -38,7 +38,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace Skybound.Gecko
+namespace Gecko
 {
 	partial class ConfirmDialog : Form
 	{

@@ -18,7 +18,7 @@
 // IDL/IDH file.
 // </remarks>
 // --------------------------------------------------------------------------------------------
-namespace Skybound.Gecko
+namespace Gecko
 {
 	using System;
 	using System.Runtime.InteropServices;
@@ -137,9 +137,9 @@ namespace Skybound.Gecko
         ///  @result      "<", ">" and "&" are escaped and HTML tags are inserted where
         ///               appropriate.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")]
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string ScanTXT([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")] string text, uint whattodo);
+		string ScanTXT([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string text, uint whattodo);
 		
 		/// <summary>
         ///Adds additional formatting to user edited text, that the user was too lazy
@@ -157,9 +157,9 @@ namespace Skybound.Gecko
         ///  @param whattodo: Bitfield describing the modes of operation
         ///  @result      Additional HTML tags are inserted where appropriate.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")]
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string ScanHTML([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")] string text, uint whattodo);
+		string ScanHTML([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string text, uint whattodo);
 		
 		/// <summary>
         ///@param line: line in original msg, possibly starting starting with
@@ -172,7 +172,7 @@ namespace Skybound.Gecko
         ///               nested quotes.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint CiteLevelTXT([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")] string line, ref uint logLineStart);
+		uint CiteLevelTXT([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string line, ref uint logLineStart);
 		
 		/// <summary>
         ///@param a wide string to scan for the presence of a URL.
@@ -182,6 +182,6 @@ namespace Skybound.Gecko
         /// aEndPos --> index of the last character in the url (-1 if no url found)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void FindURLInPlaintext([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")] string text, int aLength, int aPos, ref int aStartPos, ref int aEndPos);
+		void FindURLInPlaintext([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string text, int aLength, int aPos, ref int aStartPos, ref int aEndPos);
 	}
 }

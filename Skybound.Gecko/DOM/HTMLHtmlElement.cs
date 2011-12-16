@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace Skybound.Gecko.DOM
+namespace Gecko.DOM
 {	
 	public class GeckoHtmlElement : GeckoElement
 	{

@@ -1,4 +1,4 @@
-﻿namespace Skybound.Gecko
+﻿namespace Gecko
 {
 	partial class PropertiesDialog
 	{
@@ -29,15 +29,15 @@
 		private void InitializeComponent()
 		{
 			this.tabControl = new System.Windows.Forms.TabControl();
-			this.pageGeneral = new Skybound.Gecko.XPTabPage();
-			this.txtTitle = new Skybound.Gecko.ReadOnlyTextBox();
+			this.pageGeneral = new Gecko.XPTabPage();
+			this.txtTitle = new Gecko.ReadOnlyTextBox();
 			this.lblModifiedDate = new System.Windows.Forms.Label();
-			this.txtReferrer = new Skybound.Gecko.ReadOnlyTextBox();
+			this.txtReferrer = new Gecko.ReadOnlyTextBox();
 			this.lblSize = new System.Windows.Forms.Label();
 			this.lblEncoding = new System.Windows.Forms.Label();
 			this.lblDocType = new System.Windows.Forms.Label();
 			this.lblContentType = new System.Windows.Forms.Label();
-			this.txtAddress = new Skybound.Gecko.ReadOnlyTextBox();
+			this.txtAddress = new Gecko.ReadOnlyTextBox();
 			this.label7 = new System.Windows.Forms.Label();
 			this.label6 = new System.Windows.Forms.Label();
 			this.label5 = new System.Windows.Forms.Label();

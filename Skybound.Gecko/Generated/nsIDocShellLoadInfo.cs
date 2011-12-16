@@ -18,7 +18,7 @@
 // IDL/IDH file.
 // </remarks>
 // --------------------------------------------------------------------------------------------
-namespace Skybound.Gecko
+namespace Gecko
 {
 	using System;
 	using System.Runtime.InteropServices;
@@ -122,14 +122,14 @@ namespace Skybound.Gecko
 		
 		/// <summary>
         ///Target for load, like _content, _blank etc. </summary>
-		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")]
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string GetTargetAttribute();
 		
 		/// <summary>
         ///Target for load, like _content, _blank etc. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTargetAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")] string aTarget);
+		void SetTargetAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string aTarget);
 		
 		/// <summary>
         ///Post data </summary>

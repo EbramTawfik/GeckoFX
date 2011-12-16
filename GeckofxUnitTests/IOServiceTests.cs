@@ -4,7 +4,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using NUnit.Framework;
-using Skybound.Gecko;
+using Gecko;
 
 namespace GeckofxUnitTests
 {

@@ -44,7 +44,7 @@ using System.Reflection;
 using System.Diagnostics;
 using System.Text;
 
-namespace Skybound.Gecko
+namespace Gecko
 {
 	/// <summary>
 	/// A Gecko-based web browser.

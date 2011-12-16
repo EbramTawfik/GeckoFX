@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using System.Collections;
 using System.Linq;
-namespace Skybound.Gecko
+namespace Gecko
 {
 	/// <summary>
 	/// Search /usr/lib directory for the latest xulrunner.

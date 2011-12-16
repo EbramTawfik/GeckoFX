@@ -37,7 +37,7 @@ using System;
 using System.Drawing;
 using System.Collections.Generic;
 
-namespace Skybound.Gecko
+namespace Gecko
 {
 	/// <summary>
 	/// Manipulates and queries the current selected range of nodes within the document.

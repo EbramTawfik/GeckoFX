@@ -40,7 +40,7 @@ using System.Diagnostics;
 using System.Windows.Forms;
 using System.Runtime.CompilerServices;
 
-namespace Skybound.Gecko
+namespace Gecko
 {
 	/// <summary>
 	/// Provides low-level access to XPCOM.

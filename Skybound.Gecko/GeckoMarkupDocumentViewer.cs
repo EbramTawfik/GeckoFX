@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Skybound.Gecko
+namespace Gecko
 {
 
 	public class GeckoMarkupDocumentViewer

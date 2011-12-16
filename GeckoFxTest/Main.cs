@@ -1,6 +1,6 @@
 using System;
 using System.Windows.Forms;
-using Skybound.Gecko;
+using Gecko;
 using System.Runtime.InteropServices;
 using System.Threading;
 

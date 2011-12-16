@@ -8,8 +8,8 @@
     <ProjectGuid>{6AB4EEE6-1889-43AB-83F7-A4F083230BE7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Skybound.Gecko</RootNamespace>
-    <AssemblyName>Skybound.Gecko</AssemblyName>
+    <RootNamespace>Gecko</RootNamespace>
+    <AssemblyName>geckofx-9</AssemblyName>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>GeckoFX.snk</AssemblyOriginatorKeyFile>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>

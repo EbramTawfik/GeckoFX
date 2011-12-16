@@ -3,7 +3,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace Skybound.Gecko
+namespace Gecko
 {
 	/// <summary>
 	/// Provides data froma a message event.

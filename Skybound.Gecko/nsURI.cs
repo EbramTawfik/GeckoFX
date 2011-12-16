@@ -36,7 +36,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace Skybound.Gecko
+namespace Gecko
 {
 	/// <summary>
 	/// Provides a wrapper for Mozilla nsIURI objects.

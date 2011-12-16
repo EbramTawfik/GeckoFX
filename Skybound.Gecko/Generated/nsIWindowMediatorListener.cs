@@ -18,7 +18,7 @@
 // IDL/IDH file.
 // </remarks>
 // --------------------------------------------------------------------------------------------
-namespace Skybound.Gecko
+namespace Gecko
 {
 	using System;
 	using System.Runtime.InteropServices;
@@ -38,7 +38,7 @@ namespace Skybound.Gecko
 		/// <param name='window'> </param>
 		/// <param name='newTitle'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnWindowTitleChange([MarshalAs(UnmanagedType.Interface)] nsIXULWindow window, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")] string newTitle);
+		void OnWindowTitleChange([MarshalAs(UnmanagedType.Interface)] nsIXULWindow window, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string newTitle);
 		
 		/// <summary>Member OnOpenWindow </summary>
 		/// <param name='window'> </param>

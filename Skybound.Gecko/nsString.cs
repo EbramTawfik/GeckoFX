@@ -37,7 +37,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace Skybound.Gecko
+namespace Gecko
 {
 	/// <summary>
 	/// Provides helper methods to get and set string attributes on XPCOM interfaces.

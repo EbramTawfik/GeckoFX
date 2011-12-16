@@ -4,7 +4,7 @@ using System.Text;
 using System.Runtime.InteropServices.ComTypes;
 using System.IO;
 
-namespace Skybound.Gecko
+namespace Gecko
 {
 	/// <summary>
 	/// Provides access to Gecko preferences.

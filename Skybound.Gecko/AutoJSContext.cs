@@ -38,7 +38,7 @@ using System.Runtime.InteropServices;
 using System.Runtime.CompilerServices;
 using System.Text;
 
-namespace Skybound.Gecko
+namespace Gecko
 {
 	/// <summary>
 	/// Creates a scoped, fake "system principal" security context.  This class is used primarly to work around bugs in gecko

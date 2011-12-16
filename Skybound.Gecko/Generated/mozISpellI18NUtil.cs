@@ -18,7 +18,7 @@
 // IDL/IDH file.
 // </remarks>
 // --------------------------------------------------------------------------------------------
-namespace Skybound.Gecko
+namespace Gecko
 {
 	using System;
 	using System.Runtime.InteropServices;
@@ -39,7 +39,7 @@ namespace Skybound.Gecko
 		/// <summary>
         /// The language being used to check spelling
         /// </summary>
-		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")]
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string GetLanguageAttribute();
 		
@@ -47,13 +47,13 @@ namespace Skybound.Gecko
         /// Given a word return a list of possible root forms of that word
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetRootForm([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")] string word, uint type, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=3)] ref System.IntPtr[] words, ref uint count);
+		void GetRootForm([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string word, uint type, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=3)] ref System.IntPtr[] words, ref uint count);
 		
 		/// <summary>
         /// Given a word return a list of possible root forms of that word
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void FromRootForm([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")] string word, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] System.IntPtr[] iwords, uint icount, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=4)] ref System.IntPtr[] owords, ref uint ocount);
+		void FromRootForm([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string word, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] System.IntPtr[] iwords, uint icount, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=4)] ref System.IntPtr[] owords, ref uint ocount);
 		
 		/// <summary>
         /// Given a unicode string and an offset, find the beginning and end of the
@@ -61,6 +61,6 @@ namespace Skybound.Gecko
         /// string. This should really be folded into the Line/WordBreaker.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void FindNextWord([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")] string word, uint length, uint offset, ref int begin, ref int end);
+		void FindNextWord([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string word, uint length, uint offset, ref int begin, ref int end);
 	}
 }

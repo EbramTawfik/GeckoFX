@@ -36,7 +36,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace Skybound.Gecko
+namespace Gecko
 {
 	partial class PromptDialog : Form
 	{

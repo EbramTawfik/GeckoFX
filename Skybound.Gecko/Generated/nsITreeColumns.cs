@@ -18,7 +18,7 @@
 // IDL/IDH file.
 // </remarks>
 // --------------------------------------------------------------------------------------------
-namespace Skybound.Gecko
+namespace Gecko
 {
 	using System;
 	using System.Runtime.InteropServices;
@@ -64,7 +64,7 @@ namespace Skybound.Gecko
 		/// <summary>Member GetIdConst </summary>
 		/// <param name='idConst'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetIdConst([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")] ref string idConst);
+		void GetIdConst([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] ref string idConst);
 		
 		/// <summary>Member GetAtomAttribute </summary>
 		/// <returns>A nsIAtom</returns>
