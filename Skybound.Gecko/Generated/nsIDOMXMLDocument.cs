@@ -822,13 +822,13 @@ namespace Gecko
         /// Inline event handler for readystatechange events.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.IntPtr GetOnreadystatechangeAttribute();
+		new System.IntPtr GetOnreadystatechangeAttribute(System.IntPtr jsContext);
 		
 		/// <summary>
         /// Inline event handler for readystatechange events.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetOnreadystatechangeAttribute(System.IntPtr aOnreadystatechange);
+		new void SetOnreadystatechangeAttribute(System.IntPtr aOnreadystatechange, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Whether to load synchronously or asynchronously.

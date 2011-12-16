@@ -55,26 +55,26 @@ namespace Gecko
 		new nsIVariant GetKeyAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.IntPtr GetPrimaryKeyAttribute();
+		new System.IntPtr GetPrimaryKeyAttribute(System.IntPtr jsContext);
 		
 		/// <summary>
         ///undefined </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Continue(System.IntPtr key);
+		new void Continue(System.IntPtr key, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Success fires IDBTransactionEvent, result == key
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIIDBRequest Update(System.IntPtr value);
+		new nsIIDBRequest Update(System.IntPtr value, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Success fires IDBTransactionEvent, result == null
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIIDBRequest Delete();
+		new nsIIDBRequest Delete(System.IntPtr jsContext);
 		
 		/// <summary>
         /// IDBCursor interface.  See
@@ -82,6 +82,6 @@ namespace Gecko
         /// information.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetValueAttribute();
+		System.IntPtr GetValueAttribute(System.IntPtr jsContext);
 	}
 }

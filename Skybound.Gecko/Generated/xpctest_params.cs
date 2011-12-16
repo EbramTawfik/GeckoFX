@@ -18,7 +18,7 @@
 // IDL/IDH file.
 // </remarks>
 // --------------------------------------------------------------------------------------------
-namespace Skybound.Gecko
+namespace Gecko
 {
 	using System;
 	using System.Runtime.InteropServices;
@@ -84,9 +84,9 @@ namespace Skybound.Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		char TestWchar(char a, ref char b);
 		
-		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")]
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string TestWstring([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")] string a, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")] ref string b);
+		string TestWstring([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string a, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] ref string b);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void TestDOMString([MarshalAs(UnmanagedType.LPStruct)] nsAString a, [MarshalAs(UnmanagedType.LPStruct)] nsAString b, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
@@ -128,9 +128,9 @@ namespace Skybound.Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string TestSizedString(uint aLength, [MarshalAs(UnmanagedType.LPStr, SizeParamIndex=0)] string a, ref uint bLength, [MarshalAs(UnmanagedType.LPStr, SizeParamIndex=2)] ref string b, ref uint rvLength);
 		
-		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler", SizeParamIndex=4)]
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler", SizeParamIndex=4)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string TestSizedWstring(uint aLength, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler", SizeParamIndex=0)] string a, ref uint bLength, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler", SizeParamIndex=2)] ref string b, ref uint rvLength);
+		string TestSizedWstring(uint aLength, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler", SizeParamIndex=0)] string a, ref uint bLength, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler", SizeParamIndex=2)] ref string b, ref uint rvLength);
 		
 		/// <summary>
         /// Test iid_is.

@@ -433,87 +433,87 @@ namespace Gecko
 		void SetRowsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aRows);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetOnafterprintAttribute();
+		System.IntPtr GetOnafterprintAttribute(System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnafterprintAttribute(System.IntPtr aOnafterprint);
+		void SetOnafterprintAttribute(System.IntPtr aOnafterprint, System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetOnbeforeprintAttribute();
+		System.IntPtr GetOnbeforeprintAttribute(System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnbeforeprintAttribute(System.IntPtr aOnbeforeprint);
+		void SetOnbeforeprintAttribute(System.IntPtr aOnbeforeprint, System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetOnbeforeunloadAttribute();
+		System.IntPtr GetOnbeforeunloadAttribute(System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnbeforeunloadAttribute(System.IntPtr aOnbeforeunload);
+		void SetOnbeforeunloadAttribute(System.IntPtr aOnbeforeunload, System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetOnhashchangeAttribute();
+		System.IntPtr GetOnhashchangeAttribute(System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnhashchangeAttribute(System.IntPtr aOnhashchange);
+		void SetOnhashchangeAttribute(System.IntPtr aOnhashchange, System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetOnmessageAttribute();
+		System.IntPtr GetOnmessageAttribute(System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnmessageAttribute(System.IntPtr aOnmessage);
+		void SetOnmessageAttribute(System.IntPtr aOnmessage, System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetOnofflineAttribute();
+		System.IntPtr GetOnofflineAttribute(System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnofflineAttribute(System.IntPtr aOnoffline);
+		void SetOnofflineAttribute(System.IntPtr aOnoffline, System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetOnonlineAttribute();
+		System.IntPtr GetOnonlineAttribute(System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnonlineAttribute(System.IntPtr aOnonline);
+		void SetOnonlineAttribute(System.IntPtr aOnonline, System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetOnpagehideAttribute();
+		System.IntPtr GetOnpagehideAttribute(System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnpagehideAttribute(System.IntPtr aOnpagehide);
+		void SetOnpagehideAttribute(System.IntPtr aOnpagehide, System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetOnpageshowAttribute();
+		System.IntPtr GetOnpageshowAttribute(System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnpageshowAttribute(System.IntPtr aOnpageshow);
+		void SetOnpageshowAttribute(System.IntPtr aOnpageshow, System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetOnpopstateAttribute();
+		System.IntPtr GetOnpopstateAttribute(System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnpopstateAttribute(System.IntPtr aOnpopstate);
-		
-		/// <summary>
-        /// [implicit_jscontext] attribute jsval            onredo;
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetOnresizeAttribute();
+		void SetOnpopstateAttribute(System.IntPtr aOnpopstate, System.IntPtr jsContext);
 		
 		/// <summary>
         /// [implicit_jscontext] attribute jsval            onredo;
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnresizeAttribute(System.IntPtr aOnresize);
+		System.IntPtr GetOnresizeAttribute(System.IntPtr jsContext);
+		
+		/// <summary>
+        /// [implicit_jscontext] attribute jsval            onredo;
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOnresizeAttribute(System.IntPtr aOnresize, System.IntPtr jsContext);
 		
 		/// <summary>
         /// [implicit_jscontext] attribute jsval            onundo;
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetOnunloadAttribute();
+		System.IntPtr GetOnunloadAttribute(System.IntPtr jsContext);
 		
 		/// <summary>
         /// [implicit_jscontext] attribute jsval            onundo;
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnunloadAttribute(System.IntPtr aOnunload);
+		void SetOnunloadAttribute(System.IntPtr aOnunload, System.IntPtr jsContext);
 	}
 }

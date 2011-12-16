@@ -156,9 +156,10 @@ namespace Gecko
 		new bool GetDefaultPreventedAttribute();
 		
 		/// <summary>Member GetFrameBufferAttribute </summary>
+		/// <param name='jsContext'> </param>
 		/// <returns>A System.IntPtr</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetFrameBufferAttribute();
+		System.IntPtr GetFrameBufferAttribute(System.IntPtr jsContext);
 		
 		/// <summary>Member GetTimeAttribute </summary>
 		/// <returns>A System.Single</returns>

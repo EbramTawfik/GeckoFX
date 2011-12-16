@@ -664,6 +664,152 @@ namespace GeckofxUnitTests
 		{
 			throw new NotImplementedException();
 		}
+
+
+		public void PostMessage(IntPtr message, nsAString targetOrigin, IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		public IntPtr GetOnafterprintAttribute(IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetOnafterprintAttribute(IntPtr aOnafterprint, IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		public IntPtr GetOnbeforeprintAttribute(IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetOnbeforeprintAttribute(IntPtr aOnbeforeprint, IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		public IntPtr GetOnbeforeunloadAttribute(IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetOnbeforeunloadAttribute(IntPtr aOnbeforeunload, IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		public IntPtr GetOnhashchangeAttribute(IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetOnhashchangeAttribute(IntPtr aOnhashchange, IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		public IntPtr GetOnmessageAttribute(IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetOnmessageAttribute(IntPtr aOnmessage, IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		public IntPtr GetOnofflineAttribute(IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetOnofflineAttribute(IntPtr aOnoffline, IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		public IntPtr GetOnonlineAttribute(IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetOnonlineAttribute(IntPtr aOnonline, IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		public IntPtr GetOnpopstateAttribute(IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetOnpopstateAttribute(IntPtr aOnpopstate, IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		public IntPtr GetOnpagehideAttribute(IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetOnpagehideAttribute(IntPtr aOnpagehide, IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		public IntPtr GetOnpageshowAttribute(IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetOnpageshowAttribute(IntPtr aOnpageshow, IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		public IntPtr GetOnresizeAttribute(IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetOnresizeAttribute(IntPtr aOnresize, IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		public IntPtr GetOnunloadAttribute(IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetOnunloadAttribute(IntPtr aOnunload, IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		public IntPtr GetOndevicemotionAttribute(IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetOndevicemotionAttribute(IntPtr aOndevicemotion, IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		public IntPtr GetOndeviceorientationAttribute(IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetOndeviceorientationAttribute(IntPtr aOndeviceorientation, IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
 	}
 	#endregion
 }

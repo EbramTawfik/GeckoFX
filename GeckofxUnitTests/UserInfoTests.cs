@@ -26,13 +26,7 @@ namespace GeckofxUnitTests
 		public void AfterEachTestTearDown()
 		{
 			Marshal.ReleaseComObject(m_instance);
-		}
-
-		[Test]
-		public void GetUsernameAttribute_ReturnsNonEmptyUsername()
-		{
-			Assert.False(string.IsNullOrEmpty(m_instance.GetUsernameAttribute()));
-		}
+		}		
 
 		[Test]
 		public void GetFullnameAttribute_ThrowsNotImplementException()

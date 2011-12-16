@@ -239,7 +239,7 @@ namespace Gecko
         /// is running. Call the provided function once this has occurred.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SchedulePreciseGC(ScheduledGCCallback callback);
+		void SchedulePreciseGC(ScheduledGCCallback callback, System.IntPtr jsContext);
 		
 		/// <summary>
         ///in JSObject obj </summary>
@@ -252,7 +252,7 @@ namespace Gecko
         /// Returns an object created in |vobj|'s compartment.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr CreateObjectIn(System.IntPtr vobj);
+		System.IntPtr CreateObjectIn(System.IntPtr vobj, System.IntPtr jsContext);
 		
 		/// <summary>
         /// To be called from JS only.
@@ -261,7 +261,7 @@ namespace Gecko
         /// compartment wrappers).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MakeObjectPropsNormal(System.IntPtr vobj);
+		void MakeObjectPropsNormal(System.IntPtr vobj, System.IntPtr jsContext);
 	}
 	
 	/// <summary>

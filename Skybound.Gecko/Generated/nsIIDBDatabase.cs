@@ -56,20 +56,20 @@ namespace Gecko
         ///none </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIIDBObjectStore CreateObjectStore([MarshalAs(UnmanagedType.LPStruct)] nsAString name, System.IntPtr options);
+		nsIIDBObjectStore CreateObjectStore([MarshalAs(UnmanagedType.LPStruct)] nsAString name, System.IntPtr options, System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void DeleteObjectStore([MarshalAs(UnmanagedType.LPStruct)] nsAString name);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIIDBRequest SetVersion([MarshalAs(UnmanagedType.LPStruct)] nsAString version);
+		nsIIDBRequest SetVersion([MarshalAs(UnmanagedType.LPStruct)] nsAString version, System.IntPtr jsContext);
 		
 		/// <summary>
         ///5000ms </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIIDBTransaction Transaction([MarshalAs(UnmanagedType.Interface)] nsIVariant storeNames, ushort mode, uint timeout, int argc);
+		nsIIDBTransaction Transaction([MarshalAs(UnmanagedType.Interface)] nsIVariant storeNames, ushort mode, uint timeout, System.IntPtr jsContext, int argc);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Close();

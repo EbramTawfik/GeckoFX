@@ -117,7 +117,7 @@ namespace Gecko
         /// An array of mozIVisitInfo objects for the place.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetVisitsAttribute();
+		System.IntPtr GetVisitsAttribute(System.IntPtr jsContext);
 	}
 	
 	/// <summary>
@@ -191,6 +191,6 @@ namespace Gecko
         /// - Providing an invalid transitionType for a mozIVisitInfo.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UpdatePlaces(System.IntPtr aPlaceInfo, mozIVisitInfoCallback aCallback);
+		void UpdatePlaces(System.IntPtr aPlaceInfo, mozIVisitInfoCallback aCallback, System.IntPtr jsContext);
 	}
 }

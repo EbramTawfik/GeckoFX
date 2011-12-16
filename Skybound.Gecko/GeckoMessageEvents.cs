@@ -26,18 +26,21 @@ namespace Gecko
 		{
 			get
 			{
-				var val =  JsVal.FromPtr(_event.GetDataAttribute());
-				//TODO if(!val.IsString)
+				using (AutoJSContext context = new AutoJSContext())
+				{
+					var val = JsVal.FromPtr(_event.GetDataAttribute(context.ContextPointer));
+					//TODO if(!val.IsString)
 					//throw new NotImplementedException("GeckoFx currently only supports messages which are strings.");
 
-				try
-				{
-					return val.ToString();
-				}
-				catch(AccessViolationException e)
-				{
-					//NB: errors here can be caused by not getting an actual string back. E.g., is it a number, a bool, etc.? Those aren't supported (but you could easily add them).
-					throw e;
+					try
+					{
+						return val.ToString();
+					}
+					catch (AccessViolationException e)
+					{
+						//NB: errors here can be caused by not getting an actual string back. E.g., is it a number, a bool, etc.? Those aren't supported (but you could easily add them).
+						throw e;
+					}
 				}
 			}
 		}
@@ -55,6 +58,10 @@ namespace Gecko
 		///			Embeddings should not rely on observed representation details, the size of jsval, 
 		///			or whether jsval is a primitive type."
 		///	In the code below, we are just using API calls to access it, except for the attempt to get at the value tag directly (which didn't work).
+		///	
+		/// This JsVal implementations is very broken. 
+		/// (for a start IntPtr on 32 bit systems is only 4 bytes and casting it to (ulong doesn't help))
+		/// and C++ bit shifts AsBits >> 47 to access the ValueTag.
 		/// </remarks>
 		[StructLayout(LayoutKind.Explicit)]
 		private struct JsVal

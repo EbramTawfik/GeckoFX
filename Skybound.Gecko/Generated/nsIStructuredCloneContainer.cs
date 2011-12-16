@@ -51,7 +51,7 @@ namespace Gecko
         /// given variant. aData must be backed by a jsval.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitFromVariant([MarshalAs(UnmanagedType.Interface)] nsIVariant aData);
+		void InitFromVariant([MarshalAs(UnmanagedType.Interface)] nsIVariant aData, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Initialize this structured clone container from a base-64-encoded byte
@@ -59,7 +59,7 @@ namespace Gecko
         /// structured clone algorithm which was used to generate aData.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitFromBase64([MarshalAs(UnmanagedType.LPStruct)] nsAString aData, uint aFormatVersion);
+		void InitFromBase64([MarshalAs(UnmanagedType.LPStruct)] nsAString aData, uint aFormatVersion, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Deserialize the object this conatiner holds, returning it wrapped as
@@ -67,7 +67,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant DeserializeToVariant();
+		nsIVariant DeserializeToVariant(System.IntPtr jsContext);
 		
 		/// <summary>
         /// Get this structured clone container's data as a base-64-encoded string.

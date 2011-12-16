@@ -560,7 +560,7 @@ namespace Gecko
         /// Write audio to the audio stream
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint MozWriteAudio(System.IntPtr data);
+		uint MozWriteAudio(System.IntPtr data, System.IntPtr jsContext);
 		
 		/// <summary>
         /// stream created using mozWriteAudio().

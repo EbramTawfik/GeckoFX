@@ -636,7 +636,7 @@ namespace Gecko
 		/// <summary>
         ///any </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetResponseAttribute();
+		System.IntPtr GetResponseAttribute(System.IntPtr jsContext);
 		
 		/// <summary>
         /// The status of the response to the request for HTTP requests.

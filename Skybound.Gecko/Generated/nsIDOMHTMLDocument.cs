@@ -742,13 +742,13 @@ namespace Gecko
         /// Inline event handler for readystatechange events.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.IntPtr GetOnreadystatechangeAttribute();
+		new System.IntPtr GetOnreadystatechangeAttribute(System.IntPtr jsContext);
 		
 		/// <summary>
         /// Inline event handler for readystatechange events.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetOnreadystatechangeAttribute(System.IntPtr aOnreadystatechange);
+		new void SetOnreadystatechangeAttribute(System.IntPtr aOnreadystatechange, System.IntPtr jsContext);
 		
 		/// <summary>
         /// The nsIDOMHTMLDocument interface is the interface to a [X]HTML
@@ -824,16 +824,16 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports Open([MarshalAs(UnmanagedType.LPStruct)] nsAString aContentTypeOrUrl, [MarshalAs(UnmanagedType.LPStruct)] nsAString aReplaceOrName, [MarshalAs(UnmanagedType.LPStruct)] nsAString aFeatures, int argc);
+		nsISupports Open([MarshalAs(UnmanagedType.LPStruct)] nsAString aContentTypeOrUrl, [MarshalAs(UnmanagedType.LPStruct)] nsAString aReplaceOrName, [MarshalAs(UnmanagedType.LPStruct)] nsAString aFeatures, System.IntPtr jsContext, int argc);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Close();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Write([MarshalAs(UnmanagedType.LPStruct)] nsAString text);
+		void Write([MarshalAs(UnmanagedType.LPStruct)] nsAString text, System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Writeln([MarshalAs(UnmanagedType.LPStruct)] nsAString text);
+		void Writeln([MarshalAs(UnmanagedType.LPStruct)] nsAString text, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Midas additions

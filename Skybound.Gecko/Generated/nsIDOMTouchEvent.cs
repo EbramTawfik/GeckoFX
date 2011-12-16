@@ -377,64 +377,76 @@ namespace Gecko
 	{
 		
 		/// <summary>Member GetOntouchstartAttribute </summary>
+		/// <param name='jsContext'> </param>
 		/// <returns>A System.IntPtr</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetOntouchstartAttribute();
+		System.IntPtr GetOntouchstartAttribute(System.IntPtr jsContext);
 		
 		/// <summary>Member SetOntouchstartAttribute </summary>
 		/// <param name='aOntouchstart'> </param>
+		/// <param name='jsContext'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOntouchstartAttribute(System.IntPtr aOntouchstart);
+		void SetOntouchstartAttribute(System.IntPtr aOntouchstart, System.IntPtr jsContext);
 		
 		/// <summary>Member GetOntouchendAttribute </summary>
+		/// <param name='jsContext'> </param>
 		/// <returns>A System.IntPtr</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetOntouchendAttribute();
+		System.IntPtr GetOntouchendAttribute(System.IntPtr jsContext);
 		
 		/// <summary>Member SetOntouchendAttribute </summary>
 		/// <param name='aOntouchend'> </param>
+		/// <param name='jsContext'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOntouchendAttribute(System.IntPtr aOntouchend);
+		void SetOntouchendAttribute(System.IntPtr aOntouchend, System.IntPtr jsContext);
 		
 		/// <summary>Member GetOntouchmoveAttribute </summary>
+		/// <param name='jsContext'> </param>
 		/// <returns>A System.IntPtr</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetOntouchmoveAttribute();
+		System.IntPtr GetOntouchmoveAttribute(System.IntPtr jsContext);
 		
 		/// <summary>Member SetOntouchmoveAttribute </summary>
 		/// <param name='aOntouchmove'> </param>
+		/// <param name='jsContext'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOntouchmoveAttribute(System.IntPtr aOntouchmove);
+		void SetOntouchmoveAttribute(System.IntPtr aOntouchmove, System.IntPtr jsContext);
 		
 		/// <summary>Member GetOntouchenterAttribute </summary>
+		/// <param name='jsContext'> </param>
 		/// <returns>A System.IntPtr</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetOntouchenterAttribute();
+		System.IntPtr GetOntouchenterAttribute(System.IntPtr jsContext);
 		
 		/// <summary>Member SetOntouchenterAttribute </summary>
 		/// <param name='aOntouchenter'> </param>
+		/// <param name='jsContext'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOntouchenterAttribute(System.IntPtr aOntouchenter);
+		void SetOntouchenterAttribute(System.IntPtr aOntouchenter, System.IntPtr jsContext);
 		
 		/// <summary>Member GetOntouchleaveAttribute </summary>
+		/// <param name='jsContext'> </param>
 		/// <returns>A System.IntPtr</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetOntouchleaveAttribute();
+		System.IntPtr GetOntouchleaveAttribute(System.IntPtr jsContext);
 		
 		/// <summary>Member SetOntouchleaveAttribute </summary>
 		/// <param name='aOntouchleave'> </param>
+		/// <param name='jsContext'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOntouchleaveAttribute(System.IntPtr aOntouchleave);
+		void SetOntouchleaveAttribute(System.IntPtr aOntouchleave, System.IntPtr jsContext);
 		
 		/// <summary>Member GetOntouchcancelAttribute </summary>
+		/// <param name='jsContext'> </param>
 		/// <returns>A System.IntPtr</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetOntouchcancelAttribute();
+		System.IntPtr GetOntouchcancelAttribute(System.IntPtr jsContext);
 		
 		/// <summary>Member SetOntouchcancelAttribute </summary>
 		/// <param name='aOntouchcancel'> </param>
+		/// <param name='jsContext'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOntouchcancelAttribute(System.IntPtr aOntouchcancel);
+		void SetOntouchcancelAttribute(System.IntPtr aOntouchcancel, System.IntPtr jsContext);
 	}
 	
 	/// <summary>nsIDOMDocumentTouch </summary>
@@ -445,64 +457,76 @@ namespace Gecko
 	{
 		
 		/// <summary>Member GetOntouchstartAttribute </summary>
+		/// <param name='jsContext'> </param>
 		/// <returns>A System.IntPtr</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.IntPtr GetOntouchstartAttribute();
+		new System.IntPtr GetOntouchstartAttribute(System.IntPtr jsContext);
 		
 		/// <summary>Member SetOntouchstartAttribute </summary>
 		/// <param name='aOntouchstart'> </param>
+		/// <param name='jsContext'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetOntouchstartAttribute(System.IntPtr aOntouchstart);
+		new void SetOntouchstartAttribute(System.IntPtr aOntouchstart, System.IntPtr jsContext);
 		
 		/// <summary>Member GetOntouchendAttribute </summary>
+		/// <param name='jsContext'> </param>
 		/// <returns>A System.IntPtr</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.IntPtr GetOntouchendAttribute();
+		new System.IntPtr GetOntouchendAttribute(System.IntPtr jsContext);
 		
 		/// <summary>Member SetOntouchendAttribute </summary>
 		/// <param name='aOntouchend'> </param>
+		/// <param name='jsContext'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetOntouchendAttribute(System.IntPtr aOntouchend);
+		new void SetOntouchendAttribute(System.IntPtr aOntouchend, System.IntPtr jsContext);
 		
 		/// <summary>Member GetOntouchmoveAttribute </summary>
+		/// <param name='jsContext'> </param>
 		/// <returns>A System.IntPtr</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.IntPtr GetOntouchmoveAttribute();
+		new System.IntPtr GetOntouchmoveAttribute(System.IntPtr jsContext);
 		
 		/// <summary>Member SetOntouchmoveAttribute </summary>
 		/// <param name='aOntouchmove'> </param>
+		/// <param name='jsContext'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetOntouchmoveAttribute(System.IntPtr aOntouchmove);
+		new void SetOntouchmoveAttribute(System.IntPtr aOntouchmove, System.IntPtr jsContext);
 		
 		/// <summary>Member GetOntouchenterAttribute </summary>
+		/// <param name='jsContext'> </param>
 		/// <returns>A System.IntPtr</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.IntPtr GetOntouchenterAttribute();
+		new System.IntPtr GetOntouchenterAttribute(System.IntPtr jsContext);
 		
 		/// <summary>Member SetOntouchenterAttribute </summary>
 		/// <param name='aOntouchenter'> </param>
+		/// <param name='jsContext'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetOntouchenterAttribute(System.IntPtr aOntouchenter);
+		new void SetOntouchenterAttribute(System.IntPtr aOntouchenter, System.IntPtr jsContext);
 		
 		/// <summary>Member GetOntouchleaveAttribute </summary>
+		/// <param name='jsContext'> </param>
 		/// <returns>A System.IntPtr</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.IntPtr GetOntouchleaveAttribute();
+		new System.IntPtr GetOntouchleaveAttribute(System.IntPtr jsContext);
 		
 		/// <summary>Member SetOntouchleaveAttribute </summary>
 		/// <param name='aOntouchleave'> </param>
+		/// <param name='jsContext'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetOntouchleaveAttribute(System.IntPtr aOntouchleave);
+		new void SetOntouchleaveAttribute(System.IntPtr aOntouchleave, System.IntPtr jsContext);
 		
 		/// <summary>Member GetOntouchcancelAttribute </summary>
+		/// <param name='jsContext'> </param>
 		/// <returns>A System.IntPtr</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.IntPtr GetOntouchcancelAttribute();
+		new System.IntPtr GetOntouchcancelAttribute(System.IntPtr jsContext);
 		
 		/// <summary>Member SetOntouchcancelAttribute </summary>
 		/// <param name='aOntouchcancel'> </param>
+		/// <param name='jsContext'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetOntouchcancelAttribute(System.IntPtr aOntouchcancel);
+		new void SetOntouchcancelAttribute(System.IntPtr aOntouchcancel, System.IntPtr jsContext);
 		
 		/// <summary>Member CreateTouch </summary>
 		/// <param name='view'> </param>

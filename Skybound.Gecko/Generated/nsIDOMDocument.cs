@@ -748,12 +748,12 @@ namespace Gecko
         /// Inline event handler for readystatechange events.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetOnreadystatechangeAttribute();
+		System.IntPtr GetOnreadystatechangeAttribute(System.IntPtr jsContext);
 		
 		/// <summary>
         /// Inline event handler for readystatechange events.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnreadystatechangeAttribute(System.IntPtr aOnreadystatechange);
+		void SetOnreadystatechangeAttribute(System.IntPtr aOnreadystatechange, System.IntPtr jsContext);
 	}
 }

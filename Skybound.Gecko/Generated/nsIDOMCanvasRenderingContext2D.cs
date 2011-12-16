@@ -124,26 +124,28 @@ namespace Gecko
 		void SetTransform(float m11, float m12, float m21, float m22, float dx, float dy);
 		
 		/// <summary>Member GetMozCurrentTransformAttribute </summary>
+		/// <param name='jsContext'> </param>
 		/// <returns>A System.IntPtr</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetMozCurrentTransformAttribute();
+		System.IntPtr GetMozCurrentTransformAttribute(System.IntPtr jsContext);
 		
 		/// <summary>Member SetMozCurrentTransformAttribute </summary>
 		/// <param name='aMozCurrentTransform'> </param>
+		/// <param name='jsContext'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozCurrentTransformAttribute(System.IntPtr aMozCurrentTransform);
+		void SetMozCurrentTransformAttribute(System.IntPtr aMozCurrentTransform, System.IntPtr jsContext);
 		
 		/// <summary>
         /// [ m11, m12, m21, m22, dx, dy ], i.e. row major
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetMozCurrentTransformInverseAttribute();
+		System.IntPtr GetMozCurrentTransformInverseAttribute(System.IntPtr jsContext);
 		
 		/// <summary>
         /// [ m11, m12, m21, m22, dx, dy ], i.e. row major
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozCurrentTransformInverseAttribute(System.IntPtr aMozCurrentTransformInverse);
+		void SetMozCurrentTransformInverseAttribute(System.IntPtr aMozCurrentTransformInverse, System.IntPtr jsContext);
 		
 		/// <summary>
         /// compositing
@@ -298,12 +300,12 @@ namespace Gecko
 		/// <summary>
         ///default 10 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetMozDashAttribute();
+		System.IntPtr GetMozDashAttribute(System.IntPtr jsContext);
 		
 		/// <summary>
         ///default 10 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozDashAttribute(System.IntPtr aMozDash);
+		void SetMozDashAttribute(System.IntPtr aMozDash, System.IntPtr jsContext);
 		
 		/// <summary>
         ///default |null| </summary>

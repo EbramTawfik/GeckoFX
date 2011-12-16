@@ -45,6 +45,6 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIIDBRequest Open([MarshalAs(UnmanagedType.LPStruct)] nsAString name);
+		nsIIDBRequest Open([MarshalAs(UnmanagedType.LPStruct)] nsAString name, System.IntPtr jsContext);
 	}
 }

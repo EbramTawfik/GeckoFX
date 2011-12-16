@@ -109,7 +109,7 @@ namespace Gecko
         /// depending on the value of aReplace.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddState([MarshalAs(UnmanagedType.Interface)] nsIVariant aData, [MarshalAs(UnmanagedType.LPStruct)] nsAString aTitle, [MarshalAs(UnmanagedType.LPStruct)] nsAString aURL, [MarshalAs(UnmanagedType.Bool)] bool aReplace);
+		void AddState([MarshalAs(UnmanagedType.Interface)] nsIVariant aData, [MarshalAs(UnmanagedType.LPStruct)] nsAString aTitle, [MarshalAs(UnmanagedType.LPStruct)] nsAString aURL, [MarshalAs(UnmanagedType.Bool)] bool aReplace, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Creates a DocShellLoadInfo object that you can manipulate and then pass

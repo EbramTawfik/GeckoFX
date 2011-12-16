@@ -41,6 +41,6 @@ namespace Gecko
         /// Define the global Debugger constructor.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddClass();
+		void AddClass(System.IntPtr jsContext);
 	}
 }

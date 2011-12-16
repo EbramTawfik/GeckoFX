@@ -165,7 +165,7 @@ namespace Gecko
         /// Custom string data associated with this event.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetDataAttribute();
+		System.IntPtr GetDataAttribute(System.IntPtr jsContext);
 		
 		/// <summary>
         /// The origin of the site from which this event originated, which is the
