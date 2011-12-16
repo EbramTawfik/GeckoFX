@@ -411,6 +411,42 @@ namespace Skybound.Gecko
 		new void AsyncOpen([MarshalAs(UnmanagedType.Interface)] nsIStreamListener aListener, [MarshalAs(UnmanagedType.Interface)] nsISupports aContext);
 		
 		/// <summary>
+        /// Access to the type implied or stated by the Content-Disposition header
+        /// if available and if applicable. This allows determining inline versus
+        /// attachment.
+        ///
+        /// Implementations should throw NS_ERROR_NOT_AVAILABLE if the header either
+        /// doesn't exist for this type of channel or is empty, and
+        /// DISPOSITION_ATTACHMENT if an invalid/noncompliant value is present.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new uint GetContentDispositionAttribute();
+		
+		/// <summary>
+        /// Access to the filename portion of the Content-Disposition header if
+        /// available and if applicable. This allows getting the preferred filename
+        /// without having to parse it out yourself.
+        ///
+        /// Implementations should throw NS_ERROR_NOT_AVAILABLE if the header doesn't
+        /// exist for this type of channel, if the header is empty, if the header
+        /// doesn't contain a filename portion, or the value of the filename
+        /// attribute is empty/missing.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void GetContentDispositionFilenameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aContentDispositionFilename);
+		
+		/// <summary>
+        /// Access to the raw Content-Disposition header if available and applicable.
+        ///
+        /// Implementations should throw NS_ERROR_NOT_AVAILABLE if the header either
+        /// doesn't exist for this type of channel or is empty.
+        ///
+        /// @deprecated Use contentDisposition/contentDispositionFilename instead.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void GetContentDispositionHeaderAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aContentDispositionHeader);
+		
+		/// <summary>
         /// Returns TRUE if the JAR file is not safe (if the content type reported
         /// by the server for a remote JAR is not of an expected type).  Scripting,
         /// redirects, and plugins should be disabled when loading from this

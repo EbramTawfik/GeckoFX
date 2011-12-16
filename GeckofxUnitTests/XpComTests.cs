@@ -18,7 +18,7 @@ namespace GeckofxUnitTests
 				if (Xpcom.IsLinux)
 					return "/usr/lib/firefox-8.0/";
 				
-				return @"C:\Program Files (x86)\Mozilla Firefox";
+				return @"C:\Program Files (x86)\Mozilla Firefox BETA";
 			}
 		}
 
@@ -886,14 +886,6 @@ namespace GeckofxUnitTests
 		public void CreateInstance_CreatingUniCharUtil_ReturnsValidInstance()
 		{			
 			var instance = Xpcom.CreateInstance<nsISupports>("@mozilla.org/intl/unicharutil;1");
-			Assert.IsNotNull(instance);
-			Marshal.ReleaseComObject(instance);
-		}
-
-		[Test]
-		public void CreateInstance_CreatingScriptableInterfaces_ReturnsValidInstance()
-		{			
-			var instance = Xpcom.CreateInstance<nsIScriptableInterfaces>("@mozilla.org/scriptableinterfaces;1");
 			Assert.IsNotNull(instance);
 			Marshal.ReleaseComObject(instance);
 		}

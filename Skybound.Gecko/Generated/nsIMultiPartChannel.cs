@@ -33,7 +33,7 @@ namespace Skybound.Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("ba78db7b-b88c-4b76-baf9-3c2296a585ae")]
+	[Guid("4b04e835-d131-42af-8bf0-74289f99374f")]
 	public interface nsIMultiPartChannel
 	{
 		
@@ -43,22 +43,6 @@ namespace Skybound.Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIChannel GetBaseChannelAttribute();
-		
-		/// <summary>
-        /// Access to the Content-Disposition header field of this part of
-        /// a multipart message.  This allows getting the preferred
-        /// handling method, preferred filename, etc.  See RFC 2183.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetContentDispositionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aContentDisposition);
-		
-		/// <summary>
-        /// Access to the Content-Disposition header field of this part of
-        /// a multipart message.  This allows getting the preferred
-        /// handling method, preferred filename, etc.  See RFC 2183.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetContentDispositionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aContentDisposition);
 		
 		/// <summary>
         /// Attribute guaranteed to be different for different parts of

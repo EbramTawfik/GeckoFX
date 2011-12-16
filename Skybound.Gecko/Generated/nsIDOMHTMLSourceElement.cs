@@ -28,7 +28,7 @@ namespace Skybound.Gecko
 	
 	
 	/// <summary>
-    /// The nsIDOMHTMLVideoElement interface is the interface to a HTML
+    /// The nsIDOMHTMLSourceElement interface is the interface to a HTML
     /// <source> element.
     ///
     /// For more information on this interface, please see
@@ -38,7 +38,7 @@ namespace Skybound.Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("ee69ccd4-5216-46cc-bfb4-b612d197ce29")]
+	[Guid("d2c8c680-d3e7-4306-bced-4cddcbae4485")]
 	public interface nsIDOMHTMLSourceElement : nsIDOMHTMLElement
 	{
 		
@@ -68,6 +68,10 @@ namespace Skybound.Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMNode GetParentNodeAttribute();
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMElement GetParentElementAttribute();
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -233,6 +237,10 @@ namespace Skybound.Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIVariant GetUserData([MarshalAs(UnmanagedType.LPStruct)] nsAString key);
 		
+		[return: MarshalAs(UnmanagedType.Bool)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool Contains([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aOther);
+		
 		/// <summary>
         /// The nsIDOMElement interface represents an element in an HTML or
         /// XML document.
@@ -392,7 +400,7 @@ namespace Skybound.Gecko
 		new void Click();
 		
 		/// <summary>
-        /// The nsIDOMHTMLVideoElement interface is the interface to a HTML
+        /// The nsIDOMHTMLSourceElement interface is the interface to a HTML
         /// <source> element.
         ///
         /// For more information on this interface, please see
@@ -404,7 +412,7 @@ namespace Skybound.Gecko
 		void GetSrcAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aSrc);
 		
 		/// <summary>
-        /// The nsIDOMHTMLVideoElement interface is the interface to a HTML
+        /// The nsIDOMHTMLSourceElement interface is the interface to a HTML
         /// <source> element.
         ///
         /// For more information on this interface, please see

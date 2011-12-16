@@ -30,9 +30,17 @@ namespace Skybound.Gecko
 	/// <summary>nsIEditorSpellCheck </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("90c93610-c116-44ab-9793-62dccb9f43ce")]
+	[Guid("334946c3-0e93-4aac-b662-e1b56f95d68b")]
 	public interface nsIEditorSpellCheck
 	{
+		
+		/// <summary>
+        /// Call this on any change in installed dictionaries to ensure that the spell
+        /// checker is not using a current dictionary which is no longer available.
+        /// If the current dictionary is no longer available, then pick another one.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void CheckCurrentDictionary();
 		
 		/// <summary>
         /// Returns true if we can enable spellchecking. If there are no available
@@ -149,24 +157,14 @@ namespace Skybound.Gecko
 		/// <summary>
         /// @see nsISpellChecker::GetCurrentDictionary
         /// </summary>
-		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string GetCurrentDictionary();
+		void GetCurrentDictionary([MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// @see nsISpellChecker::SetCurrentDictionary
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCurrentDictionary([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")] string dictionary);
-		
-		/// <summary>
-        /// Call to save the currently selected dictionary as the default. The
-        /// function UninitSpellChecker will also do this, but that function may not
-        /// be called in some situations. This function allows the caller to force the
-        /// default right now.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SaveDefaultDictionary();
+		void SetCurrentDictionary([MarshalAs(UnmanagedType.LPStruct)] nsAString dictionary);
 		
 		/// <summary>
         /// Call this to free up the spell checking object. It will also save the
@@ -201,5 +199,12 @@ namespace Skybound.Gecko
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool CheckCurrentWordNoSuggest([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")] string suggestedWord);
+		
+		/// <summary>
+        /// Update the dictionary in use to be sure it corresponds to what the editor
+        /// needs.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void UpdateCurrentDictionary();
 	}
 }

@@ -30,7 +30,7 @@ namespace Skybound.Gecko
 	/// <summary>nsIDOMNSHTMLElement </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("0c3b4b63-30b2-4c93-906d-f983ee9af584")]
+	[Guid("38305156-007a-4b68-8592-b1c3625c6f6c")]
 	public interface nsIDOMNSHTMLElement
 	{
 		
@@ -160,5 +160,14 @@ namespace Skybound.Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMDOMStringMap GetDatasetAttribute();
+		
+		/// <summary>
+        /// Requests that this element be made the full-screen element, as per the DOM
+        /// full-screen api.
+        ///
+        /// @see <https://wiki.mozilla.org/index.php?title=Gecko:FullScreenAPI>
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void MozRequestFullScreen();
 	}
 }

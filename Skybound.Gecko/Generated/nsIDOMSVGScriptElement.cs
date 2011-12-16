@@ -39,7 +39,7 @@ namespace Skybound.Gecko
     ///    nsIDOMSVGExternalResourcesRequired </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("26525c48-f1fa-453b-b19a-6586b2d88e1d")]
+	[Guid("84d1d020-0a2b-403e-8b81-fa51af1c3d52")]
 	public interface nsIDOMSVGScriptElement : nsIDOMSVGElement
 	{
 		
@@ -75,6 +75,12 @@ namespace Skybound.Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMNode GetParentNodeAttribute();
+		
+		/// <summary>Member GetParentElementAttribute </summary>
+		/// <returns>A nsIDOMElement</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMElement GetParentElementAttribute();
 		
 		/// <summary>Member GetChildNodesAttribute </summary>
 		/// <returns>A nsIDOMNodeList</returns>
@@ -270,6 +276,13 @@ namespace Skybound.Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIVariant GetUserData([MarshalAs(UnmanagedType.LPStruct)] nsAString key);
+		
+		/// <summary>Member Contains </summary>
+		/// <param name='aOther'> </param>
+		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool Contains([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aOther);
 		
 		/// <summary>
         /// The nsIDOMElement interface represents an element in an HTML or

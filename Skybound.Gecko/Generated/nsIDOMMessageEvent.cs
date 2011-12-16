@@ -36,7 +36,7 @@ namespace Skybound.Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("dc8ec5c6-ebf2-4f95-be99-cd13e3c0d0c6")]
+	[Guid("9ac4fa26-4d19-4f4e-807e-b30cd0dbe56a")]
 	public interface nsIDOMMessageEvent : nsIDOMEvent
 	{
 		

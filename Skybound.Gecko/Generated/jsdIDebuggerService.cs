@@ -254,7 +254,10 @@ namespace Skybound.Gecko
 		uint Pause();
 		
 		/// <summary>
-        /// Undo a pause.
+        /// Undo a pause.  Once this is called, the debugger won't start
+        /// getting execution callbacks until the stack is fully unwound so
+        /// that no JS scripts are live.  There is no way to query whether
+        /// there are such scripts left to unwind at a given point in time.
         ///
         /// @return depth The number of remaining pending pause calls.
         /// </summary>

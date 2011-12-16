@@ -2435,6 +2435,18 @@ namespace Skybound.Gecko
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetMozColumnsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozColumns);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetMozColumnsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozColumns);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetMozColumnRuleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozColumnRule);
 		
 		/// <summary>

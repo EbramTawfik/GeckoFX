@@ -30,7 +30,7 @@ namespace Skybound.Gecko
 	/// <summary>nsIDOMSVGTransformList </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("cee0a9d4-8554-4bf6-bf9b-7d0cebb4269d")]
+	[Guid("6302eb5d-25d5-4df6-ab8b-e57e37c1a48d")]
 	public interface nsIDOMSVGTransformList
 	{
 		
@@ -39,7 +39,14 @@ namespace Skybound.Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetNumberOfItemsAttribute();
 		
-		/// <summary>Member Clear </summary>
+		/// <summary>Member GetLengthAttribute </summary>
+		/// <returns>A System.UInt32</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetLengthAttribute();
+		
+		/// <summary>
+        /// synonym for numberOfItems
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Clear();
 		

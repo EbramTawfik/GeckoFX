@@ -34,7 +34,7 @@ namespace Skybound.Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("6D2B0507-245F-452D-9718-5595DCD3CD14")]
+	[Guid("0cb4e536-e120-41e6-998f-66123d81ec53")]
 	public interface mozIAsyncFavicons
 	{
 		
@@ -92,5 +92,19 @@ namespace Skybound.Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetFaviconURLForPage([MarshalAs(UnmanagedType.Interface)] nsIURI aPageURI, [MarshalAs(UnmanagedType.Interface)] nsIFaviconDataCallback aCallback);
+		
+		/// <summary>
+        /// Retrieve the URL and data of the favicon for the given page.
+        ///
+        /// @param aPageURI
+        /// URI of the page whose favicon's URL and data we're looking up
+        /// @param aCallback
+        /// Once we've found the favicon's URL, we invoke this callback with
+        /// the favicon data.
+        ///
+        /// @see nsIFaviconDataCallback in nsIFaviconService.idl.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetFaviconDataForPage([MarshalAs(UnmanagedType.Interface)] nsIURI aPageURI, [MarshalAs(UnmanagedType.Interface)] nsIFaviconDataCallback aCallback);
 	}
 }

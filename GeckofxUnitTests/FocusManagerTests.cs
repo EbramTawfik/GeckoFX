@@ -523,6 +523,147 @@ namespace GeckofxUnitTests
 		{
 			throw new NotImplementedException();
 		}
+
+
+		public IntPtr GetOnafterprintAttribute()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetOnafterprintAttribute(IntPtr aOnafterprint)
+		{
+			throw new NotImplementedException();
+		}
+
+		public IntPtr GetOnbeforeprintAttribute()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetOnbeforeprintAttribute(IntPtr aOnbeforeprint)
+		{
+			throw new NotImplementedException();
+		}
+
+		public IntPtr GetOnbeforeunloadAttribute()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetOnbeforeunloadAttribute(IntPtr aOnbeforeunload)
+		{
+			throw new NotImplementedException();
+		}
+
+		public IntPtr GetOnhashchangeAttribute()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetOnhashchangeAttribute(IntPtr aOnhashchange)
+		{
+			throw new NotImplementedException();
+		}
+
+		public IntPtr GetOnmessageAttribute()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetOnmessageAttribute(IntPtr aOnmessage)
+		{
+			throw new NotImplementedException();
+		}
+
+		public IntPtr GetOnofflineAttribute()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetOnofflineAttribute(IntPtr aOnoffline)
+		{
+			throw new NotImplementedException();
+		}
+
+		public IntPtr GetOnonlineAttribute()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetOnonlineAttribute(IntPtr aOnonline)
+		{
+			throw new NotImplementedException();
+		}
+
+		public IntPtr GetOnpopstateAttribute()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetOnpopstateAttribute(IntPtr aOnpopstate)
+		{
+			throw new NotImplementedException();
+		}
+
+		public IntPtr GetOnpagehideAttribute()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetOnpagehideAttribute(IntPtr aOnpagehide)
+		{
+			throw new NotImplementedException();
+		}
+
+		public IntPtr GetOnpageshowAttribute()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetOnpageshowAttribute(IntPtr aOnpageshow)
+		{
+			throw new NotImplementedException();
+		}
+
+		public IntPtr GetOnresizeAttribute()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetOnresizeAttribute(IntPtr aOnresize)
+		{
+			throw new NotImplementedException();
+		}
+
+		public IntPtr GetOnunloadAttribute()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetOnunloadAttribute(IntPtr aOnunload)
+		{
+			throw new NotImplementedException();
+		}
+
+		public IntPtr GetOndevicemotionAttribute()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetOndevicemotionAttribute(IntPtr aOndevicemotion)
+		{
+			throw new NotImplementedException();
+		}
+
+		public IntPtr GetOndeviceorientationAttribute()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetOndeviceorientationAttribute(IntPtr aOndeviceorientation)
+		{
+			throw new NotImplementedException();
+		}
 	}
 	#endregion
 }

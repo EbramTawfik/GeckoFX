@@ -33,12 +33,13 @@ namespace Skybound.Gecko
     /// information in the text of the document.
     ///
     /// For more information on this interface please see
-    /// http://www.w3.org/TR/DOM-Level-2-Core/
+    /// http://www.w3.org/TR/DOM-Level-2-Core/ and
+    /// http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("1c3118cc-4d21-40cc-96c4-9d46facee5d1")]
-	public interface nsIDOMProcessingInstruction : nsIDOMNode
+	[Guid("d754433f-4637-4a5f-9034-0388173ea254")]
+	public interface nsIDOMProcessingInstruction : nsIDOMCharacterData
 	{
 		
 		/// <summary>
@@ -67,6 +68,10 @@ namespace Skybound.Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMNode GetParentNodeAttribute();
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMElement GetParentElementAttribute();
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -232,21 +237,61 @@ namespace Skybound.Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIVariant GetUserData([MarshalAs(UnmanagedType.LPStruct)] nsAString key);
 		
+		[return: MarshalAs(UnmanagedType.Bool)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool Contains([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aOther);
+		
+		/// <summary>
+        /// The nsIDOMCharacterData interface extends nsIDOMNode with a set of
+        /// attributes and methods for accessing character data in the DOM.
+        ///
+        /// For more information on this interface please see
+        /// http://www.w3.org/TR/DOM-Level-2-Core/
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void GetDataAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aData);
+		
+		/// <summary>
+        /// The nsIDOMCharacterData interface extends nsIDOMNode with a set of
+        /// attributes and methods for accessing character data in the DOM.
+        ///
+        /// For more information on this interface please see
+        /// http://www.w3.org/TR/DOM-Level-2-Core/
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetDataAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aData);
+		
+		/// <summary>
+        /// raises(DOMException) on retrieval
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new uint GetLengthAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SubstringData(uint offset, uint count, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void AppendData([MarshalAs(UnmanagedType.LPStruct)] nsAString arg);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void InsertData(uint offset, [MarshalAs(UnmanagedType.LPStruct)] nsAString arg);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void DeleteData(uint offset, uint count);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void ReplaceData(uint offset, uint count, [MarshalAs(UnmanagedType.LPStruct)] nsAString arg);
+		
 		/// <summary>
         /// The nsIDOMProcessingInstruction interface represents a
         /// "processing instruction", used in XML as a way to keep processor-specific
         /// information in the text of the document.
         ///
         /// For more information on this interface please see
-        /// http://www.w3.org/TR/DOM-Level-2-Core/
+        /// http://www.w3.org/TR/DOM-Level-2-Core/ and
+        /// http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetTargetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aTarget);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDataAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aData);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDataAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aData);
 	}
 }

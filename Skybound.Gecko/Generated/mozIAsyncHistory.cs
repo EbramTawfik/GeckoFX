@@ -125,7 +125,7 @@ namespace Skybound.Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("eb0b406f-8f57-4f2b-b0da-8883684b138a")]
+	[Guid("1f266877-2859-418b-a11b-ec3ae4f4f93d")]
 	public interface mozIVisitInfoCallback
 	{
 		
@@ -151,6 +151,13 @@ namespace Skybound.Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void HandleResult(mozIPlaceInfo aPlaceInfo);
+		
+		/// <summary>
+        /// Called when the mozIAsyncHistory::updatePlaces has finished processing
+        /// all mozIPlaceInfo records.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void HandleCompletion();
 	}
 	
 	/// <summary>

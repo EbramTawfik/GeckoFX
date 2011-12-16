@@ -257,6 +257,59 @@ namespace Skybound.Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void InitUIEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString typeArg, [MarshalAs(UnmanagedType.Bool)] bool canBubbleArg, [MarshalAs(UnmanagedType.Bool)] bool cancelableArg, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow viewArg, int detailArg);
 		
+		/// <summary>Member GetLayerXAttribute </summary>
+		/// <returns>A System.Int32</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new int GetLayerXAttribute();
+		
+		/// <summary>Member GetLayerYAttribute </summary>
+		/// <returns>A System.Int32</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new int GetLayerYAttribute();
+		
+		/// <summary>Member GetPageXAttribute </summary>
+		/// <returns>A System.Int32</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new int GetPageXAttribute();
+		
+		/// <summary>Member GetPageYAttribute </summary>
+		/// <returns>A System.Int32</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new int GetPageYAttribute();
+		
+		/// <summary>Member GetWhichAttribute </summary>
+		/// <returns>A System.UInt32</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new uint GetWhichAttribute();
+		
+		/// <summary>Member GetRangeParentAttribute </summary>
+		/// <returns>A nsIDOMNode</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMNode GetRangeParentAttribute();
+		
+		/// <summary>Member GetRangeOffsetAttribute </summary>
+		/// <returns>A System.Int32</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new int GetRangeOffsetAttribute();
+		
+		/// <summary>Member GetCancelBubbleAttribute </summary>
+		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool GetCancelBubbleAttribute();
+		
+		/// <summary>Member SetCancelBubbleAttribute </summary>
+		/// <param name='aCancelBubble'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetCancelBubbleAttribute([MarshalAs(UnmanagedType.Bool)] bool aCancelBubble);
+		
+		/// <summary>Member GetIsCharAttribute </summary>
+		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool GetIsCharAttribute();
+		
 		/// <summary>Member GetTouchesAttribute </summary>
 		/// <returns>A nsIDOMTouchList</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
@@ -316,12 +369,140 @@ namespace Skybound.Gecko
 		void InitTouchEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString type, [MarshalAs(UnmanagedType.Bool)] bool canBubble, [MarshalAs(UnmanagedType.Bool)] bool cancelable, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow view, int detail, [MarshalAs(UnmanagedType.Bool)] bool ctrlKey, [MarshalAs(UnmanagedType.Bool)] bool altKey, [MarshalAs(UnmanagedType.Bool)] bool shiftKey, [MarshalAs(UnmanagedType.Bool)] bool metaKey, [MarshalAs(UnmanagedType.Interface)] nsIDOMTouchList touches, [MarshalAs(UnmanagedType.Interface)] nsIDOMTouchList targetTouches, [MarshalAs(UnmanagedType.Interface)] nsIDOMTouchList changedTouches);
 	}
 	
+	/// <summary>nsITouchEventReceiver </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("6d5484f7-92ac-45f8-9388-39b5bad055ce")]
+	public interface nsITouchEventReceiver
+	{
+		
+		/// <summary>Member GetOntouchstartAttribute </summary>
+		/// <returns>A System.IntPtr</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		System.IntPtr GetOntouchstartAttribute();
+		
+		/// <summary>Member SetOntouchstartAttribute </summary>
+		/// <param name='aOntouchstart'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOntouchstartAttribute(System.IntPtr aOntouchstart);
+		
+		/// <summary>Member GetOntouchendAttribute </summary>
+		/// <returns>A System.IntPtr</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		System.IntPtr GetOntouchendAttribute();
+		
+		/// <summary>Member SetOntouchendAttribute </summary>
+		/// <param name='aOntouchend'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOntouchendAttribute(System.IntPtr aOntouchend);
+		
+		/// <summary>Member GetOntouchmoveAttribute </summary>
+		/// <returns>A System.IntPtr</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		System.IntPtr GetOntouchmoveAttribute();
+		
+		/// <summary>Member SetOntouchmoveAttribute </summary>
+		/// <param name='aOntouchmove'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOntouchmoveAttribute(System.IntPtr aOntouchmove);
+		
+		/// <summary>Member GetOntouchenterAttribute </summary>
+		/// <returns>A System.IntPtr</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		System.IntPtr GetOntouchenterAttribute();
+		
+		/// <summary>Member SetOntouchenterAttribute </summary>
+		/// <param name='aOntouchenter'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOntouchenterAttribute(System.IntPtr aOntouchenter);
+		
+		/// <summary>Member GetOntouchleaveAttribute </summary>
+		/// <returns>A System.IntPtr</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		System.IntPtr GetOntouchleaveAttribute();
+		
+		/// <summary>Member SetOntouchleaveAttribute </summary>
+		/// <param name='aOntouchleave'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOntouchleaveAttribute(System.IntPtr aOntouchleave);
+		
+		/// <summary>Member GetOntouchcancelAttribute </summary>
+		/// <returns>A System.IntPtr</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		System.IntPtr GetOntouchcancelAttribute();
+		
+		/// <summary>Member SetOntouchcancelAttribute </summary>
+		/// <param name='aOntouchcancel'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOntouchcancelAttribute(System.IntPtr aOntouchcancel);
+	}
+	
 	/// <summary>nsIDOMDocumentTouch </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("804a3851-ea2e-4e5f-bedd-315f37f31ab1")]
-	public interface nsIDOMDocumentTouch
+	[Guid("974cff68-6f0b-4520-8523-fa68b2754656")]
+	public interface nsIDOMDocumentTouch : nsITouchEventReceiver
 	{
+		
+		/// <summary>Member GetOntouchstartAttribute </summary>
+		/// <returns>A System.IntPtr</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new System.IntPtr GetOntouchstartAttribute();
+		
+		/// <summary>Member SetOntouchstartAttribute </summary>
+		/// <param name='aOntouchstart'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetOntouchstartAttribute(System.IntPtr aOntouchstart);
+		
+		/// <summary>Member GetOntouchendAttribute </summary>
+		/// <returns>A System.IntPtr</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new System.IntPtr GetOntouchendAttribute();
+		
+		/// <summary>Member SetOntouchendAttribute </summary>
+		/// <param name='aOntouchend'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetOntouchendAttribute(System.IntPtr aOntouchend);
+		
+		/// <summary>Member GetOntouchmoveAttribute </summary>
+		/// <returns>A System.IntPtr</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new System.IntPtr GetOntouchmoveAttribute();
+		
+		/// <summary>Member SetOntouchmoveAttribute </summary>
+		/// <param name='aOntouchmove'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetOntouchmoveAttribute(System.IntPtr aOntouchmove);
+		
+		/// <summary>Member GetOntouchenterAttribute </summary>
+		/// <returns>A System.IntPtr</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new System.IntPtr GetOntouchenterAttribute();
+		
+		/// <summary>Member SetOntouchenterAttribute </summary>
+		/// <param name='aOntouchenter'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetOntouchenterAttribute(System.IntPtr aOntouchenter);
+		
+		/// <summary>Member GetOntouchleaveAttribute </summary>
+		/// <returns>A System.IntPtr</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new System.IntPtr GetOntouchleaveAttribute();
+		
+		/// <summary>Member SetOntouchleaveAttribute </summary>
+		/// <param name='aOntouchleave'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetOntouchleaveAttribute(System.IntPtr aOntouchleave);
+		
+		/// <summary>Member GetOntouchcancelAttribute </summary>
+		/// <returns>A System.IntPtr</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new System.IntPtr GetOntouchcancelAttribute();
+		
+		/// <summary>Member SetOntouchcancelAttribute </summary>
+		/// <param name='aOntouchcancel'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetOntouchcancelAttribute(System.IntPtr aOntouchcancel);
 		
 		/// <summary>Member CreateTouch </summary>
 		/// <param name='view'> </param>

@@ -55,7 +55,7 @@ namespace Skybound.Gecko
 		nsISupportsArray GetOutputDataFlavors();
 		
 		/// <summary>
-        /// Determines whether a converion from one flavor to another is supported
+        /// Determines whether a conversion from one flavor to another is supported
         ///
         /// @param  aFromFormatConverter flavor to convert from
         /// @param  aFromFormatConverter flavor to convert to

@@ -30,7 +30,7 @@ namespace Skybound.Gecko
 	/// <summary>nsIInlineSpellChecker </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("07be036a-2355-4a92-b150-5c9b7e9fdf2f")]
+	[Guid("f456dda1-965d-470c-8c55-e51b38e45212")]
 	public interface nsIInlineSpellChecker
 	{
 		
@@ -108,5 +108,9 @@ namespace Skybound.Gecko
 		/// <param name='aCount'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void IgnoreWords([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] System.IntPtr[] aWordsToIgnore, uint aCount);
+		
+		/// <summary>Member UpdateCurrentDictionary </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void UpdateCurrentDictionary();
 	}
 }

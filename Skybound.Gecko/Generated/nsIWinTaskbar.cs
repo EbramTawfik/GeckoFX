@@ -60,7 +60,7 @@ namespace Skybound.Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("a25ad3ed-1ded-4473-bb6e-bf8b89d88949")]
+	[Guid("9fc572db-1089-4d43-9121-f4833d77a2df")]
 	public interface nsIWinTaskbar
 	{
 		
@@ -117,7 +117,7 @@ namespace Skybound.Gecko
         /// should make use of a single instance of nsIJumpListBuilder for building lists
         /// within an application.
         ///
-        /// @thow NS_ERROR_ALREADY_INITIALIZED if an nsIJumpListBuilder instance is
+        /// @throw NS_ERROR_ALREADY_INITIALIZED if an nsIJumpListBuilder instance is
         /// currently building a list.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
@@ -139,12 +139,39 @@ namespace Skybound.Gecko
         /// Note, when a window changes taskbar window stacks, it is placed at the
         /// bottom of the new stack.
         ///
-        /// @thow NS_ERROR_INVALID_ARG if the window is not a valid top level window
+        /// @throw NS_ERROR_INVALID_ARG if the window is not a valid top level window
         /// associated with a widget.
-        /// @thow NS_ERROR_FAILURE if the property on the window could not be set.
-        /// @thow NS_ERROR_UNEXPECTED for general failures.
+        /// @throw NS_ERROR_FAILURE if the property on the window could not be set.
+        /// @throw NS_ERROR_UNEXPECTED for general failures.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetGroupIdForWindow([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aParent, [MarshalAs(UnmanagedType.LPStruct)] nsAString aIdentifier);
+		
+		/// <summary>
+        /// Notify the taskbar that a window is about to enter full screen mode.
+        ///
+        /// A Windows autohide taskbar will not behave correctly in all cases if
+        /// it is not notified when full screen operations start and end.
+        ///
+        /// @throw NS_ERROR_INVALID_ARG if the window is not a valid top level window
+        /// @throw NS_ERROR_UNEXPECTED for general failures.
+        /// @throw NS_ERROR_NOT_AVAILABLE if the taskbar cannot be obtained.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void PrepareFullScreen([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow, [MarshalAs(UnmanagedType.Bool)] bool aFullScreen);
+		
+		/// <summary>
+        /// Notify the taskbar that a window identified by its HWND is about to enter
+        /// full screen mode.
+        ///
+        /// A Windows autohide taskbar will not behave correctly in all cases if
+        /// it is not notified when full screen operations start and end.
+        ///
+        /// @throw NS_ERROR_INVALID_ARG if the window is not a valid top level window
+        /// @throw NS_ERROR_UNEXPECTED for general failures.
+        /// @throw NS_ERROR_NOT_AVAILABLE if the taskbar cannot be obtained.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void PrepareFullScreenHWND(System.IntPtr aWindow, [MarshalAs(UnmanagedType.Bool)] bool aFullScreen);
 	}
 }

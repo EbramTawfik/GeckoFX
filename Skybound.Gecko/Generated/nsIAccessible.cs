@@ -39,7 +39,7 @@ namespace Skybound.Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("c81d8f8c-8585-4094-bc7c-71dd01494906")]
+	[Guid("3126544c-826c-4694-a2ed-67bfe56a1f37")]
 	public interface nsIAccessible
 	{
 		
@@ -252,55 +252,12 @@ namespace Skybound.Gecko
 		nsIAccessible GetChildAt(int aChildIndex);
 		
 		/// <summary>
-        /// Accessible node geometrically to the right of this one
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIAccessible GetAccessibleToRight();
-		
-		/// <summary>
-        /// Accessible node geometrically to the left of this one
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIAccessible GetAccessibleToLeft();
-		
-		/// <summary>
-        /// Accessible node geometrically above this one
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIAccessible GetAccessibleAbove();
-		
-		/// <summary>
-        /// Accessible node geometrically below this one
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIAccessible GetAccessibleBelow();
-		
-		/// <summary>
         /// Return accessible relation by the given relation type (see.
         /// constants defined in nsIAccessibleRelation).
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIAccessibleRelation GetRelationByType(uint aRelationType);
-		
-		/// <summary>
-        /// Returns the number of accessible relations for this object.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetRelationsCountAttribute();
-		
-		/// <summary>
-        /// Returns one accessible relation for this object.
-        ///
-        /// @param index - relation index (0-based)
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIAccessibleRelation GetRelation(uint index);
 		
 		/// <summary>
         /// Returns multiple accessible relations for this object.

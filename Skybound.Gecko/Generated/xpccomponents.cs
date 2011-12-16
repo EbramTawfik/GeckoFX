@@ -28,6 +28,26 @@ namespace Skybound.Gecko
 	
 	
 	/// <summary>
+    /// interface of Components.interfacesByID
+    /// (interesting stuff only reflected into JavaScript) </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("c99cffac-5aed-4267-ad2f-f4a4c9d4a081")]
+	public interface nsIXPCComponents_InterfacesByID
+	{
+	}
+	
+	/// <summary>
+    /// interface of Components.interfaces
+    /// (interesting stuff only reflected into JavaScript) </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("b8c31bba-79db-4a1d-930d-4cdd68713f9e")]
+	public interface nsIXPCComponents_Interfaces
+	{
+	}
+	
+	/// <summary>
     /// interface of Components.classes
     /// (interesting stuff only reflected into JavaScript) </summary>
 	[ComImport()]
@@ -256,11 +276,11 @@ namespace Skybound.Gecko
         /// interface of JavaScript's 'Components' object </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIScriptableInterfaces GetInterfacesAttribute();
+		nsIXPCComponents_Interfaces GetInterfacesAttribute();
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIScriptableInterfacesByID GetInterfacesByIDAttribute();
+		nsIXPCComponents_InterfacesByID GetInterfacesByIDAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetClassesAttribute();

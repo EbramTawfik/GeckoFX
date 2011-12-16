@@ -33,7 +33,6 @@ namespace Skybound.Gecko
     ///
     /// http://host/directory/fileBaseName.fileExtension?query
     /// http://host/directory/fileBaseName.fileExtension#ref
-    /// http://host/directory/fileBaseName.fileExtension;param
     /// \          \                       /
     /// \          -----------------------
     /// \                   |          /
@@ -44,7 +43,7 @@ namespace Skybound.Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("067d697a-c725-4293-9656-e658a75e6bcf")]
+	[Guid("1419aa16-f134-4154-9886-00c7c5147a13")]
 	public interface nsIURL : nsIURI
 	{
 		
@@ -343,22 +342,6 @@ namespace Skybound.Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetFilePathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aFilePath);
-		
-		/// <summary>
-        /// Returns the parameters specified after the ; in the URL.
-        ///
-        /// Some characters may be escaped.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetParamAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aParam);
-		
-		/// <summary>
-        /// Returns the parameters specified after the ; in the URL.
-        ///
-        /// Some characters may be escaped.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetParamAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aParam);
 		
 		/// <summary>
         /// Returns the query portion (the part after the "?") of the URL.

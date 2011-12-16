@@ -34,7 +34,7 @@ namespace Skybound.Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("784de8e2-e72f-441a-ae74-9d5fdfe13be3")]
+	[Guid("d9bb54df-daac-4ce6-a70c-95d87b770cd8")]
 	public interface nsIPrefBranch2 : nsIPrefBranch
 	{
 		
@@ -82,7 +82,7 @@ namespace Skybound.Gecko
         /// @see getBoolPref
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetBoolPref([MarshalAs(UnmanagedType.LPStr)] string aPrefName, int aValue);
+		new void SetBoolPref([MarshalAs(UnmanagedType.LPStr)] string aPrefName, [MarshalAs(UnmanagedType.Bool)] bool aValue);
 		
 		/// <summary>
         /// Called to get the state of an individual string preference.

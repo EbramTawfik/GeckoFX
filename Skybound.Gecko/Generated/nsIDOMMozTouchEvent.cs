@@ -30,7 +30,7 @@ namespace Skybound.Gecko
 	/// <summary>nsIDOMMozTouchEvent </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("e9ed248b-1995-482f-8407-33ae7744bb9c")]
+	[Guid("e680bab6-740a-4097-b5e0-5e9d7d381cbc")]
 	public interface nsIDOMMozTouchEvent : nsIDOMMouseEvent
 	{
 		
@@ -180,6 +180,59 @@ namespace Skybound.Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void InitUIEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString typeArg, [MarshalAs(UnmanagedType.Bool)] bool canBubbleArg, [MarshalAs(UnmanagedType.Bool)] bool cancelableArg, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow viewArg, int detailArg);
 		
+		/// <summary>Member GetLayerXAttribute </summary>
+		/// <returns>A System.Int32</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new int GetLayerXAttribute();
+		
+		/// <summary>Member GetLayerYAttribute </summary>
+		/// <returns>A System.Int32</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new int GetLayerYAttribute();
+		
+		/// <summary>Member GetPageXAttribute </summary>
+		/// <returns>A System.Int32</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new int GetPageXAttribute();
+		
+		/// <summary>Member GetPageYAttribute </summary>
+		/// <returns>A System.Int32</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new int GetPageYAttribute();
+		
+		/// <summary>Member GetWhichAttribute </summary>
+		/// <returns>A System.UInt32</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new uint GetWhichAttribute();
+		
+		/// <summary>Member GetRangeParentAttribute </summary>
+		/// <returns>A nsIDOMNode</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMNode GetRangeParentAttribute();
+		
+		/// <summary>Member GetRangeOffsetAttribute </summary>
+		/// <returns>A System.Int32</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new int GetRangeOffsetAttribute();
+		
+		/// <summary>Member GetCancelBubbleAttribute </summary>
+		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool GetCancelBubbleAttribute();
+		
+		/// <summary>Member SetCancelBubbleAttribute </summary>
+		/// <param name='aCancelBubble'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetCancelBubbleAttribute([MarshalAs(UnmanagedType.Bool)] bool aCancelBubble);
+		
+		/// <summary>Member GetIsCharAttribute </summary>
+		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool GetIsCharAttribute();
+		
 		/// <summary>
         /// The nsIDOMMouseEvent interface is the datatype for all mouse events
         /// in the Document Object Model.
@@ -258,6 +311,55 @@ namespace Skybound.Gecko
 		/// <param name='relatedTargetArg'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void InitMouseEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString typeArg, [MarshalAs(UnmanagedType.Bool)] bool canBubbleArg, [MarshalAs(UnmanagedType.Bool)] bool cancelableArg, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow viewArg, int detailArg, int screenXArg, int screenYArg, int clientXArg, int clientYArg, [MarshalAs(UnmanagedType.Bool)] bool ctrlKeyArg, [MarshalAs(UnmanagedType.Bool)] bool altKeyArg, [MarshalAs(UnmanagedType.Bool)] bool shiftKeyArg, [MarshalAs(UnmanagedType.Bool)] bool metaKeyArg, ushort buttonArg, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventTarget relatedTargetArg);
+		
+		/// <summary>
+        /// ranges between 0.0 and 1.0
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new float GetMozPressureAttribute();
+		
+		/// <summary>Member GetMozInputSourceAttribute </summary>
+		/// <returns>A System.UInt16</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new ushort GetMozInputSourceAttribute();
+		
+		/// <summary>Member InitNSMouseEvent </summary>
+		/// <param name='typeArg'> </param>
+		/// <param name='canBubbleArg'> </param>
+		/// <param name='cancelableArg'> </param>
+		/// <param name='viewArg'> </param>
+		/// <param name='detailArg'> </param>
+		/// <param name='screenXArg'> </param>
+		/// <param name='screenYArg'> </param>
+		/// <param name='clientXArg'> </param>
+		/// <param name='clientYArg'> </param>
+		/// <param name='ctrlKeyArg'> </param>
+		/// <param name='altKeyArg'> </param>
+		/// <param name='shiftKeyArg'> </param>
+		/// <param name='metaKeyArg'> </param>
+		/// <param name='buttonArg'> </param>
+		/// <param name='relatedTargetArg'> </param>
+		/// <param name='pressure'> </param>
+		/// <param name='inputSourceArg'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void InitNSMouseEvent(
+					[MarshalAs(UnmanagedType.LPStruct)] nsAString typeArg, 
+					[MarshalAs(UnmanagedType.Bool)] bool canBubbleArg, 
+					[MarshalAs(UnmanagedType.Bool)] bool cancelableArg, 
+					[MarshalAs(UnmanagedType.Interface)] nsIDOMWindow viewArg, 
+					int detailArg, 
+					int screenXArg, 
+					int screenYArg, 
+					int clientXArg, 
+					int clientYArg, 
+					[MarshalAs(UnmanagedType.Bool)] bool ctrlKeyArg, 
+					[MarshalAs(UnmanagedType.Bool)] bool altKeyArg, 
+					[MarshalAs(UnmanagedType.Bool)] bool shiftKeyArg, 
+					[MarshalAs(UnmanagedType.Bool)] bool metaKeyArg, 
+					ushort buttonArg, 
+					[MarshalAs(UnmanagedType.Interface)] nsIDOMEventTarget relatedTargetArg, 
+					float pressure, 
+					ushort inputSourceArg);
 		
 		/// <summary>Member GetStreamIdAttribute </summary>
 		/// <returns>A System.UInt32</returns>

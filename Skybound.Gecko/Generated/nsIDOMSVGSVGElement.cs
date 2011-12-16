@@ -42,11 +42,10 @@ namespace Skybound.Gecko
     ///    nsIDOMSVGLocatable,
     ///    nsIDOMSVGFitToViewBox,
     ///    nsIDOMSVGZoomAndPan,
-    ///    events::nsIDOMEventTarget,
-    ///    css::nsIDOMDocumentCSS </summary>
+    ///    events::nsIDOMEventTarget, </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("aecf2c1a-065e-432f-9aeb-c3715246281e")]
+	[Guid("4de866e9-f937-41ab-bb78-4b50584437e4")]
 	public interface nsIDOMSVGSVGElement : nsIDOMSVGElement
 	{
 		
@@ -82,6 +81,12 @@ namespace Skybound.Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMNode GetParentNodeAttribute();
+		
+		/// <summary>Member GetParentElementAttribute </summary>
+		/// <returns>A nsIDOMElement</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMElement GetParentElementAttribute();
 		
 		/// <summary>Member GetChildNodesAttribute </summary>
 		/// <returns>A nsIDOMNodeList</returns>
@@ -278,6 +283,13 @@ namespace Skybound.Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIVariant GetUserData([MarshalAs(UnmanagedType.LPStruct)] nsAString key);
 		
+		/// <summary>Member Contains </summary>
+		/// <param name='aOther'> </param>
+		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.Bool)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool Contains([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aOther);
+		
 		/// <summary>
         /// The nsIDOMElement interface represents an element in an HTML or
         /// XML document.
@@ -424,8 +436,7 @@ namespace Skybound.Gecko
         ///    nsIDOMSVGLocatable,
         ///    nsIDOMSVGFitToViewBox,
         ///    nsIDOMSVGZoomAndPan,
-        ///    events::nsIDOMEventTarget,
-        ///    css::nsIDOMDocumentCSS </summary>
+        ///    events::nsIDOMEventTarget, </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMSVGAnimatedLength GetXAttribute();

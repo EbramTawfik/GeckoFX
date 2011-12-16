@@ -253,11 +253,11 @@ namespace Skybound.Gecko
 		System.IntPtr GetOwnerContent();
 	}
 	
-	/// <summary>nsIChromeFrameMessageManager </summary>
+	/// <summary>nsITreeItemFrameMessageManager </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("ed6522fd-ffb6-4920-b50d-cf629309616b")]
-	public interface nsIChromeFrameMessageManager : nsIFrameMessageManager
+	[Guid("6331bbca-2c9f-4766-b3c7-ae75554bf1ec")]
+	public interface nsITreeItemFrameMessageManager : nsIFrameMessageManager
 	{
 		
 		/// <summary>Member AddMessageListener </summary>
@@ -277,6 +277,55 @@ namespace Skybound.Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SendAsyncMessage();
 		
+		/// <summary>Member GetChildCountAttribute </summary>
+		/// <returns>A System.UInt32</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetChildCountAttribute();
+		
+		/// <summary>Member GetChildAt </summary>
+		/// <param name='aIndex'> </param>
+		/// <returns>A nsITreeItemFrameMessageManager</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsITreeItemFrameMessageManager GetChildAt(uint aIndex);
+	}
+	
+	/// <summary>nsIChromeFrameMessageManager </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("9e5c0526-aa4c-49f0-afbb-57f489cd9b59")]
+	public interface nsIChromeFrameMessageManager : nsITreeItemFrameMessageManager
+	{
+		
+		/// <summary>Member AddMessageListener </summary>
+		/// <param name='aMessage'> </param>
+		/// <param name='aListener'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void AddMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAString aMessage, System.IntPtr aListener);
+		
+		/// <summary>Member RemoveMessageListener </summary>
+		/// <param name='aMessage'> </param>
+		/// <param name='aListener'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void RemoveMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAString aMessage, System.IntPtr aListener);
+		
+		/// <summary>
+        ///in messageName, in JSON </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SendAsyncMessage();
+		
+		/// <summary>Member GetChildCountAttribute </summary>
+		/// <returns>A System.UInt32</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new uint GetChildCountAttribute();
+		
+		/// <summary>Member GetChildAt </summary>
+		/// <param name='aIndex'> </param>
+		/// <returns>A nsITreeItemFrameMessageManager</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsITreeItemFrameMessageManager GetChildAt(uint aIndex);
+		
 		/// <summary>
         /// Load a script in the (remote) frame. aURL must be the absolute URL.
         /// data: URLs are also supported. For example data:,dump("foo\n");
@@ -286,5 +335,11 @@ namespace Skybound.Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void LoadFrameScript([MarshalAs(UnmanagedType.LPStruct)] nsAString aURL, [MarshalAs(UnmanagedType.Bool)] bool aAllowDelayedLoad);
+		
+		/// <summary>
+        /// Removes aURL from the list of scripts which support delayed load.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RemoveDelayedFrameScript([MarshalAs(UnmanagedType.LPStruct)] nsAString aURL);
 	}
 }

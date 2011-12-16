@@ -32,25 +32,44 @@ namespace Skybound.Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("6eb307d6-3567-481a-971a-feb666b8ae72")]
+	[Guid("8ba643a4-7ddc-4662-b976-7ec123843f10")]
 	public interface mozISpellCheckingEngine
 	{
 		
 		/// <summary>
-        /// The name of the current dictionary
+        /// The name of the current dictionary. Is either a value from
+        /// getDictionaryList or the empty string if no dictionary is selected.
+        /// Setting this attribute to a value not in getDictionaryList will throw
+        /// NS_ERROR_FILE_NOT_FOUND.
+        ///
+        /// The spellcheck engine will send a notification with
+        /// "spellcheck-dictionary-update" as topic when this changes.
+        /// If the dictionary is changed to no dictionary (the empty string), an
+        /// observer is allowed to set another dictionary before it returns.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string GetDictionaryAttribute();
 		
 		/// <summary>
-        /// The name of the current dictionary
+        /// The name of the current dictionary. Is either a value from
+        /// getDictionaryList or the empty string if no dictionary is selected.
+        /// Setting this attribute to a value not in getDictionaryList will throw
+        /// NS_ERROR_FILE_NOT_FOUND.
+        ///
+        /// The spellcheck engine will send a notification with
+        /// "spellcheck-dictionary-update" as topic when this changes.
+        /// If the dictionary is changed to no dictionary (the empty string), an
+        /// observer is allowed to set another dictionary before it returns.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetDictionaryAttribute([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")] string aDictionary);
 		
 		/// <summary>
         /// The language this spellchecker is using when checking
+        ///
+        /// The spellcheck engine will send a notification with
+        /// "spellcheck-dictionary-update" as topic when this changes.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -104,6 +123,9 @@ namespace Skybound.Gecko
 		
 		/// <summary>
         /// check a word
+        ///
+        /// The spellcheck engine will send a notification with
+        /// "spellcheck-dictionary-update" as topic when this changes.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -111,6 +133,9 @@ namespace Skybound.Gecko
 		
 		/// <summary>
         /// get a list of suggestions for a misspelled word
+        ///
+        /// The spellcheck engine will send a notification with
+        /// "spellcheck-dictionary-update" as topic when this changes.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Suggest([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")] string word, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] ref System.IntPtr[] suggestions, ref uint count);
@@ -120,5 +145,17 @@ namespace Skybound.Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void LoadDictionariesFromDir([MarshalAs(UnmanagedType.Interface)] nsIFile dir);
+		
+		/// <summary>
+        /// Add dictionaries from a directory to the spell checker
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void AddDirectory([MarshalAs(UnmanagedType.Interface)] nsIFile dir);
+		
+		/// <summary>
+        /// Remove dictionaries from a directory from the spell checker
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RemoveDirectory([MarshalAs(UnmanagedType.Interface)] nsIFile dir);
 	}
 }

@@ -175,7 +175,7 @@ namespace Skybound.Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("9664389E-11D6-4bea-B68C-D70232162068")]
+	[Guid("CBE3A37C-BCE1-4fec-80A5-5FFBC7F33EEA")]
 	public interface nsIJumpListShortcut : nsIJumpListItem
 	{
 		
@@ -202,8 +202,13 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Set or get the handler app for this shortcut item.
         ///
+        /// The handler app may also be used along with iconIndex to generate an icon
+        /// for the jump list item.
+        ///
         /// @throw NS_ERROR_FILE_NOT_FOUND if the handler app can
         /// not be found on  the system.
+        ///
+        /// @see faviconPageUri
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -212,8 +217,13 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Set or get the handler app for this shortcut item.
         ///
+        /// The handler app may also be used along with iconIndex to generate an icon
+        /// for the jump list item.
+        ///
         /// @throw NS_ERROR_FILE_NOT_FOUND if the handler app can
         /// not be found on  the system.
+        ///
+        /// @see faviconPageUri
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetAppAttribute([MarshalAs(UnmanagedType.Interface)] nsILocalHandlerApp aApp);
@@ -221,8 +231,10 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Set or get the icon displayed with the jump list item.
         ///
-        /// Indicates the resource index of the icon contained
-        /// within the the handler executable.
+        /// Indicates the resource index of the icon contained within the handler
+        /// executable which may be used as the jump list icon.
+        ///
+        /// @see faviconPageUri
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetIconIndexAttribute();
@@ -230,10 +242,39 @@ namespace Skybound.Gecko
 		/// <summary>
         /// Set or get the icon displayed with the jump list item.
         ///
-        /// Indicates the resource index of the icon contained
-        /// within the the handler executable.
+        /// Indicates the resource index of the icon contained within the handler
+        /// executable which may be used as the jump list icon.
+        ///
+        /// @see faviconPageUri
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetIconIndexAttribute(int aIconIndex);
+		
+		/// <summary>
+        /// Set or get the URI of a page whose favicon may be used as the icon.
+        ///
+        /// When a jump list build occurs, the favicon to be used for the item is
+        /// obtained using the following steps:
+        /// - First, attempt to use the asynchronously retrieved and scaled favicon
+        /// associated with the faviconPageUri.
+        /// - If faviconPageUri is null, or if retrieving the favicon fails, fall
+        /// back to using the handler executable and iconIndex.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIURI GetFaviconPageUriAttribute();
+		
+		/// <summary>
+        /// Set or get the URI of a page whose favicon may be used as the icon.
+        ///
+        /// When a jump list build occurs, the favicon to be used for the item is
+        /// obtained using the following steps:
+        /// - First, attempt to use the asynchronously retrieved and scaled favicon
+        /// associated with the faviconPageUri.
+        /// - If faviconPageUri is null, or if retrieving the favicon fails, fall
+        /// back to using the handler executable and iconIndex.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetFaviconPageUriAttribute([MarshalAs(UnmanagedType.Interface)] nsIURI aFaviconPageUri);
 	}
 }

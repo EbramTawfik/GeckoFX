@@ -33,7 +33,7 @@ namespace Skybound.Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("7281076d-cf37-464a-815e-698235802604")]
+	[Guid("78c5d19f-f5d2-4732-8d3d-d5a7d7133bc0")]
 	public interface nsIURLParser
 	{
 		
@@ -68,13 +68,13 @@ namespace Skybound.Gecko
 		void ParseServerInfo([MarshalAs(UnmanagedType.LPStr)] string serverinfo, int serverinfoLen, ref uint hostnamePos, ref int hostnameLen, ref int port);
 		
 		/// <summary>
-        /// ParsePath breaks the path string up into its 4 major components: a file path,
-        /// a param string, a query string, and a reference string.
+        /// ParsePath breaks the path string up into its 3 major components: a file path,
+        /// a query string, and a reference string.
         ///
-        /// path = <filepath>;<param>?<query>#<ref>
+        /// path = <filepath>?<query>#<ref>
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ParsePath([MarshalAs(UnmanagedType.LPStr)] string path, int pathLen, ref uint filepathPos, ref int filepathLen, ref uint paramPos, ref int paramLen, ref uint queryPos, ref int queryLen, ref uint refPos, ref int refLen);
+		void ParsePath([MarshalAs(UnmanagedType.LPStr)] string path, int pathLen, ref uint filepathPos, ref int filepathLen, ref uint queryPos, ref int queryLen, ref uint refPos, ref int refLen);
 		
 		/// <summary>
         /// ParseFilePath breaks the file path string up into: the directory portion,

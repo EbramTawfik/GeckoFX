@@ -129,7 +129,7 @@ namespace Skybound.Gecko
 				{
 					case PREF_STRING: Branch.SetCharPref(prefName, (string)value); break;
 					case PREF_INT: Branch.SetIntPref(prefName, (int)value); break;
-					case PREF_BOOL: Branch.SetBoolPref(prefName, (bool)value ? -1 : 0); break;
+					case PREF_BOOL: Branch.SetBoolPref(prefName, (bool)value); break;
 				}
 			}
 		}
