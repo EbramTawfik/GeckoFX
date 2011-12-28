@@ -206,9 +206,9 @@ namespace Gecko
 		
 		static bool _IsInitialized;
 
-		static nsIComponentManager ComponentManager;
-		static nsIComponentRegistrar ComponentRegistrar;
-		static nsIServiceManager ServiceManager;
+		public static nsIComponentManager ComponentManager;
+		public static nsIComponentRegistrar ComponentRegistrar;
+		public static nsIServiceManager ServiceManager;
 		
 		/// <summary>
 		/// Gets or sets the path to the directory which contains the user profile.
