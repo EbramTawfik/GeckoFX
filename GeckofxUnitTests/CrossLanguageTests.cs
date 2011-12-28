@@ -92,7 +92,6 @@ namespace GeckofxUnitTests
 				"netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');" +
 				"var myClassInstance = Components.classes['@geckofx/myclass;1'].createInstance(Components.interfaces.nsICommandHandler);" +
 				"myClassInstance.exec('hello', 'world');" +
-
 				"</script>";
 
 			// Create temp file to load 
@@ -110,10 +109,8 @@ namespace GeckofxUnitTests
 
 			// Test the results
 			Assert.AreEqual(MyCSharpComClass._execCount, 1);
-
 			Assert.AreEqual(MyCSharpComClass._aCommand, "hello");
 			Assert.AreEqual(MyCSharpComClass._aParameters, "world");
-
 		}
 		#endregion
 	}
