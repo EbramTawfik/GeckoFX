@@ -76,10 +76,10 @@ namespace GeckofxUnitTests
 		{
 			// Register a C# COM Object
 
-			// TODO would be nice to get nsIComponentRegistrar the xpcom way with CreateInstance
-			// ie Xpcom.CreateInstance<nsIComponentRegistrar>(...
+			const string ComponentManagerCID = "91775d60-d5dc-11d2-92fb-00e09805570f";
+			nsIComponentRegistrar mgr = (nsIComponentRegistrar)Marshal.GetObjectForIUnknown((IntPtr)Xpcom.GetService(new Guid(ComponentManagerCID)));
 			Guid aClass = new Guid("a7139c0e-962c-44b6-bec3-aaaaaaaaaaab");
-			Xpcom.ComponentRegistrar.RegisterFactory(ref aClass, "Example C sharp com component", "@geckofx/myclass;1", new MyCSharpComClassFactory());
+			mgr.RegisterFactory(ref aClass, "Example C sharp com component", "@geckofx/myclass;1", new MyCSharpComClassFactory());
 
 			// In order to use Components.classes etc we need to enable certan privileges. 
 			GeckoPreferences.User["capability.principal.codebase.p0.granted"] = "UniversalXPConnect";
@@ -111,6 +111,157 @@ namespace GeckofxUnitTests
 			Assert.AreEqual(MyCSharpComClass._execCount, 1);
 			Assert.AreEqual(MyCSharpComClass._aCommand, "hello");
 			Assert.AreEqual(MyCSharpComClass._aParameters, "world");
+		}
+		#endregion
+
+		#region CSharpInvokingJavascriptComObjects
+
+		public class MyCSharpClassThatContainsXpComJavascriptObjectsFactory : nsIFactory
+		{
+			public IntPtr CreateInstance(nsISupports aOuter, ref Guid iid)
+			{
+				var obj = new MyCSharpClassThatContainsXpComJavascriptObjects();
+				return Marshal.GetIUnknownForObject(obj);
+			}
+
+			public void LockFactory(bool @lock)
+			{
+
+			}
+		}
+
+		/// <summary>
+		/// TODO: currenly I am abusing the nsIWebPageDescriptor interface just to make the CurrentDescriptor attribute return the nsIComponentRegistrar
+		/// This allows my to dynamically register javascript xpcom factories.
+		/// </summary>
+		public class MyCSharpClassThatContainsXpComJavascriptObjects : nsIWebPageDescriptor
+		{
+
+			public void LoadPage(nsISupports aPageDescriptor, uint aDisplayType)
+			{
+				throw new NotImplementedException();
+			}
+
+			public nsISupports GetCurrentDescriptorAttribute()
+			{
+				const string ComponentManagerCID = "91775d60-d5dc-11d2-92fb-00e09805570f";
+				nsIComponentRegistrar mgr = (nsIComponentRegistrar)Marshal.GetObjectForIUnknown((IntPtr)Xpcom.GetService(new Guid(ComponentManagerCID)));
+				return (nsISupports)mgr;
+			}
+		}
+
+
+		[Test]
+		public void CSharpInvokingJavascriptComObjects()
+		{
+			// Register a C# COM Object
+
+			// TODO would be nice to get nsIComponentRegistrar the xpcom way with CreateInstance
+			// ie Xpcom.CreateInstance<nsIComponentRegistrar>(...
+			Guid aClass = new Guid("a7139c0e-962c-44b6-bec3-aaaaaaaaaaac");
+			Xpcom.ComponentRegistrar.RegisterFactory(ref aClass, "Example C sharp com component", "@geckofx/myclass;1", new MyCSharpClassThatContainsXpComJavascriptObjectsFactory());
+
+			// In order to use Components.classes etc we need to enable certan privileges. 
+			GeckoPreferences.User["capability.principal.codebase.p0.granted"] = "UniversalXPConnect";
+			GeckoPreferences.User["capability.principal.codebase.p0.id"] = "file://";
+			GeckoPreferences.User["capability.principal.codebase.p0.subjectName"] = "";
+			GeckoPreferences.User["security.fileuri.strict_origin_policy"] = false;
+
+			browser.JavascriptError += (x, w) => Console.WriteLine(w.Message);
+
+			string initialjavascript =
+				"<script type=\"text/javascript\">" +
+				"netscape.security.PrivilegeManager.enablePrivilege('UniversalXPConnect');" +
+				"var myClassInstance = Components.classes['@geckofx/myclass;1'].createInstance(Components.interfaces.nsIWebPageDescriptor);" +
+				"var reg = myClassInstance.currentDescriptor.QueryInterface(Components.interfaces.nsIComponentRegistrar);" +
+				"Components.utils.import(\"resource://gre/modules/XPCOMUtils.jsm\"); " +
+				"const nsISupportsPriority = Components.interfaces.nsISupportsPriority;" +
+				"const nsISupports = Components.interfaces.nsISupports;" +
+				"const CLASS_ID = Components.ID(\"{1C0E8D86-B661-40d0-AE3D-CA012FADF170}\");" +
+				"const CLASS_NAME = \"My Supports Priority Component\";" +
+				"const CONTRACT_ID = \"@mozillazine.org/example/priority;1\";" +
+				"function MyPriority() {" +
+				"	this._priority = nsISupportsPriority.PRIORITY_LOWEST;" +
+				"};" +
+				"MyPriority.prototype = {" +
+				"  _priority: null," +
+
+				"  get priority() { return this._priority; }," +
+				"  set priority(aValue) { this._priority = aValue; }," +
+
+				"  adjustPriority: function(aDelta) {" +
+				"	this._priority += aDelta;" +
+				"  }," +
+
+				"  QueryInterface: function(aIID)" +
+				"  { "+
+				"	/*if (!aIID.equals(nsISupportsPriority) &&    " +
+				"		!aIID.equals(nsISupports))" +
+				"	  throw Components.results.NS_ERROR_NO_INTERFACE;*/" +
+				"	return this;" +
+				"  }" +
+				"};" +
+				"" +
+				"var MyPriorityFactory = {" +
+				"  createInstance: function (aOuter, aIID)" +
+				"  { " +
+				"	if (aOuter != null)" +
+				"	  throw Components.results.NS_ERROR_NO_AGGREGATION; " +
+				"	return (new MyPriority()).QueryInterface(aIID);" +
+				"  }" +
+				"};" +
+				"" +
+				"var MyPriorityModule = {" +
+				"  _firstTime: true," +
+				"  registerSelf: function(aCompMgr, aFileSpec, aLocation, aType)" +
+				"  {" +				
+				"	aCompMgr = aCompMgr.QueryInterface(Components.interfaces.nsIComponentRegistrar);" +
+				"	aCompMgr.registerFactory(CLASS_ID, CLASS_NAME, CONTRACT_ID, MyPriorityFactory);" +					
+				"  }," +
+				"" +
+				"  unregisterSelf: function(aCompMgr, aLocation, aType)" +
+				"  {" +
+				"	aCompMgr = aCompMgr.QueryInterface(Components.interfaces.nsIComponentRegistrar);" +
+				"	aCompMgr.unregisterFactoryLocation(CLASS_ID, aLocation);        " +
+				"  }," +
+				"" +
+				"  getClassObject: function(aCompMgr, aCID, aIID)" +
+				"  {alert('hi');" +
+				"	if (!aIID.equals(Components.interfaces.nsIFactory))" +
+				"	  throw Components.results.NS_ERROR_NOT_IMPLEMENTED;" +
+				"" +
+				"	if (aCID.equals(CLASS_ID))" +
+				"	  return MyPriorityFactory;" +
+				"" +
+				"	throw Components.results.NS_ERROR_NO_INTERFACE;" +
+				"  }," +
+				"" +
+				"  canUnload: function(aCompMgr) { return true; }" +
+				"};" +				
+				"MyPriorityModule.registerSelf(reg);" + 
+				"" +
+				"</script>";
+
+			// Create temp file to load 
+			var tempfilename = Path.GetTempFileName();
+			tempfilename += ".html";
+			using (TextWriter tw = new StreamWriter(tempfilename))
+			{
+				tw.WriteLine(initialjavascript);
+				tw.Close();
+			}
+
+			browser.Navigate(tempfilename);
+			browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
+			File.Delete(tempfilename);
+
+			// Create instance of javascript xpcom objects
+			var p = Xpcom.CreateInstance<nsISupportsPriority>("@mozillazine.org/example/priority;1");
+			Assert.NotNull(p);
+
+			// test invoking method of javascript xpcom object.
+			Assert.AreEqual(20, p.GetPriorityAttribute());
+			
 		}
 		#endregion
 	}
