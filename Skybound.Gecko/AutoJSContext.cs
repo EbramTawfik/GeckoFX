@@ -114,11 +114,6 @@ namespace Gecko
 			bool ret = AutoJSContext.JS_EvaluateScript(_cx, globalObject, jsScript, (uint)jsScript.Length, "script", 1, ref ptr);
 			jsVal = ptr;
 
-			IntPtr instance = (IntPtr)Xpcom.GetService(new Guid("CB6593E0-F9B2-11d2-BDD6-000064657374"));			
-			var o = (nsIXPConnect)Marshal.GetObjectForIUnknown(instance);
-
-			jsVal = ptr;
-
 			return true;
 		}		
 
