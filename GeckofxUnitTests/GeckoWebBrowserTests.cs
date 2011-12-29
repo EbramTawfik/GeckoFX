@@ -310,9 +310,12 @@ namespace GeckofxUnitTests
 			
 			using (AutoJSContext context = new AutoJSContext())
 			{				
-				IntPtr jsVal;
-				Assert.IsTrue(context.EvaluateScript("2 + 3;", out jsVal));
-				Assert.AreEqual(5, jsVal.ToInt32());
+				string result;
+				Assert.IsTrue(context.EvaluateScript("3 + 2;", out result));
+				Assert.AreEqual(5, Int32.Parse(result));
+
+				Assert.IsTrue(context.EvaluateScript("'hello' + ' ' + 'world';", out result));
+				Assert.AreEqual("hello world", result);
 			}				
 		}
 	}

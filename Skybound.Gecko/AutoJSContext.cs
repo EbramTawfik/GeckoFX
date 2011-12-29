@@ -48,6 +48,13 @@ namespace Gecko
 	{	
 		#region Native Members
 
+		[StructLayout(LayoutKind.Explicit)]
+		private struct JSVal
+		{
+			[FieldOffset(0)]
+			Int64 data;
+		}
+
 		[DllImport("mozjs", CharSet=CharSet.Ansi)]
 		static extern IntPtr JS_CompileScriptForPrincipals(IntPtr aJSContext, IntPtr aJSObject, IntPtr aJSPrincipals, string bytes, int length, string filename, int lineNumber);
 		
@@ -67,13 +74,19 @@ namespace Gecko
 		static extern IntPtr JS_EndRequest(IntPtr cx);
 		
 		[DllImport("mozjs", CharSet = CharSet.Ansi)]
-		static extern bool JS_EvaluateScript(IntPtr cx, IntPtr obj, string src, UInt32 length, string filename, UInt32 lineno, ref IntPtr jsval);				
+		static extern bool JS_EvaluateScript(IntPtr cx, IntPtr obj, string src, UInt32 length, string filename, UInt32 lineno, ref JSVal jsval);				
 		
 		[DllImport("mozjs")]
 		static extern IntPtr JS_GetGlobalForScopeChain(IntPtr aJSContext);
 		
 		[DllImport("mozjs")]
 		static extern bool JS_InitStandardClasses(IntPtr cx, IntPtr obj);
+
+		[DllImport("mozjs")]
+		static extern IntPtr JS_ValueToString(IntPtr cx, JSVal v);
+
+		[DllImport("mozjs")]
+		static extern IntPtr JS_EncodeString(IntPtr cx, IntPtr jsString);
 
 		#endregion
 
@@ -107,14 +120,15 @@ namespace Gecko
 		/// <param name="jsScript"></param>
 		/// <param name="jsval"></param>
 		/// <returns></returns>
-		public bool EvaluateScript(string jsScript, out IntPtr jsVal)
+		public bool EvaluateScript(string jsScript, out string result)
 		{
-			IntPtr ptr = new IntPtr(0);
+			JSVal ptr = new JSVal();
 			IntPtr globalObject = AutoJSContext.JS_GetGlobalForScopeChain(_cx);
-			bool ret = AutoJSContext.JS_EvaluateScript(_cx, globalObject, jsScript, (uint)jsScript.Length, "script", 1, ref ptr);
-			jsVal = ptr;
+			bool ret = AutoJSContext.JS_EvaluateScript(_cx, globalObject, jsScript, (uint)jsScript.Length, "script", 1, ref ptr);		
 
-			return true;
+			IntPtr jsStringPtr = JS_ValueToString(_cx, ptr);
+			result = Marshal.PtrToStringAnsi(JS_EncodeString(_cx, jsStringPtr));
+			return ret;
 		}		
 
 		public void Dispose()
