@@ -5,6 +5,8 @@ using System.Text;
 using NUnit.Framework;
 using System.Windows.Forms;
 using Gecko;
+using System.IO;
+using System.Runtime.InteropServices;
 
 namespace GeckofxUnitTests
 {
@@ -295,6 +297,23 @@ namespace GeckofxUnitTests
 
 			browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
 			Assert.AreEqual("some data", payload);
+		}
+
+		[Test]
+		public void EvaluateScript_SimpleJavascript_ScriptExecutesAndReturnsExpectedResult()
+		{		
+			LoadHtml("");
+			
+			IntPtr instance = (IntPtr)Xpcom.GetService(new Guid("CB6593E0-F9B2-11d2-BDD6-000064657374"));
+			Assert.IsNotNull(instance);
+			var o = (nsIXPConnect)Marshal.GetObjectForIUnknown(instance);
+			
+			using (AutoJSContext context = new AutoJSContext())
+			{				
+				IntPtr jsVal;
+				Assert.IsTrue(context.EvaluateScript("2 + 3;", out jsVal));
+				Assert.AreEqual(5, jsVal.ToInt32());
+			}				
 		}
 	}
 }

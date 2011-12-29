@@ -1666,6 +1666,14 @@ namespace GeckofxUnitTests
 			var o = (nsIXPConnect)Marshal.GetObjectForIUnknown(instance);
 			Assert.IsNotNull(o);						
 		}
+
+		[Test]
+		public void GetJsSubscriptLoader_CleanXpComInstance_ReturnsValidInstance()
+		{
+			var instance = Xpcom.GetService<mozIJSSubScriptLoader>("@mozilla.org/moz/jssubscript-loader;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
 #endregion
 	}
 }
