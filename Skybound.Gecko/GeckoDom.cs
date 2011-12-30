@@ -750,7 +750,7 @@ namespace Gecko
 		/// <summary>
 		/// Gets the underlying unmanaged DOM object.
 		/// </summary>
-		public object DomWindow
+		public nsIDOMWindow DomWindow
 		{
 			get { return _DomWindow; }
 		}

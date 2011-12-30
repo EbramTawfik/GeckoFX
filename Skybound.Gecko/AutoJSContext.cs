@@ -74,7 +74,10 @@ namespace Gecko
 		static extern IntPtr JS_EndRequest(IntPtr cx);
 		
 		[DllImport("mozjs", CharSet = CharSet.Ansi)]
-		static extern bool JS_EvaluateScript(IntPtr cx, IntPtr obj, string src, UInt32 length, string filename, UInt32 lineno, ref JSVal jsval);				
+		static extern bool JS_EvaluateScript(IntPtr cx, IntPtr obj, string src, UInt32 length, string filename, UInt32 lineno, ref JSVal jsval);
+
+		[DllImport("mozjs", CharSet = CharSet.Ansi)]
+		static extern bool JS_EvaluateScriptForPrincipals(IntPtr cx, IntPtr obj, IntPtr principals, string src, UInt32 length, string filename, UInt32 lineno, ref JSVal jsval);				
 		
 		[DllImport("mozjs")]
 		static extern IntPtr JS_GetGlobalForScopeChain(IntPtr aJSContext);
@@ -88,30 +91,64 @@ namespace Gecko
 		[DllImport("mozjs")]
 		static extern IntPtr JS_EncodeString(IntPtr cx, IntPtr jsString);
 
+		[DllImport("mozjs")]
+		static extern void JS_SetGlobalObject(IntPtr cx, IntPtr jsObject);
+
+		[DllImport("mozjs")]
+		static extern IntPtr JS_EnterCrossCompartmentCall(IntPtr cx, IntPtr targetJSObject);
+
+		// TODO: remove the need for this to be public
+		[UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
+		public delegate bool CallBack(IntPtr cx, UInt32 contextOp);
+
+		// TODO: remove the need for this to be public
+		[DllImport("mozjs")]
+		public static extern AutoJSContext.CallBack JS_SetContextCallback(IntPtr rt, CallBack cb);		
+
 		#endregion
 
 		IntPtr _cx;
 
+		IntPtr _jsPrincipals;
+
 		public IntPtr ContextPointer { get { return _cx; } }
 
-		public AutoJSContext()
+		/// <summary>
+		/// Create a AutoJSContext using the SafeJSContext.
+		/// If context is IntPtr.Zero use the SafeJSContext
+		/// </summary>
+		/// <param name="context"></param>
+		public AutoJSContext(IntPtr context)
 		{
-			var jsContextStack = Xpcom.GetService<nsIThreadJSContextStack>("@mozilla.org/js/xpc/ContextStack;1");
-			_cx = jsContextStack.GetSafeJSContextAttribute();
+			if (context == IntPtr.Zero)
+			{
+				var jsContextStack = Xpcom.GetService<nsIThreadJSContextStack>("@mozilla.org/js/xpc/ContextStack;1");
+				context = jsContextStack.GetSafeJSContextAttribute();
+			}
 			
+			_cx = context;			
+
 			// begin a new request
 			JS_BeginRequest(_cx);
-			
+
 			// push the context onto the context stack
 			nsIJSContextStack contextStack = Xpcom.GetService<nsIJSContextStack>("@mozilla.org/js/xpc/ContextStack;1");
 			contextStack.Push(_cx);
-			
-			// obtain the system principal (no security checks)
-			nsIScriptSecurityManager securityManager = Xpcom.GetService<nsIScriptSecurityManager>("@mozilla.org/scriptsecuritymanager;1");
-			nsIPrincipal system = securityManager.GetSystemPrincipal();
-			IntPtr jsPrincipals = system.GetJSPrincipals(_cx);
 
-			securityManager.PushContextPrincipal(_cx, IntPtr.Zero, system);
+			// obtain the system principal (no security checks) (one could get a different principal by calling securityManager.GetObjectPrincipal())
+			nsIScriptSecurityManager securityManager = Xpcom.GetService<nsIScriptSecurityManager>("@mozilla.org/scriptsecuritymanager;1");
+
+			nsIPrincipal systemPrincipal = securityManager.GetSystemPrincipal();
+			_jsPrincipals = systemPrincipal.GetJSPrincipals(_cx);
+
+			securityManager.PushContextPrincipal(_cx, IntPtr.Zero, systemPrincipal);
+		}
+
+		/// <summary>
+		/// Create a AutoJSContext using the SafeJSContext.
+		/// </summary>
+		public AutoJSContext() : this(IntPtr.Zero)
+		{
 		}
 
 		/// <summary>
@@ -124,7 +161,7 @@ namespace Gecko
 		{
 			JSVal ptr = new JSVal();
 			IntPtr globalObject = AutoJSContext.JS_GetGlobalForScopeChain(_cx);
-			bool ret = AutoJSContext.JS_EvaluateScript(_cx, globalObject, jsScript, (uint)jsScript.Length, "script", 1, ref ptr);		
+			bool ret = AutoJSContext.JS_EvaluateScriptForPrincipals(_cx, globalObject, _jsPrincipals, jsScript, (uint)jsScript.Length, "script", 1, ref ptr);		
 
 			IntPtr jsStringPtr = JS_ValueToString(_cx, ptr);
 			result = Marshal.PtrToStringAnsi(JS_EncodeString(_cx, jsStringPtr));

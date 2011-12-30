@@ -74,16 +74,34 @@ namespace Gecko
 				m_wrapper = new GtkDotNet.GtkReparentingWrapperNoThread(new Gtk.Window(Gtk.WindowType.Popup), this);
 #endif
 
-			NavigateFinishedNotifier = new NavigateFinishedNotifier(this);						
+			NavigateFinishedNotifier = new NavigateFinishedNotifier(this);
 		}
-		
-		//static Dictionary<nsIDOMDocument, GeckoWebBrowser> FromDOMDocumentTable = new Dictionary<nsIDOMDocument,GeckoWebBrowser>();
-		
-		//internal static GeckoWebBrowser FromDOMDocument(nsIDOMDocument doc)
-		//{
-		//      GeckoWebBrowser result;
-		//      return FromDOMDocumentTable.TryGetValue(doc, out result) ? result : null;
-		//}
+
+		/// <summary>
+		/// Add hooks into to listen for new JSContext creation and stores the context for later use
+		/// This is the only way I have found of getting hold of the real JSContext
+		/// </summary>
+		protected void RecordNewJsContext()
+		{
+			// Add a hook to record when the a new Context is created.
+			// If an existing hook exists, replace hook with one that
+			// 1. call original hook
+			// 2. reinstates original hook when done.
+
+			nsIJSRuntimeService runtimeService = Xpcom.GetService<nsIJSRuntimeService>("@mozilla.org/js/xpc/RuntimeService;1");
+			IntPtr runtime = runtimeService.GetRuntimeAttribute();
+
+			AutoJSContext.CallBack cb = (cx, unitN) => { JSContext = cx; AutoJSContext.JS_SetContextCallback(runtime, null); return true; };
+			
+			AutoJSContext.CallBack old = AutoJSContext.JS_SetContextCallback(runtime, cb);
+			if (old != null)
+			{
+				cb = (x, y) => { JSContext = x; AutoJSContext.JS_SetContextCallback(runtime, old); return old(x, y); };
+				AutoJSContext.JS_SetContextCallback(runtime, cb);
+			}
+		}
+
+		public IntPtr JSContext { get; protected set; }
 		
 		#region protected override void Dispose(bool disposing)
 		protected override void Dispose(bool disposing)
@@ -190,8 +208,10 @@ namespace Gecko
 #endif
 					BaseWindow.InitWindow(this.Handle, IntPtr.Zero, 0, 0, this.Width, this.Height);
 
+
+				RecordNewJsContext();
 				BaseWindow.Create();
-				
+
 				Guid nsIWebProgressListenerGUID = typeof(nsIWebProgressListener).GUID;
 				WebBrowser.AddWebBrowserListener(this, ref nsIWebProgressListenerGUID);
 
