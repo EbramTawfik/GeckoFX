@@ -169,7 +169,12 @@ namespace Gecko
 		public string Id
 		{
 			get { return nsString.Get(DomElement.GetIdAttribute); }
-			set { nsString.Set(DomElement.SetIdAttribute, value); }
+			set {				
+				if (string.IsNullOrEmpty(value))
+					this.RemoveAttribute("id");
+				else
+					nsString.Set(DomElement.SetIdAttribute, value); 
+			}
 		}
 		
 		/// <summary>

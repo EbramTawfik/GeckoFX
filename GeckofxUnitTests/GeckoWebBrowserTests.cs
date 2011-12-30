@@ -165,6 +165,49 @@ namespace GeckofxUnitTests
 			Assert.AreEqual(divString.ToLowerInvariant().Replace('\'', '"'), divElement.OuterHtml.ToLowerInvariant());
 		}
 
+		// TODO: move to a GeckoElementTests file.
+		[Test]
+		public void SetId_SettingToEmptyString_IdAttributeIsRemoved()
+		{
+			LoadHtml("<div id=\"a\">hello</div>");
+
+			var divElement = browser.Document.GetElementById("a");
+			Assert.AreEqual("a", divElement.Id);			
+
+			divElement.Id = String.Empty;
+
+			Assert.IsFalse(divElement.HasAttribute("id"));
+		}
+
+		// TODO: move to a GeckoElementTests file.
+		[Test]
+		public void SetId_SettingToNull_IdAttributeIsRemoved()
+		{
+			LoadHtml("<div id=\"a\">hello</div>");
+
+			var divElement = browser.Document.GetElementById("a");
+			Assert.AreEqual("a", divElement.Id);
+
+			divElement.Id = null;
+
+			Assert.IsFalse(divElement.HasAttribute("id"));
+		}
+
+		// TODO: move to a GeckoElementTests file.
+		[Test]
+		public void SetId_SettingToEmptyStringWhereIdIsMixedCase_IdAttributeIsRemoved()
+		{
+			LoadHtml("<div iD=\"a\">hello</div>");
+
+			var divElement = browser.Document.GetElementById("a");
+			Assert.AreEqual("a", divElement.Id);
+
+			divElement.Id = String.Empty;
+
+			Assert.IsFalse(divElement.HasAttribute("iD"));
+
+		}
+
 		[Test]
 		public void DomContentChanged_ChangeContentOfTextInputWithKeyPressAndMoveToSecondInput_DomContentChangedShouldFire()
 		{
