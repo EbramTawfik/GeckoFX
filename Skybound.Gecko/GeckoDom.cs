@@ -169,7 +169,8 @@ namespace Gecko
 		public string Id
 		{
 			get { return nsString.Get(DomElement.GetIdAttribute); }
-			set {				
+			set 
+			{				
 				if (string.IsNullOrEmpty(value))
 					this.RemoveAttribute("id");
 				else
@@ -183,7 +184,13 @@ namespace Gecko
 		public string ClassName
 		{
 			get { return nsString.Get(DomElement.GetClassNameAttribute); }
-			set { nsString.Set(DomElement.SetClassNameAttribute, value); }
+			set 
+			{
+				if (string.IsNullOrEmpty(value))
+					this.RemoveAttribute("class");
+				else
+					nsString.Set(DomElement.SetClassNameAttribute, value); 
+			}
 		}
 
 		public void Blur()
