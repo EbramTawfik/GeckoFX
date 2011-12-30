@@ -2,6 +2,20 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v9.0-0.2 ==
+
+Bug fixes
+
+1. Make NaviagateFinshedNotifier disposable.
+2. Setting GeckoElement.Id and GeckoElement.ClassName to String.Empty 
+or null should now remove the attribute.
+
+Add Features
+
+1. Add GeckoSelection.ScrollIntoView method
+2. Add AutoJSContext.EvaluateScript method which allows executing of 
+javascript without using Navigate("javascript:").
+
 == v9.0-0.1 ==
 
 1. Initial version supporting firefox/xulrunner v9.0
