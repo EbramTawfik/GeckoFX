@@ -78,7 +78,7 @@ namespace Gecko
 		}
 
 		/// <summary>
-		/// Add hooks into to listen for new JSContext creation and stores the context for later use
+		/// Add hooks to listen for new JSContext creation and store the context for later use.
 		/// This is the only way I have found of getting hold of the real JSContext
 		/// </summary>
 		protected void RecordNewJsContext()
@@ -96,7 +96,7 @@ namespace Gecko
 			AutoJSContext.CallBack old = AutoJSContext.JS_SetContextCallback(runtime, cb);
 			if (old != null)
 			{
-				cb = (x, y) => { JSContext = x; AutoJSContext.JS_SetContextCallback(runtime, old); return old(x, y); };
+				cb = (cx, unitN) => { JSContext = cx; AutoJSContext.JS_SetContextCallback(runtime, old); return old(cx, unitN); };
 				AutoJSContext.JS_SetContextCallback(runtime, cb);
 			}
 		}
@@ -106,6 +106,8 @@ namespace Gecko
 		#region protected override void Dispose(bool disposing)
 		protected override void Dispose(bool disposing)
 		{
+			NavigateFinishedNotifier.Dispose();
+
 			if (!Environment.HasShutdownStarted && !AppDomain.CurrentDomain.IsFinalizingForUnload())
 			{
 				// make sure the object is still alove before we call a method on it
