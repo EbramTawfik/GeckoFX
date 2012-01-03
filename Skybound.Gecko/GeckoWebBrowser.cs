@@ -649,7 +649,11 @@ namespace Gecko
 			using (AutoJSContext context = new AutoJSContext(this.JSContext))
 			{
 				string unusedResult;
-				return context.EvaluateScript(String.Format("document.open('text/html');  document.write('{0}'); document.close();", htmlDocument.Replace("'", "\\'")), out unusedResult);
+				return context.EvaluateScript(String.Format("document.open('text/html');  document.write('{0}'); document.close();", 
+					htmlDocument.
+					Replace("\\", "\\\\").
+					Replace("'", "\\'"))
+					, out unusedResult);
 			}
 		}
 
