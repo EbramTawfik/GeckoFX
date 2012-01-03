@@ -426,9 +426,15 @@ namespace GeckofxUnitTests
 		[Test]
 		public void LoadHtmlSynchronously_MoreSimpleHtml()
 		{
-			browser.JavascriptError += (a, b) => Console.WriteLine(b.Message);
-
 			Assert.IsTrue(browser.LoadHtmlSynchronously("<html><body id=\"d\">hello world</body></html>"));
+			Assert.AreEqual("hello world", browser.Document.Body.InnerHtml);
+			Assert.AreEqual("<HTML><head></head><body id=\"d\">hello world</body></HTML>", browser.Document.Body.Parent.OuterHtml);
+		}
+
+		[Test]
+		public void LoadHtmlSynchronously_HtmlContainingSingleQuotes()
+		{			
+			Assert.IsTrue(browser.LoadHtmlSynchronously("<html><body id='d'>hello world</body></html>"));
 			Assert.AreEqual("hello world", browser.Document.Body.InnerHtml);
 			Assert.AreEqual("<HTML><head></head><body id=\"d\">hello world</body></HTML>", browser.Document.Body.Parent.OuterHtml);
 		}
