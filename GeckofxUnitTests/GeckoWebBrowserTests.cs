@@ -347,10 +347,6 @@ namespace GeckofxUnitTests
 		{		
 			LoadHtml("");
 			
-			IntPtr instance = (IntPtr)Xpcom.GetService(new Guid("CB6593E0-F9B2-11d2-BDD6-000064657374"));
-			Assert.IsNotNull(instance);
-			var o = (nsIXPConnect)Marshal.GetObjectForIUnknown(instance);
-			
 			using (AutoJSContext context = new AutoJSContext())
 			{				
 				string result;
@@ -363,14 +359,24 @@ namespace GeckofxUnitTests
 		}
 
 		[Test]
+		public void EvaluateScript_SimpleJavascriptWithoutNormalDocumentSetup_ScriptExecutesAndReturnsExpectedResult()
+		{		
+			using (AutoJSContext context = new AutoJSContext(browser.JSContext))
+			{
+				string result;
+				Assert.IsTrue(context.EvaluateScript("3 + 2;", out result));
+				Assert.AreEqual(5, Int32.Parse(result));
+
+				Assert.IsTrue(context.EvaluateScript("'hello' + ' ' + 'world';", out result));
+				Assert.AreEqual("hello world", result);
+			}
+		}
+
+		[Test]
 		public void EvaluateScript_JavascriptAccessExistingGlobalObjects_ScriptExecutesAndReturnsExpectedResult()
 		{
 			LoadHtml("hello world");
-
-			IntPtr instance = (IntPtr)Xpcom.GetService(new Guid("CB6593E0-F9B2-11d2-BDD6-000064657374"));
-			Assert.IsNotNull(instance);
-			var o = (nsIXPConnect)Marshal.GetObjectForIUnknown(instance);
-
+			
 			using (AutoJSContext context = new AutoJSContext(browser.JSContext))
 			{
 				string result;
@@ -379,6 +385,27 @@ namespace GeckofxUnitTests
 
 				Assert.IsTrue(context.EvaluateScript("this.document.body.innerHTML;", out result));
 				Assert.AreEqual("hello world", result);
+
+				Assert.IsTrue(context.EvaluateScript("this.document.body.innerHTML = 'hi';", out result));
+				Assert.IsTrue(context.EvaluateScript("this.document.body.innerHTML;", out result));
+				Assert.AreEqual("hi", result);
+
+				Assert.IsTrue(context.EvaluateScript("eval(\"x=10;y=20;x*y;\");", out result));
+				Assert.AreEqual("200", result);
+			}
+		}
+
+		[Test]
+		public void EvaluateScript_JavascriptAccessExistingGlobalObjectsWithoutNormalDocumentSetup_ScriptExecutesAndReturnsExpectedResult()
+		{			
+			using (AutoJSContext context = new AutoJSContext(browser.JSContext))
+			{
+				string result;
+				Assert.IsTrue(context.EvaluateScript("this", out result));
+				Assert.AreEqual("[object Window]", result);
+
+				Assert.IsTrue(context.EvaluateScript("this.document.body.innerHTML;", out result));
+				Assert.AreEqual(String.Empty, result);
 
 				Assert.IsTrue(context.EvaluateScript("this.document.body.innerHTML = 'hi';", out result));
 				Assert.IsTrue(context.EvaluateScript("this.document.body.innerHTML;", out result));
