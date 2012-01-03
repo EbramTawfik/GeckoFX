@@ -415,5 +415,12 @@ namespace GeckofxUnitTests
 				Assert.AreEqual("200", result);
 			}
 		}
+
+		[Test]
+		public void LoadHtmlSynchronously_SimpleHtml()
+		{
+			browser.LoadHtmlSynchronously("<body>hello world</body>");
+			Assert.AreEqual(browser.Document.Body.InnerHtml, "hello world");
+		}
 	}
 }

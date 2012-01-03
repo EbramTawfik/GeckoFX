@@ -636,6 +636,22 @@ namespace Gecko
 			var bytes = System.Text.Encoding.UTF8.GetBytes(htmlDocument);						
 			Navigate(string.Format("data:text/html;base64,{0}", Convert.ToBase64String(bytes)));
 		}
+		
+		/// <summary>
+		/// Loads supplied html string Synchronously.
+		/// Loading html this way will not invoke the onload event.
+		/// Initiaizing a document this way is at least five times as fast as using LoadHtml.
+		/// </summary>
+		/// <param name="htmlDocument">the document to load.</param>
+		/// <returns>false if there was an error loading the document.</returns>
+		public bool LoadHtmlSynchronously(string htmlDocument)
+		{
+			using (AutoJSContext context = new AutoJSContext(this.JSContext))
+			{
+				string unusedResult;
+				return context.EvaluateScript(String.Format("this.document.body.innerHTML = '{0}';", htmlDocument), out unusedResult);
+			}
+		}
 
 		/// <summary>
 		/// Return a Bitmap Image of the current WebBrowsers Rendered page.
