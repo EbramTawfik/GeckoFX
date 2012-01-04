@@ -432,6 +432,18 @@ namespace GeckofxUnitTests
 		}
 
 		[Test]
+		public void LoadHtmlSynchronosly_RegressionTest()
+		{
+			Assert.IsTrue(browser.LoadHtmlSynchronously("<html><body>a\n\t    <!-- body -->\n\t\n\n</body></html>"));			
+		}
+
+		[Test]
+		public void LoadHtmlSynchronosly_HtmlContainingNewLine()
+		{
+			Assert.IsTrue(browser.LoadHtmlSynchronously("<html><body>\n</body></html>"));
+		}
+
+		[Test]
 		public void LoadHtmlSynchronously_HtmlContainingSingleQuotes()
 		{			
 			Assert.IsTrue(browser.LoadHtmlSynchronously("<html><body id='d'>hello world</body></html>"));
@@ -446,5 +458,33 @@ namespace GeckofxUnitTests
 			Assert.AreEqual("hello \\world", browser.Document.Body.InnerHtml);
 			Assert.AreEqual("<HTML><head></head><body id=\"d\">hello \\world</body></HTML>", browser.Document.Body.Parent.OuterHtml);
 		}
+
+		[Test]
+		public void LoadHtmlSynchronously_HtmlContainingSingleQuotedStyles()
+		{			
+			Assert.IsTrue(browser.LoadHtmlSynchronously("<html><body id='d' style=\"color:red;\">hello \\world</body></html>"));
+			Assert.AreEqual("color:red;", browser.Document.Body.GetAttribute("style"));
+			
+			Assert.AreEqual(1, browser.Document.Body.Style.Length);
+			Assert.AreEqual("red", browser.Document.Body.Style.GetPropertyValue("color"));
+			browser.Document.Body.Style.SetPropertyValue("white-space", "pre-wrap");
+			Assert.AreEqual("color: red; white-space: pre-wrap;", browser.Document.Body.GetAttribute("style"));
+		}
+
+		[Test]
+		public void LoadHtmlSynchronously_HtmlContainsStyleSheet()
+		{			
+			string exampleStyleSheet = @"<STYLE type=text/css>
+			body
+			{
+			background-color:#b0c4de;
+			}
+			</STYLE>";
+
+			Assert.IsTrue(browser.LoadHtmlSynchronously(String.Format("<html><head>{0}</head><body id='d'		style=\"color:red;\">hello \\world</body></html>", exampleStyleSheet)));
+
+			Assert.AreEqual(1, browser.Document.StyleSheets.Count);			
+			Assert.IsTrue(browser.Document.StyleSheets[0].CssRules[0].CssText.Contains("background-color"));
+		}		
 	}
 }

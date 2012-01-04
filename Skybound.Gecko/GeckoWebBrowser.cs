@@ -640,6 +640,7 @@ namespace Gecko
 		/// <summary>
 		/// Loads supplied html string Synchronously.
 		/// Loading html this way will not invoke the onload event.
+		/// Loading html this way will not handle link css files and possibly other css files.
 		/// Initiaizing a document this way is at least five times as fast as using LoadHtml.
 		/// </summary>
 		/// <param name="htmlDocument">the document to load.</param>
@@ -649,11 +650,19 @@ namespace Gecko
 			using (AutoJSContext context = new AutoJSContext(this.JSContext))
 			{
 				string unusedResult;
-				return context.EvaluateScript(String.Format("document.open('text/html');  document.write('{0}'); document.close();", 
-					htmlDocument.
-					Replace("\\", "\\\\").
-					Replace("'", "\\'"))
-					, out unusedResult);
+				bool scriptExecutedSuccessfully = context.EvaluateScript(
+				@"	document.open('text/html');
+					document.write('" + 
+									  htmlDocument.
+										Replace("\\", "\\\\").
+										Replace("'", "\\'").
+										Replace(System.Environment.NewLine.ToString(), "\\n").
+										Replace("\n", "\\n") +
+				@"'); 
+					document.close();
+				", out unusedResult);
+
+				return scriptExecutedSuccessfully;
 			}
 		}
 
