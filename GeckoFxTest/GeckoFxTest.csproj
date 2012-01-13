@@ -64,7 +64,7 @@
     <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
     <EnvironmentVariables>
       <EnvironmentVariables>
-        <Variable name="LD_LIBRARY_PATH" value="/usr/lib/firefox-8.0/" />
+        <Variable name="LD_LIBRARY_PATH" value="/usr/lib/firefox-9.0.1/" />
         <Variable name="MONO_PATH" value="/usr/lib/cli/gdk-sharp-2.0/" />
       </EnvironmentVariables>
     </EnvironmentVariables>
