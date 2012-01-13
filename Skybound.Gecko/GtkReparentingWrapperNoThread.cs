@@ -141,13 +141,13 @@ namespace GtkDotNet
 		public override void SetInputFocus()
 		{
 			IntPtr xWindow = gdk_x11_drawable_get_xid(m_popupWindow.GdkWindow.Handle);
-			XSetInputFocus(m_xDisplayPointer, xWindow, RevertTo.None, IntPtr.Zero);
+			XSetInputFocus(m_xDisplayPointer, xWindow, RevertTo.Parent, IntPtr.Zero);
 		}
 		
 		public override void RemoveInputFocus()
 		{
 			IntPtr xWindow = gdk_x11_drawable_get_xid(m_popupWindow.GdkWindow.Handle);
-			XSetInputFocus(m_xDisplayPointer, IntPtr.Zero, RevertTo.None, IntPtr.Zero);
+			XSetInputFocus(m_xDisplayPointer, IntPtr.Zero, RevertTo.Parent, IntPtr.Zero);
 		}
 	}
 }

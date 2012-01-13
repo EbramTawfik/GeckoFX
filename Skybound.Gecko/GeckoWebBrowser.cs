@@ -1294,6 +1294,21 @@ namespace Gecko
 			_Document = null;
 		}
 		
+		public void SetInputFocus()
+		{
+#if GTK
+			m_wrapper.SetInputFocus();		
+#endif
+		}
+		
+		public void RemoveInputFocus()
+		{
+#if GTK
+			m_wrapper.RemoveInputFocus();		
+#endif
+		}
+		
+		
 		#region public event GeckoNavigatingEventHandler Navigating
 		/// <summary>
 		/// Occurs before the browser navigates to a new page.
@@ -1936,7 +1951,7 @@ namespace Gecko
 			if (BaseWindow != null)
 			{
 				BaseWindow.SetFocus();
-			}			
+			}		
 		}
 
 		bool nsIEmbeddingSiteWindow.GetVisibilityAttribute()
