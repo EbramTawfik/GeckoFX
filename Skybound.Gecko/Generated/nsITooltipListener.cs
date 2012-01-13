@@ -18,7 +18,7 @@
 // IDL/IDH file.
 // </remarks>
 // --------------------------------------------------------------------------------------------
-namespace Skybound.Gecko
+namespace Gecko
 {
 	using System;
 	using System.Runtime.InteropServices;
@@ -58,7 +58,7 @@ namespace Skybound.Gecko
         /// @return <code>NS_OK</code> if the tooltip was displayed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnShowTooltip(int aXCoords, int aYCoords, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")] string aTipText);
+		void OnShowTooltip(int aXCoords, int aYCoords, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string aTipText);
 		
 		/// <summary>
         /// Called when the tooltip should be hidden, either because the pointer

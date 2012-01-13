@@ -40,7 +40,7 @@ using System.Runtime.Remoting.Proxies;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
-namespace Skybound.Gecko
+namespace Gecko
 {
 	/// <summary>
 	/// Represents an entry in a <see cref="GeckoWebBrowser"/> session history.

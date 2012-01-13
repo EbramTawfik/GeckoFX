@@ -18,7 +18,7 @@
 // IDL/IDH file.
 // </remarks>
 // --------------------------------------------------------------------------------------------
-namespace Skybound.Gecko
+namespace Gecko
 {
 	using System;
 	using System.Runtime.InteropServices;
@@ -47,7 +47,7 @@ namespace Skybound.Gecko
         /// static - true for histograms defined in TelemetryHistograms.h, false for ones defined with newHistogram
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetHistogramSnapshotsAttribute();
+		System.IntPtr GetHistogramSnapshotsAttribute(System.IntPtr jsContext);
 		
 		/// <summary>
         /// Create and return a histogram where bucket sizes increase exponentially. Parameters:
@@ -62,7 +62,7 @@ namespace Skybound.Gecko
         /// snapshot() - Returns a snapshot of the histogram with the same data fields as in histogramSnapshots()
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr NewHistogram([MarshalAs(UnmanagedType.LPStruct)] nsACString name, uint min, uint max, uint bucket_count, uint histogram_type);
+		System.IntPtr NewHistogram([MarshalAs(UnmanagedType.LPStruct)] nsACString name, uint min, uint max, uint bucket_count, uint histogram_type, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Same as newHistogram above, but for histograms registered in TelemetryHistograms.h.
@@ -70,7 +70,7 @@ namespace Skybound.Gecko
         /// @param id - unique identifier from TelemetryHistograms.h
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetHistogramById([MarshalAs(UnmanagedType.LPStruct)] nsACString id);
+		System.IntPtr GetHistogramById([MarshalAs(UnmanagedType.LPStruct)] nsACString id, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Set this to false to disable gathering of telemetry statistics.

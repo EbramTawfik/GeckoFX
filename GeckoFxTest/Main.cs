@@ -1,12 +1,12 @@
 using System;
 using System.Windows.Forms;
-using Skybound.Gecko;
+using Gecko;
 using System.Runtime.InteropServices;
 using System.Threading;
 
 // Tested with mono 2.6.3 and mono 2.8
 // Run this with the following command:
-// MONO_PATH=/usr/lib/cli/gdk-sharp-2.0/ LD_LIBRARY_PATH="/usr/lib/usr/lib/firefox-8.0/" mono --debug GeckoFxTest.exe
+// MONO_PATH=/usr/lib/cli/gdk-sharp-2.0/ LD_LIBRARY_PATH="/usr/lib/xulrunner-1.9.2.13/" mono --debug GeckoFxTest.exe
 // requires gdk-sharp assembly in the gac (which is in package libgtk2.0-cil)
 namespace GeckoFxTest
 {
@@ -16,10 +16,10 @@ namespace GeckoFxTest
 		public static void Main(string[] args)
 		{
 #if GTK		
-			if (!Environment.GetEnvironmentVariable("LD_LIBRARY_PATH").Contains("/usr/lib/firefox-8.0/"))
-				throw new ApplicationException(String.Format("LD_LIBRARY_PATH must contain {0}", "/usr/lib/firefox-8.0/"));
+			if (!Environment.GetEnvironmentVariable("LD_LIBRARY_PATH").Contains("/usr/lib/firefox-7.0/"))
+				throw new ApplicationException(String.Format("LD_LIBRARY_PATH must contain {0}", "/usr/lib/firefox-7.0/"));
 
-			Xpcom.Initialize("/usr/lib/firefox-8.0/");
+			Xpcom.Initialize("/usr/lib/firefox-7.0/");
 #else
 			Xpcom.Initialize(@"C:\Program Files (x86)\Mozilla Firefox BETA");
 #endif

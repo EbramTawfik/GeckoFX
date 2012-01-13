@@ -18,7 +18,7 @@
 // IDL/IDH file.
 // </remarks>
 // --------------------------------------------------------------------------------------------
-namespace Skybound.Gecko
+namespace Gecko
 {
 	using System;
 	using System.Runtime.InteropServices;
@@ -86,6 +86,6 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMRange Find([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")] string aPatText, [MarshalAs(UnmanagedType.Interface)] nsIDOMRange aSearchRange, [MarshalAs(UnmanagedType.Interface)] nsIDOMRange aStartPoint, [MarshalAs(UnmanagedType.Interface)] nsIDOMRange aEndPoint);
+		nsIDOMRange Find([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string aPatText, [MarshalAs(UnmanagedType.Interface)] nsIDOMRange aSearchRange, [MarshalAs(UnmanagedType.Interface)] nsIDOMRange aStartPoint, [MarshalAs(UnmanagedType.Interface)] nsIDOMRange aEndPoint);
 	}
 }

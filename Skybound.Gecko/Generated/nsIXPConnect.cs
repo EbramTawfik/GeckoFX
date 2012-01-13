@@ -18,7 +18,7 @@
 // IDL/IDH file.
 // </remarks>
 // --------------------------------------------------------------------------------------------
-namespace Skybound.Gecko
+namespace Gecko
 {
 	using System;
 	using System.Runtime.InteropServices;
@@ -393,7 +393,7 @@ namespace Skybound.Gecko
 	/// <summary> </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("f99ffb06-4e7b-4bab-83d4-7d573235a08a")]
+	[Guid("a995b541-d514-43f1-ac0e-f49746c0b063")]
 	public interface nsIXPConnect
 	{
 		
@@ -708,14 +708,6 @@ namespace Skybound.Gecko
 		void NoteJSContext(System.IntPtr aJSContext, System.IntPtr aCb);
 		
 		/// <summary>
-        /// Get the JSEqualityOp pointer to use for identifying JSObjects that hold
-        /// a pointer to a nsIXPConnectWrappedNative or to the native in their
-        /// private date. See IS_WRAPPER_CLASS in xpcprivate.h for details.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetXPCWrappedNativeJSClassInfo(ref System.IntPtr equality);
-		
-		/// <summary>
         /// Whether or not XPConnect should report all JS exceptions when returning
         /// from JS into C++. False by default, although any value set in the
         /// MOZ_REPORT_ALL_JS_EXCEPTIONS environment variable will override the value
@@ -774,5 +766,19 @@ namespace Skybound.Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetDebugModeWhenPossible([MarshalAs(UnmanagedType.Bool)] bool mode);
+	}
+	
+	/// <summary>nsIXPConnect_MOZILLA_10_BRANCH </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("44bf9047-914a-4f47-a1ec-e417927bacd1")]
+	public interface nsIXPConnect_MOZILLA_10_BRANCH
+	{
+		
+		/// <summary>
+        /// controlling whether sync disable of debug mode is allowed.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetDebugModeWhenPossible([MarshalAs(UnmanagedType.Bool)] bool mode, [MarshalAs(UnmanagedType.Bool)] bool allowSyncDisable);
 	}
 }

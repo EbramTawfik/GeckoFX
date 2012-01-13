@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Skybound.Gecko.DOM
+namespace Gecko.DOM
 {
     internal static class DOMSelector
     {

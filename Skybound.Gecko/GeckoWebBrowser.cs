@@ -44,7 +44,7 @@ using System.Reflection;
 using System.Diagnostics;
 using System.Text;
 
-namespace Skybound.Gecko
+namespace Gecko
 {
 	/// <summary>
 	/// A Gecko-based web browser.
@@ -74,20 +74,40 @@ namespace Skybound.Gecko
 				m_wrapper = new GtkDotNet.GtkReparentingWrapperNoThread(new Gtk.Window(Gtk.WindowType.Popup), this);
 #endif
 
-			NavigateFinishedNotifier = new NavigateFinishedNotifier(this);						
+			NavigateFinishedNotifier = new NavigateFinishedNotifier(this);
 		}
-		
-		//static Dictionary<nsIDOMDocument, GeckoWebBrowser> FromDOMDocumentTable = new Dictionary<nsIDOMDocument,GeckoWebBrowser>();
-		
-		//internal static GeckoWebBrowser FromDOMDocument(nsIDOMDocument doc)
-		//{
-		//      GeckoWebBrowser result;
-		//      return FromDOMDocumentTable.TryGetValue(doc, out result) ? result : null;
-		//}
+
+		/// <summary>
+		/// Add hooks to listen for new JSContext creation and store the context for later use.
+		/// This is the only way I have found of getting hold of the real JSContext
+		/// </summary>
+		protected void RecordNewJsContext()
+		{
+			// Add a hook to record when the a new Context is created.
+			// If an existing hook exists, replace hook with one that
+			// 1. call original hook
+			// 2. reinstates original hook when done.
+
+			nsIJSRuntimeService runtimeService = Xpcom.GetService<nsIJSRuntimeService>("@mozilla.org/js/xpc/RuntimeService;1");
+			IntPtr runtime = runtimeService.GetRuntimeAttribute();
+
+			AutoJSContext.CallBack cb = (cx, unitN) => { JSContext = cx; AutoJSContext.JS_SetContextCallback(runtime, null); return true; };
+			
+			AutoJSContext.CallBack old = AutoJSContext.JS_SetContextCallback(runtime, cb);
+			if (old != null)
+			{
+				cb = (cx, unitN) => { JSContext = cx; AutoJSContext.JS_SetContextCallback(runtime, old); return old(cx, unitN); };
+				AutoJSContext.JS_SetContextCallback(runtime, cb);
+			}
+		}
+
+		public IntPtr JSContext { get; protected set; }
 		
 		#region protected override void Dispose(bool disposing)
 		protected override void Dispose(bool disposing)
 		{
+			NavigateFinishedNotifier.Dispose();
+
 			if (!Environment.HasShutdownStarted && !AppDomain.CurrentDomain.IsFinalizingForUnload())
 			{
 				// make sure the object is still alove before we call a method on it
@@ -190,8 +210,10 @@ namespace Skybound.Gecko
 #endif
 					BaseWindow.InitWindow(this.Handle, IntPtr.Zero, 0, 0, this.Width, this.Height);
 
+
+				RecordNewJsContext();
 				BaseWindow.Create();
-				
+
 				Guid nsIWebProgressListenerGUID = typeof(nsIWebProgressListener).GUID;
 				WebBrowser.AddWebBrowserListener(this, ref nsIWebProgressListenerGUID);
 
@@ -621,6 +643,26 @@ namespace Skybound.Gecko
 		{
 			var bytes = System.Text.Encoding.UTF8.GetBytes(htmlDocument);						
 			Navigate(string.Format("data:text/html;base64,{0}", Convert.ToBase64String(bytes)));
+		}
+		
+		/// <summary>
+		/// Loads supplied html string Synchronously.
+		/// Loading html this way will not invoke the onload event.
+		/// Initiaizing a document this way is at least five times as fast as using LoadHtml.
+		/// </summary>
+		/// <param name="htmlDocument">the document to load.</param>
+		/// <returns>false if there was an error loading the document.</returns>
+		public bool LoadHtmlSynchronously(string htmlDocument)
+		{
+			using (AutoJSContext context = new AutoJSContext(this.JSContext))
+			{
+				string unusedResult;
+				return context.EvaluateScript(String.Format("document.open('text/html');  document.write('{0}'); document.close();", 
+					htmlDocument.
+					Replace("\\", "\\\\").
+					Replace("'", "\\'"))
+					, out unusedResult);
+			}
 		}
 
 		/// <summary>

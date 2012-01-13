@@ -4,7 +4,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using NUnit.Framework;
-using Skybound.Gecko;
+using Gecko;
 
 namespace GeckofxUnitTests
 {
@@ -18,7 +18,7 @@ namespace GeckofxUnitTests
 				if (Xpcom.IsLinux)
 					return "/usr/lib/firefox-8.0/";
 				
-				return @"C:\Program Files (x86)\Mozilla Firefox";
+				return @"C:\Program Files (x86)\Mozilla Firefox BETA";
 			}
 		}
 
@@ -891,14 +891,6 @@ namespace GeckofxUnitTests
 		}
 
 		[Test]
-		public void CreateInstance_CreatingScriptableInterfaces_ReturnsValidInstance()
-		{			
-			var instance = Xpcom.CreateInstance<nsIScriptableInterfaces>("@mozilla.org/scriptableinterfaces;1");
-			Assert.IsNotNull(instance);
-			Marshal.ReleaseComObject(instance);
-		}
-
-		[Test]
 		public void CreateInstance_CreatingSciptError_ReturnsValidInstance()
 		{			
 			var instance = Xpcom.CreateInstance<nsIScriptError>("@mozilla.org/scripterror;1");
@@ -1673,6 +1665,14 @@ namespace GeckofxUnitTests
 			Assert.IsNotNull(instance);
 			var o = (nsIXPConnect)Marshal.GetObjectForIUnknown(instance);
 			Assert.IsNotNull(o);						
+		}
+
+		[Test]
+		public void GetJsSubscriptLoader_CleanXpComInstance_ReturnsValidInstance()
+		{
+			var instance = Xpcom.GetService<mozIJSSubScriptLoader>("@mozilla.org/moz/jssubscript-loader;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
 		}
 #endregion
 	}

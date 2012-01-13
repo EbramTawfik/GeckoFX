@@ -2,7 +2,7 @@
 using System.Drawing;
 using System;
 
-namespace Skybound.Gecko
+namespace Gecko
 {
 	/// <summary>
 	/// Used for offscreen capture of a web page.

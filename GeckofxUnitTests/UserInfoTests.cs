@@ -4,7 +4,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using NUnit.Framework;
-using Skybound.Gecko;
+using Gecko;
 
 namespace GeckofxUnitTests
 {
@@ -26,13 +26,7 @@ namespace GeckofxUnitTests
 		public void AfterEachTestTearDown()
 		{
 			Marshal.ReleaseComObject(m_instance);
-		}
-
-		[Test]
-		public void GetUsernameAttribute_ReturnsNonEmptyUsername()
-		{
-			Assert.False(string.IsNullOrEmpty(m_instance.GetUsernameAttribute()));
-		}
+		}		
 
 		[Test]
 		public void GetFullnameAttribute_ThrowsNotImplementException()

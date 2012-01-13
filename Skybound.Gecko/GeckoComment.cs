@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Drawing;
 using System.Diagnostics;
-using Skybound.Gecko.DOM;
+using Gecko.DOM;
 
-namespace Skybound.Gecko
+namespace Gecko
 {
 	/// <summary>
 	/// Represents a DOM Comment

@@ -18,7 +18,7 @@
 // IDL/IDH file.
 // </remarks>
 // --------------------------------------------------------------------------------------------
-namespace Skybound.Gecko
+namespace Gecko
 {
 	using System;
 	using System.Runtime.InteropServices;
@@ -32,7 +32,7 @@ namespace Skybound.Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("540aca25-1e01-467f-b24c-df89cbe40f8d")]
+	[Guid("212371ab-d8b9-4835-b867-d0eb78c0cb18")]
 	public interface nsIBrowserHistory : nsIGlobalHistory2
 	{
 		
@@ -75,156 +75,147 @@ namespace Skybound.Gecko
 		new void SetPageTitle([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString aTitle);
 		
 		/// <summary>
-        /// addPageWithDetails
+        /// Used by the History migrator to add a page to global history, with a
+        /// specific title and last visit time.
         ///
-        /// Adds a page to history with specific time stamp information. This is used in
-        /// the History migrator.
+        /// @param aURI
+        /// URI of the page to be added.
+        /// @param aTitle
+        /// Title of the page.
+        /// @param aLastvisited
+        /// Microseconds from epoch representing the last visit time.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddPageWithDetails([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")] string aTitle, int aLastVisited);
+		void AddPageWithDetails([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string aTitle, int aLastVisited);
 		
 		/// <summary>
-        /// lastPageVisited
-        ///
         /// The last page that was visited in a top-level window.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetLastPageVisitedAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aLastPageVisited);
 		
 		/// <summary>
-        /// count
+        /// Indicates if there are entries in global history.
         ///
-        /// Indicate if there are entries in global history
-        /// For performance reasons this does not return the real number of entries
+        /// @note For performance reasons this is not the real number of entries.
+        /// It will instead evaluate to 0 for no entries, 1 otherwise.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetCountAttribute();
 		
 		/// <summary>
-        /// removePage
+        /// Removes a page from global history.
         ///
-        /// Remove a page from history
+        /// @note It is preferrable to use this one rather then RemovePages when
+        /// removing less than 10 pages, since it won't start a full batch
+        /// operation.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RemovePage([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 		
 		/// <summary>
-        /// removePages
+        /// Removes a list of pages from global history.
         ///
-        /// Remove a bunch of pages from history
-        /// Notice that this does not call observers for performance reasons,
-        /// instead setting aDoBatchNotify true will send Begin/EndUpdateBatch
+        /// @param aURIs
+        /// Array of URIs to be removed.
+        /// @param aLength
+        /// Length of the array.
+        ///
+        /// @note the removal happens in a batch.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemovePages([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] nsIURI[] aURIs, uint aLength, [MarshalAs(UnmanagedType.Bool)] bool aDoBatchNotify);
+		void RemovePages([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] nsIURI[] aURIs, uint aLength);
 		
 		/// <summary>
-        /// removePagesFromHost
+        /// Removes all global history information about pages for a given host.
         ///
-        /// Removes all history information about pages from a given host. If
-        /// aEntireDomain is set, we will also delete pages from sub hosts (so if
-        /// we are passed in "microsoft.com" we delete "www.microsoft.com",
-        /// "msdn.microsoft.com", etc.). An empty host name means local files and
-        /// anything else with no host name. You can also pass in the localized
-        /// "(local files)" title given to you from a history query to remove all
+        /// @param aHost
+        /// Hostname to be removed.
+        /// An empty host name means local files and anything else with no
+        /// hostname.  You can also pass in the localized "(local files)"
+        /// title given to you from a history query to remove all
         /// history information from local files.
+        /// @param aEntireDomain
+        /// If true, will also delete pages from sub hosts (so if
+        /// passed in "microsoft.com" will delete "www.microsoft.com",
+        /// "msdn.microsoft.com", etc.).
         ///
-        /// Note that this does not call observers for single deleted uris,
-        /// but will send Begin/EndUpdateBatch.
+        /// @note The removal happens in a batch.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RemovePagesFromHost([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aHost, [MarshalAs(UnmanagedType.Bool)] bool aEntireDomain);
 		
 		/// <summary>
-        /// removePagesByTimeframe
-        ///
-        /// Remove all pages for a given timeframe.
+        /// Removes all pages for a given timeframe.
         /// Limits are included: aBeginTime <= timeframe <= aEndTime
-        /// Notice that this does not call observers for single deleted uris,
-        /// instead it will send Begin/EndUpdateBatch
+        ///
+        /// @param aBeginTime
+        /// Microseconds from epoch, representing the initial time.
+        /// @param aEndTime
+        /// Microseconds from epoch, representing the final time.
+        ///
+        /// @note The removal happens in a batch.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RemovePagesByTimeframe(int aBeginTime, int aEndTime);
 		
 		/// <summary>
-        /// removeVisitsByTimeframe
+        /// Removes all visits in a given timeframe.
+        /// Limits are included: aBeginTime <= timeframe <= aEndTime.
+        /// Any pages that becomes unvisited as a result will also be deleted.
         ///
-        /// Removes all visits in a given timeframe.  Limits are included:
-        /// aBeginTime <= timeframe <= aEndTime.  Any place that becomes unvisited
-        /// as a result will also be deleted.
+        /// @param aBeginTime
+        /// Microseconds from epoch, representing the initial time.
+        /// @param aEndTime
+        /// Microseconds from epoch, representing the final time.
         ///
-        /// Note that removal is performed in batch, so observers will not be
-        /// notified of individual places that are deleted.  Instead they will be
-        /// notified onBeginUpdateBatch and onEndUpdateBatch.
+        /// @note The removal happens in a batch.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RemoveVisitsByTimeframe(int aBeginTime, int aEndTime);
 		
 		/// <summary>
-        /// removeAllPages
+        /// Removes all existing pages from global history.
+        /// Visits are removed synchronously, but pages are expired asynchronously
+        /// off the main-thread.
         ///
-        /// Remove all pages from global history
+        /// @note The removal happens in a batch. Single removals are not notified,
+        /// instead an onClearHistory notification is sent to
+        /// nsINavHistoryObserver implementers.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RemoveAllPages();
 		
 		/// <summary>
-        /// hidePage
+        /// Hides the specified URL from being enumerated (and thus displayed in
+        /// the UI).
         ///
-        /// Hide the specified URL from being enumerated (and thus
-        /// displayed in the UI)
-        /// If the page hasn't been visited yet, then it will be added
+        /// @param aURI
+        /// URI of the page to be marked.
+        ///
+        /// @note If the page hasn't been visited yet, then it will be added
         /// as if it was visited, and then marked as hidden
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void HidePage([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 		
 		/// <summary>
-        /// markPageAsTyped
+        /// Designates the url as having been explicitly typed in by the user.
         ///
-        /// Designate the url as having been explicitly typed in by
-        /// the user, so it's okay to be an autocomplete result.
+        /// @param aURI
+        /// URI of the page to be marked.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void MarkPageAsTyped([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 		
 		/// <summary>
-        /// markPageAsFollowedLink
-        ///
-        /// Designate the url as coming from a link explicitly followed by
+        /// Designates the url as coming from a link explicitly followed by
         /// the user (for example by clicking on it).
+        ///
+        /// @param aURI
+        /// URI of the page to be marked.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void MarkPageAsFollowedLink([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
-		
-		/// <summary>
-        /// Mark a page as being currently open.
-        ///
-        /// @note Pages will not be automatically unregistered when Private Browsing
-        /// mode is entered or exited.  Therefore, consumers MUST unregister or
-        /// register themselves.
-        ///
-        /// @note This is just an alias for mozIPlacesAutoComplete::registerOpenPage.
-        ///
-        /// @status DEPRECATED
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RegisterOpenPage([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
-		
-		/// <summary>
-        /// Mark a page as no longer being open (either by closing the window or tab,
-        /// or by navigating away from that page).
-        ///
-        /// @note Pages will not be automatically unregistered when Private Browsing
-        /// mode is entered or exited.  Therefore, consumers MUST unregister or
-        /// register themselves.
-        ///
-        /// @note This is just an alias for
-        /// mozIPlacesAutoComplete::unregisterOpenPage.
-        ///
-        /// @status DEPRECATED
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UnregisterOpenPage([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 	}
 }

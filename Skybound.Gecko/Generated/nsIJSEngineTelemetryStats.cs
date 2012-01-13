@@ -18,7 +18,7 @@
 // IDL/IDH file.
 // </remarks>
 // --------------------------------------------------------------------------------------------
-namespace Skybound.Gecko
+namespace Gecko
 {
 	using System;
 	using System.Runtime.InteropServices;
@@ -42,6 +42,6 @@ namespace Skybound.Gecko
         /// the telemetry ping JSON blob.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetTelemetryValueAttribute();
+		System.IntPtr GetTelemetryValueAttribute(System.IntPtr jsContext);
 	}
 }

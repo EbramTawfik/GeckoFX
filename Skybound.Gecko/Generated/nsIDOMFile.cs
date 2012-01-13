@@ -18,7 +18,7 @@
 // IDL/IDH file.
 // </remarks>
 // --------------------------------------------------------------------------------------------
-namespace Skybound.Gecko
+namespace Gecko
 {
 	using System;
 	using System.Runtime.InteropServices;
@@ -147,7 +147,8 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member Append </summary>
 		/// <param name='data'> </param>
+		/// <param name='jsContext'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Append(System.IntPtr data);
+		void Append(System.IntPtr data, System.IntPtr jsContext);
 	}
 }

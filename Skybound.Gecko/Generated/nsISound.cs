@@ -18,7 +18,7 @@
 // IDL/IDH file.
 // </remarks>
 // --------------------------------------------------------------------------------------------
-namespace Skybound.Gecko
+namespace Gecko
 {
 	using System;
 	using System.Runtime.InteropServices;
@@ -30,7 +30,7 @@ namespace Skybound.Gecko
 	/// <summary>nsISound </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("86B75B05-DB60-4c3e-97A7-82B363A41A01")]
+	[Guid("C3C28D92-A17F-43DF-976D-4EEAE6F995FC")]
 	public interface nsISound
 	{
 		

@@ -38,7 +38,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Skybound.Gecko
+namespace Gecko
 {
 	#if !NO_CUSTOM_PROMPT_SERVICE
 	[Guid("8E4AABE2-B832-4cff-B213-2174DE2B818D")]

@@ -18,7 +18,7 @@
 // IDL/IDH file.
 // </remarks>
 // --------------------------------------------------------------------------------------------
-namespace Skybound.Gecko
+namespace Gecko
 {
 	using System;
 	using System.Runtime.InteropServices;
@@ -55,25 +55,25 @@ namespace Skybound.Gecko
 		nsIVariant GetKeyAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetPrimaryKeyAttribute();
+		System.IntPtr GetPrimaryKeyAttribute(System.IntPtr jsContext);
 		
 		/// <summary>
         ///undefined </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Continue(System.IntPtr key);
+		void Continue(System.IntPtr key, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Success fires IDBTransactionEvent, result == key
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIIDBRequest Update(System.IntPtr value);
+		nsIIDBRequest Update(System.IntPtr value, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Success fires IDBTransactionEvent, result == null
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIIDBRequest Delete();
+		nsIIDBRequest Delete(System.IntPtr jsContext);
 	}
 }

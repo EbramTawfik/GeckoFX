@@ -40,7 +40,7 @@ using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 
-namespace Skybound.Gecko
+namespace Gecko
 {
 	partial class PropertiesDialog : Form
 	{

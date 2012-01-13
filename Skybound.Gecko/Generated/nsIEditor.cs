@@ -18,7 +18,7 @@
 // IDL/IDH file.
 // </remarks>
 // --------------------------------------------------------------------------------------------
-namespace Skybound.Gecko
+namespace Gecko
 {
 	using System;
 	using System.Runtime.InteropServices;
@@ -30,7 +30,7 @@ namespace Skybound.Gecko
 	/// <summary>nsIEditor </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("bd5d93f0-6451-11e0-ae3e-0800200c9a66")]
+	[Guid("20ee0b70-c528-11e0-9572-0800200c9a66")]
 	public interface nsIEditor
 	{
 		
@@ -114,6 +114,12 @@ namespace Skybound.Gecko
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsDocumentEditableAttribute();
+		
+		/// <summary>
+        ///Returns true if the current selection anchor is editable </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetIsSelectionEditableAttribute();
 		
 		/// <summary>
         /// the DOM Document this editor is associated with, refcounted.

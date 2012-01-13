@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Skybound.Gecko
+namespace Gecko
 {
 	public partial class ChromeDialog : Form
 	{

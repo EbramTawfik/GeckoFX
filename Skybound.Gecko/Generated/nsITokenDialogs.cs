@@ -18,7 +18,7 @@
 // IDL/IDH file.
 // </remarks>
 // --------------------------------------------------------------------------------------------
-namespace Skybound.Gecko
+namespace Gecko
 {
 	using System;
 	using System.Runtime.InteropServices;
@@ -41,7 +41,7 @@ namespace Skybound.Gecko
 		/// <param name='tokenName'> </param>
 		/// <param name='canceled'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ChooseToken([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor ctx, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] System.IntPtr[] tokenNameList, uint count, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Skybound.Gecko.CustomMarshalers.WStringMarshaler")] ref string tokenName, [MarshalAs(UnmanagedType.Bool)] ref bool canceled);
+		void ChooseToken([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor ctx, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] System.IntPtr[] tokenNameList, uint count, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] ref string tokenName, [MarshalAs(UnmanagedType.Bool)] ref bool canceled);
 		
 		/// <summary>
         /// displayProtectedAuth - displays notification dialog to the user

@@ -18,7 +18,7 @@
 // IDL/IDH file.
 // </remarks>
 // --------------------------------------------------------------------------------------------
-namespace Skybound.Gecko
+namespace Gecko
 {
 	using System;
 	using System.Runtime.InteropServices;
@@ -30,7 +30,7 @@ namespace Skybound.Gecko
 	/// <summary>nsIDOMNavigator </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("d7758ece-f088-4701-9ae4-1450192dca38")]
+	[Guid("B8EE0374-5F47-4ED0-B9B0-BDE3E6D81FF5")]
 	public interface nsIDOMNavigator
 	{
 		
@@ -118,16 +118,15 @@ namespace Skybound.Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetBuildIDAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBuildID);
 		
+		/// <summary>Member GetDoNotTrackAttribute </summary>
+		/// <param name='aDoNotTrack'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetDoNotTrackAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDoNotTrack);
+		
 		/// <summary>Member JavaEnabled </summary>
 		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool JavaEnabled();
-		
-		/// <summary>Member TaintEnabled </summary>
-		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.Bool)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool TaintEnabled();
 	}
 }

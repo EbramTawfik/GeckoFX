@@ -8,8 +8,8 @@
     <ProjectGuid>{6AB4EEE6-1889-43AB-83F7-A4F083230BE7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Skybound.Gecko</RootNamespace>
-    <AssemblyName>Skybound.Gecko</AssemblyName>
+    <RootNamespace>Gecko</RootNamespace>
+    <AssemblyName>geckofx-9</AssemblyName>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>GeckoFX.snk</AssemblyOriginatorKeyFile>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
@@ -190,8 +190,7 @@
     <Compile Include="Generated\domstubs.cs" />
     <Compile Include="Generated\extIApplication.cs" />
     <Compile Include="Generated\fuelIApplication.cs" />
-    <Compile Include="Generated\gfxidltypes.cs" />
-    <Compile Include="Generated\gfxIFormats.cs" />
+    <Compile Include="Generated\IJSDebugger.cs" />
     <Compile Include="Generated\imgICache.cs" />
     <Compile Include="Generated\imgIContainer.cs" />
     <Compile Include="Generated\imgIContainerDebug.cs" />
@@ -350,7 +349,6 @@
     <Compile Include="Generated\nsICharsetResolver.cs" />
     <Compile Include="Generated\nsIChildChannel.cs" />
     <Compile Include="Generated\nsIChromeRegistry.cs" />
-    <Compile Include="Generated\nsICipherInfo.cs" />
     <Compile Include="Generated\nsIClassInfo.cs" />
     <Compile Include="Generated\nsIClientAuthDialogs.cs" />
     <Compile Include="Generated\nsIClipboard.cs" />
@@ -450,6 +448,7 @@
     <Compile Include="Generated\nsIDOMBarProp.cs" />
     <Compile Include="Generated\nsIDOMBeforeUnloadEvent.cs" />
     <Compile Include="Generated\nsIDOMCanvasRenderingContext2D.cs" />
+    <Compile Include="Generated\nsIDOMCaretPosition.cs" />
     <Compile Include="Generated\nsIDOMCDATASection.cs" />
     <Compile Include="Generated\nsIDOMCharacterData.cs" />
     <Compile Include="Generated\nsIDOMChromeWindow.cs" />
@@ -459,6 +458,7 @@
     <Compile Include="Generated\nsIDOMCloseEvent.cs" />
     <Compile Include="Generated\nsIDOMCommandEvent.cs" />
     <Compile Include="Generated\nsIDOMComment.cs" />
+    <Compile Include="Generated\nsIDOMCompositionEvent.cs" />
     <Compile Include="Generated\nsIDOMConstructor.cs" />
     <Compile Include="Generated\nsIDOMCounter.cs" />
     <Compile Include="Generated\nsIDOMCRMFObject.cs" />
@@ -632,10 +632,8 @@
     <Compile Include="Generated\nsIDOMNSHTMLElement.cs" />
     <Compile Include="Generated\nsIDOMNSHTMLFrameElement.cs" />
     <Compile Include="Generated\nsIDOMNSHTMLOptionCollectn.cs" />
-    <Compile Include="Generated\nsIDOMNSMouseEvent.cs" />
     <Compile Include="Generated\nsIDOMNSRange.cs" />
     <Compile Include="Generated\nsIDOMNSRGBAColor.cs" />
-    <Compile Include="Generated\nsIDOMNSUIEvent.cs" />
     <Compile Include="Generated\nsIDOMNSXPathExpression.cs" />
     <Compile Include="Generated\nsIDOMOfflineResourceList.cs" />
     <Compile Include="Generated\nsIDOMPageTransitionEvent.cs" />
@@ -767,6 +765,7 @@
     <Compile Include="Generated\nsIDOMWindow.cs" />
     <Compile Include="Generated\nsIDOMWindowCollection.cs" />
     <Compile Include="Generated\nsIDOMWindowUtils.cs" />
+    <Compile Include="Generated\nsIDOMWorkers.cs" />
     <Compile Include="Generated\nsIDOMXMLDocument.cs" />
     <Compile Include="Generated\nsIDOMXPathEvaluator.cs" />
     <Compile Include="Generated\nsIDOMXPathException.cs" />
@@ -878,7 +877,6 @@
     <Compile Include="Generated\nsIGIOService.cs" />
     <Compile Include="Generated\nsIGlobalHistory.cs" />
     <Compile Include="Generated\nsIGlobalHistory2.cs" />
-    <Compile Include="Generated\nsIGlobalHistory3.cs" />
     <Compile Include="Generated\nsIGnomeVFSService.cs" />
     <Compile Include="Generated\nsIGSettingsService.cs" />
     <Compile Include="Generated\nsIHandlerService.cs" />
@@ -929,6 +927,7 @@
     <Compile Include="Generated\nsIIncrementalDownload.cs" />
     <Compile Include="Generated\nsIIndexedDatabaseManager.cs" />
     <Compile Include="Generated\nsIINIParser.cs" />
+    <Compile Include="Generated\nsIInlineEventHandlers.cs" />
     <Compile Include="Generated\nsIInlineSpellChecker.cs" />
     <Compile Include="Generated\nsIInputListAutoComplete.cs" />
     <Compile Include="Generated\nsIInputStream.cs" />
@@ -1137,7 +1136,6 @@
     <Compile Include="Generated\nsIScriptableBase64Encoder.cs" />
     <Compile Include="Generated\nsIScriptableDateFormat.cs" />
     <Compile Include="Generated\nsIScriptableInputStream.cs" />
-    <Compile Include="Generated\nsIScriptableInterfaces.cs" />
     <Compile Include="Generated\nsIScriptableRegion.cs" />
     <Compile Include="Generated\nsIScriptableUConv.cs" />
     <Compile Include="Generated\nsIScriptableUnescapeHTML.cs" />
@@ -1285,6 +1283,7 @@
     <Compile Include="Generated\nsIURL.cs" />
     <Compile Include="Generated\nsIUrlClassifierDBService.cs" />
     <Compile Include="Generated\nsIUrlClassifierHashCompleter.cs" />
+    <Compile Include="Generated\nsIUrlClassifierPrefixSet.cs" />
     <Compile Include="Generated\nsIUrlClassifierStreamUpdater.cs" />
     <Compile Include="Generated\nsIUrlClassifierTable.cs" />
     <Compile Include="Generated\nsIUrlClassifierUtils.cs" />
@@ -1391,6 +1390,7 @@
     <Compile Include="Generated\nsPIWindowWatcher.cs" />
     <Compile Include="Generated\nspluginroot.cs" />
     <Compile Include="Generated\nsrootidl.cs" />
+    <Compile Include="Generated\OpenWebapps.cs" />
     <Compile Include="Generated\rdfIDataSource.cs" />
     <Compile Include="Generated\rdfISerializer.cs" />
     <Compile Include="Generated\rdfITripleVisitor.cs" />
@@ -1398,8 +1398,6 @@
     <Compile Include="Generated\txIEXSLTRegExFunctions.cs" />
     <Compile Include="Generated\txIFunctionEvaluationContext.cs" />
     <Compile Include="Generated\txINodeSet.cs" />
-    <Compile Include="Generated\txIXPathObject.cs" />
-    <Compile Include="Generated\WebappsSupport.cs" />
     <Compile Include="Generated\xpccomponents.cs" />
     <Compile Include="Generated\xpcexception.cs" />
     <Compile Include="Generated\xpcIJSGetFactory.cs" />
@@ -1407,16 +1405,7 @@
     <Compile Include="Generated\xpcIJSWeakReference.cs" />
     <Compile Include="Generated\xpcjsid.cs" />
     <Compile Include="Generated\xpcsample1.cs" />
-    <Compile Include="Generated\xpctest.cs" />
-    <Compile Include="Generated\xpctest2.cs" />
     <Compile Include="Generated\xpctest_attributes.cs" />
-    <Compile Include="Generated\xpctest_calljs.cs" />
-    <Compile Include="Generated\xpctest_const.cs" />
-    <Compile Include="Generated\xpctest_domstring.cs" />
-    <Compile Include="Generated\xpctest_in.cs" />
-    <Compile Include="Generated\xpctest_inout.cs" />
-    <Compile Include="Generated\xpctest_multiple.cs" />
-    <Compile Include="Generated\xpctest_out.cs" />
     <Compile Include="BaseTypes\nscolor.cs" />
     <Compile Include="BaseTypes\nsConstRect.cs" />
     <Compile Include="BaseTypes\nsIntRect.cs" />
@@ -1431,6 +1420,7 @@
     <Compile Include="GeckoWebBrowser.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Generated\xpctest_interfaces.cs" />
     <Compile Include="ImageCreator.cs" />
     <Compile Include="JavascriptErrorEventArgs.cs" />
     <Compile Include="NavigateFinishedNotifier.cs" />

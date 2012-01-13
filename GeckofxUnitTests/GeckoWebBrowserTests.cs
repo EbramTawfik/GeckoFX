@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
-using Skybound.Gecko;
 using System.Windows.Forms;
+using Gecko;
+using System.IO;
+using System.Runtime.InteropServices;
 
 namespace GeckofxUnitTests
 {
@@ -163,6 +165,49 @@ namespace GeckofxUnitTests
 			Assert.AreEqual(divString.ToLowerInvariant().Replace('\'', '"'), divElement.OuterHtml.ToLowerInvariant());
 		}
 
+		// TODO: move to a GeckoElementTests file.
+		[Test]
+		public void SetId_SettingToEmptyString_IdAttributeIsRemoved()
+		{
+			LoadHtml("<div id=\"a\">hello</div>");
+
+			var divElement = browser.Document.GetElementById("a");
+			Assert.AreEqual("a", divElement.Id);			
+
+			divElement.Id = String.Empty;
+
+			Assert.IsFalse(divElement.HasAttribute("id"));
+		}
+
+		// TODO: move to a GeckoElementTests file.
+		[Test]
+		public void SetId_SettingToNull_IdAttributeIsRemoved()
+		{
+			LoadHtml("<div id=\"a\">hello</div>");
+
+			var divElement = browser.Document.GetElementById("a");
+			Assert.AreEqual("a", divElement.Id);
+
+			divElement.Id = null;
+
+			Assert.IsFalse(divElement.HasAttribute("id"));
+		}
+
+		// TODO: move to a GeckoElementTests file.
+		[Test]
+		public void SetId_SettingToEmptyStringWhereIdIsMixedCase_IdAttributeIsRemoved()
+		{
+			LoadHtml("<div iD=\"a\">hello</div>");
+
+			var divElement = browser.Document.GetElementById("a");
+			Assert.AreEqual("a", divElement.Id);
+
+			divElement.Id = String.Empty;
+
+			Assert.IsFalse(divElement.HasAttribute("iD"));
+
+		}
+
 		[Test]
 		public void DomContentChanged_ChangeContentOfTextInputWithKeyPressAndMoveToSecondInput_DomContentChangedShouldFire()
 		{
@@ -295,6 +340,111 @@ namespace GeckofxUnitTests
 
 			browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
 			Assert.AreEqual("some data", payload);
+		}
+
+		[Test]
+		public void EvaluateScript_SimpleJavascript_ScriptExecutesAndReturnsExpectedResult()
+		{		
+			LoadHtml("");
+			
+			using (AutoJSContext context = new AutoJSContext())
+			{				
+				string result;
+				Assert.IsTrue(context.EvaluateScript("3 + 2;", out result));
+				Assert.AreEqual(5, Int32.Parse(result));
+
+				Assert.IsTrue(context.EvaluateScript("'hello' + ' ' + 'world';", out result));
+				Assert.AreEqual("hello world", result);
+			}				
+		}
+
+		[Test]
+		public void EvaluateScript_SimpleJavascriptWithoutNormalDocumentSetup_ScriptExecutesAndReturnsExpectedResult()
+		{		
+			using (AutoJSContext context = new AutoJSContext(browser.JSContext))
+			{
+				string result;
+				Assert.IsTrue(context.EvaluateScript("3 + 2;", out result));
+				Assert.AreEqual(5, Int32.Parse(result));
+
+				Assert.IsTrue(context.EvaluateScript("'hello' + ' ' + 'world';", out result));
+				Assert.AreEqual("hello world", result);
+			}
+		}
+
+		[Test]
+		public void EvaluateScript_JavascriptAccessExistingGlobalObjects_ScriptExecutesAndReturnsExpectedResult()
+		{
+			LoadHtml("hello world");
+			
+			using (AutoJSContext context = new AutoJSContext(browser.JSContext))
+			{
+				string result;
+				Assert.IsTrue(context.EvaluateScript("this", out result));
+				Assert.AreEqual("[object Window]", result);
+
+				Assert.IsTrue(context.EvaluateScript("this.document.body.innerHTML;", out result));
+				Assert.AreEqual("hello world", result);
+
+				Assert.IsTrue(context.EvaluateScript("this.document.body.innerHTML = 'hi';", out result));
+				Assert.IsTrue(context.EvaluateScript("this.document.body.innerHTML;", out result));
+				Assert.AreEqual("hi", result);
+
+				Assert.IsTrue(context.EvaluateScript("eval(\"x=10;y=20;x*y;\");", out result));
+				Assert.AreEqual("200", result);
+			}
+		}
+
+		[Test]
+		public void EvaluateScript_JavascriptAccessExistingGlobalObjectsWithoutNormalDocumentSetup_ScriptExecutesAndReturnsExpectedResult()
+		{			
+			using (AutoJSContext context = new AutoJSContext(browser.JSContext))
+			{
+				string result;
+				Assert.IsTrue(context.EvaluateScript("this", out result));
+				Assert.AreEqual("[object Window]", result);
+
+				Assert.IsTrue(context.EvaluateScript("this.document.body.innerHTML;", out result));
+				Assert.AreEqual(String.Empty, result);
+
+				Assert.IsTrue(context.EvaluateScript("this.document.body.innerHTML = 'hi';", out result));
+				Assert.IsTrue(context.EvaluateScript("this.document.body.innerHTML;", out result));
+				Assert.AreEqual("hi", result);
+
+				Assert.IsTrue(context.EvaluateScript("eval(\"x=10;y=20;x*y;\");", out result));
+				Assert.AreEqual("200", result);
+			}
+		}
+
+		[Test]
+		public void LoadHtmlSynchronously_SimpleHtml()
+		{
+			Assert.IsTrue(browser.LoadHtmlSynchronously("<body>hello world</body>"));
+			Assert.AreEqual("hello world", browser.Document.Body.InnerHtml);
+		}
+
+		[Test]
+		public void LoadHtmlSynchronously_MoreSimpleHtml()
+		{
+			Assert.IsTrue(browser.LoadHtmlSynchronously("<html><body id=\"d\">hello world</body></html>"));
+			Assert.AreEqual("hello world", browser.Document.Body.InnerHtml);
+			Assert.AreEqual("<HTML><head></head><body id=\"d\">hello world</body></HTML>", browser.Document.Body.Parent.OuterHtml);
+		}
+
+		[Test]
+		public void LoadHtmlSynchronously_HtmlContainingSingleQuotes()
+		{			
+			Assert.IsTrue(browser.LoadHtmlSynchronously("<html><body id='d'>hello world</body></html>"));
+			Assert.AreEqual("hello world", browser.Document.Body.InnerHtml);
+			Assert.AreEqual("<HTML><head></head><body id=\"d\">hello world</body></HTML>", browser.Document.Body.Parent.OuterHtml);
+		}
+
+		[Test]
+		public void LoadHtmlSynchronously_HtmlContainingForwardSlash()
+		{
+			Assert.IsTrue(browser.LoadHtmlSynchronously("<html><body id='d'>hello \\world</body></html>"));
+			Assert.AreEqual("hello \\world", browser.Document.Body.InnerHtml);
+			Assert.AreEqual("<HTML><head></head><body id=\"d\">hello \\world</body></HTML>", browser.Document.Body.Parent.OuterHtml);
 		}
 	}
 }

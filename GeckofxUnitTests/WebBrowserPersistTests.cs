@@ -1,6 +1,6 @@
 ﻿using System.IO;
 using NUnit.Framework;
-using Skybound.Gecko;
+using Gecko;
 
 namespace GeckofxUnitTests
 {

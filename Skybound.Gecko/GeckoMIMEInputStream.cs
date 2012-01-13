@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Runtime.InteropServices;
 
-namespace Skybound.Gecko
+namespace Gecko
 {
 	public class GeckoMIMEInputStream : IDisposable
 	{

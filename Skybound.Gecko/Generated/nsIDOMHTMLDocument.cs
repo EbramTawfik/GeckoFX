@@ -18,7 +18,7 @@
 // IDL/IDH file.
 // </remarks>
 // --------------------------------------------------------------------------------------------
-namespace Skybound.Gecko
+namespace Gecko
 {
 	using System;
 	using System.Runtime.InteropServices;
@@ -35,7 +35,7 @@ namespace Skybound.Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("3ab3e856-361d-435a-8a4d-b462799945cd")]
+	[Guid("85ed9d73-7fb5-4caf-b8f1-c8e13d49a6d8")]
 	public interface nsIDOMHTMLDocument : nsIDOMDocument
 	{
 		
@@ -65,6 +65,10 @@ namespace Skybound.Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMNode GetParentNodeAttribute();
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMElement GetParentElementAttribute();
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -229,6 +233,10 @@ namespace Skybound.Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIVariant GetUserData([MarshalAs(UnmanagedType.LPStruct)] nsAString key);
+		
+		[return: MarshalAs(UnmanagedType.Bool)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool Contains([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aOther);
 		
 		/// <summary>
         /// The nsIDOMDocument interface represents the entire HTML or XML document.
@@ -702,6 +710,47 @@ namespace Skybound.Gecko
 		new void MozSetImageElement([MarshalAs(UnmanagedType.LPStruct)] nsAString aImageElementId, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement aImageElement);
 		
 		/// <summary>
+        /// Element which is currently the full-screen element as per the DOM
+        /// full-screen api.
+        ///
+        /// @see <https://wiki.mozilla.org/index.php?title=Gecko:FullScreenAPI>
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMHTMLElement GetMozFullScreenElementAttribute();
+		
+		/// <summary>
+        /// Causes the document to leave DOM full-screen mode, if it's in
+        /// full-screen mode, as per the DOM full-screen api.
+        ///
+        /// @see <https://wiki.mozilla.org/index.php?title=Gecko:FullScreenAPI>
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void MozCancelFullScreen();
+		
+		/// <summary>
+        /// Denotes whether this document is in DOM full-screen mode, as per the DOM
+        /// full-screen api.
+        ///
+        /// @see <https://wiki.mozilla.org/index.php?title=Gecko:FullScreenAPI>
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool GetMozFullScreenAttribute();
+		
+		/// <summary>
+        /// Inline event handler for readystatechange events.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new System.IntPtr GetOnreadystatechangeAttribute(System.IntPtr jsContext);
+		
+		/// <summary>
+        /// Inline event handler for readystatechange events.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetOnreadystatechangeAttribute(System.IntPtr aOnreadystatechange, System.IntPtr jsContext);
+		
+		/// <summary>
         /// The nsIDOMHTMLDocument interface is the interface to a [X]HTML
         /// document object.
         ///
@@ -764,6 +813,10 @@ namespace Skybound.Gecko
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMHTMLCollection GetScriptsAttribute();
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMNodeList GetElementsByName([MarshalAs(UnmanagedType.LPStruct)] nsAString elementName);
 		
 		/// <summary>
@@ -771,16 +824,16 @@ namespace Skybound.Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports Open([MarshalAs(UnmanagedType.LPStruct)] nsAString aContentTypeOrUrl, [MarshalAs(UnmanagedType.LPStruct)] nsAString aReplaceOrName, [MarshalAs(UnmanagedType.LPStruct)] nsAString aFeatures, int argc);
+		nsISupports Open([MarshalAs(UnmanagedType.LPStruct)] nsAString aContentTypeOrUrl, [MarshalAs(UnmanagedType.LPStruct)] nsAString aReplaceOrName, [MarshalAs(UnmanagedType.LPStruct)] nsAString aFeatures, System.IntPtr jsContext, int argc);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Close();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Write([MarshalAs(UnmanagedType.LPStruct)] nsAString text);
+		void Write([MarshalAs(UnmanagedType.LPStruct)] nsAString text, System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Writeln([MarshalAs(UnmanagedType.LPStruct)] nsAString text);
+		void Writeln([MarshalAs(UnmanagedType.LPStruct)] nsAString text, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Midas additions

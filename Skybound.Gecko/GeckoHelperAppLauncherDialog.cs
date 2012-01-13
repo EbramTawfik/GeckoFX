@@ -5,7 +5,7 @@ using System.Windows.Forms;
 using Microsoft.Win32;
 using System.IO;
 
-namespace Skybound.Gecko
+namespace Gecko
 {
     static class nsIHelperAppLauncherConstants
     {

@@ -18,7 +18,7 @@
 // IDL/IDH file.
 // </remarks>
 // --------------------------------------------------------------------------------------------
-namespace Skybound.Gecko
+namespace Gecko
 {
 	using System;
 	using System.Runtime.InteropServices;
@@ -36,7 +36,7 @@ namespace Skybound.Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("dc8ec5c6-ebf2-4f95-be99-cd13e3c0d0c6")]
+	[Guid("9ac4fa26-4d19-4f4e-807e-b30cd0dbe56a")]
 	public interface nsIDOMMessageEvent : nsIDOMEvent
 	{
 		
@@ -165,7 +165,7 @@ namespace Skybound.Gecko
         /// Custom string data associated with this event.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetDataAttribute();
+		System.IntPtr GetDataAttribute(System.IntPtr jsContext);
 		
 		/// <summary>
         /// The origin of the site from which this event originated, which is the

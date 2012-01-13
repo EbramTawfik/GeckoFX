@@ -18,7 +18,7 @@
 // IDL/IDH file.
 // </remarks>
 // --------------------------------------------------------------------------------------------
-namespace Skybound.Gecko
+namespace Gecko
 {
 	using System;
 	using System.Runtime.InteropServices;
@@ -30,7 +30,7 @@ namespace Skybound.Gecko
 	/// <summary>nsIBidiKeyboard </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("0D8F8F10-C92D-4A6A-B2BB-E1921F3F4DDA")]
+	[Guid("99957506-f21b-4a61-ad64-5b641cf508e2")]
 	public interface nsIBidiKeyboard
 	{
 		
@@ -49,5 +49,16 @@ namespace Skybound.Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetLangFromBidiLevel(byte aLevel);
+		
+		/// <summary>
+        /// Determines whether the system has at least one keyboard of each direction
+        /// installed.
+        ///
+        /// @throws NS_ERROR_NOT_IMPLEMENTED if the widget layer does not provide this
+        /// information.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetHaveBidiKeyboardsAttribute();
 	}
 }

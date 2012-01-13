@@ -18,7 +18,7 @@
 // IDL/IDH file.
 // </remarks>
 // --------------------------------------------------------------------------------------------
-namespace Skybound.Gecko
+namespace Gecko
 {
 	using System;
 	using System.Runtime.InteropServices;
@@ -30,7 +30,7 @@ namespace Skybound.Gecko
 	/// <summary>nsIAppStartup </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("68b4b481-e21b-478f-8d75-41b131e1c261")]
+	[Guid("35fcdb69-3bb6-4484-b99a-32f49a84fabd")]
 	public interface nsIAppStartup
 	{
 		
@@ -96,5 +96,18 @@ namespace Skybound.Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetStartupInfo();
+		
+		/// <summary>
+        /// True if startup was interrupted by an interactive prompt.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetInterruptedAttribute();
+		
+		/// <summary>
+        /// True if startup was interrupted by an interactive prompt.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetInterruptedAttribute([MarshalAs(UnmanagedType.Bool)] bool aInterrupted);
 	}
 }

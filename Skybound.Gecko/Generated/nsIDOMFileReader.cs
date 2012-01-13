@@ -18,7 +18,7 @@
 // IDL/IDH file.
 // </remarks>
 // --------------------------------------------------------------------------------------------
-namespace Skybound.Gecko
+namespace Gecko
 {
 	using System;
 	using System.Runtime.InteropServices;
@@ -36,8 +36,9 @@ namespace Skybound.Gecko
 		
 		/// <summary>Member ReadAsArrayBuffer </summary>
 		/// <param name='filedata'> </param>
+		/// <param name='jsContext'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ReadAsArrayBuffer([MarshalAs(UnmanagedType.Interface)] nsIDOMBlob filedata);
+		void ReadAsArrayBuffer([MarshalAs(UnmanagedType.Interface)] nsIDOMBlob filedata, System.IntPtr jsContext);
 		
 		/// <summary>Member ReadAsBinaryString </summary>
 		/// <param name='filedata'> </param>
@@ -65,9 +66,10 @@ namespace Skybound.Gecko
 		ushort GetReadyStateAttribute();
 		
 		/// <summary>Member GetResultAttribute </summary>
+		/// <param name='jsContext'> </param>
 		/// <returns>A System.IntPtr</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetResultAttribute();
+		System.IntPtr GetResultAttribute(System.IntPtr jsContext);
 		
 		/// <summary>Member GetErrorAttribute </summary>
 		/// <returns>A nsIDOMFileError</returns>

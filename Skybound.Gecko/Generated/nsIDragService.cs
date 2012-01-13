@@ -18,7 +18,7 @@
 // IDL/IDH file.
 // </remarks>
 // --------------------------------------------------------------------------------------------
-namespace Skybound.Gecko
+namespace Gecko
 {
 	using System;
 	using System.Runtime.InteropServices;
@@ -121,5 +121,11 @@ namespace Skybound.Gecko
 		/// <summary>Member Unsuppress </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Unsuppress();
+		
+		/// <summary>Member DragMoved </summary>
+		/// <param name='aX'> </param>
+		/// <param name='aY'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void DragMoved(int aX, int aY);
 	}
 }

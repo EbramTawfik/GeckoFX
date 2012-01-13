@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Skybound.Gecko
+namespace Gecko
 {
 	/// <summary>
 	/// Emits NavigateFinished when a navigation has completed.
 	/// </summary>
-	public class NavigateFinishedNotifier
+	public class NavigateFinishedNotifier : IDisposable
 	{
 		bool m_loadEventHandled;
 
@@ -58,6 +58,11 @@ namespace Skybound.Gecko
 
 			if (NavigateFinished != null)
 				NavigateFinished(this, new EventArgs());
+		}
+
+		public void Dispose()
+		{		
+			Application.Idle -= HandleApplicationIdle;
 		}
 	}
 }

@@ -18,7 +18,7 @@
 // IDL/IDH file.
 // </remarks>
 // --------------------------------------------------------------------------------------------
-namespace Skybound.Gecko
+namespace Gecko
 {
 	using System;
 	using System.Runtime.InteropServices;
@@ -26,6 +26,26 @@ namespace Skybound.Gecko
 	using System.Runtime.CompilerServices;
 	using System.Windows.Forms;
 	
+	
+	/// <summary>
+    /// interface of Components.interfacesByID
+    /// (interesting stuff only reflected into JavaScript) </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("c99cffac-5aed-4267-ad2f-f4a4c9d4a081")]
+	public interface nsIXPCComponents_InterfacesByID
+	{
+	}
+	
+	/// <summary>
+    /// interface of Components.interfaces
+    /// (interesting stuff only reflected into JavaScript) </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("b8c31bba-79db-4a1d-930d-4cdd68713f9e")]
+	public interface nsIXPCComponents_Interfaces
+	{
+	}
 	
 	/// <summary>
     /// interface of Components.classes
@@ -219,7 +239,7 @@ namespace Skybound.Gecko
         /// is running. Call the provided function once this has occurred.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SchedulePreciseGC(ScheduledGCCallback callback);
+		void SchedulePreciseGC(ScheduledGCCallback callback, System.IntPtr jsContext);
 		
 		/// <summary>
         ///in JSObject obj </summary>
@@ -232,7 +252,7 @@ namespace Skybound.Gecko
         /// Returns an object created in |vobj|'s compartment.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr CreateObjectIn(System.IntPtr vobj);
+		System.IntPtr CreateObjectIn(System.IntPtr vobj, System.IntPtr jsContext);
 		
 		/// <summary>
         /// To be called from JS only.
@@ -241,7 +261,7 @@ namespace Skybound.Gecko
         /// compartment wrappers).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MakeObjectPropsNormal(System.IntPtr vobj);
+		void MakeObjectPropsNormal(System.IntPtr vobj, System.IntPtr jsContext);
 	}
 	
 	/// <summary>
@@ -256,11 +276,11 @@ namespace Skybound.Gecko
         /// interface of JavaScript's 'Components' object </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIScriptableInterfaces GetInterfacesAttribute();
+		nsIXPCComponents_Interfaces GetInterfacesAttribute();
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIScriptableInterfacesByID GetInterfacesByIDAttribute();
+		nsIXPCComponents_InterfacesByID GetInterfacesByIDAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetClassesAttribute();

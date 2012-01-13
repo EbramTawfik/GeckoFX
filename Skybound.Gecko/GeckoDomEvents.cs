@@ -37,7 +37,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Skybound.Gecko
+namespace Gecko
 {
 	public delegate void GeckoDomEventHandler(Object sender, GeckoDomEventArgs e);
 	

@@ -18,7 +18,7 @@
 // IDL/IDH file.
 // </remarks>
 // --------------------------------------------------------------------------------------------
-namespace Skybound.Gecko
+namespace Gecko
 {
 	using System;
 	using System.Runtime.InteropServices;
@@ -28,48 +28,59 @@ namespace Skybound.Gecko
 	
 	
 	/// <summary>
-    /// Interface to pass to the cycle collector to get information about the CC
-    /// graph while it's being built. The order of calls will be call to begin();
-    /// then for every node in the graph a call to noteObject() and calls to
+    ///Interface to pass to the cycle collector to get information about
+    /// the CC graph while it's being built. The order of calls will be a
+    /// call to begin(); then for every node in the graph a call to either
+    /// noteRefCountedObject() or noteGCedObject(), followed by calls to
     /// noteEdge() for every edge starting at that node; then a call to
-    /// beginDescriptions(); then for every black node in the CC graph a call to
-    /// either describeRefcountedObject() or to describeGCedObject(); and then a
-    /// call to end(). If begin() returns an error none of the other functions will
-    /// be called.
+    /// beginResults(); then a mixture of describeRoot() for ref counted
+    /// nodes the CC has identified as roots and describeGarbage() for
+    /// nodes the CC has identified as garbage.  Ref counted nodes that are
+    /// not identified as either roots or garbage are neither, and have a
+    /// known edges count equal to their ref count.  Finally, there will be
+    /// a call to end().  If begin() returns an error none of the other
+    /// functions will be called.
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("194b749a-4ceb-4dd1-928d-d30b5f14c23e")]
+	[Guid("3f3901bb-6a1c-4998-b32e-6f10a51db470")]
 	public interface nsICycleCollectorListener
 	{
 		
 		/// <summary>
-        /// Interface to pass to the cycle collector to get information about the CC
-        /// graph while it's being built. The order of calls will be call to begin();
-        /// then for every node in the graph a call to noteObject() and calls to
+        ///Interface to pass to the cycle collector to get information about
+        /// the CC graph while it's being built. The order of calls will be a
+        /// call to begin(); then for every node in the graph a call to either
+        /// noteRefCountedObject() or noteGCedObject(), followed by calls to
         /// noteEdge() for every edge starting at that node; then a call to
-        /// beginDescriptions(); then for every black node in the CC graph a call to
-        /// either describeRefcountedObject() or to describeGCedObject(); and then a
-        /// call to end(). If begin() returns an error none of the other functions will
-        /// be called.
+        /// beginResults(); then a mixture of describeRoot() for ref counted
+        /// nodes the CC has identified as roots and describeGarbage() for
+        /// nodes the CC has identified as garbage.  Ref counted nodes that are
+        /// not identified as either roots or garbage are neither, and have a
+        /// known edges count equal to their ref count.  Finally, there will be
+        /// a call to end().  If begin() returns an error none of the other
+        /// functions will be called.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Begin();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NoteObject(uint aAddress, [MarshalAs(UnmanagedType.LPStr)] string aObjectDescription);
+		void NoteRefCountedObject(uint aAddress, uint aRefCount, [MarshalAs(UnmanagedType.LPStr)] string aObjectDescription);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NoteEdge(uint aFromAddress, uint aToAddress, [MarshalAs(UnmanagedType.LPStr)] string aEdgeName);
+		void NoteGCedObject(uint aAddress, [MarshalAs(UnmanagedType.Bool)] bool aMarked, [MarshalAs(UnmanagedType.LPStr)] string aObjectDescription);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BeginDescriptions();
+		void NoteEdge(uint aToAddress, [MarshalAs(UnmanagedType.LPStr)] string aEdgeName);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DescribeRefcountedObject(uint aAddress, uint aKnownEdges, uint aTotalEdges);
+		void BeginResults();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DescribeGCedObject(uint aAddress, [MarshalAs(UnmanagedType.Bool)] bool aMarked);
+		void DescribeRoot(uint aAddress, uint aKnownEdges);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void DescribeGarbage(uint aAddress);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void End();

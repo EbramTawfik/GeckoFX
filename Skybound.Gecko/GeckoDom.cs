@@ -38,9 +38,9 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Drawing;
 using System.Diagnostics;
-using Skybound.Gecko.DOM;
+using Gecko.DOM;
 
-namespace Skybound.Gecko
+namespace Gecko
 {
 	/// <summary>
 	/// Represents a DOM attribute.
@@ -169,7 +169,13 @@ namespace Skybound.Gecko
 		public string Id
 		{
 			get { return nsString.Get(DomElement.GetIdAttribute); }
-			set { nsString.Set(DomElement.SetIdAttribute, value); }
+			set 
+			{				
+				if (string.IsNullOrEmpty(value))
+					this.RemoveAttribute("id");
+				else
+					nsString.Set(DomElement.SetIdAttribute, value); 
+			}
 		}
 		
 		/// <summary>
@@ -178,7 +184,13 @@ namespace Skybound.Gecko
 		public string ClassName
 		{
 			get { return nsString.Get(DomElement.GetClassNameAttribute); }
-			set { nsString.Set(DomElement.SetClassNameAttribute, value); }
+			set 
+			{
+				if (string.IsNullOrEmpty(value))
+					this.RemoveAttribute("class");
+				else
+					nsString.Set(DomElement.SetClassNameAttribute, value); 
+			}
 		}
 
 		public void Blur()
@@ -750,7 +762,7 @@ namespace Skybound.Gecko
 		/// <summary>
 		/// Gets the underlying unmanaged DOM object.
 		/// </summary>
-		public object DomWindow
+		public nsIDOMWindow DomWindow
 		{
 			get { return _DomWindow; }
 		}

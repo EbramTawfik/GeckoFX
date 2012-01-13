@@ -18,7 +18,7 @@
 // IDL/IDH file.
 // </remarks>
 // --------------------------------------------------------------------------------------------
-namespace Skybound.Gecko
+namespace Gecko
 {
 	using System;
 	using System.Runtime.InteropServices;
@@ -38,7 +38,7 @@ namespace Skybound.Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("0d31634e-2fc9-4597-9d53-11fb3f05516a")]
+	[Guid("1ee60719-c056-43b3-8f54-6a6e7ba0ca6c")]
 	public interface nsIJARURI : nsIURL
 	{
 		
@@ -337,22 +337,6 @@ namespace Skybound.Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetFilePathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aFilePath);
-		
-		/// <summary>
-        /// Returns the parameters specified after the ; in the URL.
-        ///
-        /// Some characters may be escaped.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetParamAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aParam);
-		
-		/// <summary>
-        /// Returns the parameters specified after the ; in the URL.
-        ///
-        /// Some characters may be escaped.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetParamAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aParam);
 		
 		/// <summary>
         /// Returns the query portion (the part after the "?") of the URL.

@@ -18,7 +18,7 @@
 // IDL/IDH file.
 // </remarks>
 // --------------------------------------------------------------------------------------------
-namespace Skybound.Gecko
+namespace Gecko
 {
 	using System;
 	using System.Runtime.InteropServices;
@@ -117,7 +117,7 @@ namespace Skybound.Gecko
         /// An array of mozIVisitInfo objects for the place.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetVisitsAttribute();
+		System.IntPtr GetVisitsAttribute(System.IntPtr jsContext);
 	}
 	
 	/// <summary>
@@ -125,7 +125,7 @@ namespace Skybound.Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("eb0b406f-8f57-4f2b-b0da-8883684b138a")]
+	[Guid("1f266877-2859-418b-a11b-ec3ae4f4f93d")]
 	public interface mozIVisitInfoCallback
 	{
 		
@@ -151,6 +151,13 @@ namespace Skybound.Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void HandleResult(mozIPlaceInfo aPlaceInfo);
+		
+		/// <summary>
+        /// Called when the mozIAsyncHistory::updatePlaces has finished processing
+        /// all mozIPlaceInfo records.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void HandleCompletion();
 	}
 	
 	/// <summary>
@@ -184,6 +191,6 @@ namespace Skybound.Gecko
         /// - Providing an invalid transitionType for a mozIVisitInfo.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UpdatePlaces(System.IntPtr aPlaceInfo, mozIVisitInfoCallback aCallback);
+		void UpdatePlaces(System.IntPtr aPlaceInfo, mozIVisitInfoCallback aCallback, System.IntPtr jsContext);
 	}
 }

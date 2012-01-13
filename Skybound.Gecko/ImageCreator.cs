@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Drawing;
 using System.Runtime.InteropServices;
-using Skybound.Gecko.DOM;
+using Gecko.DOM;
 
-namespace Skybound.Gecko
+namespace Gecko
 {
 	public class ImageCreator
 	{

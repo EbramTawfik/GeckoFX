@@ -1,4 +1,4 @@
-namespace Skybound.Gecko
+namespace Gecko
 {
 	partial class ChromeDialog
 	{
@@ -28,7 +28,7 @@ namespace Skybound.Gecko
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.webBrowser = new Skybound.Gecko.GeckoWebBrowser();
+			this.webBrowser = new Gecko.GeckoWebBrowser();
 			this.SuspendLayout();
 			// 
 			// webBrowser
@@ -38,7 +38,7 @@ namespace Skybound.Gecko
 			this.webBrowser.Name = "webBrowser";
 			this.webBrowser.Size = new System.Drawing.Size(500, 353);
 			this.webBrowser.TabIndex = 0;
-			this.webBrowser.WindowSetBounds += new Skybound.Gecko.GeckoWindowSetBoundsEventHandler(this.webBrowser_WindowSetBounds);
+			this.webBrowser.WindowSetBounds += new Gecko.GeckoWindowSetBoundsEventHandler(this.webBrowser_WindowSetBounds);
 			this.webBrowser.DocumentTitleChanged += new System.EventHandler(this.webBrowser_DocumentTitleChanged);
 			this.webBrowser.WindowClosed += new System.EventHandler(this.webBrowser_WindowClosed);
 			// 

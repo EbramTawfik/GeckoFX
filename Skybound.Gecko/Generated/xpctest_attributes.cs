@@ -18,7 +18,7 @@
 // IDL/IDH file.
 // </remarks>
 // --------------------------------------------------------------------------------------------
-namespace Skybound.Gecko
+namespace Gecko
 {
 	using System;
 	using System.Runtime.InteropServices;
@@ -33,7 +33,7 @@ namespace Skybound.Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("1364941e-4462-11d3-82ee-0060b0eb596f")]
+	[Guid("29e950a0-0134-44bc-b947-5e0ee95c8f7e")]
 	public interface nsIXPCTestObjectReadOnly
 	{
 		
@@ -60,16 +60,12 @@ namespace Skybound.Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		char GetCharReadOnlyAttribute();
-		
-		[return: MarshalAs(UnmanagedType.LPStr)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string GetID();
 	}
 	
 	/// <summary>nsIXPCTestObjectReadWrite </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("3b9b1d38-491a-11d3-82ef-0060b0eb596f")]
+	[Guid("492609a7-2582-436b-b0ef-92e29bb9e143")]
 	public interface nsIXPCTestObjectReadWrite
 	{
 		

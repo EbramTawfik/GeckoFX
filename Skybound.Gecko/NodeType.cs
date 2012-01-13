@@ -1,4 +1,4 @@
-﻿namespace Skybound.Gecko
+﻿namespace Gecko
 {
 	public enum NodeType
 	{

@@ -38,7 +38,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Runtime.CompilerServices;
 
-namespace Skybound.Gecko
+namespace Gecko
 {	
 	public enum nsDirection 
 	{

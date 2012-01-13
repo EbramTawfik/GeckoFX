@@ -18,7 +18,7 @@
 // IDL/IDH file.
 // </remarks>
 // --------------------------------------------------------------------------------------------
-namespace Skybound.Gecko
+namespace Gecko
 {
 	using System;
 	using System.Runtime.InteropServices;
@@ -73,20 +73,20 @@ namespace Skybound.Gecko
         ///undefined </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIIDBRequest Add(System.IntPtr value, System.IntPtr key, int argc);
+		nsIIDBRequest Add(System.IntPtr value, System.IntPtr key, System.IntPtr jsContext, int argc);
 		
 		/// <summary>
         ///undefined </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIIDBRequest Put(System.IntPtr value, System.IntPtr key, int argc);
+		nsIIDBRequest Put(System.IntPtr value, System.IntPtr key, System.IntPtr jsContext, int argc);
 		
 		/// <summary>
         /// Success fires IDBTransactionEvent, result == null
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIIDBRequest Delete(System.IntPtr key);
+		nsIIDBRequest Delete(System.IntPtr key, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Success fires IDBTransactionEvent, result == null
@@ -105,7 +105,7 @@ namespace Skybound.Gecko
         ///none </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIIDBIndex CreateIndex([MarshalAs(UnmanagedType.LPStruct)] nsAString name, [MarshalAs(UnmanagedType.LPStruct)] nsAString keyPath, System.IntPtr options);
+		nsIIDBIndex CreateIndex([MarshalAs(UnmanagedType.LPStruct)] nsAString name, [MarshalAs(UnmanagedType.LPStruct)] nsAString keyPath, System.IntPtr options, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Returns object immediately

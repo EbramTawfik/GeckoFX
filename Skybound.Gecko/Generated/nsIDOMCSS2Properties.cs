@@ -18,7 +18,7 @@
 // IDL/IDH file.
 // </remarks>
 // --------------------------------------------------------------------------------------------
-namespace Skybound.Gecko
+namespace Gecko
 {
 	using System;
 	using System.Runtime.InteropServices;
@@ -2430,6 +2430,18 @@ namespace Skybound.Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetMozBorderImageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozBorderImage);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetMozColumnsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozColumns);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetMozColumnsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozColumns);
 		
 		/// <summary>
         /// raises(DOMException) on setting

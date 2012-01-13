@@ -18,7 +18,7 @@
 // IDL/IDH file.
 // </remarks>
 // --------------------------------------------------------------------------------------------
-namespace Skybound.Gecko
+namespace Gecko
 {
 	using System;
 	using System.Runtime.InteropServices;
@@ -98,5 +98,25 @@ namespace Skybound.Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetQuotaForFilenamePattern([MarshalAs(UnmanagedType.LPStruct)] nsACString aPattern, int aSizeLimit, mozIStorageQuotaCallback aCallback, [MarshalAs(UnmanagedType.Interface)] nsISupports aUserData);
+		
+		/// <summary>
+        /// Adds, removes, or updates the file size information maintained by the quota
+        /// system for files not opened through openDatabaseWithVFS().
+        ///
+        /// Use this function when you want files to be included in quota calculations
+        /// that are either a) not SQLite databases, or b) SQLite databases that have
+        /// not been opened.
+        ///
+        /// This function will have no effect on files that do not match an existing
+        /// quota pattern (set previously by setQuotaForFilenamePattern()).
+        ///
+        /// @param aFile
+        /// The file for which quota information should be updated. If the file
+        /// exists then its size information will be added or refreshed. If the
+        /// file does not exist then the file will be removed from tracking
+        /// under the quota system.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void UpdateQutoaInformationForFile([MarshalAs(UnmanagedType.Interface)] nsIFile aFile);
 	}
 }

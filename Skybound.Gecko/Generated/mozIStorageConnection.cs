@@ -18,7 +18,7 @@
 // IDL/IDH file.
 // </remarks>
 // --------------------------------------------------------------------------------------------
-namespace Skybound.Gecko
+namespace Gecko
 {
 	using System;
 	using System.Runtime.InteropServices;
@@ -346,13 +346,17 @@ namespace Skybound.Gecko
 		
 		/// <summary>
         /// Controls SQLITE_FCNTL_CHUNK_SIZE setting in sqlite. This helps avoid fragmentation
-        /// by growing/shrinking the database file in SQLITE_FCNTL_CHUNK_SIZE increments.
+        /// by growing/shrinking the database file in SQLITE_FCNTL_CHUNK_SIZE increments. To
+        /// conserve memory on systems short on storage space, this function will have no effect
+        /// on mobile devices or if less than 500MiB of space is left available.
         ///
         /// @param aIncrement
         /// The database file will grow in multiples of chunkSize.
         /// @param aDatabaseName
         /// Sqlite database name. "" means pass NULL for zDbName to sqlite3_file_control.
         /// See http://sqlite.org/c3ref/file_control.html for more details.
+        /// @throws NS_ERROR_FILE_TOO_BIG
+        /// If the system is short on storage space.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetGrowthIncrement(int aIncrement, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aDatabaseName);

@@ -18,7 +18,7 @@
 // IDL/IDH file.
 // </remarks>
 // --------------------------------------------------------------------------------------------
-namespace Skybound.Gecko
+namespace Gecko
 {
 	using System;
 	using System.Runtime.InteropServices;
@@ -55,7 +55,7 @@ namespace Skybound.Gecko
 		
 		/// <summary>
         /// The path that this memory usage should be reported under.  Paths are
-        /// '/'-delimited, eg. "a/b/c".  There are two categories of paths.
+        /// '/'-delimited, eg. "a/b/c".  There are three categories of paths.
         ///
         /// - Paths starting with "explicit" represent regions of memory that have
         /// been explicitly allocated with an OS-level allocation (eg.
@@ -81,6 +81,14 @@ namespace Skybound.Gecko
         /// A node's children divide their parent's memory into disjoint pieces.
         /// So in the example above, |a| may not count any allocations counted by
         /// |d|, and vice versa.
+        ///
+        /// - Paths starting with "map" represent regions of virtual memory that the
+        /// process has mapped.  The reporter immediately beneath "map" describes
+        /// the type of measurement; for instance, the reporter "map/rss/[stack]"
+        /// might report how much of the process's stack is currently in physical
+        /// memory.
+        ///
+        /// Reporters in this category must have kind NONHEAP and units BYTES.
         ///
         /// - All other paths represent cross-cutting values and may overlap with any
         /// other reporter.

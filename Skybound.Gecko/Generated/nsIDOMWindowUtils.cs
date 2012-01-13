@@ -18,7 +18,7 @@
 // IDL/IDH file.
 // </remarks>
 // --------------------------------------------------------------------------------------------
-namespace Skybound.Gecko
+namespace Gecko
 {
 	using System;
 	using System.Runtime.InteropServices;
@@ -36,7 +36,7 @@ namespace Skybound.Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("d95fac68-4f0d-430f-9580-6dd8041f177e")]
+	[Guid("bc6c156a-c41f-43dd-ace3-e3bca9894ed1")]
 	public interface nsIDOMWindowUtils
 	{
 		
@@ -532,10 +532,15 @@ namespace Skybound.Gecko
         /// Will throw a DOM security error if called without UniversalXPConnect
         /// privileges.
         ///
-        /// @param aType The event type: "compositionstart" or "compositionend".
+        /// @param aType     The event type: "compositionstart", "compositionend" or
+        /// "compositionupdate".
+        /// @param aData     The data property value.  Note that this isn't applied
+        /// for compositionstart event because its value is the
+        /// selected text which is automatically computed.
+        /// @param aLocale   The locale property value.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendCompositionEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString aType);
+		void SendCompositionEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString aType, [MarshalAs(UnmanagedType.LPStruct)] nsAString aData, [MarshalAs(UnmanagedType.LPStruct)] nsAString aLocale);
 		
 		/// <summary>
         /// NOTE: These values must be same to NS_TEXTRANGE_* in nsGUIEvent.h
@@ -720,6 +725,13 @@ namespace Skybound.Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		double ComputeAnimationDistance([MarshalAs(UnmanagedType.Interface)] nsIDOMElement element, [MarshalAs(UnmanagedType.LPStruct)] nsAString property, [MarshalAs(UnmanagedType.LPStruct)] nsAString value1, [MarshalAs(UnmanagedType.LPStruct)] nsAString value2);
+		
+		/// <summary>
+        /// Wrap an nsIFile in an nsIDOMFile
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMFile WrapDOMFile([MarshalAs(UnmanagedType.Interface)] nsIFile aFile);
 		
 		/// <summary>
         /// Get the type of the currently focused html input, if any.

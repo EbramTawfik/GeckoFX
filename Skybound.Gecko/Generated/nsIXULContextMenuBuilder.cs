@@ -18,7 +18,7 @@
 // IDL/IDH file.
 // </remarks>
 // --------------------------------------------------------------------------------------------
-namespace Skybound.Gecko
+namespace Gecko
 {
 	using System;
 	using System.Runtime.InteropServices;
@@ -33,7 +33,7 @@ namespace Skybound.Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("f0c35053-14cc-4e23-a9db-f9a68fae8375")]
+	[Guid("eb6b42c0-2f1c-4760-b5ca-bdc9b3ec77d4")]
 	public interface nsIXULContextMenuBuilder
 	{
 		
@@ -43,21 +43,18 @@ namespace Skybound.Gecko
         /// @param aDocumentFragment the fragment that will be used to append top
         /// level elements
         ///
-        /// @param aGeneratedAttrName the name of the attribute that will be used
-        /// to mark elements as generated.
-        ///
-        /// @param aIdentAttrName the name of the attribute that will be used for
-        /// menuitem identification.
+        /// @param aGeneratedItemIdAttrName the name of the attribute that will be
+        /// used to mark elements as generated and for menuitem identification
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init([MarshalAs(UnmanagedType.Interface)] nsIDOMDocumentFragment aDocumentFragment, [MarshalAs(UnmanagedType.LPStruct)] nsAString aGeneratedAttrName, [MarshalAs(UnmanagedType.LPStruct)] nsAString aIdentAttrName);
+		void Init([MarshalAs(UnmanagedType.Interface)] nsIDOMDocumentFragment aDocumentFragment, [MarshalAs(UnmanagedType.LPStruct)] nsAString aGeneratedItemIdAttrName);
 		
 		/// <summary>
-        /// Invoke the action of the menuitem with assigned identifier aIdent.
+        /// Invoke the action of the menuitem with assigned id aGeneratedItemId.
         ///
-        /// @param aIdent the menuitem identifier
+        /// @param aGeneratedItemId the menuitem id
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Click([MarshalAs(UnmanagedType.LPStruct)] nsAString aIdent);
+		void Click([MarshalAs(UnmanagedType.LPStruct)] nsAString aGeneratedItemId);
 	}
 }

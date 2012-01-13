@@ -18,7 +18,7 @@
 // IDL/IDH file.
 // </remarks>
 // --------------------------------------------------------------------------------------------
-namespace Skybound.Gecko
+namespace Gecko
 {
 	using System;
 	using System.Runtime.InteropServices;
@@ -32,7 +32,7 @@ namespace Skybound.Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("4bcba4ec-7a44-43f9-a70f-1e92cdc625b9")]
+	[Guid("d02e2d95-072d-4b91-8b8f-1300e45fcb2b")]
 	public interface imgIEncoder : nsIAsyncInputStream
 	{
 		
@@ -214,5 +214,15 @@ namespace Skybound.Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void EndImageEncode();
+		
+		/// <summary>
+        /// Sometimes an encoder can contain another encoder and direct access
+        /// to its buffer is necessary.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetImageBufferSize();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		System.IntPtr GetImageBuffer();
 	}
 }
