@@ -23,6 +23,10 @@ namespace GeckoFxTest
 #else
 			Xpcom.Initialize(@"C:\Program Files (x86)\Mozilla Firefox BETA");
 #endif
+			Application.ApplicationExit += (sender, e) => 
+			{
+        		Xpcom.Shutdown();
+			};
 			
 			//Application.Idle += (s, e) => Console.WriteLine(SynchronizationContext.Current);
 			Application.Run(new MyForm());
