@@ -30,7 +30,7 @@ namespace Gecko
 	/// <summary>nsISSLStatus </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("cfede939-def1-49be-81ed-d401b3a07d1c")]
+	[Guid("3f1fcd83-c5a9-4cd1-a250-7676ca7c7e34")]
 	public interface nsISSLStatus
 	{
 		
@@ -78,5 +78,13 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsUntrustedAttribute();
+		
+		/// <summary>
+        /// True only if (and after) serverCert was successfully validated as
+        /// Extended Validation (EV).
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetIsExtendedValidationAttribute();
 	}
 }

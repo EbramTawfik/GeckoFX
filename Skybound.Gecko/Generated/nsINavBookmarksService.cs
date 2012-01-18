@@ -278,6 +278,9 @@ namespace Gecko
         /// @param aTitle
         /// The title for the new bookmark
         /// @return The ID of the newly-created bookmark.
+        ///
+        /// @note aTitle will be truncated to TITLE_LENGTH_MAX and
+        /// aURI will be truncated to URI_LENGTH_MAX.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int InsertBookmark(int aParentId, [MarshalAs(UnmanagedType.Interface)] nsIURI aURI, int aIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aTitle);
@@ -426,9 +429,11 @@ namespace Gecko
 		/// <summary>
         /// Set the title for an item.
         /// @param aItemId
-        /// The id of the item whose title should be updated
+        /// The id of the item whose title should be updated.
         /// @param aTitle
         /// The new title for the bookmark.
+        ///
+        /// @note  aTitle will be truncated to TITLE_LENGTH_MAX.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetItemTitle(int aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aTitle);

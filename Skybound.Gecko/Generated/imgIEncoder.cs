@@ -32,7 +32,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("d02e2d95-072d-4b91-8b8f-1300e45fcb2b")]
+	[Guid("4baa2d6e-fee7-42df-ae3f-5fbebc0c267c")]
 	public interface imgIEncoder : nsIAsyncInputStream
 	{
 		
@@ -217,10 +217,11 @@ namespace Gecko
 		
 		/// <summary>
         /// Sometimes an encoder can contain another encoder and direct access
-        /// to its buffer is necessary.
+        /// to its buffer is necessary.   It is only safe to assume that the buffer
+        /// returned from getImageBuffer() is of size equal to getImageBufferUsed().
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetImageBufferSize();
+		uint GetImageBufferUsed();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetImageBuffer();

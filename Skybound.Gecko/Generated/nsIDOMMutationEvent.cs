@@ -30,7 +30,7 @@ namespace Gecko
 	/// <summary>nsIDOMMutationEvent </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("8e440d86-886a-4e76-9e59-c13b939c9a4b")]
+	[Guid("72b3ddba-6cbb-4011-ac3b-50bd900b223d")]
 	public interface nsIDOMMutationEvent : nsIDOMEvent
 	{
 		
@@ -154,6 +154,13 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetDefaultPreventedAttribute();
+		
+		/// <summary>
+        /// Prevents other event listeners from being triggered and,
+        /// unlike Event.stopPropagation() its effect is immediate.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void StopImmediatePropagation();
 		
 		/// <summary>Member GetRelatedNodeAttribute </summary>
 		/// <returns>A nsIDOMNode</returns>

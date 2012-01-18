@@ -36,7 +36,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("f83d9d6d-6c0c-418c-b12a-438e76d5866b")]
+	[Guid("07fb24d2-a102-41a2-bdaa-eb5e0d399eba")]
 	public interface nsIDOMCloseEvent : nsIDOMEvent
 	{
 		
@@ -160,6 +160,13 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetDefaultPreventedAttribute();
+		
+		/// <summary>
+        /// Prevents other event listeners from being triggered and,
+        /// unlike Event.stopPropagation() its effect is immediate.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void StopImmediatePropagation();
 		
 		/// <summary>
         /// The nsIDOMCloseEvent interface is the interface to the event

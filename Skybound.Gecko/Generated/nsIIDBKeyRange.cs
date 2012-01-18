@@ -34,7 +34,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("a1505e41-7e48-4542-9fa5-3f2c98233567")]
+	[Guid("8aeb8660-76b3-4651-b8c2-9894ae6dfe68")]
 	public interface nsIIDBKeyRange
 	{
 		
@@ -43,13 +43,11 @@ namespace Gecko
         /// http://dev.w3.org/2006/webapi/WebSimpleDB/#idl-def-IDBKeyRange for more
         /// information.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant GetLowerAttribute();
+		System.IntPtr GetLowerAttribute(System.IntPtr jsContext);
 		
-		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant GetUpperAttribute();
+		System.IntPtr GetUpperAttribute(System.IntPtr jsContext);
 		
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Gecko</RootNamespace>
-    <AssemblyName>geckofx-9</AssemblyName>
+    <AssemblyName>geckofx-10</AssemblyName>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>GeckoFX.snk</AssemblyOriginatorKeyFile>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
@@ -446,6 +446,7 @@
     <Compile Include="Generated\nsIDOMAnimationEvent.cs" />
     <Compile Include="Generated\nsIDOMAttr.cs" />
     <Compile Include="Generated\nsIDOMBarProp.cs" />
+    <Compile Include="Generated\nsIDOMBatteryManager.cs" />
     <Compile Include="Generated\nsIDOMBeforeUnloadEvent.cs" />
     <Compile Include="Generated\nsIDOMCanvasRenderingContext2D.cs" />
     <Compile Include="Generated\nsIDOMCaretPosition.cs" />
@@ -505,7 +506,6 @@
     <Compile Include="Generated\nsIDOMElementCSSInlineStyle.cs" />
     <Compile Include="Generated\nsIDOMElementTimeControl.cs" />
     <Compile Include="Generated\nsIDOMEvent.cs" />
-    <Compile Include="Generated\nsIDOMEventException.cs" />
     <Compile Include="Generated\nsIDOMEventListener.cs" />
     <Compile Include="Generated\nsIDOMEventTarget.cs" />
     <Compile Include="Generated\nsIDOMFile.cs" />
@@ -615,8 +615,8 @@
     <Compile Include="Generated\nsIDOMMozTouchEvent.cs" />
     <Compile Include="Generated\nsIDOMMutationEvent.cs" />
     <Compile Include="Generated\nsIDOMNamedNodeMap.cs" />
-    <Compile Include="Generated\nsIDOMNameList.cs" />
     <Compile Include="Generated\nsIDOMNavigator.cs" />
+    <Compile Include="Generated\nsIDOMNavigatorBattery.cs" />
     <Compile Include="Generated\nsIDOMNavigatorDesktopNotification.cs" />
     <Compile Include="Generated\nsIDOMNavigatorGeolocation.cs" />
     <Compile Include="Generated\nsIDOMNode.cs" />
@@ -629,9 +629,6 @@
     <Compile Include="Generated\nsIDOMNSEditableElement.cs" />
     <Compile Include="Generated\nsIDOMNSElement.cs" />
     <Compile Include="Generated\nsIDOMNSEvent.cs" />
-    <Compile Include="Generated\nsIDOMNSHTMLElement.cs" />
-    <Compile Include="Generated\nsIDOMNSHTMLFrameElement.cs" />
-    <Compile Include="Generated\nsIDOMNSHTMLOptionCollectn.cs" />
     <Compile Include="Generated\nsIDOMNSRange.cs" />
     <Compile Include="Generated\nsIDOMNSRGBAColor.cs" />
     <Compile Include="Generated\nsIDOMNSXPathExpression.cs" />
@@ -765,7 +762,6 @@
     <Compile Include="Generated\nsIDOMWindow.cs" />
     <Compile Include="Generated\nsIDOMWindowCollection.cs" />
     <Compile Include="Generated\nsIDOMWindowUtils.cs" />
-    <Compile Include="Generated\nsIDOMWorkers.cs" />
     <Compile Include="Generated\nsIDOMXMLDocument.cs" />
     <Compile Include="Generated\nsIDOMXPathEvaluator.cs" />
     <Compile Include="Generated\nsIDOMXPathException.cs" />
@@ -913,10 +909,10 @@
     <Compile Include="Generated\nsIIDBIndex.cs" />
     <Compile Include="Generated\nsIIDBKeyRange.cs" />
     <Compile Include="Generated\nsIIDBObjectStore.cs" />
+    <Compile Include="Generated\nsIIDBOpenDBRequest.cs" />
     <Compile Include="Generated\nsIIDBRequest.cs" />
     <Compile Include="Generated\nsIIDBTransaction.cs" />
     <Compile Include="Generated\nsIIDBVersionChangeEvent.cs" />
-    <Compile Include="Generated\nsIIDBVersionChangeRequest.cs" />
     <Compile Include="Generated\nsIIdentityInfo.cs" />
     <Compile Include="Generated\nsIIdleService.cs" />
     <Compile Include="Generated\nsIIDNService.cs" />
@@ -1221,6 +1217,7 @@
     <Compile Include="Generated\nsITableEditor.cs" />
     <Compile Include="Generated\nsITabParent.cs" />
     <Compile Include="Generated\nsITaggingService.cs" />
+    <Compile Include="Generated\nsITaskbarOverlayIconController.cs" />
     <Compile Include="Generated\nsITaskbarPreview.cs" />
     <Compile Include="Generated\nsITaskbarPreviewButton.cs" />
     <Compile Include="Generated\nsITaskbarPreviewController.cs" />
@@ -1240,7 +1237,6 @@
     <Compile Include="Generated\nsITimer.cs" />
     <Compile Include="Generated\nsITokenDialogs.cs" />
     <Compile Include="Generated\nsITokenPasswordDialogs.cs" />
-    <Compile Include="Generated\nsIToolkit.cs" />
     <Compile Include="Generated\nsIToolkitChromeRegistry.cs" />
     <Compile Include="Generated\nsIToolkitProfile.cs" />
     <Compile Include="Generated\nsIToolkitProfileService.cs" />
@@ -1334,6 +1330,7 @@
     <Compile Include="Generated\nsIWindowsShellService.cs" />
     <Compile Include="Generated\nsIWindowWatcher.cs" />
     <Compile Include="Generated\nsIWinTaskbar.cs" />
+    <Compile Include="Generated\nsIWorkerTest.cs" />
     <Compile Include="Generated\nsIWritablePropertyBag.cs" />
     <Compile Include="Generated\nsIWritablePropertyBag2.cs" />
     <Compile Include="Generated\nsIWyciwygChannel.cs" />
@@ -1398,13 +1395,13 @@
     <Compile Include="Generated\txIEXSLTRegExFunctions.cs" />
     <Compile Include="Generated\txIFunctionEvaluationContext.cs" />
     <Compile Include="Generated\txINodeSet.cs" />
+    <Compile Include="Generated\txIXPathObject.cs" />
     <Compile Include="Generated\xpccomponents.cs" />
     <Compile Include="Generated\xpcexception.cs" />
     <Compile Include="Generated\xpcIJSGetFactory.cs" />
     <Compile Include="Generated\xpcIJSModuleLoader.cs" />
     <Compile Include="Generated\xpcIJSWeakReference.cs" />
     <Compile Include="Generated\xpcjsid.cs" />
-    <Compile Include="Generated\xpcsample1.cs" />
     <Compile Include="Generated\xpctest_attributes.cs" />
     <Compile Include="BaseTypes\nscolor.cs" />
     <Compile Include="BaseTypes\nsConstRect.cs" />

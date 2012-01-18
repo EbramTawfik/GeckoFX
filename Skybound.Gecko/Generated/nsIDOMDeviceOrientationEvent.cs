@@ -30,7 +30,7 @@ namespace Gecko
 	/// <summary>nsIDOMDeviceOrientationEvent </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("daf2d570-0ecc-4aa0-aba4-26f60dfcba6a")]
+	[Guid("a9bd91fd-c0a7-44ed-9975-5a58faba3be3")]
 	public interface nsIDOMDeviceOrientationEvent : nsIDOMEvent
 	{
 		
@@ -154,6 +154,13 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetDefaultPreventedAttribute();
+		
+		/// <summary>
+        /// Prevents other event listeners from being triggered and,
+        /// unlike Event.stopPropagation() its effect is immediate.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void StopImmediatePropagation();
 		
 		/// <summary>Member InitDeviceOrientationEvent </summary>
 		/// <param name='eventTypeArg'> </param>

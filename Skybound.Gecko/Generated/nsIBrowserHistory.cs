@@ -32,7 +32,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("212371ab-d8b9-4835-b867-d0eb78c0cb18")]
+	[Guid("d092f5a5-33a8-456c-ac89-6ae6f880bd04")]
 	public interface nsIBrowserHistory : nsIGlobalHistory2
 	{
 		
@@ -87,12 +87,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void AddPageWithDetails([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string aTitle, int aLastVisited);
-		
-		/// <summary>
-        /// The last page that was visited in a top-level window.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetLastPageVisitedAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aLastPageVisited);
 		
 		/// <summary>
         /// Indicates if there are entries in global history.

@@ -517,9 +517,11 @@ namespace Gecko
         /// responsible for calling PR_Close on the result.
         ///
         /// @param flags the PR_Open flags from prio.h, plus optionally
-        /// DELETE_ON_CLOSE. DELETE_ON_CLOSE may be implemented by removing
-        /// the file (by path name) immediately after opening it, so beware
-        /// of possible races; the file should be exclusively owned by this
+        /// OS_READAHEAD or DELETE_ON_CLOSE. OS_READAHEAD is a hint to the
+        /// OS that the file will be read sequentially with agressive
+        /// readahead. DELETE_ON_CLOSE may be implemented by removing the
+        /// file (by path name) immediately after opening it, so beware of
+        /// possible races; the file should be exclusively owned by this
         /// process.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

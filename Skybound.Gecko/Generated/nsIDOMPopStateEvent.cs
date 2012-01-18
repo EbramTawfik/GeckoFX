@@ -30,7 +30,7 @@ namespace Gecko
 	/// <summary>nsIDOMPopStateEvent </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("f3834fd5-0ef5-4ccd-a741-0b6685414342")]
+	[Guid("034f5fcc-9b41-433c-9795-64767051926a")]
 	public interface nsIDOMPopStateEvent : nsIDOMEvent
 	{
 		
@@ -154,6 +154,13 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetDefaultPreventedAttribute();
+		
+		/// <summary>
+        /// Prevents other event listeners from being triggered and,
+        /// unlike Event.stopPropagation() its effect is immediate.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void StopImmediatePropagation();
 		
 		/// <summary>
         /// The state associated with this popstate event

@@ -30,7 +30,7 @@ namespace Gecko
 	/// <summary>nsIAppShellService </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("361facd0-6e9a-4ff1-a0d4-450744cf0023")]
+	[Guid("EBCD34E2-2E43-45C0-AAC8-E6F1C692B371")]
 	public interface nsIAppShellService
 	{
 		
@@ -49,18 +49,15 @@ namespace Gecko
         /// tag in the XUL.  Set to NS_SIZETOCONTENT to force
         /// the window to wrap to its contents.
         /// @param aInitialHeight like aInitialWidth, but subtly different.
-        /// @param aAppShell a widget "appshell" (event processor) to associate
-        /// with the new window
         /// @param aResult the newly created window is returned here.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIXULWindow CreateTopLevelWindow([MarshalAs(UnmanagedType.Interface)] nsIXULWindow aParent, [MarshalAs(UnmanagedType.Interface)] nsIURI aUrl, uint aChromeMask, int aInitialWidth, int aInitialHeight, [MarshalAs(UnmanagedType.Interface)] nsIAppShell aAppShell);
+		nsIXULWindow CreateTopLevelWindow([MarshalAs(UnmanagedType.Interface)] nsIXULWindow aParent, [MarshalAs(UnmanagedType.Interface)] nsIURI aUrl, uint aChromeMask, int aInitialWidth, int aInitialHeight);
 		
 		/// <summary>Member CreateHiddenWindow </summary>
-		/// <param name='aAppShell'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CreateHiddenWindow([MarshalAs(UnmanagedType.Interface)] nsIAppShell aAppShell);
+		void CreateHiddenWindow();
 		
 		/// <summary>Member DestroyHiddenWindow </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

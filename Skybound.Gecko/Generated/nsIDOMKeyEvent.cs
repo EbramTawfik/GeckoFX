@@ -30,7 +30,7 @@ namespace Gecko
 	/// <summary>nsIDOMKeyEvent </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("ffcfb88a-d1d1-40b9-96e1-e338211d3511")]
+	[Guid("def974c3-b491-481b-bc67-29174af4b26a")]
 	public interface nsIDOMKeyEvent : nsIDOMUIEvent
 	{
 		
@@ -154,6 +154,13 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetDefaultPreventedAttribute();
+		
+		/// <summary>
+        /// Prevents other event listeners from being triggered and,
+        /// unlike Event.stopPropagation() its effect is immediate.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void StopImmediatePropagation();
 		
 		/// <summary>
         /// The nsIDOMUIEvent interface is the datatype for all UI events in the

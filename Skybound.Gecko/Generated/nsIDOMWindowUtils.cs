@@ -36,7 +36,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("bc6c156a-c41f-43dd-ace3-e3bca9894ed1")]
+	[Guid("910484d7-219c-4c72-b999-7a7e9c954646")]
 	public interface nsIDOMWindowUtils
 	{
 		
@@ -765,5 +765,13 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetMayHaveTouchEventListenersAttribute();
+		
+		/// <summary>
+        /// Check if any ThebesLayer painting has been done for this element,
+        /// clears the painted flags if they have.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool CheckAndClearPaintedState([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement);
 	}
 }

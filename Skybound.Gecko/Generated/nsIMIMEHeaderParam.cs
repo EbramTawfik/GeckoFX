@@ -29,7 +29,7 @@ namespace Gecko
 	
 	/// <summary>
     /// This interface allows any module to access the routine
-    /// for MIME header parameter parsing (RFC 2231)
+    /// for MIME header parameter parsing (RFC 2231/5987)
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -85,6 +85,13 @@ namespace Gecko
 		void GetParameter([MarshalAs(UnmanagedType.LPStruct)] nsACString aHeaderVal, [MarshalAs(UnmanagedType.LPStr)] string aParamName, [MarshalAs(UnmanagedType.LPStruct)] nsACString aFallbackCharset, [MarshalAs(UnmanagedType.Bool)] bool aTryLocaleCharset, [MarshalAs(UnmanagedType.LPStr)] ref string aLang, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
+        /// Like getParameter, but using RFC 5987 instead of 2231.  This removes
+        /// support for header parameter continuations (foo*0, foo*1, etc).
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetParameter5987([MarshalAs(UnmanagedType.LPStruct)] nsACString aHeaderVal, [MarshalAs(UnmanagedType.LPStr)] string aParamName, [MarshalAs(UnmanagedType.LPStruct)] nsACString aFallbackCharset, [MarshalAs(UnmanagedType.Bool)] bool aTryLocaleCharset, [MarshalAs(UnmanagedType.LPStr)] ref string aLang, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		
+		/// <summary>
         /// Given the value of a single header field  (such as
         /// Content-Disposition and Content-Type) and the name of a parameter
         /// (e.g. filename, name, charset), returns the value of the parameter
@@ -128,7 +135,7 @@ namespace Gecko
         /// invoked  is  <code>MIME_DecodeMimeHeader</code> in
         /// mailnews/mime/src/mimehdrs.cpp defined as
         /// char * Mime_DecodeMimeHeader(char *header_val, const char *charset,
-        /// PRBool override, PRBool eatcontinuation)
+        /// bool override, bool eatcontinuation)
         ///
         /// @param aHeaderVal       a header value to decode
         /// @param aDefaultCharset  MIME charset to use in place of MIME charset

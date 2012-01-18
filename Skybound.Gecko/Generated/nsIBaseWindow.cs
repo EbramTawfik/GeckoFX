@@ -34,7 +34,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("046BC8A0-8015-11d3-AF70-00A024FFC08C")]
+	[Guid("7144AC8B-6702-4A4B-A73D-D1D4E9717E46")]
 	public interface nsIBaseWindow
 	{
 		
@@ -217,25 +217,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetEnabledAttribute([MarshalAs(UnmanagedType.Bool)] bool aEnabled);
-		
-		/// <summary>
-        ///set blurSuppression to true to suppress handling of blur events.
-        /// set it false to re-enable them. query it to determine whether
-        /// blur events are suppressed. The implementation should allow
-        /// for blur events to be suppressed multiple times.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetBlurSuppressionAttribute();
-		
-		/// <summary>
-        ///set blurSuppression to true to suppress handling of blur events.
-        /// set it false to re-enable them. query it to determine whether
-        /// blur events are suppressed. The implementation should allow
-        /// for blur events to be suppressed multiple times.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBlurSuppressionAttribute([MarshalAs(UnmanagedType.Bool)] bool aBlurSuppression);
 		
 		/// <summary>
         ///Allows you to find out what the widget is of a given object.  Depending

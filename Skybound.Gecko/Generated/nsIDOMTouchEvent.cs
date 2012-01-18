@@ -107,7 +107,7 @@ namespace Gecko
 	/// <summary>nsIDOMTouchEvent </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("df94b20b-7998-4f00-935c-ee2c6b179711")]
+	[Guid("0cc687df-0ed5-4b7f-b89d-cbb99b21d23a")]
 	public interface nsIDOMTouchEvent : nsIDOMUIEvent
 	{
 		
@@ -231,6 +231,13 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetDefaultPreventedAttribute();
+		
+		/// <summary>
+        /// Prevents other event listeners from being triggered and,
+        /// unlike Event.stopPropagation() its effect is immediate.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void StopImmediatePropagation();
 		
 		/// <summary>
         /// The nsIDOMUIEvent interface is the datatype for all UI events in the

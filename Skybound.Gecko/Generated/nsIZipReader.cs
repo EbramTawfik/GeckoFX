@@ -91,7 +91,7 @@ namespace Gecko
 	/// <summary>nsIZipReader </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("7bb925d6-833a-486c-8ef2-9bc15c670a60")]
+	[Guid("8fbf5023-3827-4fbc-a464-5db546e7f747")]
 	public interface nsIZipReader
 	{
 		
@@ -107,7 +107,7 @@ namespace Gecko
         /// Opens a zip file inside a zip file for reading.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OpenInner([MarshalAs(UnmanagedType.Interface)] nsIZipReader zipReader, [MarshalAs(UnmanagedType.LPStr)] string zipEntry);
+		void OpenInner([MarshalAs(UnmanagedType.Interface)] nsIZipReader zipReader, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String zipEntry);
 		
 		/// <summary>
         /// The file that represents the zip with which this zip reader was
@@ -127,11 +127,12 @@ namespace Gecko
 		/// <summary>
         /// Tests the integrity of the archive by performing a CRC check
         /// on each item expanded into memory.  If an entry is specified
-        /// the integrity of only that item is tested.  If NULL is passed
-        /// in the integrity of all items in the archive are tested.
+        /// the integrity of only that item is tested.  If null (javascript)
+        /// or EmptyCString() (c++) is passed in the integrity of all items
+        /// in the archive are tested.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Test([MarshalAs(UnmanagedType.LPStr)] string aEntryName);
+		void Test([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aEntryName);
 		
 		/// <summary>
         /// Extracts a zip entry into a local file specified by outFile.
@@ -141,14 +142,14 @@ namespace Gecko
         /// non-recursively.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Extract([MarshalAs(UnmanagedType.LPStr)] string zipEntry, [MarshalAs(UnmanagedType.Interface)] nsIFile outFile);
+		void Extract([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String zipEntry, [MarshalAs(UnmanagedType.Interface)] nsIFile outFile);
 		
 		/// <summary>
         /// Returns a nsIZipEntry describing a specified zip entry.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIZipEntry GetEntry([MarshalAs(UnmanagedType.LPStr)] string zipEntry);
+		nsIZipEntry GetEntry([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String zipEntry);
 		
 		/// <summary>
         /// Checks whether the zipfile contains an entry specified by entryName.
@@ -162,7 +163,8 @@ namespace Gecko
         ///
         /// @param aPattern
         /// A regular expression used to find matching entries in the zip file.
-        /// Set this parameter to null to get all entries; otherwise, use the
+        /// Set this parameter to null (javascript) or EmptyCString() (c++) or "*"
+        /// to get all entries; otherwise, use the
         /// following syntax:
         ///
         /// o * matches anything
@@ -201,7 +203,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIUTF8StringEnumerator FindEntries([MarshalAs(UnmanagedType.LPStr)] string aPattern);
+		nsIUTF8StringEnumerator FindEntries([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aPattern);
 		
 		/// <summary>
         /// Returns an input stream containing the contents of the specified zip
@@ -210,7 +212,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIInputStream GetInputStream([MarshalAs(UnmanagedType.LPStr)] string zipEntry);
+		nsIInputStream GetInputStream([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String zipEntry);
 		
 		/// <summary>
         /// Returns an input stream containing the contents of the specified zip
@@ -221,7 +223,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIInputStream GetInputStreamWithSpec([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aJarSpec, [MarshalAs(UnmanagedType.LPStr)] string zipEntry);
+		nsIInputStream GetInputStreamWithSpec([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aJarSpec, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String zipEntry);
 		
 		/// <summary>
         /// Returns an object describing the entity which signed
@@ -233,7 +235,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIPrincipal GetCertificatePrincipal([MarshalAs(UnmanagedType.LPStr)] string aEntryName);
+		nsIPrincipal GetCertificatePrincipal([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aEntryName);
 		
 		/// <summary>Member GetManifestEntriesCountAttribute </summary>
 		/// <returns>A System.UInt32</returns>
@@ -246,7 +248,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("52c45d86-0cc3-11d4-986e-00c04fa0cf4a")]
+	[Guid("72fc56e5-3e6e-4d11-8967-26ab96071032")]
 	public interface nsIZipReaderCache
 	{
 		
@@ -282,6 +284,6 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIZipReader GetInnerZip([MarshalAs(UnmanagedType.Interface)] nsIFile zipFile, [MarshalAs(UnmanagedType.LPStr)] string zipEntry);
+		nsIZipReader GetInnerZip([MarshalAs(UnmanagedType.Interface)] nsIFile zipFile, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String zipEntry);
 	}
 }

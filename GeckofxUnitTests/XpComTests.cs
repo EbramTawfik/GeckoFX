@@ -18,7 +18,7 @@ namespace GeckofxUnitTests
 				if (Xpcom.IsLinux)
 					return "/usr/lib/firefox-8.0/";
 				
-				return @"C:\Program Files (x86)\Mozilla Firefox BETA";
+				return @"C:\Program Files (x86)\Mozilla Firefox 10.0";
 			}
 		}
 

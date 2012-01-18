@@ -60,7 +60,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("9fc572db-1089-4d43-9121-f4833d77a2df")]
+	[Guid("3232f40a-e94b-432d-9496-096abf1387bd")]
 	public interface nsIWinTaskbar
 	{
 		
@@ -109,6 +109,15 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsITaskbarProgress GetTaskbarProgress([MarshalAs(UnmanagedType.Interface)] nsIDocShell shell);
+		
+		/// <summary>
+        /// Gets the taskbar icon overlay controller for a window. The docshell is used
+        /// to find the toplevel window. See the documentation in
+        /// nsITaskbarOverlayIconController for more details.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsITaskbarOverlayIconController GetOverlayIconController([MarshalAs(UnmanagedType.Interface)] nsIDocShell shell);
 		
 		/// <summary>
         /// Retrieve a taskbar jump list builder

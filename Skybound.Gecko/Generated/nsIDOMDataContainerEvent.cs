@@ -30,7 +30,7 @@ namespace Gecko
 	/// <summary>nsIDOMDataContainerEvent </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("3600d66c-b9ac-4c22-b39a-d64cce619921")]
+	[Guid("ac70e6bd-1f52-45ce-9d63-0aa650480ba1")]
 	public interface nsIDOMDataContainerEvent : nsIDOMEvent
 	{
 		
@@ -154,6 +154,13 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetDefaultPreventedAttribute();
+		
+		/// <summary>
+        /// Prevents other event listeners from being triggered and,
+        /// unlike Event.stopPropagation() its effect is immediate.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void StopImmediatePropagation();
 		
 		/// <summary>
         /// Return the data associated with the given key.

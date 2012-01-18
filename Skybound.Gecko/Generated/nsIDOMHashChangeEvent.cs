@@ -30,7 +30,7 @@ namespace Gecko
 	/// <summary>nsIDOMHashChangeEvent </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("34850f11-8b88-43ce-8d55-9aa8b18753bd")]
+	[Guid("9fc4785c-b769-40e5-8f79-586e01413afd")]
 	public interface nsIDOMHashChangeEvent : nsIDOMEvent
 	{
 		
@@ -154,6 +154,13 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetDefaultPreventedAttribute();
+		
+		/// <summary>
+        /// Prevents other event listeners from being triggered and,
+        /// unlike Event.stopPropagation() its effect is immediate.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void StopImmediatePropagation();
 		
 		/// <summary>Member GetOldURLAttribute </summary>
 		/// <param name='aOldURL'> </param>

@@ -101,7 +101,7 @@ namespace Gecko
         /// @return  Indicates whether any of the listeners which handled the
         /// event called preventDefault. If preventDefault was called
         /// the value is false, else the value is true.
-        /// @throws  UNSPECIFIED_EVENT_TYPE_ERR: Raised if the Event's type was
+        /// @throws  INVALID_STATE_ERR: Raised if the Event's type was
         /// not specified by initializing the event before
         /// dispatchEvent was called. Specification of the Event's
         /// type as null or an empty string will also trigger this
@@ -354,7 +354,7 @@ namespace Gecko
         /// @return  Indicates whether any of the listeners which handled the
         /// event called preventDefault. If preventDefault was called
         /// the value is false, else the value is true.
-        /// @throws  UNSPECIFIED_EVENT_TYPE_ERR: Raised if the Event's type was
+        /// @throws  INVALID_STATE_ERR: Raised if the Event's type was
         /// not specified by initializing the event before
         /// dispatchEvent was called. Specification of the Event's
         /// type as null or an empty string will also trigger this

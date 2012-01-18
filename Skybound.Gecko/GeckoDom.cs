@@ -100,14 +100,12 @@ namespace Gecko
 		internal GeckoElement(nsIDOMHTMLElement element) : base(element)
 		{
 			this.DomElement = element;			
-			this.DomNSElement = (nsIDOMNSElement)element;
-			this.DomNSHTMLElement = (nsIDOMNSHTMLElement)element;
+			this.DomNSElement = (nsIDOMNSElement)element;			
 			
 			if (Xpcom.IsDotNet) // TODO FIXME: ChangeWrapperHandleStrength not implemented in mono
 			{
 				// since a reference is stored in the base class, we only need weak references here
-				Marshal.ChangeWrapperHandleStrength(DomNSElement, true);
-				Marshal.ChangeWrapperHandleStrength(DomNSHTMLElement, true);
+				Marshal.ChangeWrapperHandleStrength(DomNSElement, true);				
 			}
 		}
 		
@@ -123,7 +121,7 @@ namespace Gecko
 		
 		nsIDOMHTMLElement DomElement;
 		nsIDOMNSElement DomNSElement;
-		nsIDOMNSHTMLElement DomNSHTMLElement;
+		nsIDOMHTMLElement DomHTMLElement;
 		
 		/// <summary>
 		/// Gets the inline style of the GeckoElement. 
@@ -213,8 +211,8 @@ namespace Gecko
 		/// </summary>
 		public string ContentEditable
 		{
-			get { return nsString.Get(DomNSHTMLElement.GetContentEditableAttribute); }
-			set { nsString.Set(DomNSHTMLElement.GetContentEditableAttribute, value); }
+			get { return nsString.Get(DomHTMLElement.GetContentEditableAttribute); }
+			set { nsString.Set(DomHTMLElement.GetContentEditableAttribute, value); }
 		}
 		
 		/// <summary>
@@ -337,25 +335,25 @@ namespace Gecko
 		public int ClientWidth { get { return DomNSElement.GetClientWidthAttribute(); } }
 		public int ClientHeight { get { return DomNSElement.GetClientHeightAttribute(); } }
 
-		public int OffsetLeft { get { return DomNSHTMLElement.GetOffsetLeftAttribute(); } }
-		public int OffsetTop { get { return DomNSHTMLElement.GetOffsetTopAttribute(); } }
-		public int OffsetWidth { get { return DomNSHTMLElement.GetOffsetWidthAttribute(); } }
-		public int OffsetHeight { get { return DomNSHTMLElement.GetOffsetHeightAttribute(); } }
+		public int OffsetLeft { get { return DomHTMLElement.GetOffsetLeftAttribute(); } }
+		public int OffsetTop { get { return DomHTMLElement.GetOffsetTopAttribute(); } }
+		public int OffsetWidth { get { return DomHTMLElement.GetOffsetWidthAttribute(); } }
+		public int OffsetHeight { get { return DomHTMLElement.GetOffsetHeightAttribute(); } }
 		
 		public GeckoElement OffsetParent
 		{
-			get { return GeckoElement.Create((nsIDOMHTMLElement)DomNSHTMLElement.GetOffsetParentAttribute()); }
+			get { return GeckoElement.Create((nsIDOMHTMLElement)DomHTMLElement.GetOffsetParentAttribute()); }
 		}
 		
 		public void ScrollIntoView(bool top)
 		{
-			DomNSHTMLElement.ScrollIntoView(top, 1);
+			DomHTMLElement.ScrollIntoView(top, 1);
 		}
 		
 		public string InnerHtml
 		{
-			get { return nsString.Get(DomNSHTMLElement.GetInnerHTMLAttribute); }
-			set { nsString.Set(DomNSHTMLElement.SetInnerHTMLAttribute, value); }
+			get { return nsString.Get(DomHTMLElement.GetInnerHTMLAttribute); }
+			set { nsString.Set(DomHTMLElement.SetInnerHTMLAttribute, value); }
 		}
 
 		public virtual string OuterHtml
@@ -388,8 +386,8 @@ namespace Gecko
 		
 		public int TabIndex
 		{
-			get { return DomNSHTMLElement.GetTabIndexAttribute(); }
-			set { DomNSHTMLElement.SetTabIndexAttribute(value); }
+			get { return DomHTMLElement.GetTabIndexAttribute(); }
+			set { DomHTMLElement.SetTabIndexAttribute(value); }
 		}
 	}
 	
@@ -632,7 +630,7 @@ namespace Gecko
 			if (node == null)
 				throw new ArgumentNullException("node");
 			
-			return GeckoNode.Create(DomDocument.ImportNode((nsIDOMNode)node.DomObject, deep));
+			return GeckoNode.Create(DomDocument.ImportNode((nsIDOMNode)node.DomObject, deep, 1));
 		}
 		
 		public bool IsSupported(string feature, string version)

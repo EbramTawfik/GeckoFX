@@ -30,7 +30,7 @@ namespace Gecko
 	/// <summary>inIDOMUtils </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("70205D9E-EFD7-4658-8E9E-690400B57FD0")]
+	[Guid("0D9E5532-F5D5-44DD-94CA-D9EED5778B1C")]
 	public interface inIDOMUtils
 	{
 		
@@ -46,6 +46,13 @@ namespace Gecko
 		/// <returns>A System.UInt32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetRuleLine([MarshalAs(UnmanagedType.Interface)] nsIDOMCSSStyleRule aRule);
+		
+		/// <summary>
+        /// Returns true if the string names a property that is inherited by default.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Bool)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool IsInheritedProperty([MarshalAs(UnmanagedType.LPStruct)] nsAString aPropertyName);
 		
 		/// <summary>
         /// DOM Node utilities

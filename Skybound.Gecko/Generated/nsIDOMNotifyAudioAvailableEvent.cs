@@ -30,7 +30,7 @@ namespace Gecko
 	/// <summary>nsIDOMNotifyAudioAvailableEvent </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("6250652d-7a6a-49a4-a2ee-9114e1e83427")]
+	[Guid("cd362d2f-a9a1-4127-940d-477ba0e82bd6")]
 	public interface nsIDOMNotifyAudioAvailableEvent : nsIDOMEvent
 	{
 		
@@ -154,6 +154,13 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetDefaultPreventedAttribute();
+		
+		/// <summary>
+        /// Prevents other event listeners from being triggered and,
+        /// unlike Event.stopPropagation() its effect is immediate.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void StopImmediatePropagation();
 		
 		/// <summary>Member GetFrameBufferAttribute </summary>
 		/// <param name='jsContext'> </param>

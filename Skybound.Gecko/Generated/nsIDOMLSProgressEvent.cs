@@ -30,7 +30,7 @@ namespace Gecko
 	/// <summary>nsIDOMLSProgressEvent </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("b9a2371f-70e9-4657-b0e8-28e15b40857e")]
+	[Guid("89477959-7ce6-4f6f-9885-942e0a2c93cc")]
 	public interface nsIDOMLSProgressEvent : nsIDOMEvent
 	{
 		
@@ -154,6 +154,13 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetDefaultPreventedAttribute();
+		
+		/// <summary>
+        /// Prevents other event listeners from being triggered and,
+        /// unlike Event.stopPropagation() its effect is immediate.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void StopImmediatePropagation();
 		
 		/// <summary>Member GetInputAttribute </summary>
 		/// <returns>A System.IntPtr</returns>

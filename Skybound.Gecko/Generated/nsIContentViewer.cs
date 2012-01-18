@@ -30,7 +30,7 @@ namespace Gecko
 	/// <summary>nsIContentViewer </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("75306a89-e3ad-4a2b-9daf-ac4de06661a4")]
+	[Guid("26b2380b-4a1a-46cd-b7d8-7600e41c1688")]
 	public interface nsIContentViewer
 	{
 		
@@ -240,5 +240,37 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsTabModalPromptAllowedAttribute();
+		
+		/// <summary>Member GetPresShellAttribute </summary>
+		/// <returns>A System.IntPtr</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		System.IntPtr GetPresShellAttribute();
+		
+		/// <summary>Member GetPresContextAttribute </summary>
+		/// <returns>A System.IntPtr</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		System.IntPtr GetPresContextAttribute();
+		
+		/// <summary>Member SetDocumentInternal </summary>
+		/// <param name='aDocument'> </param>
+		/// <param name='aForceReuseInnerWindow'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetDocumentInternal(System.IntPtr aDocument, [MarshalAs(UnmanagedType.Bool)] bool aForceReuseInnerWindow);
+		
+		/// <summary>
+        /// Find the view to use as the container view for MakeWindow. Returns
+        /// null if this will be the root of a view manager hierarchy. In that
+        /// case, if mParentWidget is null then this document should not even
+        /// be displayed.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		IntPtr FindContainerView();
+		
+		/// <summary>
+        /// Set collector for navigation timing data (load, unload events).
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetNavigationTiming(System.IntPtr aTiming);
 	}
 }

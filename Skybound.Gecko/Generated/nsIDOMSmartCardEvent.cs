@@ -30,7 +30,7 @@ namespace Gecko
 	/// <summary>nsIDOMSmartCardEvent </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("52bdc7ca-a934-4a40-a2e2-ac83a70b4019")]
+	[Guid("57e2dd86-3c70-4d9c-81d0-856d42e6bc7d")]
 	public interface nsIDOMSmartCardEvent : nsIDOMEvent
 	{
 		
@@ -154,6 +154,13 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetDefaultPreventedAttribute();
+		
+		/// <summary>
+        /// Prevents other event listeners from being triggered and,
+        /// unlike Event.stopPropagation() its effect is immediate.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void StopImmediatePropagation();
 		
 		/// <summary>Member GetTokenNameAttribute </summary>
 		/// <param name='aTokenName'> </param>

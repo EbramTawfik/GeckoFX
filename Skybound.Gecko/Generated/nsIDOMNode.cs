@@ -37,7 +37,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("c8ac3f81-63e1-4c31-8543-70a656642789")]
+	[Guid("ce82fb71-60f2-4c38-be31-de5f2f90dada")]
 	public interface nsIDOMNode
 	{
 		
@@ -188,13 +188,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetTextContentAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aTextContent);
-		
-		/// <summary>
-        /// Introduced in DOM Level 3:
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsSameNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode other);
 		
 		/// <summary>
         /// Introduced in DOM Level 3:

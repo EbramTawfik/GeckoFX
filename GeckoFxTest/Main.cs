@@ -21,7 +21,7 @@ namespace GeckoFxTest
 
 			Xpcom.Initialize("/usr/lib/firefox-7.0/");
 #else
-			Xpcom.Initialize(@"C:\Program Files (x86)\Mozilla Firefox BETA");
+			Xpcom.Initialize(@"c:\program Files (x86)\Mozilla Firefox 10.0\");
 #endif
 			
 			//Application.Idle += (s, e) => Console.WriteLine(SynchronizationContext.Current);

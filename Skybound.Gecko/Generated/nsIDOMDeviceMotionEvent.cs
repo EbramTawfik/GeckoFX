@@ -76,7 +76,7 @@ namespace Gecko
 	/// <summary>nsIDOMDeviceMotionEvent </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("66E8D2C9-0826-444C-8FB8-E509BC9615F8")]
+	[Guid("b74dfd3f-0d16-4717-aaf7-8cadfe739532")]
 	public interface nsIDOMDeviceMotionEvent : nsIDOMEvent
 	{
 		
@@ -200,6 +200,13 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetDefaultPreventedAttribute();
+		
+		/// <summary>
+        /// Prevents other event listeners from being triggered and,
+        /// unlike Event.stopPropagation() its effect is immediate.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void StopImmediatePropagation();
 		
 		/// <summary>Member InitDeviceMotionEvent </summary>
 		/// <param name='eventTypeArg'> </param>

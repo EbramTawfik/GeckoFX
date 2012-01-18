@@ -30,7 +30,7 @@ namespace Gecko
 	/// <summary>nsIIDBVersionChangeEvent </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("6a232c30-1bc4-4d5b-9ce0-6e7c08934755")]
+	[Guid("52e21085-d6cd-4886-a5eb-19b47d13abf6")]
 	public interface nsIIDBVersionChangeEvent : nsIDOMEvent
 	{
 		
@@ -155,9 +155,21 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetDefaultPreventedAttribute();
 		
-		/// <summary>Member GetVersionAttribute </summary>
-		/// <param name='aVersion'> </param>
+		/// <summary>
+        /// Prevents other event listeners from being triggered and,
+        /// unlike Event.stopPropagation() its effect is immediate.
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aVersion);
+		new void StopImmediatePropagation();
+		
+		/// <summary>Member GetOldVersionAttribute </summary>
+		/// <returns>A System.UInt32</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetOldVersionAttribute();
+		
+		/// <summary>Member GetNewVersionAttribute </summary>
+		/// <returns>A System.UInt32</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetNewVersionAttribute();
 	}
 }

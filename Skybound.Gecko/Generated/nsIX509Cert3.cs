@@ -263,7 +263,7 @@ namespace Gecko
         /// Async version of nsIX509Cert::getUsagesArray()
         ///
         /// Will not block, will request results asynchronously,
-        /// availability of results will be notified.
+        /// availability of results will be notified on the main thread.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RequestUsagesArrayAsync([MarshalAs(UnmanagedType.Interface)] nsICertVerificationListener cvl);
