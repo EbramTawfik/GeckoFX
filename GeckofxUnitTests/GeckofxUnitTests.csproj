@@ -38,6 +38,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app1.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -72,6 +75,7 @@
     <Compile Include="XpComTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app1.manifest" />
     <None Include="NUnit\nunit-console-runner.dll" />
     <None Include="NUnit\nunit.framework.dll" />
     <None Include="NUnit\nunit.mocks.dll" />
