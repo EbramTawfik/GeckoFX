@@ -117,16 +117,6 @@ namespace GtkDotNet
 				return FilterReturn.Remove;
 			}
 
-			// Ensure Mouse clicks and Button go to the right place
-			if (e.type == X11.XEventName.ButtonPress ||
-				e.type == X11.XEventName.KeyPress)
-			{
-				// TODO: possibly cancel any tooltip windows.
-
-				this.m_parent.Focus();
-				return FilterReturn.Continue;
-			}
-
 			// Everything else just process as normal
 			return FilterReturn.Continue;
 		}
