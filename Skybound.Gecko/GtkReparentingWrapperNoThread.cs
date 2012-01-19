@@ -18,26 +18,6 @@ namespace GtkDotNet
 		/// </summary>
 		protected Gdk.Window m_gdkWrapperOfForm;
 		
-		#region XSetInputFocus
-		[DllImport("libgdk-x11-2.0.so")]
-		internal static extern IntPtr gdk_x11_drawable_get_xid(IntPtr gdkDrawable);
-
-		[DllImport("libgdk-x11-2.0.so")]
-		internal static extern IntPtr gdk_x11_display_get_xdisplay(IntPtr display);
-
-		public enum RevertTo
-		{
-			None = 0,
-			PointerRoot = 1,
-			Parent = 2
-		}
-	
-		[DllImport ("X11")]
-		public extern static int XSetInputFocus(IntPtr display, IntPtr window, RevertTo revert_to, IntPtr time);
-
-		IntPtr m_xDisplayPointer;		
-		#endregion
-		
 		/// <summary>
 		/// popupWindow must be a Gtk.Window of type WindowType.Popup
 		/// parent is winform control which the popupWindow is embeded into.
@@ -96,10 +76,6 @@ namespace GtkDotNet
 			// embed m_popupWindow into winform (m_parent)
 			m_popupWindow.GdkWindow.Reparent(m_gdkWrapperOfForm, 0, 0);
 			ProcessPendingGtkEvents();
-			
-			// Setting the m_xDisplayPointer could possibly be done earlier if needed.
-			Gdk.Display display = Gdk.Display.Default;	
-			m_xDisplayPointer = gdk_x11_display_get_xdisplay(display.Handle);
 		}
 		
 		private FilterReturn FilterFunc (IntPtr xevent, Event evnt)
@@ -126,18 +102,6 @@ namespace GtkDotNet
 			// TODO: reparent back into m_popupWindow before destroying Window.
 			
 			base.Cleanup();
-		}
-		
-		public override void SetInputFocus()
-		{
-			IntPtr xWindow = gdk_x11_drawable_get_xid(m_popupWindow.GdkWindow.Handle);
-			XSetInputFocus(m_xDisplayPointer, xWindow, RevertTo.Parent, IntPtr.Zero);
-		}
-		
-		public override void RemoveInputFocus()
-		{
-			IntPtr xWindow = gdk_x11_drawable_get_xid(m_popupWindow.GdkWindow.Handle);
-			XSetInputFocus(m_xDisplayPointer, IntPtr.Zero, RevertTo.Parent, IntPtr.Zero);
 		}
 	}
 }
