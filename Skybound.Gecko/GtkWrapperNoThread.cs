@@ -122,6 +122,16 @@ namespace GtkDotNet
 				ProcessPendingGtkEvents();
 			}
 		}
+		
+		public virtual void SetInputFocus()
+		{
+			
+		}
+		
+		public virtual void RemoveInputFocus()
+		{
+			
+		}
 	}
 }
 #endif
