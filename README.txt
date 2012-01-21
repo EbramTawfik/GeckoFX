@@ -2,6 +2,13 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== V9.0-0.3 ==
+
+Bug fixes
+
+1. Fix bug in method GeckoWebBrowser.GetBitmap.
+2. Various Linux improvements.
+
 == v9.0-0.2 ==
 
 Bug fixes
