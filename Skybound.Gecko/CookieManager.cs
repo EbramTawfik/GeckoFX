@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Gecko
 {
@@ -43,13 +39,14 @@ namespace Gecko
 
 		public IEnumerator<Cookie> GetCookiesFromHost(string host)
 		{
-			
-			return new CookieEnumerator( _cookieManager.GetCookiesFromHost( new nsAUTF8String( host ) ) );
+			return new Collections.GeckoEnumerator<Cookie, nsICookie2>(_cookieManager.GetCookiesFromHost(new nsAUTF8String(host)),
+																	   x => new Cookie(x));
 		}
 
 		public IEnumerator<Cookie> GetEnumerator()
 		{
-			return new CookieEnumerator( _cookieManager.GetEnumeratorAttribute() );
+			return new Collections.GeckoEnumerator<Cookie, nsICookie2>(_cookieManager.GetEnumeratorAttribute(),
+																	   x => new Cookie(x));
 		}
 
 		public void ImportCookies(string filename)
@@ -69,52 +66,6 @@ namespace Gecko
 		{
 			_cookieManager.RemoveAll();
 		}
-
-
-		#region Cookie Enumerator
-		private sealed class CookieEnumerator
-			: IEnumerator<Cookie>
-		{
-			private nsISimpleEnumerator _enumerator;
-			private nsICookie2 _currentCookie;
-
-			internal CookieEnumerator(nsISimpleEnumerator enumerator)
-			{
-				_enumerator = enumerator;
-			}
-
-			public void Dispose()
-			{
-				_enumerator = null;
-			}
-
-			public bool MoveNext()
-			{
-				bool flag = _enumerator.HasMoreElements();
-				if (flag)
-				{
-					_currentCookie =(nsICookie2) _enumerator.GetNext();
-				}
-				return flag;
-			}
-
-			public void Reset()
-			{
-				//There is no way to "reset" an enumerator, once you obtain one.
-				throw new NotSupportedException("Reset is not supported for cookie enumeration");
-			}
-
-			public Cookie Current
-			{
-				get { return new Cookie( _currentCookie ); }
-			}
-
-			object IEnumerator.Current
-			{
-				get { return Current; }
-			}
-		}
-		#endregion
 	}
 
 

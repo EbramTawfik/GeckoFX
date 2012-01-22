@@ -414,23 +414,30 @@ namespace Gecko
 						}
 						return;
 					case WM_IME_SETCONTEXT:
-						//Console.WriteLine("WM_IME_SETCONTEXT {0} {1}", m.WParam, m.LParam.ToString("X8"));
-						if (m.WParam == IntPtr.Zero)
+						if (!DisableWmImeSetContext)
 						{
-							// zero
-							WebBrowserFocus.Deactivate();
+							//Console.WriteLine("WM_IME_SETCONTEXT {0} {1}", m.WParam, m.LParam.ToString("X8"));
+							if (m.WParam == IntPtr.Zero)
+							{
+								// zero
+								WebBrowserFocus.Deactivate();
+							}
+							else
+							{
+								// non-zero (1)
+								WebBrowserFocus.Activate();
+							}
+							return;
 						}
-						else
-						{
-							// non-zero (1)
-							WebBrowserFocus.Activate();				
-						} 
-						return;
+						break;
 				}
 			}
 
 			base.WndProc(ref m);
 		}
+
+
+		public bool DisableWmImeSetContext { get; set; }
 		#endregion
 		
 		#region Overridden Properties & Event Handlers Handlers
@@ -635,35 +642,6 @@ namespace Gecko
 		{
 			var bytes = System.Text.Encoding.UTF8.GetBytes(htmlDocument);						
 			Navigate(string.Format("data:text/html;base64,{0}", Convert.ToBase64String(bytes)));
-		}
-		
-		/// <summary>
-		/// Loads supplied html string Synchronously.
-		/// Loading html this way will not invoke the onload event.
-		/// Loading html this way will not handle link css files and possibly other css files.
-		/// Initiaizing a document this way is at least five times as fast as using LoadHtml.
-		/// </summary>
-		/// <param name="htmlDocument">the document to load.</param>
-		/// <returns>false if there was an error loading the document.</returns>
-		public bool LoadHtmlSynchronously(string htmlDocument)
-		{
-			using (AutoJSContext context = new AutoJSContext(this.JSContext))
-			{
-				string unusedResult;
-				bool scriptExecutedSuccessfully = context.EvaluateScript(
-				@"	document.open('text/html');
-					document.write('" + 
-									  htmlDocument.
-										Replace("\\", "\\\\").
-										Replace("'", "\\'").
-										Replace(System.Environment.NewLine.ToString(), "\\n").
-										Replace("\n", "\\n") +
-				@"'); 
-					document.close();
-				", out unusedResult);
-
-				return scriptExecutedSuccessfully;
-			}
 		}
 
 		/// <summary>

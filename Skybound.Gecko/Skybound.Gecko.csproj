@@ -102,22 +102,33 @@
   <ItemGroup>
     <Compile Include="AutoJSContext.cs" />
     <None Include="GeckoFX.snk" />
+    <Compile Include="BaseNsFactory.cs" />
     <Compile Include="BaseTypes\gfxGraphicsFilter.cs" />
     <Compile Include="BaseTypes\gfxMatrix.cs" />
     <Compile Include="BaseTypes\gfxRect.cs" />
     <Compile Include="ByteArrayInputStream.cs" />
+    <Compile Include="Cache\CacheDeviceInfo.cs" />
+    <Compile Include="Cache\CacheEntryDescriptor.cs" />
+    <Compile Include="Cache\CacheEntryInfo.cs" />
+    <Compile Include="Cache\CacheService.cs" />
+    <Compile Include="Cache\CacheSession.cs" />
+    <Compile Include="Cache\ImageCache.cs" />
+    <Compile Include="CategoryManager.cs" />
     <Compile Include="ChromeDialog.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ChromeDialog.Designer.cs">
       <DependentUpon>ChromeDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Collections\GeckoEnumerableCollection.cs" />
+    <Compile Include="Collections\GeckoEnumerator.cs" />
     <Compile Include="ConfirmDialog.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ConfirmDialog.Designer.cs">
       <DependentUpon>ConfirmDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="nsCString.cs" />
     <Compile Include="GeckoMessageEvents.cs" />
     <Compile Include="ConsoleMessageEventArgs.cs" />
     <Compile Include="CookieManager.cs" />

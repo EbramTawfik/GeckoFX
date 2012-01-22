@@ -130,6 +130,19 @@ namespace Gecko
 		public string AsciiSpec { get { return nsString.Get(Instance.GetAsciiSpecAttribute); } }
 		public string AsciiHost { get { return nsString.Get(Instance.GetAsciiHostAttribute); } }
 		public string OriginCharset { get { return nsString.Get(Instance.GetOriginCharsetAttribute); } }
+
+
+		public static nsURI Create(string url)
+		{
+			return new nsURI( Xpcom.GetService<nsIIOService>( "@mozilla.org/network/io-service;1" )
+			                  	.NewURI( new nsAUTF8String( url ), null, null ) );
+		}
+
+		internal static nsIURI CreateInternal(string url)
+		{
+			return Xpcom.GetService<nsIIOService>( "@mozilla.org/network/io-service;1" )
+				.NewURI( new nsAUTF8String( url ), null, null );
+		}
 	}
 	
 }

@@ -42,17 +42,10 @@ namespace Gecko
 {
 	#if !NO_CUSTOM_PROMPT_SERVICE
 	[Guid("8E4AABE2-B832-4cff-B213-2174DE2B818D")]
-	class PromptServiceFactory : nsIFactory
+	[ContractID(PromptServiceFactory.ContractID)]
+	class PromptServiceFactory
+		: BaseNsFactory<PromptServiceFactory>,nsIFactory
 	{
-		public static void Register()
-		{
-			if (!_IsRegistered)
-			{
-				Xpcom.RegisterFactory(typeof(PromptServiceFactory).GUID, "Skybound.Gecko.PromptServiceFactory", "@mozilla.org/embedcomp/prompt-service;1", new PromptServiceFactory());
-				_IsRegistered = true;
-			}
-		}
-		static bool _IsRegistered;
 		
 		IntPtr nsIFactory.CreateInstance(nsISupports aOuter, ref Guid iid)
 		{
@@ -63,6 +56,8 @@ namespace Gecko
 		{
 			
 		}
+
+		public const string ContractID ="@mozilla.org/embedcomp/prompt-service;1";
 	}
 	
 
