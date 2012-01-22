@@ -15,6 +15,7 @@ namespace Gecko
 // ReSharper disable StaticFieldInGenericType
 		private static bool _isRegistered;
 		private static string _contractID;
+		private static string _factoryTypeName;
 // ReSharper restore StaticFieldInGenericType
 
 		public static void Register()
@@ -27,9 +28,10 @@ namespace Gecko
 			{
 				ContractIDAttribute attribute = (ContractIDAttribute)attributes[ 0 ];
 				_contractID = attribute.ContractID;
+				_factoryTypeName = factoryType.FullName;
 				Xpcom.RegisterFactory(
 					factoryType.GUID,
-					factoryType.FullName,
+					_factoryTypeName,
 					_contractID,
 					new TFactory() );
 				_isRegistered = true;
@@ -40,9 +42,14 @@ namespace Gecko
 		/// Returns ContractID if registered or null if not registered.
 		/// </summary>
 		/// <returns></returns>
-		public string GetContractID()
+		public static string GetContractID()
 		{
 			return _contractID;
+		}
+
+		public static string GetFactoryTypeName()
+		{
+			return _factoryTypeName;
 		}
 	}
 
