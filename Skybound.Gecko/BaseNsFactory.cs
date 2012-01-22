@@ -18,6 +18,14 @@ namespace Gecko
 		private static string _factoryTypeName;
 // ReSharper restore StaticFieldInGenericType
 
+		protected BaseNsFactory()
+		{
+			
+		}
+
+		/// <summary>
+		/// Registration by default (using ContractIDAttribute)
+		/// </summary>
 		public static void Register()
 		{
 			if (_isRegistered) return;
@@ -36,6 +44,21 @@ namespace Gecko
 					new TFactory() );
 				_isRegistered = true;
 			}
+		}
+
+		/// <summary>
+		/// Registration with given contractID
+		/// </summary>
+		/// <param name="contractID"></param>
+		public static void Register(string contractID)
+		{
+			if ( _isRegistered ) return;
+
+			var factoryType = typeof (TFactory);
+			_factoryTypeName = factoryType.FullName;
+			Xpcom.RegisterFactory(factoryType.GUID,_factoryTypeName,_contractID,new TFactory() );
+			_contractID = contractID;
+			_isRegistered = true;
 		}
 
 		/// <summary>

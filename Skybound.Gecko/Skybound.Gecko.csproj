@@ -128,6 +128,8 @@
     <Compile Include="ConfirmDialog.Designer.cs">
       <DependentUpon>ConfirmDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="IO\InputStream.cs" />
+    <Compile Include="IO\OutputStream.cs" />
     <Compile Include="nsCString.cs" />
     <Compile Include="GeckoMessageEvents.cs" />
     <Compile Include="ConsoleMessageEventArgs.cs" />

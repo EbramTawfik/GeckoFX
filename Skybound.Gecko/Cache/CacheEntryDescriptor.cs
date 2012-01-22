@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using Gecko.IO;
 
 namespace Gecko.Cache
 {
@@ -21,8 +23,6 @@ namespace Gecko.Cache
 		public void Doom()
 		{
 			_cacheEntryDescriptor.Doom();
-
-
 		}
 
 		public void DoomAndFailPendingRequests( int status )
@@ -54,14 +54,14 @@ namespace Gecko.Cache
 			set { _cacheEntryDescriptor.SetDataSize( value ); }
 		}
 
-		public nsIInputStream OpenInputStream( uint offset )
+		public InputStream OpenInputStream( uint offset )
 		{
-			return _cacheEntryDescriptor.OpenInputStream( offset );
+			return InputStream.Create( _cacheEntryDescriptor.OpenInputStream( offset ) );
 		}
 
-		public nsIOutputStream OpenOutputStream( uint offset )
+		public IO.OutputStream OpenOutputStream( uint offset )
 		{
-			return _cacheEntryDescriptor.OpenOutputStream( offset );
+			return OutputStream.Create( _cacheEntryDescriptor.OpenOutputStream( offset ) );
 		}
 
 		public long PredictedDataSize
@@ -70,10 +70,10 @@ namespace Gecko.Cache
 			set { _cacheEntryDescriptor.SetPredictedDataSizeAttribute( value ); }
 		}
 
-		public IntPtr StoragePolicy
+		public CacheStoragePolicy StoragePolicy
 		{
-			get { return _cacheEntryDescriptor.GetStoragePolicyAttribute(); }
-			set { _cacheEntryDescriptor.SetStoragePolicyAttribute( value ); }
+			get { return (CacheStoragePolicy)_cacheEntryDescriptor.GetStoragePolicyAttribute(); }
+			set { _cacheEntryDescriptor.SetStoragePolicyAttribute( ( IntPtr ) ( int ) value ); }
 		}
 
 		public nsIFile File
@@ -103,7 +103,62 @@ namespace Gecko.Cache
 			_cacheEntryDescriptor.SetMetaDataElement( key, value );
 		}
 
+		public KeyValuePair<string,string>[] SearchInMetadata(Func<string,string,bool> predicate)
+		{
+			KeyValuePair<string, string>[] ret = null;
+			using (var searcher = new CacheEntryMetadataSearcher(predicate))
+			{
+				_cacheEntryDescriptor.VisitMetaData(searcher);
+				ret = searcher.GetResult();
+			}
+			return ret;
+		}
+
 		// void VisitMetaData([MarshalAs(UnmanagedType.Interface)] nsICacheMetaDataVisitor visitor);
+
+	}
+
+	internal sealed class CacheEntryMetadataSearcher
+		: nsICacheMetaDataVisitor, IDisposable
+	{
+		private Func<string,string,bool> _predicate;
+
+		private List<KeyValuePair<string, string>> _foundEntries=new List<KeyValuePair<string, string>>();  
+
+		internal CacheEntryMetadataSearcher(Func<string,string,bool> predicate)
+
+		{
+			_predicate = predicate;
+		}
+
+
+		~CacheEntryMetadataSearcher()
+		{
+			_foundEntries.Clear();
+		}
+
+		public bool VisitMetaDataElement( string key, string value )
+		{
+			if (_predicate(key, value))
+			{
+				_foundEntries.Add( new KeyValuePair<string, string>( key, value ) );
+			}
+			return true;
+		}
+
+		public void Dispose()
+		{
+			_foundEntries.Clear();
+			GC.SuppressFinalize(this);
+		}
+
+
+		public KeyValuePair<string, string>[] GetResult()
+		{
+			return _foundEntries.ToArray();
+		}
+
+		
 
 	}
 }

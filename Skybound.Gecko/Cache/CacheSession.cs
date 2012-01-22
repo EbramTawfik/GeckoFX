@@ -29,13 +29,31 @@ namespace Gecko.Cache
 			_cacheSession.EvictEntries();
 		}
 
-		public CacheEntryDescriptor OpenCacheEntry(string key, IntPtr accessRequested, bool blockingMode)
+		public CacheEntryDescriptor OpenCacheEntry(string key, CacheAccessMode accessRequested, bool blockingMode)
 		{
-			return new CacheEntryDescriptor( _cacheSession.OpenCacheEntry( new nsACString( key ), accessRequested, blockingMode ) );
+			nsICacheEntryDescriptor descriptor = null;
+			try
+			{
+				descriptor = _cacheSession.OpenCacheEntry( new nsACString( key ), ( IntPtr ) ( int ) accessRequested, blockingMode );
+			}
+			catch ( System.Runtime.InteropServices.COMException comException )
+			{
+				
+			}
+			catch ( Exception )
+			{
+				
+			}
+			return descriptor != null ? new CacheEntryDescriptor( descriptor ) : null;
 		}
 
-		//_cacheSession.AsyncOpenCacheEntry(  );
-		//_cacheSession.OpenCacheEntry(  )
+	}
 
+	public enum CacheAccessMode
+	{
+		None=0,
+		Read=1,
+		Write=2,
+		ReadWrite=3
 	}
 }

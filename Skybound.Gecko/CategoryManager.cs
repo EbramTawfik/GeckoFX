@@ -21,7 +21,15 @@ namespace Gecko
 		public string AddCategoryEntry(string aCategory, string aEntry, string aValue, bool aPersist, bool aReplace)
 		{
 			// check if it exists to prevent crash
-			var value = _categoryManager.GetCategoryEntry(aCategory, aEntry);
+			string value = null;
+			try
+			{
+				value = _categoryManager.GetCategoryEntry(aCategory, aEntry);
+			}
+			catch ( Exception )
+			{
+			}
+			
 			if (value != null)
 			{
 				_categoryManager.DeleteCategoryEntry(aCategory, aEntry, aPersist);
