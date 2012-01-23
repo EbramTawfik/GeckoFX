@@ -21,7 +21,7 @@ namespace GeckoFxTest
 
 			Xpcom.Initialize("/usr/lib/firefox-9.0.1/");
 #else
-			Xpcom.Initialize(@"C:\Program Files (x86)\Mozilla Firefox BETA");
+			Xpcom.Initialize(@"d:\Temp\xulrunner-sdk\bin\");
 #endif
 			Application.ApplicationExit += (sender, e) => 
 			{
@@ -107,7 +107,7 @@ namespace GeckoFxTest
 			tabPage.Text = "blank";
 			var browser = new GeckoWebBrowser();
 			browser.Dock = DockStyle.Fill;
-
+			browser.DisableWmImeSetContext = true;
 			tabPage.DockPadding.Top = 25;
 			tabPage.Dock = DockStyle.Fill;
 

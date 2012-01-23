@@ -114,6 +114,10 @@
     <Compile Include="Cache\CacheSession.cs" />
     <Compile Include="Cache\ImageCache.cs" />
     <Compile Include="CategoryManager.cs" />
+    <Compile Include="Certificates\ASN1Object.cs" />
+    <Compile Include="Certificates\Certificate.cs" />
+    <Compile Include="Certificates\CertificateDatabase.cs" />
+    <Compile Include="Certificates\CertificateList.cs" />
     <Compile Include="ChromeDialog.cs">
       <SubType>Form</SubType>
     </Compile>

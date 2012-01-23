@@ -109,6 +109,26 @@ namespace Gecko
 				setter(str);
 			}
 		}
+
+		/// <summary>
+		/// Passes <paramref name="value"/> to function and return value
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="func"></param>
+		/// <param name="value"></param>
+		/// <returns></returns>
+		public static T Pass<T>(Func<nsAString,T> func,string value)
+		{
+			T ret;
+			using (nsAString str = new nsAString())
+			{
+				if (!string.IsNullOrEmpty(value))
+					str.SetData(value);
+
+				ret = func( str );
+			}
+			return ret;
+		}
 	}
 
 	// TODO: see comments on class nsAString
