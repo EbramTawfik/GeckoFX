@@ -12,11 +12,8 @@ namespace Gecko
 	/// </summary>
 	public static class XULRunnerLocator
 	{
-		public static string GetXULRunnerLocation()
+		private static string GetXULRunnerLocationLinux()
 		{
-			if (!Xpcom.IsLinux)
-				throw new ApplicationException("XULRunnerLocator only works on Linux.");
-
 			if (!Directory.Exists("/usr/lib"))
 				throw new ApplicationException("/usr/lib doesn't exist");
 
@@ -27,6 +24,24 @@ namespace Gecko
 				return null;
 
 			return dirs.OrderBy(x => x.Name).Last().FullName;
+		}
+
+		private static string  GetXULRunnerLocationWindows()
+		{
+			var programFiles = System.Environment.GetFolderPath( Environment.SpecialFolder.ProgramFiles );
+			var firefoxLocation=Path.Combine( programFiles, "Mozilla Firefox" );
+			if (Directory.Exists(firefoxLocation))
+			{
+				return firefoxLocation;
+			}
+			return null;
+		}
+
+		public static string GetXULRunnerLocation()
+		{
+			return Xpcom.IsLinux
+				? GetXULRunnerLocationLinux()
+				: GetXULRunnerLocationWindows();
 		}
 	}
 }
