@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using Gecko;
 using System.Runtime.InteropServices;
 using System.Threading;
+using System.IO;
 
 // Tested with mono 2.6.3 and mono 2.8
 // Run this with the following command:
@@ -21,7 +22,10 @@ namespace GeckoFxTest
 
 			Xpcom.Initialize("/usr/lib/firefox-9.0.1/");
 #else
-			Xpcom.Initialize(@"d:\Temp\xulrunner-sdk\bin\");
+			if (Directory.Exists(@"d:\Temp\xulrunner-sdk\bin\"))
+				Xpcom.Initialize(@"d:\Temp\xulrunner-sdk\bin\");
+			else
+				Xpcom.Initialize(@"C:\Program Files (x86)\Mozilla Firefox BETA");
 #endif
 			Application.ApplicationExit += (sender, e) => 
 			{
