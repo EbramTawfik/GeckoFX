@@ -54,12 +54,22 @@ namespace GtkDotNet
 			m_popupWindow.Destroy();
 		}
 
-		#region IDisposable implementation
+		public virtual void SetInputFocus()
+		{
+			
+		}
+		
+		public virtual void RemoveInputFocus()
+		{
+			
+		}
+
+#region IDisposable implementation
 		public void Dispose()
 		{
 			Cleanup();
 		}
-		#endregion
+#endregion
 		
 		public Gtk.Window BrowserWindow
 		{
@@ -121,16 +131,6 @@ namespace GtkDotNet
 			{
 				ProcessPendingGtkEvents();
 			}
-		}
-		
-		public virtual void SetInputFocus()
-		{
-			
-		}
-		
-		public virtual void RemoveInputFocus()
-		{
-			
 		}
 	}
 }
