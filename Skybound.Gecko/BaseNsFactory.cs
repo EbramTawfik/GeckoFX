@@ -37,11 +37,19 @@ namespace Gecko
 				ContractIDAttribute attribute = (ContractIDAttribute)attributes[ 0 ];
 				_contractID = attribute.ContractID;
 				_factoryTypeName = factoryType.FullName;
-				Xpcom.RegisterFactory(
-					factoryType.GUID,
-					_factoryTypeName,
-					_contractID,
-					new TFactory() );
+				try
+				{
+					Xpcom.RegisterFactory(
+						factoryType.GUID,
+						_factoryTypeName,
+						_contractID,
+						new TFactory());
+				}
+				catch ( Exception )
+				{
+					//
+				}
+
 				_isRegistered = true;
 			}
 		}

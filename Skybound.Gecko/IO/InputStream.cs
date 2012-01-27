@@ -87,6 +87,4 @@ namespace Gecko.IO
 			return new InputStream(stream, seekable);
 		}
 	}
-
-
 }

@@ -177,7 +177,8 @@ namespace Gecko
 			{
 				Xpcom.Initialize();
 				#if !NO_CUSTOM_PROMPT_SERVICE
-				PromptServiceFactory.Register();
+				PromptFactoryFactory.Register();
+				//PromptServiceFactory.Register();
 				#endif
 				WindowCreator.Register();
                 LauncherDialogFactory.Register();

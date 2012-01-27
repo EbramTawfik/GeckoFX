@@ -44,24 +44,33 @@ namespace Gecko
 	[Guid("8E4AABE2-B832-4cff-B213-2174DE2B818D")]
 	[ContractID(PromptServiceFactory.ContractID)]
 	class PromptServiceFactory
-		: BaseNsFactory<PromptServiceFactory>,nsIFactory
+		: GenericOneClassNsFactory<PromptServiceFactory, PromptService>
 	{
-		
-		IntPtr nsIFactory.CreateInstance(nsISupports aOuter, ref Guid iid)
-		{
-			return  Marshal.GetIUnknownForObject(new PromptService());			
-		}
-
-		void nsIFactory.LockFactory(bool @lock)
-		{
-			
-		}
-
 		public const string ContractID ="@mozilla.org/embedcomp/prompt-service;1";
+	}
+
+	[ContractID(PromptFactoryFactory.ContractID)]
+	class PromptFactoryFactory
+		: GenericOneClassNsFactory<PromptFactoryFactory, PromptFactory>
+	{
+		public const string ContractID = "@mozilla.org/prompter;1";
+	}
+
+	class PromptFactory
+		:nsIPromptFactory
+	{
+		public IntPtr GetPrompt( nsIDOMWindow aParent, ref Guid iid )
+		{
+			IntPtr result = IntPtr.Zero;
+			IntPtr iUnknownForObject = Marshal.GetIUnknownForObject(new PromptService());
+			Marshal.QueryInterface(iUnknownForObject, ref iid, out result);
+			Marshal.Release(iUnknownForObject);
+			return result;
+		}
 	}
 	
 
-	class PromptService : nsIPromptService2
+	class PromptService : nsIPromptService2,nsIPrompt
 	{
 		public void Alert(nsIDOMWindow aParent, string aDialogTitle, string aText)
 		{
@@ -246,6 +255,59 @@ namespace Gecko
         }
 
         #endregion
-    }
+
+		public void Alert( string dialogTitle, string text )
+		{
+			Alert( null, dialogTitle, text );
+		}
+
+		public void AlertCheck( string dialogTitle, string text, string checkMsg, ref bool checkValue )
+		{
+			AlertCheck( null, dialogTitle, text, checkMsg, ref checkValue );
+		}
+
+		public bool Confirm( string dialogTitle, string text )
+		{
+			return Confirm( null, dialogTitle, text );
+		}
+
+		public bool ConfirmCheck( string dialogTitle, string text, string checkMsg, ref bool checkValue )
+		{
+			return ConfirmCheck( null, dialogTitle, text, checkMsg, ref checkValue );
+		}
+
+		public int ConfirmEx( string dialogTitle, string text, uint buttonFlags, string button0Title, string button1Title, string button2Title, string checkMsg, ref bool checkValue )
+		{
+			return ConfirmEx( null,
+			                  dialogTitle,
+			                  text,
+			                  buttonFlags,
+			                  button0Title,
+			                  button1Title,
+			                  button2Title,
+			                  checkMsg,
+			                  ref checkValue );
+		}
+
+		public bool Prompt( string dialogTitle, string text, ref string value, string checkMsg, ref bool checkValue )
+		{
+			return Prompt( null, dialogTitle, text, ref value, checkMsg, ref checkValue );
+		}
+
+		public bool PromptPassword( string dialogTitle, string text, ref string password, string checkMsg, ref bool checkValue )
+		{
+			return PromptPassword( null, dialogTitle, text, ref password, checkMsg, ref checkValue );
+		}
+
+		public bool PromptUsernameAndPassword( string dialogTitle, string text, ref string username, ref string password, string checkMsg, ref bool checkValue )
+		{
+			return PromptUsernameAndPassword( null,dialogTitle, text, ref username, ref password, checkMsg, ref checkValue );
+		}
+
+		public bool Select( string dialogTitle, string text, uint count, IntPtr[] selectList, ref int outSelection )
+		{
+			return Select( null, dialogTitle, text, count, selectList, ref outSelection );
+		}
+	}
 	#endif
 }
