@@ -2,6 +2,15 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v9.0-0.4 ==
+
+zloyprotoss:
+1. fixed  default prompt service. 
+2. Added Cache related wrappers.
+3. Added CategoryManager wrapper.
+4. Added nsURI.Create(string) method.
+5. Added Certificates related wrappers.
+
 == V9.0-0.3 ==
 
 Bug fixes
@@ -17,7 +26,7 @@ Bug fixes
 2. Setting GeckoElement.Id and GeckoElement.ClassName to String.Empty 
 or null should now remove the attribute.
 
-Add Features
+Added Features
 
 1. Add GeckoSelection.ScrollIntoView method
 2. Add AutoJSContext.EvaluateScript method which allows executing of 
