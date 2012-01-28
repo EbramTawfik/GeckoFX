@@ -178,12 +178,9 @@ namespace Gecko
 				Xpcom.Initialize();
 				#if !NO_CUSTOM_PROMPT_SERVICE
 				PromptFactoryFactory.Register();
-				//PromptServiceFactory.Register();
 				#endif
 				WindowCreator.Register();
-                LauncherDialogFactory.Register();
-				//CertificateDialogsFactory.Register();
-				//ToolTipTextProviderFactory.Register();
+                LauncherDialogFactory.Register();				
 				
 				WebBrowser = Xpcom.CreateInstance<nsIWebBrowser>("@mozilla.org/embedding/browser/nsWebBrowser;1");
 				WebBrowserFocus = (nsIWebBrowserFocus)WebBrowser;
@@ -191,19 +188,6 @@ namespace Gecko
 				WebNav = (nsIWebNavigation)WebBrowser;
 
 				WebBrowser.SetContainerWindowAttribute(this);
-				
-				//int type = ((this.ChromeFlags & (int)GeckoWindowFlags.OpenAsChrome) != 0) ? nsIDocShellTreeItemConstants.typeChromeWrapper : nsIDocShellTreeItemConstants.typeContentWrapper;
-				
-				//nsIDocShellTreeItem shellTreeItem = Xpcom.QueryInterface<nsIDocShellTreeItem>(WebBrowser);
-				//if (shellTreeItem != null)
-				//      shellTreeItem.SetItemType(type);
-				//else
-				//{
-				//      nsIDocShellTreeItem19 treeItem19 = Xpcom.QueryInterface<nsIDocShellTreeItem19>(WebBrowser);
-				//      if (treeItem19 != null)
-				//            treeItem19.SetItemType(type);
-				//}
-
 #if GTK
 				if (Xpcom.IsMono)
 					BaseWindow.InitWindow(m_wrapper.BrowserWindow.Handle, IntPtr.Zero, 0, 0, this.Width, this.Height);
@@ -1199,15 +1183,6 @@ namespace Gecko
 
 				nsIURI locationComObject = WebNav.GetCurrentURIAttribute();
 
-				//nsURI location = new nsURI(locationComObject);
-
-				//if (!location.IsNull)
-				//{
-				//    Uri result;
-				//    return Uri.TryCreate(location.Spec, UriKind.Absolute, out result) ? result : null;
-				//}
-				//return new Uri("about:blank");
-
 				var uri=nsURI.ToUri( locationComObject );
 				return uri ?? new Uri( "about:blank" );
 			}
@@ -1226,13 +1201,7 @@ namespace Gecko
 			
 				nsIURI location =  WebNav.GetReferringURIAttribute();
 				var uri = nsURI.ToUri(location);
-				return uri ?? new Uri("about:blank");
-				//if (location != null)
-				//{
-				//    return new Uri(nsString.Get(location.GetSpecAttribute));
-				//}
-				
-				//return new Uri("about:blank");
+				return uri ?? new Uri("about:blank");				
 			}
 		}
 		
@@ -1279,10 +1248,6 @@ namespace Gecko
 		
 		private void UnloadDocument()
 		{
-			//if (_Document != null)
-			//{
-			//      FromDOMDocumentTable.Remove((nsIDOMDocument)_Document.DomObject);
-			//}
 			_Document = null;
 		}
 		
