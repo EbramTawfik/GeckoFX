@@ -49,6 +49,17 @@ namespace Gecko.Collections
 		{
 			get { return Current; }
 		}
+
+		public static string[] ToStringArray(nsIStringEnumerator enumerator)
+		{
+			var ret = new List<string>();
+			while (enumerator.HasMore())
+			{
+				var value = nsString.Get(enumerator.GetNext);
+				ret.Add(value);
+			}
+			return ret.ToArray();
+		}
 	}
 
 	internal sealed class Utf8StringEnumerator
@@ -92,6 +103,17 @@ namespace Gecko.Collections
 		object IEnumerator.Current
 		{
 			get { return Current; }
+		}
+
+		public static string[] ToStringArray(nsIUTF8StringEnumerator enumerator)
+		{
+			List<string> ret = new List<string>();
+			while ( enumerator.HasMore() )
+			{
+				var value = nsString.Get(enumerator.GetNext);
+				ret.Add( value );
+			}
+			return ret.ToArray();
 		}
 	}
 }

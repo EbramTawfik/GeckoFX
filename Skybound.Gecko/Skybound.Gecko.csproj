@@ -33,10 +33,6 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <SccProjectName>&lt;Project Location In Database&gt;</SccProjectName>
-    <SccLocalPath>&lt;Local Binding Root of Project&gt;</SccLocalPath>
-    <SccAuxPath>&lt;Source Control Database&gt;</SccAuxPath>
-    <SccProvider>Mercurial Source Control Package</SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release_Windows|x86'">
     <PlatformTarget>x86</PlatformTarget>
@@ -1476,6 +1472,7 @@
     <Compile Include="Plugins\PluginHost.cs" />
     <Compile Include="Plugins\PluginTag.cs" />
     <Compile Include="PrintSettings.cs" />
+    <Compile Include="PrivateBrowsingService.cs" />
     <Compile Include="PromptDialog.cs">
       <SubType>Form</SubType>
     </Compile>

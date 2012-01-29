@@ -92,11 +92,23 @@ namespace Gecko
 		}
 	}
 
+#warning rename GeckoDomElement->GeckoElement & GeckoElement ->GeckoHtmlElement
+	public class GeckoDomElement
+		:GeckoNode
+	{
+		private nsIDOMElement _domElement;
+		internal GeckoDomElement(nsIDOMElement domElement)
+			:base(domElement)
+		{
+			_domElement = domElement;
+		}
+	}
+
 	/// <summary>
 	/// Represents a DOM element.
 	/// </summary>
 	public class GeckoElement
-		: GeckoNode
+		: GeckoDomElement
 	{
 		internal GeckoElement(nsIDOMHTMLElement element)
 			: base(element)

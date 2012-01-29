@@ -2,7 +2,7 @@ namespace Gecko.Plugins
 {
 	public sealed class PluginTag
 	{
-		private nsIPluginTag _pluginTag;
+		internal nsIPluginTag _pluginTag;
 
 		internal PluginTag(nsIPluginTag pluginTag)
 		{

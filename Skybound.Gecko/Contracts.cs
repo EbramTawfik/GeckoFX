@@ -5,10 +5,12 @@ using System.Text;
 
 namespace Gecko
 {
-	internal static class Contracts
+	public static class Contracts
 	{
+		#region contracts for elements that HAVE wrappers
 		internal static readonly string ZipReader = "@mozilla.org/libjar/zip-reader;1";
 		internal static readonly string DnsService = "@mozilla.org/network/dns-service;1";
+		internal static readonly string PrivateBrowsing = "@mozilla.org/privatebrowsing;1";
 		#region nsISupportsPrimitive's
 		internal static readonly string SupportsID = "@mozilla.org/supports-id;1";
 		internal static readonly string SupportsString = "@mozilla.org/supports-string;1";
@@ -27,7 +29,10 @@ namespace Gecko
 		internal static readonly string SupportsVoid= "@mozilla.org/supports-void;1";
 		internal static readonly string SupportsInterfacePointer= "@mozilla.org/supports-interface-pointer;1";
 		#endregion
-
 		internal static readonly string PluginHost = "@mozilla.org/plugin/host;1";
+		#endregion
+		#region  contracts for elements that NOT HAVE wrappers
+		public static readonly string ObserverService = "@mozilla.org/observer-service;1";
+		#endregion
 	}
 }

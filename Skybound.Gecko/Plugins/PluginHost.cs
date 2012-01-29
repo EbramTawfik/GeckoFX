@@ -19,16 +19,26 @@ namespace Gecko.Plugins
 
 		public void ReloadPlugins(bool reloadPages)
 		{
+			
 			_pluginHost.ReloadPlugins( reloadPages );
 		}
 
 		public PluginTag[] GetPluginTags()
 		{
-			uint count = 0;
-			nsIPluginTag[] tags = null;
-			_pluginHost.GetPluginTags( ref count, ref tags );
+			uint count = 10;
+			nsIPluginTag[] tags = new nsIPluginTag[10];
 			//var_pluginHost.GetPluginTags();
 			return null;
+		}
+
+		public bool SiteHasData(PluginTag tag,string domain)
+		{
+			return nsString.Pass( _pluginHost.SiteHasData, tag._pluginTag, domain );
+		}
+
+		public void ClearSiteData(PluginTag tag,string domain,ulong flags,long maxAge)
+		{
+			nsString.Set( x => _pluginHost.ClearSiteData( tag._pluginTag, x, flags, maxAge ), domain );
 		}
 	}
 }

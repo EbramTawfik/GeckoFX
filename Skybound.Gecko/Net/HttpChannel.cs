@@ -7,7 +7,7 @@ namespace Gecko.Net
 	{
 		private nsIHttpChannel _httpChannel;
 
-		internal HttpChannel (nsIHttpChannel  httpChannel)
+		public HttpChannel (nsIHttpChannel  httpChannel)
 			:base(httpChannel)
 		{
 			_httpChannel = httpChannel;
@@ -28,7 +28,16 @@ namespace Gecko.Net
 
 		public string GetRequestHeader(string header)
 		{
-			return nsString.Get( _httpChannel.GetRequestHeader, header );
+			string ret = null;
+			try
+			{
+				ret= nsString.Get( _httpChannel.GetRequestHeader, header );
+			}
+			catch ( Exception )
+			{
+
+			}
+			return ret;
 		}
 
 		public void SetRequestHeader(string header,string value,bool merge)

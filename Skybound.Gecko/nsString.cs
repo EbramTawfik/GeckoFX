@@ -44,6 +44,8 @@ namespace Gecko
 	/// </summary>
 	public static class nsString
 	{
+		#region nsAUTF8String
+		
 		public delegate void StringAttributeUtf8(nsAUTF8String str);
 		
 		public static string Get(StringAttributeUtf8 getter)
@@ -86,6 +88,19 @@ namespace Gecko
 			}
 			return ret;
 		}
+
+		public static T Pass<T,TW> (Func<TW,nsAUTF8String,T> func,TW value,string stringValue )
+		{
+			T ret;
+			using (nsAUTF8String str = new nsAUTF8String(stringValue))
+			{
+				ret = func( value, str );
+			}
+			return ret;
+		}
+		#endregion
+
+		#region nsACString
 		
 		public delegate void StringAttributeAnsi(nsACString str);
 		
@@ -125,16 +140,11 @@ namespace Gecko
 		{
 			using (nsACString native1 = new nsACString(value1), native2 = new nsACString(value2))
 			{
-				//if (!string.IsNullOrEmpty(value1))
-				//	native1.SetData(value1);
-
-				//if (!string.IsNullOrEmpty(value2))
-				//	native2.SetData(value2);
-
 				func(native1, native2);
 			}
 		}
-		
+		#endregion
+		#region nsAString
 		public delegate void StringAttributeUnicode(nsAString str);
 		
 		public static string Get(StringAttributeUnicode getter)
@@ -169,14 +179,11 @@ namespace Gecko
 			T ret;
 			using (nsAString str = new nsAString(value))
 			{
-				//if (!string.IsNullOrEmpty(value))
-				//	str.SetData(value);
-
 				ret = func( str );
 			}
 			return ret;
 		}
-
+		#endregion
 
 	}
 

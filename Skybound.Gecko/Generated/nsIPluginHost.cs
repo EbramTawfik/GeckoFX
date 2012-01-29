@@ -48,7 +48,7 @@ namespace Gecko
 		/// <param name='aPluginCount'> </param>
 		/// <param name='aResults'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPluginTags(ref uint aPluginCount, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref nsIPluginTag[] aResults);
+		unsafe void GetPluginTags(ref uint aPluginCount, [MarshalAs(UnmanagedType.LPArray,SizeParamIndex = 0)] out nsIPluginTag[] aResults);
 		
 		/// <summary>
         /// Clear site data for a given plugin.

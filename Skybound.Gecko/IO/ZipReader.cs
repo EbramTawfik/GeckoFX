@@ -34,7 +34,6 @@ namespace Gecko.IO
 		public bool HasEntry(string entry)
 		{
 			return nsString.Pass( _zipReader.HasEntry, entry );
-
 		}
 
 		public bool Test(string entry=null)
