@@ -21,7 +21,7 @@ namespace Gecko.IO
 			
 		}
 
-		public IEnumerator<string> FindEntries(string pattern)
+		public IEnumerator<string> FindEntries(nsAUTF8String pattern)
 		{
 			return new Utf8StringEnumerator( _zipReader.FindEntries( pattern ) );
 		}
@@ -37,7 +37,7 @@ namespace Gecko.IO
 
 		}
 
-		public bool Test(string entry=null)
+		public bool Test(nsAUTF8String entry=null)
 		{
 			bool ret;
 			try
