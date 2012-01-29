@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Gecko
 {
-	internal static class nsSupportsPrimitiveConverter
+	public static class nsSupportsPrimitiveConverter
 	{
 		#region Get
 		public static object GetObject(nsISupportsPrimitive value)
@@ -152,5 +152,16 @@ namespace Gecko
 			return value.GetDataAttribute();
 		}
 		#endregion
+
+
+		public static nsISupportsPRBool SetBool(bool value)
+		{
+			var bvalue = Xpcom.GetService<nsISupportsPRBool>(Contracts.SupportsBool);
+			bvalue=Xpcom.QueryInterface<nsISupportsPRBool>(bvalue);
+			bvalue.SetDataAttribute( value );
+
+			var test = Xpcom.QueryInterface<nsISupports>(bvalue);
+			return bvalue;
+		}
 	}
 }

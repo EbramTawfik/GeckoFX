@@ -51,7 +51,7 @@ namespace Gecko
 		{
 			this.DomAttr = attr;
 		}
-		nsIDOMAttr DomAttr;
+		internal nsIDOMAttr DomAttr;
 		
 		internal static GeckoAttribute Create(nsIDOMAttr attr)
 		{
@@ -97,11 +97,205 @@ namespace Gecko
 		:GeckoNode
 	{
 		private nsIDOMElement _domElement;
+
+		private string m_cachedTagName;
+
 		internal GeckoDomElement(nsIDOMElement domElement)
 			:base(domElement)
 		{
 			_domElement = domElement;
 		}
+
+		
+
+		/// <summary>
+		/// Gets the name of the tag.
+		/// </summary>
+		public string TagName
+		{
+			get
+			{
+				if (m_cachedTagName != null)
+					return m_cachedTagName;
+
+				return m_cachedTagName = nsString.Get(_domElement.GetTagNameAttribute);
+			}
+		}
+
+		#region Attribute
+		/// <summary>
+		/// Gets the value of an attribute on this element with the specified name.
+		/// </summary>
+		/// <param name="attributeName"></param>
+		/// <returns></returns>
+		public string GetAttribute(string attributeName)
+		{
+			if (string.IsNullOrEmpty(attributeName))
+				throw new ArgumentException("attributeName");
+
+			return nsString.Get(_domElement.GetAttribute, attributeName);
+		}
+
+		/// <summary>
+		/// Check if Element contains specified attribute.
+		/// </summary>
+		/// <param name="attributeName">The name of the attribute to look for</param>
+		/// <returns>true if attribute exists false otherwise</returns>
+		public bool HasAttribute(string attributeName)
+		{
+			if (string.IsNullOrEmpty(attributeName))
+				throw new ArgumentException("attributeName");
+
+			return nsString.Pass( _domElement.HasAttribute, attributeName );
+		}
+
+		/// <summary>
+		/// Sets the value of an attribute on this element with the specified name.
+		/// </summary>
+		/// <param name="attributeName"></param>
+		/// <param name="value"></param>
+		public void SetAttribute(string attributeName, string value)
+		{
+			if (string.IsNullOrEmpty(attributeName))
+				throw new ArgumentException("attributeName");
+
+			nsString.Set( _domElement.SetAttribute, attributeName, value );
+		}
+
+		/// <summary>
+		/// Removes an attribute from this element.
+		/// </summary>
+		/// <param name="attributeName"></param>
+		public void RemoveAttribute(string attributeName)
+		{
+			if (string.IsNullOrEmpty(attributeName))
+				throw new ArgumentException("attributeName");
+
+
+			nsString.Set(_domElement.RemoveAttribute,attributeName);
+		}
+		#endregion
+
+		#region Attribute Nodes
+		public GeckoAttribute GetAttributeNode(string name)
+		{
+			var ret = nsString.Pass(_domElement.GetAttributeNode, name);
+			return (ret == null) ? null : new GeckoAttribute(ret);
+		}
+
+		public GeckoAttribute SetAttributeNode(GeckoAttribute newAttr)
+		{
+			var ret = _domElement.SetAttributeNode(newAttr.DomAttr);
+			return ret == null ? null : new GeckoAttribute(ret);
+		}
+
+		public GeckoAttribute RemoveAttributeNode(GeckoAttribute newAttr)
+		{
+			var ret = _domElement.RemoveAttributeNode(newAttr.DomAttr);
+			return ret == null ? null : new GeckoAttribute(ret);
+		}
+		#endregion
+
+
+
+		#region Attribute NS
+		public bool HasAttributeNS(string namespaceUri, string attributeName)
+		{
+			if (string.IsNullOrEmpty(namespaceUri))
+				return HasAttribute(attributeName);
+
+			if (string.IsNullOrEmpty(attributeName))
+				throw new ArgumentException("attributeName");
+
+			return nsString.Pass( _domElement.HasAttributeNS, namespaceUri, attributeName );
+		}
+		
+		/// <summary>
+		/// Gets the value of an attribute on this element with the specified name and namespace.
+		/// </summary>
+		/// <param name="attributeName"></param>
+		/// <returns></returns>
+		public string GetAttributeNS(string namespaceUri, string attributeName)
+		{
+			if (string.IsNullOrEmpty(namespaceUri))
+				return GetAttribute(attributeName);
+
+			if (string.IsNullOrEmpty(attributeName))
+				throw new ArgumentException("attributeName");
+			nsAString retval = new nsAString();
+			_domElement.GetAttributeNS(new nsAString(namespaceUri), new nsAString(attributeName), retval);
+			return retval.ToString();
+		}
+
+		/// <summary>
+		/// Sets the value of an attribute on this element with the specified name and namespace.
+		/// </summary>
+		/// <param name="attributeName"></param>
+		/// <param name="value"></param>
+		public void SetAttributeNS(string namespaceUri, string attributeName, string value)
+		{
+			if (string.IsNullOrEmpty(namespaceUri))
+			{
+				SetAttribute(attributeName, value);
+			}
+			else
+			{
+				if (string.IsNullOrEmpty(attributeName))
+					throw new ArgumentException("attributeName");
+
+				_domElement.SetAttributeNS(new nsAString(namespaceUri), new nsAString(attributeName), new nsAString(value));
+			}
+		}
+		#endregion
+
+		#region Attribute Node NS
+		
+		public GeckoAttribute GetAttributeNodeNS(string namespaceUri, string localName)
+		{
+			if (string.IsNullOrEmpty(namespaceUri))
+				return GetAttributeNode(localName);
+
+			var ret = nsString.Pass(_domElement.GetAttributeNodeNS, namespaceUri,localName);
+			return (ret == null) ? null : new GeckoAttribute(ret);
+		}
+
+		public GeckoAttribute SetAttributeNodeNS(GeckoAttribute attribute)
+		{
+			var ret = _domElement.SetAttributeNodeNS( attribute.DomAttr );
+			return (ret == null) ? null : new GeckoAttribute(ret);
+		}
+		#endregion
+
+		/// <summary>
+		/// Returns a collection containing the child elements of this element with a given tag name.
+		/// </summary>
+		/// <param name="tagName"></param>
+		/// <returns></returns>
+		public GeckoElementCollection GetElementsByTagName(string tagName)
+		{
+			if (string.IsNullOrEmpty(tagName))
+				return null;
+
+			return new GeckoElementCollection(_domElement.GetElementsByTagName(new nsAString(tagName)));
+		}
+
+		public GeckoElementCollection GetElementsByTagNameNS(string namespaceURI, string localName)
+		{
+			if ( string.IsNullOrEmpty( namespaceURI ) ) return GetElementsByTagName( localName );
+
+			if ( string.IsNullOrEmpty( localName ) )
+				return null;
+
+			var ret = nsString.Pass( _domElement.GetElementsByTagNameNS, namespaceURI, localName );
+			return ret == null ? null : new GeckoElementCollection( ret );
+		}
+
+
+
+
+
+
+
 	}
 
 	/// <summary>
@@ -162,20 +356,7 @@ namespace Gecko
 			}
 		}
 
-		private string m_cachedTagName;
 
-		/// <summary>
-		/// Gets the name of the tag.
-		/// </summary>
-		public string TagName
-		{
-			get {
-				if (m_cachedTagName != null)
-					return m_cachedTagName;
-
-				return m_cachedTagName = nsString.Get(DomElement.GetTagNameAttribute); 
-			}
-		}
 		
 		/// <summary>
 		/// Gets the value of the id attribute.
@@ -231,109 +412,8 @@ namespace Gecko
 			set { nsString.Set(DomNSHTMLElement.GetContentEditableAttribute, value); }
 		}
 		
-		/// <summary>
-		/// Returns a collection containing the child elements of this element with a given tag name.
-		/// </summary>
-		/// <param name="tagName"></param>
-		/// <returns></returns>
-		public GeckoElementCollection GetElementsByTagName(string tagName)
-		{
-			if (string.IsNullOrEmpty(tagName))
-				return null;
-			
-			return new GeckoElementCollection(DomElement.GetElementsByTagName(new nsAString(tagName)));
-		}
-		
-		/// <summary>
-		/// Gets the value of an attribute on this element with the specified name.
-		/// </summary>
-		/// <param name="attributeName"></param>
-		/// <returns></returns>
-		public string GetAttribute(string attributeName)
-		{
-			if (string.IsNullOrEmpty(attributeName))
-				throw new ArgumentException("attributeName");
 
-			var retval = new nsAString();
-			DomElement.GetAttribute(new nsAString(attributeName), retval);
-			return retval.ToString();
-		}
-
-		/// <summary>
-		/// Check if Element contains specified attribute.
-		/// </summary>
-		/// <param name="attributeName">The name of the attribute to look for</param>
-		/// <returns>true if attribute exists false otherwise</returns>
-		public bool HasAttribute(string attributeName)
-		{
-			if (string.IsNullOrEmpty(attributeName))
-				throw new ArgumentException("attributeName");
-
-			return DomElement.HasAttribute(new nsAString(attributeName));			
-		}
 		
-		/// <summary>
-		/// Gets the value of an attribute on this element with the specified name and namespace.
-		/// </summary>
-		/// <param name="attributeName"></param>
-		/// <returns></returns>
-		public string GetAttributeNS(string namespaceUri, string attributeName)
-		{
-			if (string.IsNullOrEmpty(namespaceUri))
-				return GetAttribute(attributeName);
-			
-			if (string.IsNullOrEmpty(attributeName))
-				throw new ArgumentException("attributeName");
-			nsAString retval = new nsAString();
-			DomElement.GetAttributeNS(new nsAString(namespaceUri), new nsAString(attributeName), retval);
-			return retval.ToString();
-		}
-		
-		/// <summary>
-		/// Sets the value of an attribute on this element with the specified name.
-		/// </summary>
-		/// <param name="attributeName"></param>
-		/// <param name="value"></param>
-		public void SetAttribute(string attributeName, string value)
-		{
-			if (string.IsNullOrEmpty(attributeName))
-				throw new ArgumentException("attributeName");
-			
-			DomElement.SetAttribute(new nsAString(attributeName), new nsAString(value));
-		}
-		
-		/// <summary>
-		/// Sets the value of an attribute on this element with the specified name and namespace.
-		/// </summary>
-		/// <param name="attributeName"></param>
-		/// <param name="value"></param>
-		public void SetAttributeNS(string namespaceUri, string attributeName, string value)
-		{
-			if (string.IsNullOrEmpty(namespaceUri))
-			{
-				SetAttribute(attributeName, value);
-			}
-			else
-			{
-				if (string.IsNullOrEmpty(attributeName))
-					throw new ArgumentException("attributeName");
-				
-				DomElement.SetAttributeNS(new nsAString(namespaceUri), new nsAString(attributeName), new nsAString(value));
-			}
-		}
-		
-		/// <summary>
-		/// Removes an attribute from this element.
-		/// </summary>
-		/// <param name="attributeName"></param>
-		public void RemoveAttribute(string attributeName)
-		{
-			if (string.IsNullOrEmpty(attributeName))
-				throw new ArgumentException("attributeName");
-			
-			DomElement.RemoveAttribute(new nsAString(attributeName));
-		}
-
 		public System.Drawing.Rectangle BoundingClientRect
 		{
 			get

@@ -136,7 +136,7 @@ namespace Gecko
 			}
 		}
 
-		public static void Pass(Action<nsACString, nsACString> func, string value1, string value2)
+		public static void Set(Action<nsACString, nsACString> func, string value1, string value2)
 		{
 			using (nsACString native1 = new nsACString(value1), native2 = new nsACString(value2))
 			{
@@ -155,6 +155,18 @@ namespace Gecko
 				return str.ToString();
 			}
 		}
+
+		public static string Get(Action<nsAString, nsAString> getter, string inValue)
+		{
+			using (nsAString nativeIn = new nsAString(inValue), nativeOut = new nsAString())
+			{
+				//if (!string.IsNullOrEmpty(inValue))
+				//    nativeIn.SetData( inValue );
+
+				getter(nativeIn, nativeOut);
+				return nativeOut.ToString();
+			}
+		}
 		
 		public static void Set(StringAttributeUnicode setter, string value)
 		{
@@ -164,6 +176,14 @@ namespace Gecko
 					str.SetData(value);
 				
 				setter(str);
+			}
+		}
+
+		public static void Set(Action<nsAString, nsAString> func, string value1, string value2)
+		{
+			using (nsAString native1 = new nsAString(value1), native2 = new nsAString(value2))
+			{
+				func(native1, native2);
 			}
 		}
 
@@ -180,6 +200,23 @@ namespace Gecko
 			using (nsAString str = new nsAString(value))
 			{
 				ret = func( str );
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// Passes <paramref name="value"/> to function and return value
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="func"></param>
+		/// <param name="value"></param>
+		/// <returns></returns>
+		public static T Pass<T>(Func<nsAString,nsAString, T> func, string value1,string value2)
+		{
+			T ret;
+			using (nsAString str1 = new nsAString(value1),str2=new nsAString(value2))
+			{
+				ret = func( str1, str2 );
 			}
 			return ret;
 		}
