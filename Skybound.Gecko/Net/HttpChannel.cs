@@ -42,7 +42,7 @@ namespace Gecko.Net
 
 		public void SetRequestHeader(string header,string value,bool merge)
 		{
-			nsString.Pass( ( x, y ) => _httpChannel.SetRequestHeader( x, y, merge ), header, value );
+			nsString.Set( ( x, y ) => _httpChannel.SetRequestHeader( x, y, merge ), header, value );
 		}
 
 		public void VisitRequestHeaders(nsIHttpHeaderVisitor visitor)
@@ -84,7 +84,7 @@ namespace Gecko.Net
 
 		public void SetResponseHeader(string header, string value, bool merge)
 		{
-			nsString.Pass((x, y) => _httpChannel.SetResponseHeader(x, y, merge), header, value);
+			nsString.Set((x, y) => _httpChannel.SetResponseHeader(x, y, merge), header, value);
 		}
 
 		public void VisitResponseHeaders(nsIHttpHeaderVisitor visitor)
