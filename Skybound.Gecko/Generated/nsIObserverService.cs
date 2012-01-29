@@ -56,7 +56,7 @@ namespace Gecko
         /// returned.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddObserver([MarshalAs(UnmanagedType.Interface)] nsIObserver anObserver, [MarshalAs(UnmanagedType.LPStr)] string aTopic, [MarshalAs(UnmanagedType.Bool)] bool ownsWeak);
+		void AddObserver([MarshalAs(UnmanagedType.Interface)] nsIObserver anObserver, [MarshalAs(UnmanagedType.LPStr)] string aTopic, [MarshalAs(UnmanagedType.U1)] bool ownsWeak);
 		
 		/// <summary>
         /// removeObserver

@@ -37,7 +37,7 @@ namespace Gecko
 		/// <summary>
         /// true if the selection container is absolutely positioned
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetSelectionContainerAbsolutelyPositionedAttribute();
 		
@@ -52,7 +52,7 @@ namespace Gecko
 		/// <summary>
         /// true if Absolute Positioning handling is enabled in the editor
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetAbsolutePositioningEnabledAttribute();
 		
@@ -60,12 +60,12 @@ namespace Gecko
         /// true if Absolute Positioning handling is enabled in the editor
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAbsolutePositioningEnabledAttribute([MarshalAs(UnmanagedType.Bool)] bool aAbsolutePositioningEnabled);
+		void SetAbsolutePositioningEnabledAttribute([MarshalAs(UnmanagedType.U1)] bool aAbsolutePositioningEnabled);
 		
 		/// <summary>
         /// true if Snap To Grid is enabled in the editor.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetSnapToGridEnabledAttribute();
 		
@@ -73,7 +73,7 @@ namespace Gecko
         /// true if Snap To Grid is enabled in the editor.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSnapToGridEnabledAttribute([MarshalAs(UnmanagedType.Bool)] bool aSnapToGridEnabled);
+		void SetSnapToGridEnabledAttribute([MarshalAs(UnmanagedType.U1)] bool aSnapToGridEnabled);
 		
 		/// <summary>
         /// sets the grid size in pixels.
@@ -104,7 +104,7 @@ namespace Gecko
         /// false to put it back in the normal flow
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AbsolutePositionSelection([MarshalAs(UnmanagedType.Bool)] bool aEnabled);
+		void AbsolutePositionSelection([MarshalAs(UnmanagedType.U1)] bool aEnabled);
 		
 		/// <summary>
         /// adds aChange to the z-index of the currently positioned element.
@@ -121,7 +121,7 @@ namespace Gecko
         /// false to put it back in the normal flow
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AbsolutelyPositionElement([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement, [MarshalAs(UnmanagedType.Bool)] bool aEnabled);
+		void AbsolutelyPositionElement([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement, [MarshalAs(UnmanagedType.U1)] bool aEnabled);
 		
 		/// <summary>
         /// sets the position of an element; warning it does NOT check if the

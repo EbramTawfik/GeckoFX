@@ -57,7 +57,7 @@ namespace Gecko
         /// OnStopRequest has fired).
         /// @note Suspended requests are still considered pending.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsPending();
 		

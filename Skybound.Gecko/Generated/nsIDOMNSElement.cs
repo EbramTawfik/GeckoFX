@@ -206,7 +206,7 @@ namespace Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCapture([MarshalAs(UnmanagedType.Bool)] bool retargetToElement);
+		void SetCapture([MarshalAs(UnmanagedType.U1)] bool retargetToElement);
 		
 		/// <summary>
         /// If this element has captured the mouse, release the capture. If another
@@ -221,7 +221,7 @@ namespace Gecko
         ///
         /// See <http://dev.w3.org/2006/webapi/selectors-api2/>
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool MozMatchesSelector([MarshalAs(UnmanagedType.LPStruct)] nsAString selector);
 	}

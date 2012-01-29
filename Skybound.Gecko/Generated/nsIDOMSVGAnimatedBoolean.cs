@@ -49,7 +49,7 @@ namespace Gecko
         /// http://www.w3.org/TR/SVG11/types.html
         ///
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetBaseValAttribute();
 		
@@ -62,12 +62,12 @@ namespace Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBaseValAttribute([MarshalAs(UnmanagedType.Bool)] bool aBaseVal);
+		void SetBaseValAttribute([MarshalAs(UnmanagedType.U1)] bool aBaseVal);
 		
 		/// <summary>
         /// raises DOMException on setting
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetAnimValAttribute();
 	}

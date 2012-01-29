@@ -47,7 +47,7 @@ namespace Gecko
 		/// <summary>
         /// Determine if session should be restored
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool DoRestore();
 		

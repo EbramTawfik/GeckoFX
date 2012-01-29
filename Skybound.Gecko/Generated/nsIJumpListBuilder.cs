@@ -44,7 +44,7 @@ namespace Gecko
 		/// <summary>
         /// Indicates if a commit has already occurred in this session.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsListCommittedAttribute();
 		
@@ -64,7 +64,7 @@ namespace Gecko
         ///
         /// @returns true if the operation completed successfully.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool InitListBuild([MarshalAs(UnmanagedType.Interface)] nsIMutableArray removedItems);
 		
@@ -86,7 +86,7 @@ namespace Gecko
         /// since the last commit.
         /// @throw NS_ERROR_UNEXPECTED on internal errors.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool AddListToBuild(short aCatType, [MarshalAs(UnmanagedType.Interface)] nsIArray items, [MarshalAs(UnmanagedType.LPStruct)] nsAString catName);
 		
@@ -101,7 +101,7 @@ namespace Gecko
         ///
         /// @returns true if the operation completed successfully.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool CommitListBuild();
 		
@@ -113,7 +113,7 @@ namespace Gecko
         ///
         /// @throw NS_ERROR_UNEXPECTED on internal errors.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool DeleteActiveList();
 	}

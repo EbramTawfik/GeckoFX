@@ -181,7 +181,7 @@ namespace Gecko
         /// the frame tree.  This can be used to decide what operations may
         /// or may not be allowed on the loader's docshell.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetDepthTooGreatAttribute();
 		
@@ -211,13 +211,13 @@ namespace Gecko
         /// @see nsIDOMWindowUtils sendMouseEvent.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendCrossProcessMouseEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString aType, float aX, float aY, int aButton, int aClickCount, int aModifiers, [MarshalAs(UnmanagedType.Bool)] bool aIgnoreRootScrollFrame);
+		void SendCrossProcessMouseEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString aType, float aX, float aY, int aButton, int aClickCount, int aModifiers, [MarshalAs(UnmanagedType.U1)] bool aIgnoreRootScrollFrame);
 		
 		/// <summary>
         /// Activate event forwarding from client (remote frame) to parent.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ActivateFrameEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString aType, [MarshalAs(UnmanagedType.Bool)] bool capture);
+		void ActivateFrameEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString aType, [MarshalAs(UnmanagedType.U1)] bool capture);
 		
 		/// <summary>
         /// Note, when frameloaders are swapped, also messageManagers are swapped.
@@ -230,18 +230,18 @@ namespace Gecko
         /// @see nsIDOMWindowUtils sendKeyEvent.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendCrossProcessKeyEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString aType, int aKeyCode, int aCharCode, int aModifiers, [MarshalAs(UnmanagedType.Bool)] bool aPreventDefault);
+		void SendCrossProcessKeyEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString aType, int aKeyCode, int aCharCode, int aModifiers, [MarshalAs(UnmanagedType.U1)] bool aPreventDefault);
 		
 		/// <summary>Member GetDelayRemoteDialogsAttribute </summary>
 		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetDelayRemoteDialogsAttribute();
 		
 		/// <summary>Member SetDelayRemoteDialogsAttribute </summary>
 		/// <param name='aDelayRemoteDialogs'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDelayRemoteDialogsAttribute([MarshalAs(UnmanagedType.Bool)] bool aDelayRemoteDialogs);
+		void SetDelayRemoteDialogsAttribute([MarshalAs(UnmanagedType.U1)] bool aDelayRemoteDialogs);
 		
 		/// <summary>
         /// When asynchronous scrolling is enabled, a target viewport can be

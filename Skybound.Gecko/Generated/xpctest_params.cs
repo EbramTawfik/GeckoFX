@@ -43,9 +43,9 @@ namespace Gecko
 		/// <summary>
         /// These types correspond to the ones in typelib.py
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool TestBoolean([MarshalAs(UnmanagedType.Bool)] bool a, [MarshalAs(UnmanagedType.Bool)] ref bool b);
+		bool TestBoolean([MarshalAs(UnmanagedType.U1)] bool a, [MarshalAs(UnmanagedType.U1)] ref bool b);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr TestOctet(System.IntPtr a, ref System.IntPtr b);

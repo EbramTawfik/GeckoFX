@@ -72,7 +72,7 @@ namespace Gecko
         /// maintained. Transient transactions cannot be undone or redone by the
         /// transaction manager.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsTransientAttribute();
 		
@@ -88,7 +88,7 @@ namespace Gecko
         /// pushing it on the undo stack.
         /// @param aTransaction the previously executed transaction to merge.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool Merge([MarshalAs(UnmanagedType.Interface)] nsITransaction aTransaction);
 	}

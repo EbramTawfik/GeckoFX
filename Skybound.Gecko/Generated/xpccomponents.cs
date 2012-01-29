@@ -289,7 +289,7 @@ namespace Gecko
         /// NB: Assume that getting any of these attributes is relatively
         /// cheap, but setting any of them is relatively expensive.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetStrictAttribute();
 		
@@ -305,63 +305,63 @@ namespace Gecko
         /// cheap, but setting any of them is relatively expensive.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetStrictAttribute([MarshalAs(UnmanagedType.Bool)] bool aStrict);
+		void SetStrictAttribute([MarshalAs(UnmanagedType.U1)] bool aStrict);
 		
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetWerrorAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetWerrorAttribute([MarshalAs(UnmanagedType.Bool)] bool aWerror);
+		void SetWerrorAttribute([MarshalAs(UnmanagedType.U1)] bool aWerror);
 		
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetAtlineAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAtlineAttribute([MarshalAs(UnmanagedType.Bool)] bool aAtline);
+		void SetAtlineAttribute([MarshalAs(UnmanagedType.U1)] bool aAtline);
 		
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetXmlAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetXmlAttribute([MarshalAs(UnmanagedType.Bool)] bool aXml);
+		void SetXmlAttribute([MarshalAs(UnmanagedType.U1)] bool aXml);
 		
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetRelimitAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetRelimitAttribute([MarshalAs(UnmanagedType.Bool)] bool aRelimit);
+		void SetRelimitAttribute([MarshalAs(UnmanagedType.U1)] bool aRelimit);
 		
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetTracejitAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTracejitAttribute([MarshalAs(UnmanagedType.Bool)] bool aTracejit);
+		void SetTracejitAttribute([MarshalAs(UnmanagedType.U1)] bool aTracejit);
 		
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetMethodjitAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMethodjitAttribute([MarshalAs(UnmanagedType.Bool)] bool aMethodjit);
+		void SetMethodjitAttribute([MarshalAs(UnmanagedType.U1)] bool aMethodjit);
 		
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetJitprofilingAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetJitprofilingAttribute([MarshalAs(UnmanagedType.Bool)] bool aJitprofiling);
+		void SetJitprofilingAttribute([MarshalAs(UnmanagedType.U1)] bool aJitprofiling);
 		
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetMethodjit_alwaysAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMethodjit_alwaysAttribute([MarshalAs(UnmanagedType.Bool)] bool aMethodjit_always);
+		void SetMethodjit_alwaysAttribute([MarshalAs(UnmanagedType.U1)] bool aMethodjit_always);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetGCZeal(int zeal, System.IntPtr jsContext);
@@ -415,7 +415,7 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetConstructorAttribute();
 		
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsSuccessCode(int result);
 		

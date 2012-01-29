@@ -63,7 +63,7 @@ namespace Gecko
 		/// <summary>
         /// True if the name of the entry ends with '/' and false otherwise.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsDirectoryAttribute();
 		
@@ -83,7 +83,7 @@ namespace Gecko
         /// this attribute will be false for the nsIZipEntry for that directory.
         /// It is impossible for a file to be synthetic.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsSyntheticAttribute();
 	}
@@ -154,7 +154,7 @@ namespace Gecko
 		/// <summary>
         /// Checks whether the zipfile contains an entry specified by entryName.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool HasEntry([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String zipEntry);
 		

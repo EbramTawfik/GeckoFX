@@ -63,7 +63,7 @@ namespace Gecko
 		/// <summary>
         /// Indicates if the selection is collapsed or not.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetIsCollapsedAttribute();
 		
@@ -122,9 +122,9 @@ namespace Gecko
         /// is part of the selection. If partlyContained is set to PR_FALSE, the
         /// function only returns true when the entire node is part of the selection.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool ContainsNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode node, [MarshalAs(UnmanagedType.Bool)] bool partlyContained);
+		new bool ContainsNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode node, [MarshalAs(UnmanagedType.U1)] bool partlyContained);
 		
 		/// <summary>
         /// Adds all children of the specified node to the selection.
@@ -163,7 +163,7 @@ namespace Gecko
         /// PR_FALSE if the new language is left-to-right.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SelectionLanguageChange([MarshalAs(UnmanagedType.Bool)] bool langRTL);
+		new void SelectionLanguageChange([MarshalAs(UnmanagedType.U1)] bool langRTL);
 		
 		/// <summary>
         /// Returns the whole selection into a plain text string.
@@ -195,14 +195,14 @@ namespace Gecko
 		
 		/// <summary>Member GetInterlinePositionAttribute </summary>
 		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetInterlinePositionAttribute();
 		
 		/// <summary>Member SetInterlinePositionAttribute </summary>
 		/// <param name='aInterlinePosition'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetInterlinePositionAttribute([MarshalAs(UnmanagedType.Bool)] bool aInterlinePosition);
+		void SetInterlinePositionAttribute([MarshalAs(UnmanagedType.U1)] bool aInterlinePosition);
 		
 		/// <summary>
         ///startBatchChanges
@@ -263,7 +263,7 @@ namespace Gecko
         /// of nsTextFrame::GetPointFromOffset whose return value is to be cached.
         /// see bugs 35296 and 199412
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetCanCacheFrameOffsetAttribute();
 		
@@ -275,7 +275,7 @@ namespace Gecko
         /// see bugs 35296 and 199412
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCanCacheFrameOffsetAttribute([MarshalAs(UnmanagedType.Bool)] bool aCanCacheFrameOffset);
+		void SetCanCacheFrameOffsetAttribute([MarshalAs(UnmanagedType.U1)] bool aCanCacheFrameOffset);
 		
 		/// <summary>
         ///GetCachedOffsetForFrame
@@ -326,7 +326,7 @@ namespace Gecko
         /// Return array of ranges intersecting with the given DOM interval.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetRangesForInterval([MarshalAs(UnmanagedType.Interface)] nsIDOMNode beginNode, int beginOffset, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode endNode, int endOffset, [MarshalAs(UnmanagedType.Bool)] bool allowAdjacent, ref uint resultCount, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=5)] ref nsIDOMRange[] results);
+		void GetRangesForInterval([MarshalAs(UnmanagedType.Interface)] nsIDOMNode beginNode, int beginOffset, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode endNode, int endOffset, [MarshalAs(UnmanagedType.U1)] bool allowAdjacent, ref uint resultCount, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=5)] ref nsIDOMRange[] results);
 		
 		/// <summary>Member GetRangesForIntervalCOMArray </summary>
 		/// <param name='beginNode'> </param>
@@ -336,7 +336,7 @@ namespace Gecko
 		/// <param name='allowAdjacent'> </param>
 		/// <param name='results'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetRangesForIntervalCOMArray([MarshalAs(UnmanagedType.Interface)] nsIDOMNode beginNode, int beginOffset, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode endNode, int endOffset, [MarshalAs(UnmanagedType.Bool)] bool allowAdjacent, System.IntPtr results);
+		void GetRangesForIntervalCOMArray([MarshalAs(UnmanagedType.Interface)] nsIDOMNode beginNode, int beginOffset, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode endNode, int endOffset, [MarshalAs(UnmanagedType.U1)] bool allowAdjacent, System.IntPtr results);
 		
 		/// <summary>
         /// Scrolls a region of the selection, so that it is visible in
@@ -371,6 +371,6 @@ namespace Gecko
         /// (if possible).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ScrollIntoView(short aRegion, [MarshalAs(UnmanagedType.Bool)] bool aIsSynchronous, short aVPercent, short aHPercent);
+		void ScrollIntoView(short aRegion, [MarshalAs(UnmanagedType.U1)] bool aIsSynchronous, short aVPercent, short aHPercent);
 	}
 }

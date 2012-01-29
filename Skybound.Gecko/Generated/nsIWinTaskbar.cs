@@ -68,7 +68,7 @@ namespace Gecko
         /// Returns true if the operating system supports Win7+ taskbar features.
         /// This property acts as a replacement for in-place os version checking.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetAvailableAttribute();
 		
@@ -167,7 +167,7 @@ namespace Gecko
         /// @throw NS_ERROR_NOT_AVAILABLE if the taskbar cannot be obtained.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PrepareFullScreen([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow, [MarshalAs(UnmanagedType.Bool)] bool aFullScreen);
+		void PrepareFullScreen([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow, [MarshalAs(UnmanagedType.U1)] bool aFullScreen);
 		
 		/// <summary>
         /// Notify the taskbar that a window identified by its HWND is about to enter
@@ -181,6 +181,6 @@ namespace Gecko
         /// @throw NS_ERROR_NOT_AVAILABLE if the taskbar cannot be obtained.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PrepareFullScreenHWND(System.IntPtr aWindow, [MarshalAs(UnmanagedType.Bool)] bool aFullScreen);
+		void PrepareFullScreenHWND(System.IntPtr aWindow, [MarshalAs(UnmanagedType.U1)] bool aFullScreen);
 	}
 }

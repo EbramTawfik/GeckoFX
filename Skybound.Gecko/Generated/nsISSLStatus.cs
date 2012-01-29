@@ -58,13 +58,13 @@ namespace Gecko
 		
 		/// <summary>Member GetIsDomainMismatchAttribute </summary>
 		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsDomainMismatchAttribute();
 		
 		/// <summary>Member GetIsNotValidAtThisTimeAttribute </summary>
 		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsNotValidAtThisTimeAttribute();
 		
@@ -75,7 +75,7 @@ namespace Gecko
         /// "untrusted because self signed"
         /// query nsIX509Cert3::isSelfSigned
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsUntrustedAttribute();
 		
@@ -83,7 +83,7 @@ namespace Gecko
         /// True only if (and after) serverCert was successfully validated as
         /// Extended Validation (EV).
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsExtendedValidationAttribute();
 	}

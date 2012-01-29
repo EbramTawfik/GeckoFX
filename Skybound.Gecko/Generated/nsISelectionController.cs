@@ -91,7 +91,7 @@ namespace Gecko
         /// @return always NS_OK
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCaretEnabled([MarshalAs(UnmanagedType.Bool)] bool enabled);
+		void SetCaretEnabled([MarshalAs(UnmanagedType.U1)] bool enabled);
 		
 		/// <summary>
         /// Set the caret readonly or not. An readonly caret will
@@ -100,7 +100,7 @@ namespace Gecko
         /// @return always NS_OK
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCaretReadOnly([MarshalAs(UnmanagedType.Bool)] bool readOnly);
+		void SetCaretReadOnly([MarshalAs(UnmanagedType.U1)] bool readOnly);
 		
 		/// <summary>
         /// Gets the current state of the caret.
@@ -108,7 +108,7 @@ namespace Gecko
         /// @return   if aOutEnabled==null, returns NS_ERROR_INVALID_ARG
         /// else NS_OK
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetCaretEnabled();
 		
@@ -117,7 +117,7 @@ namespace Gecko
         /// This is still true when the caret is enabled, visible, but in its "off"
         /// blink cycle.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetCaretVisibleAttribute();
 		
@@ -128,7 +128,7 @@ namespace Gecko
         /// @return always NS_OK
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCaretVisibilityDuringSelection([MarshalAs(UnmanagedType.Bool)] bool visibility);
+		void SetCaretVisibilityDuringSelection([MarshalAs(UnmanagedType.U1)] bool visibility);
 		
 		/// <summary>
         ///CharacterMove will move the selection one character forward/backward in the document.
@@ -139,7 +139,7 @@ namespace Gecko
         /// @param aExtend  should it collapse the selection of extend it?
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CharacterMove([MarshalAs(UnmanagedType.Bool)] bool forward, [MarshalAs(UnmanagedType.Bool)] bool extend);
+		void CharacterMove([MarshalAs(UnmanagedType.U1)] bool forward, [MarshalAs(UnmanagedType.U1)] bool extend);
 		
 		/// <summary>
         /// CharacterExtendForDelete will extend the selection one character cell
@@ -167,7 +167,7 @@ namespace Gecko
         /// @param aExtend  should it collapse the selection of extend it?
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void WordMove([MarshalAs(UnmanagedType.Bool)] bool forward, [MarshalAs(UnmanagedType.Bool)] bool extend);
+		void WordMove([MarshalAs(UnmanagedType.U1)] bool forward, [MarshalAs(UnmanagedType.U1)] bool extend);
 		
 		/// <summary>
         ///wordExtendForDelete will extend the selection one word forward/backward in the document.
@@ -175,7 +175,7 @@ namespace Gecko
         /// @param aForward forward or backward if PR_FALSE
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void WordExtendForDelete([MarshalAs(UnmanagedType.Bool)] bool forward);
+		void WordExtendForDelete([MarshalAs(UnmanagedType.U1)] bool forward);
 		
 		/// <summary>
         ///LineMove will move the selection one line forward/backward in the document.
@@ -186,7 +186,7 @@ namespace Gecko
         /// @param aExtend  should it collapse the selection of extend it?
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void LineMove([MarshalAs(UnmanagedType.Bool)] bool forward, [MarshalAs(UnmanagedType.Bool)] bool extend);
+		void LineMove([MarshalAs(UnmanagedType.U1)] bool forward, [MarshalAs(UnmanagedType.U1)] bool extend);
 		
 		/// <summary>
         ///IntraLineMove will move the selection to the front of the line or end of the line
@@ -198,7 +198,7 @@ namespace Gecko
         /// @param aExtend  should it collapse the selection of extend it?
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void IntraLineMove([MarshalAs(UnmanagedType.Bool)] bool forward, [MarshalAs(UnmanagedType.Bool)] bool extend);
+		void IntraLineMove([MarshalAs(UnmanagedType.U1)] bool forward, [MarshalAs(UnmanagedType.U1)] bool extend);
 		
 		/// <summary>
         ///PageMove will move the selection one page forward/backward in the document.
@@ -209,14 +209,14 @@ namespace Gecko
         /// @param aExtend  should it collapse the selection of extend it?
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PageMove([MarshalAs(UnmanagedType.Bool)] bool forward, [MarshalAs(UnmanagedType.Bool)] bool extend);
+		void PageMove([MarshalAs(UnmanagedType.U1)] bool forward, [MarshalAs(UnmanagedType.U1)] bool extend);
 		
 		/// <summary>
         ///CompleteScroll will move page view to the top or bottom of the document
         /// @param aForward forward or backward if PR_FALSE
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CompleteScroll([MarshalAs(UnmanagedType.Bool)] bool forward);
+		void CompleteScroll([MarshalAs(UnmanagedType.U1)] bool forward);
 		
 		/// <summary>
         ///CompleteMove will move page view to the top or bottom of the document
@@ -227,28 +227,28 @@ namespace Gecko
         /// @param aExtend  should it collapse the selection of extend it?
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CompleteMove([MarshalAs(UnmanagedType.Bool)] bool forward, [MarshalAs(UnmanagedType.Bool)] bool extend);
+		void CompleteMove([MarshalAs(UnmanagedType.U1)] bool forward, [MarshalAs(UnmanagedType.U1)] bool extend);
 		
 		/// <summary>
         ///ScrollPage will scroll the page without affecting the selection.
         /// @param aForward scroll forward or backwards in selection
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ScrollPage([MarshalAs(UnmanagedType.Bool)] bool forward);
+		void ScrollPage([MarshalAs(UnmanagedType.U1)] bool forward);
 		
 		/// <summary>
         ///ScrolLine will scroll line up or down dependent on the boolean
         /// @param aForward scroll forward or backwards in selection
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ScrollLine([MarshalAs(UnmanagedType.Bool)] bool forward);
+		void ScrollLine([MarshalAs(UnmanagedType.U1)] bool forward);
 		
 		/// <summary>
         ///ScrolHorizontal will scroll left or right dependent on the boolean
         /// @param aLeft if true will scroll left. if not will scroll right.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ScrollHorizontal([MarshalAs(UnmanagedType.Bool)] bool left);
+		void ScrollHorizontal([MarshalAs(UnmanagedType.U1)] bool left);
 		
 		/// <summary>
         ///SelectAll will select the whole page
@@ -264,7 +264,7 @@ namespace Gecko
         /// @param aEndOffset    offset in dom to last char of textnode to test
         /// @param aReturnBool   boolean returned TRUE if visible FALSE if not
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool CheckVisibility([MarshalAs(UnmanagedType.Interface)] nsIDOMNode node, short startOffset, short endOffset);
 	}

@@ -81,7 +81,7 @@ namespace Gecko
         /// Returns true if the event was caused by explicit user input,
         /// as opposed to purely originating from a timer or mouse movement
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsFromUserInputAttribute();
 	}
@@ -103,14 +103,14 @@ namespace Gecko
 		/// <summary>
         /// Returns true if the state is extra state.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsExtraState();
 		
 		/// <summary>
         /// Returns true if the state is turned on.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsEnabled();
 	}
@@ -137,7 +137,7 @@ namespace Gecko
 		/// <summary>
         /// Returns true if text was inserted, otherwise false.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsInserted();
 		

@@ -538,7 +538,7 @@ namespace Gecko
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetLargeArcFlagAttribute();
 		
@@ -546,12 +546,12 @@ namespace Gecko
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetLargeArcFlagAttribute([MarshalAs(UnmanagedType.Bool)] bool aLargeArcFlag);
+		void SetLargeArcFlagAttribute([MarshalAs(UnmanagedType.U1)] bool aLargeArcFlag);
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetSweepFlagAttribute();
 		
@@ -559,7 +559,7 @@ namespace Gecko
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSweepFlagAttribute([MarshalAs(UnmanagedType.Bool)] bool aSweepFlag);
+		void SetSweepFlagAttribute([MarshalAs(UnmanagedType.U1)] bool aSweepFlag);
 	}
 	
 	/// <summary>
@@ -634,7 +634,7 @@ namespace Gecko
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetLargeArcFlagAttribute();
 		
@@ -642,12 +642,12 @@ namespace Gecko
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetLargeArcFlagAttribute([MarshalAs(UnmanagedType.Bool)] bool aLargeArcFlag);
+		void SetLargeArcFlagAttribute([MarshalAs(UnmanagedType.U1)] bool aLargeArcFlag);
 		
 		/// <summary>
         /// raises nsIDOMDOMException on setting
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetSweepFlagAttribute();
 		
@@ -655,7 +655,7 @@ namespace Gecko
         /// raises nsIDOMDOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSweepFlagAttribute([MarshalAs(UnmanagedType.Bool)] bool aSweepFlag);
+		void SetSweepFlagAttribute([MarshalAs(UnmanagedType.U1)] bool aSweepFlag);
 	}
 	
 	/// <summary>

@@ -40,7 +40,7 @@ namespace Gecko
 		/// <param name='actionURL'> </param>
 		/// <param name='cancelSubmit'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Notify([MarshalAs(UnmanagedType.Interface)] nsIDOMHTMLFormElement formNode, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, [MarshalAs(UnmanagedType.Interface)] nsIURI actionURL, [MarshalAs(UnmanagedType.Bool)] ref bool cancelSubmit);
+		void Notify([MarshalAs(UnmanagedType.Interface)] nsIDOMHTMLFormElement formNode, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, [MarshalAs(UnmanagedType.Interface)] nsIURI actionURL, [MarshalAs(UnmanagedType.U1)] ref bool cancelSubmit);
 		
 		/// <summary>Member NotifyInvalidSubmit </summary>
 		/// <param name='formNode'> </param>

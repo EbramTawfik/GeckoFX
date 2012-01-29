@@ -67,7 +67,7 @@ namespace Gecko
         /// has finished yet, and also to set this variable as needed (so test
         /// code can fire mulitple startup writes if needed).
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool StartupWriteComplete();
 		

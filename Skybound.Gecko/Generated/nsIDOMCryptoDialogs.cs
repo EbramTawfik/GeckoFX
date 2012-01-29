@@ -40,7 +40,7 @@ namespace Gecko
         /// method should return true if the user wants to proceed
         /// and false if the user cancels the action.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool ConfirmKeyEscrow([MarshalAs(UnmanagedType.Interface)] nsIX509Cert escrowAuthority);
 	}

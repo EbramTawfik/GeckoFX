@@ -40,7 +40,7 @@ namespace Gecko
         /// contained in a table cell, special buttons allowing to add/remove
         /// a line/column are available on the cell's border.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetInlineTableEditingEnabledAttribute();
 		
@@ -51,7 +51,7 @@ namespace Gecko
         /// a line/column are available on the cell's border.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetInlineTableEditingEnabledAttribute([MarshalAs(UnmanagedType.Bool)] bool aInlineTableEditingEnabled);
+		void SetInlineTableEditingEnabledAttribute([MarshalAs(UnmanagedType.U1)] bool aInlineTableEditingEnabled);
 		
 		/// <summary>
         /// Shows inline table editing UI around a table cell

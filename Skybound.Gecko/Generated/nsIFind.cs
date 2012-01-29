@@ -36,25 +36,25 @@ namespace Gecko
 		
 		/// <summary>Member GetFindBackwardsAttribute </summary>
 		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetFindBackwardsAttribute();
 		
 		/// <summary>Member SetFindBackwardsAttribute </summary>
 		/// <param name='aFindBackwards'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFindBackwardsAttribute([MarshalAs(UnmanagedType.Bool)] bool aFindBackwards);
+		void SetFindBackwardsAttribute([MarshalAs(UnmanagedType.U1)] bool aFindBackwards);
 		
 		/// <summary>Member GetCaseSensitiveAttribute </summary>
 		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetCaseSensitiveAttribute();
 		
 		/// <summary>Member SetCaseSensitiveAttribute </summary>
 		/// <param name='aCaseSensitive'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCaseSensitiveAttribute([MarshalAs(UnmanagedType.Bool)] bool aCaseSensitive);
+		void SetCaseSensitiveAttribute([MarshalAs(UnmanagedType.U1)] bool aCaseSensitive);
 		
 		/// <summary>
         /// Use "find entire words" mode by setting to a word breaker

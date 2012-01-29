@@ -63,7 +63,7 @@ namespace Gecko
         /// @param aDownloadErrorCallback Called if we get an http error or a
         /// connection refused error.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool DownloadUpdates([MarshalAs(UnmanagedType.LPStruct)] nsACString aRequestTables, [MarshalAs(UnmanagedType.LPStruct)] nsACString aRequestBody, [MarshalAs(UnmanagedType.LPStruct)] nsACString aClientKey, [MarshalAs(UnmanagedType.Interface)] nsIUrlClassifierCallback aSuccessCallback, [MarshalAs(UnmanagedType.Interface)] nsIUrlClassifierCallback aUpdateErrorCallback, [MarshalAs(UnmanagedType.Interface)] nsIUrlClassifierCallback aDownloadErrorCallback);
 	}

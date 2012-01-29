@@ -58,7 +58,7 @@ namespace Gecko
         /// @param count      The length of the args array.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Run([MarshalAs(UnmanagedType.Bool)] bool blocking, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] string[] args, uint count);
+		void Run([MarshalAs(UnmanagedType.U1)] bool blocking, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] string[] args, uint count);
 		
 		/// <summary>
         /// Executes the file this object was initialized with optionally calling
@@ -73,7 +73,7 @@ namespace Gecko
         /// @param holdWeak   Whether to use a weak reference to hold the observer.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RunAsync([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] string[] args, uint count, [MarshalAs(UnmanagedType.Interface)] nsIObserver observer, [MarshalAs(UnmanagedType.Bool)] bool holdWeak);
+		void RunAsync([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] string[] args, uint count, [MarshalAs(UnmanagedType.Interface)] nsIObserver observer, [MarshalAs(UnmanagedType.U1)] bool holdWeak);
 		
 		/// <summary>
         /// Executes the file this object was initialized with
@@ -83,7 +83,7 @@ namespace Gecko
         /// @param count      The length of the args array.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Runw([MarshalAs(UnmanagedType.Bool)] bool blocking, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] System.IntPtr[] args, uint count);
+		void Runw([MarshalAs(UnmanagedType.U1)] bool blocking, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] System.IntPtr[] args, uint count);
 		
 		/// <summary>
         /// Executes the file this object was initialized with optionally calling
@@ -97,7 +97,7 @@ namespace Gecko
         /// @param holdWeak   Whether to use a weak reference to hold the observer.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RunwAsync([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] System.IntPtr[] args, uint count, [MarshalAs(UnmanagedType.Interface)] nsIObserver observer, [MarshalAs(UnmanagedType.Bool)] bool holdWeak);
+		void RunwAsync([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] System.IntPtr[] args, uint count, [MarshalAs(UnmanagedType.Interface)] nsIObserver observer, [MarshalAs(UnmanagedType.U1)] bool holdWeak);
 		
 		/// <summary>
         /// The process identifier of the currently running process. This will only
@@ -117,7 +117,7 @@ namespace Gecko
 		/// <summary>
         /// Returns whether the process is currently running or not.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsRunningAttribute();
 	}

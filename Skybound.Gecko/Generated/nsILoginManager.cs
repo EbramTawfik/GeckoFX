@@ -132,7 +132,7 @@ namespace Gecko
         /// The hostname to check. This argument should be in the origin
         /// URL format, without a pathname. For example: "http://foo.com".
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetLoginSavingEnabled([MarshalAs(UnmanagedType.LPStruct)] nsAString aHost);
 		
@@ -149,7 +149,7 @@ namespace Gecko
         /// disabled (false)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetLoginSavingEnabled([MarshalAs(UnmanagedType.LPStruct)] nsAString aHost, [MarshalAs(UnmanagedType.Bool)] bool isEnabled);
+		void SetLoginSavingEnabled([MarshalAs(UnmanagedType.LPStruct)] nsAString aHost, [MarshalAs(UnmanagedType.U1)] bool isEnabled);
 		
 		/// <summary>
         /// Search for logins matching the specified criteria. Called when looking
@@ -226,7 +226,7 @@ namespace Gecko
         /// The form to fill
         /// @return Success of attempt fill form
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool FillForm([MarshalAs(UnmanagedType.Interface)] nsIDOMHTMLFormElement aForm);
 		
@@ -255,7 +255,7 @@ namespace Gecko
 		/// <summary>
         /// True when a master password prompt is being displayed.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetUiBusyAttribute();
 	}

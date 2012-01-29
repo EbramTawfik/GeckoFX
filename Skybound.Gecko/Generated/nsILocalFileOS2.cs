@@ -210,7 +210,7 @@ namespace Gecko
         /// This will not resolve any symlinks.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Remove([MarshalAs(UnmanagedType.Bool)] bool recursive);
+		new void Remove([MarshalAs(UnmanagedType.U1)] bool recursive);
 		
 		/// <summary>
         /// Attributes of nsIFile.
@@ -328,56 +328,56 @@ namespace Gecko
 		
 		/// <summary>Member Exists </summary>
 		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool Exists();
 		
 		/// <summary>Member IsWritable </summary>
 		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsWritable();
 		
 		/// <summary>Member IsReadable </summary>
 		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsReadable();
 		
 		/// <summary>Member IsExecutable </summary>
 		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsExecutable();
 		
 		/// <summary>Member IsHidden </summary>
 		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsHidden();
 		
 		/// <summary>Member IsDirectory </summary>
 		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsDirectory();
 		
 		/// <summary>Member IsFile </summary>
 		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsFile();
 		
 		/// <summary>Member IsSymlink </summary>
 		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsSymlink();
 		
 		/// <summary>
         /// Not a regular file, not a directory, not a symlink.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsSpecial();
 		
@@ -427,7 +427,7 @@ namespace Gecko
 		/// <summary>
         /// Will determine if the inFile equals this.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool Equals([MarshalAs(UnmanagedType.Interface)] nsIFile inFile);
 		
@@ -435,9 +435,9 @@ namespace Gecko
         /// Will determine if inFile is a descendant of this file
         /// If |recur| is true, look in subdirectories too
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool Contains([MarshalAs(UnmanagedType.Interface)] nsIFile inFile, [MarshalAs(UnmanagedType.Bool)] bool recur);
+		new bool Contains([MarshalAs(UnmanagedType.Interface)] nsIFile inFile, [MarshalAs(UnmanagedType.U1)] bool recur);
 		
 		/// <summary>
         /// Parent will be null when this is at the top of the volume.
@@ -497,7 +497,7 @@ namespace Gecko
         /// on all non unix systems.  On unix, this attribute is effectively
         /// a noop.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetFollowLinksAttribute();
 		
@@ -510,7 +510,7 @@ namespace Gecko
         /// a noop.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetFollowLinksAttribute([MarshalAs(UnmanagedType.Bool)] bool aFollowLinks);
+		new void SetFollowLinksAttribute([MarshalAs(UnmanagedType.U1)] bool aFollowLinks);
 		
 		/// <summary>
         /// Return the result of PR_Open on the file.  The caller is
@@ -669,7 +669,7 @@ namespace Gecko
         /// a string in the filesystem's native character set
         ///
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsFileType([MarshalAs(UnmanagedType.LPStruct)] nsACString fileType);
 		

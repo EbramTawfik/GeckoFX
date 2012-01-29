@@ -82,14 +82,14 @@ namespace Gecko
         /// @return the value of <code>aParamName</code> in Unichar(UTF-16).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetParameter([MarshalAs(UnmanagedType.LPStruct)] nsACString aHeaderVal, [MarshalAs(UnmanagedType.LPStr)] string aParamName, [MarshalAs(UnmanagedType.LPStruct)] nsACString aFallbackCharset, [MarshalAs(UnmanagedType.Bool)] bool aTryLocaleCharset, [MarshalAs(UnmanagedType.LPStr)] ref string aLang, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetParameter([MarshalAs(UnmanagedType.LPStruct)] nsACString aHeaderVal, [MarshalAs(UnmanagedType.LPStr)] string aParamName, [MarshalAs(UnmanagedType.LPStruct)] nsACString aFallbackCharset, [MarshalAs(UnmanagedType.U1)] bool aTryLocaleCharset, [MarshalAs(UnmanagedType.LPStr)] ref string aLang, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Like getParameter, but using RFC 5987 instead of 2231.  This removes
         /// support for header parameter continuations (foo*0, foo*1, etc).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetParameter5987([MarshalAs(UnmanagedType.LPStruct)] nsACString aHeaderVal, [MarshalAs(UnmanagedType.LPStr)] string aParamName, [MarshalAs(UnmanagedType.LPStruct)] nsACString aFallbackCharset, [MarshalAs(UnmanagedType.Bool)] bool aTryLocaleCharset, [MarshalAs(UnmanagedType.LPStr)] ref string aLang, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetParameter5987([MarshalAs(UnmanagedType.LPStruct)] nsACString aHeaderVal, [MarshalAs(UnmanagedType.LPStr)] string aParamName, [MarshalAs(UnmanagedType.LPStruct)] nsACString aFallbackCharset, [MarshalAs(UnmanagedType.U1)] bool aTryLocaleCharset, [MarshalAs(UnmanagedType.LPStr)] ref string aLang, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Given the value of a single header field  (such as
@@ -147,7 +147,7 @@ namespace Gecko
         /// @return                 decoded header value
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DecodeRFC2047Header([MarshalAs(UnmanagedType.LPStr)] string aHeaderVal, [MarshalAs(UnmanagedType.LPStr)] string aDefaultCharset, [MarshalAs(UnmanagedType.Bool)] bool aOverrideCharset, [MarshalAs(UnmanagedType.Bool)] bool aEatContinuation, [MarshalAs(UnmanagedType.LPStruct)] nsACString retval);
+		void DecodeRFC2047Header([MarshalAs(UnmanagedType.LPStr)] string aHeaderVal, [MarshalAs(UnmanagedType.LPStr)] string aDefaultCharset, [MarshalAs(UnmanagedType.U1)] bool aOverrideCharset, [MarshalAs(UnmanagedType.U1)] bool aEatContinuation, [MarshalAs(UnmanagedType.LPStruct)] nsACString retval);
 		
 		/// <summary>
         /// Given a header parameter, decodes RFC 2047 style encoding (if it's
@@ -179,6 +179,6 @@ namespace Gecko
         /// @return                 decoded parameter
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DecodeParameter([MarshalAs(UnmanagedType.LPStruct)] nsACString aParamValue, [MarshalAs(UnmanagedType.LPStr)] string aCharset, [MarshalAs(UnmanagedType.LPStr)] string aDefaultCharset, [MarshalAs(UnmanagedType.Bool)] bool aOverrideCharset, [MarshalAs(UnmanagedType.LPStruct)] nsACString retval);
+		void DecodeParameter([MarshalAs(UnmanagedType.LPStruct)] nsACString aParamValue, [MarshalAs(UnmanagedType.LPStr)] string aCharset, [MarshalAs(UnmanagedType.LPStr)] string aDefaultCharset, [MarshalAs(UnmanagedType.U1)] bool aOverrideCharset, [MarshalAs(UnmanagedType.LPStruct)] nsACString retval);
 	}
 }

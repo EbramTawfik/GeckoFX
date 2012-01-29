@@ -103,7 +103,7 @@ namespace Gecko
         /// just left the window.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EndDragSession([MarshalAs(UnmanagedType.Bool)] bool aDoneDrag);
+		void EndDragSession([MarshalAs(UnmanagedType.U1)] bool aDoneDrag);
 		
 		/// <summary>
         /// Fire a drag event at the source of the drag

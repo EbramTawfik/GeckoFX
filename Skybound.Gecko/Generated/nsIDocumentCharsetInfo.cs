@@ -49,12 +49,12 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetForcedCharsetAttribute([MarshalAs(UnmanagedType.Interface)] nsIAtom aForcedCharset);
 		
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetForcedDetectorAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetForcedDetectorAttribute([MarshalAs(UnmanagedType.Bool)] bool aForcedDetector);
+		void SetForcedDetectorAttribute([MarshalAs(UnmanagedType.U1)] bool aForcedDetector);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

@@ -49,7 +49,7 @@ namespace Gecko
 		/// <summary>Member Contains </summary>
 		/// <param name='aPrefix'> </param>
 		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool Contains(uint aPrefix);
 		
@@ -58,9 +58,9 @@ namespace Gecko
 		/// <param name='aKey'> </param>
 		/// <param name='aReady'> </param>
 		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Probe(uint aPrefix, uint aKey, [MarshalAs(UnmanagedType.Bool)] ref bool aReady);
+		bool Probe(uint aPrefix, uint aKey, [MarshalAs(UnmanagedType.U1)] ref bool aReady);
 		
 		/// <summary>Member EstimateSize </summary>
 		/// <returns>A System.UInt32</returns>
@@ -74,7 +74,7 @@ namespace Gecko
 		
 		/// <summary>Member IsEmpty </summary>
 		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsEmpty();
 		

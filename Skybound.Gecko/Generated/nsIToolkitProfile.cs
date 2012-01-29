@@ -109,7 +109,7 @@ namespace Gecko
         /// removed in addition.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Remove([MarshalAs(UnmanagedType.Bool)] bool removeFiles);
+		void Remove([MarshalAs(UnmanagedType.U1)] bool removeFiles);
 		
 		/// <summary>
         /// Lock this profile using platform-specific locking methods.

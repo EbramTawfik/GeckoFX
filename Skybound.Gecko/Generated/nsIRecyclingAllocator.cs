@@ -89,7 +89,7 @@ namespace Gecko
         /// was not on the application's main thread.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void HeapMinimize([MarshalAs(UnmanagedType.Bool)] bool immediate);
+		new void HeapMinimize([MarshalAs(UnmanagedType.U1)] bool immediate);
 		
 		/// <summary>
         /// This predicate can be used to determine if we're in a low-memory
@@ -98,7 +98,7 @@ namespace Gecko
         ///
         /// DEPRECATED - Always returns false.  See bug 592308.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsLowMemory();
 		

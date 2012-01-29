@@ -110,7 +110,7 @@ namespace Gecko
         ///Sets the width and height of the control.
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSize(int cx, int cy, [MarshalAs(UnmanagedType.Bool)] bool fRepaint);
+		void SetSize(int cx, int cy, [MarshalAs(UnmanagedType.U1)] bool fRepaint);
 		
 		/// <summary>
         ///Gets the width and height of the control.
@@ -123,7 +123,7 @@ namespace Gecko
         ///	Also is more efficient than calling both.
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPositionAndSize(int x, int y, int cx, int cy, [MarshalAs(UnmanagedType.Bool)] bool fRepaint);
+		void SetPositionAndSize(int x, int y, int cx, int cy, [MarshalAs(UnmanagedType.U1)] bool fRepaint);
 		
 		/// <summary>
         ///Convenience function combining the GetPosition and GetSize into one call.
@@ -138,7 +138,7 @@ namespace Gecko
         /// if false, the window may defer repainting as it sees fit.
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Repaint([MarshalAs(UnmanagedType.Bool)] bool force);
+		void Repaint([MarshalAs(UnmanagedType.U1)] bool force);
 		
 		/// <summary>
         ///This is the parenting widget for the control.  This may be null if the
@@ -191,7 +191,7 @@ namespace Gecko
         ///	Setting this attribute to false will hide the control.  Setting it to
         ///	true will show it.
         ///	 </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetVisibilityAttribute();
 		
@@ -201,13 +201,13 @@ namespace Gecko
         ///	true will show it.
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetVisibilityAttribute([MarshalAs(UnmanagedType.Bool)] bool aVisibility);
+		void SetVisibilityAttribute([MarshalAs(UnmanagedType.U1)] bool aVisibility);
 		
 		/// <summary>
         ///a disabled window should accept no user interaction; it's a dead window,
         ///    like the parent of a modal window.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetEnabledAttribute();
 		
@@ -216,7 +216,7 @@ namespace Gecko
         ///    like the parent of a modal window.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetEnabledAttribute([MarshalAs(UnmanagedType.Bool)] bool aEnabled);
+		void SetEnabledAttribute([MarshalAs(UnmanagedType.U1)] bool aEnabled);
 		
 		/// <summary>
         ///Allows you to find out what the widget is of a given object.  Depending

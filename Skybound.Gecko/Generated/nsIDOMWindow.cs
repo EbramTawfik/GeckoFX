@@ -224,7 +224,7 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Alert([MarshalAs(UnmanagedType.LPStruct)] nsAString text);
 		
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool Confirm([MarshalAs(UnmanagedType.LPStruct)] nsAString text);
 		
@@ -469,7 +469,7 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIPrompt GetPrompterAttribute();
 		
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetClosedAttribute();
 		
@@ -511,12 +511,12 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetScrollMaxYAttribute();
 		
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetFullScreenAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFullScreenAttribute([MarshalAs(UnmanagedType.Bool)] bool aFullScreen);
+		void SetFullScreenAttribute([MarshalAs(UnmanagedType.U1)] bool aFullScreen);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Back();
@@ -578,9 +578,9 @@ namespace Gecko
         /// @param searchInFrames: should we search through all frames
         /// @param showDialog: should we show the Find dialog
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Find([MarshalAs(UnmanagedType.LPStruct)] nsAString str, [MarshalAs(UnmanagedType.Bool)] bool caseSensitive, [MarshalAs(UnmanagedType.Bool)] bool backwards, [MarshalAs(UnmanagedType.Bool)] bool wrapAround, [MarshalAs(UnmanagedType.Bool)] bool wholeWord, [MarshalAs(UnmanagedType.Bool)] bool searchInFrames, [MarshalAs(UnmanagedType.Bool)] bool showDialog);
+		bool Find([MarshalAs(UnmanagedType.LPStruct)] nsAString str, [MarshalAs(UnmanagedType.U1)] bool caseSensitive, [MarshalAs(UnmanagedType.U1)] bool backwards, [MarshalAs(UnmanagedType.U1)] bool wrapAround, [MarshalAs(UnmanagedType.U1)] bool wholeWord, [MarshalAs(UnmanagedType.U1)] bool searchInFrames, [MarshalAs(UnmanagedType.U1)] bool showDialog);
 		
 		/// <summary>
         /// Returns the number of times this document for this window has
@@ -927,7 +927,7 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void Alert([MarshalAs(UnmanagedType.LPStruct)] nsAString text);
 		
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool Confirm([MarshalAs(UnmanagedType.LPStruct)] nsAString text);
 		
@@ -1172,7 +1172,7 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIPrompt GetPrompterAttribute();
 		
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetClosedAttribute();
 		
@@ -1214,12 +1214,12 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new int GetScrollMaxYAttribute();
 		
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetFullScreenAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetFullScreenAttribute([MarshalAs(UnmanagedType.Bool)] bool aFullScreen);
+		new void SetFullScreenAttribute([MarshalAs(UnmanagedType.U1)] bool aFullScreen);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void Back();
@@ -1281,9 +1281,9 @@ namespace Gecko
         /// @param searchInFrames: should we search through all frames
         /// @param showDialog: should we show the Find dialog
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool Find([MarshalAs(UnmanagedType.LPStruct)] nsAString str, [MarshalAs(UnmanagedType.Bool)] bool caseSensitive, [MarshalAs(UnmanagedType.Bool)] bool backwards, [MarshalAs(UnmanagedType.Bool)] bool wrapAround, [MarshalAs(UnmanagedType.Bool)] bool wholeWord, [MarshalAs(UnmanagedType.Bool)] bool searchInFrames, [MarshalAs(UnmanagedType.Bool)] bool showDialog);
+		new bool Find([MarshalAs(UnmanagedType.LPStruct)] nsAString str, [MarshalAs(UnmanagedType.U1)] bool caseSensitive, [MarshalAs(UnmanagedType.U1)] bool backwards, [MarshalAs(UnmanagedType.U1)] bool wrapAround, [MarshalAs(UnmanagedType.U1)] bool wholeWord, [MarshalAs(UnmanagedType.U1)] bool searchInFrames, [MarshalAs(UnmanagedType.U1)] bool showDialog);
 		
 		/// <summary>
         /// Returns the number of times this document for this window has

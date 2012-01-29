@@ -69,9 +69,9 @@ namespace Gecko
         /// window. If the method returns true, all subsequent calls will be
         /// ignored.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool PermitUnload([MarshalAs(UnmanagedType.Bool)] bool aCallerClosesWindow);
+		bool PermitUnload([MarshalAs(UnmanagedType.U1)] bool aCallerClosesWindow);
 		
 		/// <summary>
         /// Works in tandem with permitUnload, if the caller decides not to close the
@@ -88,7 +88,7 @@ namespace Gecko
 		/// <summary>Member PageHide </summary>
 		/// <param name='isUnload'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PageHide([MarshalAs(UnmanagedType.Bool)] bool isUnload);
+		void PageHide([MarshalAs(UnmanagedType.U1)] bool isUnload);
 		
 		/// <summary>
         /// All users of a content viewer are responsible for calling both
@@ -179,21 +179,21 @@ namespace Gecko
 		
 		/// <summary>Member GetStickyAttribute </summary>
 		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetStickyAttribute();
 		
 		/// <summary>Member SetStickyAttribute </summary>
 		/// <param name='aSticky'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetStickyAttribute([MarshalAs(UnmanagedType.Bool)] bool aSticky);
+		void SetStickyAttribute([MarshalAs(UnmanagedType.U1)] bool aSticky);
 		
 		/// <summary>
         /// This is called when the DOM window wants to be closed.  Returns true
         /// if the window can close immediately.  Otherwise, returns false and will
         /// close the DOM window as soon as practical.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool RequestWindowClose();
 		
@@ -220,7 +220,7 @@ namespace Gecko
         /// dynamic and editable (like Galley layout).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPageMode([MarshalAs(UnmanagedType.Bool)] bool aPageMode, [MarshalAs(UnmanagedType.Interface)] nsIPrintSettings aPrintSettings);
+		void SetPageMode([MarshalAs(UnmanagedType.U1)] bool aPageMode, [MarshalAs(UnmanagedType.Interface)] nsIPrintSettings aPrintSettings);
 		
 		/// <summary>
         /// Get the history entry that this viewer will save itself into when
@@ -237,7 +237,7 @@ namespace Gecko
         /// rentrant if the user closes the tab while the prompt is showing.
         /// See bug 613800.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsTabModalPromptAllowedAttribute();
 		
@@ -255,7 +255,7 @@ namespace Gecko
 		/// <param name='aDocument'> </param>
 		/// <param name='aForceReuseInnerWindow'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDocumentInternal(System.IntPtr aDocument, [MarshalAs(UnmanagedType.Bool)] bool aForceReuseInnerWindow);
+		void SetDocumentInternal(System.IntPtr aDocument, [MarshalAs(UnmanagedType.U1)] bool aForceReuseInnerWindow);
 		
 		/// <summary>
         /// Find the view to use as the container view for MakeWindow. Returns
@@ -263,9 +263,8 @@ namespace Gecko
         /// case, if mParentWidget is null then this document should not even
         /// be displayed.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		IntPtr FindContainerView();
+		System.IntPtr FindContainerView();
 		
 		/// <summary>
         /// Set collector for navigation timing data (load, unload events).

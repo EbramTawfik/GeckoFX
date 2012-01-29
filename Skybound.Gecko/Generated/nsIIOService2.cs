@@ -107,7 +107,7 @@ namespace Gecko
         ///
         /// Changing this fires observer notifications ... see below.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetOfflineAttribute();
 		
@@ -121,7 +121,7 @@ namespace Gecko
         /// Changing this fires observer notifications ... see below.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetOfflineAttribute([MarshalAs(UnmanagedType.Bool)] bool aOffline);
+		new void SetOfflineAttribute([MarshalAs(UnmanagedType.U1)] bool aOffline);
 		
 		/// <summary>
         /// Checks if a port number is banned. This involves consulting a list of
@@ -134,7 +134,7 @@ namespace Gecko
         ///
         /// @see nsIProtocolHandler::allowPort
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool AllowPort(int aPort, [MarshalAs(UnmanagedType.LPStr)] string aScheme);
 		
@@ -166,7 +166,7 @@ namespace Gecko
         /// if there is no link, until application code runs and can turn off
         /// this management.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetManageOfflineStatusAttribute();
 		
@@ -183,7 +183,7 @@ namespace Gecko
         /// this management.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetManageOfflineStatusAttribute([MarshalAs(UnmanagedType.Bool)] bool aManageOfflineStatus);
+		void SetManageOfflineStatusAttribute([MarshalAs(UnmanagedType.U1)] bool aManageOfflineStatus);
 		
 		/// <summary>
         /// Creates a channel for a given URI.

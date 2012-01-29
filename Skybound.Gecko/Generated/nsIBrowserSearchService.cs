@@ -109,7 +109,7 @@ namespace Gecko
         /// @param responseType
         /// The MIME type to check for
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool SupportsResponseType([MarshalAs(UnmanagedType.LPStruct)] nsAString responseType);
 		
@@ -136,7 +136,7 @@ namespace Gecko
 		/// <summary>
         /// Whether the engine should be hidden from the user.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetHiddenAttribute();
 		
@@ -144,7 +144,7 @@ namespace Gecko
         /// Whether the engine should be hidden from the user.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetHiddenAttribute([MarshalAs(UnmanagedType.Bool)] bool aHidden);
+		void SetHiddenAttribute([MarshalAs(UnmanagedType.U1)] bool aHidden);
 		
 		/// <summary>
         /// A nsIURI corresponding to the engine's icon, stored locally. May be null.
@@ -208,7 +208,7 @@ namespace Gecko
         /// file cannot be successfully loaded.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddEngine([MarshalAs(UnmanagedType.LPStruct)] nsAString engineURL, int dataType, [MarshalAs(UnmanagedType.LPStruct)] nsAString iconURL, [MarshalAs(UnmanagedType.Bool)] bool confirm);
+		void AddEngine([MarshalAs(UnmanagedType.LPStruct)] nsAString engineURL, int dataType, [MarshalAs(UnmanagedType.LPStruct)] nsAString iconURL, [MarshalAs(UnmanagedType.U1)] bool confirm);
 		
 		/// <summary>
         /// Adds a new search engine, without asking the user for confirmation and

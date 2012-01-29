@@ -87,7 +87,7 @@ namespace Gecko
 		/// <summary>
         /// Find out whether or not the cache entry is stream based.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsStreamBased();
 		
@@ -281,7 +281,7 @@ namespace Gecko
 		/// <summary>
         /// Called for each key/value pair in the meta data for a cache entry
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool VisitMetaDataElement([MarshalAs(UnmanagedType.LPStr)] string key, [MarshalAs(UnmanagedType.LPStr)] string value);
 	}

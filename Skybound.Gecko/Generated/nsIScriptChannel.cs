@@ -81,7 +81,7 @@ namespace Gecko
         /// Setting this property after asyncOpen has been called on the
         /// channel has no effect.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetExecuteAsyncAttribute();
 		
@@ -98,6 +98,6 @@ namespace Gecko
         /// channel has no effect.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetExecuteAsyncAttribute([MarshalAs(UnmanagedType.Bool)] bool aExecuteAsync);
+		void SetExecuteAsyncAttribute([MarshalAs(UnmanagedType.U1)] bool aExecuteAsync);
 	}
 }

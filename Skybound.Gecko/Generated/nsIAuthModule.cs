@@ -95,7 +95,7 @@ namespace Gecko
         /// mechanism does not support security layers.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Wrap(System.IntPtr aInToken, uint aInTokenLength, [MarshalAs(UnmanagedType.Bool)] bool confidential, ref System.IntPtr aOutToken, ref uint aOutTokenLength);
+		void Wrap(System.IntPtr aInToken, uint aInTokenLength, [MarshalAs(UnmanagedType.U1)] bool confidential, ref System.IntPtr aOutToken, ref uint aOutTokenLength);
 		
 		/// <summary>
         /// Unwrap() is used to unpack, decrypt, and verify the checksums on data

@@ -87,7 +87,7 @@ namespace Gecko
         /// @param mimeType The type to find a decoder for
         /// @return true if a decoder is available, false otherwise
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool SupportImageWithMimeType([MarshalAs(UnmanagedType.LPStr)] string mimeType);
 	}

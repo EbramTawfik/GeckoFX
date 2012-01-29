@@ -103,7 +103,7 @@ namespace Gecko
         /// The number of AddonInstalls
         /// @return true if the caller should start the installs
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool OnWebInstallBlocked([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow, [MarshalAs(UnmanagedType.Interface)] nsIURI aUri, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=3)] nsIVariant[] aInstalls, uint aCount);
 		
@@ -120,7 +120,7 @@ namespace Gecko
         /// The number of AddonInstalls
         /// @return true if the caller should start the installs
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool OnWebInstallRequested([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow, [MarshalAs(UnmanagedType.Interface)] nsIURI aUri, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=3)] nsIVariant[] aInstalls, uint aCount);
 	}

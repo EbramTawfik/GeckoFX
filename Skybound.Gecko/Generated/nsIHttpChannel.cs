@@ -61,7 +61,7 @@ namespace Gecko
         /// OnStopRequest has fired).
         /// @note Suspended requests are still considered pending.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsPending();
 		
@@ -562,7 +562,7 @@ namespace Gecko
         /// opened.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetRequestHeader([MarshalAs(UnmanagedType.LPStruct)] nsACString aHeader, [MarshalAs(UnmanagedType.LPStruct)] nsACString aValue, [MarshalAs(UnmanagedType.Bool)] bool aMerge);
+		void SetRequestHeader([MarshalAs(UnmanagedType.LPStruct)] nsACString aHeader, [MarshalAs(UnmanagedType.LPStruct)] nsACString aValue, [MarshalAs(UnmanagedType.U1)] bool aMerge);
 		
 		/// <summary>
         /// Call this method to visit all request headers.  Calling setRequestHeader
@@ -588,7 +588,7 @@ namespace Gecko
         ///
         /// @throws NS_ERROR_FAILURE if set after the channel has been opened.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetAllowPipeliningAttribute();
 		
@@ -607,7 +607,7 @@ namespace Gecko
         /// @throws NS_ERROR_FAILURE if set after the channel has been opened.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAllowPipeliningAttribute([MarshalAs(UnmanagedType.Bool)] bool aAllowPipelining);
+		void SetAllowPipeliningAttribute([MarshalAs(UnmanagedType.U1)] bool aAllowPipelining);
 		
 		/// <summary>
         /// This attribute specifies the number of redirects this channel is allowed
@@ -674,7 +674,7 @@ namespace Gecko
         /// @throws NS_ERROR_NOT_AVAILABLE if called before the response
         /// has been received (before onStartRequest).
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetRequestSucceededAttribute();
 		
@@ -722,7 +722,7 @@ namespace Gecko
         /// header is not allowed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetResponseHeader([MarshalAs(UnmanagedType.LPStruct)] nsACString header, [MarshalAs(UnmanagedType.LPStruct)] nsACString value, [MarshalAs(UnmanagedType.Bool)] bool merge);
+		void SetResponseHeader([MarshalAs(UnmanagedType.LPStruct)] nsACString header, [MarshalAs(UnmanagedType.LPStruct)] nsACString value, [MarshalAs(UnmanagedType.U1)] bool merge);
 		
 		/// <summary>
         /// Call this method to visit all response headers.  Calling
@@ -745,7 +745,7 @@ namespace Gecko
         /// @throws NS_ERROR_NOT_AVAILABLE if called before the response
         /// has been received (before onStartRequest).
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsNoStoreResponse();
 		
@@ -758,7 +758,7 @@ namespace Gecko
         /// @throws NS_ERROR_NOT_AVAILABLE if called before the response
         /// has been received (before onStartRequest).
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsNoCacheResponse();
 	}

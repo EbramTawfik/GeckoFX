@@ -52,7 +52,7 @@ namespace Gecko
         /// @param aInteractive if PR_FALSE turn off scripting and plugins
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MakeWindowEditable([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, [MarshalAs(UnmanagedType.LPStr)] string aEditorType, [MarshalAs(UnmanagedType.Bool)] bool doAfterUriLoad, [MarshalAs(UnmanagedType.Bool)] bool aMakeWholeDocumentEditable, [MarshalAs(UnmanagedType.Bool)] bool aInteractive);
+		void MakeWindowEditable([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, [MarshalAs(UnmanagedType.LPStr)] string aEditorType, [MarshalAs(UnmanagedType.U1)] bool doAfterUriLoad, [MarshalAs(UnmanagedType.U1)] bool aMakeWholeDocumentEditable, [MarshalAs(UnmanagedType.U1)] bool aInteractive);
 		
 		/// <summary>
         /// Test whether a specific window has had its editable flag set; it may have an editor
@@ -61,7 +61,7 @@ namespace Gecko
         /// Use this, passing the content root window, to test if we've set up editing
         /// for this content.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool WindowIsEditable([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window);
 		
@@ -120,7 +120,7 @@ namespace Gecko
 		/// <summary>
         /// Whether this session has disabled JS and plugins.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetJsAndPluginsDisabledAttribute();
 	}

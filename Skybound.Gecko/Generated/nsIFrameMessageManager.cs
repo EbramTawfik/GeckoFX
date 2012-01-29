@@ -355,7 +355,7 @@ namespace Gecko
         /// only if the frame is already available.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void LoadFrameScript([MarshalAs(UnmanagedType.LPStruct)] nsAString aURL, [MarshalAs(UnmanagedType.Bool)] bool aAllowDelayedLoad);
+		void LoadFrameScript([MarshalAs(UnmanagedType.LPStruct)] nsAString aURL, [MarshalAs(UnmanagedType.U1)] bool aAllowDelayedLoad);
 		
 		/// <summary>
         /// Removes aURL from the list of scripts which support delayed load.
