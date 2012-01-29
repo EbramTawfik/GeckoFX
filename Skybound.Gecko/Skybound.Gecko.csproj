@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Release_Windows</Configuration>
@@ -1496,7 +1496,7 @@
     </Compile>
     <Compile Include="GtkReparentingWrapperNoThread.cs" />
     <Compile Include="GtkOnceOnly.cs" />
-    <None Include="geckofx-9.dll.config">
+    <None Include="geckofx-10.dll.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
