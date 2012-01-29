@@ -58,13 +58,13 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetEditorAttribute([MarshalAs(UnmanagedType.Interface)] nsIEditor aEditor);
 		
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetEditableAttribute();
 		
 		/// <summary>
         ///this docShell is editable </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetHasEditingSessionAttribute();
 		
@@ -76,6 +76,6 @@ namespace Gecko
         /// creating the editor.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MakeEditable([MarshalAs(UnmanagedType.Bool)] bool inWaitForUriLoad);
+		void MakeEditable([MarshalAs(UnmanagedType.U1)] bool inWaitForUriLoad);
 	}
 }

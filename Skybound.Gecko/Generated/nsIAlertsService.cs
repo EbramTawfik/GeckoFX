@@ -63,7 +63,7 @@ namespace Gecko
         /// data    - the value of the cookie parameter passed to showAlertNotification.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ShowAlertNotification([MarshalAs(UnmanagedType.LPStruct)] nsAString imageUrl, [MarshalAs(UnmanagedType.LPStruct)] nsAString title, [MarshalAs(UnmanagedType.LPStruct)] nsAString text, [MarshalAs(UnmanagedType.Bool)] bool textClickable, [MarshalAs(UnmanagedType.LPStruct)] nsAString cookie, [MarshalAs(UnmanagedType.Interface)] nsIObserver alertListener, [MarshalAs(UnmanagedType.LPStruct)] nsAString name);
+		void ShowAlertNotification([MarshalAs(UnmanagedType.LPStruct)] nsAString imageUrl, [MarshalAs(UnmanagedType.LPStruct)] nsAString title, [MarshalAs(UnmanagedType.LPStruct)] nsAString text, [MarshalAs(UnmanagedType.U1)] bool textClickable, [MarshalAs(UnmanagedType.LPStruct)] nsAString cookie, [MarshalAs(UnmanagedType.Interface)] nsIObserver alertListener, [MarshalAs(UnmanagedType.LPStruct)] nsAString name);
 	}
 	
 	/// <summary>nsIAlertsProgressListener </summary>

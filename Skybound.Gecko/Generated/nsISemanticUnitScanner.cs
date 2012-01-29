@@ -62,8 +62,8 @@ namespace Gecko
         /// @param begin the end offset of the next unit
         /// @return has more unit in the current text
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Next([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string text, int length, int pos, [MarshalAs(UnmanagedType.Bool)] bool isLastBuffer, ref int begin, ref int end);
+		bool Next([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string text, int length, int pos, [MarshalAs(UnmanagedType.U1)] bool isLastBuffer, ref int begin, ref int end);
 	}
 }

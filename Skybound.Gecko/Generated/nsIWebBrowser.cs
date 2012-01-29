@@ -226,7 +226,7 @@ namespace Gecko
         /// Defaults to true. For optimal performance, set it to false when
         /// appropriate.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsActiveAttribute();
 		
@@ -240,6 +240,6 @@ namespace Gecko
         /// appropriate.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetIsActiveAttribute([MarshalAs(UnmanagedType.Bool)] bool aIsActive);
+		void SetIsActiveAttribute([MarshalAs(UnmanagedType.U1)] bool aIsActive);
 	}
 }

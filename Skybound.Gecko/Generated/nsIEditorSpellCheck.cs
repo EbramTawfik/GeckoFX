@@ -46,7 +46,7 @@ namespace Gecko
         /// Returns true if we can enable spellchecking. If there are no available
         /// dictionaries, this will return false.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool CanSpellCheck();
 		
@@ -58,7 +58,7 @@ namespace Gecko
         /// matter
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitSpellChecker([MarshalAs(UnmanagedType.Interface)] nsIEditor editor, [MarshalAs(UnmanagedType.Bool)] bool enableSelectionChecking);
+		void InitSpellChecker([MarshalAs(UnmanagedType.Interface)] nsIEditor editor, [MarshalAs(UnmanagedType.U1)] bool enableSelectionChecking);
 		
 		/// <summary>
         /// When interactively spell checking the document, this will return the
@@ -92,7 +92,7 @@ namespace Gecko
         ///
         /// @see nsISpellChecker::CheckCurrentWord
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool CheckCurrentWord([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string suggestedWord);
 		
@@ -102,7 +102,7 @@ namespace Gecko
         /// @see nsISpellChecker::CheckCurrentWord
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ReplaceWord([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string misspelledWord, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string replaceWord, [MarshalAs(UnmanagedType.Bool)] bool allOccurrences);
+		void ReplaceWord([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string misspelledWord, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string replaceWord, [MarshalAs(UnmanagedType.U1)] bool allOccurrences);
 		
 		/// <summary>
         /// @see nsISpellChecker::IgnoreAll
@@ -196,7 +196,7 @@ namespace Gecko
         /// calls to CheckCurrentWord, so there may be suggestions, but they will be
         /// invalid.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool CheckCurrentWordNoSuggest([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string suggestedWord);
 		

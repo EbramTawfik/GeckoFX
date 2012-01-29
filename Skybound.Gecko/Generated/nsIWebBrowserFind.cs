@@ -55,7 +55,7 @@ namespace Gecko
         ///
         /// @return  Whether an occurrence was found
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool FindNext();
 		
@@ -82,7 +82,7 @@ namespace Gecko
         /// Whether to find backwards (towards the beginning of the document).
         /// Default is false (search forward).
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetFindBackwardsAttribute();
 		
@@ -93,7 +93,7 @@ namespace Gecko
         /// Default is false (search forward).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFindBackwardsAttribute([MarshalAs(UnmanagedType.Bool)] bool aFindBackwards);
+		void SetFindBackwardsAttribute([MarshalAs(UnmanagedType.U1)] bool aFindBackwards);
 		
 		/// <summary>
         /// wrapFind
@@ -103,7 +103,7 @@ namespace Gecko
         /// beginning). Works correctly when searching backwards. Default is
         /// false.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetWrapFindAttribute();
 		
@@ -116,14 +116,14 @@ namespace Gecko
         /// false.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetWrapFindAttribute([MarshalAs(UnmanagedType.Bool)] bool aWrapFind);
+		void SetWrapFindAttribute([MarshalAs(UnmanagedType.U1)] bool aWrapFind);
 		
 		/// <summary>
         /// entireWord
         ///
         /// Whether to match entire words only. Default is false.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetEntireWordAttribute();
 		
@@ -133,14 +133,14 @@ namespace Gecko
         /// Whether to match entire words only. Default is false.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetEntireWordAttribute([MarshalAs(UnmanagedType.Bool)] bool aEntireWord);
+		void SetEntireWordAttribute([MarshalAs(UnmanagedType.U1)] bool aEntireWord);
 		
 		/// <summary>
         /// matchCase
         ///
         /// Whether to match case (case sensitive) when searching. Default is false.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetMatchCaseAttribute();
 		
@@ -150,7 +150,7 @@ namespace Gecko
         /// Whether to match case (case sensitive) when searching. Default is false.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMatchCaseAttribute([MarshalAs(UnmanagedType.Bool)] bool aMatchCase);
+		void SetMatchCaseAttribute([MarshalAs(UnmanagedType.U1)] bool aMatchCase);
 		
 		/// <summary>
         /// searchFrames
@@ -162,7 +162,7 @@ namespace Gecko
         /// but not both, of searchSubframes and searchParentFrames are set, this
         /// returns false.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetSearchFramesAttribute();
 		
@@ -177,7 +177,7 @@ namespace Gecko
         /// returns false.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSearchFramesAttribute([MarshalAs(UnmanagedType.Bool)] bool aSearchFrames);
+		void SetSearchFramesAttribute([MarshalAs(UnmanagedType.U1)] bool aSearchFrames);
 	}
 	
 	/// <summary>
@@ -240,7 +240,7 @@ namespace Gecko
         ///
         /// Setting nsIWebBrowserfind.searchFrames to true sets this to true.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetSearchSubframesAttribute();
 		
@@ -252,7 +252,7 @@ namespace Gecko
         /// Setting nsIWebBrowserfind.searchFrames to true sets this to true.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSearchSubframesAttribute([MarshalAs(UnmanagedType.Bool)] bool aSearchSubframes);
+		void SetSearchSubframesAttribute([MarshalAs(UnmanagedType.U1)] bool aSearchSubframes);
 		
 		/// <summary>
         /// searchParentFrames
@@ -263,7 +263,7 @@ namespace Gecko
         ///
         /// Setting nsIWebBrowserfind.searchFrames to true sets this to true.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetSearchParentFramesAttribute();
 		
@@ -277,6 +277,6 @@ namespace Gecko
         /// Setting nsIWebBrowserfind.searchFrames to true sets this to true.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSearchParentFramesAttribute([MarshalAs(UnmanagedType.Bool)] bool aSearchParentFrames);
+		void SetSearchParentFramesAttribute([MarshalAs(UnmanagedType.U1)] bool aSearchParentFrames);
 	}
 }

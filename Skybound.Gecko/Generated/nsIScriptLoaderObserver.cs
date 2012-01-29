@@ -50,7 +50,7 @@ namespace Gecko
         /// if it is a loaded script).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ScriptAvailable(int aResult, System.IntPtr aElement, [MarshalAs(UnmanagedType.Bool)] bool aIsInline, [MarshalAs(UnmanagedType.Interface)] nsIURI aURI, int aLineNo);
+		void ScriptAvailable(int aResult, System.IntPtr aElement, [MarshalAs(UnmanagedType.U1)] bool aIsInline, [MarshalAs(UnmanagedType.Interface)] nsIURI aURI, int aLineNo);
 		
 		/// <summary>
         /// The script has been evaluated.
@@ -61,6 +61,6 @@ namespace Gecko
         /// @param aIsInline Is this an inline script or externally loaded?
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ScriptEvaluated(int aResult, System.IntPtr aElement, [MarshalAs(UnmanagedType.Bool)] bool aIsInline);
+		void ScriptEvaluated(int aResult, System.IntPtr aElement, [MarshalAs(UnmanagedType.U1)] bool aIsInline);
 	}
 }

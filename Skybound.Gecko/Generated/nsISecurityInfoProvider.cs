@@ -45,7 +45,7 @@ namespace Gecko
         /// Whether this provider has transferred data.  If it hasn't, its
         /// security info should be ignored.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetHasTransferredDataAttribute();
 	}

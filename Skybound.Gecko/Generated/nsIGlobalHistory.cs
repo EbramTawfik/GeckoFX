@@ -57,7 +57,7 @@ namespace Gecko
         /// @return true if a page has been passed into addPage().
         /// @param aURL the url to the page
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsVisited([MarshalAs(UnmanagedType.LPStr)] string aURL);
 	}

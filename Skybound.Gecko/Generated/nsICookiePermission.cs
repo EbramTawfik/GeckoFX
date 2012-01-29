@@ -95,9 +95,9 @@ namespace Gecko
         ///
         /// @return true if the cookie can be set.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool CanSetCookie([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIChannel aChannel, [MarshalAs(UnmanagedType.Interface)] nsICookie2 aCookie, [MarshalAs(UnmanagedType.Bool)] ref bool aIsSession, ref long aExpiry);
+		bool CanSetCookie([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIChannel aChannel, [MarshalAs(UnmanagedType.Interface)] nsICookie2 aCookie, [MarshalAs(UnmanagedType.U1)] ref bool aIsSession, ref long aExpiry);
 		
 		/// <summary>
         /// getOriginatingURI

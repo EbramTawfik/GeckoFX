@@ -78,14 +78,14 @@ namespace Gecko
 		/// <summary>
         /// Does the engine provide its own personal dictionary?
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetProvidesPersonalDictionaryAttribute();
 		
 		/// <summary>
         /// Does the engine provide its own word utils?
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetProvidesWordUtilsAttribute();
 		
@@ -127,7 +127,7 @@ namespace Gecko
         /// The spellcheck engine will send a notification with
         /// "spellcheck-dictionary-update" as topic when this changes.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool Check([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string word);
 		

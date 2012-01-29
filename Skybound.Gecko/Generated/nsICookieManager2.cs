@@ -66,7 +66,7 @@ namespace Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Remove([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aHost, [MarshalAs(UnmanagedType.LPStruct)] nsACString aName, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aPath, [MarshalAs(UnmanagedType.Bool)] bool aBlocked);
+		new void Remove([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aHost, [MarshalAs(UnmanagedType.LPStruct)] nsACString aName, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aPath, [MarshalAs(UnmanagedType.U1)] bool aBlocked);
 		
 		/// <summary>
         /// Add a cookie. nsICookieService is the normal way to do this. This
@@ -101,7 +101,7 @@ namespace Gecko
         /// in this way, the more restrictive of the two will take effect.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Add([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aHost, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aPath, [MarshalAs(UnmanagedType.LPStruct)] nsACString aName, [MarshalAs(UnmanagedType.LPStruct)] nsACString aValue, [MarshalAs(UnmanagedType.Bool)] bool aIsSecure, [MarshalAs(UnmanagedType.Bool)] bool aIsHttpOnly, [MarshalAs(UnmanagedType.Bool)] bool aIsSession, long aExpiry);
+		void Add([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aHost, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aPath, [MarshalAs(UnmanagedType.LPStruct)] nsACString aName, [MarshalAs(UnmanagedType.LPStruct)] nsACString aValue, [MarshalAs(UnmanagedType.U1)] bool aIsSecure, [MarshalAs(UnmanagedType.U1)] bool aIsHttpOnly, [MarshalAs(UnmanagedType.U1)] bool aIsSession, long aExpiry);
 		
 		/// <summary>
         /// Find whether a given cookie already exists.
@@ -112,7 +112,7 @@ namespace Gecko
         /// @return true if a cookie was found which matches the host, path, and name
         /// fields of aCookie
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool CookieExists([MarshalAs(UnmanagedType.Interface)] nsICookie2 aCookie);
 		

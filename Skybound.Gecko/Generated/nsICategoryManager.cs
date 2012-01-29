@@ -57,7 +57,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string AddCategoryEntry([MarshalAs(UnmanagedType.LPStr)] string aCategory, [MarshalAs(UnmanagedType.LPStr)] string aEntry, [MarshalAs(UnmanagedType.LPStr)] string aValue, [MarshalAs(UnmanagedType.Bool)] bool aPersist, [MarshalAs(UnmanagedType.Bool)] bool aReplace);
+		string AddCategoryEntry([MarshalAs(UnmanagedType.LPStr)] string aCategory, [MarshalAs(UnmanagedType.LPStr)] string aEntry, [MarshalAs(UnmanagedType.LPStr)] string aValue, [MarshalAs(UnmanagedType.U1)] bool aPersist, [MarshalAs(UnmanagedType.U1)] bool aReplace);
 		
 		/// <summary>
         /// Delete an entry from the category.
@@ -66,7 +66,7 @@ namespace Gecko
         /// @param aPersist Delete persistent data from registry, if present?
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DeleteCategoryEntry([MarshalAs(UnmanagedType.LPStr)] string aCategory, [MarshalAs(UnmanagedType.LPStr)] string aEntry, [MarshalAs(UnmanagedType.Bool)] bool aPersist);
+		void DeleteCategoryEntry([MarshalAs(UnmanagedType.LPStr)] string aCategory, [MarshalAs(UnmanagedType.LPStr)] string aEntry, [MarshalAs(UnmanagedType.U1)] bool aPersist);
 		
 		/// <summary>
         /// Delete a category and all entries.

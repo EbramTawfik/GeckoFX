@@ -55,7 +55,7 @@ namespace Gecko
 		/// <summary>
         /// Returns true if the property with the given name exists.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool Has([MarshalAs(UnmanagedType.LPStr)] string prop);
 		

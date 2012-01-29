@@ -42,7 +42,7 @@ namespace Gecko
 		/// <summary>
         /// Whether the application was launched in safe mode.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetInSafeModeAttribute();
 		
@@ -51,7 +51,7 @@ namespace Gecko
         /// encounters startup errors that might prevent the app from showing
         /// proper UI, it should set this flag to "true".
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetLogConsoleErrorsAttribute();
 		
@@ -61,7 +61,7 @@ namespace Gecko
         /// proper UI, it should set this flag to "true".
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetLogConsoleErrorsAttribute([MarshalAs(UnmanagedType.Bool)] bool aLogConsoleErrors);
+		void SetLogConsoleErrorsAttribute([MarshalAs(UnmanagedType.U1)] bool aLogConsoleErrors);
 		
 		/// <summary>
         /// A string tag identifying the current operating system. This is taken

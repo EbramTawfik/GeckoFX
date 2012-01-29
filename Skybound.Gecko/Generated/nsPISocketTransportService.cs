@@ -111,7 +111,7 @@ namespace Gecko
         /// controls whether or not the socket transport service should poke
         /// the autodialer on connection failure.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetAutodialEnabledAttribute();
 		
@@ -120,7 +120,7 @@ namespace Gecko
         /// the autodialer on connection failure.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAutodialEnabledAttribute([MarshalAs(UnmanagedType.Bool)] bool aAutodialEnabled);
+		void SetAutodialEnabledAttribute([MarshalAs(UnmanagedType.U1)] bool aAutodialEnabled);
 		
 		/// <summary>
         /// controls the TCP sender window clamp

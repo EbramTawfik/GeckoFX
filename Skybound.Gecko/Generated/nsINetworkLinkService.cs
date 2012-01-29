@@ -47,14 +47,14 @@ namespace Gecko
         /// If the link status is not currently known, we generally assume that
         /// it is up.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsLinkUpAttribute();
 		
 		/// <summary>
         /// This is set to true when we believe that isLinkUp is accurate.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetLinkStatusKnownAttribute();
 		

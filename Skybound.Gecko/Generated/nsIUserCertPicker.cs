@@ -39,6 +39,6 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIX509Cert PickByUsage([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor ctx, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string selectedNickname, int certUsage, [MarshalAs(UnmanagedType.Bool)] bool allowInvalid, [MarshalAs(UnmanagedType.Bool)] bool allowDuplicateNicknames, [MarshalAs(UnmanagedType.Bool)] ref bool canceled);
+		nsIX509Cert PickByUsage([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor ctx, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string selectedNickname, int certUsage, [MarshalAs(UnmanagedType.U1)] bool allowInvalid, [MarshalAs(UnmanagedType.U1)] bool allowDuplicateNicknames, [MarshalAs(UnmanagedType.U1)] ref bool canceled);
 	}
 }

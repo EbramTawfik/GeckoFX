@@ -105,6 +105,6 @@ namespace Gecko
         ///	interested in.
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetScrollbarVisibility([MarshalAs(UnmanagedType.Bool)] ref bool verticalVisible, [MarshalAs(UnmanagedType.Bool)] ref bool horizontalVisible);
+		void GetScrollbarVisibility([MarshalAs(UnmanagedType.U1)] ref bool verticalVisible, [MarshalAs(UnmanagedType.U1)] ref bool horizontalVisible);
 	}
 }

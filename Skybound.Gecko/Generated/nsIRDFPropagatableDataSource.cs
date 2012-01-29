@@ -46,7 +46,7 @@ namespace Gecko
         ///
         /// By default, this value is <code>true</code>.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetPropagateChangesAttribute();
 		
@@ -60,6 +60,6 @@ namespace Gecko
         /// By default, this value is <code>true</code>.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPropagateChangesAttribute([MarshalAs(UnmanagedType.Bool)] bool aPropagateChanges);
+		void SetPropagateChangesAttribute([MarshalAs(UnmanagedType.U1)] bool aPropagateChanges);
 	}
 }

@@ -61,7 +61,7 @@ namespace Gecko
         /// event target will run on the current thread (i.e., the thread calling
         /// this method).
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsOnCurrentThread();
 	}

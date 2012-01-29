@@ -40,12 +40,12 @@ namespace Gecko
         /// Set PrintOptions
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPrintOptions(int aType, [MarshalAs(UnmanagedType.Bool)] bool aTurnOnOff);
+		void SetPrintOptions(int aType, [MarshalAs(UnmanagedType.U1)] bool aTurnOnOff);
 		
 		/// <summary>
         /// Get PrintOptions
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetPrintOptions(int aType);
 		
@@ -224,25 +224,25 @@ namespace Gecko
 		
 		/// <summary>
         ///values 0.0 - 1.0 </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetPrintBGColorsAttribute();
 		
 		/// <summary>
         ///values 0.0 - 1.0 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPrintBGColorsAttribute([MarshalAs(UnmanagedType.Bool)] bool aPrintBGColors);
+		void SetPrintBGColorsAttribute([MarshalAs(UnmanagedType.U1)] bool aPrintBGColors);
 		
 		/// <summary>
         ///Print Background Colors </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetPrintBGImagesAttribute();
 		
 		/// <summary>
         ///Print Background Colors </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPrintBGImagesAttribute([MarshalAs(UnmanagedType.Bool)] bool aPrintBGImages);
+		void SetPrintBGImagesAttribute([MarshalAs(UnmanagedType.U1)] bool aPrintBGImages);
 		
 		/// <summary>
         ///Print Background Images </summary>
@@ -318,14 +318,14 @@ namespace Gecko
 		
 		/// <summary>
         ///indicates how to enable the frameset UI </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsCancelledAttribute();
 		
 		/// <summary>
         ///indicates how to enable the frameset UI </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetIsCancelledAttribute([MarshalAs(UnmanagedType.Bool)] bool aIsCancelled);
+		void SetIsCancelledAttribute([MarshalAs(UnmanagedType.U1)] bool aIsCancelled);
 		
 		/// <summary>
         ///indicates whether the print job has been cancelled </summary>
@@ -347,34 +347,34 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetPrintFrameTypeAttribute(short aPrintFrameType);
 		
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetPrintSilentAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPrintSilentAttribute([MarshalAs(UnmanagedType.Bool)] bool aPrintSilent);
+		void SetPrintSilentAttribute([MarshalAs(UnmanagedType.U1)] bool aPrintSilent);
 		
 		/// <summary>
         ///print without putting up the dialog </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetShrinkToFitAttribute();
 		
 		/// <summary>
         ///print without putting up the dialog </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetShrinkToFitAttribute([MarshalAs(UnmanagedType.Bool)] bool aShrinkToFit);
+		void SetShrinkToFitAttribute([MarshalAs(UnmanagedType.U1)] bool aShrinkToFit);
 		
 		/// <summary>
         ///shrinks content to fit on page </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetShowPrintProgressAttribute();
 		
 		/// <summary>
         ///shrinks content to fit on page </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetShowPrintProgressAttribute([MarshalAs(UnmanagedType.Bool)] bool aShowPrintProgress);
+		void SetShowPrintProgressAttribute([MarshalAs(UnmanagedType.U1)] bool aShowPrintProgress);
 		
 		/// <summary>
         ///Additional XP Related </summary>
@@ -476,7 +476,7 @@ namespace Gecko
         ///device-specific identifer of resolution or quality
         /// (like "600", "600x300", "600x300x12", "high-res",
         /// "med-res". "low-res", etc.) </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetDownloadFontsAttribute();
 		
@@ -485,25 +485,25 @@ namespace Gecko
         /// (like "600", "600x300", "600x300x12", "high-res",
         /// "med-res". "low-res", etc.) </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDownloadFontsAttribute([MarshalAs(UnmanagedType.Bool)] bool aDownloadFonts);
+		void SetDownloadFontsAttribute([MarshalAs(UnmanagedType.U1)] bool aDownloadFonts);
 		
 		/// <summary>
         ///enable font download to printer? </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetPrintReversedAttribute();
 		
 		/// <summary>
         ///enable font download to printer? </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPrintReversedAttribute([MarshalAs(UnmanagedType.Bool)] bool aPrintReversed);
+		void SetPrintReversedAttribute([MarshalAs(UnmanagedType.U1)] bool aPrintReversed);
 		
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetPrintInColorAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPrintInColorAttribute([MarshalAs(UnmanagedType.Bool)] bool aPrintInColor);
+		void SetPrintInColorAttribute([MarshalAs(UnmanagedType.U1)] bool aPrintInColor);
 		
 		/// <summary>
         ///a false means grayscale </summary>
@@ -541,14 +541,14 @@ namespace Gecko
 		
 		/// <summary>
         ///name of destination printer </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetPrintToFileAttribute();
 		
 		/// <summary>
         ///name of destination printer </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPrintToFileAttribute([MarshalAs(UnmanagedType.Bool)] bool aPrintToFile);
+		void SetPrintToFileAttribute([MarshalAs(UnmanagedType.U1)] bool aPrintToFile);
 		
 		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -576,7 +576,7 @@ namespace Gecko
         /// attribute than the one it was initialized with the PS
         /// will then get intialized from that printer.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsInitializedFromPrinterAttribute();
 		
@@ -588,7 +588,7 @@ namespace Gecko
         /// will then get intialized from that printer.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetIsInitializedFromPrinterAttribute([MarshalAs(UnmanagedType.Bool)] bool aIsInitializedFromPrinter);
+		void SetIsInitializedFromPrinterAttribute([MarshalAs(UnmanagedType.U1)] bool aIsInitializedFromPrinter);
 		
 		/// <summary>
         /// This attribute tracks whether the PS has been initialized
@@ -596,7 +596,7 @@ namespace Gecko
         /// attribute than the one it was initialized with the PS
         /// will then get intialized from prefs again.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsInitializedFromPrefsAttribute();
 		
@@ -607,7 +607,7 @@ namespace Gecko
         /// will then get intialized from prefs again.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetIsInitializedFromPrefsAttribute([MarshalAs(UnmanagedType.Bool)] bool aIsInitializedFromPrefs);
+		void SetIsInitializedFromPrefsAttribute([MarshalAs(UnmanagedType.U1)] bool aIsInitializedFromPrefs);
 		
 		/// <summary>
         ///C++ Helper Functions </summary>

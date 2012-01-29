@@ -135,7 +135,7 @@ namespace Gecko
         /// installed for this update transaction, false if another patch from this
         /// update has been selected.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetSelectedAttribute();
 		
@@ -145,7 +145,7 @@ namespace Gecko
         /// update has been selected.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSelectedAttribute([MarshalAs(UnmanagedType.Bool)] bool aSelected);
+		void SetSelectedAttribute([MarshalAs(UnmanagedType.U1)] bool aSelected);
 		
 		/// <summary>
         /// Serializes this patch object into a DOM Element
@@ -349,7 +349,7 @@ namespace Gecko
         /// update is found during a background update check. This overrides the
         /// default setting to download the update in the background.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetShowPromptAttribute();
 		
@@ -359,14 +359,14 @@ namespace Gecko
         /// default setting to download the update in the background.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetShowPromptAttribute([MarshalAs(UnmanagedType.Bool)] bool aShowPrompt);
+		void SetShowPromptAttribute([MarshalAs(UnmanagedType.U1)] bool aShowPrompt);
 		
 		/// <summary>
         /// Whether to show the "No Thanks" button in the update prompt. This allows
         /// the user to never receive a notification for that specific update version
         /// again.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetShowNeverForVersionAttribute();
 		
@@ -376,13 +376,13 @@ namespace Gecko
         /// again.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetShowNeverForVersionAttribute([MarshalAs(UnmanagedType.Bool)] bool aShowNeverForVersion);
+		void SetShowNeverForVersionAttribute([MarshalAs(UnmanagedType.U1)] bool aShowNeverForVersion);
 		
 		/// <summary>
         /// Whether to show the survey link in the update prompt. The url must also be
         /// present in the app.update.surveyURL preference.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetShowSurveyAttribute();
 		
@@ -391,14 +391,14 @@ namespace Gecko
         /// present in the app.update.surveyURL preference.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetShowSurveyAttribute([MarshalAs(UnmanagedType.Bool)] bool aShowSurvey);
+		void SetShowSurveyAttribute([MarshalAs(UnmanagedType.U1)] bool aShowSurvey);
 		
 		/// <summary>
         /// Whether or not the update being downloaded is a complete replacement of
         /// the user's existing installation or a patch representing the difference
         /// between the new version and the previous version.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsCompleteUpdateAttribute();
 		
@@ -408,14 +408,14 @@ namespace Gecko
         /// between the new version and the previous version.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetIsCompleteUpdateAttribute([MarshalAs(UnmanagedType.Bool)] bool aIsCompleteUpdate);
+		void SetIsCompleteUpdateAttribute([MarshalAs(UnmanagedType.U1)] bool aIsCompleteUpdate);
 		
 		/// <summary>
         /// Whether or not the update is a security update or not. If this is true,
         /// then we present more serious sounding user interface messages to the
         /// user.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsSecurityUpdateAttribute();
 		
@@ -425,7 +425,7 @@ namespace Gecko
         /// user.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetIsSecurityUpdateAttribute([MarshalAs(UnmanagedType.Bool)] bool aIsSecurityUpdate);
+		void SetIsSecurityUpdateAttribute([MarshalAs(UnmanagedType.U1)] bool aIsSecurityUpdate);
 		
 		/// <summary>
         /// When the update was installed.
@@ -604,7 +604,7 @@ namespace Gecko
         /// the app.update.enabled preference.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CheckForUpdates([MarshalAs(UnmanagedType.Interface)] nsIUpdateCheckListener listener, [MarshalAs(UnmanagedType.Bool)] bool force);
+		void CheckForUpdates([MarshalAs(UnmanagedType.Interface)] nsIUpdateCheckListener listener, [MarshalAs(UnmanagedType.U1)] bool force);
 		
 		/// <summary>
         /// Ends any pending update check.
@@ -669,7 +669,7 @@ namespace Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DownloadUpdate([MarshalAs(UnmanagedType.Interface)] nsIUpdate update, [MarshalAs(UnmanagedType.Bool)] bool background, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void DownloadUpdate([MarshalAs(UnmanagedType.Interface)] nsIUpdate update, [MarshalAs(UnmanagedType.U1)] bool background, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Pauses the active update download process
@@ -680,7 +680,7 @@ namespace Gecko
 		/// <summary>
         /// Whether or not there is an download happening at the moment.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsDownloadingAttribute();
 		
@@ -689,7 +689,7 @@ namespace Gecko
         /// of whether or not application update is disabled by the application and the
         /// platform the application is running on.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetCanCheckForUpdatesAttribute();
 		
@@ -698,7 +698,7 @@ namespace Gecko
         /// This is a function of whether or not the current user has access
         /// privileges to the install directory.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetCanApplyUpdatesAttribute();
 	}
@@ -788,7 +788,7 @@ namespace Gecko
         /// Less obtrusive UI, starting with a non-modal notification alert
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ShowUpdateDownloaded([MarshalAs(UnmanagedType.Interface)] nsIUpdate update, [MarshalAs(UnmanagedType.Bool)] bool background);
+		void ShowUpdateDownloaded([MarshalAs(UnmanagedType.Interface)] nsIUpdate update, [MarshalAs(UnmanagedType.U1)] bool background);
 		
 		/// <summary>
         /// Shows the application update installed user interface advising that an

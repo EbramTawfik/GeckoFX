@@ -46,19 +46,19 @@ namespace Gecko
         /// else insert before current cell
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InsertTableCell(int aNumber, [MarshalAs(UnmanagedType.Bool)] bool aAfter);
+		void InsertTableCell(int aNumber, [MarshalAs(UnmanagedType.U1)] bool aAfter);
 		
 		/// <summary>Member InsertTableColumn </summary>
 		/// <param name='aNumber'> </param>
 		/// <param name='aAfter'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InsertTableColumn(int aNumber, [MarshalAs(UnmanagedType.Bool)] bool aAfter);
+		void InsertTableColumn(int aNumber, [MarshalAs(UnmanagedType.U1)] bool aAfter);
 		
 		/// <summary>Member InsertTableRow </summary>
 		/// <param name='aNumber'> </param>
 		/// <param name='aAfter'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InsertTableRow(int aNumber, [MarshalAs(UnmanagedType.Bool)] bool aAfter);
+		void InsertTableRow(int aNumber, [MarshalAs(UnmanagedType.U1)] bool aAfter);
 		
 		/// <summary>
         ///Delete table methods
@@ -176,7 +176,7 @@ namespace Gecko
         /// are merged
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void JoinTableCells([MarshalAs(UnmanagedType.Bool)] bool aMergeNonContiguousContents);
+		void JoinTableCells([MarshalAs(UnmanagedType.U1)] bool aMergeNonContiguousContents);
 		
 		/// <summary>
         ///Split a cell that has rowspan and/or colspan > 0
@@ -265,7 +265,7 @@ namespace Gecko
         /// passes NS_SUCCEEDED macro)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCellDataAt([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aTable, int aRowIndex, int aColIndex, [MarshalAs(UnmanagedType.Interface)] ref nsIDOMElement aCell, ref int aStartRowIndex, ref int aStartColIndex, ref int aRowSpan, ref int aColSpan, ref int aActualRowSpan, ref int aActualColSpan, [MarshalAs(UnmanagedType.Bool)] ref bool aIsSelected);
+		void GetCellDataAt([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aTable, int aRowIndex, int aColIndex, [MarshalAs(UnmanagedType.Interface)] ref nsIDOMElement aCell, ref int aStartRowIndex, ref int aStartColIndex, ref int aRowSpan, ref int aColSpan, ref int aActualRowSpan, ref int aActualColSpan, [MarshalAs(UnmanagedType.U1)] ref bool aIsSelected);
 		
 		/// <summary>
         ///Get the first row element in a table
@@ -313,7 +313,7 @@ namespace Gecko
         /// object to insure we reset the caret in a table-editing method.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSelectionAfterTableEdit([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aTable, int aRow, int aCol, int aDirection, [MarshalAs(UnmanagedType.Bool)] bool aSelected);
+		void SetSelectionAfterTableEdit([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aTable, int aRow, int aCol, int aDirection, [MarshalAs(UnmanagedType.U1)] bool aSelected);
 		
 		/// <summary>
         ///Examine the current selection and find

@@ -51,7 +51,7 @@ namespace Gecko
         /// The completion was verified with a MAC and can be cached.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Completion([MarshalAs(UnmanagedType.LPStruct)] nsACString hash, [MarshalAs(UnmanagedType.LPStruct)] nsACString table, uint chunkId, [MarshalAs(UnmanagedType.Bool)] bool trusted);
+		void Completion([MarshalAs(UnmanagedType.LPStruct)] nsACString hash, [MarshalAs(UnmanagedType.LPStruct)] nsACString table, uint chunkId, [MarshalAs(UnmanagedType.U1)] bool trusted);
 		
 		/// <summary>
         /// The completion is complete.  This method is called once per

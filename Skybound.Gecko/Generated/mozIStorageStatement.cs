@@ -243,7 +243,7 @@ namespace Gecko
         /// row data may be accessed using mozIStorageValueArray methods on
         /// the statement.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool ExecuteStep();
 		
@@ -332,7 +332,7 @@ namespace Gecko
         /// 0-based colummn index.
         /// @return true if the value for the result column is null.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsNull(uint aIndex);
 		

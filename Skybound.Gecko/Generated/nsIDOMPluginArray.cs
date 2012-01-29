@@ -56,6 +56,6 @@ namespace Gecko
 		/// <summary>Member Refresh </summary>
 		/// <param name='reloadDocuments'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Refresh([MarshalAs(UnmanagedType.Bool)] bool reloadDocuments);
+		void Refresh([MarshalAs(UnmanagedType.U1)] bool reloadDocuments);
 	}
 }

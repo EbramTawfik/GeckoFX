@@ -53,7 +53,7 @@ namespace Gecko
 		/// <summary>
         /// true if the cookie is a domain cookie, false otherwise
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetIsDomainAttribute();
 		
@@ -72,7 +72,7 @@ namespace Gecko
 		/// <summary>
         /// true if the cookie was transmitted over ssl, false otherwise
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetIsSecureAttribute();
 		
@@ -112,7 +112,7 @@ namespace Gecko
         /// for session cookies (see below); thus, whichever is
         /// the more restrictive of the two will take effect.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsSessionAttribute();
 		
@@ -129,7 +129,7 @@ namespace Gecko
 		/// <summary>
         /// true if the cookie is an http only cookie
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsHttpOnlyAttribute();
 		

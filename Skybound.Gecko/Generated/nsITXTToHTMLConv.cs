@@ -137,6 +137,6 @@ namespace Gecko
         /// true.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PreFormatHTML([MarshalAs(UnmanagedType.Bool)] bool value);
+		void PreFormatHTML([MarshalAs(UnmanagedType.U1)] bool value);
 	}
 }

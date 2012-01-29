@@ -45,7 +45,7 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string GetStrReadOnlyAttribute();
 		
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetBoolReadOnlyAttribute();
 		
@@ -82,14 +82,14 @@ namespace Gecko
 		
 		/// <summary>Member GetBooleanPropertyAttribute </summary>
 		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetBooleanPropertyAttribute();
 		
 		/// <summary>Member SetBooleanPropertyAttribute </summary>
 		/// <param name='aBooleanProperty'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBooleanPropertyAttribute([MarshalAs(UnmanagedType.Bool)] bool aBooleanProperty);
+		void SetBooleanPropertyAttribute([MarshalAs(UnmanagedType.U1)] bool aBooleanProperty);
 		
 		/// <summary>Member GetShortPropertyAttribute </summary>
 		/// <returns>A System.Int16</returns>

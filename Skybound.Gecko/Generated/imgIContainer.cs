@@ -73,7 +73,7 @@ namespace Gecko
         ///
         /// @throws NS_ERROR_NOT_AVAILABLE if the animated state cannot be determined.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetAnimatedAttribute();
 		
@@ -81,7 +81,7 @@ namespace Gecko
         /// Whether the current frame is opaque; that is, needs the background painted
         /// behind it.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetCurrentFrameIsOpaqueAttribute();
 		

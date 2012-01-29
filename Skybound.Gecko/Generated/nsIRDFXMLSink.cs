@@ -89,7 +89,7 @@ namespace Gecko
         /// Set to <code>true</code> if the sink is read-only and cannot
         /// be modified
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetReadOnlyAttribute();
 		
@@ -98,7 +98,7 @@ namespace Gecko
         /// be modified
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetReadOnlyAttribute([MarshalAs(UnmanagedType.Bool)] bool aReadOnly);
+		void SetReadOnlyAttribute([MarshalAs(UnmanagedType.U1)] bool aReadOnly);
 		
 		/// <summary>
         /// Initiate the RDF/XML load.

@@ -40,7 +40,7 @@ namespace Gecko
 		/// <summary>
         /// Determine if two nodes are identical
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool EqualsNode([MarshalAs(UnmanagedType.Interface)] nsIRDFNode aNode);
 		
@@ -78,7 +78,7 @@ namespace Gecko
 		/// <summary>
         /// Determine if the resource has the given URI.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool EqualsString([MarshalAs(UnmanagedType.LPStr)] string aURI);
 		

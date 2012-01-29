@@ -59,7 +59,7 @@ namespace Gecko
         /// specify that the link is invalid via the aria-invalid="true" attribute.
         /// In all other cases, TRUE is returned.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetValidAttribute();
 		
@@ -71,7 +71,7 @@ namespace Gecko
         /// attribute set.  Also, state_focused should then be set on the accessible
         /// for this link.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetSelectedAttribute();
 		

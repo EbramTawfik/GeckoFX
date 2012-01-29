@@ -43,7 +43,7 @@ namespace Gecko
         /// @return            An HPOINTER representing the icon.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint IconFromExtension([MarshalAs(UnmanagedType.LPStr)] string aExt, [MarshalAs(UnmanagedType.Bool)] bool aNeedMini);
+		uint IconFromExtension([MarshalAs(UnmanagedType.LPStr)] string aExt, [MarshalAs(UnmanagedType.U1)] bool aNeedMini);
 		
 		/// <summary>
         /// Retrieves the icon for a specific file or abstract object.
@@ -54,7 +54,7 @@ namespace Gecko
         /// @return            An HPOINTER representing the icon.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint IconFromPath([MarshalAs(UnmanagedType.LPStr)] string aPath, [MarshalAs(UnmanagedType.Bool)] bool aAbstract, [MarshalAs(UnmanagedType.Bool)] bool aNeedMini);
+		uint IconFromPath([MarshalAs(UnmanagedType.LPStr)] string aPath, [MarshalAs(UnmanagedType.U1)] bool aAbstract, [MarshalAs(UnmanagedType.U1)] bool aNeedMini);
 		
 		/// <summary>
         /// Retrieves a file or abstract object's icon using its WPS object handle.
@@ -64,7 +64,7 @@ namespace Gecko
         /// @return            An HPOINTER representing the icon.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint IconFromHandle(uint aHandle, [MarshalAs(UnmanagedType.Bool)] bool aNeedMini);
+		uint IconFromHandle(uint aHandle, [MarshalAs(UnmanagedType.U1)] bool aNeedMini);
 		
 		/// <summary>
         /// Returns the name of the default handler for files with the
@@ -113,7 +113,7 @@ namespace Gecko
         /// @param aAbstract   False for filesystem objects, true for abstract objects.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MenuFromPath([MarshalAs(UnmanagedType.LPStr)] string aPath, [MarshalAs(UnmanagedType.Bool)] bool aAbstract);
+		void MenuFromPath([MarshalAs(UnmanagedType.LPStr)] string aPath, [MarshalAs(UnmanagedType.U1)] bool aAbstract);
 		
 		/// <summary>
         /// Opens a file using the specified program file.  The effect

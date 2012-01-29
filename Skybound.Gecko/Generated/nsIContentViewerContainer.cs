@@ -46,6 +46,6 @@ namespace Gecko
         /// an internal interface to the DocShell
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetIsPrinting([MarshalAs(UnmanagedType.Bool)] bool aIsPrinting);
+		void SetIsPrinting([MarshalAs(UnmanagedType.U1)] bool aIsPrinting);
 	}
 }

@@ -87,16 +87,16 @@ namespace Gecko
         ///
         /// @return True if the controller wishes to prevent event propagation and default event
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool HandleEnter([MarshalAs(UnmanagedType.Bool)] bool aIsPopupSelection);
+		bool HandleEnter([MarshalAs(UnmanagedType.U1)] bool aIsPopupSelection);
 		
 		/// <summary>
         /// Notify the controller that the user wishes to revert autocomplete
         ///
         /// @return True if the controller wishes to prevent event propagation and default event
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool HandleEscape();
 		
@@ -124,7 +124,7 @@ namespace Gecko
         ///
         /// @return True if the controller wishes to prevent event propagation and default event
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool HandleKeyNavigation(uint key);
 		
@@ -132,7 +132,7 @@ namespace Gecko
         /// Notify the controller that the user chose to delete the current
         /// auto-complete result.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool HandleDelete();
 		

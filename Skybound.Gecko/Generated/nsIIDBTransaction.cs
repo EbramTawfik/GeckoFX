@@ -34,7 +34,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("13e551a1-1a58-42ec-b0bd-7102ec0f64d6")]
+	[Guid("4f25832d-de40-4c0b-a176-358d94384b19")]
 	public interface nsIIDBTransaction
 	{
 		

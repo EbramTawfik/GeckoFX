@@ -43,9 +43,9 @@ namespace Gecko
         /// by the first browser window at startup,
         /// false otherwise.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool IsDefaultBrowser([MarshalAs(UnmanagedType.Bool)] bool aStartupCheck);
+		new bool IsDefaultBrowser([MarshalAs(UnmanagedType.U1)] bool aStartupCheck);
 		
 		/// <summary>
         /// Registers Firefox as the "Default Browser."
@@ -58,7 +58,7 @@ namespace Gecko
         /// users on a multi-user system.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetDefaultBrowser([MarshalAs(UnmanagedType.Bool)] bool aClaimAllTypes, [MarshalAs(UnmanagedType.Bool)] bool aForAllUsers);
+		new void SetDefaultBrowser([MarshalAs(UnmanagedType.U1)] bool aClaimAllTypes, [MarshalAs(UnmanagedType.U1)] bool aForAllUsers);
 		
 		/// <summary>
         /// Used to determine whether or not to show a "Set Default Browser"
@@ -66,7 +66,7 @@ namespace Gecko
         /// up and "browser.shell.checkDefaultBrowser" is true, otherwise it
         /// is false.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetShouldCheckDefaultBrowserAttribute();
 		
@@ -77,7 +77,7 @@ namespace Gecko
         /// is false.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetShouldCheckDefaultBrowserAttribute([MarshalAs(UnmanagedType.Bool)] bool aShouldCheckDefaultBrowser);
+		new void SetShouldCheckDefaultBrowserAttribute([MarshalAs(UnmanagedType.U1)] bool aShouldCheckDefaultBrowser);
 		
 		/// <summary>
         /// Sets the desktop background image using either the HTML <IMG>

@@ -43,7 +43,7 @@ namespace Gecko
         /// accessing the visibility of certain UI items (scrollbars, menubars,
         /// toolbars, ...) through the DOM.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetVisibleAttribute();
 		
@@ -53,6 +53,6 @@ namespace Gecko
         /// toolbars, ...) through the DOM.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetVisibleAttribute([MarshalAs(UnmanagedType.Bool)] bool aVisible);
+		void SetVisibleAttribute([MarshalAs(UnmanagedType.U1)] bool aVisible);
 	}
 }

@@ -47,7 +47,7 @@ namespace Gecko
         /// then base64 encoded.
         /// @returns true if the signature matches the data, false if not.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool VerifyData([MarshalAs(UnmanagedType.LPStruct)] nsACString aData, [MarshalAs(UnmanagedType.LPStruct)] nsACString aSignature, [MarshalAs(UnmanagedType.LPStruct)] nsACString aPublicKey);
 	}
