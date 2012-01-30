@@ -393,7 +393,7 @@ namespace Gecko
 
 
 		#region Extension Methods for nsISupports
-
+        /**
 		internal static T QueryInterface<T>(this nsISupports proxy)
 		{
 			var guid = typeof(T).GUID;
@@ -409,7 +409,7 @@ namespace Gecko
 			var obj = Marshal.GetObjectForIUnknown(ptr);
 			return obj;
 		}
-
+        /**/
 		#endregion
 	}
 }
