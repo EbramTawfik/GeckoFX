@@ -2,6 +2,14 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v9.0-0.5 ==
+
+Linux only release.
+1. Add geckofx config files to deal firefox platform differences.
+2. Change X11 to libX11 pinvoke dll name match mono.
+3. Make NAvigateFinishedNotifier more robust.
+
+
 == v9.0-0.4 ==
 
 zloyprotoss:
