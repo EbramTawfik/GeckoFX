@@ -14,7 +14,7 @@ namespace Gecko.Certificates
 			_validity = validity;
 		}
 
-		public uint NotBefore
+		public ulong NotBefore
 		{
 			get { return _validity.GetNotBeforeAttribute(); }
 		}
@@ -34,7 +34,7 @@ namespace Gecko.Certificates
 			get { return nsString.Get( _validity.GetNotBeforeGMTAttribute ); }
 		}
 	
-		public uint NotAfter
+		public ulong NotAfter
 		{
 			get { return _validity.GetNotAfterAttribute(); }
 		}

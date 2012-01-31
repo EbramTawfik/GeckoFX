@@ -80,7 +80,7 @@ namespace Gecko
         /// The unique ID associated with the item's parent.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnItemAdded(int aItemId, int aParentId, int aIndex, ushort aItemType, [MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aTitle, uint aDateAdded, [MarshalAs(UnmanagedType.LPStruct)] nsACString aGUID, [MarshalAs(UnmanagedType.LPStruct)] nsACString aParentGUID);
+		void OnItemAdded(int aItemId, int aParentId, int aIndex, ushort aItemType, [MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aTitle, ulong aDateAdded, [MarshalAs(UnmanagedType.LPStruct)] nsACString aGUID, [MarshalAs(UnmanagedType.LPStruct)] nsACString aParentGUID);
 		
 		/// <summary>
         /// Notifies that an item is about to be removed.  Called before the actual
@@ -164,7 +164,7 @@ namespace Gecko
         /// lastModified  | PRTime (as string) when the item was last modified.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnItemChanged(int aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsACString aProperty, [MarshalAs(UnmanagedType.Bool)] bool aIsAnnotationProperty, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aNewValue, uint aLastModified, ushort aItemType, int aParentId, [MarshalAs(UnmanagedType.LPStruct)] nsACString aGUID, [MarshalAs(UnmanagedType.LPStruct)] nsACString aParentGUID);
+		void OnItemChanged(int aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsACString aProperty, [MarshalAs(UnmanagedType.Bool)] bool aIsAnnotationProperty, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aNewValue, ulong aLastModified, ushort aItemType, int aParentId, [MarshalAs(UnmanagedType.LPStruct)] nsACString aGUID, [MarshalAs(UnmanagedType.LPStruct)] nsACString aParentGUID);
 		
 		/// <summary>
         /// Notifies that the item was visited.  Can be invoked only for TYPE_BOOKMARK
@@ -197,7 +197,7 @@ namespace Gecko
         /// recent visit for that page.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnItemVisited(int aItemId, int aVisitId, uint aTime, uint aTransitionType, [MarshalAs(UnmanagedType.Interface)] nsIURI aURI, int aParentId, [MarshalAs(UnmanagedType.LPStruct)] nsACString aGUID, [MarshalAs(UnmanagedType.LPStruct)] nsACString aParentGUID);
+		void OnItemVisited(int aItemId, int aVisitId, ulong aTime, uint aTransitionType, [MarshalAs(UnmanagedType.Interface)] nsIURI aURI, int aParentId, [MarshalAs(UnmanagedType.LPStruct)] nsACString aGUID, [MarshalAs(UnmanagedType.LPStruct)] nsACString aParentGUID);
 		
 		/// <summary>
         /// Notifies that an item has been moved.
@@ -449,13 +449,13 @@ namespace Gecko
         /// Set the date added time for an item.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetItemDateAdded(int aItemId, uint aDateAdded);
+		void SetItemDateAdded(int aItemId, ulong aDateAdded);
 		
 		/// <summary>
         /// Get the date added time for an item.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetItemDateAdded(int aItemId);
+		ulong GetItemDateAdded(int aItemId);
 		
 		/// <summary>
         /// Set the last modified time for an item.
@@ -466,7 +466,7 @@ namespace Gecko
         /// the corresponding itemChanged notification instead.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetItemLastModified(int aItemId, uint aLastModified);
+		void SetItemLastModified(int aItemId, ulong aLastModified);
 		
 		/// <summary>
         /// Get the last modified time for an item.
@@ -475,7 +475,7 @@ namespace Gecko
         /// dateAdded.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetItemLastModified(int aItemId);
+		ulong GetItemLastModified(int aItemId);
 		
 		/// <summary>
         /// Get the URI for a bookmark item.

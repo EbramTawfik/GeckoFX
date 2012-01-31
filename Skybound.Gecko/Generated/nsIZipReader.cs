@@ -71,7 +71,7 @@ namespace Gecko
         /// The time at which this item was last modified.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetLastModifiedTimeAttribute();
+		ulong GetLastModifiedTimeAttribute();
 		
 		/// <summary>
         /// Use this attribute to determine whether this item is an actual zip entry

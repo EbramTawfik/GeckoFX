@@ -99,7 +99,7 @@ namespace Gecko
         /// visit time to fit in the day range.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetTimeAttribute();
+		ulong GetTimeAttribute();
 		
 		/// <summary>
         /// This URI can be used as an image source URI and will give you the favicon
@@ -145,7 +145,7 @@ namespace Gecko
         /// time that the item was created. For other nodes, this value is 0.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetDateAddedAttribute();
+		ulong GetDateAddedAttribute();
 		
 		/// <summary>
         /// If the node is an item (bookmark, folder or a separator) this value is the
@@ -155,7 +155,7 @@ namespace Gecko
         /// dateAdded.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetLastModifiedAttribute();
+		ulong GetLastModifiedAttribute();
 		
 		/// <summary>
         /// For uri nodes, this is a sorted list of the tags, delimited with commans,
@@ -237,7 +237,7 @@ namespace Gecko
         /// visit time to fit in the day range.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new uint GetTimeAttribute();
+		new ulong GetTimeAttribute();
 		
 		/// <summary>
         /// This URI can be used as an image source URI and will give you the favicon
@@ -283,7 +283,7 @@ namespace Gecko
         /// time that the item was created. For other nodes, this value is 0.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new uint GetDateAddedAttribute();
+		new ulong GetDateAddedAttribute();
 		
 		/// <summary>
         /// If the node is an item (bookmark, folder or a separator) this value is the
@@ -293,7 +293,7 @@ namespace Gecko
         /// dateAdded.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new uint GetLastModifiedAttribute();
+		new ulong GetLastModifiedAttribute();
 		
 		/// <summary>
         /// For uri nodes, this is a sorted list of the tags, delimited with commans,
@@ -382,7 +382,7 @@ namespace Gecko
         /// visit time to fit in the day range.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new uint GetTimeAttribute();
+		new ulong GetTimeAttribute();
 		
 		/// <summary>
         /// This URI can be used as an image source URI and will give you the favicon
@@ -428,7 +428,7 @@ namespace Gecko
         /// time that the item was created. For other nodes, this value is 0.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new uint GetDateAddedAttribute();
+		new ulong GetDateAddedAttribute();
 		
 		/// <summary>
         /// If the node is an item (bookmark, folder or a separator) this value is the
@@ -438,7 +438,7 @@ namespace Gecko
         /// dateAdded.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new uint GetLastModifiedAttribute();
+		new ulong GetLastModifiedAttribute();
 		
 		/// <summary>
         /// For uri nodes, this is a sorted list of the tags, delimited with commans,
@@ -547,7 +547,7 @@ namespace Gecko
         /// visit time to fit in the day range.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new uint GetTimeAttribute();
+		new ulong GetTimeAttribute();
 		
 		/// <summary>
         /// This URI can be used as an image source URI and will give you the favicon
@@ -593,7 +593,7 @@ namespace Gecko
         /// time that the item was created. For other nodes, this value is 0.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new uint GetDateAddedAttribute();
+		new ulong GetDateAddedAttribute();
 		
 		/// <summary>
         /// If the node is an item (bookmark, folder or a separator) this value is the
@@ -603,7 +603,7 @@ namespace Gecko
         /// dateAdded.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new uint GetLastModifiedAttribute();
+		new ulong GetLastModifiedAttribute();
 		
 		/// <summary>
         /// For uri nodes, this is a sorted list of the tags, delimited with commans,
@@ -707,7 +707,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsINavHistoryResultNode FindNodeByDetails([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aURIString, uint aTime, int aItemId, [MarshalAs(UnmanagedType.Bool)] bool aRecursive);
+		nsINavHistoryResultNode FindNodeByDetails([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aURIString, ulong aTime, int aItemId, [MarshalAs(UnmanagedType.Bool)] bool aRecursive);
 		
 		/// <summary>
         /// Returns false if this node's list of children can be modified
@@ -737,7 +737,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsINavHistoryResultNode AppendURINode([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aTitle, uint aAccessCount, uint aTime, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aIconURI);
+		nsINavHistoryResultNode AppendURINode([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aTitle, uint aAccessCount, ulong aTime, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aIconURI);
 		
 		/// <summary>
         /// Appends a bookmark folder node to this container and returns it. For the
@@ -826,7 +826,7 @@ namespace Gecko
         /// visit time to fit in the day range.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new uint GetTimeAttribute();
+		new ulong GetTimeAttribute();
 		
 		/// <summary>
         /// This URI can be used as an image source URI and will give you the favicon
@@ -872,7 +872,7 @@ namespace Gecko
         /// time that the item was created. For other nodes, this value is 0.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new uint GetDateAddedAttribute();
+		new ulong GetDateAddedAttribute();
 		
 		/// <summary>
         /// If the node is an item (bookmark, folder or a separator) this value is the
@@ -882,7 +882,7 @@ namespace Gecko
         /// dateAdded.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new uint GetLastModifiedAttribute();
+		new ulong GetLastModifiedAttribute();
 		
 		/// <summary>
         /// For uri nodes, this is a sorted list of the tags, delimited with commans,
@@ -986,7 +986,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsINavHistoryResultNode FindNodeByDetails([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aURIString, uint aTime, int aItemId, [MarshalAs(UnmanagedType.Bool)] bool aRecursive);
+		new nsINavHistoryResultNode FindNodeByDetails([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aURIString, ulong aTime, int aItemId, [MarshalAs(UnmanagedType.Bool)] bool aRecursive);
 		
 		/// <summary>
         /// Returns false if this node's list of children can be modified
@@ -1016,7 +1016,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsINavHistoryResultNode AppendURINode([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aTitle, uint aAccessCount, uint aTime, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aIconURI);
+		new nsINavHistoryResultNode AppendURINode([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aTitle, uint aAccessCount, ulong aTime, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aIconURI);
 		
 		/// <summary>
         /// Appends a bookmark folder node to this container and returns it. For the
@@ -1138,7 +1138,7 @@ namespace Gecko
         /// the new access-count
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NodeHistoryDetailsChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode aNode, uint aNewVisitDate, uint aNewAccessCount);
+		void NodeHistoryDetailsChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode aNode, ulong aNewVisitDate, uint aNewAccessCount);
 		
 		/// <summary>
         /// Called when the tags set on the uri represented by aNode have changed.
@@ -1183,7 +1183,7 @@ namespace Gecko
         /// the new value of the dateAdded property
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NodeDateAddedChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode aNode, uint aNewValue);
+		void NodeDateAddedChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode aNode, ulong aNewValue);
 		
 		/// <summary>
         /// Called right after aNode's dateModified property has changed.
@@ -1194,7 +1194,7 @@ namespace Gecko
         /// the new value of the dateModified property
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NodeLastModifiedChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode aNode, uint aNewValue);
+		void NodeLastModifiedChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode aNode, ulong aNewValue);
 		
 		/// <summary>
         /// Called when an item is being replaced with another item at the exact
@@ -1393,7 +1393,7 @@ namespace Gecko
         /// the new access-count
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void NodeHistoryDetailsChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode aNode, uint aNewVisitDate, uint aNewAccessCount);
+		new void NodeHistoryDetailsChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode aNode, ulong aNewVisitDate, uint aNewAccessCount);
 		
 		/// <summary>
         /// Called when the tags set on the uri represented by aNode have changed.
@@ -1438,7 +1438,7 @@ namespace Gecko
         /// the new value of the dateAdded property
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void NodeDateAddedChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode aNode, uint aNewValue);
+		new void NodeDateAddedChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode aNode, ulong aNewValue);
 		
 		/// <summary>
         /// Called right after aNode's dateModified property has changed.
@@ -1449,7 +1449,7 @@ namespace Gecko
         /// the new value of the dateModified property
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void NodeLastModifiedChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode aNode, uint aNewValue);
+		new void NodeLastModifiedChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode aNode, ulong aNewValue);
 		
 		/// <summary>
         /// Called when an item is being replaced with another item at the exact
@@ -1733,7 +1733,7 @@ namespace Gecko
         /// It is used in places views only and can be ignored.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnVisit([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, int aVisitID, uint aTime, int aSessionID, int aReferringID, uint aTransitionType, [MarshalAs(UnmanagedType.LPStruct)] nsACString aGUID, ref uint aAdded);
+		void OnVisit([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, int aVisitID, ulong aTime, int aSessionID, int aReferringID, uint aTransitionType, [MarshalAs(UnmanagedType.LPStruct)] nsACString aGUID, ref uint aAdded);
 		
 		/// <summary>
         /// Called whenever either the "real" title or the custom title of the page
@@ -1832,7 +1832,7 @@ namespace Gecko
         /// Indicates the reason for the removal.  see REASON_* constants.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnDeleteVisits([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, uint aVisitTime, [MarshalAs(UnmanagedType.LPStruct)] nsACString aGUID, ushort aReason);
+		void OnDeleteVisits([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, ulong aVisitTime, [MarshalAs(UnmanagedType.LPStruct)] nsACString aGUID, ushort aReason);
 	}
 	
 	/// <summary>
@@ -1875,7 +1875,7 @@ namespace Gecko
         /// reference points + offset resolve to.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetBeginTimeAttribute();
+		ulong GetBeginTimeAttribute();
 		
 		/// <summary>
         /// Time range for results (INCLUSIVE). The *TimeReference is one of the
@@ -1902,7 +1902,7 @@ namespace Gecko
         /// reference points + offset resolve to.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBeginTimeAttribute(uint aBeginTime);
+		void SetBeginTimeAttribute(ulong aBeginTime);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetBeginTimeReferenceAttribute();
@@ -1915,13 +1915,13 @@ namespace Gecko
 		bool GetHasBeginTimeAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetAbsoluteBeginTimeAttribute();
+		ulong GetAbsoluteBeginTimeAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetEndTimeAttribute();
+		ulong GetEndTimeAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetEndTimeAttribute(uint aEndTime);
+		void SetEndTimeAttribute(ulong aEndTime);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetEndTimeReferenceAttribute();
@@ -1934,7 +1934,7 @@ namespace Gecko
 		bool GetHasEndTimeAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetAbsoluteEndTimeAttribute();
+		ulong GetAbsoluteEndTimeAttribute();
 		
 		/// <summary>
         /// Text search terms.
@@ -2571,7 +2571,7 @@ namespace Gecko
         /// persistent (TRANSITION_EMBED).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int AddVisit([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, uint aTime, [MarshalAs(UnmanagedType.Interface)] nsIURI aReferringURI, int aTransitionType, [MarshalAs(UnmanagedType.Bool)] bool aIsRedirect, int aSessionID);
+		int AddVisit([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, ulong aTime, [MarshalAs(UnmanagedType.Interface)] nsIURI aReferringURI, int aTransitionType, [MarshalAs(UnmanagedType.Bool)] bool aIsRedirect, int aSessionID);
 		
 		/// <summary>
         /// This returns a new query object that you can pass to executeQuer[y/ies].

@@ -46,7 +46,7 @@ namespace Gecko
         /// The time the visit occurred.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetVisitDateAttribute();
+		ulong GetVisitDateAttribute();
 		
 		/// <summary>
         /// The transition type used to get to this visit.  One of the TRANSITION_TYPE

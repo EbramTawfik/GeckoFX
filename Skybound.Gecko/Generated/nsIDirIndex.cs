@@ -117,7 +117,7 @@ namespace Gecko
         /// ftp servers in 1969
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetLastModifiedAttribute();
+		ulong GetLastModifiedAttribute();
 		
 		/// <summary>
         /// Last-modified time in seconds-since-epoch.
@@ -125,6 +125,6 @@ namespace Gecko
         /// ftp servers in 1969
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetLastModifiedAttribute(uint aLastModified);
+		void SetLastModifiedAttribute(ulong aLastModified);
 	}
 }

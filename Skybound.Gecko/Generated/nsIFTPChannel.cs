@@ -40,13 +40,13 @@ namespace Gecko
         /// This interface may be used to determine if a channel is a FTP channel.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetLastModifiedTimeAttribute();
+		ulong GetLastModifiedTimeAttribute();
 		
 		/// <summary>
         /// This interface may be used to determine if a channel is a FTP channel.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetLastModifiedTimeAttribute(uint aLastModifiedTime);
+		void SetLastModifiedTimeAttribute(ulong aLastModifiedTime);
 	}
 	
 	/// <summary>
