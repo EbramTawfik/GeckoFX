@@ -32,7 +32,7 @@ namespace GtkDotNet
 			Parent = 2
 		}
 	
-		[DllImport ("X11")]
+		[DllImport ("libX11")]
 		public extern static int XSetInputFocus(IntPtr display, IntPtr window, RevertTo revert_to, IntPtr time);
 
 		IntPtr m_xDisplayPointer;		

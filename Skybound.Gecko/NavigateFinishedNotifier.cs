@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
 
 namespace Gecko
 {
@@ -49,10 +50,17 @@ namespace Gecko
 
 		private void HandleApplicationIdle(object sender, EventArgs e)
 		{
-			GeckoDocument document = (m_browser as GeckoWebBrowser).Document;
-			// if body contains something assume navigation complete.
-			if (!m_loadEventHandled || document == null || document.DocumentElement == null || document.ChildNodes.Count == 0)
+			try
+			{
+				GeckoDocument document = (m_browser as GeckoWebBrowser).Document;
+				// if body contains something assume navigation complete.
+				if (!m_loadEventHandled || document == null || document.DocumentElement == null || document.ChildNodes.Count == 0)
+					return;
+			}
+			catch(COMException)
+			{
 				return;
+			}
 
 			Application.Idle -= HandleApplicationIdle;
 

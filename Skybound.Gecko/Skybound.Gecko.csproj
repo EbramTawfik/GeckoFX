@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Release_Windows</Configuration>
@@ -151,7 +151,7 @@
     <Compile Include="Net\LoadGroup.cs" />
     <Compile Include="Net\Request.cs" />
     <Compile Include="nsCancelable.cs" />
-    <Compile Include="nsCString.cs" />
+    <Compile Include="nsSupportsPrimitives.cs" />
     <Compile Include="GeckoMessageEvents.cs" />
     <Compile Include="ConsoleMessageEventArgs.cs" />
     <Compile Include="CookieManager.cs" />
@@ -1469,7 +1469,10 @@
     <Compile Include="PasswordDialog.Designer.cs">
       <DependentUpon>PasswordDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\PluginHost.cs" />
+    <Compile Include="Plugins\PluginTag.cs" />
     <Compile Include="PrintSettings.cs" />
+    <Compile Include="PrivateBrowsingService.cs" />
     <Compile Include="PromptDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1477,6 +1480,7 @@
       <DependentUpon>PromptDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="PromptService.cs" />
+    <Compile Include="Properties.cs" />
     <Compile Include="PropertiesDialog.cs">
       <SubType>Form</SubType>
     </Compile>

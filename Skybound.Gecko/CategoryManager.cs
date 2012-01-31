@@ -55,21 +55,22 @@ namespace Gecko
 			return _categoryManager.GetCategoryEntry( aCategory, aEntry );
 		}
 
-		public IEnumerable<nsCString> Categories
+		public IEnumerable<string> Categories
 		{
 			get
 			{
-				return new GeckoEnumerableCollection<nsCString, nsISupportsCString>(() => _categoryManager.EnumerateCategories(),
-																				   x => new nsCString(x));
+				return new GeckoEnumerableCollection<string, nsISupportsCString>( () => _categoryManager.EnumerateCategories(),
+				                                                                  nsSupportsPrimitiveConverter.GetString );
 			}
 		}
 
-		public IEnumerable<nsCString> this[string category]
+		public IEnumerable<string> this[string category]
 		{
 			get
 			{
-				return new GeckoEnumerableCollection<nsCString, nsISupportsCString>(() => _categoryManager.EnumerateCategory(category),
-																				   x => new nsCString(x));
+				return
+					new GeckoEnumerableCollection<string, nsISupportsCString>( () => _categoryManager.EnumerateCategory( category ),
+					                                                           nsSupportsPrimitiveConverter.GetString );
 			}
 		}
 

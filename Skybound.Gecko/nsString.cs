@@ -44,6 +44,8 @@ namespace Gecko
 	/// </summary>
 	public static class nsString
 	{
+		#region nsAUTF8String
+		
 		public delegate void StringAttributeUtf8(nsAUTF8String str);
 		
 		public static string Get(StringAttributeUtf8 getter)
@@ -86,6 +88,19 @@ namespace Gecko
 			}
 			return ret;
 		}
+
+		public static T Pass<T,TW> (Func<TW,nsAUTF8String,T> func,TW value,string stringValue )
+		{
+			T ret;
+			using (nsAUTF8String str = new nsAUTF8String(stringValue))
+			{
+				ret = func( value, str );
+			}
+			return ret;
+		}
+		#endregion
+
+		#region nsACString
 		
 		public delegate void StringAttributeAnsi(nsACString str);
 		
@@ -121,20 +136,15 @@ namespace Gecko
 			}
 		}
 
-		public static void Pass(Action<nsACString, nsACString> func, string value1, string value2)
+		public static void Set(Action<nsACString, nsACString> func, string value1, string value2)
 		{
 			using (nsACString native1 = new nsACString(value1), native2 = new nsACString(value2))
 			{
-				//if (!string.IsNullOrEmpty(value1))
-				//	native1.SetData(value1);
-
-				//if (!string.IsNullOrEmpty(value2))
-				//	native2.SetData(value2);
-
 				func(native1, native2);
 			}
 		}
-		
+		#endregion
+		#region nsAString
 		public delegate void StringAttributeUnicode(nsAString str);
 		
 		public static string Get(StringAttributeUnicode getter)
@@ -143,6 +153,18 @@ namespace Gecko
 			{
 				getter(str);
 				return str.ToString();
+			}
+		}
+
+		public static string Get(Action<nsAString, nsAString> getter, string inValue)
+		{
+			using (nsAString nativeIn = new nsAString(inValue), nativeOut = new nsAString())
+			{
+				//if (!string.IsNullOrEmpty(inValue))
+				//    nativeIn.SetData( inValue );
+
+				getter(nativeIn, nativeOut);
+				return nativeOut.ToString();
 			}
 		}
 		
@@ -154,6 +176,14 @@ namespace Gecko
 					str.SetData(value);
 				
 				setter(str);
+			}
+		}
+
+		public static void Set(Action<nsAString, nsAString> func, string value1, string value2)
+		{
+			using (nsAString native1 = new nsAString(value1), native2 = new nsAString(value2))
+			{
+				func(native1, native2);
 			}
 		}
 
@@ -169,14 +199,28 @@ namespace Gecko
 			T ret;
 			using (nsAString str = new nsAString(value))
 			{
-				//if (!string.IsNullOrEmpty(value))
-				//	str.SetData(value);
-
 				ret = func( str );
 			}
 			return ret;
 		}
 
+		/// <summary>
+		/// Passes <paramref name="value"/> to function and return value
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="func"></param>
+		/// <param name="value"></param>
+		/// <returns></returns>
+		public static T Pass<T>(Func<nsAString,nsAString, T> func, string value1,string value2)
+		{
+			T ret;
+			using (nsAString str1 = new nsAString(value1),str2=new nsAString(value2))
+			{
+				ret = func( str1, str2 );
+			}
+			return ret;
+		}
+		#endregion
 
 	}
 
