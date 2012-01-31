@@ -70,9 +70,8 @@ namespace Gecko
         /// Any extra string data optionally available with
         /// this activity
         /// </summary>
-        /// <seealso cref="http://www.geckofx.org/viewtopic.php?id=722"/>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-        void ObserveActivity(nsISupports aHttpChannel, UInt32 aActivityType, UInt32 aActivitySubtype, UInt64 aTimestamp, UInt64 aExtraSizeData, IntPtr aExtraStringData);
+		void ObserveActivity([MarshalAs(UnmanagedType.Interface)] nsISupports aHttpChannel, uint aActivityType, uint aActivitySubtype, uint aTimestamp, ulong aExtraSizeData, [MarshalAs(UnmanagedType.LPStruct)] nsACString aExtraStringData);
 		
 		/// <summary>
         /// This attribute is true when this interface is active and should
