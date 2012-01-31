@@ -57,6 +57,6 @@ namespace Gecko
         /// See nsINavHistoryObserver::REASON_* constants.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NotifyOnPageExpired([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, ulong aVisitTime, [MarshalAs(UnmanagedType.Bool)] bool aWholeEntry, [MarshalAs(UnmanagedType.LPStruct)] nsACString aGUID, ushort aReason);
+		void NotifyOnPageExpired([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, ulong aVisitTime, [MarshalAs(UnmanagedType.U1)] bool aWholeEntry, [MarshalAs(UnmanagedType.LPStruct)] nsACString aGUID, ushort aReason);
 	}
 }
