@@ -72,7 +72,7 @@ namespace Gecko
         ///
         /// @returns true if the two are logically equivalent, false otherwise
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool Equals([MarshalAs(UnmanagedType.Interface)] nsIHandlerApp aHandlerApp);
 		

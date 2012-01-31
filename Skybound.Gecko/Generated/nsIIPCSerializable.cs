@@ -38,7 +38,7 @@ namespace Gecko
 		/// <param name='msg'> </param>
 		/// <param name='iter'> </param>
 		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool Read(System.IntPtr msg, System.IntPtr iter);
 		

@@ -200,7 +200,7 @@ namespace Gecko
         ///
         /// @return Returns true if the certificate is trusted for the given use.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsCertTrusted([MarshalAs(UnmanagedType.Interface)] nsIX509Cert cert, uint certType, uint trustType);
 		
@@ -257,7 +257,7 @@ namespace Gecko
 		/// <summary>
         /// Whether OCSP is enabled in preferences.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsOcspOnAttribute();
 		

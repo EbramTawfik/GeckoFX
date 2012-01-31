@@ -38,7 +38,7 @@ namespace Gecko
         /// @param aNSPRCode An error code obtained using PR_GetError()
         /// @return True if it is error code defined by the NSS library
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsNSSErrorCode(int aNSPRCode);
 		

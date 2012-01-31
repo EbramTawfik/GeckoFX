@@ -87,7 +87,7 @@ namespace Gecko
         /// TRUE if the update is being used to add specific resources.
         /// FALSE if the complete cache update process is happening.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetPartialAttribute();
 		
@@ -95,7 +95,7 @@ namespace Gecko
         /// TRUE if this is an upgrade attempt, FALSE if it is a new cache
         /// attempt.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsUpgradeAttribute();
 		
@@ -116,7 +116,7 @@ namespace Gecko
 		/// <summary>
         /// TRUE if the cache update completed successfully.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetSucceededAttribute();
 		
@@ -173,7 +173,7 @@ namespace Gecko
         /// observer, FALSE for a strong reference.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddObserver([MarshalAs(UnmanagedType.Interface)] nsIOfflineCacheUpdateObserver aObserver, [MarshalAs(UnmanagedType.Bool)] bool aHoldWeak);
+		void AddObserver([MarshalAs(UnmanagedType.Interface)] nsIOfflineCacheUpdateObserver aObserver, [MarshalAs(UnmanagedType.U1)] bool aHoldWeak);
 		
 		/// <summary>
         /// Remove an observer from the update.
@@ -231,7 +231,7 @@ namespace Gecko
         /// offline-apps.allow_by_default pref.  If not specified,
         /// the pref service will be used.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool OfflineAppAllowed([MarshalAs(UnmanagedType.Interface)] nsIPrincipal aPrincipal, [MarshalAs(UnmanagedType.Interface)] nsIPrefBranch aPrefBranch);
 		
@@ -245,7 +245,7 @@ namespace Gecko
         /// offline-apps.allow_by_default pref.  If not specified,
         /// the pref service will be used.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool OfflineAppAllowedForURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIPrefBranch aPrefBranch);
 	}

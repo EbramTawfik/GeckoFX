@@ -47,47 +47,47 @@ namespace Gecko
 		
 		/// <summary>Member GetShowAnonymousContentAttribute </summary>
 		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetShowAnonymousContentAttribute();
 		
 		/// <summary>Member SetShowAnonymousContentAttribute </summary>
 		/// <param name='aShowAnonymousContent'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetShowAnonymousContentAttribute([MarshalAs(UnmanagedType.Bool)] bool aShowAnonymousContent);
+		void SetShowAnonymousContentAttribute([MarshalAs(UnmanagedType.U1)] bool aShowAnonymousContent);
 		
 		/// <summary>Member GetShowSubDocumentsAttribute </summary>
 		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetShowSubDocumentsAttribute();
 		
 		/// <summary>Member SetShowSubDocumentsAttribute </summary>
 		/// <param name='aShowSubDocuments'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetShowSubDocumentsAttribute([MarshalAs(UnmanagedType.Bool)] bool aShowSubDocuments);
+		void SetShowSubDocumentsAttribute([MarshalAs(UnmanagedType.U1)] bool aShowSubDocuments);
 		
 		/// <summary>Member GetShowWhitespaceNodesAttribute </summary>
 		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetShowWhitespaceNodesAttribute();
 		
 		/// <summary>Member SetShowWhitespaceNodesAttribute </summary>
 		/// <param name='aShowWhitespaceNodes'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetShowWhitespaceNodesAttribute([MarshalAs(UnmanagedType.Bool)] bool aShowWhitespaceNodes);
+		void SetShowWhitespaceNodesAttribute([MarshalAs(UnmanagedType.U1)] bool aShowWhitespaceNodes);
 		
 		/// <summary>Member GetShowAccessibleNodesAttribute </summary>
 		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetShowAccessibleNodesAttribute();
 		
 		/// <summary>Member SetShowAccessibleNodesAttribute </summary>
 		/// <param name='aShowAccessibleNodes'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetShowAccessibleNodesAttribute([MarshalAs(UnmanagedType.Bool)] bool aShowAccessibleNodes);
+		void SetShowAccessibleNodesAttribute([MarshalAs(UnmanagedType.U1)] bool aShowAccessibleNodes);
 		
 		/// <summary>Member GetWhatToShowAttribute </summary>
 		/// <returns>A System.UInt32</returns>

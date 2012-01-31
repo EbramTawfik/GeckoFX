@@ -54,7 +54,7 @@ namespace Gecko
 		
 		/// <summary>Member GetExpandEntityReferencesAttribute </summary>
 		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetExpandEntityReferencesAttribute();
 		
@@ -114,25 +114,25 @@ namespace Gecko
 		
 		/// <summary>Member GetShowAnonymousContentAttribute </summary>
 		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetShowAnonymousContentAttribute();
 		
 		/// <summary>Member SetShowAnonymousContentAttribute </summary>
 		/// <param name='aShowAnonymousContent'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetShowAnonymousContentAttribute([MarshalAs(UnmanagedType.Bool)] bool aShowAnonymousContent);
+		void SetShowAnonymousContentAttribute([MarshalAs(UnmanagedType.U1)] bool aShowAnonymousContent);
 		
 		/// <summary>Member GetShowSubDocumentsAttribute </summary>
 		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetShowSubDocumentsAttribute();
 		
 		/// <summary>Member SetShowSubDocumentsAttribute </summary>
 		/// <param name='aShowSubDocuments'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetShowSubDocumentsAttribute([MarshalAs(UnmanagedType.Bool)] bool aShowSubDocuments);
+		void SetShowSubDocumentsAttribute([MarshalAs(UnmanagedType.U1)] bool aShowSubDocuments);
 		
 		/// <summary>Member Init </summary>
 		/// <param name='aRoot'> </param>

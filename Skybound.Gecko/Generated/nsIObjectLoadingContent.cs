@@ -105,6 +105,6 @@ namespace Gecko
 		System.IntPtr GetPrintFrame();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PluginCrashed([MarshalAs(UnmanagedType.Interface)] nsIPluginTag pluginTag, [MarshalAs(UnmanagedType.LPStruct)] nsAString pluginDumpID, [MarshalAs(UnmanagedType.LPStruct)] nsAString browserDumpID, [MarshalAs(UnmanagedType.Bool)] bool submittedCrashReport);
+		void PluginCrashed([MarshalAs(UnmanagedType.Interface)] nsIPluginTag pluginTag, [MarshalAs(UnmanagedType.LPStruct)] nsAString pluginDumpID, [MarshalAs(UnmanagedType.LPStruct)] nsAString browserDumpID, [MarshalAs(UnmanagedType.U1)] bool submittedCrashReport);
 	}
 }

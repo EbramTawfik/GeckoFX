@@ -175,7 +175,7 @@ namespace Gecko
 		/// <summary>
         /// Scriptable storage for booleans
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetDataAttribute();
 		
@@ -183,7 +183,7 @@ namespace Gecko
         /// Scriptable storage for booleans
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDataAttribute([MarshalAs(UnmanagedType.Bool)] bool aData);
+		void SetDataAttribute([MarshalAs(UnmanagedType.U1)] bool aData);
 		
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

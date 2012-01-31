@@ -54,7 +54,7 @@ namespace Gecko
         ///
         /// @return true if the rule matches
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool Match([MarshalAs(UnmanagedType.Interface)] nsIXULTemplateResult aRef, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aRule);
 	}

@@ -183,7 +183,7 @@ namespace Gecko
         /// @param aLoginInfo
         /// The other object to test.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool Equals([MarshalAs(UnmanagedType.Interface)] nsILoginInfo aLoginInfo);
 		
@@ -199,9 +199,9 @@ namespace Gecko
         /// @param ignorePassword
         /// If true, ignore the password when checking for match.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Matches([MarshalAs(UnmanagedType.Interface)] nsILoginInfo aLoginInfo, [MarshalAs(UnmanagedType.Bool)] bool ignorePassword);
+		bool Matches([MarshalAs(UnmanagedType.Interface)] nsILoginInfo aLoginInfo, [MarshalAs(UnmanagedType.U1)] bool ignorePassword);
 		
 		/// <summary>
         /// Create an identical copy of the login, duplicating all of the login's

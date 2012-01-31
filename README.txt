@@ -2,13 +2,25 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v10.0-0.1 ==
+
+1. Initial version supporting firefox/xulrunner v10.0
+
+Note: Applications using geckofx must now include the following in there app.manifest
+to prevent R6034 errors:
+
+<dependency>
+    <dependentAssembly>
+      <assemblyIdentity type="win32" name="Microsoft.VC80.CRT" version="8.0.50727.762" processorArchitecture="x86" publicKeyToken="1fc8b3b9a1e18e3b"></assemblyIdentity>
+    </dependentAssembly>
+  </dependency>
+
 == v9.0-0.5 ==
 
 Linux only release.
 1. Add geckofx config files to deal firefox platform differences.
 2. Change X11 to libX11 pinvoke dll name match mono.
 3. Make NAvigateFinishedNotifier more robust.
-
 
 == v9.0-0.4 ==
 

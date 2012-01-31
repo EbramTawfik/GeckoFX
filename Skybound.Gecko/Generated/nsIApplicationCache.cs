@@ -112,7 +112,7 @@ namespace Gecko
 		/// <summary>
         /// TRUE if the cache is the active cache for this group.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetActiveAttribute();
 		

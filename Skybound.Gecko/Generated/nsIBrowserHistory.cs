@@ -32,7 +32,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("212371ab-d8b9-4835-b867-d0eb78c0cb18")]
+	[Guid("d092f5a5-33a8-456c-ac89-6ae6f880bd04")]
 	public interface nsIBrowserHistory : nsIGlobalHistory2
 	{
 		
@@ -52,7 +52,7 @@ namespace Gecko
         /// referrer.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void AddURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Bool)] bool aRedirect, [MarshalAs(UnmanagedType.Bool)] bool aToplevel, [MarshalAs(UnmanagedType.Interface)] nsIURI aReferrer);
+		new void AddURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.U1)] bool aRedirect, [MarshalAs(UnmanagedType.U1)] bool aToplevel, [MarshalAs(UnmanagedType.Interface)] nsIURI aReferrer);
 		
 		/// <summary>
         /// Checks to see whether the given URI is in history.
@@ -60,7 +60,7 @@ namespace Gecko
         /// @param aURI the uri to the page
         /// @return true if a URI has been visited
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsVisited([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 		
@@ -87,12 +87,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void AddPageWithDetails([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string aTitle, int aLastVisited);
-		
-		/// <summary>
-        /// The last page that was visited in a top-level window.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetLastPageVisitedAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aLastPageVisited);
 		
 		/// <summary>
         /// Indicates if there are entries in global history.
@@ -143,7 +137,7 @@ namespace Gecko
         /// @note The removal happens in a batch.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemovePagesFromHost([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aHost, [MarshalAs(UnmanagedType.Bool)] bool aEntireDomain);
+		void RemovePagesFromHost([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aHost, [MarshalAs(UnmanagedType.U1)] bool aEntireDomain);
 		
 		/// <summary>
         /// Removes all pages for a given timeframe.

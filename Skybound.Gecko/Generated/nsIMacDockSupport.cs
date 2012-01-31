@@ -59,6 +59,6 @@ namespace Gecko
         /// application activates regardless.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ActivateApplication([MarshalAs(UnmanagedType.Bool)] bool aIgnoreOtherApplications);
+		void ActivateApplication([MarshalAs(UnmanagedType.U1)] bool aIgnoreOtherApplications);
 	}
 }

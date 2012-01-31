@@ -81,7 +81,7 @@ namespace Gecko
         /// allocator (pass null to use the default allocator)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init([MarshalAs(UnmanagedType.Bool)] bool nonBlockingInput, [MarshalAs(UnmanagedType.Bool)] bool nonBlockingOutput, uint segmentSize, uint segmentCount, [MarshalAs(UnmanagedType.Interface)] nsIMemory segmentAllocator);
+		void Init([MarshalAs(UnmanagedType.U1)] bool nonBlockingInput, [MarshalAs(UnmanagedType.U1)] bool nonBlockingOutput, uint segmentSize, uint segmentCount, [MarshalAs(UnmanagedType.Interface)] nsIMemory segmentAllocator);
 		
 		/// <summary>
         /// The pipe's input end, which also implements nsISearchableInputStream.
@@ -119,6 +119,6 @@ namespace Gecko
         /// byte not searched will correspond to the length of the buffer.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Search([MarshalAs(UnmanagedType.LPStr)] string forString, [MarshalAs(UnmanagedType.Bool)] bool ignoreCase, [MarshalAs(UnmanagedType.Bool)] ref bool found, ref uint offsetSearchedTo);
+		void Search([MarshalAs(UnmanagedType.LPStr)] string forString, [MarshalAs(UnmanagedType.U1)] bool ignoreCase, [MarshalAs(UnmanagedType.U1)] ref bool found, ref uint offsetSearchedTo);
 	}
 }

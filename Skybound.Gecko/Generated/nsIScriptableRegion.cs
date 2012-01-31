@@ -137,7 +137,7 @@ namespace Gecko
         /// @return     returns whether the region is empty
         ///
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsEmpty();
 		
@@ -149,7 +149,7 @@ namespace Gecko
         /// @return     whether the regions are identical
         ///
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsEqualRegion([MarshalAs(UnmanagedType.Interface)] nsIScriptableRegion aRegion);
 		
@@ -193,7 +193,7 @@ namespace Gecko
         /// @return     true if the region intersects the rect
         ///
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool ContainsRect(int aX, int aY, int aWidth, int aHeight);
 		

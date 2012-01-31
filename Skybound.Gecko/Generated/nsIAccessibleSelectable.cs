@@ -89,7 +89,7 @@ namespace Gecko
         /// @param The zero-based accessible child index
         /// @return Returns true if the child is selected, false if not.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsChildSelected(int index);
 		
@@ -98,7 +98,7 @@ namespace Gecko
         /// @return If the object does not accept multiple selection, return false.
         /// Otherwise, returns true.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool SelectAllSelection();
 	}

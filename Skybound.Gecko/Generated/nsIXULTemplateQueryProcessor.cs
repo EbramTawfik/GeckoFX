@@ -126,7 +126,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports GetDatasource([MarshalAs(UnmanagedType.Interface)] nsIArray aDataSources, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aRootNode, [MarshalAs(UnmanagedType.Bool)] bool aIsTrusted, [MarshalAs(UnmanagedType.Interface)] nsIXULTemplateBuilder aBuilder, [MarshalAs(UnmanagedType.Bool)] ref bool aShouldDelayBuilding);
+		nsISupports GetDatasource([MarshalAs(UnmanagedType.Interface)] nsIArray aDataSources, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aRootNode, [MarshalAs(UnmanagedType.U1)] bool aIsTrusted, [MarshalAs(UnmanagedType.Interface)] nsIXULTemplateBuilder aBuilder, [MarshalAs(UnmanagedType.U1)] ref bool aShouldDelayBuilding);
 		
 		/// <summary>
         /// Initialize for query generation. This will be called before the rules are

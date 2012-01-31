@@ -236,7 +236,7 @@ namespace Gecko
         ///
         /// eg. http://foo.com:80/ == http://foo.com/
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool Equals([MarshalAs(UnmanagedType.Interface)] nsIURI other);
 		
@@ -245,7 +245,7 @@ namespace Gecko
         /// to GetScheme, thereby saving extra allocating and freeing. Returns true if
         /// the schemes match (case ignored).
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool SchemeIs([MarshalAs(UnmanagedType.LPStr)] string scheme);
 		
@@ -318,7 +318,7 @@ namespace Gecko
         /// eg. http://foo.com/# == http://foo.com/
         /// http://foo.com/#aaa == http://foo.com/#bbb
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool EqualsExceptRef([MarshalAs(UnmanagedType.Interface)] nsIURI other);
 		
@@ -338,7 +338,7 @@ namespace Gecko
 		/// <summary>
         /// Returns if there is a reference portion (the part after the "#") of the URI.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetHasRefAttribute();
 		

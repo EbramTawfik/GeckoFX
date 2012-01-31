@@ -61,7 +61,7 @@ namespace Gecko
         /// Returns true if a style sheet at |sheetURI| has previously been
         /// added to the list of style sheets specified by |type|.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool SheetRegistered([MarshalAs(UnmanagedType.Interface)] nsIURI sheetURI, uint type);
 		

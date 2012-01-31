@@ -39,7 +39,7 @@ namespace Gecko
 		/// <summary>
         /// false.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetTimingEnabledAttribute();
 		
@@ -47,7 +47,7 @@ namespace Gecko
         /// false.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTimingEnabledAttribute([MarshalAs(UnmanagedType.Bool)] bool aTimingEnabled);
+		void SetTimingEnabledAttribute([MarshalAs(UnmanagedType.U1)] bool aTimingEnabled);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		ulong GetChannelCreationAttribute();

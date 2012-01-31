@@ -37,7 +37,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("79b66107-f9d2-42ac-bc68-b558d79037ec")]
+	[Guid("519ae4fa-0fee-4aaa-bcb9-34b503236801")]
 	public interface nsIDOMCSS2Properties
 	{
 		
@@ -2538,6 +2538,54 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetMozTransformOriginAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozTransformOrigin);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetMozPerspectiveAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozPerspective);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetMozPerspectiveAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozPerspective);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetMozPerspectiveOriginAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozPerspectiveOrigin);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetMozPerspectiveOriginAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozPerspectiveOrigin);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetMozBackfaceVisibilityAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozBackfaceVisibility);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetMozBackfaceVisibilityAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozBackfaceVisibility);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetMozTransformStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozTransformStyle);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetMozTransformStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozTransformStyle);
 		
 		/// <summary>
         /// raises(DOMException) on setting

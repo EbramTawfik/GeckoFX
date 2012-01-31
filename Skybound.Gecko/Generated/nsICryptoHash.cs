@@ -117,6 +117,6 @@ namespace Gecko
         /// pre-init state.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Finish([MarshalAs(UnmanagedType.Bool)] bool aASCII, [MarshalAs(UnmanagedType.LPStruct)] nsACString retval);
+		void Finish([MarshalAs(UnmanagedType.U1)] bool aASCII, [MarshalAs(UnmanagedType.LPStruct)] nsACString retval);
 	}
 }

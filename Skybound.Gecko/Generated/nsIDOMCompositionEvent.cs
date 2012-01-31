@@ -30,7 +30,7 @@ namespace Gecko
 	/// <summary>nsIDOMCompositionEvent </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("bf01c23c-cf5f-4a8e-86a7-040c6e45d685")]
+	[Guid("9244a692-2827-4f98-8335-fff958d046fc")]
 	public interface nsIDOMCompositionEvent : nsIDOMUIEvent
 	{
 		
@@ -69,7 +69,7 @@ namespace Gecko
         /// Used to indicate whether or not an event is a bubbling event. If the
         /// event can bubble the value is true, else the value is false.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetBubblesAttribute();
 		
@@ -78,7 +78,7 @@ namespace Gecko
         /// prevented. If the default action can be prevented the value is true,
         /// else the value is false.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetCancelableAttribute();
 		
@@ -146,14 +146,21 @@ namespace Gecko
         /// action can be prevented.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void InitEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString eventTypeArg, [MarshalAs(UnmanagedType.Bool)] bool canBubbleArg, [MarshalAs(UnmanagedType.Bool)] bool cancelableArg);
+		new void InitEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString eventTypeArg, [MarshalAs(UnmanagedType.U1)] bool canBubbleArg, [MarshalAs(UnmanagedType.U1)] bool cancelableArg);
 		
 		/// <summary>
         /// Used to indicate whether preventDefault() has been called for this event.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetDefaultPreventedAttribute();
+		
+		/// <summary>
+        /// Prevents other event listeners from being triggered and,
+        /// unlike Event.stopPropagation() its effect is immediate.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void StopImmediatePropagation();
 		
 		/// <summary>
         /// The nsIDOMUIEvent interface is the datatype for all UI events in the
@@ -178,7 +185,7 @@ namespace Gecko
 		/// <param name='viewArg'> </param>
 		/// <param name='detailArg'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void InitUIEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString typeArg, [MarshalAs(UnmanagedType.Bool)] bool canBubbleArg, [MarshalAs(UnmanagedType.Bool)] bool cancelableArg, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow viewArg, int detailArg);
+		new void InitUIEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString typeArg, [MarshalAs(UnmanagedType.U1)] bool canBubbleArg, [MarshalAs(UnmanagedType.U1)] bool cancelableArg, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow viewArg, int detailArg);
 		
 		/// <summary>Member GetLayerXAttribute </summary>
 		/// <returns>A System.Int32</returns>
@@ -218,18 +225,18 @@ namespace Gecko
 		
 		/// <summary>Member GetCancelBubbleAttribute </summary>
 		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetCancelBubbleAttribute();
 		
 		/// <summary>Member SetCancelBubbleAttribute </summary>
 		/// <param name='aCancelBubble'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetCancelBubbleAttribute([MarshalAs(UnmanagedType.Bool)] bool aCancelBubble);
+		new void SetCancelBubbleAttribute([MarshalAs(UnmanagedType.U1)] bool aCancelBubble);
 		
 		/// <summary>Member GetIsCharAttribute </summary>
 		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetIsCharAttribute();
 		
@@ -251,6 +258,6 @@ namespace Gecko
 		/// <param name='dataArg'> </param>
 		/// <param name='localeArg'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitCompositionEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString typeArg, [MarshalAs(UnmanagedType.Bool)] bool canBubbleArg, [MarshalAs(UnmanagedType.Bool)] bool cancelableArg, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow viewArg, [MarshalAs(UnmanagedType.LPStruct)] nsAString dataArg, [MarshalAs(UnmanagedType.LPStruct)] nsAString localeArg);
+		void InitCompositionEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString typeArg, [MarshalAs(UnmanagedType.U1)] bool canBubbleArg, [MarshalAs(UnmanagedType.U1)] bool cancelableArg, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow viewArg, [MarshalAs(UnmanagedType.LPStruct)] nsAString dataArg, [MarshalAs(UnmanagedType.LPStruct)] nsAString localeArg);
 	}
 }

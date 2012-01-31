@@ -67,21 +67,21 @@ namespace Gecko
         /// indicates whether this is a codebaseTrusted certificate.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPreferences([MarshalAs(UnmanagedType.LPStr)] ref string prefBranch, [MarshalAs(UnmanagedType.LPStr)] ref string id, [MarshalAs(UnmanagedType.LPStr)] ref string subjectName, [MarshalAs(UnmanagedType.LPStr)] ref string grantedList, [MarshalAs(UnmanagedType.LPStr)] ref string deniedList, [MarshalAs(UnmanagedType.Bool)] ref bool isTrusted);
+		void GetPreferences([MarshalAs(UnmanagedType.LPStr)] ref string prefBranch, [MarshalAs(UnmanagedType.LPStr)] ref string id, [MarshalAs(UnmanagedType.LPStr)] ref string subjectName, [MarshalAs(UnmanagedType.LPStr)] ref string grantedList, [MarshalAs(UnmanagedType.LPStr)] ref string deniedList, [MarshalAs(UnmanagedType.U1)] ref bool isTrusted);
 		
 		/// <summary>
         /// Returns whether the other principal is equivalent to this principal.
         /// Principals are considered equal if they are the same principal,
         /// they have the same origin, or have the same certificate fingerprint ID
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool Equals([MarshalAs(UnmanagedType.Interface)] nsIPrincipal other);
 		
 		/// <summary>
         /// Like equals, but doesn't take document.domain changes into account.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool EqualsIgnoringDomain([MarshalAs(UnmanagedType.Interface)] nsIPrincipal other);
 		
@@ -119,7 +119,7 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetCanEnableCapability([MarshalAs(UnmanagedType.LPStr)] string capability, short canEnable);
 		
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsCapabilityEnabled([MarshalAs(UnmanagedType.LPStr)] string capability, System.IntPtr annotation);
 		
@@ -167,7 +167,7 @@ namespace Gecko
 		/// <summary>
         /// Whether this principal is associated with a certificate.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetHasCertificateAttribute();
 		
@@ -215,7 +215,7 @@ namespace Gecko
         /// sure what the immediate benefit would be, but I think the setup could
         /// make some code (e.g. MaybeDowngradeToCodebase) clearer.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool Subsumes([MarshalAs(UnmanagedType.Interface)] nsIPrincipal other);
 		
@@ -241,7 +241,7 @@ namespace Gecko
         /// @throws NS_ERROR_DOM_BAD_URI if the load is not allowed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CheckMayLoad([MarshalAs(UnmanagedType.Interface)] nsIURI uri, [MarshalAs(UnmanagedType.Bool)] bool report);
+		void CheckMayLoad([MarshalAs(UnmanagedType.Interface)] nsIURI uri, [MarshalAs(UnmanagedType.U1)] bool report);
 		
 		/// <summary>
         /// The subject name for the certificate.  This actually identifies the

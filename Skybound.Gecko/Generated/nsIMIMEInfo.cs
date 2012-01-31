@@ -91,7 +91,7 @@ namespace Gecko
         /// i.e. whether launchWithFile with action = useSystemDefault is possible
         /// and defaultDescription will contain usable information.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetHasDefaultHandlerAttribute();
 		
@@ -149,7 +149,7 @@ namespace Gecko
         /// alwaysAskBeforeHandling: if true, we should always give the user a
         /// dialog asking how to dispose of this content.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetAlwaysAskBeforeHandlingAttribute();
 		
@@ -158,7 +158,7 @@ namespace Gecko
         /// dialog asking how to dispose of this content.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAlwaysAskBeforeHandlingAttribute([MarshalAs(UnmanagedType.Bool)] bool aAlwaysAskBeforeHandling);
+		void SetAlwaysAskBeforeHandlingAttribute([MarshalAs(UnmanagedType.U1)] bool aAlwaysAskBeforeHandling);
 	}
 	
 	/// <summary>
@@ -230,7 +230,7 @@ namespace Gecko
         /// i.e. whether launchWithFile with action = useSystemDefault is possible
         /// and defaultDescription will contain usable information.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetHasDefaultHandlerAttribute();
 		
@@ -288,7 +288,7 @@ namespace Gecko
         /// alwaysAskBeforeHandling: if true, we should always give the user a
         /// dialog asking how to dispose of this content.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetAlwaysAskBeforeHandlingAttribute();
 		
@@ -297,7 +297,7 @@ namespace Gecko
         /// dialog asking how to dispose of this content.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetAlwaysAskBeforeHandlingAttribute([MarshalAs(UnmanagedType.Bool)] bool aAlwaysAskBeforeHandling);
+		new void SetAlwaysAskBeforeHandlingAttribute([MarshalAs(UnmanagedType.U1)] bool aAlwaysAskBeforeHandling);
 		
 		/// <summary>
         /// Gives you an array of file types associated with this type.
@@ -321,7 +321,7 @@ namespace Gecko
         ///
         /// @return TRUE if the association exists.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool ExtensionExists([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aExtension);
 		
@@ -365,7 +365,7 @@ namespace Gecko
         ///
         /// @returns PR_TRUE if the two are considered equal
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool Equals([MarshalAs(UnmanagedType.Interface)] nsIMIMEInfo aMIMEInfo);
 		
@@ -448,7 +448,7 @@ namespace Gecko
         ///
         /// @returns true if the two are logically equivalent, false otherwise
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool Equals([MarshalAs(UnmanagedType.Interface)] nsIHandlerApp aHandlerApp);
 		
@@ -521,7 +521,7 @@ namespace Gecko
         ///
         /// @returns true if the two are logically equivalent, false otherwise
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool Equals([MarshalAs(UnmanagedType.Interface)] nsIHandlerApp aHandlerApp);
 		
@@ -600,7 +600,7 @@ namespace Gecko
         ///
         /// @return TRUE if the parameter exists in the current list.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool ParameterExists([MarshalAs(UnmanagedType.LPStruct)] nsAString param);
 	}
@@ -655,7 +655,7 @@ namespace Gecko
         ///
         /// @returns true if the two are logically equivalent, false otherwise
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool Equals([MarshalAs(UnmanagedType.Interface)] nsIHandlerApp aHandlerApp);
 		
@@ -745,7 +745,7 @@ namespace Gecko
         ///
         /// @returns true if the two are logically equivalent, false otherwise
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool Equals([MarshalAs(UnmanagedType.Interface)] nsIHandlerApp aHandlerApp);
 		

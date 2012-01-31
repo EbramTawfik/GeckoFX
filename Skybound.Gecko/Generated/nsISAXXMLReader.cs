@@ -223,7 +223,7 @@ namespace Gecko
         /// @param value Turn the feature on/off.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFeature([MarshalAs(UnmanagedType.LPStruct)] nsAString name, [MarshalAs(UnmanagedType.Bool)] bool value);
+		void SetFeature([MarshalAs(UnmanagedType.LPStruct)] nsAString name, [MarshalAs(UnmanagedType.U1)] bool value);
 		
 		/// <summary>
         /// Look up the value of a feature flag. NOT CURRENTLY IMPLEMENTED.
@@ -240,7 +240,7 @@ namespace Gecko
         ///
         /// @param name String flag for a parser feature.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetFeature([MarshalAs(UnmanagedType.LPStruct)] nsAString name);
 		
@@ -284,7 +284,7 @@ namespace Gecko
         /// @param name The property name, which is a fully-qualified URI.
         /// @return The current value of the property.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetProperty([MarshalAs(UnmanagedType.LPStruct)] nsAString name);
 		

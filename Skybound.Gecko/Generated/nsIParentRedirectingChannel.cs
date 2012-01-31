@@ -117,6 +117,6 @@ namespace Gecko
         /// as mActiveChannel and mRedirectChannel in that class.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CompleteRedirect([MarshalAs(UnmanagedType.Bool)] bool succeeded);
+		void CompleteRedirect([MarshalAs(UnmanagedType.U1)] bool succeeded);
 	}
 }

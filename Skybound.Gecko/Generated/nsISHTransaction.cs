@@ -79,7 +79,7 @@ namespace Gecko
         /// Specifies if this transaction should persist.  If not it will be replaced
         /// by new additions to the list.
         ///	 </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetPersistAttribute();
 		
@@ -88,7 +88,7 @@ namespace Gecko
         /// by new additions to the list.
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPersistAttribute([MarshalAs(UnmanagedType.Bool)] bool aPersist);
+		void SetPersistAttribute([MarshalAs(UnmanagedType.U1)] bool aPersist);
 		
 		/// <summary>
         /// Create a transaction with parent and History Entry

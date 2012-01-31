@@ -47,7 +47,7 @@ namespace Gecko
         /// If FALSE, evict everything except chrome images.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ClearCache([MarshalAs(UnmanagedType.Bool)] bool chrome);
+		void ClearCache([MarshalAs(UnmanagedType.U1)] bool chrome);
 		
 		/// <summary>
         /// Evict images from the cache.

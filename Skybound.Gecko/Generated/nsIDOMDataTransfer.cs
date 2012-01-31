@@ -252,7 +252,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDataTransfer Clone(uint aEventType, [MarshalAs(UnmanagedType.Bool)] bool aUserCancelled);
+		nsIDOMDataTransfer Clone(uint aEventType, [MarshalAs(UnmanagedType.U1)] bool aUserCancelled);
 		
 		/// <summary>
         /// The number of items being dragged.
@@ -358,7 +358,7 @@ namespace Gecko
         /// false otherwise, including when the drop has been rejected by its target.
         /// This property is only relevant for the dragend event.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetMozUserCancelledAttribute();
 		

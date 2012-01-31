@@ -117,7 +117,7 @@ namespace Gecko
         /// called when there is more to paint.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnDataAvailable(imgIRequest aRequest, [MarshalAs(UnmanagedType.Bool)] bool aCurrentFrame, [MarshalAs(UnmanagedType.Interface)] nsIntRect aRect);
+		void OnDataAvailable(imgIRequest aRequest, [MarshalAs(UnmanagedType.U1)] bool aCurrentFrame, [MarshalAs(UnmanagedType.Interface)] nsIntRect aRect);
 		
 		/// <summary>
         /// Decode notification.
@@ -156,7 +156,7 @@ namespace Gecko
         /// not imgIDecoder objects)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnStopRequest(imgIRequest aRequest, [MarshalAs(UnmanagedType.Bool)] bool aIsLastPart);
+		void OnStopRequest(imgIRequest aRequest, [MarshalAs(UnmanagedType.U1)] bool aIsLastPart);
 		
 		/// <summary>
         /// Called when the decoded image data is discarded. This means that the frames

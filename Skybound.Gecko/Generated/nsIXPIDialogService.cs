@@ -66,7 +66,7 @@ namespace Gecko
         ///
         /// @return true to install, false to cancel
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool ConfirmInstall([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow parent, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] System.IntPtr[] packageList, uint count);
 		

@@ -20,12 +20,9 @@ namespace GeckoFxTest
 			if (!Environment.GetEnvironmentVariable("LD_LIBRARY_PATH").Contains("/usr/lib/firefox-9.0.1/"))
 				throw new ApplicationException(String.Format("LD_LIBRARY_PATH must contain {0}", "/usr/lib/firefox-9.0.1/"));
 
-			Xpcom.Initialize("/usr/lib/firefox-9.0.1/");
+			Xpcom.Initialize("/usr/lib/firefox-10.0/");
 #else
-			if (Directory.Exists(@"d:\Temp\xulrunner-sdk\bin\"))
-				Xpcom.Initialize(@"d:\Temp\xulrunner-sdk\bin\");
-			else
-				Xpcom.Initialize(@"C:\Program Files (x86)\Mozilla Firefox BETA");
+			Xpcom.Initialize(@"c:\program Files (x86)\Mozilla Firefox 10.0\");
 #endif
 			Application.ApplicationExit += (sender, e) => 
 			{

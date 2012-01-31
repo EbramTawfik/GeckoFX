@@ -56,7 +56,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("3f5b2af2-604e-4253-8d25-6d3cafc13a69")]
+	[Guid("8f577294-d572-4473-94b1-d2c5a74a2a74")]
 	public interface nsIDOMWindow
 	{
 		
@@ -224,7 +224,7 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Alert([MarshalAs(UnmanagedType.LPStruct)] nsAString text);
 		
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool Confirm([MarshalAs(UnmanagedType.LPStruct)] nsAString text);
 		
@@ -469,7 +469,7 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIPrompt GetPrompterAttribute();
 		
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetClosedAttribute();
 		
@@ -511,12 +511,12 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetScrollMaxYAttribute();
 		
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetFullScreenAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFullScreenAttribute([MarshalAs(UnmanagedType.Bool)] bool aFullScreen);
+		void SetFullScreenAttribute([MarshalAs(UnmanagedType.U1)] bool aFullScreen);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Back();
@@ -578,9 +578,9 @@ namespace Gecko
         /// @param searchInFrames: should we search through all frames
         /// @param showDialog: should we show the Find dialog
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Find([MarshalAs(UnmanagedType.LPStruct)] nsAString str, [MarshalAs(UnmanagedType.Bool)] bool caseSensitive, [MarshalAs(UnmanagedType.Bool)] bool backwards, [MarshalAs(UnmanagedType.Bool)] bool wrapAround, [MarshalAs(UnmanagedType.Bool)] bool wholeWord, [MarshalAs(UnmanagedType.Bool)] bool searchInFrames, [MarshalAs(UnmanagedType.Bool)] bool showDialog);
+		bool Find([MarshalAs(UnmanagedType.LPStruct)] nsAString str, [MarshalAs(UnmanagedType.U1)] bool caseSensitive, [MarshalAs(UnmanagedType.U1)] bool backwards, [MarshalAs(UnmanagedType.U1)] bool wrapAround, [MarshalAs(UnmanagedType.U1)] bool wholeWord, [MarshalAs(UnmanagedType.U1)] bool searchInFrames, [MarshalAs(UnmanagedType.U1)] bool showDialog);
 		
 		/// <summary>
         /// Returns the number of times this document for this window has
@@ -724,6 +724,18 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOndeviceorientationAttribute(System.IntPtr aOndeviceorientation, System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		System.IntPtr GetOnmouseenterAttribute(System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOnmouseenterAttribute(System.IntPtr aOnmouseenter, System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		System.IntPtr GetOnmouseleaveAttribute(System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOnmouseleaveAttribute(System.IntPtr aOnmouseleave, System.IntPtr jsContext);
 	}
 	
 	/// <summary>nsIDOMWindowPerformance </summary>
@@ -747,7 +759,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("8614bdb7-5b07-4d00-a7ba-4d44697a343d")]
+	[Guid("8da641ab-906a-456e-97f2-b77df4ca2d95")]
 	public interface nsIDOMWindowInternal : nsIDOMWindow
 	{
 		
@@ -915,7 +927,7 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void Alert([MarshalAs(UnmanagedType.LPStruct)] nsAString text);
 		
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool Confirm([MarshalAs(UnmanagedType.LPStruct)] nsAString text);
 		
@@ -1160,7 +1172,7 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIPrompt GetPrompterAttribute();
 		
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetClosedAttribute();
 		
@@ -1202,12 +1214,12 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new int GetScrollMaxYAttribute();
 		
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetFullScreenAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetFullScreenAttribute([MarshalAs(UnmanagedType.Bool)] bool aFullScreen);
+		new void SetFullScreenAttribute([MarshalAs(UnmanagedType.U1)] bool aFullScreen);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void Back();
@@ -1269,9 +1281,9 @@ namespace Gecko
         /// @param searchInFrames: should we search through all frames
         /// @param showDialog: should we show the Find dialog
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool Find([MarshalAs(UnmanagedType.LPStruct)] nsAString str, [MarshalAs(UnmanagedType.Bool)] bool caseSensitive, [MarshalAs(UnmanagedType.Bool)] bool backwards, [MarshalAs(UnmanagedType.Bool)] bool wrapAround, [MarshalAs(UnmanagedType.Bool)] bool wholeWord, [MarshalAs(UnmanagedType.Bool)] bool searchInFrames, [MarshalAs(UnmanagedType.Bool)] bool showDialog);
+		new bool Find([MarshalAs(UnmanagedType.LPStruct)] nsAString str, [MarshalAs(UnmanagedType.U1)] bool caseSensitive, [MarshalAs(UnmanagedType.U1)] bool backwards, [MarshalAs(UnmanagedType.U1)] bool wrapAround, [MarshalAs(UnmanagedType.U1)] bool wholeWord, [MarshalAs(UnmanagedType.U1)] bool searchInFrames, [MarshalAs(UnmanagedType.U1)] bool showDialog);
 		
 		/// <summary>
         /// Returns the number of times this document for this window has
@@ -1415,5 +1427,17 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetOndeviceorientationAttribute(System.IntPtr aOndeviceorientation, System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new System.IntPtr GetOnmouseenterAttribute(System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetOnmouseenterAttribute(System.IntPtr aOnmouseenter, System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new System.IntPtr GetOnmouseleaveAttribute(System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetOnmouseleaveAttribute(System.IntPtr aOnmouseleave, System.IntPtr jsContext);
 	}
 }

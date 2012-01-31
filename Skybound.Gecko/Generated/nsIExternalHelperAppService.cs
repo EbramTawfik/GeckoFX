@@ -53,14 +53,14 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIStreamListener DoContent([MarshalAs(UnmanagedType.LPStruct)] nsACString aMimeContentType, [MarshalAs(UnmanagedType.Interface)] nsIRequest aRequest, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor aWindowContext, [MarshalAs(UnmanagedType.Bool)] bool aForceSave);
+		nsIStreamListener DoContent([MarshalAs(UnmanagedType.LPStruct)] nsACString aMimeContentType, [MarshalAs(UnmanagedType.Interface)] nsIRequest aRequest, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor aWindowContext, [MarshalAs(UnmanagedType.U1)] bool aForceSave);
 		
 		/// <summary>
         /// Returns true if data from a URL with this extension combination
         /// is to be decoded from aEncodingType prior to saving or passing
         /// off to helper apps, false otherwise.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool ApplyDecodingForExtension([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aExtension, [MarshalAs(UnmanagedType.LPStruct)] nsACString aEncodingType);
 	}
@@ -135,7 +135,7 @@ namespace Gecko
         /// @param aNewFileLocation Location where the content should be saved
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SaveToDisk([MarshalAs(UnmanagedType.Interface)] nsIFile aNewFileLocation, [MarshalAs(UnmanagedType.Bool)] bool aRememberThisPreference);
+		void SaveToDisk([MarshalAs(UnmanagedType.Interface)] nsIFile aNewFileLocation, [MarshalAs(UnmanagedType.U1)] bool aRememberThisPreference);
 		
 		/// <summary>
         /// Use aApplication to launch with this content.
@@ -144,7 +144,7 @@ namespace Gecko
         /// @param aRememberThisPreference TRUE if we should remember this choice.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void LaunchWithApplication([MarshalAs(UnmanagedType.Interface)] nsIFile aApplication, [MarshalAs(UnmanagedType.Bool)] bool aRememberThisPreference);
+		void LaunchWithApplication([MarshalAs(UnmanagedType.Interface)] nsIFile aApplication, [MarshalAs(UnmanagedType.U1)] bool aRememberThisPreference);
 		
 		/// <summary>
         /// The following methods are used by the progress dialog to get or set
@@ -172,7 +172,7 @@ namespace Gecko
 		/// <summary>
         /// The executable-ness of the target file
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetTargetFileIsExecutableAttribute();
 		

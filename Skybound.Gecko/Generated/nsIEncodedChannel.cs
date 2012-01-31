@@ -65,7 +65,7 @@ namespace Gecko
         ///
         /// TRUE by default.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetApplyConversionAttribute();
 		
@@ -78,6 +78,6 @@ namespace Gecko
         /// TRUE by default.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetApplyConversionAttribute([MarshalAs(UnmanagedType.Bool)] bool aApplyConversion);
+		void SetApplyConversionAttribute([MarshalAs(UnmanagedType.U1)] bool aApplyConversion);
 	}
 }

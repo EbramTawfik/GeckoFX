@@ -78,7 +78,7 @@ namespace Gecko
         ///
         /// @throws NS_ERROR_INVALID_ARG if the folder ID isn't known
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsLivemark(int folder);
 		

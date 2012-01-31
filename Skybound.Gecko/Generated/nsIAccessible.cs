@@ -277,7 +277,7 @@ namespace Gecko
         /// Add or remove this accessible to the current selection
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSelected([MarshalAs(UnmanagedType.Bool)] bool isSelected);
+		void SetSelected([MarshalAs(UnmanagedType.U1)] bool isSelected);
 		
 		/// <summary>
         /// Extend the current selection from its current accessible anchor node

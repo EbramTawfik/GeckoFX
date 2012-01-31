@@ -100,7 +100,7 @@ namespace Gecko
         /// Force relevant cookies to be sent with this load even if normally they
         /// wouldn't be.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetForceAllowThirdPartyCookieAttribute();
 		
@@ -109,12 +109,12 @@ namespace Gecko
         /// wouldn't be.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetForceAllowThirdPartyCookieAttribute([MarshalAs(UnmanagedType.Bool)] bool aForceAllowThirdPartyCookie);
+		void SetForceAllowThirdPartyCookieAttribute([MarshalAs(UnmanagedType.U1)] bool aForceAllowThirdPartyCookie);
 		
 		/// <summary>
         /// True iff the channel has been canceled.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetCanceledAttribute();
 		
@@ -122,7 +122,7 @@ namespace Gecko
         /// External handlers may set this to true to notify the channel
         /// that it is open on behalf of a download.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetChannelIsForDownloadAttribute();
 		
@@ -131,7 +131,7 @@ namespace Gecko
         /// that it is open on behalf of a download.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetChannelIsForDownloadAttribute([MarshalAs(UnmanagedType.Bool)] bool aChannelIsForDownload);
+		void SetChannelIsForDownloadAttribute([MarshalAs(UnmanagedType.U1)] bool aChannelIsForDownload);
 		
 		/// <summary>
         /// The local IP address to which this channel is bound, in the

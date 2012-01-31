@@ -273,12 +273,9 @@ namespace Gecko
 				{
 				      // obtain the services we need
 				      nsIAppShellService appShellService = Xpcom.GetService<nsIAppShellService>("@mozilla.org/appshell/appShellService;1");
-
-					  System.IntPtr ptr = (IntPtr)Xpcom.GetService(new Guid("2d96b3df-c051-11d1-a827-0040959a28c9"));
-					  nsIAppShell appShell = (nsIAppShell)Marshal.GetObjectForIUnknown(ptr);
 				      
 				      // create the child window
-				      nsIXULWindow xulChild = appShellService.CreateTopLevelWindow(null, null, chromeFlags, -1, -1, appShell);
+				      nsIXULWindow xulChild = appShellService.CreateTopLevelWindow(null, null, chromeFlags, -1, -1);
 				      
 				      // this little gem allows the GeckoWebBrowser to be properly activated when it gains the focus again
 				      if (parent is GeckoWebBrowser && (flags & GeckoWindowFlags.OpenAsDialog) != 0)
@@ -310,11 +307,7 @@ namespace Gecko
 					}
 									
 					nsIAppShellService appShellService = Xpcom.GetService<nsIAppShellService>("@mozilla.org/appshell/appShellService;1");
-
-					System.IntPtr ptr = (IntPtr)Xpcom.GetService(new Guid("2d96b3df-c051-11d1-a827-0040959a28c9"));
-					nsIAppShell appShell = (nsIAppShell)Marshal.GetObjectForIUnknown(ptr);
-
-					nsIXULWindow xulChild = appShellService.CreateTopLevelWindow(null, null, chromeFlags, -1, -1, appShell);
+					nsIXULWindow xulChild = appShellService.CreateTopLevelWindow(null, null, chromeFlags, -1, -1);
 					return Xpcom.QueryInterface<nsIWebBrowserChrome>(xulChild);									
 				}
 				return null;

@@ -49,7 +49,7 @@ namespace Gecko
 		void RegisterErrorStringBundle(short errorModule, [MarshalAs(UnmanagedType.LPStr)] string stringBundleURL);
 		
 		/// <summary>
-        /// Registers a string bundle URL for an error module.
+        /// Unregisters a string bundle URL for an error module.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void UnregisterErrorStringBundle(short errorModule);

@@ -52,7 +52,7 @@ namespace Gecko
 		/// <summary>
         /// Indicates if the UI is visible or not.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetVisibleAttribute();
 		

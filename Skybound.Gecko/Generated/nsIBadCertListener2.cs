@@ -47,7 +47,7 @@ namespace Gecko
         /// @return The consumer shall return true if it wants to suppress the error message
         /// related to the bad cert (the connection will still get canceled).
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool NotifyCertProblem([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor socketInfo, [MarshalAs(UnmanagedType.Interface)] nsISSLStatus status, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String targetSite);
 	}

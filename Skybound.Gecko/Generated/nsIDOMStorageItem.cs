@@ -43,7 +43,7 @@ namespace Gecko
 		/// <summary>
         /// Indicates whether a key is available only in a secure context.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetSecureAttribute();
 		
@@ -51,7 +51,7 @@ namespace Gecko
         /// Indicates whether a key is available only in a secure context.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSecureAttribute([MarshalAs(UnmanagedType.Bool)] bool aSecure);
+		void SetSecureAttribute([MarshalAs(UnmanagedType.U1)] bool aSecure);
 		
 		/// <summary>
         /// The value associated with the item.

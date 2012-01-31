@@ -51,18 +51,18 @@ namespace Gecko
         /// Compare the atom to a specific string value
         /// Note that this will NEVER return/throw an error condition.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool Equals([MarshalAs(UnmanagedType.LPStruct)] nsAString aString);
 		
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool EqualsUTF8([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aString);
 		
 		/// <summary>
         /// Returns true if the atom is static and false otherwise.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsStaticAtom();
 	}

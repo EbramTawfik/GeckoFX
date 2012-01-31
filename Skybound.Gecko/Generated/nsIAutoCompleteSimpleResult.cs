@@ -105,7 +105,7 @@ namespace Gecko
         /// persistent storage as well.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void RemoveValueAt(int rowIndex, [MarshalAs(UnmanagedType.Bool)] bool removeFromDb);
+		new void RemoveValueAt(int rowIndex, [MarshalAs(UnmanagedType.U1)] bool removeFromDb);
 		
 		/// <summary>
         /// A writer for the readonly attribute 'searchString' which should contain
@@ -166,6 +166,6 @@ namespace Gecko
         /// Whether the value should be removed from persistent storage as well.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnValueRemoved([MarshalAs(UnmanagedType.Interface)] nsIAutoCompleteSimpleResult aResult, [MarshalAs(UnmanagedType.LPStruct)] nsAString aValue, [MarshalAs(UnmanagedType.Bool)] bool aRemoveFromDb);
+		void OnValueRemoved([MarshalAs(UnmanagedType.Interface)] nsIAutoCompleteSimpleResult aResult, [MarshalAs(UnmanagedType.LPStruct)] nsAString aValue, [MarshalAs(UnmanagedType.U1)] bool aRemoveFromDb);
 	}
 }

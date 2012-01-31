@@ -45,7 +45,7 @@ namespace Gecko
         /// it cannot be reset back to true -- attempts to do so throw
         /// NS_ERROR_INVALID_ARG.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetMutableAttribute();
 		
@@ -56,7 +56,7 @@ namespace Gecko
         /// NS_ERROR_INVALID_ARG.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetMutableAttribute([MarshalAs(UnmanagedType.Bool)] bool aMutable);
+		new void SetMutableAttribute([MarshalAs(UnmanagedType.U1)] bool aMutable);
 		
 		/// <summary>
         /// Initialize a standard URL.

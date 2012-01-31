@@ -161,7 +161,7 @@ namespace Gecko
     /// interface of Components.utils </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("fed2d752-6cb3-4135-97b0-2c290e541e2d")]
+	[Guid("11785c1f-346f-475c-950e-fe1bacce70f1")]
 	public interface nsIXPCComponents_Utils
 	{
 		
@@ -242,6 +242,21 @@ namespace Gecko
 		void SchedulePreciseGC(ScheduledGCCallback callback, System.IntPtr jsContext);
 		
 		/// <summary>
+        /// Return the keys in a weak map.  This operation is
+        /// non-deterministic because it is affected by the scheduling of the
+        /// garbage collector and the cycle collector.
+        ///
+        /// This should only be used to write tests of the interaction of
+        /// the GC and CC with weak maps.
+        ///
+        /// @param aMap weak map or other JavaScript value
+        /// @returns If aMap is a weak map object, return the keys of the weak
+        ///                map as an array.  Otherwise, return undefined.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		System.IntPtr NondeterministicGetWeakMapKeys(System.IntPtr aMap, System.IntPtr jsContext);
+		
+		/// <summary>
         ///in JSObject obj </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetGlobalForObject();
@@ -262,6 +277,94 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void MakeObjectPropsNormal(System.IntPtr vobj, System.IntPtr jsContext);
+		
+		/// <summary>
+        /// To be called from JS only.
+        ///
+        /// These are the set of JSContext options that privileged script
+        /// is allowed to control for the purposes of testing.  These
+        /// options should be kept in sync with what's controllable in the
+        /// jsshell and by setting prefs in nsJSEnvironment.
+        ///
+        /// NB: Assume that getting any of these attributes is relatively
+        /// cheap, but setting any of them is relatively expensive.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetStrictAttribute();
+		
+		/// <summary>
+        /// To be called from JS only.
+        ///
+        /// These are the set of JSContext options that privileged script
+        /// is allowed to control for the purposes of testing.  These
+        /// options should be kept in sync with what's controllable in the
+        /// jsshell and by setting prefs in nsJSEnvironment.
+        ///
+        /// NB: Assume that getting any of these attributes is relatively
+        /// cheap, but setting any of them is relatively expensive.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetStrictAttribute([MarshalAs(UnmanagedType.U1)] bool aStrict);
+		
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetWerrorAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetWerrorAttribute([MarshalAs(UnmanagedType.U1)] bool aWerror);
+		
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetAtlineAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetAtlineAttribute([MarshalAs(UnmanagedType.U1)] bool aAtline);
+		
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetXmlAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetXmlAttribute([MarshalAs(UnmanagedType.U1)] bool aXml);
+		
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetRelimitAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetRelimitAttribute([MarshalAs(UnmanagedType.U1)] bool aRelimit);
+		
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetTracejitAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetTracejitAttribute([MarshalAs(UnmanagedType.U1)] bool aTracejit);
+		
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetMethodjitAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetMethodjitAttribute([MarshalAs(UnmanagedType.U1)] bool aMethodjit);
+		
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetJitprofilingAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetJitprofilingAttribute([MarshalAs(UnmanagedType.U1)] bool aJitprofiling);
+		
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetMethodjit_alwaysAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetMethodjit_alwaysAttribute([MarshalAs(UnmanagedType.U1)] bool aMethodjit_always);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetGCZeal(int zeal, System.IntPtr jsContext);
 	}
 	
 	/// <summary>
@@ -312,7 +415,7 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetConstructorAttribute();
 		
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsSuccessCode(int result);
 		

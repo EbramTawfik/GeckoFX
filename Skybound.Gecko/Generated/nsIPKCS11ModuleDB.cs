@@ -68,7 +68,7 @@ namespace Gecko
 		
 		/// <summary>Member GetCanToggleFIPSAttribute </summary>
 		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetCanToggleFIPSAttribute();
 		
@@ -78,7 +78,7 @@ namespace Gecko
 		
 		/// <summary>Member GetIsFIPSEnabledAttribute </summary>
 		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsFIPSEnabledAttribute();
 	}

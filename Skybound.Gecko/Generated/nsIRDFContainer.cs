@@ -82,7 +82,7 @@ namespace Gecko
         /// will be 're-numbered' to account for the removal.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveElement([MarshalAs(UnmanagedType.Interface)] nsIRDFNode aElement, [MarshalAs(UnmanagedType.Bool)] bool aRenumber);
+		void RemoveElement([MarshalAs(UnmanagedType.Interface)] nsIRDFNode aElement, [MarshalAs(UnmanagedType.U1)] bool aRenumber);
 		
 		/// <summary>
         /// Insert aElement at the specified index. If aRenumber is 'true', then
@@ -90,7 +90,7 @@ namespace Gecko
         /// element.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InsertElementAt([MarshalAs(UnmanagedType.Interface)] nsIRDFNode aElement, int aIndex, [MarshalAs(UnmanagedType.Bool)] bool aRenumber);
+		void InsertElementAt([MarshalAs(UnmanagedType.Interface)] nsIRDFNode aElement, int aIndex, [MarshalAs(UnmanagedType.U1)] bool aRenumber);
 		
 		/// <summary>
         /// Remove the element at the specified index. If aRenumber is 'true', then
@@ -101,7 +101,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIRDFNode RemoveElementAt(int aIndex, [MarshalAs(UnmanagedType.Bool)] bool aRenumber);
+		nsIRDFNode RemoveElementAt(int aIndex, [MarshalAs(UnmanagedType.U1)] bool aRenumber);
 		
 		/// <summary>
         /// Determine the index of an element in the container.

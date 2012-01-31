@@ -30,14 +30,14 @@ namespace Gecko
 	/// <summary>nsISSLStatusProvider </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("8de811f0-1dd2-11b2-8bf1-e9aa324984b2")]
+	[Guid("179b1ab1-0950-4427-9556-6f496dc4a27f")]
 	public interface nsISSLStatusProvider
 	{
 		
 		/// <summary>Member GetSSLStatusAttribute </summary>
-		/// <returns>A nsISupports</returns>
+		/// <returns>A nsISSLStatus</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports GetSSLStatusAttribute();
+		nsISSLStatus GetSSLStatusAttribute();
 	}
 }

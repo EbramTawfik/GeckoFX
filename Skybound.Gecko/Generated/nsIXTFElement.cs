@@ -49,7 +49,7 @@ namespace Gecko
 		/// <summary>
         /// onCreated()-calls until after onDestroyed()-calls).
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsAttributeHandlerAttribute();
 		
@@ -147,7 +147,7 @@ namespace Gecko
 		/// <summary>
         /// other default handlers won't be able to handle it again.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool HandleDefault([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent aEvent);
 		

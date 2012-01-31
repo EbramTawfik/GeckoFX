@@ -77,7 +77,7 @@ namespace Gecko
         /// @outResult - if data is present matching one of
         /// @result NS_OK if successful.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool HasDataMatchingFlavors([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] string[] aFlavorList, uint aLength, int aWhichClipboard);
 		
@@ -88,7 +88,7 @@ namespace Gecko
         /// @outResult - true if
         /// @result NS_OK if successful.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool SupportsSelectionClipboard();
 	}

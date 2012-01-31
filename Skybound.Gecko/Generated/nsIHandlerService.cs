@@ -113,7 +113,7 @@ namespace Gecko
         ///
         /// @returns whether or not a record exists
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool Exists([MarshalAs(UnmanagedType.Interface)] nsIHandlerInfo aHandlerInfo);
 		

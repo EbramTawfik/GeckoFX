@@ -169,7 +169,7 @@ namespace Gecko
         /// Docs" concept, or if the application is in private browsing mode (in which
         /// case the file will not be added). Defaults to true.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetAddToRecentDocsAttribute();
 		
@@ -180,7 +180,7 @@ namespace Gecko
         /// case the file will not be added). Defaults to true.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAddToRecentDocsAttribute([MarshalAs(UnmanagedType.Bool)] bool aAddToRecentDocs);
+		void SetAddToRecentDocsAttribute([MarshalAs(UnmanagedType.U1)] bool aAddToRecentDocs);
 		
 		/// <summary>
         /// Show File Dialog. The dialog is displayed modally.

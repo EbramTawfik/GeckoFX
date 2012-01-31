@@ -68,7 +68,7 @@ namespace Gecko
 		void NoteRefCountedObject(uint aAddress, uint aRefCount, [MarshalAs(UnmanagedType.LPStr)] string aObjectDescription);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NoteGCedObject(uint aAddress, [MarshalAs(UnmanagedType.Bool)] bool aMarked, [MarshalAs(UnmanagedType.LPStr)] string aObjectDescription);
+		void NoteGCedObject(uint aAddress, [MarshalAs(UnmanagedType.U1)] bool aMarked, [MarshalAs(UnmanagedType.LPStr)] string aObjectDescription);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void NoteEdge(uint aToAddress, [MarshalAs(UnmanagedType.LPStr)] string aEdgeName);

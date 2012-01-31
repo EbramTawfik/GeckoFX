@@ -80,21 +80,21 @@ namespace Gecko
         /// Methods that can be used to test whether or not a twisty should be drawn,
         /// and if so, whether an open or closed twisty should be used.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsContainer(int index);
 		
 		/// <summary>Member IsContainerOpen </summary>
 		/// <param name='index'> </param>
 		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsContainerOpen(int index);
 		
 		/// <summary>Member IsContainerEmpty </summary>
 		/// <param name='index'> </param>
 		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsContainerEmpty(int index);
 		
@@ -103,7 +103,7 @@ namespace Gecko
         /// A value of true will result in the tree drawing a horizontal separator.
         /// The tree uses the ::moz-tree-separator pseudoclass to draw the separator.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsSeparator(int index);
 		
@@ -111,7 +111,7 @@ namespace Gecko
         /// Specifies if there is currently a sort on any column. Used mostly by dragdrop
         /// to affect drop feedback.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsSorted();
 		
@@ -121,7 +121,7 @@ namespace Gecko
         /// items, such as the mailNews folder pane, always return false when
         /// the orientation is not DROP_ON.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool CanDrop(int index, int orientation, [MarshalAs(UnmanagedType.Interface)] nsIDOMDataTransfer dataTransfer);
 		
@@ -146,7 +146,7 @@ namespace Gecko
         /// to march down the view looking at levels can optimize the march by starting
         /// at afterIndex+1.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool HasNextSibling(int rowIndex, int afterIndex);
 		
@@ -222,7 +222,7 @@ namespace Gecko
         /// A value of true will result in the tree popping up a text field when
         /// the user tries to inline edit the cell.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsEditable(int row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn col);
 		
@@ -231,7 +231,7 @@ namespace Gecko
         /// This method is only called if the selection style is |cell| or |text|.
         /// XXXvarga shouldn't this be called isCellSelectable?
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsSelectable(int row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn col);
 		
@@ -326,15 +326,15 @@ namespace Gecko
         /// Methods that can be used to test whether or not a twisty should be drawn,
         /// and if so, whether an open or closed twisty should be used.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsContainer(int index);
 		
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsContainerOpen(int index);
 		
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsContainerEmpty(int index);
 		
@@ -343,7 +343,7 @@ namespace Gecko
         /// A value of true will result in the tree drawing a horizontal separator.
         /// The tree uses the ::moz-tree-separator pseudoclass to draw the separator.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsSeparator(int index);
 		
@@ -351,7 +351,7 @@ namespace Gecko
         /// Specifies if there is currently a sort on any column. Used mostly by dragdrop
         /// to affect drop feedback.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsSorted();
 		
@@ -361,7 +361,7 @@ namespace Gecko
         /// items, such as the mailNews folder pane, always return false when
         /// the orientation is not DROP_ON.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool CanDrop(int index, int orientation, [MarshalAs(UnmanagedType.Interface)] nsIDOMDataTransfer dataTransfer);
 		
@@ -386,7 +386,7 @@ namespace Gecko
         /// to march down the view looking at levels can optimize the march by starting
         /// at afterIndex+1.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool HasNextSibling(int rowIndex, int afterIndex);
 		
@@ -462,7 +462,7 @@ namespace Gecko
         /// A value of true will result in the tree popping up a text field when
         /// the user tries to inline edit the cell.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsEditable(int row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn col);
 		
@@ -471,7 +471,7 @@ namespace Gecko
         /// This method is only called if the selection style is |cell| or |text|.
         /// XXXvarga shouldn't this be called isCellSelectable?
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsSelectable(int row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn col);
 		

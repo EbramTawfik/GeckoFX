@@ -42,7 +42,7 @@ namespace Gecko
         /// UI shown when a user is asked to do SSL client auth.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ChooseCertificate([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor ctx, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string cn, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string organization, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string issuer, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=6)] System.IntPtr[] certNickList, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=6)] System.IntPtr[] certDetailsList, uint count, ref int selectedIndex, [MarshalAs(UnmanagedType.Bool)] ref bool canceled);
+		void ChooseCertificate([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor ctx, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string cn, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string organization, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string issuer, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=6)] System.IntPtr[] certNickList, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=6)] System.IntPtr[] certDetailsList, uint count, ref int selectedIndex, [MarshalAs(UnmanagedType.U1)] ref bool canceled);
 	}
 	
 	/// <summary>nsIClientAuthUserDecision </summary>
@@ -54,13 +54,13 @@ namespace Gecko
 		
 		/// <summary>Member GetRememberClientAuthCertificateAttribute </summary>
 		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetRememberClientAuthCertificateAttribute();
 		
 		/// <summary>Member SetRememberClientAuthCertificateAttribute </summary>
 		/// <param name='aRememberClientAuthCertificate'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetRememberClientAuthCertificateAttribute([MarshalAs(UnmanagedType.Bool)] bool aRememberClientAuthCertificate);
+		void SetRememberClientAuthCertificateAttribute([MarshalAs(UnmanagedType.U1)] bool aRememberClientAuthCertificate);
 	}
 }

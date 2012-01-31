@@ -39,7 +39,7 @@ namespace Gecko
         /// returns false (This is effectively the same as checking to see if
         /// |startRequest| is zero and |endRange| is the content length.)
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsByteRangeRequestAttribute();
 		

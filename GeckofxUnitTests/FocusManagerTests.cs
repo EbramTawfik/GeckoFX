@@ -810,6 +810,27 @@ namespace GeckofxUnitTests
 		{
 			throw new NotImplementedException();
 		}
+
+
+		public IntPtr GetOnmouseenterAttribute(IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetOnmouseenterAttribute(IntPtr aOnmouseenter, IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		public IntPtr GetOnmouseleaveAttribute(IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetOnmouseleaveAttribute(IntPtr aOnmouseleave, IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
 	}
 	#endregion
 }

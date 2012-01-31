@@ -54,7 +54,7 @@ namespace Gecko
 		/// <summary>
         /// raises(XPathException) on retrieval
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetBooleanValueAttribute();
 		
@@ -68,7 +68,7 @@ namespace Gecko
 		/// <summary>
         /// raises(XPathException) on retrieval
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetInvalidIteratorStateAttribute();
 		

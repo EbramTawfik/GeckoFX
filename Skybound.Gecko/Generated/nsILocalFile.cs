@@ -200,7 +200,7 @@ namespace Gecko
         /// This will not resolve any symlinks.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Remove([MarshalAs(UnmanagedType.Bool)] bool recursive);
+		new void Remove([MarshalAs(UnmanagedType.U1)] bool recursive);
 		
 		/// <summary>
         /// Attributes of nsIFile.
@@ -300,42 +300,42 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetNativePathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aNativePath);
 		
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool Exists();
 		
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsWritable();
 		
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsReadable();
 		
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsExecutable();
 		
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsHidden();
 		
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsDirectory();
 		
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsFile();
 		
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsSymlink();
 		
 		/// <summary>
         /// Not a regular file, not a directory, not a symlink.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsSpecial();
 		
@@ -385,7 +385,7 @@ namespace Gecko
 		/// <summary>
         /// Will determine if the inFile equals this.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool Equals([MarshalAs(UnmanagedType.Interface)] nsIFile inFile);
 		
@@ -393,9 +393,9 @@ namespace Gecko
         /// Will determine if inFile is a descendant of this file
         /// If |recur| is true, look in subdirectories too
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool Contains([MarshalAs(UnmanagedType.Interface)] nsIFile inFile, [MarshalAs(UnmanagedType.Bool)] bool recur);
+		new bool Contains([MarshalAs(UnmanagedType.Interface)] nsIFile inFile, [MarshalAs(UnmanagedType.U1)] bool recur);
 		
 		/// <summary>
         /// Parent will be null when this is at the top of the volume.
@@ -453,7 +453,7 @@ namespace Gecko
         /// on all non unix systems.  On unix, this attribute is effectively
         /// a noop.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetFollowLinksAttribute();
 		
@@ -466,16 +466,18 @@ namespace Gecko
         /// a noop.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFollowLinksAttribute([MarshalAs(UnmanagedType.Bool)] bool aFollowLinks);
+		void SetFollowLinksAttribute([MarshalAs(UnmanagedType.U1)] bool aFollowLinks);
 		
 		/// <summary>
         /// Return the result of PR_Open on the file.  The caller is
         /// responsible for calling PR_Close on the result.
         ///
         /// @param flags the PR_Open flags from prio.h, plus optionally
-        /// DELETE_ON_CLOSE. DELETE_ON_CLOSE may be implemented by removing
-        /// the file (by path name) immediately after opening it, so beware
-        /// of possible races; the file should be exclusively owned by this
+        /// OS_READAHEAD or DELETE_ON_CLOSE. OS_READAHEAD is a hint to the
+        /// OS that the file will be read sequentially with agressive
+        /// readahead. DELETE_ON_CLOSE may be implemented by removing the
+        /// file (by path name) immediately after opening it, so beware of
+        /// possible races; the file should be exclusively owned by this
         /// process.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

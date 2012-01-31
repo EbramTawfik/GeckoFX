@@ -57,7 +57,7 @@ namespace Gecko
         /// e.g. in case of fallback of load of an entry matching bypass
         /// namespace.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetLoadedFromApplicationCacheAttribute();
 		
@@ -69,7 +69,7 @@ namespace Gecko
         /// NS_ERROR_ALREADY_OPENED will be thrown if set after AsyncOpen()
         /// is called.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetInheritApplicationCacheAttribute();
 		
@@ -82,7 +82,7 @@ namespace Gecko
         /// is called.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetInheritApplicationCacheAttribute([MarshalAs(UnmanagedType.Bool)] bool aInheritApplicationCache);
+		void SetInheritApplicationCacheAttribute([MarshalAs(UnmanagedType.U1)] bool aInheritApplicationCache);
 		
 		/// <summary>
         /// When true, the channel will choose an application cache if one
@@ -94,7 +94,7 @@ namespace Gecko
         /// NS_ERROR_ALREADY_OPENED will be thrown if set after AsyncOpen()
         /// is called.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetChooseApplicationCacheAttribute();
 		
@@ -109,7 +109,7 @@ namespace Gecko
         /// is called.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetChooseApplicationCacheAttribute([MarshalAs(UnmanagedType.Bool)] bool aChooseApplicationCache);
+		void SetChooseApplicationCacheAttribute([MarshalAs(UnmanagedType.U1)] bool aChooseApplicationCache);
 		
 		/// <summary>
         /// A shortcut method to mark the cache item of this channel as 'foreign'.

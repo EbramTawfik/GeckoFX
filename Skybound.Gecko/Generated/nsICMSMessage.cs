@@ -42,10 +42,10 @@ namespace Gecko
         /// Interface to a CMS Message
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ContentIsSigned([MarshalAs(UnmanagedType.Bool)] ref bool aSigned);
+		void ContentIsSigned([MarshalAs(UnmanagedType.U1)] ref bool aSigned);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ContentIsEncrypted([MarshalAs(UnmanagedType.Bool)] ref bool aEncrypted);
+		void ContentIsEncrypted([MarshalAs(UnmanagedType.U1)] ref bool aEncrypted);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetSignerCommonName([MarshalAs(UnmanagedType.LPStr)] ref string aName);

@@ -194,7 +194,7 @@ namespace Gecko
 		/// <summary>
         /// Test if this socket transport is (still) connected.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsAlive();
 		
