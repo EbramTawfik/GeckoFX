@@ -38,22 +38,49 @@ namespace Gecko
 
 		public static class Documents
 		{
-			
+			/// <summary>
+			/// Subject is nsIDOMWindow
+			/// </summary>
+			public const string ChromeDocumentGlobalCreated="chrome-document-global-created";
+			/// <summary>
+			/// Subject is nsIDOMWindow
+			/// </summary>
+			public const string ContentDocumentGlobalCreated = "content-document-global-created";
+			/// <summary>
+			/// Subject is Document
+			/// </summary>
+			public const string DocumentElementInserted = "document-element-inserted";
+			/// <summary>
+			/// Subject is nsIDOMWindow
+			/// </summary>
+			public const string UserInteractionActive = "user-interaction-active";
+			/// <summary>
+			/// Subject is nsIDOMWindow
+			/// </summary>
+			public const string UserInteractionInactive = "user-interaction-inactive";
 		}
 
 		public static class Windows
 		{
-			
+			public const string DomWindowDestroyed = "dom-window-destroyed";
+			public const string InnerWindowDestroyed = "inner-window-destroyed";
+			public const string OuterWindowDestroyed = "outer-window-destroyed";
+			public const string TopLevelWindowReady = "toplevel-window-ready";
+			public const string XulWindowDestroyed = "xul-window-destroyed";
+			public const string XulWindowRegistered = "xul-window-registered";
+			public const string XulWindowVisible = "xul-window-visible";
 		}
 
 		public static class SpellingChecker
 		{
-			
+			public const string SpellCheckDictionaryUpdate = "spellcheck-dictionary-update";
 		}
 
 		public static class IONotifications
 		{
-			
+			public const string OfflineRequested = "offline-requested";
+			public const string NetworkOfflineAboutToGoOffline = "network:offline-about-to-go-offline";
+			public const string NetworkOfflineStatusChanged = "network:offline-status-changed";
 		}
 
 		public static class HttpRequests
@@ -66,12 +93,23 @@ namespace Gecko
 		
 		public static class Cookies
 		{
-			
+			public const string CookieChanged = "cookie-changed";
+			public const string CookieRejected = "cookie-rejected";
 		}
 
 		public static class DownloadManager
 		{
-			
+			public const string DownloadManagerUIDone = "download-manager-ui-done";
+			public const string DownloadManagerRemoveDownload = "download-manager-remove-download";
+		}
+
+		public const string PrivateBrowsing = "private-browsing";
+
+		public static class IdleService
+		{
+			public const string Idle = "idle";
+			public const string IdleDaily = "idle-daily";
+			public const string Back = "back";
 		}
 
 		public static class Telemetry

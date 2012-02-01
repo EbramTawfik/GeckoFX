@@ -11,7 +11,6 @@ namespace Gecko.Net
 		internal Request(nsIRequest request)
 		{
 			_request = request;
-
 		}
 		
 		/// <summary>

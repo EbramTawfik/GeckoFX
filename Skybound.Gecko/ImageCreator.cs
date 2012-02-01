@@ -37,6 +37,21 @@ namespace Gecko
 		/// <throws>ArgumentException if width or height is zero</throws>
 		public Bitmap GetBitmap(uint xOffset, uint yOffset, uint width, uint height)
 		{
+			var bytes = GetPngImage( xOffset, yOffset, width, height );
+			return (Bitmap)Bitmap.FromStream(new System.IO.MemoryStream(bytes));
+		}
+
+		/// <summary>
+		/// Get byte array with png image of the current browsers Window.
+		/// Wpf methods on windows platform don't use a Bitmap :-/
+		/// </summary>
+		/// <param name="xOffset"></param>
+		/// <param name="yOffset"></param>
+		/// <param name="width"></param>
+		/// <param name="height"></param>
+		/// <returns></returns>
+		public byte[] GetPngImage(uint xOffset, uint yOffset, uint width, uint height)
+		{
 			if (width == 0)
 				throw new ArgumentException("width");
 
@@ -52,7 +67,7 @@ namespace Gecko
 				GeckoCanvasElement canvas = (GeckoCanvasElement)m_browser.Document.CreateElement("canvas");
 				canvas.Width = width;
 				canvas.Height = height;
-						
+
 				nsIDOMHTMLCanvasElement canvasPtr = (nsIDOMHTMLCanvasElement)canvas.DomObject;
 				nsIDOMCanvasRenderingContext2D context;
 				using (nsAString str = new nsAString("2d"))
@@ -64,12 +79,11 @@ namespace Gecko
 				{
 					context.DrawWindow((nsIDOMWindow)m_browser.Window.DomWindow, xOffset, yOffset, width, height, color, 0);
 				}
-							
+
 				string data = canvas.toDataURL("image/png");
 				byte[] bytes = Convert.FromBase64String(data.Substring("data:image/png;base64,".Length));
-				return (Bitmap)Bitmap.FromStream(new System.IO.MemoryStream(bytes));				
+				return bytes;
 			}
-			
 		}
 	}
 }
