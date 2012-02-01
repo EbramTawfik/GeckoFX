@@ -53,13 +53,13 @@ namespace Gecko
         /// The time this CRL was created at.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		ulong GetLastUpdateAttribute();
+		long GetLastUpdateAttribute();
 		
 		/// <summary>
         /// The time the suggested next update for this CRL.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		ulong GetNextUpdateAttribute();
+		long GetNextUpdateAttribute();
 		
 		/// <summary>
         /// lastUpdate formatted as a human readable string

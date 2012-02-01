@@ -352,13 +352,13 @@ namespace Gecko
         /// Scriptable storage for NSPR date/time values
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		ulong GetDataAttribute();
+		long GetDataAttribute();
 		
 		/// <summary>
         /// Scriptable storage for NSPR date/time values
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDataAttribute(ulong aData);
+		void SetDataAttribute(long aData);
 		
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

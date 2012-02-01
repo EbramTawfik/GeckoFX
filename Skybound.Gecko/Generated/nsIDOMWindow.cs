@@ -587,7 +587,7 @@ namespace Gecko
         /// been painted to the screen.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetMozPaintCountAttribute();
+		ulong GetMozPaintCountAttribute();
 		
 		/// <summary>
         /// Request a refresh of this browser window.
@@ -601,7 +601,7 @@ namespace Gecko
         /// The current animation start time in milliseconds since the epoch.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetMozAnimationStartTimeAttribute();
+		long GetMozAnimationStartTimeAttribute();
 		
 		/// <summary>
         /// @see <http://dev.w3.org/2006/webapi/FileAPI/#creating-revoking>
@@ -1278,7 +1278,7 @@ namespace Gecko
         /// been painted to the screen.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new uint GetMozPaintCountAttribute();
+		new ulong GetMozPaintCountAttribute();
 		
 		/// <summary>
         /// Request a refresh of this browser window.
@@ -1292,7 +1292,7 @@ namespace Gecko
         /// The current animation start time in milliseconds since the epoch.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new int GetMozAnimationStartTimeAttribute();
+		new long GetMozAnimationStartTimeAttribute();
 		
 		/// <summary>
         /// @see <http://dev.w3.org/2006/webapi/FileAPI/#creating-revoking>

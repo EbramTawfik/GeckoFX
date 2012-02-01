@@ -138,7 +138,7 @@ namespace Gecko
         /// @throw NS_ERROR_NOT_IMPLEMENTED if unavailable on the current OS
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RegisterAppMemory(uint ptr, uint size);
+		void RegisterAppMemory(ulong ptr, ulong size);
 		
 		/// <summary>
         /// Write a minidump immediately, with the user-supplied exception

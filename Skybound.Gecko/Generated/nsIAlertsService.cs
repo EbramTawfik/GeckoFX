@@ -87,7 +87,7 @@ namespace Gecko
         /// the percentage will be displayed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnProgress([MarshalAs(UnmanagedType.LPStruct)] nsAString name, int progress, int progressMax, [MarshalAs(UnmanagedType.LPStruct)] nsAString text);
+		void OnProgress([MarshalAs(UnmanagedType.LPStruct)] nsAString name, long progress, long progressMax, [MarshalAs(UnmanagedType.LPStruct)] nsAString text);
 		
 		/// <summary>
         /// Called to cancel and hide the given notification previously displayed

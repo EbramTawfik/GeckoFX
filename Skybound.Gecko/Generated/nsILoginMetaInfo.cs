@@ -70,41 +70,41 @@ namespace Gecko
         /// The time, in Unix Epoch milliseconds, when the login was first created.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetTimeCreatedAttribute();
+		ulong GetTimeCreatedAttribute();
 		
 		/// <summary>
         /// The time, in Unix Epoch milliseconds, when the login was first created.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTimeCreatedAttribute(uint aTimeCreated);
+		void SetTimeCreatedAttribute(ulong aTimeCreated);
 		
 		/// <summary>
         /// The time, in Unix Epoch milliseconds, when the login was last submitted
         /// in a form or used to begin an HTTP auth session.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetTimeLastUsedAttribute();
+		ulong GetTimeLastUsedAttribute();
 		
 		/// <summary>
         /// The time, in Unix Epoch milliseconds, when the login was last submitted
         /// in a form or used to begin an HTTP auth session.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTimeLastUsedAttribute(uint aTimeLastUsed);
+		void SetTimeLastUsedAttribute(ulong aTimeLastUsed);
 		
 		/// <summary>
         /// The time, in Unix Epoch milliseconds, when the login's password was
         /// last modified.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetTimePasswordChangedAttribute();
+		ulong GetTimePasswordChangedAttribute();
 		
 		/// <summary>
         /// The time, in Unix Epoch milliseconds, when the login's password was
         /// last modified.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTimePasswordChangedAttribute(uint aTimePasswordChanged);
+		void SetTimePasswordChangedAttribute(ulong aTimePasswordChanged);
 		
 		/// <summary>
         /// The number of times the login was submitted in a form or used to begin

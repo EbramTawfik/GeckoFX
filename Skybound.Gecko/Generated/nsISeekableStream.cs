@@ -57,7 +57,7 @@ namespace Gecko
         /// @throws NS_BASE_STREAM_CLOSED if called on a closed stream.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Seek(int whence, int offset);
+		void Seek(int whence, long offset);
 		
 		/// <summary>
         /// tell

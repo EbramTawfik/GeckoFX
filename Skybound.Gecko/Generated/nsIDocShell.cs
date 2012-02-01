@@ -664,7 +664,7 @@ namespace Gecko
         /// The ID of the docshell in the session history.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetHistoryIDAttribute();
+		ulong GetHistoryIDAttribute();
 		
 		/// <summary>
         /// Sets whether a docshell is an app tab. An app tab docshell may behave

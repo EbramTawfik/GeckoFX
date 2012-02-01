@@ -73,7 +73,7 @@ namespace Gecko
 		/// <param name='aName'> </param>
 		/// <param name='aValue'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BindInt64ByName([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName, int aValue);
+		void BindInt64ByName([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName, long aValue);
 		
 		/// <summary>Member BindNullByName </summary>
 		/// <param name='aName'> </param>
@@ -126,7 +126,7 @@ namespace Gecko
 		/// <param name='aIndex'> </param>
 		/// <param name='aValue'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BindInt64ByIndex(uint aIndex, int aValue);
+		void BindInt64ByIndex(uint aIndex, long aValue);
 		
 		/// <summary>Member BindNullByIndex </summary>
 		/// <param name='aIndex'> </param>

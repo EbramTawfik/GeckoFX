@@ -59,13 +59,13 @@ namespace Gecko
         /// @returns the ID of the folder for the livemark
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int CreateLivemark(int folder, [MarshalAs(UnmanagedType.LPStruct)] nsAString name, [MarshalAs(UnmanagedType.Interface)] nsIURI siteURI, [MarshalAs(UnmanagedType.Interface)] nsIURI feedURI, int index);
+		int CreateLivemark(long folder, [MarshalAs(UnmanagedType.LPStruct)] nsAString name, [MarshalAs(UnmanagedType.Interface)] nsIURI siteURI, [MarshalAs(UnmanagedType.Interface)] nsIURI feedURI, int index);
 		
 		/// <summary>
         /// Same as above, use during startup to avoid HTTP traffic
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int CreateLivemarkFolderOnly(int folder, [MarshalAs(UnmanagedType.LPStruct)] nsAString name, [MarshalAs(UnmanagedType.Interface)] nsIURI siteURI, [MarshalAs(UnmanagedType.Interface)] nsIURI feedURI, int index);
+		int CreateLivemarkFolderOnly(long folder, [MarshalAs(UnmanagedType.LPStruct)] nsAString name, [MarshalAs(UnmanagedType.Interface)] nsIURI siteURI, [MarshalAs(UnmanagedType.Interface)] nsIURI feedURI, int index);
 		
 		/// <summary>
         /// Determines whether the folder with the given folder ID identifies
@@ -80,7 +80,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsLivemark(int folder);
+		bool IsLivemark(long folder);
 		
 		/// <summary>
         /// Determines whether the feed URI is a currently registered livemark.
@@ -108,7 +108,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI GetSiteURI(int container);
+		nsIURI GetSiteURI(long container);
 		
 		/// <summary>
         /// Sets the URI of the website associated with a livemark container.
@@ -122,7 +122,7 @@ namespace Gecko
         /// argument isn't a valid nsIURI object (or null)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSiteURI(int container, [MarshalAs(UnmanagedType.Interface)] nsIURI siteURI);
+		void SetSiteURI(long container, [MarshalAs(UnmanagedType.Interface)] nsIURI siteURI);
 		
 		/// <summary>
         /// Gets the URI of the syndication feed associated with a livemark container.
@@ -140,7 +140,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI GetFeedURI(int container);
+		nsIURI GetFeedURI(long container);
 		
 		/// <summary>
         /// Sets the URI of the feed associated with a livemark container.
@@ -157,7 +157,7 @@ namespace Gecko
         /// argument isn't a valid nsIURI object
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFeedURI(int container, [MarshalAs(UnmanagedType.Interface)] nsIURI feedURI);
+		void SetFeedURI(long container, [MarshalAs(UnmanagedType.Interface)] nsIURI feedURI);
 		
 		/// <summary>
         /// Reloads all livemark subscriptions, whether or not they've expired.
@@ -170,6 +170,6 @@ namespace Gecko
         /// @param folderID		The ID of the folder to be reloaded
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ReloadLivemarkFolder(int folderID);
+		void ReloadLivemarkFolder(long folderID);
 	}
 }

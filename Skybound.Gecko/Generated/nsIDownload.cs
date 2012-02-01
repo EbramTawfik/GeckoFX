@@ -187,7 +187,7 @@ namespace Gecko
         /// @see nsIWebProgressListener2::onProgressChange64
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void OnProgressChange64([MarshalAs(UnmanagedType.Interface)] nsIWebProgress aWebProgress, [MarshalAs(UnmanagedType.Interface)] nsIRequest aRequest, int aCurSelfProgress, int aMaxSelfProgress, int aCurTotalProgress, int aMaxTotalProgress);
+		new void OnProgressChange64([MarshalAs(UnmanagedType.Interface)] nsIWebProgress aWebProgress, [MarshalAs(UnmanagedType.Interface)] nsIRequest aRequest, long aCurSelfProgress, long aMaxSelfProgress, long aCurTotalProgress, long aMaxTotalProgress);
 		
 		/// <summary>
         /// Notification that a refresh or redirect has been requested in aWebProgress
@@ -245,7 +245,7 @@ namespace Gecko
         /// reference.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Init([MarshalAs(UnmanagedType.Interface)] nsIURI aSource, [MarshalAs(UnmanagedType.Interface)] nsIURI aTarget, [MarshalAs(UnmanagedType.LPStruct)] nsAString aDisplayName, [MarshalAs(UnmanagedType.Interface)] nsIMIMEInfo aMIMEInfo, ulong startTime, [MarshalAs(UnmanagedType.Interface)] nsILocalFile aTempFile, [MarshalAs(UnmanagedType.Interface)] nsICancelable aCancelable);
+		new void Init([MarshalAs(UnmanagedType.Interface)] nsIURI aSource, [MarshalAs(UnmanagedType.Interface)] nsIURI aTarget, [MarshalAs(UnmanagedType.LPStruct)] nsAString aDisplayName, [MarshalAs(UnmanagedType.Interface)] nsIMIMEInfo aMIMEInfo, long startTime, [MarshalAs(UnmanagedType.Interface)] nsILocalFile aTempFile, [MarshalAs(UnmanagedType.Interface)] nsICancelable aCancelable);
 		
 		/// <summary>
         /// The target of a download is always a file on the local file system.
@@ -265,14 +265,14 @@ namespace Gecko
         /// The amount of bytes downloaded so far.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetAmountTransferredAttribute();
+		long GetAmountTransferredAttribute();
 		
 		/// <summary>
         /// The size of file in bytes.
         /// Unknown size is represented by -1.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetSizeAttribute();
+		long GetSizeAttribute();
 		
 		/// <summary>
         /// The source of the transfer.
@@ -306,7 +306,7 @@ namespace Gecko
         /// The time a transfer was started.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetStartTimeAttribute();
+		long GetStartTimeAttribute();
 		
 		/// <summary>
         /// The speed of the transfer in bytes/sec.

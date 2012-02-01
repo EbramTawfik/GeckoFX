@@ -169,6 +169,6 @@ namespace Gecko
         /// unknown, 0xFFFFFFFF will be passed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnTransportStatus([MarshalAs(UnmanagedType.Interface)] nsITransport aTransport, int aStatus, uint aProgress, uint aProgressMax);
+		void OnTransportStatus([MarshalAs(UnmanagedType.Interface)] nsITransport aTransport, int aStatus, ulong aProgress, ulong aProgressMax);
 	}
 }

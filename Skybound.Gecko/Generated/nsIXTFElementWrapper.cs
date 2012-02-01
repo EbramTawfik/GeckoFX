@@ -65,7 +65,7 @@ namespace Gecko
         /// @see nsIContent::IntrinsicState().
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetIntrinsicState(uint newState);
+		void SetIntrinsicState(ulong newState);
 		
 		/// <summary>
         /// This sets the name of the class attribute.

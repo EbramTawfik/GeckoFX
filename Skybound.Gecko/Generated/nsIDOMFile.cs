@@ -35,9 +35,9 @@ namespace Gecko
 	{
 		
 		/// <summary>Member GetSizeAttribute </summary>
-		/// <returns>A System.UInt32</returns>
+		/// <returns>A System.UInt64</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetSizeAttribute();
+		ulong GetSizeAttribute();
 		
 		/// <summary>Member GetTypeAttribute </summary>
 		/// <param name='aType'> </param>
@@ -64,7 +64,7 @@ namespace Gecko
 		/// <returns>A nsIDOMBlob</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMBlob MozSlice(int start, int end, [MarshalAs(UnmanagedType.LPStruct)] nsAString contentType, int argc);
+		nsIDOMBlob MozSlice(long start, long end, [MarshalAs(UnmanagedType.LPStruct)] nsAString contentType, int argc);
 	}
 	
 	/// <summary>nsIDOMFile </summary>
@@ -75,9 +75,9 @@ namespace Gecko
 	{
 		
 		/// <summary>Member GetSizeAttribute </summary>
-		/// <returns>A System.UInt32</returns>
+		/// <returns>A System.UInt64</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new uint GetSizeAttribute();
+		new ulong GetSizeAttribute();
 		
 		/// <summary>Member GetTypeAttribute </summary>
 		/// <param name='aType'> </param>
@@ -104,7 +104,7 @@ namespace Gecko
 		/// <returns>A nsIDOMBlob</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMBlob MozSlice(int start, int end, [MarshalAs(UnmanagedType.LPStruct)] nsAString contentType, int argc);
+		new nsIDOMBlob MozSlice(long start, long end, [MarshalAs(UnmanagedType.LPStruct)] nsAString contentType, int argc);
 		
 		/// <summary>Member GetNameAttribute </summary>
 		/// <param name='aName'> </param>

@@ -97,7 +97,7 @@ namespace Gecko
         /// The end of the timeframe, in microseconds
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveEntriesByTimeframe(int aBeginTime, int aEndTime);
+		void RemoveEntriesByTimeframe(long aBeginTime, long aEndTime);
 		
 		/// <summary>
         /// Returns the underlying DB connection the form history module is using.

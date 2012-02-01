@@ -62,6 +62,6 @@ namespace Gecko
         /// @param maxValue  the total size
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnProgress(uint index, uint value, uint maxValue);
+		void OnProgress(uint index, ulong value, ulong maxValue);
 	}
 }

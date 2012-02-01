@@ -86,7 +86,7 @@ namespace Gecko
 		/// <param name='aElement'> </param>
 		/// <param name='aState'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetContentState([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement, uint aState);
+		void SetContentState([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement, ulong aState);
 		
 		/// <summary>Member GetUsedFontFaces </summary>
 		/// <param name='aRange'> </param>

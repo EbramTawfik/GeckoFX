@@ -176,7 +176,7 @@ namespace Gecko
         /// @see nsIWebProgressListener2::onProgressChange64
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void OnProgressChange64([MarshalAs(UnmanagedType.Interface)] nsIWebProgress aWebProgress, [MarshalAs(UnmanagedType.Interface)] nsIRequest aRequest, int aCurSelfProgress, int aMaxSelfProgress, int aCurTotalProgress, int aMaxTotalProgress);
+		new void OnProgressChange64([MarshalAs(UnmanagedType.Interface)] nsIWebProgress aWebProgress, [MarshalAs(UnmanagedType.Interface)] nsIRequest aRequest, long aCurSelfProgress, long aMaxSelfProgress, long aCurTotalProgress, long aMaxTotalProgress);
 		
 		/// <summary>
         /// Notification that a refresh or redirect has been requested in aWebProgress
@@ -234,6 +234,6 @@ namespace Gecko
         /// reference.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init([MarshalAs(UnmanagedType.Interface)] nsIURI aSource, [MarshalAs(UnmanagedType.Interface)] nsIURI aTarget, [MarshalAs(UnmanagedType.LPStruct)] nsAString aDisplayName, [MarshalAs(UnmanagedType.Interface)] nsIMIMEInfo aMIMEInfo, ulong startTime, [MarshalAs(UnmanagedType.Interface)] nsILocalFile aTempFile, [MarshalAs(UnmanagedType.Interface)] nsICancelable aCancelable);
+		void Init([MarshalAs(UnmanagedType.Interface)] nsIURI aSource, [MarshalAs(UnmanagedType.Interface)] nsIURI aTarget, [MarshalAs(UnmanagedType.LPStruct)] nsAString aDisplayName, [MarshalAs(UnmanagedType.Interface)] nsIMIMEInfo aMIMEInfo, long startTime, [MarshalAs(UnmanagedType.Interface)] nsILocalFile aTempFile, [MarshalAs(UnmanagedType.Interface)] nsICancelable aCancelable);
 	}
 }

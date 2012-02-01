@@ -73,7 +73,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIRDFDate GetDateLiteral(int aValue);
+		nsIRDFDate GetDateLiteral(long aValue);
 		
 		/// <summary>
         /// Construct an RDF literal from an int.

@@ -86,7 +86,7 @@ namespace Gecko
         /// Microseconds from epoch representing the last visit time.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddPageWithDetails([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string aTitle, int aLastVisited);
+		void AddPageWithDetails([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string aTitle, long aLastVisited);
 		
 		/// <summary>
         /// The last page that was visited in a top-level window.
@@ -157,7 +157,7 @@ namespace Gecko
         /// @note The removal happens in a batch.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemovePagesByTimeframe(int aBeginTime, int aEndTime);
+		void RemovePagesByTimeframe(long aBeginTime, long aEndTime);
 		
 		/// <summary>
         /// Removes all visits in a given timeframe.
@@ -172,7 +172,7 @@ namespace Gecko
         /// @note The removal happens in a batch.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveVisitsByTimeframe(int aBeginTime, int aEndTime);
+		void RemoveVisitsByTimeframe(long aBeginTime, long aEndTime);
 		
 		/// <summary>
         /// Removes all existing pages from global history.

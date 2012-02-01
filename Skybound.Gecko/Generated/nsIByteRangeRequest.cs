@@ -47,12 +47,12 @@ namespace Gecko
         /// Absolute start position in remote file for this request.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetStartRangeAttribute();
+		long GetStartRangeAttribute();
 		
 		/// <summary>
         /// Absolute end postion in remote file for this request
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetEndRangeAttribute();
+		long GetEndRangeAttribute();
 	}
 }

@@ -65,22 +65,22 @@ namespace Gecko
 		void Begin();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NoteRefCountedObject(uint aAddress, uint aRefCount, [MarshalAs(UnmanagedType.LPStr)] string aObjectDescription);
+		void NoteRefCountedObject(ulong aAddress, uint aRefCount, [MarshalAs(UnmanagedType.LPStr)] string aObjectDescription);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NoteGCedObject(uint aAddress, [MarshalAs(UnmanagedType.Bool)] bool aMarked, [MarshalAs(UnmanagedType.LPStr)] string aObjectDescription);
+		void NoteGCedObject(ulong aAddress, [MarshalAs(UnmanagedType.Bool)] bool aMarked, [MarshalAs(UnmanagedType.LPStr)] string aObjectDescription);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NoteEdge(uint aToAddress, [MarshalAs(UnmanagedType.LPStr)] string aEdgeName);
+		void NoteEdge(ulong aToAddress, [MarshalAs(UnmanagedType.LPStr)] string aEdgeName);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void BeginResults();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DescribeRoot(uint aAddress, uint aKnownEdges);
+		void DescribeRoot(ulong aAddress, uint aKnownEdges);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DescribeGarbage(uint aAddress);
+		void DescribeGarbage(ulong aAddress);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void End();

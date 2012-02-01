@@ -85,7 +85,7 @@ namespace Gecko
         /// The item-id of the container item.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnContainerRemoving(int aItemId);
+		void OnContainerRemoving(long aItemId);
 		
 		/// <summary>
         /// Called when the given container has just been moved, in case
@@ -99,6 +99,6 @@ namespace Gecko
         /// The index the container will be inserted at, or -1 for append.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnContainerMoved(int aItemId, int aNewParent, int aNewIndex);
+		void OnContainerMoved(long aItemId, long aNewParent, int aNewIndex);
 	}
 }

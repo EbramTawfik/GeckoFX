@@ -110,7 +110,7 @@ namespace Gecko
         /// operation.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetLastInsertRowIDAttribute();
+		long GetLastInsertRowIDAttribute();
 		
 		/// <summary>
         /// The last error SQLite error code.

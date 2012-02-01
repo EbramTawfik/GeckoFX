@@ -103,13 +103,13 @@ namespace Gecko
         /// File size, with -1 meaning "unknown"
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetSizeAttribute();
+		long GetSizeAttribute();
 		
 		/// <summary>
         /// File size, with -1 meaning "unknown"
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSizeAttribute(int aSize);
+		void SetSizeAttribute(long aSize);
 		
 		/// <summary>
         /// Last-modified time in seconds-since-epoch.
@@ -117,7 +117,7 @@ namespace Gecko
         /// ftp servers in 1969
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		ulong GetLastModifiedAttribute();
+		long GetLastModifiedAttribute();
 		
 		/// <summary>
         /// Last-modified time in seconds-since-epoch.
@@ -125,6 +125,6 @@ namespace Gecko
         /// ftp servers in 1969
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetLastModifiedAttribute(ulong aLastModified);
+		void SetLastModifiedAttribute(long aLastModified);
 	}
 }

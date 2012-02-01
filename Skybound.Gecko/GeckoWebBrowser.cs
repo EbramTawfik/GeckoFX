@@ -2978,7 +2978,7 @@ namespace Gecko
         public void ObserveActivity(nsISupports aHttpChannel,
                              UInt32 aActivityType,
                              UInt32 aActivitySubtype,
-                             UInt64 aTimestamp,
+                             Int64 aTimestamp,
                              UInt64 aExtraSizeData,
 							 nsACString aExtraStringData)
         {

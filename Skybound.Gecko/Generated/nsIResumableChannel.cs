@@ -54,7 +54,7 @@ namespace Gecko
         /// OnStopRequest will immediately follow with the same status code.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ResumeAt(uint startPos, [MarshalAs(UnmanagedType.LPStruct)] nsACString entityID);
+		void ResumeAt(ulong startPos, [MarshalAs(UnmanagedType.LPStruct)] nsACString entityID);
 		
 		/// <summary>
         /// The entity id for this URI. Available after OnStartRequest.

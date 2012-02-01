@@ -87,7 +87,7 @@ namespace Gecko
 		new void BindInt32Parameter(uint aParamIndex, int aValue);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void BindInt64Parameter(uint aParamIndex, int aValue);
+		new void BindInt64Parameter(uint aParamIndex, long aValue);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void BindNullParameter(uint aParamIndex);

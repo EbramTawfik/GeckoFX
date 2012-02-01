@@ -499,7 +499,7 @@ namespace GeckofxUnitTests
 			throw new NotImplementedException();
 		}
 
-		public uint GetMozPaintCountAttribute()
+		public ulong GetMozPaintCountAttribute()
 		{
 			throw new NotImplementedException();
 		}
@@ -509,7 +509,7 @@ namespace GeckofxUnitTests
 			throw new NotImplementedException();
 		}
 
-		public int GetMozAnimationStartTimeAttribute()
+		public long GetMozAnimationStartTimeAttribute()
 		{
 			throw new NotImplementedException();
 		}

@@ -601,14 +601,14 @@ namespace Gecko
         /// Get the id of the outer window of this window.  This will never throw.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetOuterWindowIDAttribute();
+		ulong GetOuterWindowIDAttribute();
 		
 		/// <summary>
         /// Get the id of the current inner window of this window.  If there
         /// is no current inner window, throws NS_ERROR_NOT_AVAILABLE.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetCurrentInnerWindowIDAttribute();
+		ulong GetCurrentInnerWindowIDAttribute();
 		
 		/// <summary>
         /// Put the window into a state where scripts are frozen and events
@@ -683,7 +683,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMWindow GetOuterWindowWithId(uint aOuterWindowID);
+		nsIDOMWindow GetOuterWindowWithId(ulong aOuterWindowID);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RenderDocument(nsConstRect aRect, uint aFlags, nscolor aBackgroundColor, System.IntPtr aThebesContext);
@@ -708,7 +708,7 @@ namespace Gecko
         /// they must call restoreNormalRefresh.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AdvanceTimeAndRefresh(int aMilliseconds);
+		void AdvanceTimeAndRefresh(long aMilliseconds);
 		
 		/// <summary>
         /// Undoes the effects of advanceTimeAndRefresh.

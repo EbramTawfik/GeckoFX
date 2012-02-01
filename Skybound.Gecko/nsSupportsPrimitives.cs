@@ -107,7 +107,7 @@ namespace Gecko
 			return value.GetDataAttribute();
 		}
 
-		public static UInt64 GetTime(nsISupportsPRTime value)
+		public static Int64 GetTime(nsISupportsPRTime value)
 		{
 			return value.GetDataAttribute();
 		}

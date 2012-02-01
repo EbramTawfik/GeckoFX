@@ -320,7 +320,7 @@ namespace Gecko
 		/// <summary>
         ///Additional ways to create an entry </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Create([MarshalAs(UnmanagedType.Interface)] nsIURI URI, [MarshalAs(UnmanagedType.LPStruct)] nsAString title, [MarshalAs(UnmanagedType.Interface)] nsIInputStream inputStream, System.IntPtr layoutHistoryState, [MarshalAs(UnmanagedType.Interface)] nsISupports cacheKey, [MarshalAs(UnmanagedType.LPStruct)] nsACString contentType, [MarshalAs(UnmanagedType.Interface)] nsISupports owner, uint docshellID, [MarshalAs(UnmanagedType.Bool)] bool dynamicCreation);
+		void Create([MarshalAs(UnmanagedType.Interface)] nsIURI URI, [MarshalAs(UnmanagedType.LPStruct)] nsAString title, [MarshalAs(UnmanagedType.Interface)] nsIInputStream inputStream, System.IntPtr layoutHistoryState, [MarshalAs(UnmanagedType.Interface)] nsISupports cacheKey, [MarshalAs(UnmanagedType.LPStruct)] nsACString contentType, [MarshalAs(UnmanagedType.Interface)] nsISupports owner, ulong docshellID, [MarshalAs(UnmanagedType.Bool)] bool dynamicCreation);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -412,13 +412,13 @@ namespace Gecko
         /// The history ID of the docshell.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetDocshellIDAttribute();
+		ulong GetDocshellIDAttribute();
 		
 		/// <summary>
         /// The history ID of the docshell.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDocshellIDAttribute(uint aDocshellID);
+		void SetDocshellIDAttribute(ulong aDocshellID);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

@@ -55,7 +55,7 @@ namespace Gecko
         /// database operation to fail with NS_ERROR_FILE_NO_DEVICE_SPACE.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int QuotaExceeded([MarshalAs(UnmanagedType.LPStruct)] nsACString aFilename, int aCurrentSizeLimit, int aCurrentTotalSize, [MarshalAs(UnmanagedType.Interface)] nsISupports aUserData);
+		int QuotaExceeded([MarshalAs(UnmanagedType.LPStruct)] nsACString aFilename, long aCurrentSizeLimit, long aCurrentTotalSize, [MarshalAs(UnmanagedType.Interface)] nsISupports aUserData);
 	}
 	
 	/// <summary>
@@ -97,7 +97,7 @@ namespace Gecko
         /// Additional information to be passed to the callback.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetQuotaForFilenamePattern([MarshalAs(UnmanagedType.LPStruct)] nsACString aPattern, int aSizeLimit, mozIStorageQuotaCallback aCallback, [MarshalAs(UnmanagedType.Interface)] nsISupports aUserData);
+		void SetQuotaForFilenamePattern([MarshalAs(UnmanagedType.LPStruct)] nsACString aPattern, long aSizeLimit, mozIStorageQuotaCallback aCallback, [MarshalAs(UnmanagedType.Interface)] nsISupports aUserData);
 		
 		/// <summary>
         /// Adds, removes, or updates the file size information maintained by the quota

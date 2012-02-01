@@ -46,6 +46,6 @@ namespace Gecko
 		void RemoveFromBFCacheAsync();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetIDAttribute();
+		ulong GetIDAttribute();
 	}
 }

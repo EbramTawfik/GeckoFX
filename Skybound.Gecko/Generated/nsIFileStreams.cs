@@ -195,6 +195,6 @@ namespace Gecko
         /// (see enumerations in nsIFileInputStream)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init([MarshalAs(UnmanagedType.Interface)] nsIFile file, uint start, uint length, int ioFlags, int perm, int behaviorFlags);
+		void Init([MarshalAs(UnmanagedType.Interface)] nsIFile file, ulong start, ulong length, int ioFlags, int perm, int behaviorFlags);
 	}
 }

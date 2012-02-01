@@ -69,7 +69,7 @@ namespace Gecko
         /// transfered (or 0xFFFFFFFFFFFFFFFF if total is unknown).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnProgress([MarshalAs(UnmanagedType.Interface)] nsIRequest aRequest, [MarshalAs(UnmanagedType.Interface)] nsISupports aContext, uint aProgress, uint aProgressMax);
+		void OnProgress([MarshalAs(UnmanagedType.Interface)] nsIRequest aRequest, [MarshalAs(UnmanagedType.Interface)] nsISupports aContext, ulong aProgress, ulong aProgressMax);
 		
 		/// <summary>
         /// Called to notify the event sink with a status message for the given

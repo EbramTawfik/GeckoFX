@@ -100,25 +100,25 @@ namespace Gecko
         ///Get the window id this was initialized with.  Zero will be
         ///       returned if init() was used instead of initWithWindowID(). </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetOuterWindowIDAttribute();
+		ulong GetOuterWindowIDAttribute();
 		
 		/// <summary>
         ///Get the inner window id this was initialized with.  Zero will be
         ///       returned if init() was used instead of initWithWindowID(). </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetInnerWindowIDAttribute();
+		ulong GetInnerWindowIDAttribute();
 		
 		/// <summary>
         ///Elapsed time, in milliseconds, from a platform-specific zero time to the
         ///       time the message was created. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetTimeStampAttribute();
+		long GetTimeStampAttribute();
 		
 		/// <summary>
         ///This should be called instead of nsIScriptError.init to
         ///       initialize with a window id.  The window id should be for the
         ///       inner window associated with this error. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitWithWindowID([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string message, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string sourceName, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string sourceLine, uint lineNumber, uint columnNumber, uint flags, [MarshalAs(UnmanagedType.LPStr)] string category, uint innerWindowID);
+		void InitWithWindowID([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string message, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string sourceName, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string sourceLine, uint lineNumber, uint columnNumber, uint flags, [MarshalAs(UnmanagedType.LPStr)] string category, ulong innerWindowID);
 	}
 }

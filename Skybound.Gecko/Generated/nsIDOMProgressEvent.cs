@@ -171,12 +171,12 @@ namespace Gecko
 		bool GetLengthComputableAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetLoadedAttribute();
+		ulong GetLoadedAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetTotalAttribute();
+		ulong GetTotalAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitProgressEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString typeArg, [MarshalAs(UnmanagedType.Bool)] bool canBubbleArg, [MarshalAs(UnmanagedType.Bool)] bool cancelableArg, [MarshalAs(UnmanagedType.Bool)] bool lengthComputableArg, uint loadedArg, uint totalArg);
+		void InitProgressEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString typeArg, [MarshalAs(UnmanagedType.Bool)] bool canBubbleArg, [MarshalAs(UnmanagedType.Bool)] bool cancelableArg, [MarshalAs(UnmanagedType.Bool)] bool lengthComputableArg, ulong loadedArg, ulong totalArg);
 	}
 }

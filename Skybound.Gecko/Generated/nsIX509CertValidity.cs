@@ -41,7 +41,7 @@ namespace Gecko
         /// a certificate is valid.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		ulong GetNotBeforeAttribute();
+		long GetNotBeforeAttribute();
 		
 		/// <summary>
         /// "notBefore" attribute formatted as a time string
@@ -73,7 +73,7 @@ namespace Gecko
         /// a certificate is valid.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		ulong GetNotAfterAttribute();
+		long GetNotAfterAttribute();
 		
 		/// <summary>
         /// "notAfter" attribute formatted as a time string

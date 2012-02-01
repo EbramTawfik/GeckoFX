@@ -40,13 +40,13 @@ namespace Gecko
         /// The machine-local (internal) id of the visit.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetVisitIdAttribute();
+		long GetVisitIdAttribute();
 		
 		/// <summary>
         /// The time the visit occurred.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		ulong GetVisitDateAttribute();
+		long GetVisitDateAttribute();
 		
 		/// <summary>
         /// The transition type used to get to this visit.  One of the TRANSITION_TYPE
@@ -70,7 +70,7 @@ namespace Gecko
         /// @see nsINavHistory.idl
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetSessionIdAttribute();
+		long GetSessionIdAttribute();
 	}
 	
 	/// <summary>
@@ -86,7 +86,7 @@ namespace Gecko
         /// The machine-local (internal) id of the place.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetPlaceIdAttribute();
+		long GetPlaceIdAttribute();
 		
 		/// <summary>
         /// The globally unique id of the place.
@@ -111,7 +111,7 @@ namespace Gecko
         /// The frecency of the place.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetFrecencyAttribute();
+		long GetFrecencyAttribute();
 		
 		/// <summary>
         /// An array of mozIVisitInfo objects for the place.

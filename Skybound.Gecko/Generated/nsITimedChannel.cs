@@ -92,36 +92,36 @@ namespace Gecko
         /// All following are PRTime versions of the above.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		ulong GetChannelCreationTimeAttribute();
+		long GetChannelCreationTimeAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		ulong GetAsyncOpenTimeAttribute();
+		long GetAsyncOpenTimeAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		ulong GetDomainLookupStartTimeAttribute();
+		long GetDomainLookupStartTimeAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		ulong GetDomainLookupEndTimeAttribute();
+		long GetDomainLookupEndTimeAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		ulong GetConnectStartTimeAttribute();
+		long GetConnectStartTimeAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		ulong GetConnectEndTimeAttribute();
+		long GetConnectEndTimeAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		ulong GetRequestStartTimeAttribute();
+		long GetRequestStartTimeAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		ulong GetResponseStartTimeAttribute();
+		long GetResponseStartTimeAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		ulong GetResponseEndTimeAttribute();
+		long GetResponseEndTimeAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		ulong GetCacheReadStartTimeAttribute();
+		long GetCacheReadStartTimeAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		ulong GetCacheReadEndTimeAttribute();
+		long GetCacheReadEndTimeAttribute();
 	}
 }

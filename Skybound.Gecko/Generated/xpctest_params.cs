@@ -57,7 +57,7 @@ namespace Gecko
 		int TestLong(int a, ref int b);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int TestLongLong(int a, ref int b);
+		int TestLongLong(long a, ref long b);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint TestUnsignedShort(ushort a, ref ushort b);
@@ -66,7 +66,7 @@ namespace Gecko
 		uint TestUnsignedLong(uint a, ref uint b);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint TestUnsignedLongLong(uint a, ref uint b);
+		uint TestUnsignedLongLong(ulong a, ref ulong b);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		float TestFloat(float a, ref float b);

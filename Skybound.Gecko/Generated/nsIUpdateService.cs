@@ -431,13 +431,13 @@ namespace Gecko
         /// When the update was installed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetInstallDateAttribute();
+		long GetInstallDateAttribute();
 		
 		/// <summary>
         /// When the update was installed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetInstallDateAttribute(int aInstallDate);
+		void SetInstallDateAttribute(long aInstallDate);
 		
 		/// <summary>
         /// A message associated with this update, if any.

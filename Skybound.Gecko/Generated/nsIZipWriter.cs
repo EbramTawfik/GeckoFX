@@ -140,7 +140,7 @@ namespace Gecko
         /// @throws NS_ERROR_IN_PROGRESS if another operation is currently in progress
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddEntryDirectory([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aZipEntry, ulong aModTime, [MarshalAs(UnmanagedType.Bool)] bool aQueue);
+		void AddEntryDirectory([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aZipEntry, long aModTime, [MarshalAs(UnmanagedType.Bool)] bool aQueue);
 		
 		/// <summary>
         /// Adds a new file or directory to the zip file. If the specified file is
@@ -178,7 +178,7 @@ namespace Gecko
         /// @throws NS_ERROR_IN_PROGRESS if another operation is currently in progress
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddEntryChannel([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aZipEntry, ulong aModTime, int aCompression, [MarshalAs(UnmanagedType.Interface)] nsIChannel aChannel, [MarshalAs(UnmanagedType.Bool)] bool aQueue);
+		void AddEntryChannel([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aZipEntry, long aModTime, int aCompression, [MarshalAs(UnmanagedType.Interface)] nsIChannel aChannel, [MarshalAs(UnmanagedType.Bool)] bool aQueue);
 		
 		/// <summary>
         /// Adds data from an input stream to the zip file.
@@ -195,7 +195,7 @@ namespace Gecko
         /// @throws NS_ERROR_IN_PROGRESS if another operation is currently in progress
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddEntryStream([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aZipEntry, ulong aModTime, int aCompression, [MarshalAs(UnmanagedType.Interface)] nsIInputStream aStream, [MarshalAs(UnmanagedType.Bool)] bool aQueue);
+		void AddEntryStream([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aZipEntry, long aModTime, int aCompression, [MarshalAs(UnmanagedType.Interface)] nsIInputStream aStream, [MarshalAs(UnmanagedType.Bool)] bool aQueue);
 		
 		/// <summary>
         /// Removes an existing entry from the zip file.

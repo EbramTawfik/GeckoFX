@@ -78,7 +78,7 @@ namespace Gecko
         /// The date value of the literal
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetValueAttribute();
+		long GetValueAttribute();
 	}
 	
 	/// <summary>

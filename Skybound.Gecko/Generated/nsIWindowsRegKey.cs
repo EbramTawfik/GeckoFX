@@ -287,7 +287,7 @@ namespace Gecko
         /// The data for the value to modify.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void WriteInt64Value([MarshalAs(UnmanagedType.LPStruct)] nsAString name, uint data);
+		void WriteInt64Value([MarshalAs(UnmanagedType.LPStruct)] nsAString name, ulong data);
 		
 		/// <summary>
         /// This method writes the binary contents of the named value.  The value will

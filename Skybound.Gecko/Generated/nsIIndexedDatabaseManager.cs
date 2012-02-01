@@ -38,7 +38,7 @@ namespace Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnUsageResult([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, uint aUsage);
+		void OnUsageResult([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, ulong aUsage);
 	}
 	
 	/// <summary>nsIIndexedDatabaseManager </summary>

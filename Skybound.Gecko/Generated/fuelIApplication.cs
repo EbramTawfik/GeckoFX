@@ -102,7 +102,7 @@ namespace Gecko
         /// The id of the bookmark.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetIdAttribute();
+		long GetIdAttribute();
 		
 		/// <summary>
         /// The title of the bookmark.
@@ -207,7 +207,7 @@ namespace Gecko
         /// The id of the folder.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetIdAttribute();
+		long GetIdAttribute();
 		
 		/// <summary>
         /// The title of the folder.

@@ -180,7 +180,7 @@ namespace Gecko
         /// Time when the download started
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		ulong GetTimeDownloadStartedAttribute();
+		long GetTimeDownloadStartedAttribute();
 		
 		/// <summary>
         /// The download content length, or -1 if the length is not available.

@@ -79,7 +79,7 @@ namespace Gecko
         /// Get the size in bytes of this container's serialized data.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetSerializedNBytesAttribute();
+		ulong GetSerializedNBytesAttribute();
 		
 		/// <summary>
         /// Get the version of the structured clone algorithm which was used to

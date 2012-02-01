@@ -70,7 +70,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDownload AddDownload(short aDownloadType, [MarshalAs(UnmanagedType.Interface)] nsIURI aSource, [MarshalAs(UnmanagedType.Interface)] nsIURI aTarget, [MarshalAs(UnmanagedType.LPStruct)] nsAString aDisplayName, [MarshalAs(UnmanagedType.Interface)] nsIMIMEInfo aMIMEInfo, ulong aStartTime, [MarshalAs(UnmanagedType.Interface)] nsILocalFile aTempFile, [MarshalAs(UnmanagedType.Interface)] nsICancelable aCancelable);
+		nsIDownload AddDownload(short aDownloadType, [MarshalAs(UnmanagedType.Interface)] nsIURI aSource, [MarshalAs(UnmanagedType.Interface)] nsIURI aTarget, [MarshalAs(UnmanagedType.LPStruct)] nsAString aDisplayName, [MarshalAs(UnmanagedType.Interface)] nsIMIMEInfo aMIMEInfo, long aStartTime, [MarshalAs(UnmanagedType.Interface)] nsILocalFile aTempFile, [MarshalAs(UnmanagedType.Interface)] nsICancelable aCancelable);
 		
 		/// <summary>
         /// Retrieves a download managed by the download manager.  This can be one that
@@ -121,7 +121,7 @@ namespace Gecko
         /// The end time to remove downloads by in microseconds.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveDownloadsByTimeframe(int aBeginTime, int aEndTime);
+		void RemoveDownloadsByTimeframe(long aBeginTime, long aEndTime);
 		
 		/// <summary>
         /// Pause the specified download.
