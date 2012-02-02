@@ -89,13 +89,13 @@ namespace Gecko
 		string TestWstring([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string a, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] ref string b);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void TestDOMString([MarshalAs(UnmanagedType.LPStruct)] nsAString a, [MarshalAs(UnmanagedType.LPStruct)] nsAString b, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void TestDOMString([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase a, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase b, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void TestAString([MarshalAs(UnmanagedType.LPStruct)] nsAString a, [MarshalAs(UnmanagedType.LPStruct)] nsAString b, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void TestAString([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase a, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase b, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void TestAUTF8String([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String a, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String b, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
+		void TestAUTF8String([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase a, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase b, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase retval);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void TestACString([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase a, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase b, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);

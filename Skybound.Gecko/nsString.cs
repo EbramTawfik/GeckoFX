@@ -116,10 +116,7 @@ namespace Gecko
 		public static string Get(Action<nsACString,nsACString> getter,string inValue)
 		{
 			using (nsACString nativeIn = new nsACString(inValue), nativeOut = new nsACString())
-			{
-				//if (!string.IsNullOrEmpty(inValue))
-				//    nativeIn.SetData( inValue );
-
+			{				
 				getter( nativeIn, nativeOut );
 				return nativeOut.ToString();
 			}
@@ -224,30 +221,56 @@ namespace Gecko
 
 	}
 
-	// TODO: see comments on class nsAString
 	[StructLayout(LayoutKind.Sequential)]
-	public class nsAUTF8String : IDisposable
+	public class nsAUTF8StringBase
 	{
-#region unused variables used to ensure struct is correct size on different platforms
-		#pragma warning disable 169
+		[DllImport("xpcom", CharSet = CharSet.Ansi)]
+		protected static extern int NS_CStringContainerInit(nsAUTF8StringBase container);
+
+		[DllImport("xpcom", CharSet = CharSet.Ansi)]
+		protected static extern int NS_CStringSetData(nsAUTF8StringBase str, byte[] data, int length);
+
+		[DllImport("xpcom", CharSet = CharSet.Ansi)]
+		protected static extern int NS_CStringGetData(nsAUTF8StringBase str, out IntPtr data, IntPtr nullTerm);
+
+		[DllImport("xpcom", CharSet = CharSet.Ansi)]
+		protected static extern int NS_CStringContainerFinish(nsAUTF8StringBase container);
+
+		#region unused variables used to ensure struct is correct size on different platforms
+#pragma warning disable 169
 		IntPtr mData;
 		int mLength;
 		int mFlags;
-		#pragma warning restore 169
-#endregion
+#pragma warning restore 169
+		#endregion
 
-		[DllImport("xpcom", CharSet = CharSet.Ansi)]
-		static extern int NS_CStringContainerInit(nsAUTF8String container);
-		
-		[DllImport("xpcom", CharSet = CharSet.Ansi)]
-		static extern int NS_CStringSetData(nsAUTF8String str, byte [] data, int length);
-		
-		[DllImport("xpcom", CharSet = CharSet.Ansi)]
-		static extern int NS_CStringGetData(nsAUTF8String str, out IntPtr data, IntPtr nullTerm);
-		
-		[DllImport("xpcom", CharSet = CharSet.Ansi)]
-		static extern int NS_CStringContainerFinish(nsAUTF8String container);
-		
+		public virtual void SetData(string value)
+		{
+			byte[] utf8 = Encoding.UTF8.GetBytes(value ?? "");
+
+			NS_CStringSetData(this, utf8, utf8.Length);
+		}
+
+		public override string ToString()
+		{
+			IntPtr data;
+			int length = NS_CStringGetData(this, out data, IntPtr.Zero);
+
+			if (length > 0)
+			{
+				byte[] result = new byte[length];
+				Marshal.Copy(data, result, 0, length);
+				return Encoding.UTF8.GetString(result);
+			}
+			return "";
+		}
+
+	}
+
+	// TODO: see comments on class nsAString
+	[StructLayout(LayoutKind.Sequential)]
+	public class nsAUTF8String : nsAUTF8StringBase, IDisposable
+	{				
 		public nsAUTF8String()
 		{
 			NS_CStringContainerInit(this);
@@ -270,28 +293,7 @@ namespace Gecko
 		{
 			NS_CStringContainerFinish(this);
 			GC.SuppressFinalize(this);
-		}
-		
-		public virtual void SetData(string value)
-		{
-			byte [] utf8 = Encoding.UTF8.GetBytes(value ?? "");
-			
-			NS_CStringSetData(this, utf8, utf8.Length);
-		}
-		
-		public override string ToString()
-		{
-			IntPtr data;
-			int length = NS_CStringGetData(this, out data, IntPtr.Zero);
-			
-			if (length > 0)
-			{
-				byte [] result = new byte[length];
-				Marshal.Copy(data, result, 0, length);
-				return Encoding.UTF8.GetString(result);
-			}
-			return "";
-		}
+		}				
 	}
 
 	[StructLayout(LayoutKind.Sequential)]
@@ -365,33 +367,53 @@ namespace Gecko
 		}				
 	}
 
-	// TODO: internal nsAString is implementation dependant write some unit tests to ensure we at least notice if it breaks.
-	// On 32 bit Linux systems it will be 12 bytes
-	// On 64 bit Linux Systems it will be 16 bytes.
 	[StructLayout(LayoutKind.Sequential)]
-	public class nsAString : IDisposable
-	{	
+	public class nsAStringBase
+	{
+		[DllImport("xpcom", CharSet = CharSet.Unicode)]
+		protected static extern int NS_StringContainerInit(nsAStringBase container);
 
-#region unused variables used to ensure struct is correct size on different platforms
+		[DllImport("xpcom", CharSet = CharSet.Unicode)]
+		protected static extern int NS_StringSetData(nsAStringBase str, string data, int length);
+
+		[DllImport("xpcom", CharSet = CharSet.Unicode)]
+		protected static extern int NS_StringGetData(nsAStringBase str, out IntPtr data, IntPtr nullTerm);
+
+		[DllImport("xpcom", CharSet = CharSet.Unicode)]
+		protected static extern int NS_StringContainerFinish(nsAStringBase container);
+
+		#region unused variables used to ensure struct is correct size on different platforms
 		#pragma warning disable 169
 		IntPtr mData;
 		int mLength;
 		int mFlags;
 		#pragma warning restore 169
-#endregion
+		#endregion
 
-		[DllImport("xpcom", CharSet = CharSet.Unicode)]
-		static extern int NS_StringContainerInit(nsAString container);
-		
-		[DllImport("xpcom", CharSet = CharSet.Unicode)]
-		static extern int NS_StringSetData(nsAString str, string data, int length);
-		
-		[DllImport("xpcom", CharSet = CharSet.Unicode)]
-		static extern int NS_StringGetData(nsAString str, out IntPtr data, IntPtr nullTerm);
-		
-		[DllImport("xpcom", CharSet = CharSet.Unicode)]
-		static extern int NS_StringContainerFinish(nsAString container);
-		
+		public void SetData(string value)
+		{
+			NS_StringSetData(this, value, (value == null) ? 0 : value.Length);
+		}
+
+		public override string ToString()
+		{
+			IntPtr data;
+			int length = NS_StringGetData(this, out data, IntPtr.Zero);
+
+			if (length > 0)
+			{
+				return Marshal.PtrToStringUni(data, length);
+			}
+			return "";
+		}
+	}
+
+	// TODO: internal nsAString is implementation dependant write some unit tests to ensure we at least notice if it breaks.
+	// On 32 bit Linux systems it will be 12 bytes
+	// On 64 bit Linux Systems it will be 16 bytes.
+	[StructLayout(LayoutKind.Sequential)]
+	public class nsAString : nsAStringBase, IDisposable
+	{					
 		public nsAString()
 		{
 			NS_StringContainerInit(this);
@@ -414,23 +436,6 @@ namespace Gecko
 		{
 			NS_StringContainerFinish(this);
 			GC.SuppressFinalize(this);
-		}
-		
-		public void SetData(string value)
-		{
-			NS_StringSetData(this, value, (value == null) ? 0 : value.Length);
-		}
-		
-		public override string ToString()
-		{
-			IntPtr data;
-			int length = NS_StringGetData(this, out data, IntPtr.Zero);
-			
-			if (length > 0)
-			{
-				return Marshal.PtrToStringUni(data, length);
-			}
-			return "";
-		}
+		}				
 	}
 }

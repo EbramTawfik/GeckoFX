@@ -49,7 +49,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISSLStatus GetRecentBadCert([MarshalAs(UnmanagedType.LPStruct)] nsAString aHostNameWithPort);
+		nsISSLStatus GetRecentBadCert([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aHostNameWithPort);
 		
 		/// <summary>
         /// A bad certificate that should be remembered by the service.
@@ -60,6 +60,6 @@ namespace Gecko
         /// @param aCert The bad ssl status with certificate
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddBadCert([MarshalAs(UnmanagedType.LPStruct)] nsAString aHostNameWithPort, [MarshalAs(UnmanagedType.Interface)] nsISSLStatus aStatus);
+		void AddBadCert([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aHostNameWithPort, [MarshalAs(UnmanagedType.Interface)] nsISSLStatus aStatus);
 	}
 }

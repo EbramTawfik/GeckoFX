@@ -79,6 +79,6 @@ namespace Gecko
         /// to aBaseURI.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init(uint aUrlType, int aDefaultPort, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aSpec, [MarshalAs(UnmanagedType.LPStr)] string aOriginCharset, [MarshalAs(UnmanagedType.Interface)] nsIURI aBaseURI);
+		void Init(uint aUrlType, int aDefaultPort, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aSpec, [MarshalAs(UnmanagedType.LPStr)] string aOriginCharset, [MarshalAs(UnmanagedType.Interface)] nsIURI aBaseURI);
 	}
 }

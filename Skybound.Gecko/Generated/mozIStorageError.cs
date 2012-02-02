@@ -44,6 +44,6 @@ namespace Gecko
         /// An error string the gives more details, if available.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMessageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aMessage);
+		void GetMessageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aMessage);
 	}
 }

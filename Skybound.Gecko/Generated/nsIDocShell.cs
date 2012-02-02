@@ -109,7 +109,7 @@ namespace Gecko
         /// depending on the value of aReplace.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddState([MarshalAs(UnmanagedType.Interface)] nsIVariant aData, [MarshalAs(UnmanagedType.LPStruct)] nsAString aTitle, [MarshalAs(UnmanagedType.LPStruct)] nsAString aURL, [MarshalAs(UnmanagedType.Bool)] bool aReplace, System.IntPtr jsContext);
+		void AddState([MarshalAs(UnmanagedType.Interface)] nsIVariant aData, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTitle, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aURL, [MarshalAs(UnmanagedType.Bool)] bool aReplace, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Creates a DocShellLoadInfo object that you can manipulate and then pass
@@ -541,7 +541,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMStorage GetSessionStorageForURI([MarshalAs(UnmanagedType.Interface)] nsIURI uri, [MarshalAs(UnmanagedType.LPStruct)] nsAString documentURI);
+		nsIDOMStorage GetSessionStorageForURI([MarshalAs(UnmanagedType.Interface)] nsIURI uri, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase documentURI);
 		
 		/// <summary>
         /// Retrieves the WebApps session storage object for the supplied principal.
@@ -554,7 +554,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMStorage GetSessionStorageForPrincipal([MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, [MarshalAs(UnmanagedType.LPStruct)] nsAString documentURI, [MarshalAs(UnmanagedType.Bool)] bool create);
+		nsIDOMStorage GetSessionStorageForPrincipal([MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase documentURI, [MarshalAs(UnmanagedType.Bool)] bool create);
 		
 		/// <summary>
         /// Add a WebApps session storage object to the docshell.

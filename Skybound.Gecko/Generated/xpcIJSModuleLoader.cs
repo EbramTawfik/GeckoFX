@@ -37,7 +37,7 @@ namespace Gecko
 		/// <summary>
         ///, [optional] in JSObject targetObj </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Import([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aResourceURI);
+		void Import([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aResourceURI);
 		
 		/// <summary>
         /// Imports the JS module at aResourceURI to the JS object
@@ -45,7 +45,7 @@ namespace Gecko
         /// returns the module's global object.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr ImportInto([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aResourceURI, System.IntPtr targetObj, System.IntPtr cc);
+		System.IntPtr ImportInto([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aResourceURI, System.IntPtr targetObj, System.IntPtr cc);
 		
 		/// <summary>
         /// Unloads the JS module at aResourceURI. Existing references to the module
@@ -54,6 +54,6 @@ namespace Gecko
         /// then this method will do nothing.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Unload([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aResourceURI);
+		void Unload([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aResourceURI);
 	}
 }

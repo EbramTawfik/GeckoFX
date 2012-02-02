@@ -43,12 +43,12 @@ namespace Gecko
 		/// <summary>Member GetCssTextAttribute </summary>
 		/// <param name='aCssText'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetCssTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aCssText);
+		new void GetCssTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCssText);
 		
 		/// <summary>Member SetCssTextAttribute </summary>
 		/// <param name='aCssText'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetCssTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aCssText);
+		new void SetCssTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCssText);
 		
 		/// <summary>
         /// raises(DOMException) on setting
@@ -66,12 +66,12 @@ namespace Gecko
 		/// <summary>Member GetSelectorTextAttribute </summary>
 		/// <param name='aSelectorText'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSelectorTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aSelectorText);
+		void GetSelectorTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSelectorText);
 		
 		/// <summary>Member SetSelectorTextAttribute </summary>
 		/// <param name='aSelectorText'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSelectorTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aSelectorText);
+		void SetSelectorTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSelectorText);
 		
 		/// <summary>
         /// raises(DOMException) on setting

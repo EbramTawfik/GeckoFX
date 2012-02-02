@@ -38,27 +38,27 @@ namespace Gecko
         /// Human readable name for the handler
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
+		new void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
 		
 		/// <summary>
         /// Human readable name for the handler
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
+		new void SetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
 		
 		/// <summary>
         /// Detailed description for this handler. Suitable for
         /// a tooltip or short informative sentence.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetDetailedDescriptionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDetailedDescription);
+		new void GetDetailedDescriptionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDetailedDescription);
 		
 		/// <summary>
         /// Detailed description for this handler. Suitable for
         /// a tooltip or short informative sentence.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetDetailedDescriptionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDetailedDescription);
+		new void SetDetailedDescriptionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDetailedDescription);
 		
 		/// <summary>
         /// Whether or not the given handler app is logically equivalent to the
@@ -101,7 +101,7 @@ namespace Gecko
 		/// <param name='data'> </param>
 		/// <param name='title'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Share([MarshalAs(UnmanagedType.LPStruct)] nsAString data, [MarshalAs(UnmanagedType.LPStruct)] nsAString title);
+		void Share([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase data, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase title);
 	}
 	
 	/// <summary>nsIExternalSharingAppService </summary>
@@ -116,13 +116,13 @@ namespace Gecko
 		/// <param name='mime'> </param>
 		/// <param name='title'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ShareWithDefault([MarshalAs(UnmanagedType.LPStruct)] nsAString data, [MarshalAs(UnmanagedType.LPStruct)] nsAString mime, [MarshalAs(UnmanagedType.LPStruct)] nsAString title);
+		void ShareWithDefault([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase data, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase mime, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase title);
 		
 		/// <summary>Member GetSharingApps </summary>
 		/// <param name='aMIMEType'> </param>
 		/// <param name='aLen'> </param>
 		/// <param name='handlerApps'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSharingApps([MarshalAs(UnmanagedType.LPStruct)] nsAString aMIMEType, ref uint aLen, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] ref nsISharingHandlerApp[] handlerApps);
+		void GetSharingApps([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMIMEType, ref uint aLen, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] ref nsISharingHandlerApp[] handlerApps);
 	}
 }

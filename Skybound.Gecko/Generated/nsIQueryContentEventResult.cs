@@ -63,7 +63,7 @@ namespace Gecko
 		int GetHeightAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aText);
+		void GetTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aText);
 		
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

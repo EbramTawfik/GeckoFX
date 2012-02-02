@@ -75,6 +75,6 @@ namespace Gecko
         /// descriptions begins at the 24th character.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetHelpInfoAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aHelpInfo);
+		void GetHelpInfoAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aHelpInfo);
 	}
 }

@@ -53,7 +53,7 @@ namespace Gecko
 		ushort GetSeverityAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMessageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMessage);
+		void GetMessageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMessage);
 		
 		/// <summary>
         /// do some magic to make that work?

@@ -37,27 +37,27 @@ namespace Gecko
 		/// <summary>Member GetDescriptionAttribute </summary>
 		/// <param name='aDescription'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDescriptionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aDescription);
+		void GetDescriptionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aDescription);
 		
 		/// <summary>Member GetFilenameAttribute </summary>
 		/// <param name='aFilename'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetFilenameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aFilename);
+		void GetFilenameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aFilename);
 		
 		/// <summary>Member GetFullpathAttribute </summary>
 		/// <param name='aFullpath'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetFullpathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aFullpath);
+		void GetFullpathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aFullpath);
 		
 		/// <summary>Member GetVersionAttribute </summary>
 		/// <param name='aVersion'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aVersion);
+		void GetVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aVersion);
 		
 		/// <summary>Member GetNameAttribute </summary>
 		/// <param name='aName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName);
+		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aName);
 		
 		/// <summary>Member GetDisabledAttribute </summary>
 		/// <returns>A System.Boolean</returns>

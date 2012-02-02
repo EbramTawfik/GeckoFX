@@ -51,24 +51,24 @@ namespace Gecko
 		new uint GetLengthAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Item(uint index, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		new void Item(uint index, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool Contains([MarshalAs(UnmanagedType.LPStruct)] nsAString token);
+		new bool Contains([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase token);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Add([MarshalAs(UnmanagedType.LPStruct)] nsAString token);
+		new void Add([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase token);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Remove([MarshalAs(UnmanagedType.LPStruct)] nsAString token);
+		new void Remove([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase token);
 		
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool Toggle([MarshalAs(UnmanagedType.LPStruct)] nsAString token);
+		new bool Toggle([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase token);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void ToString([MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		new void ToString([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// The DOMSettableTokenList interface is the same as the DOMTokenList interface,
@@ -78,7 +78,7 @@ namespace Gecko
         /// http://dev.w3.org/html5/spec/infrastructure.html#domsettabletokenlist
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aValue);
+		void GetValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aValue);
 		
 		/// <summary>
         /// The DOMSettableTokenList interface is the same as the DOMTokenList interface,
@@ -88,6 +88,6 @@ namespace Gecko
         /// http://dev.w3.org/html5/spec/infrastructure.html#domsettabletokenlist
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aValue);
+		void SetValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aValue);
 	}
 }

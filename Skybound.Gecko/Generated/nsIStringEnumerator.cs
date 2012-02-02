@@ -44,7 +44,7 @@ namespace Gecko
 		bool HasMore();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNext([MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetNext([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 	}
 	
 	/// <summary>nsIUTF8StringEnumerator </summary>
@@ -63,6 +63,6 @@ namespace Gecko
 		/// <summary>Member GetNext </summary>
 		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNext([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
+		void GetNext([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase retval);
 	}
 }

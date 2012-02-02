@@ -40,7 +40,7 @@ namespace Gecko
         /// This attribute specifies the hostname of the proxy server.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetHostAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aHost);
+		void GetHostAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aHost);
 		
 		/// <summary>
         /// This attribute specifies the port number of the proxy server.

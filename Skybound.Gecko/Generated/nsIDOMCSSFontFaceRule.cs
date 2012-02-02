@@ -43,12 +43,12 @@ namespace Gecko
 		/// <summary>Member GetCssTextAttribute </summary>
 		/// <param name='aCssText'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetCssTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aCssText);
+		new void GetCssTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCssText);
 		
 		/// <summary>Member SetCssTextAttribute </summary>
 		/// <param name='aCssText'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetCssTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aCssText);
+		new void SetCssTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCssText);
 		
 		/// <summary>
         /// raises(DOMException) on setting

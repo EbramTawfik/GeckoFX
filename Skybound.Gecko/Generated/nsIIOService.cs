@@ -71,7 +71,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI NewURI([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aSpec, [MarshalAs(UnmanagedType.LPStr)] string aOriginCharset, [MarshalAs(UnmanagedType.Interface)] nsIURI aBaseURI);
+		nsIURI NewURI([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aSpec, [MarshalAs(UnmanagedType.LPStr)] string aOriginCharset, [MarshalAs(UnmanagedType.Interface)] nsIURI aBaseURI);
 		
 		/// <summary>
         /// This method constructs a new URI from a nsIFile.
@@ -102,7 +102,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIChannel NewChannel([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aSpec, [MarshalAs(UnmanagedType.LPStr)] string aOriginCharset, [MarshalAs(UnmanagedType.Interface)] nsIURI aBaseURI);
+		nsIChannel NewChannel([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aSpec, [MarshalAs(UnmanagedType.LPStr)] string aOriginCharset, [MarshalAs(UnmanagedType.Interface)] nsIURI aBaseURI);
 		
 		/// <summary>
         /// Returns true if networking is in "offline" mode. When in offline mode,
@@ -158,6 +158,6 @@ namespace Gecko
         /// @throws NS_ERROR_MALFORMED_URI if URL string is not of the right form.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ExtractScheme([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String urlString, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
+		void ExtractScheme([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase urlString, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
 	}
 }

@@ -41,7 +41,7 @@ namespace Gecko
         /// The type of the event for which the listener was added.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aType);
+		void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType);
 		
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -61,7 +61,7 @@ namespace Gecko
         /// (for example with C++ listeners).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ToSource([MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void ToSource([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// If jsdIDebuggerService is active and the listener is implemented in JS,
@@ -102,18 +102,18 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool HasListenersFor([MarshalAs(UnmanagedType.Interface)] nsIDOMEventTarget aEventTarget, [MarshalAs(UnmanagedType.LPStruct)] nsAString aType);
+		bool HasListenersFor([MarshalAs(UnmanagedType.Interface)] nsIDOMEventTarget aEventTarget, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType);
 		
 		/// <summary>
         /// Add a system-group eventlistener to a event target.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddSystemEventListener([MarshalAs(UnmanagedType.Interface)] nsIDOMEventTarget target, [MarshalAs(UnmanagedType.LPStruct)] nsAString type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener listener, [MarshalAs(UnmanagedType.Bool)] bool useCapture);
+		void AddSystemEventListener([MarshalAs(UnmanagedType.Interface)] nsIDOMEventTarget target, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener listener, [MarshalAs(UnmanagedType.Bool)] bool useCapture);
 		
 		/// <summary>
         /// Remove a system-group eventlistener from a event target.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveSystemEventListener([MarshalAs(UnmanagedType.Interface)] nsIDOMEventTarget target, [MarshalAs(UnmanagedType.LPStruct)] nsAString type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener listener, [MarshalAs(UnmanagedType.Bool)] bool useCapture);
+		void RemoveSystemEventListener([MarshalAs(UnmanagedType.Interface)] nsIDOMEventTarget target, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener listener, [MarshalAs(UnmanagedType.Bool)] bool useCapture);
 	}
 }

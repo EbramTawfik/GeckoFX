@@ -60,7 +60,7 @@ namespace Gecko
         /// objects like host containers.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetUriAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aUri);
+		void GetUriAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aUri);
 		
 		/// <summary>
         /// nsINavHistoryQueryResultNode
@@ -72,7 +72,7 @@ namespace Gecko
         /// Title of the web page, or of the node's query (day, host, folder, etc)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTitleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aTitle);
+		void GetTitleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aTitle);
 		
 		/// <summary>
         /// Total number of times the URI has ever been accessed. For hosts, this
@@ -112,7 +112,7 @@ namespace Gecko
         /// be the original chrome URI of the icon.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetIconAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aIcon);
+		void GetIconAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aIcon);
 		
 		/// <summary>
         /// This is the number of levels between this node and the top of the
@@ -162,7 +162,7 @@ namespace Gecko
         /// for the uri represented by this node. Otherwise this is an empty string.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTagsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aTags);
+		void GetTagsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTags);
 	}
 	
 	/// <summary>
@@ -198,7 +198,7 @@ namespace Gecko
         /// objects like host containers.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetUriAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aUri);
+		new void GetUriAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aUri);
 		
 		/// <summary>
         /// nsINavHistoryQueryResultNode
@@ -210,7 +210,7 @@ namespace Gecko
         /// Title of the web page, or of the node's query (day, host, folder, etc)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetTitleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aTitle);
+		new void GetTitleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aTitle);
 		
 		/// <summary>
         /// Total number of times the URI has ever been accessed. For hosts, this
@@ -250,7 +250,7 @@ namespace Gecko
         /// be the original chrome URI of the icon.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetIconAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aIcon);
+		new void GetIconAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aIcon);
 		
 		/// <summary>
         /// This is the number of levels between this node and the top of the
@@ -300,7 +300,7 @@ namespace Gecko
         /// for the uri represented by this node. Otherwise this is an empty string.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetTagsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aTags);
+		new void GetTagsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTags);
 		
 		/// <summary>
         /// This indicates the session ID of the * visit. This is used for session
@@ -343,7 +343,7 @@ namespace Gecko
         /// objects like host containers.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetUriAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aUri);
+		new void GetUriAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aUri);
 		
 		/// <summary>
         /// nsINavHistoryQueryResultNode
@@ -355,7 +355,7 @@ namespace Gecko
         /// Title of the web page, or of the node's query (day, host, folder, etc)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetTitleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aTitle);
+		new void GetTitleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aTitle);
 		
 		/// <summary>
         /// Total number of times the URI has ever been accessed. For hosts, this
@@ -395,7 +395,7 @@ namespace Gecko
         /// be the original chrome URI of the icon.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetIconAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aIcon);
+		new void GetIconAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aIcon);
 		
 		/// <summary>
         /// This is the number of levels between this node and the top of the
@@ -445,7 +445,7 @@ namespace Gecko
         /// for the uri represented by this node. Otherwise this is an empty string.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetTagsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aTags);
+		new void GetTagsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTags);
 		
 		/// <summary>
         /// This indicates the session ID of the * visit. This is used for session
@@ -508,7 +508,7 @@ namespace Gecko
         /// objects like host containers.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetUriAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aUri);
+		new void GetUriAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aUri);
 		
 		/// <summary>
         /// nsINavHistoryQueryResultNode
@@ -520,7 +520,7 @@ namespace Gecko
         /// Title of the web page, or of the node's query (day, host, folder, etc)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetTitleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aTitle);
+		new void GetTitleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aTitle);
 		
 		/// <summary>
         /// Total number of times the URI has ever been accessed. For hosts, this
@@ -560,7 +560,7 @@ namespace Gecko
         /// be the original chrome URI of the icon.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetIconAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aIcon);
+		new void GetIconAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aIcon);
 		
 		/// <summary>
         /// This is the number of levels between this node and the top of the
@@ -610,7 +610,7 @@ namespace Gecko
         /// for the uri represented by this node. Otherwise this is an empty string.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetTagsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aTags);
+		new void GetTagsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTags);
 		
 		/// <summary>
         /// Set this to allow descent into the container. When closed, attempting
@@ -707,7 +707,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsINavHistoryResultNode FindNodeByDetails([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aURIString, long aTime, long aItemId, [MarshalAs(UnmanagedType.Bool)] bool aRecursive);
+		nsINavHistoryResultNode FindNodeByDetails([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aURIString, long aTime, long aItemId, [MarshalAs(UnmanagedType.Bool)] bool aRecursive);
 		
 		/// <summary>
         /// Returns false if this node's list of children can be modified
@@ -726,7 +726,7 @@ namespace Gecko
         /// container.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDynamicContainerTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aDynamicContainerType);
+		void GetDynamicContainerTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aDynamicContainerType);
 		
 		/// <summary>
         /// Appends a full visit node to this container and returns it. For the dynamic
@@ -737,7 +737,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsINavHistoryResultNode AppendURINode([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aTitle, uint aAccessCount, long aTime, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aIconURI);
+		nsINavHistoryResultNode AppendURINode([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aTitle, uint aAccessCount, long aTime, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aIconURI);
 		
 		/// <summary>
         /// Appends a bookmark folder node to this container and returns it. For the
@@ -787,7 +787,7 @@ namespace Gecko
         /// objects like host containers.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetUriAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aUri);
+		new void GetUriAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aUri);
 		
 		/// <summary>
         /// nsINavHistoryQueryResultNode
@@ -799,7 +799,7 @@ namespace Gecko
         /// Title of the web page, or of the node's query (day, host, folder, etc)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetTitleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aTitle);
+		new void GetTitleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aTitle);
 		
 		/// <summary>
         /// Total number of times the URI has ever been accessed. For hosts, this
@@ -839,7 +839,7 @@ namespace Gecko
         /// be the original chrome URI of the icon.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetIconAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aIcon);
+		new void GetIconAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aIcon);
 		
 		/// <summary>
         /// This is the number of levels between this node and the top of the
@@ -889,7 +889,7 @@ namespace Gecko
         /// for the uri represented by this node. Otherwise this is an empty string.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetTagsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aTags);
+		new void GetTagsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTags);
 		
 		/// <summary>
         /// Set this to allow descent into the container. When closed, attempting
@@ -986,7 +986,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsINavHistoryResultNode FindNodeByDetails([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aURIString, long aTime, long aItemId, [MarshalAs(UnmanagedType.Bool)] bool aRecursive);
+		new nsINavHistoryResultNode FindNodeByDetails([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aURIString, long aTime, long aItemId, [MarshalAs(UnmanagedType.Bool)] bool aRecursive);
 		
 		/// <summary>
         /// Returns false if this node's list of children can be modified
@@ -1005,7 +1005,7 @@ namespace Gecko
         /// container.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetDynamicContainerTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aDynamicContainerType);
+		new void GetDynamicContainerTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aDynamicContainerType);
 		
 		/// <summary>
         /// Appends a full visit node to this container and returns it. For the dynamic
@@ -1016,7 +1016,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsINavHistoryResultNode AppendURINode([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aTitle, uint aAccessCount, long aTime, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aIconURI);
+		new nsINavHistoryResultNode AppendURINode([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aTitle, uint aAccessCount, long aTime, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aIconURI);
 		
 		/// <summary>
         /// Appends a bookmark folder node to this container and returns it. For the
@@ -1102,7 +1102,7 @@ namespace Gecko
         /// the new title
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NodeTitleChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode aNode, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aNewTitle);
+		void NodeTitleChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode aNode, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aNewTitle);
 		
 		/// <summary>
         /// Called right after aNode's uri property has changed.
@@ -1113,7 +1113,7 @@ namespace Gecko
         /// the new uri
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NodeURIChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode aNode, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aNewURI);
+		void NodeURIChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode aNode, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aNewURI);
 		
 		/// <summary>
         /// Called right after aNode's icon property has changed.
@@ -1160,7 +1160,7 @@ namespace Gecko
         /// the new keyword
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NodeKeywordChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode aNode, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aNewKeyword);
+		void NodeKeywordChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode aNode, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aNewKeyword);
 		
 		/// <summary>
         /// Called right after an annotation of aNode's has changed (set, altered, or
@@ -1172,7 +1172,7 @@ namespace Gecko
         /// the name of the annotation that changed
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NodeAnnotationChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode aNode, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aAnnoName);
+		void NodeAnnotationChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode aNode, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aAnnoName);
 		
 		/// <summary>
         /// Called right after aNode's dateAdded property has changed.
@@ -1357,7 +1357,7 @@ namespace Gecko
         /// the new title
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void NodeTitleChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode aNode, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aNewTitle);
+		new void NodeTitleChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode aNode, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aNewTitle);
 		
 		/// <summary>
         /// Called right after aNode's uri property has changed.
@@ -1368,7 +1368,7 @@ namespace Gecko
         /// the new uri
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void NodeURIChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode aNode, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aNewURI);
+		new void NodeURIChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode aNode, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aNewURI);
 		
 		/// <summary>
         /// Called right after aNode's icon property has changed.
@@ -1415,7 +1415,7 @@ namespace Gecko
         /// the new keyword
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void NodeKeywordChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode aNode, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aNewKeyword);
+		new void NodeKeywordChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode aNode, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aNewKeyword);
 		
 		/// <summary>
         /// Called right after an annotation of aNode's has changed (set, altered, or
@@ -1427,7 +1427,7 @@ namespace Gecko
         /// the name of the annotation that changed
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void NodeAnnotationChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode aNode, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aAnnoName);
+		new void NodeAnnotationChanged([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode aNode, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aAnnoName);
 		
 		/// <summary>
         /// Called right after aNode's dateAdded property has changed.
@@ -1612,14 +1612,14 @@ namespace Gecko
         /// before setting the sortingMode attribute.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSortingAnnotationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aSortingAnnotation);
+		void GetSortingAnnotationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aSortingAnnotation);
 		
 		/// <summary>
         /// The annotation to use in SORT_BY_ANNOTATION_* sorting modes, set this
         /// before setting the sortingMode attribute.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSortingAnnotationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aSortingAnnotation);
+		void SetSortingAnnotationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aSortingAnnotation);
 		
 		/// <summary>
         /// Whether or not notifications on result changes are suppressed.
@@ -1756,7 +1756,7 @@ namespace Gecko
         /// The unique ID associated with the page.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnTitleChanged([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString aPageTitle, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGUID);
+		void OnTitleChanged([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPageTitle, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGUID);
 		
 		/// <summary>
         /// This page and all of its visits are about to be deleted.  Note: the page
@@ -1811,7 +1811,7 @@ namespace Gecko
         /// The unique ID associated with the page.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnPageChanged([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, uint aChangedAttribute, [MarshalAs(UnmanagedType.LPStruct)] nsAString aNewValue, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGUID);
+		void OnPageChanged([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, uint aChangedAttribute, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNewValue, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGUID);
 		
 		/// <summary>
         /// Called when some visits of an history entry are expired.
@@ -1940,13 +1940,13 @@ namespace Gecko
         /// Text search terms.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSearchTermsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aSearchTerms);
+		void GetSearchTermsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSearchTerms);
 		
 		/// <summary>
         /// Text search terms.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSearchTermsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aSearchTerms);
+		void SetSearchTermsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSearchTerms);
 		
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -2037,7 +2037,7 @@ namespace Gecko
         /// domain matching.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDomainAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aDomain);
+		void GetDomainAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aDomain);
 		
 		/// <summary>
         /// This is the host or domain name (controlled by domainIsHost). When
@@ -2050,7 +2050,7 @@ namespace Gecko
         /// domain matching.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDomainAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aDomain);
+		void SetDomainAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aDomain);
 		
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -2128,10 +2128,10 @@ namespace Gecko
 		void SetAnnotationIsNotAttribute([MarshalAs(UnmanagedType.Bool)] bool aAnnotationIsNot);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetAnnotationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aAnnotation);
+		void GetAnnotationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aAnnotation);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAnnotationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aAnnotation);
+		void SetAnnotationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aAnnotation);
 		
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -2233,13 +2233,13 @@ namespace Gecko
         /// The annotation to use in SORT_BY_ANNOTATION_* sorting modes.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSortingAnnotationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aSortingAnnotation);
+		void GetSortingAnnotationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aSortingAnnotation);
 		
 		/// <summary>
         /// The annotation to use in SORT_BY_ANNOTATION_* sorting modes.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSortingAnnotationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aSortingAnnotation);
+		void SetSortingAnnotationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aSortingAnnotation);
 		
 		/// <summary>
         /// Sets the result type. One of RESULT_TYPE_* which includes how URIs are
@@ -2322,7 +2322,7 @@ namespace Gecko
         /// Ignored for queries over history.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetExcludeItemIfParentHasAnnotationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aExcludeItemIfParentHasAnnotation);
+		void GetExcludeItemIfParentHasAnnotationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aExcludeItemIfParentHasAnnotation);
 		
 		/// <summary>
         /// This option excludes items from a bookmarks query
@@ -2332,7 +2332,7 @@ namespace Gecko
         /// Ignored for queries over history.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetExcludeItemIfParentHasAnnotationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aExcludeItemIfParentHasAnnotation);
+		void SetExcludeItemIfParentHasAnnotationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aExcludeItemIfParentHasAnnotation);
 		
 		/// <summary>
         /// When set, allows items with "place:" URIs to appear as containers,
@@ -2502,7 +2502,7 @@ namespace Gecko
         /// Gets the original title of the page.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPageTitle([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetPageTitle([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// This is just like markPageAsTyped (in nsIBrowserHistory, also implemented
@@ -2522,7 +2522,7 @@ namespace Gecko
         /// @return character-set, empty string if not found
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCharsetForURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetCharsetForURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// Sets the character-set for an URI.
@@ -2533,7 +2533,7 @@ namespace Gecko
         /// character-set to be set
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCharsetForURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString aCharset);
+		void SetCharsetForURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCharset);
 		
 		/// <summary>
         /// Returns true if this URI would be added to the history. You don't have to
@@ -2612,14 +2612,14 @@ namespace Gecko
         /// (if nothing is defined, it will just have the default values).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void QueryStringToQueries([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aQueryString, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] ref nsINavHistoryQuery[] aQueries, ref uint aResultCount, [MarshalAs(UnmanagedType.Interface)] ref nsINavHistoryQueryOptions options);
+		void QueryStringToQueries([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aQueryString, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] ref nsINavHistoryQuery[] aQueries, ref uint aResultCount, [MarshalAs(UnmanagedType.Interface)] ref nsINavHistoryQueryOptions options);
 		
 		/// <summary>
         /// Converts a query into an equivalent string that can be persisted. Inverse
         /// of queryStringToQueries()
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void QueriesToQueryString([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] nsINavHistoryQuery[] aQueries, uint aQueryCount, [MarshalAs(UnmanagedType.Interface)] nsINavHistoryQueryOptions options, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
+		void QueriesToQueryString([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] nsINavHistoryQuery[] aQueries, uint aQueryCount, [MarshalAs(UnmanagedType.Interface)] nsINavHistoryQueryOptions options, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase retval);
 		
 		/// <summary>
         /// Adds a history observer. If ownsWeak is false, the history service will

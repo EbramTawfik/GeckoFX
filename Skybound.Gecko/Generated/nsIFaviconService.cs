@@ -139,7 +139,7 @@ namespace Gecko
         /// Thrown if the favicon is overbloated and won't be saved to the db.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFaviconData([MarshalAs(UnmanagedType.Interface)] nsIURI aFaviconURI, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] System.IntPtr[] aData, uint aDataLen, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aMimeType, long aExpiration);
+		void SetFaviconData([MarshalAs(UnmanagedType.Interface)] nsIURI aFaviconURI, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] System.IntPtr[] aData, uint aDataLen, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aMimeType, long aExpiration);
 		
 		/// <summary>
         /// Same as setFaviconData but the data is provided by a string
@@ -159,7 +159,7 @@ namespace Gecko
         /// Thrown if the favicon is overbloated and won't be saved to the db.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFaviconDataFromDataURL([MarshalAs(UnmanagedType.Interface)] nsIURI aFaviconURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString aDataURL, long aExpiration);
+		void SetFaviconDataFromDataURL([MarshalAs(UnmanagedType.Interface)] nsIURI aFaviconURI, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDataURL, long aExpiration);
 		
 		/// <summary>
         /// Retrieves the given favicon data.  Throws if we don't have data.
@@ -181,7 +181,7 @@ namespace Gecko
         /// Thrown when we have never heard of this favicon URI.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetFaviconData([MarshalAs(UnmanagedType.Interface)] nsIURI aFaviconURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aMimeType, ref uint aDataLen, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] ref System.IntPtr[] aData);
+		void GetFaviconData([MarshalAs(UnmanagedType.Interface)] nsIURI aFaviconURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aMimeType, ref uint aDataLen, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] ref System.IntPtr[] aData);
 		
 		/// <summary>
         /// Same as getFaviconData, but returns data as a string containing a data url.
@@ -196,7 +196,7 @@ namespace Gecko
         /// Thrown when we have never heard of this favicon URL.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetFaviconDataAsDataURL([MarshalAs(UnmanagedType.Interface)] nsIURI aFaviconURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetFaviconDataAsDataURL([MarshalAs(UnmanagedType.Interface)] nsIURI aFaviconURI, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// Retrieves the URI of the favicon for the given page.
@@ -351,6 +351,6 @@ namespace Gecko
         /// Mime type of the icon, null if aDataLen is 0.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnFaviconDataAvailable([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, uint aDataLen, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] System.IntPtr[] aData, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aMimeType);
+		void OnFaviconDataAvailable([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, uint aDataLen, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] System.IntPtr[] aData, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aMimeType);
 	}
 }

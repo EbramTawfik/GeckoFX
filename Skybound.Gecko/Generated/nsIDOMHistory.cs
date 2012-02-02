@@ -42,17 +42,17 @@ namespace Gecko
 		/// <summary>Member GetCurrentAttribute </summary>
 		/// <param name='aCurrent'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCurrentAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aCurrent);
+		void GetCurrentAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCurrent);
 		
 		/// <summary>Member GetPreviousAttribute </summary>
 		/// <param name='aPrevious'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPreviousAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aPrevious);
+		void GetPreviousAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPrevious);
 		
 		/// <summary>Member GetNextAttribute </summary>
 		/// <param name='aNext'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aNext);
+		void GetNextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNext);
 		
 		/// <summary>Member Back </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -71,7 +71,7 @@ namespace Gecko
 		/// <param name='index'> </param>
 		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Item(uint index, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void Item(uint index, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>Member PushState </summary>
 		/// <param name='aData'> </param>
@@ -79,7 +79,7 @@ namespace Gecko
 		/// <param name='aURL'> </param>
 		/// <param name='jsContext'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PushState([MarshalAs(UnmanagedType.Interface)] nsIVariant aData, [MarshalAs(UnmanagedType.LPStruct)] nsAString aTitle, [MarshalAs(UnmanagedType.LPStruct)] nsAString aURL, System.IntPtr jsContext);
+		void PushState([MarshalAs(UnmanagedType.Interface)] nsIVariant aData, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTitle, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aURL, System.IntPtr jsContext);
 		
 		/// <summary>Member ReplaceState </summary>
 		/// <param name='aData'> </param>
@@ -87,7 +87,7 @@ namespace Gecko
 		/// <param name='aURL'> </param>
 		/// <param name='jsContext'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ReplaceState([MarshalAs(UnmanagedType.Interface)] nsIVariant aData, [MarshalAs(UnmanagedType.LPStruct)] nsAString aTitle, [MarshalAs(UnmanagedType.LPStruct)] nsAString aURL, System.IntPtr jsContext);
+		void ReplaceState([MarshalAs(UnmanagedType.Interface)] nsIVariant aData, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTitle, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aURL, System.IntPtr jsContext);
 		
 		/// <summary>Member GetStateAttribute </summary>
 		/// <returns>A nsIVariant</returns>

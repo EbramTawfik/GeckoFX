@@ -191,13 +191,13 @@ namespace Gecko
         /// An extra parameter to configure searches with.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSearchParamAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aSearchParam);
+		void GetSearchParamAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSearchParam);
 		
 		/// <summary>
         /// An extra parameter to configure searches with.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSearchParamAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aSearchParam);
+		void SetSearchParamAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSearchParam);
 		
 		/// <summary>
         /// The number of autocomplete session to search
@@ -215,13 +215,13 @@ namespace Gecko
         /// The value of text in the autocomplete textbox
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTextValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aTextValue);
+		void GetTextValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTextValue);
 		
 		/// <summary>
         /// The value of text in the autocomplete textbox
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTextValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aTextValue);
+		void SetTextValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTextValue);
 		
 		/// <summary>
         /// Report the starting index of the cursor in the textbox

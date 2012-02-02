@@ -56,7 +56,7 @@ namespace Gecko
         /// TYPE_NULL will be returned.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetContentTypeForMIMEType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aMimeType);
+		uint GetContentTypeForMIMEType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aMimeType);
 		
 		/// <summary>
         /// Returns the plugin instance if it has already been instantiated. This
@@ -105,6 +105,6 @@ namespace Gecko
 		System.IntPtr GetPrintFrame();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PluginCrashed([MarshalAs(UnmanagedType.Interface)] nsIPluginTag pluginTag, [MarshalAs(UnmanagedType.LPStruct)] nsAString pluginDumpID, [MarshalAs(UnmanagedType.LPStruct)] nsAString browserDumpID, [MarshalAs(UnmanagedType.Bool)] bool submittedCrashReport);
+		void PluginCrashed([MarshalAs(UnmanagedType.Interface)] nsIPluginTag pluginTag, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase pluginDumpID, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase browserDumpID, [MarshalAs(UnmanagedType.Bool)] bool submittedCrashReport);
 	}
 }

@@ -48,7 +48,7 @@ namespace Gecko
         /// http://www.w3.org/TR/DOM-Level-2-Style
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMediaTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMediaText);
+		void GetMediaTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMediaText);
 		
 		/// <summary>
         /// The nsIDOMMediaList interface is a datatype for a list of media
@@ -58,7 +58,7 @@ namespace Gecko
         /// http://www.w3.org/TR/DOM-Level-2-Style
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMediaTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMediaText);
+		void SetMediaTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMediaText);
 		
 		/// <summary>
         /// raises(DOMException) on setting
@@ -67,12 +67,12 @@ namespace Gecko
 		uint GetLengthAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Item(uint index, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void Item(uint index, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DeleteMedium([MarshalAs(UnmanagedType.LPStruct)] nsAString oldMedium);
+		void DeleteMedium([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase oldMedium);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AppendMedium([MarshalAs(UnmanagedType.LPStruct)] nsAString newMedium);
+		void AppendMedium([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase newMedium);
 	}
 }

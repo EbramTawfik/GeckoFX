@@ -50,13 +50,13 @@ namespace Gecko
         /// A human readable description of the handler type
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDescriptionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDescription);
+		void GetDescriptionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDescription);
 		
 		/// <summary>
         /// A human readable description of the handler type
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDescriptionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDescription);
+		void SetDescriptionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDescription);
 		
 		/// <summary>
         /// The application the user has said they want associated with this content
@@ -100,7 +100,7 @@ namespace Gecko
         /// usable if hasDefaultHandler is true.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDefaultDescriptionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDefaultDescription);
+		void GetDefaultDescriptionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDefaultDescription);
 		
 		/// <summary>
         /// Launches the application with the specified URI, in a way that
@@ -189,13 +189,13 @@ namespace Gecko
         /// A human readable description of the handler type
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetDescriptionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDescription);
+		new void GetDescriptionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDescription);
 		
 		/// <summary>
         /// A human readable description of the handler type
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetDescriptionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDescription);
+		new void SetDescriptionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDescription);
 		
 		/// <summary>
         /// The application the user has said they want associated with this content
@@ -239,7 +239,7 @@ namespace Gecko
         /// usable if hasDefaultHandler is true.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetDefaultDescriptionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDefaultDescription);
+		new void GetDefaultDescriptionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDefaultDescription);
 		
 		/// <summary>
         /// Launches the application with the specified URI, in a way that
@@ -313,7 +313,7 @@ namespace Gecko
         /// Set File Extensions. Input is a comma delimited list of extensions.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFileExtensions([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aExtensions);
+		void SetFileExtensions([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aExtensions);
 		
 		/// <summary>
         /// Returns whether or not the given extension is
@@ -323,13 +323,13 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool ExtensionExists([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aExtension);
+		bool ExtensionExists([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aExtension);
 		
 		/// <summary>
         /// Append a given extension to the set of extensions
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AppendExtension([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aExtension);
+		void AppendExtension([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aExtension);
 		
 		/// <summary>
         /// Returns the first extension association in
@@ -338,7 +338,7 @@ namespace Gecko
         /// @return The first extension.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPrimaryExtensionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aPrimaryExtension);
+		void GetPrimaryExtensionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aPrimaryExtension);
 		
 		/// <summary>
         /// Returns the first extension association in
@@ -347,7 +347,7 @@ namespace Gecko
         /// @return The first extension.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPrimaryExtensionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aPrimaryExtension);
+		void SetPrimaryExtensionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aPrimaryExtension);
 		
 		/// <summary>
         /// The MIME type of this MIMEInfo.
@@ -414,27 +414,27 @@ namespace Gecko
         /// Human readable name for the handler
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
+		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
 		
 		/// <summary>
         /// Human readable name for the handler
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
+		void SetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
 		
 		/// <summary>
         /// Detailed description for this handler. Suitable for
         /// a tooltip or short informative sentence.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDetailedDescriptionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDetailedDescription);
+		void GetDetailedDescriptionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDetailedDescription);
 		
 		/// <summary>
         /// Detailed description for this handler. Suitable for
         /// a tooltip or short informative sentence.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDetailedDescriptionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDetailedDescription);
+		void SetDetailedDescriptionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDetailedDescription);
 		
 		/// <summary>
         /// Whether or not the given handler app is logically equivalent to the
@@ -487,27 +487,27 @@ namespace Gecko
         /// Human readable name for the handler
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
+		new void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
 		
 		/// <summary>
         /// Human readable name for the handler
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
+		new void SetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
 		
 		/// <summary>
         /// Detailed description for this handler. Suitable for
         /// a tooltip or short informative sentence.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetDetailedDescriptionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDetailedDescription);
+		new void GetDetailedDescriptionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDetailedDescription);
 		
 		/// <summary>
         /// Detailed description for this handler. Suitable for
         /// a tooltip or short informative sentence.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetDetailedDescriptionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDetailedDescription);
+		new void SetDetailedDescriptionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDetailedDescription);
 		
 		/// <summary>
         /// Whether or not the given handler app is logically equivalent to the
@@ -578,7 +578,7 @@ namespace Gecko
         /// @param param the parameter to add.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AppendParameter([MarshalAs(UnmanagedType.LPStruct)] nsAString param);
+		void AppendParameter([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase param);
 		
 		/// <summary>
         /// Retrieves a specific command line parameter.
@@ -590,7 +590,7 @@ namespace Gecko
         /// @throw NS_ERROR_INVALID_ARG if the index is out of range.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetParameter(uint parameterIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetParameter(uint parameterIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// Checks to see if a parameter exists in the command line
@@ -602,7 +602,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool ParameterExists([MarshalAs(UnmanagedType.LPStruct)] nsAString param);
+		bool ParameterExists([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase param);
 	}
 	
 	/// <summary>
@@ -621,27 +621,27 @@ namespace Gecko
         /// Human readable name for the handler
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
+		new void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
 		
 		/// <summary>
         /// Human readable name for the handler
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
+		new void SetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
 		
 		/// <summary>
         /// Detailed description for this handler. Suitable for
         /// a tooltip or short informative sentence.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetDetailedDescriptionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDetailedDescription);
+		new void GetDetailedDescriptionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDetailedDescription);
 		
 		/// <summary>
         /// Detailed description for this handler. Suitable for
         /// a tooltip or short informative sentence.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetDetailedDescriptionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDetailedDescription);
+		new void SetDetailedDescriptionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDetailedDescription);
 		
 		/// <summary>
         /// Whether or not the given handler app is logically equivalent to the
@@ -686,7 +686,7 @@ namespace Gecko
         /// that %s, as per the HTML5 spec.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetUriTemplateAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aUriTemplate);
+		void GetUriTemplateAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aUriTemplate);
 		
 		/// <summary>
         /// Template used to construct the URI to GET.  Template is expected to have
@@ -694,7 +694,7 @@ namespace Gecko
         /// that %s, as per the HTML5 spec.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetUriTemplateAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aUriTemplate);
+		void SetUriTemplateAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aUriTemplate);
 	}
 	
 	/// <summary>
@@ -711,27 +711,27 @@ namespace Gecko
         /// Human readable name for the handler
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
+		new void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
 		
 		/// <summary>
         /// Human readable name for the handler
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
+		new void SetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
 		
 		/// <summary>
         /// Detailed description for this handler. Suitable for
         /// a tooltip or short informative sentence.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetDetailedDescriptionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDetailedDescription);
+		new void GetDetailedDescriptionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDetailedDescription);
 		
 		/// <summary>
         /// Detailed description for this handler. Suitable for
         /// a tooltip or short informative sentence.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetDetailedDescriptionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDetailedDescription);
+		new void SetDetailedDescriptionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDetailedDescription);
 		
 		/// <summary>
         /// Whether or not the given handler app is logically equivalent to the
@@ -775,14 +775,14 @@ namespace Gecko
         /// If its not set,  NS_ERROR_FAILURE will be returned by LaunchWithURI
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetServiceAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aService);
+		void GetServiceAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aService);
 		
 		/// <summary>
         /// Service defines the dbus service that should handle this protocol.
         /// If its not set,  NS_ERROR_FAILURE will be returned by LaunchWithURI
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetServiceAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aService);
+		void SetServiceAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aService);
 		
 		/// <summary>
         /// Objpath defines the object path of the dbus service that should handle
@@ -790,7 +790,7 @@ namespace Gecko
         /// by LaunchWithURI
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetObjectPathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aObjectPath);
+		void GetObjectPathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aObjectPath);
 		
 		/// <summary>
         /// Objpath defines the object path of the dbus service that should handle
@@ -798,7 +798,7 @@ namespace Gecko
         /// by LaunchWithURI
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetObjectPathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aObjectPath);
+		void SetObjectPathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aObjectPath);
 		
 		/// <summary>
         /// DBusInterface defines the interface of the dbus service that should
@@ -806,7 +806,7 @@ namespace Gecko
         /// returned by LaunchWithURI
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDBusInterfaceAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aDBusInterface);
+		void GetDBusInterfaceAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aDBusInterface);
 		
 		/// <summary>
         /// DBusInterface defines the interface of the dbus service that should
@@ -814,7 +814,7 @@ namespace Gecko
         /// returned by LaunchWithURI
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDBusInterfaceAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aDBusInterface);
+		void SetDBusInterfaceAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aDBusInterface);
 		
 		/// <summary>
         /// Method defines the dbus method that should be invoked to handle this
@@ -822,7 +822,7 @@ namespace Gecko
         /// LaunchWithURI
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMethodAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aMethod);
+		void GetMethodAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aMethod);
 		
 		/// <summary>
         /// Method defines the dbus method that should be invoked to handle this
@@ -830,6 +830,6 @@ namespace Gecko
         /// LaunchWithURI
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMethodAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aMethod);
+		void SetMethodAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aMethod);
 	}
 }

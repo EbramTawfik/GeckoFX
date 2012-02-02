@@ -39,7 +39,7 @@ namespace Gecko
 		/// <returns>A nsIDOMDocumentFragment</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDocumentFragment CreateContextualFragment([MarshalAs(UnmanagedType.LPStruct)] nsAString fragment);
+		nsIDOMDocumentFragment CreateContextualFragment([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase fragment);
 		
 		/// <summary>
         /// of the boundary points or is between them.

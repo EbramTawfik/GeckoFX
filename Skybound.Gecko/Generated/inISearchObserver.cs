@@ -55,6 +55,6 @@ namespace Gecko
 		/// <param name='aModule'> </param>
 		/// <param name='aMessage'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnSearchError(inISearchProcess aModule, [MarshalAs(UnmanagedType.LPStruct)] nsAString aMessage);
+		void OnSearchError(inISearchProcess aModule, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMessage);
 	}
 }

@@ -126,7 +126,7 @@ namespace Gecko
         /// startElement returns is undefined
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void StartElement([MarshalAs(UnmanagedType.LPStruct)] nsAString uri, [MarshalAs(UnmanagedType.LPStruct)] nsAString localName, [MarshalAs(UnmanagedType.LPStruct)] nsAString qName, [MarshalAs(UnmanagedType.Interface)] nsISAXAttributes attributes);
+		void StartElement([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase uri, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase localName, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase qName, [MarshalAs(UnmanagedType.Interface)] nsISAXAttributes attributes);
 		
 		/// <summary>
         /// Receive notification of the end of an element.
@@ -148,7 +148,7 @@ namespace Gecko
         /// empty string if qualified names are not available
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EndElement([MarshalAs(UnmanagedType.LPStruct)] nsAString uri, [MarshalAs(UnmanagedType.LPStruct)] nsAString localName, [MarshalAs(UnmanagedType.LPStruct)] nsAString qName);
+		void EndElement([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase uri, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase localName, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase qName);
 		
 		/// <summary>
         /// Receive notification of character data.
@@ -167,7 +167,7 @@ namespace Gecko
         /// @param value the characters from the XML document
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Characters([MarshalAs(UnmanagedType.LPStruct)] nsAString value);
+		void Characters([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase value);
 		
 		/// <summary>
         /// Receive notification of a processing instruction.
@@ -186,7 +186,7 @@ namespace Gecko
         /// whitespace separating it from the target
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ProcessingInstruction([MarshalAs(UnmanagedType.LPStruct)] nsAString target, [MarshalAs(UnmanagedType.LPStruct)] nsAString data);
+		void ProcessingInstruction([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase target, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase data);
 		
 		/// <summary>
         /// Receive notification of ignorable whitespace in element content.
@@ -205,7 +205,7 @@ namespace Gecko
         /// @param whitespace the characters from the XML document
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void IgnorableWhitespace([MarshalAs(UnmanagedType.LPStruct)] nsAString whitespace);
+		void IgnorableWhitespace([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase whitespace);
 		
 		/// <summary>
         /// Begin the scope of a prefix-URI Namespace mapping.
@@ -238,7 +238,7 @@ namespace Gecko
         /// @param uri The Namespace URI the prefix is mapped to.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void StartPrefixMapping([MarshalAs(UnmanagedType.LPStruct)] nsAString prefix, [MarshalAs(UnmanagedType.LPStruct)] nsAString uri);
+		void StartPrefixMapping([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase prefix, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase uri);
 		
 		/// <summary>
         /// End the scope of a prefix-URI mapping.
@@ -251,6 +251,6 @@ namespace Gecko
         /// string when a default mapping scope ends.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EndPrefixMapping([MarshalAs(UnmanagedType.LPStruct)] nsAString prefix);
+		void EndPrefixMapping([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase prefix);
 	}
 }

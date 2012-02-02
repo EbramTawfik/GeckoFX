@@ -43,7 +43,7 @@ namespace Gecko
 		/// <summary>Member GetPathSegTypeAsLetterAttribute </summary>
 		/// <param name='aPathSegTypeAsLetter'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPathSegTypeAsLetterAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aPathSegTypeAsLetter);
+		void GetPathSegTypeAsLetterAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPathSegTypeAsLetter);
 	}
 	
 	/// <summary>nsIDOMSVGPathSegClosePath </summary>

@@ -38,27 +38,27 @@ namespace Gecko
         /// Human readable name for the handler
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
+		new void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
 		
 		/// <summary>
         /// Human readable name for the handler
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
+		new void SetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
 		
 		/// <summary>
         /// Detailed description for this handler. Suitable for
         /// a tooltip or short informative sentence.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetDetailedDescriptionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDetailedDescription);
+		new void GetDetailedDescriptionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDetailedDescription);
 		
 		/// <summary>
         /// Detailed description for this handler. Suitable for
         /// a tooltip or short informative sentence.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetDetailedDescriptionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDetailedDescription);
+		new void SetDetailedDescriptionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDetailedDescription);
 		
 		/// <summary>
         /// Whether or not the given handler app is logically equivalent to the
@@ -101,14 +101,14 @@ namespace Gecko
         /// The content type handled by the handler
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetContentTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aContentType);
+		void GetContentTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aContentType);
 		
 		/// <summary>
         /// The uri of the handler, with an embedded %s where the URI of the loaded
         /// document will be encoded.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetUriAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aUri);
+		void GetUriAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aUri);
 		
 		/// <summary>
         /// Gets the service URL Spec, with the loading document URI encoded in it.
@@ -118,7 +118,7 @@ namespace Gecko
         /// it.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetHandlerURI([MarshalAs(UnmanagedType.LPStruct)] nsAString uri, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetHandlerURI([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase uri, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 	}
 	
 	/// <summary>nsIWebContentConverterService </summary>
@@ -134,7 +134,7 @@ namespace Gecko
         /// content window from which the method has been called.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void RegisterContentHandler([MarshalAs(UnmanagedType.LPStruct)] nsAString mimeType, [MarshalAs(UnmanagedType.LPStruct)] nsAString uri, [MarshalAs(UnmanagedType.LPStruct)] nsAString title, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow contentWindow);
+		new void RegisterContentHandler([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase mimeType, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase uri, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase title, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow contentWindow);
 		
 		/// <summary>Member RegisterProtocolHandler </summary>
 		/// <param name='protocol'> </param>
@@ -142,7 +142,7 @@ namespace Gecko
 		/// <param name='title'> </param>
 		/// <param name='contentWindow'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void RegisterProtocolHandler([MarshalAs(UnmanagedType.LPStruct)] nsAString protocol, [MarshalAs(UnmanagedType.LPStruct)] nsAString uri, [MarshalAs(UnmanagedType.LPStruct)] nsAString title, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow contentWindow);
+		new void RegisterProtocolHandler([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase protocol, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase uri, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase title, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow contentWindow);
 		
 		/// <summary>
         /// Specifies the handler to be used to automatically handle all links of a
@@ -156,7 +156,7 @@ namespace Gecko
         /// not already registered.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAutoHandler([MarshalAs(UnmanagedType.LPStruct)] nsAString contentType, [MarshalAs(UnmanagedType.Interface)] nsIWebContentHandlerInfo handler);
+		void SetAutoHandler([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase contentType, [MarshalAs(UnmanagedType.Interface)] nsIWebContentHandlerInfo handler);
 		
 		/// <summary>
         /// Gets the auto handler specified for a particular content type
@@ -169,7 +169,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIWebContentHandlerInfo GetAutoHandler([MarshalAs(UnmanagedType.LPStruct)] nsAString contentType);
+		nsIWebContentHandlerInfo GetAutoHandler([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase contentType);
 		
 		/// <summary>
         /// Gets a web handler for the specified service URI
@@ -181,7 +181,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIWebContentHandlerInfo GetWebContentHandlerByURI([MarshalAs(UnmanagedType.LPStruct)] nsAString contentType, [MarshalAs(UnmanagedType.LPStruct)] nsAString uri);
+		nsIWebContentHandlerInfo GetWebContentHandlerByURI([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase contentType, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase uri);
 		
 		/// <summary>
         /// Loads the preferred handler when content of a registered type is about
@@ -200,7 +200,7 @@ namespace Gecko
         /// The uri of the service handler to remove
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveProtocolHandler([MarshalAs(UnmanagedType.LPStruct)] nsAString protocol, [MarshalAs(UnmanagedType.LPStruct)] nsAString uri);
+		void RemoveProtocolHandler([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase protocol, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase uri);
 		
 		/// <summary>
         /// Removes a registered content handler
@@ -210,7 +210,7 @@ namespace Gecko
         /// The uri of the service handler to remove
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveContentHandler([MarshalAs(UnmanagedType.LPStruct)] nsAString contentType, [MarshalAs(UnmanagedType.LPStruct)] nsAString uri);
+		void RemoveContentHandler([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase contentType, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase uri);
 		
 		/// <summary>
         /// Gets the list of content handlers for a particular type.
@@ -219,7 +219,7 @@ namespace Gecko
         /// @returns An array of nsIWebContentHandlerInfo objects
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetContentHandlers([MarshalAs(UnmanagedType.LPStruct)] nsAString contentType, ref uint count, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] ref nsIWebContentHandlerInfo[] handlers);
+		void GetContentHandlers([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase contentType, ref uint count, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] ref nsIWebContentHandlerInfo[] handlers);
 		
 		/// <summary>
         /// Resets the list of available content handlers to the default set from
@@ -228,6 +228,6 @@ namespace Gecko
         /// The content type to reset handlers for
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ResetHandlersForType([MarshalAs(UnmanagedType.LPStruct)] nsAString contentType);
+		void ResetHandlersForType([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase contentType);
 	}
 }

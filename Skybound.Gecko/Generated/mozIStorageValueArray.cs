@@ -76,10 +76,10 @@ namespace Gecko
 		double GetDouble(uint aIndex);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetUTF8String(uint aIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
+		void GetUTF8String(uint aIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase retval);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetString(uint aIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetString(uint aIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// data will be NULL if dataSize = 0

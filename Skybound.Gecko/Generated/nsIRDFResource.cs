@@ -57,7 +57,7 @@ namespace Gecko
         /// The UTF-8 URI of the resource.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetValueUTF8Attribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aValueUTF8);
+		void GetValueUTF8Attribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aValueUTF8);
 		
 		/// <summary>
         /// An unscriptable version used to avoid a string copy. Meant

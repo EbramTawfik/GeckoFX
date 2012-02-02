@@ -57,12 +57,12 @@ namespace Gecko
         /// The value associated with the item.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aValue);
+		void GetValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aValue);
 		
 		/// <summary>
         /// The value associated with the item.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aValue);
+		void SetValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aValue);
 	}
 }

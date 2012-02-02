@@ -47,7 +47,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsInstallEnabled([MarshalAs(UnmanagedType.LPStruct)] nsAString aMimetype, [MarshalAs(UnmanagedType.Interface)] nsIURI aReferer);
+		bool IsInstallEnabled([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMimetype, [MarshalAs(UnmanagedType.Interface)] nsIURI aReferer);
 		
 		/// <summary>
         /// Installs an array of add-ons at the request of a webpage
@@ -75,6 +75,6 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool InstallAddonsFromWebpage([MarshalAs(UnmanagedType.LPStruct)] nsAString aMimetype, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow, [MarshalAs(UnmanagedType.Interface)] nsIURI aReferer, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=8)] System.IntPtr[] aUris, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=8)] System.IntPtr[] aHashes, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=8)] System.IntPtr[] aNames, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=8)] System.IntPtr[] aIcons, amIInstallCallback aCallback, uint aInstallCount);
+		bool InstallAddonsFromWebpage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMimetype, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow, [MarshalAs(UnmanagedType.Interface)] nsIURI aReferer, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=8)] System.IntPtr[] aUris, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=8)] System.IntPtr[] aHashes, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=8)] System.IntPtr[] aNames, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=8)] System.IntPtr[] aIcons, amIInstallCallback aCallback, uint aInstallCount);
 	}
 }

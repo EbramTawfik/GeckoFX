@@ -71,7 +71,7 @@ namespace Gecko
         /// general or for that particular site and/or flag combination.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ClearSiteData([MarshalAs(UnmanagedType.Interface)] nsIPluginTag plugin, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String domain, ulong flags, long maxAge);
+		void ClearSiteData([MarshalAs(UnmanagedType.Interface)] nsIPluginTag plugin, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase domain, ulong flags, long maxAge);
 		
 		/// <summary>
         /// Determine if a plugin has stored data for a given site.
@@ -85,6 +85,6 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool SiteHasData([MarshalAs(UnmanagedType.Interface)] nsIPluginTag plugin, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String domain);
+		bool SiteHasData([MarshalAs(UnmanagedType.Interface)] nsIPluginTag plugin, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase domain);
 	}
 }

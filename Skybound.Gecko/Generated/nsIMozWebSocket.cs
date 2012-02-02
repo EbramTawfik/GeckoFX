@@ -48,13 +48,13 @@ namespace Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetUrlAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aUrl);
+		void GetUrlAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aUrl);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetExtensionsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aExtensions);
+		void GetExtensionsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aExtensions);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetProtocolAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aProtocol);
+		void GetProtocolAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aProtocol);
 		
 		/// <summary>
         ///ready state
@@ -107,14 +107,14 @@ namespace Gecko
         /// sent successfully).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Send([MarshalAs(UnmanagedType.LPStruct)] nsAString data);
+		void Send([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase data);
 		
 		/// <summary>
         /// Closes the Web Socket connection or connection attempt, if any.
         /// If the connection is already closed, it does nothing.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Close(ushort code, [MarshalAs(UnmanagedType.LPStruct)] nsAString reason, int argc);
+		void Close(ushort code, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase reason, int argc);
 		
 		/// <summary>
         /// Initialize the object for use from C++ code with the principal, script
@@ -135,6 +135,6 @@ namespace Gecko
         /// from the protocol attribute after connection.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init([MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr scriptContext, System.IntPtr ownerWindow, [MarshalAs(UnmanagedType.LPStruct)] nsAString url, System.IntPtr protocol);
+		void Init([MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr scriptContext, System.IntPtr ownerWindow, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase url, System.IntPtr protocol);
 	}
 }

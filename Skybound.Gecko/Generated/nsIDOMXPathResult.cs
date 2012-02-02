@@ -49,7 +49,7 @@ namespace Gecko
         /// raises(XPathException) on retrieval
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetStringValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aStringValue);
+		void GetStringValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aStringValue);
 		
 		/// <summary>
         /// raises(XPathException) on retrieval

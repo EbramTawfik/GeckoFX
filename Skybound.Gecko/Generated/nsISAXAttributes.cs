@@ -60,7 +60,7 @@ namespace Gecko
         /// if it does not appear in the list.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetIndexFromName([MarshalAs(UnmanagedType.LPStruct)] nsAString uri, [MarshalAs(UnmanagedType.LPStruct)] nsAString localName);
+		int GetIndexFromName([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase uri, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase localName);
 		
 		/// <summary>
         /// Look up the index of an attribute by XML qualified name.
@@ -69,7 +69,7 @@ namespace Gecko
         /// if it does not appear in the list.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetIndexFromQName([MarshalAs(UnmanagedType.LPStruct)] nsAString qName);
+		int GetIndexFromQName([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase qName);
 		
 		/// <summary>
         /// Return the number of attributes in the list. Once you know the
@@ -86,7 +86,7 @@ namespace Gecko
         /// @return The local name, or null if the index is out of range.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetLocalName(uint index, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetLocalName(uint index, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// Look up an attribute's XML qualified name by index.
@@ -95,7 +95,7 @@ namespace Gecko
         /// available, or null if the index is out of range.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetQName(uint index, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetQName(uint index, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// Look up an attribute's type by index. The attribute type is one
@@ -113,7 +113,7 @@ namespace Gecko
         /// out of range.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetType(uint index, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetType(uint index, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// Look up an attribute's type by Namespace name.
@@ -124,7 +124,7 @@ namespace Gecko
         /// is not in the list.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTypeFromName([MarshalAs(UnmanagedType.LPStruct)] nsAString uri, [MarshalAs(UnmanagedType.LPStruct)] nsAString localName, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetTypeFromName([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase uri, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase localName, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// Look up an attribute's type by XML qualified name.
@@ -133,7 +133,7 @@ namespace Gecko
         /// is not in the list.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTypeFromQName([MarshalAs(UnmanagedType.LPStruct)] nsAString qName, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetTypeFromQName([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase qName, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// Look up an attribute's Namespace URI by index.
@@ -142,7 +142,7 @@ namespace Gecko
         /// or null if the index is out of range.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetURI(uint index, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetURI(uint index, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// Look up an attribute's value by index.  If the attribute value is
@@ -155,7 +155,7 @@ namespace Gecko
         /// out of range.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetValue(uint index, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetValue(uint index, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// Look up an attribute's value by Namespace name.  If the attribute
@@ -170,7 +170,7 @@ namespace Gecko
         /// not in the list.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetValueFromName([MarshalAs(UnmanagedType.LPStruct)] nsAString uri, [MarshalAs(UnmanagedType.LPStruct)] nsAString localName, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetValueFromName([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase uri, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase localName, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// Look up an attribute's value by XML qualified (prefixed) name.
@@ -183,6 +183,6 @@ namespace Gecko
         /// not in the list.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetValueFromQName([MarshalAs(UnmanagedType.LPStruct)] nsAString qName, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetValueFromQName([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase qName, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 	}
 }

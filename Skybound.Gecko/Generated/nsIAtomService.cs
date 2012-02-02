@@ -44,7 +44,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIAtom GetAtom([MarshalAs(UnmanagedType.LPStruct)] nsAString value);
+		nsIAtom GetAtom([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase value);
 		
 		/// <summary>
         /// Version of NS_NewPermanentAtom that doesn't require linking against
@@ -52,7 +52,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIAtom GetPermanentAtom([MarshalAs(UnmanagedType.LPStruct)] nsAString value);
+		nsIAtom GetPermanentAtom([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase value);
 		
 		/// <summary>
         /// Get an atom with a utf8 string.

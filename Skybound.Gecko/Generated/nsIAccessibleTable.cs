@@ -47,7 +47,7 @@ namespace Gecko
         /// on html:table element.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSummaryAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aSummary);
+		void GetSummaryAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSummary);
 		
 		/// <summary>
         /// Return columns count in the table.
@@ -141,7 +141,7 @@ namespace Gecko
         /// @param  columnIndex  [in] the column index to retrieve description for
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetColumnDescription(int columnIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetColumnDescription(int columnIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// Return the description text of the specified row in the table.
@@ -149,7 +149,7 @@ namespace Gecko
         /// @param  rowIndex  [in] the row index to retrieve description for
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetRowDescription(int rowIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetRowDescription(int rowIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// Return a boolean value indicating whether the specified column is

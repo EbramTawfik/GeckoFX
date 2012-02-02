@@ -64,7 +64,7 @@ namespace Gecko
         /// error code.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnStreamComplete([MarshalAs(UnmanagedType.Interface)] nsIUnicharStreamLoader aLoader, [MarshalAs(UnmanagedType.Interface)] nsISupports aContext, int aStatus, [MarshalAs(UnmanagedType.LPStruct)] nsAString aBuffer);
+		void OnStreamComplete([MarshalAs(UnmanagedType.Interface)] nsIUnicharStreamLoader aLoader, [MarshalAs(UnmanagedType.Interface)] nsISupports aContext, int aStatus, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBuffer);
 	}
 	
 	/// <summary>

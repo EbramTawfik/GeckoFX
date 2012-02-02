@@ -49,10 +49,10 @@ namespace Gecko
 		void SetManifestAttribute(System.IntPtr aManifest);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetOriginAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aOrigin);
+		void GetOriginAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aOrigin);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOriginAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aOrigin);
+		void SetOriginAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aOrigin);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetInstall_dataAttribute();
@@ -61,10 +61,10 @@ namespace Gecko
 		void SetInstall_dataAttribute(System.IntPtr aInstall_data);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetInstall_originAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aInstall_origin);
+		void GetInstall_originAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aInstall_origin);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetInstall_originAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aInstall_origin);
+		void SetInstall_originAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aInstall_origin);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetInstall_timeAttribute();
@@ -110,22 +110,22 @@ namespace Gecko
 		/// <summary>Member GetCodeAttribute </summary>
 		/// <param name='aCode'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCodeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aCode);
+		void GetCodeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCode);
 		
 		/// <summary>Member SetCodeAttribute </summary>
 		/// <param name='aCode'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCodeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aCode);
+		void SetCodeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCode);
 		
 		/// <summary>Member GetMessageAttribute </summary>
 		/// <param name='aMessage'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMessageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMessage);
+		void GetMessageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMessage);
 		
 		/// <summary>Member SetMessageAttribute </summary>
 		/// <param name='aMessage'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMessageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMessage);
+		void SetMessageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMessage);
 	}
 	
 	/// <summary>nsIOpenWebappsErrorCB </summary>
@@ -164,7 +164,7 @@ namespace Gecko
         /// "remove" when they are deleted.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Update([MarshalAs(UnmanagedType.LPStruct)] nsAString what, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] nsIOpenWebappsApplication[] apps, uint count);
+		void Update([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase what, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] nsIOpenWebappsApplication[] apps, uint count);
 	}
 	
 	/// <summary>nsIOpenWebappsMgmt </summary>
@@ -179,7 +179,7 @@ namespace Gecko
 		/// <param name='onsuccess'> </param>
 		/// <param name='onerror'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Launch([MarshalAs(UnmanagedType.LPStruct)] nsAString origin, [MarshalAs(UnmanagedType.Interface)] nsIOpenWebappsSuccessEmpty onsuccess, [MarshalAs(UnmanagedType.Interface)] nsIOpenWebappsErrorCB onerror);
+		void Launch([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase origin, [MarshalAs(UnmanagedType.Interface)] nsIOpenWebappsSuccessEmpty onsuccess, [MarshalAs(UnmanagedType.Interface)] nsIOpenWebappsErrorCB onerror);
 		
 		/// <summary>Member List </summary>
 		/// <param name='onsuccess'> </param>
@@ -192,7 +192,7 @@ namespace Gecko
 		/// <param name='onsuccess'> </param>
 		/// <param name='onerror'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Uninstall([MarshalAs(UnmanagedType.LPStruct)] nsAString origin, [MarshalAs(UnmanagedType.Interface)] nsIOpenWebappsSuccessEmpty onsuccess, [MarshalAs(UnmanagedType.Interface)] nsIOpenWebappsErrorCB onerror);
+		void Uninstall([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase origin, [MarshalAs(UnmanagedType.Interface)] nsIOpenWebappsSuccessEmpty onsuccess, [MarshalAs(UnmanagedType.Interface)] nsIOpenWebappsErrorCB onerror);
 		
 		/// <summary>Member WatchUpdates </summary>
 		/// <param name='callback'> </param>
@@ -219,7 +219,7 @@ namespace Gecko
 		/// <param name='onsuccess'> </param>
 		/// <param name='onerror'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Install([MarshalAs(UnmanagedType.LPStruct)] nsAString manifestURI, System.IntPtr install_data, [MarshalAs(UnmanagedType.Interface)] nsIOpenWebappsSuccessEmpty onsuccess, [MarshalAs(UnmanagedType.Interface)] nsIOpenWebappsErrorCB onerror);
+		void Install([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase manifestURI, System.IntPtr install_data, [MarshalAs(UnmanagedType.Interface)] nsIOpenWebappsSuccessEmpty onsuccess, [MarshalAs(UnmanagedType.Interface)] nsIOpenWebappsErrorCB onerror);
 		
 		/// <summary>Member AmInstalled </summary>
 		/// <param name='onsuccess'> </param>

@@ -48,6 +48,6 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMStorageObsolete NamedItem([MarshalAs(UnmanagedType.LPStruct)] nsAString domain);
+		nsIDOMStorageObsolete NamedItem([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase domain);
 	}
 }

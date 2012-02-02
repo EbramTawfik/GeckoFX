@@ -51,23 +51,23 @@ namespace Gecko
 		uint GetLengthAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Item(uint index, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void Item(uint index, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Contains([MarshalAs(UnmanagedType.LPStruct)] nsAString token);
+		bool Contains([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase token);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Add([MarshalAs(UnmanagedType.LPStruct)] nsAString token);
+		void Add([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase token);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Remove([MarshalAs(UnmanagedType.LPStruct)] nsAString token);
+		void Remove([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase token);
 		
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Toggle([MarshalAs(UnmanagedType.LPStruct)] nsAString token);
+		bool Toggle([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase token);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ToString([MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void ToString([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 	}
 }

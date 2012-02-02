@@ -73,7 +73,7 @@ namespace Gecko
         /// A read-only string version of the policy for debugging.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPolicyAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aPolicy);
+		void GetPolicyAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPolicy);
 		
 		/// <summary>
         /// Whether this policy allows in-page script.
@@ -104,7 +104,7 @@ namespace Gecko
         /// source line number of the violation (if available)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void LogViolationDetails(ushort violationType, [MarshalAs(UnmanagedType.LPStruct)] nsAString sourceFile, [MarshalAs(UnmanagedType.LPStruct)] nsAString scriptSample, int lineNum);
+		void LogViolationDetails(ushort violationType, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase sourceFile, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase scriptSample, int lineNum);
 		
 		/// <summary>
         /// Manually triggers violation report sending given a URI and reason.
@@ -121,7 +121,7 @@ namespace Gecko
         /// nothing.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendReports([MarshalAs(UnmanagedType.LPStruct)] nsAString blockedURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString violatedDirective, [MarshalAs(UnmanagedType.LPStruct)] nsAString scriptSample, int lineNum);
+		void SendReports([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase blockedURI, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase violatedDirective, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase scriptSample, int lineNum);
 		
 		/// <summary>
         /// Called after the CSP object is created to fill in the appropriate request
@@ -135,7 +135,7 @@ namespace Gecko
         /// tightened by the one specified in the string policyString.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RefinePolicy([MarshalAs(UnmanagedType.LPStruct)] nsAString policyString, [MarshalAs(UnmanagedType.Interface)] nsIURI selfURI);
+		void RefinePolicy([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase policyString, [MarshalAs(UnmanagedType.Interface)] nsIURI selfURI);
 		
 		/// <summary>
         /// Verifies ancestry as permitted by the policy.

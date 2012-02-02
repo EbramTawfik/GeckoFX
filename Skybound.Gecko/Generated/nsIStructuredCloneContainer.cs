@@ -59,7 +59,7 @@ namespace Gecko
         /// structured clone algorithm which was used to generate aData.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitFromBase64([MarshalAs(UnmanagedType.LPStruct)] nsAString aData, uint aFormatVersion, System.IntPtr jsContext);
+		void InitFromBase64([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aData, uint aFormatVersion, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Deserialize the object this conatiner holds, returning it wrapped as
@@ -73,7 +73,7 @@ namespace Gecko
         /// Get this structured clone container's data as a base-64-encoded string.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDataAsBase64([MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetDataAsBase64([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// Get the size in bytes of this container's serialized data.

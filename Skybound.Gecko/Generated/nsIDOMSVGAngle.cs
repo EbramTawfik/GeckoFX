@@ -68,13 +68,13 @@ namespace Gecko
         /// raises DOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetValueAsStringAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aValueAsString);
+		void GetValueAsStringAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aValueAsString);
 		
 		/// <summary>
         /// raises DOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetValueAsStringAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aValueAsString);
+		void SetValueAsStringAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aValueAsString);
 		
 		/// <summary>
         /// raises DOMException on setting

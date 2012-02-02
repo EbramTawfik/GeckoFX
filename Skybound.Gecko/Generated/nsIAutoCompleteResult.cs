@@ -38,7 +38,7 @@ namespace Gecko
         /// The original search string
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSearchStringAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aSearchString);
+		void GetSearchStringAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSearchString);
 		
 		/// <summary>
         /// The result of the search
@@ -56,7 +56,7 @@ namespace Gecko
         /// A string describing the cause of a search failure
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetErrorDescriptionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aErrorDescription);
+		void GetErrorDescriptionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aErrorDescription);
 		
 		/// <summary>
         /// The number of matches
@@ -68,31 +68,31 @@ namespace Gecko
         /// Get the value of the result at the given index
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetValueAt(int index, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetValueAt(int index, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// This returns the string that is displayed in the dropdown
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetLabelAt(int index, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetLabelAt(int index, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// Get the comment of the result at the given index
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCommentAt(int index, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetCommentAt(int index, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// Get the style hint for the result at the given index
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetStyleAt(int index, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetStyleAt(int index, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// Get the image of the result at the given index
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetImageAt(int index, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetImageAt(int index, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// Remove the value at the given index from the autocomplete results.

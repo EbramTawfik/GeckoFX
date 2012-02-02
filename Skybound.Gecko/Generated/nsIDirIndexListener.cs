@@ -56,7 +56,7 @@ namespace Gecko
         /// @param info - new info to add
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnInformationAvailable([MarshalAs(UnmanagedType.Interface)] nsIRequest aRequest, [MarshalAs(UnmanagedType.Interface)] nsISupports aCtxt, [MarshalAs(UnmanagedType.LPStruct)] nsAString aInfo);
+		void OnInformationAvailable([MarshalAs(UnmanagedType.Interface)] nsIRequest aRequest, [MarshalAs(UnmanagedType.Interface)] nsISupports aCtxt, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aInfo);
 	}
 	
 	/// <summary>

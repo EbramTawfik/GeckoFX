@@ -45,7 +45,7 @@ namespace Gecko
 		/// <param name='name'> </param>
 		/// <param name='newValue'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAttribute([MarshalAs(UnmanagedType.Interface)] nsIAtom name, [MarshalAs(UnmanagedType.LPStruct)] nsAString newValue);
+		void SetAttribute([MarshalAs(UnmanagedType.Interface)] nsIAtom name, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase newValue);
 		
 		/// <summary>Member RemoveAttribute </summary>
 		/// <param name='name'> </param>
@@ -56,7 +56,7 @@ namespace Gecko
         /// the attribute having no value.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetAttribute([MarshalAs(UnmanagedType.Interface)] nsIAtom name, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetAttribute([MarshalAs(UnmanagedType.Interface)] nsIAtom name, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>Member HasAttribute </summary>
 		/// <param name='name'> </param>

@@ -69,6 +69,6 @@ namespace Gecko
         /// The domain that will have its data removed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveDataFromDomain([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aDomain);
+		void RemoveDataFromDomain([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aDomain);
 	}
 }

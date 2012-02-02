@@ -37,22 +37,22 @@ namespace Gecko
 		/// <summary>Member GetDescriptionAttribute </summary>
 		/// <param name='aDescription'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDescriptionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDescription);
+		void GetDescriptionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDescription);
 		
 		/// <summary>Member GetFilenameAttribute </summary>
 		/// <param name='aFilename'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetFilenameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aFilename);
+		void GetFilenameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFilename);
 		
 		/// <summary>Member GetVersionAttribute </summary>
 		/// <param name='aVersion'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aVersion);
+		void GetVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aVersion);
 		
 		/// <summary>Member GetNameAttribute </summary>
 		/// <param name='aName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
+		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
 		
 		/// <summary>Member GetLengthAttribute </summary>
 		/// <returns>A System.UInt32</returns>
@@ -71,6 +71,6 @@ namespace Gecko
 		/// <returns>A nsIDOMMimeType</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMMimeType NamedItem([MarshalAs(UnmanagedType.LPStruct)] nsAString name);
+		nsIDOMMimeType NamedItem([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name);
 	}
 }

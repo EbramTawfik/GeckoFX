@@ -48,7 +48,7 @@ namespace Gecko
         /// http://www.w3.org/TR/DOM-Level-2-Style
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aType);
+		void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType);
 		
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -66,10 +66,10 @@ namespace Gecko
 		nsIDOMStyleSheet GetParentStyleSheetAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetHrefAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aHref);
+		void GetHrefAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aHref);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTitleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aTitle);
+		void GetTitleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTitle);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

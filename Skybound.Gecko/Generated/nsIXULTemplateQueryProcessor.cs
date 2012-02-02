@@ -238,7 +238,7 @@ namespace Gecko
         /// @param aExpr expression used to compute the value to assign
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddBinding([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aRuleNode, [MarshalAs(UnmanagedType.Interface)] nsIAtom aVar, [MarshalAs(UnmanagedType.Interface)] nsIAtom aRef, [MarshalAs(UnmanagedType.LPStruct)] nsAString aExpr);
+		void AddBinding([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aRuleNode, [MarshalAs(UnmanagedType.Interface)] nsIAtom aVar, [MarshalAs(UnmanagedType.Interface)] nsIAtom aRef, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aExpr);
 		
 		/// <summary>
         /// Translate a ref attribute string into a result. This is used as the
@@ -259,7 +259,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIXULTemplateResult TranslateRef([MarshalAs(UnmanagedType.Interface)] nsISupports aDatasource, [MarshalAs(UnmanagedType.LPStruct)] nsAString aRefString);
+		nsIXULTemplateResult TranslateRef([MarshalAs(UnmanagedType.Interface)] nsISupports aDatasource, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aRefString);
 		
 		/// <summary>
         /// Compare two results to determine their order, used when sorting results.

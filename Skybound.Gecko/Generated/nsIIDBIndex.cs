@@ -44,13 +44,13 @@ namespace Gecko
         /// information.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
+		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetStoreNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aStoreName);
+		void GetStoreNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aStoreName);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetKeyPathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aKeyPath);
+		void GetKeyPathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aKeyPath);
 		
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

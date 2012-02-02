@@ -43,17 +43,17 @@ namespace Gecko
         /// http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetNodeNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aNodeName);
+		new void GetNodeNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNodeName);
 		
 		/// <summary>Member GetNodeValueAttribute </summary>
 		/// <param name='aNodeValue'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetNodeValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aNodeValue);
+		new void GetNodeValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNodeValue);
 		
 		/// <summary>Member SetNodeValueAttribute </summary>
 		/// <param name='aNodeValue'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetNodeValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aNodeValue);
+		new void SetNodeValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNodeValue);
 		
 		/// <summary>
         /// raises(DOMException) on retrieval
@@ -170,25 +170,25 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool IsSupported([MarshalAs(UnmanagedType.LPStruct)] nsAString feature, [MarshalAs(UnmanagedType.LPStruct)] nsAString version);
+		new bool IsSupported([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase feature, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase version);
 		
 		/// <summary>
         /// Introduced in DOM Level 2:
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetNamespaceURIAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aNamespaceURI);
+		new void GetNamespaceURIAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNamespaceURI);
 		
 		/// <summary>
         /// Modified in DOM Core
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetPrefixAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aPrefix);
+		new void GetPrefixAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPrefix);
 		
 		/// <summary>
         /// Introduced in DOM Level 2:
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetLocalNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aLocalName);
+		new void GetLocalNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aLocalName);
 		
 		/// <summary>
         /// Introduced in DOM Level 2:
@@ -201,7 +201,7 @@ namespace Gecko
         /// nsINode::GetBaseURI
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetBaseURIAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBaseURI);
+		new void GetBaseURIAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBaseURI);
 		
 		/// <summary>
         /// Introduced in DOM Level 3:
@@ -213,13 +213,13 @@ namespace Gecko
         /// Introduced in DOM Level 3:
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetTextContentAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aTextContent);
+		new void GetTextContentAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTextContent);
 		
 		/// <summary>
         /// Introduced in DOM Level 3:
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetTextContentAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aTextContent);
+		new void SetTextContentAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTextContent);
 		
 		/// <summary>
         /// Introduced in DOM Level 3:
@@ -232,20 +232,20 @@ namespace Gecko
         /// Introduced in DOM Level 3:
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void LookupPrefix([MarshalAs(UnmanagedType.LPStruct)] nsAString namespaceURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		new void LookupPrefix([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase namespaceURI, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// Introduced in DOM Level 3:
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool IsDefaultNamespace([MarshalAs(UnmanagedType.LPStruct)] nsAString namespaceURI);
+		new bool IsDefaultNamespace([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase namespaceURI);
 		
 		/// <summary>
         /// Introduced in DOM Level 3:
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void LookupNamespaceURI([MarshalAs(UnmanagedType.LPStruct)] nsAString prefix, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		new void LookupNamespaceURI([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase prefix, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// Introduced in DOM Level 3:
@@ -259,14 +259,14 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIVariant SetUserData([MarshalAs(UnmanagedType.LPStruct)] nsAString key, [MarshalAs(UnmanagedType.Interface)] nsIVariant data, [MarshalAs(UnmanagedType.Interface)] nsIDOMUserDataHandler handler);
+		new nsIVariant SetUserData([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase key, [MarshalAs(UnmanagedType.Interface)] nsIVariant data, [MarshalAs(UnmanagedType.Interface)] nsIDOMUserDataHandler handler);
 		
 		/// <summary>
         /// Introduced in DOM Level 3:
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIVariant GetUserData([MarshalAs(UnmanagedType.LPStruct)] nsAString key);
+		new nsIVariant GetUserData([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase key);
 		
 		/// <summary>Member Contains </summary>
 		/// <param name='aOther'> </param>
@@ -308,7 +308,7 @@ namespace Gecko
 		/// <returns>A nsIDOMElement</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMElement CreateElement([MarshalAs(UnmanagedType.LPStruct)] nsAString tagName);
+		new nsIDOMElement CreateElement([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase tagName);
 		
 		/// <summary>Member CreateDocumentFragment </summary>
 		/// <returns>A nsIDOMDocumentFragment</returns>
@@ -321,21 +321,21 @@ namespace Gecko
 		/// <returns>A nsIDOMText</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMText CreateTextNode([MarshalAs(UnmanagedType.LPStruct)] nsAString data);
+		new nsIDOMText CreateTextNode([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase data);
 		
 		/// <summary>Member CreateComment </summary>
 		/// <param name='data'> </param>
 		/// <returns>A nsIDOMComment</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMComment CreateComment([MarshalAs(UnmanagedType.LPStruct)] nsAString data);
+		new nsIDOMComment CreateComment([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase data);
 		
 		/// <summary>Member CreateCDATASection </summary>
 		/// <param name='data'> </param>
 		/// <returns>A nsIDOMCDATASection</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMCDATASection CreateCDATASection([MarshalAs(UnmanagedType.LPStruct)] nsAString data);
+		new nsIDOMCDATASection CreateCDATASection([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase data);
 		
 		/// <summary>Member CreateProcessingInstruction </summary>
 		/// <param name='target'> </param>
@@ -343,21 +343,21 @@ namespace Gecko
 		/// <returns>A nsIDOMProcessingInstruction</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMProcessingInstruction CreateProcessingInstruction([MarshalAs(UnmanagedType.LPStruct)] nsAString target, [MarshalAs(UnmanagedType.LPStruct)] nsAString data);
+		new nsIDOMProcessingInstruction CreateProcessingInstruction([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase target, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase data);
 		
 		/// <summary>Member CreateAttribute </summary>
 		/// <param name='name'> </param>
 		/// <returns>A nsIDOMAttr</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMAttr CreateAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString name);
+		new nsIDOMAttr CreateAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name);
 		
 		/// <summary>Member GetElementsByTagName </summary>
 		/// <param name='tagname'> </param>
 		/// <returns>A nsIDOMNodeList</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMNodeList GetElementsByTagName([MarshalAs(UnmanagedType.LPStruct)] nsAString tagname);
+		new nsIDOMNodeList GetElementsByTagName([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase tagname);
 		
 		/// <summary>
         /// Introduced in DOM Level 2:
@@ -371,40 +371,40 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMElement CreateElementNS([MarshalAs(UnmanagedType.LPStruct)] nsAString namespaceURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString qualifiedName);
+		new nsIDOMElement CreateElementNS([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase namespaceURI, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase qualifiedName);
 		
 		/// <summary>
         /// Introduced in DOM Level 2:
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMAttr CreateAttributeNS([MarshalAs(UnmanagedType.LPStruct)] nsAString namespaceURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString qualifiedName);
+		new nsIDOMAttr CreateAttributeNS([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase namespaceURI, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase qualifiedName);
 		
 		/// <summary>
         /// Introduced in DOM Level 2:
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMNodeList GetElementsByTagNameNS([MarshalAs(UnmanagedType.LPStruct)] nsAString namespaceURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString localName);
+		new nsIDOMNodeList GetElementsByTagNameNS([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase namespaceURI, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase localName);
 		
 		/// <summary>
         /// Introduced in DOM Level 2:
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMElement GetElementById([MarshalAs(UnmanagedType.LPStruct)] nsAString elementId);
+		new nsIDOMElement GetElementById([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase elementId);
 		
 		/// <summary>
         /// Introduced in DOM Level 3:
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetInputEncodingAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aInputEncoding);
+		new void GetInputEncodingAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aInputEncoding);
 		
 		/// <summary>
         /// Introduced in DOM Level 3:
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetXmlEncodingAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aXmlEncoding);
+		new void GetXmlEncodingAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aXmlEncoding);
 		
 		/// <summary>
         /// Introduced in DOM Level 3:
@@ -423,25 +423,25 @@ namespace Gecko
         /// Introduced in DOM Level 3:
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetXmlVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aXmlVersion);
+		new void GetXmlVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aXmlVersion);
 		
 		/// <summary>
         /// Introduced in DOM Level 3:
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetXmlVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aXmlVersion);
+		new void SetXmlVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aXmlVersion);
 		
 		/// <summary>
         /// Introduced in DOM Level 3:
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetDocumentURIAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDocumentURI);
+		new void GetDocumentURIAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDocumentURI);
 		
 		/// <summary>
         /// Introduced in DOM Level 3:
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetDocumentURIAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDocumentURI);
+		new void SetDocumentURIAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDocumentURI);
 		
 		/// <summary>
         /// Introduced in DOM Level 3:
@@ -484,7 +484,7 @@ namespace Gecko
 		/// <returns>A nsIDOMEvent</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMEvent CreateEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString eventType);
+		new nsIDOMEvent CreateEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase eventType);
 		
 		/// <summary>
         /// The window associated with this document.
@@ -499,19 +499,19 @@ namespace Gecko
         /// @see <http://www.whatwg.org/html/#dom-document-characterset>
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetCharacterSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aCharacterSet);
+		new void GetCharacterSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCharacterSet);
 		
 		/// <summary>
         /// @see <http://www.whatwg.org/html/#dom-document-dir>
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetDirAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDir);
+		new void GetDirAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDir);
 		
 		/// <summary>
         /// @see <http://www.whatwg.org/html/#dom-document-dir>
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetDirAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDir);
+		new void SetDirAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDir);
 		
 		/// <summary>
         /// @see <http://www.whatwg.org/html/#dom-document-location>
@@ -524,31 +524,31 @@ namespace Gecko
         /// @see <http://www.whatwg.org/html/#document.title>
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetTitleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aTitle);
+		new void GetTitleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTitle);
 		
 		/// <summary>
         /// @see <http://www.whatwg.org/html/#document.title>
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetTitleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aTitle);
+		new void SetTitleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTitle);
 		
 		/// <summary>
         /// @see <http://www.whatwg.org/html/#dom-document-readystate>
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetReadyStateAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aReadyState);
+		new void GetReadyStateAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aReadyState);
 		
 		/// <summary>
         /// @see <http://www.whatwg.org/html/#dom-document-lastmodified>
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetLastModifiedAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aLastModified);
+		new void GetLastModifiedAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aLastModified);
 		
 		/// <summary>
         /// @see <http://www.whatwg.org/html/#dom-document-referrer>
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetReferrerAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aReferrer);
+		new void GetReferrerAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aReferrer);
 		
 		/// <summary>
         /// @see <http://www.whatwg.org/html/#dom-document-hasfocus>
@@ -572,7 +572,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMNodeList GetElementsByClassName([MarshalAs(UnmanagedType.LPStruct)] nsAString classes);
+		new nsIDOMNodeList GetElementsByClassName([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase classes);
 		
 		/// <summary>
         /// @see <http://dev.w3.org/csswg/cssom/#dom-document-stylesheets>
@@ -593,7 +593,7 @@ namespace Gecko
         /// @see <http://dev.w3.org/csswg/cssom/#dom-document-preferredStyleSheetSet>
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetPreferredStyleSheetSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aPreferredStyleSheetSet);
+		new void GetPreferredStyleSheetSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPreferredStyleSheetSet);
 		
 		/// <summary>
         /// This attribute indicates which style sheet set is in use. This attribute
@@ -625,7 +625,7 @@ namespace Gecko
         /// @see <http://dev.w3.org/csswg/cssom/#dom-document-selectedStyleSheetSet>
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetSelectedStyleSheetSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aSelectedStyleSheetSet);
+		new void GetSelectedStyleSheetSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSelectedStyleSheetSet);
 		
 		/// <summary>
         /// This attribute indicates which style sheet set is in use. This attribute
@@ -657,7 +657,7 @@ namespace Gecko
         /// @see <http://dev.w3.org/csswg/cssom/#dom-document-selectedStyleSheetSet>
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetSelectedStyleSheetSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aSelectedStyleSheetSet);
+		new void SetSelectedStyleSheetSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSelectedStyleSheetSet);
 		
 		/// <summary>
         /// This property must initially have the value null. Its value changes when
@@ -666,7 +666,7 @@ namespace Gecko
         /// @see <http://dev.w3.org/csswg/cssom/#dom-document-lastStyleSheetSet>
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetLastStyleSheetSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aLastStyleSheetSet);
+		new void GetLastStyleSheetSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aLastStyleSheetSet);
 		
 		/// <summary>
         /// This must return the live list of the currently available style sheet
@@ -700,7 +700,7 @@ namespace Gecko
         /// @see <http://dev.w3.org/csswg/cssom/#dom-document-enableStyleSheetsForSet>
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void EnableStyleSheetsForSet([MarshalAs(UnmanagedType.LPStruct)] nsAString name);
+		new void EnableStyleSheetsForSet([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name);
 		
 		/// <summary>
         /// Returns the element from the caller's document at the given point,
@@ -729,7 +729,7 @@ namespace Gecko
         /// @see <https://developer.mozilla.org/en/DOM/document.contentType>
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetContentTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aContentType);
+		new void GetContentTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aContentType);
 		
 		/// <summary>
         /// True if this document is synthetic : stand alone image, video, audio file,
@@ -787,7 +787,7 @@ namespace Gecko
         /// @see <https://developer.mozilla.org/en/DOM/document.mozSetImageElement>
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void MozSetImageElement([MarshalAs(UnmanagedType.LPStruct)] nsAString aImageElementId, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement aImageElement);
+		new void MozSetImageElement([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aImageElementId, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement aImageElement);
 		
 		/// <summary>
         /// Element which is currently the full-screen element as per the DOM
@@ -833,12 +833,12 @@ namespace Gecko
 		/// <summary>Member GetDomainAttribute </summary>
 		/// <param name='aDomain'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDomainAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDomain);
+		void GetDomainAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDomain);
 		
 		/// <summary>Member GetURLAttribute </summary>
 		/// <param name='aURL'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aURL);
+		void GetURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aURL);
 		
 		/// <summary>Member GetRootElementAttribute </summary>
 		/// <returns>A nsIDOMSVGSVGElement</returns>

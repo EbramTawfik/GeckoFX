@@ -144,7 +144,7 @@ namespace Gecko
         /// nsIHttpActivityObserver.isActive is false. See bugs 534698 and 526207.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetLocalAddressAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aLocalAddress);
+		void GetLocalAddressAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aLocalAddress);
 		
 		/// <summary>
         /// The local port number to which this channel is bound.
@@ -165,7 +165,7 @@ namespace Gecko
         /// nsIHttpActivityObserver.isActive is false. See bugs 534698 and 526207.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetRemoteAddressAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aRemoteAddress);
+		void GetRemoteAddressAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aRemoteAddress);
 		
 		/// <summary>
         /// The remote port number that this channel is connected to.

@@ -46,7 +46,7 @@ namespace Gecko
         /// 0 if the install was successful or negative if not
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnInstallEnded([MarshalAs(UnmanagedType.LPStruct)] nsAString aUrl, int aStatus);
+		void OnInstallEnded([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aUrl, int aStatus);
 	}
 	
 	/// <summary>
@@ -107,7 +107,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool InstallChrome(uint aType, [MarshalAs(UnmanagedType.LPStruct)] nsAString aUrl, [MarshalAs(UnmanagedType.LPStruct)] nsAString aSkin);
+		bool InstallChrome(uint aType, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aUrl, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSkin);
 		
 		/// <summary>
         /// Starts installing a new add-on.
@@ -122,6 +122,6 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool StartSoftwareUpdate([MarshalAs(UnmanagedType.LPStruct)] nsAString aUrl, int aFlags);
+		bool StartSoftwareUpdate([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aUrl, int aFlags);
 	}
 }

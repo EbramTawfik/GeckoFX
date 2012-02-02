@@ -76,7 +76,7 @@ namespace Gecko
         /// given.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NotationDecl([MarshalAs(UnmanagedType.LPStruct)] nsAString name, [MarshalAs(UnmanagedType.LPStruct)] nsAString publicId, [MarshalAs(UnmanagedType.LPStruct)] nsAString systemId);
+		void NotationDecl([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase publicId, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase systemId);
 		
 		/// <summary>
         /// Receive notification of an unparsed entity declaration event.
@@ -97,6 +97,6 @@ namespace Gecko
         /// @param notationName The name of the associated notation.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UnparsedEntityDecl([MarshalAs(UnmanagedType.LPStruct)] nsAString name, [MarshalAs(UnmanagedType.LPStruct)] nsAString publicId, [MarshalAs(UnmanagedType.LPStruct)] nsAString systemId, [MarshalAs(UnmanagedType.LPStruct)] nsAString notationName);
+		void UnparsedEntityDecl([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase publicId, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase systemId, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase notationName);
 	}
 }

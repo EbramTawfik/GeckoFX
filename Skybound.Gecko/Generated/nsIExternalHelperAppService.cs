@@ -62,7 +62,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool ApplyDecodingForExtension([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aExtension, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aEncodingType);
+		bool ApplyDecodingForExtension([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aExtension, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aEncodingType);
 	}
 	
 	/// <summary>
@@ -127,7 +127,7 @@ namespace Gecko
         /// The suggested name for this file
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSuggestedFileNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aSuggestedFileName);
+		void GetSuggestedFileNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSuggestedFileName);
 		
 		/// <summary>
         /// Called when we want to just save the content to a particular file.

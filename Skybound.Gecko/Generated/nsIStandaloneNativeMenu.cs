@@ -71,7 +71,7 @@ namespace Gecko
         /// pipe ('|') characters
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ActivateNativeMenuItemAt([MarshalAs(UnmanagedType.LPStruct)] nsAString anIndexString);
+		void ActivateNativeMenuItemAt([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase anIndexString);
 		
 		/// <summary>
         /// Force an update of the native menu item specified by |anIndexString|. This
@@ -81,6 +81,6 @@ namespace Gecko
         /// pipe ('|') characters
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ForceUpdateNativeMenuAt([MarshalAs(UnmanagedType.LPStruct)] nsAString anIndexString);
+		void ForceUpdateNativeMenuAt([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase anIndexString);
 	}
 }

@@ -44,13 +44,13 @@ namespace Gecko
         /// If non-empty, use this PAC file. If empty, call getProxyForURI instead.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPACURIAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aPACURI);
+		void GetPACURIAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aPACURI);
 		
 		/// <summary>
         /// See nsIProxyAutoConfig::getProxyForURI; this function behaves exactly
         /// the same way.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetProxyForURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
+		void GetProxyForURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase retval);
 	}
 }

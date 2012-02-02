@@ -41,7 +41,7 @@ namespace Gecko
 		/// <param name='aFlags'> </param>
 		/// <returns>A txINodeSet</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		txINodeSet Match(txIFunctionEvaluationContext aContext, [MarshalAs(UnmanagedType.LPStruct)] nsAString aString, [MarshalAs(UnmanagedType.LPStruct)] nsAString aRegEx, [MarshalAs(UnmanagedType.LPStruct)] nsAString aFlags);
+		txINodeSet Match(txIFunctionEvaluationContext aContext, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aString, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aRegEx, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFlags);
 		
 		/// <summary>Member Replace </summary>
 		/// <param name='aString'> </param>
@@ -50,7 +50,7 @@ namespace Gecko
 		/// <param name='aReplace'> </param>
 		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Replace([MarshalAs(UnmanagedType.LPStruct)] nsAString aString, [MarshalAs(UnmanagedType.LPStruct)] nsAString aRegEx, [MarshalAs(UnmanagedType.LPStruct)] nsAString aFlags, [MarshalAs(UnmanagedType.LPStruct)] nsAString aReplace, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void Replace([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aString, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aRegEx, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFlags, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aReplace, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>Member Test </summary>
 		/// <param name='aString'> </param>
@@ -59,6 +59,6 @@ namespace Gecko
 		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Test([MarshalAs(UnmanagedType.LPStruct)] nsAString aString, [MarshalAs(UnmanagedType.LPStruct)] nsAString aRegEx, [MarshalAs(UnmanagedType.LPStruct)] nsAString aFlags);
+		bool Test([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aString, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aRegEx, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFlags);
 	}
 }

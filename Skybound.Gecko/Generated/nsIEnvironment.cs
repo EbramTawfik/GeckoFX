@@ -44,7 +44,7 @@ namespace Gecko
         /// @param aValue  the value to set.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Set([MarshalAs(UnmanagedType.LPStruct)] nsAString aName, [MarshalAs(UnmanagedType.LPStruct)] nsAString aValue);
+		void Set([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aValue);
 		
 		/// <summary>
         /// Get the value of an environment variable.
@@ -57,7 +57,7 @@ namespace Gecko
         /// or not.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Get([MarshalAs(UnmanagedType.LPStruct)] nsAString aName, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void Get([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// Check the existence of an environment variable.
@@ -79,6 +79,6 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Exists([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
+		bool Exists([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
 	}
 }

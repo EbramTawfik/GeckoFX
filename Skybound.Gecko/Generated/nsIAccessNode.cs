@@ -72,7 +72,7 @@ namespace Gecko
         /// node, not including the start and end tag for the node.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetInnerHTMLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aInnerHTML);
+		void GetInnerHTMLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aInnerHTML);
 		
 		/// <summary>
         /// Makes an object visible on screen.
@@ -114,7 +114,7 @@ namespace Gecko
         /// for example "border-bottom".
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetComputedStyleValue([MarshalAs(UnmanagedType.LPStruct)] nsAString pseudoElt, [MarshalAs(UnmanagedType.LPStruct)] nsAString propertyName, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetComputedStyleValue([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase pseudoElt, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase propertyName, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// The method is similar to getComputedStyleValue() excepting that this one
@@ -122,12 +122,12 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMCSSPrimitiveValue GetComputedStyleCSSValue([MarshalAs(UnmanagedType.LPStruct)] nsAString pseudoElt, [MarshalAs(UnmanagedType.LPStruct)] nsAString propertyName);
+		nsIDOMCSSPrimitiveValue GetComputedStyleCSSValue([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase pseudoElt, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase propertyName);
 		
 		/// <summary>
         /// The language for the current DOM node, e.g. en, de, etc.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetLanguageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aLanguage);
+		void GetLanguageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aLanguage);
 	}
 }

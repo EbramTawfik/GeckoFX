@@ -83,7 +83,7 @@ namespace Gecko
         /// The line on which the error occurred.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ReportError([MarshalAs(UnmanagedType.LPStruct)] nsAString errorText, int lineNumber, [MarshalAs(UnmanagedType.Bool)] bool bozo);
+		void ReportError([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase errorText, int lineNumber, [MarshalAs(UnmanagedType.Bool)] bool bozo);
 		
 		/// <summary>
         /// StartFeed will be called as soon as a reasonable start to

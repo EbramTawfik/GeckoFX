@@ -60,7 +60,7 @@ namespace Gecko
         /// Otherwise, this is a human-readable string like "Secret files".
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetRealmAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aRealm);
+		void GetRealmAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aRealm);
 		
 		/// <summary>
         /// The authentication scheme used for this request, if applicable. If the
@@ -69,7 +69,7 @@ namespace Gecko
         /// "digest". This string will always be in lowercase.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetAuthenticationSchemeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aAuthenticationScheme);
+		void GetAuthenticationSchemeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aAuthenticationScheme);
 		
 		/// <summary>
         /// The initial value should be used to prefill the dialog or be shown
@@ -79,7 +79,7 @@ namespace Gecko
         /// This field can only be changed if the #ONLY_PASSWORD flag is not set.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetUsernameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aUsername);
+		void GetUsernameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aUsername);
 		
 		/// <summary>
         /// The initial value should be used to prefill the dialog or be shown
@@ -89,7 +89,7 @@ namespace Gecko
         /// This field can only be changed if the #ONLY_PASSWORD flag is not set.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetUsernameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aUsername);
+		void SetUsernameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aUsername);
 		
 		/// <summary>
         /// The initial value should be used to prefill the dialog or be shown
@@ -99,7 +99,7 @@ namespace Gecko
         /// the user.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPasswordAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aPassword);
+		void GetPasswordAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPassword);
 		
 		/// <summary>
         /// The initial value should be used to prefill the dialog or be shown
@@ -109,7 +109,7 @@ namespace Gecko
         /// the user.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPasswordAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aPassword);
+		void SetPasswordAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPassword);
 		
 		/// <summary>
         /// The initial value should be used to prefill the dialog or be shown
@@ -119,7 +119,7 @@ namespace Gecko
         /// This attribute is only used if flags include #NEED_DOMAIN.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDomainAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDomain);
+		void GetDomainAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDomain);
 		
 		/// <summary>
         /// The initial value should be used to prefill the dialog or be shown
@@ -129,6 +129,6 @@ namespace Gecko
         /// This attribute is only used if flags include #NEED_DOMAIN.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDomainAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDomain);
+		void SetDomainAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDomain);
 	}
 }

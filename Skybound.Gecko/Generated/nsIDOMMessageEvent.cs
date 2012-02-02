@@ -45,7 +45,7 @@ namespace Gecko
         /// name.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aType);
+		new void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType);
 		
 		/// <summary>
         /// Used to indicate the EventTarget to which the event was originally
@@ -152,7 +152,7 @@ namespace Gecko
         /// action can be prevented.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void InitEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString eventTypeArg, [MarshalAs(UnmanagedType.Bool)] bool canBubbleArg, [MarshalAs(UnmanagedType.Bool)] bool cancelableArg);
+		new void InitEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase eventTypeArg, [MarshalAs(UnmanagedType.Bool)] bool canBubbleArg, [MarshalAs(UnmanagedType.Bool)] bool cancelableArg);
 		
 		/// <summary>
         /// Used to indicate whether preventDefault() has been called for this event.
@@ -174,14 +174,14 @@ namespace Gecko
         /// ":" followed by that port.  This value does not have a trailing slash.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetOriginAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aOrigin);
+		void GetOriginAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aOrigin);
 		
 		/// <summary>
         /// The last event ID string of the event source, for server-sent DOM events; this
         /// value is the empty string for cross-origin messaging.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetLastEventIdAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aLastEventId);
+		void GetLastEventIdAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aLastEventId);
 		
 		/// <summary>
         /// The window which originated this event.
@@ -196,6 +196,6 @@ namespace Gecko
         /// data, origin, source, and lastEventId attributes of this appropriately.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitMessageEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString aType, [MarshalAs(UnmanagedType.Bool)] bool aCanBubble, [MarshalAs(UnmanagedType.Bool)] bool aCancelable, System.IntPtr aData, [MarshalAs(UnmanagedType.LPStruct)] nsAString aOrigin, [MarshalAs(UnmanagedType.LPStruct)] nsAString aLastEventId, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aSource);
+		void InitMessageEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType, [MarshalAs(UnmanagedType.Bool)] bool aCanBubble, [MarshalAs(UnmanagedType.Bool)] bool aCancelable, System.IntPtr aData, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aOrigin, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aLastEventId, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aSource);
 	}
 }

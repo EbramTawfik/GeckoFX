@@ -43,12 +43,12 @@ namespace Gecko
 		/// <summary>Member GetCssTextAttribute </summary>
 		/// <param name='aCssText'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetCssTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aCssText);
+		new void GetCssTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCssText);
 		
 		/// <summary>Member SetCssTextAttribute </summary>
 		/// <param name='aCssText'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetCssTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aCssText);
+		new void SetCssTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCssText);
 		
 		/// <summary>
         /// raises(DOMException) on setting
@@ -66,12 +66,12 @@ namespace Gecko
 		/// <summary>Member GetNameAttribute </summary>
 		/// <param name='aName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
+		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
 		
 		/// <summary>Member SetNameAttribute </summary>
 		/// <param name='aName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
+		void SetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
 		
 		/// <summary>Member GetCssRulesAttribute </summary>
 		/// <returns>A nsIDOMCSSRuleList</returns>
@@ -82,18 +82,18 @@ namespace Gecko
 		/// <summary>Member InsertRule </summary>
 		/// <param name='rule'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InsertRule([MarshalAs(UnmanagedType.LPStruct)] nsAString rule);
+		void InsertRule([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase rule);
 		
 		/// <summary>Member DeleteRule </summary>
 		/// <param name='key'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DeleteRule([MarshalAs(UnmanagedType.LPStruct)] nsAString key);
+		void DeleteRule([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase key);
 		
 		/// <summary>Member FindRule </summary>
 		/// <param name='key'> </param>
 		/// <returns>A nsIDOMMozCSSKeyframeRule</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMMozCSSKeyframeRule FindRule([MarshalAs(UnmanagedType.LPStruct)] nsAString key);
+		nsIDOMMozCSSKeyframeRule FindRule([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase key);
 	}
 }

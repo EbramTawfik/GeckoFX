@@ -83,6 +83,6 @@ namespace Gecko
         /// The import source homepage.  Returns null if not present/available
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSourceHomePageURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aSourceHomePageURL);
+		void GetSourceHomePageURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aSourceHomePageURL);
 	}
 }

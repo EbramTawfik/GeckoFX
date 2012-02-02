@@ -67,13 +67,13 @@ namespace Gecko
         /// result is same as strcmp
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int CompareString(int strength, [MarshalAs(UnmanagedType.LPStruct)] nsAString string1, [MarshalAs(UnmanagedType.LPStruct)] nsAString string2);
+		int CompareString(int strength, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase string1, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase string2);
 		
 		/// <summary>
         /// returns newly allocated key, and its band its byte length
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AllocateRawSortKey(int strength, [MarshalAs(UnmanagedType.LPStruct)] nsAString stringIn, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=3)] ref System.IntPtr[] key, ref uint outLen);
+		void AllocateRawSortKey(int strength, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase stringIn, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=3)] ref System.IntPtr[] key, ref uint outLen);
 		
 		/// <summary>
         /// length is a byte length, result is same as strcmp

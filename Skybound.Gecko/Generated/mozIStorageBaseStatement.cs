@@ -71,10 +71,10 @@ namespace Gecko
         /// @{
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BindUTF8StringParameter(uint aParamIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aValue);
+		void BindUTF8StringParameter(uint aParamIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aValue);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BindStringParameter(uint aParamIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAString aValue);
+		void BindStringParameter(uint aParamIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aValue);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void BindDoubleParameter(uint aParamIndex, double aValue);
@@ -152,6 +152,6 @@ namespace Gecko
         /// into "foo//bar/_baz/%20cheese" (if the escape char is '/').
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EscapeStringForLIKE([MarshalAs(UnmanagedType.LPStruct)] nsAString aValue, char aEscapeChar, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void EscapeStringForLIKE([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aValue, char aEscapeChar, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 	}
 }

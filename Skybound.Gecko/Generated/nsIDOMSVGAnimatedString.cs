@@ -37,17 +37,17 @@ namespace Gecko
 		/// <summary>Member GetBaseValAttribute </summary>
 		/// <param name='aBaseVal'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetBaseValAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBaseVal);
+		void GetBaseValAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBaseVal);
 		
 		/// <summary>Member SetBaseValAttribute </summary>
 		/// <param name='aBaseVal'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBaseValAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBaseVal);
+		void SetBaseValAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBaseVal);
 		
 		/// <summary>
         /// raises DOMException on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetAnimValAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aAnimVal);
+		void GetAnimValAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAnimVal);
 	}
 }

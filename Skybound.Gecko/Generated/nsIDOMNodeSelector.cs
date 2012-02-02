@@ -49,10 +49,10 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMElement QuerySelector([MarshalAs(UnmanagedType.LPStruct)] nsAString selectors);
+		nsIDOMElement QuerySelector([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase selectors);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMNodeList QuerySelectorAll([MarshalAs(UnmanagedType.LPStruct)] nsAString selectors);
+		nsIDOMNodeList QuerySelectorAll([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase selectors);
 	}
 }

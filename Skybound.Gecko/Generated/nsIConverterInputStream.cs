@@ -80,7 +80,7 @@ namespace Gecko
         /// @return The number of characters that were read.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new uint ReadString(uint aCount, [MarshalAs(UnmanagedType.LPStruct)] nsAString aString);
+		new uint ReadString(uint aCount, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aString);
 		
 		/// <summary>
         /// Close the stream and free associated resources. This also closes the

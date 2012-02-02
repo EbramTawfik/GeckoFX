@@ -70,25 +70,25 @@ namespace Gecko
         /// The name of the person.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
+		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
 		
 		/// <summary>
         /// The name of the person.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
+		void SetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
 		
 		/// <summary>
         /// An email address associated with the person.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetEmailAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aEmail);
+		void GetEmailAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aEmail);
 		
 		/// <summary>
         /// An email address associated with the person.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetEmailAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aEmail);
+		void SetEmailAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aEmail);
 		
 		/// <summary>
         /// A URI associated with the person (e.g. a homepage).

@@ -132,7 +132,7 @@ namespace Gecko
         /// @param aReason the websocket closing handshake close reason
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Close(ushort aCode, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aReason);
+		void Close(ushort aCode, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aReason);
 		
 		/// <summary>
         /// Use to send text message down the connection to WebSocket peer.
@@ -140,7 +140,7 @@ namespace Gecko
         /// @param aMsg the utf8 string to send
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendMsg([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aMsg);
+		void SendMsg([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aMsg);
 		
 		/// <summary>
         /// Use to send binary message down the connection to WebSocket peer.

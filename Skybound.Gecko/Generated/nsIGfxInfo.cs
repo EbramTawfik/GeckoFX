@@ -51,25 +51,25 @@ namespace Gecko
 		bool GetAzureEnabledAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDWriteVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDWriteVersion);
+		void GetDWriteVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDWriteVersion);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCleartypeParametersAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aCleartypeParameters);
+		void GetCleartypeParametersAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCleartypeParameters);
 		
 		/// <summary>
         /// The name of the display adapter.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetAdapterDescriptionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aAdapterDescription);
+		void GetAdapterDescriptionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAdapterDescription);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetAdapterDescription2Attribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aAdapterDescription2);
+		void GetAdapterDescription2Attribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAdapterDescription2);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetAdapterDriverAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aAdapterDriver);
+		void GetAdapterDriverAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAdapterDriver);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetAdapterDriver2Attribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aAdapterDriver2);
+		void GetAdapterDriver2Attribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAdapterDriver2);
 		
 		/// <summary>
         ///These types are inspired by DXGI_ADAPTER_DESC </summary>
@@ -89,22 +89,22 @@ namespace Gecko
         /// The amount of RAM in MB in the display adapter.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetAdapterRAMAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aAdapterRAM);
+		void GetAdapterRAMAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAdapterRAM);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetAdapterRAM2Attribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aAdapterRAM2);
+		void GetAdapterRAM2Attribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAdapterRAM2);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetAdapterDriverVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aAdapterDriverVersion);
+		void GetAdapterDriverVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAdapterDriverVersion);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetAdapterDriverVersion2Attribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aAdapterDriverVersion2);
+		void GetAdapterDriverVersion2Attribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAdapterDriverVersion2);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetAdapterDriverDateAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aAdapterDriverDate);
+		void GetAdapterDriverDateAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAdapterDriverDate);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetAdapterDriverDate2Attribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aAdapterDriverDate2);
+		void GetAdapterDriverDate2Attribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAdapterDriverDate2);
 		
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -127,7 +127,7 @@ namespace Gecko
         /// FEATURE_BLOCKED_DRIVER_VERSION, otherwise return an empty string.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetFeatureSuggestedDriverVersion(int aFeature, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetFeatureSuggestedDriverVersion(int aFeature, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// WebGL info; valid params are "full-renderer", "vendor", "renderer", "version",
@@ -135,7 +135,7 @@ namespace Gecko
         /// underlying GL impl that's used to implement WebGL.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetWebGLParameter([MarshalAs(UnmanagedType.LPStruct)] nsAString aParam, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetWebGLParameter([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aParam, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// only useful on X11

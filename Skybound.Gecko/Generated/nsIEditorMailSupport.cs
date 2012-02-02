@@ -52,7 +52,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMNode InsertAsQuotation([MarshalAs(UnmanagedType.LPStruct)] nsAString aQuotedText);
+		nsIDOMNode InsertAsQuotation([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aQuotedText);
 		
 		/// <summary>
         /// Inserts a plaintext string at the current location,
@@ -65,7 +65,7 @@ namespace Gecko
         /// @param aString   the string to be inserted
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InsertTextWithQuotations([MarshalAs(UnmanagedType.LPStruct)] nsAString aStringToInsert);
+		void InsertTextWithQuotations([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aStringToInsert);
 		
 		/// <summary>
         ///Paste a string as quoted text,
@@ -75,7 +75,7 @@ namespace Gecko
         /// @param aSelectionType Text or html?
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PasteAsCitedQuotation([MarshalAs(UnmanagedType.LPStruct)] nsAString aCitation, int aSelectionType);
+		void PasteAsCitedQuotation([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCitation, int aSelectionType);
 		
 		/// <summary>
         ///Insert a string as quoted text
@@ -89,7 +89,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMNode InsertAsCitedQuotation([MarshalAs(UnmanagedType.LPStruct)] nsAString aQuotedText, [MarshalAs(UnmanagedType.LPStruct)] nsAString aCitation, [MarshalAs(UnmanagedType.Bool)] bool aInsertHTML);
+		nsIDOMNode InsertAsCitedQuotation([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aQuotedText, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCitation, [MarshalAs(UnmanagedType.Bool)] bool aInsertHTML);
 		
 		/// <summary>
         /// Rewrap the selected part of the document, re-quoting if necessary.

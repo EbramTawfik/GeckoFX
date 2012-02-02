@@ -42,10 +42,10 @@ namespace Gecko
         /// Get the Unicode or UTF8 value for the string
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ToString([MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void ToString([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ToUTF8String([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
+		void ToUTF8String([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase retval);
 		
 		/// <summary>
         /// Compare the atom to a specific string value
@@ -53,11 +53,11 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Equals([MarshalAs(UnmanagedType.LPStruct)] nsAString aString);
+		bool Equals([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aString);
 		
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool EqualsUTF8([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aString);
+		bool EqualsUTF8([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aString);
 		
 		/// <summary>
         /// Returns true if the atom is static and false otherwise.

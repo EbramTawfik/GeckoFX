@@ -37,6 +37,6 @@ namespace Gecko
 		/// <summary>Member GetRequestAttribute </summary>
 		/// <param name='aRequest'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetRequestAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aRequest);
+		void GetRequestAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aRequest);
 	}
 }

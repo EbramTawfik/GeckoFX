@@ -37,22 +37,22 @@ namespace Gecko
 		/// <summary>Member GetKeyAttribute </summary>
 		/// <param name='aKey'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetKeyAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aKey);
+		void GetKeyAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aKey);
 		
 		/// <summary>Member SetKeyAttribute </summary>
 		/// <param name='aKey'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetKeyAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aKey);
+		void SetKeyAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aKey);
 		
 		/// <summary>Member GetValueAttribute </summary>
 		/// <param name='aValue'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aValue);
+		void GetValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aValue);
 		
 		/// <summary>Member SetValueAttribute </summary>
 		/// <param name='aValue'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aValue);
+		void SetValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aValue);
 	}
 	
 	/// <summary>nsIPersistentProperties </summary>
@@ -110,7 +110,7 @@ namespace Gecko
         /// output the values to the stream - results will be in UTF8
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Save([MarshalAs(UnmanagedType.Interface)] nsIOutputStream output, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String header);
+		void Save([MarshalAs(UnmanagedType.Interface)] nsIOutputStream output, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase header);
 		
 		/// <summary>
         /// call subclass() to make future calls to load() set the properties
@@ -133,7 +133,7 @@ namespace Gecko
         /// directly (and thus faster)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetStringProperty([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String key, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetStringProperty([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase key, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// shortcut to nsIProperty's set() which sets a string value
@@ -141,6 +141,6 @@ namespace Gecko
         /// then the old value will be returned
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetStringProperty([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String key, [MarshalAs(UnmanagedType.LPStruct)] nsAString value, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void SetStringProperty([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase key, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase value, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 	}
 }

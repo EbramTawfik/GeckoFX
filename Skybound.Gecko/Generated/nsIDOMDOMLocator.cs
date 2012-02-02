@@ -59,6 +59,6 @@ namespace Gecko
 		nsIDOMNode GetErrorNodeAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetUriAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aUri);
+		void GetUriAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aUri);
 	}
 }

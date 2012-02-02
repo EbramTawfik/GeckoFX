@@ -37,7 +37,7 @@ namespace Gecko
 		/// <summary>Member DeleteModule </summary>
 		/// <param name='moduleName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DeleteModule([MarshalAs(UnmanagedType.LPStruct)] nsAString moduleName);
+		void DeleteModule([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase moduleName);
 		
 		/// <summary>Member AddModule </summary>
 		/// <param name='moduleName'> </param>
@@ -45,6 +45,6 @@ namespace Gecko
 		/// <param name='cryptoMechanismFlags'> </param>
 		/// <param name='cipherFlags'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddModule([MarshalAs(UnmanagedType.LPStruct)] nsAString moduleName, [MarshalAs(UnmanagedType.LPStruct)] nsAString libraryFullPath, int cryptoMechanismFlags, int cipherFlags);
+		void AddModule([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase moduleName, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase libraryFullPath, int cryptoMechanismFlags, int cipherFlags);
 	}
 }

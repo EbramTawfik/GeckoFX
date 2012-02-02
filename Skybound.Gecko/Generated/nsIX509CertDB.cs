@@ -51,7 +51,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIX509Cert FindCertByNickname([MarshalAs(UnmanagedType.Interface)] nsISupports aToken, [MarshalAs(UnmanagedType.LPStruct)] nsAString aNickname);
+		nsIX509Cert FindCertByNickname([MarshalAs(UnmanagedType.Interface)] nsISupports aToken, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNickname);
 		
 		/// <summary>
         /// Will find a certificate based on its dbkey
@@ -95,7 +95,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIX509Cert FindEmailEncryptionCert([MarshalAs(UnmanagedType.LPStruct)] nsAString aNickname);
+		nsIX509Cert FindEmailEncryptionCert([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNickname);
 		
 		/// <summary>
         /// Find user's own email signing certificate by nickname.
@@ -107,7 +107,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIX509Cert FindEmailSigningCert([MarshalAs(UnmanagedType.LPStruct)] nsAString aNickname);
+		nsIX509Cert FindEmailSigningCert([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNickname);
 		
 		/// <summary>
         /// Find a certificate by email address.

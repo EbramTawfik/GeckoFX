@@ -51,6 +51,6 @@ namespace Gecko
 		/// <returns>A nsIDOMMimeType</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMMimeType NamedItem([MarshalAs(UnmanagedType.LPStruct)] nsAString name);
+		nsIDOMMimeType NamedItem([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name);
 	}
 }

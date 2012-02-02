@@ -40,13 +40,13 @@ namespace Gecko
         /// 66009894-9877-405b-9321-bf30420e34e6 prev uuid
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetIdAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aId);
+		void GetIdAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aId);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName);
+		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aName);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCommandAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aCommand);
+		void GetCommandAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aCommand);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetExpectsURIsAttribute();
@@ -59,16 +59,16 @@ namespace Gecko
 		nsIUTF8StringEnumerator GetSupportedURISchemesAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Launch([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String uri);
+		void Launch([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase uri);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAsDefaultForMimeType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String mimeType);
+		void SetAsDefaultForMimeType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase mimeType);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAsDefaultForFileExtensions([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String extensions);
+		void SetAsDefaultForFileExtensions([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase extensions);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAsDefaultForURIScheme([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String uriScheme);
+		void SetAsDefaultForURIScheme([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase uriScheme);
 	}
 	
 	/// <summary>
@@ -84,30 +84,30 @@ namespace Gecko
         ///Obtain the MIME type registered for an extension.  The extension
         ///     should not include a leading dot. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMimeTypeFromExtension([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String extension, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
+		void GetMimeTypeFromExtension([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase extension, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase retval);
 		
 		/// <summary>
         ///Obtain the preferred application for opening a given URI scheme </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIGIOMimeApp GetAppForURIScheme([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aURIScheme);
+		nsIGIOMimeApp GetAppForURIScheme([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aURIScheme);
 		
 		/// <summary>
         ///Obtain the preferred application for opening a given MIME type </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIGIOMimeApp GetAppForMimeType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String mimeType);
+		nsIGIOMimeApp GetAppForMimeType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase mimeType);
 		
 		/// <summary>
         ///Obtain the preferred application for opening a given MIME type </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIGIOMimeApp CreateAppFromCommand([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String cmd, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String appName);
+		nsIGIOMimeApp CreateAppFromCommand([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase cmd, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase appName);
 		
 		/// <summary>
         ///Obtain a description for the given MIME type </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDescriptionForMimeType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String mimeType, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
+		void GetDescriptionForMimeType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase mimeType, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase retval);
 		
 		/// <summary>
         ///Open the given URI in the default application </summary>

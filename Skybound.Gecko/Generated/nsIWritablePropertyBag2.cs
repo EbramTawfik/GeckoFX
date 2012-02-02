@@ -49,44 +49,44 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIVariant GetProperty([MarshalAs(UnmanagedType.LPStruct)] nsAString name);
+		new nsIVariant GetProperty([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name);
 		
 		/// <summary>
         /// requested value
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new int GetPropertyAsInt32([MarshalAs(UnmanagedType.LPStruct)] nsAString prop);
+		new int GetPropertyAsInt32([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase prop);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new uint GetPropertyAsUint32([MarshalAs(UnmanagedType.LPStruct)] nsAString prop);
+		new uint GetPropertyAsUint32([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase prop);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new long GetPropertyAsInt64([MarshalAs(UnmanagedType.LPStruct)] nsAString prop);
+		new long GetPropertyAsInt64([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase prop);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new ulong GetPropertyAsUint64([MarshalAs(UnmanagedType.LPStruct)] nsAString prop);
+		new ulong GetPropertyAsUint64([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase prop);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new double GetPropertyAsDouble([MarshalAs(UnmanagedType.LPStruct)] nsAString prop);
+		new double GetPropertyAsDouble([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase prop);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetPropertyAsAString([MarshalAs(UnmanagedType.LPStruct)] nsAString prop, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		new void GetPropertyAsAString([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase prop, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetPropertyAsACString([MarshalAs(UnmanagedType.LPStruct)] nsAString prop, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
+		new void GetPropertyAsACString([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase prop, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetPropertyAsAUTF8String([MarshalAs(UnmanagedType.LPStruct)] nsAString prop, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
+		new void GetPropertyAsAUTF8String([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase prop, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase retval);
 		
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool GetPropertyAsBool([MarshalAs(UnmanagedType.LPStruct)] nsAString prop);
+		new bool GetPropertyAsBool([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase prop);
 		
 		/// <summary>
         /// This method returns null if the value exists, but is null.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.IntPtr GetPropertyAsInterface([MarshalAs(UnmanagedType.LPStruct)] nsAString prop, ref System.Guid iid);
+		new System.IntPtr GetPropertyAsInterface([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase prop, ref System.Guid iid);
 		
 		/// <summary>
         /// This method returns null if the value does not exist,
@@ -94,45 +94,45 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIVariant Get([MarshalAs(UnmanagedType.LPStruct)] nsAString prop);
+		new nsIVariant Get([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase prop);
 		
 		/// <summary>
         /// Check for the existence of a key.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool HasKey([MarshalAs(UnmanagedType.LPStruct)] nsAString prop);
+		new bool HasKey([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase prop);
 		
 		/// <summary>
         ///nsIVariant based Property Bag support. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPropertyAsInt32([MarshalAs(UnmanagedType.LPStruct)] nsAString prop, int value);
+		void SetPropertyAsInt32([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase prop, int value);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPropertyAsUint32([MarshalAs(UnmanagedType.LPStruct)] nsAString prop, uint value);
+		void SetPropertyAsUint32([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase prop, uint value);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPropertyAsInt64([MarshalAs(UnmanagedType.LPStruct)] nsAString prop, long value);
+		void SetPropertyAsInt64([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase prop, long value);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPropertyAsUint64([MarshalAs(UnmanagedType.LPStruct)] nsAString prop, ulong value);
+		void SetPropertyAsUint64([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase prop, ulong value);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPropertyAsDouble([MarshalAs(UnmanagedType.LPStruct)] nsAString prop, double value);
+		void SetPropertyAsDouble([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase prop, double value);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPropertyAsAString([MarshalAs(UnmanagedType.LPStruct)] nsAString prop, [MarshalAs(UnmanagedType.LPStruct)] nsAString value);
+		void SetPropertyAsAString([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase prop, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase value);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPropertyAsACString([MarshalAs(UnmanagedType.LPStruct)] nsAString prop, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase value);
+		void SetPropertyAsACString([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase prop, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase value);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPropertyAsAUTF8String([MarshalAs(UnmanagedType.LPStruct)] nsAString prop, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String value);
+		void SetPropertyAsAUTF8String([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase prop, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase value);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPropertyAsBool([MarshalAs(UnmanagedType.LPStruct)] nsAString prop, [MarshalAs(UnmanagedType.Bool)] bool value);
+		void SetPropertyAsBool([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase prop, [MarshalAs(UnmanagedType.Bool)] bool value);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPropertyAsInterface([MarshalAs(UnmanagedType.LPStruct)] nsAString prop, [MarshalAs(UnmanagedType.Interface)] nsISupports value);
+		void SetPropertyAsInterface([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase prop, [MarshalAs(UnmanagedType.Interface)] nsISupports value);
 	}
 }

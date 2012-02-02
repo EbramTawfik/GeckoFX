@@ -49,7 +49,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIVariant GetProperty([MarshalAs(UnmanagedType.LPStruct)] nsAString name);
+		new nsIVariant GetProperty([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name);
 		
 		/// <summary>
         /// Set a property with the given name to the given value.  If
@@ -57,7 +57,7 @@ namespace Gecko
         /// overwritten.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetProperty([MarshalAs(UnmanagedType.LPStruct)] nsAString name, [MarshalAs(UnmanagedType.Interface)] nsIVariant value);
+		void SetProperty([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, [MarshalAs(UnmanagedType.Interface)] nsIVariant value);
 		
 		/// <summary>
         /// Delete a property with the given name.
@@ -65,6 +65,6 @@ namespace Gecko
         /// exist.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DeleteProperty([MarshalAs(UnmanagedType.LPStruct)] nsAString name);
+		void DeleteProperty([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name);
 	}
 }

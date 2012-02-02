@@ -48,24 +48,24 @@ namespace Gecko
         /// @return             NS_OK for success,
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NormalizeUnicodeNFD([MarshalAs(UnmanagedType.LPStruct)] nsAString aSrc, [MarshalAs(UnmanagedType.LPStruct)] nsAString aDest);
+		void NormalizeUnicodeNFD([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSrc, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDest);
 		
 		/// <summary>Member NormalizeUnicodeNFC </summary>
 		/// <param name='aSrc'> </param>
 		/// <param name='aDest'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NormalizeUnicodeNFC([MarshalAs(UnmanagedType.LPStruct)] nsAString aSrc, [MarshalAs(UnmanagedType.LPStruct)] nsAString aDest);
+		void NormalizeUnicodeNFC([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSrc, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDest);
 		
 		/// <summary>Member NormalizeUnicodeNFKD </summary>
 		/// <param name='aSrc'> </param>
 		/// <param name='aDest'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NormalizeUnicodeNFKD([MarshalAs(UnmanagedType.LPStruct)] nsAString aSrc, [MarshalAs(UnmanagedType.LPStruct)] nsAString aDest);
+		void NormalizeUnicodeNFKD([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSrc, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDest);
 		
 		/// <summary>Member NormalizeUnicodeNFKC </summary>
 		/// <param name='aSrc'> </param>
 		/// <param name='aDest'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NormalizeUnicodeNFKC([MarshalAs(UnmanagedType.LPStruct)] nsAString aSrc, [MarshalAs(UnmanagedType.LPStruct)] nsAString aDest);
+		void NormalizeUnicodeNFKC([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSrc, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDest);
 	}
 }

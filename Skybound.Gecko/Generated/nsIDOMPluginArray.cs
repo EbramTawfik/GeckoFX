@@ -51,7 +51,7 @@ namespace Gecko
 		/// <returns>A nsIDOMPlugin</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMPlugin NamedItem([MarshalAs(UnmanagedType.LPStruct)] nsAString name);
+		nsIDOMPlugin NamedItem([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name);
 		
 		/// <summary>Member Refresh </summary>
 		/// <param name='reloadDocuments'> </param>

@@ -44,7 +44,7 @@ namespace Gecko
 		void SpoofDeviceID(uint aDeviceID);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SpoofDriverVersion([MarshalAs(UnmanagedType.LPStruct)] nsAString aDriverVersion);
+		void SpoofDriverVersion([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDriverVersion);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SpoofOSVersion(uint aVersion);

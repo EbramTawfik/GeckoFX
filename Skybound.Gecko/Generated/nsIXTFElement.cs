@@ -116,13 +116,13 @@ namespace Gecko
 		/// <param name='name'> </param>
 		/// <param name='newValue'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void WillSetAttribute([MarshalAs(UnmanagedType.Interface)] nsIAtom name, [MarshalAs(UnmanagedType.LPStruct)] nsAString newValue);
+		void WillSetAttribute([MarshalAs(UnmanagedType.Interface)] nsIAtom name, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase newValue);
 		
 		/// <summary>Member AttributeSet </summary>
 		/// <param name='name'> </param>
 		/// <param name='newValue'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AttributeSet([MarshalAs(UnmanagedType.Interface)] nsIAtom name, [MarshalAs(UnmanagedType.LPStruct)] nsAString newValue);
+		void AttributeSet([MarshalAs(UnmanagedType.Interface)] nsIAtom name, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase newValue);
 		
 		/// <summary>Member WillRemoveAttribute </summary>
 		/// <param name='name'> </param>

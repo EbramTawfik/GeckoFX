@@ -59,13 +59,13 @@ namespace Gecko
         /// @returns the ID of the folder for the livemark
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int CreateLivemark(long folder, [MarshalAs(UnmanagedType.LPStruct)] nsAString name, [MarshalAs(UnmanagedType.Interface)] nsIURI siteURI, [MarshalAs(UnmanagedType.Interface)] nsIURI feedURI, int index);
+		int CreateLivemark(long folder, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, [MarshalAs(UnmanagedType.Interface)] nsIURI siteURI, [MarshalAs(UnmanagedType.Interface)] nsIURI feedURI, int index);
 		
 		/// <summary>
         /// Same as above, use during startup to avoid HTTP traffic
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int CreateLivemarkFolderOnly(long folder, [MarshalAs(UnmanagedType.LPStruct)] nsAString name, [MarshalAs(UnmanagedType.Interface)] nsIURI siteURI, [MarshalAs(UnmanagedType.Interface)] nsIURI feedURI, int index);
+		int CreateLivemarkFolderOnly(long folder, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, [MarshalAs(UnmanagedType.Interface)] nsIURI siteURI, [MarshalAs(UnmanagedType.Interface)] nsIURI feedURI, int index);
 		
 		/// <summary>
         /// Determines whether the folder with the given folder ID identifies

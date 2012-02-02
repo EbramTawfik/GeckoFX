@@ -70,7 +70,7 @@ namespace Gecko
         /// they're trusted
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddEventListener([MarshalAs(UnmanagedType.LPStruct)] nsAString type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener listener, [MarshalAs(UnmanagedType.Bool)] bool useCapture, [MarshalAs(UnmanagedType.Bool)] bool wantsUntrusted, int argc);
+		void AddEventListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener listener, [MarshalAs(UnmanagedType.Bool)] bool useCapture, [MarshalAs(UnmanagedType.Bool)] bool wantsUntrusted, int argc);
 		
 		/// <summary>
         /// This method allows the removal of event listeners from the event
@@ -93,7 +93,7 @@ namespace Gecko
         /// listener, and vice versa.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveEventListener([MarshalAs(UnmanagedType.LPStruct)] nsAString type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener listener, [MarshalAs(UnmanagedType.Bool)] bool useCapture);
+		void RemoveEventListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener listener, [MarshalAs(UnmanagedType.Bool)] bool useCapture);
 		
 		/// <summary>
         /// This method allows the dispatch of events into the implementations

@@ -46,6 +46,6 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool ConfirmSignText([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor ctxt, [MarshalAs(UnmanagedType.LPStruct)] nsAString host, [MarshalAs(UnmanagedType.LPStruct)] nsAString signText, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=5)] System.IntPtr[] certNickList, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=5)] System.IntPtr[] certDetailsList, uint count, ref int selectedIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAString password);
+		bool ConfirmSignText([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor ctxt, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase host, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase signText, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=5)] System.IntPtr[] certNickList, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=5)] System.IntPtr[] certDetailsList, uint count, ref int selectedIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase password);
 	}
 }

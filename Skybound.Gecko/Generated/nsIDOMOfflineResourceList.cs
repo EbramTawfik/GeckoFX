@@ -48,7 +48,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool MozHasItem([MarshalAs(UnmanagedType.LPStruct)] nsAString uri);
+		bool MozHasItem([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase uri);
 		
 		/// <summary>
         /// Get the number of dynamically-managed entries.
@@ -64,7 +64,7 @@ namespace Gecko
         /// Clients should use the "items" attribute.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MozItem(uint index, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void MozItem(uint index, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// Add an item to the list of dynamically-managed entries.  The resource
@@ -74,7 +74,7 @@ namespace Gecko
         /// The resource to add.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MozAdd([MarshalAs(UnmanagedType.LPStruct)] nsAString uri);
+		void MozAdd([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase uri);
 		
 		/// <summary>
         /// Remove an item from the list of dynamically-managed entries.  If this
@@ -85,7 +85,7 @@ namespace Gecko
         /// The resource to remove.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MozRemove([MarshalAs(UnmanagedType.LPStruct)] nsAString uri);
+		void MozRemove([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase uri);
 		
 		/// <summary>
         ///The application cache group is now obsolete. </summary>

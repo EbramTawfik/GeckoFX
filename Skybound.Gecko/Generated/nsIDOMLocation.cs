@@ -40,7 +40,7 @@ namespace Gecko
         /// can be different from the documentURI of the document.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetHashAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aHash);
+		void GetHashAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aHash);
 		
 		/// <summary>
         /// These properties refer to the current location of the document.
@@ -48,77 +48,77 @@ namespace Gecko
         /// can be different from the documentURI of the document.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetHashAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aHash);
+		void SetHashAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aHash);
 		
 		/// <summary>Member GetHostAttribute </summary>
 		/// <param name='aHost'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetHostAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aHost);
+		void GetHostAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aHost);
 		
 		/// <summary>Member SetHostAttribute </summary>
 		/// <param name='aHost'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetHostAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aHost);
+		void SetHostAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aHost);
 		
 		/// <summary>Member GetHostnameAttribute </summary>
 		/// <param name='aHostname'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetHostnameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aHostname);
+		void GetHostnameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aHostname);
 		
 		/// <summary>Member SetHostnameAttribute </summary>
 		/// <param name='aHostname'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetHostnameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aHostname);
+		void SetHostnameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aHostname);
 		
 		/// <summary>Member GetHrefAttribute </summary>
 		/// <param name='aHref'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetHrefAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aHref);
+		void GetHrefAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aHref);
 		
 		/// <summary>Member SetHrefAttribute </summary>
 		/// <param name='aHref'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetHrefAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aHref);
+		void SetHrefAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aHref);
 		
 		/// <summary>Member GetPathnameAttribute </summary>
 		/// <param name='aPathname'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPathnameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aPathname);
+		void GetPathnameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPathname);
 		
 		/// <summary>Member SetPathnameAttribute </summary>
 		/// <param name='aPathname'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPathnameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aPathname);
+		void SetPathnameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPathname);
 		
 		/// <summary>Member GetPortAttribute </summary>
 		/// <param name='aPort'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPortAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aPort);
+		void GetPortAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPort);
 		
 		/// <summary>Member SetPortAttribute </summary>
 		/// <param name='aPort'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPortAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aPort);
+		void SetPortAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPort);
 		
 		/// <summary>Member GetProtocolAttribute </summary>
 		/// <param name='aProtocol'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetProtocolAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aProtocol);
+		void GetProtocolAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aProtocol);
 		
 		/// <summary>Member SetProtocolAttribute </summary>
 		/// <param name='aProtocol'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetProtocolAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aProtocol);
+		void SetProtocolAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aProtocol);
 		
 		/// <summary>Member GetSearchAttribute </summary>
 		/// <param name='aSearch'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSearchAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aSearch);
+		void GetSearchAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSearch);
 		
 		/// <summary>Member SetSearchAttribute </summary>
 		/// <param name='aSearch'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSearchAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aSearch);
+		void SetSearchAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSearch);
 		
 		/// <summary>Member Reload </summary>
 		/// <param name='forceget'> </param>
@@ -128,16 +128,16 @@ namespace Gecko
 		/// <summary>Member Replace </summary>
 		/// <param name='url'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Replace([MarshalAs(UnmanagedType.LPStruct)] nsAString url);
+		void Replace([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase url);
 		
 		/// <summary>Member Assign </summary>
 		/// <param name='url'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Assign([MarshalAs(UnmanagedType.LPStruct)] nsAString url);
+		void Assign([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase url);
 		
 		/// <summary>Member ToString </summary>
 		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ToString([MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void ToString([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 	}
 }

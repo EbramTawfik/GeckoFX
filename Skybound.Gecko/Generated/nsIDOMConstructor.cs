@@ -37,6 +37,6 @@ namespace Gecko
 		/// <summary>Member ToString </summary>
 		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ToString([MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void ToString([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 	}
 }

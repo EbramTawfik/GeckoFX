@@ -40,7 +40,7 @@ namespace Gecko
         /// The name of the request.  Often this is the URI of the request.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName);
+		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aName);
 		
 		/// <summary>
         /// Indicates whether the request is pending. nsIRequest::isPending is

@@ -45,7 +45,7 @@ namespace Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow parent, [MarshalAs(UnmanagedType.LPStruct)] nsAString title, short mode);
+		void Init([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow parent, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase title, short mode);
 		
 		/// <summary>
         /// Append to the  filter list with things from the predefined list
@@ -64,7 +64,7 @@ namespace Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AppendFilter([MarshalAs(UnmanagedType.LPStruct)] nsAString title, [MarshalAs(UnmanagedType.LPStruct)] nsAString filter);
+		void AppendFilter([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase title, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase filter);
 		
 		/// <summary>
         /// The filename that should be suggested to the user as a default. This should
@@ -73,7 +73,7 @@ namespace Gecko
         /// @throws NS_ERROR_FAILURE on attempts to get
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDefaultStringAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDefaultString);
+		void GetDefaultStringAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDefaultString);
 		
 		/// <summary>
         /// The filename that should be suggested to the user as a default. This should
@@ -82,7 +82,7 @@ namespace Gecko
         /// @throws NS_ERROR_FAILURE on attempts to get
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDefaultStringAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDefaultString);
+		void SetDefaultStringAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDefaultString);
 		
 		/// <summary>
         /// The extension that should be associated with files of the type we
@@ -90,7 +90,7 @@ namespace Gecko
         /// automatically appended to filenames the user enters, if needed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDefaultExtensionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDefaultExtension);
+		void GetDefaultExtensionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDefaultExtension);
 		
 		/// <summary>
         /// The extension that should be associated with files of the type we
@@ -98,7 +98,7 @@ namespace Gecko
         /// automatically appended to filenames the user enters, if needed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDefaultExtensionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDefaultExtension);
+		void SetDefaultExtensionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDefaultExtension);
 		
 		/// <summary>
         /// The filter which is currently selected in the File Picker dialog

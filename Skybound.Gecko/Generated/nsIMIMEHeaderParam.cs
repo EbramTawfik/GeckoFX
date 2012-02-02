@@ -82,7 +82,7 @@ namespace Gecko
         /// @return the value of <code>aParamName</code> in Unichar(UTF-16).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetParameter([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aHeaderVal, [MarshalAs(UnmanagedType.LPStr)] string aParamName, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aFallbackCharset, [MarshalAs(UnmanagedType.Bool)] bool aTryLocaleCharset, [MarshalAs(UnmanagedType.LPStr)] ref string aLang, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetParameter([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aHeaderVal, [MarshalAs(UnmanagedType.LPStr)] string aParamName, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aFallbackCharset, [MarshalAs(UnmanagedType.Bool)] bool aTryLocaleCharset, [MarshalAs(UnmanagedType.LPStr)] ref string aLang, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// Given the value of a single header field  (such as

@@ -175,7 +175,7 @@ namespace Gecko
         /// consider using something else for this....
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetFingerprintAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aFingerprint);
+		void GetFingerprintAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aFingerprint);
 		
 		/// <summary>
         /// The pretty name for the certificate.  This sort of (but not really)
@@ -187,7 +187,7 @@ namespace Gecko
         /// Throws if there is no certificate associated with this principal.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPrettyNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aPrettyName);
+		void GetPrettyNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aPrettyName);
 		
 		/// <summary>
         /// Returns whether the other principal is equal to or weaker than this
@@ -253,7 +253,7 @@ namespace Gecko
         /// Throws if there is no certificate associated with this principal.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSubjectNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aSubjectName);
+		void GetSubjectNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aSubjectName);
 		
 		/// <summary>
         /// The certificate associated with this principal, if any.  If there isn't

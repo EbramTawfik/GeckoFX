@@ -42,7 +42,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIUnicharInputStream CreateInstanceFromString([MarshalAs(UnmanagedType.LPStruct)] nsAString aString);
+		nsIUnicharInputStream CreateInstanceFromString([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aString);
 		
 		/// <summary>
         /// Create a unicode stream from an input stream in UTF8.

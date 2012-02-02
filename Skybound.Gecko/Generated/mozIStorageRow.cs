@@ -82,13 +82,13 @@ namespace Gecko
 		/// <param name='aIndex'> </param>
 		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetUTF8String(uint aIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
+		new void GetUTF8String(uint aIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase retval);
 		
 		/// <summary>Member GetString </summary>
 		/// <param name='aIndex'> </param>
 		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetString(uint aIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		new void GetString(uint aIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// data will be NULL if dataSize = 0
@@ -148,6 +148,6 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant GetResultByName([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName);
+		nsIVariant GetResultByName([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aName);
 	}
 }

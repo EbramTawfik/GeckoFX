@@ -97,7 +97,7 @@ namespace Gecko
         /// add() method.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Remove([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String host, [MarshalAs(UnmanagedType.LPStr)] string type);
+		void Remove([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase host, [MarshalAs(UnmanagedType.LPStr)] string type);
 		
 		/// <summary>
         /// Clear permission information for all websites.

@@ -105,7 +105,7 @@ namespace Gecko
         /// The title associated with the place.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTitleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aTitle);
+		void GetTitleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTitle);
 		
 		/// <summary>
         /// The frecency of the place.

@@ -69,10 +69,10 @@ namespace Gecko
         /// @{
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void BindUTF8StringParameter(uint aParamIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aValue);
+		new void BindUTF8StringParameter(uint aParamIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aValue);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void BindStringParameter(uint aParamIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAString aValue);
+		new void BindStringParameter(uint aParamIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aValue);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void BindDoubleParameter(uint aParamIndex, double aValue);
@@ -150,7 +150,7 @@ namespace Gecko
         /// into "foo//bar/_baz/%20cheese" (if the escape char is '/').
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void EscapeStringForLIKE([MarshalAs(UnmanagedType.LPStruct)] nsAString aValue, char aEscapeChar, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		new void EscapeStringForLIKE([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aValue, char aEscapeChar, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// Create a clone of this statement, by initializing a new statement
@@ -172,7 +172,7 @@ namespace Gecko
         /// Name of nth parameter, if given
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetParameterName(uint aParamIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
+		void GetParameterName(uint aParamIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase retval);
 		
 		/// <summary>
         /// Returns the index of the named parameter.
@@ -183,7 +183,7 @@ namespace Gecko
         /// @return the index of the named parameter.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetParameterIndex([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName);
+		uint GetParameterIndex([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aName);
 		
 		/// <summary>
         /// Number of columns returned
@@ -195,7 +195,7 @@ namespace Gecko
         /// Name of nth column
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetColumnName(uint aColumnIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
+		void GetColumnName(uint aColumnIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase retval);
 		
 		/// <summary>
         /// Obtains the index of the column with the specified name.
@@ -205,7 +205,7 @@ namespace Gecko
         /// @return The index of the column with the specified name.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetColumnIndex([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName);
+		uint GetColumnIndex([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aName);
 		
 		/// <summary>
         /// Obtains the declared column type of a prepared statement.
@@ -216,7 +216,7 @@ namespace Gecko
         /// @return the declared index type.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetColumnDecltype(uint aParamIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
+		void GetColumnDecltype(uint aParamIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase retval);
 		
 		/// <summary>
         /// Reset parameters/statement execution
@@ -306,10 +306,10 @@ namespace Gecko
         /// @{
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetUTF8String(uint aIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
+		void GetUTF8String(uint aIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase retval);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetString(uint aIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetString(uint aIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// Retrieve the contents of a column from the current result row as a

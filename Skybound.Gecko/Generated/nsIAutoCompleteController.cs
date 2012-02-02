@@ -63,7 +63,7 @@ namespace Gecko
         /// Start a search on a string, assuming the input property is already set.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void StartSearch([MarshalAs(UnmanagedType.LPStruct)] nsAString searchString);
+		void StartSearch([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase searchString);
 		
 		/// <summary>
         /// Stop all asynchronous searches
@@ -140,42 +140,42 @@ namespace Gecko
         /// Get the value of the result at a given index in the last completed search
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetValueAt(int index, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetValueAt(int index, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// Get the label of the result at a given index in the last completed search
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetLabelAt(int index, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetLabelAt(int index, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// Get the comment of the result at a given index in the last completed search
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCommentAt(int index, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetCommentAt(int index, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// Get the style hint for the result at a given index in the last completed search
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetStyleAt(int index, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetStyleAt(int index, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// Get the url of the image of the result at a given index in the last completed search
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetImageAt(int index, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetImageAt(int index, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// Get / set the current search string.  Note, setting will not start searching
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSearchStringAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aSearchString);
+		void GetSearchStringAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSearchString);
 		
 		/// <summary>
         /// Get / set the current search string.  Note, setting will not start searching
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSearchStringAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aSearchString);
+		void SetSearchStringAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSearchString);
 	}
 }

@@ -53,7 +53,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Has([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
+		bool Has([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
 		
 		/// <summary>
         /// Gets the value of an annotation with the given name.
@@ -64,7 +64,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant Get([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
+		nsIVariant Get([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
 		
 		/// <summary>
         /// Sets the value of an annotation with the given name.
@@ -78,7 +78,7 @@ namespace Gecko
         /// See nsIAnnotationService.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Set([MarshalAs(UnmanagedType.LPStruct)] nsAString aName, [MarshalAs(UnmanagedType.Interface)] nsIVariant aValue, int aExpiration);
+		void Set([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName, [MarshalAs(UnmanagedType.Interface)] nsIVariant aValue, int aExpiration);
 		
 		/// <summary>
         /// Removes the named annotation from the owner item.
@@ -86,7 +86,7 @@ namespace Gecko
         /// The name of annotation.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Remove([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
+		void Remove([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
 	}
 	
 	/// <summary>
@@ -108,13 +108,13 @@ namespace Gecko
         /// The title of the bookmark.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTitleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aTitle);
+		void GetTitleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTitle);
 		
 		/// <summary>
         /// The title of the bookmark.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTitleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aTitle);
+		void SetTitleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTitle);
 		
 		/// <summary>
         /// The uri of the bookmark.
@@ -133,32 +133,32 @@ namespace Gecko
         /// The description of the bookmark.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDescriptionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDescription);
+		void GetDescriptionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDescription);
 		
 		/// <summary>
         /// The description of the bookmark.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDescriptionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDescription);
+		void SetDescriptionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDescription);
 		
 		/// <summary>
         /// The keyword associated with the bookmark.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetKeywordAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aKeyword);
+		void GetKeywordAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aKeyword);
 		
 		/// <summary>
         /// The keyword associated with the bookmark.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetKeywordAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aKeyword);
+		void SetKeywordAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aKeyword);
 		
 		/// <summary>
         /// The type of the bookmark.
         /// values: "bookmark", "separator"
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aType);
+		void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType);
 		
 		/// <summary>
         /// The parent folder of the bookmark.
@@ -213,32 +213,32 @@ namespace Gecko
         /// The title of the folder.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTitleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aTitle);
+		void GetTitleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTitle);
 		
 		/// <summary>
         /// The title of the folder.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTitleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aTitle);
+		void SetTitleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTitle);
 		
 		/// <summary>
         /// The description of the folder.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDescriptionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDescription);
+		void GetDescriptionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDescription);
 		
 		/// <summary>
         /// The description of the folder.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDescriptionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDescription);
+		void SetDescriptionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDescription);
 		
 		/// <summary>
         /// The type of the folder.
         /// values: "folder"
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aType);
+		void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType);
 		
 		/// <summary>
         /// The parent folder of the folder.
@@ -281,7 +281,7 @@ namespace Gecko
         /// The uri of bookmark.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		fuelIBookmark AddBookmark([MarshalAs(UnmanagedType.LPStruct)] nsAString aTitle, [MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
+		fuelIBookmark AddBookmark([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTitle, [MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 		
 		/// <summary>
         /// Adds a new child separator to this folder.
@@ -295,7 +295,7 @@ namespace Gecko
         /// The title of folder.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		fuelIBookmarkFolder AddFolder([MarshalAs(UnmanagedType.LPStruct)] nsAString aTitle);
+		fuelIBookmarkFolder AddFolder([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTitle);
 		
 		/// <summary>
         /// Removes the folder from the parent folder.
@@ -468,19 +468,19 @@ namespace Gecko
         /// The id of the application.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetIdAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aId);
+		new void GetIdAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aId);
 		
 		/// <summary>
         /// The name of the application.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
+		new void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
 		
 		/// <summary>
         /// The version number of the application.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aVersion);
+		new void GetVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aVersion);
 		
 		/// <summary>
         /// The console object for the application.

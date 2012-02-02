@@ -41,7 +41,7 @@ namespace Gecko
 		/// <returns>A nsIDOMDesktopNotification</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDesktopNotification CreateNotification([MarshalAs(UnmanagedType.LPStruct)] nsAString title, [MarshalAs(UnmanagedType.LPStruct)] nsAString description, [MarshalAs(UnmanagedType.LPStruct)] nsAString iconURL);
+		nsIDOMDesktopNotification CreateNotification([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase title, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase description, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase iconURL);
 	}
 	
 	/// <summary>nsIDOMDesktopNotification </summary>

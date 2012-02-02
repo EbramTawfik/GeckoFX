@@ -109,7 +109,7 @@ namespace Gecko
         /// considered author-intentional, and respected.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
+		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
 		
 		/// <summary>
         /// Accessible name -- the main text equivalent for this node. The name is
@@ -122,20 +122,20 @@ namespace Gecko
         /// considered author-intentional, and respected.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
+		void SetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
 		
 		/// <summary>
         /// Accessible value -- a number or a secondary text equivalent for this node
         /// Widgets that use role attribute can force a value using the valuenow attribute
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aValue);
+		void GetValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aValue);
 		
 		/// <summary>
         /// Accessible description -- long text associated with this node
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDescriptionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDescription);
+		void GetDescriptionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDescription);
 		
 		/// <summary>
         /// Provides localized string of accesskey name, such as Alt+D.
@@ -143,14 +143,14 @@ namespace Gecko
         /// Usually alt+letter, or just the letter alone for menu items.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetKeyboardShortcutAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aKeyboardShortcut);
+		void GetKeyboardShortcutAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aKeyboardShortcut);
 		
 		/// <summary>
         /// Provides localized string of global keyboard accelerator for default
         /// action, such as Ctrl+O for Open file
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDefaultKeyBindingAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDefaultKeyBinding);
+		void GetDefaultKeyBindingAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDefaultKeyBinding);
 		
 		/// <summary>
         /// Provides array of localized string of global keyboard accelerator for
@@ -187,7 +187,7 @@ namespace Gecko
         /// Help text associated with node
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetHelpAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aHelp);
+		void GetHelpAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aHelp);
 		
 		/// <summary>
         /// Focused accessible child of node
@@ -313,13 +313,13 @@ namespace Gecko
         /// The name of the accessible action at the given zero-based index
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetActionName(byte index, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetActionName(byte index, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// The description of the accessible action at the given zero-based index
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetActionDescription(byte aIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetActionDescription(byte aIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// Perform the accessible action at the given zero-based index

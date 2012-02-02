@@ -61,6 +61,6 @@ namespace Gecko
         /// otherwise.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DropLink([MarshalAs(UnmanagedType.Interface)] nsIDOMDragEvent aEvent, [MarshalAs(UnmanagedType.LPStruct)] nsAString aName, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void DropLink([MarshalAs(UnmanagedType.Interface)] nsIDOMDragEvent aEvent, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 	}
 }

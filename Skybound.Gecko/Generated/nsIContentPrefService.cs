@@ -43,7 +43,7 @@ namespace Gecko
         /// @param    aValue      the new value of the pref
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnContentPrefSet([MarshalAs(UnmanagedType.LPStruct)] nsAString aGroup, [MarshalAs(UnmanagedType.LPStruct)] nsAString aName, [MarshalAs(UnmanagedType.Interface)] nsIVariant aValue);
+		void OnContentPrefSet([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aGroup, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName, [MarshalAs(UnmanagedType.Interface)] nsIVariant aValue);
 		
 		/// <summary>
         /// Called when a content pref is removed.
@@ -53,7 +53,7 @@ namespace Gecko
         /// @param    aName       the name of the pref that was removed
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnContentPrefRemoved([MarshalAs(UnmanagedType.LPStruct)] nsAString aGroup, [MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
+		void OnContentPrefRemoved([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aGroup, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
 	}
 	
 	/// <summary>nsIContentPrefCallback </summary>
@@ -102,7 +102,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant GetPref([MarshalAs(UnmanagedType.Interface)] nsIVariant aGroup, [MarshalAs(UnmanagedType.LPStruct)] nsAString aName, System.IntPtr aCallback);
+		nsIVariant GetPref([MarshalAs(UnmanagedType.Interface)] nsIVariant aGroup, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName, System.IntPtr aCallback);
 		
 		/// <summary>
         /// Set a pref.
@@ -120,7 +120,7 @@ namespace Gecko
         /// @throws   NS_ERROR_ILLEGAL_VALUE if aName is null or an empty string
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPref([MarshalAs(UnmanagedType.Interface)] nsIVariant aGroup, [MarshalAs(UnmanagedType.LPStruct)] nsAString aName, [MarshalAs(UnmanagedType.Interface)] nsIVariant aValue);
+		void SetPref([MarshalAs(UnmanagedType.Interface)] nsIVariant aGroup, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName, [MarshalAs(UnmanagedType.Interface)] nsIVariant aValue);
 		
 		/// <summary>
         /// Check whether or not a pref exists.
@@ -135,7 +135,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool HasPref([MarshalAs(UnmanagedType.Interface)] nsIVariant aGroup, [MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
+		bool HasPref([MarshalAs(UnmanagedType.Interface)] nsIVariant aGroup, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
 		
 		/// <summary>
         /// Check whether or not the value of a pref (or its non-existance) is cached.
@@ -150,7 +150,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool HasCachedPref([MarshalAs(UnmanagedType.Interface)] nsIVariant aGroup, [MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
+		bool HasCachedPref([MarshalAs(UnmanagedType.Interface)] nsIVariant aGroup, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
 		
 		/// <summary>
         /// Remove a pref.
@@ -164,7 +164,7 @@ namespace Gecko
         /// @throws   NS_ERROR_ILLEGAL_VALUE if aName is null or an empty string
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemovePref([MarshalAs(UnmanagedType.Interface)] nsIVariant aGroup, [MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
+		void RemovePref([MarshalAs(UnmanagedType.Interface)] nsIVariant aGroup, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
 		
 		/// <summary>
         /// Remove all grouped prefs.  Useful for removing references to the sites
@@ -180,7 +180,7 @@ namespace Gecko
         /// @throws   NS_ERROR_ILLEGAL_VALUE if aName is null or an empty string
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemovePrefsByName([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
+		void RemovePrefsByName([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
 		
 		/// <summary>
         /// Get the prefs that apply to the given site.
@@ -207,7 +207,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIPropertyBag2 GetPrefsByName([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
+		nsIPropertyBag2 GetPrefsByName([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
 		
 		/// <summary>
         /// Add an observer.
@@ -217,7 +217,7 @@ namespace Gecko
         /// @param    aObserver   the observer to add
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddObserver([MarshalAs(UnmanagedType.LPStruct)] nsAString aName, System.IntPtr aObserver);
+		void AddObserver([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName, System.IntPtr aObserver);
 		
 		/// <summary>
         /// Remove an observer.
@@ -227,7 +227,7 @@ namespace Gecko
         /// @param    aObserver   the observer to remove
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveObserver([MarshalAs(UnmanagedType.LPStruct)] nsAString aName, System.IntPtr aObserver);
+		void RemoveObserver([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName, System.IntPtr aObserver);
 		
 		/// <summary>
         /// The component that the service uses to determine the groups to which

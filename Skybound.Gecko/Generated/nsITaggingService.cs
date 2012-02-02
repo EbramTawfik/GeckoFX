@@ -72,7 +72,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant GetURIsForTag([MarshalAs(UnmanagedType.LPStruct)] nsAString aTag);
+		nsIVariant GetURIsForTag([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTag);
 		
 		/// <summary>
         /// Retrieves all tags set for the given URL.

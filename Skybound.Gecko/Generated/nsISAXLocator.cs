@@ -101,7 +101,7 @@ namespace Gecko
         /// null if none is available.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPublicIdAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aPublicId);
+		void GetPublicIdAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPublicId);
 		
 		/// <summary>
         /// Return the system identifier for the current document event.
@@ -114,6 +114,6 @@ namespace Gecko
         /// if none is available.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSystemIdAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aSystemId);
+		void GetSystemIdAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSystemId);
 	}
 }

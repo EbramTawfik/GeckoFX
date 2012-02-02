@@ -39,24 +39,24 @@ namespace Gecko
 		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool HasDataAttr([MarshalAs(UnmanagedType.LPStruct)] nsAString prop);
+		bool HasDataAttr([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase prop);
 		
 		/// <summary>Member GetDataAttr </summary>
 		/// <param name='prop'> </param>
 		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDataAttr([MarshalAs(UnmanagedType.LPStruct)] nsAString prop, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetDataAttr([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase prop, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>Member SetDataAttr </summary>
 		/// <param name='prop'> </param>
 		/// <param name='value'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDataAttr([MarshalAs(UnmanagedType.LPStruct)] nsAString prop, [MarshalAs(UnmanagedType.LPStruct)] nsAString value);
+		void SetDataAttr([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase prop, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase value);
 		
 		/// <summary>Member RemoveDataAttr </summary>
 		/// <param name='prop'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveDataAttr([MarshalAs(UnmanagedType.LPStruct)] nsAString prop);
+		void RemoveDataAttr([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase prop);
 		
 		/// <summary>
         /// Removes the property from the dataset object. Used to update the

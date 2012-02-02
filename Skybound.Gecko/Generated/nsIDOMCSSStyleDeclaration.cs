@@ -48,7 +48,7 @@ namespace Gecko
         /// http://www.w3.org/TR/DOM-Level-2-Style
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCssTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aCssText);
+		void GetCssTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCssText);
 		
 		/// <summary>
         /// The nsIDOMCSSStyleDeclaration interface is a datatype for a CSS
@@ -58,32 +58,32 @@ namespace Gecko
         /// http://www.w3.org/TR/DOM-Level-2-Style
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCssTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aCssText);
+		void SetCssTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCssText);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPropertyValue([MarshalAs(UnmanagedType.LPStruct)] nsAString propertyName, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetPropertyValue([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase propertyName, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMCSSValue GetPropertyCSSValue([MarshalAs(UnmanagedType.LPStruct)] nsAString propertyName);
+		nsIDOMCSSValue GetPropertyCSSValue([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase propertyName);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveProperty([MarshalAs(UnmanagedType.LPStruct)] nsAString propertyName, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void RemoveProperty([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase propertyName, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPropertyPriority([MarshalAs(UnmanagedType.LPStruct)] nsAString propertyName, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetPropertyPriority([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase propertyName, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetProperty([MarshalAs(UnmanagedType.LPStruct)] nsAString propertyName, [MarshalAs(UnmanagedType.LPStruct)] nsAString value, [MarshalAs(UnmanagedType.LPStruct)] nsAString priority);
+		void SetProperty([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase propertyName, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase value, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase priority);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetLengthAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Item(uint index, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void Item(uint index, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

@@ -134,7 +134,7 @@ namespace Gecko
         /// @param triggerEvent the event that triggered this popup (mouse click for example)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OpenPopup([MarshalAs(UnmanagedType.Interface)] nsIDOMElement anchorElement, [MarshalAs(UnmanagedType.LPStruct)] nsAString position, int x, int y, [MarshalAs(UnmanagedType.Bool)] bool isContextMenu, [MarshalAs(UnmanagedType.Bool)] bool attributesOverride, [MarshalAs(UnmanagedType.Interface)] nsIDOMEvent triggerEvent);
+		void OpenPopup([MarshalAs(UnmanagedType.Interface)] nsIDOMElement anchorElement, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase position, int x, int y, [MarshalAs(UnmanagedType.Bool)] bool isContextMenu, [MarshalAs(UnmanagedType.Bool)] bool attributesOverride, [MarshalAs(UnmanagedType.Interface)] nsIDOMEvent triggerEvent);
 		
 		/// <summary>
         /// Open the popup at a specific screen position specified by x and y. This
@@ -159,7 +159,7 @@ namespace Gecko
         /// hiding - the popup is in the process of being hidden
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPopupStateAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aPopupState);
+		void GetPopupStateAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPopupState);
 		
 		/// <summary>
         /// The node that triggered the popup. If the popup is not open, will return

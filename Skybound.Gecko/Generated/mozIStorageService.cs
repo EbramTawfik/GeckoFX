@@ -148,6 +148,6 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIFile BackupDatabaseFile([MarshalAs(UnmanagedType.Interface)] nsIFile aDBFile, [MarshalAs(UnmanagedType.LPStruct)] nsAString aBackupFileName, [MarshalAs(UnmanagedType.Interface)] nsIFile aBackupParentDirectory);
+		nsIFile BackupDatabaseFile([MarshalAs(UnmanagedType.Interface)] nsIFile aDBFile, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBackupFileName, [MarshalAs(UnmanagedType.Interface)] nsIFile aBackupParentDirectory);
 	}
 }

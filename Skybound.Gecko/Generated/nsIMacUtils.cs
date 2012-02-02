@@ -50,7 +50,7 @@ namespace Gecko
         /// ppc > i386 > ppc64 > x86_64 > (future additions)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetArchitecturesInBinaryAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aArchitecturesInBinary);
+		void GetArchitecturesInBinaryAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aArchitecturesInBinary);
 		
 		/// <summary>
         /// True when running under binary translation (Rosetta).

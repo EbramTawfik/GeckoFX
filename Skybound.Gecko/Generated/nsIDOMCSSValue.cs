@@ -44,13 +44,13 @@ namespace Gecko
         /// UnitTypes
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCssTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aCssText);
+		void GetCssTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCssText);
 		
 		/// <summary>
         /// UnitTypes
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCssTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aCssText);
+		void SetCssTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCssText);
 		
 		/// <summary>
         /// raises(DOMException) on setting

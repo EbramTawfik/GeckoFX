@@ -43,6 +43,6 @@ namespace Gecko
         /// phonetic get the phonetic value of the input text
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPhoneticAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aPhonetic);
+		void GetPhoneticAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPhonetic);
 	}
 }

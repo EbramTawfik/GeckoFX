@@ -38,38 +38,38 @@ namespace Gecko
 		/// <param name='key'> </param>
 		/// <param name='value'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetString([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String key, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String value);
+		void SetString([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase key, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase value);
 		
 		/// <summary>Member SetBoolean </summary>
 		/// <param name='key'> </param>
 		/// <param name='value'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBoolean([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String key, [MarshalAs(UnmanagedType.Bool)] bool value);
+		void SetBoolean([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase key, [MarshalAs(UnmanagedType.Bool)] bool value);
 		
 		/// <summary>Member SetInt </summary>
 		/// <param name='key'> </param>
 		/// <param name='value'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetInt([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String key, int value);
+		void SetInt([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase key, int value);
 		
 		/// <summary>Member GetString </summary>
 		/// <param name='key'> </param>
 		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetString([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String key, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
+		void GetString([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase key, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase retval);
 		
 		/// <summary>Member GetBoolean </summary>
 		/// <param name='key'> </param>
 		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetBoolean([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String key);
+		bool GetBoolean([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase key);
 		
 		/// <summary>Member GetInt </summary>
 		/// <param name='key'> </param>
 		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetInt([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String key);
+		int GetInt([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase key);
 	}
 	
 	/// <summary>nsIGSettingsService </summary>
@@ -84,6 +84,6 @@ namespace Gecko
 		/// <returns>A nsIGSettingsCollection</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIGSettingsCollection GetCollectionForSchema([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String schema);
+		nsIGSettingsCollection GetCollectionForSchema([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase schema);
 	}
 }

@@ -37,22 +37,22 @@ namespace Gecko
 		/// <summary>Member GetAppCodeNameAttribute </summary>
 		/// <param name='aAppCodeName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetAppCodeNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aAppCodeName);
+		void GetAppCodeNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAppCodeName);
 		
 		/// <summary>Member GetAppNameAttribute </summary>
 		/// <param name='aAppName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetAppNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aAppName);
+		void GetAppNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAppName);
 		
 		/// <summary>Member GetAppVersionAttribute </summary>
 		/// <param name='aAppVersion'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetAppVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aAppVersion);
+		void GetAppVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAppVersion);
 		
 		/// <summary>Member GetLanguageAttribute </summary>
 		/// <param name='aLanguage'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetLanguageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aLanguage);
+		void GetLanguageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aLanguage);
 		
 		/// <summary>Member GetMimeTypesAttribute </summary>
 		/// <returns>A nsIDOMMimeTypeArray</returns>
@@ -63,32 +63,32 @@ namespace Gecko
 		/// <summary>Member GetPlatformAttribute </summary>
 		/// <param name='aPlatform'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPlatformAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aPlatform);
+		void GetPlatformAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPlatform);
 		
 		/// <summary>Member GetOscpuAttribute </summary>
 		/// <param name='aOscpu'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetOscpuAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aOscpu);
+		void GetOscpuAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aOscpu);
 		
 		/// <summary>Member GetVendorAttribute </summary>
 		/// <param name='aVendor'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetVendorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aVendor);
+		void GetVendorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aVendor);
 		
 		/// <summary>Member GetVendorSubAttribute </summary>
 		/// <param name='aVendorSub'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetVendorSubAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aVendorSub);
+		void GetVendorSubAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aVendorSub);
 		
 		/// <summary>Member GetProductAttribute </summary>
 		/// <param name='aProduct'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetProductAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aProduct);
+		void GetProductAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aProduct);
 		
 		/// <summary>Member GetProductSubAttribute </summary>
 		/// <param name='aProductSub'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetProductSubAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aProductSub);
+		void GetProductSubAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aProductSub);
 		
 		/// <summary>Member GetPluginsAttribute </summary>
 		/// <returns>A nsIDOMPluginArray</returns>
@@ -99,7 +99,7 @@ namespace Gecko
 		/// <summary>Member GetUserAgentAttribute </summary>
 		/// <param name='aUserAgent'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetUserAgentAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aUserAgent);
+		void GetUserAgentAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aUserAgent);
 		
 		/// <summary>Member GetCookieEnabledAttribute </summary>
 		/// <returns>A System.Boolean</returns>
@@ -116,12 +116,12 @@ namespace Gecko
 		/// <summary>Member GetBuildIDAttribute </summary>
 		/// <param name='aBuildID'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetBuildIDAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBuildID);
+		void GetBuildIDAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBuildID);
 		
 		/// <summary>Member GetDoNotTrackAttribute </summary>
 		/// <param name='aDoNotTrack'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDoNotTrackAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDoNotTrack);
+		void GetDoNotTrackAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDoNotTrack);
 		
 		/// <summary>Member JavaEnabled </summary>
 		/// <returns>A System.Boolean</returns>

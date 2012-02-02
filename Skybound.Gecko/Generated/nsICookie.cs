@@ -60,13 +60,13 @@ namespace Gecko
         /// the host (possibly fully qualified) of the cookie
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetHostAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aHost);
+		void GetHostAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aHost);
 		
 		/// <summary>
         /// the path pertaining to the cookie
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aPath);
+		void GetPathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aPath);
 		
 		/// <summary>
         /// true if the cookie was transmitted over ssl, false otherwise

@@ -83,7 +83,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIURI NewURI([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aSpec, [MarshalAs(UnmanagedType.LPStr)] string aOriginCharset, [MarshalAs(UnmanagedType.Interface)] nsIURI aBaseURI);
+		new nsIURI NewURI([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aSpec, [MarshalAs(UnmanagedType.LPStr)] string aOriginCharset, [MarshalAs(UnmanagedType.Interface)] nsIURI aBaseURI);
 		
 		/// <summary>
         /// Constructs a new channel from the given URI for this protocol handler.
@@ -141,6 +141,6 @@ namespace Gecko
         /// @throws NS_ERROR_NOT_AVAILABLE if resURI.host() is an unknown root key.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ResolveURI([MarshalAs(UnmanagedType.Interface)] nsIURI resURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
+		void ResolveURI([MarshalAs(UnmanagedType.Interface)] nsIURI resURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase retval);
 	}
 }

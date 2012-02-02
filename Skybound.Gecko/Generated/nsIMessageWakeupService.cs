@@ -62,6 +62,6 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool RequestWakeup([MarshalAs(UnmanagedType.LPStruct)] nsAString aMessageName, [MarshalAs(UnmanagedType.LPStruct)] nsAString aCid, [MarshalAs(UnmanagedType.LPStruct)] nsAString aIid, [MarshalAs(UnmanagedType.LPStruct)] nsAString aMethod);
+		bool RequestWakeup([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMessageName, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCid, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aIid, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMethod);
 	}
 }

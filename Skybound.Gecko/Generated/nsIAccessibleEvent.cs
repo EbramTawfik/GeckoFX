@@ -145,7 +145,7 @@ namespace Gecko
         /// The inserted or removed text
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetModifiedTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aModifiedText);
+		void GetModifiedTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aModifiedText);
 	}
 	
 	/// <summary>nsIAccessibleCaretMoveEvent </summary>

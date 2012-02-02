@@ -40,13 +40,13 @@ namespace Gecko
         /// A nickname for the certificate.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetNicknameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aNickname);
+		new void GetNicknameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNickname);
 		
 		/// <summary>
         /// The primary email address of the certificate, if present.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetEmailAddressAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aEmailAddress);
+		new void GetEmailAddressAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aEmailAddress);
 		
 		/// <summary>
         /// Obtain a list of all email addresses
@@ -69,82 +69,82 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool ContainsEmailAddress([MarshalAs(UnmanagedType.LPStruct)] nsAString aEmailAddress);
+		new bool ContainsEmailAddress([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aEmailAddress);
 		
 		/// <summary>
         /// The subject owning the certificate.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetSubjectNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aSubjectName);
+		new void GetSubjectNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSubjectName);
 		
 		/// <summary>
         /// The subject's common name.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetCommonNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aCommonName);
+		new void GetCommonNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCommonName);
 		
 		/// <summary>
         /// The subject's organization.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetOrganizationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aOrganization);
+		new void GetOrganizationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aOrganization);
 		
 		/// <summary>
         /// The subject's organizational unit.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetOrganizationalUnitAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aOrganizationalUnit);
+		new void GetOrganizationalUnitAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aOrganizationalUnit);
 		
 		/// <summary>
         /// The fingerprint of the certificate's public key,
         /// calculated using the SHA1 algorithm.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetSha1FingerprintAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aSha1Fingerprint);
+		new void GetSha1FingerprintAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSha1Fingerprint);
 		
 		/// <summary>
         /// The fingerprint of the certificate's public key,
         /// calculated using the MD5 algorithm.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetMd5FingerprintAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMd5Fingerprint);
+		new void GetMd5FingerprintAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMd5Fingerprint);
 		
 		/// <summary>
         /// A human readable name identifying the hardware or
         /// software token the certificate is stored on.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetTokenNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aTokenName);
+		new void GetTokenNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTokenName);
 		
 		/// <summary>
         /// The subject identifying the issuer certificate.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetIssuerNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aIssuerName);
+		new void GetIssuerNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aIssuerName);
 		
 		/// <summary>
         /// The serial number the issuer assigned to this certificate.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetSerialNumberAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aSerialNumber);
+		new void GetSerialNumberAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSerialNumber);
 		
 		/// <summary>
         /// The issuer subject's common name.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetIssuerCommonNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aIssuerCommonName);
+		new void GetIssuerCommonNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aIssuerCommonName);
 		
 		/// <summary>
         /// The issuer subject's organization.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetIssuerOrganizationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aIssuerOrganization);
+		new void GetIssuerOrganizationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aIssuerOrganization);
 		
 		/// <summary>
         /// The issuer subject's organizational unit.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetIssuerOrganizationUnitAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aIssuerOrganizationUnit);
+		new void GetIssuerOrganizationUnitAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aIssuerOrganizationUnit);
 		
 		/// <summary>
         /// The certificate used by the issuer to sign this certificate.
@@ -208,7 +208,7 @@ namespace Gecko
         /// @param purposes The string listing the usages.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetUsagesString([MarshalAs(UnmanagedType.Bool)] bool localOnly, ref uint verified, [MarshalAs(UnmanagedType.LPStruct)] nsAString usages);
+		new void GetUsagesString([MarshalAs(UnmanagedType.Bool)] bool localOnly, ref uint verified, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase usages);
 		
 		/// <summary>
         /// Verify the certificate for a particular usage.

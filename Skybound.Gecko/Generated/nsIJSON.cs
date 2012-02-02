@@ -39,7 +39,7 @@ namespace Gecko
 		/// <summary>
         ///in JSObject value </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Encode([MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void Encode([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         ///in JSObject value </summary>
@@ -49,7 +49,7 @@ namespace Gecko
 		/// <summary>
         ///JSObject </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Decode([MarshalAs(UnmanagedType.LPStruct)] nsAString str);
+		void Decode([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase str);
 		
 		/// <summary>
         ///JSObject </summary>
@@ -57,18 +57,18 @@ namespace Gecko
 		void DecodeFromStream([MarshalAs(UnmanagedType.Interface)] nsIInputStream stream, int contentLength);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EncodeFromJSVal(System.IntPtr value, System.IntPtr cx, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void EncodeFromJSVal(System.IntPtr value, System.IntPtr cx, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// Make sure you GCroot the result of this function before using it.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr DecodeToJSVal([MarshalAs(UnmanagedType.LPStruct)] nsAString str, System.IntPtr cx);
+		System.IntPtr DecodeToJSVal([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase str, System.IntPtr cx);
 		
 		/// <summary>
         ///jsval </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void LegacyDecode([MarshalAs(UnmanagedType.LPStruct)] nsAString str);
+		void LegacyDecode([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase str);
 		
 		/// <summary>
         ///jsval </summary>
@@ -79,6 +79,6 @@ namespace Gecko
         /// Make sure you GCroot the result of this function before using it.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr LegacyDecodeToJSVal([MarshalAs(UnmanagedType.LPStruct)] nsAString str, System.IntPtr cx);
+		System.IntPtr LegacyDecodeToJSVal([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase str, System.IntPtr cx);
 	}
 }

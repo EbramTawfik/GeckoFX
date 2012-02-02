@@ -196,7 +196,7 @@ namespace Gecko
         /// specific. Just give empty string for default behavior.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitFromData([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] byte[] data, uint length, uint width, uint height, uint stride, uint inputFormat, [MarshalAs(UnmanagedType.LPStruct)] nsAString outputOptions);
+		void InitFromData([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] byte[] data, uint length, uint width, uint height, uint stride, uint inputFormat, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase outputOptions);
 		
 		/// <summary>
         /// For encoding images which may contain multiple frames, the 1-shot
@@ -207,10 +207,10 @@ namespace Gecko
         /// The arguments are basically the same as in initFromData().
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void StartImageEncode(uint width, uint height, uint inputFormat, [MarshalAs(UnmanagedType.LPStruct)] nsAString outputOptions);
+		void StartImageEncode(uint width, uint height, uint inputFormat, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase outputOptions);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddImageFrame([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] byte[] data, uint length, uint width, uint height, uint stride, uint frameFormat, [MarshalAs(UnmanagedType.LPStruct)] nsAString frameOptions);
+		void AddImageFrame([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] byte[] data, uint length, uint width, uint height, uint stride, uint frameFormat, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase frameOptions);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void EndImageEncode();

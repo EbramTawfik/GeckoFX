@@ -41,14 +41,14 @@ namespace Gecko
         /// http://whatwg.org/specs/web-apps/current-work/
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RegisterContentHandler([MarshalAs(UnmanagedType.LPStruct)] nsAString mimeType, [MarshalAs(UnmanagedType.LPStruct)] nsAString uri, [MarshalAs(UnmanagedType.LPStruct)] nsAString title);
+		void RegisterContentHandler([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase mimeType, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase uri, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase title);
 		
 		/// <summary>Member RegisterProtocolHandler </summary>
 		/// <param name='protocol'> </param>
 		/// <param name='uri'> </param>
 		/// <param name='title'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RegisterProtocolHandler([MarshalAs(UnmanagedType.LPStruct)] nsAString protocol, [MarshalAs(UnmanagedType.LPStruct)] nsAString uri, [MarshalAs(UnmanagedType.LPStruct)] nsAString title);
+		void RegisterProtocolHandler([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase protocol, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase uri, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase title);
 		
 		/// <summary>Member MozIsLocallyAvailable </summary>
 		/// <param name='uri'> </param>
@@ -56,6 +56,6 @@ namespace Gecko
 		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool MozIsLocallyAvailable([MarshalAs(UnmanagedType.LPStruct)] nsAString uri, [MarshalAs(UnmanagedType.Bool)] bool whenOffline);
+		bool MozIsLocallyAvailable([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase uri, [MarshalAs(UnmanagedType.Bool)] bool whenOffline);
 	}
 }

@@ -39,7 +39,7 @@ namespace Gecko
         /// name.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aType);
+		new void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType);
 		
 		/// <summary>
         /// Used to indicate the EventTarget to which the event was originally
@@ -146,7 +146,7 @@ namespace Gecko
         /// action can be prevented.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void InitEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString eventTypeArg, [MarshalAs(UnmanagedType.Bool)] bool canBubbleArg, [MarshalAs(UnmanagedType.Bool)] bool cancelableArg);
+		new void InitEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase eventTypeArg, [MarshalAs(UnmanagedType.Bool)] bool canBubbleArg, [MarshalAs(UnmanagedType.Bool)] bool cancelableArg);
 		
 		/// <summary>
         /// Used to indicate whether preventDefault() has been called for this event.
@@ -164,17 +164,17 @@ namespace Gecko
 		/// <summary>Member GetPrevValueAttribute </summary>
 		/// <param name='aPrevValue'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPrevValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aPrevValue);
+		void GetPrevValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPrevValue);
 		
 		/// <summary>Member GetNewValueAttribute </summary>
 		/// <param name='aNewValue'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNewValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aNewValue);
+		void GetNewValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNewValue);
 		
 		/// <summary>Member GetAttrNameAttribute </summary>
 		/// <param name='aAttrName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetAttrNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aAttrName);
+		void GetAttrNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAttrName);
 		
 		/// <summary>Member GetAttrChangeAttribute </summary>
 		/// <returns>A System.UInt16</returns>
@@ -191,6 +191,6 @@ namespace Gecko
 		/// <param name='attrNameArg'> </param>
 		/// <param name='attrChangeArg'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitMutationEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString typeArg, [MarshalAs(UnmanagedType.Bool)] bool canBubbleArg, [MarshalAs(UnmanagedType.Bool)] bool cancelableArg, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode relatedNodeArg, [MarshalAs(UnmanagedType.LPStruct)] nsAString prevValueArg, [MarshalAs(UnmanagedType.LPStruct)] nsAString newValueArg, [MarshalAs(UnmanagedType.LPStruct)] nsAString attrNameArg, ushort attrChangeArg);
+		void InitMutationEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase typeArg, [MarshalAs(UnmanagedType.Bool)] bool canBubbleArg, [MarshalAs(UnmanagedType.Bool)] bool cancelableArg, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode relatedNodeArg, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase prevValueArg, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase newValueArg, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase attrNameArg, ushort attrChangeArg);
 	}
 }

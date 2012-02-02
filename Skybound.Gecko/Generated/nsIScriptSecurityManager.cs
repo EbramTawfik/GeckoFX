@@ -118,7 +118,7 @@ namespace Gecko
         /// function will return error code NS_ERROR_DOM_BAD_URI.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CheckLoadURIStrWithPrincipal([MarshalAs(UnmanagedType.Interface)] nsIPrincipal aPrincipal, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String uri, uint flags);
+		void CheckLoadURIStrWithPrincipal([MarshalAs(UnmanagedType.Interface)] nsIPrincipal aPrincipal, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase uri, uint flags);
 		
 		/// <summary>
         /// Same as CheckLoadURI but takes string arguments for ease of use
@@ -127,7 +127,7 @@ namespace Gecko
         /// @deprecated Use checkLoadURIStrWithPrincipal instead of this function.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CheckLoadURIStr([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String from, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String uri, uint flags);
+		void CheckLoadURIStr([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase from, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase uri, uint flags);
 		
 		/// <summary>
         /// Check that the function 'funObj' is allowed to run on 'targetObj'
@@ -176,7 +176,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIPrincipal GetCertificatePrincipal([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aCertFingerprint, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aSubjectName, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aPrettyName, [MarshalAs(UnmanagedType.Interface)] nsISupports aCert, [MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
+		nsIPrincipal GetCertificatePrincipal([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aCertFingerprint, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aSubjectName, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aPrettyName, [MarshalAs(UnmanagedType.Interface)] nsISupports aCert, [MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 		
 		/// <summary>
         /// Return a principal that has the same origin as aURI.
@@ -227,7 +227,7 @@ namespace Gecko
         /// cert we're enabling for...
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCanEnableCapability([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String certificateFingerprint, [MarshalAs(UnmanagedType.LPStr)] string capability, short canEnable);
+		void SetCanEnableCapability([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase certificateFingerprint, [MarshalAs(UnmanagedType.LPStr)] string capability, short canEnable);
 		
 		/// <summary>
         /// Return the principal of the specified object in the specified context.

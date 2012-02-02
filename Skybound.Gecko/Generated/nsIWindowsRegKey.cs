@@ -92,7 +92,7 @@ namespace Gecko
         /// above.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Open(uint rootKey, [MarshalAs(UnmanagedType.LPStruct)] nsAString relPath, uint mode);
+		void Open(uint rootKey, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase relPath, uint mode);
 		
 		/// <summary>
         /// This method opens an existing key or creates a new key.
@@ -110,7 +110,7 @@ namespace Gecko
         /// above.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Create(uint rootKey, [MarshalAs(UnmanagedType.LPStruct)] nsAString relPath, uint mode);
+		void Create(uint rootKey, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase relPath, uint mode);
 		
 		/// <summary>
         /// This method opens a subkey relative to this key.  This method fails if the
@@ -120,7 +120,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIWindowsRegKey OpenChild([MarshalAs(UnmanagedType.LPStruct)] nsAString relPath, uint mode);
+		nsIWindowsRegKey OpenChild([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase relPath, uint mode);
 		
 		/// <summary>
         /// This method opens or creates a subkey relative to this key.
@@ -129,7 +129,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIWindowsRegKey CreateChild([MarshalAs(UnmanagedType.LPStruct)] nsAString relPath, uint mode);
+		nsIWindowsRegKey CreateChild([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase relPath, uint mode);
 		
 		/// <summary>
         /// This attribute returns the number of child keys.
@@ -144,7 +144,7 @@ namespace Gecko
         /// The index of the requested child key.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetChildName(uint index, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetChildName(uint index, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// This method checks to see if the key has a child by the given name.
@@ -154,7 +154,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool HasChild([MarshalAs(UnmanagedType.LPStruct)] nsAString name);
+		bool HasChild([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name);
 		
 		/// <summary>
         /// This attribute returns the number of values under this key.
@@ -169,7 +169,7 @@ namespace Gecko
         /// The index of the requested value.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetValueName(uint index, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetValueName(uint index, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// This method checks to see if the key has a value by the given name.
@@ -179,7 +179,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool HasValue([MarshalAs(UnmanagedType.LPStruct)] nsAString name);
+		bool HasValue([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name);
 		
 		/// <summary>
         /// This method removes a child key and all of its values.  This method will
@@ -189,7 +189,7 @@ namespace Gecko
         /// The relative path from this key to the key to be removed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveChild([MarshalAs(UnmanagedType.LPStruct)] nsAString relPath);
+		void RemoveChild([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase relPath);
 		
 		/// <summary>
         /// This method removes the value with the given name.
@@ -198,7 +198,7 @@ namespace Gecko
         /// The name of the value to be removed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveValue([MarshalAs(UnmanagedType.LPStruct)] nsAString name);
+		void RemoveValue([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name);
 		
 		/// <summary>
         /// This method returns the type of the value with the given name.  The return
@@ -208,7 +208,7 @@ namespace Gecko
         /// The name of the value to query.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetValueType([MarshalAs(UnmanagedType.LPStruct)] nsAString name);
+		uint GetValueType([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name);
 		
 		/// <summary>
         /// This method reads the string contents of the named value as a Unicode
@@ -219,7 +219,7 @@ namespace Gecko
         /// string to request the key's default value.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ReadStringValue([MarshalAs(UnmanagedType.LPStruct)] nsAString name, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void ReadStringValue([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// This method reads the integer contents of the named value.
@@ -228,7 +228,7 @@ namespace Gecko
         /// The name of the value to query.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint ReadIntValue([MarshalAs(UnmanagedType.LPStruct)] nsAString name);
+		uint ReadIntValue([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name);
 		
 		/// <summary>
         /// This method reads the 64-bit integer contents of the named value.
@@ -237,7 +237,7 @@ namespace Gecko
         /// The name of the value to query.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint ReadInt64Value([MarshalAs(UnmanagedType.LPStruct)] nsAString name);
+		uint ReadInt64Value([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name);
 		
 		/// <summary>
         /// This method reads the binary contents of the named value under this key.
@@ -250,7 +250,7 @@ namespace Gecko
         /// The name of the value to query.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ReadBinaryValue([MarshalAs(UnmanagedType.LPStruct)] nsAString name, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
+		void ReadBinaryValue([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
 		
 		/// <summary>
         /// This method writes the unicode string contents of the named value.  The
@@ -263,7 +263,7 @@ namespace Gecko
         /// The data for the value to modify.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void WriteStringValue([MarshalAs(UnmanagedType.LPStruct)] nsAString name, [MarshalAs(UnmanagedType.LPStruct)] nsAString data);
+		void WriteStringValue([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase data);
 		
 		/// <summary>
         /// This method writes the integer contents of the named value.  The value
@@ -275,7 +275,7 @@ namespace Gecko
         /// The data for the value to modify.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void WriteIntValue([MarshalAs(UnmanagedType.LPStruct)] nsAString name, uint data);
+		void WriteIntValue([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, uint data);
 		
 		/// <summary>
         /// This method writes the 64-bit integer contents of the named value.  The
@@ -287,7 +287,7 @@ namespace Gecko
         /// The data for the value to modify.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void WriteInt64Value([MarshalAs(UnmanagedType.LPStruct)] nsAString name, ulong data);
+		void WriteInt64Value([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, ulong data);
 		
 		/// <summary>
         /// This method writes the binary contents of the named value.  The value will
@@ -306,7 +306,7 @@ namespace Gecko
         /// The data for the value to modify.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void WriteBinaryValue([MarshalAs(UnmanagedType.LPStruct)] nsAString name, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase data);
+		void WriteBinaryValue([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase data);
 		
 		/// <summary>
         /// This method starts watching the key to see if any of its values have

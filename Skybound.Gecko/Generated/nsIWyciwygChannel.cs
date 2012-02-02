@@ -43,7 +43,7 @@ namespace Gecko
         /// The name of the request.  Often this is the URI of the request.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName);
+		new void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aName);
 		
 		/// <summary>
         /// Indicates whether the request is pending. nsIRequest::isPending is
@@ -438,7 +438,7 @@ namespace Gecko
         /// attribute is empty/missing.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetContentDispositionFilenameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aContentDispositionFilename);
+		new void GetContentDispositionFilenameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aContentDispositionFilename);
 		
 		/// <summary>
         /// Access to the raw Content-Disposition header if available and applicable.
@@ -455,7 +455,7 @@ namespace Gecko
         /// Append data to the cache entry; opens the cache entry if necessary.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void WriteToCacheEntry([MarshalAs(UnmanagedType.LPStruct)] nsAString aData);
+		void WriteToCacheEntry([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aData);
 		
 		/// <summary>
         /// Close the cache entry; subsequent writes have undefined behavior.

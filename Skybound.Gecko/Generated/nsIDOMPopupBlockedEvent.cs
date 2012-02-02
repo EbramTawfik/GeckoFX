@@ -42,7 +42,7 @@ namespace Gecko
         /// name.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aType);
+		new void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType);
 		
 		/// <summary>
         /// Used to indicate the EventTarget to which the event was originally
@@ -149,7 +149,7 @@ namespace Gecko
         /// action can be prevented.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void InitEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString eventTypeArg, [MarshalAs(UnmanagedType.Bool)] bool canBubbleArg, [MarshalAs(UnmanagedType.Bool)] bool cancelableArg);
+		new void InitEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase eventTypeArg, [MarshalAs(UnmanagedType.Bool)] bool canBubbleArg, [MarshalAs(UnmanagedType.Bool)] bool cancelableArg);
 		
 		/// <summary>
         /// Used to indicate whether preventDefault() has been called for this event.
@@ -178,16 +178,16 @@ namespace Gecko
         /// (as the third argument)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPopupWindowFeaturesAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aPopupWindowFeatures);
+		void GetPopupWindowFeaturesAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPopupWindowFeatures);
 		
 		/// <summary>
         /// The window name passed to the window.open() call
         /// (as the second argument)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPopupWindowNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aPopupWindowName);
+		void GetPopupWindowNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPopupWindowName);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitPopupBlockedEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString typeArg, [MarshalAs(UnmanagedType.Bool)] bool canBubbleArg, [MarshalAs(UnmanagedType.Bool)] bool cancelableArg, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow requestingWindow, [MarshalAs(UnmanagedType.Interface)] nsIURI popupWindowURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString popupWindowName, [MarshalAs(UnmanagedType.LPStruct)] nsAString popupWindowFeatures);
+		void InitPopupBlockedEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase typeArg, [MarshalAs(UnmanagedType.Bool)] bool canBubbleArg, [MarshalAs(UnmanagedType.Bool)] bool cancelableArg, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow requestingWindow, [MarshalAs(UnmanagedType.Interface)] nsIURI popupWindowURI, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase popupWindowName, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase popupWindowFeatures);
 	}
 }

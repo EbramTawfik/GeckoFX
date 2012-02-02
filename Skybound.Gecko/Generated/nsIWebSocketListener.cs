@@ -65,7 +65,7 @@ namespace Gecko
         /// @param aMsg the message data
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnMessageAvailable([MarshalAs(UnmanagedType.Interface)] nsISupports aContext, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aMsg);
+		void OnMessageAvailable([MarshalAs(UnmanagedType.Interface)] nsISupports aContext, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aMsg);
 		
 		/// <summary>
         /// Called to deliver binary message.
@@ -100,6 +100,6 @@ namespace Gecko
         /// @param aReason the websocket closing handshake close reason
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnServerClose([MarshalAs(UnmanagedType.Interface)] nsISupports aContext, ushort aCode, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aReason);
+		void OnServerClose([MarshalAs(UnmanagedType.Interface)] nsISupports aContext, ushort aCode, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aReason);
 	}
 }

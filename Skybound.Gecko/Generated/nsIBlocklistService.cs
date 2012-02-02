@@ -53,7 +53,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsAddonBlocklisted([MarshalAs(UnmanagedType.LPStruct)] nsAString id, [MarshalAs(UnmanagedType.LPStruct)] nsAString version, [MarshalAs(UnmanagedType.LPStruct)] nsAString appVersion, [MarshalAs(UnmanagedType.LPStruct)] nsAString toolkitVersion);
+		bool IsAddonBlocklisted([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase id, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase version, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase appVersion, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase toolkitVersion);
 		
 		/// <summary>
         /// Determine the blocklist state of an add-on
@@ -72,7 +72,7 @@ namespace Gecko
         /// @returns The STATE constant.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetAddonBlocklistState([MarshalAs(UnmanagedType.LPStruct)] nsAString id, [MarshalAs(UnmanagedType.LPStruct)] nsAString version, [MarshalAs(UnmanagedType.LPStruct)] nsAString appVersion, [MarshalAs(UnmanagedType.LPStruct)] nsAString toolkitVersion);
+		uint GetAddonBlocklistState([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase id, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase version, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase appVersion, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase toolkitVersion);
 		
 		/// <summary>
         /// Determine the blocklist state of a plugin
@@ -89,7 +89,7 @@ namespace Gecko
         /// @returns The STATE constant.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetPluginBlocklistState([MarshalAs(UnmanagedType.Interface)] nsIPluginTag plugin, [MarshalAs(UnmanagedType.LPStruct)] nsAString appVersion, [MarshalAs(UnmanagedType.LPStruct)] nsAString toolkitVersion);
+		uint GetPluginBlocklistState([MarshalAs(UnmanagedType.Interface)] nsIPluginTag plugin, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase appVersion, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase toolkitVersion);
 		
 		/// <summary>
         /// Determine the blocklist web page of an add-on.
@@ -98,7 +98,7 @@ namespace Gecko
         /// @returns The URL of the description page.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetAddonBlocklistURL([MarshalAs(UnmanagedType.LPStruct)] nsAString id, [MarshalAs(UnmanagedType.LPStruct)] nsAString version, [MarshalAs(UnmanagedType.LPStruct)] nsAString appVersion, [MarshalAs(UnmanagedType.LPStruct)] nsAString toolkitVersion, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetAddonBlocklistURL([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase id, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase version, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase appVersion, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase toolkitVersion, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// Determine the blocklist web page of a plugin.
@@ -107,7 +107,7 @@ namespace Gecko
         /// @returns The URL of the description page.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPluginBlocklistURL([MarshalAs(UnmanagedType.Interface)] nsIPluginTag plugin, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetPluginBlocklistURL([MarshalAs(UnmanagedType.Interface)] nsIPluginTag plugin, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 	}
 	
 	/// <summary>

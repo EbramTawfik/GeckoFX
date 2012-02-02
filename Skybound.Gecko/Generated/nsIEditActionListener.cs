@@ -52,7 +52,7 @@ namespace Gecko
         /// any number > number of current children = last child
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void WillCreateNode([MarshalAs(UnmanagedType.LPStruct)] nsAString aTag, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aParent, int aPosition);
+		void WillCreateNode([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTag, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aParent, int aPosition);
 		
 		/// <summary>
         /// Called after the editor creates a node.
@@ -65,7 +65,7 @@ namespace Gecko
         /// @param aResult   The result of the create node operation.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DidCreateNode([MarshalAs(UnmanagedType.LPStruct)] nsAString aTag, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aNode, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aParent, int aPosition, int aResult);
+		void DidCreateNode([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTag, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aNode, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aParent, int aPosition, int aResult);
 		
 		/// <summary>
         /// Called before the editor inserts a node.
@@ -153,7 +153,7 @@ namespace Gecko
         /// @param aString     The string that gets inserted.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void WillInsertText([MarshalAs(UnmanagedType.Interface)] nsIDOMCharacterData aTextNode, int aOffset, [MarshalAs(UnmanagedType.LPStruct)] nsAString aString);
+		void WillInsertText([MarshalAs(UnmanagedType.Interface)] nsIDOMCharacterData aTextNode, int aOffset, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aString);
 		
 		/// <summary>
         /// Called after the editor inserts text.
@@ -163,7 +163,7 @@ namespace Gecko
         /// @param aResult     The result of the insert text operation.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DidInsertText([MarshalAs(UnmanagedType.Interface)] nsIDOMCharacterData aTextNode, int aOffset, [MarshalAs(UnmanagedType.LPStruct)] nsAString aString, int aResult);
+		void DidInsertText([MarshalAs(UnmanagedType.Interface)] nsIDOMCharacterData aTextNode, int aOffset, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aString, int aResult);
 		
 		/// <summary>
         /// Called before the editor deletes text.

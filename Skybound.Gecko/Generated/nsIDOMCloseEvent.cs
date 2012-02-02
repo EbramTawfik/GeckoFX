@@ -45,7 +45,7 @@ namespace Gecko
         /// name.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aType);
+		new void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType);
 		
 		/// <summary>
         /// Used to indicate the EventTarget to which the event was originally
@@ -152,7 +152,7 @@ namespace Gecko
         /// action can be prevented.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void InitEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString eventTypeArg, [MarshalAs(UnmanagedType.Bool)] bool canBubbleArg, [MarshalAs(UnmanagedType.Bool)] bool cancelableArg);
+		new void InitEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase eventTypeArg, [MarshalAs(UnmanagedType.Bool)] bool canBubbleArg, [MarshalAs(UnmanagedType.Bool)] bool cancelableArg);
 		
 		/// <summary>
         /// Used to indicate whether preventDefault() has been called for this event.
@@ -176,9 +176,9 @@ namespace Gecko
 		ushort GetCodeAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetReasonAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aReason);
+		void GetReasonAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aReason);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitCloseEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString aType, [MarshalAs(UnmanagedType.Bool)] bool aCanBubble, [MarshalAs(UnmanagedType.Bool)] bool aCancelable, [MarshalAs(UnmanagedType.Bool)] bool aWasClean, ushort aReasonCode, [MarshalAs(UnmanagedType.LPStruct)] nsAString aReason);
+		void InitCloseEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType, [MarshalAs(UnmanagedType.Bool)] bool aCanBubble, [MarshalAs(UnmanagedType.Bool)] bool aCancelable, [MarshalAs(UnmanagedType.Bool)] bool aWasClean, ushort aReasonCode, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aReason);
 	}
 }

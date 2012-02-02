@@ -62,7 +62,7 @@ namespace Gecko
         /// Assigning any other value has no effect and retains the old value.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDropEffectAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDropEffect);
+		void GetDropEffectAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDropEffect);
 		
 		/// <summary>
         /// The actual effect that will be used, and should always be one of the
@@ -92,7 +92,7 @@ namespace Gecko
         /// Assigning any other value has no effect and retains the old value.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDropEffectAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDropEffect);
+		void SetDropEffectAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDropEffect);
 		
 		/// <summary>
         /// Specifies the effects that are allowed for this drag. You may set this in
@@ -112,7 +112,7 @@ namespace Gecko
         /// Assigning any other value has no effect and retains the old value.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetEffectAllowedAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aEffectAllowed);
+		void GetEffectAllowedAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aEffectAllowed);
 		
 		/// <summary>
         /// Specifies the effects that are allowed for this drag. You may set this in
@@ -132,7 +132,7 @@ namespace Gecko
         /// Assigning any other value has no effect and retains the old value.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetEffectAllowedAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aEffectAllowed);
+		void SetEffectAllowedAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aEffectAllowed);
 		
 		/// <summary>
         /// Holds a list of all the local files available on this data transfer.
@@ -158,7 +158,7 @@ namespace Gecko
         /// data, this method will have no effect.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ClearData([MarshalAs(UnmanagedType.LPStruct)] nsAString format);
+		void ClearData([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase format);
 		
 		/// <summary>
         /// Set the data for a given format. If data for the format does not exist,
@@ -170,14 +170,14 @@ namespace Gecko
         /// @throws NS_ERROR_NULL_POINTER if the data is null
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetData([MarshalAs(UnmanagedType.LPStruct)] nsAString format, [MarshalAs(UnmanagedType.LPStruct)] nsAString data);
+		void SetData([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase format, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase data);
 		
 		/// <summary>
         /// Retrieves the data for a given format, or an empty string if data for
         /// that format does not exist or the data transfer contains no data.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetData([MarshalAs(UnmanagedType.LPStruct)] nsAString format, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetData([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase format, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// Set the image to be used for dragging if a custom one is desired. Most of
@@ -273,7 +273,7 @@ namespace Gecko
         /// 'auto'.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozCursorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozCursor);
+		void GetMozCursorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozCursor);
 		
 		/// <summary>
         /// Sets the drag cursor state. Primarily used to control the cursor during
@@ -288,7 +288,7 @@ namespace Gecko
         /// 'auto'.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozCursorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozCursor);
+		void SetMozCursorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozCursor);
 		
 		/// <summary>
         /// Holds a list of the format types of the data that is stored for an item
@@ -313,7 +313,7 @@ namespace Gecko
         /// @throws NO_MODIFICATION_ALLOWED_ERR if the item cannot be modified
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MozClearDataAt([MarshalAs(UnmanagedType.LPStruct)] nsAString format, uint index);
+		void MozClearDataAt([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase format, uint index);
 		
 		/// <summary>
         /// A data transfer may store multiple items, each at a given zero-based
@@ -337,7 +337,7 @@ namespace Gecko
         /// @throws NO_MODIFICATION_ALLOWED_ERR if the item cannot be modified
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MozSetDataAt([MarshalAs(UnmanagedType.LPStruct)] nsAString format, [MarshalAs(UnmanagedType.Interface)] nsIVariant data, uint index);
+		void MozSetDataAt([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase format, [MarshalAs(UnmanagedType.Interface)] nsIVariant data, uint index);
 		
 		/// <summary>
         /// Retrieve the data associated with the given format for an item at the
@@ -350,7 +350,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant MozGetDataAt([MarshalAs(UnmanagedType.LPStruct)] nsAString format, uint index);
+		nsIVariant MozGetDataAt([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase format, uint index);
 		
 		/// <summary>
         /// Will be true when the user has cancelled the drag (typically by pressing

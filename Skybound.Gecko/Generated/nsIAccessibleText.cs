@@ -65,7 +65,7 @@ namespace Gecko
         /// return "string" values which are UTF-8.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetText(int startOffset, int endOffset, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetText(int startOffset, int endOffset, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>Member GetTextAfterOffset </summary>
 		/// <param name='offset'> </param>
@@ -74,7 +74,7 @@ namespace Gecko
 		/// <param name='endOffset'> </param>
 		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTextAfterOffset(int offset, System.IntPtr boundaryType, ref int startOffset, ref int endOffset, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetTextAfterOffset(int offset, System.IntPtr boundaryType, ref int startOffset, ref int endOffset, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>Member GetTextAtOffset </summary>
 		/// <param name='offset'> </param>
@@ -83,7 +83,7 @@ namespace Gecko
 		/// <param name='endOffset'> </param>
 		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTextAtOffset(int offset, System.IntPtr boundaryType, ref int startOffset, ref int endOffset, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetTextAtOffset(int offset, System.IntPtr boundaryType, ref int startOffset, ref int endOffset, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>Member GetTextBeforeOffset </summary>
 		/// <param name='offset'> </param>
@@ -92,7 +92,7 @@ namespace Gecko
 		/// <param name='endOffset'> </param>
 		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTextBeforeOffset(int offset, System.IntPtr boundaryType, ref int startOffset, ref int endOffset, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetTextBeforeOffset(int offset, System.IntPtr boundaryType, ref int startOffset, ref int endOffset, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// It would be better to return an unsigned long here,

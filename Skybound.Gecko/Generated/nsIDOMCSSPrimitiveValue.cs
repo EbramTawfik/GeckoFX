@@ -44,13 +44,13 @@ namespace Gecko
         /// UnitTypes
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetCssTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aCssText);
+		new void GetCssTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCssText);
 		
 		/// <summary>
         /// UnitTypes
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetCssTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aCssText);
+		new void SetCssTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCssText);
 		
 		/// <summary>
         /// raises(DOMException) on setting
@@ -71,10 +71,10 @@ namespace Gecko
 		float GetFloatValue(ushort unitType);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetStringValue(ushort stringType, [MarshalAs(UnmanagedType.LPStruct)] nsAString stringValue);
+		void SetStringValue(ushort stringType, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase stringValue);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetStringValue([MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetStringValue([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

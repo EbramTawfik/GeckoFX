@@ -63,7 +63,7 @@ namespace Gecko
         /// data    - the value of the cookie parameter passed to showAlertNotification.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ShowAlertNotification([MarshalAs(UnmanagedType.LPStruct)] nsAString imageUrl, [MarshalAs(UnmanagedType.LPStruct)] nsAString title, [MarshalAs(UnmanagedType.LPStruct)] nsAString text, [MarshalAs(UnmanagedType.Bool)] bool textClickable, [MarshalAs(UnmanagedType.LPStruct)] nsAString cookie, [MarshalAs(UnmanagedType.Interface)] nsIObserver alertListener, [MarshalAs(UnmanagedType.LPStruct)] nsAString name);
+		void ShowAlertNotification([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase imageUrl, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase title, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase text, [MarshalAs(UnmanagedType.Bool)] bool textClickable, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase cookie, [MarshalAs(UnmanagedType.Interface)] nsIObserver alertListener, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name);
 	}
 	
 	/// <summary>nsIAlertsProgressListener </summary>
@@ -87,7 +87,7 @@ namespace Gecko
         /// the percentage will be displayed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnProgress([MarshalAs(UnmanagedType.LPStruct)] nsAString name, long progress, long progressMax, [MarshalAs(UnmanagedType.LPStruct)] nsAString text);
+		void OnProgress([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, long progress, long progressMax, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase text);
 		
 		/// <summary>
         /// Called to cancel and hide the given notification previously displayed
@@ -96,6 +96,6 @@ namespace Gecko
         /// @param name         The name of the notification.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnCancel([MarshalAs(UnmanagedType.LPStruct)] nsAString name);
+		void OnCancel([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name);
 	}
 }

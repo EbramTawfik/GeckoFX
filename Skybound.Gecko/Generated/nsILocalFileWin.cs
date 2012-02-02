@@ -46,7 +46,7 @@ namespace Gecko
         /// filesystem charset.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Append([MarshalAs(UnmanagedType.LPStruct)] nsAString node);
+		new void Append([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase node);
 		
 		/// <summary>Member AppendNative </summary>
 		/// <param name='node'> </param>
@@ -88,7 +88,7 @@ namespace Gecko
         /// be in the native filesystem charset.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetLeafNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aLeafName);
+		new void GetLeafNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aLeafName);
 		
 		/// <summary>
         /// Accessor to the leaf name of the file itself.
@@ -96,7 +96,7 @@ namespace Gecko
         /// be in the native filesystem charset.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetLeafNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aLeafName);
+		new void SetLeafNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aLeafName);
 		
 		/// <summary>Member GetNativeLeafNameAttribute </summary>
 		/// <param name='aNativeLeafName'> </param>
@@ -136,7 +136,7 @@ namespace Gecko
         /// which case the current leaf name will be used.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void CopyTo([MarshalAs(UnmanagedType.Interface)] nsIFile newParentDir, [MarshalAs(UnmanagedType.LPStruct)] nsAString newName);
+		new void CopyTo([MarshalAs(UnmanagedType.Interface)] nsIFile newParentDir, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase newName);
 		
 		/// <summary>Member CopyToNative </summary>
 		/// <param name='newParentDir'> </param>
@@ -154,7 +154,7 @@ namespace Gecko
         /// native filesystem charset.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void CopyToFollowingLinks([MarshalAs(UnmanagedType.Interface)] nsIFile newParentDir, [MarshalAs(UnmanagedType.LPStruct)] nsAString newName);
+		new void CopyToFollowingLinks([MarshalAs(UnmanagedType.Interface)] nsIFile newParentDir, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase newName);
 		
 		/// <summary>Member CopyToFollowingLinksNative </summary>
 		/// <param name='newParentDir'> </param>
@@ -195,7 +195,7 @@ namespace Gecko
         /// which case the current leaf name will be used.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void MoveTo([MarshalAs(UnmanagedType.Interface)] nsIFile newParentDir, [MarshalAs(UnmanagedType.LPStruct)] nsAString newName);
+		new void MoveTo([MarshalAs(UnmanagedType.Interface)] nsIFile newParentDir, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase newName);
 		
 		/// <summary>Member MoveToNative </summary>
 		/// <param name='newParentDir'> </param>
@@ -309,7 +309,7 @@ namespace Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetTargetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aTarget);
+		new void GetTargetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTarget);
 		
 		/// <summary>Member GetNativeTargetAttribute </summary>
 		/// <param name='aNativeTarget'> </param>
@@ -319,7 +319,7 @@ namespace Gecko
 		/// <summary>Member GetPathAttribute </summary>
 		/// <param name='aPath'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetPathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aPath);
+		new void GetPathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPath);
 		
 		/// <summary>Member GetNativePathAttribute </summary>
 		/// <param name='aNativePath'> </param>
@@ -471,7 +471,7 @@ namespace Gecko
         /// filesystem charset.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void InitWithPath([MarshalAs(UnmanagedType.LPStruct)] nsAString filePath);
+		new void InitWithPath([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase filePath);
 		
 		/// <summary>Member InitWithNativePath </summary>
 		/// <param name='filePath'> </param>
@@ -557,7 +557,7 @@ namespace Gecko
         /// must be in the native filesystem charset.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void AppendRelativePath([MarshalAs(UnmanagedType.LPStruct)] nsAString relativeFilePath);
+		new void AppendRelativePath([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase relativeFilePath);
 		
 		/// <summary>Member AppendRelativeNativePath </summary>
 		/// <param name='relativeFilePath'> </param>
@@ -644,7 +644,7 @@ namespace Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetVersionInfoField([MarshalAs(UnmanagedType.LPStr)] string aField, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetVersionInfoField([MarshalAs(UnmanagedType.LPStr)] string aField, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// The canonical path of the file, which avoids short/long
@@ -656,7 +656,7 @@ namespace Gecko
         /// support both short and long path forms.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCanonicalPathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aCanonicalPath);
+		void GetCanonicalPathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCanonicalPath);
 		
 		/// <summary>Member GetNativeCanonicalPathAttribute </summary>
 		/// <param name='aNativeCanonicalPath'> </param>

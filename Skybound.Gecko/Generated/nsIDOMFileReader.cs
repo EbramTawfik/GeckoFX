@@ -49,7 +49,7 @@ namespace Gecko
 		/// <param name='filedata'> </param>
 		/// <param name='encoding'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ReadAsText([MarshalAs(UnmanagedType.Interface)] nsIDOMBlob filedata, [MarshalAs(UnmanagedType.LPStruct)] nsAString encoding);
+		void ReadAsText([MarshalAs(UnmanagedType.Interface)] nsIDOMBlob filedata, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase encoding);
 		
 		/// <summary>Member ReadAsDataURL </summary>
 		/// <param name='file'> </param>

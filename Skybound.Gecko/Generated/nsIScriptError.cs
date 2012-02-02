@@ -52,13 +52,13 @@ namespace Gecko
         /// with file/line information.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetErrorMessageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aErrorMessage);
+		void GetErrorMessageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aErrorMessage);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSourceNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aSourceName);
+		void GetSourceNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSourceName);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSourceLineAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aSourceLine);
+		void GetSourceLineAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSourceLine);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetLineNumberAttribute();
@@ -83,7 +83,7 @@ namespace Gecko
 		void Init([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string message, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string sourceName, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string sourceLine, uint lineNumber, uint columnNumber, uint flags, [MarshalAs(UnmanagedType.LPStr)] string category);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ToString([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
+		void ToString([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase retval);
 	}
 	
 	/// <summary>

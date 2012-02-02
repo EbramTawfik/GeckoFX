@@ -118,7 +118,7 @@ namespace Gecko
         /// @see     getPublicSuffix()
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPublicSuffixFromHost([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aHost, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
+		void GetPublicSuffixFromHost([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aHost, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
 		
 		/// <summary>
         /// NOTE: It is strongly recommended to use getBaseDomain() above if a suitable
@@ -134,6 +134,6 @@ namespace Gecko
         /// @see     getBaseDomain()
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetBaseDomainFromHost([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aHost, uint aAdditionalParts, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
+		void GetBaseDomainFromHost([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aHost, uint aAdditionalParts, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
 	}
 }

@@ -57,6 +57,6 @@ namespace Gecko
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMNode NamedItem([MarshalAs(UnmanagedType.LPStruct)] nsAString name);
+		nsIDOMNode NamedItem([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name);
 	}
 }

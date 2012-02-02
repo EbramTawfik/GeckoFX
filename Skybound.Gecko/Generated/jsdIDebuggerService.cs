@@ -178,7 +178,7 @@ namespace Gecko
         /// Free form AUTF8String identifier for implementation.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetImplementationStringAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aImplementationString);
+		void GetImplementationStringAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aImplementationString);
 		
 		/// <summary>
         /// |true| if the debugger service has been turned on. This does not
@@ -407,7 +407,7 @@ namespace Gecko
         /// @param fileName Filename to dump the heap into.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DumpHeap([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String fileName);
+		void DumpHeap([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase fileName);
 	}
 	
 	/// <summary>
@@ -467,7 +467,7 @@ namespace Gecko
         /// swap the filter with itself using jsdIService::swapFilters.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetUrlPatternAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aUrlPattern);
+		void GetUrlPatternAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aUrlPattern);
 		
 		/// <summary>
         /// String representing the url pattern to be filtered. Supports limited
@@ -480,7 +480,7 @@ namespace Gecko
         /// swap the filter with itself using jsdIService::swapFilters.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetUrlPatternAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aUrlPattern);
+		void SetUrlPatternAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aUrlPattern);
 		
 		/// <summary>
         /// Line number for the start of this filter. Line numbers are one based.
@@ -654,7 +654,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool OnError([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String message, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String fileName, uint line, uint pos, uint flags, uint errnum, jsdIValue exc);
+		bool OnError([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase message, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase fileName, uint line, uint pos, uint flags, uint errnum, jsdIValue exc);
 	}
 	
 	/// <summary>
@@ -884,7 +884,7 @@ namespace Gecko
         /// Function name executing in this stack frame.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetFunctionNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aFunctionName);
+		void GetFunctionNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aFunctionName);
 		
 		/// <summary>
         /// Script running in this stack frame, null for native frames.
@@ -932,7 +932,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Eval([MarshalAs(UnmanagedType.LPStruct)] nsAString bytes, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String fileName, uint line, ref jsdIValue result);
+		bool Eval([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase bytes, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase fileName, uint line, ref jsdIValue result);
 	}
 	
 	/// <summary>
@@ -1003,7 +1003,7 @@ namespace Gecko
         /// invalidated.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetFileNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aFileName);
+		void GetFileNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aFileName);
 		
 		/// <summary>
         /// Function name for this script. "anonymous" for unnamed functions (or
@@ -1013,7 +1013,7 @@ namespace Gecko
         /// invalidated.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetFunctionNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aFunctionName);
+		void GetFunctionNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aFunctionName);
 		
 		/// <summary>
         /// The names of the arguments for this function; empty if this is
@@ -1032,7 +1032,7 @@ namespace Gecko
         /// Source code for this script, without function declaration.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetFunctionSourceAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aFunctionSource);
+		void GetFunctionSourceAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFunctionSource);
 		
 		/// <summary>
         /// Line number in source file containing the first line of this script.
@@ -1249,7 +1249,7 @@ namespace Gecko
         /// is not an object.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetJsClassNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aJsClassName);
+		void GetJsClassNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aJsClassName);
 		
 		/// <summary>
         /// Constructor name if this value represents an object. Empty AUTF8String if the
@@ -1263,7 +1263,7 @@ namespace Gecko
         /// value is not a function.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetJsFunctionNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aJsFunctionName);
+		void GetJsFunctionNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aJsFunctionName);
 		
 		/// <summary>
         /// Value if interpreted as a boolean. Converts if necessary.
@@ -1294,7 +1294,7 @@ namespace Gecko
         /// Value if interpreted as a AUTF8String. Converts if necessary.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetStringValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aStringValue);
+		void GetStringValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aStringValue);
 		
 		/// <summary>
         /// Number of properties. 0 if the value is not an object, or the value is
@@ -1320,7 +1320,7 @@ namespace Gecko
         /// property exists for the requested name.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetProperty([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String name);
+		System.IntPtr GetProperty([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase name);
 		
 		/// <summary>
         /// jsdIValues are wrappers around JavaScript engine structures. Much of the
@@ -1378,7 +1378,7 @@ namespace Gecko
         /// to be created.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCreatorURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aCreatorURL);
+		void GetCreatorURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aCreatorURL);
 		
 		/// <summary>
         /// Line number in the creatorURL where this object was created.
@@ -1391,7 +1391,7 @@ namespace Gecko
         /// used to create this object.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetConstructorURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aConstructorURL);
+		void GetConstructorURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aConstructorURL);
 		
 		/// <summary>
         /// Line number in the creatorURL where this object was created.

@@ -64,12 +64,12 @@ namespace GeckofxUnitTests
 			throw new NotImplementedException();
 		}
 
-		public void GetNameAttribute(nsAString aName)
+		public void GetNameAttribute(nsAStringBase aName)
 		{
 			throw new NotImplementedException();
 		}
 
-		public void SetNameAttribute(nsAString aName)
+		public void SetNameAttribute(nsAStringBase aName)
 		{
 			throw new NotImplementedException();
 		}
@@ -124,7 +124,7 @@ namespace GeckofxUnitTests
 			throw new NotImplementedException();
 		}
 
-		public nsIDOMCSSStyleDeclaration GetComputedStyle(nsIDOMElement elt, nsAString pseudoElt)
+		public nsIDOMCSSStyleDeclaration GetComputedStyle(nsIDOMElement elt, nsAStringBase pseudoElt)
 		{
 			throw new NotImplementedException();
 		}
@@ -184,12 +184,12 @@ namespace GeckofxUnitTests
 			throw new NotImplementedException();
 		}
 
-		public void GetStatusAttribute(nsAString aStatus)
+		public void GetStatusAttribute(nsAStringBase aStatus)
 		{
 			throw new NotImplementedException();
 		}
 
-		public void SetStatusAttribute(nsAString aStatus)
+		public void SetStatusAttribute(nsAStringBase aStatus)
 		{
 			throw new NotImplementedException();
 		}
@@ -239,17 +239,17 @@ namespace GeckofxUnitTests
 			throw new NotImplementedException();
 		}
 
-		public void Alert(nsAString text)
+		public void Alert(nsAStringBase text)
 		{
 			throw new NotImplementedException();
 		}
 
-		public bool Confirm(nsAString text)
+		public bool Confirm(nsAStringBase text)
 		{
 			throw new NotImplementedException();
 		}
 
-		public void Prompt(nsAString aMessage, nsAString aInitial, nsAString retval)
+		public void Prompt(nsAStringBase aMessage, nsAStringBase aInitial, nsAStringBase retval)
 		{
 			throw new NotImplementedException();
 		}
@@ -259,7 +259,7 @@ namespace GeckofxUnitTests
 			throw new NotImplementedException();
 		}
 
-		public nsIVariant ShowModalDialog(nsAString aURI, nsIVariant aArgs, nsAString aOptions)
+		public nsIVariant ShowModalDialog(nsAStringBase aURI, nsIVariant aArgs, nsAStringBase aOptions)
 		{
 			throw new NotImplementedException();
 		}
@@ -269,12 +269,12 @@ namespace GeckofxUnitTests
 			throw new NotImplementedException();
 		}
 
-		public void Atob(nsAString aAsciiString, nsAString retval)
+		public void Atob(nsAStringBase aAsciiString, nsAStringBase retval)
 		{
 			throw new NotImplementedException();
 		}
 
-		public void Btoa(nsAString aBase64Data, nsAString retval)
+		public void Btoa(nsAStringBase aBase64Data, nsAStringBase retval)
 		{
 			throw new NotImplementedException();
 		}
@@ -289,7 +289,7 @@ namespace GeckofxUnitTests
 			throw new NotImplementedException();
 		}
 
-		public nsIDOMMediaQueryList MatchMedia(nsAString media_query_list)
+		public nsIDOMMediaQueryList MatchMedia(nsAStringBase media_query_list)
 		{
 			throw new NotImplementedException();
 		}
@@ -404,12 +404,12 @@ namespace GeckofxUnitTests
 			throw new NotImplementedException();
 		}
 
-		public void GetDefaultStatusAttribute(nsAString aDefaultStatus)
+		public void GetDefaultStatusAttribute(nsAStringBase aDefaultStatus)
 		{
 			throw new NotImplementedException();
 		}
 
-		public void SetDefaultStatusAttribute(nsAString aDefaultStatus)
+		public void SetDefaultStatusAttribute(nsAStringBase aDefaultStatus)
 		{
 			throw new NotImplementedException();
 		}
@@ -479,22 +479,22 @@ namespace GeckofxUnitTests
 			throw new NotImplementedException();
 		}
 
-		public nsIDOMWindow Open(nsAString url, nsAString name, nsAString options)
+		public nsIDOMWindow Open(nsAStringBase url, nsAStringBase name, nsAStringBase options)
 		{
 			throw new NotImplementedException();
 		}
 
-		public nsIDOMWindow OpenDialog(nsAString url, nsAString name, nsAString options, nsISupports aExtraArgument)
+		public nsIDOMWindow OpenDialog(nsAStringBase url, nsAStringBase name, nsAStringBase options, nsISupports aExtraArgument)
 		{
 			throw new NotImplementedException();
 		}
 
-		public void UpdateCommands(nsAString action)
+		public void UpdateCommands(nsAStringBase action)
 		{
 			throw new NotImplementedException();
 		}
 
-		public bool Find(nsAString str, bool caseSensitive, bool backwards, bool wrapAround, bool wholeWord, bool searchInFrames, bool showDialog)
+		public bool Find(nsAStringBase str, bool caseSensitive, bool backwards, bool wrapAround, bool wholeWord, bool searchInFrames, bool showDialog)
 		{
 			throw new NotImplementedException();
 		}
@@ -666,7 +666,7 @@ namespace GeckofxUnitTests
 		}
 
 
-		public void PostMessage(IntPtr message, nsAString targetOrigin, IntPtr jsContext)
+		public void PostMessage(IntPtr message, nsAStringBase targetOrigin, IntPtr jsContext)
 		{
 			throw new NotImplementedException();
 		}

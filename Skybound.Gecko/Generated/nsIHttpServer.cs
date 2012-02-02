@@ -194,14 +194,14 @@ namespace Gecko
         /// string.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetState([MarshalAs(UnmanagedType.LPStruct)] nsAString path, [MarshalAs(UnmanagedType.LPStruct)] nsAString key, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetState([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase path, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase key, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// Sets the string associated with the given key in this, for the given path's
         /// saved state.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetState([MarshalAs(UnmanagedType.LPStruct)] nsAString path, [MarshalAs(UnmanagedType.LPStruct)] nsAString key, [MarshalAs(UnmanagedType.LPStruct)] nsAString value);
+		void SetState([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase path, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase key, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase value);
 		
 		/// <summary>
         /// Retrieves the string associated with the given key in this, in
@@ -209,14 +209,14 @@ namespace Gecko
         /// empty string.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSharedState([MarshalAs(UnmanagedType.LPStruct)] nsAString key, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetSharedState([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase key, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// Sets the string associated with the given key in this, in entire-server
         /// saved state.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSharedState([MarshalAs(UnmanagedType.LPStruct)] nsAString key, [MarshalAs(UnmanagedType.LPStruct)] nsAString value);
+		void SetSharedState([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase key, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase value);
 		
 		/// <summary>
         /// Retrieves the object associated with the given key in this in
@@ -224,14 +224,14 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports GetObjectState([MarshalAs(UnmanagedType.LPStruct)] nsAString key);
+		nsISupports GetObjectState([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase key);
 		
 		/// <summary>
         /// Sets the object associated with the given key in this in object-valued
         /// saved state.  The value may be null.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetObjectState([MarshalAs(UnmanagedType.LPStruct)] nsAString key, [MarshalAs(UnmanagedType.Interface)] nsISupports value);
+		void SetObjectState([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase key, [MarshalAs(UnmanagedType.Interface)] nsISupports value);
 	}
 	
 	/// <summary>

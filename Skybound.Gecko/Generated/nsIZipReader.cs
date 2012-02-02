@@ -155,7 +155,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool HasEntry([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String zipEntry);
+		bool HasEntry([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase zipEntry);
 		
 		/// <summary>
         /// Returns a string enumerator containing the matching entry names.
@@ -221,7 +221,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIInputStream GetInputStreamWithSpec([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aJarSpec, [MarshalAs(UnmanagedType.LPStr)] string zipEntry);
+		nsIInputStream GetInputStreamWithSpec([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aJarSpec, [MarshalAs(UnmanagedType.LPStr)] string zipEntry);
 		
 		/// <summary>
         /// Returns an object describing the entity which signed

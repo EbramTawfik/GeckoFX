@@ -39,6 +39,6 @@ namespace Gecko
 		/// <returns>A nsIXTFElement</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIXTFElement CreateElement([MarshalAs(UnmanagedType.LPStruct)] nsAString tagName);
+		nsIXTFElement CreateElement([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase tagName);
 	}
 }

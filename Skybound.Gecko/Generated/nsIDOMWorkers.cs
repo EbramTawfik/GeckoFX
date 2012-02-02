@@ -51,12 +51,12 @@ namespace Gecko
 		/// <summary>Member GetDataAttribute </summary>
 		/// <param name='aData'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDataAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aData);
+		void GetDataAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aData);
 		
 		/// <summary>Member GetOriginAttribute </summary>
 		/// <param name='aOrigin'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetOriginAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aOrigin);
+		void GetOriginAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aOrigin);
 		
 		/// <summary>Member GetSourceAttribute </summary>
 		/// <returns>A nsISupports</returns>
@@ -72,7 +72,7 @@ namespace Gecko
 		/// <param name='aOriginArg'> </param>
 		/// <param name='aSourceArg'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitMessageEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString aTypeArg, [MarshalAs(UnmanagedType.Bool)] bool aCanBubbleArg, [MarshalAs(UnmanagedType.Bool)] bool aCancelableArg, [MarshalAs(UnmanagedType.LPStruct)] nsAString aDataArg, [MarshalAs(UnmanagedType.LPStruct)] nsAString aOriginArg, [MarshalAs(UnmanagedType.Interface)] nsISupports aSourceArg);
+		void InitMessageEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTypeArg, [MarshalAs(UnmanagedType.Bool)] bool aCanBubbleArg, [MarshalAs(UnmanagedType.Bool)] bool aCancelableArg, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDataArg, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aOriginArg, [MarshalAs(UnmanagedType.Interface)] nsISupports aSourceArg);
 	}
 	
 	/// <summary>nsIWorkerErrorEvent </summary>
@@ -84,12 +84,12 @@ namespace Gecko
 		/// <summary>Member GetMessageAttribute </summary>
 		/// <param name='aMessage'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMessageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMessage);
+		void GetMessageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMessage);
 		
 		/// <summary>Member GetFilenameAttribute </summary>
 		/// <param name='aFilename'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetFilenameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aFilename);
+		void GetFilenameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFilename);
 		
 		/// <summary>Member GetLinenoAttribute </summary>
 		/// <returns>A System.UInt32</returns>
@@ -104,7 +104,7 @@ namespace Gecko
 		/// <param name='aFilenameArg'> </param>
 		/// <param name='aLinenoArg'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitErrorEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString aTypeArg, [MarshalAs(UnmanagedType.Bool)] bool aCanBubbleArg, [MarshalAs(UnmanagedType.Bool)] bool aCancelableArg, [MarshalAs(UnmanagedType.LPStruct)] nsAString aMessageArg, [MarshalAs(UnmanagedType.LPStruct)] nsAString aFilenameArg, uint aLinenoArg);
+		void InitErrorEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTypeArg, [MarshalAs(UnmanagedType.Bool)] bool aCanBubbleArg, [MarshalAs(UnmanagedType.Bool)] bool aCancelableArg, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMessageArg, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFilenameArg, uint aLinenoArg);
 	}
 	
 	/// <summary>nsIWorkerLocation </summary>
@@ -117,47 +117,47 @@ namespace Gecko
 		/// <summary>Member GetHrefAttribute </summary>
 		/// <param name='aHref'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetHrefAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aHref);
+		void GetHrefAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aHref);
 		
 		/// <summary>Member GetProtocolAttribute </summary>
 		/// <param name='aProtocol'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetProtocolAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aProtocol);
+		void GetProtocolAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aProtocol);
 		
 		/// <summary>Member GetHostAttribute </summary>
 		/// <param name='aHost'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetHostAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aHost);
+		void GetHostAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aHost);
 		
 		/// <summary>Member GetHostnameAttribute </summary>
 		/// <param name='aHostname'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetHostnameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aHostname);
+		void GetHostnameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aHostname);
 		
 		/// <summary>Member GetPortAttribute </summary>
 		/// <param name='aPort'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPortAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aPort);
+		void GetPortAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aPort);
 		
 		/// <summary>Member GetPathnameAttribute </summary>
 		/// <param name='aPathname'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPathnameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aPathname);
+		void GetPathnameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aPathname);
 		
 		/// <summary>Member GetSearchAttribute </summary>
 		/// <param name='aSearch'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSearchAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aSearch);
+		void GetSearchAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aSearch);
 		
 		/// <summary>Member GetHashAttribute </summary>
 		/// <param name='aHash'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetHashAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aHash);
+		void GetHashAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aHash);
 		
 		/// <summary>Member ToString </summary>
 		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ToString([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
+		void ToString([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase retval);
 	}
 	
 	/// <summary>nsIWorkerNavigator </summary>
@@ -170,22 +170,22 @@ namespace Gecko
 		/// <summary>Member GetAppNameAttribute </summary>
 		/// <param name='aAppName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetAppNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aAppName);
+		void GetAppNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAppName);
 		
 		/// <summary>Member GetAppVersionAttribute </summary>
 		/// <param name='aAppVersion'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetAppVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aAppVersion);
+		void GetAppVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAppVersion);
 		
 		/// <summary>Member GetPlatformAttribute </summary>
 		/// <param name='aPlatform'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPlatformAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aPlatform);
+		void GetPlatformAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPlatform);
 		
 		/// <summary>Member GetUserAgentAttribute </summary>
 		/// <param name='aUserAgent'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetUserAgentAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aUserAgent);
+		void GetUserAgentAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aUserAgent);
 	}
 	
 	/// <summary>nsIWorkerGlobalScope </summary>
@@ -330,7 +330,7 @@ namespace Gecko
         /// they're trusted
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void AddEventListener([MarshalAs(UnmanagedType.LPStruct)] nsAString type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener listener, [MarshalAs(UnmanagedType.Bool)] bool useCapture, [MarshalAs(UnmanagedType.Bool)] bool wantsUntrusted, int argc);
+		new void AddEventListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener listener, [MarshalAs(UnmanagedType.Bool)] bool useCapture, [MarshalAs(UnmanagedType.Bool)] bool wantsUntrusted, int argc);
 		
 		/// <summary>
         /// This method allows the removal of event listeners from the event
@@ -353,7 +353,7 @@ namespace Gecko
         /// listener, and vice versa.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void RemoveEventListener([MarshalAs(UnmanagedType.LPStruct)] nsAString type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener listener, [MarshalAs(UnmanagedType.Bool)] bool useCapture);
+		new void RemoveEventListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener listener, [MarshalAs(UnmanagedType.Bool)] bool useCapture);
 		
 		/// <summary>
         /// This method allows the dispatch of events into the implementations
@@ -526,7 +526,7 @@ namespace Gecko
         /// they're trusted
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void AddEventListener([MarshalAs(UnmanagedType.LPStruct)] nsAString type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener listener, [MarshalAs(UnmanagedType.Bool)] bool useCapture, [MarshalAs(UnmanagedType.Bool)] bool wantsUntrusted, int argc);
+		new void AddEventListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener listener, [MarshalAs(UnmanagedType.Bool)] bool useCapture, [MarshalAs(UnmanagedType.Bool)] bool wantsUntrusted, int argc);
 		
 		/// <summary>
         /// This method allows the removal of event listeners from the event
@@ -549,7 +549,7 @@ namespace Gecko
         /// listener, and vice versa.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void RemoveEventListener([MarshalAs(UnmanagedType.LPStruct)] nsAString type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener listener, [MarshalAs(UnmanagedType.Bool)] bool useCapture);
+		new void RemoveEventListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener listener, [MarshalAs(UnmanagedType.Bool)] bool useCapture);
 		
 		/// <summary>
         /// This method allows the dispatch of events into the implementations

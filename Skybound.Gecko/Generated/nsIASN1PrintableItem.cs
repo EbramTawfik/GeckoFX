@@ -62,25 +62,25 @@ namespace Gecko
         /// "displayName" contains a human readable explanatory label.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetDisplayNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDisplayName);
+		new void GetDisplayNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDisplayName);
 		
 		/// <summary>
         /// "displayName" contains a human readable explanatory label.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetDisplayNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDisplayName);
+		new void SetDisplayNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDisplayName);
 		
 		/// <summary>
         /// "displayValue" contains the human readable value.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetDisplayValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDisplayValue);
+		new void GetDisplayValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDisplayValue);
 		
 		/// <summary>
         /// "displayValue" contains the human readable value.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetDisplayValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDisplayValue);
+		new void SetDisplayValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDisplayValue);
 		
 		/// <summary>Member SetData </summary>
 		/// <param name='data'> </param>

@@ -41,7 +41,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMXPathExpression CreateExpression([MarshalAs(UnmanagedType.LPStruct)] nsAString expression, [MarshalAs(UnmanagedType.Interface)] nsIDOMXPathNSResolver resolver);
+		nsIDOMXPathExpression CreateExpression([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase expression, [MarshalAs(UnmanagedType.Interface)] nsIDOMXPathNSResolver resolver);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -49,6 +49,6 @@ namespace Gecko
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports Evaluate([MarshalAs(UnmanagedType.LPStruct)] nsAString expression, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode contextNode, [MarshalAs(UnmanagedType.Interface)] nsIDOMXPathNSResolver resolver, ushort type, [MarshalAs(UnmanagedType.Interface)] nsISupports result);
+		nsISupports Evaluate([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase expression, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode contextNode, [MarshalAs(UnmanagedType.Interface)] nsIDOMXPathNSResolver resolver, ushort type, [MarshalAs(UnmanagedType.Interface)] nsISupports result);
 	}
 }

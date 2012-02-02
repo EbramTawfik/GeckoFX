@@ -91,17 +91,17 @@ namespace Gecko
 		/// <param name='aOffset'> </param>
 		/// <param name='aNewword'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ReplaceWord([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aNode, int aOffset, [MarshalAs(UnmanagedType.LPStruct)] nsAString aNewword);
+		void ReplaceWord([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aNode, int aOffset, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNewword);
 		
 		/// <summary>Member AddWordToDictionary </summary>
 		/// <param name='aWord'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddWordToDictionary([MarshalAs(UnmanagedType.LPStruct)] nsAString aWord);
+		void AddWordToDictionary([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aWord);
 		
 		/// <summary>Member IgnoreWord </summary>
 		/// <param name='aWord'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void IgnoreWord([MarshalAs(UnmanagedType.LPStruct)] nsAString aWord);
+		void IgnoreWord([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aWord);
 		
 		/// <summary>Member IgnoreWords </summary>
 		/// <param name='aWordsToIgnore'> </param>

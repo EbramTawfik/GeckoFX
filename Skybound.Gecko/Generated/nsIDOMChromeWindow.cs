@@ -68,7 +68,7 @@ namespace Gecko
 		/// <summary>Member SetCursor </summary>
 		/// <param name='cursor'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCursor([MarshalAs(UnmanagedType.LPStruct)] nsAString cursor);
+		void SetCursor([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase cursor);
 		
 		/// <summary>Member Maximize </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

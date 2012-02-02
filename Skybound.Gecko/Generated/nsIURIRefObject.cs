@@ -71,7 +71,7 @@ namespace Gecko
         /// Return the next rewritable URI.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNextURI([MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetNextURI([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// Go back to the beginning of the attribute list
@@ -81,6 +81,6 @@ namespace Gecko
         /// @param aMakeRel Rewrite links as relative vs. absolute
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RewriteAllURIs([MarshalAs(UnmanagedType.LPStruct)] nsAString aOldPat, [MarshalAs(UnmanagedType.LPStruct)] nsAString aNewPat, [MarshalAs(UnmanagedType.Bool)] bool aMakeRel);
+		void RewriteAllURIs([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aOldPat, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNewPat, [MarshalAs(UnmanagedType.Bool)] bool aMakeRel);
 	}
 }

@@ -41,13 +41,13 @@ namespace Gecko
         /// string bundle
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetStringFromName([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String url, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase key, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetStringFromName([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase url, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase key, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// get all override keys for a given string bundle
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISimpleEnumerator EnumerateKeysInBundle([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String url);
+		nsISimpleEnumerator EnumerateKeysInBundle([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase url);
 	}
 }

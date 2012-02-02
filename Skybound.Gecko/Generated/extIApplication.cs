@@ -42,7 +42,7 @@ namespace Gecko
         /// The text to send to the console
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Log([MarshalAs(UnmanagedType.LPStruct)] nsAString aMsg);
+		void Log([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMsg);
 		
 		/// <summary>
         /// Opens the error console window. The console window
@@ -65,7 +65,7 @@ namespace Gecko
         /// The name of the event
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aType);
+		void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType);
 		
 		/// <summary>
         /// Can hold extra details and data associated with the event. This
@@ -125,7 +125,7 @@ namespace Gecko
         /// The reference to a listener
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddListener([MarshalAs(UnmanagedType.LPStruct)] nsAString aEvent, extIEventListener aListener);
+		void AddListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aEvent, extIEventListener aListener);
 		
 		/// <summary>
         /// Removes an event listener from the list. Calling remove
@@ -137,7 +137,7 @@ namespace Gecko
         /// The reference to a listener
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveListener([MarshalAs(UnmanagedType.LPStruct)] nsAString aEvent, extIEventListener aListener);
+		void RemoveListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aEvent, extIEventListener aListener);
 	}
 	
 	/// <summary>
@@ -158,7 +158,7 @@ namespace Gecko
         /// The name of the branch root.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetRootAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aRoot);
+		void GetRootAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aRoot);
 		
 		/// <summary>
         /// Array of extIPreference listing all preferences in this branch.
@@ -182,7 +182,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Has([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
+		bool Has([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
 		
 		/// <summary>
         /// Gets an object representing a preference
@@ -191,7 +191,7 @@ namespace Gecko
         /// @returns a preference object, or null if the preference does not exist
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		extIPreference Get([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
+		extIPreference Get([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
 		
 		/// <summary>
         /// Gets the value of a preference. Returns a default value if
@@ -205,7 +205,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant GetValue([MarshalAs(UnmanagedType.LPStruct)] nsAString aName, [MarshalAs(UnmanagedType.Interface)] nsIVariant aDefaultValue);
+		nsIVariant GetValue([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName, [MarshalAs(UnmanagedType.Interface)] nsIVariant aDefaultValue);
 		
 		/// <summary>
         /// Sets the value of a storage item with the given name.
@@ -215,7 +215,7 @@ namespace Gecko
         /// The value to assign to the item
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetValue([MarshalAs(UnmanagedType.LPStruct)] nsAString aName, [MarshalAs(UnmanagedType.Interface)] nsIVariant aValue);
+		void SetValue([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName, [MarshalAs(UnmanagedType.Interface)] nsIVariant aValue);
 		
 		/// <summary>
         /// Resets all preferences in a branch back to their default values.
@@ -238,13 +238,13 @@ namespace Gecko
         /// The name of the preference.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
+		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
 		
 		/// <summary>
         /// A string representing the type of preference (String, Boolean, or Number).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aType);
+		void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType);
 		
 		/// <summary>
         /// Get/Set the value of the preference.
@@ -312,13 +312,13 @@ namespace Gecko
         /// The id of the extension.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetIdAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aId);
+		void GetIdAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aId);
 		
 		/// <summary>
         /// The name of the extension.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
+		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
 		
 		/// <summary>
         /// Check if the extension is currently enabled, or not.
@@ -331,7 +331,7 @@ namespace Gecko
         /// The version number of the extension.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aVersion);
+		void GetVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aVersion);
 		
 		/// <summary>
         /// Indicates whether this is the extension's first run after install
@@ -386,7 +386,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Has([MarshalAs(UnmanagedType.LPStruct)] nsAString aId);
+		bool Has([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aId);
 		
 		/// <summary>
         /// Gets a extIExtension object for an extension.
@@ -396,7 +396,7 @@ namespace Gecko
         /// with the given id.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		extIExtension Get([MarshalAs(UnmanagedType.LPStruct)] nsAString aId);
+		extIExtension Get([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aId);
 	}
 	
 	/// <summary>
@@ -440,7 +440,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Has([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
+		bool Has([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
 		
 		/// <summary>
         /// Sets the value of a storage item with the given name.
@@ -450,7 +450,7 @@ namespace Gecko
         /// The value to assign to the item
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Set([MarshalAs(UnmanagedType.LPStruct)] nsAString aName, [MarshalAs(UnmanagedType.Interface)] nsIVariant aValue);
+		void Set([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName, [MarshalAs(UnmanagedType.Interface)] nsIVariant aValue);
 		
 		/// <summary>
         /// Gets the value of a storage item with the given name. Returns a
@@ -464,7 +464,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant Get([MarshalAs(UnmanagedType.LPStruct)] nsAString aName, [MarshalAs(UnmanagedType.Interface)] nsIVariant aDefaultValue);
+		nsIVariant Get([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName, [MarshalAs(UnmanagedType.Interface)] nsIVariant aDefaultValue);
 	}
 	
 	/// <summary>extIApplication </summary>
@@ -478,19 +478,19 @@ namespace Gecko
         /// The id of the application.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetIdAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aId);
+		void GetIdAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aId);
 		
 		/// <summary>
         /// The name of the application.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
+		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
 		
 		/// <summary>
         /// The version number of the application.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aVersion);
+		void GetVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aVersion);
 		
 		/// <summary>
         /// The console object for the application.

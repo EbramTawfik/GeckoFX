@@ -1408,7 +1408,7 @@ namespace Gecko
 				m_browser = browser;
 			}
 
-			public bool OnError(nsAUTF8String message, nsAUTF8String fileName, uint line, uint pos, uint flags, uint errnum, jsdIValue exc)
+			public bool OnError(nsAUTF8StringBase message, nsAUTF8StringBase fileName, uint line, uint pos, uint flags, uint errnum, jsdIValue exc)
 			{
 				var eventArgs = new JavascriptErrorEventArgs(message.ToString(), fileName.ToString(), line, pos, flags, errnum);
 				m_browser.OnJavascriptError(eventArgs);

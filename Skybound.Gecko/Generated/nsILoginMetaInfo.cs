@@ -52,7 +52,7 @@ namespace Gecko
         /// addLogin and modifyLogin will throw if the GUID already exists.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetGuidAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aGuid);
+		void GetGuidAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aGuid);
 		
 		/// <summary>
         /// The GUID to uniquely identify the login. This can be any arbitrary
@@ -64,7 +64,7 @@ namespace Gecko
         /// addLogin and modifyLogin will throw if the GUID already exists.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetGuidAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aGuid);
+		void SetGuidAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aGuid);
 		
 		/// <summary>
         /// The time, in Unix Epoch milliseconds, when the login was first created.

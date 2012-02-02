@@ -37,16 +37,16 @@ namespace Gecko
 		/// <summary>Member GetIdentifierAttribute </summary>
 		/// <param name='aIdentifier'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetIdentifierAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aIdentifier);
+		void GetIdentifierAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aIdentifier);
 		
 		/// <summary>Member GetListStyleAttribute </summary>
 		/// <param name='aListStyle'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetListStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aListStyle);
+		void GetListStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aListStyle);
 		
 		/// <summary>Member GetSeparatorAttribute </summary>
 		/// <param name='aSeparator'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSeparatorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aSeparator);
+		void GetSeparatorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSeparator);
 	}
 }

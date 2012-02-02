@@ -51,7 +51,7 @@ namespace Gecko
 		/// <param name='index'> </param>
 		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ItemAsString(uint index, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void ItemAsString(uint index, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>Member GetLengthAttribute </summary>
 		/// <returns>A System.UInt32</returns>

@@ -44,7 +44,7 @@ namespace Gecko
         /// @param listener - A listener to notify when the search is complete
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void StartSearch([MarshalAs(UnmanagedType.LPStruct)] nsAString searchString, [MarshalAs(UnmanagedType.LPStruct)] nsAString searchParam, [MarshalAs(UnmanagedType.Interface)] nsIAutoCompleteResult previousResult, [MarshalAs(UnmanagedType.Interface)] nsIAutoCompleteObserver listener);
+		void StartSearch([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase searchString, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase searchParam, [MarshalAs(UnmanagedType.Interface)] nsIAutoCompleteResult previousResult, [MarshalAs(UnmanagedType.Interface)] nsIAutoCompleteObserver listener);
 		
 		/// <summary>
         /// Stop all searches that are in progress

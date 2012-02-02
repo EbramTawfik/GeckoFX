@@ -58,7 +58,7 @@ namespace Gecko
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIIDBObjectStore ObjectStore([MarshalAs(UnmanagedType.LPStruct)] nsAString name);
+		nsIIDBObjectStore ObjectStore([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name);
 		
 		/// <summary>
         /// Don't commit the transaction.

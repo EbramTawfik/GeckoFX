@@ -46,13 +46,13 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIUTF8StringEnumerator GetKeys([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aSection);
+		nsIUTF8StringEnumerator GetKeys([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aSection);
 		
 		/// <summary>
         /// Get the value of a string for a particular section and key.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetString([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aSection, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aKey, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
+		void GetString([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aSection, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aKey, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase retval);
 	}
 	
 	/// <summary>nsIINIParserWriter </summary>
@@ -66,7 +66,7 @@ namespace Gecko
         /// Set the value of a string for a particular section and key.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetString([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aSection, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aKey, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aValue);
+		void SetString([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aSection, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aKey, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aValue);
 		
 		/// <summary>
         /// Write to the INI file.

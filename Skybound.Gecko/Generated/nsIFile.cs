@@ -58,7 +58,7 @@ namespace Gecko
         /// filesystem charset.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Append([MarshalAs(UnmanagedType.LPStruct)] nsAString node);
+		void Append([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase node);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void AppendNative([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase node);
@@ -98,7 +98,7 @@ namespace Gecko
         /// be in the native filesystem charset.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetLeafNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aLeafName);
+		void GetLeafNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aLeafName);
 		
 		/// <summary>
         /// Accessor to the leaf name of the file itself.
@@ -106,7 +106,7 @@ namespace Gecko
         /// be in the native filesystem charset.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetLeafNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aLeafName);
+		void SetLeafNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aLeafName);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetNativeLeafNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aNativeLeafName);
@@ -142,7 +142,7 @@ namespace Gecko
         /// which case the current leaf name will be used.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CopyTo([MarshalAs(UnmanagedType.Interface)] nsIFile newParentDir, [MarshalAs(UnmanagedType.LPStruct)] nsAString newName);
+		void CopyTo([MarshalAs(UnmanagedType.Interface)] nsIFile newParentDir, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase newName);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void CopyToNative([MarshalAs(UnmanagedType.Interface)] nsIFile newParentDir, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase newName);
@@ -157,7 +157,7 @@ namespace Gecko
         /// native filesystem charset.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CopyToFollowingLinks([MarshalAs(UnmanagedType.Interface)] nsIFile newParentDir, [MarshalAs(UnmanagedType.LPStruct)] nsAString newName);
+		void CopyToFollowingLinks([MarshalAs(UnmanagedType.Interface)] nsIFile newParentDir, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase newName);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void CopyToFollowingLinksNative([MarshalAs(UnmanagedType.Interface)] nsIFile newParentDir, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase newName);
@@ -195,7 +195,7 @@ namespace Gecko
         /// which case the current leaf name will be used.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MoveTo([MarshalAs(UnmanagedType.Interface)] nsIFile newParentDir, [MarshalAs(UnmanagedType.LPStruct)] nsAString newName);
+		void MoveTo([MarshalAs(UnmanagedType.Interface)] nsIFile newParentDir, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase newName);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void MoveToNative([MarshalAs(UnmanagedType.Interface)] nsIFile newParentDir, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase newName);
@@ -296,13 +296,13 @@ namespace Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTargetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aTarget);
+		void GetTargetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTarget);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetNativeTargetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aNativeTarget);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aPath);
+		void GetPathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPath);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetNativePathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aNativePath);

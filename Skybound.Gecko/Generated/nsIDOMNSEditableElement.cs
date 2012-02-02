@@ -47,6 +47,6 @@ namespace Gecko
         /// element.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetUserInput([MarshalAs(UnmanagedType.LPStruct)] nsAString input);
+		void SetUserInput([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase input);
 	}
 }

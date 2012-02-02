@@ -57,13 +57,13 @@ namespace Gecko
         /// The language of the text. For example, "en-US" for US English.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetLangAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aLang);
+		void GetLangAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aLang);
 		
 		/// <summary>
         /// The language of the text. For example, "en-US" for US English.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetLangAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aLang);
+		void SetLangAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aLang);
 		
 		/// <summary>
         /// One of "text", "html", or "xhtml". If the type is (x)html, a '<'
@@ -73,7 +73,7 @@ namespace Gecko
         /// not be embedded in markup without escaping it first.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aType);
+		void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType);
 		
 		/// <summary>
         /// One of "text", "html", or "xhtml". If the type is (x)html, a '<'
@@ -83,19 +83,19 @@ namespace Gecko
         /// not be embedded in markup without escaping it first.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aType);
+		void SetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType);
 		
 		/// <summary>
         /// The content of the text construct.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aText);
+		void GetTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aText);
 		
 		/// <summary>
         /// The content of the text construct.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aText);
+		void SetTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aText);
 		
 		/// <summary>
         /// Returns the text of the text construct, with all markup stripped
@@ -103,7 +103,7 @@ namespace Gecko
         /// this function returns the value of the text attribute unchanged.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PlainText([MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void PlainText([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// Return an nsIDocumentFragment containing the text and markup.

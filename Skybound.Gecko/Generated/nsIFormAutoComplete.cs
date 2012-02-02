@@ -39,6 +39,6 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIAutoCompleteResult AutoCompleteSearch([MarshalAs(UnmanagedType.LPStruct)] nsAString aInputName, [MarshalAs(UnmanagedType.LPStruct)] nsAString aSearchString, [MarshalAs(UnmanagedType.Interface)] nsIDOMHTMLInputElement aField, [MarshalAs(UnmanagedType.Interface)] nsIAutoCompleteResult aPreviousResult);
+		nsIAutoCompleteResult AutoCompleteSearch([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aInputName, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSearchString, [MarshalAs(UnmanagedType.Interface)] nsIDOMHTMLInputElement aField, [MarshalAs(UnmanagedType.Interface)] nsIAutoCompleteResult aPreviousResult);
 	}
 }

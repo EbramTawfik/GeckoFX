@@ -51,7 +51,7 @@ namespace Gecko
         /// The name of the request.  Often this is the URI of the request.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName);
+		new void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aName);
 		
 		/// <summary>
         /// Indicates whether the request is pending. nsIRequest::isPending is
@@ -446,7 +446,7 @@ namespace Gecko
         /// attribute is empty/missing.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetContentDispositionFilenameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aContentDispositionFilename);
+		void GetContentDispositionFilenameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aContentDispositionFilename);
 		
 		/// <summary>
         /// Access to the raw Content-Disposition header if available and applicable.

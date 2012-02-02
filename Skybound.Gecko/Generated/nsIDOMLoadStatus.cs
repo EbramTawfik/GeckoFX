@@ -43,7 +43,7 @@ namespace Gecko
 		/// <summary>Member GetUriAttribute </summary>
 		/// <param name='aUri'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetUriAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aUri);
+		void GetUriAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aUri);
 		
 		/// <summary>Member GetTotalSizeAttribute </summary>
 		/// <returns>A System.Int32</returns>

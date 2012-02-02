@@ -70,25 +70,25 @@ namespace Gecko
         /// The name of the software.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetAgentAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aAgent);
+		void GetAgentAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAgent);
 		
 		/// <summary>
         /// The name of the software.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAgentAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aAgent);
+		void SetAgentAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAgent);
 		
 		/// <summary>
         /// The version of the software.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aVersion);
+		void GetVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aVersion);
 		
 		/// <summary>
         /// The version of the software.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aVersion);
+		void SetVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aVersion);
 		
 		/// <summary>
         /// A URI associated with the software.

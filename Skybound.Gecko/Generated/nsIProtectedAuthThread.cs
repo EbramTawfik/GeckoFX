@@ -63,6 +63,6 @@ namespace Gecko
         /// Gets token to be logged in name.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTokenName([MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetTokenName([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 	}
 }

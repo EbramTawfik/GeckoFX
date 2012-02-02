@@ -81,7 +81,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIToolkitProfile GetProfileByName([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName);
+		nsIToolkitProfile GetProfileByName([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aName);
 		
 		/// <summary>
         /// Lock an arbitrary path as a profile. If the path does not exist, it
@@ -106,7 +106,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIToolkitProfile CreateProfile([MarshalAs(UnmanagedType.Interface)] nsILocalFile aRootDir, [MarshalAs(UnmanagedType.Interface)] nsILocalFile aTempDir, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName);
+		nsIToolkitProfile CreateProfile([MarshalAs(UnmanagedType.Interface)] nsILocalFile aRootDir, [MarshalAs(UnmanagedType.Interface)] nsILocalFile aTempDir, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aName);
 		
 		/// <summary>
         /// Returns the number of profiles.

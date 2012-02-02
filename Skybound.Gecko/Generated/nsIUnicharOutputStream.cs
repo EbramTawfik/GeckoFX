@@ -55,7 +55,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool WriteString([MarshalAs(UnmanagedType.LPStruct)] nsAString str);
+		bool WriteString([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase str);
 		
 		/// <summary>
         /// Flush the stream. This finishes the conversion and writes any bytes that

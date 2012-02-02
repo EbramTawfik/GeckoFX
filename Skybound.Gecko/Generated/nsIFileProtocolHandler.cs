@@ -81,7 +81,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIURI NewURI([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aSpec, [MarshalAs(UnmanagedType.LPStr)] string aOriginCharset, [MarshalAs(UnmanagedType.Interface)] nsIURI aBaseURI);
+		new nsIURI NewURI([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aSpec, [MarshalAs(UnmanagedType.LPStr)] string aOriginCharset, [MarshalAs(UnmanagedType.Interface)] nsIURI aBaseURI);
 		
 		/// <summary>
         /// Constructs a new channel from the given URI for this protocol handler.
@@ -124,7 +124,7 @@ namespace Gecko
         /// getURLSpecFromDirFile if possible, for performance reasons.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetURLSpecFromFile([MarshalAs(UnmanagedType.Interface)] nsIFile file, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
+		void GetURLSpecFromFile([MarshalAs(UnmanagedType.Interface)] nsIFile file, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase retval);
 		
 		/// <summary>
         /// Converts the nsIFile to the corresponding URL string. Should
@@ -133,7 +133,7 @@ namespace Gecko
         /// WARNING: This restriction may not be enforced at runtime!
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetURLSpecFromActualFile([MarshalAs(UnmanagedType.Interface)] nsIFile file, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
+		void GetURLSpecFromActualFile([MarshalAs(UnmanagedType.Interface)] nsIFile file, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase retval);
 		
 		/// <summary>
         /// Converts the nsIFile to the corresponding URL string. Should
@@ -142,7 +142,7 @@ namespace Gecko
         /// WARNING: This restriction may not be enforced at runtime!
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetURLSpecFromDir([MarshalAs(UnmanagedType.Interface)] nsIFile file, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
+		void GetURLSpecFromDir([MarshalAs(UnmanagedType.Interface)] nsIFile file, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase retval);
 		
 		/// <summary>
         /// Converts the URL string into the corresponding nsIFile if possible.
@@ -150,7 +150,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIFile GetFileFromURLSpec([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String url);
+		nsIFile GetFileFromURLSpec([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase url);
 		
 		/// <summary>
         /// Takes a local file and tries to interpret it as an internet shortcut

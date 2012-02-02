@@ -48,19 +48,19 @@ namespace Gecko
 		/// <returns>A nsIDOMElement</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMElement GetAnonymousElementByAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMElement elt, [MarshalAs(UnmanagedType.LPStruct)] nsAString attrName, [MarshalAs(UnmanagedType.LPStruct)] nsAString attrValue);
+		nsIDOMElement GetAnonymousElementByAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMElement elt, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase attrName, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase attrValue);
 		
 		/// <summary>Member AddBinding </summary>
 		/// <param name='elt'> </param>
 		/// <param name='bindingURL'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddBinding([MarshalAs(UnmanagedType.Interface)] nsIDOMElement elt, [MarshalAs(UnmanagedType.LPStruct)] nsAString bindingURL);
+		void AddBinding([MarshalAs(UnmanagedType.Interface)] nsIDOMElement elt, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase bindingURL);
 		
 		/// <summary>Member RemoveBinding </summary>
 		/// <param name='elt'> </param>
 		/// <param name='bindingURL'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveBinding([MarshalAs(UnmanagedType.Interface)] nsIDOMElement elt, [MarshalAs(UnmanagedType.LPStruct)] nsAString bindingURL);
+		void RemoveBinding([MarshalAs(UnmanagedType.Interface)] nsIDOMElement elt, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase bindingURL);
 		
 		/// <summary>Member GetBindingParent </summary>
 		/// <param name='node'> </param>
@@ -72,6 +72,6 @@ namespace Gecko
 		/// <summary>Member LoadBindingDocument </summary>
 		/// <param name='documentURL'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void LoadBindingDocument([MarshalAs(UnmanagedType.LPStruct)] nsAString documentURL);
+		void LoadBindingDocument([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase documentURL);
 	}
 }

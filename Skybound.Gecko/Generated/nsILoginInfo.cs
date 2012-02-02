@@ -44,7 +44,7 @@ namespace Gecko
         /// "https://site.com", "http://site.com:1234", "ftp://ftp.site.com".
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetHostnameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aHostname);
+		void GetHostnameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aHostname);
 		
 		/// <summary>
         /// The hostname the login applies to.
@@ -53,7 +53,7 @@ namespace Gecko
         /// "https://site.com", "http://site.com:1234", "ftp://ftp.site.com".
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetHostnameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aHostname);
+		void SetHostnameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aHostname);
 		
 		/// <summary>
         /// The URL a form-based login was submitted to.
@@ -67,7 +67,7 @@ namespace Gecko
         /// this field is NULL.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetFormSubmitURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aFormSubmitURL);
+		void GetFormSubmitURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFormSubmitURL);
 		
 		/// <summary>
         /// The URL a form-based login was submitted to.
@@ -81,7 +81,7 @@ namespace Gecko
         /// this field is NULL.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFormSubmitURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aFormSubmitURL);
+		void SetFormSubmitURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFormSubmitURL);
 		
 		/// <summary>
         /// The HTTP Realm a login was requested for.
@@ -94,7 +94,7 @@ namespace Gecko
         /// For logins obtained from HTML forms, this field is NULL.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetHttpRealmAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aHttpRealm);
+		void GetHttpRealmAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aHttpRealm);
 		
 		/// <summary>
         /// The HTTP Realm a login was requested for.
@@ -107,19 +107,19 @@ namespace Gecko
         /// For logins obtained from HTML forms, this field is NULL.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetHttpRealmAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aHttpRealm);
+		void SetHttpRealmAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aHttpRealm);
 		
 		/// <summary>
         /// The username for the login.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetUsernameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aUsername);
+		void GetUsernameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aUsername);
 		
 		/// <summary>
         /// The username for the login.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetUsernameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aUsername);
+		void SetUsernameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aUsername);
 		
 		/// <summary>
         /// The |name| attribute for the username input field.
@@ -128,7 +128,7 @@ namespace Gecko
         /// this field is an empty string.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetUsernameFieldAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aUsernameField);
+		void GetUsernameFieldAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aUsernameField);
 		
 		/// <summary>
         /// The |name| attribute for the username input field.
@@ -137,19 +137,19 @@ namespace Gecko
         /// this field is an empty string.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetUsernameFieldAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aUsernameField);
+		void SetUsernameFieldAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aUsernameField);
 		
 		/// <summary>
         /// The password for the login.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPasswordAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aPassword);
+		void GetPasswordAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPassword);
 		
 		/// <summary>
         /// The password for the login.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPasswordAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aPassword);
+		void SetPasswordAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPassword);
 		
 		/// <summary>
         /// The |name| attribute for the password input field.
@@ -158,7 +158,7 @@ namespace Gecko
         /// this field is an empty string.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPasswordFieldAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aPasswordField);
+		void GetPasswordFieldAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPasswordField);
 		
 		/// <summary>
         /// The |name| attribute for the password input field.
@@ -167,7 +167,7 @@ namespace Gecko
         /// this field is an empty string.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPasswordFieldAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aPasswordField);
+		void SetPasswordFieldAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPasswordField);
 		
 		/// <summary>
         /// Initialize a newly created nsLoginInfo object.
@@ -175,7 +175,7 @@ namespace Gecko
         /// The arguments are the fields for the new object.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init([MarshalAs(UnmanagedType.LPStruct)] nsAString aHostname, [MarshalAs(UnmanagedType.LPStruct)] nsAString aFormSubmitURL, [MarshalAs(UnmanagedType.LPStruct)] nsAString aHttpRealm, [MarshalAs(UnmanagedType.LPStruct)] nsAString aUsername, [MarshalAs(UnmanagedType.LPStruct)] nsAString aPassword, [MarshalAs(UnmanagedType.LPStruct)] nsAString aUsernameField, [MarshalAs(UnmanagedType.LPStruct)] nsAString aPasswordField);
+		void Init([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aHostname, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFormSubmitURL, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aHttpRealm, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aUsername, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPassword, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aUsernameField, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPasswordField);
 		
 		/// <summary>
         /// Test for strict equality with another nsILoginInfo object.

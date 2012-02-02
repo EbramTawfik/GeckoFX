@@ -72,7 +72,7 @@ namespace Gecko
         /// @param aTitle  the page title
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetPageTitle([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString aTitle);
+		new void SetPageTitle([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTitle);
 		
 		/// <summary>
         /// Used by the History migrator to add a page to global history, with a
@@ -92,7 +92,7 @@ namespace Gecko
         /// The last page that was visited in a top-level window.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetLastPageVisitedAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aLastPageVisited);
+		void GetLastPageVisitedAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aLastPageVisited);
 		
 		/// <summary>
         /// Indicates if there are entries in global history.
@@ -143,7 +143,7 @@ namespace Gecko
         /// @note The removal happens in a batch.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemovePagesFromHost([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aHost, [MarshalAs(UnmanagedType.Bool)] bool aEntireDomain);
+		void RemovePagesFromHost([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aHost, [MarshalAs(UnmanagedType.Bool)] bool aEntireDomain);
 		
 		/// <summary>
         /// Removes all pages for a given timeframe.

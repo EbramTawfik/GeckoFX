@@ -72,15 +72,15 @@ namespace Gecko
 		nsIDOMSVGElement GetViewTargetAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetViewBoxStringAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aViewBoxString);
+		void GetViewBoxStringAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aViewBoxString);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPreserveAspectRatioStringAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aPreserveAspectRatioString);
+		void GetPreserveAspectRatioStringAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPreserveAspectRatioString);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTransformStringAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aTransformString);
+		void GetTransformStringAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTransformString);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetViewTargetStringAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aViewTargetString);
+		void GetViewTargetStringAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aViewTargetString);
 	}
 }

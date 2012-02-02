@@ -38,7 +38,7 @@ namespace Gecko
 		/// <param name='offset'> </param>
 		/// <param name='color'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddColorStop(float offset, [MarshalAs(UnmanagedType.LPStruct)] nsAString color);
+		void AddColorStop(float offset, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase color);
 	}
 	
 	/// <summary>nsIDOMCanvasPattern </summary>
@@ -162,12 +162,12 @@ namespace Gecko
 		/// <summary>
         ///default 1.0 -- opaque </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetGlobalCompositeOperationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aGlobalCompositeOperation);
+		void GetGlobalCompositeOperationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aGlobalCompositeOperation);
 		
 		/// <summary>
         ///default 1.0 -- opaque </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetGlobalCompositeOperationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aGlobalCompositeOperation);
+		void SetGlobalCompositeOperationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aGlobalCompositeOperation);
 		
 		/// <summary>
         /// code should use the _multi variants below.
@@ -197,39 +197,39 @@ namespace Gecko
         /// ifaceType is 0 if it's a string, 1 if it's a pattern, or 2 if it's a gradient
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetStrokeStyle_multi([MarshalAs(UnmanagedType.LPStruct)] nsAString str, [MarshalAs(UnmanagedType.Interface)] nsISupports iface);
+		void SetStrokeStyle_multi([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase str, [MarshalAs(UnmanagedType.Interface)] nsISupports iface);
 		
 		/// <summary>Member GetStrokeStyle_multi </summary>
 		/// <param name='str'> </param>
 		/// <param name='iface'> </param>
 		/// <param name='type'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetStrokeStyle_multi([MarshalAs(UnmanagedType.LPStruct)] nsAString str, [MarshalAs(UnmanagedType.Interface)] ref nsISupports iface, ref int type);
+		void GetStrokeStyle_multi([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase str, [MarshalAs(UnmanagedType.Interface)] ref nsISupports iface, ref int type);
 		
 		/// <summary>Member SetFillStyle_multi </summary>
 		/// <param name='str'> </param>
 		/// <param name='iface'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFillStyle_multi([MarshalAs(UnmanagedType.LPStruct)] nsAString str, [MarshalAs(UnmanagedType.Interface)] nsISupports iface);
+		void SetFillStyle_multi([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase str, [MarshalAs(UnmanagedType.Interface)] nsISupports iface);
 		
 		/// <summary>Member GetFillStyle_multi </summary>
 		/// <param name='str'> </param>
 		/// <param name='iface'> </param>
 		/// <param name='type'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetFillStyle_multi([MarshalAs(UnmanagedType.LPStruct)] nsAString str, [MarshalAs(UnmanagedType.Interface)] ref nsISupports iface, ref int type);
+		void GetFillStyle_multi([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase str, [MarshalAs(UnmanagedType.Interface)] ref nsISupports iface, ref int type);
 		
 		/// <summary>
         ///attribute DOMString fillRule;
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozFillRuleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozFillRule);
+		void GetMozFillRuleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozFillRule);
 		
 		/// <summary>
         ///attribute DOMString fillRule;
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozFillRuleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozFillRule);
+		void SetMozFillRuleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozFillRule);
 		
 		/// <summary>
         ///"evenodd", "nonzero" (default) </summary>
@@ -255,7 +255,7 @@ namespace Gecko
 		/// <returns>A nsIDOMCanvasPattern</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMCanvasPattern CreatePattern([MarshalAs(UnmanagedType.Interface)] nsIDOMHTMLElement image, [MarshalAs(UnmanagedType.LPStruct)] nsAString repetition);
+		nsIDOMCanvasPattern CreatePattern([MarshalAs(UnmanagedType.Interface)] nsIDOMHTMLElement image, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase repetition);
 		
 		/// <summary>Member GetLineWidthAttribute </summary>
 		/// <returns>A System.Single</returns>
@@ -270,22 +270,22 @@ namespace Gecko
 		/// <summary>
         ///default 1 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetLineCapAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aLineCap);
+		void GetLineCapAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aLineCap);
 		
 		/// <summary>
         ///default 1 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetLineCapAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aLineCap);
+		void SetLineCapAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aLineCap);
 		
 		/// <summary>
         ///"butt", "round", "square" (default) </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetLineJoinAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aLineJoin);
+		void GetLineJoinAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aLineJoin);
 		
 		/// <summary>
         ///"butt", "round", "square" (default) </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetLineJoinAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aLineJoin);
+		void SetLineJoinAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aLineJoin);
 		
 		/// <summary>
         ///"round", "bevel", "miter" (default) </summary>
@@ -352,12 +352,12 @@ namespace Gecko
 		/// <summary>Member GetShadowColorAttribute </summary>
 		/// <param name='aShadowColor'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetShadowColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aShadowColor);
+		void GetShadowColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aShadowColor);
 		
 		/// <summary>Member SetShadowColorAttribute </summary>
 		/// <param name='aShadowColor'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetShadowColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aShadowColor);
+		void SetShadowColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aShadowColor);
 		
 		/// <summary>
         /// rects
@@ -464,41 +464,41 @@ namespace Gecko
         /// text api
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetFontAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aFont);
+		void GetFontAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFont);
 		
 		/// <summary>
         /// text api
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFontAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aFont);
+		void SetFontAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFont);
 		
 		/// <summary>
         ///default "10px sans-serif" </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTextAlignAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aTextAlign);
+		void GetTextAlignAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTextAlign);
 		
 		/// <summary>
         ///default "10px sans-serif" </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTextAlignAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aTextAlign);
+		void SetTextAlignAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTextAlign);
 		
 		/// <summary>
         ///"start" (default), "end", "left", "right",
         ///                                 "center" </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTextBaselineAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aTextBaseline);
+		void GetTextBaselineAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTextBaseline);
 		
 		/// <summary>
         ///"start" (default), "end", "left", "right",
         ///                                 "center" </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTextBaselineAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aTextBaseline);
+		void SetTextBaselineAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTextBaseline);
 		
 		/// <summary>
         ///"alphabetic" (default), "top", "hanging",
         ///                                    "middle", "ideographic", "bottom" </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void FillText([MarshalAs(UnmanagedType.LPStruct)] nsAString text, float x, float y, float maxWidth);
+		void FillText([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase text, float x, float y, float maxWidth);
 		
 		/// <summary>Member StrokeText </summary>
 		/// <param name='text'> </param>
@@ -506,24 +506,24 @@ namespace Gecko
 		/// <param name='y'> </param>
 		/// <param name='maxWidth'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void StrokeText([MarshalAs(UnmanagedType.LPStruct)] nsAString text, float x, float y, float maxWidth);
+		void StrokeText([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase text, float x, float y, float maxWidth);
 		
 		/// <summary>Member MeasureText </summary>
 		/// <param name='text'> </param>
 		/// <returns>A nsIDOMTextMetrics</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMTextMetrics MeasureText([MarshalAs(UnmanagedType.LPStruct)] nsAString text);
+		nsIDOMTextMetrics MeasureText([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase text);
 		
 		/// <summary>Member GetMozTextStyleAttribute </summary>
 		/// <param name='aMozTextStyle'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozTextStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozTextStyle);
+		void GetMozTextStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozTextStyle);
 		
 		/// <summary>Member SetMozTextStyleAttribute </summary>
 		/// <param name='aMozTextStyle'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozTextStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozTextStyle);
+		void SetMozTextStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozTextStyle);
 		
 		/// <summary>
         /// image api
@@ -624,7 +624,7 @@ namespace Gecko
         /// only.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DrawWindow([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, float x, float y, float w, float h, [MarshalAs(UnmanagedType.LPStruct)] nsAString bgColor, uint flags);
+		void DrawWindow([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, float x, float y, float w, float h, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase bgColor, uint flags);
 		
 		/// <summary>Member AsyncDrawXULElement </summary>
 		/// <param name='elem'> </param>
@@ -635,6 +635,6 @@ namespace Gecko
 		/// <param name='bgColor'> </param>
 		/// <param name='flags'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AsyncDrawXULElement([MarshalAs(UnmanagedType.Interface)] nsIDOMXULElement elem, float x, float y, float w, float h, [MarshalAs(UnmanagedType.LPStruct)] nsAString bgColor, uint flags);
+		void AsyncDrawXULElement([MarshalAs(UnmanagedType.Interface)] nsIDOMXULElement elem, float x, float y, float w, float h, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase bgColor, uint flags);
 	}
 }

@@ -42,25 +42,25 @@ namespace Gecko
         /// Sets the status according to JS' version of status.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetJSStatus([MarshalAs(UnmanagedType.LPStruct)] nsAString status);
+		void SetJSStatus([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase status);
 		
 		/// <summary>
         /// Sets the default status according to JS' version of default status.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetJSDefaultStatus([MarshalAs(UnmanagedType.LPStruct)] nsAString status);
+		void SetJSDefaultStatus([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase status);
 		
 		/// <summary>
         /// Tells the object implementing this function what link we are currently
         /// over.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOverLink([MarshalAs(UnmanagedType.LPStruct)] nsAString link, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement element);
+		void SetOverLink([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase link, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement element);
 		
 		/// <summary>
         /// Determines the appropriate target for a link.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnBeforeLinkTraversal([MarshalAs(UnmanagedType.LPStruct)] nsAString originalTarget, [MarshalAs(UnmanagedType.Interface)] nsIURI linkURI, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode linkNode, [MarshalAs(UnmanagedType.Bool)] bool isAppTab, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void OnBeforeLinkTraversal([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase originalTarget, [MarshalAs(UnmanagedType.Interface)] nsIURI linkURI, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode linkNode, [MarshalAs(UnmanagedType.Bool)] bool isAppTab, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 	}
 }

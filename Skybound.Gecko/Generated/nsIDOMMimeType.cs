@@ -37,7 +37,7 @@ namespace Gecko
 		/// <summary>Member GetDescriptionAttribute </summary>
 		/// <param name='aDescription'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDescriptionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDescription);
+		void GetDescriptionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDescription);
 		
 		/// <summary>Member GetEnabledPluginAttribute </summary>
 		/// <returns>A nsIDOMPlugin</returns>
@@ -48,11 +48,11 @@ namespace Gecko
 		/// <summary>Member GetSuffixesAttribute </summary>
 		/// <param name='aSuffixes'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSuffixesAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aSuffixes);
+		void GetSuffixesAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSuffixes);
 		
 		/// <summary>Member GetTypeAttribute </summary>
 		/// <param name='aType'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aType);
+		void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType);
 	}
 }

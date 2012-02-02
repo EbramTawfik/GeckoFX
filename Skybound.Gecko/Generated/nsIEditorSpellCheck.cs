@@ -158,13 +158,13 @@ namespace Gecko
         /// @see nsISpellChecker::GetCurrentDictionary
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCurrentDictionary([MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetCurrentDictionary([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// @see nsISpellChecker::SetCurrentDictionary
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCurrentDictionary([MarshalAs(UnmanagedType.LPStruct)] nsAString dictionary);
+		void SetCurrentDictionary([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase dictionary);
 		
 		/// <summary>
         /// Call this to free up the spell checking object. It will also save the

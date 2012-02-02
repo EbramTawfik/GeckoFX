@@ -130,7 +130,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIProxyInfo NewProxyInfo([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aType, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aHost, int aPort, uint aFlags, uint aFailoverTimeout, [MarshalAs(UnmanagedType.Interface)] nsIProxyInfo aFailoverProxy);
+		nsIProxyInfo NewProxyInfo([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aType, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aHost, int aPort, uint aFlags, uint aFailoverTimeout, [MarshalAs(UnmanagedType.Interface)] nsIProxyInfo aFailoverProxy);
 		
 		/// <summary>
         /// If the proxy identified by aProxyInfo is unavailable for some reason,

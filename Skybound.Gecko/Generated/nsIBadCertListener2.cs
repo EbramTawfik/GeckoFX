@@ -49,6 +49,6 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool NotifyCertProblem([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor socketInfo, [MarshalAs(UnmanagedType.Interface)] nsISSLStatus status, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String targetSite);
+		bool NotifyCertProblem([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor socketInfo, [MarshalAs(UnmanagedType.Interface)] nsISSLStatus status, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase targetSite);
 	}
 }

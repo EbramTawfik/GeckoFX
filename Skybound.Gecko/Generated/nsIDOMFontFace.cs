@@ -57,13 +57,13 @@ namespace Gecko
         /// available for all fonts
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
+		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
 		
 		/// <summary>
         /// full font name as obtained from the font resource
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCSSFamilyNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aCSSFamilyName);
+		void GetCSSFamilyNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCSSFamilyName);
 		
 		/// <summary>
         /// meaningful only when the font is a user font defined using @font-face
@@ -82,24 +82,24 @@ namespace Gecko
         /// index in the rule's src list, -1 if no @font-face rule
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetURIAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aURI);
+		void GetURIAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aURI);
 		
 		/// <summary>
         /// null if not a downloaded font, i.e. local
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetLocalNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aLocalName);
+		void GetLocalNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aLocalName);
 		
 		/// <summary>
         /// null if not a src:local(...) rule
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetFormatAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aFormat);
+		void GetFormatAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFormat);
 		
 		/// <summary>
         /// as per http://www.w3.org/TR/css3-webfonts/#referencing
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMetadataAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMetadata);
+		void GetMetadataAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMetadata);
 	}
 }

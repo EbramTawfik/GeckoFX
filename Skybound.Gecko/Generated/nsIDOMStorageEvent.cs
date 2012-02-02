@@ -45,7 +45,7 @@ namespace Gecko
         /// name.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aType);
+		new void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType);
 		
 		/// <summary>
         /// Used to indicate the EventTarget to which the event was originally
@@ -152,7 +152,7 @@ namespace Gecko
         /// action can be prevented.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void InitEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString eventTypeArg, [MarshalAs(UnmanagedType.Bool)] bool canBubbleArg, [MarshalAs(UnmanagedType.Bool)] bool cancelableArg);
+		new void InitEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase eventTypeArg, [MarshalAs(UnmanagedType.Bool)] bool canBubbleArg, [MarshalAs(UnmanagedType.Bool)] bool cancelableArg);
 		
 		/// <summary>
         /// Used to indicate whether preventDefault() has been called for this event.
@@ -166,7 +166,7 @@ namespace Gecko
         /// when change has been invoked by the storage clear() method.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetKeyAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aKey);
+		void GetKeyAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aKey);
 		
 		/// <summary>
         /// The original value of the key. The oldValue is null when the change
@@ -174,7 +174,7 @@ namespace Gecko
         /// added and therefor doesn't have any previous value.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetOldValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aOldValue);
+		void GetOldValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aOldValue);
 		
 		/// <summary>
         /// The new value of the key. The newValue is null when the change
@@ -182,13 +182,13 @@ namespace Gecko
         /// from the storage.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNewValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aNewValue);
+		void GetNewValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNewValue);
 		
 		/// <summary>
         /// Represents the address of the document whose key changed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetUrlAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aUrl);
+		void GetUrlAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aUrl);
 		
 		/// <summary>
         /// Represents the Storage object that was affected.
@@ -202,6 +202,6 @@ namespace Gecko
         /// in the DOM Events interfaces.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitStorageEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString typeArg, [MarshalAs(UnmanagedType.Bool)] bool canBubbleArg, [MarshalAs(UnmanagedType.Bool)] bool cancelableArg, [MarshalAs(UnmanagedType.LPStruct)] nsAString keyArg, [MarshalAs(UnmanagedType.LPStruct)] nsAString oldValueArg, [MarshalAs(UnmanagedType.LPStruct)] nsAString newValueArg, [MarshalAs(UnmanagedType.LPStruct)] nsAString urlArg, [MarshalAs(UnmanagedType.Interface)] nsIDOMStorage storageAreaArg);
+		void InitStorageEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase typeArg, [MarshalAs(UnmanagedType.Bool)] bool canBubbleArg, [MarshalAs(UnmanagedType.Bool)] bool cancelableArg, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase keyArg, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase oldValueArg, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase newValueArg, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase urlArg, [MarshalAs(UnmanagedType.Interface)] nsIDOMStorage storageAreaArg);
 	}
 }

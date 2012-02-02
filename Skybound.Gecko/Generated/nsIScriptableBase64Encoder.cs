@@ -54,6 +54,6 @@ namespace Gecko
 		void EncodeToCString([MarshalAs(UnmanagedType.Interface)] nsIInputStream stream, uint length, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EncodeToString([MarshalAs(UnmanagedType.Interface)] nsIInputStream stream, uint length, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void EncodeToString([MarshalAs(UnmanagedType.Interface)] nsIInputStream stream, uint length, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 	}
 }

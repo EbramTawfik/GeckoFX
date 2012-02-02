@@ -44,7 +44,7 @@ namespace Gecko
         /// Default: an empty string
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTooltipAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aTooltip);
+		void GetTooltipAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTooltip);
 		
 		/// <summary>
         /// The button's tooltip.
@@ -52,7 +52,7 @@ namespace Gecko
         /// Default: an empty string
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTooltipAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aTooltip);
+		void SetTooltipAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTooltip);
 		
 		/// <summary>
         /// True if the array of previews should be dismissed when this button is clicked.

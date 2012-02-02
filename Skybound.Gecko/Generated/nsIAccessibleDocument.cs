@@ -49,25 +49,25 @@ namespace Gecko
         /// The URL of the document
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aURL);
+		void GetURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aURL);
 		
 		/// <summary>
         /// The title of the document, as specified in the document.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTitleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aTitle);
+		void GetTitleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTitle);
 		
 		/// <summary>
         /// The mime type of the document
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMimeTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMimeType);
+		void GetMimeTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMimeType);
 		
 		/// <summary>
         /// The doc type of the document, as specified in the document.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDocTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDocType);
+		void GetDocTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDocType);
 		
 		/// <summary>
         /// The nsIDOMDocument interface associated with this document.
@@ -87,7 +87,7 @@ namespace Gecko
         /// The namespace for each ID that is handed back.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNameSpaceURIForID(short nameSpaceID, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetNameSpaceURIForID(short nameSpaceID, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// The window handle for the OS window the document is being displayed in.

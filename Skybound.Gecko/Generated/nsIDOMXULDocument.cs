@@ -93,7 +93,7 @@ namespace Gecko
 		/// <returns>A nsIDOMNodeList</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMNodeList GetElementsByAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString name, [MarshalAs(UnmanagedType.LPStruct)] nsAString value);
+		nsIDOMNodeList GetElementsByAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase value);
 		
 		/// <summary>Member GetElementsByAttributeNS </summary>
 		/// <param name='namespaceURI'> </param>
@@ -102,27 +102,27 @@ namespace Gecko
 		/// <returns>A nsIDOMNodeList</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMNodeList GetElementsByAttributeNS([MarshalAs(UnmanagedType.LPStruct)] nsAString namespaceURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString name, [MarshalAs(UnmanagedType.LPStruct)] nsAString value);
+		nsIDOMNodeList GetElementsByAttributeNS([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase namespaceURI, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase value);
 		
 		/// <summary>Member AddBroadcastListenerFor </summary>
 		/// <param name='broadcaster'> </param>
 		/// <param name='observer'> </param>
 		/// <param name='attr'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddBroadcastListenerFor([MarshalAs(UnmanagedType.Interface)] nsIDOMElement broadcaster, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement observer, [MarshalAs(UnmanagedType.LPStruct)] nsAString attr);
+		void AddBroadcastListenerFor([MarshalAs(UnmanagedType.Interface)] nsIDOMElement broadcaster, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement observer, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase attr);
 		
 		/// <summary>Member RemoveBroadcastListenerFor </summary>
 		/// <param name='broadcaster'> </param>
 		/// <param name='observer'> </param>
 		/// <param name='attr'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveBroadcastListenerFor([MarshalAs(UnmanagedType.Interface)] nsIDOMElement broadcaster, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement observer, [MarshalAs(UnmanagedType.LPStruct)] nsAString attr);
+		void RemoveBroadcastListenerFor([MarshalAs(UnmanagedType.Interface)] nsIDOMElement broadcaster, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement observer, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase attr);
 		
 		/// <summary>Member Persist </summary>
 		/// <param name='id'> </param>
 		/// <param name='attr'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Persist([MarshalAs(UnmanagedType.LPStruct)] nsAString id, [MarshalAs(UnmanagedType.LPStruct)] nsAString attr);
+		void Persist([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase id, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase attr);
 		
 		/// <summary>Member GetBoxObjectFor </summary>
 		/// <param name='elt'> </param>
@@ -149,6 +149,6 @@ namespace Gecko
         /// - Ben Goodger (8/23/2005)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void LoadOverlay([MarshalAs(UnmanagedType.LPStruct)] nsAString url, [MarshalAs(UnmanagedType.Interface)] nsIObserver aObserver);
+		void LoadOverlay([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase url, [MarshalAs(UnmanagedType.Interface)] nsIObserver aObserver);
 	}
 }

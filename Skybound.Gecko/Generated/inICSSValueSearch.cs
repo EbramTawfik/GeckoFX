@@ -89,7 +89,7 @@ namespace Gecko
         /// methods for getting results of specific types
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetStringResultAt(int aIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		new void GetStringResultAt(int aIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>Member GetIntResultAt </summary>
 		/// <param name='aIndex'> </param>

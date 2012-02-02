@@ -42,7 +42,7 @@ namespace Gecko
         /// @param aURL The style sheet to be loaded and applied.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ReplaceStyleSheet([MarshalAs(UnmanagedType.LPStruct)] nsAString aURL);
+		void ReplaceStyleSheet([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aURL);
 		
 		/// <summary>
         ///Add the given style sheet to the editor's document,
@@ -52,7 +52,7 @@ namespace Gecko
         /// @param aURL The style sheet to be loaded and applied.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddStyleSheet([MarshalAs(UnmanagedType.LPStruct)] nsAString aURL);
+		void AddStyleSheet([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aURL);
 		
 		/// <summary>
         ///Load and apply the override style sheet, specified by aURL, to the
@@ -67,7 +67,7 @@ namespace Gecko
         /// @param aURL The style sheet to be loaded and applied.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ReplaceOverrideStyleSheet([MarshalAs(UnmanagedType.LPStruct)] nsAString aURL);
+		void ReplaceOverrideStyleSheet([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aURL);
 		
 		/// <summary>
         ///Load and apply an override style sheet, specified by aURL, to
@@ -78,7 +78,7 @@ namespace Gecko
         /// @param aURL The style sheet to be loaded and applied.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddOverrideStyleSheet([MarshalAs(UnmanagedType.LPStruct)] nsAString aURL);
+		void AddOverrideStyleSheet([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aURL);
 		
 		/// <summary>
         ///Remove the given style sheet from the editor's document
@@ -87,7 +87,7 @@ namespace Gecko
         /// @param aURL The style sheet to be removed
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveStyleSheet([MarshalAs(UnmanagedType.LPStruct)] nsAString aURL);
+		void RemoveStyleSheet([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aURL);
 		
 		/// <summary>
         ///Remove the given override style sheet from the editor's document
@@ -96,7 +96,7 @@ namespace Gecko
         /// @param aURL The style sheet to be removed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveOverrideStyleSheet([MarshalAs(UnmanagedType.LPStruct)] nsAString aURL);
+		void RemoveOverrideStyleSheet([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aURL);
 		
 		/// <summary>
         ///Enable or disable the given style sheet from the editor's document
@@ -106,7 +106,7 @@ namespace Gecko
         /// @param aEnable true to enable, or false to disable the style sheet
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EnableStyleSheet([MarshalAs(UnmanagedType.LPStruct)] nsAString aURL, [MarshalAs(UnmanagedType.Bool)] bool aEnable);
+		void EnableStyleSheet([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aURL, [MarshalAs(UnmanagedType.Bool)] bool aEnable);
 		
 		/// <summary>
         ///Get the nsCSSStyleSheet associated with the given URL.
@@ -115,7 +115,7 @@ namespace Gecko
         /// @return             the style sheet
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetStyleSheetForURL([MarshalAs(UnmanagedType.LPStruct)] nsAString aURL);
+		System.IntPtr GetStyleSheetForURL([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aURL);
 		
 		/// <summary>
         ///Get the URL associated with the given nsCSSStyleSheet.
@@ -124,6 +124,6 @@ namespace Gecko
         /// @return             the style sheet's URL
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetURLForStyleSheet(System.IntPtr aStyleSheet, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetURLForStyleSheet(System.IntPtr aStyleSheet, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 	}
 }

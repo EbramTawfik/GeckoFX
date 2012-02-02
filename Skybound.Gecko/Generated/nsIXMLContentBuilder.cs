@@ -50,13 +50,13 @@ namespace Gecko
         /// Set the namespace for all elements built subsequently
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetElementNamespace([MarshalAs(UnmanagedType.LPStruct)] nsAString ns);
+		void SetElementNamespace([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase ns);
 		
 		/// <summary>
         /// with a call to 'endElement()'.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BeginElement([MarshalAs(UnmanagedType.LPStruct)] nsAString tagname);
+		void BeginElement([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase tagname);
 		
 		/// <summary>Member EndElement </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -66,13 +66,13 @@ namespace Gecko
         /// Set an attribute on the current element
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Attrib([MarshalAs(UnmanagedType.LPStruct)] nsAString name, [MarshalAs(UnmanagedType.LPStruct)] nsAString value);
+		void Attrib([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase value);
 		
 		/// <summary>
         /// Create a textNode
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void TextNode([MarshalAs(UnmanagedType.LPStruct)] nsAString text);
+		void TextNode([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase text);
 		
 		/// <summary>Member GetRootAttribute </summary>
 		/// <returns>A nsIDOMElement</returns>

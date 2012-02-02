@@ -37,12 +37,12 @@ namespace Gecko
 		/// <summary>Member GetColorAttribute </summary>
 		/// <param name='aColor'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aColor);
+		void GetColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aColor);
 		
 		/// <summary>Member SetColorAttribute </summary>
 		/// <param name='aColor'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aColor);
+		void SetColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aColor);
 		
 		/// <summary>Member GetInvertAttribute </summary>
 		/// <returns>A System.Boolean</returns>

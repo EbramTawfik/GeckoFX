@@ -68,7 +68,7 @@ namespace Gecko
         /// from the OS_TARGET configure variable. It will always be available.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetOSAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aOS);
+		void GetOSAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aOS);
 		
 		/// <summary>
         /// A string tag identifying the binary ABI of the current processor and
@@ -85,14 +85,14 @@ namespace Gecko
         /// @throw NS_ERROR_NOT_AVAILABLE if not available.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetXPCOMABIAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aXPCOMABI);
+		void GetXPCOMABIAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aXPCOMABI);
 		
 		/// <summary>
         /// A string tag identifying the target widget toolkit in use.
         /// This is taken from the MOZ_WIDGET_TOOLKIT configure variable.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetWidgetToolkitAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aWidgetToolkit);
+		void GetWidgetToolkitAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aWidgetToolkit);
 		
 		/// <summary>
         /// The type of the caller's process.  Returns one of the values above.

@@ -39,7 +39,7 @@ namespace Gecko
         /// name.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aType);
+		new void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType);
 		
 		/// <summary>
         /// Used to indicate the EventTarget to which the event was originally
@@ -146,7 +146,7 @@ namespace Gecko
         /// action can be prevented.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void InitEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString eventTypeArg, [MarshalAs(UnmanagedType.Bool)] bool canBubbleArg, [MarshalAs(UnmanagedType.Bool)] bool cancelableArg);
+		new void InitEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase eventTypeArg, [MarshalAs(UnmanagedType.Bool)] bool canBubbleArg, [MarshalAs(UnmanagedType.Bool)] bool cancelableArg);
 		
 		/// <summary>
         /// Used to indicate whether preventDefault() has been called for this event.
@@ -178,7 +178,7 @@ namespace Gecko
 		/// <param name='viewArg'> </param>
 		/// <param name='detailArg'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void InitUIEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString typeArg, [MarshalAs(UnmanagedType.Bool)] bool canBubbleArg, [MarshalAs(UnmanagedType.Bool)] bool cancelableArg, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow viewArg, int detailArg);
+		new void InitUIEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase typeArg, [MarshalAs(UnmanagedType.Bool)] bool canBubbleArg, [MarshalAs(UnmanagedType.Bool)] bool cancelableArg, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow viewArg, int detailArg);
 		
 		/// <summary>Member GetLayerXAttribute </summary>
 		/// <returns>A System.Int32</returns>
@@ -310,7 +310,7 @@ namespace Gecko
 		/// <param name='buttonArg'> </param>
 		/// <param name='relatedTargetArg'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void InitMouseEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString typeArg, [MarshalAs(UnmanagedType.Bool)] bool canBubbleArg, [MarshalAs(UnmanagedType.Bool)] bool cancelableArg, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow viewArg, int detailArg, int screenXArg, int screenYArg, int clientXArg, int clientYArg, [MarshalAs(UnmanagedType.Bool)] bool ctrlKeyArg, [MarshalAs(UnmanagedType.Bool)] bool altKeyArg, [MarshalAs(UnmanagedType.Bool)] bool shiftKeyArg, [MarshalAs(UnmanagedType.Bool)] bool metaKeyArg, ushort buttonArg, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventTarget relatedTargetArg);
+		new void InitMouseEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase typeArg, [MarshalAs(UnmanagedType.Bool)] bool canBubbleArg, [MarshalAs(UnmanagedType.Bool)] bool cancelableArg, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow viewArg, int detailArg, int screenXArg, int screenYArg, int clientXArg, int clientYArg, [MarshalAs(UnmanagedType.Bool)] bool ctrlKeyArg, [MarshalAs(UnmanagedType.Bool)] bool altKeyArg, [MarshalAs(UnmanagedType.Bool)] bool shiftKeyArg, [MarshalAs(UnmanagedType.Bool)] bool metaKeyArg, ushort buttonArg, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventTarget relatedTargetArg);
 		
 		/// <summary>
         /// ranges between 0.0 and 1.0
@@ -343,7 +343,7 @@ namespace Gecko
 		/// <param name='inputSourceArg'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void InitNSMouseEvent(
-					[MarshalAs(UnmanagedType.LPStruct)] nsAString typeArg, 
+					[MarshalAs(UnmanagedType.LPStruct)] nsAStringBase typeArg, 
 					[MarshalAs(UnmanagedType.Bool)] bool canBubbleArg, 
 					[MarshalAs(UnmanagedType.Bool)] bool cancelableArg, 
 					[MarshalAs(UnmanagedType.Interface)] nsIDOMWindow viewArg, 
@@ -385,7 +385,7 @@ namespace Gecko
 		/// <param name='streamIdArg'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void InitMozTouchEvent(
-					[MarshalAs(UnmanagedType.LPStruct)] nsAString typeArg, 
+					[MarshalAs(UnmanagedType.LPStruct)] nsAStringBase typeArg, 
 					[MarshalAs(UnmanagedType.Bool)] bool canBubbleArg, 
 					[MarshalAs(UnmanagedType.Bool)] bool cancelableArg, 
 					[MarshalAs(UnmanagedType.Interface)] nsIDOMWindow viewArg, 

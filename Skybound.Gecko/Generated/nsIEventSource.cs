@@ -46,7 +46,7 @@ namespace Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetUrlAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aUrl);
+		void GetUrlAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aUrl);
 		
 		/// <summary>
         /// ready state
@@ -100,6 +100,6 @@ namespace Gecko
         /// @param url The EventSource's url. This must not be empty.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init([MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr scriptContext, System.IntPtr ownerWindow, [MarshalAs(UnmanagedType.LPStruct)] nsAString url);
+		void Init([MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr scriptContext, System.IntPtr ownerWindow, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase url);
 	}
 }

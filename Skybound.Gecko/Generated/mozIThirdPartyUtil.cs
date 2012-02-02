@@ -294,6 +294,6 @@ namespace Gecko
         /// @return the base domain.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetBaseDomain([MarshalAs(UnmanagedType.Interface)] nsIURI aHostURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
+		void GetBaseDomain([MarshalAs(UnmanagedType.Interface)] nsIURI aHostURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase retval);
 	}
 }

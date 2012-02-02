@@ -64,7 +64,7 @@ namespace Gecko
         /// @param aRole - the accessible role constants.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetStringRole(uint aRole, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetStringRole(uint aRole, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// Returns list which contains accessible states as a strings.
@@ -82,7 +82,7 @@ namespace Gecko
         /// @return - accessible event type presented as human readable string
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetStringEventType(uint aEventType, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetStringEventType(uint aEventType, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// Get the type of accessible relation as a string.
@@ -91,7 +91,7 @@ namespace Gecko
         /// @return - accessible relation type presented as human readable string
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetStringRelationType(uint aRelationType, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetStringRelationType(uint aRelationType, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// Return an accessible for the given DOM node from the cache.

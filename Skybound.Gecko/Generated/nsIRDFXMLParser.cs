@@ -54,6 +54,6 @@ namespace Gecko
         /// @param aSource a UTF8 string containing RDF/XML data.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ParseString([MarshalAs(UnmanagedType.Interface)] nsIRDFDataSource aSink, [MarshalAs(UnmanagedType.Interface)] nsIURI aBaseURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aSource);
+		void ParseString([MarshalAs(UnmanagedType.Interface)] nsIRDFDataSource aSink, [MarshalAs(UnmanagedType.Interface)] nsIURI aBaseURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aSource);
 	}
 }

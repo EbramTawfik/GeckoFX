@@ -81,7 +81,7 @@ namespace Gecko
 		/// <summary>Member SetFilter </summary>
 		/// <param name='filterString'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFilter([MarshalAs(UnmanagedType.LPStruct)] nsAString filterString);
+		void SetFilter([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase filterString);
 		
 		/// <summary>Member GetSelectedFilesAttribute </summary>
 		/// <returns>A nsIArray</returns>

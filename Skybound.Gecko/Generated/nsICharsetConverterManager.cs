@@ -102,7 +102,7 @@ namespace Gecko
         /// Get the human-readable name for the given charset.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCharsetTitle([MarshalAs(UnmanagedType.LPStr)] string charset, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetCharsetTitle([MarshalAs(UnmanagedType.LPStr)] string charset, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// Get some data about the given charset. This includes whether the
@@ -120,7 +120,7 @@ namespace Gecko
         /// @return the value of the property, for the character encoding.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCharsetData([MarshalAs(UnmanagedType.LPStr)] string charset, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string prop, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetCharsetData([MarshalAs(UnmanagedType.LPStr)] string charset, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string prop, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// Get the language group for the given charset. This is similar to

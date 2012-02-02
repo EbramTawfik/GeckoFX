@@ -37,7 +37,7 @@ namespace Gecko
 		/// <summary>Member Dump </summary>
 		/// <param name='str'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Dump([MarshalAs(UnmanagedType.LPStruct)] nsAString str);
+		void Dump([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase str);
 		
 		/// <summary>
         /// These methods take typeless arguments and optional arguments, the
@@ -109,7 +109,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMWindow Open([MarshalAs(UnmanagedType.LPStruct)] nsAString url, [MarshalAs(UnmanagedType.LPStruct)] nsAString name, [MarshalAs(UnmanagedType.LPStruct)] nsAString options);
+		nsIDOMWindow Open([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase url, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase options);
 		
 		/// <summary>
         /// This is the scriptable version of
@@ -119,7 +119,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMWindow OpenDialog([MarshalAs(UnmanagedType.LPStruct)] nsAString url, [MarshalAs(UnmanagedType.LPStruct)] nsAString name, [MarshalAs(UnmanagedType.LPStruct)] nsAString options);
+		nsIDOMWindow OpenDialog([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase url, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase options);
 		
 		/// <summary>
         /// window.frames in Netscape 4.x and IE is just a reference to the

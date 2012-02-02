@@ -63,12 +63,12 @@ namespace Gecko
 		/// <summary>Member GetInnerHTMLAttribute </summary>
 		/// <param name='aInnerHTML'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetInnerHTMLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aInnerHTML);
+		void GetInnerHTMLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aInnerHTML);
 		
 		/// <summary>Member SetInnerHTMLAttribute </summary>
 		/// <param name='aInnerHTML'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetInnerHTMLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aInnerHTML);
+		void SetInnerHTMLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aInnerHTML);
 		
 		/// <summary>
         /// Indicates that the element is not yet, or is no longer, relevant.
@@ -100,12 +100,12 @@ namespace Gecko
 		/// <summary>Member GetContentEditableAttribute </summary>
 		/// <param name='aContentEditable'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetContentEditableAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aContentEditable);
+		void GetContentEditableAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aContentEditable);
 		
 		/// <summary>Member SetContentEditableAttribute </summary>
 		/// <param name='aContentEditable'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetContentEditableAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aContentEditable);
+		void SetContentEditableAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aContentEditable);
 		
 		/// <summary>Member GetIsContentEditableAttribute </summary>
 		/// <returns>A System.Boolean</returns>
@@ -130,7 +130,7 @@ namespace Gecko
 		/// <param name='position'> </param>
 		/// <param name='text'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InsertAdjacentHTML([MarshalAs(UnmanagedType.LPStruct)] nsAString position, [MarshalAs(UnmanagedType.LPStruct)] nsAString text);
+		void InsertAdjacentHTML([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase position, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase text);
 		
 		/// <summary>Member ScrollIntoView </summary>
 		/// <param name='top'> </param>

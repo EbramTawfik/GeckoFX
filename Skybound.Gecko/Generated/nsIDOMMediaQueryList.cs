@@ -38,7 +38,7 @@ namespace Gecko
 		/// <summary>
         ///see http://dev.w3.org/csswg/cssom-view/#the-mediaquerylist-interface </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMediaAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMedia);
+		void GetMediaAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMedia);
 		
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

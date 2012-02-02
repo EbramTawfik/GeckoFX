@@ -37,46 +37,46 @@ namespace Gecko
 		/// <summary>Member GetStreetNumberAttribute </summary>
 		/// <param name='aStreetNumber'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetStreetNumberAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aStreetNumber);
+		void GetStreetNumberAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aStreetNumber);
 		
 		/// <summary>Member GetStreetAttribute </summary>
 		/// <param name='aStreet'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetStreetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aStreet);
+		void GetStreetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aStreet);
 		
 		/// <summary>Member GetPremisesAttribute </summary>
 		/// <param name='aPremises'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPremisesAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aPremises);
+		void GetPremisesAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPremises);
 		
 		/// <summary>Member GetCityAttribute </summary>
 		/// <param name='aCity'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCityAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aCity);
+		void GetCityAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCity);
 		
 		/// <summary>Member GetCountyAttribute </summary>
 		/// <param name='aCounty'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCountyAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aCounty);
+		void GetCountyAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCounty);
 		
 		/// <summary>Member GetRegionAttribute </summary>
 		/// <param name='aRegion'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetRegionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aRegion);
+		void GetRegionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aRegion);
 		
 		/// <summary>Member GetCountryAttribute </summary>
 		/// <param name='aCountry'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCountryAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aCountry);
+		void GetCountryAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCountry);
 		
 		/// <summary>Member GetCountryCodeAttribute </summary>
 		/// <param name='aCountryCode'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCountryCodeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aCountryCode);
+		void GetCountryCodeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCountryCode);
 		
 		/// <summary>Member GetPostalCodeAttribute </summary>
 		/// <param name='aPostalCode'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPostalCodeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aPostalCode);
+		void GetPostalCodeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPostalCode);
 	}
 }

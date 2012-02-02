@@ -65,7 +65,7 @@ namespace Gecko
         /// @throws       NS_ERROR_INVALID_ARG if aIndex is out of bounds.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetArgument(int aIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetArgument(int aIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// Find a command-line flag.
@@ -76,7 +76,7 @@ namespace Gecko
         /// @return               The position of the flag in the command line.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int FindFlag([MarshalAs(UnmanagedType.LPStruct)] nsAString aFlag, [MarshalAs(UnmanagedType.Bool)] bool aCaseSensitive);
+		int FindFlag([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFlag, [MarshalAs(UnmanagedType.Bool)] bool aCaseSensitive);
 		
 		/// <summary>
         /// Remove arguments from the command line. This normally occurs after
@@ -97,7 +97,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool HandleFlag([MarshalAs(UnmanagedType.LPStruct)] nsAString aFlag, [MarshalAs(UnmanagedType.Bool)] bool aCaseSensitive);
+		bool HandleFlag([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFlag, [MarshalAs(UnmanagedType.Bool)] bool aCaseSensitive);
 		
 		/// <summary>
         /// Find a flag with a parameter and remove both. This is a helper
@@ -111,7 +111,7 @@ namespace Gecko
         /// @param aCaseSensitive Whether to do case-sensitive flag search.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void HandleFlagWithParam([MarshalAs(UnmanagedType.LPStruct)] nsAString aFlag, [MarshalAs(UnmanagedType.Bool)] bool aCaseSensitive, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void HandleFlagWithParam([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFlag, [MarshalAs(UnmanagedType.Bool)] bool aCaseSensitive, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// The type of command line being processed.
@@ -168,7 +168,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIFile ResolveFile([MarshalAs(UnmanagedType.LPStruct)] nsAString aArgument);
+		nsIFile ResolveFile([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aArgument);
 		
 		/// <summary>
         /// Resolves a URI argument into a URI. This method has platform-specific
@@ -180,6 +180,6 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI ResolveURI([MarshalAs(UnmanagedType.LPStruct)] nsAString aArgument);
+		nsIURI ResolveURI([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aArgument);
 	}
 }

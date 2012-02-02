@@ -126,6 +126,6 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIUTF8StringEnumerator GetLocalesForPackage([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aPackage);
+		nsIUTF8StringEnumerator GetLocalesForPackage([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aPackage);
 	}
 }

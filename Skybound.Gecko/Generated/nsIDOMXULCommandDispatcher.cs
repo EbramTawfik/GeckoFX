@@ -61,7 +61,7 @@ namespace Gecko
 		/// <param name='events'> </param>
 		/// <param name='targets'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddCommandUpdater([MarshalAs(UnmanagedType.Interface)] nsIDOMElement updater, [MarshalAs(UnmanagedType.LPStruct)] nsAString events, [MarshalAs(UnmanagedType.LPStruct)] nsAString targets);
+		void AddCommandUpdater([MarshalAs(UnmanagedType.Interface)] nsIDOMElement updater, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase events, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase targets);
 		
 		/// <summary>Member RemoveCommandUpdater </summary>
 		/// <param name='updater'> </param>
@@ -71,7 +71,7 @@ namespace Gecko
 		/// <summary>Member UpdateCommands </summary>
 		/// <param name='eventName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UpdateCommands([MarshalAs(UnmanagedType.LPStruct)] nsAString eventName);
+		void UpdateCommands([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase eventName);
 		
 		/// <summary>Member GetControllerForCommand </summary>
 		/// <param name='command'> </param>

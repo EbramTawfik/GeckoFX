@@ -42,7 +42,7 @@ namespace Gecko
 		/// <summary>Member GetTypeAttribute </summary>
 		/// <param name='aType'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aType);
+		void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType);
 		
 		/// <summary>Member GetInternalStreamAttribute </summary>
 		/// <returns>A nsIInputStream</returns>
@@ -54,7 +54,7 @@ namespace Gecko
         /// moz-filedata: protocol handler
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetInternalUrl([MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetInternalUrl([MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>Member MozSlice </summary>
 		/// <param name='start'> </param>
@@ -64,7 +64,7 @@ namespace Gecko
 		/// <returns>A nsIDOMBlob</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMBlob MozSlice(long start, long end, [MarshalAs(UnmanagedType.LPStruct)] nsAString contentType, int argc);
+		nsIDOMBlob MozSlice(long start, long end, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase contentType, int argc);
 	}
 	
 	/// <summary>nsIDOMFile </summary>
@@ -82,7 +82,7 @@ namespace Gecko
 		/// <summary>Member GetTypeAttribute </summary>
 		/// <param name='aType'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aType);
+		new void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType);
 		
 		/// <summary>Member GetInternalStreamAttribute </summary>
 		/// <returns>A nsIInputStream</returns>
@@ -94,7 +94,7 @@ namespace Gecko
         /// moz-filedata: protocol handler
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetInternalUrl([MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		new void GetInternalUrl([MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>Member MozSlice </summary>
 		/// <param name='start'> </param>
@@ -104,23 +104,23 @@ namespace Gecko
 		/// <returns>A nsIDOMBlob</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMBlob MozSlice(long start, long end, [MarshalAs(UnmanagedType.LPStruct)] nsAString contentType, int argc);
+		new nsIDOMBlob MozSlice(long start, long end, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase contentType, int argc);
 		
 		/// <summary>Member GetNameAttribute </summary>
 		/// <param name='aName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
+		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
 		
 		/// <summary>Member GetMozFullPathAttribute </summary>
 		/// <param name='aMozFullPath'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozFullPathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozFullPath);
+		void GetMozFullPathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozFullPath);
 		
 		/// <summary>
         /// This performs no security checks!
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozFullPathInternalAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozFullPathInternal);
+		void GetMozFullPathInternalAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozFullPathInternal);
 	}
 	
 	/// <summary>nsIDOMMozBlobBuilder </summary>
@@ -135,7 +135,7 @@ namespace Gecko
 		/// <returns>A nsIDOMBlob</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMBlob GetBlob([MarshalAs(UnmanagedType.LPStruct)] nsAString contentType);
+		nsIDOMBlob GetBlob([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase contentType);
 		
 		/// <summary>Member GetFile </summary>
 		/// <param name='name'> </param>
@@ -143,7 +143,7 @@ namespace Gecko
 		/// <returns>A nsIDOMFile</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMFile GetFile([MarshalAs(UnmanagedType.LPStruct)] nsAString name, [MarshalAs(UnmanagedType.LPStruct)] nsAString contentType);
+		nsIDOMFile GetFile([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase contentType);
 		
 		/// <summary>Member Append </summary>
 		/// <param name='data'> </param>

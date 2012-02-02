@@ -203,12 +203,12 @@ namespace Gecko
 		/// <summary>
         ///, obj </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EvalInSandbox([MarshalAs(UnmanagedType.LPStruct)] nsAString source);
+		void EvalInSandbox([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase source);
 		
 		/// <summary>
         ///, [optional] in JSObject targetObj </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Import([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String registryLocation);
+		void Import([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase registryLocation);
 		
 		/// <summary>
         /// Unloads the JS module at 'registryLocation'. Existing references to the
@@ -219,7 +219,7 @@ namespace Gecko
         /// @param resourceURI A resource:// URI string to unload the module from.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Unload([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String registryLocation);
+		void Unload([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase registryLocation);
 		
 		/// <summary>
         ///in JSObject obj </summary>

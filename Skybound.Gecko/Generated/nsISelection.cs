@@ -196,6 +196,6 @@ namespace Gecko
         /// or granularity has an unrecognized value.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Modify([MarshalAs(UnmanagedType.LPStruct)] nsAString alter, [MarshalAs(UnmanagedType.LPStruct)] nsAString direction, [MarshalAs(UnmanagedType.LPStruct)] nsAString granularity);
+		void Modify([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase alter, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase direction, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase granularity);
 	}
 }

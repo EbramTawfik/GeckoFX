@@ -102,7 +102,7 @@ namespace Gecko
         /// if it has one or that of its nearest ancestor if it does not.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetAssociatedLinkAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aAssociatedLink);
+		void GetAssociatedLinkAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAssociatedLink);
 		
 		/// <summary>
         /// Given the <CODE>CONTEXT_IMAGE</CODE> flag, these methods can be

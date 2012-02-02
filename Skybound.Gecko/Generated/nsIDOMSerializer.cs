@@ -48,7 +48,7 @@ namespace Gecko
         /// @returns The serialized subtree in the form of a Unicode string
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SerializeToString([MarshalAs(UnmanagedType.Interface)] nsIDOMNode root, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void SerializeToString([MarshalAs(UnmanagedType.Interface)] nsIDOMNode root, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// The subtree rooted by the specified element is serialized to
@@ -61,6 +61,6 @@ namespace Gecko
         /// a document, the document's character set will be used.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SerializeToStream([MarshalAs(UnmanagedType.Interface)] nsIDOMNode root, [MarshalAs(UnmanagedType.Interface)] nsIOutputStream stream, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String charset);
+		void SerializeToStream([MarshalAs(UnmanagedType.Interface)] nsIDOMNode root, [MarshalAs(UnmanagedType.Interface)] nsIOutputStream stream, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase charset);
 	}
 }

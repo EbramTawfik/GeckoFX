@@ -45,7 +45,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIRDFResource GetResource([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aURI);
+		nsIRDFResource GetResource([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aURI);
 		
 		/// <summary>
         /// Construct an RDF resource from a Unicode URI. This is provided
@@ -55,7 +55,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIRDFResource GetUnicodeResource([MarshalAs(UnmanagedType.LPStruct)] nsAString aURI);
+		nsIRDFResource GetUnicodeResource([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aURI);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

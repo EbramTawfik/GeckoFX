@@ -109,7 +109,7 @@ namespace Gecko
         /// @param aString   the string to be inserted
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InsertText([MarshalAs(UnmanagedType.LPStruct)] nsAString aStringToInsert);
+		void InsertText([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aStringToInsert);
 		
 		/// <summary>
         /// Insert a line break into the content model.

@@ -115,7 +115,7 @@ namespace Gecko
         /// @param uri The base URI.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ParseFromString([MarshalAs(UnmanagedType.LPStruct)] nsAString str, [MarshalAs(UnmanagedType.Interface)] nsIURI uri);
+		void ParseFromString([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase str, [MarshalAs(UnmanagedType.Interface)] nsIURI uri);
 		
 		/// <summary>
         /// Parse a feed asynchronously. The caller must then call the

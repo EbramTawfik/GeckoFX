@@ -47,6 +47,6 @@ namespace Gecko
 		/// <summary>Member GetTooltipTextAttribute </summary>
 		/// <param name='aTooltipText'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTooltipTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aTooltipText);
+		void GetTooltipTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTooltipText);
 	}
 }

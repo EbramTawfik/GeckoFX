@@ -39,29 +39,29 @@ namespace Gecko
         ///                      [optional] in jsval v2,
         ///                      ... </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendMessage([MarshalAs(UnmanagedType.LPStruct)] nsAString aMessageName);
+		void SendMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMessageName);
 		
 		/// <summary>Member RegisterReceiver </summary>
 		/// <param name='aMessageName'> </param>
 		/// <param name='aReceiver'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RegisterReceiver([MarshalAs(UnmanagedType.LPStruct)] nsAString aMessageName, System.IntPtr aReceiver);
+		void RegisterReceiver([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMessageName, System.IntPtr aReceiver);
 		
 		/// <summary>Member UnregisterReceiver </summary>
 		/// <param name='aMessageName'> </param>
 		/// <param name='aReceiver'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UnregisterReceiver([MarshalAs(UnmanagedType.LPStruct)] nsAString aMessageName, System.IntPtr aReceiver);
+		void UnregisterReceiver([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMessageName, System.IntPtr aReceiver);
 		
 		/// <summary>Member UnregisterReceivers </summary>
 		/// <param name='aMessageName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UnregisterReceivers([MarshalAs(UnmanagedType.LPStruct)] nsAString aMessageName);
+		void UnregisterReceivers([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMessageName);
 		
 		/// <summary>Member EvalScript </summary>
 		/// <param name='aScript'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EvalScript([MarshalAs(UnmanagedType.LPStruct)] nsAString aScript);
+		void EvalScript([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aScript);
 		
 		/// <summary>Member CreateHandle </summary>
 		/// <returns>A nsIVariant</returns>

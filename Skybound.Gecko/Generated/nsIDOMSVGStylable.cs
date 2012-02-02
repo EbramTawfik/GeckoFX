@@ -51,6 +51,6 @@ namespace Gecko
 		/// <returns>A nsIDOMCSSValue</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMCSSValue GetPresentationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString name);
+		nsIDOMCSSValue GetPresentationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name);
 	}
 }

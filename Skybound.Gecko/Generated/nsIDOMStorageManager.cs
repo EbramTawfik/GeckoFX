@@ -43,7 +43,7 @@ namespace Gecko
         /// @returns the space usage of the domain, in bytes.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetUsage([MarshalAs(UnmanagedType.LPStruct)] nsAString aOwnerDomain);
+		int GetUsage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aOwnerDomain);
 		
 		/// <summary>
         /// Clear keys owned by offline applications.  All data owned by a domain
@@ -59,6 +59,6 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMStorage GetLocalStorageForPrincipal([MarshalAs(UnmanagedType.Interface)] nsIPrincipal aPrincipal, [MarshalAs(UnmanagedType.LPStruct)] nsAString aDocumentURI);
+		nsIDOMStorage GetLocalStorageForPrincipal([MarshalAs(UnmanagedType.Interface)] nsIPrincipal aPrincipal, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDocumentURI);
 	}
 }

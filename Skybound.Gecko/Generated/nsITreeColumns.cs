@@ -59,7 +59,7 @@ namespace Gecko
 		/// <summary>Member GetIdAttribute </summary>
 		/// <param name='aId'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetIdAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aId);
+		void GetIdAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aId);
 		
 		/// <summary>Member GetIdConst </summary>
 		/// <param name='idConst'> </param>
@@ -194,7 +194,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsITreeColumn GetNamedColumn([MarshalAs(UnmanagedType.LPStruct)] nsAString id);
+		nsITreeColumn GetNamedColumn([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase id);
 		
 		/// <summary>Member GetColumnAt </summary>
 		/// <param name='index'> </param>

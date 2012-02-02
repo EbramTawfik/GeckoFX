@@ -44,7 +44,7 @@ namespace Gecko
         /// (eg. kSelectionClipboard -- see nsIClipboard.idl)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CopyStringToClipboard([MarshalAs(UnmanagedType.LPStruct)] nsAString aString, int aClipboardID);
+		void CopyStringToClipboard([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aString, int aClipboardID);
 		
 		/// <summary>
         /// copy string to (default) clipboard
@@ -52,6 +52,6 @@ namespace Gecko
         /// @param aString, the string to copy to the clipboard
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CopyString([MarshalAs(UnmanagedType.LPStruct)] nsAString aString);
+		void CopyString([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aString);
 	}
 }

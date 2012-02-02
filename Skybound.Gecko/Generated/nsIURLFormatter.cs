@@ -55,7 +55,7 @@ namespace Gecko
         /// @return The formatted URL.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void FormatURL([MarshalAs(UnmanagedType.LPStruct)] nsAString aFormat, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void FormatURL([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFormat, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// formatURLPref - Formats a string URL stored in a preference
@@ -68,6 +68,6 @@ namespace Gecko
         /// @return The formatted URL returned by formatURL(), or "about:blank".
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void FormatURLPref([MarshalAs(UnmanagedType.LPStruct)] nsAString aPref, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void FormatURLPref([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPref, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 	}
 }

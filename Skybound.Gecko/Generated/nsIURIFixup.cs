@@ -60,7 +60,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI CreateFixupURI([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aURIText, uint aFixupFlags);
+		nsIURI CreateFixupURI([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aURIText, uint aFixupFlags);
 		
 		/// <summary>
         /// Converts the specified keyword string into a URI.  Note that it's the
@@ -69,6 +69,6 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI KeywordToURI([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aKeyword);
+		nsIURI KeywordToURI([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aKeyword);
 	}
 }
