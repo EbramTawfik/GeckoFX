@@ -59,7 +59,7 @@ namespace Gecko
         ///
         /// Default: false
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetDismissOnClickAttribute();
 		
@@ -69,14 +69,14 @@ namespace Gecko
         /// Default: false
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDismissOnClickAttribute([MarshalAs(UnmanagedType.Bool)] bool aDismissOnClick);
+		void SetDismissOnClickAttribute([MarshalAs(UnmanagedType.U1)] bool aDismissOnClick);
 		
 		/// <summary>
         /// True if the taskbar should draw a border around this button's image.
         ///
         /// Default: true
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetHasBorderAttribute();
 		
@@ -86,14 +86,14 @@ namespace Gecko
         /// Default: true
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetHasBorderAttribute([MarshalAs(UnmanagedType.Bool)] bool aHasBorder);
+		void SetHasBorderAttribute([MarshalAs(UnmanagedType.U1)] bool aHasBorder);
 		
 		/// <summary>
         /// True if the button is disabled. This is not the same as visible.
         ///
         /// Default: false
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetDisabledAttribute();
 		
@@ -103,7 +103,7 @@ namespace Gecko
         /// Default: false
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDisabledAttribute([MarshalAs(UnmanagedType.Bool)] bool aDisabled);
+		void SetDisabledAttribute([MarshalAs(UnmanagedType.U1)] bool aDisabled);
 		
 		/// <summary>
         /// The icon used for the button.
@@ -127,7 +127,7 @@ namespace Gecko
         ///
         /// Default: false
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetVisibleAttribute();
 		
@@ -138,6 +138,6 @@ namespace Gecko
         /// Default: false
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetVisibleAttribute([MarshalAs(UnmanagedType.Bool)] bool aVisible);
+		void SetVisibleAttribute([MarshalAs(UnmanagedType.U1)] bool aVisible);
 	}
 }

@@ -60,7 +60,7 @@ namespace Gecko
         /// Is it possible to restore the previous session. Will always be false when
         /// in Private Browsing mode.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetCanRestoreLastSessionAttribute();
 		
@@ -69,7 +69,7 @@ namespace Gecko
         /// in Private Browsing mode.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCanRestoreLastSessionAttribute([MarshalAs(UnmanagedType.Bool)] bool aCanRestoreLastSession);
+		void SetCanRestoreLastSessionAttribute([MarshalAs(UnmanagedType.U1)] bool aCanRestoreLastSession);
 		
 		/// <summary>
         /// Restore the previous session if possible. This will not overwrite the
@@ -89,7 +89,7 @@ namespace Gecko
         /// @returns a JSON string representing the session state.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetBrowserState([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void GetBrowserState([MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Set the browsing state.
@@ -99,7 +99,7 @@ namespace Gecko
         /// @param aState is a JSON string representing the session state.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBrowserState([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aState);
+		void SetBrowserState([MarshalAs(UnmanagedType.LPStruct)] nsAString aState);
 		
 		/// <summary>
         /// @param aWindow is the browser window whose state is to be returned.
@@ -107,7 +107,7 @@ namespace Gecko
         /// @returns a JSON string representing a session state with only one window.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetWindowState([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void GetWindowState([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// @param aWindow    is the browser window whose state is to be set.
@@ -115,7 +115,7 @@ namespace Gecko
         /// @param aOverwrite boolean overwrite existing tabs
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetWindowState([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aState, [MarshalAs(UnmanagedType.Bool)] bool aOverwrite);
+		void SetWindowState([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow, [MarshalAs(UnmanagedType.LPStruct)] nsAString aState, [MarshalAs(UnmanagedType.U1)] bool aOverwrite);
 		
 		/// <summary>
         /// @param aTab is the tabbrowser tab whose state is to be returned.
@@ -124,14 +124,14 @@ namespace Gecko
         /// (note: doesn't contain cookies - if you need them, use getWindowState instead).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTabState([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aTab, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void GetTabState([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aTab, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// @param aTab   is the tabbrowser tab whose state is to be set.
         /// @param aState is a JSON string representing a session state.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTabState([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aTab, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aState);
+		void SetTabState([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aTab, [MarshalAs(UnmanagedType.LPStruct)] nsAString aState);
 		
 		/// <summary>
         /// Duplicates a given tab as thoroughly as possible.
@@ -158,7 +158,7 @@ namespace Gecko
         /// @returns a JSON string representing the list of closed tabs.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetClosedTabData([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void GetClosedTabData([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// @param aWindow is the browser window to reopen a closed tab in.
@@ -189,7 +189,7 @@ namespace Gecko
         /// @returns a JSON string representing the list of closed windows.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetClosedWindowData([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void GetClosedWindowData([MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// @param aIndex is the index of the windows to be restored (FIFO ordered).
@@ -216,7 +216,7 @@ namespace Gecko
         /// @returns A string value or an empty string if none is set.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetWindowValue([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aKey, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void GetWindowValue([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow, [MarshalAs(UnmanagedType.LPStruct)] nsAString aKey, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// @param aWindow      is the browser window to set the value for.
@@ -224,14 +224,14 @@ namespace Gecko
         /// @param aStringValue is the value itself (use JSON.stringify/parse before setting JS objects).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetWindowValue([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aKey, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aStringValue);
+		void SetWindowValue([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow, [MarshalAs(UnmanagedType.LPStruct)] nsAString aKey, [MarshalAs(UnmanagedType.LPStruct)] nsAString aStringValue);
 		
 		/// <summary>
         /// @param aWindow is the browser window to get the value for.
         /// @param aKey    is the value's name.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DeleteWindowValue([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aKey);
+		void DeleteWindowValue([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow, [MarshalAs(UnmanagedType.LPStruct)] nsAString aKey);
 		
 		/// <summary>
         /// @param aTab is the tabbrowser tab to get the value for.
@@ -240,7 +240,7 @@ namespace Gecko
         /// @returns A string value or an empty string if none is set.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTabValue([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aTab, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aKey, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void GetTabValue([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aTab, [MarshalAs(UnmanagedType.LPStruct)] nsAString aKey, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// @param aTab         is the tabbrowser tab to set the value for.
@@ -248,19 +248,19 @@ namespace Gecko
         /// @param aStringValue is the value itself (use JSON.stringify/parse before setting JS objects).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTabValue([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aTab, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aKey, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aStringValue);
+		void SetTabValue([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aTab, [MarshalAs(UnmanagedType.LPStruct)] nsAString aKey, [MarshalAs(UnmanagedType.LPStruct)] nsAString aStringValue);
 		
 		/// <summary>
         /// @param aTab is the tabbrowser tab to get the value for.
         /// @param aKey is the value's name.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DeleteTabValue([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aTab, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aKey);
+		void DeleteTabValue([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aTab, [MarshalAs(UnmanagedType.LPStruct)] nsAString aKey);
 		
 		/// <summary>
         /// @param aName is the name of the attribute to save/restore for all tabbrowser tabs.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PersistTabAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
+		void PersistTabAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
 	}
 }

@@ -105,7 +105,7 @@ namespace Gecko
 		/// <summary>
         /// @returns A boolean indicating we should restore previous browser session
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool ShouldRestore();
 		
@@ -114,6 +114,6 @@ namespace Gecko
         /// @param aBringToFront should a restored tab be brought to the foreground?
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RestoreLastSession([MarshalAs(UnmanagedType.Bool)] bool aBringToFront);
+		void RestoreLastSession([MarshalAs(UnmanagedType.U1)] bool aBringToFront);
 	}
 }

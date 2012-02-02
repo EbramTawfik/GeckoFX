@@ -46,12 +46,12 @@ namespace Gecko
         ///Find aSearchString in page.  If aLinksOnly is true, only search the page's
         /// hyperlinks for the string. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint Find([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSearchString, [MarshalAs(UnmanagedType.Bool)] bool aLinksOnly);
+		uint Find([MarshalAs(UnmanagedType.LPStruct)] nsAString aSearchString, [MarshalAs(UnmanagedType.U1)] bool aLinksOnly);
 		
 		/// <summary>
         ///Find another match in the page. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint FindAgain([MarshalAs(UnmanagedType.Bool)] bool findBackwards, [MarshalAs(UnmanagedType.Bool)] bool aLinksOnly);
+		uint FindAgain([MarshalAs(UnmanagedType.U1)] bool findBackwards, [MarshalAs(UnmanagedType.U1)] bool aLinksOnly);
 		
 		/// <summary>
         ///Change searched docShell.  This happens when e.g. we use the same
@@ -75,12 +75,12 @@ namespace Gecko
 		/// <summary>
         ///Attributes </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSearchStringAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSearchString);
+		void GetSearchStringAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aSearchString);
 		
 		/// <summary>
         /// Most recent search string
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetCaseSensitiveAttribute();
 		
@@ -88,7 +88,7 @@ namespace Gecko
         /// Most recent search string
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCaseSensitiveAttribute([MarshalAs(UnmanagedType.Bool)] bool aCaseSensitive);
+		void SetCaseSensitiveAttribute([MarshalAs(UnmanagedType.U1)] bool aCaseSensitive);
 		
 		/// <summary>
         /// Searches are case sensitive

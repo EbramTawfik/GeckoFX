@@ -34,7 +34,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("42b38d02-1a29-45f0-99ef-04fd5b441270")]
+	[Guid("7ad626df-3328-476f-ba10-8ccec4924340")]
 	public interface nsIIDBDatabase
 	{
 		
@@ -44,10 +44,10 @@ namespace Gecko
         /// for more information.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
+		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aVersion);
+		uint GetVersionAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetObjectStoreNamesAttribute();
@@ -56,20 +56,16 @@ namespace Gecko
         ///none </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIIDBObjectStore CreateObjectStore([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, System.IntPtr options, System.IntPtr jsContext);
+		nsIIDBObjectStore CreateObjectStore([MarshalAs(UnmanagedType.LPStruct)] nsAString name, System.IntPtr options, System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DeleteObjectStore([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name);
-		
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIIDBRequest SetVersion([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase version, System.IntPtr jsContext);
+		void DeleteObjectStore([MarshalAs(UnmanagedType.LPStruct)] nsAString name);
 		
 		/// <summary>
-        ///5000ms </summary>
+        ///READ_ONLY </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIIDBTransaction Transaction([MarshalAs(UnmanagedType.Interface)] nsIVariant storeNames, ushort mode, uint timeout, System.IntPtr jsContext, int argc);
+		nsIIDBTransaction Transaction(System.IntPtr storeNames, ushort mode, System.IntPtr jsContext, int argc);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Close();

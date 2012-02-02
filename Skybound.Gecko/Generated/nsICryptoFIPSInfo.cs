@@ -36,7 +36,7 @@ namespace Gecko
 		
 		/// <summary>Member GetIsFIPSModeActiveAttribute </summary>
 		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsFIPSModeActiveAttribute();
 	}

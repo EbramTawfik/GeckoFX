@@ -42,13 +42,13 @@ namespace Gecko
         /// @param src The HTML string to escape.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Unescape([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase src, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void Unescape([MarshalAs(UnmanagedType.LPStruct)] nsAString src, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Appends the text to the element.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDocumentFragment ParseFragment([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase fragment, [MarshalAs(UnmanagedType.Bool)] bool isXML, [MarshalAs(UnmanagedType.Interface)] nsIURI baseURI, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement element);
+		nsIDOMDocumentFragment ParseFragment([MarshalAs(UnmanagedType.LPStruct)] nsAString fragment, [MarshalAs(UnmanagedType.U1)] bool isXML, [MarshalAs(UnmanagedType.Interface)] nsIURI baseURI, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement element);
 	}
 }

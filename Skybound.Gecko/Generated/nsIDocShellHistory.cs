@@ -47,12 +47,12 @@ namespace Gecko
         /// cloned onto aHistoryEntry.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddChildSHEntry([MarshalAs(UnmanagedType.Interface)] nsISHEntry aCloneReference, [MarshalAs(UnmanagedType.Interface)] nsISHEntry aHistoryEntry, int aChildOffset, uint aLoadType, [MarshalAs(UnmanagedType.Bool)] bool aCloneChilden);
+		void AddChildSHEntry([MarshalAs(UnmanagedType.Interface)] nsISHEntry aCloneReference, [MarshalAs(UnmanagedType.Interface)] nsISHEntry aHistoryEntry, int aChildOffset, uint aLoadType, [MarshalAs(UnmanagedType.U1)] bool aCloneChilden);
 		
 		/// <summary>
         /// Whether this docshell should save entries in global history.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetUseGlobalHistoryAttribute();
 		
@@ -60,7 +60,7 @@ namespace Gecko
         /// Whether this docshell should save entries in global history.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetUseGlobalHistoryAttribute([MarshalAs(UnmanagedType.Bool)] bool aUseGlobalHistory);
+		void SetUseGlobalHistoryAttribute([MarshalAs(UnmanagedType.U1)] bool aUseGlobalHistory);
 		
 		/// <summary>
         /// Removes nsISHEntry objects related to this docshell from session history.
@@ -72,7 +72,7 @@ namespace Gecko
 		/// <summary>
         /// Set when an iframe/frame is added dynamically.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetCreatedDynamicallyAttribute();
 		
@@ -80,12 +80,12 @@ namespace Gecko
         /// Set when an iframe/frame is added dynamically.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCreatedDynamicallyAttribute([MarshalAs(UnmanagedType.Bool)] bool aCreatedDynamically);
+		void SetCreatedDynamicallyAttribute([MarshalAs(UnmanagedType.U1)] bool aCreatedDynamically);
 		
 		/// <summary>
         /// Returns false for mLSHE, true for mOSHE
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetCurrentSHEntry([MarshalAs(UnmanagedType.Interface)] ref nsISHEntry aEntry);
 	}

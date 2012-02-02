@@ -38,12 +38,12 @@ namespace Gecko
 		/// <param name='blob'> </param>
 		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CreateObjectURL([MarshalAs(UnmanagedType.Interface)] nsIDOMBlob blob, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void CreateObjectURL([MarshalAs(UnmanagedType.Interface)] nsIDOMBlob blob, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>Member RevokeObjectURL </summary>
 		/// <param name='URL'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RevokeObjectURL([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase URL);
+		void RevokeObjectURL([MarshalAs(UnmanagedType.LPStruct)] nsAString URL);
 	}
 	
 	/// <summary>
@@ -56,7 +56,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("3f5b2af2-604e-4253-8d25-6d3cafc13a69")]
+	[Guid("8f577294-d572-4473-94b1-d2c5a74a2a74")]
 	public interface nsIDOMWindow
 	{
 		
@@ -86,7 +86,7 @@ namespace Gecko
         /// This attribute is "replaceable" in JavaScript
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
+		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
 		
 		/// <summary>
         /// Set/Get the name of this window.
@@ -94,7 +94,7 @@ namespace Gecko
         /// This attribute is "replaceable" in JavaScript
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
+		void SetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
 		
 		/// <summary>
         ///The setter that takes a string argument needs to be special cased! </summary>
@@ -149,12 +149,12 @@ namespace Gecko
 		/// <summary>
         ///[replaceable] </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetStatusAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aStatus);
+		void GetStatusAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aStatus);
 		
 		/// <summary>
         ///[replaceable] </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetStatusAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aStatus);
+		void SetStatusAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aStatus);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Close();
@@ -222,24 +222,24 @@ namespace Gecko
         /// user prompts
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Alert([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase text);
+		void Alert([MarshalAs(UnmanagedType.LPStruct)] nsAString text);
 		
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Confirm([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase text);
+		bool Confirm([MarshalAs(UnmanagedType.LPStruct)] nsAString text);
 		
 		/// <summary>
         /// prompt() should return a null string if cancel is pressed
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Prompt([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMessage, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aInitial, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void Prompt([MarshalAs(UnmanagedType.LPStruct)] nsAString aMessage, [MarshalAs(UnmanagedType.LPStruct)] nsAString aInitial, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Print();
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant ShowModalDialog([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aURI, [MarshalAs(UnmanagedType.Interface)] nsIVariant aArgs, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aOptions);
+		nsIVariant ShowModalDialog([MarshalAs(UnmanagedType.LPStruct)] nsAString aURI, [MarshalAs(UnmanagedType.Interface)] nsIVariant aArgs, [MarshalAs(UnmanagedType.LPStruct)] nsAString aOptions);
 		
 		/// <summary>
         /// Implements a safe message-passing system which can cross same-origin
@@ -259,16 +259,16 @@ namespace Gecko
         /// @see <http://www.whatwg.org/html/#dom-window-postmessage>
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PostMessage(System.IntPtr message, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase targetOrigin, System.IntPtr jsContext);
+		void PostMessage(System.IntPtr message, [MarshalAs(UnmanagedType.LPStruct)] nsAString targetOrigin, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Ascii base64 data to binary data and vice versa...
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Atob([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAsciiString, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void Atob([MarshalAs(UnmanagedType.LPStruct)] nsAString aAsciiString, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Btoa([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBase64Data, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void Btoa([MarshalAs(UnmanagedType.LPStruct)] nsAString aBase64Data, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Session storage for the current browsing context.
@@ -296,7 +296,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMMediaQueryList MatchMedia([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase media_query_list);
+		nsIDOMMediaQueryList MatchMedia([MarshalAs(UnmanagedType.LPStruct)] nsAString media_query_list);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -399,7 +399,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMCSSStyleDeclaration GetComputedStyle([MarshalAs(UnmanagedType.Interface)] nsIDOMElement elt, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase pseudoElt);
+		nsIDOMCSSStyleDeclaration GetComputedStyle([MarshalAs(UnmanagedType.Interface)] nsIDOMElement elt, [MarshalAs(UnmanagedType.LPStruct)] nsAString pseudoElt);
 		
 		/// <summary>
         /// Get the window root for this window. This is useful for hooking
@@ -469,7 +469,7 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIPrompt GetPrompterAttribute();
 		
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetClosedAttribute();
 		
@@ -491,10 +491,10 @@ namespace Gecko
 		nsIControllers GetControllersAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDefaultStatusAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDefaultStatus);
+		void GetDefaultStatusAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDefaultStatus);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDefaultStatusAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDefaultStatus);
+		void SetDefaultStatusAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDefaultStatus);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		float GetMozInnerScreenXAttribute();
@@ -511,12 +511,12 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetScrollMaxYAttribute();
 		
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetFullScreenAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFullScreenAttribute([MarshalAs(UnmanagedType.Bool)] bool aFullScreen);
+		void SetFullScreenAttribute([MarshalAs(UnmanagedType.U1)] bool aFullScreen);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Back();
@@ -548,7 +548,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMWindow Open([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase url, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase options);
+		nsIDOMWindow Open([MarshalAs(UnmanagedType.LPStruct)] nsAString url, [MarshalAs(UnmanagedType.LPStruct)] nsAString name, [MarshalAs(UnmanagedType.LPStruct)] nsAString options);
 		
 		/// <summary>
         /// This method works like open except that aExtraArgument gets
@@ -560,13 +560,13 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMWindow OpenDialog([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase url, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase options, [MarshalAs(UnmanagedType.Interface)] nsISupports aExtraArgument);
+		nsIDOMWindow OpenDialog([MarshalAs(UnmanagedType.LPStruct)] nsAString url, [MarshalAs(UnmanagedType.LPStruct)] nsAString name, [MarshalAs(UnmanagedType.LPStruct)] nsAString options, [MarshalAs(UnmanagedType.Interface)] nsISupports aExtraArgument);
 		
 		/// <summary>
         /// XXX Should this be in nsIDOMChromeWindow?
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UpdateCommands([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase action);
+		void UpdateCommands([MarshalAs(UnmanagedType.LPStruct)] nsAString action);
 		
 		/// <summary>
         ///Find in page.
@@ -578,16 +578,16 @@ namespace Gecko
         /// @param searchInFrames: should we search through all frames
         /// @param showDialog: should we show the Find dialog
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Find([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase str, [MarshalAs(UnmanagedType.Bool)] bool caseSensitive, [MarshalAs(UnmanagedType.Bool)] bool backwards, [MarshalAs(UnmanagedType.Bool)] bool wrapAround, [MarshalAs(UnmanagedType.Bool)] bool wholeWord, [MarshalAs(UnmanagedType.Bool)] bool searchInFrames, [MarshalAs(UnmanagedType.Bool)] bool showDialog);
+		bool Find([MarshalAs(UnmanagedType.LPStruct)] nsAString str, [MarshalAs(UnmanagedType.U1)] bool caseSensitive, [MarshalAs(UnmanagedType.U1)] bool backwards, [MarshalAs(UnmanagedType.U1)] bool wrapAround, [MarshalAs(UnmanagedType.U1)] bool wholeWord, [MarshalAs(UnmanagedType.U1)] bool searchInFrames, [MarshalAs(UnmanagedType.U1)] bool showDialog);
 		
 		/// <summary>
         /// Returns the number of times this document for this window has
         /// been painted to the screen.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		ulong GetMozPaintCountAttribute();
+		uint GetMozPaintCountAttribute();
 		
 		/// <summary>
         /// Request a refresh of this browser window.
@@ -601,7 +601,7 @@ namespace Gecko
         /// The current animation start time in milliseconds since the epoch.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		long GetMozAnimationStartTimeAttribute();
+		int GetMozAnimationStartTimeAttribute();
 		
 		/// <summary>
         /// @see <http://dev.w3.org/2006/webapi/FileAPI/#creating-revoking>
@@ -724,6 +724,18 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOndeviceorientationAttribute(System.IntPtr aOndeviceorientation, System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		System.IntPtr GetOnmouseenterAttribute(System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOnmouseenterAttribute(System.IntPtr aOnmouseenter, System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		System.IntPtr GetOnmouseleaveAttribute(System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOnmouseleaveAttribute(System.IntPtr aOnmouseleave, System.IntPtr jsContext);
 	}
 	
 	/// <summary>nsIDOMWindowPerformance </summary>
@@ -747,7 +759,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("8614bdb7-5b07-4d00-a7ba-4d44697a343d")]
+	[Guid("8da641ab-906a-456e-97f2-b77df4ca2d95")]
 	public interface nsIDOMWindowInternal : nsIDOMWindow
 	{
 		
@@ -777,7 +789,7 @@ namespace Gecko
         /// This attribute is "replaceable" in JavaScript
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
+		new void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
 		
 		/// <summary>
         /// Set/Get the name of this window.
@@ -785,7 +797,7 @@ namespace Gecko
         /// This attribute is "replaceable" in JavaScript
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
+		new void SetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
 		
 		/// <summary>
         ///The setter that takes a string argument needs to be special cased! </summary>
@@ -840,12 +852,12 @@ namespace Gecko
 		/// <summary>
         ///[replaceable] </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetStatusAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aStatus);
+		new void GetStatusAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aStatus);
 		
 		/// <summary>
         ///[replaceable] </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetStatusAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aStatus);
+		new void SetStatusAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aStatus);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void Close();
@@ -913,24 +925,24 @@ namespace Gecko
         /// user prompts
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Alert([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase text);
+		new void Alert([MarshalAs(UnmanagedType.LPStruct)] nsAString text);
 		
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool Confirm([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase text);
+		new bool Confirm([MarshalAs(UnmanagedType.LPStruct)] nsAString text);
 		
 		/// <summary>
         /// prompt() should return a null string if cancel is pressed
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Prompt([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMessage, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aInitial, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		new void Prompt([MarshalAs(UnmanagedType.LPStruct)] nsAString aMessage, [MarshalAs(UnmanagedType.LPStruct)] nsAString aInitial, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void Print();
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIVariant ShowModalDialog([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aURI, [MarshalAs(UnmanagedType.Interface)] nsIVariant aArgs, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aOptions);
+		new nsIVariant ShowModalDialog([MarshalAs(UnmanagedType.LPStruct)] nsAString aURI, [MarshalAs(UnmanagedType.Interface)] nsIVariant aArgs, [MarshalAs(UnmanagedType.LPStruct)] nsAString aOptions);
 		
 		/// <summary>
         /// Implements a safe message-passing system which can cross same-origin
@@ -950,16 +962,16 @@ namespace Gecko
         /// @see <http://www.whatwg.org/html/#dom-window-postmessage>
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void PostMessage(System.IntPtr message, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase targetOrigin, System.IntPtr jsContext);
+		new void PostMessage(System.IntPtr message, [MarshalAs(UnmanagedType.LPStruct)] nsAString targetOrigin, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Ascii base64 data to binary data and vice versa...
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Atob([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAsciiString, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		new void Atob([MarshalAs(UnmanagedType.LPStruct)] nsAString aAsciiString, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Btoa([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBase64Data, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		new void Btoa([MarshalAs(UnmanagedType.LPStruct)] nsAString aBase64Data, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Session storage for the current browsing context.
@@ -987,7 +999,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMMediaQueryList MatchMedia([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase media_query_list);
+		new nsIDOMMediaQueryList MatchMedia([MarshalAs(UnmanagedType.LPStruct)] nsAString media_query_list);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -1090,7 +1102,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMCSSStyleDeclaration GetComputedStyle([MarshalAs(UnmanagedType.Interface)] nsIDOMElement elt, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase pseudoElt);
+		new nsIDOMCSSStyleDeclaration GetComputedStyle([MarshalAs(UnmanagedType.Interface)] nsIDOMElement elt, [MarshalAs(UnmanagedType.LPStruct)] nsAString pseudoElt);
 		
 		/// <summary>
         /// Get the window root for this window. This is useful for hooking
@@ -1160,7 +1172,7 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIPrompt GetPrompterAttribute();
 		
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetClosedAttribute();
 		
@@ -1182,10 +1194,10 @@ namespace Gecko
 		new nsIControllers GetControllersAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetDefaultStatusAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDefaultStatus);
+		new void GetDefaultStatusAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDefaultStatus);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetDefaultStatusAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDefaultStatus);
+		new void SetDefaultStatusAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDefaultStatus);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new float GetMozInnerScreenXAttribute();
@@ -1202,12 +1214,12 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new int GetScrollMaxYAttribute();
 		
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetFullScreenAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetFullScreenAttribute([MarshalAs(UnmanagedType.Bool)] bool aFullScreen);
+		new void SetFullScreenAttribute([MarshalAs(UnmanagedType.U1)] bool aFullScreen);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void Back();
@@ -1239,7 +1251,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMWindow Open([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase url, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase options);
+		new nsIDOMWindow Open([MarshalAs(UnmanagedType.LPStruct)] nsAString url, [MarshalAs(UnmanagedType.LPStruct)] nsAString name, [MarshalAs(UnmanagedType.LPStruct)] nsAString options);
 		
 		/// <summary>
         /// This method works like open except that aExtraArgument gets
@@ -1251,13 +1263,13 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMWindow OpenDialog([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase url, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase options, [MarshalAs(UnmanagedType.Interface)] nsISupports aExtraArgument);
+		new nsIDOMWindow OpenDialog([MarshalAs(UnmanagedType.LPStruct)] nsAString url, [MarshalAs(UnmanagedType.LPStruct)] nsAString name, [MarshalAs(UnmanagedType.LPStruct)] nsAString options, [MarshalAs(UnmanagedType.Interface)] nsISupports aExtraArgument);
 		
 		/// <summary>
         /// XXX Should this be in nsIDOMChromeWindow?
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void UpdateCommands([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase action);
+		new void UpdateCommands([MarshalAs(UnmanagedType.LPStruct)] nsAString action);
 		
 		/// <summary>
         ///Find in page.
@@ -1269,16 +1281,16 @@ namespace Gecko
         /// @param searchInFrames: should we search through all frames
         /// @param showDialog: should we show the Find dialog
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool Find([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase str, [MarshalAs(UnmanagedType.Bool)] bool caseSensitive, [MarshalAs(UnmanagedType.Bool)] bool backwards, [MarshalAs(UnmanagedType.Bool)] bool wrapAround, [MarshalAs(UnmanagedType.Bool)] bool wholeWord, [MarshalAs(UnmanagedType.Bool)] bool searchInFrames, [MarshalAs(UnmanagedType.Bool)] bool showDialog);
+		new bool Find([MarshalAs(UnmanagedType.LPStruct)] nsAString str, [MarshalAs(UnmanagedType.U1)] bool caseSensitive, [MarshalAs(UnmanagedType.U1)] bool backwards, [MarshalAs(UnmanagedType.U1)] bool wrapAround, [MarshalAs(UnmanagedType.U1)] bool wholeWord, [MarshalAs(UnmanagedType.U1)] bool searchInFrames, [MarshalAs(UnmanagedType.U1)] bool showDialog);
 		
 		/// <summary>
         /// Returns the number of times this document for this window has
         /// been painted to the screen.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new ulong GetMozPaintCountAttribute();
+		new uint GetMozPaintCountAttribute();
 		
 		/// <summary>
         /// Request a refresh of this browser window.
@@ -1292,7 +1304,7 @@ namespace Gecko
         /// The current animation start time in milliseconds since the epoch.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new long GetMozAnimationStartTimeAttribute();
+		new int GetMozAnimationStartTimeAttribute();
 		
 		/// <summary>
         /// @see <http://dev.w3.org/2006/webapi/FileAPI/#creating-revoking>
@@ -1415,5 +1427,17 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetOndeviceorientationAttribute(System.IntPtr aOndeviceorientation, System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new System.IntPtr GetOnmouseenterAttribute(System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetOnmouseenterAttribute(System.IntPtr aOnmouseenter, System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new System.IntPtr GetOnmouseleaveAttribute(System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetOnmouseleaveAttribute(System.IntPtr aOnmouseleave, System.IntPtr jsContext);
 	}
 }

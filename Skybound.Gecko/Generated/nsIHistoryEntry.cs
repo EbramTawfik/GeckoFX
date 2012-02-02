@@ -67,7 +67,7 @@ namespace Gecko
         /// history entries created as a result of a subframe
         /// navigation.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsSubFrameAttribute();
 	}

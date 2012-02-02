@@ -67,6 +67,6 @@ namespace Gecko
         /// NS_ERROR* - Method failure.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void LockFactory([MarshalAs(UnmanagedType.Bool)] bool @lock);
+		void LockFactory([MarshalAs(UnmanagedType.U1)] bool @lock);
 	}
 }

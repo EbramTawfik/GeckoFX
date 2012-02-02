@@ -107,7 +107,7 @@ namespace Gecko
         ///
         /// Default: false
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetVisibleAttribute();
 		
@@ -123,13 +123,13 @@ namespace Gecko
         /// Default: false
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetVisibleAttribute([MarshalAs(UnmanagedType.Bool)] bool aVisible);
+		new void SetVisibleAttribute([MarshalAs(UnmanagedType.U1)] bool aVisible);
 		
 		/// <summary>
         /// Gets/sets whether or not the preview is marked active (selected) in the
         /// taskbar.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetActiveAttribute();
 		
@@ -138,7 +138,7 @@ namespace Gecko
         /// taskbar.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetActiveAttribute([MarshalAs(UnmanagedType.Bool)] bool aActive);
+		new void SetActiveAttribute([MarshalAs(UnmanagedType.U1)] bool aActive);
 		
 		/// <summary>
         /// Invalidates the taskbar's cached image of this preview, forcing a redraw

@@ -39,7 +39,7 @@ namespace Gecko
 		/// <summary>
         /// Is this object the equivalent of the other object?
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool Equals([MarshalAs(UnmanagedType.Interface)] nsIHashable aOther);
 		

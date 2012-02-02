@@ -198,9 +198,9 @@ namespace Gecko
         /// The hostname to check. This argument should be in the origin
         /// URL format, without a pathname. For example: "http://foo.com".
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetLoginSavingEnabled([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aHost);
+		bool GetLoginSavingEnabled([MarshalAs(UnmanagedType.LPStruct)] nsAString aHost);
 		
 		/// <summary>
         /// Disable (or enable) storing logins for the specified host. When
@@ -215,7 +215,7 @@ namespace Gecko
         /// disabled (false)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetLoginSavingEnabled([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aHost, [MarshalAs(UnmanagedType.Bool)] bool isEnabled);
+		void SetLoginSavingEnabled([MarshalAs(UnmanagedType.LPStruct)] nsAString aHost, [MarshalAs(UnmanagedType.U1)] bool isEnabled);
 		
 		/// <summary>
         /// Search for logins matching the specified criteria. Called when looking
@@ -244,7 +244,7 @@ namespace Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void FindLogins(ref uint count, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aHostname, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aActionURL, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aHttpRealm, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref nsILoginInfo[] logins);
+		void FindLogins(ref uint count, [MarshalAs(UnmanagedType.LPStruct)] nsAString aHostname, [MarshalAs(UnmanagedType.LPStruct)] nsAString aActionURL, [MarshalAs(UnmanagedType.LPStruct)] nsAString aHttpRealm, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref nsILoginInfo[] logins);
 		
 		/// <summary>
         /// Search for logins matching the specified criteria, as with
@@ -267,12 +267,12 @@ namespace Gecko
         /// realm, specify null.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint CountLogins([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aHostname, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aActionURL, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aHttpRealm);
+		uint CountLogins([MarshalAs(UnmanagedType.LPStruct)] nsAString aHostname, [MarshalAs(UnmanagedType.LPStruct)] nsAString aActionURL, [MarshalAs(UnmanagedType.LPStruct)] nsAString aHttpRealm);
 		
 		/// <summary>
         /// True when a master password prompt is being shown.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetUiBusyAttribute();
 	}

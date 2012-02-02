@@ -52,13 +52,13 @@ namespace Gecko
         /// true.  The observer subject will be null.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ImportHTMLFromFile([MarshalAs(UnmanagedType.Interface)] nsILocalFile aFile, [MarshalAs(UnmanagedType.Bool)] bool aIsInitialImport);
+		void ImportHTMLFromFile([MarshalAs(UnmanagedType.Interface)] nsILocalFile aFile, [MarshalAs(UnmanagedType.U1)] bool aIsInitialImport);
 		
 		/// <summary>
         /// Same thing as importHTMLFromFile, but takes a URI instead
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ImportHTMLFromURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Bool)] bool aIsInitialImport);
+		void ImportHTMLFromURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.U1)] bool aIsInitialImport);
 		
 		/// <summary>
         /// Loads the given bookmarks.html file and puts it in the given folder
@@ -74,7 +74,7 @@ namespace Gecko
         /// is aFolder.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ImportHTMLFromFileToFolder([MarshalAs(UnmanagedType.Interface)] nsILocalFile aFile, long aFolder, [MarshalAs(UnmanagedType.Bool)] bool aIsInitialImport);
+		void ImportHTMLFromFileToFolder([MarshalAs(UnmanagedType.Interface)] nsILocalFile aFile, long aFolder, [MarshalAs(UnmanagedType.U1)] bool aIsInitialImport);
 		
 		/// <summary>
         /// Saves the current bookmarks hierarchy to a bookmarks.html file.

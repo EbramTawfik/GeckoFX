@@ -60,14 +60,14 @@ namespace Gecko
 		/// <param name='sourceAttrValue'> </param>
 		/// <param name='aSuppressTransaction'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAttributeOrEquivalent([MarshalAs(UnmanagedType.Interface)] nsIDOMElement element, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase sourceAttrName, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase sourceAttrValue, [MarshalAs(UnmanagedType.Bool)] bool aSuppressTransaction);
+		void SetAttributeOrEquivalent([MarshalAs(UnmanagedType.Interface)] nsIDOMElement element, [MarshalAs(UnmanagedType.LPStruct)] nsAString sourceAttrName, [MarshalAs(UnmanagedType.LPStruct)] nsAString sourceAttrValue, [MarshalAs(UnmanagedType.U1)] bool aSuppressTransaction);
 		
 		/// <summary>Member RemoveAttributeOrEquivalent </summary>
 		/// <param name='element'> </param>
 		/// <param name='sourceAttrName'> </param>
 		/// <param name='aSuppressTransaction'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveAttributeOrEquivalent([MarshalAs(UnmanagedType.Interface)] nsIDOMElement element, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase sourceAttrName, [MarshalAs(UnmanagedType.Bool)] bool aSuppressTransaction);
+		void RemoveAttributeOrEquivalent([MarshalAs(UnmanagedType.Interface)] nsIDOMElement element, [MarshalAs(UnmanagedType.LPStruct)] nsAString sourceAttrName, [MarshalAs(UnmanagedType.U1)] bool aSuppressTransaction);
 		
 		/// <summary>
         /// postCreate should be called after Init, and is the time that the editor
@@ -84,7 +84,7 @@ namespace Gecko
         /// nor is it safe to do so)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PreDestroy([MarshalAs(UnmanagedType.Bool)] bool aDestroyingFrames);
+		void PreDestroy([MarshalAs(UnmanagedType.U1)] bool aDestroyingFrames);
 		
 		/// <summary>
         ///edit flags for this editor.  May be set at any time. </summary>
@@ -111,13 +111,13 @@ namespace Gecko
 		
 		/// <summary>
         ///Returns true if we have a document that is not marked read-only </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsDocumentEditableAttribute();
 		
 		/// <summary>
         ///Returns true if the current selection anchor is editable </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsSelectionEditableAttribute();
 		
@@ -152,25 +152,25 @@ namespace Gecko
 		
 		/// <summary>
         ///Returns true if the document has no *meaningful* content </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetDocumentIsEmptyAttribute();
 		
 		/// <summary>
         ///Returns true if the document is modifed and needs saving </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetDocumentModifiedAttribute();
 		
 		/// <summary>
         ///Sets the current 'Save' document character set </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDocumentCharacterSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aDocumentCharacterSet);
+		void GetDocumentCharacterSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aDocumentCharacterSet);
 		
 		/// <summary>
         ///Sets the current 'Save' document character set </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDocumentCharacterSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aDocumentCharacterSet);
+		void SetDocumentCharacterSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aDocumentCharacterSet);
 		
 		/// <summary>
         ///to be used ONLY when we need to override the doc's modification
@@ -230,7 +230,7 @@ namespace Gecko
         /// if aEnable is PR_FALSE, returns NS_OK.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EnableUndo([MarshalAs(UnmanagedType.Bool)] bool enable);
+		void EnableUndo([MarshalAs(UnmanagedType.U1)] bool enable);
 		
 		/// <summary>
         ///undo reverses the effects of the last Do operation,
@@ -253,7 +253,7 @@ namespace Gecko
         /// currently ready to be undone.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CanUndo([MarshalAs(UnmanagedType.Bool)] ref bool isEnabled, [MarshalAs(UnmanagedType.Bool)] ref bool canUndo);
+		void CanUndo([MarshalAs(UnmanagedType.U1)] ref bool isEnabled, [MarshalAs(UnmanagedType.U1)] ref bool canUndo);
 		
 		/// <summary>
         ///redo reverses the effects of the last Undo operation
@@ -276,7 +276,7 @@ namespace Gecko
         ///                              currently ready to be redone.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CanRedo([MarshalAs(UnmanagedType.Bool)] ref bool isEnabled, [MarshalAs(UnmanagedType.Bool)] ref bool canRedo);
+		void CanRedo([MarshalAs(UnmanagedType.U1)] ref bool isEnabled, [MarshalAs(UnmanagedType.U1)] ref bool canRedo);
 		
 		/// <summary>
         ///beginTransaction is a signal from the caller to the editor that
@@ -313,7 +313,7 @@ namespace Gecko
 		
 		/// <summary>Member ShouldTxnSetSelection </summary>
 		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool ShouldTxnSetSelection();
 		
@@ -327,7 +327,7 @@ namespace Gecko
         /// for further editing.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetShouldTxnSetSelection([MarshalAs(UnmanagedType.Bool)] bool should);
+		void SetShouldTxnSetSelection([MarshalAs(UnmanagedType.U1)] bool should);
 		
 		/// <summary>
         ///Returns the inline spell checker associated with this object. The spell
@@ -340,7 +340,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIInlineSpellChecker GetInlineSpellChecker([MarshalAs(UnmanagedType.Bool)] bool autoCreate);
+		nsIInlineSpellChecker GetInlineSpellChecker([MarshalAs(UnmanagedType.U1)] bool autoCreate);
 		
 		/// <summary>
         ///Resyncs spellchecking state (enabled/disabled).  This should be called
@@ -357,7 +357,7 @@ namespace Gecko
         /// requested by the user.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSpellcheckUserOverride([MarshalAs(UnmanagedType.Bool)] bool enable);
+		void SetSpellcheckUserOverride([MarshalAs(UnmanagedType.U1)] bool enable);
 		
 		/// <summary>
         ///cut the currently selected text, putting it into the OS clipboard
@@ -372,7 +372,7 @@ namespace Gecko
         ///Can we cut? True if the doc is modifiable, and we have a non-
         /// collapsed selection.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool CanCut();
 		
@@ -388,7 +388,7 @@ namespace Gecko
 		/// <summary>
         ///Can we copy? True if we have a non-collapsed selection.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool CanCopy();
 		
@@ -410,7 +410,7 @@ namespace Gecko
         ///Can we paste? True if the doc is modifiable, and we have
         /// pasteable data in the clipboard.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool CanPaste(int aSelectionType);
 		
@@ -420,7 +420,7 @@ namespace Gecko
         /// nsITransferable then? True if the doc is modifiable, and, if
         /// |aTransfeable| is non-null, we have pasteable data in |aTransfeable|.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool CanPasteTransferable([MarshalAs(UnmanagedType.Interface)] nsITransferable aTransferable);
 		
@@ -443,7 +443,7 @@ namespace Gecko
         /// canDrag decides if a drag should be started
         /// (for example, based on the current selection and mousepoint).
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool CanDrag([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent aEvent);
 		
@@ -471,7 +471,7 @@ namespace Gecko
         /// @param aValue      the value to set aAttribute to
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase attributestr, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase attvalue);
+		void SetAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement, [MarshalAs(UnmanagedType.LPStruct)] nsAString attributestr, [MarshalAs(UnmanagedType.LPStruct)] nsAString attvalue);
 		
 		/// <summary>
         /// getAttributeValue() retrieves the attribute's value for aElement.
@@ -483,9 +483,9 @@ namespace Gecko
         /// @return              PR_TRUE if aAttribute is set on the current node,
         /// PR_FALSE if it is not.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetAttributeValue([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase attributestr, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase resultValue);
+		bool GetAttributeValue([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement, [MarshalAs(UnmanagedType.LPStruct)] nsAString attributestr, [MarshalAs(UnmanagedType.LPStruct)] nsAString resultValue);
 		
 		/// <summary>
         /// removeAttribute() deletes aAttribute from the attribute list of aElement.
@@ -495,7 +495,7 @@ namespace Gecko
         /// @param aAttribute    the string representation of the attribute to get
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAttribute);
+		void RemoveAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement, [MarshalAs(UnmanagedType.LPStruct)] nsAString aAttribute);
 		
 		/// <summary>
         /// cloneAttribute() copies the attribute from the source node to
@@ -510,7 +510,7 @@ namespace Gecko
         /// element
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CloneAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAttribute, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aDestNode, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aSourceNode);
+		void CloneAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aAttribute, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aDestNode, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aSourceNode);
 		
 		/// <summary>
         /// cloneAttributes() is similar to nsIDOMNode::cloneNode(),
@@ -536,7 +536,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMNode CreateNode([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase tag, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode parent, int position);
+		nsIDOMNode CreateNode([MarshalAs(UnmanagedType.LPStruct)] nsAString tag, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode parent, int position);
 		
 		/// <summary>
         /// insertNode inserts aNode into aParent at aPosition.
@@ -604,7 +604,7 @@ namespace Gecko
         /// aFormatType is a mime type, like text/plain.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OutputToString([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase formatType, uint flags, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void OutputToString([MarshalAs(UnmanagedType.LPStruct)] nsAString formatType, uint flags, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>Member OutputToStream </summary>
 		/// <param name='aStream'> </param>
@@ -612,7 +612,7 @@ namespace Gecko
 		/// <param name='charsetOverride'> </param>
 		/// <param name='flags'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OutputToStream([MarshalAs(UnmanagedType.Interface)] nsIOutputStream aStream, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase formatType, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase charsetOverride, uint flags);
+		void OutputToStream([MarshalAs(UnmanagedType.Interface)] nsIOutputStream aStream, [MarshalAs(UnmanagedType.LPStruct)] nsAString formatType, [MarshalAs(UnmanagedType.LPStruct)] nsACString charsetOverride, uint flags);
 		
 		/// <summary>
         ///add an EditorObserver to the editors list of observers. </summary>
@@ -662,7 +662,7 @@ namespace Gecko
 		
 		/// <summary>
         ///checks if a node is read-only or not </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsModifiableNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aNode);
 		
@@ -671,7 +671,7 @@ namespace Gecko
         /// has been trusted.  The value will only be valid when the edit action listeners
         /// are being called, and will throw upon access at all other times.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetLastKeypressEventTrustedAttribute();
 	}

@@ -38,7 +38,7 @@ namespace Gecko
         /// Determines if the current keyboard language is right-to-left
         /// @throws NS_ERROR_FAILURE if no right-to-left keyboards are installed
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsLangRTL();
 		
@@ -57,7 +57,7 @@ namespace Gecko
         /// @throws NS_ERROR_NOT_IMPLEMENTED if the widget layer does not provide this
         /// information.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetHaveBidiKeyboardsAttribute();
 	}

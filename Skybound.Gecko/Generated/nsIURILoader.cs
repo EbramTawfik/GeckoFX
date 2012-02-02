@@ -91,7 +91,7 @@ namespace Gecko
         /// <b>Must not be null!</b>
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OpenURI([MarshalAs(UnmanagedType.Interface)] nsIChannel aChannel, [MarshalAs(UnmanagedType.Bool)] bool aIsContentPreferred, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor aWindowContext);
+		void OpenURI([MarshalAs(UnmanagedType.Interface)] nsIChannel aChannel, [MarshalAs(UnmanagedType.U1)] bool aIsContentPreferred, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor aWindowContext);
 		
 		/// <summary>
         /// Loads data from a channel. This differs from openURI in that the channel

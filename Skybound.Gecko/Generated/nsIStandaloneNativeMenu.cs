@@ -51,7 +51,7 @@ namespace Gecko
         ///
         /// @return true if the menu can be shown, false if it should not be shown
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool MenuWillOpen();
 		

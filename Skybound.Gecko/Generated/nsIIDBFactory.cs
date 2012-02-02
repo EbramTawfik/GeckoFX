@@ -34,7 +34,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("137d17a5-fac5-4788-87b5-bc3806d7cfaf")]
+	[Guid("885abbb7-cf81-4945-b5f1-07fed07ada82")]
 	public interface nsIIDBFactory
 	{
 		
@@ -45,6 +45,10 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIIDBRequest Open([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, System.IntPtr jsContext);
+		nsIIDBOpenDBRequest Open([MarshalAs(UnmanagedType.LPStruct)] nsAString name, int version, int argc);
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIIDBOpenDBRequest DeleteDatabase([MarshalAs(UnmanagedType.LPStruct)] nsAString name);
 	}
 }

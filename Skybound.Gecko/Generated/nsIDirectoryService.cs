@@ -56,7 +56,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIFile GetFile([MarshalAs(UnmanagedType.LPStr)] string prop, [MarshalAs(UnmanagedType.Bool)] ref bool persistent);
+		nsIFile GetFile([MarshalAs(UnmanagedType.LPStr)] string prop, [MarshalAs(UnmanagedType.U1)] ref bool persistent);
 	}
 	
 	/// <summary>
@@ -89,7 +89,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIFile GetFile([MarshalAs(UnmanagedType.LPStr)] string prop, [MarshalAs(UnmanagedType.Bool)] ref bool persistent);
+		new nsIFile GetFile([MarshalAs(UnmanagedType.LPStr)] string prop, [MarshalAs(UnmanagedType.U1)] ref bool persistent);
 		
 		/// <summary>
         /// getFiles

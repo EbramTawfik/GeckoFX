@@ -52,7 +52,7 @@ namespace Gecko
         /// the input hostname is assumed to be UTF8-encoded.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ConvertUTF8toACE([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase input, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
+		void ConvertUTF8toACE([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String input, [MarshalAs(UnmanagedType.LPStruct)] nsACString retval);
 		
 		/// <summary>
         /// This is the ToUnicode operation as specified in the IDNA proposal,
@@ -61,21 +61,21 @@ namespace Gecko
         /// encodes the resulting string into UTF8.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ConvertACEtoUTF8([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase input, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase retval);
+		void ConvertACEtoUTF8([MarshalAs(UnmanagedType.LPStruct)] nsACString input, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
 		
 		/// <summary>
         /// Checks if the input string is ACE encoded or not.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsACE([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase input);
+		bool IsACE([MarshalAs(UnmanagedType.LPStruct)] nsACString input);
 		
 		/// <summary>
         /// Performs the unicode normalization needed for hostnames in IDN,
         /// for callers that want early normalization.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Normalize([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase input, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase retval);
+		void Normalize([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String input, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
 		
 		/// <summary>
         /// Normalizes and converts a host to UTF-8 if the host is in the IDN
@@ -84,6 +84,6 @@ namespace Gecko
         /// If the result is ASCII or ACE encoded, |isASCII| will be true.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ConvertToDisplayIDN([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase input, [MarshalAs(UnmanagedType.Bool)] ref bool isASCII, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase retval);
+		void ConvertToDisplayIDN([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String input, [MarshalAs(UnmanagedType.U1)] ref bool isASCII, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
 	}
 }

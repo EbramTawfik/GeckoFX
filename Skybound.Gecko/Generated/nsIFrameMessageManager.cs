@@ -58,7 +58,7 @@ namespace Gecko
 	/// <summary>nsIFrameMessageManager </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("6b736edb-863d-40bd-bca2-62f44da803c0")]
+	[Guid("a27d8fcd-8de9-4a51-87f4-2b83bba901d5")]
 	public interface nsIFrameMessageManager
 	{
 		
@@ -66,24 +66,27 @@ namespace Gecko
 		/// <param name='aMessage'> </param>
 		/// <param name='aListener'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMessage, System.IntPtr aListener);
+		void AddMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAString aMessage, System.IntPtr aListener);
 		
 		/// <summary>Member RemoveMessageListener </summary>
 		/// <param name='aMessage'> </param>
 		/// <param name='aListener'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMessage, System.IntPtr aListener);
+		void RemoveMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAString aMessage, System.IntPtr aListener);
 		
-		/// <summary>
-        ///in messageName, in JSON </summary>
+		/// <summary>Member SendAsyncMessage </summary>
+		/// <param name='messageName'> </param>
+		/// <param name='obj'> </param>
+		/// <param name='jsContext'> </param>
+		/// <param name='argc'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendAsyncMessage();
+		void SendAsyncMessage([MarshalAs(UnmanagedType.LPStruct)] nsAString messageName, System.IntPtr obj, System.IntPtr jsContext, int argc);
 	}
 	
 	/// <summary>nsISyncMessageSender </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("cdb1a40b-9862-426c-ae8a-f5ab84e20e32")]
+	[Guid("21e5d940-d457-4c0f-bb5e-35c159ed19e3")]
 	public interface nsISyncMessageSender : nsIFrameMessageManager
 	{
 		
@@ -91,29 +94,33 @@ namespace Gecko
 		/// <param name='aMessage'> </param>
 		/// <param name='aListener'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void AddMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMessage, System.IntPtr aListener);
+		new void AddMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAString aMessage, System.IntPtr aListener);
 		
 		/// <summary>Member RemoveMessageListener </summary>
 		/// <param name='aMessage'> </param>
 		/// <param name='aListener'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void RemoveMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMessage, System.IntPtr aListener);
+		new void RemoveMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAString aMessage, System.IntPtr aListener);
+		
+		/// <summary>Member SendAsyncMessage </summary>
+		/// <param name='messageName'> </param>
+		/// <param name='obj'> </param>
+		/// <param name='jsContext'> </param>
+		/// <param name='argc'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SendAsyncMessage([MarshalAs(UnmanagedType.LPStruct)] nsAString messageName, System.IntPtr obj, System.IntPtr jsContext, int argc);
 		
 		/// <summary>
-        ///in messageName, in JSON </summary>
+        /// Returns an array of JSON objects.
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SendAsyncMessage();
-		
-		/// <summary>
-        ///in messageName, in JSON </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendSyncMessage();
+		System.IntPtr SendSyncMessage([MarshalAs(UnmanagedType.LPStruct)] nsAString messageName, System.IntPtr obj, System.IntPtr jsContext, int argc);
 	}
 	
 	/// <summary>nsIContentFrameMessageManager </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("6f23339f-2b5c-4f22-a03f-bb7ec101f83d")]
+	[Guid("78a1d024-60e3-4b7b-98cd-4c6b84b4f060")]
 	public interface nsIContentFrameMessageManager : nsISyncMessageSender
 	{
 		
@@ -121,23 +128,27 @@ namespace Gecko
 		/// <param name='aMessage'> </param>
 		/// <param name='aListener'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void AddMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMessage, System.IntPtr aListener);
+		new void AddMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAString aMessage, System.IntPtr aListener);
 		
 		/// <summary>Member RemoveMessageListener </summary>
 		/// <param name='aMessage'> </param>
 		/// <param name='aListener'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void RemoveMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMessage, System.IntPtr aListener);
+		new void RemoveMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAString aMessage, System.IntPtr aListener);
+		
+		/// <summary>Member SendAsyncMessage </summary>
+		/// <param name='messageName'> </param>
+		/// <param name='obj'> </param>
+		/// <param name='jsContext'> </param>
+		/// <param name='argc'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SendAsyncMessage([MarshalAs(UnmanagedType.LPStruct)] nsAString messageName, System.IntPtr obj, System.IntPtr jsContext, int argc);
 		
 		/// <summary>
-        ///in messageName, in JSON </summary>
+        /// Returns an array of JSON objects.
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SendAsyncMessage();
-		
-		/// <summary>
-        ///in messageName, in JSON </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SendSyncMessage();
+		new System.IntPtr SendSyncMessage([MarshalAs(UnmanagedType.LPStruct)] nsAString messageName, System.IntPtr obj, System.IntPtr jsContext, int argc);
 		
 		/// <summary>
         /// The current top level window in the frame or null.
@@ -157,7 +168,7 @@ namespace Gecko
         /// Print a string to stdout.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Dump([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aStr);
+		void Dump([MarshalAs(UnmanagedType.LPStruct)] nsAString aStr);
 		
 		/// <summary>
         /// If leak detection is enabled, print a note to the leak log that this
@@ -170,19 +181,19 @@ namespace Gecko
         /// Ascii base64 data to binary data and vice versa
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Atob([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAsciiString, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void Atob([MarshalAs(UnmanagedType.LPStruct)] nsAString aAsciiString, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>Member Btoa </summary>
 		/// <param name='aBase64Data'> </param>
 		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Btoa([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBase64Data, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void Btoa([MarshalAs(UnmanagedType.LPStruct)] nsAString aBase64Data, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 	}
 	
 	/// <summary>nsIInProcessContentFrameMessageManager </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("9c48d557-92fe-4edb-95fc-bfe97e77bdc3")]
+	[Guid("1f7af930-a232-4a84-a049-73eaa45f2db5")]
 	public interface nsIInProcessContentFrameMessageManager : nsIContentFrameMessageManager
 	{
 		
@@ -190,23 +201,27 @@ namespace Gecko
 		/// <param name='aMessage'> </param>
 		/// <param name='aListener'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void AddMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMessage, System.IntPtr aListener);
+		new void AddMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAString aMessage, System.IntPtr aListener);
 		
 		/// <summary>Member RemoveMessageListener </summary>
 		/// <param name='aMessage'> </param>
 		/// <param name='aListener'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void RemoveMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMessage, System.IntPtr aListener);
+		new void RemoveMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAString aMessage, System.IntPtr aListener);
+		
+		/// <summary>Member SendAsyncMessage </summary>
+		/// <param name='messageName'> </param>
+		/// <param name='obj'> </param>
+		/// <param name='jsContext'> </param>
+		/// <param name='argc'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SendAsyncMessage([MarshalAs(UnmanagedType.LPStruct)] nsAString messageName, System.IntPtr obj, System.IntPtr jsContext, int argc);
 		
 		/// <summary>
-        ///in messageName, in JSON </summary>
+        /// Returns an array of JSON objects.
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SendAsyncMessage();
-		
-		/// <summary>
-        ///in messageName, in JSON </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SendSyncMessage();
+		new System.IntPtr SendSyncMessage([MarshalAs(UnmanagedType.LPStruct)] nsAString messageName, System.IntPtr obj, System.IntPtr jsContext, int argc);
 		
 		/// <summary>
         /// The current top level window in the frame or null.
@@ -226,7 +241,7 @@ namespace Gecko
         /// Print a string to stdout.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Dump([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aStr);
+		new void Dump([MarshalAs(UnmanagedType.LPStruct)] nsAString aStr);
 		
 		/// <summary>
         /// If leak detection is enabled, print a note to the leak log that this
@@ -239,13 +254,13 @@ namespace Gecko
         /// Ascii base64 data to binary data and vice versa
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Atob([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAsciiString, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		new void Atob([MarshalAs(UnmanagedType.LPStruct)] nsAString aAsciiString, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>Member Btoa </summary>
 		/// <param name='aBase64Data'> </param>
 		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Btoa([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBase64Data, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		new void Btoa([MarshalAs(UnmanagedType.LPStruct)] nsAString aBase64Data, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>Member GetOwnerContent </summary>
 		/// <returns>A System.IntPtr</returns>
@@ -256,7 +271,7 @@ namespace Gecko
 	/// <summary>nsITreeItemFrameMessageManager </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("6331bbca-2c9f-4766-b3c7-ae75554bf1ec")]
+	[Guid("e91b0939-a74a-4c4f-8cfd-17dd42e8642a")]
 	public interface nsITreeItemFrameMessageManager : nsIFrameMessageManager
 	{
 		
@@ -264,18 +279,21 @@ namespace Gecko
 		/// <param name='aMessage'> </param>
 		/// <param name='aListener'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void AddMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMessage, System.IntPtr aListener);
+		new void AddMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAString aMessage, System.IntPtr aListener);
 		
 		/// <summary>Member RemoveMessageListener </summary>
 		/// <param name='aMessage'> </param>
 		/// <param name='aListener'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void RemoveMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMessage, System.IntPtr aListener);
+		new void RemoveMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAString aMessage, System.IntPtr aListener);
 		
-		/// <summary>
-        ///in messageName, in JSON </summary>
+		/// <summary>Member SendAsyncMessage </summary>
+		/// <param name='messageName'> </param>
+		/// <param name='obj'> </param>
+		/// <param name='jsContext'> </param>
+		/// <param name='argc'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SendAsyncMessage();
+		new void SendAsyncMessage([MarshalAs(UnmanagedType.LPStruct)] nsAString messageName, System.IntPtr obj, System.IntPtr jsContext, int argc);
 		
 		/// <summary>Member GetChildCountAttribute </summary>
 		/// <returns>A System.UInt32</returns>
@@ -293,7 +311,7 @@ namespace Gecko
 	/// <summary>nsIChromeFrameMessageManager </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("9e5c0526-aa4c-49f0-afbb-57f489cd9b59")]
+	[Guid("14e1f147-793d-4788-bbbb-ae806ecdddbb")]
 	public interface nsIChromeFrameMessageManager : nsITreeItemFrameMessageManager
 	{
 		
@@ -301,18 +319,21 @@ namespace Gecko
 		/// <param name='aMessage'> </param>
 		/// <param name='aListener'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void AddMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMessage, System.IntPtr aListener);
+		new void AddMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAString aMessage, System.IntPtr aListener);
 		
 		/// <summary>Member RemoveMessageListener </summary>
 		/// <param name='aMessage'> </param>
 		/// <param name='aListener'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void RemoveMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMessage, System.IntPtr aListener);
+		new void RemoveMessageListener([MarshalAs(UnmanagedType.LPStruct)] nsAString aMessage, System.IntPtr aListener);
 		
-		/// <summary>
-        ///in messageName, in JSON </summary>
+		/// <summary>Member SendAsyncMessage </summary>
+		/// <param name='messageName'> </param>
+		/// <param name='obj'> </param>
+		/// <param name='jsContext'> </param>
+		/// <param name='argc'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SendAsyncMessage();
+		new void SendAsyncMessage([MarshalAs(UnmanagedType.LPStruct)] nsAString messageName, System.IntPtr obj, System.IntPtr jsContext, int argc);
 		
 		/// <summary>Member GetChildCountAttribute </summary>
 		/// <returns>A System.UInt32</returns>
@@ -334,12 +355,12 @@ namespace Gecko
         /// only if the frame is already available.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void LoadFrameScript([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aURL, [MarshalAs(UnmanagedType.Bool)] bool aAllowDelayedLoad);
+		void LoadFrameScript([MarshalAs(UnmanagedType.LPStruct)] nsAString aURL, [MarshalAs(UnmanagedType.U1)] bool aAllowDelayedLoad);
 		
 		/// <summary>
         /// Removes aURL from the list of scripts which support delayed load.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveDelayedFrameScript([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aURL);
+		void RemoveDelayedFrameScript([MarshalAs(UnmanagedType.LPStruct)] nsAString aURL);
 	}
 }

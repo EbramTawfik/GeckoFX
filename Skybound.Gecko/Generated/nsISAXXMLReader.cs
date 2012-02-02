@@ -223,7 +223,7 @@ namespace Gecko
         /// @param value Turn the feature on/off.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFeature([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, [MarshalAs(UnmanagedType.Bool)] bool value);
+		void SetFeature([MarshalAs(UnmanagedType.LPStruct)] nsAString name, [MarshalAs(UnmanagedType.U1)] bool value);
 		
 		/// <summary>
         /// Look up the value of a feature flag. NOT CURRENTLY IMPLEMENTED.
@@ -240,9 +240,9 @@ namespace Gecko
         ///
         /// @param name String flag for a parser feature.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetFeature([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name);
+		bool GetFeature([MarshalAs(UnmanagedType.LPStruct)] nsAString name);
 		
 		/// <summary>
         /// Set the value of a property. NOT CURRENTLY IMPLEMENTED.
@@ -263,7 +263,7 @@ namespace Gecko
         /// @param value Turn the feature on/off.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetProperty([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, [MarshalAs(UnmanagedType.Interface)] nsISupports value);
+		void SetProperty([MarshalAs(UnmanagedType.LPStruct)] nsAString name, [MarshalAs(UnmanagedType.Interface)] nsISupports value);
 		
 		/// <summary>
         /// Look up the value of a property. NOT CURRENTLY IMPLEMENTED.
@@ -284,9 +284,9 @@ namespace Gecko
         /// @param name The property name, which is a fully-qualified URI.
         /// @return The current value of the property.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetProperty([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name);
+		bool GetProperty([MarshalAs(UnmanagedType.LPStruct)] nsAString name);
 		
 		/// <summary>
         ///
@@ -295,7 +295,7 @@ namespace Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ParseFromString([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase str, [MarshalAs(UnmanagedType.LPStr)] string contentType);
+		void ParseFromString([MarshalAs(UnmanagedType.LPStruct)] nsAString str, [MarshalAs(UnmanagedType.LPStr)] string contentType);
 		
 		/// <summary>
         ///

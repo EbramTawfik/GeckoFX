@@ -44,7 +44,7 @@ namespace Gecko
         /// suggesting this terminology.
         /// <http://www.tbray.org/ongoing/When/200x/2004/01/11/PostelPilgrim>
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetBozoAttribute();
 		
@@ -56,7 +56,7 @@ namespace Gecko
         /// <http://www.tbray.org/ongoing/When/200x/2004/01/11/PostelPilgrim>
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBozoAttribute([MarshalAs(UnmanagedType.Bool)] bool aBozo);
+		void SetBozoAttribute([MarshalAs(UnmanagedType.U1)] bool aBozo);
 		
 		/// <summary>
         /// The parsed feed or entry.

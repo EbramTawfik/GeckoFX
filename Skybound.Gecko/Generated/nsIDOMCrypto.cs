@@ -37,18 +37,18 @@ namespace Gecko
 		/// <summary>Member GetVersionAttribute </summary>
 		/// <param name='aVersion'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aVersion);
+		void GetVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aVersion);
 		
 		/// <summary>Member GetEnableSmartCardEventsAttribute </summary>
 		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetEnableSmartCardEventsAttribute();
 		
 		/// <summary>Member SetEnableSmartCardEventsAttribute </summary>
 		/// <param name='aEnableSmartCardEvents'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetEnableSmartCardEventsAttribute([MarshalAs(UnmanagedType.Bool)] bool aEnableSmartCardEvents);
+		void SetEnableSmartCardEventsAttribute([MarshalAs(UnmanagedType.U1)] bool aEnableSmartCardEvents);
 		
 		/// <summary>
         ///... </summary>
@@ -62,24 +62,24 @@ namespace Gecko
 		/// <param name='doForcedBackup'> </param>
 		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ImportUserCertificates([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase nickname, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase cmmfResponse, [MarshalAs(UnmanagedType.Bool)] bool doForcedBackup, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void ImportUserCertificates([MarshalAs(UnmanagedType.LPStruct)] nsAString nickname, [MarshalAs(UnmanagedType.LPStruct)] nsAString cmmfResponse, [MarshalAs(UnmanagedType.U1)] bool doForcedBackup, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>Member PopChallengeResponse </summary>
 		/// <param name='challenge'> </param>
 		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PopChallengeResponse([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase challenge, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void PopChallengeResponse([MarshalAs(UnmanagedType.LPStruct)] nsAString challenge, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>Member Random </summary>
 		/// <param name='numBytes'> </param>
 		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Random(int numBytes, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void Random(int numBytes, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         ///... </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SignText([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase stringToSign, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase caOption, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void SignText([MarshalAs(UnmanagedType.LPStruct)] nsAString stringToSign, [MarshalAs(UnmanagedType.LPStruct)] nsAString caOption, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>Member Logout </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

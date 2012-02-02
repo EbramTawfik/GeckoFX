@@ -53,7 +53,7 @@ namespace Gecko
         /// @return PR_TRUE if there are remaining elements in the enumerator.
         /// PR_FALSE if there are no more elements in the enumerator.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool HasMoreElements();
 		

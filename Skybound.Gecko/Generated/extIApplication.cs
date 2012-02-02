@@ -180,7 +180,7 @@ namespace Gecko
         /// The name of preference
         /// @returns true if the preference exists, false if not
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool Has([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
 		
@@ -262,7 +262,7 @@ namespace Gecko
 		/// <summary>
         /// Get the locked state of the preference. Set to a boolean value to (un)lock it.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetLockedAttribute();
 		
@@ -270,12 +270,12 @@ namespace Gecko
         /// Get the locked state of the preference. Set to a boolean value to (un)lock it.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetLockedAttribute([MarshalAs(UnmanagedType.Bool)] bool aLocked);
+		void SetLockedAttribute([MarshalAs(UnmanagedType.U1)] bool aLocked);
 		
 		/// <summary>
         /// Check if a preference has been modified by the user, or not.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetModifiedAttribute();
 		
@@ -323,7 +323,7 @@ namespace Gecko
 		/// <summary>
         /// Check if the extension is currently enabled, or not.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetEnabledAttribute();
 		
@@ -336,7 +336,7 @@ namespace Gecko
 		/// <summary>
         /// Indicates whether this is the extension's first run after install
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetFirstRunAttribute();
 		
@@ -384,7 +384,7 @@ namespace Gecko
         /// @returns true if an extension exists with the given id,
         /// false otherwise.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool Has([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aId);
 		
@@ -438,7 +438,7 @@ namespace Gecko
         /// @returns true if an item exists with the given name,
         /// false otherwise.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool Has([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
 		
@@ -529,7 +529,7 @@ namespace Gecko
         /// Quits the application (if nobody objects to quit-application-requested).
         /// @returns whether quitting will proceed
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool Quit();
 		
@@ -537,7 +537,7 @@ namespace Gecko
         /// Restarts the application (if nobody objects to quit-application-requested).
         /// @returns whether restarting will proceed
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool Restart();
 	}

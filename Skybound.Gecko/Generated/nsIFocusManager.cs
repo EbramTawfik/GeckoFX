@@ -184,7 +184,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMElement GetFocusedElementForWindow([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow, [MarshalAs(UnmanagedType.Bool)] bool aDeep, [MarshalAs(UnmanagedType.Interface)] ref nsIDOMWindow aFocusedWindow);
+		nsIDOMElement GetFocusedElementForWindow([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow, [MarshalAs(UnmanagedType.U1)] bool aDeep, [MarshalAs(UnmanagedType.Interface)] ref nsIDOMWindow aFocusedWindow);
 		
 		/// <summary>
         /// Moves the selection caret within aWindow to the current focus.
@@ -211,7 +211,7 @@ namespace Gecko
         /// window if this window is in the focused window chain.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void WindowShown([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow, [MarshalAs(UnmanagedType.Bool)] bool aNeedsFocus);
+		void WindowShown([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow, [MarshalAs(UnmanagedType.U1)] bool aNeedsFocus);
 		
 		/// <summary>
         /// Called when a document in a window has been hidden or otherwise can no

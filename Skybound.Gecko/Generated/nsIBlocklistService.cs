@@ -51,7 +51,7 @@ namespace Gecko
         /// @returns true if the item is compatible with this version of the
         /// application or this version of the toolkit, false, otherwise.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsAddonBlocklisted([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase id, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase version, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase appVersion, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase toolkitVersion);
 		

@@ -36,7 +36,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("bc6c156a-c41f-43dd-ace3-e3bca9894ed1")]
+	[Guid("910484d7-219c-4c72-b999-7a7e9c954646")]
 	public interface nsIDOMWindowUtils
 	{
 		
@@ -85,7 +85,7 @@ namespace Gecko
         /// the user.
         /// Cannot be accessed from unprivileged context (not content-accessible)
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetDocCharsetIsForcedAttribute();
 		
@@ -105,7 +105,7 @@ namespace Gecko
         /// privileges.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDocumentMetadata([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void GetDocumentMetadata([MarshalAs(UnmanagedType.LPStruct)] nsAString aName, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Force an immediate redraw of this window.  The parameter specifies
@@ -216,14 +216,14 @@ namespace Gecko
         /// during dispatch
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendMouseEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType, float aX, float aY, int aButton, int aClickCount, int aModifiers, [MarshalAs(UnmanagedType.Bool)] bool aIgnoreRootScrollFrame);
+		void SendMouseEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString aType, float aX, float aY, int aButton, int aClickCount, int aModifiers, [MarshalAs(UnmanagedType.U1)] bool aIgnoreRootScrollFrame);
 		
 		/// <summary>
         ///The same as sendMouseEvent but ensures that the event is dispatched to
         /// this DOM window or one of its children.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendMouseEventToWindow([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType, float aX, float aY, int aButton, int aClickCount, int aModifiers, [MarshalAs(UnmanagedType.Bool)] bool aIgnoreRootScrollFrame);
+		void SendMouseEventToWindow([MarshalAs(UnmanagedType.LPStruct)] nsAString aType, float aX, float aY, int aButton, int aClickCount, int aModifiers, [MarshalAs(UnmanagedType.U1)] bool aIgnoreRootScrollFrame);
 		
 		/// <summary>
         ///Synthesize a mouse scroll event for a window. The event types supported
@@ -247,7 +247,7 @@ namespace Gecko
         /// @param aModifiers modifiers pressed, using constants defined in nsIDOMNSEvent
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendMouseScrollEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType, float aX, float aY, int aButton, int aScrollFlags, int aDelta, int aModifiers);
+		void SendMouseScrollEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString aType, float aX, float aY, int aButton, int aScrollFlags, int aDelta, int aModifiers);
 		
 		/// <summary>
         /// Synthesize a key event to the window. The event types supported are:
@@ -269,9 +269,9 @@ namespace Gecko
         /// true otherwise.  In other words, true if and only if the
         /// default action was taken.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool SendKeyEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType, int aKeyCode, int aCharCode, int aModifiers, [MarshalAs(UnmanagedType.Bool)] bool aPreventDefault);
+		bool SendKeyEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString aType, int aKeyCode, int aCharCode, int aModifiers, [MarshalAs(UnmanagedType.U1)] bool aPreventDefault);
 		
 		/// <summary>
         /// See nsIWidget::SynthesizeNativeKeyEvent
@@ -281,7 +281,7 @@ namespace Gecko
         /// privileges.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendNativeKeyEvent(int aNativeKeyboardLayout, int aNativeKeyCode, int aModifierFlags, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCharacters, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aUnmodifiedCharacters);
+		void SendNativeKeyEvent(int aNativeKeyboardLayout, int aNativeKeyCode, int aModifierFlags, [MarshalAs(UnmanagedType.LPStruct)] nsAString aCharacters, [MarshalAs(UnmanagedType.LPStruct)] nsAString aUnmodifiedCharacters);
 		
 		/// <summary>
         /// See nsIWidget::SynthesizeNativeMouseEvent
@@ -302,7 +302,7 @@ namespace Gecko
         /// privileges.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ActivateNativeMenuItemAt([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase indexString);
+		void ActivateNativeMenuItemAt([MarshalAs(UnmanagedType.LPStruct)] nsAString indexString);
 		
 		/// <summary>
         /// See nsIWidget::ForceUpdateNativeMenuAt
@@ -312,7 +312,7 @@ namespace Gecko
         /// privileges.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ForceUpdateNativeMenuAt([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase indexString);
+		void ForceUpdateNativeMenuAt([MarshalAs(UnmanagedType.LPStruct)] nsAString indexString);
 		
 		/// <summary>
         /// Focus the element aElement. The element should be in the same document
@@ -383,7 +383,7 @@ namespace Gecko
         /// @param aModifiers modifiers pressed, using constants defined in nsIDOMNSEvent
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendSimpleGestureEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType, float aX, float aY, uint aDirection, double aDelta, int aModifiers);
+		void SendSimpleGestureEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString aType, float aX, float aY, uint aDirection, double aDelta, int aModifiers);
 		
 		/// <summary>
         /// Retrieve the element at point aX, aY in the window's document.
@@ -395,7 +395,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMElement ElementFromPoint(float aX, float aY, [MarshalAs(UnmanagedType.Bool)] bool aIgnoreRootScrollFrame, [MarshalAs(UnmanagedType.Bool)] bool aFlushLayout);
+		nsIDOMElement ElementFromPoint(float aX, float aY, [MarshalAs(UnmanagedType.U1)] bool aIgnoreRootScrollFrame, [MarshalAs(UnmanagedType.U1)] bool aFlushLayout);
 		
 		/// <summary>
         /// Retrieve all nodes that intersect a rect in the window's document.
@@ -413,7 +413,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMNodeList NodesFromRect(float aX, float aY, float aTopSize, float aRightSize, float aBottomSize, float aLeftSize, [MarshalAs(UnmanagedType.Bool)] bool aIgnoreRootScrollFrame, [MarshalAs(UnmanagedType.Bool)] bool aFlushLayout);
+		nsIDOMNodeList NodesFromRect(float aX, float aY, float aTopSize, float aRightSize, float aBottomSize, float aLeftSize, [MarshalAs(UnmanagedType.U1)] bool aIgnoreRootScrollFrame, [MarshalAs(UnmanagedType.U1)] bool aFlushLayout);
 		
 		/// <summary>
         /// Compare the two canvases, returning the number of differing pixels and
@@ -429,7 +429,7 @@ namespace Gecko
         /// Returns true if a MozAfterPaint event has been queued but not yet
         /// fired.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsMozAfterPaintPendingAttribute();
 		
@@ -441,7 +441,7 @@ namespace Gecko
         /// privileges and NS_ERROR_FAILURE if window doesn't have a document.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SuppressEventHandling([MarshalAs(UnmanagedType.Bool)] bool aSuppress);
+		void SuppressEventHandling([MarshalAs(UnmanagedType.U1)] bool aSuppress);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ClearMozAfterPaintEvents();
@@ -457,7 +457,7 @@ namespace Gecko
         /// on all windows.  Otherwise, enable them.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DisableNonTestMouseEvents([MarshalAs(UnmanagedType.Bool)] bool aDisable);
+		void DisableNonTestMouseEvents([MarshalAs(UnmanagedType.U1)] bool aDisable);
 		
 		/// <summary>
         /// Returns the scroll position of the window's currently loaded document.
@@ -466,13 +466,13 @@ namespace Gecko
         /// @see nsIDOMWindow::scrollX/Y
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetScrollXY([MarshalAs(UnmanagedType.Bool)] bool aFlushLayout, ref int aScrollX, ref int aScrollY);
+		void GetScrollXY([MarshalAs(UnmanagedType.U1)] bool aFlushLayout, ref int aScrollX, ref int aScrollY);
 		
 		/// <summary>
         /// Get IME open state. TRUE means 'Open', otherwise, 'Close'.
         /// This property works only when IMEEnabled is IME_STATUS_ENABLED.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIMEIsOpenAttribute();
 		
@@ -500,9 +500,9 @@ namespace Gecko
         /// @note Event handlers won't get aEvent as parameter, but a similar event.
         /// Also, aEvent should not be reused.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool DispatchDOMEventViaPresShell([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aTarget, [MarshalAs(UnmanagedType.Interface)] nsIDOMEvent aEvent, [MarshalAs(UnmanagedType.Bool)] bool aTrusted);
+		bool DispatchDOMEventViaPresShell([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aTarget, [MarshalAs(UnmanagedType.Interface)] nsIDOMEvent aEvent, [MarshalAs(UnmanagedType.U1)] bool aTrusted);
 		
 		/// <summary>
         ///in JSObjectPtr aObj </summary>
@@ -523,7 +523,7 @@ namespace Gecko
         /// "pasteTransferable"
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendContentCommandEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType, [MarshalAs(UnmanagedType.Interface)] nsITransferable aTransferable);
+		void SendContentCommandEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString aType, [MarshalAs(UnmanagedType.Interface)] nsITransferable aTransferable);
 		
 		/// <summary>
         /// Synthesize a composition event to the window.
@@ -540,13 +540,13 @@ namespace Gecko
         /// @param aLocale   The locale property value.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendCompositionEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aData, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aLocale);
+		void SendCompositionEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString aType, [MarshalAs(UnmanagedType.LPStruct)] nsAString aData, [MarshalAs(UnmanagedType.LPStruct)] nsAString aLocale);
 		
 		/// <summary>
         /// NOTE: These values must be same to NS_TEXTRANGE_* in nsGUIEvent.h
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendTextEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCompositionString, int aFirstClauseLength, uint aFirstClauseAttr, int aSecondClauseLength, uint aSecondClauseAttr, int aThirdClauseLength, uint aThirdClauseAttr, int aCaretStart, int aCaretLength);
+		void SendTextEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString aCompositionString, int aFirstClauseLength, uint aFirstClauseAttr, int aSecondClauseLength, uint aSecondClauseAttr, int aThirdClauseLength, uint aThirdClauseAttr, int aCaretStart, int aCaretLength);
 		
 		/// <summary>
         /// Synthesize a query content event.
@@ -571,9 +571,9 @@ namespace Gecko
         /// |aOffset + aLength|.
         /// @return True, if succeeded.  Otherwise, false.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool SendSelectionSetEvent(uint aOffset, uint aLength, [MarshalAs(UnmanagedType.Bool)] bool aReverse);
+		bool SendSelectionSetEvent(uint aOffset, uint aLength, [MarshalAs(UnmanagedType.U1)] bool aReverse);
 		
 		/// <summary>
         /// Perform the equivalent of:
@@ -590,7 +590,7 @@ namespace Gecko
         /// requirements (which are essentially testing 'color').
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetVisitedDependentComputedStyle([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPseudoElement, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPropertyName, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void GetVisitedDependentComputedStyle([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement, [MarshalAs(UnmanagedType.LPStruct)] nsAString aPseudoElement, [MarshalAs(UnmanagedType.LPStruct)] nsAString aPropertyName, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         ///obj </summary>
@@ -601,14 +601,14 @@ namespace Gecko
         /// Get the id of the outer window of this window.  This will never throw.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		ulong GetOuterWindowIDAttribute();
+		uint GetOuterWindowIDAttribute();
 		
 		/// <summary>
         /// Get the id of the current inner window of this window.  If there
         /// is no current inner window, throws NS_ERROR_NOT_AVAILABLE.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		ulong GetCurrentInnerWindowIDAttribute();
+		uint GetCurrentInnerWindowIDAttribute();
 		
 		/// <summary>
         /// Put the window into a state where scripts are frozen and events
@@ -643,7 +643,7 @@ namespace Gecko
 		/// <summary>
         /// Is the window is in a modal state? [See enterModalState()]
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsInModalState();
 		
@@ -670,7 +670,7 @@ namespace Gecko
         /// error if there is no widget associated with this window.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetLayerManagerTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aLayerManagerType);
+		void GetLayerManagerTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aLayerManagerType);
 		
 		/// <summary>
         /// The DPI of the display
@@ -683,7 +683,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMWindow GetOuterWindowWithId(ulong aOuterWindowID);
+		nsIDOMWindow GetOuterWindowWithId(uint aOuterWindowID);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RenderDocument(nsConstRect aRect, uint aFlags, nscolor aBackgroundColor, System.IntPtr aThebesContext);
@@ -708,7 +708,7 @@ namespace Gecko
         /// they must call restoreNormalRefresh.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AdvanceTimeAndRefresh(long aMilliseconds);
+		void AdvanceTimeAndRefresh(int aMilliseconds);
 		
 		/// <summary>
         /// Undoes the effects of advanceTimeAndRefresh.
@@ -724,7 +724,7 @@ namespace Gecko
         /// property.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		double ComputeAnimationDistance([MarshalAs(UnmanagedType.Interface)] nsIDOMElement element, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase property, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase value1, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase value2);
+		double ComputeAnimationDistance([MarshalAs(UnmanagedType.Interface)] nsIDOMElement element, [MarshalAs(UnmanagedType.LPStruct)] nsAString property, [MarshalAs(UnmanagedType.LPStruct)] nsAString value1, [MarshalAs(UnmanagedType.LPStruct)] nsAString value2);
 		
 		/// <summary>
         /// Wrap an nsIFile in an nsIDOMFile
@@ -755,15 +755,23 @@ namespace Gecko
         /// no leaf layers overlap, and the union of the leaf layers is exactly
         /// the bounds of the window. Always returns true in non-DEBUG builds.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool LeafLayersPartitionWindow();
 		
 		/// <summary>
         /// true if the (current inner) window may have event listeners for touch events.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetMayHaveTouchEventListenersAttribute();
+		
+		/// <summary>
+        /// Check if any ThebesLayer painting has been done for this element,
+        /// clears the painted flags if they have.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool CheckAndClearPaintedState([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement);
 	}
 }

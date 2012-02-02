@@ -47,7 +47,7 @@ namespace Gecko
         /// @return the MIME type specified in the header, in lower-case.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ParseContentType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aTypeHeader, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aCharset, [MarshalAs(UnmanagedType.Bool)] ref bool aHadCharset, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase retval);
+		void ParseContentType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aTypeHeader, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aCharset, [MarshalAs(UnmanagedType.U1)] ref bool aHadCharset, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
 		
 		/// <summary>
         /// Test whether the given URI's handler has the given protocol flags.
@@ -58,7 +58,7 @@ namespace Gecko
         /// @return whether the protocol handler for aURI has all the flags
         /// in aFlags.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool ProtocolHasFlags([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, uint aFlag);
 		
@@ -73,7 +73,7 @@ namespace Gecko
         /// @return whether any of the protocol handlers involved have all the flags
         /// in aFlags.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool URIChainHasFlags([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, uint aFlags);
 		
@@ -100,7 +100,7 @@ namespace Gecko
         /// escape a string with %00-style escaping
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EscapeString([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aString, uint aEscapeType, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
+		void EscapeString([MarshalAs(UnmanagedType.LPStruct)] nsACString aString, uint aEscapeType, [MarshalAs(UnmanagedType.LPStruct)] nsACString retval);
 		
 		/// <summary>
         /// %XX-Escape invalid chars in a URL segment.
@@ -112,7 +112,7 @@ namespace Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EscapeURL([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aStr, uint aFlags, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
+		void EscapeURL([MarshalAs(UnmanagedType.LPStruct)] nsACString aStr, uint aFlags, [MarshalAs(UnmanagedType.LPStruct)] nsACString retval);
 		
 		/// <summary>
         /// Expands URL escape sequences
@@ -124,7 +124,7 @@ namespace Gecko
         /// @return unescaped string
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UnescapeString([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aStr, uint aFlags, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
+		void UnescapeString([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aStr, uint aFlags, [MarshalAs(UnmanagedType.LPStruct)] nsACString retval);
 		
 		/// <summary>
         /// Extract the charset parameter location and value from a content-type
@@ -148,8 +148,8 @@ namespace Gecko
         /// cases when parseContentType would claim to have a charset, if the type
         /// that won out does not have a charset parameter specified.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool ExtractCharsetFromContentType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aTypeHeader, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aCharset, ref int aCharsetStart, ref int aCharsetEnd);
+		bool ExtractCharsetFromContentType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aTypeHeader, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aCharset, ref int aCharsetStart, ref int aCharsetEnd);
 	}
 }

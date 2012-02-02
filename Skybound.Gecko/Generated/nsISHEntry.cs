@@ -66,7 +66,7 @@ namespace Gecko
         /// history entries created as a result of a subframe
         /// navigation.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetIsSubFrameAttribute();
 		
@@ -98,14 +98,14 @@ namespace Gecko
 		
 		/// <summary>
         ///Whether the content viewer is marked "sticky" </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetStickyAttribute();
 		
 		/// <summary>
         ///Whether the content viewer is marked "sticky" </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetStickyAttribute([MarshalAs(UnmanagedType.Bool)] bool aSticky);
+		void SetStickyAttribute([MarshalAs(UnmanagedType.U1)] bool aSticky);
 		
 		/// <summary>
         ///Saved state of the global window object </summary>
@@ -171,7 +171,7 @@ namespace Gecko
 		/// <summary>
         ///Title for the document </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTitle([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTitle);
+		void SetTitle([MarshalAs(UnmanagedType.LPStruct)] nsAString aTitle);
 		
 		/// <summary>
         ///Post Data for the document </summary>
@@ -246,39 +246,39 @@ namespace Gecko
 		
 		/// <summary>
         ///attribute to indicate whether layoutHistoryState should be saved </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetSaveLayoutStateFlagAttribute();
 		
 		/// <summary>
         ///attribute to indicate whether layoutHistoryState should be saved </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSaveLayoutStateFlagAttribute([MarshalAs(UnmanagedType.Bool)] bool aSaveLayoutStateFlag);
+		void SetSaveLayoutStateFlagAttribute([MarshalAs(UnmanagedType.U1)] bool aSaveLayoutStateFlag);
 		
 		/// <summary>
         ///attribute to indicate whether the page is already expired in cache </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetExpirationStatusAttribute();
 		
 		/// <summary>
         ///attribute to indicate whether the page is already expired in cache </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetExpirationStatusAttribute([MarshalAs(UnmanagedType.Bool)] bool aExpirationStatus);
+		void SetExpirationStatusAttribute([MarshalAs(UnmanagedType.U1)] bool aExpirationStatus);
 		
 		/// <summary>
         /// attribute to indicate the content-type of the document that this
         /// is a session history entry for
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetContentTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aContentType);
+		void GetContentTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aContentType);
 		
 		/// <summary>
         /// attribute to indicate the content-type of the document that this
         /// is a session history entry for
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetContentTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aContentType);
+		void SetContentTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aContentType);
 		
 		/// <summary>
         /// If we created this SHEntry via history.pushState or modified it via
@@ -291,7 +291,7 @@ namespace Gecko
         /// true.
         ///
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetURIWasModifiedAttribute();
 		
@@ -307,7 +307,7 @@ namespace Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetURIWasModifiedAttribute([MarshalAs(UnmanagedType.Bool)] bool aURIWasModified);
+		void SetURIWasModifiedAttribute([MarshalAs(UnmanagedType.U1)] bool aURIWasModified);
 		
 		/// <summary>
         ///Set/Get scrollers' positon in anchored pages </summary>
@@ -320,7 +320,7 @@ namespace Gecko
 		/// <summary>
         ///Additional ways to create an entry </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Create([MarshalAs(UnmanagedType.Interface)] nsIURI URI, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase title, [MarshalAs(UnmanagedType.Interface)] nsIInputStream inputStream, System.IntPtr layoutHistoryState, [MarshalAs(UnmanagedType.Interface)] nsISupports cacheKey, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase contentType, [MarshalAs(UnmanagedType.Interface)] nsISupports owner, ulong docshellID, [MarshalAs(UnmanagedType.Bool)] bool dynamicCreation);
+		void Create([MarshalAs(UnmanagedType.Interface)] nsIURI URI, [MarshalAs(UnmanagedType.LPStruct)] nsAString title, [MarshalAs(UnmanagedType.Interface)] nsIInputStream inputStream, System.IntPtr layoutHistoryState, [MarshalAs(UnmanagedType.Interface)] nsISupports cacheKey, [MarshalAs(UnmanagedType.LPStruct)] nsACString contentType, [MarshalAs(UnmanagedType.Interface)] nsISupports owner, uint docshellID, [MarshalAs(UnmanagedType.U1)] bool dynamicCreation);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -329,7 +329,7 @@ namespace Gecko
 		/// <summary>
         ///Attribute that indicates if this entry is for a subframe navigation </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetIsSubFrame([MarshalAs(UnmanagedType.Bool)] bool aFlag);
+		void SetIsSubFrame([MarshalAs(UnmanagedType.U1)] bool aFlag);
 		
 		/// <summary>
         ///Return any content viewer present in or below this node in the
@@ -388,7 +388,7 @@ namespace Gecko
 		
 		/// <summary>
         ///Returns true if this shistory entry is storing a detached editor. </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool HasDetachedEditor();
 		
@@ -396,7 +396,7 @@ namespace Gecko
         /// Returns true if the related docshell was added because of
         /// dynamic addition of an iframe/frame.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsDynamicallyAdded();
 		
@@ -404,7 +404,7 @@ namespace Gecko
         /// Returns true if any of the child entries returns true
         /// when isDynamicallyAdded is called on it.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool HasDynamicallyAddedChild();
 		
@@ -412,13 +412,13 @@ namespace Gecko
         /// The history ID of the docshell.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		ulong GetDocshellIDAttribute();
+		uint GetDocshellIDAttribute();
 		
 		/// <summary>
         /// The history ID of the docshell.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDocshellIDAttribute(ulong aDocshellID);
+		void SetDocshellIDAttribute(uint aDocshellID);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -429,7 +429,7 @@ namespace Gecko
         /// the BFCache entry will evict the SHEntry, since the two entries
         /// correspond to the same document.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool HasBFCacheEntry([MarshalAs(UnmanagedType.Interface)] nsIBFCacheEntry aEntry);
 		
@@ -453,7 +453,7 @@ namespace Gecko
         /// particular, sharesDocumentWith(aEntry) is guaranteed to return true if
         /// it's preceeded by a call to adoptBFCacheEntry(aEntry).
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool SharesDocumentWith([MarshalAs(UnmanagedType.Interface)] nsISHEntry aEntry);
 	}

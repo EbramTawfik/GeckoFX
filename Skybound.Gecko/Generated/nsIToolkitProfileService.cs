@@ -36,25 +36,25 @@ namespace Gecko
 		
 		/// <summary>Member GetStartWithLastProfileAttribute </summary>
 		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetStartWithLastProfileAttribute();
 		
 		/// <summary>Member SetStartWithLastProfileAttribute </summary>
 		/// <param name='aStartWithLastProfile'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetStartWithLastProfileAttribute([MarshalAs(UnmanagedType.Bool)] bool aStartWithLastProfile);
+		void SetStartWithLastProfileAttribute([MarshalAs(UnmanagedType.U1)] bool aStartWithLastProfile);
 		
 		/// <summary>Member GetStartOfflineAttribute </summary>
 		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetStartOfflineAttribute();
 		
 		/// <summary>Member SetStartOfflineAttribute </summary>
 		/// <param name='aStartOffline'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetStartOfflineAttribute([MarshalAs(UnmanagedType.Bool)] bool aStartOffline);
+		void SetStartOfflineAttribute([MarshalAs(UnmanagedType.U1)] bool aStartOffline);
 		
 		/// <summary>
         ///nsIToolkitProfile </summary>

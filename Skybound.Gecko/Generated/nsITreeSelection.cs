@@ -50,7 +50,7 @@ namespace Gecko
 		/// <summary>
         /// This attribute is a boolean indicating single selection.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetSingleAttribute();
 		
@@ -64,7 +64,7 @@ namespace Gecko
         /// Indicates whether or not the row at the specified index is
         /// part of the selection.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsSelected(int index);
 		
@@ -92,7 +92,7 @@ namespace Gecko
         /// else.  If augment is false, everything is cleared except for the specified range.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RangedSelect(int startIndex, int endIndex, [MarshalAs(UnmanagedType.Bool)] bool augment);
+		void RangedSelect(int startIndex, int endIndex, [MarshalAs(UnmanagedType.U1)] bool augment);
 		
 		/// <summary>
         /// Clears the range.
@@ -151,7 +151,7 @@ namespace Gecko
         /// a sort.
         /// Note: setting this attribute to false will fire a select event.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetSelectEventsSuppressedAttribute();
 		
@@ -164,7 +164,7 @@ namespace Gecko
         /// Note: setting this attribute to false will fire a select event.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSelectEventsSuppressedAttribute([MarshalAs(UnmanagedType.Bool)] bool aSelectEventsSuppressed);
+		void SetSelectEventsSuppressedAttribute([MarshalAs(UnmanagedType.U1)] bool aSelectEventsSuppressed);
 		
 		/// <summary>
         /// The current item (the one that gets a focus rect in addition to being
@@ -228,7 +228,7 @@ namespace Gecko
 		/// <summary>
         /// This attribute is a boolean indicating single selection.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetSingleAttribute();
 		
@@ -242,7 +242,7 @@ namespace Gecko
         /// Indicates whether or not the row at the specified index is
         /// part of the selection.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsSelected(int index);
 		
@@ -270,7 +270,7 @@ namespace Gecko
         /// else.  If augment is false, everything is cleared except for the specified range.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void RangedSelect(int startIndex, int endIndex, [MarshalAs(UnmanagedType.Bool)] bool augment);
+		new void RangedSelect(int startIndex, int endIndex, [MarshalAs(UnmanagedType.U1)] bool augment);
 		
 		/// <summary>
         /// Clears the range.
@@ -325,7 +325,7 @@ namespace Gecko
         /// a sort.
         /// Note: setting this attribute to false will fire a select event.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetSelectEventsSuppressedAttribute();
 		
@@ -338,7 +338,7 @@ namespace Gecko
         /// Note: setting this attribute to false will fire a select event.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetSelectEventsSuppressedAttribute([MarshalAs(UnmanagedType.Bool)] bool aSelectEventsSuppressed);
+		new void SetSelectEventsSuppressedAttribute([MarshalAs(UnmanagedType.U1)] bool aSelectEventsSuppressed);
 		
 		/// <summary>
         /// The current item (the one that gets a focus rect in addition to being

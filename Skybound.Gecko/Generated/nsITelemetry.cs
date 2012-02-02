@@ -75,7 +75,7 @@ namespace Gecko
 		/// <summary>
         /// Set this to false to disable gathering of telemetry statistics.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetCanRecordAttribute();
 		
@@ -83,6 +83,6 @@ namespace Gecko
         /// Set this to false to disable gathering of telemetry statistics.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCanRecordAttribute([MarshalAs(UnmanagedType.Bool)] bool aCanRecord);
+		void SetCanRecordAttribute([MarshalAs(UnmanagedType.U1)] bool aCanRecord);
 	}
 }

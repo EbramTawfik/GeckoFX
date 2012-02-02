@@ -67,7 +67,7 @@ namespace Gecko
         ///
         /// @see setBoolPref
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetBoolPref([MarshalAs(UnmanagedType.LPStr)] string aPrefName);
 		
@@ -83,7 +83,7 @@ namespace Gecko
         /// @see getBoolPref
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetBoolPref([MarshalAs(UnmanagedType.LPStr)] string aPrefName, [MarshalAs(UnmanagedType.Bool)] bool aValue);
+		new void SetBoolPref([MarshalAs(UnmanagedType.LPStr)] string aPrefName, [MarshalAs(UnmanagedType.U1)] bool aValue);
 		
 		/// <summary>
         /// Called to get the state of an individual string preference.
@@ -236,7 +236,7 @@ namespace Gecko
         /// @return boolean  true  The preference has a user set value.
         /// false The preference only has a default value.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool PrefHasUserValue([MarshalAs(UnmanagedType.LPStr)] string aPrefName);
 		
@@ -256,7 +256,7 @@ namespace Gecko
         /// @see lockPref
         /// @see unlockPref
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool PrefIsLocked([MarshalAs(UnmanagedType.LPStr)] string aPrefName);
 		
@@ -395,7 +395,7 @@ namespace Gecko
         /// @see removeObserver
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void AddObserver([MarshalAs(UnmanagedType.LPStr)] string aDomain, [MarshalAs(UnmanagedType.Interface)] nsIObserver aObserver, [MarshalAs(UnmanagedType.Bool)] bool aHoldWeak);
+		new void AddObserver([MarshalAs(UnmanagedType.LPStr)] string aDomain, [MarshalAs(UnmanagedType.Interface)] nsIObserver aObserver, [MarshalAs(UnmanagedType.U1)] bool aHoldWeak);
 		
 		/// <summary>
         /// Remove a preference change observer.

@@ -34,7 +34,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("6a65dc92-66e3-407a-a370-590a6c54664a")]
+	[Guid("adc6a1e2-9fd7-4d28-a7f9-9c653313124b")]
 	public interface nsIIDBObjectStore
 	{
 		
@@ -44,10 +44,10 @@ namespace Gecko
         /// for more information.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
+		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetKeyPathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aKeyPath);
+		void GetKeyPathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aKeyPath);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetIndexNamesAttribute();
@@ -61,13 +61,13 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIIDBRequest Get([MarshalAs(UnmanagedType.Interface)] nsIVariant key);
+		nsIIDBRequest Get(System.IntPtr key, System.IntPtr jsContext);
 		
 		/// <summary>
         ///unlimited </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIIDBRequest GetAll([MarshalAs(UnmanagedType.Interface)] nsIIDBKeyRange key, uint limit, int argc);
+		nsIIDBRequest GetAll(System.IntPtr key, uint limit, System.IntPtr jsContext, int argc);
 		
 		/// <summary>
         ///undefined </summary>
@@ -99,22 +99,29 @@ namespace Gecko
         ///NEXT </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIIDBRequest OpenCursor([MarshalAs(UnmanagedType.Interface)] nsIIDBKeyRange range, ushort direction, int argc);
+		nsIIDBRequest OpenCursor(System.IntPtr range, ushort direction, System.IntPtr jsContext, int argc);
 		
 		/// <summary>
         ///none </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIIDBIndex CreateIndex([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase keyPath, System.IntPtr options, System.IntPtr jsContext);
+		nsIIDBIndex CreateIndex([MarshalAs(UnmanagedType.LPStruct)] nsAString name, [MarshalAs(UnmanagedType.LPStruct)] nsAString keyPath, System.IntPtr options, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Returns object immediately
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIIDBIndex Index([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name);
+		nsIIDBIndex Index([MarshalAs(UnmanagedType.LPStruct)] nsAString name);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DeleteIndex([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name);
+		void DeleteIndex([MarshalAs(UnmanagedType.LPStruct)] nsAString name);
+		
+		/// <summary>
+        /// Accepts null, a key value, or a nsIIDBKeyRange object.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIIDBRequest Count(System.IntPtr key, System.IntPtr jsContext, int argc);
 	}
 }

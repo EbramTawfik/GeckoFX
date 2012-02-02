@@ -55,7 +55,7 @@ namespace Gecko
         /// OnStopRequest has fired).
         /// @note Suspended requests are still considered pending.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsPending();
 		
@@ -176,7 +176,7 @@ namespace Gecko
         /// NOTE: at least one of the streams must be buffered.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init([MarshalAs(UnmanagedType.Interface)] nsIInputStream aSource, [MarshalAs(UnmanagedType.Interface)] nsIOutputStream aSink, [MarshalAs(UnmanagedType.Interface)] nsIEventTarget aTarget, [MarshalAs(UnmanagedType.Bool)] bool aSourceBuffered, [MarshalAs(UnmanagedType.Bool)] bool aSinkBuffered, uint aChunkSize, [MarshalAs(UnmanagedType.Bool)] bool aCloseSource, [MarshalAs(UnmanagedType.Bool)] bool aCloseSink);
+		void Init([MarshalAs(UnmanagedType.Interface)] nsIInputStream aSource, [MarshalAs(UnmanagedType.Interface)] nsIOutputStream aSink, [MarshalAs(UnmanagedType.Interface)] nsIEventTarget aTarget, [MarshalAs(UnmanagedType.U1)] bool aSourceBuffered, [MarshalAs(UnmanagedType.U1)] bool aSinkBuffered, uint aChunkSize, [MarshalAs(UnmanagedType.U1)] bool aCloseSource, [MarshalAs(UnmanagedType.U1)] bool aCloseSink);
 		
 		/// <summary>
         /// asyncCopy triggers the start of the copy.  The observer will be notified

@@ -64,6 +64,6 @@ namespace Gecko
         /// XXX document this method!  (see bug 328915)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnFTPControlLog([MarshalAs(UnmanagedType.Bool)] bool server, [MarshalAs(UnmanagedType.LPStr)] string msg);
+		void OnFTPControlLog([MarshalAs(UnmanagedType.U1)] bool server, [MarshalAs(UnmanagedType.LPStr)] string msg);
 	}
 }

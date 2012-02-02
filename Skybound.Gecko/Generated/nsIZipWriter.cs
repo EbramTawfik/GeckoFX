@@ -65,7 +65,7 @@ namespace Gecko
         /// @throws NS_ERROR_NOT_INITIALIZED if no zip file has been opened
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCommentAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aComment);
+		void GetCommentAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aComment);
 		
 		/// <summary>
         /// Gets or sets the comment associated with the open zip file.
@@ -73,12 +73,12 @@ namespace Gecko
         /// @throws NS_ERROR_NOT_INITIALIZED if no zip file has been opened
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCommentAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aComment);
+		void SetCommentAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aComment);
 		
 		/// <summary>
         /// Indicates that operations on the background queue are being performed.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetInQueueAttribute();
 		
@@ -114,16 +114,16 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIZipEntry GetEntry([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aZipEntry);
+		nsIZipEntry GetEntry([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aZipEntry);
 		
 		/// <summary>
         /// Checks whether the zipfile contains an entry specified by zipEntry.
         ///
         /// @param aZipEntry the path of the entry
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool HasEntry([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aZipEntry);
+		bool HasEntry([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aZipEntry);
 		
 		/// <summary>
         /// Adds a new directory entry to the zip file. If aZipEntry does not end with
@@ -140,7 +140,7 @@ namespace Gecko
         /// @throws NS_ERROR_IN_PROGRESS if another operation is currently in progress
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddEntryDirectory([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aZipEntry, long aModTime, [MarshalAs(UnmanagedType.Bool)] bool aQueue);
+		void AddEntryDirectory([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aZipEntry, ulong aModTime, [MarshalAs(UnmanagedType.U1)] bool aQueue);
 		
 		/// <summary>
         /// Adds a new file or directory to the zip file. If the specified file is
@@ -159,7 +159,7 @@ namespace Gecko
         /// @throws NS_ERROR_FILE_NOT_FOUND if file does not exist
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddEntryFile([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aZipEntry, int aCompression, [MarshalAs(UnmanagedType.Interface)] nsIFile aFile, [MarshalAs(UnmanagedType.Bool)] bool aQueue);
+		void AddEntryFile([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aZipEntry, int aCompression, [MarshalAs(UnmanagedType.Interface)] nsIFile aFile, [MarshalAs(UnmanagedType.U1)] bool aQueue);
 		
 		/// <summary>
         /// Adds data from a channel to the zip file. If the operation is performed
@@ -178,7 +178,7 @@ namespace Gecko
         /// @throws NS_ERROR_IN_PROGRESS if another operation is currently in progress
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddEntryChannel([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aZipEntry, long aModTime, int aCompression, [MarshalAs(UnmanagedType.Interface)] nsIChannel aChannel, [MarshalAs(UnmanagedType.Bool)] bool aQueue);
+		void AddEntryChannel([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aZipEntry, ulong aModTime, int aCompression, [MarshalAs(UnmanagedType.Interface)] nsIChannel aChannel, [MarshalAs(UnmanagedType.U1)] bool aQueue);
 		
 		/// <summary>
         /// Adds data from an input stream to the zip file.
@@ -195,7 +195,7 @@ namespace Gecko
         /// @throws NS_ERROR_IN_PROGRESS if another operation is currently in progress
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddEntryStream([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aZipEntry, long aModTime, int aCompression, [MarshalAs(UnmanagedType.Interface)] nsIInputStream aStream, [MarshalAs(UnmanagedType.Bool)] bool aQueue);
+		void AddEntryStream([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aZipEntry, ulong aModTime, int aCompression, [MarshalAs(UnmanagedType.Interface)] nsIInputStream aStream, [MarshalAs(UnmanagedType.U1)] bool aQueue);
 		
 		/// <summary>
         /// Removes an existing entry from the zip file.
@@ -210,7 +210,7 @@ namespace Gecko
         /// @throws <other-error> on failure to update the zip file
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveEntry([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aZipEntry, [MarshalAs(UnmanagedType.Bool)] bool aQueue);
+		void RemoveEntry([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aZipEntry, [MarshalAs(UnmanagedType.U1)] bool aQueue);
 		
 		/// <summary>
         /// Processes all queued items until complete or some error occurs. The

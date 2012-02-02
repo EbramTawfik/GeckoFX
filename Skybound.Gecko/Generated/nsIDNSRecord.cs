@@ -76,7 +76,7 @@ namespace Gecko
 		/// <summary>
         /// this function returns true if there is another address in the record.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool HasMore();
 		

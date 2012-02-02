@@ -152,7 +152,7 @@ namespace Gecko
         /// @param name
         /// The name of the requested child key.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool HasChild([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name);
 		
@@ -177,7 +177,7 @@ namespace Gecko
         /// @param name
         /// The name of the requested value.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool HasValue([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name);
 		
@@ -318,7 +318,7 @@ namespace Gecko
         /// Indicates whether or not to also watch child keys.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void StartWatching([MarshalAs(UnmanagedType.Bool)] bool recurse);
+		void StartWatching([MarshalAs(UnmanagedType.U1)] bool recurse);
 		
 		/// <summary>
         /// This method stops any watching of the key initiated by a call to
@@ -331,7 +331,7 @@ namespace Gecko
         /// This method returns true if the key is being watched for changes (i.e.,
         /// if startWatching() was called).
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsWatching();
 		
@@ -339,7 +339,7 @@ namespace Gecko
         /// This method returns true if the key has changed and false otherwise.
         /// This method will always return false if startWatching was not called.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool HasChanged();
 	}

@@ -70,7 +70,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISimpleEnumerator GetZOrderDOMWindowEnumerator([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string aWindowType, [MarshalAs(UnmanagedType.Bool)] bool aFrontToBack);
+		nsISimpleEnumerator GetZOrderDOMWindowEnumerator([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string aWindowType, [MarshalAs(UnmanagedType.U1)] bool aFrontToBack);
 		
 		/// <summary>
         ///Identical to getZOrderDOMWindowEnumerator except:
@@ -78,7 +78,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISimpleEnumerator GetZOrderXULWindowEnumerator([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string aWindowType, [MarshalAs(UnmanagedType.Bool)] bool aFrontToBack);
+		nsISimpleEnumerator GetZOrderXULWindowEnumerator([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string aWindowType, [MarshalAs(UnmanagedType.U1)] bool aFrontToBack);
 		
 		/// <summary>
         ///This is a shortcut for simply fetching the first window in
@@ -157,7 +157,7 @@ namespace Gecko
         /// @return PR_TRUE if the position returned is different from
         /// the position given.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool CalculateZPosition([MarshalAs(UnmanagedType.Interface)] nsIXULWindow inWindow, uint inPosition, System.IntPtr inBelow, ref uint outPosition, ref System.IntPtr outBelow);
 		

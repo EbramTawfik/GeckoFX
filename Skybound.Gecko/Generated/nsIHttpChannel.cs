@@ -44,7 +44,7 @@ namespace Gecko
         /// The name of the request.  Often this is the URI of the request.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aName);
+		new void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName);
 		
 		/// <summary>
         /// Indicates whether the request is pending. nsIRequest::isPending is
@@ -61,7 +61,7 @@ namespace Gecko
         /// OnStopRequest has fired).
         /// @note Suspended requests are still considered pending.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsPending();
 		
@@ -294,7 +294,7 @@ namespace Gecko
         /// Any implementation of nsIChannel must follow these rules.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetContentTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aContentType);
+		new void GetContentTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aContentType);
 		
 		/// <summary>
         /// The MIME type of the channel's content if available.
@@ -322,7 +322,7 @@ namespace Gecko
         /// Any implementation of nsIChannel must follow these rules.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetContentTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aContentType);
+		new void SetContentTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aContentType);
 		
 		/// <summary>
         /// The character set of the channel's content if available and if applicable.
@@ -331,7 +331,7 @@ namespace Gecko
         /// The value of the contentCharset attribute is a mixedcase string.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetContentCharsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aContentCharset);
+		new void GetContentCharsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aContentCharset);
 		
 		/// <summary>
         /// The character set of the channel's content if available and if applicable.
@@ -340,7 +340,7 @@ namespace Gecko
         /// The value of the contentCharset attribute is a mixedcase string.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetContentCharsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aContentCharset);
+		new void SetContentCharsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aContentCharset);
 		
 		/// <summary>
         /// The length of the data associated with the channel if available.  A value
@@ -439,7 +439,7 @@ namespace Gecko
         /// attribute is empty/missing.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetContentDispositionFilenameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aContentDispositionFilename);
+		new void GetContentDispositionFilenameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aContentDispositionFilename);
 		
 		/// <summary>
         /// Access to the raw Content-Disposition header if available and applicable.
@@ -450,7 +450,7 @@ namespace Gecko
         /// @deprecated Use contentDisposition/contentDispositionFilename instead.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetContentDispositionHeaderAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aContentDispositionHeader);
+		new void GetContentDispositionHeaderAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aContentDispositionHeader);
 		
 		/// <summary>
         /// Set/get the HTTP request method (default is "GET").  Setter is case
@@ -466,7 +466,7 @@ namespace Gecko
         /// @throws NS_ERROR_IN_PROGRESS if set after the channel has been opened.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetRequestMethodAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aRequestMethod);
+		void GetRequestMethodAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aRequestMethod);
 		
 		/// <summary>
         /// Set/get the HTTP request method (default is "GET").  Setter is case
@@ -482,7 +482,7 @@ namespace Gecko
         /// @throws NS_ERROR_IN_PROGRESS if set after the channel has been opened.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetRequestMethodAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aRequestMethod);
+		void SetRequestMethodAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aRequestMethod);
 		
 		/// <summary>
         /// Get/set the HTTP referrer URI.  This is the address (URI) of the
@@ -532,7 +532,7 @@ namespace Gecko
         /// @throws NS_ERROR_NOT_AVAILABLE if the header is not set.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetRequestHeader([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aHeader, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
+		void GetRequestHeader([MarshalAs(UnmanagedType.LPStruct)] nsACString aHeader, [MarshalAs(UnmanagedType.LPStruct)] nsACString retval);
 		
 		/// <summary>
         /// Set the value of a particular request header.
@@ -562,7 +562,7 @@ namespace Gecko
         /// opened.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetRequestHeader([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aHeader, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aValue, [MarshalAs(UnmanagedType.Bool)] bool aMerge);
+		void SetRequestHeader([MarshalAs(UnmanagedType.LPStruct)] nsACString aHeader, [MarshalAs(UnmanagedType.LPStruct)] nsACString aValue, [MarshalAs(UnmanagedType.U1)] bool aMerge);
 		
 		/// <summary>
         /// Call this method to visit all request headers.  Calling setRequestHeader
@@ -588,7 +588,7 @@ namespace Gecko
         ///
         /// @throws NS_ERROR_FAILURE if set after the channel has been opened.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetAllowPipeliningAttribute();
 		
@@ -607,7 +607,7 @@ namespace Gecko
         /// @throws NS_ERROR_FAILURE if set after the channel has been opened.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAllowPipeliningAttribute([MarshalAs(UnmanagedType.Bool)] bool aAllowPipelining);
+		void SetAllowPipeliningAttribute([MarshalAs(UnmanagedType.U1)] bool aAllowPipelining);
 		
 		/// <summary>
         /// This attribute specifies the number of redirects this channel is allowed
@@ -659,7 +659,7 @@ namespace Gecko
         /// has been received (before onStartRequest).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetResponseStatusTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aResponseStatusText);
+		void GetResponseStatusTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aResponseStatusText);
 		
 		/// <summary>
         /// Returns true if the HTTP response code indicates success.  The value of
@@ -674,7 +674,7 @@ namespace Gecko
         /// @throws NS_ERROR_NOT_AVAILABLE if called before the response
         /// has been received (before onStartRequest).
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetRequestSucceededAttribute();
 		
@@ -692,7 +692,7 @@ namespace Gecko
         /// not set in the response.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetResponseHeader([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase header, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
+		void GetResponseHeader([MarshalAs(UnmanagedType.LPStruct)] nsACString header, [MarshalAs(UnmanagedType.LPStruct)] nsACString retval);
 		
 		/// <summary>
         /// Set the value of a particular response header.
@@ -722,7 +722,7 @@ namespace Gecko
         /// header is not allowed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetResponseHeader([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase header, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase value, [MarshalAs(UnmanagedType.Bool)] bool merge);
+		void SetResponseHeader([MarshalAs(UnmanagedType.LPStruct)] nsACString header, [MarshalAs(UnmanagedType.LPStruct)] nsACString value, [MarshalAs(UnmanagedType.U1)] bool merge);
 		
 		/// <summary>
         /// Call this method to visit all response headers.  Calling
@@ -745,7 +745,7 @@ namespace Gecko
         /// @throws NS_ERROR_NOT_AVAILABLE if called before the response
         /// has been received (before onStartRequest).
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsNoStoreResponse();
 		
@@ -758,7 +758,7 @@ namespace Gecko
         /// @throws NS_ERROR_NOT_AVAILABLE if called before the response
         /// has been received (before onStartRequest).
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsNoCacheResponse();
 	}

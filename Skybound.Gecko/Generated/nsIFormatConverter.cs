@@ -60,7 +60,7 @@ namespace Gecko
         /// @param  aFromFormatConverter flavor to convert from
         /// @param  aFromFormatConverter flavor to convert to
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool CanConvert([MarshalAs(UnmanagedType.LPStr)] string aFromDataFlavor, [MarshalAs(UnmanagedType.LPStr)] string aToDataFlavor);
 		

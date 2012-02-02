@@ -37,7 +37,7 @@ namespace Gecko
 		/// <summary>
         /// constant for its complete lifetime.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool HandlesAttribute([MarshalAs(UnmanagedType.Interface)] nsIAtom name);
 		
@@ -61,7 +61,7 @@ namespace Gecko
 		/// <summary>Member HasAttribute </summary>
 		/// <param name='name'> </param>
 		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool HasAttribute([MarshalAs(UnmanagedType.Interface)] nsIAtom name);
 		

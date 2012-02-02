@@ -64,7 +64,7 @@ namespace Gecko
         /// they're trusted
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void AddEventListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener listener, [MarshalAs(UnmanagedType.Bool)] bool useCapture, [MarshalAs(UnmanagedType.Bool)] bool wantsUntrusted, int argc);
+		new void AddEventListener([MarshalAs(UnmanagedType.LPStruct)] nsAString type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener listener, [MarshalAs(UnmanagedType.U1)] bool useCapture, [MarshalAs(UnmanagedType.U1)] bool wantsUntrusted, int argc);
 		
 		/// <summary>
         /// This method allows the removal of event listeners from the event
@@ -87,7 +87,7 @@ namespace Gecko
         /// listener, and vice versa.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void RemoveEventListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener listener, [MarshalAs(UnmanagedType.Bool)] bool useCapture);
+		new void RemoveEventListener([MarshalAs(UnmanagedType.LPStruct)] nsAString type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener listener, [MarshalAs(UnmanagedType.U1)] bool useCapture);
 		
 		/// <summary>
         /// This method allows the dispatch of events into the implementations
@@ -101,13 +101,13 @@ namespace Gecko
         /// @return  Indicates whether any of the listeners which handled the
         /// event called preventDefault. If preventDefault was called
         /// the value is false, else the value is true.
-        /// @throws  UNSPECIFIED_EVENT_TYPE_ERR: Raised if the Event's type was
+        /// @throws  INVALID_STATE_ERR: Raised if the Event's type was
         /// not specified by initializing the event before
         /// dispatchEvent was called. Specification of the Event's
         /// type as null or an empty string will also trigger this
         /// exception.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool DispatchEvent([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent evt);
 		
@@ -194,7 +194,7 @@ namespace Gecko
         /// one already exists.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.IntPtr GetListenerManager([MarshalAs(UnmanagedType.Bool)] bool aMayCreate);
+		new System.IntPtr GetListenerManager([MarshalAs(UnmanagedType.U1)] bool aMayCreate);
 		
 		/// <summary>
         /// Get the script context in which the event handlers should be run.
@@ -317,7 +317,7 @@ namespace Gecko
         /// they're trusted
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void AddEventListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener listener, [MarshalAs(UnmanagedType.Bool)] bool useCapture, [MarshalAs(UnmanagedType.Bool)] bool wantsUntrusted, int argc);
+		new void AddEventListener([MarshalAs(UnmanagedType.LPStruct)] nsAString type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener listener, [MarshalAs(UnmanagedType.U1)] bool useCapture, [MarshalAs(UnmanagedType.U1)] bool wantsUntrusted, int argc);
 		
 		/// <summary>
         /// This method allows the removal of event listeners from the event
@@ -340,7 +340,7 @@ namespace Gecko
         /// listener, and vice versa.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void RemoveEventListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener listener, [MarshalAs(UnmanagedType.Bool)] bool useCapture);
+		new void RemoveEventListener([MarshalAs(UnmanagedType.LPStruct)] nsAString type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener listener, [MarshalAs(UnmanagedType.U1)] bool useCapture);
 		
 		/// <summary>
         /// This method allows the dispatch of events into the implementations
@@ -354,13 +354,13 @@ namespace Gecko
         /// @return  Indicates whether any of the listeners which handled the
         /// event called preventDefault. If preventDefault was called
         /// the value is false, else the value is true.
-        /// @throws  UNSPECIFIED_EVENT_TYPE_ERR: Raised if the Event's type was
+        /// @throws  INVALID_STATE_ERR: Raised if the Event's type was
         /// not specified by initializing the event before
         /// dispatchEvent was called. Specification of the Event's
         /// type as null or an empty string will also trigger this
         /// exception.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool DispatchEvent([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent evt);
 		
@@ -447,7 +447,7 @@ namespace Gecko
         /// one already exists.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.IntPtr GetListenerManager([MarshalAs(UnmanagedType.Bool)] bool aMayCreate);
+		new System.IntPtr GetListenerManager([MarshalAs(UnmanagedType.U1)] bool aMayCreate);
 		
 		/// <summary>
         /// Get the script context in which the event handlers should be run.
@@ -611,7 +611,7 @@ namespace Gecko
         /// has not yet been sent.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetResponseTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aResponseText);
+		void GetResponseTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aResponseText);
 		
 		/// <summary>
         /// Determine a response format which response attribute returns.
@@ -621,7 +621,7 @@ namespace Gecko
         /// "document": as a DOM Document object.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetResponseTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aResponseType);
+		void GetResponseTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aResponseType);
 		
 		/// <summary>
         /// Determine a response format which response attribute returns.
@@ -631,7 +631,7 @@ namespace Gecko
         /// "document": as a DOM Document object.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetResponseTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aResponseType);
+		void SetResponseTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aResponseType);
 		
 		/// <summary>
         ///any </summary>
@@ -649,7 +649,7 @@ namespace Gecko
         /// HTTP requests.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetStatusTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aStatusText);
+		void GetStatusTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aStatusText);
 		
 		/// <summary>
         /// If the request has been sent already, this method will
@@ -682,7 +682,7 @@ namespace Gecko
         /// header does not exist in the response.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetResponseHeader([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase header, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
+		void GetResponseHeader([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String header, [MarshalAs(UnmanagedType.LPStruct)] nsACString retval);
 		
 		/// <summary>
         /// Meant to be a script-only method for initializing a request.
@@ -708,7 +708,7 @@ namespace Gecko
         /// The default value is the empty string
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Open([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase method, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase url, [MarshalAs(UnmanagedType.Bool)] bool async, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase user, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase password, int argc);
+		void Open([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String method, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String url, [MarshalAs(UnmanagedType.U1)] bool async, [MarshalAs(UnmanagedType.LPStruct)] nsAString user, [MarshalAs(UnmanagedType.LPStruct)] nsAString password, int argc);
 		
 		/// <summary>
         /// Sends the request. If the request is asynchronous, returns
@@ -746,7 +746,7 @@ namespace Gecko
         /// high-order byte of each character will be discarded).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendAsBinary([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase body);
+		void SendAsBinary([MarshalAs(UnmanagedType.LPStruct)] nsAString body);
 		
 		/// <summary>
         /// Sets a HTTP request header for HTTP requests. You must call open
@@ -756,7 +756,7 @@ namespace Gecko
         /// @param value The body of the header.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetRequestHeader([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase header, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase value);
+		void SetRequestHeader([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String header, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String value);
 		
 		/// <summary>
         /// The state of the request.
@@ -782,7 +782,7 @@ namespace Gecko
         /// (if any).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OverrideMimeType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase mimetype);
+		void OverrideMimeType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String mimetype);
 		
 		/// <summary>
         /// Set to true if the response is expected to be a stream of
@@ -797,7 +797,7 @@ namespace Gecko
         /// after the first XML document is loaded, and the onload handler
         /// will be called as each part of the response is received.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetMultipartAttribute();
 		
@@ -815,7 +815,7 @@ namespace Gecko
         /// will be called as each part of the response is received.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMultipartAttribute([MarshalAs(UnmanagedType.Bool)] bool aMultipart);
+		void SetMultipartAttribute([MarshalAs(UnmanagedType.U1)] bool aMultipart);
 		
 		/// <summary>
         /// Set to true if this is a background service request. This will
@@ -824,7 +824,7 @@ namespace Gecko
         /// In the cases where one of those dialogs would be shown, the request
         /// will simply fail instead.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetMozBackgroundRequestAttribute();
 		
@@ -836,7 +836,7 @@ namespace Gecko
         /// will simply fail instead.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozBackgroundRequestAttribute([MarshalAs(UnmanagedType.Bool)] bool aMozBackgroundRequest);
+		void SetMozBackgroundRequestAttribute([MarshalAs(UnmanagedType.U1)] bool aMozBackgroundRequest);
 		
 		/// <summary>
         /// When set to true attempts to make cross-site Access-Control requests
@@ -846,7 +846,7 @@ namespace Gecko
         ///
         /// Defaults to false.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetWithCredentialsAttribute();
 		
@@ -859,7 +859,7 @@ namespace Gecko
         /// Defaults to false.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetWithCredentialsAttribute([MarshalAs(UnmanagedType.Bool)] bool aWithCredentials);
+		void SetWithCredentialsAttribute([MarshalAs(UnmanagedType.U1)] bool aWithCredentials);
 		
 		/// <summary>
         /// Initialize the object for use from C++ code with the principal, script
@@ -925,7 +925,7 @@ namespace Gecko
 		/// <param name='contentType'> </param>
 		/// <param name='charset'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSendInfo([MarshalAs(UnmanagedType.Interface)] ref nsIInputStream body, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase contentType, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase charset);
+		void GetSendInfo([MarshalAs(UnmanagedType.Interface)] ref nsIInputStream body, [MarshalAs(UnmanagedType.LPStruct)] nsACString contentType, [MarshalAs(UnmanagedType.LPStruct)] nsACString charset);
 	}
 	
 	/// <summary>

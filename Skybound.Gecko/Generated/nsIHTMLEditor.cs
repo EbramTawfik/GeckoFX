@@ -46,7 +46,7 @@ namespace Gecko
         /// aValue="0x00FFFF"
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddDefaultProperty([MarshalAs(UnmanagedType.Interface)] nsIAtom aProperty, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAttribute, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aValue);
+		void AddDefaultProperty([MarshalAs(UnmanagedType.Interface)] nsIAtom aProperty, [MarshalAs(UnmanagedType.LPStruct)] nsAString aAttribute, [MarshalAs(UnmanagedType.LPStruct)] nsAString aValue);
 		
 		/// <summary>
         /// RemoveDefaultProperty() unregisters a default style property with the editor
@@ -60,7 +60,7 @@ namespace Gecko
         /// aValue="0x00FFFF"
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveDefaultProperty([MarshalAs(UnmanagedType.Interface)] nsIAtom aProperty, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAttribute, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aValue);
+		void RemoveDefaultProperty([MarshalAs(UnmanagedType.Interface)] nsIAtom aProperty, [MarshalAs(UnmanagedType.LPStruct)] nsAString aAttribute, [MarshalAs(UnmanagedType.LPStruct)] nsAString aValue);
 		
 		/// <summary>
         /// RemoveAllDefaultProperties() unregisters all default style properties with the editor
@@ -82,14 +82,14 @@ namespace Gecko
         /// aValue="0x00FFFF"
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCSSInlineProperty([MarshalAs(UnmanagedType.Interface)] nsIAtom aProperty, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAttribute, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aValue);
+		void SetCSSInlineProperty([MarshalAs(UnmanagedType.Interface)] nsIAtom aProperty, [MarshalAs(UnmanagedType.LPStruct)] nsAString aAttribute, [MarshalAs(UnmanagedType.LPStruct)] nsAString aValue);
 		
 		/// <summary>Member SetInlineProperty </summary>
 		/// <param name='aProperty'> </param>
 		/// <param name='aAttribute'> </param>
 		/// <param name='aValue'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetInlineProperty([MarshalAs(UnmanagedType.Interface)] nsIAtom aProperty, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAttribute, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aValue);
+		void SetInlineProperty([MarshalAs(UnmanagedType.Interface)] nsIAtom aProperty, [MarshalAs(UnmanagedType.LPStruct)] nsAString aAttribute, [MarshalAs(UnmanagedType.LPStruct)] nsAString aValue);
 		
 		/// <summary>
         /// getInlineProperty() gets aggregate properties of the current selection.
@@ -112,7 +112,7 @@ namespace Gecko
         /// selection have the property
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetInlineProperty([MarshalAs(UnmanagedType.Interface)] nsIAtom aProperty, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAttribute, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aValue, [MarshalAs(UnmanagedType.Bool)] ref bool aFirst, [MarshalAs(UnmanagedType.Bool)] ref bool aAny, [MarshalAs(UnmanagedType.Bool)] ref bool aAll);
+		void GetInlineProperty([MarshalAs(UnmanagedType.Interface)] nsIAtom aProperty, [MarshalAs(UnmanagedType.LPStruct)] nsAString aAttribute, [MarshalAs(UnmanagedType.LPStruct)] nsAString aValue, [MarshalAs(UnmanagedType.U1)] ref bool aFirst, [MarshalAs(UnmanagedType.U1)] ref bool aAny, [MarshalAs(UnmanagedType.U1)] ref bool aAll);
 		
 		/// <summary>Member GetInlinePropertyWithAttrValue </summary>
 		/// <param name='aProperty'> </param>
@@ -123,7 +123,7 @@ namespace Gecko
 		/// <param name='aAll'> </param>
 		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetInlinePropertyWithAttrValue([MarshalAs(UnmanagedType.Interface)] nsIAtom aProperty, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAttribute, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aValue, [MarshalAs(UnmanagedType.Bool)] ref bool aFirst, [MarshalAs(UnmanagedType.Bool)] ref bool aAny, [MarshalAs(UnmanagedType.Bool)] ref bool aAll, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void GetInlinePropertyWithAttrValue([MarshalAs(UnmanagedType.Interface)] nsIAtom aProperty, [MarshalAs(UnmanagedType.LPStruct)] nsAString aAttribute, [MarshalAs(UnmanagedType.LPStruct)] nsAString aValue, [MarshalAs(UnmanagedType.U1)] ref bool aFirst, [MarshalAs(UnmanagedType.U1)] ref bool aAny, [MarshalAs(UnmanagedType.U1)] ref bool aAll, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// removeAllInlineProperties() deletes all the inline properties from all
@@ -150,7 +150,7 @@ namespace Gecko
         /// are to be removed from the selection.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveInlineProperty([MarshalAs(UnmanagedType.Interface)] nsIAtom aProperty, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAttribute);
+		void RemoveInlineProperty([MarshalAs(UnmanagedType.Interface)] nsIAtom aProperty, [MarshalAs(UnmanagedType.LPStruct)] nsAString aAttribute);
 		
 		/// <summary>
         /// Increase font size for text in selection by 1 HTML unit
@@ -172,7 +172,7 @@ namespace Gecko
         /// canDrag decides if a drag should be started
         /// (for example, based on the current selection and mousepoint).
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool CanDrag([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent aEvent);
 		
@@ -196,7 +196,7 @@ namespace Gecko
         ///
         /// @param aNode      the node to test
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool NodeIsBlock([MarshalAs(UnmanagedType.Interface)] nsIDOMNode node);
 		
@@ -206,7 +206,7 @@ namespace Gecko
         /// @param aInputString   the string to be inserted
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InsertHTML([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aInputString);
+		void InsertHTML([MarshalAs(UnmanagedType.LPStruct)] nsAString aInputString);
 		
 		/// <summary>
         /// Paste the text in the OS clipboard at the cursor position, replacing
@@ -222,7 +222,7 @@ namespace Gecko
         /// @param aSourceString   HTML source string of the entire new document
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RebuildDocumentFromSource([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSourceString);
+		void RebuildDocumentFromSource([MarshalAs(UnmanagedType.LPStruct)] nsAString aSourceString);
 		
 		/// <summary>
         /// Insert some HTML source, interpreting
@@ -239,7 +239,7 @@ namespace Gecko
         /// @param aCollapseSelection  used with aDestNode during drag&drop
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InsertHTMLWithContext([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aInputString, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aContextStr, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aInfoStr, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFlavor, [MarshalAs(UnmanagedType.Interface)] nsIDOMDocument aSourceDoc, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aDestinationNode, int aDestinationOffset, [MarshalAs(UnmanagedType.Bool)] bool aDeleteSelection);
+		void InsertHTMLWithContext([MarshalAs(UnmanagedType.LPStruct)] nsAString aInputString, [MarshalAs(UnmanagedType.LPStruct)] nsAString aContextStr, [MarshalAs(UnmanagedType.LPStruct)] nsAString aInfoStr, [MarshalAs(UnmanagedType.LPStruct)] nsAString aFlavor, [MarshalAs(UnmanagedType.Interface)] nsIDOMDocument aSourceDoc, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aDestinationNode, int aDestinationOffset, [MarshalAs(UnmanagedType.U1)] bool aDeleteSelection);
 		
 		/// <summary>
         /// Insert an element, which may have child nodes, at the selection
@@ -254,13 +254,13 @@ namespace Gecko
         /// Named Anchors, which insert before the selection
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InsertElementAtSelection([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement, [MarshalAs(UnmanagedType.Bool)] bool aDeleteSelection);
+		void InsertElementAtSelection([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement, [MarshalAs(UnmanagedType.U1)] bool aDeleteSelection);
 		
 		/// <summary>
         /// Set the documents title.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDocumentTitle([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTitle);
+		void SetDocumentTitle([MarshalAs(UnmanagedType.LPStruct)] nsAString aTitle);
 		
 		/// <summary>
         /// Set the BaseURL for the document to the current URL
@@ -300,7 +300,7 @@ namespace Gecko
         /// @param aParagraphFormat  "p", "h1" to "h6", "address", "pre", or "blockquote"
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetParagraphFormat([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aParagraphFormat);
+		void SetParagraphFormat([MarshalAs(UnmanagedType.LPStruct)] nsAString aParagraphFormat);
 		
 		/// <summary>
         /// getParagraphState returns what block tag paragraph format is in
@@ -309,7 +309,7 @@ namespace Gecko
         /// @return           Name of block tag. "" is returned for none.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetParagraphState([MarshalAs(UnmanagedType.Bool)] ref bool aMixed, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void GetParagraphState([MarshalAs(UnmanagedType.U1)] ref bool aMixed, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// getFontFaceState returns what font face is in the selection.
@@ -318,7 +318,7 @@ namespace Gecko
         /// tt tag.  "" is returned for none.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetFontFaceState([MarshalAs(UnmanagedType.Bool)] ref bool aMixed, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void GetFontFaceState([MarshalAs(UnmanagedType.U1)] ref bool aMixed, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// getFontColorState returns what font face is in the selection.
@@ -326,7 +326,7 @@ namespace Gecko
         /// @return           Color string. "" is returned for none.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetFontColorState([MarshalAs(UnmanagedType.Bool)] ref bool aMixed, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void GetFontColorState([MarshalAs(UnmanagedType.U1)] ref bool aMixed, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// getFontColorState returns what font face is in the selection.
@@ -334,7 +334,7 @@ namespace Gecko
         /// @return           Color string. "" is returned for none.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetBackgroundColorState([MarshalAs(UnmanagedType.Bool)] ref bool aMixed, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void GetBackgroundColorState([MarshalAs(UnmanagedType.U1)] ref bool aMixed, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// getHighlightColorState returns what the highlight color of the selection.
@@ -342,7 +342,7 @@ namespace Gecko
         /// @return           Color string. "" is returned for none.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetHighlightColorState([MarshalAs(UnmanagedType.Bool)] ref bool aMixed, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void GetHighlightColorState([MarshalAs(UnmanagedType.U1)] ref bool aMixed, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// getListState returns what list type is in the selection.
@@ -354,7 +354,7 @@ namespace Gecko
         /// @param aDL       true if a "dl" list is selected.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetListState([MarshalAs(UnmanagedType.Bool)] ref bool aMixed, [MarshalAs(UnmanagedType.Bool)] ref bool aOL, [MarshalAs(UnmanagedType.Bool)] ref bool aUL, [MarshalAs(UnmanagedType.Bool)] ref bool aDL);
+		void GetListState([MarshalAs(UnmanagedType.U1)] ref bool aMixed, [MarshalAs(UnmanagedType.U1)] ref bool aOL, [MarshalAs(UnmanagedType.U1)] ref bool aUL, [MarshalAs(UnmanagedType.U1)] ref bool aDL);
 		
 		/// <summary>
         /// getListItemState returns what list item type is in the selection.
@@ -365,7 +365,7 @@ namespace Gecko
         /// @param aDD       true if "dd" list items are selected.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetListItemState([MarshalAs(UnmanagedType.Bool)] ref bool aMixed, [MarshalAs(UnmanagedType.Bool)] ref bool aLI, [MarshalAs(UnmanagedType.Bool)] ref bool aDT, [MarshalAs(UnmanagedType.Bool)] ref bool aDD);
+		void GetListItemState([MarshalAs(UnmanagedType.U1)] ref bool aMixed, [MarshalAs(UnmanagedType.U1)] ref bool aLI, [MarshalAs(UnmanagedType.U1)] ref bool aDT, [MarshalAs(UnmanagedType.U1)] ref bool aDD);
 		
 		/// <summary>
         /// getAlignment     returns what alignment is in the selection.
@@ -375,42 +375,42 @@ namespace Gecko
         /// (left/center/right)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetAlignment([MarshalAs(UnmanagedType.Bool)] ref bool aMixed, ref short aAlign);
+		void GetAlignment([MarshalAs(UnmanagedType.U1)] ref bool aMixed, ref short aAlign);
 		
 		/// <summary>
         /// Document me!
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetIndentState([MarshalAs(UnmanagedType.Bool)] ref bool aCanIndent, [MarshalAs(UnmanagedType.Bool)] ref bool aCanOutdent);
+		void GetIndentState([MarshalAs(UnmanagedType.U1)] ref bool aCanIndent, [MarshalAs(UnmanagedType.U1)] ref bool aCanOutdent);
 		
 		/// <summary>
         /// Document me!
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MakeOrChangeList([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aListType, [MarshalAs(UnmanagedType.Bool)] bool entireList, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBulletType);
+		void MakeOrChangeList([MarshalAs(UnmanagedType.LPStruct)] nsAString aListType, [MarshalAs(UnmanagedType.U1)] bool entireList, [MarshalAs(UnmanagedType.LPStruct)] nsAString aBulletType);
 		
 		/// <summary>
         /// Document me!
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveList([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aListType);
+		void RemoveList([MarshalAs(UnmanagedType.LPStruct)] nsAString aListType);
 		
 		/// <summary>
         /// Document me!
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Indent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aIndent);
+		void Indent([MarshalAs(UnmanagedType.LPStruct)] nsAString aIndent);
 		
 		/// <summary>
         /// Document me!
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Align([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAlign);
+		void Align([MarshalAs(UnmanagedType.LPStruct)] nsAString aAlign);
 		
 		/// <summary>
         /// Return the input node or a parent matching the given aTagName,
@@ -434,7 +434,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMElement GetElementOrParentByTagName([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTagName, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aNode);
+		nsIDOMElement GetElementOrParentByTagName([MarshalAs(UnmanagedType.LPStruct)] nsAString aTagName, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aNode);
 		
 		/// <summary>
         /// Return an element only if it is the only node selected,
@@ -457,19 +457,19 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMElement GetSelectedElement([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTagName);
+		nsIDOMElement GetSelectedElement([MarshalAs(UnmanagedType.LPStruct)] nsAString aTagName);
 		
 		/// <summary>
         /// Output the contents of the <HEAD> section as text/HTML format
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetHeadContentsAsHTML([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void GetHeadContentsAsHTML([MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Replace all children of <HEAD> with string of HTML source
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ReplaceHeadContentsWithHTML([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSourceToInsert);
+		void ReplaceHeadContentsWithHTML([MarshalAs(UnmanagedType.LPStruct)] nsAString aSourceToInsert);
 		
 		/// <summary>
         /// Return a new element with default attribute values
@@ -490,7 +490,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMElement CreateElementWithDefaults([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTagName);
+		nsIDOMElement CreateElementWithDefaults([MarshalAs(UnmanagedType.LPStruct)] nsAString aTagName);
 		
 		/// <summary>
         /// Insert an link element as the parent of the current selection
@@ -506,7 +506,7 @@ namespace Gecko
         /// @param aColor  The HTML color string, such as "#ffccff" or "yellow"
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBackgroundColor([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aColor);
+		void SetBackgroundColor([MarshalAs(UnmanagedType.LPStruct)] nsAString aColor);
 		
 		/// <summary>
         /// Set an attribute on the document's <body> element
@@ -518,14 +518,14 @@ namespace Gecko
         /// @param aValue  The value of the attribute
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBodyAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAttr, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aValue);
+		void SetBodyAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aAttr, [MarshalAs(UnmanagedType.LPStruct)] nsAString aValue);
 		
 		/// <summary>
         /// XXX Used to suppress spurious drag/drop events to workaround bug 50703
         /// Don't use this method! It will go away after first release!
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void IgnoreSpuriousDragEvent([MarshalAs(UnmanagedType.Bool)] bool aIgnoreSpuriousDragEvent);
+		void IgnoreSpuriousDragEvent([MarshalAs(UnmanagedType.U1)] bool aIgnoreSpuriousDragEvent);
 		
 		/// <summary>
         /// Find all the nodes in the document which contain references
@@ -544,7 +544,7 @@ namespace Gecko
         ///
         /// @return    true if CSS handled and enabled
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsCSSEnabledAttribute();
 		
@@ -555,7 +555,7 @@ namespace Gecko
         /// @return    true if CSS handled and enabled
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetIsCSSEnabledAttribute([MarshalAs(UnmanagedType.Bool)] bool aIsCSSEnabled);
+		void SetIsCSSEnabledAttribute([MarshalAs(UnmanagedType.U1)] bool aIsCSSEnabled);
 		
 		/// <summary>
         /// Add listener for insertion override
@@ -588,7 +588,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMElement CreateAnonymousElement([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTag, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aParentNode, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAnonClass, [MarshalAs(UnmanagedType.Bool)] bool aIsCreatedHidden);
+		nsIDOMElement CreateAnonymousElement([MarshalAs(UnmanagedType.LPStruct)] nsAString aTag, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aParentNode, [MarshalAs(UnmanagedType.LPStruct)] nsAString aAnonClass, [MarshalAs(UnmanagedType.U1)] bool aIsCreatedHidden);
 		
 		/// <summary>
         /// returns the deepest container of the selection
@@ -609,7 +609,7 @@ namespace Gecko
 		/// <summary>Member IsAnonymousElement </summary>
 		/// <param name='aElement'> </param>
 		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsAnonymousElement([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement);
 		
@@ -619,7 +619,7 @@ namespace Gecko
         ///
         /// @return    true if CR in a paragraph creates a new paragraph
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetReturnInParagraphCreatesNewParagraphAttribute();
 		
@@ -630,12 +630,12 @@ namespace Gecko
         /// @return    true if CR in a paragraph creates a new paragraph
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetReturnInParagraphCreatesNewParagraphAttribute([MarshalAs(UnmanagedType.Bool)] bool aReturnInParagraphCreatesNewParagraph);
+		void SetReturnInParagraphCreatesNewParagraphAttribute([MarshalAs(UnmanagedType.U1)] bool aReturnInParagraphCreatesNewParagraph);
 		
 		/// <summary>
         /// Checks whether a BR node is visible to the user.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool BreakIsVisible([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aNode);
 		

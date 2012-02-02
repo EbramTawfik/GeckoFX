@@ -67,7 +67,7 @@ namespace Gecko
         ///If this attribute is true and no owner is specified, copy
         /// the owner from the referring document.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetInheritOwnerAttribute();
 		
@@ -76,7 +76,7 @@ namespace Gecko
         /// the owner from the referring document.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetInheritOwnerAttribute([MarshalAs(UnmanagedType.Bool)] bool aInheritOwner);
+		void SetInheritOwnerAttribute([MarshalAs(UnmanagedType.U1)] bool aInheritOwner);
 		
 		/// <summary>
         ///If this attribute is true only ever use the owner specify by
@@ -85,7 +85,7 @@ namespace Gecko
         /// as trying to use a systemprincipal owner for a content docshell
         /// the load fails.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetOwnerIsExplicitAttribute();
 		
@@ -97,7 +97,7 @@ namespace Gecko
         /// the load fails.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOwnerIsExplicitAttribute([MarshalAs(UnmanagedType.Bool)] bool aOwnerIsExplicit);
+		void SetOwnerIsExplicitAttribute([MarshalAs(UnmanagedType.U1)] bool aOwnerIsExplicit);
 		
 		/// <summary>
         ///Contains a load type as specified by the load* constants </summary>
@@ -157,7 +157,7 @@ namespace Gecko
         ///True if the referrer should be sent, false if it shouldn't be
         /// sent, even if it's available. This attribute defaults to true.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetSendReferrerAttribute();
 		
@@ -166,6 +166,6 @@ namespace Gecko
         /// sent, even if it's available. This attribute defaults to true.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSendReferrerAttribute([MarshalAs(UnmanagedType.Bool)] bool aSendReferrer);
+		void SetSendReferrerAttribute([MarshalAs(UnmanagedType.U1)] bool aSendReferrer);
 	}
 }

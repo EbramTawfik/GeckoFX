@@ -61,7 +61,7 @@ namespace Gecko
         ///@param  aLangGroup language group
         ///    @return bool do we have a font for this language group
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool HaveFontFor([MarshalAs(UnmanagedType.LPStr)] string aLangGroup);
 		
@@ -78,7 +78,7 @@ namespace Gecko
         /// update the global font list
         /// return true if font list is changed
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool UpdateFontList();
 		

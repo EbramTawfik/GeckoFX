@@ -60,7 +60,7 @@ namespace Gecko
         /// and subscribed to receive further messages of that name as
         /// well.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool RequestWakeup([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMessageName, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCid, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aIid, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMethod);
 	}

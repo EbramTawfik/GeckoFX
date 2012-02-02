@@ -40,7 +40,7 @@ namespace Gecko
         /// was successfully verified as an Extended Validation (EV) cert.
         /// The test is bound to SSL Server Cert Usage.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsExtendedValidationAttribute();
 		

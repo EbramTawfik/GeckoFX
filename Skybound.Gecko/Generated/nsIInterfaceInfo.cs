@@ -31,7 +31,7 @@ namespace Gecko
     ///this is NOT intended to be scriptable </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("7de126a2-ef4b-4e3b-a952-78ce4c133e38")]
+	[Guid("1affa260-8965-4612-869a-78af4ccfb287")]
 	public interface nsIInterfaceInfo
 	{
 		
@@ -43,11 +43,11 @@ namespace Gecko
 		
 		System.Guid GetInterfaceIIDAttribute();
 		
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsScriptable();
 		
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsBuiltinClass();
 		
@@ -98,12 +98,9 @@ namespace Gecko
 		byte GetSizeIsArgNumberForParam(ushort methodIndex, System.IntPtr param, ushort dimension);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		byte GetLengthIsArgNumberForParam(ushort methodIndex, System.IntPtr param, ushort dimension);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		byte GetInterfaceIsArgNumberForParam(ushort methodIndex, System.IntPtr param);
 		
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsIID(System.Guid IID);
 		
@@ -113,11 +110,11 @@ namespace Gecko
 		
 		System.Guid GetIIDShared();
 		
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsFunction();
 		
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool HasAncestor(System.Guid iid);
 		

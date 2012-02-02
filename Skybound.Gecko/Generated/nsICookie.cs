@@ -52,7 +52,7 @@ namespace Gecko
 		/// <summary>
         /// true if the cookie is a domain cookie, false otherwise
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsDomainAttribute();
 		
@@ -71,7 +71,7 @@ namespace Gecko
 		/// <summary>
         /// true if the cookie was transmitted over ssl, false otherwise
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsSecureAttribute();
 		

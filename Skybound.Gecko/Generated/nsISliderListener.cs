@@ -43,12 +43,12 @@ namespace Gecko
         /// was changed via some other means.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ValueChanged([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase which, int newValue, [MarshalAs(UnmanagedType.Bool)] bool userChanged);
+		void ValueChanged([MarshalAs(UnmanagedType.LPStruct)] nsAString which, int newValue, [MarshalAs(UnmanagedType.U1)] bool userChanged);
 		
 		/// <summary>
         /// Called when the user begins or ends dragging the thumb.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DragStateChanged([MarshalAs(UnmanagedType.Bool)] bool isDragging);
+		void DragStateChanged([MarshalAs(UnmanagedType.U1)] bool isDragging);
 	}
 }

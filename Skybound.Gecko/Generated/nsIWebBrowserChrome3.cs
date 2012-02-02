@@ -112,7 +112,7 @@ namespace Gecko
         /// Is the window modal (that is, currently executing a modal loop)?
         /// @return true if it's a modal window
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsWindowModal();
 		
@@ -140,7 +140,7 @@ namespace Gecko
         /// be null if there is no context.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetStatusWithContext(uint statusType, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase statusText, [MarshalAs(UnmanagedType.Interface)] nsISupports statusContext);
+		new void SetStatusWithContext(uint statusType, [MarshalAs(UnmanagedType.LPStruct)] nsAString statusText, [MarshalAs(UnmanagedType.Interface)] nsISupports statusContext);
 		
 		/// <summary>
         /// Determines the appropriate target for a link.
@@ -157,6 +157,6 @@ namespace Gecko
         /// Otherwise returns originalTarget.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnBeforeLinkTraversal([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase originalTarget, [MarshalAs(UnmanagedType.Interface)] nsIURI linkURI, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode linkNode, [MarshalAs(UnmanagedType.Bool)] bool isAppTab, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void OnBeforeLinkTraversal([MarshalAs(UnmanagedType.LPStruct)] nsAString originalTarget, [MarshalAs(UnmanagedType.Interface)] nsIURI linkURI, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode linkNode, [MarshalAs(UnmanagedType.U1)] bool isAppTab, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 	}
 }

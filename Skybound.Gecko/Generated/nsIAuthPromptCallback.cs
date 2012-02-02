@@ -64,6 +64,6 @@ namespace Gecko
         /// it was cancelled by the user.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnAuthCancelled([MarshalAs(UnmanagedType.Interface)] nsISupports aContext, [MarshalAs(UnmanagedType.Bool)] bool userCancel);
+		void OnAuthCancelled([MarshalAs(UnmanagedType.Interface)] nsISupports aContext, [MarshalAs(UnmanagedType.U1)] bool userCancel);
 	}
 }

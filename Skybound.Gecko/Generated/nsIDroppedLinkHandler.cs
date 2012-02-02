@@ -43,9 +43,9 @@ namespace Gecko
         /// includes any parent, sibling and child frames in the same content tree.
         /// If true, the source is not checked.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool CanDropLink([MarshalAs(UnmanagedType.Interface)] nsIDOMDragEvent aEvent, [MarshalAs(UnmanagedType.Bool)] bool aAllowSameDocument);
+		bool CanDropLink([MarshalAs(UnmanagedType.Interface)] nsIDOMDragEvent aEvent, [MarshalAs(UnmanagedType.U1)] bool aAllowSameDocument);
 		
 		/// <summary>
         /// Given a drop event aEvent, determines the link being dragged and returns

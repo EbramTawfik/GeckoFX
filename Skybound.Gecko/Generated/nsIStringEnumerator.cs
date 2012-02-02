@@ -39,7 +39,7 @@ namespace Gecko
 		/// <summary>
         /// Used to enumerate over an ordered list of strings.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool HasMore();
 		
@@ -56,7 +56,7 @@ namespace Gecko
 		
 		/// <summary>Member HasMore </summary>
 		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool HasMore();
 		

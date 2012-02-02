@@ -75,7 +75,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISearchSubmission GetSubmission([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase data, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase responseType);
+		nsISearchSubmission GetSubmission([MarshalAs(UnmanagedType.LPStruct)] nsAString data, [MarshalAs(UnmanagedType.LPStruct)] nsAString responseType);
 		
 		/// <summary>
         /// Adds a parameter to the search engine's submission data. This should only
@@ -99,7 +99,7 @@ namespace Gecko
         /// @throws NS_ERROR_INVALID_ARG if name or value are null.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddParam([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase value, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase responseType);
+		void AddParam([MarshalAs(UnmanagedType.LPStruct)] nsAString name, [MarshalAs(UnmanagedType.LPStruct)] nsAString value, [MarshalAs(UnmanagedType.LPStruct)] nsAString responseType);
 		
 		/// <summary>
         /// Determines whether the engine can return responses in the given
@@ -109,34 +109,34 @@ namespace Gecko
         /// @param responseType
         /// The MIME type to check for
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool SupportsResponseType([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase responseType);
+		bool SupportsResponseType([MarshalAs(UnmanagedType.LPStruct)] nsAString responseType);
 		
 		/// <summary>
         /// An optional shortcut alias for the engine.
         /// When non-null, this is a unique identifier.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetAliasAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAlias);
+		void GetAliasAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aAlias);
 		
 		/// <summary>
         /// An optional shortcut alias for the engine.
         /// When non-null, this is a unique identifier.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAliasAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAlias);
+		void SetAliasAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aAlias);
 		
 		/// <summary>
         /// A text description describing the engine.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDescriptionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDescription);
+		void GetDescriptionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDescription);
 		
 		/// <summary>
         /// Whether the engine should be hidden from the user.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetHiddenAttribute();
 		
@@ -144,7 +144,7 @@ namespace Gecko
         /// Whether the engine should be hidden from the user.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetHiddenAttribute([MarshalAs(UnmanagedType.Bool)] bool aHidden);
+		void SetHiddenAttribute([MarshalAs(UnmanagedType.U1)] bool aHidden);
 		
 		/// <summary>
         /// A nsIURI corresponding to the engine's icon, stored locally. May be null.
@@ -157,13 +157,13 @@ namespace Gecko
         /// The display name of the search engine. This is a unique identifier.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
+		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
 		
 		/// <summary>
         /// A URL string pointing to the engine's search form.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSearchFormAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSearchForm);
+		void GetSearchFormAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aSearchForm);
 		
 		/// <summary>
         /// The search engine type.
@@ -208,7 +208,7 @@ namespace Gecko
         /// file cannot be successfully loaded.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddEngine([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase engineURL, int dataType, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase iconURL, [MarshalAs(UnmanagedType.Bool)] bool confirm);
+		void AddEngine([MarshalAs(UnmanagedType.LPStruct)] nsAString engineURL, int dataType, [MarshalAs(UnmanagedType.LPStruct)] nsAString iconURL, [MarshalAs(UnmanagedType.U1)] bool confirm);
 		
 		/// <summary>
         /// Adds a new search engine, without asking the user for confirmation and
@@ -237,7 +237,7 @@ namespace Gecko
         /// Must not be null.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddEngineWithDetails([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase iconURL, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase alias, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase description, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase method, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase url);
+		void AddEngineWithDetails([MarshalAs(UnmanagedType.LPStruct)] nsAString name, [MarshalAs(UnmanagedType.LPStruct)] nsAString iconURL, [MarshalAs(UnmanagedType.LPStruct)] nsAString alias, [MarshalAs(UnmanagedType.LPStruct)] nsAString description, [MarshalAs(UnmanagedType.LPStruct)] nsAString method, [MarshalAs(UnmanagedType.LPStruct)] nsAString url);
 		
 		/// <summary>
         /// Un-hides all engines installed in the directory corresponding to
@@ -257,7 +257,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISearchEngine GetEngineByAlias([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase alias);
+		nsISearchEngine GetEngineByAlias([MarshalAs(UnmanagedType.LPStruct)] nsAString alias);
 		
 		/// <summary>
         /// Returns an engine with the specified name.
@@ -269,7 +269,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISearchEngine GetEngineByName([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aEngineName);
+		nsISearchEngine GetEngineByName([MarshalAs(UnmanagedType.LPStruct)] nsAString aEngineName);
 		
 		/// <summary>
         /// Returns an array of all installed search engines.

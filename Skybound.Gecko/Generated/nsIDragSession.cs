@@ -38,7 +38,7 @@ namespace Gecko
         /// Set the current state of the drag, whether it can be dropped or not.
         /// usually the target "frame" sets this so the native system can render the correct feedback
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetCanDropAttribute();
 		
@@ -47,12 +47,12 @@ namespace Gecko
         /// usually the target "frame" sets this so the native system can render the correct feedback
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCanDropAttribute([MarshalAs(UnmanagedType.Bool)] bool aCanDrop);
+		void SetCanDropAttribute([MarshalAs(UnmanagedType.U1)] bool aCanDrop);
 		
 		/// <summary>
         /// Indicates if the drop event should be dispatched only to chrome.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetOnlyChromeDropAttribute();
 		
@@ -60,7 +60,7 @@ namespace Gecko
         /// Indicates if the drop event should be dispatched only to chrome.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnlyChromeDropAttribute([MarshalAs(UnmanagedType.Bool)] bool aOnlyChromeDrop);
+		void SetOnlyChromeDropAttribute([MarshalAs(UnmanagedType.U1)] bool aOnlyChromeDrop);
 		
 		/// <summary>
         /// Sets the action (copy, move, link, et.c) for the current drag
@@ -137,7 +137,7 @@ namespace Gecko
 		/// <summary>
         /// Check to set if any of the native data on the clipboard matches this data flavor
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsDataFlavorSupported([MarshalAs(UnmanagedType.LPStr)] string aDataFlavor);
 	}

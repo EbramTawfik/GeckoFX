@@ -62,7 +62,7 @@ namespace Gecko
         /// is undefined before the channel fires its OnStartRequest notification
         /// and after the channel fires its OnStopRequest notification.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsFromCache();
 	}

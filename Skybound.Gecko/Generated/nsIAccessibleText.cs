@@ -113,7 +113,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIPersistentProperties GetTextAttributes([MarshalAs(UnmanagedType.Bool)] bool includeDefAttrs, int offset, ref int rangeStartOffset, ref int rangeEndOffset);
+		nsIPersistentProperties GetTextAttributes([MarshalAs(UnmanagedType.U1)] bool includeDefAttrs, int offset, ref int rangeStartOffset, ref int rangeEndOffset);
 		
 		/// <summary>
         /// Return the text attributes that apply to the entire accessible.

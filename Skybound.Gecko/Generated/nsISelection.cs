@@ -68,7 +68,7 @@ namespace Gecko
 		/// <summary>
         /// Indicates if the selection is collapsed or not.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsCollapsedAttribute();
 		
@@ -127,9 +127,9 @@ namespace Gecko
         /// is part of the selection. If partlyContained is set to PR_FALSE, the
         /// function only returns true when the entire node is part of the selection.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool ContainsNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode node, [MarshalAs(UnmanagedType.Bool)] bool partlyContained);
+		bool ContainsNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode node, [MarshalAs(UnmanagedType.U1)] bool partlyContained);
 		
 		/// <summary>
         /// Adds all children of the specified node to the selection.
@@ -168,7 +168,7 @@ namespace Gecko
         /// PR_FALSE if the new language is left-to-right.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SelectionLanguageChange([MarshalAs(UnmanagedType.Bool)] bool langRTL);
+		void SelectionLanguageChange([MarshalAs(UnmanagedType.U1)] bool langRTL);
 		
 		/// <summary>
         /// Returns the whole selection into a plain text string.

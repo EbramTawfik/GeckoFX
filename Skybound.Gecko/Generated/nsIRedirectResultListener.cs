@@ -44,6 +44,6 @@ namespace Gecko
         /// has been canceled, or failed).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnRedirectResult([MarshalAs(UnmanagedType.Bool)] bool proceeding);
+		void OnRedirectResult([MarshalAs(UnmanagedType.U1)] bool proceeding);
 	}
 }

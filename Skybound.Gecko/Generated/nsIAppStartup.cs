@@ -86,7 +86,7 @@ namespace Gecko
 		/// <summary>
         /// True if the application is in the process of shutting down.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetShuttingDownAttribute();
 		
@@ -100,7 +100,7 @@ namespace Gecko
 		/// <summary>
         /// True if startup was interrupted by an interactive prompt.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetInterruptedAttribute();
 		
@@ -108,6 +108,6 @@ namespace Gecko
         /// True if startup was interrupted by an interactive prompt.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetInterruptedAttribute([MarshalAs(UnmanagedType.Bool)] bool aInterrupted);
+		void SetInterruptedAttribute([MarshalAs(UnmanagedType.U1)] bool aInterrupted);
 	}
 }

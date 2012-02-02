@@ -46,7 +46,7 @@ namespace Gecko
         /// @param aMetaRefresh Flag to indicate if this is a Meta refresh.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RefreshURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, int aMillis, [MarshalAs(UnmanagedType.Bool)] bool aRepeat, [MarshalAs(UnmanagedType.Bool)] bool aMetaRefresh);
+		void RefreshURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, int aMillis, [MarshalAs(UnmanagedType.U1)] bool aRepeat, [MarshalAs(UnmanagedType.U1)] bool aMetaRefresh);
 		
 		/// <summary>
         /// Loads a URI immediately as if it were a refresh.
@@ -57,7 +57,7 @@ namespace Gecko
         /// @param aMetaRefresh Flag to indicate if this is a meta refresh.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ForceRefreshURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, int aMillis, [MarshalAs(UnmanagedType.Bool)] bool aMetaRefresh);
+		void ForceRefreshURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, int aMillis, [MarshalAs(UnmanagedType.U1)] bool aMetaRefresh);
 		
 		/// <summary>
         /// Checks the passed in channel to see if there is a refresh header,
@@ -95,7 +95,7 @@ namespace Gecko
 		/// <summary>
         /// True when there are pending refreshes, false otherwise.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetRefreshPendingAttribute();
 	}

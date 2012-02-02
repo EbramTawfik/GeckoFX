@@ -56,7 +56,7 @@ namespace Gecko
 		string GetContentTypeAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void IsSeekable([MarshalAs(UnmanagedType.Bool)] ref bool aSeekable);
+		void IsSeekable([MarshalAs(UnmanagedType.U1)] ref bool aSeekable);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetLengthAttribute();

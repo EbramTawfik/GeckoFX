@@ -38,7 +38,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("a6cf907d-15b3-11d2-932e-00805f8add32")]
+	[Guid("496852ba-e48d-4fa5-982e-e0dc1b475bf1")]
 	public interface nsIDOMNodeList
 	{
 		
@@ -57,5 +57,11 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetLengthAttribute();
+		
+		/// <summary>
+        /// Get the node at the index.  Returns null if the index is out of bounds
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		System.IntPtr GetNodeAt(uint index);
 	}
 }

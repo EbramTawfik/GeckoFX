@@ -44,7 +44,7 @@ namespace Gecko
         /// @return true to start visiting all entries for this device.
         /// @return false to advance to the next device.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool VisitDevice([MarshalAs(UnmanagedType.LPStr)] string deviceID, [MarshalAs(UnmanagedType.Interface)] nsICacheDeviceInfo deviceInfo);
 		
@@ -58,7 +58,7 @@ namespace Gecko
         /// end of the device has been reached, advance to the next device.
         /// @return false to advance to the next device.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool VisitEntry([MarshalAs(UnmanagedType.LPStr)] string deviceID, [MarshalAs(UnmanagedType.Interface)] nsICacheEntryInfo entryInfo);
 	}
@@ -164,7 +164,7 @@ namespace Gecko
 		/// <summary>
         /// Find out whether or not the cache entry is stream based.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsStreamBased();
 	}

@@ -185,7 +185,7 @@ namespace Gecko
         /// necessarily mean another app is actively using the service, as the
         /// autostart pref may have turned the service on.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsOnAttribute();
 		
@@ -224,7 +224,7 @@ namespace Gecko
         /// Recompile all active scripts in the runtime for debugMode.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RecompileForDebugMode(System.IntPtr cx, System.IntPtr comp, [MarshalAs(UnmanagedType.Bool)] bool mode);
+		void RecompileForDebugMode(System.IntPtr cx, System.IntPtr comp, [MarshalAs(UnmanagedType.U1)] bool mode);
 		
 		/// <summary>
         /// Turn the debugger off. This will invalidate all of your jsdIEphemeral
@@ -652,7 +652,7 @@ namespace Gecko
         /// Called when the JavaScript engine encounters an error. Return |true|
         /// to pass the error along, |false| to invoke the debugHook.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool OnError([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase message, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase fileName, uint line, uint pos, uint flags, uint errnum, jsdIValue exc);
 	}
@@ -697,7 +697,7 @@ namespace Gecko
         /// |true| if this object is still valid. If not, many or all of the methods
         /// and/or properties of the inheritor may no longer be callable.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsValidAttribute();
 		
@@ -722,7 +722,7 @@ namespace Gecko
         /// |true| if this object is still valid. If not, many or all of the methods
         /// and/or properties of the inheritor may no longer be callable.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetIsValidAttribute();
 		
@@ -797,7 +797,7 @@ namespace Gecko
         /// nsIScriptContext. Setting or getting this attribute on any other
         /// context will throw a NS_ERROR_NO_INTERFACE exception.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetScriptsEnabledAttribute();
 		
@@ -808,7 +808,7 @@ namespace Gecko
         /// context will throw a NS_ERROR_NO_INTERFACE exception.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetScriptsEnabledAttribute([MarshalAs(UnmanagedType.Bool)] bool aScriptsEnabled);
+		void SetScriptsEnabledAttribute([MarshalAs(UnmanagedType.U1)] bool aScriptsEnabled);
 	}
 	
 	/// <summary>
@@ -828,7 +828,7 @@ namespace Gecko
         /// |true| if this object is still valid. If not, many or all of the methods
         /// and/or properties of the inheritor may no longer be callable.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetIsValidAttribute();
 		
@@ -857,14 +857,14 @@ namespace Gecko
         /// True if stack frame represents a frame created as a result of a debugger
         /// evaluation.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsDebuggerAttribute();
 		
 		/// <summary>
         /// True if stack frame is constructing a new object.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsConstructingAttribute();
 		
@@ -930,7 +930,7 @@ namespace Gecko
         /// @param line     Starting line number for this script. One based.
         /// @retval         Result of evaluating the script.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool Eval([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase bytes, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase fileName, uint line, ref jsdIValue result);
 	}
@@ -949,7 +949,7 @@ namespace Gecko
         /// |true| if this object is still valid. If not, many or all of the methods
         /// and/or properties of the inheritor may no longer be callable.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetIsValidAttribute();
 		
@@ -1128,7 +1128,7 @@ namespace Gecko
         /// lineToPc == pcToLine, except in one call.
         /// The |pcmap| argument specifies which pc to source line map to use.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsLineExecutable(uint line, uint pcmap);
 		
@@ -1162,7 +1162,7 @@ namespace Gecko
         /// Call interrupt hook at least once per source line
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EnableSingleStepInterrupts([MarshalAs(UnmanagedType.Bool)] bool mode);
+		void EnableSingleStepInterrupts([MarshalAs(UnmanagedType.U1)] bool mode);
 	}
 	
 	/// <summary>
@@ -1181,7 +1181,7 @@ namespace Gecko
         /// |true| if this object is still valid. If not, many or all of the methods
         /// and/or properties of the inheritor may no longer be callable.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetIsValidAttribute();
 		
@@ -1204,7 +1204,7 @@ namespace Gecko
 		/// <summary>
         /// |false| unless the value is a function declared in script.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsNativeAttribute();
 		
@@ -1213,14 +1213,14 @@ namespace Gecko
         /// |false| for all other values, including numbers assigned as strings
         /// (eg. x = "1";)
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsNumberAttribute();
 		
 		/// <summary>
         /// |true| if the value represents a JavaScript primitive number or AUTF8String
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsPrimitiveAttribute();
 		
@@ -1268,7 +1268,7 @@ namespace Gecko
 		/// <summary>
         /// Value if interpreted as a boolean. Converts if necessary.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetBooleanValueAttribute();
 		
@@ -1420,7 +1420,7 @@ namespace Gecko
         /// |true| if this object is still valid. If not, many or all of the methods
         /// and/or properties of the inheritor may no longer be callable.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetIsValidAttribute();
 		
