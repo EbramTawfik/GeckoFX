@@ -159,6 +159,13 @@ namespace Gecko
 				return returnValue;
 			}
 		}
+		
+		// defaults to false
+		public bool UseHttpActivityObserver
+		{
+			get;
+			set;
+		}
 
 #if GTK
 		// Only used on Linux.
@@ -204,12 +211,15 @@ namespace Gecko
 				Guid nsIWebProgressListenerGUID = typeof(nsIWebProgressListener).GUID;
 				WebBrowser.AddWebBrowserListener(this, ref nsIWebProgressListenerGUID);
 
-                var observerService = Xpcom.GetService<nsIObserverService>("@mozilla.org/observer-service;1");
-                observerService.AddObserver(this, "http-on-modify-request", false);
+				if (UseHttpActivityObserver)
+				{
+					var observerService = Xpcom.GetService<nsIObserverService>("@mozilla.org/observer-service;1");
+					observerService.AddObserver(this, "http-on-modify-request", false);
 
-                nsIHttpActivityDistributor activityDistributor = Xpcom.GetService<nsIHttpActivityDistributor>("@mozilla.org/network/http-activity-distributor;1");
-                activityDistributor = Xpcom.QueryInterface<nsIHttpActivityDistributor>(activityDistributor);
-                activityDistributor.AddObserver(this);
+					nsIHttpActivityDistributor activityDistributor = Xpcom.GetService<nsIHttpActivityDistributor>("@mozilla.org/network/http-activity-distributor;1");
+					activityDistributor = Xpcom.QueryInterface<nsIHttpActivityDistributor>(activityDistributor);
+					activityDistributor.AddObserver(this);
+				}
 
 				nsIDOMEventTarget target = Xpcom.QueryInterface<nsIDOMWindow>(WebBrowser.GetContentDOMWindowAttribute()).GetWindowRootAttribute();
 				
