@@ -1733,7 +1733,7 @@ namespace Gecko
         /// It is used in places views only and can be ignored.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnVisit([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, long aVisitID, long aTime, long aSessionID, long aReferringID, uint aTransitionType, [MarshalAs(UnmanagedType.LPStruct)] nsACString aGUID, ref uint aAdded);
+		void OnVisit([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, long aVisitID, long aTime, long aSessionID, long aReferringID, uint aTransitionType, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGUID, ref uint aAdded);
 		
 		/// <summary>
         /// Called whenever either the "real" title or the custom title of the page
@@ -1756,7 +1756,7 @@ namespace Gecko
         /// The unique ID associated with the page.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnTitleChanged([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString aPageTitle, [MarshalAs(UnmanagedType.LPStruct)] nsACString aGUID);
+		void OnTitleChanged([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString aPageTitle, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGUID);
 		
 		/// <summary>
         /// This page and all of its visits are about to be deleted.  Note: the page
@@ -1770,7 +1770,7 @@ namespace Gecko
         /// Indicates the reason for the removal.  See REASON_* constants.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnBeforeDeleteURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsACString aGUID, ushort aReason);
+		void OnBeforeDeleteURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGUID, ushort aReason);
 		
 		/// <summary>
         /// This page and all of its visits are being deleted. Note: the page may not
@@ -1790,7 +1790,7 @@ namespace Gecko
         /// Indicates the reason for the removal.  see REASON_* constants.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnDeleteURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsACString aGUID, ushort aReason);
+		void OnDeleteURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGUID, ushort aReason);
 		
 		/// <summary>
         /// Notification that all of history is being deleted.
@@ -1811,7 +1811,7 @@ namespace Gecko
         /// The unique ID associated with the page.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnPageChanged([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, uint aChangedAttribute, [MarshalAs(UnmanagedType.LPStruct)] nsAString aNewValue, [MarshalAs(UnmanagedType.LPStruct)] nsACString aGUID);
+		void OnPageChanged([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, uint aChangedAttribute, [MarshalAs(UnmanagedType.LPStruct)] nsAString aNewValue, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGUID);
 		
 		/// <summary>
         /// Called when some visits of an history entry are expired.
@@ -1832,7 +1832,7 @@ namespace Gecko
         /// Indicates the reason for the removal.  see REASON_* constants.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnDeleteVisits([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, long aVisitTime, [MarshalAs(UnmanagedType.LPStruct)] nsACString aGUID, ushort aReason);
+		void OnDeleteVisits([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, long aVisitTime, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGUID, ushort aReason);
 	}
 	
 	/// <summary>

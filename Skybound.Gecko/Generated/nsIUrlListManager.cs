@@ -40,7 +40,7 @@ namespace Gecko
         /// Interface for JS function callbacks
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void HandleEvent([MarshalAs(UnmanagedType.LPStruct)] nsACString value);
+		void HandleEvent([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase value);
 	}
 	
 	/// <summary>nsIUrlListManager </summary>
@@ -54,21 +54,21 @@ namespace Gecko
         /// Set the URL we check for updates.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetUpdateUrl([MarshalAs(UnmanagedType.LPStruct)] nsACString url);
+		void SetUpdateUrl([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase url);
 		
 		/// <summary>
         /// Set the URL we use to get keys used to decrypt URLs in
         /// enchash tables.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetKeyUrl([MarshalAs(UnmanagedType.LPStruct)] nsACString url);
+		void SetKeyUrl([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase url);
 		
 		/// <summary>
         /// Set the URL that we will query for complete hashes after a partial
         /// hash match.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetGethashUrl([MarshalAs(UnmanagedType.LPStruct)] nsACString url);
+		void SetGethashUrl([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase url);
 		
 		/// <summary>
         /// Add a table to the list of tables we are managing.  The name is a
@@ -77,20 +77,20 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool RegisterTable([MarshalAs(UnmanagedType.LPStruct)] nsACString tableName, [MarshalAs(UnmanagedType.Bool)] bool requireMac);
+		bool RegisterTable([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase tableName, [MarshalAs(UnmanagedType.Bool)] bool requireMac);
 		
 		/// <summary>
         /// Turn on update checking for a table.  I.e., during the next server
         /// check, download updates for this table.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EnableUpdate([MarshalAs(UnmanagedType.LPStruct)] nsACString tableName);
+		void EnableUpdate([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase tableName);
 		
 		/// <summary>
         /// Turn off update checking for a table.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DisableUpdate([MarshalAs(UnmanagedType.LPStruct)] nsACString tableName);
+		void DisableUpdate([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase tableName);
 		
 		/// <summary>
         /// Lookup a key.  Should not raise exceptions.  Calls the callback
@@ -98,7 +98,7 @@ namespace Gecko
         /// belongs.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SafeLookup([MarshalAs(UnmanagedType.LPStruct)] nsACString key, [MarshalAs(UnmanagedType.Interface)] nsIUrlListManagerCallback cb);
+		void SafeLookup([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase key, [MarshalAs(UnmanagedType.Interface)] nsIUrlListManagerCallback cb);
 		
 		/// <summary>Member CheckForUpdates </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

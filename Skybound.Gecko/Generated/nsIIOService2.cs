@@ -152,7 +152,7 @@ namespace Gecko
         /// @throws NS_ERROR_MALFORMED_URI if URL string is not of the right form.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void ExtractScheme([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String urlString, [MarshalAs(UnmanagedType.LPStruct)] nsACString retval);
+		new void ExtractScheme([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String urlString, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
 		
 		/// <summary>
         /// While this is set, IOService will monitor an nsINetworkLinkService

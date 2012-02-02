@@ -52,7 +52,7 @@ namespace Gecko
         /// as aContainer.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DecodeImageData([MarshalAs(UnmanagedType.Interface)] nsIInputStream aStream, [MarshalAs(UnmanagedType.LPStruct)] nsACString aMimeType, ref imgIContainer aContainer);
+		void DecodeImageData([MarshalAs(UnmanagedType.Interface)] nsIInputStream aStream, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aMimeType, ref imgIContainer aContainer);
 		
 		/// <summary>
         /// encodeImage
@@ -66,7 +66,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIInputStream EncodeImage(imgIContainer aContainer, [MarshalAs(UnmanagedType.LPStruct)] nsACString aMimeType);
+		nsIInputStream EncodeImage(imgIContainer aContainer, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aMimeType);
 		
 		/// <summary>
         /// encodeScaledImage
@@ -83,6 +83,6 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIInputStream EncodeScaledImage(imgIContainer aContainer, [MarshalAs(UnmanagedType.LPStruct)] nsACString aMimeType, int aWidth, int aHeight);
+		nsIInputStream EncodeScaledImage(imgIContainer aContainer, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aMimeType, int aWidth, int aHeight);
 	}
 }

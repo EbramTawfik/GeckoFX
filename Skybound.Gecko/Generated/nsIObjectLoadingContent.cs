@@ -41,7 +41,7 @@ namespace Gecko
         /// request) for the element.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetActualTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aActualType);
+		void GetActualTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aActualType);
 		
 		/// <summary>
         /// Gets the type of the content that's currently loaded. See

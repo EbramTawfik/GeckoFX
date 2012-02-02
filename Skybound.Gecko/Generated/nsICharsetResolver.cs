@@ -57,7 +57,7 @@ namespace Gecko
         /// charset could be determined.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RequestCharset([MarshalAs(UnmanagedType.Interface)] nsIWebNavigation aWebNavigation, [MarshalAs(UnmanagedType.Interface)] nsIChannel aChannel, [MarshalAs(UnmanagedType.Bool)] ref bool aWantCharset, [MarshalAs(UnmanagedType.Interface)] ref nsISupports aClosure, [MarshalAs(UnmanagedType.LPStruct)] nsACString retval);
+		void RequestCharset([MarshalAs(UnmanagedType.Interface)] nsIWebNavigation aWebNavigation, [MarshalAs(UnmanagedType.Interface)] nsIChannel aChannel, [MarshalAs(UnmanagedType.Bool)] ref bool aWantCharset, [MarshalAs(UnmanagedType.Interface)] ref nsISupports aClosure, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
 		
 		/// <summary>
         /// notifyResolvedCharset
@@ -69,6 +69,6 @@ namespace Gecko
         /// @param closure the closre returned by detectCharset() above
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NotifyResolvedCharset([MarshalAs(UnmanagedType.LPStruct)] nsACString charset, [MarshalAs(UnmanagedType.Interface)] nsISupports closure);
+		void NotifyResolvedCharset([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase charset, [MarshalAs(UnmanagedType.Interface)] nsISupports closure);
 	}
 }

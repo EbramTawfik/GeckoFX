@@ -176,14 +176,14 @@ namespace Gecko
 		/// <param name='aPrefName'> </param>
 		/// <param name='aPref'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MirrorPreference([MarshalAs(UnmanagedType.LPStruct)] nsACString aPrefName, System.IntPtr aPref);
+		void MirrorPreference([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aPrefName, System.IntPtr aPref);
 		
 		/// <summary>Member PrefHasUserValue </summary>
 		/// <param name='aPrefName'> </param>
 		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool PrefHasUserValue([MarshalAs(UnmanagedType.LPStruct)] nsACString aPrefName);
+		bool PrefHasUserValue([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aPrefName);
 		
 		/// <summary>Member SetPreference </summary>
 		/// <param name='aPref'> </param>
@@ -193,6 +193,6 @@ namespace Gecko
 		/// <summary>Member ClearContentPref </summary>
 		/// <param name='aPrefName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ClearContentPref([MarshalAs(UnmanagedType.LPStruct)] nsACString aPrefName);
+		void ClearContentPref([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aPrefName);
 	}
 }

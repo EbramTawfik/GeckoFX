@@ -54,7 +54,7 @@ namespace Gecko
         /// Javascript program text.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init([MarshalAs(UnmanagedType.LPStruct)] nsACString aPACURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString aPACScript);
+		void Init([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aPACURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString aPACScript);
 		
 		/// <summary>
         /// Get the proxy string for the specified URI.  The proxy string is
@@ -90,6 +90,6 @@ namespace Gecko
         /// @return PAC result string as defined above.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetProxyForURI([MarshalAs(UnmanagedType.LPStruct)] nsACString aTestURI, [MarshalAs(UnmanagedType.LPStruct)] nsACString aTestHost, [MarshalAs(UnmanagedType.LPStruct)] nsACString retval);
+		void GetProxyForURI([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aTestURI, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aTestHost, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
 	}
 }

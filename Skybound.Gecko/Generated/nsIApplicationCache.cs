@@ -43,7 +43,7 @@ namespace Gecko
         /// Initialize the namespace.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init(uint itemType, [MarshalAs(UnmanagedType.LPStruct)] nsACString namespaceSpec, [MarshalAs(UnmanagedType.LPStruct)] nsACString data);
+		void Init(uint itemType, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase namespaceSpec, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase data);
 		
 		/// <summary>
         /// The namespace type.
@@ -56,14 +56,14 @@ namespace Gecko
         /// URI prefix.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNamespaceSpecAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aNamespaceSpec);
+		void GetNamespaceSpecAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aNamespaceSpec);
 		
 		/// <summary>
         /// Data associated with this namespace, such as a fallback.  URI data should
         /// use the asciiSpec of the URI.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDataAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aData);
+		void GetDataAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aData);
 	}
 	
 	/// <summary>
@@ -92,14 +92,14 @@ namespace Gecko
         /// content process to simplify the application cache code.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitAsHandle([MarshalAs(UnmanagedType.LPStruct)] nsACString groupId, [MarshalAs(UnmanagedType.LPStruct)] nsACString clientId);
+		void InitAsHandle([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase groupId, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase clientId);
 		
 		/// <summary>
         /// The group ID for this cache group.  This is the URI of the
         /// manifest file.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetGroupIDAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aGroupID);
+		void GetGroupIDAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGroupID);
 		
 		/// <summary>
         /// The client ID for this application cache.  Clients can open a
@@ -107,7 +107,7 @@ namespace Gecko
         /// ID and a storage policy of STORE_OFFLINE to access this cache.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetClientIDAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aClientID);
+		void GetClientIDAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aClientID);
 		
 		/// <summary>
         /// TRUE if the cache is the active cache for this group.
@@ -142,20 +142,20 @@ namespace Gecko
         /// Adds item types to a given entry.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MarkEntry([MarshalAs(UnmanagedType.LPStruct)] nsACString key, uint typeBits);
+		void MarkEntry([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase key, uint typeBits);
 		
 		/// <summary>
         /// Removes types from a given entry.  If the resulting entry has
         /// no types left, the entry is removed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UnmarkEntry([MarshalAs(UnmanagedType.LPStruct)] nsACString key, uint typeBits);
+		void UnmarkEntry([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase key, uint typeBits);
 		
 		/// <summary>
         /// Gets the types for a given entry.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetTypes([MarshalAs(UnmanagedType.LPStruct)] nsACString key);
+		uint GetTypes([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase key);
 		
 		/// <summary>
         /// Returns any entries in the application cache whose type matches
@@ -177,6 +177,6 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIApplicationCacheNamespace GetMatchingNamespace([MarshalAs(UnmanagedType.LPStruct)] nsACString key);
+		nsIApplicationCacheNamespace GetMatchingNamespace([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase key);
 	}
 }

@@ -78,7 +78,7 @@ namespace Gecko
         /// properties on it and then pass it to loadStream.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void LoadStream([MarshalAs(UnmanagedType.Interface)] nsIInputStream aStream, [MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsACString aContentType, [MarshalAs(UnmanagedType.LPStruct)] nsACString aContentCharset, [MarshalAs(UnmanagedType.Interface)] nsIDocShellLoadInfo aLoadInfo);
+		void LoadStream([MarshalAs(UnmanagedType.Interface)] nsIInputStream aStream, [MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aContentType, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aContentCharset, [MarshalAs(UnmanagedType.Interface)] nsIDocShellLoadInfo aLoadInfo);
 		
 		/// <summary>
         /// Loads the given URI.  This method is identical to loadURI(...) except

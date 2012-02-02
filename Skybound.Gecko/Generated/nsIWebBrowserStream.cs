@@ -57,7 +57,7 @@ namespace Gecko
         /// openStream was called twice without an intermediate closeStream.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OpenStream([MarshalAs(UnmanagedType.Interface)] nsIURI aBaseURI, [MarshalAs(UnmanagedType.LPStruct)] nsACString aContentType);
+		void OpenStream([MarshalAs(UnmanagedType.Interface)] nsIURI aBaseURI, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aContentType);
 		
 		/// <summary>
         /// Append data to this stream.

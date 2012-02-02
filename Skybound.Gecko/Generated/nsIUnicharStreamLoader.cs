@@ -47,7 +47,7 @@ namespace Gecko
         /// @return the name of the character set to be used to decode this stream
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnDetermineCharset([MarshalAs(UnmanagedType.Interface)] nsIUnicharStreamLoader aLoader, [MarshalAs(UnmanagedType.Interface)] nsISupports aContext, [MarshalAs(UnmanagedType.LPStruct)] nsACString aSegment, [MarshalAs(UnmanagedType.LPStruct)] nsACString retval);
+		void OnDetermineCharset([MarshalAs(UnmanagedType.Interface)] nsIUnicharStreamLoader aLoader, [MarshalAs(UnmanagedType.Interface)] nsISupports aContext, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aSegment, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
 		
 		/// <summary>
         /// Called when the entire stream has been loaded and decoded.
@@ -153,6 +153,6 @@ namespace Gecko
         /// called.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCharsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aCharset);
+		void GetCharsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aCharset);
 	}
 }

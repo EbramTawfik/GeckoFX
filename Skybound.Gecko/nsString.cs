@@ -293,32 +293,53 @@ namespace Gecko
 			return "";
 		}
 	}
-	
 
-	// TODO: see comment on class nsAString
 	[StructLayout(LayoutKind.Sequential)]
-	public class nsACString : IDisposable
+	public class nsACStringBase
 	{
-#region unused variables used to ensure struct is correct size on different platforms
-		#pragma warning disable 169
+		[DllImport("xpcom", CharSet = CharSet.Ansi)]
+		protected static extern int NS_CStringContainerInit(nsACStringBase container);
+
+		[DllImport("xpcom", CharSet = CharSet.Ansi)]
+		protected static extern int NS_CStringSetData(nsACStringBase str, string data, int length);
+
+		[DllImport("xpcom", CharSet = CharSet.Ansi)]
+		protected internal static extern int NS_CStringGetData(nsACStringBase str, out IntPtr data, IntPtr nullTerm);
+
+		[DllImport("xpcom", CharSet = CharSet.Ansi)]
+		protected static extern int NS_CStringContainerFinish(nsACStringBase container);
+
+		#region unused variables used to ensure struct is correct size on different platforms
+#pragma warning disable 169
 		IntPtr mData;
 		int mLength;
 		int mFlags;
-		#pragma warning restore 169
-#endregion
+#pragma warning restore 169
+		#endregion
 
-		[DllImport("xpcom", CharSet = CharSet.Ansi)]
-		static extern int NS_CStringContainerInit(nsACString container);
-		
-		[DllImport("xpcom", CharSet = CharSet.Ansi)]
-		static extern int NS_CStringSetData(nsACString str, string data, int length);
-		
-		[DllImport("xpcom", CharSet = CharSet.Ansi)]
-		internal static extern int NS_CStringGetData(nsACString str, out IntPtr data, IntPtr nullTerm);
-		
-		[DllImport("xpcom", CharSet = CharSet.Ansi)]
-		static extern int NS_CStringContainerFinish(nsACString container);
-		
+		public virtual void SetData(string value)
+		{
+			NS_CStringSetData(this, value, (value == null) ? 0 : value.Length);
+		}
+
+		public override string ToString()
+		{
+			IntPtr data;
+			int length = NS_CStringGetData(this, out data, IntPtr.Zero);
+
+			if (length > 0)
+			{
+				return Marshal.PtrToStringAnsi(data, length);
+			}
+			return "";
+		}
+	}
+
+
+	// TODO: see comment on class nsAString
+	[StructLayout(LayoutKind.Sequential)]
+	public class nsACString : nsACStringBase, IDisposable
+	{		
 		public nsACString()
 		{
 			NS_CStringContainerInit(this);
@@ -341,24 +362,7 @@ namespace Gecko
 		{
 			NS_CStringContainerFinish(this);
 			GC.SuppressFinalize(this);
-		}
-		
-		public virtual void SetData(string value)
-		{
-			NS_CStringSetData(this, value, (value == null) ? 0 : value.Length);
-		}
-		
-		public override string ToString()
-		{
-			IntPtr data;
-			int length = NS_CStringGetData(this, out data, IntPtr.Zero);
-			
-			if (length > 0)
-			{
-				return Marshal.PtrToStringAnsi(data, length);
-			}
-			return "";
-		}
+		}				
 	}
 
 	// TODO: internal nsAString is implementation dependant write some unit tests to ensure we at least notice if it breaks.

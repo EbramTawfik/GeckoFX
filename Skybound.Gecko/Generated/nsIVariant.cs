@@ -109,7 +109,7 @@ namespace Gecko
 		void GetAsDOMString([MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetAsACString([MarshalAs(UnmanagedType.LPStruct)] nsACString retval);
+		void GetAsACString([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetAsAUTF8String([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
@@ -219,7 +219,7 @@ namespace Gecko
 		new void GetAsDOMString([MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetAsACString([MarshalAs(UnmanagedType.LPStruct)] nsACString retval);
+		new void GetAsACString([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetAsAUTF8String([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
@@ -327,7 +327,7 @@ namespace Gecko
 		void SetAsDOMString([MarshalAs(UnmanagedType.LPStruct)] nsAString aValue);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAsACString([MarshalAs(UnmanagedType.LPStruct)] nsACString aValue);
+		void SetAsACString([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aValue);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetAsAUTF8String([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aValue);

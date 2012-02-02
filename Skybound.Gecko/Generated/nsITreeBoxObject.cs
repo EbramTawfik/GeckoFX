@@ -231,13 +231,13 @@ namespace Gecko
         /// document this boxObject lives in, and the units are CSS pixels.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCellAt(int x, int y, ref int row, [MarshalAs(UnmanagedType.Interface)] ref nsITreeColumn col, [MarshalAs(UnmanagedType.LPStruct)] nsACString childElt);
+		void GetCellAt(int x, int y, ref int row, [MarshalAs(UnmanagedType.Interface)] ref nsITreeColumn col, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase childElt);
 		
 		/// <summary>
         /// Find the coordinates of an element within a specific cell.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCoordsForCellItem(int row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn col, [MarshalAs(UnmanagedType.LPStruct)] nsACString element, ref int x, ref int y, ref int width, ref int height);
+		void GetCoordsForCellItem(int row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn col, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase element, ref int x, ref int y, ref int width, ref int height);
 		
 		/// <summary>
         /// Determine if the text of a cell is being cropped or not.

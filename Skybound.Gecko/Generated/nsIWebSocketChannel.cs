@@ -89,19 +89,19 @@ namespace Gecko
         /// Sec-Websocket-Protocol value
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetProtocolAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aProtocol);
+		void GetProtocolAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aProtocol);
 		
 		/// <summary>
         /// Sec-Websocket-Protocol value
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetProtocolAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aProtocol);
+		void SetProtocolAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aProtocol);
 		
 		/// <summary>
         /// Sec-Websocket-Extensions response header value
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetExtensionsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aExtensions);
+		void GetExtensionsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aExtensions);
 		
 		/// <summary>
         /// Asynchronously open the websocket connection.  Received messages are fed
@@ -120,7 +120,7 @@ namespace Gecko
         /// @param aContext an opaque parameter forwarded to aListener's methods
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AsyncOpen([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsACString aOrigin, [MarshalAs(UnmanagedType.Interface)] nsIWebSocketListener aListener, [MarshalAs(UnmanagedType.Interface)] nsISupports aContext);
+		void AsyncOpen([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aOrigin, [MarshalAs(UnmanagedType.Interface)] nsIWebSocketListener aListener, [MarshalAs(UnmanagedType.Interface)] nsISupports aContext);
 		
 		/// <summary>
         /// Close the websocket connection for writing - no more calls to sendMsg
@@ -148,6 +148,6 @@ namespace Gecko
         /// @param aMsg the data to send
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendBinaryMsg([MarshalAs(UnmanagedType.LPStruct)] nsACString aMsg);
+		void SendBinaryMsg([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aMsg);
 	}
 }

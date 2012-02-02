@@ -53,7 +53,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIMIMEInfo GetFromTypeAndExtension([MarshalAs(UnmanagedType.LPStruct)] nsACString aMIMEType, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aFileExt);
+		nsIMIMEInfo GetFromTypeAndExtension([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aMIMEType, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aFileExt);
 		
 		/// <summary>
         /// Retrieves a ACString representation of the MIME type
@@ -63,7 +63,7 @@ namespace Gecko
         /// @return The MIME type, if any.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTypeFromExtension([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aFileExt, [MarshalAs(UnmanagedType.LPStruct)] nsACString retval);
+		void GetTypeFromExtension([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aFileExt, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
 		
 		/// <summary>
         /// Retrieves a ACString representation of the MIME type
@@ -75,12 +75,12 @@ namespace Gecko
         /// @return The MIME type, if any.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTypeFromURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsACString retval);
+		void GetTypeFromURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
 		
 		/// <summary>
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTypeFromFile([MarshalAs(UnmanagedType.Interface)] nsIFile aFile, [MarshalAs(UnmanagedType.LPStruct)] nsACString retval);
+		void GetTypeFromFile([MarshalAs(UnmanagedType.Interface)] nsIFile aFile, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
 		
 		/// <summary>
         /// Given a Type/Extension combination, returns the default extension
@@ -90,6 +90,6 @@ namespace Gecko
         /// @param aFileExt  File Extension. Can be empty.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPrimaryExtension([MarshalAs(UnmanagedType.LPStruct)] nsACString aMIMEType, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aFileExt, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
+		void GetPrimaryExtension([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aMIMEType, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aFileExt, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
 	}
 }

@@ -47,7 +47,7 @@ namespace Gecko
         /// nsICachingChannel.cacheToken.setMetaDataElement("charset").
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCacheTokenCachedCharsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aCacheTokenCachedCharset);
+		void GetCacheTokenCachedCharsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aCacheTokenCachedCharset);
 		
 		/// <summary>
         /// Set/get charset of cache entry. Accessing this attribute is equivalent to
@@ -55,7 +55,7 @@ namespace Gecko
         /// nsICachingChannel.cacheToken.setMetaDataElement("charset").
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCacheTokenCachedCharsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aCacheTokenCachedCharset);
+		void SetCacheTokenCachedCharsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aCacheTokenCachedCharset);
 		
 		/// <summary>
         /// TRUE if this channel's data is being loaded from the cache.  This value

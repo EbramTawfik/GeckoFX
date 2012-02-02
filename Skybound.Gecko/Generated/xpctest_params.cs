@@ -98,7 +98,7 @@ namespace Gecko
 		void TestAUTF8String([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String a, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String b, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void TestACString([MarshalAs(UnmanagedType.LPStruct)] nsACString a, [MarshalAs(UnmanagedType.LPStruct)] nsACString b, [MarshalAs(UnmanagedType.LPStruct)] nsACString retval);
+		void TestACString([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase a, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase b, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr TestJsval(System.IntPtr a, ref System.IntPtr b);

@@ -79,37 +79,37 @@ namespace Gecko
         ///XXX Comment here!
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDefaultCharacterSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aDefaultCharacterSet);
+		void GetDefaultCharacterSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aDefaultCharacterSet);
 		
 		/// <summary>
         ///XXX Comment here!
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDefaultCharacterSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aDefaultCharacterSet);
+		void SetDefaultCharacterSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aDefaultCharacterSet);
 		
 		/// <summary>
         ///XXX Comment here!
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetForceCharacterSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aForceCharacterSet);
+		void GetForceCharacterSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aForceCharacterSet);
 		
 		/// <summary>
         ///XXX Comment here!
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetForceCharacterSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aForceCharacterSet);
+		void SetForceCharacterSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aForceCharacterSet);
 		
 		/// <summary>
         ///XXX Comment here!
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetHintCharacterSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aHintCharacterSet);
+		void GetHintCharacterSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aHintCharacterSet);
 		
 		/// <summary>
         ///XXX Comment here!
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetHintCharacterSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aHintCharacterSet);
+		void SetHintCharacterSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aHintCharacterSet);
 		
 		/// <summary>
         ///XXX Comment here!
@@ -127,13 +127,13 @@ namespace Gecko
         ///character set from prev document
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPrevDocCharacterSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aPrevDocCharacterSet);
+		void GetPrevDocCharacterSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aPrevDocCharacterSet);
 		
 		/// <summary>
         ///character set from prev document
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPrevDocCharacterSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aPrevDocCharacterSet);
+		void SetPrevDocCharacterSetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aPrevDocCharacterSet);
 		
 		/// <summary>
         /// Tell the container to shrink-to-fit or grow-to-fit its contents

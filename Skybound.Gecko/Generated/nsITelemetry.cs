@@ -62,7 +62,7 @@ namespace Gecko
         /// snapshot() - Returns a snapshot of the histogram with the same data fields as in histogramSnapshots()
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr NewHistogram([MarshalAs(UnmanagedType.LPStruct)] nsACString name, uint min, uint max, uint bucket_count, uint histogram_type, System.IntPtr jsContext);
+		System.IntPtr NewHistogram([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase name, uint min, uint max, uint bucket_count, uint histogram_type, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Same as newHistogram above, but for histograms registered in TelemetryHistograms.h.
@@ -70,7 +70,7 @@ namespace Gecko
         /// @param id - unique identifier from TelemetryHistograms.h
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetHistogramById([MarshalAs(UnmanagedType.LPStruct)] nsACString id, System.IntPtr jsContext);
+		System.IntPtr GetHistogramById([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase id, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Set this to false to disable gathering of telemetry statistics.

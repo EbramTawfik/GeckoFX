@@ -40,13 +40,13 @@ namespace Gecko
         /// The name used to identify this table
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aName);
+		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aName);
 		
 		/// <summary>
         /// The name used to identify this table
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aName);
+		void SetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aName);
 		
 		/// <summary>
         /// Set to false if we don't want to update this table.
@@ -68,6 +68,6 @@ namespace Gecko
         /// (e.g., canonicalize the url).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Exists([MarshalAs(UnmanagedType.LPStruct)] nsACString key, [MarshalAs(UnmanagedType.Interface)] nsIUrlListManagerCallback cb);
+		void Exists([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase key, [MarshalAs(UnmanagedType.Interface)] nsIUrlListManagerCallback cb);
 	}
 }

@@ -294,7 +294,7 @@ namespace Gecko
         /// Any implementation of nsIChannel must follow these rules.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetContentTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aContentType);
+		new void GetContentTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aContentType);
 		
 		/// <summary>
         /// The MIME type of the channel's content if available.
@@ -322,7 +322,7 @@ namespace Gecko
         /// Any implementation of nsIChannel must follow these rules.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetContentTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aContentType);
+		new void SetContentTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aContentType);
 		
 		/// <summary>
         /// The character set of the channel's content if available and if applicable.
@@ -331,7 +331,7 @@ namespace Gecko
         /// The value of the contentCharset attribute is a mixedcase string.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetContentCharsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aContentCharset);
+		new void GetContentCharsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aContentCharset);
 		
 		/// <summary>
         /// The character set of the channel's content if available and if applicable.
@@ -340,7 +340,7 @@ namespace Gecko
         /// The value of the contentCharset attribute is a mixedcase string.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetContentCharsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aContentCharset);
+		new void SetContentCharsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aContentCharset);
 		
 		/// <summary>
         /// The length of the data associated with the channel if available.  A value
@@ -450,7 +450,7 @@ namespace Gecko
         /// @deprecated Use contentDisposition/contentDispositionFilename instead.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetContentDispositionHeaderAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aContentDispositionHeader);
+		new void GetContentDispositionHeaderAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aContentDispositionHeader);
 		
 		/// <summary>
         /// Set/get the HTTP request method (default is "GET").  Setter is case
@@ -466,7 +466,7 @@ namespace Gecko
         /// @throws NS_ERROR_IN_PROGRESS if set after the channel has been opened.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetRequestMethodAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aRequestMethod);
+		void GetRequestMethodAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aRequestMethod);
 		
 		/// <summary>
         /// Set/get the HTTP request method (default is "GET").  Setter is case
@@ -482,7 +482,7 @@ namespace Gecko
         /// @throws NS_ERROR_IN_PROGRESS if set after the channel has been opened.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetRequestMethodAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aRequestMethod);
+		void SetRequestMethodAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aRequestMethod);
 		
 		/// <summary>
         /// Get/set the HTTP referrer URI.  This is the address (URI) of the
@@ -532,7 +532,7 @@ namespace Gecko
         /// @throws NS_ERROR_NOT_AVAILABLE if the header is not set.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetRequestHeader([MarshalAs(UnmanagedType.LPStruct)] nsACString aHeader, [MarshalAs(UnmanagedType.LPStruct)] nsACString retval);
+		void GetRequestHeader([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aHeader, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
 		
 		/// <summary>
         /// Set the value of a particular request header.
@@ -562,7 +562,7 @@ namespace Gecko
         /// opened.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetRequestHeader([MarshalAs(UnmanagedType.LPStruct)] nsACString aHeader, [MarshalAs(UnmanagedType.LPStruct)] nsACString aValue, [MarshalAs(UnmanagedType.Bool)] bool aMerge);
+		void SetRequestHeader([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aHeader, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aValue, [MarshalAs(UnmanagedType.Bool)] bool aMerge);
 		
 		/// <summary>
         /// Call this method to visit all request headers.  Calling setRequestHeader
@@ -659,7 +659,7 @@ namespace Gecko
         /// has been received (before onStartRequest).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetResponseStatusTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aResponseStatusText);
+		void GetResponseStatusTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aResponseStatusText);
 		
 		/// <summary>
         /// Returns true if the HTTP response code indicates success.  The value of
@@ -692,7 +692,7 @@ namespace Gecko
         /// not set in the response.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetResponseHeader([MarshalAs(UnmanagedType.LPStruct)] nsACString header, [MarshalAs(UnmanagedType.LPStruct)] nsACString retval);
+		void GetResponseHeader([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase header, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
 		
 		/// <summary>
         /// Set the value of a particular response header.
@@ -722,7 +722,7 @@ namespace Gecko
         /// header is not allowed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetResponseHeader([MarshalAs(UnmanagedType.LPStruct)] nsACString header, [MarshalAs(UnmanagedType.LPStruct)] nsACString value, [MarshalAs(UnmanagedType.Bool)] bool merge);
+		void SetResponseHeader([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase header, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase value, [MarshalAs(UnmanagedType.Bool)] bool merge);
 		
 		/// <summary>
         /// Call this method to visit all response headers.  Calling

@@ -55,7 +55,7 @@ namespace Gecko
         /// database operation to fail with NS_ERROR_FILE_NO_DEVICE_SPACE.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int QuotaExceeded([MarshalAs(UnmanagedType.LPStruct)] nsACString aFilename, long aCurrentSizeLimit, long aCurrentTotalSize, [MarshalAs(UnmanagedType.Interface)] nsISupports aUserData);
+		int QuotaExceeded([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aFilename, long aCurrentSizeLimit, long aCurrentTotalSize, [MarshalAs(UnmanagedType.Interface)] nsISupports aUserData);
 	}
 	
 	/// <summary>
@@ -73,7 +73,7 @@ namespace Gecko
         /// SQLite VFS.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		mozIStorageConnection OpenDatabaseWithVFS([MarshalAs(UnmanagedType.Interface)] nsIFile aDatabaseFile, [MarshalAs(UnmanagedType.LPStruct)] nsACString aVFSName);
+		mozIStorageConnection OpenDatabaseWithVFS([MarshalAs(UnmanagedType.Interface)] nsIFile aDatabaseFile, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aVFSName);
 		
 		/// <summary>
         /// Set a file size quota for a group of databases matching the given filename
@@ -97,7 +97,7 @@ namespace Gecko
         /// Additional information to be passed to the callback.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetQuotaForFilenamePattern([MarshalAs(UnmanagedType.LPStruct)] nsACString aPattern, long aSizeLimit, mozIStorageQuotaCallback aCallback, [MarshalAs(UnmanagedType.Interface)] nsISupports aUserData);
+		void SetQuotaForFilenamePattern([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aPattern, long aSizeLimit, mozIStorageQuotaCallback aCallback, [MarshalAs(UnmanagedType.Interface)] nsISupports aUserData);
 		
 		/// <summary>
         /// Adds, removes, or updates the file size information maintained by the quota

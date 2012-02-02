@@ -58,7 +58,7 @@ namespace Gecko
         /// True if the stream already contains headers for the HTTP request.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ExplicitSetUploadStream([MarshalAs(UnmanagedType.Interface)] nsIInputStream aStream, [MarshalAs(UnmanagedType.LPStruct)] nsACString aContentType, long aContentLength, [MarshalAs(UnmanagedType.LPStruct)] nsACString aMethod, [MarshalAs(UnmanagedType.Bool)] bool aStreamHasHeaders);
+		void ExplicitSetUploadStream([MarshalAs(UnmanagedType.Interface)] nsIInputStream aStream, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aContentType, long aContentLength, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aMethod, [MarshalAs(UnmanagedType.Bool)] bool aStreamHasHeaders);
 		
 		/// <summary>
         /// Value of aStreamHasHeaders from the last successful call to

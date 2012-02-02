@@ -92,7 +92,7 @@ namespace Gecko
         /// The globally unique id of the place.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetGuidAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aGuid);
+		void GetGuidAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGuid);
 		
 		/// <summary>
         /// The URI of the place.

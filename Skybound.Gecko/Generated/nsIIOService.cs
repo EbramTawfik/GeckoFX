@@ -158,6 +158,6 @@ namespace Gecko
         /// @throws NS_ERROR_MALFORMED_URI if URL string is not of the right form.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ExtractScheme([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String urlString, [MarshalAs(UnmanagedType.LPStruct)] nsACString retval);
+		void ExtractScheme([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String urlString, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
 	}
 }

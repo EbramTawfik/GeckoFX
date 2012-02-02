@@ -201,6 +201,6 @@ namespace Gecko
         /// The callback object used to handle a successful upgrade
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void HTTPUpgrade([MarshalAs(UnmanagedType.LPStruct)] nsACString aProtocolName, [MarshalAs(UnmanagedType.Interface)] nsIHttpUpgradeListener aListener);
+		void HTTPUpgrade([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aProtocolName, [MarshalAs(UnmanagedType.Interface)] nsIHttpUpgradeListener aListener);
 	}
 }

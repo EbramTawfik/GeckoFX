@@ -49,6 +49,6 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool ReadLine([MarshalAs(UnmanagedType.LPStruct)] nsACString aLine);
+		bool ReadLine([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aLine);
 	}
 }

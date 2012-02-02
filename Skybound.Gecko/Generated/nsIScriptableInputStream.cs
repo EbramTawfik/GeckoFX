@@ -92,6 +92,6 @@ namespace Gecko
         /// aCount amount of data.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ReadBytes(uint aCount, [MarshalAs(UnmanagedType.LPStruct)] nsACString retval);
+		void ReadBytes(uint aCount, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
 	}
 }

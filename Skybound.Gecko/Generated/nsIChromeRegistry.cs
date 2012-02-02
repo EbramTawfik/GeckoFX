@@ -119,14 +119,14 @@ namespace Gecko
 		/// <param name='packageName'> </param>
 		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSelectedLocale([MarshalAs(UnmanagedType.LPStruct)] nsACString packageName, [MarshalAs(UnmanagedType.LPStruct)] nsACString retval);
+		void GetSelectedLocale([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase packageName, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
 		
 		/// <summary>
         /// Get the direction of the locale via the intl.uidirection.<locale> pref
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsLocaleRTL([MarshalAs(UnmanagedType.LPStruct)] nsACString package);
+		bool IsLocaleRTL([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase package);
 		
 		/// <summary>
         ///Should be called when skins change. Reloads only stylesheets. </summary>

@@ -106,6 +106,6 @@ namespace Gecko
 		void ShowURI([MarshalAs(UnmanagedType.Interface)] nsIURI uri);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ShowURIForInput([MarshalAs(UnmanagedType.LPStruct)] nsACString uri);
+		void ShowURIForInput([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase uri);
 	}
 }

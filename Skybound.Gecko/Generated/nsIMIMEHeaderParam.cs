@@ -82,7 +82,7 @@ namespace Gecko
         /// @return the value of <code>aParamName</code> in Unichar(UTF-16).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetParameter([MarshalAs(UnmanagedType.LPStruct)] nsACString aHeaderVal, [MarshalAs(UnmanagedType.LPStr)] string aParamName, [MarshalAs(UnmanagedType.LPStruct)] nsACString aFallbackCharset, [MarshalAs(UnmanagedType.Bool)] bool aTryLocaleCharset, [MarshalAs(UnmanagedType.LPStr)] ref string aLang, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetParameter([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aHeaderVal, [MarshalAs(UnmanagedType.LPStr)] string aParamName, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aFallbackCharset, [MarshalAs(UnmanagedType.Bool)] bool aTryLocaleCharset, [MarshalAs(UnmanagedType.LPStr)] ref string aLang, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
 		
 		/// <summary>
         /// Given the value of a single header field  (such as
@@ -140,7 +140,7 @@ namespace Gecko
         /// @return                 decoded header value
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DecodeRFC2047Header([MarshalAs(UnmanagedType.LPStr)] string aHeaderVal, [MarshalAs(UnmanagedType.LPStr)] string aDefaultCharset, [MarshalAs(UnmanagedType.Bool)] bool aOverrideCharset, [MarshalAs(UnmanagedType.Bool)] bool aEatContinuation, [MarshalAs(UnmanagedType.LPStruct)] nsACString retval);
+		void DecodeRFC2047Header([MarshalAs(UnmanagedType.LPStr)] string aHeaderVal, [MarshalAs(UnmanagedType.LPStr)] string aDefaultCharset, [MarshalAs(UnmanagedType.Bool)] bool aOverrideCharset, [MarshalAs(UnmanagedType.Bool)] bool aEatContinuation, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
 		
 		/// <summary>
         /// Given a header parameter, decodes RFC 2047 style encoding (if it's
@@ -172,6 +172,6 @@ namespace Gecko
         /// @return                 decoded parameter
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DecodeParameter([MarshalAs(UnmanagedType.LPStruct)] nsACString aParamValue, [MarshalAs(UnmanagedType.LPStr)] string aCharset, [MarshalAs(UnmanagedType.LPStr)] string aDefaultCharset, [MarshalAs(UnmanagedType.Bool)] bool aOverrideCharset, [MarshalAs(UnmanagedType.LPStruct)] nsACString retval);
+		void DecodeParameter([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aParamValue, [MarshalAs(UnmanagedType.LPStr)] string aCharset, [MarshalAs(UnmanagedType.LPStr)] string aDefaultCharset, [MarshalAs(UnmanagedType.Bool)] bool aOverrideCharset, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
 	}
 }

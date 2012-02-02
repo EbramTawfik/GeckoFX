@@ -51,7 +51,7 @@ namespace Gecko
         /// 'process' field set appropriately.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetProcessAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aProcess);
+		void GetProcessAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aProcess);
 		
 		/// <summary>
         /// The path that this memory usage should be reported under.  Paths are
@@ -138,7 +138,7 @@ namespace Gecko
 		/// <param name='description'> </param>
 		/// <param name='closure'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Callback([MarshalAs(UnmanagedType.LPStruct)] nsACString process, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String path, int kind, int units, long amount, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String description, [MarshalAs(UnmanagedType.Interface)] nsISupports closure);
+		void Callback([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase process, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String path, int kind, int units, long amount, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String description, [MarshalAs(UnmanagedType.Interface)] nsISupports closure);
 	}
 	
 	/// <summary>

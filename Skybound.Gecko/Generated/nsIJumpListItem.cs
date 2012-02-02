@@ -157,7 +157,7 @@ namespace Gecko
         /// the URI spec using nsICryptoHash.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetUriHashAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aUriHash);
+		void GetUriHashAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aUriHash);
 		
 		/// <summary>
         /// Compare this item's hash to another uri.

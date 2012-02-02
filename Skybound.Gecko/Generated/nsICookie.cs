@@ -41,13 +41,13 @@ namespace Gecko
         /// the name of the cookie
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aName);
+		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aName);
 		
 		/// <summary>
         /// the cookie value
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aValue);
+		void GetValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aValue);
 		
 		/// <summary>
         /// true if the cookie is a domain cookie, false otherwise

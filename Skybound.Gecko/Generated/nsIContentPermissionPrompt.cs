@@ -43,7 +43,7 @@ namespace Gecko
         /// "geolocation".
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aType);
+		void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aType);
 		
 		/// <summary>
         /// The uri of the permission request.

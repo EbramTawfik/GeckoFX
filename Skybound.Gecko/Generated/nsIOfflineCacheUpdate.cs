@@ -104,7 +104,7 @@ namespace Gecko
         /// with this update.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetUpdateDomainAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aUpdateDomain);
+		void GetUpdateDomainAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aUpdateDomain);
 		
 		/// <summary>
         /// The manifest for the offline application being updated.
@@ -145,7 +145,7 @@ namespace Gecko
         /// when this information is unknown.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitPartial([MarshalAs(UnmanagedType.Interface)] nsIURI aManifestURI, [MarshalAs(UnmanagedType.LPStruct)] nsACString aClientID, [MarshalAs(UnmanagedType.Interface)] nsIURI aDocumentURI);
+		void InitPartial([MarshalAs(UnmanagedType.Interface)] nsIURI aManifestURI, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aClientID, [MarshalAs(UnmanagedType.Interface)] nsIURI aDocumentURI);
 		
 		/// <summary>
         /// Add a dynamic URI to the offline cache as part of the update.

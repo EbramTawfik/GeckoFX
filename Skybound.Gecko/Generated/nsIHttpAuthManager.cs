@@ -72,7 +72,7 @@ namespace Gecko
         /// return value containing user password.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetAuthIdentity([MarshalAs(UnmanagedType.LPStruct)] nsACString aScheme, [MarshalAs(UnmanagedType.LPStruct)] nsACString aHost, int aPort, [MarshalAs(UnmanagedType.LPStruct)] nsACString aAuthType, [MarshalAs(UnmanagedType.LPStruct)] nsACString aRealm, [MarshalAs(UnmanagedType.LPStruct)] nsACString aPath, [MarshalAs(UnmanagedType.LPStruct)] nsAString aUserDomain, [MarshalAs(UnmanagedType.LPStruct)] nsAString aUserName, [MarshalAs(UnmanagedType.LPStruct)] nsAString aUserPassword);
+		void GetAuthIdentity([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aScheme, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aHost, int aPort, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aAuthType, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aRealm, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aPath, [MarshalAs(UnmanagedType.LPStruct)] nsAString aUserDomain, [MarshalAs(UnmanagedType.LPStruct)] nsAString aUserName, [MarshalAs(UnmanagedType.LPStruct)] nsAString aUserPassword);
 		
 		/// <summary>
         /// Store auth identity.
@@ -99,7 +99,7 @@ namespace Gecko
         /// optional string containing user password.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAuthIdentity([MarshalAs(UnmanagedType.LPStruct)] nsACString aScheme, [MarshalAs(UnmanagedType.LPStruct)] nsACString aHost, int aPort, [MarshalAs(UnmanagedType.LPStruct)] nsACString aAuthType, [MarshalAs(UnmanagedType.LPStruct)] nsACString aRealm, [MarshalAs(UnmanagedType.LPStruct)] nsACString aPath, [MarshalAs(UnmanagedType.LPStruct)] nsAString aUserDomain, [MarshalAs(UnmanagedType.LPStruct)] nsAString aUserName, [MarshalAs(UnmanagedType.LPStruct)] nsAString aUserPassword);
+		void SetAuthIdentity([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aScheme, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aHost, int aPort, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aAuthType, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aRealm, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aPath, [MarshalAs(UnmanagedType.LPStruct)] nsAString aUserDomain, [MarshalAs(UnmanagedType.LPStruct)] nsAString aUserName, [MarshalAs(UnmanagedType.LPStruct)] nsAString aUserPassword);
 		
 		/// <summary>
         /// Clear all auth cache.

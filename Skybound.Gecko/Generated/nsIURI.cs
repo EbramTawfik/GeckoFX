@@ -102,7 +102,7 @@ namespace Gecko
         /// that will generally lead to incorrect results.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSchemeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aScheme);
+		void GetSchemeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aScheme);
 		
 		/// <summary>
         /// The Scheme is the protocol to which this URI refers.  The scheme is
@@ -111,7 +111,7 @@ namespace Gecko
         /// that will generally lead to incorrect results.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSchemeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aScheme);
+		void SetSchemeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aScheme);
 		
 		/// <summary>
         /// The username:password (or username only if value doesn't contain a ':')
@@ -261,7 +261,7 @@ namespace Gecko
         /// RFC2396.  The result is strictly ASCII.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetAsciiSpecAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aAsciiSpec);
+		void GetAsciiSpecAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aAsciiSpec);
 		
 		/// <summary>
         /// The URI host with an ASCII compatible encoding.  Follows the IDNA
@@ -269,7 +269,7 @@ namespace Gecko
         /// ASCII for compatibility with existing internet infrasture.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetAsciiHostAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aAsciiHost);
+		void GetAsciiHostAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aAsciiHost);
 		
 		/// <summary>
         /// The charset of the document from which this URI originated.  An empty
@@ -281,7 +281,7 @@ namespace Gecko
         /// characters.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetOriginCharsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aOriginCharset);
+		void GetOriginCharsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aOriginCharset);
 		
 		/// <summary>
         /// Returns the reference portion (the part after the "#") of the URI.

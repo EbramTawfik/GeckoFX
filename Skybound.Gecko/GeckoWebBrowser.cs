@@ -2980,7 +2980,7 @@ namespace Gecko
                              UInt32 aActivitySubtype,
                              Int64 aTimestamp,
                              UInt64 aExtraSizeData,
-							 nsACString aExtraStringData)
+							 nsACStringBase aExtraStringData)
         {
             nsIHttpChannel httpChannel = Xpcom.QueryInterface<nsIHttpChannel>(aHttpChannel);
 

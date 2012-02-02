@@ -43,34 +43,34 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIApplicationCache CreateApplicationCache([MarshalAs(UnmanagedType.LPStruct)] nsACString group);
+		nsIApplicationCache CreateApplicationCache([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase group);
 		
 		/// <summary>
         /// Get an application cache object for the given client ID.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIApplicationCache GetApplicationCache([MarshalAs(UnmanagedType.LPStruct)] nsACString clientID);
+		nsIApplicationCache GetApplicationCache([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase clientID);
 		
 		/// <summary>
         /// Get the currently active cache object for a cache group.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIApplicationCache GetActiveCache([MarshalAs(UnmanagedType.LPStruct)] nsACString group);
+		nsIApplicationCache GetActiveCache([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase group);
 		
 		/// <summary>
         /// Deactivate the currently-active cache object for a cache group.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DeactivateGroup([MarshalAs(UnmanagedType.LPStruct)] nsACString group);
+		void DeactivateGroup([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase group);
 		
 		/// <summary>
         /// Try to find the best application cache to serve a resource.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIApplicationCache ChooseApplicationCache([MarshalAs(UnmanagedType.LPStruct)] nsACString key);
+		nsIApplicationCache ChooseApplicationCache([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase key);
 		
 		/// <summary>
         /// Flags the key as being opportunistically cached.
@@ -85,7 +85,7 @@ namespace Gecko
         /// The cache entry key.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CacheOpportunistically([MarshalAs(UnmanagedType.Interface)] nsIApplicationCache cache, [MarshalAs(UnmanagedType.LPStruct)] nsACString key);
+		void CacheOpportunistically([MarshalAs(UnmanagedType.Interface)] nsIApplicationCache cache, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase key);
 		
 		/// <summary>
         /// Get the list of application cache groups.

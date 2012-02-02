@@ -74,7 +74,7 @@ namespace Gecko
         /// @param aMsg the message data
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnBinaryMessageAvailable([MarshalAs(UnmanagedType.Interface)] nsISupports aContext, [MarshalAs(UnmanagedType.LPStruct)] nsACString aMsg);
+		void OnBinaryMessageAvailable([MarshalAs(UnmanagedType.Interface)] nsISupports aContext, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aMsg);
 		
 		/// <summary>
         /// Called to acknowledge message sent via sendMsg() or sendBinaryMsg.

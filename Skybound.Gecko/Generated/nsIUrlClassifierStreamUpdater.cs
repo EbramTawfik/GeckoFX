@@ -42,13 +42,13 @@ namespace Gecko
         /// The Url to download from.  Should be plain ascii text.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetUpdateUrlAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aUpdateUrl);
+		void GetUpdateUrlAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aUpdateUrl);
 		
 		/// <summary>
         /// The Url to download from.  Should be plain ascii text.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetUpdateUrlAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aUpdateUrl);
+		void SetUpdateUrlAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aUpdateUrl);
 		
 		/// <summary>
         /// Try to download updates from updateUrl.  Only one instance of this
@@ -65,6 +65,6 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool DownloadUpdates([MarshalAs(UnmanagedType.LPStruct)] nsACString aRequestTables, [MarshalAs(UnmanagedType.LPStruct)] nsACString aRequestBody, [MarshalAs(UnmanagedType.LPStruct)] nsACString aClientKey, [MarshalAs(UnmanagedType.Interface)] nsIUrlClassifierCallback aSuccessCallback, [MarshalAs(UnmanagedType.Interface)] nsIUrlClassifierCallback aUpdateErrorCallback, [MarshalAs(UnmanagedType.Interface)] nsIUrlClassifierCallback aDownloadErrorCallback);
+		bool DownloadUpdates([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aRequestTables, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aRequestBody, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aClientKey, [MarshalAs(UnmanagedType.Interface)] nsIUrlClassifierCallback aSuccessCallback, [MarshalAs(UnmanagedType.Interface)] nsIUrlClassifierCallback aUpdateErrorCallback, [MarshalAs(UnmanagedType.Interface)] nsIUrlClassifierCallback aDownloadErrorCallback);
 	}
 }

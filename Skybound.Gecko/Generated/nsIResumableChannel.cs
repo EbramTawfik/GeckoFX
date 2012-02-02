@@ -54,13 +54,13 @@ namespace Gecko
         /// OnStopRequest will immediately follow with the same status code.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ResumeAt(ulong startPos, [MarshalAs(UnmanagedType.LPStruct)] nsACString entityID);
+		void ResumeAt(ulong startPos, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase entityID);
 		
 		/// <summary>
         /// The entity id for this URI. Available after OnStartRequest.
         /// @throw NS_ERROR_NOT_RESUMABLE if this load is not resumable.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetEntityIDAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aEntityID);
+		void GetEntityIDAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aEntityID);
 	}
 }

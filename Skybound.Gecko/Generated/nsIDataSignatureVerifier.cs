@@ -49,6 +49,6 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Bool)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool VerifyData([MarshalAs(UnmanagedType.LPStruct)] nsACString aData, [MarshalAs(UnmanagedType.LPStruct)] nsACString aSignature, [MarshalAs(UnmanagedType.LPStruct)] nsACString aPublicKey);
+		bool VerifyData([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aData, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aSignature, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aPublicKey);
 	}
 }

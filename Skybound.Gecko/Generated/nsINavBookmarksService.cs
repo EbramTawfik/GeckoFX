@@ -80,7 +80,7 @@ namespace Gecko
         /// The unique ID associated with the item's parent.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnItemAdded(long aItemId, long aParentId, int aIndex, ushort aItemType, [MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aTitle, long aDateAdded, [MarshalAs(UnmanagedType.LPStruct)] nsACString aGUID, [MarshalAs(UnmanagedType.LPStruct)] nsACString aParentGUID);
+		void OnItemAdded(long aItemId, long aParentId, int aIndex, ushort aItemType, [MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aTitle, long aDateAdded, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGUID, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aParentGUID);
 		
 		/// <summary>
         /// Notifies that an item is about to be removed.  Called before the actual
@@ -98,7 +98,7 @@ namespace Gecko
         /// The unique ID associated with the item's parent.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnBeforeItemRemoved(long aItemId, ushort aItemType, long aParentId, [MarshalAs(UnmanagedType.LPStruct)] nsACString aGUID, [MarshalAs(UnmanagedType.LPStruct)] nsACString aParentGUID);
+		void OnBeforeItemRemoved(long aItemId, ushort aItemType, long aParentId, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGUID, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aParentGUID);
 		
 		/// <summary>
         /// Notifies that an item was removed.  Called after the actual remove took
@@ -123,7 +123,7 @@ namespace Gecko
         /// The unique ID associated with the item's parent.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnItemRemoved(long aItemId, long aParentId, int aIndex, ushort aItemType, [MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsACString aGUID, [MarshalAs(UnmanagedType.LPStruct)] nsACString aParentGUID);
+		void OnItemRemoved(long aItemId, long aParentId, int aIndex, ushort aItemType, [MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGUID, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aParentGUID);
 		
 		/// <summary>
         /// Notifies that an item's information has changed.  This will be called
@@ -164,7 +164,7 @@ namespace Gecko
         /// lastModified  | PRTime (as string) when the item was last modified.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnItemChanged(long aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsACString aProperty, [MarshalAs(UnmanagedType.Bool)] bool aIsAnnotationProperty, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aNewValue, long aLastModified, ushort aItemType, long aParentId, [MarshalAs(UnmanagedType.LPStruct)] nsACString aGUID, [MarshalAs(UnmanagedType.LPStruct)] nsACString aParentGUID);
+		void OnItemChanged(long aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aProperty, [MarshalAs(UnmanagedType.Bool)] bool aIsAnnotationProperty, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aNewValue, long aLastModified, ushort aItemType, long aParentId, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGUID, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aParentGUID);
 		
 		/// <summary>
         /// Notifies that the item was visited.  Can be invoked only for TYPE_BOOKMARK
@@ -197,7 +197,7 @@ namespace Gecko
         /// recent visit for that page.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnItemVisited(long aItemId, long aVisitId, long aTime, uint aTransitionType, [MarshalAs(UnmanagedType.Interface)] nsIURI aURI, long aParentId, [MarshalAs(UnmanagedType.LPStruct)] nsACString aGUID, [MarshalAs(UnmanagedType.LPStruct)] nsACString aParentGUID);
+		void OnItemVisited(long aItemId, long aVisitId, long aTime, uint aTransitionType, [MarshalAs(UnmanagedType.Interface)] nsIURI aURI, long aParentId, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGUID, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aParentGUID);
 		
 		/// <summary>
         /// Notifies that an item has been moved.
@@ -222,7 +222,7 @@ namespace Gecko
         /// The unique ID associated with the new item's parent.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnItemMoved(long aItemId, long aOldParentId, int aOldIndex, long aNewParentId, int aNewIndex, ushort aItemType, [MarshalAs(UnmanagedType.LPStruct)] nsACString aGUID, [MarshalAs(UnmanagedType.LPStruct)] nsACString aOldParentGUID, [MarshalAs(UnmanagedType.LPStruct)] nsACString aNewParentGUID);
+		void OnItemMoved(long aItemId, long aOldParentId, int aOldIndex, long aNewParentId, int aNewIndex, ushort aItemType, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGUID, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aOldParentGUID, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aNewParentGUID);
 	}
 	
 	/// <summary>

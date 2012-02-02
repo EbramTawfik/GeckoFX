@@ -56,7 +56,7 @@ namespace Gecko
         /// nsICachingChannel.cacheToken.setMetaDataElement("charset").
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetCacheTokenCachedCharsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aCacheTokenCachedCharset);
+		new void GetCacheTokenCachedCharsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aCacheTokenCachedCharset);
 		
 		/// <summary>
         /// Set/get charset of cache entry. Accessing this attribute is equivalent to
@@ -64,7 +64,7 @@ namespace Gecko
         /// nsICachingChannel.cacheToken.setMetaDataElement("charset").
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetCacheTokenCachedCharsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aCacheTokenCachedCharset);
+		new void SetCacheTokenCachedCharsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aCacheTokenCachedCharset);
 		
 		/// <summary>
         /// TRUE if this channel's data is being loaded from the cache.  This value
@@ -217,14 +217,14 @@ namespace Gecko
         /// data will be placed in "HTTP-offline"
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetOfflineCacheClientIDAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aOfflineCacheClientID);
+		void GetOfflineCacheClientIDAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aOfflineCacheClientID);
 		
 		/// <summary>
         /// The session into which to cache offline data.  If not specified,
         /// data will be placed in "HTTP-offline"
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOfflineCacheClientIDAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aOfflineCacheClientID);
+		void SetOfflineCacheClientIDAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aOfflineCacheClientID);
 		
 		/// <summary>
         /// Get the "file" where the cached data can be found.  This is valid for

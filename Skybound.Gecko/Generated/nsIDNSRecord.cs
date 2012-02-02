@@ -48,7 +48,7 @@ namespace Gecko
         /// e.g., www.mozilla.org --> rheet.mozilla.org
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCanonicalNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aCanonicalName);
+		void GetCanonicalNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aCanonicalName);
 		
 		/// <summary>
         /// this function copies the value of the next IP address into the
@@ -71,7 +71,7 @@ namespace Gecko
         /// the record.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNextAddrAsString([MarshalAs(UnmanagedType.LPStruct)] nsACString retval);
+		void GetNextAddrAsString([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
 		
 		/// <summary>
         /// this function returns true if there is another address in the record.

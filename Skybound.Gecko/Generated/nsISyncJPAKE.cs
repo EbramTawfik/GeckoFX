@@ -55,7 +55,7 @@ namespace Gecko
         /// Schnorr signature value r2 = v2 - x2 * h, in hex representation.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Round1([MarshalAs(UnmanagedType.LPStruct)] nsACString aSignerID, [MarshalAs(UnmanagedType.LPStruct)] nsACString aGX1, [MarshalAs(UnmanagedType.LPStruct)] nsACString aGV1, [MarshalAs(UnmanagedType.LPStruct)] nsACString aR1, [MarshalAs(UnmanagedType.LPStruct)] nsACString aGX2, [MarshalAs(UnmanagedType.LPStruct)] nsACString aGV2, [MarshalAs(UnmanagedType.LPStruct)] nsACString aR2);
+		void Round1([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aSignerID, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGX1, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGV1, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aR1, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGX2, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGV2, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aR2);
 		
 		/// <summary>
         /// Perform second round of the JPAKE exchange.
@@ -87,7 +87,7 @@ namespace Gecko
         /// Schnorr signature value ra = va - xa * h, in hex representation.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Round2([MarshalAs(UnmanagedType.LPStruct)] nsACString aPeerID, [MarshalAs(UnmanagedType.LPStruct)] nsACString aPIN, [MarshalAs(UnmanagedType.LPStruct)] nsACString aGX3, [MarshalAs(UnmanagedType.LPStruct)] nsACString aGV3, [MarshalAs(UnmanagedType.LPStruct)] nsACString aR3, [MarshalAs(UnmanagedType.LPStruct)] nsACString aGX4, [MarshalAs(UnmanagedType.LPStruct)] nsACString aGV4, [MarshalAs(UnmanagedType.LPStruct)] nsACString aR4, [MarshalAs(UnmanagedType.LPStruct)] nsACString aA, [MarshalAs(UnmanagedType.LPStruct)] nsACString aGVA, [MarshalAs(UnmanagedType.LPStruct)] nsACString aRA);
+		void Round2([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aPeerID, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aPIN, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGX3, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGV3, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aR3, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGX4, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGV4, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aR4, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aA, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGVA, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aRA);
 		
 		/// <summary>
         /// Perform the final step of the JPAKE exchange. This will compute
@@ -108,6 +108,6 @@ namespace Gecko
         /// The 256 bit HMAC key, in base64 representation.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Final([MarshalAs(UnmanagedType.LPStruct)] nsACString aB, [MarshalAs(UnmanagedType.LPStruct)] nsACString aGVB, [MarshalAs(UnmanagedType.LPStruct)] nsACString aRB, [MarshalAs(UnmanagedType.LPStruct)] nsACString aHkdfInfo, [MarshalAs(UnmanagedType.LPStruct)] nsACString aAES256Key, [MarshalAs(UnmanagedType.LPStruct)] nsACString aHMAC256Key);
+		void Final([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aB, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGVB, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aRB, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aHkdfInfo, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aAES256Key, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aHMAC256Key);
 	}
 }

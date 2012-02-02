@@ -69,7 +69,7 @@ namespace Gecko
         /// determined by calling the stream's |available| method.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetUploadStream([MarshalAs(UnmanagedType.Interface)] nsIInputStream aStream, [MarshalAs(UnmanagedType.LPStruct)] nsACString aContentType, int aContentLength);
+		void SetUploadStream([MarshalAs(UnmanagedType.Interface)] nsIInputStream aStream, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aContentType, int aContentLength);
 		
 		/// <summary>
         /// Get the stream (to be) uploaded by this channel.

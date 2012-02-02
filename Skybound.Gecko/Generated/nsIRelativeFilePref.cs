@@ -67,7 +67,7 @@ namespace Gecko
         /// from which the file path is relative.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetRelativeToKeyAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aRelativeToKey);
+		void GetRelativeToKeyAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aRelativeToKey);
 		
 		/// <summary>
         /// relativeToKey
@@ -76,6 +76,6 @@ namespace Gecko
         /// from which the file path is relative.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetRelativeToKeyAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aRelativeToKey);
+		void SetRelativeToKeyAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aRelativeToKey);
 	}
 }

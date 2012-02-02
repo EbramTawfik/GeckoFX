@@ -125,7 +125,7 @@ namespace Gecko
         /// Possible result codes: NS_ERROR_NO_CHARSET_CONVERTER
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCharset([MarshalAs(UnmanagedType.LPStruct)] nsACString aCharset);
+		void SetCharset([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aCharset);
 		
 		/// <summary>
         /// Set a wrap column.  This may have no effect in some types of encoders.

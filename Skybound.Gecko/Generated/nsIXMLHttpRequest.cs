@@ -682,7 +682,7 @@ namespace Gecko
         /// header does not exist in the response.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetResponseHeader([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String header, [MarshalAs(UnmanagedType.LPStruct)] nsACString retval);
+		void GetResponseHeader([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String header, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
 		
 		/// <summary>
         /// Meant to be a script-only method for initializing a request.
@@ -925,7 +925,7 @@ namespace Gecko
 		/// <param name='contentType'> </param>
 		/// <param name='charset'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSendInfo([MarshalAs(UnmanagedType.Interface)] ref nsIInputStream body, [MarshalAs(UnmanagedType.LPStruct)] nsACString contentType, [MarshalAs(UnmanagedType.LPStruct)] nsACString charset);
+		void GetSendInfo([MarshalAs(UnmanagedType.Interface)] ref nsIInputStream body, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase contentType, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase charset);
 	}
 	
 	/// <summary>

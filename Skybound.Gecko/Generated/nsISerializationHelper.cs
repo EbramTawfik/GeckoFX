@@ -41,7 +41,7 @@ namespace Gecko
         /// as an input to deserializeObject method.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SerializeToString([MarshalAs(UnmanagedType.Interface)] nsISerializable serializable, [MarshalAs(UnmanagedType.LPStruct)] nsACString retval);
+		void SerializeToString([MarshalAs(UnmanagedType.Interface)] nsISerializable serializable, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
 		
 		/// <summary>
         /// Takes base64 encoded string that cointains serialization of a single
@@ -50,6 +50,6 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports DeserializeObject([MarshalAs(UnmanagedType.LPStruct)] nsACString input);
+		nsISupports DeserializeObject([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase input);
 	}
 }

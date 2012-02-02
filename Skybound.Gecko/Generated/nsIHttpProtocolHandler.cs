@@ -38,7 +38,7 @@ namespace Gecko
         /// The scheme of this protocol (e.g., "file").
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetSchemeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aScheme);
+		new void GetSchemeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aScheme);
 		
 		/// <summary>
         /// The default port is the port that this protocol normally uses.
@@ -115,7 +115,7 @@ namespace Gecko
         /// Get the HTTP advertised user agent string.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetUserAgentAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aUserAgent);
+		void GetUserAgentAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aUserAgent);
 		
 		/// <summary>
         /// Get the application name.
@@ -123,7 +123,7 @@ namespace Gecko
         /// @return The name of this application (eg. "Mozilla").
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetAppNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aAppName);
+		void GetAppNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aAppName);
 		
 		/// <summary>
         /// Get the application version string.
@@ -131,19 +131,19 @@ namespace Gecko
         /// @return The complete version (major and minor) string. (eg. "5.0")
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetAppVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aAppVersion);
+		void GetAppVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aAppVersion);
 		
 		/// <summary>
         /// @return The product name.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetProductAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aProduct);
+		void GetProductAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aProduct);
 		
 		/// <summary>
         /// @return A product sub string.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetProductSubAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aProductSub);
+		void GetProductSubAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aProductSub);
 		
 		/// <summary>
         /// Get the current platform.
@@ -152,7 +152,7 @@ namespace Gecko
         /// (eg. "Windows", "Macintosh", "X11")
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPlatformAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aPlatform);
+		void GetPlatformAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aPlatform);
 		
 		/// <summary>
         /// Get the current oscpu.
@@ -160,12 +160,12 @@ namespace Gecko
         /// @return The oscpu this application is running on
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetOscpuAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aOscpu);
+		void GetOscpuAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aOscpu);
 		
 		/// <summary>
         /// Get the application comment misc portion.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMiscAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aMisc);
+		void GetMiscAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aMisc);
 	}
 }

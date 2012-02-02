@@ -48,6 +48,6 @@ namespace Gecko
         /// @throw any exception to terminate enumeration
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void VisitHeader([MarshalAs(UnmanagedType.LPStruct)] nsACString aHeader, [MarshalAs(UnmanagedType.LPStruct)] nsACString aValue);
+		void VisitHeader([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aHeader, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aValue);
 	}
 }

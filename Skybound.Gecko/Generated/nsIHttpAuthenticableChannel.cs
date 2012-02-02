@@ -97,40 +97,40 @@ namespace Gecko
         /// The HTTP request method. See nsIHttpChannel.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetRequestMethodAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aRequestMethod);
+		void GetRequestMethodAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aRequestMethod);
 		
 		/// <summary>
         /// The "Server" response header.
         /// Return NS_ERROR_NOT_AVAILABLE if not available.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetServerResponseHeaderAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aServerResponseHeader);
+		void GetServerResponseHeaderAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aServerResponseHeader);
 		
 		/// <summary>
         /// The Proxy-Authenticate response header.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetProxyChallengesAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aProxyChallenges);
+		void GetProxyChallengesAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aProxyChallenges);
 		
 		/// <summary>
         /// The WWW-Authenticate response header.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetWWWChallengesAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aWWWChallenges);
+		void GetWWWChallengesAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aWWWChallenges);
 		
 		/// <summary>
         /// Sets the Proxy-Authorization request header. An empty string
         /// will clear it.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetProxyCredentials([MarshalAs(UnmanagedType.LPStruct)] nsACString credentials);
+		void SetProxyCredentials([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase credentials);
 		
 		/// <summary>
         /// Sets the Authorization request header. An empty string
         /// will clear it.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetWWWCredentials([MarshalAs(UnmanagedType.LPStruct)] nsACString credentials);
+		void SetWWWCredentials([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase credentials);
 		
 		/// <summary>
         /// Called when authentication information is ready and has been set on this

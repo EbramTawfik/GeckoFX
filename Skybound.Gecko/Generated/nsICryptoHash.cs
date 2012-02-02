@@ -67,7 +67,7 @@ namespace Gecko
         /// other method on this interface is called.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitWithString([MarshalAs(UnmanagedType.LPStruct)] nsACString aAlgorithm);
+		void InitWithString([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aAlgorithm);
 		
 		/// <summary>
         /// @param aData a buffer to calculate the hash over
@@ -117,6 +117,6 @@ namespace Gecko
         /// pre-init state.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Finish([MarshalAs(UnmanagedType.Bool)] bool aASCII, [MarshalAs(UnmanagedType.LPStruct)] nsACString retval);
+		void Finish([MarshalAs(UnmanagedType.Bool)] bool aASCII, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
 	}
 }

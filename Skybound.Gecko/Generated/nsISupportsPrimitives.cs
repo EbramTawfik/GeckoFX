@@ -106,13 +106,13 @@ namespace Gecko
         /// Scriptable storage for ASCII strings
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDataAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aData);
+		void GetDataAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aData);
 		
 		/// <summary>
         /// Scriptable storage for ASCII strings
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDataAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aData);
+		void SetDataAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aData);
 		
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

@@ -110,7 +110,7 @@ namespace Gecko
         /// '\n'.  Invalid character for data is '\0'.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AnnotateCrashReport([MarshalAs(UnmanagedType.LPStruct)] nsACString key, [MarshalAs(UnmanagedType.LPStruct)] nsACString data);
+		void AnnotateCrashReport([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase key, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase data);
 		
 		/// <summary>
         /// Append some data to the "Notes" field, to be submitted with a crash report.
@@ -124,7 +124,7 @@ namespace Gecko
         /// The only invalid character is '\0'.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AppendAppNotesToCrashReport([MarshalAs(UnmanagedType.LPStruct)] nsACString data);
+		void AppendAppNotesToCrashReport([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase data);
 		
 		/// <summary>
         /// Register a given memory range to be included in the crash report.

@@ -288,7 +288,7 @@ namespace Gecko
         /// Any implementation of nsIChannel must follow these rules.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetContentTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aContentType);
+		new void GetContentTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aContentType);
 		
 		/// <summary>
         /// The MIME type of the channel's content if available.
@@ -316,7 +316,7 @@ namespace Gecko
         /// Any implementation of nsIChannel must follow these rules.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetContentTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aContentType);
+		new void SetContentTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aContentType);
 		
 		/// <summary>
         /// The character set of the channel's content if available and if applicable.
@@ -325,7 +325,7 @@ namespace Gecko
         /// The value of the contentCharset attribute is a mixedcase string.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetContentCharsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aContentCharset);
+		new void GetContentCharsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aContentCharset);
 		
 		/// <summary>
         /// The character set of the channel's content if available and if applicable.
@@ -334,7 +334,7 @@ namespace Gecko
         /// The value of the contentCharset attribute is a mixedcase string.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetContentCharsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aContentCharset);
+		new void SetContentCharsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aContentCharset);
 		
 		/// <summary>
         /// The length of the data associated with the channel if available.  A value
@@ -444,7 +444,7 @@ namespace Gecko
         /// @deprecated Use contentDisposition/contentDispositionFilename instead.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetContentDispositionHeaderAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aContentDispositionHeader);
+		new void GetContentDispositionHeaderAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aContentDispositionHeader);
 		
 		/// <summary>
         /// The actual (MIME) content type of the data.
@@ -457,7 +457,7 @@ namespace Gecko
         /// actual content type can utilize this attribute.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetOriginalContentTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aOriginalContentType);
+		void GetOriginalContentTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aOriginalContentType);
 		
 		/// <summary>
         /// The actual (MIME) content type of the data.
@@ -470,6 +470,6 @@ namespace Gecko
         /// actual content type can utilize this attribute.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOriginalContentTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aOriginalContentType);
+		void SetOriginalContentTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aOriginalContentType);
 	}
 }

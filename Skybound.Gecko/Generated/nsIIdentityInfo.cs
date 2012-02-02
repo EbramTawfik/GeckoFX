@@ -55,6 +55,6 @@ namespace Gecko
         /// an empty (length string) value.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetValidEVPolicyOid([MarshalAs(UnmanagedType.LPStruct)] nsACString retval);
+		void GetValidEVPolicyOid([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
 	}
 }

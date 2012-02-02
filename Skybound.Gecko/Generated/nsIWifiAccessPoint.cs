@@ -39,7 +39,7 @@ namespace Gecko
         /// XX-XX-XX-XX-XX-XX
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMacAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aMac);
+		void GetMacAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aMac);
 		
 		/// <summary>
         /// Public name of a wireless network.  The charset of this string is ASCII.
@@ -58,7 +58,7 @@ namespace Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetRawSSIDAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aRawSSID);
+		void GetRawSSIDAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aRawSSID);
 		
 		/// <summary>
         /// Current signal strength measured in dBm.

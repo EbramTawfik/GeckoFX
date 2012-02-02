@@ -114,7 +114,7 @@ namespace Gecko
 		void GetFailures(ref uint failureCount, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref string[] failures);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void LogFailure([MarshalAs(UnmanagedType.LPStruct)] nsACString failure);
+		void LogFailure([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase failure);
 		
 		/// <summary>
         /// Ask about a feature, and return the status of that feature

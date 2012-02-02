@@ -250,7 +250,7 @@ namespace Gecko
         /// The name of the value to query.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ReadBinaryValue([MarshalAs(UnmanagedType.LPStruct)] nsAString name, [MarshalAs(UnmanagedType.LPStruct)] nsACString retval);
+		void ReadBinaryValue([MarshalAs(UnmanagedType.LPStruct)] nsAString name, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
 		
 		/// <summary>
         /// This method writes the unicode string contents of the named value.  The
@@ -306,7 +306,7 @@ namespace Gecko
         /// The data for the value to modify.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void WriteBinaryValue([MarshalAs(UnmanagedType.LPStruct)] nsAString name, [MarshalAs(UnmanagedType.LPStruct)] nsACString data);
+		void WriteBinaryValue([MarshalAs(UnmanagedType.LPStruct)] nsAString name, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase data);
 		
 		/// <summary>
         /// This method starts watching the key to see if any of its values have

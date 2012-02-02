@@ -70,6 +70,6 @@ namespace Gecko
         /// > 0 if A > B
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int Compare([MarshalAs(UnmanagedType.LPStruct)] nsACString A, [MarshalAs(UnmanagedType.LPStruct)] nsACString B);
+		int Compare([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase A, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase B);
 	}
 }
