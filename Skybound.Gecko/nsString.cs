@@ -224,6 +224,8 @@ namespace Gecko
 	[StructLayout(LayoutKind.Sequential)]
 	public class nsAUTF8StringBase
 	{
+		protected nsAUTF8StringBase() { }
+
 		[DllImport("xpcom", CharSet = CharSet.Ansi)]
 		protected static extern int NS_CStringContainerInit(nsAUTF8StringBase container);
 
@@ -299,6 +301,8 @@ namespace Gecko
 	[StructLayout(LayoutKind.Sequential)]
 	public class nsACStringBase
 	{
+		protected nsACStringBase() { }
+
 		[DllImport("xpcom", CharSet = CharSet.Ansi)]
 		protected static extern int NS_CStringContainerInit(nsACStringBase container);
 
@@ -370,6 +374,8 @@ namespace Gecko
 	[StructLayout(LayoutKind.Sequential)]
 	public class nsAStringBase
 	{
+		protected nsAStringBase() { }
+
 		[DllImport("xpcom", CharSet = CharSet.Unicode)]
 		protected static extern int NS_StringContainerInit(nsAStringBase container);
 
