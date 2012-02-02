@@ -39,7 +39,7 @@ namespace Gecko
         /// name.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aType);
+		new void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType);
 		
 		/// <summary>
         /// Used to indicate the EventTarget to which the event was originally
@@ -146,7 +146,7 @@ namespace Gecko
         /// action can be prevented.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void InitEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString eventTypeArg, [MarshalAs(UnmanagedType.U1)] bool canBubbleArg, [MarshalAs(UnmanagedType.U1)] bool cancelableArg);
+		new void InitEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase eventTypeArg, [MarshalAs(UnmanagedType.U1)] bool canBubbleArg, [MarshalAs(UnmanagedType.U1)] bool cancelableArg);
 		
 		/// <summary>
         /// Used to indicate whether preventDefault() has been called for this event.
@@ -185,7 +185,7 @@ namespace Gecko
 		/// <param name='viewArg'> </param>
 		/// <param name='detailArg'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void InitUIEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString typeArg, [MarshalAs(UnmanagedType.U1)] bool canBubbleArg, [MarshalAs(UnmanagedType.U1)] bool cancelableArg, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow viewArg, int detailArg);
+		new void InitUIEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase typeArg, [MarshalAs(UnmanagedType.U1)] bool canBubbleArg, [MarshalAs(UnmanagedType.U1)] bool cancelableArg, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow viewArg, int detailArg);
 		
 		/// <summary>Member GetLayerXAttribute </summary>
 		/// <returns>A System.Int32</returns>
@@ -272,6 +272,6 @@ namespace Gecko
 		/// <param name='width'> </param>
 		/// <param name='height'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitScrollAreaEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString aEventType, [MarshalAs(UnmanagedType.U1)] bool aCanBubble, [MarshalAs(UnmanagedType.U1)] bool aCancelable, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aView, int aDetail, float x, float y, float width, float height);
+		void InitScrollAreaEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aEventType, [MarshalAs(UnmanagedType.U1)] bool aCanBubble, [MarshalAs(UnmanagedType.U1)] bool aCancelable, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aView, int aDetail, float x, float y, float width, float height);
 	}
 }

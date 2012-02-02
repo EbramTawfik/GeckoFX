@@ -66,7 +66,7 @@ namespace Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Remove([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aHost, [MarshalAs(UnmanagedType.LPStruct)] nsACString aName, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aPath, [MarshalAs(UnmanagedType.U1)] bool aBlocked);
+		new void Remove([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aHost, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aName, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aPath, [MarshalAs(UnmanagedType.U1)] bool aBlocked);
 		
 		/// <summary>
         /// Add a cookie. nsICookieService is the normal way to do this. This
@@ -101,7 +101,7 @@ namespace Gecko
         /// in this way, the more restrictive of the two will take effect.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Add([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aHost, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aPath, [MarshalAs(UnmanagedType.LPStruct)] nsACString aName, [MarshalAs(UnmanagedType.LPStruct)] nsACString aValue, [MarshalAs(UnmanagedType.U1)] bool aIsSecure, [MarshalAs(UnmanagedType.U1)] bool aIsHttpOnly, [MarshalAs(UnmanagedType.U1)] bool aIsSession, long aExpiry);
+		void Add([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aHost, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aPath, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aName, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aValue, [MarshalAs(UnmanagedType.U1)] bool aIsSecure, [MarshalAs(UnmanagedType.U1)] bool aIsHttpOnly, [MarshalAs(UnmanagedType.U1)] bool aIsSession, long aExpiry);
 		
 		/// <summary>
         /// Find whether a given cookie already exists.
@@ -130,7 +130,7 @@ namespace Gecko
         /// @return the number of cookies found.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint CountCookiesFromHost([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aHost);
+		uint CountCookiesFromHost([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aHost);
 		
 		/// <summary>
         /// Returns an enumerator of cookies that exist within the base domain of
@@ -149,7 +149,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISimpleEnumerator GetCookiesFromHost([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aHost);
+		nsISimpleEnumerator GetCookiesFromHost([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aHost);
 		
 		/// <summary>
         /// Import an old-style cookie file. Imported cookies will be added to the

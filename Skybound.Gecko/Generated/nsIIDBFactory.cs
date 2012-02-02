@@ -45,10 +45,10 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIIDBOpenDBRequest Open([MarshalAs(UnmanagedType.LPStruct)] nsAString name, int version, int argc);
+		nsIIDBOpenDBRequest Open([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, long version, int argc);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIIDBOpenDBRequest DeleteDatabase([MarshalAs(UnmanagedType.LPStruct)] nsAString name);
+		nsIIDBOpenDBRequest DeleteDatabase([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name);
 	}
 }

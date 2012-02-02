@@ -39,7 +39,7 @@ namespace Gecko
         /// name.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aType);
+		new void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType);
 		
 		/// <summary>
         /// Used to indicate the EventTarget to which the event was originally
@@ -146,7 +146,7 @@ namespace Gecko
         /// action can be prevented.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void InitEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString eventTypeArg, [MarshalAs(UnmanagedType.U1)] bool canBubbleArg, [MarshalAs(UnmanagedType.U1)] bool cancelableArg);
+		new void InitEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase eventTypeArg, [MarshalAs(UnmanagedType.U1)] bool canBubbleArg, [MarshalAs(UnmanagedType.U1)] bool cancelableArg);
 		
 		/// <summary>
         /// Used to indicate whether preventDefault() has been called for this event.
@@ -163,13 +163,13 @@ namespace Gecko
 		new void StopImmediatePropagation();
 		
 		/// <summary>Member GetOldVersionAttribute </summary>
-		/// <returns>A System.UInt32</returns>
+		/// <returns>A System.UInt64</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetOldVersionAttribute();
+		ulong GetOldVersionAttribute();
 		
 		/// <summary>Member GetNewVersionAttribute </summary>
-		/// <returns>A System.UInt32</returns>
+		/// <returns>A System.UInt64</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetNewVersionAttribute();
+		ulong GetNewVersionAttribute();
 	}
 }

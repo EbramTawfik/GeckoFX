@@ -37,12 +37,12 @@ namespace Gecko
 		/// <summary>Member Onmessage </summary>
 		/// <param name='data'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Onmessage([MarshalAs(UnmanagedType.LPStruct)] nsAString data);
+		void Onmessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase data);
 		
 		/// <summary>Member Onerror </summary>
 		/// <param name='data'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Onerror([MarshalAs(UnmanagedType.LPStruct)] nsAString data);
+		void Onerror([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase data);
 	}
 	
 	/// <summary>nsIWorkerTest </summary>
@@ -55,7 +55,7 @@ namespace Gecko
 		/// <summary>Member PostMessage </summary>
 		/// <param name='data'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PostMessage([MarshalAs(UnmanagedType.LPStruct)] nsAString data);
+		void PostMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase data);
 		
 		/// <summary>Member Terminate </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

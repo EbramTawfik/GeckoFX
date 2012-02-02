@@ -44,10 +44,10 @@ namespace Gecko
         /// for more information.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
+		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetKeyPathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aKeyPath);
+		void GetKeyPathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aKeyPath);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetIndexNamesAttribute();
@@ -105,17 +105,17 @@ namespace Gecko
         ///none </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIIDBIndex CreateIndex([MarshalAs(UnmanagedType.LPStruct)] nsAString name, [MarshalAs(UnmanagedType.LPStruct)] nsAString keyPath, System.IntPtr options, System.IntPtr jsContext);
+		nsIIDBIndex CreateIndex([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase keyPath, System.IntPtr options, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Returns object immediately
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIIDBIndex Index([MarshalAs(UnmanagedType.LPStruct)] nsAString name);
+		nsIIDBIndex Index([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DeleteIndex([MarshalAs(UnmanagedType.LPStruct)] nsAString name);
+		void DeleteIndex([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name);
 		
 		/// <summary>
         /// Accepts null, a key value, or a nsIIDBKeyRange object.

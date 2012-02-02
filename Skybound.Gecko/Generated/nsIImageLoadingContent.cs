@@ -272,7 +272,7 @@ namespace Gecko
         /// as PR_FALSE to revert ImageState() to its original behaviour.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ForceImageState([MarshalAs(UnmanagedType.U1)] bool aForce, uint aState);
+		void ForceImageState([MarshalAs(UnmanagedType.U1)] bool aForce, ulong aState);
 		
 		/// <summary>
         /// We need to be notified when our document changes.

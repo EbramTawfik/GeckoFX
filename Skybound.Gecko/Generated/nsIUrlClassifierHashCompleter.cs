@@ -51,7 +51,7 @@ namespace Gecko
         /// The completion was verified with a MAC and can be cached.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Completion([MarshalAs(UnmanagedType.LPStruct)] nsACString hash, [MarshalAs(UnmanagedType.LPStruct)] nsACString table, uint chunkId, [MarshalAs(UnmanagedType.U1)] bool trusted);
+		void Completion([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase hash, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase table, uint chunkId, [MarshalAs(UnmanagedType.U1)] bool trusted);
 		
 		/// <summary>
         /// The completion is complete.  This method is called once per
@@ -87,24 +87,24 @@ namespace Gecko
         /// An nsIUrlClassifierCompleterCallback instance.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Complete([MarshalAs(UnmanagedType.LPStruct)] nsACString partialHash, [MarshalAs(UnmanagedType.Interface)] nsIUrlClassifierHashCompleterCallback callback);
+		void Complete([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase partialHash, [MarshalAs(UnmanagedType.Interface)] nsIUrlClassifierHashCompleterCallback callback);
 		
 		/// <summary>
         /// Set the client and wrapped key for verified updates.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetKeys([MarshalAs(UnmanagedType.LPStruct)] nsACString clientKey, [MarshalAs(UnmanagedType.LPStruct)] nsACString wrappedKey);
+		void SetKeys([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase clientKey, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase wrappedKey);
 		
 		/// <summary>
         /// The URL for the gethash request
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetGethashUrlAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aGethashUrl);
+		void GetGethashUrlAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGethashUrl);
 		
 		/// <summary>
         /// The URL for the gethash request
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetGethashUrlAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACString aGethashUrl);
+		void SetGethashUrlAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGethashUrl);
 	}
 }

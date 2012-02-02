@@ -52,7 +52,7 @@ namespace Gecko
         /// @param aOverrideBits The errors we want to be overriden
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RememberValidityOverride([MarshalAs(UnmanagedType.LPStruct)] nsACString aHostName, int aPort, [MarshalAs(UnmanagedType.Interface)] nsIX509Cert aCert, uint aOverrideBits, [MarshalAs(UnmanagedType.U1)] bool aTemporary);
+		void RememberValidityOverride([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aHostName, int aPort, [MarshalAs(UnmanagedType.Interface)] nsIX509Cert aCert, uint aOverrideBits, [MarshalAs(UnmanagedType.U1)] bool aTemporary);
 		
 		/// <summary>
         /// The given cert should always be accepted for the given hostname:port,
@@ -71,7 +71,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool HasMatchingOverride([MarshalAs(UnmanagedType.LPStruct)] nsACString aHostName, int aPort, [MarshalAs(UnmanagedType.Interface)] nsIX509Cert aCert, ref uint aOverrideBits, [MarshalAs(UnmanagedType.U1)] ref bool aIsTemporary);
+		bool HasMatchingOverride([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aHostName, int aPort, [MarshalAs(UnmanagedType.Interface)] nsIX509Cert aCert, ref uint aOverrideBits, [MarshalAs(UnmanagedType.U1)] ref bool aIsTemporary);
 		
 		/// <summary>
         /// Retrieve the stored override for the given hostname:port.
@@ -88,7 +88,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetValidityOverride([MarshalAs(UnmanagedType.LPStruct)] nsACString aHostName, int aPort, [MarshalAs(UnmanagedType.LPStruct)] nsACString aHashAlg, [MarshalAs(UnmanagedType.LPStruct)] nsACString aFingerprint, ref uint aOverrideBits, [MarshalAs(UnmanagedType.U1)] ref bool aIsTemporary);
+		bool GetValidityOverride([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aHostName, int aPort, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aHashAlg, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aFingerprint, ref uint aOverrideBits, [MarshalAs(UnmanagedType.U1)] ref bool aIsTemporary);
 		
 		/// <summary>
         /// Remove a override for the given hostname:port.
@@ -100,7 +100,7 @@ namespace Gecko
         /// then all temporary certificates should be cleared.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ClearValidityOverride([MarshalAs(UnmanagedType.LPStruct)] nsACString aHostName, int aPort);
+		void ClearValidityOverride([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aHostName, int aPort);
 		
 		/// <summary>
         /// Obtain the full list of hostname:port for which overrides are known.

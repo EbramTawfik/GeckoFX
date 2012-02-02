@@ -60,14 +60,14 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMNode NamedItem([MarshalAs(UnmanagedType.LPStruct)] nsAString name);
+		nsIDOMNode NamedItem([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name);
 		
 		/// <summary>
         /// Get the node for the name.  Returns null if no node exists for the name.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports GetNamedItem([MarshalAs(UnmanagedType.LPStruct)] nsAString name, ref System.IntPtr cache);
+		nsISupports GetNamedItem([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, ref System.IntPtr cache);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetSelectedIndexAttribute();

@@ -44,10 +44,10 @@ namespace Gecko
         /// for more information.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aName);
+		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetVersionAttribute();
+		ulong GetVersionAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetObjectStoreNamesAttribute();
@@ -56,10 +56,10 @@ namespace Gecko
         ///none </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIIDBObjectStore CreateObjectStore([MarshalAs(UnmanagedType.LPStruct)] nsAString name, System.IntPtr options, System.IntPtr jsContext);
+		nsIIDBObjectStore CreateObjectStore([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, System.IntPtr options, System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DeleteObjectStore([MarshalAs(UnmanagedType.LPStruct)] nsAString name);
+		void DeleteObjectStore([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name);
 		
 		/// <summary>
         ///READ_ONLY </summary>

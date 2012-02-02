@@ -682,7 +682,7 @@ namespace Gecko
         /// to this method.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr EvalInSandboxObject([MarshalAs(UnmanagedType.LPStruct)] nsAString source, System.IntPtr cx, [MarshalAs(UnmanagedType.Interface)] nsIXPConnectJSObjectHolder sandbox, [MarshalAs(UnmanagedType.U1)] bool returnStringOnly);
+		System.IntPtr EvalInSandboxObject([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase source, System.IntPtr cx, [MarshalAs(UnmanagedType.Interface)] nsIXPConnectJSObjectHolder sandbox, [MarshalAs(UnmanagedType.U1)] bool returnStringOnly);
 		
 		/// <summary>
         /// Root JS objects held by aHolder.

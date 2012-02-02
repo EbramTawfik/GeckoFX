@@ -71,7 +71,7 @@ namespace Gecko
         /// The time at which this item was last modified.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		ulong GetLastModifiedTimeAttribute();
+		long GetLastModifiedTimeAttribute();
 		
 		/// <summary>
         /// Use this attribute to determine whether this item is an actual zip entry
@@ -107,7 +107,7 @@ namespace Gecko
         /// Opens a zip file inside a zip file for reading.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OpenInner([MarshalAs(UnmanagedType.Interface)] nsIZipReader zipReader, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String zipEntry);
+		void OpenInner([MarshalAs(UnmanagedType.Interface)] nsIZipReader zipReader, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase zipEntry);
 		
 		/// <summary>
         /// The file that represents the zip with which this zip reader was
@@ -132,7 +132,7 @@ namespace Gecko
         /// in the archive are tested.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Test([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aEntryName);
+		void Test([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aEntryName);
 		
 		/// <summary>
         /// Extracts a zip entry into a local file specified by outFile.
@@ -142,21 +142,21 @@ namespace Gecko
         /// non-recursively.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Extract([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String zipEntry, [MarshalAs(UnmanagedType.Interface)] nsIFile outFile);
+		void Extract([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase zipEntry, [MarshalAs(UnmanagedType.Interface)] nsIFile outFile);
 		
 		/// <summary>
         /// Returns a nsIZipEntry describing a specified zip entry.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIZipEntry GetEntry([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String zipEntry);
+		nsIZipEntry GetEntry([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase zipEntry);
 		
 		/// <summary>
         /// Checks whether the zipfile contains an entry specified by entryName.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool HasEntry([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String zipEntry);
+		bool HasEntry([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase zipEntry);
 		
 		/// <summary>
         /// Returns a string enumerator containing the matching entry names.
@@ -203,7 +203,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIUTF8StringEnumerator FindEntries([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aPattern);
+		nsIUTF8StringEnumerator FindEntries([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aPattern);
 		
 		/// <summary>
         /// Returns an input stream containing the contents of the specified zip
@@ -212,7 +212,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIInputStream GetInputStream([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String zipEntry);
+		nsIInputStream GetInputStream([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase zipEntry);
 		
 		/// <summary>
         /// Returns an input stream containing the contents of the specified zip
@@ -223,7 +223,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIInputStream GetInputStreamWithSpec([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aJarSpec, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String zipEntry);
+		nsIInputStream GetInputStreamWithSpec([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aJarSpec, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase zipEntry);
 		
 		/// <summary>
         /// Returns an object describing the entity which signed
@@ -235,7 +235,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIPrincipal GetCertificatePrincipal([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aEntryName);
+		nsIPrincipal GetCertificatePrincipal([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aEntryName);
 		
 		/// <summary>Member GetManifestEntriesCountAttribute </summary>
 		/// <returns>A System.UInt32</returns>
@@ -284,6 +284,6 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIZipReader GetInnerZip([MarshalAs(UnmanagedType.Interface)] nsIFile zipFile, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String zipEntry);
+		nsIZipReader GetInnerZip([MarshalAs(UnmanagedType.Interface)] nsIFile zipFile, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase zipEntry);
 	}
 }

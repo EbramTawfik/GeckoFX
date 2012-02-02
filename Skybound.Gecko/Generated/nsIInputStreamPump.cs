@@ -51,7 +51,7 @@ namespace Gecko
         /// The name of the request.  Often this is the URI of the request.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aName);
+		new void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aName);
 		
 		/// <summary>
         /// Indicates whether the request is pending. nsIRequest::isPending is
@@ -190,7 +190,7 @@ namespace Gecko
         /// if true, the input stream will be closed after it has been read.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init([MarshalAs(UnmanagedType.Interface)] nsIInputStream aStream, int aStreamPos, int aStreamLen, uint aSegmentSize, uint aSegmentCount, [MarshalAs(UnmanagedType.U1)] bool aCloseWhenDone);
+		void Init([MarshalAs(UnmanagedType.Interface)] nsIInputStream aStream, long aStreamPos, long aStreamLen, uint aSegmentSize, uint aSegmentCount, [MarshalAs(UnmanagedType.U1)] bool aCloseWhenDone);
 		
 		/// <summary>
         /// asyncRead causes the input stream to be read in chunks and delivered

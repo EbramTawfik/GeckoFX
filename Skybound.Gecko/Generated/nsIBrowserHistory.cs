@@ -72,7 +72,7 @@ namespace Gecko
         /// @param aTitle  the page title
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetPageTitle([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAString aTitle);
+		new void SetPageTitle([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTitle);
 		
 		/// <summary>
         /// Used by the History migrator to add a page to global history, with a
@@ -86,7 +86,7 @@ namespace Gecko
         /// Microseconds from epoch representing the last visit time.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddPageWithDetails([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string aTitle, int aLastVisited);
+		void AddPageWithDetails([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string aTitle, long aLastVisited);
 		
 		/// <summary>
         /// Indicates if there are entries in global history.
@@ -137,7 +137,7 @@ namespace Gecko
         /// @note The removal happens in a batch.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemovePagesFromHost([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aHost, [MarshalAs(UnmanagedType.U1)] bool aEntireDomain);
+		void RemovePagesFromHost([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aHost, [MarshalAs(UnmanagedType.U1)] bool aEntireDomain);
 		
 		/// <summary>
         /// Removes all pages for a given timeframe.
@@ -151,7 +151,7 @@ namespace Gecko
         /// @note The removal happens in a batch.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemovePagesByTimeframe(int aBeginTime, int aEndTime);
+		void RemovePagesByTimeframe(long aBeginTime, long aEndTime);
 		
 		/// <summary>
         /// Removes all visits in a given timeframe.
@@ -166,7 +166,7 @@ namespace Gecko
         /// @note The removal happens in a batch.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveVisitsByTimeframe(int aBeginTime, int aEndTime);
+		void RemoveVisitsByTimeframe(long aBeginTime, long aEndTime);
 		
 		/// <summary>
         /// Removes all existing pages from global history.

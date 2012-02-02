@@ -53,7 +53,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIStreamListener DoContent([MarshalAs(UnmanagedType.LPStruct)] nsACString aMimeContentType, [MarshalAs(UnmanagedType.Interface)] nsIRequest aRequest, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor aWindowContext, [MarshalAs(UnmanagedType.U1)] bool aForceSave);
+		nsIStreamListener DoContent([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aMimeContentType, [MarshalAs(UnmanagedType.Interface)] nsIRequest aRequest, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor aWindowContext, [MarshalAs(UnmanagedType.U1)] bool aForceSave);
 		
 		/// <summary>
         /// Returns true if data from a URL with this extension combination
@@ -62,7 +62,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool ApplyDecodingForExtension([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aExtension, [MarshalAs(UnmanagedType.LPStruct)] nsACString aEncodingType);
+		bool ApplyDecodingForExtension([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aExtension, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aEncodingType);
 	}
 	
 	/// <summary>
@@ -127,7 +127,7 @@ namespace Gecko
         /// The suggested name for this file
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSuggestedFileNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aSuggestedFileName);
+		void GetSuggestedFileNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSuggestedFileName);
 		
 		/// <summary>
         /// Called when we want to just save the content to a particular file.
@@ -180,7 +180,7 @@ namespace Gecko
         /// Time when the download started
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		ulong GetTimeDownloadStartedAttribute();
+		long GetTimeDownloadStartedAttribute();
 		
 		/// <summary>
         /// The download content length, or -1 if the length is not available.

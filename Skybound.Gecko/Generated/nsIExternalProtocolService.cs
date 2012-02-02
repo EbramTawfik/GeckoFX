@@ -87,7 +87,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIHandlerInfo GetProtocolHandlerInfo([MarshalAs(UnmanagedType.LPStruct)] nsACString aProtocolScheme);
+		nsIHandlerInfo GetProtocolHandlerInfo([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aProtocolScheme);
 		
 		/// <summary>
         /// Given a scheme, looks up the protocol info from the OS.  This should be
@@ -99,7 +99,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIHandlerInfo GetProtocolHandlerInfoFromOS([MarshalAs(UnmanagedType.LPStruct)] nsACString aProtocolScheme, [MarshalAs(UnmanagedType.U1)] ref bool aFound);
+		nsIHandlerInfo GetProtocolHandlerInfoFromOS([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aProtocolScheme, [MarshalAs(UnmanagedType.U1)] ref bool aFound);
 		
 		/// <summary>
         /// Set some sane defaults for a protocol handler object.
@@ -159,6 +159,6 @@ namespace Gecko
         /// possible to get a description for it.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetApplicationDescription([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aScheme, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetApplicationDescription([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aScheme, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 	}
 }

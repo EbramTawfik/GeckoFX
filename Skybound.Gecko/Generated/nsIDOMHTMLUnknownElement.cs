@@ -420,10 +420,10 @@ namespace Gecko
 		new void SetDraggableAttribute([MarshalAs(UnmanagedType.U1)] bool aDraggable);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetContentEditableAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aContentEditable);
+		new void GetContentEditableAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aContentEditable);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetContentEditableAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aContentEditable);
+		new void SetContentEditableAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aContentEditable);
 		
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -444,16 +444,16 @@ namespace Gecko
         /// DOM Parsing and Serialization
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetInnerHTMLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aInnerHTML);
+		new void GetInnerHTMLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aInnerHTML);
 		
 		/// <summary>
         /// DOM Parsing and Serialization
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetInnerHTMLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aInnerHTML);
+		new void SetInnerHTMLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aInnerHTML);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void InsertAdjacentHTML([MarshalAs(UnmanagedType.LPStruct)] nsAString position, [MarshalAs(UnmanagedType.LPStruct)] nsAString text);
+		new void InsertAdjacentHTML([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase position, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase text);
 		
 		/// <summary>
         /// CSSOM View

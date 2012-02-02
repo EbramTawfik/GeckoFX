@@ -51,6 +51,6 @@ namespace Gecko
         /// 2 == accept cookie for current session
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int CookieDialog([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow parent, [MarshalAs(UnmanagedType.Interface)] nsICookie cookie, [MarshalAs(UnmanagedType.LPStruct)] nsACString hostname, int cookiesFromHost, [MarshalAs(UnmanagedType.U1)] bool changingCookie, [MarshalAs(UnmanagedType.U1)] ref bool rememberDecision);
+		int CookieDialog([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow parent, [MarshalAs(UnmanagedType.Interface)] nsICookie cookie, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase hostname, int cookiesFromHost, [MarshalAs(UnmanagedType.U1)] bool changingCookie, [MarshalAs(UnmanagedType.U1)] ref bool rememberDecision);
 	}
 }

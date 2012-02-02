@@ -52,7 +52,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsInheritedProperty([MarshalAs(UnmanagedType.LPStruct)] nsAString aPropertyName);
+		bool IsInheritedProperty([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPropertyName);
 		
 		/// <summary>
         /// DOM Node utilities

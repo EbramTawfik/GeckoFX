@@ -62,7 +62,7 @@ namespace Gecko
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMNode NamedItem([MarshalAs(UnmanagedType.LPStruct)] nsAString name);
+		nsIDOMNode NamedItem([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name);
 		
 		/// <summary>
         /// Get the node at the index.  Returns null if the index is out of bounds.
@@ -75,6 +75,6 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports GetNamedItem([MarshalAs(UnmanagedType.LPStruct)] nsAString name, ref System.IntPtr cache);
+		nsISupports GetNamedItem([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, ref System.IntPtr cache);
 	}
 }

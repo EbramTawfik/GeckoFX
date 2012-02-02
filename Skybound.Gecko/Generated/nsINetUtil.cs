@@ -47,7 +47,7 @@ namespace Gecko
         /// @return the MIME type specified in the header, in lower-case.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ParseContentType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aTypeHeader, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aCharset, [MarshalAs(UnmanagedType.U1)] ref bool aHadCharset, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String retval);
+		void ParseContentType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aTypeHeader, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aCharset, [MarshalAs(UnmanagedType.U1)] ref bool aHadCharset, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase retval);
 		
 		/// <summary>
         /// Test whether the given URI's handler has the given protocol flags.
@@ -100,7 +100,7 @@ namespace Gecko
         /// escape a string with %00-style escaping
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EscapeString([MarshalAs(UnmanagedType.LPStruct)] nsACString aString, uint aEscapeType, [MarshalAs(UnmanagedType.LPStruct)] nsACString retval);
+		void EscapeString([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aString, uint aEscapeType, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
 		
 		/// <summary>
         /// %XX-Escape invalid chars in a URL segment.
@@ -112,7 +112,7 @@ namespace Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EscapeURL([MarshalAs(UnmanagedType.LPStruct)] nsACString aStr, uint aFlags, [MarshalAs(UnmanagedType.LPStruct)] nsACString retval);
+		void EscapeURL([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aStr, uint aFlags, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
 		
 		/// <summary>
         /// Expands URL escape sequences
@@ -124,7 +124,7 @@ namespace Gecko
         /// @return unescaped string
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UnescapeString([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aStr, uint aFlags, [MarshalAs(UnmanagedType.LPStruct)] nsACString retval);
+		void UnescapeString([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aStr, uint aFlags, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
 		
 		/// <summary>
         /// Extract the charset parameter location and value from a content-type
@@ -150,6 +150,6 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool ExtractCharsetFromContentType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aTypeHeader, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8String aCharset, ref int aCharsetStart, ref int aCharsetEnd);
+		bool ExtractCharsetFromContentType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aTypeHeader, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aCharset, ref int aCharsetStart, ref int aCharsetEnd);
 	}
 }

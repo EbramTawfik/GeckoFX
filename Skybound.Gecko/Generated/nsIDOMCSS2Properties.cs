@@ -50,7 +50,7 @@ namespace Gecko
         /// http://www.w3.org/TR/DOM-Level-2-Style
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetBackgroundAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBackground);
+		void GetBackgroundAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBackground);
 		
 		/// <summary>
         /// The nsIDOMCSS2Properties interface is a datatype for additional
@@ -61,2806 +61,2806 @@ namespace Gecko
         /// http://www.w3.org/TR/DOM-Level-2-Style
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBackgroundAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBackground);
+		void SetBackgroundAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBackground);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetBackgroundAttachmentAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBackgroundAttachment);
+		void GetBackgroundAttachmentAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBackgroundAttachment);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBackgroundAttachmentAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBackgroundAttachment);
+		void SetBackgroundAttachmentAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBackgroundAttachment);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetBackgroundColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBackgroundColor);
+		void GetBackgroundColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBackgroundColor);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBackgroundColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBackgroundColor);
+		void SetBackgroundColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBackgroundColor);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetBackgroundImageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBackgroundImage);
+		void GetBackgroundImageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBackgroundImage);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBackgroundImageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBackgroundImage);
+		void SetBackgroundImageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBackgroundImage);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetBackgroundPositionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBackgroundPosition);
+		void GetBackgroundPositionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBackgroundPosition);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBackgroundPositionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBackgroundPosition);
+		void SetBackgroundPositionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBackgroundPosition);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetBackgroundRepeatAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBackgroundRepeat);
+		void GetBackgroundRepeatAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBackgroundRepeat);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBackgroundRepeatAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBackgroundRepeat);
+		void SetBackgroundRepeatAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBackgroundRepeat);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetBorderAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBorder);
+		void GetBorderAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBorder);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBorderAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBorder);
+		void SetBorderAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBorder);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetBorderCollapseAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBorderCollapse);
+		void GetBorderCollapseAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBorderCollapse);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBorderCollapseAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBorderCollapse);
+		void SetBorderCollapseAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBorderCollapse);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetBorderColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBorderColor);
+		void GetBorderColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBorderColor);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBorderColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBorderColor);
+		void SetBorderColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBorderColor);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetBorderSpacingAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBorderSpacing);
+		void GetBorderSpacingAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBorderSpacing);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBorderSpacingAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBorderSpacing);
+		void SetBorderSpacingAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBorderSpacing);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetBorderStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBorderStyle);
+		void GetBorderStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBorderStyle);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBorderStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBorderStyle);
+		void SetBorderStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBorderStyle);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetBorderTopAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBorderTop);
+		void GetBorderTopAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBorderTop);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBorderTopAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBorderTop);
+		void SetBorderTopAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBorderTop);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetBorderRightAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBorderRight);
+		void GetBorderRightAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBorderRight);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBorderRightAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBorderRight);
+		void SetBorderRightAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBorderRight);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetBorderBottomAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBorderBottom);
+		void GetBorderBottomAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBorderBottom);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBorderBottomAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBorderBottom);
+		void SetBorderBottomAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBorderBottom);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetBorderLeftAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBorderLeft);
+		void GetBorderLeftAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBorderLeft);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBorderLeftAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBorderLeft);
+		void SetBorderLeftAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBorderLeft);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetBorderTopColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBorderTopColor);
+		void GetBorderTopColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBorderTopColor);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBorderTopColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBorderTopColor);
+		void SetBorderTopColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBorderTopColor);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetBorderRightColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBorderRightColor);
+		void GetBorderRightColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBorderRightColor);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBorderRightColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBorderRightColor);
+		void SetBorderRightColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBorderRightColor);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetBorderBottomColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBorderBottomColor);
+		void GetBorderBottomColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBorderBottomColor);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBorderBottomColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBorderBottomColor);
+		void SetBorderBottomColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBorderBottomColor);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetBorderLeftColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBorderLeftColor);
+		void GetBorderLeftColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBorderLeftColor);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBorderLeftColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBorderLeftColor);
+		void SetBorderLeftColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBorderLeftColor);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetBorderTopStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBorderTopStyle);
+		void GetBorderTopStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBorderTopStyle);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBorderTopStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBorderTopStyle);
+		void SetBorderTopStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBorderTopStyle);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetBorderRightStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBorderRightStyle);
+		void GetBorderRightStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBorderRightStyle);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBorderRightStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBorderRightStyle);
+		void SetBorderRightStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBorderRightStyle);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetBorderBottomStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBorderBottomStyle);
+		void GetBorderBottomStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBorderBottomStyle);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBorderBottomStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBorderBottomStyle);
+		void SetBorderBottomStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBorderBottomStyle);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetBorderLeftStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBorderLeftStyle);
+		void GetBorderLeftStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBorderLeftStyle);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBorderLeftStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBorderLeftStyle);
+		void SetBorderLeftStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBorderLeftStyle);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetBorderTopWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBorderTopWidth);
+		void GetBorderTopWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBorderTopWidth);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBorderTopWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBorderTopWidth);
+		void SetBorderTopWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBorderTopWidth);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetBorderRightWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBorderRightWidth);
+		void GetBorderRightWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBorderRightWidth);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBorderRightWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBorderRightWidth);
+		void SetBorderRightWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBorderRightWidth);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetBorderBottomWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBorderBottomWidth);
+		void GetBorderBottomWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBorderBottomWidth);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBorderBottomWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBorderBottomWidth);
+		void SetBorderBottomWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBorderBottomWidth);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetBorderLeftWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBorderLeftWidth);
+		void GetBorderLeftWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBorderLeftWidth);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBorderLeftWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBorderLeftWidth);
+		void SetBorderLeftWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBorderLeftWidth);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetBorderWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBorderWidth);
+		void GetBorderWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBorderWidth);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBorderWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBorderWidth);
+		void SetBorderWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBorderWidth);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetBorderRadiusAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBorderRadius);
+		void GetBorderRadiusAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBorderRadius);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBorderRadiusAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBorderRadius);
+		void SetBorderRadiusAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBorderRadius);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetBorderTopLeftRadiusAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBorderTopLeftRadius);
+		void GetBorderTopLeftRadiusAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBorderTopLeftRadius);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBorderTopLeftRadiusAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBorderTopLeftRadius);
+		void SetBorderTopLeftRadiusAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBorderTopLeftRadius);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetBorderTopRightRadiusAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBorderTopRightRadius);
+		void GetBorderTopRightRadiusAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBorderTopRightRadius);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBorderTopRightRadiusAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBorderTopRightRadius);
+		void SetBorderTopRightRadiusAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBorderTopRightRadius);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetBorderBottomLeftRadiusAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBorderBottomLeftRadius);
+		void GetBorderBottomLeftRadiusAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBorderBottomLeftRadius);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBorderBottomLeftRadiusAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBorderBottomLeftRadius);
+		void SetBorderBottomLeftRadiusAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBorderBottomLeftRadius);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetBorderBottomRightRadiusAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBorderBottomRightRadius);
+		void GetBorderBottomRightRadiusAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBorderBottomRightRadius);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBorderBottomRightRadiusAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBorderBottomRightRadius);
+		void SetBorderBottomRightRadiusAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBorderBottomRightRadius);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetBottomAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBottom);
+		void GetBottomAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBottom);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBottomAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBottom);
+		void SetBottomAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBottom);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetBoxShadowAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBoxShadow);
+		void GetBoxShadowAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBoxShadow);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBoxShadowAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBoxShadow);
+		void SetBoxShadowAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBoxShadow);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCaptionSideAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aCaptionSide);
+		void GetCaptionSideAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCaptionSide);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCaptionSideAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aCaptionSide);
+		void SetCaptionSideAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCaptionSide);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetClearAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aClear);
+		void GetClearAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aClear);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetClearAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aClear);
+		void SetClearAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aClear);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetClipAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aClip);
+		void GetClipAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aClip);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetClipAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aClip);
+		void SetClipAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aClip);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aColor);
+		void GetColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aColor);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aColor);
+		void SetColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aColor);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetContentAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aContent);
+		void GetContentAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aContent);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetContentAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aContent);
+		void SetContentAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aContent);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCounterIncrementAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aCounterIncrement);
+		void GetCounterIncrementAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCounterIncrement);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCounterIncrementAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aCounterIncrement);
+		void SetCounterIncrementAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCounterIncrement);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCounterResetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aCounterReset);
+		void GetCounterResetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCounterReset);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCounterResetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aCounterReset);
+		void SetCounterResetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCounterReset);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCursorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aCursor);
+		void GetCursorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCursor);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCursorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aCursor);
+		void SetCursorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCursor);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDirectionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDirection);
+		void GetDirectionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDirection);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDirectionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDirection);
+		void SetDirectionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDirection);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDisplayAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDisplay);
+		void GetDisplayAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDisplay);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDisplayAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDisplay);
+		void SetDisplayAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDisplay);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetEmptyCellsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aEmptyCells);
+		void GetEmptyCellsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aEmptyCells);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetEmptyCellsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aEmptyCells);
+		void SetEmptyCellsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aEmptyCells);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCssFloatAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aCssFloat);
+		void GetCssFloatAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCssFloat);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCssFloatAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aCssFloat);
+		void SetCssFloatAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCssFloat);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetFontAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aFont);
+		void GetFontAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFont);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFontAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aFont);
+		void SetFontAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFont);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetFontFamilyAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aFontFamily);
+		void GetFontFamilyAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFontFamily);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFontFamilyAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aFontFamily);
+		void SetFontFamilyAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFontFamily);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetFontSizeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aFontSize);
+		void GetFontSizeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFontSize);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFontSizeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aFontSize);
+		void SetFontSizeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFontSize);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetFontSizeAdjustAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aFontSizeAdjust);
+		void GetFontSizeAdjustAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFontSizeAdjust);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFontSizeAdjustAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aFontSizeAdjust);
+		void SetFontSizeAdjustAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFontSizeAdjust);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetFontStretchAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aFontStretch);
+		void GetFontStretchAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFontStretch);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFontStretchAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aFontStretch);
+		void SetFontStretchAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFontStretch);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetFontStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aFontStyle);
+		void GetFontStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFontStyle);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFontStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aFontStyle);
+		void SetFontStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFontStyle);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetFontVariantAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aFontVariant);
+		void GetFontVariantAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFontVariant);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFontVariantAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aFontVariant);
+		void SetFontVariantAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFontVariant);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetFontWeightAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aFontWeight);
+		void GetFontWeightAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFontWeight);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFontWeightAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aFontWeight);
+		void SetFontWeightAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFontWeight);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetHeightAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aHeight);
+		void GetHeightAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aHeight);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetHeightAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aHeight);
+		void SetHeightAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aHeight);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetLeftAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aLeft);
+		void GetLeftAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aLeft);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetLeftAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aLeft);
+		void SetLeftAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aLeft);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetLetterSpacingAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aLetterSpacing);
+		void GetLetterSpacingAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aLetterSpacing);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetLetterSpacingAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aLetterSpacing);
+		void SetLetterSpacingAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aLetterSpacing);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetLineHeightAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aLineHeight);
+		void GetLineHeightAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aLineHeight);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetLineHeightAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aLineHeight);
+		void SetLineHeightAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aLineHeight);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetListStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aListStyle);
+		void GetListStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aListStyle);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetListStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aListStyle);
+		void SetListStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aListStyle);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetListStyleImageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aListStyleImage);
+		void GetListStyleImageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aListStyleImage);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetListStyleImageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aListStyleImage);
+		void SetListStyleImageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aListStyleImage);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetListStylePositionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aListStylePosition);
+		void GetListStylePositionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aListStylePosition);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetListStylePositionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aListStylePosition);
+		void SetListStylePositionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aListStylePosition);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetListStyleTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aListStyleType);
+		void GetListStyleTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aListStyleType);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetListStyleTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aListStyleType);
+		void SetListStyleTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aListStyleType);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMarginAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMargin);
+		void GetMarginAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMargin);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMarginAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMargin);
+		void SetMarginAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMargin);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMarginTopAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMarginTop);
+		void GetMarginTopAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMarginTop);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMarginTopAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMarginTop);
+		void SetMarginTopAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMarginTop);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMarginRightAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMarginRight);
+		void GetMarginRightAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMarginRight);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMarginRightAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMarginRight);
+		void SetMarginRightAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMarginRight);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMarginBottomAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMarginBottom);
+		void GetMarginBottomAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMarginBottom);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMarginBottomAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMarginBottom);
+		void SetMarginBottomAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMarginBottom);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMarginLeftAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMarginLeft);
+		void GetMarginLeftAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMarginLeft);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMarginLeftAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMarginLeft);
+		void SetMarginLeftAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMarginLeft);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMarkerOffsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMarkerOffset);
+		void GetMarkerOffsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMarkerOffset);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMarkerOffsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMarkerOffset);
+		void SetMarkerOffsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMarkerOffset);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMarksAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMarks);
+		void GetMarksAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMarks);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMarksAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMarks);
+		void SetMarksAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMarks);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMaxHeightAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMaxHeight);
+		void GetMaxHeightAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMaxHeight);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMaxHeightAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMaxHeight);
+		void SetMaxHeightAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMaxHeight);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMaxWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMaxWidth);
+		void GetMaxWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMaxWidth);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMaxWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMaxWidth);
+		void SetMaxWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMaxWidth);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMinHeightAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMinHeight);
+		void GetMinHeightAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMinHeight);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMinHeightAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMinHeight);
+		void SetMinHeightAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMinHeight);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMinWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMinWidth);
+		void GetMinWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMinWidth);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMinWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMinWidth);
+		void SetMinWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMinWidth);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetOrphansAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aOrphans);
+		void GetOrphansAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aOrphans);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOrphansAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aOrphans);
+		void SetOrphansAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aOrphans);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetOutlineAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aOutline);
+		void GetOutlineAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aOutline);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOutlineAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aOutline);
+		void SetOutlineAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aOutline);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetOutlineColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aOutlineColor);
+		void GetOutlineColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aOutlineColor);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOutlineColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aOutlineColor);
+		void SetOutlineColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aOutlineColor);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetOutlineStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aOutlineStyle);
+		void GetOutlineStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aOutlineStyle);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOutlineStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aOutlineStyle);
+		void SetOutlineStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aOutlineStyle);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetOutlineWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aOutlineWidth);
+		void GetOutlineWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aOutlineWidth);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOutlineWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aOutlineWidth);
+		void SetOutlineWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aOutlineWidth);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetOverflowAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aOverflow);
+		void GetOverflowAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aOverflow);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOverflowAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aOverflow);
+		void SetOverflowAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aOverflow);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPaddingAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aPadding);
+		void GetPaddingAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPadding);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPaddingAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aPadding);
+		void SetPaddingAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPadding);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPaddingTopAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aPaddingTop);
+		void GetPaddingTopAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPaddingTop);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPaddingTopAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aPaddingTop);
+		void SetPaddingTopAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPaddingTop);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPaddingRightAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aPaddingRight);
+		void GetPaddingRightAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPaddingRight);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPaddingRightAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aPaddingRight);
+		void SetPaddingRightAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPaddingRight);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPaddingBottomAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aPaddingBottom);
+		void GetPaddingBottomAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPaddingBottom);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPaddingBottomAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aPaddingBottom);
+		void SetPaddingBottomAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPaddingBottom);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPaddingLeftAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aPaddingLeft);
+		void GetPaddingLeftAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPaddingLeft);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPaddingLeftAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aPaddingLeft);
+		void SetPaddingLeftAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPaddingLeft);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aPage);
+		void GetPageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPage);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aPage);
+		void SetPageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPage);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPageBreakAfterAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aPageBreakAfter);
+		void GetPageBreakAfterAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPageBreakAfter);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPageBreakAfterAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aPageBreakAfter);
+		void SetPageBreakAfterAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPageBreakAfter);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPageBreakBeforeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aPageBreakBefore);
+		void GetPageBreakBeforeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPageBreakBefore);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPageBreakBeforeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aPageBreakBefore);
+		void SetPageBreakBeforeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPageBreakBefore);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPageBreakInsideAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aPageBreakInside);
+		void GetPageBreakInsideAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPageBreakInside);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPageBreakInsideAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aPageBreakInside);
+		void SetPageBreakInsideAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPageBreakInside);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPositionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aPosition);
+		void GetPositionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPosition);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPositionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aPosition);
+		void SetPositionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPosition);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetQuotesAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aQuotes);
+		void GetQuotesAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aQuotes);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetQuotesAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aQuotes);
+		void SetQuotesAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aQuotes);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetRightAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aRight);
+		void GetRightAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aRight);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetRightAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aRight);
+		void SetRightAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aRight);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSizeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aSize);
+		void GetSizeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSize);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSizeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aSize);
+		void SetSizeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSize);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTableLayoutAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aTableLayout);
+		void GetTableLayoutAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTableLayout);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTableLayoutAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aTableLayout);
+		void SetTableLayoutAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTableLayout);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTextAlignAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aTextAlign);
+		void GetTextAlignAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTextAlign);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTextAlignAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aTextAlign);
+		void SetTextAlignAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTextAlign);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTextDecorationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aTextDecoration);
+		void GetTextDecorationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTextDecoration);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTextDecorationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aTextDecoration);
+		void SetTextDecorationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTextDecoration);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTextIndentAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aTextIndent);
+		void GetTextIndentAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTextIndent);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTextIndentAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aTextIndent);
+		void SetTextIndentAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTextIndent);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTextOverflowAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aTextOverflow);
+		void GetTextOverflowAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTextOverflow);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTextOverflowAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aTextOverflow);
+		void SetTextOverflowAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTextOverflow);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTextShadowAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aTextShadow);
+		void GetTextShadowAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTextShadow);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTextShadowAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aTextShadow);
+		void SetTextShadowAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTextShadow);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTextTransformAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aTextTransform);
+		void GetTextTransformAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTextTransform);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTextTransformAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aTextTransform);
+		void SetTextTransformAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTextTransform);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTopAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aTop);
+		void GetTopAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTop);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTopAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aTop);
+		void SetTopAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTop);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetUnicodeBidiAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aUnicodeBidi);
+		void GetUnicodeBidiAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aUnicodeBidi);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetUnicodeBidiAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aUnicodeBidi);
+		void SetUnicodeBidiAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aUnicodeBidi);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetVerticalAlignAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aVerticalAlign);
+		void GetVerticalAlignAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aVerticalAlign);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetVerticalAlignAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aVerticalAlign);
+		void SetVerticalAlignAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aVerticalAlign);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetVisibilityAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aVisibility);
+		void GetVisibilityAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aVisibility);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetVisibilityAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aVisibility);
+		void SetVisibilityAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aVisibility);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetWhiteSpaceAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aWhiteSpace);
+		void GetWhiteSpaceAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aWhiteSpace);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetWhiteSpaceAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aWhiteSpace);
+		void SetWhiteSpaceAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aWhiteSpace);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetWidowsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aWidows);
+		void GetWidowsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aWidows);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetWidowsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aWidows);
+		void SetWidowsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aWidows);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aWidth);
+		void GetWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aWidth);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aWidth);
+		void SetWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aWidth);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetWordSpacingAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aWordSpacing);
+		void GetWordSpacingAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aWordSpacing);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetWordSpacingAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aWordSpacing);
+		void SetWordSpacingAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aWordSpacing);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetZIndexAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aZIndex);
+		void GetZIndexAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aZIndex);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetZIndexAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aZIndex);
+		void SetZIndexAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aZIndex);
 		
 		/// <summary>
         ///SVG CSS properties </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetClipPathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aClipPath);
+		void GetClipPathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aClipPath);
 		
 		/// <summary>
         ///SVG CSS properties </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetClipPathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aClipPath);
+		void SetClipPathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aClipPath);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetClipRuleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aClipRule);
+		void GetClipRuleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aClipRule);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetClipRuleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aClipRule);
+		void SetClipRuleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aClipRule);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetColorInterpolationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aColorInterpolation);
+		void GetColorInterpolationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aColorInterpolation);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetColorInterpolationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aColorInterpolation);
+		void SetColorInterpolationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aColorInterpolation);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetColorInterpolationFiltersAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aColorInterpolationFilters);
+		void GetColorInterpolationFiltersAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aColorInterpolationFilters);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetColorInterpolationFiltersAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aColorInterpolationFilters);
+		void SetColorInterpolationFiltersAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aColorInterpolationFilters);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDominantBaselineAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDominantBaseline);
+		void GetDominantBaselineAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDominantBaseline);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDominantBaselineAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aDominantBaseline);
+		void SetDominantBaselineAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDominantBaseline);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetFillAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aFill);
+		void GetFillAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFill);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFillAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aFill);
+		void SetFillAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFill);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetFillOpacityAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aFillOpacity);
+		void GetFillOpacityAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFillOpacity);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFillOpacityAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aFillOpacity);
+		void SetFillOpacityAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFillOpacity);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetFillRuleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aFillRule);
+		void GetFillRuleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFillRule);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFillRuleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aFillRule);
+		void SetFillRuleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFillRule);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetFilterAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aFilter);
+		void GetFilterAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFilter);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFilterAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aFilter);
+		void SetFilterAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFilter);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetFloodColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aFloodColor);
+		void GetFloodColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFloodColor);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFloodColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aFloodColor);
+		void SetFloodColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFloodColor);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetFloodOpacityAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aFloodOpacity);
+		void GetFloodOpacityAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFloodOpacity);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFloodOpacityAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aFloodOpacity);
+		void SetFloodOpacityAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFloodOpacity);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetImageRenderingAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aImageRendering);
+		void GetImageRenderingAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aImageRendering);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetImageRenderingAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aImageRendering);
+		void SetImageRenderingAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aImageRendering);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetLightingColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aLightingColor);
+		void GetLightingColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aLightingColor);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetLightingColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aLightingColor);
+		void SetLightingColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aLightingColor);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMarkerAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMarker);
+		void GetMarkerAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMarker);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMarkerAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMarker);
+		void SetMarkerAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMarker);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMarkerEndAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMarkerEnd);
+		void GetMarkerEndAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMarkerEnd);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMarkerEndAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMarkerEnd);
+		void SetMarkerEndAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMarkerEnd);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMarkerMidAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMarkerMid);
+		void GetMarkerMidAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMarkerMid);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMarkerMidAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMarkerMid);
+		void SetMarkerMidAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMarkerMid);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMarkerStartAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMarkerStart);
+		void GetMarkerStartAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMarkerStart);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMarkerStartAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMarkerStart);
+		void SetMarkerStartAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMarkerStart);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMaskAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMask);
+		void GetMaskAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMask);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMaskAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMask);
+		void SetMaskAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMask);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetShapeRenderingAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aShapeRendering);
+		void GetShapeRenderingAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aShapeRendering);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetShapeRenderingAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aShapeRendering);
+		void SetShapeRenderingAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aShapeRendering);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetStopColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aStopColor);
+		void GetStopColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aStopColor);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetStopColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aStopColor);
+		void SetStopColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aStopColor);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetStopOpacityAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aStopOpacity);
+		void GetStopOpacityAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aStopOpacity);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetStopOpacityAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aStopOpacity);
+		void SetStopOpacityAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aStopOpacity);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetStrokeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aStroke);
+		void GetStrokeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aStroke);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetStrokeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aStroke);
+		void SetStrokeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aStroke);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetStrokeDasharrayAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aStrokeDasharray);
+		void GetStrokeDasharrayAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aStrokeDasharray);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetStrokeDasharrayAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aStrokeDasharray);
+		void SetStrokeDasharrayAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aStrokeDasharray);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetStrokeDashoffsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aStrokeDashoffset);
+		void GetStrokeDashoffsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aStrokeDashoffset);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetStrokeDashoffsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aStrokeDashoffset);
+		void SetStrokeDashoffsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aStrokeDashoffset);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetStrokeLinecapAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aStrokeLinecap);
+		void GetStrokeLinecapAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aStrokeLinecap);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetStrokeLinecapAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aStrokeLinecap);
+		void SetStrokeLinecapAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aStrokeLinecap);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetStrokeLinejoinAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aStrokeLinejoin);
+		void GetStrokeLinejoinAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aStrokeLinejoin);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetStrokeLinejoinAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aStrokeLinejoin);
+		void SetStrokeLinejoinAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aStrokeLinejoin);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetStrokeMiterlimitAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aStrokeMiterlimit);
+		void GetStrokeMiterlimitAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aStrokeMiterlimit);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetStrokeMiterlimitAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aStrokeMiterlimit);
+		void SetStrokeMiterlimitAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aStrokeMiterlimit);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetStrokeOpacityAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aStrokeOpacity);
+		void GetStrokeOpacityAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aStrokeOpacity);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetStrokeOpacityAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aStrokeOpacity);
+		void SetStrokeOpacityAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aStrokeOpacity);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetStrokeWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aStrokeWidth);
+		void GetStrokeWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aStrokeWidth);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetStrokeWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aStrokeWidth);
+		void SetStrokeWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aStrokeWidth);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTextAnchorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aTextAnchor);
+		void GetTextAnchorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTextAnchor);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTextAnchorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aTextAnchor);
+		void SetTextAnchorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTextAnchor);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTextRenderingAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aTextRendering);
+		void GetTextRenderingAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTextRendering);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTextRenderingAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aTextRendering);
-		
-		/// <summary>
-        ///Mozilla extension CSS properties </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozAppearanceAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozAppearance);
+		void SetTextRenderingAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTextRendering);
 		
 		/// <summary>
         ///Mozilla extension CSS properties </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozAppearanceAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozAppearance);
+		void GetMozAppearanceAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozAppearance);
 		
 		/// <summary>
+        ///Mozilla extension CSS properties </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetMozAppearanceAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozAppearance);
+		
+		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetBackgroundClipAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBackgroundClip);
+		void GetBackgroundClipAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBackgroundClip);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBackgroundClipAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBackgroundClip);
+		void SetBackgroundClipAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBackgroundClip);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozBackgroundInlinePolicyAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozBackgroundInlinePolicy);
+		void GetMozBackgroundInlinePolicyAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozBackgroundInlinePolicy);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozBackgroundInlinePolicyAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozBackgroundInlinePolicy);
+		void SetMozBackgroundInlinePolicyAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozBackgroundInlinePolicy);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetBackgroundOriginAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBackgroundOrigin);
+		void GetBackgroundOriginAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBackgroundOrigin);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBackgroundOriginAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBackgroundOrigin);
+		void SetBackgroundOriginAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBackgroundOrigin);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozBindingAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozBinding);
+		void GetMozBindingAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozBinding);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozBindingAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozBinding);
+		void SetMozBindingAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozBinding);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozBorderBottomColorsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozBorderBottomColors);
+		void GetMozBorderBottomColorsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozBorderBottomColors);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozBorderBottomColorsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozBorderBottomColors);
+		void SetMozBorderBottomColorsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozBorderBottomColors);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozBorderLeftColorsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozBorderLeftColors);
+		void GetMozBorderLeftColorsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozBorderLeftColors);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozBorderLeftColorsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozBorderLeftColors);
+		void SetMozBorderLeftColorsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozBorderLeftColors);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozBorderRightColorsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozBorderRightColors);
+		void GetMozBorderRightColorsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozBorderRightColors);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozBorderRightColorsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozBorderRightColors);
+		void SetMozBorderRightColorsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozBorderRightColors);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozBorderTopColorsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozBorderTopColors);
+		void GetMozBorderTopColorsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozBorderTopColors);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozBorderTopColorsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozBorderTopColors);
+		void SetMozBorderTopColorsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozBorderTopColors);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozBoxAlignAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozBoxAlign);
+		void GetMozBoxAlignAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozBoxAlign);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozBoxAlignAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozBoxAlign);
+		void SetMozBoxAlignAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozBoxAlign);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozBoxDirectionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozBoxDirection);
+		void GetMozBoxDirectionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozBoxDirection);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozBoxDirectionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozBoxDirection);
+		void SetMozBoxDirectionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozBoxDirection);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozBoxFlexAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozBoxFlex);
+		void GetMozBoxFlexAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozBoxFlex);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozBoxFlexAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozBoxFlex);
+		void SetMozBoxFlexAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozBoxFlex);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozBoxOrientAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozBoxOrient);
+		void GetMozBoxOrientAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozBoxOrient);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozBoxOrientAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozBoxOrient);
+		void SetMozBoxOrientAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozBoxOrient);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozBoxOrdinalGroupAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozBoxOrdinalGroup);
+		void GetMozBoxOrdinalGroupAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozBoxOrdinalGroup);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozBoxOrdinalGroupAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozBoxOrdinalGroup);
+		void SetMozBoxOrdinalGroupAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozBoxOrdinalGroup);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozBoxPackAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozBoxPack);
+		void GetMozBoxPackAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozBoxPack);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozBoxPackAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozBoxPack);
+		void SetMozBoxPackAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozBoxPack);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozBoxSizingAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozBoxSizing);
+		void GetMozBoxSizingAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozBoxSizing);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozBoxSizingAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozBoxSizing);
+		void SetMozBoxSizingAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozBoxSizing);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozColumnCountAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozColumnCount);
+		void GetMozColumnCountAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozColumnCount);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozColumnCountAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozColumnCount);
+		void SetMozColumnCountAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozColumnCount);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozColumnWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozColumnWidth);
+		void GetMozColumnWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozColumnWidth);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozColumnWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozColumnWidth);
+		void SetMozColumnWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozColumnWidth);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozColumnGapAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozColumnGap);
+		void GetMozColumnGapAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozColumnGap);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozColumnGapAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozColumnGap);
+		void SetMozColumnGapAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozColumnGap);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozFloatEdgeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozFloatEdge);
+		void GetMozFloatEdgeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozFloatEdge);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozFloatEdgeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozFloatEdge);
+		void SetMozFloatEdgeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozFloatEdge);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozFontFeatureSettingsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozFontFeatureSettings);
+		void GetMozFontFeatureSettingsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozFontFeatureSettings);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozFontFeatureSettingsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozFontFeatureSettings);
+		void SetMozFontFeatureSettingsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozFontFeatureSettings);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozFontLanguageOverrideAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozFontLanguageOverride);
+		void GetMozFontLanguageOverrideAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozFontLanguageOverride);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozFontLanguageOverrideAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozFontLanguageOverride);
+		void SetMozFontLanguageOverrideAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozFontLanguageOverride);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozForceBrokenImageIconAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozForceBrokenImageIcon);
+		void GetMozForceBrokenImageIconAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozForceBrokenImageIcon);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozForceBrokenImageIconAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozForceBrokenImageIcon);
+		void SetMozForceBrokenImageIconAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozForceBrokenImageIcon);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozImageRegionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozImageRegion);
+		void GetMozImageRegionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozImageRegion);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozImageRegionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozImageRegion);
+		void SetMozImageRegionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozImageRegion);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozMarginEndAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozMarginEnd);
+		void GetMozMarginEndAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozMarginEnd);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozMarginEndAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozMarginEnd);
+		void SetMozMarginEndAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozMarginEnd);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozMarginStartAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozMarginStart);
+		void GetMozMarginStartAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozMarginStart);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozMarginStartAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozMarginStart);
+		void SetMozMarginStartAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozMarginStart);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozOpacityAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozOpacity);
+		void GetMozOpacityAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozOpacity);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozOpacityAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozOpacity);
+		void SetMozOpacityAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozOpacity);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozOrientAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozOrient);
+		void GetMozOrientAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozOrient);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozOrientAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozOrient);
+		void SetMozOrientAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozOrient);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozOutlineAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozOutline);
+		void GetMozOutlineAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozOutline);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozOutlineAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozOutline);
+		void SetMozOutlineAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozOutline);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozOutlineColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozOutlineColor);
+		void GetMozOutlineColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozOutlineColor);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozOutlineColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozOutlineColor);
+		void SetMozOutlineColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozOutlineColor);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozOutlineRadiusAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozOutlineRadius);
+		void GetMozOutlineRadiusAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozOutlineRadius);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozOutlineRadiusAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozOutlineRadius);
+		void SetMozOutlineRadiusAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozOutlineRadius);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozOutlineRadiusTopleftAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozOutlineRadiusTopleft);
+		void GetMozOutlineRadiusTopleftAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozOutlineRadiusTopleft);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozOutlineRadiusTopleftAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozOutlineRadiusTopleft);
+		void SetMozOutlineRadiusTopleftAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozOutlineRadiusTopleft);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozOutlineRadiusToprightAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozOutlineRadiusTopright);
+		void GetMozOutlineRadiusToprightAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozOutlineRadiusTopright);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozOutlineRadiusToprightAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozOutlineRadiusTopright);
+		void SetMozOutlineRadiusToprightAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozOutlineRadiusTopright);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozOutlineRadiusBottomleftAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozOutlineRadiusBottomleft);
+		void GetMozOutlineRadiusBottomleftAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozOutlineRadiusBottomleft);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozOutlineRadiusBottomleftAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozOutlineRadiusBottomleft);
+		void SetMozOutlineRadiusBottomleftAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozOutlineRadiusBottomleft);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozOutlineRadiusBottomrightAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozOutlineRadiusBottomright);
+		void GetMozOutlineRadiusBottomrightAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozOutlineRadiusBottomright);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozOutlineRadiusBottomrightAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozOutlineRadiusBottomright);
+		void SetMozOutlineRadiusBottomrightAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozOutlineRadiusBottomright);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozOutlineStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozOutlineStyle);
+		void GetMozOutlineStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozOutlineStyle);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozOutlineStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozOutlineStyle);
+		void SetMozOutlineStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozOutlineStyle);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozOutlineWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozOutlineWidth);
+		void GetMozOutlineWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozOutlineWidth);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozOutlineWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozOutlineWidth);
+		void SetMozOutlineWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozOutlineWidth);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozOutlineOffsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozOutlineOffset);
+		void GetMozOutlineOffsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozOutlineOffset);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozOutlineOffsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozOutlineOffset);
+		void SetMozOutlineOffsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozOutlineOffset);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozPaddingEndAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozPaddingEnd);
+		void GetMozPaddingEndAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozPaddingEnd);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozPaddingEndAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozPaddingEnd);
+		void SetMozPaddingEndAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozPaddingEnd);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozPaddingStartAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozPaddingStart);
+		void GetMozPaddingStartAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozPaddingStart);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozPaddingStartAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozPaddingStart);
+		void SetMozPaddingStartAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozPaddingStart);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozUserFocusAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozUserFocus);
+		void GetMozUserFocusAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozUserFocus);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozUserFocusAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozUserFocus);
+		void SetMozUserFocusAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozUserFocus);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozUserInputAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozUserInput);
+		void GetMozUserInputAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozUserInput);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozUserInputAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozUserInput);
+		void SetMozUserInputAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozUserInput);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozUserModifyAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozUserModify);
+		void GetMozUserModifyAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozUserModify);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozUserModifyAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozUserModify);
+		void SetMozUserModifyAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozUserModify);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozUserSelectAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozUserSelect);
+		void GetMozUserSelectAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozUserSelect);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozUserSelectAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozUserSelect);
+		void SetMozUserSelectAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozUserSelect);
 		
 		/// <summary>
         ///CSS3 properties </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetOpacityAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aOpacity);
+		void GetOpacityAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aOpacity);
 		
 		/// <summary>
         ///CSS3 properties </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOpacityAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aOpacity);
+		void SetOpacityAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aOpacity);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetOutlineOffsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aOutlineOffset);
+		void GetOutlineOffsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aOutlineOffset);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOutlineOffsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aOutlineOffset);
-		
-		/// <summary>
-        ///Mozilla extensions </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetOverflowXAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aOverflowX);
+		void SetOutlineOffsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aOutlineOffset);
 		
 		/// <summary>
         ///Mozilla extensions </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOverflowXAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aOverflowX);
+		void GetOverflowXAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aOverflowX);
 		
 		/// <summary>
+        ///Mozilla extensions </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOverflowXAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aOverflowX);
+		
+		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetOverflowYAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aOverflowY);
+		void GetOverflowYAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aOverflowY);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOverflowYAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aOverflowY);
+		void SetOverflowYAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aOverflowY);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetImeModeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aImeMode);
+		void GetImeModeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aImeMode);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetImeModeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aImeMode);
+		void SetImeModeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aImeMode);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozBorderEndAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozBorderEnd);
+		void GetMozBorderEndAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozBorderEnd);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozBorderEndAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozBorderEnd);
+		void SetMozBorderEndAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozBorderEnd);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozBorderEndColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozBorderEndColor);
+		void GetMozBorderEndColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozBorderEndColor);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozBorderEndColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozBorderEndColor);
+		void SetMozBorderEndColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozBorderEndColor);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozBorderEndStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozBorderEndStyle);
+		void GetMozBorderEndStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozBorderEndStyle);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozBorderEndStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozBorderEndStyle);
+		void SetMozBorderEndStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozBorderEndStyle);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozBorderEndWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozBorderEndWidth);
+		void GetMozBorderEndWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozBorderEndWidth);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozBorderEndWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozBorderEndWidth);
+		void SetMozBorderEndWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozBorderEndWidth);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozBorderStartAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozBorderStart);
+		void GetMozBorderStartAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozBorderStart);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozBorderStartAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozBorderStart);
+		void SetMozBorderStartAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozBorderStart);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozBorderStartColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozBorderStartColor);
+		void GetMozBorderStartColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozBorderStartColor);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozBorderStartColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozBorderStartColor);
+		void SetMozBorderStartColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozBorderStartColor);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozBorderStartStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozBorderStartStyle);
+		void GetMozBorderStartStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozBorderStartStyle);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozBorderStartStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozBorderStartStyle);
+		void SetMozBorderStartStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozBorderStartStyle);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozBorderStartWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozBorderStartWidth);
+		void GetMozBorderStartWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozBorderStartWidth);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozBorderStartWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozBorderStartWidth);
+		void SetMozBorderStartWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozBorderStartWidth);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozStackSizingAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozStackSizing);
+		void GetMozStackSizingAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozStackSizing);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozStackSizingAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozStackSizing);
+		void SetMozStackSizingAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozStackSizing);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozBorderImageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozBorderImage);
+		void GetMozBorderImageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozBorderImage);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozBorderImageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozBorderImage);
+		void SetMozBorderImageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozBorderImage);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozColumnsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozColumns);
+		void GetMozColumnsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozColumns);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozColumnsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozColumns);
+		void SetMozColumnsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozColumns);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozColumnRuleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozColumnRule);
+		void GetMozColumnRuleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozColumnRule);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozColumnRuleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozColumnRule);
+		void SetMozColumnRuleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozColumnRule);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozColumnRuleWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozColumnRuleWidth);
+		void GetMozColumnRuleWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozColumnRuleWidth);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozColumnRuleWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozColumnRuleWidth);
+		void SetMozColumnRuleWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozColumnRuleWidth);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozColumnRuleStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozColumnRuleStyle);
+		void GetMozColumnRuleStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozColumnRuleStyle);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozColumnRuleStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozColumnRuleStyle);
+		void SetMozColumnRuleStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozColumnRuleStyle);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozColumnRuleColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozColumnRuleColor);
+		void GetMozColumnRuleColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozColumnRuleColor);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozColumnRuleColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozColumnRuleColor);
+		void SetMozColumnRuleColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozColumnRuleColor);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetWordWrapAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aWordWrap);
+		void GetWordWrapAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aWordWrap);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetWordWrapAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aWordWrap);
+		void SetWordWrapAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aWordWrap);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozHyphensAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozHyphens);
+		void GetMozHyphensAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozHyphens);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozHyphensAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozHyphens);
+		void SetMozHyphensAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozHyphens);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozTransformAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozTransform);
+		void GetMozTransformAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozTransform);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozTransformAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozTransform);
+		void SetMozTransformAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozTransform);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozTransformOriginAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozTransformOrigin);
+		void GetMozTransformOriginAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozTransformOrigin);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozTransformOriginAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozTransformOrigin);
+		void SetMozTransformOriginAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozTransformOrigin);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozPerspectiveAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozPerspective);
+		void GetMozPerspectiveAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozPerspective);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozPerspectiveAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozPerspective);
+		void SetMozPerspectiveAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozPerspective);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozPerspectiveOriginAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozPerspectiveOrigin);
+		void GetMozPerspectiveOriginAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozPerspectiveOrigin);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozPerspectiveOriginAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozPerspectiveOrigin);
+		void SetMozPerspectiveOriginAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozPerspectiveOrigin);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozBackfaceVisibilityAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozBackfaceVisibility);
+		void GetMozBackfaceVisibilityAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozBackfaceVisibility);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozBackfaceVisibilityAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozBackfaceVisibility);
+		void SetMozBackfaceVisibilityAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozBackfaceVisibility);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozTransformStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozTransformStyle);
+		void GetMozTransformStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozTransformStyle);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozTransformStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozTransformStyle);
+		void SetMozTransformStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozTransformStyle);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozWindowShadowAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozWindowShadow);
+		void GetMozWindowShadowAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozWindowShadow);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozWindowShadowAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozWindowShadow);
+		void SetMozWindowShadowAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozWindowShadow);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetBackgroundSizeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBackgroundSize);
+		void GetBackgroundSizeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBackgroundSize);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBackgroundSizeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aBackgroundSize);
+		void SetBackgroundSizeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBackgroundSize);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozTextBlinkAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozTextBlink);
+		void GetMozTextBlinkAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozTextBlink);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozTextBlinkAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozTextBlink);
+		void SetMozTextBlinkAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozTextBlink);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozTextDecorationColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozTextDecorationColor);
+		void GetMozTextDecorationColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozTextDecorationColor);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozTextDecorationColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozTextDecorationColor);
+		void SetMozTextDecorationColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozTextDecorationColor);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozTextDecorationLineAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozTextDecorationLine);
+		void GetMozTextDecorationLineAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozTextDecorationLine);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozTextDecorationLineAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozTextDecorationLine);
+		void SetMozTextDecorationLineAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozTextDecorationLine);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozTextDecorationStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozTextDecorationStyle);
+		void GetMozTextDecorationStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozTextDecorationStyle);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozTextDecorationStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozTextDecorationStyle);
+		void SetMozTextDecorationStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozTextDecorationStyle);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozTransitionPropertyAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozTransitionProperty);
+		void GetMozTransitionPropertyAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozTransitionProperty);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozTransitionPropertyAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozTransitionProperty);
+		void SetMozTransitionPropertyAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozTransitionProperty);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozTransitionDurationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozTransitionDuration);
+		void GetMozTransitionDurationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozTransitionDuration);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozTransitionDurationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozTransitionDuration);
+		void SetMozTransitionDurationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozTransitionDuration);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozTransitionDelayAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozTransitionDelay);
+		void GetMozTransitionDelayAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozTransitionDelay);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozTransitionDelayAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozTransitionDelay);
+		void SetMozTransitionDelayAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozTransitionDelay);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozTransitionTimingFunctionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozTransitionTimingFunction);
+		void GetMozTransitionTimingFunctionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozTransitionTimingFunction);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozTransitionTimingFunctionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozTransitionTimingFunction);
+		void SetMozTransitionTimingFunctionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozTransitionTimingFunction);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozTransitionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozTransition);
+		void GetMozTransitionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozTransition);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozTransitionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozTransition);
+		void SetMozTransitionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozTransition);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPointerEventsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aPointerEvents);
+		void GetPointerEventsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPointerEvents);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPointerEventsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aPointerEvents);
+		void SetPointerEventsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPointerEvents);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozTabSizeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozTabSize);
+		void GetMozTabSizeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozTabSize);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozTabSizeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozTabSize);
+		void SetMozTabSizeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozTabSize);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetResizeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aResize);
+		void GetResizeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aResize);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetResizeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aResize);
+		void SetResizeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aResize);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozAnimationNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozAnimationName);
+		void GetMozAnimationNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozAnimationName);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozAnimationNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozAnimationName);
+		void SetMozAnimationNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozAnimationName);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozAnimationDurationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozAnimationDuration);
+		void GetMozAnimationDurationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozAnimationDuration);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozAnimationDurationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozAnimationDuration);
+		void SetMozAnimationDurationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozAnimationDuration);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozAnimationDelayAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozAnimationDelay);
+		void GetMozAnimationDelayAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozAnimationDelay);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozAnimationDelayAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozAnimationDelay);
+		void SetMozAnimationDelayAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozAnimationDelay);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozAnimationTimingFunctionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozAnimationTimingFunction);
+		void GetMozAnimationTimingFunctionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozAnimationTimingFunction);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozAnimationTimingFunctionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozAnimationTimingFunction);
+		void SetMozAnimationTimingFunctionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozAnimationTimingFunction);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozAnimationDirectionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozAnimationDirection);
+		void GetMozAnimationDirectionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozAnimationDirection);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozAnimationDirectionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozAnimationDirection);
+		void SetMozAnimationDirectionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozAnimationDirection);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozAnimationFillModeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozAnimationFillMode);
+		void GetMozAnimationFillModeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozAnimationFillMode);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozAnimationFillModeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozAnimationFillMode);
+		void SetMozAnimationFillModeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozAnimationFillMode);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozAnimationIterationCountAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozAnimationIterationCount);
+		void GetMozAnimationIterationCountAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozAnimationIterationCount);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozAnimationIterationCountAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozAnimationIterationCount);
+		void SetMozAnimationIterationCountAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozAnimationIterationCount);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozAnimationPlayStateAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozAnimationPlayState);
+		void GetMozAnimationPlayStateAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozAnimationPlayState);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozAnimationPlayStateAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozAnimationPlayState);
+		void SetMozAnimationPlayStateAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozAnimationPlayState);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozAnimationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozAnimation);
+		void GetMozAnimationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozAnimation);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozAnimationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aMozAnimation);
+		void SetMozAnimationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozAnimation);
 	}
 }

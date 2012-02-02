@@ -78,7 +78,7 @@ namespace Gecko
 		/// <param name='aSelectionOnly'> </param>
 		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetContents([MarshalAs(UnmanagedType.LPStr)] string aMimeType, [MarshalAs(UnmanagedType.U1)] bool aSelectionOnly, [MarshalAs(UnmanagedType.LPStruct)] nsAString retval);
+		void GetContents([MarshalAs(UnmanagedType.LPStr)] string aMimeType, [MarshalAs(UnmanagedType.U1)] bool aSelectionOnly, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>Member GetCanGetContentsAttribute </summary>
 		/// <returns>A System.Boolean</returns>

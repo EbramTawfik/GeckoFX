@@ -46,7 +46,7 @@ namespace Gecko
         ///Find aSearchString in page.  If aLinksOnly is true, only search the page's
         /// hyperlinks for the string. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint Find([MarshalAs(UnmanagedType.LPStruct)] nsAString aSearchString, [MarshalAs(UnmanagedType.U1)] bool aLinksOnly);
+		uint Find([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSearchString, [MarshalAs(UnmanagedType.U1)] bool aLinksOnly);
 		
 		/// <summary>
         ///Find another match in the page. </summary>
@@ -75,7 +75,7 @@ namespace Gecko
 		/// <summary>
         ///Attributes </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSearchStringAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aSearchString);
+		void GetSearchStringAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSearchString);
 		
 		/// <summary>
         /// Most recent search string

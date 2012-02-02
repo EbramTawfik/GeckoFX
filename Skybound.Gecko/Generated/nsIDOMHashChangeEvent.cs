@@ -39,7 +39,7 @@ namespace Gecko
         /// name.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aType);
+		new void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType);
 		
 		/// <summary>
         /// Used to indicate the EventTarget to which the event was originally
@@ -146,7 +146,7 @@ namespace Gecko
         /// action can be prevented.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void InitEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString eventTypeArg, [MarshalAs(UnmanagedType.U1)] bool canBubbleArg, [MarshalAs(UnmanagedType.U1)] bool cancelableArg);
+		new void InitEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase eventTypeArg, [MarshalAs(UnmanagedType.U1)] bool canBubbleArg, [MarshalAs(UnmanagedType.U1)] bool cancelableArg);
 		
 		/// <summary>
         /// Used to indicate whether preventDefault() has been called for this event.
@@ -165,12 +165,12 @@ namespace Gecko
 		/// <summary>Member GetOldURLAttribute </summary>
 		/// <param name='aOldURL'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetOldURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aOldURL);
+		void GetOldURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aOldURL);
 		
 		/// <summary>Member GetNewURLAttribute </summary>
 		/// <param name='aNewURL'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNewURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aNewURL);
+		void GetNewURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNewURL);
 		
 		/// <summary>Member InitHashChangeEvent </summary>
 		/// <param name='typeArg'> </param>
@@ -179,6 +179,6 @@ namespace Gecko
 		/// <param name='oldURLArg'> </param>
 		/// <param name='newURLArg'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitHashChangeEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString typeArg, [MarshalAs(UnmanagedType.U1)] bool canBubbleArg, [MarshalAs(UnmanagedType.U1)] bool cancelableArg, [MarshalAs(UnmanagedType.LPStruct)] nsAString oldURLArg, [MarshalAs(UnmanagedType.LPStruct)] nsAString newURLArg);
+		void InitHashChangeEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase typeArg, [MarshalAs(UnmanagedType.U1)] bool canBubbleArg, [MarshalAs(UnmanagedType.U1)] bool cancelableArg, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase oldURLArg, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase newURLArg);
 	}
 }

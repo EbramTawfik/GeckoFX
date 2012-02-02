@@ -39,7 +39,7 @@ namespace Gecko
         /// name.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aType);
+		new void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType);
 		
 		/// <summary>
         /// Used to indicate the EventTarget to which the event was originally
@@ -146,7 +146,7 @@ namespace Gecko
         /// action can be prevented.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void InitEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString eventTypeArg, [MarshalAs(UnmanagedType.U1)] bool canBubbleArg, [MarshalAs(UnmanagedType.U1)] bool cancelableArg);
+		new void InitEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase eventTypeArg, [MarshalAs(UnmanagedType.U1)] bool canBubbleArg, [MarshalAs(UnmanagedType.U1)] bool cancelableArg);
 		
 		/// <summary>
         /// Used to indicate whether preventDefault() has been called for this event.
@@ -185,7 +185,7 @@ namespace Gecko
 		/// <param name='viewArg'> </param>
 		/// <param name='detailArg'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void InitUIEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString typeArg, [MarshalAs(UnmanagedType.U1)] bool canBubbleArg, [MarshalAs(UnmanagedType.U1)] bool cancelableArg, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow viewArg, int detailArg);
+		new void InitUIEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase typeArg, [MarshalAs(UnmanagedType.U1)] bool canBubbleArg, [MarshalAs(UnmanagedType.U1)] bool cancelableArg, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow viewArg, int detailArg);
 		
 		/// <summary>Member GetLayerXAttribute </summary>
 		/// <returns>A System.Int32</returns>
@@ -243,12 +243,12 @@ namespace Gecko
 		/// <summary>Member GetDataAttribute </summary>
 		/// <param name='aData'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDataAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aData);
+		void GetDataAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aData);
 		
 		/// <summary>Member GetLocaleAttribute </summary>
 		/// <param name='aLocale'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetLocaleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAString aLocale);
+		void GetLocaleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aLocale);
 		
 		/// <summary>Member InitCompositionEvent </summary>
 		/// <param name='typeArg'> </param>
@@ -258,6 +258,6 @@ namespace Gecko
 		/// <param name='dataArg'> </param>
 		/// <param name='localeArg'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitCompositionEvent([MarshalAs(UnmanagedType.LPStruct)] nsAString typeArg, [MarshalAs(UnmanagedType.U1)] bool canBubbleArg, [MarshalAs(UnmanagedType.U1)] bool cancelableArg, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow viewArg, [MarshalAs(UnmanagedType.LPStruct)] nsAString dataArg, [MarshalAs(UnmanagedType.LPStruct)] nsAString localeArg);
+		void InitCompositionEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase typeArg, [MarshalAs(UnmanagedType.U1)] bool canBubbleArg, [MarshalAs(UnmanagedType.U1)] bool cancelableArg, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow viewArg, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase dataArg, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase localeArg);
 	}
 }
