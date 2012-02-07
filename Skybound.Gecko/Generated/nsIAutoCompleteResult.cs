@@ -100,6 +100,6 @@ namespace Gecko
         /// persistent storage as well.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveValueAt(int rowIndex, [MarshalAs(UnmanagedType.Bool)] bool removeFromDb);
+		void RemoveValueAt(int rowIndex, [MarshalAs(UnmanagedType.U1)] bool removeFromDb);
 	}
 }

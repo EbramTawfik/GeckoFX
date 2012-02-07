@@ -36,7 +36,7 @@ namespace Gecko
 		
 		/// <summary>
         ///Basic registry access </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetBool([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase key);
 		
@@ -70,7 +70,7 @@ namespace Gecko
 		/// <param name='key'> </param>
 		/// <param name='value'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBool([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase key, [MarshalAs(UnmanagedType.Bool)] bool value);
+		void SetBool([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase key, [MarshalAs(UnmanagedType.U1)] bool value);
 		
 		/// <summary>Member SetString </summary>
 		/// <param name='key'> </param>
@@ -95,12 +95,12 @@ namespace Gecko
         /// /desktop/gnome/url-handlers hierarchy.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetAppForProtocol([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase scheme, [MarshalAs(UnmanagedType.Bool)] ref bool enabled, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase retval);
+		void GetAppForProtocol([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase scheme, [MarshalAs(UnmanagedType.U1)] ref bool enabled, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase retval);
 		
 		/// <summary>
         /// Check whether the handler for a scheme requires a terminal to run.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool HandlerRequiresTerminal([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase scheme);
 		

@@ -39,12 +39,12 @@ namespace Gecko
 		/// <summary>
         /// The nsIDocShellFile
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetPrintableAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Print([MarshalAs(UnmanagedType.Bool)] bool aSilent, System.IntPtr aDebugFile, [MarshalAs(UnmanagedType.Interface)] nsIPrintSettings aPrintSettings);
+		void Print([MarshalAs(UnmanagedType.U1)] bool aSilent, System.IntPtr aDebugFile, [MarshalAs(UnmanagedType.Interface)] nsIPrintSettings aPrintSettings);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void PrintWithParent([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aParentWin, [MarshalAs(UnmanagedType.Interface)] nsIPrintSettings aThePrintSettings, [MarshalAs(UnmanagedType.Interface)] nsIWebProgressListener aWPListener);

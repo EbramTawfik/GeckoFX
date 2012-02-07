@@ -77,7 +77,7 @@ namespace Gecko
         /// binary data.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Finish([MarshalAs(UnmanagedType.Bool)] bool aASCII, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
+		void Finish([MarshalAs(UnmanagedType.U1)] bool aASCII, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
 		
 		/// <summary>
         /// Discard aLen bytes of the keystream.

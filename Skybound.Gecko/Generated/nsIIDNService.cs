@@ -66,7 +66,7 @@ namespace Gecko
 		/// <summary>
         /// Checks if the input string is ACE encoded or not.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsACE([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase input);
 		
@@ -84,6 +84,6 @@ namespace Gecko
         /// If the result is ASCII or ACE encoded, |isASCII| will be true.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ConvertToDisplayIDN([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase input, [MarshalAs(UnmanagedType.Bool)] ref bool isASCII, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase retval);
+		void ConvertToDisplayIDN([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase input, [MarshalAs(UnmanagedType.U1)] ref bool isASCII, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase retval);
 	}
 }

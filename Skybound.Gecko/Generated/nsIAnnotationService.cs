@@ -371,7 +371,7 @@ namespace Gecko
 		/// <summary>
         /// Test for annotation existence.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool PageHasAnnotation([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aName);
 		
@@ -379,7 +379,7 @@ namespace Gecko
 		/// <param name='aItemId'> </param>
 		/// <param name='aName'> </param>
 		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool ItemHasAnnotation(long aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aName);
 		
@@ -419,14 +419,14 @@ namespace Gecko
         /// any more, use removePageAnnotations on that URI.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CopyPageAnnotations([MarshalAs(UnmanagedType.Interface)] nsIURI aSourceURI, [MarshalAs(UnmanagedType.Interface)] nsIURI aDestURI, [MarshalAs(UnmanagedType.Bool)] bool aOverwriteDest);
+		void CopyPageAnnotations([MarshalAs(UnmanagedType.Interface)] nsIURI aSourceURI, [MarshalAs(UnmanagedType.Interface)] nsIURI aDestURI, [MarshalAs(UnmanagedType.U1)] bool aOverwriteDest);
 		
 		/// <summary>Member CopyItemAnnotations </summary>
 		/// <param name='aSourceItemId'> </param>
 		/// <param name='aDestItemId'> </param>
 		/// <param name='aOverwriteDest'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CopyItemAnnotations(long aSourceItemId, long aDestItemId, [MarshalAs(UnmanagedType.Bool)] bool aOverwriteDest);
+		void CopyItemAnnotations(long aSourceItemId, long aDestItemId, [MarshalAs(UnmanagedType.U1)] bool aOverwriteDest);
 		
 		/// <summary>
         /// Adds an annotation observer. The annotation service will keep an owning

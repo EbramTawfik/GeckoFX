@@ -164,7 +164,7 @@ namespace Gecko
         /// lastModified  | PRTime (as string) when the item was last modified.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnItemChanged(long aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aProperty, [MarshalAs(UnmanagedType.Bool)] bool aIsAnnotationProperty, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aNewValue, long aLastModified, ushort aItemType, long aParentId, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGUID, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aParentGUID);
+		void OnItemChanged(long aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aProperty, [MarshalAs(UnmanagedType.U1)] bool aIsAnnotationProperty, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aNewValue, long aLastModified, ushort aItemType, long aParentId, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGUID, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aParentGUID);
 		
 		/// <summary>
         /// Notifies that the item was visited.  Can be invoked only for TYPE_BOOKMARK
@@ -278,6 +278,9 @@ namespace Gecko
         /// @param aTitle
         /// The title for the new bookmark
         /// @return The ID of the newly-created bookmark.
+        ///
+        /// @note aTitle will be truncated to TITLE_LENGTH_MAX and
+        /// aURI will be truncated to URI_LENGTH_MAX.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int InsertBookmark(long aParentId, [MarshalAs(UnmanagedType.Interface)] nsIURI aURI, int aIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aTitle);
@@ -426,9 +429,11 @@ namespace Gecko
 		/// <summary>
         /// Set the title for an item.
         /// @param aItemId
-        /// The id of the item whose title should be updated
+        /// The id of the item whose title should be updated.
         /// @param aTitle
         /// The new title for the bookmark.
+        ///
+        /// @note  aTitle will be truncated to TITLE_LENGTH_MAX.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetItemTitle(long aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aTitle);
@@ -524,7 +529,7 @@ namespace Gecko
         /// @param aItemId
         /// the item-id of the folder.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetFolderReadonly(long aItemId);
 		
@@ -540,13 +545,13 @@ namespace Gecko
         /// the read-only state (boolean).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFolderReadonly(long aFolder, [MarshalAs(UnmanagedType.Bool)] bool aReadOnly);
+		void SetFolderReadonly(long aFolder, [MarshalAs(UnmanagedType.U1)] bool aReadOnly);
 		
 		/// <summary>
         /// Returns true if the given URI is in any bookmark folder. If you want the
         /// results to be redirect-aware, use getBookmarkedURIFor()
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsBookmarked([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 		
@@ -625,7 +630,7 @@ namespace Gecko
         /// service will keep a weak reference to the observer.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddObserver([MarshalAs(UnmanagedType.Interface)] nsINavBookmarkObserver observer, [MarshalAs(UnmanagedType.Bool)] bool ownsWeak);
+		void AddObserver([MarshalAs(UnmanagedType.Interface)] nsINavBookmarkObserver observer, [MarshalAs(UnmanagedType.U1)] bool ownsWeak);
 		
 		/// <summary>
         /// Removes a bookmark observer.

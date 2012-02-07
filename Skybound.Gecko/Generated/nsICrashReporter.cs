@@ -42,7 +42,7 @@ namespace Gecko
 		/// <summary>
         /// Enable or disable the crashreporter at runtime.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetEnabledAttribute();
 		
@@ -50,7 +50,7 @@ namespace Gecko
         /// Enable or disable the crashreporter at runtime.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetEnabledAttribute([MarshalAs(UnmanagedType.Bool)] bool aEnabled);
+		void SetEnabledAttribute([MarshalAs(UnmanagedType.U1)] bool aEnabled);
 		
 		/// <summary>
         /// Get or set the URL to which crash reports will be submitted.
@@ -161,7 +161,7 @@ namespace Gecko
 		/// <summary>
         /// User preference for submitting crash reports.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetSubmitReportsAttribute();
 		
@@ -169,6 +169,6 @@ namespace Gecko
         /// User preference for submitting crash reports.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSubmitReportsAttribute([MarshalAs(UnmanagedType.Bool)] bool aSubmitReports);
+		void SetSubmitReportsAttribute([MarshalAs(UnmanagedType.U1)] bool aSubmitReports);
 	}
 }

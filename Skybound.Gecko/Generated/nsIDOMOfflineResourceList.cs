@@ -46,7 +46,7 @@ namespace Gecko
         /// @param uri
         /// The resource to check.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool MozHasItem([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase uri);
 		

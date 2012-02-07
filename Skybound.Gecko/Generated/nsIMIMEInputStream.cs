@@ -124,7 +124,7 @@ namespace Gecko
         /// provide consumers with a way to wait for the stream to have more data
         /// once its read method is unable to return any data without blocking.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsNonBlocking();
 		
@@ -135,7 +135,7 @@ namespace Gecko
         /// recalculated every time the stream is rewinded to the start.
         /// Not allowed to be changed once the stream has been started to be read.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetAddContentLengthAttribute();
 		
@@ -147,7 +147,7 @@ namespace Gecko
         /// Not allowed to be changed once the stream has been started to be read.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAddContentLengthAttribute([MarshalAs(UnmanagedType.Bool)] bool aAddContentLength);
+		void SetAddContentLengthAttribute([MarshalAs(UnmanagedType.U1)] bool aAddContentLength);
 		
 		/// <summary>
         /// Adds an additional header to the stream on the form "name: value". May

@@ -51,7 +51,7 @@ namespace Gecko
 		/// <summary>
         /// Indicates if the popup is currently open
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetPopupOpenAttribute();
 		
@@ -59,12 +59,12 @@ namespace Gecko
         /// Indicates if the popup is currently open
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPopupOpenAttribute([MarshalAs(UnmanagedType.Bool)] bool aPopupOpen);
+		void SetPopupOpenAttribute([MarshalAs(UnmanagedType.U1)] bool aPopupOpen);
 		
 		/// <summary>
         /// Option to disable autocomplete functionality
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetDisableAutoCompleteAttribute();
 		
@@ -72,14 +72,14 @@ namespace Gecko
         /// Option to disable autocomplete functionality
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDisableAutoCompleteAttribute([MarshalAs(UnmanagedType.Bool)] bool aDisableAutoComplete);
+		void SetDisableAutoCompleteAttribute([MarshalAs(UnmanagedType.U1)] bool aDisableAutoComplete);
 		
 		/// <summary>
         /// If a search result has its defaultIndex set, this will optionally
         /// try to complete the text in the textbox to the entire text of the
         /// result at the default index as the user types
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetCompleteDefaultIndexAttribute();
 		
@@ -89,13 +89,13 @@ namespace Gecko
         /// result at the default index as the user types
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCompleteDefaultIndexAttribute([MarshalAs(UnmanagedType.Bool)] bool aCompleteDefaultIndex);
+		void SetCompleteDefaultIndexAttribute([MarshalAs(UnmanagedType.U1)] bool aCompleteDefaultIndex);
 		
 		/// <summary>
         /// complete text in the textbox as the user selects from the dropdown
         /// options if set to true
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetCompleteSelectedIndexAttribute();
 		
@@ -104,13 +104,13 @@ namespace Gecko
         /// options if set to true
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCompleteSelectedIndexAttribute([MarshalAs(UnmanagedType.Bool)] bool aCompleteSelectedIndex);
+		void SetCompleteSelectedIndexAttribute([MarshalAs(UnmanagedType.U1)] bool aCompleteSelectedIndex);
 		
 		/// <summary>
         /// Option for completing to the default result whenever the user hits
         /// enter or the textbox loses focus
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetForceCompleteAttribute();
 		
@@ -119,7 +119,7 @@ namespace Gecko
         /// enter or the textbox loses focus
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetForceCompleteAttribute([MarshalAs(UnmanagedType.Bool)] bool aForceComplete);
+		void SetForceCompleteAttribute([MarshalAs(UnmanagedType.U1)] bool aForceComplete);
 		
 		/// <summary>
         /// Option to open the popup only after a certain number of results are available
@@ -149,7 +149,7 @@ namespace Gecko
         /// Option to show a second column in the popup which contains
         /// the comment for each autocomplete result
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetShowCommentColumnAttribute();
 		
@@ -158,13 +158,13 @@ namespace Gecko
         /// the comment for each autocomplete result
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetShowCommentColumnAttribute([MarshalAs(UnmanagedType.Bool)] bool aShowCommentColumn);
+		void SetShowCommentColumnAttribute([MarshalAs(UnmanagedType.U1)] bool aShowCommentColumn);
 		
 		/// <summary>
         /// Option to show a third column in the popup which contains
         /// an additional image for each autocomplete result
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetShowImageColumnAttribute();
 		
@@ -173,7 +173,7 @@ namespace Gecko
         /// an additional image for each autocomplete result
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetShowImageColumnAttribute([MarshalAs(UnmanagedType.Bool)] bool aShowImageColumn);
+		void SetShowImageColumnAttribute([MarshalAs(UnmanagedType.U1)] bool aShowImageColumn);
 		
 		/// <summary>
         /// Number of milliseconds after a keystroke before a search begins
@@ -258,7 +258,7 @@ namespace Gecko
         ///
         /// @return True if the user wishes to prevent the enter
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool OnTextEntered();
 		
@@ -267,7 +267,7 @@ namespace Gecko
         ///
         /// @return True if the user wishes to prevent the revert
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool OnTextReverted();
 		
@@ -275,7 +275,7 @@ namespace Gecko
         /// This popup should consume or dispatch the rollup event.
         /// TRUE: should consume; FALSE: should dispatch.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetConsumeRollupEventAttribute();
 	}

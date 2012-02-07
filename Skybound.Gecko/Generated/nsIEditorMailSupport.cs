@@ -89,14 +89,14 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMNode InsertAsCitedQuotation([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aQuotedText, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCitation, [MarshalAs(UnmanagedType.Bool)] bool aInsertHTML);
+		nsIDOMNode InsertAsCitedQuotation([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aQuotedText, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCitation, [MarshalAs(UnmanagedType.U1)] bool aInsertHTML);
 		
 		/// <summary>
         /// Rewrap the selected part of the document, re-quoting if necessary.
         /// @param aRespectNewlines  Try to maintain newlines in the original?
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Rewrap([MarshalAs(UnmanagedType.Bool)] bool aRespectNewlines);
+		void Rewrap([MarshalAs(UnmanagedType.U1)] bool aRespectNewlines);
 		
 		/// <summary>
         /// Strip any citations in the selected part of the document.

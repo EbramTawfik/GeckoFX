@@ -45,7 +45,7 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetLengthAttribute();
 		
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool Contains([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase str);
 	}

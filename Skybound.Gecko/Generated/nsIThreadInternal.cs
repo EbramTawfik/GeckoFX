@@ -64,7 +64,7 @@ namespace Gecko
         /// event target will run on the current thread (i.e., the thread calling
         /// this method).
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsOnCurrentThread();
 		
@@ -112,7 +112,7 @@ namespace Gecko
         /// Indicates that this method was erroneously called when this thread was
         /// not the current thread.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool HasPendingEvents();
 		
@@ -133,9 +133,9 @@ namespace Gecko
         /// Indicates that this method was erroneously called when this thread was
         /// not the current thread.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool ProcessNextEvent([MarshalAs(UnmanagedType.Bool)] bool mayWait);
+		new bool ProcessNextEvent([MarshalAs(UnmanagedType.U1)] bool mayWait);
 		
 		/// <summary>
         /// Get/set the current thread observer (may be null).  This attribute may be
@@ -265,7 +265,7 @@ namespace Gecko
         /// addition to the current call.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnProcessNextEvent([MarshalAs(UnmanagedType.Interface)] nsIThreadInternal thread, [MarshalAs(UnmanagedType.Bool)] bool mayWait, uint recursionDepth);
+		void OnProcessNextEvent([MarshalAs(UnmanagedType.Interface)] nsIThreadInternal thread, [MarshalAs(UnmanagedType.U1)] bool mayWait, uint recursionDepth);
 		
 		/// <summary>
         /// This method is called (from nsIThread::ProcessNextEvent) after an event
@@ -299,7 +299,7 @@ namespace Gecko
         ///
         /// WARNING: This method must not make any calls on the thread object.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool AcceptEvent([MarshalAs(UnmanagedType.Interface)] nsIRunnable @event);
 	}

@@ -99,7 +99,7 @@ namespace Gecko
 		/// <summary>Member GetIsNull </summary>
 		/// <param name='aIndex'> </param>
 		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetIsNull(uint aIndex);
 		

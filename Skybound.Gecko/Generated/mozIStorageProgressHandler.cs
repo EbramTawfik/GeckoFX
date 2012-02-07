@@ -45,7 +45,7 @@ namespace Gecko
         ///
         /// @return true to abort request, false to continue work.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool OnProgress(mozIStorageConnection aConnection);
 	}

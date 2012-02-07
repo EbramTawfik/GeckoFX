@@ -44,7 +44,7 @@ namespace Gecko
         /// wants to be displayed (if !aShown)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetChildSheet([MarshalAs(UnmanagedType.Bool)] bool aShown);
+		System.IntPtr GetChildSheet([MarshalAs(UnmanagedType.U1)] bool aShown);
 		
 		/// <summary>
         /// Get the parent widget (if any) StandardCreate() was called with.
@@ -61,7 +61,7 @@ namespace Gecko
 		/// <summary>
         /// True if window is a sheet
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsSheetAttribute();
 	}

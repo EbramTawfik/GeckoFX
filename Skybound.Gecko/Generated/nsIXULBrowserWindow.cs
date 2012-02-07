@@ -61,6 +61,6 @@ namespace Gecko
         /// Determines the appropriate target for a link.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnBeforeLinkTraversal([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase originalTarget, [MarshalAs(UnmanagedType.Interface)] nsIURI linkURI, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode linkNode, [MarshalAs(UnmanagedType.Bool)] bool isAppTab, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void OnBeforeLinkTraversal([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase originalTarget, [MarshalAs(UnmanagedType.Interface)] nsIURI linkURI, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode linkNode, [MarshalAs(UnmanagedType.U1)] bool isAppTab, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 	}
 }

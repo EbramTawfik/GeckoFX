@@ -75,7 +75,7 @@ namespace Gecko
         /// @return               The position of the flag in the command line.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new int FindFlag([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFlag, [MarshalAs(UnmanagedType.Bool)] bool aCaseSensitive);
+		new int FindFlag([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFlag, [MarshalAs(UnmanagedType.U1)] bool aCaseSensitive);
 		
 		/// <summary>
         /// Remove arguments from the command line. This normally occurs after
@@ -94,9 +94,9 @@ namespace Gecko
         /// @param aCaseSensitive Whether to do case-sensitive comparisons.
         /// @return       Whether the flag was found.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool HandleFlag([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFlag, [MarshalAs(UnmanagedType.Bool)] bool aCaseSensitive);
+		new bool HandleFlag([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFlag, [MarshalAs(UnmanagedType.U1)] bool aCaseSensitive);
 		
 		/// <summary>
         /// Find a flag with a parameter and remove both. This is a helper
@@ -110,7 +110,7 @@ namespace Gecko
         /// @param aCaseSensitive Whether to do case-sensitive flag search.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void HandleFlagWithParam([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFlag, [MarshalAs(UnmanagedType.Bool)] bool aCaseSensitive, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		new void HandleFlagWithParam([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFlag, [MarshalAs(UnmanagedType.U1)] bool aCaseSensitive, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// The type of command line being processed.
@@ -129,7 +129,7 @@ namespace Gecko
         /// there was no explicit action on the command line (open a default browser
         /// window, for example). This flag allows the default action to be prevented.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetPreventDefaultAttribute();
 		
@@ -139,7 +139,7 @@ namespace Gecko
         /// window, for example). This flag allows the default action to be prevented.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetPreventDefaultAttribute([MarshalAs(UnmanagedType.Bool)] bool aPreventDefault);
+		new void SetPreventDefaultAttribute([MarshalAs(UnmanagedType.U1)] bool aPreventDefault);
 		
 		/// <summary>
         /// The working directory for this command line. Use this property instead

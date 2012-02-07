@@ -105,7 +105,7 @@ namespace Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitPrintSettingsFromPrefs([MarshalAs(UnmanagedType.Interface)] nsIPrintSettings aPrintSettings, [MarshalAs(UnmanagedType.Bool)] bool aUsePrinterNamePrefix, uint aFlags);
+		void InitPrintSettingsFromPrefs([MarshalAs(UnmanagedType.Interface)] nsIPrintSettings aPrintSettings, [MarshalAs(UnmanagedType.U1)] bool aUsePrinterNamePrefix, uint aFlags);
 		
 		/// <summary>
         /// Writes PrintSettings values to Prefs,
@@ -126,6 +126,6 @@ namespace Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SavePrintSettingsToPrefs([MarshalAs(UnmanagedType.Interface)] nsIPrintSettings aPrintSettings, [MarshalAs(UnmanagedType.Bool)] bool aUsePrinterNamePrefix, uint aFlags);
+		void SavePrintSettingsToPrefs([MarshalAs(UnmanagedType.Interface)] nsIPrintSettings aPrintSettings, [MarshalAs(UnmanagedType.U1)] bool aUsePrinterNamePrefix, uint aFlags);
 	}
 }

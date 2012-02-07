@@ -209,9 +209,34 @@ namespace Gecko
 	}
 	
 	/// <summary>
-    ///Base class for all WebGL extensions, and for those without
-    /// any additional tokens/methods.
+    ///Classes that extend on nsIWebGLExtension and provide
+    /// extra tokens, functions, etc.
     /// </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("3de3dfd9-864a-4e4c-989b-2977eaa80b7b")]
+	public interface nsIWebGLExtensionStandardDerivatives : nsIWebGLExtension
+	{
+	}
+	
+	/// <summary>
+    ///Fragment shader hint </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("b0afc2eb-0895-4509-98de-5c383d160694")]
+	public interface nsIWebGLExtensionLoseContext : nsIWebGLExtension
+	{
+		
+		/// <summary>
+        ///Fragment shader hint </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void LoseContext();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RestoreContext();
+	}
+	
+	/// <summary>nsIDOMWebGLRenderingContext </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("ef15ae85-4670-4dc4-848d-51ca81e8397a")]
@@ -229,39 +254,78 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetContextAttributes();
 		
+		/// <summary>Member ActiveTexture </summary>
+		/// <param name='texture'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ActiveTexture(uint texture);
 		
+		/// <summary>Member AttachShader </summary>
+		/// <param name='program'> </param>
+		/// <param name='shader'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void AttachShader([MarshalAs(UnmanagedType.Interface)] nsIWebGLProgram program, [MarshalAs(UnmanagedType.Interface)] nsIWebGLShader shader);
 		
+		/// <summary>Member BindAttribLocation </summary>
+		/// <param name='program'> </param>
+		/// <param name='index'> </param>
+		/// <param name='name'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void BindAttribLocation([MarshalAs(UnmanagedType.Interface)] nsIWebGLProgram program, uint index, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name);
 		
+		/// <summary>Member BindBuffer </summary>
+		/// <param name='target'> </param>
+		/// <param name='buffer'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void BindBuffer(uint target, [MarshalAs(UnmanagedType.Interface)] nsIWebGLBuffer buffer);
 		
+		/// <summary>Member BindFramebuffer </summary>
+		/// <param name='target'> </param>
+		/// <param name='framebuffer'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void BindFramebuffer(uint target, [MarshalAs(UnmanagedType.Interface)] nsIWebGLFramebuffer framebuffer);
 		
+		/// <summary>Member BindRenderbuffer </summary>
+		/// <param name='target'> </param>
+		/// <param name='renderbuffer'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void BindRenderbuffer(uint target, [MarshalAs(UnmanagedType.Interface)] nsIWebGLRenderbuffer renderbuffer);
 		
+		/// <summary>Member BindTexture </summary>
+		/// <param name='target'> </param>
+		/// <param name='texture'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void BindTexture(uint target, [MarshalAs(UnmanagedType.Interface)] nsIWebGLTexture texture);
 		
+		/// <summary>Member BlendColor </summary>
+		/// <param name='red'> </param>
+		/// <param name='green'> </param>
+		/// <param name='blue'> </param>
+		/// <param name='alpha'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void BlendColor(double red, double green, double blue, double alpha);
 		
+		/// <summary>Member BlendEquation </summary>
+		/// <param name='mode'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void BlendEquation(uint mode);
 		
+		/// <summary>Member BlendEquationSeparate </summary>
+		/// <param name='modeRGB'> </param>
+		/// <param name='modeAlpha'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void BlendEquationSeparate(uint modeRGB, uint modeAlpha);
 		
+		/// <summary>Member BlendFunc </summary>
+		/// <param name='sfactor'> </param>
+		/// <param name='dfactor'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void BlendFunc(uint sfactor, uint dfactor);
 		
+		/// <summary>Member BlendFuncSeparate </summary>
+		/// <param name='srcRGB'> </param>
+		/// <param name='dstRGB'> </param>
+		/// <param name='srcAlpha'> </param>
+		/// <param name='dstAlpha'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void BlendFuncSeparate(uint srcRGB, uint dstRGB, uint srcAlpha, uint dstAlpha);
 		
@@ -271,120 +335,228 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void BufferData(int dummy);
 		
+		/// <summary>Member BufferData_size </summary>
+		/// <param name='target'> </param>
+		/// <param name='size'> </param>
+		/// <param name='usage'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void BufferData_size(uint target, int size, uint usage);
 		
+		/// <summary>Member BufferData_buf </summary>
+		/// <param name='target'> </param>
+		/// <param name='data'> </param>
+		/// <param name='usage'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void BufferData_buf(uint target, System.IntPtr data, uint usage);
 		
+		/// <summary>Member BufferData_array </summary>
+		/// <param name='target'> </param>
+		/// <param name='data'> </param>
+		/// <param name='usage'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void BufferData_array(uint target, System.IntPtr data, uint usage);
 		
+		/// <summary>Member BufferData_null </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void BufferData_null();
 		
+		/// <summary>Member BufferSubData </summary>
+		/// <param name='dummy'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void BufferSubData(int dummy);
 		
+		/// <summary>Member BufferSubData_buf </summary>
+		/// <param name='target'> </param>
+		/// <param name='offset'> </param>
+		/// <param name='data'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void BufferSubData_buf(uint target, int offset, System.IntPtr data);
 		
+		/// <summary>Member BufferSubData_array </summary>
+		/// <param name='target'> </param>
+		/// <param name='offset'> </param>
+		/// <param name='data'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void BufferSubData_array(uint target, int offset, System.IntPtr data);
 		
+		/// <summary>Member BufferSubData_null </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void BufferSubData_null();
 		
+		/// <summary>Member CheckFramebufferStatus </summary>
+		/// <param name='target'> </param>
+		/// <returns>A System.UInt32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint CheckFramebufferStatus(uint target);
 		
+		/// <summary>Member Clear </summary>
+		/// <param name='mask'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Clear(uint mask);
 		
+		/// <summary>Member ClearColor </summary>
+		/// <param name='red'> </param>
+		/// <param name='green'> </param>
+		/// <param name='blue'> </param>
+		/// <param name='alpha'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ClearColor(double red, double green, double blue, double alpha);
 		
+		/// <summary>Member ClearDepth </summary>
+		/// <param name='depth'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ClearDepth(double depth);
 		
+		/// <summary>Member ClearStencil </summary>
+		/// <param name='s'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ClearStencil(int s);
 		
+		/// <summary>Member ColorMask </summary>
+		/// <param name='red'> </param>
+		/// <param name='green'> </param>
+		/// <param name='blue'> </param>
+		/// <param name='alpha'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ColorMask(bool red, bool green, bool blue, bool alpha);
 		
+		/// <summary>Member CompileShader </summary>
+		/// <param name='shader'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void CompileShader([MarshalAs(UnmanagedType.Interface)] nsIWebGLShader shader);
 		
+		/// <summary>Member CopyTexImage2D </summary>
+		/// <param name='target'> </param>
+		/// <param name='level'> </param>
+		/// <param name='internalformat'> </param>
+		/// <param name='x'> </param>
+		/// <param name='y'> </param>
+		/// <param name='width'> </param>
+		/// <param name='height'> </param>
+		/// <param name='border'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void CopyTexImage2D(uint target, int level, uint internalformat, int x, int y, int width, int height, int border);
 		
+		/// <summary>Member CopyTexSubImage2D </summary>
+		/// <param name='target'> </param>
+		/// <param name='level'> </param>
+		/// <param name='xoffset'> </param>
+		/// <param name='yoffset'> </param>
+		/// <param name='x'> </param>
+		/// <param name='y'> </param>
+		/// <param name='width'> </param>
+		/// <param name='height'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void CopyTexSubImage2D(uint target, int level, int xoffset, int yoffset, int x, int y, int width, int height);
 		
+		/// <summary>Member CreateBuffer </summary>
+		/// <returns>A nsIWebGLBuffer</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIWebGLBuffer CreateBuffer();
 		
+		/// <summary>Member CreateProgram </summary>
+		/// <returns>A nsIWebGLProgram</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIWebGLProgram CreateProgram();
 		
+		/// <summary>Member CreateFramebuffer </summary>
+		/// <returns>A nsIWebGLFramebuffer</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIWebGLFramebuffer CreateFramebuffer();
 		
+		/// <summary>Member CreateRenderbuffer </summary>
+		/// <returns>A nsIWebGLRenderbuffer</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIWebGLRenderbuffer CreateRenderbuffer();
 		
+		/// <summary>Member CreateShader </summary>
+		/// <param name='type'> </param>
+		/// <returns>A nsIWebGLShader</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIWebGLShader CreateShader(uint type);
 		
+		/// <summary>Member CreateTexture </summary>
+		/// <returns>A nsIWebGLTexture</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIWebGLTexture CreateTexture();
 		
+		/// <summary>Member CullFace </summary>
+		/// <param name='mode'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void CullFace(uint mode);
 		
+		/// <summary>Member DeleteBuffer </summary>
+		/// <param name='buffer'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void DeleteBuffer([MarshalAs(UnmanagedType.Interface)] nsIWebGLBuffer buffer);
 		
+		/// <summary>Member DeleteProgram </summary>
+		/// <param name='program'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void DeleteProgram([MarshalAs(UnmanagedType.Interface)] nsIWebGLProgram program);
 		
+		/// <summary>Member DeleteFramebuffer </summary>
+		/// <param name='framebuffer'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void DeleteFramebuffer([MarshalAs(UnmanagedType.Interface)] nsIWebGLFramebuffer framebuffer);
 		
+		/// <summary>Member DeleteRenderbuffer </summary>
+		/// <param name='renderbuffer'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void DeleteRenderbuffer([MarshalAs(UnmanagedType.Interface)] nsIWebGLRenderbuffer renderbuffer);
 		
+		/// <summary>Member DeleteShader </summary>
+		/// <param name='shader'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void DeleteShader([MarshalAs(UnmanagedType.Interface)] nsIWebGLShader shader);
 		
+		/// <summary>Member DeleteTexture </summary>
+		/// <param name='texture'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void DeleteTexture([MarshalAs(UnmanagedType.Interface)] nsIWebGLTexture texture);
 		
+		/// <summary>Member DepthFunc </summary>
+		/// <param name='func'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void DepthFunc(uint func);
 		
+		/// <summary>Member DepthMask </summary>
+		/// <param name='flag'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void DepthMask(bool flag);
 		
+		/// <summary>Member DepthRange </summary>
+		/// <param name='zNear'> </param>
+		/// <param name='zFar'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void DepthRange(double zNear, double zFar);
 		
+		/// <summary>Member DetachShader </summary>
+		/// <param name='program'> </param>
+		/// <param name='shader'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void DetachShader([MarshalAs(UnmanagedType.Interface)] nsIWebGLProgram program, [MarshalAs(UnmanagedType.Interface)] nsIWebGLShader shader);
 		
+		/// <summary>Member Disable </summary>
+		/// <param name='cap'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Disable(uint cap);
 		
+		/// <summary>Member DisableVertexAttribArray </summary>
+		/// <param name='index'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void DisableVertexAttribArray(uint index);
 		
+		/// <summary>Member DrawArrays </summary>
+		/// <param name='mode'> </param>
+		/// <param name='first'> </param>
+		/// <param name='count'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void DrawArrays(uint mode, int first, int count);
 		
@@ -394,45 +566,84 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void DrawElements(uint mode, int count, uint type, int offset);
 		
+		/// <summary>Member Enable </summary>
+		/// <param name='cap'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Enable(uint cap);
 		
+		/// <summary>Member EnableVertexAttribArray </summary>
+		/// <param name='index'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void EnableVertexAttribArray(uint index);
 		
+		/// <summary>Member Finish </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Finish();
 		
+		/// <summary>Member Flush </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Flush();
 		
+		/// <summary>Member FramebufferRenderbuffer </summary>
+		/// <param name='target'> </param>
+		/// <param name='attachment'> </param>
+		/// <param name='renderbuffertarget'> </param>
+		/// <param name='renderbuffer'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void FramebufferRenderbuffer(uint target, uint attachment, uint renderbuffertarget, [MarshalAs(UnmanagedType.Interface)] nsIWebGLRenderbuffer renderbuffer);
 		
+		/// <summary>Member FramebufferTexture2D </summary>
+		/// <param name='target'> </param>
+		/// <param name='attachment'> </param>
+		/// <param name='textarget'> </param>
+		/// <param name='texture'> </param>
+		/// <param name='level'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void FramebufferTexture2D(uint target, uint attachment, uint textarget, [MarshalAs(UnmanagedType.Interface)] nsIWebGLTexture texture, int level);
 		
+		/// <summary>Member FrontFace </summary>
+		/// <param name='mode'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void FrontFace(uint mode);
 		
+		/// <summary>Member GenerateMipmap </summary>
+		/// <param name='target'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GenerateMipmap(uint target);
 		
+		/// <summary>Member GetActiveAttrib </summary>
+		/// <param name='program'> </param>
+		/// <param name='index'> </param>
+		/// <returns>A nsIWebGLActiveInfo</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIWebGLActiveInfo GetActiveAttrib([MarshalAs(UnmanagedType.Interface)] nsIWebGLProgram program, uint index);
 		
+		/// <summary>Member GetActiveUniform </summary>
+		/// <param name='program'> </param>
+		/// <param name='index'> </param>
+		/// <returns>A nsIWebGLActiveInfo</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIWebGLActiveInfo GetActiveUniform([MarshalAs(UnmanagedType.Interface)] nsIWebGLProgram program, uint index);
 		
+		/// <summary>Member GetAttachedShaders </summary>
+		/// <param name='program'> </param>
+		/// <returns>A nsIVariant</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIVariant GetAttachedShaders([MarshalAs(UnmanagedType.Interface)] nsIWebGLProgram program);
 		
+		/// <summary>Member GetAttribLocation </summary>
+		/// <param name='program'> </param>
+		/// <param name='name'> </param>
+		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetAttribLocation([MarshalAs(UnmanagedType.Interface)] nsIWebGLProgram program, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name);
 		
+		/// <summary>Member GetParameter </summary>
+		/// <param name='pname'> </param>
+		/// <returns>A nsIVariant</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIVariant GetParameter(uint pname);
@@ -444,6 +655,8 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIVariant GetBufferParameter(uint target, uint pname);
 		
+		/// <summary>Member GetError </summary>
+		/// <returns>A System.UInt32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetError();
 		
@@ -474,6 +687,10 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIVariant GetRenderbufferParameter(uint target, uint pname);
 		
+		/// <summary>Member GetShaderParameter </summary>
+		/// <param name='shader'> </param>
+		/// <param name='pname'> </param>
+		/// <returns>A nsIVariant</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIVariant GetShaderParameter([MarshalAs(UnmanagedType.Interface)] nsIWebGLShader shader, uint pname);
@@ -490,18 +707,34 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetShaderSource([MarshalAs(UnmanagedType.Interface)] nsIWebGLShader shader, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
+		/// <summary>Member GetTexParameter </summary>
+		/// <param name='target'> </param>
+		/// <param name='pname'> </param>
+		/// <returns>A nsIVariant</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIVariant GetTexParameter(uint target, uint pname);
 		
+		/// <summary>Member GetUniform </summary>
+		/// <param name='program'> </param>
+		/// <param name='location'> </param>
+		/// <returns>A nsIVariant</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIVariant GetUniform([MarshalAs(UnmanagedType.Interface)] nsIWebGLProgram program, [MarshalAs(UnmanagedType.Interface)] nsIWebGLUniformLocation location);
 		
+		/// <summary>Member GetUniformLocation </summary>
+		/// <param name='program'> </param>
+		/// <param name='name'> </param>
+		/// <returns>A nsIWebGLUniformLocation</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIWebGLUniformLocation GetUniformLocation([MarshalAs(UnmanagedType.Interface)] nsIWebGLProgram program, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name);
 		
+		/// <summary>Member GetVertexAttrib </summary>
+		/// <param name='index'> </param>
+		/// <param name='pname'> </param>
+		/// <returns>A nsIVariant</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIVariant GetVertexAttrib(uint index, uint pname);
@@ -512,50 +745,91 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetVertexAttribOffset(uint index, uint pname);
 		
+		/// <summary>Member Hint </summary>
+		/// <param name='target'> </param>
+		/// <param name='mode'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Hint(uint target, uint mode);
 		
+		/// <summary>Member IsBuffer </summary>
+		/// <param name='buffer'> </param>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsBuffer([MarshalAs(UnmanagedType.Interface)] nsIWebGLBuffer buffer);
 		
+		/// <summary>Member IsFramebuffer </summary>
+		/// <param name='framebuffer'> </param>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsFramebuffer([MarshalAs(UnmanagedType.Interface)] nsIWebGLFramebuffer framebuffer);
 		
+		/// <summary>Member IsProgram </summary>
+		/// <param name='program'> </param>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsProgram([MarshalAs(UnmanagedType.Interface)] nsIWebGLProgram program);
 		
+		/// <summary>Member IsRenderbuffer </summary>
+		/// <param name='renderbuffer'> </param>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsRenderbuffer([MarshalAs(UnmanagedType.Interface)] nsIWebGLRenderbuffer renderbuffer);
 		
+		/// <summary>Member IsShader </summary>
+		/// <param name='shader'> </param>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsShader([MarshalAs(UnmanagedType.Interface)] nsIWebGLShader shader);
 		
+		/// <summary>Member IsTexture </summary>
+		/// <param name='texture'> </param>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsTexture([MarshalAs(UnmanagedType.Interface)] nsIWebGLTexture texture);
 		
+		/// <summary>Member IsEnabled </summary>
+		/// <param name='cap'> </param>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsEnabled(uint cap);
 		
+		/// <summary>Member LineWidth </summary>
+		/// <param name='width'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void LineWidth(double width);
 		
+		/// <summary>Member LinkProgram </summary>
+		/// <param name='program'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void LinkProgram([MarshalAs(UnmanagedType.Interface)] nsIWebGLProgram program);
 		
+		/// <summary>Member PixelStorei </summary>
+		/// <param name='pname'> </param>
+		/// <param name='param'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void PixelStorei(uint pname, int param);
 		
+		/// <summary>Member PolygonOffset </summary>
+		/// <param name='factor'> </param>
+		/// <param name='units'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void PolygonOffset(double factor, double units);
 		
+		/// <summary>Member ReadPixels </summary>
+		/// <param name='dummy'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ReadPixels(int dummy);
 		
+		/// <summary>Member ReadPixels_array </summary>
+		/// <param name='x'> </param>
+		/// <param name='y'> </param>
+		/// <param name='width'> </param>
+		/// <param name='height'> </param>
+		/// <param name='format'> </param>
+		/// <param name='type'> </param>
+		/// <param name='pixels'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ReadPixels_array(int x, int y, int width, int height, uint format, uint type, System.IntPtr pixels);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ReadPixels_buf(int x, int y, int width, int height, uint format, uint type, System.IntPtr pixels);
 		
 		/// <summary>
         ///void glReleaseShaderCompiler();
@@ -563,9 +837,17 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RenderbufferStorage(uint target, uint internalformat, int width, int height);
 		
+		/// <summary>Member SampleCoverage </summary>
+		/// <param name='value'> </param>
+		/// <param name='invert'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SampleCoverage(double value, bool invert);
 		
+		/// <summary>Member Scissor </summary>
+		/// <param name='x'> </param>
+		/// <param name='y'> </param>
+		/// <param name='width'> </param>
+		/// <param name='height'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Scissor(int x, int y, int width, int height);
 		
@@ -575,33 +857,75 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ShaderSource([MarshalAs(UnmanagedType.Interface)] nsIWebGLShader shader, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase source);
 		
+		/// <summary>Member StencilFunc </summary>
+		/// <param name='func'> </param>
+		/// <param name='ref'> </param>
+		/// <param name='mask'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void StencilFunc(uint func, int @ref, uint mask);
 		
+		/// <summary>Member StencilFuncSeparate </summary>
+		/// <param name='face'> </param>
+		/// <param name='func'> </param>
+		/// <param name='ref'> </param>
+		/// <param name='mask'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void StencilFuncSeparate(uint face, uint func, int @ref, uint mask);
 		
+		/// <summary>Member StencilMask </summary>
+		/// <param name='mask'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void StencilMask(uint mask);
 		
+		/// <summary>Member StencilMaskSeparate </summary>
+		/// <param name='face'> </param>
+		/// <param name='mask'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void StencilMaskSeparate(uint face, uint mask);
 		
+		/// <summary>Member StencilOp </summary>
+		/// <param name='fail'> </param>
+		/// <param name='zfail'> </param>
+		/// <param name='zpass'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void StencilOp(uint fail, uint zfail, uint zpass);
 		
+		/// <summary>Member StencilOpSeparate </summary>
+		/// <param name='face'> </param>
+		/// <param name='fail'> </param>
+		/// <param name='zfail'> </param>
+		/// <param name='zpass'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void StencilOpSeparate(uint face, uint fail, uint zfail, uint zpass);
 		
+		/// <summary>Member TexImage2D </summary>
+		/// <param name='dummy'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void TexImage2D(int dummy);
 		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void TexImage2D_buf(uint target, int level, uint internalformat, int width, int height, int border, uint format, uint type, System.IntPtr pixels);
-		
+		/// <summary>Member TexImage2D_array </summary>
+		/// <param name='target'> </param>
+		/// <param name='level'> </param>
+		/// <param name='internalformat'> </param>
+		/// <param name='width'> </param>
+		/// <param name='height'> </param>
+		/// <param name='border'> </param>
+		/// <param name='format'> </param>
+		/// <param name='type'> </param>
+		/// <param name='pixels'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void TexImage2D_array(uint target, int level, uint internalformat, int width, int height, int border, uint format, uint type, System.IntPtr pixels);
 		
+		/// <summary>Member TexImage2D_imageData </summary>
+		/// <param name='target'> </param>
+		/// <param name='level'> </param>
+		/// <param name='internalformat'> </param>
+		/// <param name='width'> </param>
+		/// <param name='height'> </param>
+		/// <param name='border'> </param>
+		/// <param name='format'> </param>
+		/// <param name='type'> </param>
+		/// <param name='pixels'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void TexImage2D_imageData(uint target, int level, uint internalformat, int width, int height, int border, uint format, uint type, System.IntPtr pixels);
 		
@@ -611,15 +935,34 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void TexImage2D_dom(uint target, int level, uint internalformat, uint format, uint type, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement element);
 		
+		/// <summary>Member TexSubImage2D </summary>
+		/// <param name='dummy'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void TexSubImage2D(int dummy);
 		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void TexSubImage2D_buf(uint target, int level, int xoffset, int yoffset, int width, int height, uint format, uint type, System.IntPtr pixels);
-		
+		/// <summary>Member TexSubImage2D_array </summary>
+		/// <param name='target'> </param>
+		/// <param name='level'> </param>
+		/// <param name='xoffset'> </param>
+		/// <param name='yoffset'> </param>
+		/// <param name='width'> </param>
+		/// <param name='height'> </param>
+		/// <param name='format'> </param>
+		/// <param name='type'> </param>
+		/// <param name='pixels'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void TexSubImage2D_array(uint target, int level, int xoffset, int yoffset, int width, int height, uint format, uint type, System.IntPtr pixels);
 		
+		/// <summary>Member TexSubImage2D_imageData </summary>
+		/// <param name='target'> </param>
+		/// <param name='level'> </param>
+		/// <param name='xoffset'> </param>
+		/// <param name='yoffset'> </param>
+		/// <param name='width'> </param>
+		/// <param name='height'> </param>
+		/// <param name='format'> </param>
+		/// <param name='type'> </param>
+		/// <param name='pixels'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void TexSubImage2D_imageData(uint target, int level, int xoffset, int yoffset, int width, int height, uint format, uint type, System.IntPtr pixels);
 		
@@ -635,6 +978,10 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void TexParameterf(uint target, uint pname, double param);
 		
+		/// <summary>Member TexParameteri </summary>
+		/// <param name='target'> </param>
+		/// <param name='pname'> </param>
+		/// <param name='param'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void TexParameteri(uint target, uint pname, int param);
 		
@@ -644,72 +991,145 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Uniform1f([MarshalAs(UnmanagedType.Interface)] nsIWebGLUniformLocation location, double x);
 		
+		/// <summary>Member Uniform1i </summary>
+		/// <param name='location'> </param>
+		/// <param name='x'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Uniform1i([MarshalAs(UnmanagedType.Interface)] nsIWebGLUniformLocation location, int x);
 		
+		/// <summary>Member Uniform2f </summary>
+		/// <param name='location'> </param>
+		/// <param name='x'> </param>
+		/// <param name='y'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Uniform2f([MarshalAs(UnmanagedType.Interface)] nsIWebGLUniformLocation location, double x, double y);
 		
+		/// <summary>Member Uniform2i </summary>
+		/// <param name='location'> </param>
+		/// <param name='x'> </param>
+		/// <param name='y'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Uniform2i([MarshalAs(UnmanagedType.Interface)] nsIWebGLUniformLocation location, int x, int y);
 		
+		/// <summary>Member Uniform3f </summary>
+		/// <param name='location'> </param>
+		/// <param name='x'> </param>
+		/// <param name='y'> </param>
+		/// <param name='z'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Uniform3f([MarshalAs(UnmanagedType.Interface)] nsIWebGLUniformLocation location, double x, double y, double z);
 		
+		/// <summary>Member Uniform3i </summary>
+		/// <param name='location'> </param>
+		/// <param name='x'> </param>
+		/// <param name='y'> </param>
+		/// <param name='z'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Uniform3i([MarshalAs(UnmanagedType.Interface)] nsIWebGLUniformLocation location, int x, int y, int z);
 		
+		/// <summary>Member Uniform4f </summary>
+		/// <param name='location'> </param>
+		/// <param name='x'> </param>
+		/// <param name='y'> </param>
+		/// <param name='z'> </param>
+		/// <param name='w'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Uniform4f([MarshalAs(UnmanagedType.Interface)] nsIWebGLUniformLocation location, double x, double y, double z, double w);
 		
+		/// <summary>Member Uniform4i </summary>
+		/// <param name='location'> </param>
+		/// <param name='x'> </param>
+		/// <param name='y'> </param>
+		/// <param name='z'> </param>
+		/// <param name='w'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Uniform4i([MarshalAs(UnmanagedType.Interface)] nsIWebGLUniformLocation location, int x, int y, int z, int w);
 		
+		/// <summary>Member Uniform1fv </summary>
+		/// <param name='dummy'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Uniform1fv(int dummy);
 		
+		/// <summary>Member Uniform1iv </summary>
+		/// <param name='dummy'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Uniform1iv(int dummy);
 		
+		/// <summary>Member Uniform2fv </summary>
+		/// <param name='dummy'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Uniform2fv(int dummy);
 		
+		/// <summary>Member Uniform2iv </summary>
+		/// <param name='dummy'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Uniform2iv(int dummy);
 		
+		/// <summary>Member Uniform3fv </summary>
+		/// <param name='dummy'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Uniform3fv(int dummy);
 		
+		/// <summary>Member Uniform3iv </summary>
+		/// <param name='dummy'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Uniform3iv(int dummy);
 		
+		/// <summary>Member Uniform4fv </summary>
+		/// <param name='dummy'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Uniform4fv(int dummy);
 		
+		/// <summary>Member Uniform4iv </summary>
+		/// <param name='dummy'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Uniform4iv(int dummy);
 		
+		/// <summary>Member Uniform1fv_array </summary>
+		/// <param name='location'> </param>
+		/// <param name='v'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Uniform1fv_array([MarshalAs(UnmanagedType.Interface)] nsIWebGLUniformLocation location, System.IntPtr v);
 		
+		/// <summary>Member Uniform1iv_array </summary>
+		/// <param name='location'> </param>
+		/// <param name='v'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Uniform1iv_array([MarshalAs(UnmanagedType.Interface)] nsIWebGLUniformLocation location, System.IntPtr v);
 		
+		/// <summary>Member Uniform2fv_array </summary>
+		/// <param name='location'> </param>
+		/// <param name='v'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Uniform2fv_array([MarshalAs(UnmanagedType.Interface)] nsIWebGLUniformLocation location, System.IntPtr v);
 		
+		/// <summary>Member Uniform2iv_array </summary>
+		/// <param name='location'> </param>
+		/// <param name='v'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Uniform2iv_array([MarshalAs(UnmanagedType.Interface)] nsIWebGLUniformLocation location, System.IntPtr v);
 		
+		/// <summary>Member Uniform3fv_array </summary>
+		/// <param name='location'> </param>
+		/// <param name='v'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Uniform3fv_array([MarshalAs(UnmanagedType.Interface)] nsIWebGLUniformLocation location, System.IntPtr v);
 		
+		/// <summary>Member Uniform3iv_array </summary>
+		/// <param name='location'> </param>
+		/// <param name='v'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Uniform3iv_array([MarshalAs(UnmanagedType.Interface)] nsIWebGLUniformLocation location, System.IntPtr v);
 		
+		/// <summary>Member Uniform4fv_array </summary>
+		/// <param name='location'> </param>
+		/// <param name='v'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Uniform4fv_array([MarshalAs(UnmanagedType.Interface)] nsIWebGLUniformLocation location, System.IntPtr v);
 		
+		/// <summary>Member Uniform4iv_array </summary>
+		/// <param name='location'> </param>
+		/// <param name='v'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Uniform4iv_array([MarshalAs(UnmanagedType.Interface)] nsIWebGLUniformLocation location, System.IntPtr v);
 		
@@ -719,18 +1139,34 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void UniformMatrix2fv(int dummy);
 		
+		/// <summary>Member UniformMatrix3fv </summary>
+		/// <param name='dummy'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void UniformMatrix3fv(int dummy);
 		
+		/// <summary>Member UniformMatrix4fv </summary>
+		/// <param name='dummy'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void UniformMatrix4fv(int dummy);
 		
+		/// <summary>Member UniformMatrix2fv_array </summary>
+		/// <param name='location'> </param>
+		/// <param name='transpose'> </param>
+		/// <param name='value'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void UniformMatrix2fv_array([MarshalAs(UnmanagedType.Interface)] nsIWebGLUniformLocation location, bool transpose, System.IntPtr value);
 		
+		/// <summary>Member UniformMatrix3fv_array </summary>
+		/// <param name='location'> </param>
+		/// <param name='transpose'> </param>
+		/// <param name='value'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void UniformMatrix3fv_array([MarshalAs(UnmanagedType.Interface)] nsIWebGLUniformLocation location, bool transpose, System.IntPtr value);
 		
+		/// <summary>Member UniformMatrix4fv_array </summary>
+		/// <param name='location'> </param>
+		/// <param name='transpose'> </param>
+		/// <param name='value'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void UniformMatrix4fv_array([MarshalAs(UnmanagedType.Interface)] nsIWebGLUniformLocation location, bool transpose, System.IntPtr value);
 		
@@ -740,6 +1176,8 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void UseProgram([MarshalAs(UnmanagedType.Interface)] nsIWebGLProgram program);
 		
+		/// <summary>Member ValidateProgram </summary>
+		/// <param name='program'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ValidateProgram([MarshalAs(UnmanagedType.Interface)] nsIWebGLProgram program);
 		
@@ -749,36 +1187,71 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void VertexAttrib1f(uint indx, double x);
 		
+		/// <summary>Member VertexAttrib2f </summary>
+		/// <param name='indx'> </param>
+		/// <param name='x'> </param>
+		/// <param name='y'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void VertexAttrib2f(uint indx, double x, double y);
 		
+		/// <summary>Member VertexAttrib3f </summary>
+		/// <param name='indx'> </param>
+		/// <param name='x'> </param>
+		/// <param name='y'> </param>
+		/// <param name='z'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void VertexAttrib3f(uint indx, double x, double y, double z);
 		
+		/// <summary>Member VertexAttrib4f </summary>
+		/// <param name='indx'> </param>
+		/// <param name='x'> </param>
+		/// <param name='y'> </param>
+		/// <param name='z'> </param>
+		/// <param name='w'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void VertexAttrib4f(uint indx, double x, double y, double z, double w);
 		
+		/// <summary>Member VertexAttrib1fv </summary>
+		/// <param name='dummy'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void VertexAttrib1fv(int dummy);
 		
+		/// <summary>Member VertexAttrib2fv </summary>
+		/// <param name='dummy'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void VertexAttrib2fv(int dummy);
 		
+		/// <summary>Member VertexAttrib3fv </summary>
+		/// <param name='dummy'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void VertexAttrib3fv(int dummy);
 		
+		/// <summary>Member VertexAttrib4fv </summary>
+		/// <param name='dummy'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void VertexAttrib4fv(int dummy);
 		
+		/// <summary>Member VertexAttrib1fv_array </summary>
+		/// <param name='indx'> </param>
+		/// <param name='values'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void VertexAttrib1fv_array(uint indx, System.IntPtr values);
 		
+		/// <summary>Member VertexAttrib2fv_array </summary>
+		/// <param name='indx'> </param>
+		/// <param name='values'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void VertexAttrib2fv_array(uint indx, System.IntPtr values);
 		
+		/// <summary>Member VertexAttrib3fv_array </summary>
+		/// <param name='indx'> </param>
+		/// <param name='values'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void VertexAttrib3fv_array(uint indx, System.IntPtr values);
 		
+		/// <summary>Member VertexAttrib4fv_array </summary>
+		/// <param name='indx'> </param>
+		/// <param name='values'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void VertexAttrib4fv_array(uint indx, System.IntPtr values);
 		
@@ -788,6 +1261,11 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void VertexAttribPointer(uint idx, int size, uint type, bool normalized, int stride, System.IntPtr offset);
 		
+		/// <summary>Member Viewport </summary>
+		/// <param name='x'> </param>
+		/// <param name='y'> </param>
+		/// <param name='width'> </param>
+		/// <param name='height'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Viewport(int x, int y, int width, int height);
 		
@@ -804,16 +1282,24 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIWebGLExtension GetExtension([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name);
 		
+		/// <summary>Member GetSupportedExtensions </summary>
+		/// <returns>A nsIVariant</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIVariant GetSupportedExtensions();
 		
+		/// <summary>Member IsContextLost </summary>
+		/// <returns>A System.Boolean</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsContextLost();
 		
+		/// <summary>Member GetDrawingBufferWidthAttribute </summary>
+		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetDrawingBufferWidthAttribute();
 		
+		/// <summary>Member GetDrawingBufferHeightAttribute </summary>
+		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetDrawingBufferHeightAttribute();
 	}

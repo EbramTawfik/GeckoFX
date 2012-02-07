@@ -41,14 +41,14 @@ namespace Gecko
         /// @param aEnabled Indicates if the notification is enabled by default.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddNotification([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName, [MarshalAs(UnmanagedType.Bool)] bool aEnabled);
+		void AddNotification([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName, [MarshalAs(UnmanagedType.U1)] bool aEnabled);
 		
 		/// <summary>
         /// Checks to see if a paticular notification has already been registered.
         ///
         /// @param aName The name of the notification we are checking against.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsNotification([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
 	}

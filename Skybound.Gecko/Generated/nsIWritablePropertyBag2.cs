@@ -78,7 +78,7 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetPropertyAsAUTF8String([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase prop, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase retval);
 		
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetPropertyAsBool([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase prop);
 		
@@ -99,7 +99,7 @@ namespace Gecko
 		/// <summary>
         /// Check for the existence of a key.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool HasKey([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase prop);
 		
@@ -130,7 +130,7 @@ namespace Gecko
 		void SetPropertyAsAUTF8String([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase prop, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase value);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPropertyAsBool([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase prop, [MarshalAs(UnmanagedType.Bool)] bool value);
+		void SetPropertyAsBool([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase prop, [MarshalAs(UnmanagedType.U1)] bool value);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetPropertyAsInterface([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase prop, [MarshalAs(UnmanagedType.Interface)] nsISupports value);

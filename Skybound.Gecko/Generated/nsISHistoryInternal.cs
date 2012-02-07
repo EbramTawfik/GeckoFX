@@ -42,7 +42,7 @@ namespace Gecko
         /// this element will not appear in the session history list.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddEntry([MarshalAs(UnmanagedType.Interface)] nsISHEntry aEntry, [MarshalAs(UnmanagedType.Bool)] bool aPersist);
+		void AddEntry([MarshalAs(UnmanagedType.Interface)] nsISHEntry aEntry, [MarshalAs(UnmanagedType.U1)] bool aPersist);
 		
 		/// <summary>
         /// Get the root transaction

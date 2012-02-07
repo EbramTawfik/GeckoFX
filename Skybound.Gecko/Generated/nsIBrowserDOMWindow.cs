@@ -68,7 +68,7 @@ namespace Gecko
         /// @return whether the window is the main content window for any
         /// currently open tab in this toplevel browser window.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsTabContentWindow([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow);
 	}

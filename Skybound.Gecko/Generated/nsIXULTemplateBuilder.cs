@@ -314,7 +314,7 @@ namespace Gecko
         /// @param aNode node to check
         /// @param aTag tag that must match
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool HasGeneratedContent([MarshalAs(UnmanagedType.Interface)] nsIRDFResource aNode, [MarshalAs(UnmanagedType.Interface)] nsIAtom aTag);
 		
@@ -348,7 +348,7 @@ namespace Gecko
         /// generate its contents if it is open. This behaviour is used with menus.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CreateContents(System.IntPtr aElement, [MarshalAs(UnmanagedType.Bool)] bool aForceCreation);
+		void CreateContents(System.IntPtr aElement, [MarshalAs(UnmanagedType.U1)] bool aForceCreation);
 		
 		/// <summary>
         /// Add a listener to this template builder. The template builder
@@ -382,7 +382,7 @@ namespace Gecko
         /// items, such as the mailNews folder pane, always return false whe
         /// the orientation is not DROP_ON.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool CanDrop(int index, int orientation, [MarshalAs(UnmanagedType.Interface)] nsIDOMDataTransfer dataTransfer);
 		

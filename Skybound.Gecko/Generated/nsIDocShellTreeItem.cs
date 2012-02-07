@@ -87,7 +87,7 @@ namespace Gecko
         ///	 </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDocShellTreeItem FindChildWithName([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string aName, [MarshalAs(UnmanagedType.Bool)] bool aRecurse, [MarshalAs(UnmanagedType.Bool)] bool aSameType, [MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeItem aRequestor, [MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeItem aOriginalRequestor);
+		new nsIDocShellTreeItem FindChildWithName([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string aName, [MarshalAs(UnmanagedType.U1)] bool aRecurse, [MarshalAs(UnmanagedType.U1)] bool aSameType, [MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeItem aRequestor, [MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeItem aOriginalRequestor);
 		
 		/// <summary>
         ///name of the DocShellTreeItem
@@ -109,7 +109,7 @@ namespace Gecko
         /// @return <CODE>PR_TRUE</CODE> if names match;
         /// <CODE>PR_FALSE</CODE> otherwise.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool NameEquals([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string name);
 		

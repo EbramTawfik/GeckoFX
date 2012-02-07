@@ -36,7 +36,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("bc6c156a-c41f-43dd-ace3-e3bca9894ed1")]
+	[Guid("910484d7-219c-4c72-b999-7a7e9c954646")]
 	public interface nsIDOMWindowUtils
 	{
 		
@@ -85,7 +85,7 @@ namespace Gecko
         /// the user.
         /// Cannot be accessed from unprivileged context (not content-accessible)
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetDocCharsetIsForcedAttribute();
 		
@@ -216,14 +216,14 @@ namespace Gecko
         /// during dispatch
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendMouseEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType, float aX, float aY, int aButton, int aClickCount, int aModifiers, [MarshalAs(UnmanagedType.Bool)] bool aIgnoreRootScrollFrame);
+		void SendMouseEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType, float aX, float aY, int aButton, int aClickCount, int aModifiers, [MarshalAs(UnmanagedType.U1)] bool aIgnoreRootScrollFrame);
 		
 		/// <summary>
         ///The same as sendMouseEvent but ensures that the event is dispatched to
         /// this DOM window or one of its children.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendMouseEventToWindow([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType, float aX, float aY, int aButton, int aClickCount, int aModifiers, [MarshalAs(UnmanagedType.Bool)] bool aIgnoreRootScrollFrame);
+		void SendMouseEventToWindow([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType, float aX, float aY, int aButton, int aClickCount, int aModifiers, [MarshalAs(UnmanagedType.U1)] bool aIgnoreRootScrollFrame);
 		
 		/// <summary>
         ///Synthesize a mouse scroll event for a window. The event types supported
@@ -269,9 +269,9 @@ namespace Gecko
         /// true otherwise.  In other words, true if and only if the
         /// default action was taken.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool SendKeyEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType, int aKeyCode, int aCharCode, int aModifiers, [MarshalAs(UnmanagedType.Bool)] bool aPreventDefault);
+		bool SendKeyEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType, int aKeyCode, int aCharCode, int aModifiers, [MarshalAs(UnmanagedType.U1)] bool aPreventDefault);
 		
 		/// <summary>
         /// See nsIWidget::SynthesizeNativeKeyEvent
@@ -395,7 +395,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMElement ElementFromPoint(float aX, float aY, [MarshalAs(UnmanagedType.Bool)] bool aIgnoreRootScrollFrame, [MarshalAs(UnmanagedType.Bool)] bool aFlushLayout);
+		nsIDOMElement ElementFromPoint(float aX, float aY, [MarshalAs(UnmanagedType.U1)] bool aIgnoreRootScrollFrame, [MarshalAs(UnmanagedType.U1)] bool aFlushLayout);
 		
 		/// <summary>
         /// Retrieve all nodes that intersect a rect in the window's document.
@@ -413,7 +413,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMNodeList NodesFromRect(float aX, float aY, float aTopSize, float aRightSize, float aBottomSize, float aLeftSize, [MarshalAs(UnmanagedType.Bool)] bool aIgnoreRootScrollFrame, [MarshalAs(UnmanagedType.Bool)] bool aFlushLayout);
+		nsIDOMNodeList NodesFromRect(float aX, float aY, float aTopSize, float aRightSize, float aBottomSize, float aLeftSize, [MarshalAs(UnmanagedType.U1)] bool aIgnoreRootScrollFrame, [MarshalAs(UnmanagedType.U1)] bool aFlushLayout);
 		
 		/// <summary>
         /// Compare the two canvases, returning the number of differing pixels and
@@ -429,7 +429,7 @@ namespace Gecko
         /// Returns true if a MozAfterPaint event has been queued but not yet
         /// fired.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsMozAfterPaintPendingAttribute();
 		
@@ -441,7 +441,7 @@ namespace Gecko
         /// privileges and NS_ERROR_FAILURE if window doesn't have a document.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SuppressEventHandling([MarshalAs(UnmanagedType.Bool)] bool aSuppress);
+		void SuppressEventHandling([MarshalAs(UnmanagedType.U1)] bool aSuppress);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ClearMozAfterPaintEvents();
@@ -457,7 +457,7 @@ namespace Gecko
         /// on all windows.  Otherwise, enable them.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DisableNonTestMouseEvents([MarshalAs(UnmanagedType.Bool)] bool aDisable);
+		void DisableNonTestMouseEvents([MarshalAs(UnmanagedType.U1)] bool aDisable);
 		
 		/// <summary>
         /// Returns the scroll position of the window's currently loaded document.
@@ -466,13 +466,13 @@ namespace Gecko
         /// @see nsIDOMWindow::scrollX/Y
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetScrollXY([MarshalAs(UnmanagedType.Bool)] bool aFlushLayout, ref int aScrollX, ref int aScrollY);
+		void GetScrollXY([MarshalAs(UnmanagedType.U1)] bool aFlushLayout, ref int aScrollX, ref int aScrollY);
 		
 		/// <summary>
         /// Get IME open state. TRUE means 'Open', otherwise, 'Close'.
         /// This property works only when IMEEnabled is IME_STATUS_ENABLED.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIMEIsOpenAttribute();
 		
@@ -500,9 +500,9 @@ namespace Gecko
         /// @note Event handlers won't get aEvent as parameter, but a similar event.
         /// Also, aEvent should not be reused.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool DispatchDOMEventViaPresShell([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aTarget, [MarshalAs(UnmanagedType.Interface)] nsIDOMEvent aEvent, [MarshalAs(UnmanagedType.Bool)] bool aTrusted);
+		bool DispatchDOMEventViaPresShell([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aTarget, [MarshalAs(UnmanagedType.Interface)] nsIDOMEvent aEvent, [MarshalAs(UnmanagedType.U1)] bool aTrusted);
 		
 		/// <summary>
         ///in JSObjectPtr aObj </summary>
@@ -571,9 +571,9 @@ namespace Gecko
         /// |aOffset + aLength|.
         /// @return True, if succeeded.  Otherwise, false.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool SendSelectionSetEvent(uint aOffset, uint aLength, [MarshalAs(UnmanagedType.Bool)] bool aReverse);
+		bool SendSelectionSetEvent(uint aOffset, uint aLength, [MarshalAs(UnmanagedType.U1)] bool aReverse);
 		
 		/// <summary>
         /// Perform the equivalent of:
@@ -643,7 +643,7 @@ namespace Gecko
 		/// <summary>
         /// Is the window is in a modal state? [See enterModalState()]
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsInModalState();
 		
@@ -755,15 +755,23 @@ namespace Gecko
         /// no leaf layers overlap, and the union of the leaf layers is exactly
         /// the bounds of the window. Always returns true in non-DEBUG builds.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool LeafLayersPartitionWindow();
 		
 		/// <summary>
         /// true if the (current inner) window may have event listeners for touch events.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetMayHaveTouchEventListenersAttribute();
+		
+		/// <summary>
+        /// Check if any ThebesLayer painting has been done for this element,
+        /// clears the painted flags if they have.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool CheckAndClearPaintedState([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement);
 	}
 }

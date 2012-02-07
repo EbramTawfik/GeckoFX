@@ -125,7 +125,7 @@ namespace Gecko
         /// provide consumers with a way to wait for the stream to accept more data
         /// once its write method is unable to accept any data without blocking.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsNonBlocking();
 		
@@ -147,7 +147,7 @@ namespace Gecko
         /// Write a boolean as an 8-bit char to the stream.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void WriteBoolean([MarshalAs(UnmanagedType.Bool)] bool aBoolean);
+		new void WriteBoolean([MarshalAs(UnmanagedType.U1)] bool aBoolean);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void Write8(byte aByte);
@@ -215,7 +215,7 @@ namespace Gecko
         /// call writeCompoundObject instead of this method.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void WriteObject([MarshalAs(UnmanagedType.Interface)] nsISupports aObject, [MarshalAs(UnmanagedType.Bool)] bool aIsStrongRef);
+		void WriteObject([MarshalAs(UnmanagedType.Interface)] nsISupports aObject, [MarshalAs(UnmanagedType.U1)] bool aIsStrongRef);
 		
 		/// <summary>
         /// Write an object referenced singly and strongly via its root nsISupports
@@ -234,7 +234,7 @@ namespace Gecko
         /// this interface.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void WriteCompoundObject([MarshalAs(UnmanagedType.Interface)] nsISupports aObject, ref System.Guid aIID, [MarshalAs(UnmanagedType.Bool)] bool aIsStrongRef);
+		void WriteCompoundObject([MarshalAs(UnmanagedType.Interface)] nsISupports aObject, ref System.Guid aIID, [MarshalAs(UnmanagedType.U1)] bool aIsStrongRef);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void WriteID(System.IntPtr aID);

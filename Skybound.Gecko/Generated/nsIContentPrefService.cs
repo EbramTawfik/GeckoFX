@@ -133,7 +133,7 @@ namespace Gecko
         /// @throws   NS_ERROR_ILLEGAL_VALUE if aGroup is not a string, nsIURI, or null
         /// @throws   NS_ERROR_ILLEGAL_VALUE if aName is null or an empty string
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool HasPref([MarshalAs(UnmanagedType.Interface)] nsIVariant aGroup, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
 		
@@ -148,7 +148,7 @@ namespace Gecko
         /// @throws   NS_ERROR_ILLEGAL_VALUE if aGroup is not a string, nsIURI, or null
         /// @throws   NS_ERROR_ILLEGAL_VALUE if aName is null or an empty string
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool HasCachedPref([MarshalAs(UnmanagedType.Interface)] nsIVariant aGroup, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
 		

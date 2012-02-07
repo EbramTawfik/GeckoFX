@@ -47,7 +47,7 @@ namespace Gecko
         /// @status UNSTABLE - This interface is not frozen and will probably change in
         /// future releases.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetUserCanElevateAttribute();
 	}

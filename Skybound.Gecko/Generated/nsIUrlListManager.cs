@@ -75,9 +75,9 @@ namespace Gecko
         /// string of the format provider_name-semantic_type-table_type.  For
         /// example, goog-white-enchash or goog-black-url.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool RegisterTable([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase tableName, [MarshalAs(UnmanagedType.Bool)] bool requireMac);
+		bool RegisterTable([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase tableName, [MarshalAs(UnmanagedType.U1)] bool requireMac);
 		
 		/// <summary>
         /// Turn on update checking for a table.  I.e., during the next server

@@ -109,7 +109,7 @@ namespace Gecko
         /// When it is not set (the default), charsets with the isXSSVulnerable flag
         /// may not be accessed
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsInternalAttribute();
 		
@@ -121,6 +121,6 @@ namespace Gecko
         /// may not be accessed
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetIsInternalAttribute([MarshalAs(UnmanagedType.Bool)] bool aIsInternal);
+		void SetIsInternalAttribute([MarshalAs(UnmanagedType.U1)] bool aIsInternal);
 	}
 }

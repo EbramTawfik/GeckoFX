@@ -36,7 +36,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("AE0CB688-68B3-4fb3-9A11-2DA8E620E808")]
+	[Guid("501d7dc8-5b8b-4cce-99ad-16ed1046030a")]
 	public interface nsIDOMStorageEvent : nsIDOMEvent
 	{
 		
@@ -75,7 +75,7 @@ namespace Gecko
         /// Used to indicate whether or not an event is a bubbling event. If the
         /// event can bubble the value is true, else the value is false.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetBubblesAttribute();
 		
@@ -84,7 +84,7 @@ namespace Gecko
         /// prevented. If the default action can be prevented the value is true,
         /// else the value is false.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetCancelableAttribute();
 		
@@ -152,14 +152,21 @@ namespace Gecko
         /// action can be prevented.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void InitEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase eventTypeArg, [MarshalAs(UnmanagedType.Bool)] bool canBubbleArg, [MarshalAs(UnmanagedType.Bool)] bool cancelableArg);
+		new void InitEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase eventTypeArg, [MarshalAs(UnmanagedType.U1)] bool canBubbleArg, [MarshalAs(UnmanagedType.U1)] bool cancelableArg);
 		
 		/// <summary>
         /// Used to indicate whether preventDefault() has been called for this event.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetDefaultPreventedAttribute();
+		
+		/// <summary>
+        /// Prevents other event listeners from being triggered and,
+        /// unlike Event.stopPropagation() its effect is immediate.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void StopImmediatePropagation();
 		
 		/// <summary>
         /// Attribute represents the key being changed. The key attribute is null
@@ -202,6 +209,6 @@ namespace Gecko
         /// in the DOM Events interfaces.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitStorageEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase typeArg, [MarshalAs(UnmanagedType.Bool)] bool canBubbleArg, [MarshalAs(UnmanagedType.Bool)] bool cancelableArg, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase keyArg, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase oldValueArg, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase newValueArg, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase urlArg, [MarshalAs(UnmanagedType.Interface)] nsIDOMStorage storageAreaArg);
+		void InitStorageEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase typeArg, [MarshalAs(UnmanagedType.U1)] bool canBubbleArg, [MarshalAs(UnmanagedType.U1)] bool cancelableArg, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase keyArg, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase oldValueArg, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase newValueArg, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase urlArg, [MarshalAs(UnmanagedType.Interface)] nsIDOMStorage storageAreaArg);
 	}
 }

@@ -76,7 +76,7 @@ namespace Gecko
         /// @see nsIFaviconDataCallback in nsIFaviconService.idl.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAndFetchFaviconForPage([MarshalAs(UnmanagedType.Interface)] nsIURI aPageURI, [MarshalAs(UnmanagedType.Interface)] nsIURI aFaviconURI, [MarshalAs(UnmanagedType.Bool)] bool aForceReload, [MarshalAs(UnmanagedType.Interface)] nsIFaviconDataCallback aCallback);
+		void SetAndFetchFaviconForPage([MarshalAs(UnmanagedType.Interface)] nsIURI aPageURI, [MarshalAs(UnmanagedType.Interface)] nsIURI aFaviconURI, [MarshalAs(UnmanagedType.U1)] bool aForceReload, [MarshalAs(UnmanagedType.Interface)] nsIFaviconDataCallback aCallback);
 		
 		/// <summary>
         /// Retrieve the URL of the favicon for the given page.

@@ -56,7 +56,7 @@ namespace Gecko
         /// be allowed.  Use at your own risk.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void LoadURI([MarshalAs(UnmanagedType.Interface)] nsIURI uri, [MarshalAs(UnmanagedType.Interface)] nsIDocShellLoadInfo loadInfo, uint aLoadFlags, [MarshalAs(UnmanagedType.Bool)] bool firstParty);
+		void LoadURI([MarshalAs(UnmanagedType.Interface)] nsIURI uri, [MarshalAs(UnmanagedType.Interface)] nsIDocShellLoadInfo loadInfo, uint aLoadFlags, [MarshalAs(UnmanagedType.U1)] bool firstParty);
 		
 		/// <summary>
         /// Loads a given stream. This will give priority to loading the requested
@@ -102,14 +102,14 @@ namespace Gecko
         /// @param aSHEntry        - Active Session History entry (if loading from SH)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InternalLoad([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIURI aReferrer, [MarshalAs(UnmanagedType.Interface)] nsISupports aOwner, uint aFlags, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string aWindowTarget, [MarshalAs(UnmanagedType.LPStr)] string aTypeHint, [MarshalAs(UnmanagedType.Interface)] nsIInputStream aPostDataStream, [MarshalAs(UnmanagedType.Interface)] nsIInputStream aHeadersStream, uint aLoadFlags, [MarshalAs(UnmanagedType.Interface)] nsISHEntry aSHEntry, [MarshalAs(UnmanagedType.Bool)] bool firstParty, [MarshalAs(UnmanagedType.Interface)] ref nsIDocShell aDocShell, [MarshalAs(UnmanagedType.Interface)] ref nsIRequest aRequest);
+		void InternalLoad([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIURI aReferrer, [MarshalAs(UnmanagedType.Interface)] nsISupports aOwner, uint aFlags, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string aWindowTarget, [MarshalAs(UnmanagedType.LPStr)] string aTypeHint, [MarshalAs(UnmanagedType.Interface)] nsIInputStream aPostDataStream, [MarshalAs(UnmanagedType.Interface)] nsIInputStream aHeadersStream, uint aLoadFlags, [MarshalAs(UnmanagedType.Interface)] nsISHEntry aSHEntry, [MarshalAs(UnmanagedType.U1)] bool firstParty, [MarshalAs(UnmanagedType.Interface)] ref nsIDocShell aDocShell, [MarshalAs(UnmanagedType.Interface)] ref nsIRequest aRequest);
 		
 		/// <summary>
         /// Do either a history.pushState() or history.replaceState() operation,
         /// depending on the value of aReplace.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddState([MarshalAs(UnmanagedType.Interface)] nsIVariant aData, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTitle, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aURL, [MarshalAs(UnmanagedType.Bool)] bool aReplace, System.IntPtr jsContext);
+		void AddState([MarshalAs(UnmanagedType.Interface)] nsIVariant aData, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTitle, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aURL, [MarshalAs(UnmanagedType.U1)] bool aReplace, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Creates a DocShellLoadInfo object that you can manipulate and then pass
@@ -142,7 +142,7 @@ namespace Gecko
         /// event.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void FirePageHideNotification([MarshalAs(UnmanagedType.Bool)] bool isUnload);
+		void FirePageHideNotification([MarshalAs(UnmanagedType.U1)] bool isUnload);
 		
 		/// <summary>
         /// Presentation context for the currently loaded document.  This may be null.
@@ -202,7 +202,7 @@ namespace Gecko
 		/// <summary>
         /// Whether to allow plugin execution
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetAllowPluginsAttribute();
 		
@@ -210,12 +210,12 @@ namespace Gecko
         /// Whether to allow plugin execution
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAllowPluginsAttribute([MarshalAs(UnmanagedType.Bool)] bool aAllowPlugins);
+		void SetAllowPluginsAttribute([MarshalAs(UnmanagedType.U1)] bool aAllowPlugins);
 		
 		/// <summary>
         /// Whether to allow Javascript execution
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetAllowJavascriptAttribute();
 		
@@ -223,12 +223,12 @@ namespace Gecko
         /// Whether to allow Javascript execution
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAllowJavascriptAttribute([MarshalAs(UnmanagedType.Bool)] bool aAllowJavascript);
+		void SetAllowJavascriptAttribute([MarshalAs(UnmanagedType.U1)] bool aAllowJavascript);
 		
 		/// <summary>
         /// Attribute stating if refresh based redirects can be allowed
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetAllowMetaRedirectsAttribute();
 		
@@ -236,12 +236,12 @@ namespace Gecko
         /// Attribute stating if refresh based redirects can be allowed
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAllowMetaRedirectsAttribute([MarshalAs(UnmanagedType.Bool)] bool aAllowMetaRedirects);
+		void SetAllowMetaRedirectsAttribute([MarshalAs(UnmanagedType.U1)] bool aAllowMetaRedirects);
 		
 		/// <summary>
         /// Attribute stating if it should allow subframes (framesets/iframes) or not
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetAllowSubframesAttribute();
 		
@@ -249,12 +249,12 @@ namespace Gecko
         /// Attribute stating if it should allow subframes (framesets/iframes) or not
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAllowSubframesAttribute([MarshalAs(UnmanagedType.Bool)] bool aAllowSubframes);
+		void SetAllowSubframesAttribute([MarshalAs(UnmanagedType.U1)] bool aAllowSubframes);
 		
 		/// <summary>
         /// Attribute stating whether or not images should be loaded.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetAllowImagesAttribute();
 		
@@ -262,14 +262,14 @@ namespace Gecko
         /// Attribute stating whether or not images should be loaded.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAllowImagesAttribute([MarshalAs(UnmanagedType.Bool)] bool aAllowImages);
+		void SetAllowImagesAttribute([MarshalAs(UnmanagedType.U1)] bool aAllowImages);
 		
 		/// <summary>
         /// Attribute that determines whether DNS prefetch is allowed for this subtree
         /// of the docshell tree.  Defaults to true.  Setting this will make it take
         /// effect starting with the next document loaded in the docshell.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetAllowDNSPrefetchAttribute();
 		
@@ -279,12 +279,12 @@ namespace Gecko
         /// effect starting with the next document loaded in the docshell.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAllowDNSPrefetchAttribute([MarshalAs(UnmanagedType.Bool)] bool aAllowDNSPrefetch);
+		void SetAllowDNSPrefetchAttribute([MarshalAs(UnmanagedType.U1)] bool aAllowDNSPrefetch);
 		
 		/// <summary>
         /// Attribute that determines whether window control (move/resize) is allowed.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetAllowWindowControlAttribute();
 		
@@ -292,7 +292,7 @@ namespace Gecko
         /// Attribute that determines whether window control (move/resize) is allowed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAllowWindowControlAttribute([MarshalAs(UnmanagedType.Bool)] bool aAllowWindowControl);
+		void SetAllowWindowControlAttribute([MarshalAs(UnmanagedType.U1)] bool aAllowWindowControl);
 		
 		/// <summary>
         /// Get an enumerator over this docShell and its children.
@@ -323,7 +323,7 @@ namespace Gecko
         /// should not throw up auth dialogs
         /// because it can act as a password trojan
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetAllowAuthAttribute();
 		
@@ -333,7 +333,7 @@ namespace Gecko
         /// because it can act as a password trojan
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAllowAuthAttribute([MarshalAs(UnmanagedType.Bool)] bool aAllowAuth);
+		void SetAllowAuthAttribute([MarshalAs(UnmanagedType.U1)] bool aAllowAuth);
 		
 		/// <summary>
         /// Set/Get the document scale factor.  When setting this attribute, a
@@ -398,7 +398,7 @@ namespace Gecko
         /// This is currently only necessary for embedding chrome.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void TabToTreeOwner([MarshalAs(UnmanagedType.Bool)] bool forward, [MarshalAs(UnmanagedType.Bool)] ref bool tookFocus);
+		void TabToTreeOwner([MarshalAs(UnmanagedType.U1)] bool forward, [MarshalAs(UnmanagedType.U1)] ref bool tookFocus);
 		
 		/// <summary>
         /// History.pushState()
@@ -421,14 +421,14 @@ namespace Gecko
 		/// <summary>
         /// returns true if the docshell is being destroyed, false otherwise
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsBeingDestroyed();
 		
 		/// <summary>
         /// Returns true if the docshell is currently executing the onLoad Handler
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsExecutingOnLoadHandlerAttribute();
 		
@@ -438,7 +438,7 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetLayoutHistoryStateAttribute(System.IntPtr aLayoutHistoryState);
 		
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetShouldSaveLayoutStateAttribute();
 		
@@ -484,7 +484,7 @@ namespace Gecko
         /// complete the simulated load after returning to the event loop.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BeginRestore(System.IntPtr viewer, [MarshalAs(UnmanagedType.Bool)] bool top);
+		void BeginRestore(System.IntPtr viewer, [MarshalAs(UnmanagedType.U1)] bool top);
 		
 		/// <summary>
         /// Finish firing WebProgressListener notifications and DOM events for
@@ -496,20 +496,20 @@ namespace Gecko
 		
 		/// <summary>
         ///Track whether we're currently restoring a document presentation. </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetRestoringDocumentAttribute();
 		
 		/// <summary>
         ///attribute to access whether error pages are enabled </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetUseErrorPagesAttribute();
 		
 		/// <summary>
         ///attribute to access whether error pages are enabled </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetUseErrorPagesAttribute([MarshalAs(UnmanagedType.Bool)] bool aUseErrorPages);
+		void SetUseErrorPagesAttribute([MarshalAs(UnmanagedType.U1)] bool aUseErrorPages);
 		
 		/// <summary>
         /// Keeps track of the previous SHTransaction index and the current
@@ -554,7 +554,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMStorage GetSessionStorageForPrincipal([MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase documentURI, [MarshalAs(UnmanagedType.Bool)] bool create);
+		nsIDOMStorage GetSessionStorageForPrincipal([MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase documentURI, [MarshalAs(UnmanagedType.U1)] bool create);
 		
 		/// <summary>
         /// Add a WebApps session storage object to the docshell.
@@ -584,7 +584,7 @@ namespace Gecko
         /// Find out whether the docshell is currently in the middle of a page
         /// transition. This is set just before the pagehide/unload events fire.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsInUnloadAttribute();
 		
@@ -593,7 +593,7 @@ namespace Gecko
         /// (such as a JAR channel where the server-returned content type isn't a
         /// known JAR type).
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetChannelIsUnsafeAttribute();
 		
@@ -610,7 +610,7 @@ namespace Gecko
         /// is actively being rendered to the screen (ex. painted on a canvas)
         /// and should be treated accordingly.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsOffScreenBrowserAttribute();
 		
@@ -620,7 +620,7 @@ namespace Gecko
         /// and should be treated accordingly.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetIsOffScreenBrowserAttribute([MarshalAs(UnmanagedType.Bool)] bool aIsOffScreenBrowser);
+		void SetIsOffScreenBrowserAttribute([MarshalAs(UnmanagedType.U1)] bool aIsOffScreenBrowser);
 		
 		/// <summary>
         /// If the current content viewer isn't initialized for print preview,
@@ -639,7 +639,7 @@ namespace Gecko
         /// is in design mode.  In that case, we explicitly allow scripting on the
         /// current docshell.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetCanExecuteScriptsAttribute();
 		
@@ -648,7 +648,7 @@ namespace Gecko
         /// visible, and thus is not a good candidate for certain optimizations
         /// like image frame discarding. Docshells are active unless told otherwise.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsActiveAttribute();
 		
@@ -658,7 +658,7 @@ namespace Gecko
         /// like image frame discarding. Docshells are active unless told otherwise.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetIsActiveAttribute([MarshalAs(UnmanagedType.Bool)] bool aIsActive);
+		void SetIsActiveAttribute([MarshalAs(UnmanagedType.U1)] bool aIsActive);
 		
 		/// <summary>
         /// The ID of the docshell in the session history.
@@ -671,7 +671,7 @@ namespace Gecko
         /// differently than a non-app tab docshell in some cases, such as when
         /// handling link clicks. Docshells are not app tabs unless told otherwise.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsAppTabAttribute();
 		
@@ -681,7 +681,7 @@ namespace Gecko
         /// handling link clicks. Docshells are not app tabs unless told otherwise.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetIsAppTabAttribute([MarshalAs(UnmanagedType.Bool)] bool aIsAppTab);
+		void SetIsAppTabAttribute([MarshalAs(UnmanagedType.U1)] bool aIsAppTab);
 		
 		/// <summary>
         /// Create a new about:blank document and content viewer.

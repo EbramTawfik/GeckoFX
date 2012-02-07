@@ -30,7 +30,7 @@ namespace Gecko
 	/// <summary>nsIIDBDatabaseException </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("2f182bf1-1542-47fe-b2f7-4b1741b5283c")]
+	[Guid("7aad2542-a5cb-4a57-b20c-c7d16b8582ab")]
 	public interface nsIIDBDatabaseException
 	{
 		

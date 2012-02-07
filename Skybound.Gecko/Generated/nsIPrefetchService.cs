@@ -44,14 +44,14 @@ namespace Gecko
         /// @param aExplicit the link element has an explicit prefetch link type
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PrefetchURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIURI aReferrerURI, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aSource, [MarshalAs(UnmanagedType.Bool)] bool aExplicit);
+		void PrefetchURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIURI aReferrerURI, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aSource, [MarshalAs(UnmanagedType.U1)] bool aExplicit);
 		
 		/// <summary>
         /// @status DEPRECATED This method is no longer used, and will throw
         /// NS_ERROR_NOT_IMPLEMENTED.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PrefetchURIForOfflineUse([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIURI aReferrerURI, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aSource, [MarshalAs(UnmanagedType.Bool)] bool aExplicit);
+		void PrefetchURIForOfflineUse([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIURI aReferrerURI, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aSource, [MarshalAs(UnmanagedType.U1)] bool aExplicit);
 		
 		/// <summary>
         /// Enumerate the items in the prefetch queue.  Each element in the
@@ -66,6 +66,6 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISimpleEnumerator EnumerateQueue([MarshalAs(UnmanagedType.Bool)] bool aIncludeNormalItems, [MarshalAs(UnmanagedType.Bool)] bool aIncludeOfflineItems);
+		nsISimpleEnumerator EnumerateQueue([MarshalAs(UnmanagedType.U1)] bool aIncludeNormalItems, [MarshalAs(UnmanagedType.U1)] bool aIncludeOfflineItems);
 	}
 }

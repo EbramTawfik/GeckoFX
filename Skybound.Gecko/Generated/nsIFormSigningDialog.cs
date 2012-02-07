@@ -44,7 +44,7 @@ namespace Gecko
         ///
         /// returns true if the user confirmed, false on cancel
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool ConfirmSignText([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor ctxt, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase host, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase signText, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=5)] System.IntPtr[] certNickList, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=5)] System.IntPtr[] certDetailsList, uint count, ref int selectedIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase password);
 	}

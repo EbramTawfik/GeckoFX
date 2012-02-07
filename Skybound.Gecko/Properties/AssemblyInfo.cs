@@ -37,17 +37,17 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("Skybound.Gecko")]
+[assembly: AssemblyTitle("GeckoFx")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("GeckoFX")]
-[assembly: AssemblyCopyright("Copyright © 2008 Skybound Software. All Rights Reserved.")]
+[assembly: AssemblyProduct("GeckoFx")]
+[assembly: AssemblyCopyright("")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
 [assembly: ComVisible(true)]
-[assembly: Guid("2d144611-62c5-4eb8-a0ae-8a1617949dcc")]
+[assembly: Guid("6d0ecb0b-2305-4513-a70a-c8e7ab886eab")]
 
-[assembly: AssemblyVersion("2.0.0.0")]
-[assembly: AssemblyFileVersion("2.0.0.0")]
+[assembly: AssemblyVersion("10.0.0.0")]
+[assembly: AssemblyFileVersion("10.0.0.0")]

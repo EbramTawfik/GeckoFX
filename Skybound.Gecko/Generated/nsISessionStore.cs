@@ -60,7 +60,7 @@ namespace Gecko
         /// Is it possible to restore the previous session. Will always be false when
         /// in Private Browsing mode.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetCanRestoreLastSessionAttribute();
 		
@@ -69,7 +69,7 @@ namespace Gecko
         /// in Private Browsing mode.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCanRestoreLastSessionAttribute([MarshalAs(UnmanagedType.Bool)] bool aCanRestoreLastSession);
+		void SetCanRestoreLastSessionAttribute([MarshalAs(UnmanagedType.U1)] bool aCanRestoreLastSession);
 		
 		/// <summary>
         /// Restore the previous session if possible. This will not overwrite the
@@ -115,7 +115,7 @@ namespace Gecko
         /// @param aOverwrite boolean overwrite existing tabs
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetWindowState([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aState, [MarshalAs(UnmanagedType.Bool)] bool aOverwrite);
+		void SetWindowState([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aState, [MarshalAs(UnmanagedType.U1)] bool aOverwrite);
 		
 		/// <summary>
         /// @param aTab is the tabbrowser tab whose state is to be returned.

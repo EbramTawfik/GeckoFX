@@ -67,6 +67,6 @@ namespace Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Remove([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aHost, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aName, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aPath, [MarshalAs(UnmanagedType.Bool)] bool aBlocked);
+		void Remove([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aHost, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aName, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aPath, [MarshalAs(UnmanagedType.U1)] bool aBlocked);
 	}
 }

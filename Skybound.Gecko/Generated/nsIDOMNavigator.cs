@@ -30,7 +30,7 @@ namespace Gecko
 	/// <summary>nsIDOMNavigator </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("B8EE0374-5F47-4ED0-B9B0-BDE3E6D81FF5")]
+	[Guid("c5acd187-bf76-4b26-9329-41c798e47fb6")]
 	public interface nsIDOMNavigator
 	{
 		
@@ -103,13 +103,13 @@ namespace Gecko
 		
 		/// <summary>Member GetCookieEnabledAttribute </summary>
 		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetCookieEnabledAttribute();
 		
 		/// <summary>Member GetOnLineAttribute </summary>
 		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetOnLineAttribute();
 		
@@ -125,8 +125,14 @@ namespace Gecko
 		
 		/// <summary>Member JavaEnabled </summary>
 		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool JavaEnabled();
+		
+		/// <summary>Member TaintEnabled </summary>
+		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool TaintEnabled();
 	}
 }

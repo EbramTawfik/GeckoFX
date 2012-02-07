@@ -47,7 +47,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMNode FixupNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aNode, [MarshalAs(UnmanagedType.Bool)] ref bool aSerializeCloneKids);
+		nsIDOMNode FixupNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aNode, [MarshalAs(UnmanagedType.U1)] ref bool aSerializeCloneKids);
 	}
 	
 	/// <summary>nsIDocumentEncoder </summary>

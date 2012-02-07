@@ -64,7 +64,7 @@ namespace Gecko
 		/// <summary>
         /// returns whether XPCNativeWrappers are enabled for aURI.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool WrappersEnabled([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 	}
@@ -106,7 +106,7 @@ namespace Gecko
 		/// <summary>
         /// returns whether XPCNativeWrappers are enabled for aURI.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool WrappersEnabled([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 		
@@ -124,7 +124,7 @@ namespace Gecko
 		/// <summary>
         /// Get the direction of the locale via the intl.uidirection.<locale> pref
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsLocaleRTL([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase package);
 		
@@ -139,7 +139,7 @@ namespace Gecko
         /// run for a particular chrome URI. Do not pass non-chrome URIs to this
         /// method.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool AllowScriptsForPackage([MarshalAs(UnmanagedType.Interface)] nsIURI url);
 		
@@ -148,7 +148,7 @@ namespace Gecko
         /// This method reflects the contentaccessible flag on packages.
         /// Do not pass non-chrome URIs to this method.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool AllowContentToAccess([MarshalAs(UnmanagedType.Interface)] nsIURI url);
 	}

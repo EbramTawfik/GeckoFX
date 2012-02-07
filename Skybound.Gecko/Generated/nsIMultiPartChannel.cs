@@ -56,7 +56,7 @@ namespace Gecko
         /// The listener can check this from its onStopRequest to determine
         /// whether more data can be expected.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsLastPartAttribute();
 	}

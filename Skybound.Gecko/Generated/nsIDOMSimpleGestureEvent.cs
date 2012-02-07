@@ -87,7 +87,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("0fdcef08-b4e8-4d41-91a0-4f5d259bfb81")]
+	[Guid("e9bdcc53-1bc0-4cae-9eb3-b215b6be7f70")]
 	public interface nsIDOMSimpleGestureEvent : nsIDOMMouseEvent
 	{
 		
@@ -126,7 +126,7 @@ namespace Gecko
         /// Used to indicate whether or not an event is a bubbling event. If the
         /// event can bubble the value is true, else the value is false.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetBubblesAttribute();
 		
@@ -135,7 +135,7 @@ namespace Gecko
         /// prevented. If the default action can be prevented the value is true,
         /// else the value is false.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetCancelableAttribute();
 		
@@ -203,14 +203,21 @@ namespace Gecko
         /// action can be prevented.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void InitEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase eventTypeArg, [MarshalAs(UnmanagedType.Bool)] bool canBubbleArg, [MarshalAs(UnmanagedType.Bool)] bool cancelableArg);
+		new void InitEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase eventTypeArg, [MarshalAs(UnmanagedType.U1)] bool canBubbleArg, [MarshalAs(UnmanagedType.U1)] bool cancelableArg);
 		
 		/// <summary>
         /// Used to indicate whether preventDefault() has been called for this event.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetDefaultPreventedAttribute();
+		
+		/// <summary>
+        /// Prevents other event listeners from being triggered and,
+        /// unlike Event.stopPropagation() its effect is immediate.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void StopImmediatePropagation();
 		
 		/// <summary>
         /// The nsIDOMUIEvent interface is the datatype for all UI events in the
@@ -227,7 +234,7 @@ namespace Gecko
 		new int GetDetailAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void InitUIEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase typeArg, [MarshalAs(UnmanagedType.Bool)] bool canBubbleArg, [MarshalAs(UnmanagedType.Bool)] bool cancelableArg, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow viewArg, int detailArg);
+		new void InitUIEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase typeArg, [MarshalAs(UnmanagedType.U1)] bool canBubbleArg, [MarshalAs(UnmanagedType.U1)] bool cancelableArg, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow viewArg, int detailArg);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new int GetLayerXAttribute();
@@ -251,14 +258,14 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new int GetRangeOffsetAttribute();
 		
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetCancelBubbleAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetCancelBubbleAttribute([MarshalAs(UnmanagedType.Bool)] bool aCancelBubble);
+		new void SetCancelBubbleAttribute([MarshalAs(UnmanagedType.U1)] bool aCancelBubble);
 		
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetIsCharAttribute();
 		
@@ -281,19 +288,19 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new int GetClientYAttribute();
 		
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetCtrlKeyAttribute();
 		
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetShiftKeyAttribute();
 		
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetAltKeyAttribute();
 		
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetMetaKeyAttribute();
 		
@@ -305,7 +312,7 @@ namespace Gecko
 		new nsIDOMEventTarget GetRelatedTargetAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void InitMouseEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase typeArg, [MarshalAs(UnmanagedType.Bool)] bool canBubbleArg, [MarshalAs(UnmanagedType.Bool)] bool cancelableArg, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow viewArg, int detailArg, int screenXArg, int screenYArg, int clientXArg, int clientYArg, [MarshalAs(UnmanagedType.Bool)] bool ctrlKeyArg, [MarshalAs(UnmanagedType.Bool)] bool altKeyArg, [MarshalAs(UnmanagedType.Bool)] bool shiftKeyArg, [MarshalAs(UnmanagedType.Bool)] bool metaKeyArg, ushort buttonArg, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventTarget relatedTargetArg);
+		new void InitMouseEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase typeArg, [MarshalAs(UnmanagedType.U1)] bool canBubbleArg, [MarshalAs(UnmanagedType.U1)] bool cancelableArg, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow viewArg, int detailArg, int screenXArg, int screenYArg, int clientXArg, int clientYArg, [MarshalAs(UnmanagedType.U1)] bool ctrlKeyArg, [MarshalAs(UnmanagedType.U1)] bool altKeyArg, [MarshalAs(UnmanagedType.U1)] bool shiftKeyArg, [MarshalAs(UnmanagedType.U1)] bool metaKeyArg, ushort buttonArg, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventTarget relatedTargetArg);
 		
 		/// <summary>
         /// ranges between 0.0 and 1.0
@@ -319,18 +326,18 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void InitNSMouseEvent(
 					[MarshalAs(UnmanagedType.LPStruct)] nsAStringBase typeArg, 
-					[MarshalAs(UnmanagedType.Bool)] bool canBubbleArg, 
-					[MarshalAs(UnmanagedType.Bool)] bool cancelableArg, 
+					[MarshalAs(UnmanagedType.U1)] bool canBubbleArg, 
+					[MarshalAs(UnmanagedType.U1)] bool cancelableArg, 
 					[MarshalAs(UnmanagedType.Interface)] nsIDOMWindow viewArg, 
 					int detailArg, 
 					int screenXArg, 
 					int screenYArg, 
 					int clientXArg, 
 					int clientYArg, 
-					[MarshalAs(UnmanagedType.Bool)] bool ctrlKeyArg, 
-					[MarshalAs(UnmanagedType.Bool)] bool altKeyArg, 
-					[MarshalAs(UnmanagedType.Bool)] bool shiftKeyArg, 
-					[MarshalAs(UnmanagedType.Bool)] bool metaKeyArg, 
+					[MarshalAs(UnmanagedType.U1)] bool ctrlKeyArg, 
+					[MarshalAs(UnmanagedType.U1)] bool altKeyArg, 
+					[MarshalAs(UnmanagedType.U1)] bool shiftKeyArg, 
+					[MarshalAs(UnmanagedType.U1)] bool metaKeyArg, 
 					ushort buttonArg, 
 					[MarshalAs(UnmanagedType.Interface)] nsIDOMEventTarget relatedTargetArg, 
 					float pressure, 
@@ -378,18 +385,18 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void InitSimpleGestureEvent(
 					[MarshalAs(UnmanagedType.LPStruct)] nsAStringBase typeArg, 
-					[MarshalAs(UnmanagedType.Bool)] bool canBubbleArg, 
-					[MarshalAs(UnmanagedType.Bool)] bool cancelableArg, 
+					[MarshalAs(UnmanagedType.U1)] bool canBubbleArg, 
+					[MarshalAs(UnmanagedType.U1)] bool cancelableArg, 
 					[MarshalAs(UnmanagedType.Interface)] nsIDOMWindow viewArg, 
 					int detailArg, 
 					int screenXArg, 
 					int screenYArg, 
 					int clientXArg, 
 					int clientYArg, 
-					[MarshalAs(UnmanagedType.Bool)] bool ctrlKeyArg, 
-					[MarshalAs(UnmanagedType.Bool)] bool altKeyArg, 
-					[MarshalAs(UnmanagedType.Bool)] bool shiftKeyArg, 
-					[MarshalAs(UnmanagedType.Bool)] bool metaKeyArg, 
+					[MarshalAs(UnmanagedType.U1)] bool ctrlKeyArg, 
+					[MarshalAs(UnmanagedType.U1)] bool altKeyArg, 
+					[MarshalAs(UnmanagedType.U1)] bool shiftKeyArg, 
+					[MarshalAs(UnmanagedType.U1)] bool metaKeyArg, 
 					ushort buttonArg, 
 					[MarshalAs(UnmanagedType.Interface)] nsIDOMEventTarget relatedTargetArg, 
 					uint directionArg, 

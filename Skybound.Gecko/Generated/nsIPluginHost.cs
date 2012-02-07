@@ -42,7 +42,7 @@ namespace Gecko
         /// also be reloaded
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ReloadPlugins([MarshalAs(UnmanagedType.Bool)] bool reloadPages);
+		void ReloadPlugins([MarshalAs(UnmanagedType.U1)] bool reloadPages);
 		
 		/// <summary>Member GetPluginTags </summary>
 		/// <param name='aPluginCount'> </param>
@@ -83,7 +83,7 @@ namespace Gecko
         /// will be determined; if any data for the base domain or its
         /// subdomains is found, return true.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool SiteHasData([MarshalAs(UnmanagedType.Interface)] nsIPluginTag plugin, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase domain);
 	}

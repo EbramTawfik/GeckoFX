@@ -43,7 +43,7 @@ namespace Gecko
         /// Indicates if the object can go back.  If true this indicates that
         /// there is back session history available for navigation.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetCanGoBackAttribute();
 		
@@ -51,7 +51,7 @@ namespace Gecko
         /// Indicates if the object can go forward.  If true this indicates that
         /// there is forward session history available for navigation
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetCanGoForwardAttribute();
 		

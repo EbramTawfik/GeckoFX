@@ -54,8 +54,8 @@ namespace Gecko
 		/// <param name='uri'> </param>
 		/// <param name='whenOffline'> </param>
 		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool MozIsLocallyAvailable([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase uri, [MarshalAs(UnmanagedType.Bool)] bool whenOffline);
+		bool MozIsLocallyAvailable([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase uri, [MarshalAs(UnmanagedType.U1)] bool whenOffline);
 	}
 }

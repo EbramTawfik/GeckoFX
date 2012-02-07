@@ -80,7 +80,7 @@ namespace Gecko
         /// correlates to whether other code (e.g., Firefox, XULRunner) was
         /// compiled with DEBUG defined.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsDebugBuildAttribute();
 		

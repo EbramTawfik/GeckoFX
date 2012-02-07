@@ -49,6 +49,6 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDocumentFragment ParseFragment([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase fragment, [MarshalAs(UnmanagedType.Bool)] bool isXML, [MarshalAs(UnmanagedType.Interface)] nsIURI baseURI, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement element);
+		nsIDOMDocumentFragment ParseFragment([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase fragment, [MarshalAs(UnmanagedType.U1)] bool isXML, [MarshalAs(UnmanagedType.Interface)] nsIURI baseURI, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement element);
 	}
 }

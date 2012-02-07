@@ -438,7 +438,7 @@ namespace Gecko
 		/// <param name='endAngle'> </param>
 		/// <param name='anticlockwise'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Arc(float x, float y, float r, float startAngle, float endAngle, [MarshalAs(UnmanagedType.Bool)] bool anticlockwise);
+		void Arc(float x, float y, float r, float startAngle, float endAngle, [MarshalAs(UnmanagedType.U1)] bool anticlockwise);
 		
 		/// <summary>Member Rect </summary>
 		/// <param name='x'> </param>
@@ -534,7 +534,7 @@ namespace Gecko
 		/// <summary>
         /// point-membership test
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsPointInPath(float x, float y);
 		
@@ -567,7 +567,7 @@ namespace Gecko
 		/// <param name='dirtyWidth'> </param>
 		/// <param name='dirtyHeight'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PutImageData_explicit(int x, int y, uint width, uint height, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=5)] System.IntPtr[] dataPtr, uint dataLen, [MarshalAs(UnmanagedType.Bool)] bool hasDirtyRect, int dirtyX, int dirtyY, int dirtyWidth, int dirtyHeight);
+		void PutImageData_explicit(int x, int y, uint width, uint height, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=5)] System.IntPtr[] dataPtr, uint dataLen, [MarshalAs(UnmanagedType.U1)] bool hasDirtyRect, int dirtyX, int dirtyY, int dirtyWidth, int dirtyHeight);
 		
 		/// <summary>
         /// a separate ImageData object.
@@ -578,7 +578,7 @@ namespace Gecko
 		/// <summary>
         /// if scaled.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetMozImageSmoothingEnabledAttribute();
 		
@@ -586,7 +586,7 @@ namespace Gecko
         /// if scaled.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozImageSmoothingEnabledAttribute([MarshalAs(UnmanagedType.Bool)] bool aMozImageSmoothingEnabled);
+		void SetMozImageSmoothingEnabledAttribute([MarshalAs(UnmanagedType.U1)] bool aMozImageSmoothingEnabled);
 		
 		/// <summary>
         /// Renders a region of a window into the canvas.  The contents of

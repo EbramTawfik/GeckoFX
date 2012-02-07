@@ -36,7 +36,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("56aaaf03-f8f1-4c06-9cb5-f3e33a39e5c3")]
+	[Guid("1f249e8b-7b41-44c0-a8d5-15298c1198cd")]
 	public interface nsIDOMElement : nsIDOMNode
 	{
 		
@@ -118,13 +118,13 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMNode AppendChild([MarshalAs(UnmanagedType.Interface)] nsIDOMNode newChild);
 		
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool HasChildNodes();
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMNode CloneNode([MarshalAs(UnmanagedType.Bool)] bool deep);
+		new nsIDOMNode CloneNode([MarshalAs(UnmanagedType.U1)] bool deep);
 		
 		/// <summary>
         /// Modified in DOM Level 2:
@@ -135,7 +135,7 @@ namespace Gecko
 		/// <summary>
         /// Introduced in DOM Level 2:
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsSupported([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase feature, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase version);
 		
@@ -160,7 +160,7 @@ namespace Gecko
 		/// <summary>
         /// Introduced in DOM Level 2:
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool HasAttributes();
 		
@@ -191,20 +191,13 @@ namespace Gecko
 		/// <summary>
         /// Introduced in DOM Level 3:
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool IsSameNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode other);
-		
-		/// <summary>
-        /// Introduced in DOM Level 3:
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void LookupPrefix([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase namespaceURI, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// Introduced in DOM Level 3:
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsDefaultNamespace([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase namespaceURI);
 		
@@ -217,7 +210,7 @@ namespace Gecko
 		/// <summary>
         /// Introduced in DOM Level 3:
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsEqualNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode arg);
 		
@@ -235,7 +228,7 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIVariant GetUserData([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase key);
 		
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool Contains([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aOther);
 		
@@ -316,15 +309,27 @@ namespace Gecko
 		/// <summary>
         /// Introduced in DOM Level 2:
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool HasAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name);
 		
 		/// <summary>
         /// Introduced in DOM Level 2:
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool HasAttributeNS([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase namespaceURI, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase localName);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		System.IntPtr GetOnmouseenterAttribute(System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOnmouseenterAttribute(System.IntPtr aOnmouseenter, System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		System.IntPtr GetOnmouseleaveAttribute(System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOnmouseleaveAttribute(System.IntPtr aOnmouseleave, System.IntPtr jsContext);
 	}
 }

@@ -67,7 +67,7 @@ namespace Gecko
         ///
         /// @return True if the address is contained in the certificate.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool ContainsEmailAddress([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aEmailAddress);
 		
@@ -196,7 +196,7 @@ namespace Gecko
         /// @param usages The array of human readable usages.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetUsagesArray([MarshalAs(UnmanagedType.Bool)] bool localOnly, ref uint verified, ref uint count, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] ref System.IntPtr[] usages);
+		new void GetUsagesArray([MarshalAs(UnmanagedType.U1)] bool localOnly, ref uint verified, ref uint count, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] ref System.IntPtr[] usages);
 		
 		/// <summary>
         /// Obtain a single comma separated human readable string describing
@@ -208,7 +208,7 @@ namespace Gecko
         /// @param purposes The string listing the usages.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetUsagesString([MarshalAs(UnmanagedType.Bool)] bool localOnly, ref uint verified, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase usages);
+		new void GetUsagesString([MarshalAs(UnmanagedType.U1)] bool localOnly, ref uint verified, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase usages);
 		
 		/// <summary>
         /// Verify the certificate for a particular usage.
@@ -243,7 +243,7 @@ namespace Gecko
         ///
         /// @return Whether the certificates are equal
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool Equals([MarshalAs(UnmanagedType.Interface)] nsIX509Cert other);
 		
@@ -263,7 +263,7 @@ namespace Gecko
         /// Async version of nsIX509Cert::getUsagesArray()
         ///
         /// Will not block, will request results asynchronously,
-        /// availability of results will be notified.
+        /// availability of results will be notified on the main thread.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RequestUsagesArrayAsync([MarshalAs(UnmanagedType.Interface)] nsICertVerificationListener cvl);
@@ -280,7 +280,7 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ExportAsCMS(uint chainMode, ref uint length, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] ref System.IntPtr[] data);
 		
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsSelfSignedAttribute();
 		

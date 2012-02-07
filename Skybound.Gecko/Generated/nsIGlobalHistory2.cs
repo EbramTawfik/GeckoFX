@@ -54,7 +54,7 @@ namespace Gecko
         /// referrer.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Bool)] bool aRedirect, [MarshalAs(UnmanagedType.Bool)] bool aToplevel, [MarshalAs(UnmanagedType.Interface)] nsIURI aReferrer);
+		void AddURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.U1)] bool aRedirect, [MarshalAs(UnmanagedType.U1)] bool aToplevel, [MarshalAs(UnmanagedType.Interface)] nsIURI aReferrer);
 		
 		/// <summary>
         /// Checks to see whether the given URI is in history.
@@ -62,7 +62,7 @@ namespace Gecko
         /// @param aURI the uri to the page
         /// @return true if a URI has been visited
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsVisited([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 		

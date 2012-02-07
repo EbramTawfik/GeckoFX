@@ -81,6 +81,6 @@ namespace Gecko
         /// @param aMakeRel Rewrite links as relative vs. absolute
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RewriteAllURIs([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aOldPat, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNewPat, [MarshalAs(UnmanagedType.Bool)] bool aMakeRel);
+		void RewriteAllURIs([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aOldPat, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNewPat, [MarshalAs(UnmanagedType.U1)] bool aMakeRel);
 	}
 }

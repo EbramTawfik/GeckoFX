@@ -47,7 +47,7 @@ namespace Gecko
 		/// <summary>
         /// If the channel being authenticated is using SSL.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsSSLAttribute();
 		
@@ -55,7 +55,7 @@ namespace Gecko
         /// Returns if the proxy HTTP method used is CONNECT. If no proxy is being
         /// used it must return PR_FALSE.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetProxyMethodIsConnectAttribute();
 		
@@ -155,6 +155,6 @@ namespace Gecko
         /// If the user was cancelled has cancelled the authentication prompt.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnAuthCancelled([MarshalAs(UnmanagedType.Bool)] bool userCancel);
+		void OnAuthCancelled([MarshalAs(UnmanagedType.U1)] bool userCancel);
 	}
 }

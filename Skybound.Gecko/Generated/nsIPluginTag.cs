@@ -61,24 +61,24 @@ namespace Gecko
 		
 		/// <summary>Member GetDisabledAttribute </summary>
 		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetDisabledAttribute();
 		
 		/// <summary>Member SetDisabledAttribute </summary>
 		/// <param name='aDisabled'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDisabledAttribute([MarshalAs(UnmanagedType.Bool)] bool aDisabled);
+		void SetDisabledAttribute([MarshalAs(UnmanagedType.U1)] bool aDisabled);
 		
 		/// <summary>Member GetBlocklistedAttribute </summary>
 		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetBlocklistedAttribute();
 		
 		/// <summary>Member SetBlocklistedAttribute </summary>
 		/// <param name='aBlocklisted'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBlocklistedAttribute([MarshalAs(UnmanagedType.Bool)] bool aBlocklisted);
+		void SetBlocklistedAttribute([MarshalAs(UnmanagedType.U1)] bool aBlocklisted);
 	}
 }

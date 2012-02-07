@@ -54,7 +54,7 @@ namespace Gecko
         /// or error code of nsIUnicodeDecoder in case of conversion failure
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ConvertStringToUTF8([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aString, [MarshalAs(UnmanagedType.LPStr)] string aCharset, [MarshalAs(UnmanagedType.Bool)] bool aSkipCheck, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase retval);
+		void ConvertStringToUTF8([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aString, [MarshalAs(UnmanagedType.LPStr)] string aCharset, [MarshalAs(UnmanagedType.U1)] bool aSkipCheck, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase retval);
 		
 		/// <summary>
         /// Ensure that |aSpec| (after URL-unescaping it) is encoded in UTF-8.

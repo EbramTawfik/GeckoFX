@@ -47,6 +47,6 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIHandlerInfo GetURLHandlerInfoFromOS([MarshalAs(UnmanagedType.Interface)] nsIURI aURL, [MarshalAs(UnmanagedType.Bool)] ref bool aFound);
+		nsIHandlerInfo GetURLHandlerInfoFromOS([MarshalAs(UnmanagedType.Interface)] nsIURI aURL, [MarshalAs(UnmanagedType.U1)] ref bool aFound);
 	}
 }

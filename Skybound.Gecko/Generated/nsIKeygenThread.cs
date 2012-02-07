@@ -61,6 +61,6 @@ namespace Gecko
         /// it, we are not allowed to close it.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UserCanceled([MarshalAs(UnmanagedType.Bool)] ref bool threadAlreadyClosedDialog);
+		void UserCanceled([MarshalAs(UnmanagedType.U1)] ref bool threadAlreadyClosedDialog);
 	}
 }

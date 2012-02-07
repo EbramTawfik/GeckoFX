@@ -51,7 +51,7 @@ namespace Gecko
 		/// <summary>
         /// Set to false if we don't want to update this table.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetNeedsUpdateAttribute();
 		
@@ -59,7 +59,7 @@ namespace Gecko
         /// Set to false if we don't want to update this table.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetNeedsUpdateAttribute([MarshalAs(UnmanagedType.Bool)] bool aNeedsUpdate);
+		void SetNeedsUpdateAttribute([MarshalAs(UnmanagedType.U1)] bool aNeedsUpdate);
 		
 		/// <summary>
         /// In the simple case, exists just looks up the string in the

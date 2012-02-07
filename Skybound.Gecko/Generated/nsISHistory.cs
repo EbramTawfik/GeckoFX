@@ -99,7 +99,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIHistoryEntry GetEntryAtIndex(int index, [MarshalAs(UnmanagedType.Bool)] bool modifyIndex);
+		nsIHistoryEntry GetEntryAtIndex(int index, [MarshalAs(UnmanagedType.U1)] bool modifyIndex);
 		
 		/// <summary>
         /// Called to purge older documents from history.

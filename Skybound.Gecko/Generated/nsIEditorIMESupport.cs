@@ -49,7 +49,7 @@ namespace Gecko
 		/// <summary>
         /// whether this editor has active IME transaction
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetComposingAttribute();
 	}

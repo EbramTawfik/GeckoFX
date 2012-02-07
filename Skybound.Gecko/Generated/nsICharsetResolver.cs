@@ -57,7 +57,7 @@ namespace Gecko
         /// charset could be determined.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RequestCharset([MarshalAs(UnmanagedType.Interface)] nsIWebNavigation aWebNavigation, [MarshalAs(UnmanagedType.Interface)] nsIChannel aChannel, [MarshalAs(UnmanagedType.Bool)] ref bool aWantCharset, [MarshalAs(UnmanagedType.Interface)] ref nsISupports aClosure, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
+		void RequestCharset([MarshalAs(UnmanagedType.Interface)] nsIWebNavigation aWebNavigation, [MarshalAs(UnmanagedType.Interface)] nsIChannel aChannel, [MarshalAs(UnmanagedType.U1)] ref bool aWantCharset, [MarshalAs(UnmanagedType.Interface)] ref nsISupports aClosure, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
 		
 		/// <summary>
         /// notifyResolvedCharset

@@ -53,7 +53,7 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Item(uint index, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool Contains([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase token);
 		
@@ -63,7 +63,7 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Remove([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase token);
 		
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool Toggle([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase token);
 		

@@ -47,7 +47,7 @@ namespace Gecko
         /// @note Do not mix readLine with other read functions.
         /// Doing so can cause various problems and is not supported.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool ReadLine([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aLine);
 	}

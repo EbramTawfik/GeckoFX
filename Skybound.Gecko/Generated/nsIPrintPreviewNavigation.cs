@@ -47,7 +47,7 @@ namespace Gecko
         ///
         /// Return - PR_TRUE if success
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool NextPage();
 		
@@ -56,7 +56,7 @@ namespace Gecko
         ///
         /// Return - PR_TRUE if success
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool PreviousPage();
 		
@@ -66,7 +66,7 @@ namespace Gecko
         /// aPageNumber - Page to go preview
         /// Return - PR_TRUE if success
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GoToPage(uint aPageNumber);
 		
@@ -76,7 +76,7 @@ namespace Gecko
         /// aNumPages - number of pages to skip including the current page. Neg. goes back
         /// Return - true if success
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool SkipPages(int aNumPages);
 	}

@@ -48,18 +48,18 @@ namespace Gecko
 		/// <summary>Member Cleanup </summary>
 		/// <param name='aDestroyingFrames'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Cleanup([MarshalAs(UnmanagedType.Bool)] bool aDestroyingFrames);
+		void Cleanup([MarshalAs(UnmanagedType.U1)] bool aDestroyingFrames);
 		
 		/// <summary>Member GetEnableRealTimeSpellAttribute </summary>
 		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetEnableRealTimeSpellAttribute();
 		
 		/// <summary>Member SetEnableRealTimeSpellAttribute </summary>
 		/// <param name='aEnableRealTimeSpell'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetEnableRealTimeSpellAttribute([MarshalAs(UnmanagedType.Bool)] bool aEnableRealTimeSpell);
+		void SetEnableRealTimeSpellAttribute([MarshalAs(UnmanagedType.U1)] bool aEnableRealTimeSpell);
 		
 		/// <summary>Member SpellCheckAfterEditorChange </summary>
 		/// <param name='aAction'> </param>

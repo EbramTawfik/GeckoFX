@@ -118,7 +118,7 @@ namespace Gecko
         /// nsIWeakReference.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AppendElement([MarshalAs(UnmanagedType.Interface)] nsISupports element, [MarshalAs(UnmanagedType.Bool)] bool weak);
+		void AppendElement([MarshalAs(UnmanagedType.Interface)] nsISupports element, [MarshalAs(UnmanagedType.U1)] bool weak);
 		
 		/// <summary>
         /// removeElementAt()
@@ -156,7 +156,7 @@ namespace Gecko
         /// nsIWeakReference.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InsertElementAt([MarshalAs(UnmanagedType.Interface)] nsISupports element, uint index, [MarshalAs(UnmanagedType.Bool)] bool weak);
+		void InsertElementAt([MarshalAs(UnmanagedType.Interface)] nsISupports element, uint index, [MarshalAs(UnmanagedType.U1)] bool weak);
 		
 		/// <summary>
         /// replaceElementAt()
@@ -182,7 +182,7 @@ namespace Gecko
         /// nsIWeakReference.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ReplaceElementAt([MarshalAs(UnmanagedType.Interface)] nsISupports element, uint index, [MarshalAs(UnmanagedType.Bool)] bool weak);
+		void ReplaceElementAt([MarshalAs(UnmanagedType.Interface)] nsISupports element, uint index, [MarshalAs(UnmanagedType.U1)] bool weak);
 		
 		/// <summary>
         /// clear()

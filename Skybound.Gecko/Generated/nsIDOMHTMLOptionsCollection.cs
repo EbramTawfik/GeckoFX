@@ -32,7 +32,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("bce0213c-f70f-488f-b93f-688acca55d63")]
+	[Guid("429b041b-06df-486c-9a3a-a1d901cc76a2")]
 	public interface nsIDOMHTMLOptionsCollection
 	{
 		
@@ -49,14 +49,46 @@ namespace Gecko
 		void SetLengthAttribute(uint aLength);
 		
 		/// <summary>
-        /// raises(DOMException) on setting
+        /// FIXME item should just be inherited from nsIDOMHTMLCollection
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMNode Item(uint index);
 		
+		/// <summary>
+        ///       multiple matching items
+        /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMNode NamedItem([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name);
+		
+		/// <summary>
+        /// Get the node for the name.  Returns null if no node exists for the name.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsISupports GetNamedItem([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, ref System.IntPtr cache);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		int GetSelectedIndexAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetSelectedIndexAttribute(int aSelectedIndex);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOption(uint index, [MarshalAs(UnmanagedType.Interface)] nsIDOMHTMLOptionElement option);
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMHTMLSelectElement GetSelectAttribute();
+		
+		/// <summary>
+        ///   void add(in nsIDOMHTMLOptionElement, in long)
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Add([MarshalAs(UnmanagedType.Interface)] nsIDOMHTMLOptionElement option, [MarshalAs(UnmanagedType.Interface)] nsIVariant before);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Remove(int index);
 	}
 }

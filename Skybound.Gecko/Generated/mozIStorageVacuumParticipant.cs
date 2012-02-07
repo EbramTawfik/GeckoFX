@@ -70,7 +70,7 @@ namespace Gecko
         /// "heavy-io-task" notification through the observer service with the
         /// data argument being either "vacuum-begin" or "vacuum-end".
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool OnBeginVacuum();
 		
@@ -81,6 +81,6 @@ namespace Gecko
         /// reports if the vacuum succeeded or failed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnEndVacuum([MarshalAs(UnmanagedType.Bool)] bool aSucceeded);
+		void OnEndVacuum([MarshalAs(UnmanagedType.U1)] bool aSucceeded);
 	}
 }

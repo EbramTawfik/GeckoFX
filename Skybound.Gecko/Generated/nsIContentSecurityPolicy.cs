@@ -42,7 +42,7 @@ namespace Gecko
         /// enforce.  This is a barrier for the nsDocument so it doesn't load any
         /// sub-content until either it knows that a CSP is ready or will not be used.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsInitializedAttribute();
 		
@@ -52,13 +52,13 @@ namespace Gecko
         /// sub-content until either it knows that a CSP is ready or will not be used.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetIsInitializedAttribute([MarshalAs(UnmanagedType.Bool)] bool aIsInitialized);
+		void SetIsInitializedAttribute([MarshalAs(UnmanagedType.U1)] bool aIsInitialized);
 		
 		/// <summary>
         /// When set to true, content load-blocking and fail-closed are disabled: CSP
         /// will ONLY send reports, and not modify behavior.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetReportOnlyModeAttribute();
 		
@@ -67,7 +67,7 @@ namespace Gecko
         /// will ONLY send reports, and not modify behavior.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetReportOnlyModeAttribute([MarshalAs(UnmanagedType.Bool)] bool aReportOnlyMode);
+		void SetReportOnlyModeAttribute([MarshalAs(UnmanagedType.U1)] bool aReportOnlyMode);
 		
 		/// <summary>
         /// A read-only string version of the policy for debugging.
@@ -78,7 +78,7 @@ namespace Gecko
 		/// <summary>
         /// Whether this policy allows in-page script.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetAllowsInlineScriptAttribute();
 		
@@ -86,7 +86,7 @@ namespace Gecko
         /// whether this policy allows eval and eval-like functions
         /// such as setTimeout("code string", time).
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetAllowsEvalAttribute();
 		
@@ -148,7 +148,7 @@ namespace Gecko
         /// @return
         /// true if the frame's ancestors are all permitted by policy
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool PermitsAncestry([MarshalAs(UnmanagedType.Interface)] nsIDocShell docShell);
 		

@@ -36,25 +36,25 @@ namespace Gecko
 		
 		/// <summary>Member GetShowHiddenFilesAttribute </summary>
 		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetShowHiddenFilesAttribute();
 		
 		/// <summary>Member SetShowHiddenFilesAttribute </summary>
 		/// <param name='aShowHiddenFiles'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetShowHiddenFilesAttribute([MarshalAs(UnmanagedType.Bool)] bool aShowHiddenFiles);
+		void SetShowHiddenFilesAttribute([MarshalAs(UnmanagedType.U1)] bool aShowHiddenFiles);
 		
 		/// <summary>Member GetShowOnlyDirectoriesAttribute </summary>
 		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetShowOnlyDirectoriesAttribute();
 		
 		/// <summary>Member SetShowOnlyDirectoriesAttribute </summary>
 		/// <param name='aShowOnlyDirectories'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetShowOnlyDirectoriesAttribute([MarshalAs(UnmanagedType.Bool)] bool aShowOnlyDirectories);
+		void SetShowOnlyDirectoriesAttribute([MarshalAs(UnmanagedType.U1)] bool aShowOnlyDirectories);
 		
 		/// <summary>Member GetSortTypeAttribute </summary>
 		/// <returns>A System.Int16</returns>
@@ -63,7 +63,7 @@ namespace Gecko
 		
 		/// <summary>Member GetReverseSortAttribute </summary>
 		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetReverseSortAttribute();
 		
@@ -71,7 +71,7 @@ namespace Gecko
 		/// <param name='sortType'> </param>
 		/// <param name='reverseSort'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Sort(short sortType, [MarshalAs(UnmanagedType.Bool)] bool reverseSort);
+		void Sort(short sortType, [MarshalAs(UnmanagedType.U1)] bool reverseSort);
 		
 		/// <summary>Member SetDirectory </summary>
 		/// <param name='directory'> </param>

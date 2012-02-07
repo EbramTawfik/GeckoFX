@@ -66,14 +66,14 @@ namespace Gecko
 		
 		/// <summary>
         ///Disable entire author style level (including HTML presentation hints) </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetAuthorStyleDisabledAttribute();
 		
 		/// <summary>
         ///Disable entire author style level (including HTML presentation hints) </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAuthorStyleDisabledAttribute([MarshalAs(UnmanagedType.Bool)] bool aAuthorStyleDisabled);
+		void SetAuthorStyleDisabledAttribute([MarshalAs(UnmanagedType.U1)] bool aAuthorStyleDisabled);
 		
 		/// <summary>
         ///XXX Comment here!

@@ -77,6 +77,16 @@ namespace Gecko
         /// @note Due to a bug in SQLite, if you use the shared cache (openDatabase),
         /// you end up with the same privileges as the first connection opened
         /// regardless of what is specified in aReadOnly.
+        /// @note The following pragmas are copied over to a read-only clone:
+        /// - cache_size
+        /// - temp_store
+        /// The following pragmas are copied over to a writeable clone:
+        /// - cache_size
+        /// - temp_store
+        /// - foreign_keys
+        /// - journal_size_limit
+        /// - synchronous
+        /// - wal_autocheckpoint
         ///
         /// @throws NS_ERROR_UNEXPECTED
         /// If this connection is a memory database.
@@ -87,13 +97,13 @@ namespace Gecko
         /// @return the cloned database connection.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		mozIStorageConnection Clone([MarshalAs(UnmanagedType.Bool)] bool aReadOnly);
+		mozIStorageConnection Clone([MarshalAs(UnmanagedType.U1)] bool aReadOnly);
 		
 		/// <summary>
         /// Indicates if the connection is open and ready to use.  This will be false
         /// if the connection failed to open, or it has been closed.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetConnectionReadyAttribute();
 		
@@ -206,7 +216,7 @@ namespace Gecko
         /// The table to check
         /// @return TRUE if table exists, FALSE otherwise.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool TableExists([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aTableName);
 		
@@ -216,14 +226,14 @@ namespace Gecko
         /// @param aIndexName   The index to check
         /// @return TRUE if the index exists, FALSE otherwise.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IndexExists([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aIndexName);
 		
 		/// <summary>
         /// Returns true if a transaction is active on this connection.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetTransactionInProgressAttribute();
 		

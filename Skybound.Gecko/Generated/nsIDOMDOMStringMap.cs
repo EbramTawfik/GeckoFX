@@ -37,7 +37,7 @@ namespace Gecko
 		/// <summary>Member HasDataAttr </summary>
 		/// <param name='prop'> </param>
 		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool HasDataAttr([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase prop);
 		

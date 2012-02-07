@@ -35,7 +35,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("5869c5e5-743d-473c-bb71-41752146d373")]
+	[Guid("CCF9E98A-E442-4061-9F74-94539DD9FE9E")]
 	public interface nsIXULWindow
 	{
 		
@@ -49,7 +49,7 @@ namespace Gecko
 		/// <summary>
         /// Indicates if this window is instrinsically sized.	
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIntrinsicallySizedAttribute();
 		
@@ -57,7 +57,7 @@ namespace Gecko
         /// Indicates if this window is instrinsically sized.	
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetIntrinsicallySizedAttribute([MarshalAs(UnmanagedType.Bool)] bool aIntrinsicallySized);
+		void SetIntrinsicallySizedAttribute([MarshalAs(UnmanagedType.U1)] bool aIntrinsicallySized);
 		
 		/// <summary>
         /// The primary content shell.
@@ -112,7 +112,7 @@ namespace Gecko
         /// generally centered horizontally and 1/3 down from the top.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Center([MarshalAs(UnmanagedType.Interface)] nsIXULWindow aRelative, [MarshalAs(UnmanagedType.Bool)] bool aScreen, [MarshalAs(UnmanagedType.Bool)] bool aAlert);
+		void Center([MarshalAs(UnmanagedType.Interface)] nsIXULWindow aRelative, [MarshalAs(UnmanagedType.U1)] bool aScreen, [MarshalAs(UnmanagedType.U1)] bool aAlert);
 		
 		/// <summary>
         /// Shows the window as a modal window. That is, ensures that it is visible
@@ -163,7 +163,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIXULWindow CreateNewWindow(int aChromeFlags, [MarshalAs(UnmanagedType.Interface)] nsIAppShell aAppShell);
+		nsIXULWindow CreateNewWindow(int aChromeFlags);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

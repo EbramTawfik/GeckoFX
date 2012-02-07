@@ -99,7 +99,7 @@ namespace Gecko
         /// port number is encountered, this function will be called to ask if the
         /// protocol handler wants to override the ban.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool AllowPort(int port, [MarshalAs(UnmanagedType.LPStr)] string scheme);
 		
@@ -109,7 +109,7 @@ namespace Gecko
         /// @param scheme external scheme.
         /// @return TRUE if the external handler exists for the input scheme, FALSE otherwise.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool ExternalAppExistsForScheme([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase scheme);
 	}

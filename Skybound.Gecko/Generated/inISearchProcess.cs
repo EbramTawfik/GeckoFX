@@ -37,7 +37,7 @@ namespace Gecko
 		/// <summary>
         /// indicates if an asynchronous search is in progress
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsActiveAttribute();
 		
@@ -50,7 +50,7 @@ namespace Gecko
 		/// <summary>
         /// other than the most recent one, and getResults will return null always.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetHoldResultsAttribute();
 		
@@ -58,7 +58,7 @@ namespace Gecko
         /// other than the most recent one, and getResults will return null always.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetHoldResultsAttribute([MarshalAs(UnmanagedType.Bool)] bool aHoldResults);
+		void SetHoldResultsAttribute([MarshalAs(UnmanagedType.U1)] bool aHoldResults);
 		
 		/// <summary>
         /// start a synchronous search
@@ -81,7 +81,7 @@ namespace Gecko
 		/// <summary>
         /// and is not for use by those who just wish to call searchAsync
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool SearchStep();
 		

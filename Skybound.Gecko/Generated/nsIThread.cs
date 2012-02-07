@@ -69,7 +69,7 @@ namespace Gecko
         /// event target will run on the current thread (i.e., the thread calling
         /// this method).
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsOnCurrentThread();
 		
@@ -117,7 +117,7 @@ namespace Gecko
         /// Indicates that this method was erroneously called when this thread was
         /// not the current thread.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool HasPendingEvents();
 		
@@ -138,8 +138,8 @@ namespace Gecko
         /// Indicates that this method was erroneously called when this thread was
         /// not the current thread.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool ProcessNextEvent([MarshalAs(UnmanagedType.Bool)] bool mayWait);
+		bool ProcessNextEvent([MarshalAs(UnmanagedType.U1)] bool mayWait);
 	}
 }

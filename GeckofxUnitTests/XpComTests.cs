@@ -18,7 +18,7 @@ namespace GeckofxUnitTests
 				if (Xpcom.IsLinux)
 					return "/usr/lib/firefox-9.0.1/";
 				
-				return @"C:\Program Files (x86)\Mozilla Firefox BETA";
+				return @"C:\Program Files (x86)\Mozilla Firefox 10.0";
 			}
 		}
 
@@ -161,23 +161,17 @@ namespace GeckofxUnitTests
 		}
 
 		[Test]
-		public void CreateInstance_CreatingChildProcessMessageManager_ThrowsClassNotFound()
-		{			
-			Assert.Throws<COMException>( () => Xpcom.CreateInstance<nsIFrameMessageManager>("@mozilla.org/childprocessmessagemanager;1"));			
+		public void CreateInstance_CreatingChildProcessMessageManager_ReturnsNull()
+		{
+			var instance = Xpcom.CreateInstance<nsIFrameMessageManager>("@mozilla.org/childprocessmessagemanager;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
 		}
 
 		[Test]
 		public void CreateInstance_CreatingContentPolicy_ReturnsValidInstance()
 		{
 			var instance = Xpcom.CreateInstance<nsIContentPolicy>("@mozilla.org/layout/content-policy;1");
-			Assert.IsNotNull(instance);
-			Marshal.ReleaseComObject(instance);
-		}
-
-		[Test]
-		public void CreateInstance_CreatingFileReader_ReturnsValidInstance()
-		{			
-			var instance = Xpcom.CreateInstance<nsIDOMFileReader>("@mozilla.org/files/filereader;1");
 			Assert.IsNotNull(instance);
 			Marshal.ReleaseComObject(instance);
 		}

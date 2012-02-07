@@ -106,7 +106,7 @@ namespace Gecko
         /// @param aEnable true to enable, or false to disable the style sheet
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EnableStyleSheet([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aURL, [MarshalAs(UnmanagedType.Bool)] bool aEnable);
+		void EnableStyleSheet([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aURL, [MarshalAs(UnmanagedType.U1)] bool aEnable);
 		
 		/// <summary>
         ///Get the nsCSSStyleSheet associated with the given URL.

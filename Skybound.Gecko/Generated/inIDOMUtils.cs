@@ -30,7 +30,7 @@ namespace Gecko
 	/// <summary>inIDOMUtils </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("70205D9E-EFD7-4658-8E9E-690400B57FD0")]
+	[Guid("0D9E5532-F5D5-44DD-94CA-D9EED5778B1C")]
 	public interface inIDOMUtils
 	{
 		
@@ -48,9 +48,16 @@ namespace Gecko
 		uint GetRuleLine([MarshalAs(UnmanagedType.Interface)] nsIDOMCSSStyleRule aRule);
 		
 		/// <summary>
+        /// Returns true if the string names a property that is inherited by default.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool IsInheritedProperty([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPropertyName);
+		
+		/// <summary>
         /// DOM Node utilities
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsIgnorableWhitespace([MarshalAs(UnmanagedType.Interface)] nsIDOMCharacterData aDataNode);
 		
@@ -59,7 +66,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMNode GetParentForNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aNode, [MarshalAs(UnmanagedType.Bool)] bool aShowingAnonymousContent);
+		nsIDOMNode GetParentForNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aNode, [MarshalAs(UnmanagedType.U1)] bool aShowingAnonymousContent);
 		
 		/// <summary>Member GetChildrenForNode </summary>
 		/// <param name='aNode'> </param>
@@ -67,7 +74,7 @@ namespace Gecko
 		/// <returns>A nsIDOMNodeList</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMNodeList GetChildrenForNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aNode, [MarshalAs(UnmanagedType.Bool)] bool aShowingAnonymousContent);
+		nsIDOMNodeList GetChildrenForNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aNode, [MarshalAs(UnmanagedType.U1)] bool aShowingAnonymousContent);
 		
 		/// <summary>
         /// XBL utilities

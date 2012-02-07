@@ -92,7 +92,7 @@ namespace Gecko
 		/// <summary>
         /// Visibility of the window.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetVisibilityAttribute();
 		
@@ -100,7 +100,7 @@ namespace Gecko
         /// Visibility of the window.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetVisibilityAttribute([MarshalAs(UnmanagedType.Bool)] bool aVisibility);
+		void SetVisibilityAttribute([MarshalAs(UnmanagedType.U1)] bool aVisibility);
 		
 		/// <summary>
         /// Title of the window.

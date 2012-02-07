@@ -76,7 +76,7 @@ namespace Gecko
 	/// <summary>nsIDOMDeviceMotionEvent </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("66E8D2C9-0826-444C-8FB8-E509BC9615F8")]
+	[Guid("b74dfd3f-0d16-4717-aaf7-8cadfe739532")]
 	public interface nsIDOMDeviceMotionEvent : nsIDOMEvent
 	{
 		
@@ -115,7 +115,7 @@ namespace Gecko
         /// Used to indicate whether or not an event is a bubbling event. If the
         /// event can bubble the value is true, else the value is false.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetBubblesAttribute();
 		
@@ -124,7 +124,7 @@ namespace Gecko
         /// prevented. If the default action can be prevented the value is true,
         /// else the value is false.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetCancelableAttribute();
 		
@@ -192,14 +192,21 @@ namespace Gecko
         /// action can be prevented.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void InitEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase eventTypeArg, [MarshalAs(UnmanagedType.Bool)] bool canBubbleArg, [MarshalAs(UnmanagedType.Bool)] bool cancelableArg);
+		new void InitEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase eventTypeArg, [MarshalAs(UnmanagedType.U1)] bool canBubbleArg, [MarshalAs(UnmanagedType.U1)] bool cancelableArg);
 		
 		/// <summary>
         /// Used to indicate whether preventDefault() has been called for this event.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetDefaultPreventedAttribute();
+		
+		/// <summary>
+        /// Prevents other event listeners from being triggered and,
+        /// unlike Event.stopPropagation() its effect is immediate.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void StopImmediatePropagation();
 		
 		/// <summary>Member InitDeviceMotionEvent </summary>
 		/// <param name='eventTypeArg'> </param>
@@ -210,7 +217,7 @@ namespace Gecko
 		/// <param name='rotationRate'> </param>
 		/// <param name='interval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitDeviceMotionEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase eventTypeArg, [MarshalAs(UnmanagedType.Bool)] bool canBubbleArg, [MarshalAs(UnmanagedType.Bool)] bool cancelableArg, [MarshalAs(UnmanagedType.Interface)] nsIDOMDeviceAcceleration acceleration, [MarshalAs(UnmanagedType.Interface)] nsIDOMDeviceAcceleration accelerationIncludingGravity, [MarshalAs(UnmanagedType.Interface)] nsIDOMDeviceRotationRate rotationRate, double interval);
+		void InitDeviceMotionEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase eventTypeArg, [MarshalAs(UnmanagedType.U1)] bool canBubbleArg, [MarshalAs(UnmanagedType.U1)] bool cancelableArg, [MarshalAs(UnmanagedType.Interface)] nsIDOMDeviceAcceleration acceleration, [MarshalAs(UnmanagedType.Interface)] nsIDOMDeviceAcceleration accelerationIncludingGravity, [MarshalAs(UnmanagedType.Interface)] nsIDOMDeviceRotationRate rotationRate, double interval);
 		
 		/// <summary>Member GetAccelerationAttribute </summary>
 		/// <returns>A nsIDOMDeviceAcceleration</returns>

@@ -63,7 +63,7 @@ namespace Gecko
 		/// <summary>
         /// Indicates if the popup is currently open
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetPopupOpenAttribute();
 		
@@ -98,6 +98,6 @@ namespace Gecko
         /// @return The currently selected result item index
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SelectBy([MarshalAs(UnmanagedType.Bool)] bool reverse, [MarshalAs(UnmanagedType.Bool)] bool page);
+		void SelectBy([MarshalAs(UnmanagedType.U1)] bool reverse, [MarshalAs(UnmanagedType.U1)] bool page);
 	}
 }

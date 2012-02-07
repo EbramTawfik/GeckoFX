@@ -387,7 +387,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports TranslateThis([MarshalAs(UnmanagedType.Interface)] nsISupports aInitialThis, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceInfo aInterfaceInfo, ushort aMethodIndex, [MarshalAs(UnmanagedType.Bool)] ref bool aHideFirstParamFromJS, ref System.Guid aIIDOfResult);
+		nsISupports TranslateThis([MarshalAs(UnmanagedType.Interface)] nsISupports aInitialThis, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceInfo aInterfaceInfo, ushort aMethodIndex, [MarshalAs(UnmanagedType.U1)] ref bool aHideFirstParamFromJS, ref System.Guid aIIDOfResult);
 	}
 	
 	/// <summary> </summary>
@@ -479,7 +479,7 @@ namespace Gecko
         /// aJSContext.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void WrapNativeToJSVal(System.IntPtr aJSContext, System.IntPtr aScope, [MarshalAs(UnmanagedType.Interface)] nsISupports aCOMObj, System.IntPtr aCache, System.Guid aIID, [MarshalAs(UnmanagedType.Bool)] bool aAllowWrapper, ref System.IntPtr aVal, [MarshalAs(UnmanagedType.Interface)] ref nsIXPConnectJSObjectHolder aHolder);
+		void WrapNativeToJSVal(System.IntPtr aJSContext, System.IntPtr aScope, [MarshalAs(UnmanagedType.Interface)] nsISupports aCOMObj, System.IntPtr aCache, System.Guid aIID, [MarshalAs(UnmanagedType.U1)] bool aAllowWrapper, ref System.IntPtr aVal, [MarshalAs(UnmanagedType.Interface)] ref nsIXPConnectJSObjectHolder aHolder);
 		
 		/// <summary>
         /// wrapJS will yield a new or previously existing xpcom interface pointer
@@ -580,7 +580,7 @@ namespace Gecko
 		void DebugDumpObject([MarshalAs(UnmanagedType.Interface)] nsISupports aCOMObj, short depth);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DebugDumpJSStack([MarshalAs(UnmanagedType.Bool)] bool showArgs, [MarshalAs(UnmanagedType.Bool)] bool showLocals, [MarshalAs(UnmanagedType.Bool)] bool showThisProps);
+		void DebugDumpJSStack([MarshalAs(UnmanagedType.U1)] bool showArgs, [MarshalAs(UnmanagedType.U1)] bool showLocals, [MarshalAs(UnmanagedType.U1)] bool showThisProps);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void DebugDumpEvalInJSStackFrame(uint aFrameNumber, [MarshalAs(UnmanagedType.LPStr)] string aSourceText);
@@ -633,7 +633,7 @@ namespace Gecko
 		nsIXPConnectJSObjectHolder GetWrappedNativePrototype(System.IntPtr aJSContext, System.IntPtr aScope, [MarshalAs(UnmanagedType.Interface)] nsIClassInfo aClassInfo);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ReleaseJSContext(System.IntPtr aJSContext, [MarshalAs(UnmanagedType.Bool)] bool noGC);
+		void ReleaseJSContext(System.IntPtr aJSContext, [MarshalAs(UnmanagedType.U1)] bool noGC);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr VariantToJS(System.IntPtr ctx, System.IntPtr scope, [MarshalAs(UnmanagedType.Interface)] nsIVariant value);
@@ -682,7 +682,7 @@ namespace Gecko
         /// to this method.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr EvalInSandboxObject([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase source, System.IntPtr cx, [MarshalAs(UnmanagedType.Interface)] nsIXPConnectJSObjectHolder sandbox, [MarshalAs(UnmanagedType.Bool)] bool returnStringOnly);
+		System.IntPtr EvalInSandboxObject([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase source, System.IntPtr cx, [MarshalAs(UnmanagedType.Interface)] nsIXPConnectJSObjectHolder sandbox, [MarshalAs(UnmanagedType.U1)] bool returnStringOnly);
 		
 		/// <summary>
         /// Root JS objects held by aHolder.
@@ -714,7 +714,7 @@ namespace Gecko
         /// passed here.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetReportAllJSExceptions([MarshalAs(UnmanagedType.Bool)] bool reportAllJSExceptions);
+		void SetReportAllJSExceptions([MarshalAs(UnmanagedType.U1)] bool reportAllJSExceptions);
 		
 		/// <summary>
         /// Trigger a JS garbage collection.
@@ -739,7 +739,7 @@ namespace Gecko
         /// The interfaces the class implements; interfaceArray and
         /// interfaceCount are like what nsIClassInfo.getInterfaces returns.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool DefineDOMQuickStubs(System.IntPtr cx, System.IntPtr proto, uint flags, uint interfaceCount, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=3)] System.Guid[] interfaceArray);
 		
@@ -765,7 +765,7 @@ namespace Gecko
         /// stack reaches zero length.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDebugModeWhenPossible([MarshalAs(UnmanagedType.Bool)] bool mode);
+		void SetDebugModeWhenPossible([MarshalAs(UnmanagedType.U1)] bool mode);
 	}
 	
 	/// <summary>nsIXPConnect_MOZILLA_10_BRANCH </summary>
@@ -779,6 +779,6 @@ namespace Gecko
         /// controlling whether sync disable of debug mode is allowed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDebugModeWhenPossible([MarshalAs(UnmanagedType.Bool)] bool mode, [MarshalAs(UnmanagedType.Bool)] bool allowSyncDisable);
+		void SetDebugModeWhenPossible([MarshalAs(UnmanagedType.U1)] bool mode, [MarshalAs(UnmanagedType.U1)] bool allowSyncDisable);
 	}
 }

@@ -44,7 +44,7 @@ namespace Gecko
 		/// <param name='key'> </param>
 		/// <param name='value'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetBoolean([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase key, [MarshalAs(UnmanagedType.Bool)] bool value);
+		void SetBoolean([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase key, [MarshalAs(UnmanagedType.U1)] bool value);
 		
 		/// <summary>Member SetInt </summary>
 		/// <param name='key'> </param>
@@ -61,7 +61,7 @@ namespace Gecko
 		/// <summary>Member GetBoolean </summary>
 		/// <param name='key'> </param>
 		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetBoolean([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase key);
 		

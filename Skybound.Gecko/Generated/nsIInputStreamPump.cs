@@ -68,7 +68,7 @@ namespace Gecko
         /// OnStopRequest has fired).
         /// @note Suspended requests are still considered pending.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsPending();
 		
@@ -190,7 +190,7 @@ namespace Gecko
         /// if true, the input stream will be closed after it has been read.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init([MarshalAs(UnmanagedType.Interface)] nsIInputStream aStream, long aStreamPos, long aStreamLen, uint aSegmentSize, uint aSegmentCount, [MarshalAs(UnmanagedType.Bool)] bool aCloseWhenDone);
+		void Init([MarshalAs(UnmanagedType.Interface)] nsIInputStream aStream, long aStreamPos, long aStreamLen, uint aSegmentSize, uint aSegmentCount, [MarshalAs(UnmanagedType.U1)] bool aCloseWhenDone);
 		
 		/// <summary>
         /// asyncRead causes the input stream to be read in chunks and delivered

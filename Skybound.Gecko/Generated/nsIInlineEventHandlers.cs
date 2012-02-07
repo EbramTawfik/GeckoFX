@@ -30,7 +30,7 @@ namespace Gecko
 	/// <summary>nsIInlineEventHandlers </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("c3cc4504-1eaf-42e9-8b1b-a3020f6d3a28")]
+	[Guid("5b3f9656-9d81-40e4-85ba-01f302177815")]
 	public interface nsIInlineEventHandlers
 	{
 		
@@ -453,6 +453,18 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOnmozfullscreenchangeAttribute(System.IntPtr aOnmozfullscreenchange, System.IntPtr jsContext);
+		
+		/// <summary>Member GetOnmozfullscreenerrorAttribute </summary>
+		/// <param name='jsContext'> </param>
+		/// <returns>A System.IntPtr</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		System.IntPtr GetOnmozfullscreenerrorAttribute(System.IntPtr jsContext);
+		
+		/// <summary>Member SetOnmozfullscreenerrorAttribute </summary>
+		/// <param name='aOnmozfullscreenerror'> </param>
+		/// <param name='jsContext'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOnmozfullscreenerrorAttribute(System.IntPtr aOnmozfullscreenerror, System.IntPtr jsContext);
 		
 		/// <summary>Member GetOnpauseAttribute </summary>
 		/// <param name='jsContext'> </param>

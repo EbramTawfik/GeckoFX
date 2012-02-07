@@ -45,6 +45,6 @@ namespace Gecko
 		/// <summary>Member NotifyDocumentStateChanged </summary>
 		/// <param name='nowDirty'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NotifyDocumentStateChanged([MarshalAs(UnmanagedType.Bool)] bool nowDirty);
+		void NotifyDocumentStateChanged([MarshalAs(UnmanagedType.U1)] bool nowDirty);
 	}
 }

@@ -110,7 +110,7 @@ namespace Gecko
         /// pre-init state.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Finish([MarshalAs(UnmanagedType.Bool)] bool aASCII, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
+		void Finish([MarshalAs(UnmanagedType.U1)] bool aASCII, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
 		
 		/// <summary>
         /// Reinitialize HMAC context to be reused with the same

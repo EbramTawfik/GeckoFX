@@ -40,7 +40,7 @@ namespace Gecko
         /// This value is <code>true</code> when the datasource has
         /// fully loaded itself.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Bool)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetLoadedAttribute();
 		
@@ -61,7 +61,7 @@ namespace Gecko
         /// until the datasource has completely reloaded.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Refresh([MarshalAs(UnmanagedType.Bool)] bool aBlocking);
+		void Refresh([MarshalAs(UnmanagedType.U1)] bool aBlocking);
 		
 		/// <summary>
         /// Request that a data source write its contents out to
