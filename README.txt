@@ -2,6 +2,15 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v10.0-0.2 ==
+
+1. Memory corruption fixes when ns*String class was used in callbacks.
+2. Optional HttpActivityOberver provided by Romi Kuntsman
+3. Added DomBlur event handler
+4. basic plugin control + PrivateBrowsingService  provided by zloyprotoss
+5. GetPngImage method provided by zloyprotoss
+6. Linux fixes.
+
 == v10.0-0.1 ==
 
 1. Initial version supporting firefox/xulrunner v10.0
