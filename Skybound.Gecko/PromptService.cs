@@ -56,13 +56,23 @@ namespace Gecko
 		public const string ContractID = "@mozilla.org/prompter;1";
 	}
 
-	class PromptFactory
+	public class PromptFactory
 		:nsIPromptFactory
 	{
+		static PromptFactory()
+		{
+			PromptServiceCreator = () => new PromptService();
+		}
+
+		/// <summary>
+		/// Allow injecting different PromptService implementations into PromptFactory.
+		/// </summary>
+		public static Func<nsIPromptService2> PromptServiceCreator { get; set; }
+
 		public IntPtr GetPrompt( nsIDOMWindow aParent, ref Guid iid )
 		{
 			IntPtr result = IntPtr.Zero;
-			IntPtr iUnknownForObject = Marshal.GetIUnknownForObject(new PromptService());
+			IntPtr iUnknownForObject = Marshal.GetIUnknownForObject(PromptServiceCreator());
 			Marshal.QueryInterface(iUnknownForObject, ref iid, out result);
 			Marshal.Release(iUnknownForObject);
 			return result;
@@ -70,7 +80,7 @@ namespace Gecko
 	}
 	
 
-	class PromptService : nsIPromptService2,nsIPrompt
+	public class PromptService : nsIPromptService2,nsIPrompt
 	{
 		public void Alert(nsIDOMWindow aParent, string aDialogTitle, string aText)
 		{
