@@ -1,13 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Drawing;
-using System.Runtime.InteropServices;
 using Gecko.DOM;
+using GeckoFX.Microsoft;
 
 namespace Gecko
 {
+	/// <summary>
+	/// Creates Png images of webbrowser
+	/// </summary>
 	public class ImageCreator
 	{
 		GeckoWebBrowser m_browser;
@@ -20,14 +22,16 @@ namespace Gecko
 			m_browser = browser;
 		}
 
-		public Bitmap GetBitmap(uint width, uint height)
+		[Obsolete("Use CanvasGetPngImage",false)]
+		public Bitmap CanvasGetBitmap(uint width, uint height)
 		{
-			return GetBitmap(0, 0, width, height);
+			return CanvasGetBitmap(0, 0, width, height);
 		}
 		
 		/// <summary>
 		/// Get a bitmap of the current browsers Window.
 		/// Works on Visible or InVisible windows.
+		/// Not captures plugin (Flash,etc...) windows
 		/// </summary>
 		/// <param name="xOffset"></param>
 		/// <param name="yOffset"></param>
@@ -35,22 +39,24 @@ namespace Gecko
 		/// <param name="height">Height length of returned bitmap in pixels</param>
 		/// <returns></returns>
 		/// <throws>ArgumentException if width or height is zero</throws>
-		public Bitmap GetBitmap(uint xOffset, uint yOffset, uint width, uint height)
+		[Obsolete("Use CanvasGetPngImage", false)]
+		public Bitmap CanvasGetBitmap(uint xOffset, uint yOffset, uint width, uint height)
 		{
-			var bytes = GetPngImage( xOffset, yOffset, width, height );
+			var bytes = CanvasGetPngImage(xOffset, yOffset, width, height);
 			return (Bitmap)Bitmap.FromStream(new System.IO.MemoryStream(bytes));
 		}
 
 		/// <summary>
 		/// Get byte array with png image of the current browsers Window.
 		/// Wpf methods on windows platform don't use a Bitmap :-/
+		/// Not captures plugin (Flash,etc...) windows
 		/// </summary>
 		/// <param name="xOffset"></param>
 		/// <param name="yOffset"></param>
 		/// <param name="width"></param>
 		/// <param name="height"></param>
 		/// <returns></returns>
-		public byte[] GetPngImage(uint xOffset, uint yOffset, uint width, uint height)
+		public byte[] CanvasGetPngImage(uint xOffset, uint yOffset, uint width, uint height)
 		{
 			if (width == 0)
 				throw new ArgumentException("width");
@@ -85,5 +91,86 @@ namespace Gecko
 				return bytes;
 			}
 		}
+
+		public byte[] CanvasGetPngImage(uint width, uint height)
+		{
+			return CanvasGetPngImage(0, 0, width, height);
+		}
+
+		public byte[] GraphicsGetBitmapPng(int width, int height)
+		{
+			return GraphicsGetBitmapPng(0, 0, width, height);
+		}
+
+		public byte[] GraphicsGetBitmapPng(int xOffset, int yOffset, int width, int height)
+		{
+			Bitmap bmp = new Bitmap(width, height);
+			using (Graphics g = m_browser.CreateGraphics())
+			{       
+				m_browser.DrawToBitmap(bmp, new Rectangle(xOffset, yOffset, width, height));
+			}
+			byte[] ret = null;
+			using (var m = new MemoryStream())
+			{
+				bmp.Save(m, ImageFormat.Png);
+				ret = m.ToArray();
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// Capture whole WebBrowser window (Only on MS Windows Platform)
+		/// </summary>
+		/// <returns></returns>
+		public byte[] CapturePng()
+		{
+			return CaptureWindowPng(m_browser.Handle);
+		}
+
+		/// <summary>
+		/// Windows only window capture by handle
+		/// </summary>
+		/// <param name="handle"></param>
+		/// <returns></returns>
+		private static byte[] CaptureWindowPng(IntPtr handle)
+		{
+			// get te hDC of the target window
+			IntPtr hdcSrc = User32.GetWindowDC(handle);
+			// get the size
+			User32.RECT windowRect = new User32.RECT();
+			User32.GetWindowRect(handle,ref windowRect);
+			int width = windowRect.right - windowRect.left;
+			int height = windowRect.bottom - windowRect.top;
+			// create a device context we can copy to
+			IntPtr hdcDest = Gdi32.CreateCompatibleDC(hdcSrc);
+			// create a bitmap we can copy it to,
+			// using GetDeviceCaps to get the width/height
+			IntPtr hBitmap = Gdi32.CreateCompatibleBitmap(hdcSrc, width, height); 
+			// select the bitmap object
+			IntPtr hOld = Gdi32.SelectObject(hdcDest, hBitmap);
+			// bitblt over
+			Gdi32.BitBlt(hdcDest, 0, 0, width, height, hdcSrc, 0, 0, Gdi32.SRCCOPY);
+			// restore selection
+			Gdi32.SelectObject(hdcDest, hOld);
+			// clean up 
+			Gdi32.DeleteDC(hdcDest);
+			User32.ReleaseDC(handle,hdcSrc);
+			byte[] ret = null;
+			// get a .NET image object for it
+			using (Bitmap img = Image.FromHbitmap(hBitmap))
+			{
+				// free up the Bitmap object
+				Gdi32.DeleteObject( hBitmap );
+				// Saving to stream
+				using (var m = new MemoryStream())
+				{
+					img.Save( m, ImageFormat.Png );
+					ret = m.ToArray();
+				}
+			}
+			return ret;
+		}
+
+
 	}
 }

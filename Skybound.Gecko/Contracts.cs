@@ -11,6 +11,8 @@ namespace Gecko
 		internal static readonly string ZipReader = "@mozilla.org/libjar/zip-reader;1";
 		internal static readonly string DnsService = "@mozilla.org/network/dns-service;1";
 		internal static readonly string PrivateBrowsing = "@mozilla.org/privatebrowsing;1";
+		internal static readonly string Sound = "@mozilla.org/sound;1";
+		internal static readonly string Variant = "@mozilla.org/variant;1";
 		#region nsISupportsPrimitive's
 		internal static readonly string SupportsID = "@mozilla.org/supports-id;1";
 		internal static readonly string SupportsString = "@mozilla.org/supports-string;1";
@@ -33,6 +35,9 @@ namespace Gecko
 		#endregion
 		#region  contracts for elements that NOT HAVE wrappers
 		public static readonly string ObserverService = "@mozilla.org/observer-service;1";
+		#endregion
+
+		#region External components (XULRunner components)
 		#endregion
 	}
 }

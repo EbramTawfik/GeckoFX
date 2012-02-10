@@ -722,7 +722,7 @@ namespace Gecko
 		/// <returns></returns>
 		public Bitmap GetBitmap(uint xOffset, uint yOffset, uint width, uint height)
 		{			
-			return new ImageCreator(this).GetBitmap(xOffset, yOffset, width, height);
+			return new ImageCreator(this).CanvasGetBitmap(xOffset, yOffset, width, height);
 		}
 
 

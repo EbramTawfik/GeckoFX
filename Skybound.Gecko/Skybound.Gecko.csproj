@@ -115,10 +115,14 @@
     <Compile Include="Cache\ImageCache.cs" />
     <Compile Include="CategoryManager.cs" />
     <Compile Include="Certificates\ASN1Object.cs" />
+    <Compile Include="Certificates\ASN1Tree.cs" />
+    <Compile Include="Certificates\CertCache.cs" />
     <Compile Include="Certificates\Certificate.cs" />
     <Compile Include="Certificates\CertificateDatabase.cs" />
     <Compile Include="Certificates\CertificateList.cs" />
     <Compile Include="Certificates\CertificateValidity.cs" />
+    <Compile Include="Certificates\CertTree.cs" />
+    <Compile Include="Certificates\CertTreeItem.cs" />
     <Compile Include="ChromeDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -144,6 +148,7 @@
     <Compile Include="IO\InputStream.cs" />
     <Compile Include="IO\OutputStream.cs" />
     <Compile Include="IO\ZipReader.cs" />
+    <Compile Include="Microsoft.cs" />
     <Compile Include="Net\Channel.cs" />
     <Compile Include="Net\DnsRecord.cs" />
     <Compile Include="Net\DnsService.cs" />
@@ -1485,6 +1490,8 @@
       <DependentUpon>PropertiesDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sound.cs" />
+    <Compile Include="TreeView.cs" />
     <Compile Include="Windows\Taskbar\JumpListBuilder.cs" />
     <Compile Include="Windows\Taskbar\JumpListItem.cs" />
     <Compile Include="Windows\Taskbar\JumpListLink.cs" />

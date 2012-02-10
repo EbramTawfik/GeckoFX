@@ -8,7 +8,7 @@ namespace Gecko.Certificates
 	public sealed class CertificateList
 		:IEnumerable<Certificate>
 	{
-		private nsIX509CertList _list;
+		internal nsIX509CertList _list;
 
 		internal CertificateList(nsIX509CertList list)
 		{

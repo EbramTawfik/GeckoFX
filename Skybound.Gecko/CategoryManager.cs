@@ -13,9 +13,7 @@ namespace Gecko
 		public CategoryManager()
 		{
 			var categoryManager = Xpcom.GetService<nsICategoryManager>("@mozilla.org/categorymanager;1");
-			_categoryManager = Xpcom.QueryInterface<nsICategoryManager>(categoryManager);
-
-			
+			_categoryManager = Xpcom.QueryInterface<nsICategoryManager>(categoryManager);	
 		}
 
 		public string AddCategoryEntry(string aCategory, string aEntry, string aValue, bool aPersist, bool aReplace)
@@ -40,9 +38,7 @@ namespace Gecko
 
 		public void DeleteCategory(string aCategory)
 		{
-			_categoryManager.DeleteCategory(aCategory);
-			
-			
+			_categoryManager.DeleteCategory(aCategory);	
 		}
 
 		public void DeleteCategoryEntry(string aCategory, string aEntry,bool aPersist) 

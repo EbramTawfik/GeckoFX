@@ -121,11 +121,9 @@ namespace Gecko
 		public bool SchemeIs(string s) { return Instance.SchemeIs(s); }
 		public bool Equals(nsURI uri) { return Instance.Equals(uri); }
 		public nsURI Clone() { return new nsURI(Instance.Clone()); }
-		public void Resolve(string relativePath, string resolved) 
+		public string Resolve(string relativePath)
 		{
-			var retval = new nsAUTF8String();
-			Instance.Resolve(new nsAUTF8String(relativePath), retval); 
-			resolved = retval.ToString();
+			return nsString.Get( Instance.Resolve, relativePath );
 		}
 		public string AsciiSpec { get { return nsString.Get(Instance.GetAsciiSpecAttribute); } }
 		public string AsciiHost { get { return nsString.Get(Instance.GetAsciiHostAttribute); } }
@@ -147,6 +145,13 @@ namespace Gecko
 		public static nsURI Create(string url)
 		{
 			return new nsURI(CreateInternal(url));
+		}
+
+		public static nsIURL CreateUrl(string url)
+		{
+			var uri = CreateInternal( url );
+			var ret=Xpcom.QueryInterface<nsIURL>( uri );
+			return ret;
 		}
 
 		internal static nsIURI CreateInternal(string url)

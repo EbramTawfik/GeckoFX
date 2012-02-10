@@ -313,6 +313,9 @@ namespace Gecko
 			if (Xpcom.IsDotNet) // TODO FIXME: ChangeWrapperHandleStrength not implemented in mono
 			{
 				// since a reference is stored in the base class, we only need weak references here
+#warning ChangeWrapperHandleStrength is used for object pooling functionality and should never be called by user code directly.
+//http://msdn.microsoft.com/en-us/library/system.runtime.interopservices.marshal.changewrapperhandlestrength.aspx
+				// TODO FIXME: Remove ChangeWrapperHandleStrength
 				Marshal.ChangeWrapperHandleStrength(DomNSElement, true);				
 			}
 		}

@@ -13,12 +13,12 @@ code as Firefox.  You can add the control to your windows forms app and use it m
 same way as System.Windows.Forms.WebBrowser.
 
 Since GeckoFX is a wrapper, you need to have the XULRunner runtime somewhere on your
-development system (and redistribute it with your application).  GeckoFX now works best
-with XULRunner 1.9.1 (Firefox 3.5).
+development system (and redistribute it with your application).
 
-(1) Download XULRunner 1.9.1 from:
 
-	http://releases.mozilla.org/pub/mozilla.org/xulrunner/releases/1.9.1.2/runtimes/xulrunner-1.9.1.2.en-US.win32.zip
+(1) Download XULRunner from:
+
+	http://ftp.mozilla.org/pub/mozilla.org/xulrunner/releases/
 
 (2) In your application startup code, call:
 
@@ -48,19 +48,7 @@ GeckoFX into the "chrome" directory in your XULRunner path.
 The files that need to be copied are "geckofx.jar" and "geckofx.manifest".
 
 
-Notes about XULRunner 1.8/1.9.0
----------------------------
-XULRunner 1.8 is based on the same source code as Firefox 2; 1.9.1 is based on the same
-source as Firefox 3.5.  If your application requires an embedded Firefox 2 or 3.0 browser,
-rebuild GeckoFX using the "Debug 1.8" or "Debug 1.9.0" build configurations.  The generated
-assembly will be put in it's own directory ("bin\Debug 1.8" or "bin\Debug 1.9.0").
 
-These releases have been tested with GeckoFX:
-
-XULRunner 1.8.1: ftp://ftp.mozilla.org/pub/xulrunner/releases/1.8.1.3/contrib/win32/
-XULRunner 1.9.0: ftp://releases.mozilla.org/pub/mozilla.org/xulrunner/releases/1.9.0.13/runtimes/xulrunner-1.9.0.13.en-US.win32.zip
-
-Support for old versions of XULRunner will probably be removed from a future version of GeckoFX.
 
 Known Bugs
 ----------

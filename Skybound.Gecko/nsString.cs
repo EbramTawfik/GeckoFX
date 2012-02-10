@@ -45,10 +45,7 @@ namespace Gecko
 	public static class nsString
 	{
 		#region nsAUTF8String
-		
-		public delegate void StringAttributeUtf8(nsAUTF8String str);
-		
-		public static string Get(StringAttributeUtf8 getter)
+		public static string Get(Action<nsAUTF8String> getter)
 		{
 			using (nsAUTF8String str = new nsAUTF8String())
 			{
@@ -56,8 +53,19 @@ namespace Gecko
 				return str.ToString();
 			}
 		}
-		
-		public static void Set(StringAttributeUtf8 setter, string value)
+
+		public static string Get(Action<nsAUTF8String, nsAUTF8String> getter, string inValue)
+		{
+			string ret;
+			using (nsAUTF8String nativeIn = new nsAUTF8String(inValue), nativeOut = new nsAUTF8String())
+			{
+				getter(nativeIn, nativeOut);
+				ret= nativeOut.ToString();
+			}
+			return ret;
+		}
+
+		public static void Set(Action<nsAUTF8String> setter, string value)
 		{
 			using (nsAUTF8String str = new nsAUTF8String())
 			{
@@ -101,10 +109,8 @@ namespace Gecko
 		#endregion
 
 		#region nsACString
-		
-		public delegate void StringAttributeAnsi(nsACString str);
-		
-		public static string Get(StringAttributeAnsi getter)
+
+		public static string Get(Action<nsACString> getter)
 		{
 			using (nsACString str = new nsACString())
 			{
@@ -121,8 +127,8 @@ namespace Gecko
 				return nativeOut.ToString();
 			}
 		}
-		
-		public static void Set(StringAttributeAnsi setter, string value)
+
+		public static void Set(Action<nsACString> setter, string value)
 		{
 			using (nsACString str = new nsACString())
 			{
@@ -142,9 +148,10 @@ namespace Gecko
 		}
 		#endregion
 		#region nsAString
-		public delegate void StringAttributeUnicode(nsAString str);
+
+		#region nsAString Getters
 		
-		public static string Get(StringAttributeUnicode getter)
+		public static string Get(Action<nsAString> getter)
 		{
 			using (nsAString str = new nsAString())
 			{
@@ -164,8 +171,33 @@ namespace Gecko
 				return nativeOut.ToString();
 			}
 		}
-		
-		public static void Set(StringAttributeUnicode setter, string value)
+
+
+		public static string Get<T>(Action<T, nsAString> func, T value)
+		{
+			string ret;
+			using (nsAString native = new nsAString())
+			{
+				func(value, native);
+				ret = native.ToString();
+			}
+			return ret;
+		}
+
+		public static string Get<T1,T2>(Action<T1,T2,nsAString> func,T1 value1,T2 value2)
+		{
+			string ret;
+			using (nsAString native = new nsAString())
+			{
+				func( value1, value2, native );
+				ret = native.ToString();
+			}
+			return ret;
+		}
+		#endregion
+
+		#region nsAString Setters
+		public static void Set(Action<nsAString> setter, string value)
 		{
 			using (nsAString str = new nsAString())
 			{
@@ -184,6 +216,14 @@ namespace Gecko
 			}
 		}
 
+		public static void Set<T1,T2>(Action<T1,T2,nsAString> func,T1 value1,T2 value2, string stringValue)
+		{
+			using (nsAString native=new nsAString(stringValue))
+			{
+				func( value1, value2, native );
+			}
+		}
+		#endregion
 		/// <summary>
 		/// Passes <paramref name="value"/> to function and return value
 		/// </summary>
@@ -220,6 +260,7 @@ namespace Gecko
 		#endregion
 
 	}
+
 
 	[StructLayout(LayoutKind.Sequential)]
 	public class nsAUTF8StringBase

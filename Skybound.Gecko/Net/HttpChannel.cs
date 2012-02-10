@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Gecko.Net
 {
@@ -45,9 +46,11 @@ namespace Gecko.Net
 			nsString.Set( ( x, y ) => _httpChannel.SetRequestHeader( x, y, merge ), header, value );
 		}
 
-		public void VisitRequestHeaders(nsIHttpHeaderVisitor visitor)
+		public Dictionary<string,string> GetRequestHeaders()
 		{
+			HttpHeaderVisitor visitor=new HttpHeaderVisitor();
 			_httpChannel.VisitRequestHeaders(visitor);
+			return visitor.Dictionary;
 		}
 
 		public bool AllowPipelining
@@ -87,9 +90,11 @@ namespace Gecko.Net
 			nsString.Set((x, y) => _httpChannel.SetResponseHeader(x, y, merge), header, value);
 		}
 
-		public void VisitResponseHeaders(nsIHttpHeaderVisitor visitor)
+		public Dictionary<string, string> GetResponseHeaders()
 		{
+			HttpHeaderVisitor visitor=new HttpHeaderVisitor();
 			_httpChannel.VisitResponseHeaders(visitor);
+			return visitor.Dictionary;
 		}
 
 		public bool IsNoStoreResponse
@@ -102,5 +107,18 @@ namespace Gecko.Net
 			get { return _httpChannel.IsNoCacheResponse(); }
 		}
 
+
+		private sealed class HttpHeaderVisitor
+			: nsIHttpHeaderVisitor
+		{
+			internal readonly Dictionary<string, string> Dictionary=new Dictionary<string, string>();  
+
+			public void VisitHeader( nsACStringBase aHeader, nsACStringBase aValue )
+			{
+				Dictionary.Add( aHeader.ToString(), aValue.ToString() );
+			}
+		}
 	}
+
+
 }
