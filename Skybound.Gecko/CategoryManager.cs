@@ -12,8 +12,8 @@ namespace Gecko
 
 		public CategoryManager()
 		{
-			var categoryManager = Xpcom.GetService<nsICategoryManager>("@mozilla.org/categorymanager;1");
-			_categoryManager = Xpcom.QueryInterface<nsICategoryManager>(categoryManager);	
+			var categoryManager = Xpcom.GetService<nsICategoryManager>( Contracts.CategoryManager );
+			_categoryManager = Xpcom.QueryInterface<nsICategoryManager>(categoryManager);
 		}
 
 		public string AddCategoryEntry(string aCategory, string aEntry, string aValue, bool aPersist, bool aReplace)

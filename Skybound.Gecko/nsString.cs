@@ -44,36 +44,247 @@ namespace Gecko
 	/// </summary>
 	public static class nsString
 	{
-		#region nsAUTF8String
-		public static string Get(Action<nsAUTF8String> getter)
+		// functions that set one or more [gecko string]s
+		#region Generic Setters
+		private static void GenericSet<TString>(Action<TString> setter, string value)
+			where TString : IString, IDisposable, new()
 		{
-			using (nsAUTF8String str = new nsAUTF8String())
+			using (var str = new TString())
 			{
-				getter(str);
-				return str.ToString();
+				if (!string.IsNullOrEmpty(value))
+					str.SetData(value);
+
+				setter(str);
 			}
 		}
 
-		public static string Get(Action<nsAUTF8String, nsAUTF8String> getter, string inValue)
+		private static void GenericSet<TString>(Action<TString, TString> setter, string value1, string value2)
+			where TString : IString, IDisposable, new()
+		{
+			using (TString native1 = new TString(), native2 = new TString())
+			{
+				if (!string.IsNullOrEmpty(value1))
+					native1.SetData(value1);
+
+				if (!string.IsNullOrEmpty(value2))
+					native2.SetData(value2);
+
+				setter( native1, native2 );
+			}
+		}
+
+		private static void GenericSet<TString>(Action<TString, TString, TString> setter, string value1, string value2, string value3)
+			where TString : IString, IDisposable, new()
+		{
+			using (TString native1 = new TString(),
+				native2 = new TString(),
+				native3 = new TString())
+			{
+				if (!string.IsNullOrEmpty(value1))
+					native1.SetData(value1);
+
+				if (!string.IsNullOrEmpty(value2))
+					native2.SetData(value2);
+
+				if (!string.IsNullOrEmpty(value3))
+					native3.SetData(value3);
+
+				setter( native1, native2, native3 );
+			}
+		}
+
+		private static void GenericSet<T1, T2, TString>(Action<T1, T2, TString> func, T1 value1, T2 value2, string stringValue)
+			where TString : IString, IDisposable, new()
+		{
+			using (var native = new TString())
+			{
+				if (!string.IsNullOrEmpty(stringValue))
+					native.SetData(stringValue);
+
+				func(value1, value2, native);
+			}
+		}
+		#endregion
+
+		// functions that get [gecko string]
+		#region Generic Getters
+		/// <summary>
+		/// Generic string getter
+		/// 1-st gecko string - OUTPUT
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="getter"></param>
+		/// <returns></returns>
+		private static string GenericGet<TString>(Action<TString> getter)
+			where TString : IString, IDisposable, new()
 		{
 			string ret;
-			using (nsAUTF8String nativeIn = new nsAUTF8String(inValue), nativeOut = new nsAUTF8String())
+			using (var str = new TString())
 			{
-				getter(nativeIn, nativeOut);
-				ret= nativeOut.ToString();
+				getter(str);
+				ret= str.ToString();
 			}
 			return ret;
 		}
 
-		public static void Set(Action<nsAUTF8String> setter, string value)
+		/// <summary>
+		/// Generic string getter
+		/// 1-st gecko string - INPUT
+		/// 2-nd gecko string - OUTPUT
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="getter"></param>
+		/// <param name="inValue">input value</param>
+		/// <returns></returns>
+		private static string GenericGet<TString>(Action<TString, TString> getter, string inValue)
+			where TString : IString, IDisposable, new()
 		{
-			using (nsAUTF8String str = new nsAUTF8String())
+			string ret;
+			using (TString nativeIn = new TString(), nativeOut = new TString())
+			{
+				if (!string.IsNullOrEmpty(inValue))
+					nativeIn.SetData(inValue);
+				getter(nativeIn, nativeOut);
+				ret = nativeOut.ToString();
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// first parameter - INPUT
+		/// gecko string - OUTPUT
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <typeparam name="TString"></typeparam>
+		/// <param name="func"></param>
+		/// <param name="value"></param>
+		/// <returns></returns>
+		private static string GenericGet<T, TString>(Action<T, TString> func, T value)
+			where TString : IString, IDisposable, new()
+		{
+			string ret;
+			using (TString native = new TString())
+			{
+				func(value, native);
+				ret = native.ToString();
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// first and second parameters - INPUT
+		/// gecko string - OUTPUT
+		/// </summary>
+		/// <typeparam name="T1"></typeparam>
+		/// <typeparam name="T2"></typeparam>
+		/// <typeparam name="TString"></typeparam>
+		/// <param name="func"></param>
+		/// <param name="value1"></param>
+		/// <param name="value2"></param>
+		/// <returns></returns>
+		private static string GenericGet<T1,T2, TString>(Action<T1, T2, TString> func, T1 value1, T2 value2)
+			where TString : IString, IDisposable, new()
+		{
+			string ret;
+			using (var native = new TString())
+			{
+				func(value1,value2, native);
+				ret = native.ToString();
+			}
+			return ret;
+		}
+		#endregion
+
+		// functions that get [T value] and pass [gecko string]s and other arguments
+		#region Generic Passers
+		/// <summary>
+		/// input - gecko String
+		/// output - T
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <typeparam name="TString"></typeparam>
+		/// <param name="func"></param>
+		/// <param name="value"></param>
+		/// <returns></returns>
+		private static T GenericPass<T, TString>(Func<TString, T> func, string value)
+			where TString : IString, IDisposable, new()
+		{
+			T ret;
+			using (var str = new TString())
 			{
 				if (!string.IsNullOrEmpty(value))
 					str.SetData(value);
-				
-				setter(str);
+
+				ret = func(str);
 			}
+			return ret;
+		}
+
+		/// <summary>
+		/// gecko string and T1 - INPUT
+		/// T2 - OUTPUT
+		/// </summary>
+		/// <typeparam name="T1"></typeparam>
+		/// <typeparam name="TString"></typeparam>
+		/// <typeparam name="T2"></typeparam>
+		/// <param name="func"></param>
+		/// <param name="value"></param>
+		/// <param name="stringValue"></param>
+		/// <returns></returns>
+		private static T2 GenericPass<T1, TString, T2>(Func<T1, TString, T2> func, T1 value, string stringValue)
+			where TString : IString, IDisposable, new()
+		{
+			T2 ret;
+			using (TString native = new TString())
+			{
+				if (!string.IsNullOrEmpty(stringValue))
+					native.SetData(stringValue);
+
+				ret = func(value, native);
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// 2x gecko strings - INPUT
+		/// T - OUTPUT
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <typeparam name="TString"></typeparam>
+		/// <param name="func"></param>
+		/// <param name="value1"></param>
+		/// <param name="value2"></param>
+		/// <returns></returns>
+		private static T GenericPass<T, TString>(Func<TString, TString, T> func, string value1, string value2)
+			where TString : IString, IDisposable, new()
+		{
+			T ret;
+			using (TString str1 = new TString(), str2 =new TString())
+			{
+				if (!string.IsNullOrEmpty(value1))
+					str1.SetData(value1);
+				if (!string.IsNullOrEmpty(value2))
+					str2.SetData(value2);
+				ret = func(str1, str2);
+			}
+			return ret;
+		}
+		#endregion
+
+		#region nsAUTF8String
+		public static string Get(Action<nsAUTF8String> getter)
+		{
+			return GenericGet( getter );
+		}
+
+		public static string Get(Action<nsAUTF8String, nsAUTF8String> getter, string inValue)
+		{
+			return GenericGet( getter, inValue );
+		}
+
+		public static void Set(Action<nsAUTF8String> setter, string value)
+		{
+			GenericSet( setter, value );
 		}
 
 		/// <summary>
@@ -85,26 +296,12 @@ namespace Gecko
 		/// <returns></returns>
 		public static T Pass<T>(Func<nsAUTF8String, T> func, string value)
 		{
-			T ret;
-			using (nsAUTF8String str = new nsAUTF8String(value))
-			{
-				//this is already checked in nsAUTF8String constructor
-				//if (!string.IsNullOrEmpty(value))
-				//	str.SetData(value);
-
-				ret = func(str);
-			}
-			return ret;
+			return GenericPass( func, value );
 		}
 
 		public static T Pass<T,TW> (Func<TW,nsAUTF8String,T> func,TW value,string stringValue )
 		{
-			T ret;
-			using (nsAUTF8String str = new nsAUTF8String(stringValue))
-			{
-				ret = func( value, str );
-			}
-			return ret;
+			return GenericPass( func, value, stringValue );
 		}
 		#endregion
 
@@ -112,118 +309,75 @@ namespace Gecko
 
 		public static string Get(Action<nsACString> getter)
 		{
-			using (nsACString str = new nsACString())
-			{
-				getter(str);
-				return str.ToString();
-			}
+			return GenericGet( getter );
 		}
 
 		public static string Get(Action<nsACString,nsACString> getter,string inValue)
 		{
-			using (nsACString nativeIn = new nsACString(inValue), nativeOut = new nsACString())
-			{				
-				getter( nativeIn, nativeOut );
-				return nativeOut.ToString();
-			}
+			return GenericGet( getter, inValue );
 		}
 
 		public static void Set(Action<nsACString> setter, string value)
 		{
-			using (nsACString str = new nsACString())
-			{
-				if (!string.IsNullOrEmpty(value))
-					str.SetData(value);
-				
-				setter(str);
-			}
+			GenericSet( setter, value );
 		}
 
 		public static void Set(Action<nsACString, nsACString> func, string value1, string value2)
 		{
-			using (nsACString native1 = new nsACString(value1), native2 = new nsACString(value2))
-			{
-				func(native1, native2);
-			}
+			GenericSet( func, value1, value2 );
 		}
 		#endregion
+
 		#region nsAString
 
 		#region nsAString Getters
 		
 		public static string Get(Action<nsAString> getter)
 		{
-			using (nsAString str = new nsAString())
-			{
-				getter(str);
-				return str.ToString();
-			}
+			return GenericGet(getter);
 		}
 
 		public static string Get(Action<nsAString, nsAString> getter, string inValue)
 		{
-			using (nsAString nativeIn = new nsAString(inValue), nativeOut = new nsAString())
-			{
-				//if (!string.IsNullOrEmpty(inValue))
-				//    nativeIn.SetData( inValue );
-
-				getter(nativeIn, nativeOut);
-				return nativeOut.ToString();
-			}
+			return GenericGet(getter, inValue);
 		}
 
 
 		public static string Get<T>(Action<T, nsAString> func, T value)
 		{
-			string ret;
-			using (nsAString native = new nsAString())
-			{
-				func(value, native);
-				ret = native.ToString();
-			}
-			return ret;
+			return GenericGet( func, value );
 		}
 
 		public static string Get<T1,T2>(Action<T1,T2,nsAString> func,T1 value1,T2 value2)
 		{
-			string ret;
-			using (nsAString native = new nsAString())
-			{
-				func( value1, value2, native );
-				ret = native.ToString();
-			}
-			return ret;
+			return GenericGet( func, value1, value2 );
 		}
 		#endregion
 
 		#region nsAString Setters
+
 		public static void Set(Action<nsAString> setter, string value)
 		{
-			using (nsAString str = new nsAString())
-			{
-				if (!string.IsNullOrEmpty(value))
-					str.SetData(value);
-				
-				setter(str);
-			}
+			GenericSet( setter, value );
 		}
 
 		public static void Set(Action<nsAString, nsAString> func, string value1, string value2)
 		{
-			using (nsAString native1 = new nsAString(value1), native2 = new nsAString(value2))
-			{
-				func(native1, native2);
-			}
+			GenericSet( func, value1, value2 );
+		}
+
+		public static void Set(Action<nsAString,nsAString,nsAString>func, string value1, string value2,string value3)
+		{
+			GenericSet( func, value1, value2, value3 );
 		}
 
 		public static void Set<T1,T2>(Action<T1,T2,nsAString> func,T1 value1,T2 value2, string stringValue)
 		{
-			using (nsAString native=new nsAString(stringValue))
-			{
-				func( value1, value2, native );
-			}
+			GenericSet( func, value1, value2, stringValue );
 		}
 		#endregion
+
+		#region nsAString Passers
 		/// <summary>
 		/// Passes <paramref name="value"/> to function and return value
 		/// </summary>
@@ -233,37 +387,38 @@ namespace Gecko
 		/// <returns></returns>
 		public static T Pass<T>(Func<nsAString,T> func,string value)
 		{
-			T ret;
-			using (nsAString str = new nsAString(value))
-			{
-				ret = func( str );
-			}
-			return ret;
+			return GenericPass(func, value);
 		}
 
 		/// <summary>
-		/// Passes <paramref name="value"/> to function and return value
+		/// Passes <paramref name="value1"/> and <paramref name="value2"/> to function and return value
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
 		/// <param name="func"></param>
-		/// <param name="value"></param>
+		/// <param name="value1"></param>
+		/// <param name="value2"></param>
 		/// <returns></returns>
 		public static T Pass<T>(Func<nsAString,nsAString, T> func, string value1,string value2)
 		{
-			T ret;
-			using (nsAString str1 = new nsAString(value1),str2=new nsAString(value2))
-			{
-				ret = func( str1, str2 );
-			}
-			return ret;
+			return GenericPass( func, value1, value2 );
 		}
+		
 		#endregion
 
+		#endregion
 	}
 
+	/// <summary>
+	/// Internal helper interface for generics
+	/// </summary>
+	internal interface IString
+	{
+		void SetData( string value );
+	}
 
 	[StructLayout(LayoutKind.Sequential)]
 	public class nsAUTF8StringBase
+		: IString
 	{
 		protected nsAUTF8StringBase() { }
 
@@ -289,7 +444,7 @@ namespace Gecko
 
 		public virtual void SetData(string value)
 		{
-			byte[] utf8 = Encoding.UTF8.GetBytes(value ?? "");
+			byte[] utf8 = Encoding.UTF8.GetBytes(value ?? string.Empty);
 
 			NS_CStringSetData(this, utf8, utf8.Length);
 		}
@@ -305,7 +460,7 @@ namespace Gecko
 				Marshal.Copy(data, result, 0, length);
 				return Encoding.UTF8.GetString(result);
 			}
-			return "";
+			return string.Empty;
 		}
 
 	}
@@ -341,6 +496,7 @@ namespace Gecko
 
 	[StructLayout(LayoutKind.Sequential)]
 	public class nsACStringBase
+		: IString
 	{
 		protected nsACStringBase() { }
 
@@ -378,7 +534,7 @@ namespace Gecko
 			{
 				return Marshal.PtrToStringAnsi(data, length);
 			}
-			return "";
+			return string.Empty;
 		}
 	}
 
@@ -414,6 +570,7 @@ namespace Gecko
 
 	[StructLayout(LayoutKind.Sequential)]
 	public class nsAStringBase
+		: IString
 	{
 		protected nsAStringBase() { }
 
@@ -451,7 +608,7 @@ namespace Gecko
 			{
 				return Marshal.PtrToStringUni(data, length);
 			}
-			return "";
+			return string.Empty;
 		}
 	}
 

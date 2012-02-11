@@ -106,6 +106,7 @@
     <Compile Include="BaseTypes\gfxGraphicsFilter.cs" />
     <Compile Include="BaseTypes\gfxMatrix.cs" />
     <Compile Include="BaseTypes\gfxRect.cs" />
+    <Compile Include="BrowserSearchService.cs" />
     <Compile Include="ByteArrayInputStream.cs" />
     <Compile Include="Cache\CacheDeviceInfo.cs" />
     <Compile Include="Cache\CacheEntryDescriptor.cs" />
