@@ -147,7 +147,10 @@
     <Compile Include="Interop\nsSupports.cs" />
     <Compile Include="Interop\WrapperManager.cs" />
     <Compile Include="IO\InputStream.cs" />
+    <Compile Include="IO\MimeInputStream.cs" />
     <Compile Include="IO\OutputStream.cs" />
+    <Compile Include="IO\ScriptableInputStream.cs" />
+    <Compile Include="IO\StringInputStream.cs" />
     <Compile Include="IO\ZipReader.cs" />
     <Compile Include="Microsoft.cs" />
     <Compile Include="Net\Channel.cs" />
@@ -156,6 +159,7 @@
     <Compile Include="Net\HttpChannel.cs" />
     <Compile Include="Net\LoadGroup.cs" />
     <Compile Include="Net\Request.cs" />
+    <Compile Include="Net\UploadChannel.cs" />
     <Compile Include="nsCancelable.cs" />
     <Compile Include="nsSupportsPrimitives.cs" />
     <Compile Include="GeckoMessageEvents.cs" />

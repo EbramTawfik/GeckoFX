@@ -104,6 +104,18 @@ namespace Gecko
 				func(value1, value2, native);
 			}
 		}
+
+		private static void GenericSet<T1, TString, T2>(Action<T1,TString, T2 > func, T1 value1,string stringValue, T2 value2)
+			where TString : IString, IDisposable, new()
+		{
+			using (var native = new TString())
+			{
+				if (!string.IsNullOrEmpty(stringValue))
+					native.SetData(stringValue);
+
+				func(value1, native, value2);
+			}
+		}
 		#endregion
 
 		// functions that get [gecko string]
@@ -317,6 +329,11 @@ namespace Gecko
 			return GenericGet( getter, inValue );
 		}
 
+		public static string Get<T>(Action<T, nsACString> func, T value)
+		{
+			return GenericGet(func, value);
+		}
+
 		public static void Set(Action<nsACString> setter, string value)
 		{
 			GenericSet( setter, value );
@@ -374,6 +391,11 @@ namespace Gecko
 		public static void Set<T1,T2>(Action<T1,T2,nsAString> func,T1 value1,T2 value2, string stringValue)
 		{
 			GenericSet( func, value1, value2, stringValue );
+		}
+
+		public static void Set<T1, T2>(Action<T1,nsACString, T2 > func, T1 value1,string stringValue, T2 value2 )
+		{
+			GenericSet( func, value1, stringValue, value2 );
 		}
 		#endregion
 

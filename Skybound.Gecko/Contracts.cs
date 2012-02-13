@@ -15,6 +15,7 @@ namespace Gecko
 		internal static readonly string Variant = "@mozilla.org/variant;1";
 		internal static readonly string CategoryManager = "@mozilla.org/categorymanager;1";
 		internal static readonly string BrowserSearchService = "@mozilla.org/browser/search-service;1";
+		internal static readonly string ScriptableInputStream = "@mozilla.org/scriptableinputstream;1";
 		#region nsISupportsPrimitive's
 		internal static readonly string SupportsID = "@mozilla.org/supports-id;1";
 		internal static readonly string SupportsString = "@mozilla.org/supports-string;1";

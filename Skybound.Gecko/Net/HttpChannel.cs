@@ -7,11 +7,13 @@ namespace Gecko.Net
 		:Channel
 	{
 		private nsIHttpChannel _httpChannel;
+		private nsIUploadChannel _uploadChannel;
 
-		public HttpChannel (nsIHttpChannel  httpChannel)
+		internal HttpChannel(nsIHttpChannel httpChannel, nsIUploadChannel uploadChannel)
 			:base(httpChannel)
 		{
 			_httpChannel = httpChannel;
+			_uploadChannel = uploadChannel;
 		}
 
 
@@ -107,6 +109,27 @@ namespace Gecko.Net
 			get { return _httpChannel.IsNoCacheResponse(); }
 		}
 
+		public UploadChannel GetUploadChannel()
+		{
+			return _uploadChannel == null ? null : new UploadChannel(_uploadChannel);
+		}
+
+		/// <summary>
+		/// Creates HttpChannel directly from nsISupports
+		/// </summary>
+		/// <param name="supports"></param>
+		/// <returns></returns>
+		public static HttpChannel Create(nsISupports supports)
+		{
+			var channel = Xpcom.QueryInterface<nsIHttpChannel>(supports);
+			return channel == null ? null:Create(channel);
+		}
+
+		public static HttpChannel Create(nsIHttpChannel  httpChannel)
+		{
+			var uploadChannel=Xpcom.QueryInterface<nsIUploadChannel>( httpChannel );
+			return new HttpChannel( httpChannel, uploadChannel );
+		}
 
 		private sealed class HttpHeaderVisitor
 			: nsIHttpHeaderVisitor
@@ -119,6 +142,4 @@ namespace Gecko.Net
 			}
 		}
 	}
-
-
 }

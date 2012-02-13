@@ -6,17 +6,17 @@ using System.Text;
 
 namespace Gecko.IO
 {
-	public sealed class InputStream
+	public class InputStream
 		:System.IO.Stream
 	{
 		private bool _seekable;
 		private nsISeekableStream _seekableStream;
-		private nsIInputStream _inputStream;
+		internal nsIInputStream _inputStream;
 
-		private InputStream(nsIInputStream inputStream, nsISeekableStream seekableStream)
+		internal InputStream(nsIInputStream inputStream)
 		{
 			_inputStream = inputStream;
-			_seekableStream = seekableStream;
+			_seekableStream = Xpcom.QueryInterface<nsISeekableStream>(inputStream);
 			_seekable = _seekableStream != null;
 		}
 
@@ -40,17 +40,44 @@ namespace Gecko.IO
 
 		public override void SetLength( long value )
 		{
-			throw new NotImplementedException();
+			var position = _seekableStream.Tell();
+			_seekableStream.Seek(0, (int)value);
+			_seekableStream.SetEOF();
+			if (position < value)
+			{
+				// Returning to old position
+				_seekableStream.Seek( 0,position );
+			}
+
 		}
 
-		public override int Read( byte[] buffer, int offset, int count )
+		public unsafe override int Read( byte[] buffer, int offset, int count )
 		{
-			throw new NotImplementedException();
+			uint ret;
+			// strict values & buffer size check before using pointers
+			if ((offset<0)||(count<=0)) return 0;
+			// offset >= 0 count>0
+			if ((offset+count)>buffer.Length) return 0;
+			fixed (byte* bufferPtr =buffer)
+			{
+				byte* writePtr = bufferPtr + offset;
+				ret=_inputStream.Read(new IntPtr(writePtr), (uint)count);
+			}
+			return ( int ) ret;
 		}
 
+
+
+		/// <summary>
+		/// Warning: .NET have another stream model. DON'T USE THIS FUNCTION
+		/// InputStream can only read data
+		/// </summary>
+		/// <param name="buffer"></param>
+		/// <param name="offset"></param>
+		/// <param name="count"></param>
 		public override void Write( byte[] buffer, int offset, int count )
 		{
-			throw new NotImplementedException();
+			throw new NotSupportedException("InputStream can only read data :)");
 		}
 
 		public override bool CanRead
@@ -68,10 +95,20 @@ namespace Gecko.IO
 			get { return false; }
 		}
 
+		/// <summary>
+		/// Warning: .NET have another stream model. DON'T USE THIS PROPERTY
+		/// </summary>
 		public override long Length
 		{
+			get
+			{
+				return _seekableStream.Tell() + _inputStream.Available();
+			}
+		}
 
-			get { throw new NotImplementedException(); }
+		public long Avaliable
+		{
+			get { return _inputStream.Available(); }
 		}
 
 		public override long Position
@@ -83,8 +120,17 @@ namespace Gecko.IO
 
 		public static InputStream Create(nsIInputStream stream)
 		{
-			var seekable = Xpcom.QueryInterface<nsISeekableStream>(stream);
-			return new InputStream(stream, seekable);
+			var mimeInputStream= Xpcom.QueryInterface<nsIMIMEInputStream>(stream);
+			if (mimeInputStream != null)
+			{
+				return new MimeInputStream( mimeInputStream );
+			}
+			var stringInputStream = Xpcom.QueryInterface<nsIStringInputStream>( stream );
+			if (stringInputStream != null)
+			{
+				return new StringInputStream( stringInputStream );
+			}
+			return new InputStream(stream);
 		}
 	}
 }
