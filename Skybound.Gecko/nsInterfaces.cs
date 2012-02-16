@@ -298,9 +298,7 @@ namespace Gecko
 		{
 			return Marshal.PtrToStringUni(pNativeData);
 		}
-	}
-	
-	#if !NO_CUSTOM_PROMPT_SERVICE
+	}	
 
 	static class nsIPromptServiceConstants
 	{
@@ -325,8 +323,6 @@ namespace Gecko
 		public const int STD_OK_CANCEL_BUTTONS = 513;
 		public const int STD_YES_NO_BUTTONS = 1027;
 	}
-
-	#endif
 	
 	public delegate int nsWriteSegmentFun(nsIInputStream aInStream, IntPtr aClosure, IntPtr aFromSegment, int aToOffset, int aCount, out int aWriteCount);
 			

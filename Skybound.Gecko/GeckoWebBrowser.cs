@@ -180,14 +180,10 @@ namespace Gecko
 				base.OnHandleCreated(e);
 				m_wrapper.Init();
 			}
-#endif
-			
+#endif			
 			if (!this.DesignMode)
 			{
-				Xpcom.Initialize();
-				#if !NO_CUSTOM_PROMPT_SERVICE
-				PromptFactoryFactory.Register();
-				#endif
+				Xpcom.Initialize();				
 				WindowCreator.Register();
 #if !GTK
                 LauncherDialogFactory.Register();

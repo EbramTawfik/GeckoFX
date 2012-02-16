@@ -39,8 +39,7 @@ using System.Text;
 using System.Windows.Forms;
 
 namespace Gecko
-{
-	#if !NO_CUSTOM_PROMPT_SERVICE
+{	
 	[Guid("8E4AABE2-B832-4cff-B213-2174DE2B818D")]
 	[ContractID(PromptServiceFactory.ContractID)]
 	class PromptServiceFactory
@@ -293,6 +292,5 @@ namespace Gecko
 		{
 			return Select( null, dialogTitle, text, count, selectList, ref outSelection );
 		}
-	}
-	#endif
+	}	
 }

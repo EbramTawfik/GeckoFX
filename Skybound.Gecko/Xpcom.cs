@@ -88,6 +88,12 @@ namespace Gecko
 		{
 			Initialize(null);
 		}
+
+		public static bool UseCustomPrompt
+		{
+			get;
+			set;
+		}
 		
 		public static bool IsLinux
 		{
@@ -192,7 +198,10 @@ namespace Gecko
 			nsIDirectoryService directoryService = GetService<nsIDirectoryService>("@mozilla.org/file/directory_service;1");
 			if (directoryService != null)
 				directoryService.RegisterProvider(new ProfileProvider());
-			
+
+			if (UseCustomPrompt)
+				PromptFactoryFactory.Register();
+
 			_IsInitialized = true;
 		}
 
