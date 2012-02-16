@@ -2,6 +2,12 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v10.0-0.3 ==
+
+1. Make Custom Prompts Service runtime switchable. (currently defaulting to off)
+2. Allow Custom Prompt Service to be customized, with out modifiying geckofx.
+3. Lots more wrappers provided by zloyprotoss
+
 == v10.0-0.2 ==
 
 1. Memory corruption fixes when ns*String class was used in callbacks.
