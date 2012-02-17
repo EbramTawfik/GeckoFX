@@ -53,6 +53,9 @@ namespace GtkDotNet
 			m_popupWindow = popupWindow;
 			m_parent.HandleCreated += HandleParentCreated;
 			m_parent.Resize += HandleParentResize;
+			
+			Gdk.Display display = Gdk.Display.Default;	
+			m_xDisplayPointer = gdk_x11_display_get_xdisplay(display.Handle);
 		}
 		
 		public override void Init()
@@ -93,11 +96,7 @@ namespace GtkDotNet
 			m_popupWindow.GdkWindow.Reparent(m_gdkWrapperOfForm, 0, 0);
 			ProcessPendingGtkEvents();
 			
-			m_popupWindow.GdkWindow.AddFilter(FilterFunc);
-			
-			// Setting the m_xDisplayPointer could possibly be done earlier if needed.
-			Gdk.Display display = Gdk.Display.Default;	
-			m_xDisplayPointer = gdk_x11_display_get_xdisplay(display.Handle);
+			m_popupWindow.GdkWindow.AddFilter(FilterFunc);									
 		}
 								
 		private FilterReturn FilterFunc (IntPtr xevent, Event evnt)
@@ -128,12 +127,18 @@ namespace GtkDotNet
 		
 		public override void SetInputFocus()
 		{
+			if (m_xDisplayPointer == IntPtr.Zero)
+				throw new ArgumentNullException("m_xDisplayPointer");
+			
 			IntPtr xWindow = gdk_x11_drawable_get_xid(m_popupWindow.GdkWindow.Handle);
 			XSetInputFocus(m_xDisplayPointer, xWindow, RevertTo.Parent, IntPtr.Zero);
 		}
 		
 		public override void RemoveInputFocus()
 		{
+			if (m_xDisplayPointer == IntPtr.Zero)
+				throw new ArgumentNullException("m_xDisplayPointer");
+			
 			IntPtr xWindow = gdk_x11_drawable_get_xid(m_popupWindow.GdkWindow.Handle);
 			XSetInputFocus(m_xDisplayPointer, IntPtr.Zero, RevertTo.Parent, IntPtr.Zero);
 		}
