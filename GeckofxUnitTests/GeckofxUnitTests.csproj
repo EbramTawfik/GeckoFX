@@ -74,6 +74,7 @@
     <Compile Include="UserInfoTests.cs" />
     <Compile Include="WebBrowserPersistTests.cs" />
     <Compile Include="XpComTests.cs" />
+    <Compile Include="XPConnectTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app1.manifest" />
