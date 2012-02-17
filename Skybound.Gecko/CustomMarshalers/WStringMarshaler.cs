@@ -28,7 +28,7 @@ namespace Gecko.CustomMarshalers
 
 		public int GetNativeDataSize()
 		{
-			return Marshal.SizeOf(IntPtr.Zero);
+			return -1;
 		}
 
 		/// <summary>
