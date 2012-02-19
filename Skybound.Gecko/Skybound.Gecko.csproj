@@ -143,7 +143,11 @@
     <Compile Include="ConfirmDialog.Designer.cs">
       <DependentUpon>ConfirmDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConsoleService.cs" />
     <Compile Include="Contracts.cs" />
+    <Compile Include="GeckoWebBrowser.Events.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Interop\MemCopy.cs" />
     <Compile Include="Interop\nsSupports.cs" />
     <Compile Include="Interop\WrapperManager.cs" />
@@ -1480,6 +1484,7 @@
     <Compile Include="nsURI.cs" />
     <Compile Include="ObserverNotifications.cs" />
     <Compile Include="ObserverService.cs" />
+    <Compile Include="Observers\BaseHttpModifyRequestObserver.cs" />
     <Compile Include="PasswordDialog.cs">
       <SubType>Form</SubType>
     </Compile>

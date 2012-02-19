@@ -305,7 +305,7 @@ namespace GeckofxUnitTests
 		{
 			ConsoleMessageEventArgs eventArgs = null;
 
-			GeckoWebBrowser.ConsoleMessageEventHandler eventHandler = (object sender, ConsoleMessageEventArgs e) => eventArgs = e;
+			EventHandler<ConsoleMessageEventArgs> eventHandler = (object sender, ConsoleMessageEventArgs e) => eventArgs = e;
 			browser.ConsoleMessage += eventHandler;
 
 			string html = "<p style=\"background: bluse; color: white;\">hello</p>";

@@ -43,6 +43,7 @@ using System.IO;
 using System.Reflection;
 using System.Diagnostics;
 using System.Text;
+using Gecko.Net;
 
 namespace Gecko
 {
@@ -211,8 +212,8 @@ namespace Gecko
 
 				if (UseHttpActivityObserver)
 				{
-					var observerService = Xpcom.GetService<nsIObserverService>("@mozilla.org/observer-service;1");
-					observerService.AddObserver(this, "http-on-modify-request", false);
+					var observerService = Xpcom.GetService<nsIObserverService>( Contracts.ObserverService );
+					observerService.AddObserver(this, ObserverNotifications.HttpRequests.HttpOnModifyRequest, false);
 
 					nsIHttpActivityDistributor activityDistributor = Xpcom.GetService<nsIHttpActivityDistributor>("@mozilla.org/network/http-activity-distributor;1");
 					activityDistributor = Xpcom.QueryInterface<nsIHttpActivityDistributor>(activityDistributor);
@@ -370,57 +371,6 @@ namespace Gecko
 			}
 			base.OnPaint(e);
 		}
-		
-		#region public event GeckoCreateWindowEventHandler CreateWindow
-		public event GeckoCreateWindowEventHandler CreateWindow
-		{
-			add { this.Events.AddHandler(CreateWindowEvent, value); }
-			remove { this.Events.RemoveHandler(CreateWindowEvent, value); }
-		}
-		private static object CreateWindowEvent = new object();
-
-		/// <summary>Raises the <see cref="CreateWindow"/> event.</summary>
-		/// <param name="e">The data for the event.</param>
-		protected virtual void OnCreateWindow(GeckoCreateWindowEventArgs e)
-		{
-			if (((GeckoCreateWindowEventHandler)this.Events[CreateWindowEvent]) != null)
-				((GeckoCreateWindowEventHandler)this.Events[CreateWindowEvent])(this, e);
-		}
-		#endregion
-		
-        #region public event GeckoCreateWindow2EventHandler CreateWindow2
-        public event GeckoCreateWindow2EventHandler CreateWindow2
-        {
-            add { this.Events.AddHandler(CreateWindow2Event, value); }
-            remove { this.Events.RemoveHandler(CreateWindow2Event, value); }
-        }
-        private static object CreateWindow2Event = new object();
-
-        /// <summary>Raises the <see cref="CreateWindow"/> event.</summary>
-        /// <param name="e">The data for the event.</param>
-        protected virtual void OnCreateWindow2(GeckoCreateWindow2EventArgs e)
-        {
-            if (((GeckoCreateWindow2EventHandler)this.Events[CreateWindow2Event]) != null)
-                ((GeckoCreateWindow2EventHandler)this.Events[CreateWindow2Event])(this, e);
-        }
-        #endregion
-		
-		#region public event GeckoWindowSetBoundsEventHandler WindowSetBounds
-		public event GeckoWindowSetBoundsEventHandler WindowSetBounds
-		{
-			add { this.Events.AddHandler(WindowSetBoundsEvent, value); }
-			remove { this.Events.RemoveHandler(WindowSetBoundsEvent, value); }
-		}
-		private static object WindowSetBoundsEvent = new object();
-
-		/// <summary>Raises the <see cref="WindowSetBounds"/> event.</summary>
-		/// <param name="e">The data for the event.</param>
-		protected virtual void OnWindowSetBounds(GeckoWindowSetBoundsEventArgs e)
-		{
-			if (((GeckoWindowSetBoundsEventHandler)this.Events[WindowSetBoundsEvent]) != null)
-				((GeckoWindowSetBoundsEventHandler)this.Events[WindowSetBoundsEvent])(this, e);
-		}
-		#endregion
 		
 		#region protected override void WndProc(ref Message m)
 		[DllImport("user32")]
@@ -755,26 +705,7 @@ namespace Gecko
 		}
 		string _StatusText;
 
-		#region public event EventHandler StatusTextChanged
-		/// <summary>
-		/// Occurs when the value of the <see cref="StatusText"/> property is changed.
-		/// </summary>
-		[Category("Property Changed"), Description("Occurs when the value of the StatusText property is changed.")]
-		public event EventHandler StatusTextChanged
-		{
-			add { this.Events.AddHandler(StatusTextChangedEvent, value); }
-			remove { this.Events.RemoveHandler(StatusTextChangedEvent, value); }
-		}
-		private static object StatusTextChangedEvent = new object();
 
-		/// <summary>Raises the <see cref="StatusTextChanged"/> event.</summary>
-		/// <param name="e">The data for the event.</param>
-		protected virtual void OnStatusTextChanged(EventArgs e)
-		{
-			if (((EventHandler)this.Events[StatusTextChangedEvent]) != null)
-				((EventHandler)this.Events[StatusTextChangedEvent])(this, e);
-		}
-		#endregion
 		
 		/// <summary>
 		/// Gets the title of the document loaded into the web browser.
@@ -785,35 +716,14 @@ namespace Gecko
 			get { return _DocumentTitle ?? ""; }
 			private set
 			{
-				if (DocumentTitle != value)
-				{
-					_DocumentTitle = value;
-					OnDocumentTitleChanged(EventArgs.Empty);
-				}
+				if (DocumentTitle == value) return;
+				_DocumentTitle = value;
+				OnDocumentTitleChanged(EventArgs.Empty);
 			}
 		}
 		string _DocumentTitle;
 		
-		#region public event EventHandler DocumentTitleChanged
-		/// <summary>
-		/// Occurs when the value of the <see cref="DocumentTitle"/> property is changed.
-		/// </summary>
-		[Category("Property Changed"), Description("Occurs when the value of the DocumentTitle property is changed.")]
-		public event EventHandler DocumentTitleChanged
-		{
-			add { this.Events.AddHandler(DocumentTitleChangedEvent, value); }
-			remove { this.Events.RemoveHandler(DocumentTitleChangedEvent, value); }
-		}
-		private static object DocumentTitleChangedEvent = new object();
 
-		/// <summary>Raises the <see cref="DocumentTitleChanged"/> event.</summary>
-		/// <param name="e">The data for the event.</param>
-		protected virtual void OnDocumentTitleChanged(EventArgs e)
-		{
-			if (((EventHandler)this.Events[DocumentTitleChangedEvent]) != null)
-				((EventHandler)this.Events[DocumentTitleChangedEvent])(this, e);
-		}
-		#endregion
 		
 		/// <summary>
 		/// Gets whether the browser may navigate back in the history.
@@ -824,27 +734,6 @@ namespace Gecko
 			get { return _CanGoBack; }
 		}
 		bool _CanGoBack;
-
-		#region public event EventHandler CanGoBackChanged
-		/// <summary>
-		/// Occurs when the value of the <see cref="CanGoBack"/> property is changed.
-		/// </summary>
-		[Category("Property Changed"), Description("Occurs when the value of the CanGoBack property is changed.")]
-		public event EventHandler CanGoBackChanged
-		{
-			add { this.Events.AddHandler(CanGoBackChangedEvent, value); }
-			remove { this.Events.RemoveHandler(CanGoBackChangedEvent, value); }
-		}
-		private static object CanGoBackChangedEvent = new object();
-
-		/// <summary>Raises the <see cref="CanGoBackChanged"/> event.</summary>
-		/// <param name="e">The data for the event.</param>
-		protected virtual void OnCanGoBackChanged(EventArgs e)
-		{
-			if (((EventHandler)this.Events[CanGoBackChangedEvent]) != null)
-				((EventHandler)this.Events[CanGoBackChangedEvent])(this, e);
-		}
-		#endregion
 		
 		/// <summary>
 		/// Gets whether the browser may navigate forward in the history.
@@ -856,26 +745,7 @@ namespace Gecko
 		}
 		bool _CanGoForward;
 
-		#region public event EventHandler CanGoForwardChanged
-		/// <summary>
-		/// Occurs when the value of the <see cref="CanGoForward"/> property is changed.
-		/// </summary>
-		[Category("Property Changed"), Description("Occurs when the value of the CanGoForward property is changed.")]
-		public event EventHandler CanGoForwardChanged
-		{
-			add { this.Events.AddHandler(CanGoForwardChangedEvent, value); }
-			remove { this.Events.RemoveHandler(CanGoForwardChangedEvent, value); }
-		}
-		private static object CanGoForwardChangedEvent = new object();
-
-		/// <summary>Raises the <see cref="CanGoForwardChanged"/> event.</summary>
-		/// <param name="e">The data for the event.</param>
-		protected virtual void OnCanGoForwardChanged(EventArgs e)
-		{
-			if (((EventHandler)this.Events[CanGoForwardChangedEvent]) != null)
-				((EventHandler)this.Events[CanGoForwardChangedEvent])(this, e);
-		}
-		#endregion
+		
 		
 		/// <summary>Raises the CanGoBackChanged or CanGoForwardChanged events when necessary.</summary>
 		void UpdateCommandStatus()
@@ -1324,177 +1194,6 @@ namespace Gecko
 			m_wrapper.RemoveInputFocus();		
 #endif
 		}
-		
-		
-		#region public event GeckoNavigatingEventHandler Navigating
-		/// <summary>
-		/// Occurs before the browser navigates to a new page.
-		/// </summary>
-		[Category("Navigation"), Description("Occurs before the browser navigates to a new page.")]
-		public event GeckoNavigatingEventHandler Navigating
-		{
-			add { this.Events.AddHandler(NavigatingEvent, value); }
-			remove { this.Events.RemoveHandler(NavigatingEvent, value); }
-		}
-		private static object NavigatingEvent = new object();
-
-		/// <summary>Raises the <see cref="Navigating"/> event.</summary>
-		/// <param name="e">The data for the event.</param>
-		protected virtual void OnNavigating(GeckoNavigatingEventArgs e)
-		{
-			if (((GeckoNavigatingEventHandler)this.Events[NavigatingEvent]) != null)
-				((GeckoNavigatingEventHandler)this.Events[NavigatingEvent])(this, e);
-		}
-		#endregion
-		
-		#region public event GeckoNavigatedEventHandler Navigated
-		/// <summary>
-		/// Occurs after the browser has navigated to a new page.
-		/// </summary>
-		[Category("Navigation"), Description("Occurs after the browser has navigated to a new page.")]
-		public event GeckoNavigatedEventHandler Navigated
-		{
-			add { this.Events.AddHandler(NavigatedEvent, value); }
-			remove { this.Events.RemoveHandler(NavigatedEvent, value); }
-		}
-		private static object NavigatedEvent = new object();
-
-		/// <summary>Raises the <see cref="Navigated"/> event.</summary>
-		/// <param name="e">The data for the event.</param>
-		protected virtual void OnNavigated(GeckoNavigatedEventArgs e)
-		{
-			if (((GeckoNavigatedEventHandler)this.Events[NavigatedEvent]) != null)
-				((GeckoNavigatedEventHandler)this.Events[NavigatedEvent])(this, e);
-		}
-		#endregion
-		
-		#region public event EventHandler DocumentCompleted
-		/// <summary>
-		/// Occurs after the browser has finished parsing a new page and updated the <see cref="Document"/> property.
-		/// </summary>
-		[Category("Navigation"), Description("Occurs after the browser has finished parsing a new page and updated the Document property.")]
-		public event EventHandler DocumentCompleted
-		{
-			add { this.Events.AddHandler(DocumentCompletedEvent, value); }
-			remove { this.Events.RemoveHandler(DocumentCompletedEvent, value); }
-		}
-		private static object DocumentCompletedEvent = new object();
-
-		/// <summary>Raises the <see cref="DocumentCompleted"/> event.</summary>
-		/// <param name="e">The data for the event.</param>
-		protected virtual void OnDocumentCompleted(EventArgs e)
-		{
-			if (((EventHandler)this.Events[DocumentCompletedEvent]) != null)
-				((EventHandler)this.Events[DocumentCompletedEvent])(this, e);
-		}
-		#endregion
-
-		#region event JavascriptErrorEventHandler JavascriptError
-
-		internal class JSErrorHandler : jsdIErrorHook
-		{
-			GeckoWebBrowser m_browser;
-
-			internal JSErrorHandler(GeckoWebBrowser browser)
-			{
-				m_browser = browser;
-			}
-
-			public bool OnError(nsAUTF8StringBase message, nsAUTF8StringBase fileName, uint line, uint pos, uint flags, uint errnum, jsdIValue exc)
-			{
-				var eventArgs = new JavascriptErrorEventArgs(message.ToString(), fileName.ToString(), line, pos, flags, errnum);
-				m_browser.OnJavascriptError(eventArgs);
-				return true;
-			}
-		}
-
-		public void EnableJavascriptDebugger()
-		{
-			if (m_javascriptDebuggingEnabled)
-				return;
-
-			using (var a = new AutoJSContext())
-			{
-				var jsd = Xpcom.GetService<jsdIDebuggerService>("@mozilla.org/js/jsd/debugger-service;1");
-				jsd.SetErrorHookAttribute(new JSErrorHandler(this));
-				nsIJSRuntimeService runtime = Xpcom.GetService<nsIJSRuntimeService>("@mozilla.org/js/xpc/RuntimeService;1");
-				jsd.ActivateDebugger(runtime.GetRuntimeAttribute());
-				Marshal.ReleaseComObject(runtime);
-				Marshal.ReleaseComObject(jsd);
-			}
-
-			m_javascriptDebuggingEnabled = true;
-		}
-
-		public delegate void JavascriptErrorEventHandler(object sender, JavascriptErrorEventArgs e);
-
-		private JavascriptErrorEventHandler _JavascriptError;
-
-		public event JavascriptErrorEventHandler JavascriptError
-		{
-			add 
-			{ 
-				 EnableJavascriptDebugger(); 
-				_JavascriptError += value; 
-			}
-			remove { _JavascriptError -= value; }
-		}
-
-		protected virtual void OnJavascriptError(JavascriptErrorEventArgs e)
-		{
-			if (_JavascriptError != null)
-				_JavascriptError(this, e);
-		}
-
-		#endregion
-
-		#region event ConsoleMessageEventHandler ConsoleMessage
-
-		public class ConsoleListener : nsIConsoleListener
-		{
-			GeckoWebBrowser m_browser;
-
-			public ConsoleListener(GeckoWebBrowser browser)
-			{
-				m_browser = browser;
-			}
-
-			public void Observe(nsIConsoleMessage aMessage)
-			{
-				var e = new ConsoleMessageEventArgs(aMessage.GetMessageAttribute());
-				m_browser.OnConsoleMessage(e);
-			}
-		}
-
-		public void EnableConsoleMessageNotfication()
-		{
-			var consoleService = Xpcom.GetService<nsIConsoleService>("@mozilla.org/consoleservice;1");
-			consoleService.RegisterListener(new ConsoleListener(this));
-			Marshal.ReleaseComObject(consoleService);
-		}
-
-		public delegate void ConsoleMessageEventHandler(object sender, ConsoleMessageEventArgs e);
-
-		private ConsoleMessageEventHandler _ConsoleMessage; 
-
-		public event ConsoleMessageEventHandler ConsoleMessage
-		{
-			add 
-			{ 
-				 EnableConsoleMessageNotfication();
-				 _ConsoleMessage += value; 
-			}
-			remove { _ConsoleMessage -= value; }
-		}
-
-	
-		protected virtual void OnConsoleMessage(ConsoleMessageEventArgs e)
-		{
-			if (_ConsoleMessage != null)
-				_ConsoleMessage(this, e);
-		}
-
-		#endregion
 
 		/// <summary>
 		/// Gets whether the browser is busy loading a page.
@@ -1507,26 +1206,7 @@ namespace Gecko
 		}
 		bool _IsBusy;
 		
-		#region public event GeckoProgressEventHandler ProgressChanged
-		/// <summary>
-		/// Occurs when the control has updated progress information.
-		/// </summary>
-		[Category("Navigation"), Description("Occurs when the control has updated progress information.")]
-		public event GeckoProgressEventHandler ProgressChanged
-		{
-			add { this.Events.AddHandler(ProgressChangedEvent, value); }
-			remove { this.Events.RemoveHandler(ProgressChangedEvent, value); }
-		}
-		private static object ProgressChangedEvent = new object();
 
-		/// <summary>Raises the <see cref="ProgressChanged"/> event.</summary>
-		/// <param name="e">The data for the event.</param>
-		protected virtual void OnProgressChanged(GeckoProgressEventArgs e)
-		{
-			if (((GeckoProgressEventHandler)this.Events[ProgressChangedEvent]) != null)
-				((GeckoProgressEventHandler)this.Events[ProgressChangedEvent])(this, e);
-		}
-		#endregion
 
 		/// <summary>
 		/// Saves the current document to the specified file name.
@@ -1821,23 +1501,6 @@ namespace Gecko
 		{
 			Process.Start(url);
 		}
-
-		#region public event GeckoContextMenuEventHandler ShowContextMenu
-		public event GeckoContextMenuEventHandler ShowContextMenu
-		{
-			add { this.Events.AddHandler(ShowContextMenuEvent, value); }
-			remove { this.Events.RemoveHandler(ShowContextMenuEvent, value); }
-		}
-		private static object ShowContextMenuEvent = new object();
-
-		/// <summary>Raises the <see cref="ShowContextMenu"/> event.</summary>
-		/// <param name="e">The data for the event.</param>
-		protected virtual void OnShowContextMenu(GeckoContextMenuEventArgs e)
-		{
-			if (((GeckoContextMenuEventHandler)this.Events[ShowContextMenuEvent]) != null)
-				((GeckoContextMenuEventHandler)this.Events[ShowContextMenuEvent])(this, e);
-		}
-		#endregion
 		
 		/// <summary>
 		/// Opens a new window which contains the source code for the current page.
@@ -2179,7 +1842,7 @@ namespace Gecko
 
 			Uri uri = new Uri(nsString.Get(aLocation.GetSpecAttribute));
 			
-			OnNavigated(new GeckoNavigatedEventArgs(uri, new GeckoResponse(aRequest)));
+			OnNavigated(new GeckoNavigatedEventArgs(uri, aRequest));
 			UpdateCommandStatus();
 		}
 
@@ -2292,350 +1955,8 @@ namespace Gecko
 			
 		}
 
-		#region public event GeckoDomKeyEventHandler DomKeyDown
-		[Category("DOM Events")]
-		public event GeckoDomKeyEventHandler DomKeyDown
-		{
-			add { this.Events.AddHandler(DomKeyDownEvent, value); }
-			remove { this.Events.RemoveHandler(DomKeyDownEvent, value); }
-		}
-		private static object DomKeyDownEvent = new object();
-
-		/// <summary>Raises the <see cref="DomKeyDown"/> event.</summary>
-		/// <param name="e">The data for the event.</param>
-		protected virtual void OnDomKeyDown(GeckoDomKeyEventArgs e)
-		{
-			if (((GeckoDomKeyEventHandler)this.Events[DomKeyDownEvent]) != null)
-				((GeckoDomKeyEventHandler)this.Events[DomKeyDownEvent])(this, e);
-		}
 		#endregion
 
-		#region public event GeckoDomKeyEventHandler DomKeyUp
-		[Category("DOM Events")]
-		public event GeckoDomKeyEventHandler DomKeyUp
-		{
-			add { this.Events.AddHandler(DomKeyUpEvent, value); }
-			remove { this.Events.RemoveHandler(DomKeyUpEvent, value); }
-		}
-		private static object DomKeyUpEvent = new object();
-
-		/// <summary>Raises the <see cref="DomKeyUp"/> event.</summary>
-		/// <param name="e">The data for the event.</param>
-		protected virtual void OnDomKeyUp(GeckoDomKeyEventArgs e)
-		{
-			if (((GeckoDomKeyEventHandler)this.Events[DomKeyUpEvent]) != null)
-				((GeckoDomKeyEventHandler)this.Events[DomKeyUpEvent])(this, e);
-		}
-		
-		[Category("DOM Events")]
-		public event GeckoDomKeyEventHandler DomKeyPress
-		{
-			add { this.Events.AddHandler(DomKeyPressEvent, value); }
-			remove { this.Events.RemoveHandler(DomKeyPressEvent, value); }
-		}
-		private static object DomKeyPressEvent = new object();
-		
-		/// <summary>Raises the <see cref="DomKeyPress"/> event.</summary>
-		/// <param name="e">The data for the event.</param>
-		protected virtual void OnDomKeyPress(GeckoDomKeyEventArgs e)
-		{
-			if (((GeckoDomKeyEventHandler)this.Events[DomKeyPressEvent]) != null)
-				((GeckoDomKeyEventHandler)this.Events[DomKeyPressEvent])(this, e);
-		}
-		#endregion
-		
-		#region public event GeckoDomMouseEventHandler DomMouseDown
-		[Category("DOM Events")]
-		public event GeckoDomMouseEventHandler DomMouseDown
-		{
-			add { this.Events.AddHandler(DomMouseDownEvent, value); }
-			remove { this.Events.RemoveHandler(DomMouseDownEvent, value); }
-		}
-		private static object DomMouseDownEvent = new object();
-
-		/// <summary>Raises the <see cref="DomMouseDown"/> event.</summary>
-		/// <param name="e">The data for the event.</param>
-		protected virtual void OnDomMouseDown(GeckoDomMouseEventArgs e)
-		{
-			if (((GeckoDomMouseEventHandler)this.Events[DomMouseDownEvent]) != null)
-				((GeckoDomMouseEventHandler)this.Events[DomMouseDownEvent])(this, e);
-		}
-		#endregion
-
-		#region public event GeckoDomMouseEventHandler DomMouseUp
-		[Category("DOM Events")]
-		public event GeckoDomMouseEventHandler DomMouseUp
-		{
-			add { this.Events.AddHandler(DomMouseUpEvent, value); }
-			remove { this.Events.RemoveHandler(DomMouseUpEvent, value); }
-		}
-		private static object DomMouseUpEvent = new object();
-
-		/// <summary>Raises the <see cref="DomMouseUp"/> event.</summary>
-		/// <param name="e">The data for the event.</param>
-		protected virtual void OnDomMouseUp(GeckoDomMouseEventArgs e)
-		{
-			if (((GeckoDomMouseEventHandler)this.Events[DomMouseUpEvent]) != null)
-				((GeckoDomMouseEventHandler)this.Events[DomMouseUpEvent])(this, e);
-		}
-		#endregion
-
-		#region public event GeckoDomMouseEventHandler DomMouseOver
-		[Category("DOM Events")]
-		public event GeckoDomMouseEventHandler DomMouseOver
-		{
-			add { this.Events.AddHandler(DomMouseOverEvent, value); }
-			remove { this.Events.RemoveHandler(DomMouseOverEvent, value); }
-		}
-		private static object DomMouseOverEvent = new object();
-
-		/// <summary>Raises the <see cref="DomMouseOver"/> event.</summary>
-		/// <param name="e">The data for the event.</param>
-		protected virtual void OnDomMouseOver(GeckoDomMouseEventArgs e)
-		{
-			if (((GeckoDomMouseEventHandler)this.Events[DomMouseOverEvent]) != null)
-				((GeckoDomMouseEventHandler)this.Events[DomMouseOverEvent])(this, e);
-		}
-		#endregion
-
-		#region public event GeckoDomMouseEventHandler DomMouseOut
-		[Category("DOM Events")]
-		public event GeckoDomMouseEventHandler DomMouseOut
-		{
-			add { this.Events.AddHandler(DomMouseOutEvent, value); }
-			remove { this.Events.RemoveHandler(DomMouseOutEvent, value); }
-		}
-		private static object DomMouseOutEvent = new object();
-
-		/// <summary>Raises the <see cref="DomMouseOut"/> event.</summary>
-		/// <param name="e">The data for the event.</param>
-		protected virtual void OnDomMouseOut(GeckoDomMouseEventArgs e)
-		{
-			if (((GeckoDomMouseEventHandler)this.Events[DomMouseOutEvent]) != null)
-				((GeckoDomMouseEventHandler)this.Events[DomMouseOutEvent])(this, e);
-		}
-		#endregion
-
-		#region public event GeckoDomMouseEventHandler DomMouseMove
-		[Category("DOM Events")]
-		public event GeckoDomMouseEventHandler DomMouseMove
-		{
-			add { this.Events.AddHandler(DomMouseMoveEvent, value); }
-			remove { this.Events.RemoveHandler(DomMouseMoveEvent, value); }
-		}
-		private static object DomMouseMoveEvent = new object();
-
-		/// <summary>Raises the <see cref="DomMouseMove"/> event.</summary>
-		/// <param name="e">The data for the event.</param>
-		protected virtual void OnDomMouseMove(GeckoDomMouseEventArgs e)
-		{
-			if (((GeckoDomMouseEventHandler)this.Events[DomMouseMoveEvent]) != null)
-				((GeckoDomMouseEventHandler)this.Events[DomMouseMoveEvent])(this, e);
-		}
-		#endregion
-		
-		#region public event GeckoDomMouseEventHandler DomContextMenu
-		[Category("DOM Events")]
-		public event GeckoDomMouseEventHandler DomContextMenu
-		{
-			add { this.Events.AddHandler(DomContextMenuEvent, value); }
-			remove { this.Events.RemoveHandler(DomContextMenuEvent, value); }
-		}
-		private static object DomContextMenuEvent = new object();
-
-		/// <summary>Raises the <see cref="DomContextMenu"/> event.</summary>
-		/// <param name="e">The data for the event.</param>
-		protected virtual void OnDomContextMenu(GeckoDomMouseEventArgs e)
-		{
-			if (((GeckoDomMouseEventHandler)this.Events[DomContextMenuEvent]) != null)
-				((GeckoDomMouseEventHandler)this.Events[DomContextMenuEvent])(this, e);
-		}
-		#endregion
-		
-		#region public event GeckoDomMouseEventHandler DOMMouseScroll
-		[Category("DOM Events")]
-		public event GeckoDomMouseEventHandler DomMouseScroll
-		{
-			add { this.Events.AddHandler(DomMouseScrollEvent, value); }
-			remove { this.Events.RemoveHandler(DomMouseScrollEvent, value); }
-		}
-		private static object DomMouseScrollEvent = new object();
-
-		/// <summary>Raises the <see cref="DOMMouseScroll"/> event.</summary>
-		/// <param name="e">The data for the event.</param>
-		protected virtual void OnDomMouseScroll(GeckoDomMouseEventArgs e)
-		{
-			if (((GeckoDomMouseEventHandler)this.Events[DomMouseScrollEvent]) != null)
-				((GeckoDomMouseEventHandler)this.Events[DomMouseScrollEvent])(this, e);
-		}
-		#endregion	
-		
-		#region public event GeckoDomEventHandler DomSubmit
-		[Category("DOM Events")]
-		public event GeckoDomEventHandler DomSubmit
-		{
-			add { this.Events.AddHandler(DomSubmitEvent, value); }
-			remove { this.Events.RemoveHandler(DomSubmitEvent, value); }
-		}
-		private static object DomSubmitEvent = new object();
-
-		/// <summary>Raises the <see cref="DomSubmit"/> event.</summary>
-		/// <param name="e">The data for the event.</param>
-		protected virtual void OnDomSubmit(GeckoDomEventArgs e)
-		{
-			if (((GeckoDomEventHandler)this.Events[DomSubmitEvent]) != null)
-				((GeckoDomEventHandler)this.Events[DomSubmitEvent])(this, e);
-		}
-		#endregion
-		
-		#region public event GeckoDomEventHandler DomCompositionStart
-		[Category("DOM Events")]
-		public event GeckoDomEventHandler DomCompositionStart
-		{
-			add { this.Events.AddHandler(DomCompositionStartEvent, value); }
-			remove { this.Events.RemoveHandler(DomCompositionStartEvent, value); }
-		}
-		private static object DomCompositionStartEvent = new object();
-
-		/// <summary>Raises the <see cref="DomCompositionStart"/> event.</summary>
-		/// <param name="e">The data for the event.</param>
-		protected virtual void OnDomCompositionStart(GeckoDomEventArgs e)
-		{
-			if (((GeckoDomEventHandler)this.Events[DomCompositionStartEvent]) != null)
-				((GeckoDomEventHandler)this.Events[DomCompositionStartEvent])(this, e);
-		}
-		#endregion
-		
-		#region public event GeckoDomEventHandler DomCompositionEnd
-		[Category("DOM Events")]
-		public event GeckoDomEventHandler DomCompositionEnd
-		{
-			add { this.Events.AddHandler(DomCompositionEndEvent, value); }
-			remove { this.Events.RemoveHandler(DomCompositionEndEvent, value); }
-		}
-		private static object DomCompositionEndEvent = new object();
-
-		/// <summary>Raises the <see cref="DomCompositionEnd"/> event.</summary>
-		/// <param name="e">The data for the event.</param>
-		protected virtual void OnDomCompositionEnd(GeckoDomEventArgs e)
-		{
-			if (((GeckoDomEventHandler)this.Events[DomCompositionEndEvent]) != null)
-				((GeckoDomEventHandler)this.Events[DomCompositionEndEvent])(this, e);
-		}
-		#endregion
-		
-		#region public event GeckoDomEventHandler DomFocus
-		[Category("DOM Events")]
-		public event GeckoDomEventHandler DomFocus
-		{
-			add { this.Events.AddHandler(DomFocusEvent, value); }
-			remove { this.Events.RemoveHandler(DomFocusEvent, value); }
-		}
-		private static object DomFocusEvent = new object();
-
-		/// <summary>Raises the <see cref="DomFocus"/> event.</summary>
-		/// <param name="e">The data for the event.</param>
-		protected virtual void OnDomFocus(GeckoDomEventArgs e)
-		{
-			if (((GeckoDomEventHandler)this.Events[DomFocusEvent]) != null)
-				((GeckoDomEventHandler)this.Events[DomFocusEvent])(this, e);
-		}
-		#endregion
-
-		#region public event GeckoDomEventHandler DomBlur
-		[Category("DOM Events")]
-		public event GeckoDomEventHandler DomBlur
-		{
-			add { this.Events.AddHandler(DomBlurEvent, value); }
-			remove { this.Events.RemoveHandler(DomBlurEvent, value); }
-		}
-		private static object DomBlurEvent = new object();
-
-		/// <summary>Raises the <see cref="DomBlur"/> event.</summary>
-		/// <param name="e">The data for the event.</param>
-		protected virtual void OnDomBlur(GeckoDomEventArgs e)
-		{
-			if (((GeckoDomEventHandler)this.Events[DomBlurEvent]) != null)
-				((GeckoDomEventHandler)this.Events[DomBlurEvent])(this, e);
-		}
-		#endregion
-
-		#region public event GeckoDomEventHandler Load
-		[Category("DOM Events")]
-		public event GeckoDomEventHandler Load
-		{
-			add { this.Events.AddHandler(LoadEvent, value); }
-			remove { this.Events.RemoveHandler(LoadEvent, value); }
-		}
-		private static object LoadEvent = new object();
-
-		/// <summary>Raises the <see cref="LoadEvent"/> event.</summary>
-		/// <param name="e">The data for the event.</param>
-		protected virtual void OnLoad(GeckoDomEventArgs e)
-		{
-			if (((GeckoDomEventHandler)this.Events[LoadEvent]) != null)
-				((GeckoDomEventHandler)this.Events[LoadEvent])(this, e);
-		}
-		#endregion
-
-		#region public event GeckoDomEventHandler DomContentChanged
-		[Category("DOM Events")]
-		public event GeckoDomEventHandler DomContentChanged
-		{
-			add { this.Events.AddHandler(DomContentChangedEvent, value); }
-			remove { this.Events.RemoveHandler(DomContentChangedEvent, value); }
-		}
-		private static object DomContentChangedEvent = new object();
-
-		/// <summary>Raises the <see cref="DomContentChangedEvent"/> event.</summary>
-		/// <param name="e">The data for the event.</param>
-		protected virtual void OnDomContentChanged(GeckoDomEventArgs e)
-		{
-			if (((GeckoDomEventHandler)this.Events[DomContentChangedEvent]) != null)
-				((GeckoDomEventHandler)this.Events[DomContentChangedEvent])(this, e);
-		}
-		#endregion
-		
-		#region public event GeckoDomEventHandler DomClick
-		[Category("DOM Events")]
-		public event GeckoDomEventHandler DomClick
-		{
-			add { this.Events.AddHandler(DomClickEvent, value); }
-			remove { this.Events.RemoveHandler(DomClickEvent, value); }
-		}
-		private static object DomClickEvent = new object();
-
-		/// <summary>Raises the <see cref="DomClick"/> event.</summary>
-		/// <param name="e">The data for the event.</param>
-		protected virtual void OnDomClick(GeckoDomEventArgs e)
-		{
-			if (((GeckoDomEventHandler)this.Events[DomClickEvent]) != null)
-				((GeckoDomEventHandler)this.Events[DomClickEvent])(this, e);
-		}
-		#endregion
-
-		#region public event GeckoDomEventHandler DomDoubleClick
-
-		[Category("DOM Events")]
-		public event GeckoDomEventHandler DomDoubleClick
-		{
-			add { this.Events.AddHandler(DomDoubleClickEvent, value); }
-			remove { this.Events.RemoveHandler(DomDoubleClickEvent, value); }
-		}
-		private static object DomDoubleClickEvent = new object();
-
-		/// <summary>Raises the <see cref="DomDoubleClick"/> event.</summary>
-		/// <param name="e">The data for the event.</param>
-		protected virtual void OnDomDoubleClick(GeckoDomEventArgs e)
-		{
-			if (((GeckoDomEventHandler)this.Events[DomDoubleClickEvent]) != null)
-				((GeckoDomEventHandler)this.Events[DomDoubleClickEvent])(this, e);
-		}
-
-		#endregion public event GeckoDomEventHandler DomDoubleClick
-		
-		#endregion
-		
 		#region nsIWindowProvider Members
 		//int nsIWindowProvider.provideWindow(nsIDOMWindow aParent, uint aChromeFlags, bool aPositionSpecified, bool aSizeSpecified, nsIURI aURI, nsAString aName, nsAString aFeatures, out bool aWindowIsNew, out nsIDOMWindow ret)
 		//{
@@ -2661,120 +1982,11 @@ namespace Gecko
 		//      return -1;
 		//}
 		#endregion
-		
+
 		#region nsISHistoryListener Members
-
-		#region public event GeckoHistoryEventHandler HistoryNewEntry
-		[Category("History")]
-		public event GeckoHistoryEventHandler HistoryNewEntry
-		{
-			add { this.Events.AddHandler(HistoryNewEntryEvent, value); }
-			remove { this.Events.RemoveHandler(HistoryNewEntryEvent, value); }
-		}
-		private static object HistoryNewEntryEvent = new object();
-
-		/// <summary>Raises the <see cref="HistoryNewEntry"/> event.</summary>
-		/// <param name="e">The data for the event.</param>
-		protected virtual void OnHistoryNewEntry(GeckoHistoryEventArgs e)
-		{
-			if (((GeckoHistoryEventHandler)this.Events[HistoryNewEntryEvent]) != null)
-				((GeckoHistoryEventHandler)this.Events[HistoryNewEntryEvent])(this, e);
-		}
-		#endregion
-
-		#region public event GeckoHistoryEventHandler HistoryGoBack
-		[Category("History")]
-		public event GeckoHistoryEventHandler HistoryGoBack
-		{
-			add { this.Events.AddHandler(HistoryGoBackEvent, value); }
-			remove { this.Events.RemoveHandler(HistoryGoBackEvent, value); }
-		}
-		private static object HistoryGoBackEvent = new object();
-
-		/// <summary>Raises the <see cref="HistoryGoBack"/> event.</summary>
-		/// <param name="e">The data for the event.</param>
-		protected virtual void OnHistoryGoBack(GeckoHistoryEventArgs e)
-		{
-			if (((GeckoHistoryEventHandler)this.Events[HistoryGoBackEvent]) != null)
-				((GeckoHistoryEventHandler)this.Events[HistoryGoBackEvent])(this, e);
-		}
-		#endregion
-
-		#region public event GeckoHistoryEventHandler HistoryGoForward
-		[Category("History")]
-		public event GeckoHistoryEventHandler HistoryGoForward
-		{
-			add { this.Events.AddHandler(HistoryGoForwardEvent, value); }
-			remove { this.Events.RemoveHandler(HistoryGoForwardEvent, value); }
-		}
-		private static object HistoryGoForwardEvent = new object();
-
-		/// <summary>Raises the <see cref="HistoryGoForward"/> event.</summary>
-		/// <param name="e">The data for the event.</param>
-		protected virtual void OnHistoryGoForward(GeckoHistoryEventArgs e)
-		{
-			if (((GeckoHistoryEventHandler)this.Events[HistoryGoForwardEvent]) != null)
-				((GeckoHistoryEventHandler)this.Events[HistoryGoForwardEvent])(this, e);
-		}
-		#endregion
-
-		#region public event GeckoHistoryEventHandler HistoryReload
-		[Category("History")]
-		public event GeckoHistoryEventHandler HistoryReload
-		{
-			add { this.Events.AddHandler(HistoryReloadEvent, value); }
-			remove { this.Events.RemoveHandler(HistoryReloadEvent, value); }
-		}
-		private static object HistoryReloadEvent = new object();
-
-		/// <summary>Raises the <see cref="HistoryReload"/> event.</summary>
-		/// <param name="e">The data for the event.</param>
-		protected virtual void OnHistoryReload(GeckoHistoryEventArgs e)
-		{
-			if (((GeckoHistoryEventHandler)this.Events[HistoryReloadEvent]) != null)
-				((GeckoHistoryEventHandler)this.Events[HistoryReloadEvent])(this, e);
-		}
-		#endregion
-
-		#region public event GeckoHistoryGotoIndexEventHandler HistoryGotoIndex
-		[Category("History")]
-		public event GeckoHistoryGotoIndexEventHandler HistoryGotoIndex
-		{
-			add { this.Events.AddHandler(HistoryGotoIndexEvent, value); }
-			remove { this.Events.RemoveHandler(HistoryGotoIndexEvent, value); }
-		}
-		private static object HistoryGotoIndexEvent = new object();
-
-		/// <summary>Raises the <see cref="HistoryGotoIndex"/> event.</summary>
-		/// <param name="e">The data for the event.</param>
-		protected virtual void OnHistoryGotoIndex(GeckoHistoryGotoIndexEventArgs e)
-		{
-			if (((GeckoHistoryGotoIndexEventHandler)this.Events[HistoryGotoIndexEvent]) != null)
-				((GeckoHistoryGotoIndexEventHandler)this.Events[HistoryGotoIndexEvent])(this, e);
-		}
-		#endregion
-
-		#region public event GeckoHistoryPurgeEventHandler HistoryPurge
-		[Category("History")]
-		public event GeckoHistoryPurgeEventHandler HistoryPurge
-		{
-			add { this.Events.AddHandler(HistoryPurgeEvent, value); }
-			remove { this.Events.RemoveHandler(HistoryPurgeEvent, value); }
-		}
-		private static object HistoryPurgeEvent = new object();
-
-		/// <summary>Raises the <see cref="HistoryPurge"/> event.</summary>
-		/// <param name="e">The data for the event.</param>
-		protected virtual void OnHistoryPurge(GeckoHistoryPurgeEventArgs e)
-		{
-			if (((GeckoHistoryPurgeEventHandler)this.Events[HistoryPurgeEvent]) != null)
-				((GeckoHistoryPurgeEventHandler)this.Events[HistoryPurgeEvent])(this, e);
-		}
-		#endregion
-
 		void nsISHistoryListener.OnHistoryNewEntry(nsIURI aNewURI)
 		{
-			OnHistoryNewEntry(new GeckoHistoryEventArgs(new Uri(nsString.Get(aNewURI.GetSpecAttribute))));			
+			OnHistoryNewEntry(new GeckoHistoryEventArgs(new Uri(nsString.Get(aNewURI.GetSpecAttribute))));
 		}
 
 		bool nsISHistoryListener.OnHistoryGoBack(nsIURI aBackURI)
@@ -2921,42 +2133,17 @@ namespace Gecko
 			_messageEventListeners.Add(eventName, action);
 		}
 
-        #region public event GeckoObserveHttpModifyRequestEventHandler Navigated
-        /// <summary>
-        /// Occurs after the browser has send a http request to the web
-        /// </summary>
-        [Category("Observe"), Description("Occurs after the browser has navigated to a new page.")]
-        public event GeckoObserveHttpModifyRequestEventHandler ObserveHttpModifyRequest
-        {
-            add { this.Events.AddHandler(ObserveHttpModifyRequestEvent, value); }
-            remove { this.Events.RemoveHandler(ObserveHttpModifyRequestEvent, value); }
-        }
-        private static object ObserveHttpModifyRequestEvent = new object();
-
-        /// <summary>Raises the <see cref="ObserveHttpModify"/> event.</summary>
-        /// <param name="e">The data for the event.</param>
-        protected virtual void OnObserveHttpModifyRequest(GeckoObserveHttpModifyRequestEventArgs e)
-        {
-            if (((GeckoObserveHttpModifyRequestEventHandler)this.Events[ObserveHttpModifyRequestEvent]) != null)
-                ((GeckoObserveHttpModifyRequestEventHandler)this.Events[ObserveHttpModifyRequestEvent])(this, e);
-        }
-        #endregion
 
         public void Observe(nsISupports aSubject, string aTopic, string aData)
         {
-            if (aTopic.Equals("http-on-modify-request"))
+            if (aTopic.Equals(ObserverNotifications.HttpRequests.HttpOnModifyRequest))
             {
-                nsIHttpChannel httpChannel = Xpcom.QueryInterface<nsIHttpChannel>(aSubject);
+                HttpChannel httpChannel =HttpChannel.Create(aSubject);
 
-                Uri uri = new Uri(nsString.Get(httpChannel.GetURIAttribute().GetSpecAttribute));
-                Uri uri_ref = null;
-                var ref_attr = httpChannel.GetReferrerAttribute();
-                if (ref_attr != null)
-                    uri_ref = new Uri(nsString.Get(ref_attr.GetSpecAttribute));
-
-                var req_method = nsString.Get(httpChannel.GetRequestMethodAttribute);
-
-                var evt = new GeckoObserveHttpModifyRequestEventArgs(uri, uri_ref, req_method, aData);
+            	Uri uri = httpChannel.Uri;
+                Uri uriRef = httpChannel.Referrer;
+            	var reqMethod = httpChannel.RequestMethod;
+                var evt = new GeckoObserveHttpModifyRequestEventArgs(uri, uriRef, reqMethod, aData);
 
                 OnObserveHttpModifyRequest(evt);
 
@@ -3081,343 +2268,6 @@ namespace Gecko
         #endregion nsIHttpActivityObserver members
 	}
 	
-	#region public delegate void GeckoHistoryEventHandler(object sender, GeckoHistoryEventArgs e);
-	public delegate void GeckoHistoryEventHandler(object sender, GeckoHistoryEventArgs e);
-
-	/// <summary>Provides data for the <see cref="GeckoHistoryEventHandler"/> event.</summary>
-	public class GeckoHistoryEventArgs : System.EventArgs
-	{
-		/// <summary>Creates a new instance of a <see cref="GeckoHistoryEventArgs"/> object.</summary>
-		/// <param name="url"></param>
-		public GeckoHistoryEventArgs(Uri url)
-		{
-			_Url = url;
-		}
-		
-		/// <summary>
-		/// Gets the URL of the history entry.
-		/// </summary>
-		public Uri Url { get { return _Url; } }
-		Uri _Url;
-		
-		/// <summary>
-		/// Gets or sets whether the history action should be cancelled.
-		/// </summary>
-		public bool Cancel
-		{
-			get { return _Cancel; }
-			set { _Cancel = value; }
-		}
-		bool _Cancel;
-	}
-	#endregion
-	
-	#region public delegate void GeckoHistoryGotoIndexEventHandler(object sender, GeckoHistoryGotoIndexEventArgs e);
-	public delegate void GeckoHistoryGotoIndexEventHandler(object sender, GeckoHistoryGotoIndexEventArgs e);
-
-	/// <summary>Provides data for the <see cref="GeckoHistoryGotoIndexEventHandler"/> event.</summary>
-	public class GeckoHistoryGotoIndexEventArgs : GeckoHistoryEventArgs
-	{
-		/// <summary>Creates a new instance of a <see cref="GeckoHistoryGotoIndexEventArgs"/> object.</summary>
-		/// <param name="url"></param>
-		public GeckoHistoryGotoIndexEventArgs(Uri url, int index) : base(url)
-		{
-			_Index = index;
-		}
-		
-		/// <summary>
-		/// Gets the index in history of the document to be loaded.
-		/// </summary>
-		public int Index
-		{
-			get { return _Index; }
-		}
-		int _Index;
-	}
-	#endregion
-	
-	#region public delegate void GeckoHistoryPurgeEventHandler(object sender, GeckoHistoryPurgeEventArgs e);
-	public delegate void GeckoHistoryPurgeEventHandler(object sender, GeckoHistoryPurgeEventArgs e);
-
-	/// <summary>Provides data for the <see cref="GeckoHistoryPurgeEventHandler"/> event.</summary>
-	public class GeckoHistoryPurgeEventArgs : CancelEventArgs
-	{
-		/// <summary>Creates a new instance of a <see cref="GeckoHistoryPurgeEventArgs"/> object.</summary>
-		/// <param name="count"></param>
-		public GeckoHistoryPurgeEventArgs(int count)
-		{
-			_Count = count;
-		}
-		
-		/// <summary>
-		/// Gets the number of entries to be purged from the history.
-		/// </summary>
-		public int Count { get { return _Count; } }
-		int _Count;
-	}
-	#endregion
-	
-	#region public delegate void GeckoProgressEventHandler(object sender, GeckoProgressEventArgs e);
-	public delegate void GeckoProgressEventHandler(object sender, GeckoProgressEventArgs e);
-
-	/// <summary>Provides data for the <see cref="GeckoProgressEventHandler"/> event.</summary>
-	public class GeckoProgressEventArgs : System.EventArgs
-	{
-		/// <summary>Creates a new instance of a <see cref="GeckoProgressEventArgs"/> object.</summary>
-		public GeckoProgressEventArgs(int current, int max)
-		{
-			_CurrentProgress = current;
-			_MaximumProgress = max;
-		}
-		
-		public int CurrentProgress { get { return _CurrentProgress; } }
-		int _CurrentProgress;
-		
-		public int MaximumProgress { get { return _MaximumProgress; } }
-		int _MaximumProgress;
-	}
-	#endregion
-	
-	#region public delegate void GeckoNavigatedEventHandler(object sender, GeckoNavigatedEventArgs e);
-	public delegate void GeckoNavigatedEventHandler(object sender, GeckoNavigatedEventArgs e);
-
-	/// <summary>Provides data for the <see cref="GeckoNavigatedEventHandler"/> event.</summary>
-	public class GeckoNavigatedEventArgs : System.EventArgs
-	{
-		/// <summary>Creates a new instance of a <see cref="GeckoNavigatedEventArgs"/> object.</summary>
-		/// <param name="value"></param>
-		public GeckoNavigatedEventArgs(Uri value, GeckoResponse response)
-		{
-			_Uri = value;
-			_Response = response;
-		}
-
-		public Uri Uri { get { return _Uri; } }
-		Uri _Uri;
-
-		public GeckoResponse Response { get { return _Response; } }
-		GeckoResponse _Response;
-	}
-	#endregion
-	
-	#region public delegate void GeckoNavigatingEventHandler(object sender, GeckoNavigatingEventArgs e);
-	public delegate void GeckoNavigatingEventHandler(object sender, GeckoNavigatingEventArgs e);
-
-	/// <summary>Provides data for the <see cref="GeckoNavigatingEventHandler"/> event.</summary>
-	public class GeckoNavigatingEventArgs : System.ComponentModel.CancelEventArgs
-	{
-		/// <summary>Creates a new instance of a <see cref="GeckoNavigatingEventArgs"/> object.</summary>
-		/// <param name="value"></param>
-		public GeckoNavigatingEventArgs(Uri value)
-		{
-			_Uri = value;
-		}
-
-		public Uri Uri { get { return _Uri; } }
-		Uri _Uri;
-		
-		public GeckoResponse Response { get { return _Response; } }
-		GeckoResponse _Response;
-	}
-	#endregion
-	
-	#region public delegate void GeckoCreateWindowEventHandler(object sender, GeckoCreateWindowEventArgs e);
-	public delegate void GeckoCreateWindowEventHandler(object sender, GeckoCreateWindowEventArgs e);
-
-	/// <summary>Provides data for the <see cref="GeckoCreateWindowEventHandler"/> event.</summary>
-	public class GeckoCreateWindowEventArgs : System.EventArgs
-	{
-		/// <summary>Creates a new instance of a <see cref="GeckoCreateWindowEventArgs"/> object.</summary>
-		/// <param name="flags"></param>
-		public GeckoCreateWindowEventArgs(GeckoWindowFlags flags)
-		{
-			_Flags = flags;
-		}
-		
-		public GeckoWindowFlags Flags { get { return _Flags; } }
-		GeckoWindowFlags _Flags;
-		
-		/// <summary>
-		/// Gets or sets the <see cref="GeckoWebBrowser"/> used in the new window.
-		/// </summary>
-		public GeckoWebBrowser WebBrowser
-		{
-			get { return _WebBrowser; }
-			set { _WebBrowser = value; }
-		}
-		GeckoWebBrowser _WebBrowser;
-	}
-	#endregion
-	
-    #region public delegate void GeckoCreateWindow2EventHandler(object sender, GeckoCreateWindow2EventArgs e);
-    public delegate void GeckoCreateWindow2EventHandler(object sender, GeckoCreateWindow2EventArgs e);
-
-    /// <summary>Provides data for the <see cref="GeckoCreateWindowEventHandler"/> event.</summary>
-    public class GeckoCreateWindow2EventArgs : System.EventArgs
-    {
-        /// <summary>Creates a new instance of a <see cref="GeckoCreateWindowEventArgs"/> object.</summary>
-        /// <param name="flags"></param>
-        public GeckoCreateWindow2EventArgs(GeckoWindowFlags flags, String uri)
-        {
-            _Flags = flags;
-            _Uri = uri;
-            _Cancel = false;
-        }
-
-        public GeckoWindowFlags Flags { get { return _Flags; } }
-        GeckoWindowFlags _Flags;
-
-        /// <summary>
-        /// Gets or sets the <see cref="GeckoWebBrowser"/> used in the new window.
-        /// </summary>
-        public GeckoWebBrowser WebBrowser
-        {
-            get { return _WebBrowser; }
-            set { _WebBrowser = value; }
-        }
-        GeckoWebBrowser _WebBrowser;
-
-        Boolean _Cancel;
-
-        public Boolean Cancel
-        {
-            get { return _Cancel; }
-            set { _Cancel = value; }
-        }
-
-        String _Uri;
-
-        public String Uri
-        {
-            get { return _Uri; }
-            set { _Uri = value; }
-        }
-    }
-    #endregion
-	
-	#region public delegate void GeckoWindowSetBoundsEventHandler(object sender, GeckoWindowSetBoundsEventArgs e);
-	public delegate void GeckoWindowSetBoundsEventHandler(object sender, GeckoWindowSetBoundsEventArgs e);
-
-	/// <summary>Provides data for the <see cref="GeckoWindowSetBoundsEventHandler"/> event.</summary>
-	public class GeckoWindowSetBoundsEventArgs : System.EventArgs
-	{
-		/// <summary>Creates a new instance of a <see cref="GeckoWindowSetBoundsEventArgs"/> object.</summary>
-		/// <param name="bounds"></param>
-		/// <param name="specified"></param>
-		public GeckoWindowSetBoundsEventArgs(Rectangle bounds, BoundsSpecified specified)
-		{
-			_Bounds = bounds;
-			_BoundsSpecified = specified;
-		}
-		
-		public Rectangle Bounds { get { return _Bounds; } }
-		Rectangle _Bounds;
-		
-		public BoundsSpecified BoundsSpecified { get { return _BoundsSpecified; } }
-		BoundsSpecified _BoundsSpecified;
-	}
-	#endregion
-	
-	#region public delegate void GeckoContextMenuEventHandler(object sender, GeckoContextMenuEventArgs e);
-	public delegate void GeckoContextMenuEventHandler(object sender, GeckoContextMenuEventArgs e);
-
-	/// <summary>Provides data for the <see cref="GeckoContextMenuEventHandler"/> event.</summary>
-	public class GeckoContextMenuEventArgs : System.EventArgs
-	{
-		/// <summary>Creates a new instance of a <see cref="GeckoContextMenuEventArgs"/> object.</summary>
-		public GeckoContextMenuEventArgs(Point location, ContextMenu contextMenu, string associatedLink, Uri backgroundImageSrc, Uri imageSrc, GeckoNode targetNode)
-		{
-			this._Location = location;
-			this._ContextMenu = contextMenu;
-			this._AssociatedLink = associatedLink;
-			this._BackgroundImageSrc = backgroundImageSrc;
-			this._ImageSrc = ImageSrc;
-			this._TargetNode = targetNode;
-		}
-		
-		/// <summary>
-		/// Gets the location where the context menu will be displayed.
-		/// </summary>
-		public Point Location
-		{
-			get { return _Location; }
-		}
-		Point _Location;
-		
-		/// <summary>
-		/// Gets or sets the context menu to be displayed.  Set this property to null to disable
-		/// the context menu.
-		/// </summary>
-		public ContextMenu ContextMenu
-		{
-			get { return _ContextMenu; }
-			set { _ContextMenu = value; }
-		}
-		ContextMenu _ContextMenu;
-
-		public string AssociatedLink
-		{
-			get { return _AssociatedLink; }
-		}
-		string _AssociatedLink;
-
-		public Uri BackgroundImageSrc
-		{
-			get { return _BackgroundImageSrc; }
-		}
-		Uri _BackgroundImageSrc;
-
-		public Uri ImageSrc
-		{
-			get { return _ImageSrc; }
-		}
-		Uri _ImageSrc;
-
-		public GeckoNode TargetNode
-		{
-			get { return _TargetNode; }
-		}
-		GeckoNode _TargetNode;
-	}
-	#endregion
-	
-    #region public delegate void GeckoObserveHttpModifyRequestEventHandler(object sender, GeckoObserveHttpModifyRequestEventArgs e);
-    public delegate void GeckoObserveHttpModifyRequestEventHandler(object sender, GeckoObserveHttpModifyRequestEventArgs e);
-
-    /// <summary>Provides data for the <see cref="GeckoObserveHttpModifyRequestEventHandler"/> event.</summary>
-    public class GeckoObserveHttpModifyRequestEventArgs : System.EventArgs
-    {
-        /// <summary>Creates a new instance of a <see cref="GeckoObserveHttpModifyRequestEventArgs"/> object.</summary>
-        /// <param name="value"></param>
-        public GeckoObserveHttpModifyRequestEventArgs(Uri value, Uri ref_val, String req_method, String req_data)
-        {
-            _Uri = value;
-            _Referrer = ref_val;
-            _RequestMetod = req_method;
-            _RequestData = req_data;
-            _Cancel = false;
-        }
-
-        public Uri Uri { get { return _Uri; } }
-        readonly Uri _Uri;
-
-        public Uri Referrer { get { return _Referrer; } }
-        readonly Uri _Referrer;
-
-        public String RequestMethod { get { return _RequestMetod; } }
-        readonly String _RequestMetod;
-
-        public String RequestData { get { return _RequestData; } }
-        readonly String _RequestData;
-
-        public Boolean Cancel
-        {
-            get { return _Cancel; }
-            set { _Cancel = value; }
-        }
-        Boolean _Cancel;
-    }
-    #endregion
 
 	#region public enum GeckoLoadFlags
 	public enum GeckoLoadFlags

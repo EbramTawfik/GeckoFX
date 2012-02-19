@@ -20,5 +20,15 @@ namespace Gecko
 		{
 			_observerService.RemoveObserver( observer, topic );
 		}
+
+		public void AddObserver(Observers.BaseBaseHttpModifyRequestObserver observer)
+		{
+			_observerService.AddObserver( observer, ObserverNotifications.HttpRequests.HttpOnModifyRequest, false );
+		}
+
+		public void RemoveObserver(Observers.BaseBaseHttpModifyRequestObserver observer)
+		{
+			_observerService.RemoveObserver(observer, ObserverNotifications.HttpRequests.HttpOnModifyRequest);
+		}
 	}
 }

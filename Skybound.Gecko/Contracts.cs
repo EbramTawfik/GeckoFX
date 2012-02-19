@@ -23,6 +23,7 @@ namespace Gecko
 		internal static readonly string PluginHost = "@mozilla.org/plugin/host;1";
 		internal static readonly string VersionComparator = "@mozilla.org/xpcom/version-comparator;1";
 		internal static readonly string StorageStream = "@mozilla.org/storagestream;1";
+		internal static readonly string ConsoleService = "@mozilla.org/consoleservice;1";
 		#region nsISupportsPrimitive's
 		internal static readonly string SupportsID = "@mozilla.org/supports-id;1";
 		internal static readonly string SupportsString = "@mozilla.org/supports-string;1";

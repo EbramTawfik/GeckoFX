@@ -22,6 +22,7 @@ namespace Gecko.IO.Native
 		public void Dispose()
 		{
 			Close();
+			GC.SuppressFinalize( this );
 		}
 
 

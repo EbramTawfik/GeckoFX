@@ -33,14 +33,16 @@ namespace Gecko
 			// 
 			// webBrowser
 			// 
+			this.webBrowser.DisableWmImeSetContext = false;
 			this.webBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.webBrowser.Location = new System.Drawing.Point(0, 0);
 			this.webBrowser.Name = "webBrowser";
 			this.webBrowser.Size = new System.Drawing.Size(500, 353);
 			this.webBrowser.TabIndex = 0;
-			this.webBrowser.WindowSetBounds += new Gecko.GeckoWindowSetBoundsEventHandler(this.webBrowser_WindowSetBounds);
-			this.webBrowser.DocumentTitleChanged += new System.EventHandler(this.webBrowser_DocumentTitleChanged);
+			this.webBrowser.UseHttpActivityObserver = false;
 			this.webBrowser.WindowClosed += new System.EventHandler(this.webBrowser_WindowClosed);
+			this.webBrowser.WindowSetBounds += new System.EventHandler<Gecko.GeckoWindowSetBoundsEventArgs>(this.webBrowser_WindowSetBounds);
+			this.webBrowser.DocumentTitleChanged += new System.EventHandler(this.webBrowser_DocumentTitleChanged);
 			// 
 			// ChromeDialog
 			// 

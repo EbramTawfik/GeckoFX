@@ -138,9 +138,11 @@ namespace Gecko
 	/// <summary>
 	/// Provides data about a DOM key event.
 	/// </summary>
-	public class GeckoDomKeyEventArgs : GeckoDomUIEventArgs
+	public class GeckoDomKeyEventArgs
+		: GeckoDomUIEventArgs
 	{
-		internal GeckoDomKeyEventArgs(nsIDOMKeyEvent ev) : base((nsIDOMUIEvent)ev)
+		internal GeckoDomKeyEventArgs(nsIDOMKeyEvent ev)
+			: base(ev)
 		{
 			_Event = ev;
 		}
