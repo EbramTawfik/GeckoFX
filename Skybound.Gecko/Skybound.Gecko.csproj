@@ -144,12 +144,19 @@
       <DependentUpon>ConfirmDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Contracts.cs" />
+    <Compile Include="Interop\MemCopy.cs" />
     <Compile Include="Interop\nsSupports.cs" />
     <Compile Include="Interop\WrapperManager.cs" />
     <Compile Include="IO\InputStream.cs" />
+    <Compile Include="IO\InputStreamTee.cs" />
     <Compile Include="IO\MimeInputStream.cs" />
+    <Compile Include="IO\Native\BaseNativeInputStream.cs" />
+    <Compile Include="IO\Native\BaseNativeStream.cs" />
+    <Compile Include="IO\Native\NativeInputStream.cs" />
+    <Compile Include="IO\Native\NativeOutputStream.cs" />
     <Compile Include="IO\OutputStream.cs" />
     <Compile Include="IO\ScriptableInputStream.cs" />
+    <Compile Include="IO\StorageStream.cs" />
     <Compile Include="IO\StringInputStream.cs" />
     <Compile Include="IO\ZipReader.cs" />
     <Compile Include="Microsoft.cs" />
@@ -159,6 +166,8 @@
     <Compile Include="Net\HttpChannel.cs" />
     <Compile Include="Net\LoadGroup.cs" />
     <Compile Include="Net\Request.cs" />
+    <Compile Include="Net\RequestObserver.cs" />
+    <Compile Include="Net\StreamListenerTee.cs" />
     <Compile Include="Net\UploadChannel.cs" />
     <Compile Include="nsCancelable.cs" />
     <Compile Include="nsSupportsPrimitives.cs" />
@@ -1470,12 +1479,14 @@
     <Compile Include="nsString.cs" />
     <Compile Include="nsURI.cs" />
     <Compile Include="ObserverNotifications.cs" />
+    <Compile Include="ObserverService.cs" />
     <Compile Include="PasswordDialog.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="PasswordDialog.Designer.cs">
       <DependentUpon>PasswordDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pipe.cs" />
     <Compile Include="Plugins\PluginHost.cs" />
     <Compile Include="Plugins\PluginTag.cs" />
     <Compile Include="PrintSettings.cs" />
@@ -1497,6 +1508,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sound.cs" />
     <Compile Include="TreeView.cs" />
+    <Compile Include="Utils\VersionComparer.cs" />
     <Compile Include="Windows\Taskbar\JumpListBuilder.cs" />
     <Compile Include="Windows\Taskbar\JumpListItem.cs" />
     <Compile Include="Windows\Taskbar\JumpListLink.cs" />

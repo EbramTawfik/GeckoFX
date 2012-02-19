@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace Gecko.Net
 {
@@ -7,13 +8,11 @@ namespace Gecko.Net
 		:Channel
 	{
 		private nsIHttpChannel _httpChannel;
-		private nsIUploadChannel _uploadChannel;
 
-		internal HttpChannel(nsIHttpChannel httpChannel, nsIUploadChannel uploadChannel)
+		internal HttpChannel(nsIHttpChannel httpChannel)
 			:base(httpChannel)
 		{
 			_httpChannel = httpChannel;
-			_uploadChannel = uploadChannel;
 		}
 
 
@@ -109,9 +108,18 @@ namespace Gecko.Net
 			get { return _httpChannel.IsNoCacheResponse(); }
 		}
 
-		public UploadChannel GetUploadChannel()
+		#region Casts
+		#endregion
+		public UploadChannel CastToUploadChannel()
 		{
-			return _uploadChannel == null ? null : new UploadChannel(_uploadChannel);
+			var channel = Xpcom.QueryInterface<nsIUploadChannel>( _httpChannel );
+			return channel == null ? null : new UploadChannel(channel);
+		}
+
+		public TraceableChannel CastToTraceableChannel()
+		{
+			var channel = Xpcom.QueryInterface<nsITraceableChannel>( _httpChannel );
+			return channel == null ? null : new TraceableChannel(channel);
 		}
 
 		/// <summary>
@@ -127,8 +135,7 @@ namespace Gecko.Net
 
 		public static HttpChannel Create(nsIHttpChannel  httpChannel)
 		{
-			var uploadChannel=Xpcom.QueryInterface<nsIUploadChannel>( httpChannel );
-			return new HttpChannel( httpChannel, uploadChannel );
+			return new HttpChannel( httpChannel );
 		}
 
 		private sealed class HttpHeaderVisitor
@@ -140,6 +147,23 @@ namespace Gecko.Net
 			{
 				Dictionary.Add( aHeader.ToString(), aValue.ToString() );
 			}
+		}
+	}
+
+
+	public sealed class TraceableChannel
+	{
+		private nsITraceableChannel _traceableChannel;
+		internal TraceableChannel(nsITraceableChannel traceableChannel)
+		{
+			_traceableChannel = traceableChannel;
+		}
+
+
+		public void SetNewListener(StreamListenerTee streamListener)
+		{
+			var old = _traceableChannel.SetNewListener( streamListener._streamListenerTee );
+			streamListener.IntInit( old );
 		}
 	}
 }

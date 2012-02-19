@@ -44,7 +44,7 @@ namespace Gecko
 	/// </summary>
 	public static class nsString
 	{
-		// functions that set one or more [gecko string]s
+		// functions that set one or more [gecko string]s and return void
 		#region Generic Setters
 		private static void GenericSet<TString>(Action<TString> setter, string value)
 			where TString : IString, IDisposable, new()
@@ -343,6 +343,19 @@ namespace Gecko
 		{
 			GenericSet( func, value1, value2 );
 		}
+
+		/// <summary>
+		/// Passes <paramref name="value1"/> and <paramref name="value2"/> to function and return value
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="func"></param>
+		/// <param name="value1"></param>
+		/// <param name="value2"></param>
+		/// <returns></returns>
+		public static T Pass<T>(Func<nsACString, nsACString, T> func, string value1, string value2)
+		{
+			return GenericPass(func, value1, value2);
+		}
 		#endregion
 
 		#region nsAString
@@ -438,6 +451,7 @@ namespace Gecko
 		void SetData( string value );
 	}
 
+	#region nsAUTF8String
 	[StructLayout(LayoutKind.Sequential)]
 	public class nsAUTF8StringBase
 		: IString
@@ -515,7 +529,9 @@ namespace Gecko
 			GC.SuppressFinalize(this);
 		}				
 	}
+	#endregion
 
+	#region nsACString
 	[StructLayout(LayoutKind.Sequential)]
 	public class nsACStringBase
 		: IString
@@ -589,7 +605,9 @@ namespace Gecko
 			GC.SuppressFinalize(this);
 		}				
 	}
+	#endregion
 
+	#region nsAString
 	[StructLayout(LayoutKind.Sequential)]
 	public class nsAStringBase
 		: IString
@@ -664,4 +682,5 @@ namespace Gecko
 			GC.SuppressFinalize(this);
 		}				
 	}
+	#endregion
 }

@@ -41,12 +41,12 @@ namespace Gecko
 			if (count > 0)
 			{
 				Marshal.Copy(Data, Position, aBuf, (int)count);
-
+#if DEBUG
 				for (int i = 0; i < count; ++i)
 				{
 					Console.WriteLine((char)Marshal.ReadByte(aBuf, i));
 				}
-
+#endif
 				Position += (int)count;
 			}
 

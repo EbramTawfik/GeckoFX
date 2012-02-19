@@ -21,9 +21,10 @@ namespace Gecko.IO
 			
 		}
 
-		public IEnumerator<string> FindEntries(nsAUTF8String pattern)
+		public IEnumerable<string> FindEntries(nsAUTF8String pattern)
 		{
-			return new Utf8StringEnumerator( _zipReader.FindEntries( pattern ) );
+			return new SimpleGeckoEnumerableCollection<string>(
+				() => new Utf8StringEnumerator( _zipReader.FindEntries( pattern ) ) );
 		}
 
 		public void Close()

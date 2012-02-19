@@ -66,7 +66,13 @@ namespace Gecko.IO
 			return ( int ) ret;
 		}
 
-
+		public unsafe override int ReadByte()
+		{
+			byte ret;
+			byte* ptr = &ret;
+			uint count = _inputStream.Read( new IntPtr( ptr ), 1 );
+			return count == 0 ? -1 : ret;
+		}
 
 		/// <summary>
 		/// Warning: .NET have another stream model. DON'T USE THIS FUNCTION
@@ -106,7 +112,7 @@ namespace Gecko.IO
 			}
 		}
 
-		public long Avaliable
+		public long Available
 		{
 			get { return _inputStream.Available(); }
 		}
@@ -116,6 +122,7 @@ namespace Gecko.IO
 			get { return _seekableStream.Tell(); }
 			set { _seekableStream.Seek( 0, ( int ) value ); }
 		}
+
 
 
 		public static InputStream Create(nsIInputStream stream)
@@ -131,6 +138,35 @@ namespace Gecko.IO
 				return new StringInputStream( stringInputStream );
 			}
 			return new InputStream(stream);
+		}
+
+		/// <summary>
+		/// Method is useful when reading headers
+		/// </summary>
+		/// <returns></returns>
+		public string ReadLine()
+		{
+			StringBuilder ret = new StringBuilder(64);
+			var count = _inputStream.Available();
+			for (var i = 0; i < count; i++)
+			{
+				var character = ReadByte();
+				if (character < 0) break;
+				char test = (char)(byte)character;
+				if (test == '\r')
+				{
+					// nothing
+				}
+				else
+				{
+					if (test == '\n')
+					{
+						break;
+					}
+					ret.Append(test);
+				}
+			}
+			return ret.ToString();
 		}
 	}
 }

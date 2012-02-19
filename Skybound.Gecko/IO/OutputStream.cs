@@ -8,7 +8,7 @@ namespace Gecko.IO
 	{
 		private bool _seekable;
 		private nsISeekableStream _seekableStream;
-		private nsIOutputStream _outputStream;
+		internal nsIOutputStream _outputStream;
 		private nsIBinaryOutputStream _binaryOutputStream;
 
 		private OutputStream(nsIOutputStream outputStream, nsISeekableStream seekableStream)

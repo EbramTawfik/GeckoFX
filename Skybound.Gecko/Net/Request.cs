@@ -6,7 +6,7 @@ namespace Gecko.Net
 {
 	public class Request
 	{
-		internal nsIRequest _request;
+		internal readonly nsIRequest _request;
 
 		internal Request(nsIRequest request)
 		{
@@ -45,11 +45,15 @@ namespace Gecko.Net
 		{
 			_request.Resume();
 		}
-	
+
 		public LoadGroup LoadGroup
 		{
-			get { return new LoadGroup(_request.GetLoadGroupAttribute()); }
-			set{_request.SetLoadGroupAttribute( value._loadGroup );}
+			get
+			{
+				var loadGroup = _request.GetLoadGroupAttribute();
+				return loadGroup == null ? null : new LoadGroup( loadGroup );
+			}
+			set { _request.SetLoadGroupAttribute( value._loadGroup ); }
 		}
 
 		public uint LoadFlags
@@ -58,5 +62,9 @@ namespace Gecko.Net
 			set{_request.SetLoadFlagsAttribute( value );}
 		}
 
+		public override int GetHashCode()
+		{
+			return _request.GetHashCode();
+		}
 	}
 }

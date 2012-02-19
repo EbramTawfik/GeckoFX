@@ -39,6 +39,7 @@ using System.Runtime.InteropServices;
 using System.Diagnostics;
 using System.Windows.Forms;
 using System.Runtime.CompilerServices;
+using GeckoFX.Microsoft;
 
 namespace Gecko
 {
@@ -47,7 +48,7 @@ namespace Gecko
 	/// </summary>
 	public static class Xpcom
 	{
-		#region Native Methods
+		#region XpCom Methods
 		[DllImport("xpcom", CharSet = CharSet.Ansi)]
 		static extern int NS_InitXPCOM2([MarshalAs(UnmanagedType.Interface)] out nsIServiceManager serviceManager, [MarshalAs(UnmanagedType.IUnknown)] object binDirectory, nsIDirectoryServiceProvider appFileLocationProvider);
 
@@ -79,8 +80,57 @@ namespace Gecko
 		public static extern void Free(IntPtr ptr);
 		#endregion
 
+		#region Fields
 		static bool? m_isMono;
+		static bool _IsInitialized;
+		static string _ProfileDirectory;
+		#endregion
 
+		#region CLR runtime
+		/// <summary>
+		/// GeckoFX is running on Linux
+		/// </summary>
+		public static bool IsLinux
+		{
+			get { return Environment.OSVersion.Platform == PlatformID.Unix; }
+		}
+
+		/// <summary>
+		/// GeckoFX is running on Windows
+		/// </summary>
+		public static bool IsWindows
+		{
+			get { return !IsLinux; }
+		}
+
+		/// <summary>
+		/// GeckoFX is running on Mono CLR implementation
+		/// </summary>
+		public static bool IsMono
+		{
+			get
+			{
+				if (m_isMono == null)
+					m_isMono = Type.GetType("Mono.Runtime") != null;
+
+				return (bool)m_isMono;
+			}
+		}
+
+		/// <summary>
+		///  GeckoFX is running on Microsoft CLR implementation (.NET Framework)
+		/// </summary>
+		public static bool IsDotNet
+		{
+			get { return !IsMono; }
+		}
+		#endregion
+
+		public static nsIComponentManager ComponentManager;
+		public static nsIComponentRegistrar ComponentRegistrar;
+		public static nsIServiceManager ServiceManager;
+
+		#region Init & shudown
 		/// <summary>
 		/// Initializes XPCOM using the current directory as the XPCOM directory.
 		/// </summary>
@@ -89,41 +139,6 @@ namespace Gecko
 			Initialize(null);
 		}
 
-		public static bool UseCustomPrompt
-		{
-			get;
-			set;
-		}
-		
-		public static bool IsLinux
-		{
-			get { return Environment.OSVersion.Platform == PlatformID.Unix; }
-		}
-		
-		public static bool IsWindows
-		{
-			get { return !IsLinux; }
-		}
-		
-		public static bool IsMono
-		{
-			get { 
-					if (m_isMono == null)
-						m_isMono = Type.GetType ("Mono.Runtime") != null;
-
-					return (bool)m_isMono;
-			}
-		}
-		
-		public static bool IsDotNet
-		{
-			get { return !IsMono; }	
-		}
-
-		[DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
-		[return: MarshalAs(UnmanagedType.Bool)]
-		static extern bool SetDllDirectory(string lpPathName);
-	
 		/// <summary>
 		/// Initializes XPCOM using the specified directory.
 		/// </summary>
@@ -134,7 +149,7 @@ namespace Gecko
 				return;
 
 			if (IsWindows)
-				SetDllDirectory(binDirectory);
+				Kernel32.SetDllDirectory(binDirectory);
 			
 			string folder = binDirectory ?? Environment.CurrentDirectory;
 			string xpcomPath = Path.Combine(folder, IsLinux ? "libxpcom.so" : "xpcom.dll");
@@ -198,10 +213,7 @@ namespace Gecko
 			nsIDirectoryService directoryService = GetService<nsIDirectoryService>("@mozilla.org/file/directory_service;1");
 			if (directoryService != null)
 				directoryService.RegisterProvider(new ProfileProvider());
-
-			if (UseCustomPrompt)
-				PromptFactoryFactory.Register();
-
+			
 			_IsInitialized = true;
 		}
 
@@ -212,13 +224,8 @@ namespace Gecko
 			NS_ShutdownXPCOM(ServiceManager);
 			_IsInitialized = false;
 		}
-		
-		static bool _IsInitialized;
+		#endregion
 
-		public static nsIComponentManager ComponentManager;
-		public static nsIComponentRegistrar ComponentRegistrar;
-		public static nsIServiceManager ServiceManager;
-		
 		/// <summary>
 		/// Gets or sets the path to the directory which contains the user profile.
 		/// The default directory is Geckofx\DefaultProfile in the user's local application data directory.
@@ -252,22 +259,14 @@ namespace Gecko
 				_ProfileDirectory = value;
 			}
 		}
-		static string _ProfileDirectory;
-		
-		/// <summary>
-		/// A simple nsIDirectoryServiceProvider which provides the profile directory.
-		/// </summary>
-		class ProfileProvider : nsIDirectoryServiceProvider
+
+		public static bool UseCustomPrompt
 		{
-			public nsIFile GetFile(string prop, ref bool persistent)
-			{								
-				if (prop == "ProfD")
-				{
-					return (nsIFile)NewNativeLocalFile(ProfileDirectory ?? "");
-				}
-				return null;
-			}
+			get;
+			set;
 		}
+
+		#region External Methods
 		
 		public static object NewNativeLocalFile(string filename)
 		{
@@ -279,17 +278,18 @@ namespace Gecko
 			
 			return null;
 		}
+
+		#region CreateInstance
+		//public static object CreateInstance(Guid classIID)
+		//{
+		//	Guid iid = typeof(nsISupports).GUID;
+		//	return ComponentManager.CreateInstance(ref classIID, null, ref iid);
+		//}
 		
-		public static object CreateInstance(Guid classIID)
-		{
-			Guid iid = typeof(nsISupports).GUID;
-			return ComponentManager.CreateInstance(ref classIID, null, ref iid);
-		}
-		
-		public static object CreateInstance(string contractID)
-		{
-			return CreateInstance<nsISupports>(contractID);
-		}
+		//public static object CreateInstance(string contractID)
+		//{
+		//	return CreateInstance<nsISupports>(contractID);
+		//}
 		
 		public static TInterfaceType CreateInstance<TInterfaceType>(string contractID)
 		{
@@ -297,6 +297,9 @@ namespace Gecko
 			IntPtr ptr = ComponentManager.CreateInstanceByContractID(contractID, null, ref iid);
 			return (TInterfaceType)Marshal.GetObjectForIUnknown(ptr);
 		}
+		#endregion
+
+		#region QueryInterface
 		
 		public static TInterfaceType QueryInterface<TInterfaceType>(object obj)
 		{
@@ -357,29 +360,19 @@ namespace Gecko
 			
 			return result;
 		}
-		
-		/// <summary>
-		/// A special declaration of nsIInterfaceRequestor used only for QueryInterface, using PreserveSig
-		/// to prevent .NET from throwing an exception when the interface doesn't exist.
-		/// </summary>
-		[Guid("033a1470-8b2a-11d3-af88-00a024ffc08c"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-		interface QI_nsIInterfaceRequestor
-		{
+		#endregion
 
-			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-			[PreserveSig] int GetInterface(ref Guid uuid, out IntPtr pUnk);
-		}
-		
+		#region GetService
 		public static object GetService(Guid classIID)
 		{
 			Guid iid = typeof(nsISupports).GUID;
 			return ServiceManager.GetService(ref classIID, ref iid);
 		}
 		
-		public static object GetService(string contractID)
-		{
-			return GetService<nsISupports>(contractID);
-		}
+		//public static object GetService(string contractID)
+		//{
+		//    return GetService<nsISupports>(contractID);
+		//}
 		
 		public static TInterfaceType GetService<TInterfaceType>(string contractID)
 		{
@@ -387,7 +380,7 @@ namespace Gecko
 			IntPtr ptr = ServiceManager.GetServiceByContractID(contractID, ref iid);
 			return (TInterfaceType)Marshal.GetObjectForIUnknown(ptr);
 		}
-		
+		#endregion
 		/// <summary>
 		/// Registers a factory to be used to instantiate a particular class identified by ClassID, and creates an association of class name and ContractID with the class.
 		/// </summary>
@@ -400,9 +393,13 @@ namespace Gecko
 			ComponentRegistrar.RegisterFactory(ref classID, className, contractID, factory);
 		}
 
+		
+		#endregion
+
+
 
 		#region Extension Methods for nsISupports
-        /**
+		/**
 		internal static T QueryInterface<T>(this nsISupports proxy)
 		{
 			var guid = typeof(T).GUID;
@@ -419,6 +416,42 @@ namespace Gecko
 			return obj;
 		}
         /**/
+		#endregion
+
+
+
+		#region Internal class & interface declarations
+		#region QI_nsIInterfaceRequestor	
+		/// <summary>
+		/// A special declaration of nsIInterfaceRequestor used only for QueryInterface, using PreserveSig
+		/// to prevent .NET from throwing an exception when the interface doesn't exist.
+		/// </summary>
+		[Guid("033a1470-8b2a-11d3-af88-00a024ffc08c"), ComImport, InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+		interface QI_nsIInterfaceRequestor
+		{
+
+			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+			[PreserveSig]
+			int GetInterface(ref Guid uuid, out IntPtr pUnk);
+		}
+		#endregion
+
+		#region ProfileProvider
+		/// <summary>
+		/// A simple nsIDirectoryServiceProvider which provides the profile directory.
+		/// </summary>
+		class ProfileProvider : nsIDirectoryServiceProvider
+		{
+			public nsIFile GetFile(string prop, ref bool persistent)
+			{
+				if (prop == "ProfD")
+				{
+					return (nsIFile)NewNativeLocalFile(ProfileDirectory ?? "");
+				}
+				return null;
+			}
+		}
+		#endregion
 		#endregion
 	}
 }

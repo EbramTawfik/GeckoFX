@@ -45,4 +45,11 @@ namespace GeckoFX.Microsoft
 		[DllImport("user32.dll")]
 		public static extern IntPtr GetWindowRect(IntPtr hWnd, ref RECT rect);
 	}
+
+	internal static class Kernel32
+	{
+		[DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
+		[return: MarshalAs(UnmanagedType.Bool)]
+		internal static extern bool SetDllDirectory(string lpPathName);
+	}
 }

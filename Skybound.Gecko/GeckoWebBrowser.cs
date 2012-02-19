@@ -641,7 +641,8 @@ namespace Gecko
 			nsIURI referrerUri = null;
 			if (!string.IsNullOrEmpty(referrer))
 			{
-				referrerUri = Xpcom.GetService<nsIIOService>("@mozilla.org/network/io-service;1").NewURI(new nsAUTF8String(referrer), null, null);
+				//referrerUri = Xpcom.GetService<nsIIOService>("@mozilla.org/network/io-service;1").NewURI(new nsAUTF8String(referrer), null, null);
+				referrerUri = nsURI.CreateInternal( referrer );
 			}
 
 			WebNav.LoadURI(url, (uint)loadFlags, referrerUri, postDataStream, headersStream);

@@ -5,6 +5,10 @@ using System.Text;
 
 namespace Gecko
 {
+	/// <summary>
+	/// By default Xulrunner DOES NOT IMPLEMENT PrivateBrowsingService
+	/// YOU MUST REGISTER YOUR OWN IMPLEMENTATION BEFORE USE THIS WRAPPER!!!
+	/// </summary>
 	public sealed class PrivateBrowsingService
 	{
 		private nsIPrivateBrowsingService _privateBrowsingService;
@@ -12,8 +16,6 @@ namespace Gecko
 		{
 			var privateBrowsingService = Xpcom.CreateInstance<nsIPrivateBrowsingService>( Contracts.PrivateBrowsing );
 			_privateBrowsingService = Xpcom.QueryInterface<nsIPrivateBrowsingService>(privateBrowsingService);
-			
-			
 		}
 
 		public bool AutoStarted

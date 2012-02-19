@@ -43,33 +43,7 @@ namespace Gecko.IO
 			return nsString.Get( _scriptableInputStream.ReadBytes, ( uint ) count );
 		}
 		
-		/// <summary>
-		/// Method is useful when reading headers
-		/// </summary>
-		/// <returns></returns>
-		public string ReadLine()
-		{
-			StringBuilder ret = new StringBuilder(64 );
-			var count = _scriptableInputStream.Available();
-			for (var i=0;i<count;i++)
-			{
-				var str=_scriptableInputStream.Read( 1 );
-				char test = str[ 0 ];
-				if (test=='\r')
-				{
-					// nothing
-				}
-				else
-				{
-					if (test=='\n')
-					{
-						break;
-					}
-					ret.Append( test );
-				}
-			}
-			return ret.ToString();
-		}
+		
 
 	}
 }
