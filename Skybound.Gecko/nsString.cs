@@ -58,6 +58,18 @@ namespace Gecko
 			}
 		}
 
+		private static void GenericSet<T,TString>(Action<T,TString> setter,T value, string stringValue)
+			where TString : IString, IDisposable, new()
+		{
+			using (var native = new TString())
+			{
+				if (!string.IsNullOrEmpty(stringValue))
+					native.SetData(stringValue);
+
+				setter(value, native);
+			}
+		}
+
 		private static void GenericSet<TString>(Action<TString, TString> setter, string value1, string value2)
 			where TString : IString, IDisposable, new()
 		{
@@ -394,6 +406,11 @@ namespace Gecko
 		public static void Set(Action<nsAString, nsAString> func, string value1, string value2)
 		{
 			GenericSet( func, value1, value2 );
+		}
+
+		public static void Set<T>(Action<T, nsAString> func, T value1, string value2)
+		{
+			GenericSet(func, value1, value2);
 		}
 
 		public static void Set(Action<nsAString,nsAString,nsAString>func, string value1, string value2,string value3)

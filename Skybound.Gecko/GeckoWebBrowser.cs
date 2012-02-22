@@ -251,7 +251,10 @@ namespace Gecko
 				BaseWindow.SetVisibilityAttribute(true);
 				
 				// this fix prevents the browser from crashing if the first page loaded is invalid (missing file, invalid URL, etc)
-				Document.Cookie = "";
+				if (Document is GeckoDocument)
+				{
+					( ( GeckoDocument ) Document ).Cookie = "";
+				}
 			}
 			
 			base.OnHandleCreated(e);
@@ -1159,7 +1162,7 @@ namespace Gecko
 		/// Gets the <see cref="GeckoDocument"/> for the page currently loaded in the browser.
 		/// </summary>
 		[Browsable(false)]
-		public GeckoDocument Document
+		public GeckoDomDocument DomDocument
 		{
 			get
 			{
@@ -1168,13 +1171,19 @@ namespace Gecko
 
 				if (_Document == null || _Document.DomObject != WebBrowser.GetContentDOMWindowAttribute().GetDocumentAttribute())
 				{
-					_Document = GeckoDocument.Create(Xpcom.QueryInterface<nsIDOMHTMLDocument>(WebBrowser.GetContentDOMWindowAttribute().GetDocumentAttribute()));
+					_Document =
+						GeckoDomDocument.CreateDomDocumentWraper( WebBrowser.GetContentDOMWindowAttribute().GetDocumentAttribute() );
 					//FromDOMDocumentTable.Add((nsIDOMDocument)_Document.DomObject, this);
 				}
 				return _Document;
 			}
 		}
-		GeckoDocument _Document;
+		GeckoDomDocument _Document;
+
+		public GeckoDocument Document
+		{
+			get { return DomDocument as GeckoDocument; }
+		}
 		
 		private void UnloadDocument()
 		{
@@ -1418,10 +1427,10 @@ namespace Gecko
 				
 				MenuItem mnuSelectAll = new MenuItem("Select All");
 				mnuSelectAll.Click += delegate { SelectAll(); };
-				
-				GeckoDocument doc = GeckoDocument.Create((nsIDOMHTMLDocument)info.GetTargetNodeAttribute().GetOwnerDocumentAttribute());
-				
-				string viewSourceUrl = (doc == null) ? null : Convert.ToString(doc.Url);
+
+				GeckoDomDocument doc = GeckoDomDocument.CreateDomDocumentWraper(info.GetTargetNodeAttribute().GetOwnerDocumentAttribute());
+
+				string viewSourceUrl = (doc == null) ? null : Convert.ToString(doc.Uri);
 				
 				MenuItem mnuViewSource = new MenuItem("View Source");
 				mnuViewSource.Enabled = !string.IsNullOrEmpty(viewSourceUrl);
@@ -1431,7 +1440,8 @@ namespace Gecko
 				mnuOpenInSystemBrowser.Enabled = !string.IsNullOrEmpty(viewSourceUrl);
 				mnuOpenInSystemBrowser.Click += delegate { ViewInSystemBrowser(viewSourceUrl); };
 
-				string properties = (doc != null && doc.Url == Document.Url) ? "Page Properties" : "IFRAME Properties";
+
+				string properties = (doc != null && doc.Uri == Document.Uri) ? "Page Properties" : "IFRAME Properties";
 				
 				MenuItem mnuProperties = new MenuItem(properties);
 				mnuProperties.Enabled = doc != null;
@@ -1549,12 +1559,12 @@ namespace Gecko
 			ShowPageProperties(Document);
 		}
 		
-		public void ShowPageProperties(GeckoDocument document)
+		public void ShowPageProperties(GeckoDomDocument document)
 		{
 			if (document == null)
 				throw new ArgumentNullException("document");
 			
-			new PropertiesDialog((nsIDOMHTMLDocument)document.DomObject).ShowDialog(this);
+			new PropertiesDialog((nsIDOMDocument)document.DomObject).ShowDialog(this);
 		}
 		
 		#endregion

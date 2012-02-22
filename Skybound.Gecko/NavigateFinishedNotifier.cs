@@ -52,7 +52,7 @@ namespace Gecko
 		{
 			try
 			{
-				GeckoDocument document = (m_browser as GeckoWebBrowser).Document;
+				GeckoDomDocument document = m_browser.Document;
 				// if body contains something assume navigation complete.
 				if (!m_loadEventHandled || document == null || document.DocumentElement == null || document.ChildNodes.Count == 0)
 					return;

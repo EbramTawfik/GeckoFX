@@ -58,7 +58,7 @@ namespace GeckoFxTest
 
 		}
 
-		protected void ModifyElements(GeckoElement element, string tagName, Action<GeckoElement> mod)
+		protected void ModifyElements(GeckoDomElement element, string tagName, Action<GeckoDomElement> mod)
 		{
 			while (element != null)
 			{
@@ -73,7 +73,7 @@ namespace GeckoFxTest
 
 		protected void TestModifyingDom(GeckoWebBrowser browser)
 		{
-			GeckoElement g = browser.Document.DocumentElement;
+			GeckoDomElement g = browser.Document.DocumentElement;
 			ModifyElements(g, "BODY", e =>
 			              	{
 								for(int i = 1; i < 4; ++i)
@@ -85,7 +85,7 @@ namespace GeckoFxTest
 							});
 		}
 
-		protected void DisplayElements(GeckoElement g)
+		protected void DisplayElements(GeckoDomElement g)
 		{
 			while (g != null)
 			{
@@ -98,7 +98,7 @@ namespace GeckoFxTest
 
 		protected void TestQueryingOfDom(GeckoWebBrowser browser)
 		{
-			GeckoElement g = browser.Document.DocumentElement;
+			GeckoDomElement g = browser.Document.DocumentElement;
 			DisplayElements(g);
 		}
 

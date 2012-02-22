@@ -53,7 +53,7 @@ namespace Gecko
 		}
 		internal nsIDOMAttr DomAttr;
 		
-		internal static GeckoAttribute Create(nsIDOMAttr attr)
+		internal static GeckoAttribute CreateAttributeWrapper(nsIDOMAttr attr)
 		{
 			return (attr == null) ? null : new GeckoAttribute(attr);
 		}
@@ -291,15 +291,29 @@ namespace Gecko
 		}
 
 
-
-
-
-
-
+		public static GeckoDomElement CreateDomElementWrapper(nsIDOMElement element)
+		{
+			var htmlElement=Xpcom.QueryInterface<nsIDOMHTMLElement>( element );
+			if (htmlElement!=null)
+			{
+				return GeckoElement.Create(htmlElement);
+			}
+			var svgElement=Xpcom.QueryInterface<nsIDOMSVGElement>( element );
+			if (svgElement!=null)
+			{
+				return DOM.Svg.SvgElement.CreateSvgElementWrapper( svgElement );
+			}
+			var xulElement=Xpcom.QueryInterface<nsIDOMXULElement>( element );
+			if (xulElement!=null)
+			{
+				return DOM.Xul.XulElement.CreateXulElementWrapper( xulElement );
+			}
+			return new GeckoDomElement( element );
+		}
 	}
 
 	/// <summary>
-	/// Represents a DOM element.
+	/// Represents a DOM HTML element.
 	/// </summary>
 	public class GeckoElement
 		: GeckoDomElement
@@ -477,15 +491,18 @@ namespace Gecko
 			set { DomElement.SetTabIndexAttribute(value); }
 		}
 	}
-	
+
+
 	/// <summary>
-	/// Represents a DOM document.
+	/// Represents a DOM HTML document.
 	/// </summary>
-	public class GeckoDocument : GeckoNode
+	public class GeckoDocument : GeckoDomDocument
 	{
+		private nsIDOMHTMLDocument _domHtmlDocument;
+
 		internal GeckoDocument(nsIDOMHTMLDocument document) : base(document)
 		{
-			this.DomDocument = document;
+			this._domHtmlDocument = document;
 		}
 		
 		internal static GeckoDocument Create(nsIDOMHTMLDocument document)
@@ -493,50 +510,12 @@ namespace Gecko
 			return (document == null) ? null : new GeckoDocument(document);
 		}
 		
-		nsIDOMHTMLDocument DomDocument;
-		
-		/// <summary>
-		/// Gets the document title.
-		/// </summary>
-		public string Title
-		{
-			get { return nsString.Get(DomDocument.GetTitleAttribute); }
-			set { nsString.Set(DomDocument.SetTitleAttribute, value); }
-		}
-		
 		/// <summary>
 		/// Gets the HTML body element.
 		/// </summary>
 		public GeckoBodyElement Body
 		{
-			get { return GeckoElement.Create<GeckoBodyElement>(DomDocument.GetBodyAttribute()); }
-		}
-		
-		/// <summary>
-		/// Gets the top-level document element (for HTML documents, this is the html tag).
-		/// </summary>
-		public GeckoElement DocumentElement
-		{
-			get
-			{
-				nsIDOMElement domElement = DomDocument.GetDocumentElementAttribute();
-				
-				return GeckoElement.Create(
-				(nsIDOMHTMLElement)domElement);
-			}
-		}
-		
-		/// <summary>
-		/// Searches for and returns the element in the document with the given id.
-		/// </summary>
-		/// <param name="id"></param>
-		/// <returns></returns>
-		public GeckoElement GetElementById(string id)
-		{
-			if (string.IsNullOrEmpty(id))
-				return null;
-			
-			return GeckoElement.Create((nsIDOMHTMLElement)DomDocument.GetElementById(new nsAString(id)));
+			get { return GeckoElement.Create<GeckoBodyElement>(_domHtmlDocument.GetBodyAttribute()); }
 		}
 		
 		/// <summary>
@@ -546,7 +525,7 @@ namespace Gecko
 		{
 			internal StyleSheetCollection(GeckoDocument document)
 			{
-				this.List = document.DomDocument.GetStyleSheetsAttribute();
+				this.List = document._domHtmlDocument.GetStyleSheetsAttribute();
 			}
 			nsIDOMStyleSheetList List;
 			
@@ -612,57 +591,46 @@ namespace Gecko
 		/// </summary>
 		public Uri Url
 		{
-			get { return new Uri(nsString.Get(DomDocument.GetURLAttribute)); }
+			get { return new Uri(nsString.Get(_domHtmlDocument.GetURLAttribute)); }
 		}
 		
 		public GeckoElementCollection Frames
 		{
-			get { return new GeckoHtmlElementCollection(DomDocument.GetFormsAttribute()); }
+			get { return new GeckoHtmlElementCollection(_domHtmlDocument.GetFormsAttribute()); }
 		}
 		
 		public GeckoElementCollection Images
 		{
-			get { return new GeckoHtmlElementCollection(DomDocument.GetImagesAttribute()); }
+			get { return new GeckoHtmlElementCollection(_domHtmlDocument.GetImagesAttribute()); }
 		}
 		
 		public GeckoElementCollection Anchors
 		{
-			get { return new GeckoHtmlElementCollection(DomDocument.GetAnchorsAttribute()); }
+			get { return new GeckoHtmlElementCollection(_domHtmlDocument.GetAnchorsAttribute()); }
 		}
 		
 		public GeckoElementCollection Applets
 		{
-			get { return new GeckoHtmlElementCollection(DomDocument.GetAppletsAttribute()); }
+			get { return new GeckoHtmlElementCollection(_domHtmlDocument.GetAppletsAttribute()); }
 		}
 		
 		public GeckoElementCollection Links
 		{
-			get { return new GeckoHtmlElementCollection(DomDocument.GetLinksAttribute()); }
+			get { return new GeckoHtmlElementCollection(_domHtmlDocument.GetLinksAttribute()); }
 		}
 		
 		public string Cookie
 		{
-			get { return nsString.Get(DomDocument.GetCookieAttribute); }
-			set { nsString.Set(DomDocument.SetCookieAttribute, value); }
+			get { return nsString.Get(_domHtmlDocument.GetCookieAttribute); }
+			set { nsString.Set(_domHtmlDocument.SetCookieAttribute, value); }
 		}
 		
 		public string Domain
 		{
-			get { return nsString.Get(DomDocument.GetDomainAttribute); }
+			get { return nsString.Get(_domHtmlDocument.GetDomainAttribute); }
 		}
 		
-		/// <summary>
-		/// Returns a collection containing all elements in the document with a given tag name.
-		/// </summary>
-		/// <param name="tagName"></param>
-		/// <returns></returns>
-		public GeckoElementCollection GetElementsByTagName(string tagName)
-		{
-			if (string.IsNullOrEmpty(tagName))
-				return null;
-			
-			return new GeckoElementCollection(DomDocument.GetElementsByTagName(new nsAString(tagName)));
-		}
+
 		
 		/// <summary>
 		/// Returns a collection containing all elements in the document with a given name.		
@@ -674,57 +642,10 @@ namespace Gecko
 			if (string.IsNullOrEmpty(name))
 				return null;
 			
-			return new GeckoElementCollection(DomDocument.GetElementsByName(new nsAString(name)));
+			return new GeckoElementCollection(_domHtmlDocument.GetElementsByName(new nsAString(name)));
 		}
 		
-		public GeckoElement CreateElement(string tagName)
-		{
-			if (string.IsNullOrEmpty(tagName))
-				throw new ArgumentException("tagName");
-			
-			return GeckoElement.Create((nsIDOMHTMLElement)DomDocument.CreateElement(new nsAString(tagName)));
-		}
-		
-		public GeckoElement CreateElement(string tagName, string qualifiedName)
-		{
-			if (string.IsNullOrEmpty(tagName))
-				throw new ArgumentException("tagName");
-			if (string.IsNullOrEmpty(qualifiedName))
-				throw new ArgumentException("qualifiedName");
-			
-			return GeckoElement.Create((nsIDOMHTMLElement)DomDocument.CreateElementNS(new nsAString(tagName), new nsAString(qualifiedName)));
-		}
-		
-		public GeckoAttribute CreateAttribute(string name)
-		{
-			if (string.IsNullOrEmpty(name))
-				throw new ArgumentException("name");
-			
-			return GeckoAttribute.Create(DomDocument.CreateAttribute(new nsAString(name)));
-		}
-		
-		public GeckoAttribute CreateAttribute(string namespaceUri, string qualifiedName)
-		{
-			if (string.IsNullOrEmpty(namespaceUri))
-				throw new ArgumentException("namespaceUri");
-			if (string.IsNullOrEmpty(qualifiedName))
-				throw new ArgumentException("qualifiedName");
-			
-			return GeckoAttribute.Create(DomDocument.CreateAttributeNS(new nsAString(namespaceUri), new nsAString(qualifiedName)));
-		}
 
-		public GeckoNode CreateTextNode(string data)
-		{
-			return GeckoNode.Create(DomDocument.CreateTextNode(new nsAString(data)));
-		}
-
-		public GeckoNode ImportNode(GeckoNode node, bool deep)
-		{
-			if (node == null)
-				throw new ArgumentNullException("node");
-			
-			return GeckoNode.Create(DomDocument.ImportNode((nsIDOMNode)node.DomObject, deep, 1));
-		}
 		
 		public bool IsSupported(string feature, string version)
 		{
@@ -732,44 +653,10 @@ namespace Gecko
 				throw new ArgumentException("feature");
 			if (string.IsNullOrEmpty(version))
 				throw new ArgumentException("version");
-			
-			return DomDocument.IsSupported(new nsAString(feature), new nsAString(version));
+			return nsString.Pass( _domHtmlDocument.IsSupported, feature, version );
 		}
 				
-		/// <summary>
-		/// Gets the currently focused element.
-		/// </summary>
-		public GeckoElement ActiveElement
-		{
-			get { return (GeckoElement)GeckoElement.Create(((nsIDOMDocument)DomDocument).GetActiveElementAttribute()); }
-		}
-		
-		/// <summary>
-		/// Returns a set of elements with the given class name. When called on the document object, the complete document is searched, including the root node.
-		/// </summary>
-		/// <param name="classes"></param>
-		/// <returns></returns>
-		public GeckoNodeCollection GetElementsByClassName(string classes)
-		{
-			using (nsAString str = new nsAString(classes))
-				return new GeckoNodeCollection(((nsIDOMDocument)DomDocument).GetElementsByClassName(str));
-		}
-		
-		/// <summary>
-		/// Returns the element visible at the given point, relative to the upper-left-most visible point in the document.
-		/// </summary>
-		/// <param name="x"></param>
-		/// <param name="y"></param>
-		/// <returns></returns>
-		public GeckoElement ElementFromPoint(int x, int y)
-		{
-			return GeckoElement.Create((nsIDOMHTMLElement)((nsIDOMDocument)DomDocument).ElementFromPoint(x, y));
-		}
-		
-		public GeckoRange CreateRange()
-		{
-			return new GeckoRange(DomDocument.CreateRange());
-		}
+	
 	}
 	
 	public class GeckoNamedNodeMap : IEnumerable<GeckoNode>
@@ -1007,7 +894,7 @@ namespace Gecko
 	/// </summary>
 	public class GeckoNodeCollection : IEnumerable<GeckoNode>
 	{
-		internal GeckoNodeCollection(nsIDOMNodeList list)
+		protected GeckoNodeCollection(nsIDOMNodeList list)
 		{
 			this.List = list;
 		}
@@ -1015,7 +902,7 @@ namespace Gecko
 
 		public virtual int Count
 		{
-			get { return (List == null) ? 0 : (int)List.GetLengthAttribute(); }
+			get { return (int)List.GetLengthAttribute(); }
 		}
 		
 		public virtual GeckoNode this[int index]
@@ -1051,6 +938,11 @@ namespace Gecko
 		}
 
 		#endregion
+
+		internal static GeckoNodeCollection Create(nsIDOMNodeList list)
+		{
+			return list == null ? null : new GeckoNodeCollection( list );
+		}
 	}
 	
 	public class GeckoHtmlElementCollection : GeckoElementCollection

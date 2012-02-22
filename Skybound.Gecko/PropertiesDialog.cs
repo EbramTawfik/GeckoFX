@@ -49,10 +49,11 @@ namespace Gecko
 			InitializeComponent();
 		}
 		
-		public PropertiesDialog(nsIDOMHTMLDocument doc) : this()
+		public PropertiesDialog(nsIDOMDocument doc) : this()
 		{
 			txtTitle.Text = nsString.Get(doc.GetTitleAttribute);
-			txtAddress.Text = nsString.Get(doc.GetURLAttribute);
+
+			txtAddress.Text = nsString.Get(doc.GetDocumentURIAttribute);
 			txtReferrer.Text = nsString.Get(doc.GetReferrerAttribute);
 
 			nsIDOMDocumentType docType = doc.GetDoctypeAttribute();

@@ -145,6 +145,15 @@
     </Compile>
     <Compile Include="ConsoleService.cs" />
     <Compile Include="Contracts.cs" />
+    <Compile Include="DOM\DocumentFragment.cs" />
+    <Compile Include="DOM\DomCharacterData.cs" />
+    <Compile Include="DOM\DomDocumentType.cs" />
+    <Compile Include="DOM\GeckoTextNode.cs" />
+    <Compile Include="DOM\Svg\SvgDocument.cs" />
+    <Compile Include="DOM\Svg\SvgElement.cs" />
+    <Compile Include="DOM\Svg\SvgSvgElement.cs" />
+    <Compile Include="DOM\Xul\XulElement.cs" />
+    <Compile Include="GeckoDomDocument.cs" />
     <Compile Include="GeckoWebBrowser.Events.cs">
       <SubType>Component</SubType>
     </Compile>
