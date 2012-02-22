@@ -66,6 +66,7 @@
     <Compile Include="GeckoMIMEInputStreamTests.cs" />
     <Compile Include="GeckoWebBrowserTests.cs" />
     <Compile Include="IOServiceTests.cs" />
+    <Compile Include="nsIEditorTests.cs" />
     <Compile Include="nsURITests.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
