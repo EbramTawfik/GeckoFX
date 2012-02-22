@@ -35,6 +35,12 @@ namespace GeckofxUnitTests
 		public void GetCurrentJSStackAttribute_ReturnsNull()
 		{
 			Assert.IsNull(m_instance.GetCurrentJSStackAttribute());		
-		}		
+		}
+
+		[Test]
+		public void GarbageCollect_ShouldNotThrowException()
+		{			
+			m_instance.GarbageCollect();
+		}
 	}
 }
