@@ -120,5 +120,25 @@ namespace GeckofxUnitTests
 			}			
 		}
 
+		[Test]
+		public void GetSelectionAttribute_DocumentIsEditable_ReturnsNonNullSelection()
+		{
+			Assert.NotNull(_editor.GetSelectionAttribute());
+		}
+
+		[Test]
+		public void GetSelectionControllerAttribute__DocumentIsEditable_ReturnsNonNullSelectionControler()
+		{
+			Assert.NotNull(_editor.GetSelectionControllerAttribute());
+		}
+
+		[Test]
+		public void SelectAll_DocumentIsEditable_SelectionShouldNotBeCollapsed()
+		{
+			Assert.IsFalse(_editor.CanCopy(), "Selection should be insertion point");
+			_editor.SelectAll();
+			Assert.True(_editor.CanCopy(), "Selection should not be collapsed");
+		}
+
 	}
 }
