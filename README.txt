@@ -2,6 +2,15 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v10.0-0.4 ==
+
+1. Fix infrequent Linux seg fault when calling SetInputFocus()
+2. wrappers for nsIPipe, nsIObserverService, nsIStreamListenerTee, nsIRequestObserver, nsIStorageStream, nsIInputStreamTee, nsIVersionComparer, nsIConsoleService. provided by zloyprotoss
+3. Add some aditional stream implementations.  provided by zloyprotoss
+4. public Event delegates renamed:
+  GeckoNavigatedEventHandler  -> EventHandler<GeckoNavigatedEventArgs>
+  GeckoNavigatingEventHandler -> EventHandler<GeckoNavigatingEventArgs>
+
 == v10.0-0.3 ==
 
 1. Make Custom Prompts Service runtime switchable. (currently defaulting to off)
