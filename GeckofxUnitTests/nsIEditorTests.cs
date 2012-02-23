@@ -100,7 +100,7 @@ namespace GeckofxUnitTests
 		}
 
 		[Test]
-		public void OutputToStream_OutputEditableBody_BodyAndContentWritenToStream()
+		public void OutputToStream_OutputEditableBody_BodyAndContentWrittenToStream()
 		{
 			using(nsAString formatType = new nsAString("text/html"))
 			{
@@ -108,6 +108,16 @@ namespace GeckofxUnitTests
 				_editor.OutputToStream(outputStream, formatType, new nsACString("utf8"), 8);
 				Assert.AreEqual("<body contenteditable=\"true\"><div>hello world</div></body>", outputStream._result.ToString());
 			}
+		}
+
+		[Test]
+		public void OutputToString_OutputEditableBody_BodyAndContentWrittenToString()
+		{
+			using (nsAString formatType = new nsAString("text/html"), retval = new nsAString())
+			{
+				_editor.OutputToString(formatType, 8, retval);
+				Assert.AreEqual("<body contenteditable=\"true\"><div>hello world</div></body>", retval.ToString());
+			}			
 		}
 
 	}
