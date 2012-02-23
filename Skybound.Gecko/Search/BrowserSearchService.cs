@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Runtime.InteropServices;
 
-namespace Gecko
+namespace Gecko.Search
 {
 	public sealed class BrowserSearchService
 	{
@@ -15,35 +13,33 @@ namespace Gecko
 			_browserSearchService = Xpcom.QueryInterface<nsIBrowserSearchService>(browserSearchService);
 		}
 
-
 		/// <summary>
 		/// Adds a new search engine from the file at the supplied URI, optionally
 		/// asking the user for confirmation first.  If a confirmation dialog is
 		/// shown, it will offer the option to begin using the newly added engine
 		/// right away; if no confirmation dialog is shown, the new engine will be
 		/// used right away automatically.
-		///
-		/// @param engineURL
-		/// The URL to the search engine's description file.
-		///
-		/// @param dataType
+		///	</summary>
+		/// <param name="engineUrl">The URL to the search engine's description file.</param>
+		/// <param name="dataType">
 		/// An integer representing the plugin file format. Must be one
 		/// of the supported search engine data types defined above.
-		///
-		/// @param iconURL
+		/// </param>
+		/// <param name="iconUrl">
 		/// A URL string to an icon file to be used as the search engine's
 		/// icon. This value may be overridden by an icon specified in the
 		/// engine description file.
-		///
-		/// @param confirm
+		///	</param>
+		/// <param name="confirm">
 		/// A boolean value indicating whether the user should be asked for
 		/// confirmation before this engine is added to the list.  If this
 		/// value is false, the engine will be added to the list upon successful
 		/// load, but it will not be selected as the current engine.
-		///
+		/// </param>
+		/// <exception cref="COMException">
 		/// @throws NS_ERROR_FAILURE if the type is invalid, or if the description
 		/// file cannot be successfully loaded.
-		/// </summary>
+		/// </exception>
 		public void AddEngine( string engineUrl, int dataType, string iconUrl,  bool confirm)
 		{
 			using (nsAString native1=new nsAString(engineUrl),native2=new nsAString(iconUrl))
@@ -55,33 +51,31 @@ namespace Gecko
 		/// <summary>
 		/// Adds a new search engine, without asking the user for confirmation and
 		/// without starting to use it right away.
-		///
-		/// @param name
-		/// The search engine's name. Must be unique. Must not be null.
-		///
-		/// @param iconURL
+		/// </summary>
+		/// <param name="name">The search engine's name. Must be unique. Must not be null.</param>
+		/// <param name="iconUrl">
 		/// Optional: A URL string pointing to the icon to be used to represent
 		/// the engine.
-		///
-		/// @param alias
+		/// </param>
+		/// <param name="alias">
 		/// Optional: A unique shortcut that can be used to retrieve the
 		/// search engine.
-		///
-		/// @param description
-		/// Optional: a description of the search engine.
-		///
-		/// @param method
+		/// </param>
+		///	<param name="description">Optional: a description of the search engine.</param>
+		/// <param name="method">
 		/// The HTTP request method used when submitting a search query.
 		/// Must be a case insensitive value of either "get" or "post".
-		///
-		/// @param url
+		/// </param>
+		///	<param name="url">
 		/// The URL to which search queries should be sent.
 		/// Must not be null.
-		/// </summary>
-		public void AddEngineWithDetails(string name,  string iconURL, string alias, string description, string method, string url)
+		/// </param>
+		public void AddEngineWithDetails(string name,  string iconUrl, string alias, string description, string method, string url)
 		{
+			if (string.IsNullOrEmpty( name )) throw new ArgumentException("Must not be null","name");
+
 			using (nsAString native1 = new nsAString(name),
-				native2 = new nsAString(iconURL),
+				native2 = new nsAString(iconUrl),
 				native3 = new nsAString(alias),
 				native4 = new nsAString(description),
 				native5 = new nsAString(method),
@@ -207,40 +201,6 @@ namespace Gecko
 		public SearchEngine OriginalDefaultEngine
 		{
 			get { return SearchEngine.Create( _browserSearchService.GetOriginalDefaultEngineAttribute() ); }
-		}
-	}
-
-
-	public sealed class SearchEngine
-	{
-		internal nsISearchEngine _searchEngine;
-
-		private SearchEngine(nsISearchEngine searchEngine)
-		{
-			_searchEngine = searchEngine;
-			
-		}
-
-		public void AddParam(string name,string value,string responceType)
-		{
-			nsString.Set( _searchEngine.AddParam, name, value, responceType );
-
-		}
-
-		public string Alias
-		{
-			get { return nsString.Get( _searchEngine.GetAliasAttribute ); }
-			set { nsString.Set( _searchEngine.SetAliasAttribute, value ); }
-		}
-
-		public string Description
-		{
-			get { return nsString.Get( _searchEngine.GetDescriptionAttribute ); }
-		}
-
-		internal static SearchEngine Create(nsISearchEngine searchEngine)
-		{
-			return searchEngine == null ? null : new SearchEngine( searchEngine );
 		}
 	}
 }

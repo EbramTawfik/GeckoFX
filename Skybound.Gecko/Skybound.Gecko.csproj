@@ -106,7 +106,7 @@
     <Compile Include="BaseTypes\gfxGraphicsFilter.cs" />
     <Compile Include="BaseTypes\gfxMatrix.cs" />
     <Compile Include="BaseTypes\gfxRect.cs" />
-    <Compile Include="BrowserSearchService.cs" />
+    <Compile Include="Search\BrowserSearchService.cs" />
     <Compile Include="ByteArrayInputStream.cs" />
     <Compile Include="Cache\CacheDeviceInfo.cs" />
     <Compile Include="Cache\CacheEntryDescriptor.cs" />
@@ -155,6 +155,10 @@
     <Compile Include="DOM\Xul\XulElement.cs" />
     <Compile Include="GeckoDomDocument.cs" />
     <Compile Include="GeckoWebBrowser.Events.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GeckoWebBrowser.GTK.cs" />
+    <Compile Include="GeckoWebBrowser.WinForms.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Interop\MemCopy.cs" />
@@ -1520,6 +1524,8 @@
       <DependentUpon>PropertiesDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Search\SearchEngine.cs" />
+    <Compile Include="Search\SearchSubmission.cs" />
     <Compile Include="Sound.cs" />
     <Compile Include="TreeView.cs" />
     <Compile Include="Utils\VersionComparer.cs" />

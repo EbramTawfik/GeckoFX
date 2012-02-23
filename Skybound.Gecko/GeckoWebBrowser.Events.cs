@@ -33,6 +33,7 @@ namespace Gecko
 		private static readonly object CreateWindowEvent = new object();
 		private static readonly object CreateWindow2Event = new object();
 		private static readonly object WindowSetBoundsEvent = new object();
+		private static readonly object WindowClosedEvent = new object();
 		// StatusTextChanged
 		private static readonly object StatusTextChangedEvent = new object();
 		// DocumentTitleChanged
@@ -382,6 +383,23 @@ namespace Gecko
 
 		#endregion
 
+
+		#region public event EventHandler WindowClosed
+		public event EventHandler WindowClosed
+		{
+			add { Events.AddHandler(WindowClosedEvent, value); }
+			remove { Events.RemoveHandler(WindowClosedEvent, value); }
+		}
+		
+
+		/// <summary>Raises the <see cref="WindowClosed"/> event.</summary>
+		/// <param name="e">The data for the event.</param>
+		protected virtual void OnWindowClosed(EventArgs e)
+		{
+			var evnt = ( EventHandler ) Events[ WindowClosedEvent ];
+			if (evnt != null) evnt(this, e);
+		}
+		#endregion
 		#endregion
 
 		#region public event EventHandler StatusTextChanged
