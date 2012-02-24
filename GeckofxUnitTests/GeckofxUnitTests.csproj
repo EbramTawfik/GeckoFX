@@ -62,6 +62,7 @@
     <Compile Include="ByteArrayInputStreamTests.cs" />
     <Compile Include="ControllersTests.cs" />
     <Compile Include="CrossLanguageTests.cs" />
+    <Compile Include="DOMWindowTests.cs" />
     <Compile Include="FocusManagerTests.cs" />
     <Compile Include="GeckoMIMEInputStreamTests.cs" />
     <Compile Include="GeckoWebBrowserTests.cs" />
