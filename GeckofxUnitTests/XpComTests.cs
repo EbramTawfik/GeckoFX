@@ -1668,6 +1668,14 @@ namespace GeckofxUnitTests
 			Assert.IsNotNull(instance);
 			Marshal.ReleaseComObject(instance);
 		}
+
+		[Test]
+		public void GetUpdateManager_CleanXpComInstance_ReturnsValidInstance()
+		{
+			var instance = Xpcom.GetService<nsIUpdateManager>("@mozilla.org/updates/update-manager;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
 #endregion
 	}
 }
