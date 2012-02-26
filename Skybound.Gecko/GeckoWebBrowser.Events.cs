@@ -849,14 +849,15 @@ namespace Gecko
 
 			using (var a = new AutoJSContext())
 			{
-				var jsd = Xpcom.GetService<jsdIDebuggerService>("@mozilla.org/js/jsd/debugger-service;1");
-				jsd.SetErrorHookAttribute(new JSErrorHandler(this));
-				nsIJSRuntimeService runtime = Xpcom.GetService<nsIJSRuntimeService>("@mozilla.org/js/xpc/RuntimeService;1");
-				jsd.ActivateDebugger(runtime.GetRuntimeAttribute());
-				Marshal.ReleaseComObject(runtime);
-				Marshal.ReleaseComObject(jsd);
+				using (var jsd = new ServiceWrapper<jsdIDebuggerService>( "@mozilla.org/js/jsd/debugger-service;1" ))
+				{
+					jsd.Instance.SetErrorHookAttribute( new JSErrorHandler( this ) );
+					using (var runtime = new ServiceWrapper<nsIJSRuntimeService>( "@mozilla.org/js/xpc/RuntimeService;1" ))
+					{
+						jsd.Instance.ActivateDebugger( runtime.Instance.GetRuntimeAttribute() );
+					}
+				}
 			}
-
 			m_javascriptDebuggingEnabled = true;
 		}
 
@@ -903,10 +904,10 @@ namespace Gecko
 
 		public void EnableConsoleMessageNotfication()
 		{
-			using (var consoleService = new ConsoleService())
+			using (var consoleService = new ServiceWrapper<nsIConsoleService>(Contracts.ConsoleService)) 
 			{
-				consoleService._nativeService.RegisterListener(new ConsoleListener(this));
-			}
+				consoleService.Instance.RegisterListener(new ConsoleListener(this));
+			}			
 		}
 
 		private EventHandler<ConsoleMessageEventArgs> _ConsoleMessage;

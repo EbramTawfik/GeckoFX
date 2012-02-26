@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -17,8 +18,12 @@ namespace GeckofxUnitTests
 			{ 
 				if (Xpcom.IsLinux)
 					return "/usr/lib/firefox-9.0.1/";
-				
-				return @"C:\Program Files (x86)\Mozilla Firefox 10.0";
+
+				if (Directory.Exists(@"c:\program Files (x86)\Mozilla Firefox 10.0\"))
+				{
+					return @"c:\program Files (x86)\Mozilla Firefox 10.0\";
+				}
+				return @"c:\program Files (x86)\Mozilla Firefox\";
 			}
 		}
 

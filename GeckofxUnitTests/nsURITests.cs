@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Runtime.InteropServices;
 using NUnit.Framework;
 using Gecko;
 using System;
@@ -26,6 +27,25 @@ namespace GeckofxUnitTests
 			nsURI temp = nsURI.Create("http://www.google.com");
 			Assert.AreEqual("http", temp.Scheme);
 			Assert.AreEqual("www.google.com", temp.AsciiHost);			
+		}
+
+		[Test]
+		public void UrlTest()
+		{
+			var service = Xpcom.GetService<nsIIOService>(Contracts.NetworkIOService);
+
+			nsIURI ret;
+			using (var str = new nsAUTF8String("http://www.google.com"))
+			{
+				ret = service.NewURI(str, null, null);
+			}
+
+			var ret2=Xpcom.QueryInterface<nsIURL>( ret );
+
+			var counter=Marshal.ReleaseComObject( ret );
+			Assert.AreEqual( counter,1 );
+			var serviceCounter=Marshal.ReleaseComObject( service );
+			Assert.AreEqual(serviceCounter, 0);
 		}
 	}
 }

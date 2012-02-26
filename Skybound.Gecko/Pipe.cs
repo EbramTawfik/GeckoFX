@@ -10,7 +10,7 @@ namespace Gecko
 		internal nsIPipe _pipe;
 		internal Pipe()
 		{
-			var pipe = Xpcom.GetService<nsIPipe>(Contracts.Pipe);
+			var pipe = Xpcom.CreateInstance<nsIPipe>(Contracts.Pipe);
 			_pipe = Xpcom.QueryInterface<nsIPipe>(pipe);
 			_pipe.Init(true, true,0, 0, null);
 		}

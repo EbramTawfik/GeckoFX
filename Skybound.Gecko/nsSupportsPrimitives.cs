@@ -156,7 +156,7 @@ namespace Gecko
 
 		public static nsISupportsPRBool SetBool(bool value)
 		{
-			var bvalue = Xpcom.GetService<nsISupportsPRBool>(Contracts.SupportsBool);
+			var bvalue = Xpcom.CreateInstance<nsISupportsPRBool>(Contracts.SupportsBool);
 			bvalue=Xpcom.QueryInterface<nsISupportsPRBool>(bvalue);
 			bvalue.SetDataAttribute( value );
 

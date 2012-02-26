@@ -209,10 +209,10 @@ namespace Gecko
 				if ((flags & GeckoWindowFlags.OpenAsChrome) != 0)
 				{
 				      // obtain the services we need
-				      nsIAppShellService appShellService = Xpcom.GetService<nsIAppShellService>("@mozilla.org/appshell/appShellService;1");
+				     // nsIAppShellService appShellService = Xpcom.GetService<nsIAppShellService>("@mozilla.org/appshell/appShellService;1");
 				      
 				      // create the child window
-				      nsIXULWindow xulChild = appShellService.CreateTopLevelWindow(null, null, chromeFlags, -1, -1);
+				      nsIXULWindow xulChild = AppShellService.CreateTopLevelWindow(null, null, chromeFlags, -1, -1);
 				      
 				      // this little gem allows the GeckoWebBrowser to be properly activated when it gains the focus again
 				      if (parent is GeckoWebBrowser && (flags & GeckoWindowFlags.OpenAsDialog) != 0)
@@ -243,8 +243,8 @@ namespace Gecko
 						return e.WebBrowser;
 					}
 									
-					nsIAppShellService appShellService = Xpcom.GetService<nsIAppShellService>("@mozilla.org/appshell/appShellService;1");
-					nsIXULWindow xulChild = appShellService.CreateTopLevelWindow(null, null, chromeFlags, -1, -1);
+					//nsIAppShellService appShellService = Xpcom.GetService<nsIAppShellService>(Contracts.AppShellService);
+					nsIXULWindow xulChild = AppShellService.CreateTopLevelWindow(null, null, chromeFlags, -1, -1);
 					return Xpcom.QueryInterface<nsIWebBrowserChrome>(xulChild);									
 				}
 				return null;
@@ -363,7 +363,7 @@ namespace Gecko
 			if (!string.IsNullOrEmpty(referrer))
 			{
 				//referrerUri = Xpcom.GetService<nsIIOService>("@mozilla.org/network/io-service;1").NewURI(new nsAUTF8String(referrer), null, null);
-				referrerUri = nsURI.CreateInternal( referrer );
+				referrerUri = IOService.CreateNsIUri(referrer);
 			}
 
 			WebNav.LoadURI(url, (uint)loadFlags, referrerUri, postDataStream, headersStream);
@@ -398,7 +398,8 @@ namespace Gecko
 			nsIURI referrerUri = null;
 			if (!string.IsNullOrEmpty(referrer))
 			{
-				referrerUri = Xpcom.GetService<nsIIOService>("@mozilla.org/network/io-service;1").NewURI(new nsAUTF8String(referrer), null, null);
+				//referrerUri = Xpcom.GetService<nsIIOService>("@mozilla.org/network/io-service;1").NewURI(new nsAUTF8String(referrer), null, null);
+				referrerUri = IOService.CreateNsIUri( referrer );
 			}
 
             WebNav.LoadURI(url, (uint)loadFlags, referrerUri, postData!=null?postData.InputStream:null, null);

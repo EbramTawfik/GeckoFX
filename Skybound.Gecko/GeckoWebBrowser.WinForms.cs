@@ -97,8 +97,7 @@ namespace Gecko
 
 				if (UseHttpActivityObserver)
 				{
-					var observerService = Xpcom.GetService<nsIObserverService>(Contracts.ObserverService);
-					observerService.AddObserver(this, ObserverNotifications.HttpRequests.HttpOnModifyRequest, false);
+					ObserverService.AddObserver(this, ObserverNotifications.HttpRequests.HttpOnModifyRequest, false);
 
 					nsIHttpActivityDistributor activityDistributor = Xpcom.GetService<nsIHttpActivityDistributor>("@mozilla.org/network/http-activity-distributor;1");
 					activityDistributor = Xpcom.QueryInterface<nsIHttpActivityDistributor>(activityDistributor);

@@ -25,7 +25,7 @@ namespace Gecko.Net
 		public Uri Referrer
 		{
 			get { return nsURI.ToUri( _httpChannel.GetReferrerAttribute() ); }
-			set{_httpChannel.SetReferrerAttribute( nsURI.CreateInternal( value.ToString() ) );}
+			set { _httpChannel.SetReferrerAttribute(IOService.CreateNsIUri(value.ToString())); }
 		}
 
 		public string GetRequestHeader(string header)
