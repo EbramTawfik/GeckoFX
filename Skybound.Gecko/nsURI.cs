@@ -144,28 +144,10 @@ namespace Gecko
 		
 		public static nsURI Create(string url)
 		{
-			return new nsURI(CreateInternal(url));
+			return IOService.Create( url );
 		}
 
-		public static nsIURL CreateUrl(string url)
-		{
-			var uri = CreateInternal( url );
-			var ret=Xpcom.QueryInterface<nsIURL>( uri );
-			return ret;
-		}
 
-		internal static nsIURI CreateInternal(string url)
-		{
-			nsIURI returnValue;
-			nsIIOService service = Xpcom.GetService<nsIIOService>("@mozilla.org/network/io-service;1");
-			using (var str = new nsAUTF8String(url))
-			{
-				returnValue = service.NewURI(str, null, null);
-			}
-
-			Marshal.ReleaseComObject(service);
-			return returnValue;
-		}
 		#endregion
 
 		internal static Uri ToUri(nsIURI value )

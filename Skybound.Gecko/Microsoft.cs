@@ -44,6 +44,12 @@ namespace GeckoFX.Microsoft
 		public static extern IntPtr ReleaseDC(IntPtr hWnd, IntPtr hDC);
 		[DllImport("user32.dll")]
 		public static extern IntPtr GetWindowRect(IntPtr hWnd, ref RECT rect);
+
+		[DllImport("user32")]
+		public static extern bool IsChild(IntPtr hWndParent, IntPtr hwnd);
+
+		[DllImport("user32")]
+		public static extern IntPtr GetFocus();
 	}
 
 	internal static class Kernel32

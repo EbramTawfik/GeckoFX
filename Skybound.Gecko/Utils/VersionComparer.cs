@@ -5,20 +5,27 @@ using System.Text;
 
 namespace Gecko.Utils
 {
+	/// <summary>
+	/// 
+	/// </summary>
 	public sealed class VersionComparer
 		:IComparer<string>
 	{
-		private nsIVersionComparator _versionComparator;
+		/// <summary>
+		/// Internal service reference MUST BE sigleton
+		/// </summary>
+		private static ServiceWrapper<nsIVersionComparator> _versionComparator;
 
-		public VersionComparer()
+		static VersionComparer()
 		{
-			var versionComparator = Xpcom.GetService<nsIVersionComparator>(Contracts.VersionComparator);
-			_versionComparator = Xpcom.QueryInterface<nsIVersionComparator>(versionComparator);
+			_versionComparator = new ServiceWrapper<nsIVersionComparator>(Contracts.VersionComparator);
 		}
 
-		public int Compare( string x, string y )
+		public VersionComparer() {}
+
+		public int Compare(string x, string y)
 		{
-			return nsString.Pass( _versionComparator.Compare, x, y );
+			return nsString.Pass( _versionComparator.Instance.Compare, x, y );
 		}
 	}
 }
