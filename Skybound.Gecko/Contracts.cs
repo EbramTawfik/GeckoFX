@@ -11,19 +11,25 @@ namespace Gecko
 		#region Network
 		internal static readonly string DnsService = "@mozilla.org/network/dns-service;1";
 		internal static readonly string StreamListenerTee = "@mozilla.org/network/stream-listener-tee;1";
+		public static readonly string CacheService = "@mozilla.org/network/cache-service;1";
+		public static readonly string NetworkIOService = "@mozilla.org/network/io-service;1";
 		#endregion
-		internal static readonly string ZipReader = "@mozilla.org/libjar/zip-reader;1";
-		internal static readonly string Sound = "@mozilla.org/sound;1";
-		internal static readonly string Variant = "@mozilla.org/variant;1";
-		internal static readonly string CategoryManager = "@mozilla.org/categorymanager;1";
-		internal static readonly string BrowserSearchService = "@mozilla.org/browser/search-service;1";
-		internal static readonly string ScriptableInputStream = "@mozilla.org/scriptableinputstream;1";
-		internal static readonly string Pipe = "@mozilla.org/pipe;1";
-		internal static readonly string ObserverService = "@mozilla.org/observer-service;1";
-		internal static readonly string PluginHost = "@mozilla.org/plugin/host;1";
-		internal static readonly string VersionComparator = "@mozilla.org/xpcom/version-comparator;1";
-		internal static readonly string StorageStream = "@mozilla.org/storagestream;1";
-		internal static readonly string ConsoleService = "@mozilla.org/consoleservice;1";
+
+		public static readonly string ImageCache = "@mozilla.org/image/cache;1";
+		public static readonly string ZipReader = "@mozilla.org/libjar/zip-reader;1";
+		public static readonly string Sound = "@mozilla.org/sound;1";
+		public static readonly string Variant = "@mozilla.org/variant;1";
+		public static readonly string CategoryManager = "@mozilla.org/categorymanager;1";
+		public static readonly string CookieManager = "@mozilla.org/cookiemanager;1";
+		public static readonly string BrowserSearchService = "@mozilla.org/browser/search-service;1";
+		public static readonly string ScriptableInputStream = "@mozilla.org/scriptableinputstream;1";
+		public static readonly string Pipe = "@mozilla.org/pipe;1";
+		public static readonly string ObserverService = "@mozilla.org/observer-service;1";
+		public static readonly string PluginHost = "@mozilla.org/plugin/host;1";
+		public static readonly string VersionComparator = "@mozilla.org/xpcom/version-comparator;1";
+		public static readonly string StorageStream = "@mozilla.org/storagestream;1";
+		public static readonly string ConsoleService = "@mozilla.org/consoleservice;1";
+		public static readonly string AppShellService = "@mozilla.org/appshell/appShellService;1";
 		#region nsISupportsPrimitive's
 		internal static readonly string SupportsID = "@mozilla.org/supports-id;1";
 		internal static readonly string SupportsString = "@mozilla.org/supports-string;1";

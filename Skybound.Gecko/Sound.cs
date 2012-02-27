@@ -18,7 +18,7 @@
 		
 		public void Play(string url)
 		{
-			var nsUrl = nsURI.CreateUrl( url );
+			var nsUrl = IOService.CreateNsIUrl( url );
 			_sound.Play( nsUrl );
 		}
 

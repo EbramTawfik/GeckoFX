@@ -17,7 +17,7 @@ namespace Gecko.Net
 		public Uri OriginalUri
 		{
 			get { return nsURI.ToUri( _channel.GetOriginalURIAttribute() ); }
-			set { _channel.SetOriginalURIAttribute( nsURI.CreateInternal( value.ToString() ) ); }
+			set { _channel.SetOriginalURIAttribute( IOService.CreateNsIUri( value.ToString() ) ); }
 		}
 
 		public Uri Uri

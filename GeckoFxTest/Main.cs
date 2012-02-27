@@ -22,7 +22,13 @@ namespace GeckoFxTest
 
 			Xpcom.Initialize("/usr/lib/firefox-10.0/");
 #else
-			Xpcom.Initialize(@"c:\program Files (x86)\Mozilla Firefox 10.0\");
+			if (Directory.Exists(@"c:\program Files (x86)\Mozilla Firefox 10.0\"))
+			{
+				Xpcom.Initialize( @"c:\program Files (x86)\Mozilla Firefox 10.0\" );
+			}else
+			{
+				Xpcom.Initialize(@"c:\program Files (x86)\Mozilla Firefox\");
+			}
 #endif
 			Application.ApplicationExit += (sender, e) => 
 			{

@@ -50,7 +50,7 @@ namespace Gecko
 	/// <summary>
 	/// A Gecko-based web browser.
 	/// </summary>
-	public partial class GeckoWebBrowser : Control,
+	public partial class GeckoWebBrowser : 
 		nsIWebBrowserChrome,
 		nsIContextMenuListener2,
 		nsIWebProgressListener,
@@ -65,8 +65,27 @@ namespace Gecko
          nsIHttpActivityObserver
 		//nsIWindowProvider,
 	{
+		#region Fields
+		/// <summary>
+		/// Additional DOM message listeners
+		/// </summary>
 		Dictionary<string, Action<string>> _messageEventListeners = new Dictionary<string, Action<string>>();
-	
+		/// <summary>
+		/// nsIWebBrowser instance
+		/// </summary>
+		nsIWebBrowser WebBrowser;
+		/// <summary>
+		/// nsIWebBrowser casted to nsIBaseWindow
+		/// </summary>
+		nsIBaseWindow BaseWindow;
+		/// <summary>
+		/// nsIWebBrowser casted no nsIWebNavigation
+		/// </summary>
+		nsIWebNavigation WebNav;
+
+		uint ChromeFlags;
+		bool m_javascriptDebuggingEnabled;
+		#endregion
 		/// <summary>
 		/// Initializes a new instance of <see cref="GeckoWebBrowser"/>.
 		/// </summary>
@@ -80,6 +99,37 @@ namespace Gecko
 			NavigateFinishedNotifier = new NavigateFinishedNotifier(this);
 		}
 
+		#region protected override void Dispose(bool disposing)
+		protected override void Dispose(bool disposing)
+		{
+			NavigateFinishedNotifier.Dispose();
+
+			if (!Environment.HasShutdownStarted && !AppDomain.CurrentDomain.IsFinalizingForUnload())
+			{
+				// make sure the object is still alove before we call a method on it
+				if (Xpcom.QueryInterface<nsIWebNavigation>(WebNav) != null)
+				{
+					WebNav.Stop(nsIWebNavigationConstants.STOP_ALL);
+				}
+				WebNav = null;
+
+				if (Xpcom.QueryInterface<nsIBaseWindow>(BaseWindow) != null)
+				{
+					BaseWindow.Destroy();
+				}
+				BaseWindow = null;
+			}
+
+#if GTK			
+			if (m_wrapper != null)
+				m_wrapper.Dispose();
+#endif
+
+			base.Dispose(disposing);
+		}
+		#endregion
+
+		#region JSContext
 		/// <summary>
 		/// Add hooks to listen for new JSContext creation and store the context for later use.
 		/// This is the only way I have found of getting hold of the real JSContext
@@ -95,7 +145,7 @@ namespace Gecko
 			IntPtr runtime = runtimeService.GetRuntimeAttribute();
 
 			AutoJSContext.CallBack cb = (cx, unitN) => { JSContext = cx; AutoJSContext.JS_SetContextCallback(runtime, null); return true; };
-			
+
 			AutoJSContext.CallBack old = AutoJSContext.JS_SetContextCallback(runtime, cb);
 			if (old != null)
 			{
@@ -105,42 +155,7 @@ namespace Gecko
 		}
 
 		public IntPtr JSContext { get; protected set; }
-		
-		#region protected override void Dispose(bool disposing)
-		protected override void Dispose(bool disposing)
-		{
-			NavigateFinishedNotifier.Dispose();
-
-			if (!Environment.HasShutdownStarted && !AppDomain.CurrentDomain.IsFinalizingForUnload())
-			{
-				// make sure the object is still alove before we call a method on it
-				if (Xpcom.QueryInterface<nsIWebNavigation>(WebNav) != null)
-				{
-					WebNav.Stop(nsIWebNavigationConstants.STOP_ALL);
-				}
-				WebNav = null;
-				
-				if (Xpcom.QueryInterface<nsIBaseWindow>(BaseWindow) != null)
-				{
-					BaseWindow.Destroy();
-				}
-				BaseWindow = null;
-			}
-			
-#if GTK			
-			if (m_wrapper != null)
-				m_wrapper.Dispose();
-#endif
-			
-			base.Dispose(disposing);
-		}
 		#endregion
-		
-		nsIWebBrowser WebBrowser;
-		nsIBaseWindow BaseWindow;
-		nsIWebNavigation WebNav;
-		uint ChromeFlags;
-		bool m_javascriptDebuggingEnabled;
 
 		public nsIWebBrowserFocus WebBrowserFocus
 		{
@@ -167,98 +182,7 @@ namespace Gecko
 			get;
 			set;
 		}
-
-#if GTK
-		// Only used on Linux.
-		protected GtkDotNet.GtkWrapperNoThread m_wrapper;
-#endif
-		
-		protected override void OnHandleCreated(EventArgs e)
-		{		
-#if GTK	
-			if (Xpcom.IsMono)
-			{
-				base.OnHandleCreated(e);
-				m_wrapper.Init();
-			}
-#endif			
-			if (!this.DesignMode)
-			{
-				Xpcom.Initialize();				
-				WindowCreator.Register();
-#if !GTK
-                LauncherDialogFactory.Register();
-#endif
-				
-				WebBrowser = Xpcom.CreateInstance<nsIWebBrowser>("@mozilla.org/embedding/browser/nsWebBrowser;1");
-				WebBrowserFocus = (nsIWebBrowserFocus)WebBrowser;
-				BaseWindow = (nsIBaseWindow)WebBrowser;
-				WebNav = (nsIWebNavigation)WebBrowser;
-
-				WebBrowser.SetContainerWindowAttribute(this);
-#if GTK
-				if (Xpcom.IsMono)
-					BaseWindow.InitWindow(m_wrapper.BrowserWindow.Handle, IntPtr.Zero, 0, 0, this.Width, this.Height);
-				else
-#endif
-					BaseWindow.InitWindow(this.Handle, IntPtr.Zero, 0, 0, this.Width, this.Height);
-
-
-				RecordNewJsContext();
-				BaseWindow.Create();
-
-				Guid nsIWebProgressListenerGUID = typeof(nsIWebProgressListener).GUID;
-				WebBrowser.AddWebBrowserListener(this, ref nsIWebProgressListenerGUID);
-
-				if (UseHttpActivityObserver)
-				{
-					var observerService = Xpcom.GetService<nsIObserverService>( Contracts.ObserverService );
-					observerService.AddObserver(this, ObserverNotifications.HttpRequests.HttpOnModifyRequest, false);
-
-					nsIHttpActivityDistributor activityDistributor = Xpcom.GetService<nsIHttpActivityDistributor>("@mozilla.org/network/http-activity-distributor;1");
-					activityDistributor = Xpcom.QueryInterface<nsIHttpActivityDistributor>(activityDistributor);
-					activityDistributor.AddObserver(this);
-				}
-
-				nsIDOMEventTarget target = Xpcom.QueryInterface<nsIDOMWindow>(WebBrowser.GetContentDOMWindowAttribute()).GetWindowRootAttribute();
-				
-				target.AddEventListener(new nsAString("submit"), this, true, true, 2);
-				target.AddEventListener(new nsAString("keydown"), this, true, true, 2);
-				target.AddEventListener(new nsAString("keyup"), this, true, true, 2);
-				target.AddEventListener(new nsAString("keypress"), this, true, true, 2);
-				target.AddEventListener(new nsAString("mousemove"), this, true, true, 2);
-				target.AddEventListener(new nsAString("mouseover"), this, true, true, 2);
-				target.AddEventListener(new nsAString("mouseout"), this, true, true, 2);
-				target.AddEventListener(new nsAString("mousedown"), this, true, true, 2);
-				target.AddEventListener(new nsAString("mouseup"), this, true, true, 2);
-				target.AddEventListener(new nsAString("click"), this, true, true, 2);
-				target.AddEventListener(new nsAString("dblclick"), this, true, true, 2);
-				target.AddEventListener(new nsAString("compositionstart"), this, true, true, 2);
-				target.AddEventListener(new nsAString("compositionend"), this, true, true, 2);
-				target.AddEventListener(new nsAString("contextmenu"), this, true, true, 2);
-				target.AddEventListener(new nsAString("DOMMouseScroll"), this, true, true, 2);
-				target.AddEventListener(new nsAString("focus"), this, true, true, 2);
-				target.AddEventListener(new nsAString("blur"), this, true, true, 2);
-				// Load event added here rather than DOMDocument as DOMDocument recreated when navigating
-				// ths losing attached listener.
-				target.AddEventListener(new nsAString("load"), this, true, true, 2);
-				target.AddEventListener(new nsAString("change"), this, true, true, 2);
-				
-				// history
-				if (WebNav.GetSessionHistoryAttribute() != null)
-					WebNav.GetSessionHistoryAttribute().AddSHistoryListener(this);
-
-				BaseWindow.SetVisibilityAttribute(true);
-				
-				// this fix prevents the browser from crashing if the first page loaded is invalid (missing file, invalid URL, etc)
-				if (Document is GeckoDocument)
-				{
-					( ( GeckoDocument ) Document ).Cookie = "";
-				}
-			}
-			
-			base.OnHandleCreated(e);
-		}
+	
 		
 		class WindowCreator : nsIWindowCreator2
 		{
@@ -285,10 +209,10 @@ namespace Gecko
 				if ((flags & GeckoWindowFlags.OpenAsChrome) != 0)
 				{
 				      // obtain the services we need
-				      nsIAppShellService appShellService = Xpcom.GetService<nsIAppShellService>("@mozilla.org/appshell/appShellService;1");
+				     // nsIAppShellService appShellService = Xpcom.GetService<nsIAppShellService>("@mozilla.org/appshell/appShellService;1");
 				      
 				      // create the child window
-				      nsIXULWindow xulChild = appShellService.CreateTopLevelWindow(null, null, chromeFlags, -1, -1);
+				      nsIXULWindow xulChild = AppShellService.CreateTopLevelWindow(null, null, chromeFlags, -1, -1);
 				      
 				      // this little gem allows the GeckoWebBrowser to be properly activated when it gains the focus again
 				      if (parent is GeckoWebBrowser && (flags & GeckoWindowFlags.OpenAsDialog) != 0)
@@ -319,8 +243,8 @@ namespace Gecko
 						return e.WebBrowser;
 					}
 									
-					nsIAppShellService appShellService = Xpcom.GetService<nsIAppShellService>("@mozilla.org/appshell/appShellService;1");
-					nsIXULWindow xulChild = appShellService.CreateTopLevelWindow(null, null, chromeFlags, -1, -1);
+					//nsIAppShellService appShellService = Xpcom.GetService<nsIAppShellService>(Contracts.AppShellService);
+					nsIXULWindow xulChild = AppShellService.CreateTopLevelWindow(null, null, chromeFlags, -1, -1);
 					return Xpcom.QueryInterface<nsIWebBrowserChrome>(xulChild);									
 				}
 				return null;
@@ -357,164 +281,8 @@ namespace Gecko
                 return CreateChromeWindow(parent, chromeFlags);
             }
 		}
-		
-		protected override void OnPaint(PaintEventArgs e)
-		{
-			if (this.DesignMode)
-			{
-				string versionString = ((AssemblyFileVersionAttribute)Attribute.GetCustomAttribute(GetType().Assembly, typeof(AssemblyFileVersionAttribute))).Version;
-				string copyright = ((AssemblyCopyrightAttribute)Attribute.GetCustomAttribute(GetType().Assembly, typeof(AssemblyCopyrightAttribute))).Copyright;
-				
-				using (Brush brush = new System.Drawing.Drawing2D.HatchBrush(System.Drawing.Drawing2D.HatchStyle.SolidDiamond, Color.FromArgb(240, 240, 240), Color.White))
-					e.Graphics.FillRectangle(brush, this.ClientRectangle);
-				
-				e.Graphics.DrawString("Skybound GeckoFX v" + versionString + "\r\n" + copyright + "\r\n" + "http://www.geckofx.org", SystemFonts.MessageBoxFont, Brushes.Black,
-					new RectangleF(2, 2, this.Width-4, this.Height-4));
-				e.Graphics.DrawRectangle(SystemPens.ControlDark, 0, 0, Width-1, Height-1);
-			}
-			base.OnPaint(e);
-		}
-		
-		#region protected override void WndProc(ref Message m)
-		[DllImport("user32")]
-		private static extern bool IsChild(IntPtr hWndParent, IntPtr hwnd);
-		
-		[DllImport("user32")]
-		private static extern IntPtr GetFocus();
 
-		protected override void WndProc(ref Message m)
-		{
-			const int WM_GETDLGCODE = 0x87;
-			const int DLGC_WANTALLKEYS = 0x4;
-			const int WM_MOUSEACTIVATE = 0x21;
-			const int MA_ACTIVATE = 0x1;
-			const int WM_IME_SETCONTEXT = 0x0281;
-
-			if (!DesignMode)
-			{
-				switch (m.Msg)
-				{
-					case WM_GETDLGCODE:
-						m.Result = (IntPtr)DLGC_WANTALLKEYS;
-						return;
-					case WM_MOUSEACTIVATE:
-						// TODO FIXME: port for Linux
-						if (Xpcom.IsWindows)
-						{
-							m.Result = (IntPtr)MA_ACTIVATE;
-
-							if (!IsChild(Handle, GetFocus()))
-							{
-								this.Focus();
-							}
-							return;
-						}
-						return;
-					case WM_IME_SETCONTEXT:
-						if (!DisableWmImeSetContext)
-						{
-							//Console.WriteLine("WM_IME_SETCONTEXT {0} {1}", m.WParam, m.LParam.ToString("X8"));
-							if (m.WParam == IntPtr.Zero)
-							{
-								// zero
-								WebBrowserFocus.Deactivate();
-							}
-							else
-							{
-								// non-zero (1)
-								WebBrowserFocus.Activate();
-							}
-							return;
-						}
-						break;
-				}
-			}
-
-			base.WndProc(ref m);
-		}
-
-
-		public bool DisableWmImeSetContext { get; set; }
-		#endregion
-		
-		#region Overridden Properties & Event Handlers Handlers
-		[Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-		public override Color BackColor
-		{
-			get { return base.BackColor; }
-			set { base.BackColor = value; }
-		}
-		
-		[Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-		public override Image BackgroundImage
-		{
-			get { return base.BackgroundImage; }
-			set { base.BackgroundImage = value; }
-		}
-		
-		[Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-		public override ImageLayout BackgroundImageLayout
-		{
-			get { return base.BackgroundImageLayout; }
-			set { base.BackgroundImageLayout = value; }
-		}
-		
-		[Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-		public override Color ForeColor
-		{
-			get { return base.ForeColor; }
-			set { base.ForeColor = value; }
-		}
-		
-		[Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-		public override Font Font
-		{
-			get { return base.Font; }
-			set { base.Font = value; }
-		}
-		
-		[Browsable(false), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-		public override string Text
-		{
-			get { return base.Text; }
-			set { base.Text = value; }
-		}
-
-		protected override void OnEnter(EventArgs e)
-		{
-			if (WebBrowserFocus != null)			
-				WebBrowserFocus.Activate();
-			
-#if GTK
-			m_wrapper.SetInputFocus();		
-#endif
-			
-			base.OnEnter(e);
-		}
-
-		protected override void OnLeave(EventArgs e)
-		{
-		      if (WebBrowserFocus != null && !IsBusy)
-		            WebBrowserFocus.Deactivate();
-			
-#if GTK
-			m_wrapper.RemoveInputFocus();		
-#endif
-		           
-		      base.OnLeave(e);
-		}
-
-		protected override void OnSizeChanged(EventArgs e)
-		{
-			if (BaseWindow != null)
-			{
-				BaseWindow.SetPositionAndSize(0, 0, ClientSize.Width, ClientSize.Height, true);
-			}
-			
-			base.OnSizeChanged(e);
-		}
-		#endregion
-		
+		#region Navigation
 		/// <summary>
 		/// Navigates to the specified URL.
 		/// In order to find out when Navigate has finished attach a handler to NavigateFinishedNotifier.NavigateFinished.
@@ -595,7 +363,7 @@ namespace Gecko
 			if (!string.IsNullOrEmpty(referrer))
 			{
 				//referrerUri = Xpcom.GetService<nsIIOService>("@mozilla.org/network/io-service;1").NewURI(new nsAUTF8String(referrer), null, null);
-				referrerUri = nsURI.CreateInternal( referrer );
+				referrerUri = IOService.CreateNsIUri(referrer);
 			}
 
 			WebNav.LoadURI(url, (uint)loadFlags, referrerUri, postDataStream, headersStream);
@@ -630,13 +398,15 @@ namespace Gecko
 			nsIURI referrerUri = null;
 			if (!string.IsNullOrEmpty(referrer))
 			{
-				referrerUri = Xpcom.GetService<nsIIOService>("@mozilla.org/network/io-service;1").NewURI(new nsAUTF8String(referrer), null, null);
+				//referrerUri = Xpcom.GetService<nsIIOService>("@mozilla.org/network/io-service;1").NewURI(new nsAUTF8String(referrer), null, null);
+				referrerUri = IOService.CreateNsIUri( referrer );
 			}
 
             WebNav.LoadURI(url, (uint)loadFlags, referrerUri, postData!=null?postData.InputStream:null, null);
 
 			return true;
 		}
+		#endregion
 
 		/// <summary>
 		/// Loads supplied html string.
@@ -842,15 +612,9 @@ namespace Gecko
 		
 		nsIClipboardCommands ClipboardCommands
 		{
-			get
-			{
-				if (_ClipboardCommands == null)
-				{
-					_ClipboardCommands = Xpcom.QueryInterface<nsIClipboardCommands>(WebBrowser);
-				}
-				return _ClipboardCommands;
-			}
+			get { return _ClipboardCommands ?? ( _ClipboardCommands = Xpcom.QueryInterface<nsIClipboardCommands>( WebBrowser ) ); }
 		}
+
 		nsIClipboardCommands _ClipboardCommands;
 		
 		delegate bool CanPerformMethod();
@@ -1040,7 +804,7 @@ namespace Gecko
 		
 		nsICommandManager CommandManager
 		{
-			get { return (_CommandManager == null) ? (_CommandManager = Xpcom.QueryInterface<nsICommandManager>(WebBrowser)) : _CommandManager; }
+			get { return _CommandManager ?? (_CommandManager = Xpcom.QueryInterface<nsICommandManager>(WebBrowser)); }
 		}
 		nsICommandManager _CommandManager;
 		
@@ -1148,12 +912,8 @@ namespace Gecko
 			{
 				if (WebBrowser == null)
 					return null;
-				
-				if (_Window == null)
-				{
-					_Window = GeckoWindow.Create((nsIDOMWindow)WebBrowser.GetContentDOMWindowAttribute());
-				}
-				return _Window;
+
+				return _Window ?? ( _Window = GeckoWindow.Create( WebBrowser.GetContentDOMWindowAttribute() ) );
 			}
 		}
 		GeckoWindow _Window;
@@ -1329,23 +1089,6 @@ namespace Gecko
 			//throw new NotImplementedException();
 			OnWindowClosed(EventArgs.Empty);			
 		}
-		
-		#region public event EventHandler WindowClosed
-		public event EventHandler WindowClosed
-		{
-			add { this.Events.AddHandler(WindowClosedEvent, value); }
-			remove { this.Events.RemoveHandler(WindowClosedEvent, value); }
-		}
-		private static object WindowClosedEvent = new object();
-
-		/// <summary>Raises the <see cref="WindowClosed"/> event.</summary>
-		/// <param name="e">The data for the event.</param>
-		protected virtual void OnWindowClosed(EventArgs e)
-		{
-			if (((EventHandler)this.Events[WindowClosedEvent]) != null)
-				((EventHandler)this.Events[WindowClosedEvent])(this, e);
-		}
-		#endregion
 
 		void nsIWebBrowserChrome.SizeBrowserTo(int cx, int cy)
 		{
@@ -1751,7 +1494,7 @@ namespace Gecko
 
 		#endregion
 
-		#region nsIWeakReference Members		
+		#region nsIWeakReference Members
 		IntPtr nsIWeakReference.QueryReferent(ref Guid uuid)
 		{
 			IntPtr ppv, pUnk = Marshal.GetIUnknownForObject(this);
@@ -1874,7 +1617,7 @@ namespace Gecko
 
 		void nsIWebProgressListener.OnSecurityChange(nsIWebProgress aWebProgress, nsIRequest aRequest, uint aState)
 		{
-			SetSecurityState((GeckoSecurityState) aState);				
+			SecurityState = ( GeckoSecurityState ) aState;
 		}
 		
 		/// <summary>
@@ -1884,17 +1627,15 @@ namespace Gecko
 		public GeckoSecurityState SecurityState
 		{
 			get { return _SecurityState; }
-		}
-		GeckoSecurityState _SecurityState;
-		
-		void SetSecurityState(GeckoSecurityState value)
-		{
-			if (_SecurityState != value)
+			private set
 			{
+				if (_SecurityState == value) return;
 				_SecurityState = value;
 				OnSecurityStateChanged(EventArgs.Empty);
 			}
 		}
+		GeckoSecurityState _SecurityState;
+	
 		
 		#region public event EventHandler SecurityStateChanged
 		/// <summary>
@@ -1923,12 +1664,7 @@ namespace Gecko
 
 		void nsIDOMEventListener.HandleEvent(nsIDOMEvent e)
 		{
-			string type;
-			using (nsAString str = new nsAString())
-			{				
-				e.GetTypeAttribute(str);
-				type = str.ToString();
-			}
+			string type = nsString.Get( e.GetTypeAttribute );
 			
 			GeckoDomEventArgs ea = null;
 			
@@ -2062,77 +1798,7 @@ namespace Gecko
 				ToolTip.Close();
 			}
 			
-		}
-		
-		#region class ToolTipWindow : Form
-		/// <summary>
-		/// A window to contain a tool tip.
-		/// </summary>
-		class ToolTipWindow : Form
-		{
-			public ToolTipWindow()
-			{
-				//this.ControlBox = false;
-				this.FormBorderStyle = FormBorderStyle.None;
-				this.ShowInTaskbar = false;
-				this.StartPosition = FormStartPosition.Manual;
-				this.VisibleChanged += delegate { UpdateSize(); };
-				
-				this.BackColor = SystemColors.Info;
-				this.ForeColor = SystemColors.InfoText;
-				this.Font = SystemFonts.DialogFont;
-				
-				label = new Label();
-				label.Location = new Point(5, 5);
-				label.AutoSize = true;
-				label.SizeChanged += delegate { UpdateSize(); };
-				this.Controls.Add(label);
-			}
-			
-			void UpdateSize()
-			{
-				this.Size = label.Size + new Size(10, 10);
-			}
-			
-			Label label;
-
-			public override string Text
-			{
-				get { return (label == null) ? "" : label.Text; }
-				set
-				{
-					if (label != null)
-						label.Text = value;
-				}
-			}
-			
-			protected override bool ShowWithoutActivation
-			{
-				get { return true; }
-			}
-
-			protected override void OnPaint(PaintEventArgs e)
-			{
-				// draw border and background
-				e.Graphics.DrawRectangle(SystemPens.InfoText, 0, 0, Width-1, Height-1);
-				e.Graphics.FillRectangle(SystemBrushes.Info, 1, 1, Width-2, Height-2);
-			}
-			
-			protected override CreateParams CreateParams
-			{
-				get
-				{
-					const int CS_DROPSHADOW = 0x20000;
-					
-					// adds a soft drop shadow (windows xp or later required)
-					CreateParams cp = base.CreateParams;
-					cp.ClassStyle |= CS_DROPSHADOW;
-					return cp;
-				}
-			}
-		}
-		#endregion
-		
+		}		
 		#endregion
 
 		/// <summary>

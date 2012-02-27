@@ -10,7 +10,7 @@ namespace Gecko.IO
 		internal nsIStorageStream _storageStream;
 		public StorageStream()
 		{
-			var storageStream = Xpcom.GetService<nsIStorageStream>(Contracts.StorageStream);
+			var storageStream = Xpcom.CreateInstance<nsIStorageStream>(Contracts.StorageStream);
 			_storageStream = Xpcom.QueryInterface<nsIStorageStream>(storageStream);
 
 			_storageStream.Init( 1024 * 32, 1024 * 1024 * 16, null );

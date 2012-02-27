@@ -72,6 +72,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SemanticUnitScannerTests.cs" />
+    <Compile Include="ServiceBehaviorTest.cs" />
     <Compile Include="SpellCheckerEngineTests.cs" />
     <Compile Include="UserInfoTests.cs" />
     <Compile Include="WebBrowserPersistTests.cs" />

@@ -5,17 +5,16 @@ namespace Gecko.Cache
 {
 	public sealed class CacheService
 	{
-		private nsICacheService _cacheService;
+		private ServiceWrapper<nsICacheService> _cacheService;
 
 		public CacheService()
 		{
-			var cacheService = Xpcom.GetService<nsICacheService>("@mozilla.org/network/cache-service;1");
-			_cacheService = Xpcom.QueryInterface<nsICacheService>(cacheService);
+			_cacheService = new ServiceWrapper<nsICacheService>(Contracts.CacheService);
 		}
 
 		public CacheSession CreateSession(string clientID, CacheStoragePolicy storagePolicy, bool streamBased)
 		{
-			return new CacheSession(_cacheService.CreateSession(clientID, (IntPtr)(int)storagePolicy, streamBased));
+			return new CacheSession(_cacheService.Instance.CreateSession(clientID, (IntPtr)(int)storagePolicy, streamBased));
 		}
 
 		public string[] Search(string deviceID, Predicate<CacheEntryInfo> predicate)
@@ -23,7 +22,7 @@ namespace Gecko.Cache
 			string[] ret = null;
 			using (var searcher = new CacheSearcher(predicate))
 			{
-				_cacheService.VisitEntries(searcher);
+				_cacheService.Instance.VisitEntries(searcher);
 				ret = searcher.GetResult();
 			}
 			return ret;
@@ -41,7 +40,7 @@ namespace Gecko.Cache
 			string[] ret = null;
 			using (var searcher = new CacheSearcher(predicate))
 			{
-				_cacheService.VisitEntries( searcher );
+				_cacheService.Instance.VisitEntries(searcher);
 				ret = searcher.GetResult();
 			}
 			return ret;

@@ -11,32 +11,31 @@ namespace Gecko
 	/// </summary>
 	public sealed class PrivateBrowsingService
 	{
-		private nsIPrivateBrowsingService _privateBrowsingService;
+		private ServiceWrapper<nsIPrivateBrowsingService> _privateBrowsingService;
 		public PrivateBrowsingService()
 		{
-			var privateBrowsingService = Xpcom.CreateInstance<nsIPrivateBrowsingService>( Contracts.PrivateBrowsing );
-			_privateBrowsingService = Xpcom.QueryInterface<nsIPrivateBrowsingService>(privateBrowsingService);
+			_privateBrowsingService = new ServiceWrapper<nsIPrivateBrowsingService>(Contracts.PrivateBrowsing);
 		}
 
 		public bool AutoStarted
 		{
-			get { return _privateBrowsingService.GetAutoStartedAttribute(); }
+			get { return _privateBrowsingService.Instance.GetAutoStartedAttribute(); }
 		}
 
 		public bool LastChangedByCommandLine
 		{
-			get { return _privateBrowsingService.GetLastChangedByCommandLineAttribute(); }
+			get { return _privateBrowsingService.Instance.GetLastChangedByCommandLineAttribute(); }
 		}
 
 		public bool PrivateBrowsingEnabled
 		{
-			get { return _privateBrowsingService.GetPrivateBrowsingEnabledAttribute(); }
-			set { _privateBrowsingService.SetPrivateBrowsingEnabledAttribute( value ); }
+			get { return _privateBrowsingService.Instance.GetPrivateBrowsingEnabledAttribute(); }
+			set { _privateBrowsingService.Instance.SetPrivateBrowsingEnabledAttribute(value); }
 		}
 
 		public void RemoveDataFromDomain(string domain)
 		{
-			nsString.Set( _privateBrowsingService.RemoveDataFromDomain, domain );
+			nsString.Set(_privateBrowsingService.Instance.RemoveDataFromDomain, domain);
 		}
 	}
 }

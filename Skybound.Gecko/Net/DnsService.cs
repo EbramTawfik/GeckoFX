@@ -10,17 +10,16 @@ namespace Gecko.Net
 
 	public sealed class DnsService
 	{
-		private nsIDNSService _dnsService;
+		private ServiceWrapper<nsIDNSService> _dnsService;
 
 		public DnsService()
 		{
-			var dnsService = Xpcom.CreateInstance<nsIDNSService>( Contracts.DnsService );
-			_dnsService = Xpcom.QueryInterface<nsIDNSService>( dnsService );
+			_dnsService = new ServiceWrapper<nsIDNSService>(Contracts.DnsService);
 		}
 
 		public string MyHostName
 		{
-			get { return nsString.Get( _dnsService.GetMyHostNameAttribute ); }
+			get { return nsString.Get( _dnsService.Instance.GetMyHostNameAttribute ); }
 		}
 
 		/// <summary>
@@ -40,7 +39,7 @@ namespace Gecko.Net
 			nsIDNSRecord record = null;
 			using (nsAUTF8String value=new nsAUTF8String(hostName) )
 			{
-				record=_dnsService.Resolve(value, (uint)flags);
+				record = _dnsService.Instance.Resolve(value, (uint)flags);
 			}
 			return record == null ? null : new DnsRecord( record );
 		}
