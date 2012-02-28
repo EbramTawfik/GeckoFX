@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 namespace Gecko
 {
 	/// <summary>
-	/// Emits NavigateFinished when a navigation has completed.
+	/// Use the DocumentCompleted event instead of the NavigateFinished event.
 	/// </summary>
 	public class NavigateFinishedNotifier : IDisposable
 	{		
