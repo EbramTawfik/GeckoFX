@@ -1549,16 +1549,6 @@ namespace Gecko
 					}
 				}
 			
-			// maybe we'll add another event here to allow users to cancel certain content types
-			//if ((aStateFlags & nsIWebProgressListenerConstants.STATE_TRANSFERRING) != 0)
-			//{
-			//      GeckoResponse rsp = new GeckoResponse(aRequest);
-			//      if (rsp.ContentType == "application/x-executable")
-			//      {
-			//            // do something
-			//      }
-			//}
-			
 			if (cancelled || ((aStateFlags & nsIWebProgressListenerConstants.STATE_STOP) != 0 && (aStateFlags & nsIWebProgressListenerConstants.STATE_IS_NETWORK) != 0))
 			{
 				// clear busy state
