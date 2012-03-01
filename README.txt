@@ -2,6 +2,10 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v11.0-0.1 ==
+
+1. Initial version supporting firefox/xulrunner v11.0
+
 == v10.0-0.4 ==
 
 1. Fix infrequent Linux seg fault when calling SetInputFocus()
