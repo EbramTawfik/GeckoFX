@@ -106,8 +106,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <None Include="..\Skybound.Gecko\geckofx-10.dll.config">
-      <Link>geckofx-10.dll.config</Link>
+    <None Include="..\Skybound.Gecko\geckofx-11.dll.config">
+      <Link>geckofx-11.dll.config</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Gettext-ScanForTranslations>false</Gettext-ScanForTranslations>
     </None>
