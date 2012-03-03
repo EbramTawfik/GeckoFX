@@ -1,14 +1,37 @@
 using System;
+using System.Runtime.InteropServices;
+using System.Threading;
 
 namespace Gecko.Cache
 {
 	public sealed class CacheSession
+		:IDisposable 
 	{
 		private nsICacheSession _cacheSession;
 
 		internal CacheSession(nsICacheSession cacheSession)
 		{
 			_cacheSession = cacheSession;
+		}
+
+		~CacheSession()
+		{
+			Free();
+		}
+
+		public void Dispose()
+		{
+			Free();
+			GC.SuppressFinalize( this );
+		}
+
+		private void Free()
+		{
+			if (_cacheSession != null)
+			{
+				var session = Interlocked.Exchange( ref _cacheSession, null );
+				Marshal.ReleaseComObject( _cacheSession );
+			}
 		}
 
 		public bool DoomEntriesIfExpired
@@ -46,6 +69,7 @@ namespace Gecko.Cache
 			}
 			return descriptor != null ? new CacheEntryDescriptor( descriptor ) : null;
 		}
+
 
 	}
 

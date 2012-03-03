@@ -126,6 +126,11 @@ namespace Gecko
 		}
 		#endregion
 
+		public static bool IsInitialized
+		{
+			get { return _IsInitialized; }
+		}
+
 		public static nsIComponentManager ComponentManager;
 		public static nsIComponentRegistrar ComponentRegistrar;
 		public static nsIServiceManager ServiceManager;

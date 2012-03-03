@@ -135,9 +135,10 @@ namespace Gecko
 				BaseWindow.SetVisibilityAttribute(true);
 
 				// this fix prevents the browser from crashing if the first page loaded is invalid (missing file, invalid URL, etc)
-				if (Document is GeckoDocument)
+				if (Document !=null)
 				{
-					((GeckoDocument)Document).Cookie = "";
+					// only for html documents
+					Document.Cookie = "";
 				}
 			}
 

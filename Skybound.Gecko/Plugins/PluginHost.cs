@@ -22,9 +22,9 @@ namespace Gecko.Plugins
 
 		public static PluginTag[] GetPluginTags()
 		{
-			uint count = 10;
-			nsIPluginTag[] tags = new nsIPluginTag[10];
-			//var_pluginHost.GetPluginTags();
+			uint count = 0;
+			nsIPluginTag[] tags = null;
+			_pluginHost.Instance.GetPluginTags( ref count, ref tags );
 			return null;
 		}
 

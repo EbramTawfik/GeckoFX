@@ -1,6 +1,11 @@
-﻿namespace Gecko
+﻿using System;
+using System.Runtime.InteropServices;
+using System.Threading;
+
+namespace Gecko
 {
 	public sealed class Sound
+		:IDisposable 
 	{
 		private nsISound _sound;
 
@@ -9,6 +14,23 @@
 			var sound = Xpcom.CreateInstance<nsISound>( Contracts.Sound );
 			_sound=Xpcom.QueryInterface<nsISound>(sound);
 			_sound.Init();
+		}
+
+		~Sound()
+		{
+			Close();
+		}
+
+		public void Dispose()
+		{
+			Close();
+		}
+
+		private void Close()
+		{
+			if (_sound == null) return;
+			var obj = Interlocked.Exchange( ref _sound, null );
+			Marshal.ReleaseComObject( obj );
 		}
 
 		public void Beep()
@@ -20,6 +42,7 @@
 		{
 			var nsUrl = IOService.CreateNsIUrl( url );
 			_sound.Play( nsUrl );
+			Marshal.ReleaseComObject( nsUrl );
 		}
 
 

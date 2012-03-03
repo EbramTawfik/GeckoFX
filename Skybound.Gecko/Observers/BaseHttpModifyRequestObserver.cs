@@ -9,6 +9,8 @@ namespace Gecko.Observers
 	public class BaseBaseHttpModifyRequestObserver
 		:nsIObserver
 	{
+		internal bool _isRegistered;
+
 		void nsIObserver.Observe(nsISupports aSubject, string aTopic, string aData)
 		{
 			if (aTopic != ObserverNotifications.HttpRequests.HttpOnModifyRequest) return;

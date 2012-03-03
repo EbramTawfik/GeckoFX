@@ -6,7 +6,6 @@ namespace Gecko.Cache
 		internal CacheEntryInfo(nsICacheEntryInfo cacheEntryInfo)
 		{
 			_cacheEntryInfo = cacheEntryInfo;
-
 		}
 
 		public string ClientID
