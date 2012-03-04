@@ -3,28 +3,36 @@ using System.Text;
 
 namespace Gecko.Certificates
 {
-	public sealed class CertificateDatabase
+	public static class CertificateDatabase
 	{
-		private nsIX509CertDB _certDb;
-		private nsIX509CertDB2 _certDb2;
-		public CertificateDatabase()
+		private static ServiceWrapper<nsIX509CertDB> _certDb;
+		private static ServiceWrapper<nsIX509CertDB2> _certDb2;
+
+		static CertificateDatabase()
 		{
-			var certDb=Xpcom.CreateInstance<nsIX509CertDB>( "@mozilla.org/security/x509certdb;1" );
-			_certDb = Xpcom.QueryInterface<nsIX509CertDB>(certDb);
-			_certDb2 = Xpcom.QueryInterface<nsIX509CertDB2>(certDb);
+			_certDb = new ServiceWrapper<nsIX509CertDB>(Contracts.X509CertDb);
+			_certDb2 = new ServiceWrapper<nsIX509CertDB2>(Contracts.X509CertDb);
 
 			
 		}
 
-		public CertificateList GetCerts()
+
+		public static Certificate ConstructX509FromBase64(string base64)
 		{
-			return new CertificateList( _certDb2.GetCerts() );
+			return Certificate.Create(  _certDb.Instance.ConstructX509FromBase64( base64 ) );
 		}
 
 
-		public Certificate ConstructX509FromBase64(string base64)
+		#region nsIX509CertDB2
+		public static CertificateList GetCerts()
 		{
-			return Certificate.Create(  _certDb.ConstructX509FromBase64( base64 ) );
+			return new CertificateList(_certDb2.Instance.GetCerts());
 		}
+
+		public static void AddCertFromBase64(string base64, string trust, string name)
+		{
+			_certDb2.Instance.AddCertFromBase64(base64, trust, name);
+		}
+		#endregion
 	}
 }

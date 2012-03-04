@@ -102,20 +102,25 @@ namespace Gecko
 		#region protected override void Dispose(bool disposing)
 		protected override void Dispose(bool disposing)
 		{
+			//var count = Gecko.Interop.ComDebug.GetRefCount(WebBrowser);
 			NavigateFinishedNotifier.Dispose();
 
 			if (!Environment.HasShutdownStarted && !AppDomain.CurrentDomain.IsFinalizingForUnload())
 			{
 				// make sure the object is still alove before we call a method on it
-				if (Xpcom.QueryInterface<nsIWebNavigation>(WebNav) != null)
+				var webNav = Xpcom.QueryInterface<nsIWebNavigation>( WebNav );
+				if (webNav != null)
 				{
-					WebNav.Stop(nsIWebNavigationConstants.STOP_ALL);
+					webNav.Stop(nsIWebNavigationConstants.STOP_ALL);
+					Marshal.ReleaseComObject( webNav );
 				}
 				WebNav = null;
 
-				if (Xpcom.QueryInterface<nsIBaseWindow>(BaseWindow) != null)
+				var baseWindow = Xpcom.QueryInterface<nsIBaseWindow>( BaseWindow );
+				if (baseWindow != null)
 				{
-					BaseWindow.Destroy();
+					baseWindow.Destroy();
+					Marshal.ReleaseComObject(baseWindow);
 				}
 				BaseWindow = null;
 			}
@@ -124,7 +129,7 @@ namespace Gecko
 			if (m_wrapper != null)
 				m_wrapper.Dispose();
 #endif
-
+			//count = Gecko.Interop.ComDebug.GetRefCount(WebBrowser);
 			base.Dispose(disposing);
 		}
 		#endregion

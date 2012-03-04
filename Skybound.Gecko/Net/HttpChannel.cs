@@ -1,18 +1,40 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.InteropServices;
 
 namespace Gecko.Net
 {
 	public class HttpChannel
-		:Channel
+		:Channel,IDisposable
 	{
 		private nsIHttpChannel _httpChannel;
+		private bool _decrement;
 
 		internal HttpChannel(nsIHttpChannel httpChannel)
 			:base(httpChannel)
 		{
 			_httpChannel = httpChannel;
+		}
+
+		~HttpChannel()
+		{
+			Release();
+		}
+
+		public void Dispose()
+		{
+			Release();
+			GC.SuppressFinalize( this );
+		}
+
+		private void Release()
+		{
+			if (_decrement)
+			{
+				_decrement = false;
+				Marshal.ReleaseComObject( _httpChannel );
+			}
 		}
 
 
@@ -129,11 +151,18 @@ namespace Gecko.Net
 		/// <returns></returns>
 		public static HttpChannel Create(nsISupports supports)
 		{
+			int count = Interop.ComDebug.GetRefCount(supports);
 			var channel = Xpcom.QueryInterface<nsIHttpChannel>(supports);
-			return channel == null ? null:Create(channel);
+			if (channel == null) return null;
+			Marshal.ReleaseComObject( channel );
+			var ret = new HttpChannel((nsIHttpChannel)supports);
+
+			var count2=Interop.ComDebug.GetRefCount( supports );
+			
+			return ret;
 		}
 
-		public static HttpChannel Create(nsIHttpChannel  httpChannel)
+		public static HttpChannel Create(nsIHttpChannel httpChannel)
 		{
 			return new HttpChannel( httpChannel );
 		}
@@ -148,6 +177,8 @@ namespace Gecko.Net
 				Dictionary.Add( aHeader.ToString(), aValue.ToString() );
 			}
 		}
+
+	
 	}
 
 

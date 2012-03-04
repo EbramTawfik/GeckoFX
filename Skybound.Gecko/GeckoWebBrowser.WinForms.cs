@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
 
@@ -80,6 +81,8 @@ namespace Gecko
 				BaseWindow = (nsIBaseWindow)WebBrowser;
 				WebNav = (nsIWebNavigation)WebBrowser;
 
+				
+
 				WebBrowser.SetContainerWindowAttribute(this);
 #if GTK
 				if (Xpcom.IsMono)
@@ -141,7 +144,7 @@ namespace Gecko
 					Document.Cookie = "";
 				}
 			}
-
+			
 			base.OnHandleCreated(e);
 		}
 

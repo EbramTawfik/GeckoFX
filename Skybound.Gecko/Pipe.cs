@@ -35,7 +35,7 @@ namespace Gecko
 		{
 			if (_pipe == null) return;
 			var obj = Interlocked.Exchange(ref _pipe, null);
-			Marshal.ReleaseComObject(obj);
+			obj.Dispose();
 		}
 
 		public Gecko.IO.InputStream InputStream

@@ -836,6 +836,7 @@ namespace Gecko
 
 			public bool OnError(nsAUTF8StringBase message, nsAUTF8StringBase fileName, uint line, uint pos, uint flags, uint errnum, jsdIValue exc)
 			{
+				if (m_browser.IsDisposed) return true;
 				var eventArgs = new JavascriptErrorEventArgs(message.ToString(), fileName.ToString(), line, pos, flags, errnum);
 				m_browser.OnJavascriptError(eventArgs);
 				return true;
@@ -897,6 +898,7 @@ namespace Gecko
 
 			public void Observe(nsIConsoleMessage aMessage)
 			{
+				if (m_browser.IsDisposed) return;
 				var e = new ConsoleMessageEventArgs(aMessage.GetMessageAttribute());
 				m_browser.OnConsoleMessage(e);
 			}

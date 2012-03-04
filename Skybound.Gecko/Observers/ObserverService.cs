@@ -22,14 +22,30 @@ namespace Gecko
 			_observerService.Instance.RemoveObserver(observer, topic);
 		}
 
-		public static void AddObserver(Observers.BaseBaseHttpModifyRequestObserver observer)
+		public static void AddObserver(Observers.BaseHttpModifyRequestObserver observer)
 		{
+			if (observer._isRegistered) return;
 			_observerService.Instance.AddObserver(observer, ObserverNotifications.HttpRequests.HttpOnModifyRequest, false);
 		}
 
-		public static void RemoveObserver(Observers.BaseBaseHttpModifyRequestObserver observer)
+		public static void RemoveObserver(Observers.BaseHttpModifyRequestObserver observer)
 		{
+			if (!observer._isRegistered) return;
 			_observerService.Instance.RemoveObserver( observer, ObserverNotifications.HttpRequests.HttpOnModifyRequest );
+		}
+
+		public static void AddObserver(Observers.BaseHttpRequestResponceObserver observer)
+		{
+			if (observer._isRegistered) return;
+			_observerService.Instance.AddObserver(observer, ObserverNotifications.HttpRequests.HttpOnModifyRequest, false);
+			_observerService.Instance.AddObserver(observer, ObserverNotifications.HttpRequests.HttpOnExamineResponse, false);
+		}
+
+		public static void RemoveObserver(Observers.BaseHttpRequestResponceObserver observer)
+		{
+			if (!observer._isRegistered) return;
+			_observerService.Instance.RemoveObserver(observer, ObserverNotifications.HttpRequests.HttpOnModifyRequest);
+			_observerService.Instance.RemoveObserver(observer, ObserverNotifications.HttpRequests.HttpOnExamineResponse);
 		}
 	}
 }

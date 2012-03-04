@@ -43,7 +43,7 @@ namespace Gecko
 		public Bitmap CanvasGetBitmap(uint xOffset, uint yOffset, uint width, uint height)
 		{
 			var bytes = CanvasGetPngImage(xOffset, yOffset, width, height);
-			return (Bitmap)Bitmap.FromStream(new System.IO.MemoryStream(bytes));
+			return (Bitmap)Image.FromStream(new System.IO.MemoryStream(bytes));
 		}
 
 		/// <summary>

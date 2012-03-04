@@ -14,6 +14,7 @@ namespace Gecko
 		public static readonly string CacheService = "@mozilla.org/network/cache-service;1";
 		public static readonly string NetworkIOService = "@mozilla.org/network/io-service;1";
 		#endregion
+		public static readonly string X509CertDb = "@mozilla.org/security/x509certdb;1";
 
 		public static readonly string ImageCache = "@mozilla.org/image/cache;1";
 		public static readonly string ZipReader = "@mozilla.org/libjar/zip-reader;1";
