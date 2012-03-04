@@ -4,7 +4,7 @@ using Gecko.Net;
 
 namespace Gecko.Observers
 {
-	public class BaseHttpRequestResponceObserver
+	public class BaseHttpRequestResponseObserver
 		: nsIObserver, nsISupports
 	{
 		internal bool _isRegistered;
@@ -22,7 +22,7 @@ namespace Gecko.Observers
 				case ObserverNotifications.HttpRequests.HttpOnExamineResponse:
 					using (var res = HttpChannel.Create( aSubject ))
 					{
-						Responce( res );
+						Response( res );
 					}
 					break;
 			}
@@ -33,7 +33,7 @@ namespace Gecko.Observers
 
 		}
 
-		protected virtual void Responce(HttpChannel channel)
+		protected virtual void Response(HttpChannel channel)
 		{
 
 		}

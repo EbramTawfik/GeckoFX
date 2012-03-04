@@ -125,7 +125,7 @@ namespace Gecko.Net
 			get { return _httpChannel.IsNoStoreResponse(); }
 		}
 
-		public bool IsNoCacheResponce
+		public bool IsNoCacheResponse
 		{
 			get { return _httpChannel.IsNoCacheResponse(); }
 		}

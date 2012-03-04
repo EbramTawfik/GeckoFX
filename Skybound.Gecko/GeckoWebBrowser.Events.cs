@@ -1019,7 +1019,7 @@ namespace Gecko
 		: EventArgs
 	{
 		// Wrapper is not often needed, so store only nsIRequest
-		private nsIRequest _responce;
+		private nsIRequest _response;
 		private GeckoResponse _wrapper;
 
 		public readonly Uri Uri;
@@ -1030,12 +1030,12 @@ namespace Gecko
 		internal GeckoNavigatedEventArgs(Uri value, nsIRequest response)
 		{
 			Uri = value;
-			_responce = response;
+			_response = response;
 		}
 
 		public GeckoResponse Response
 		{
-			get { return _wrapper ?? ( _wrapper = new GeckoResponse( _responce ) ); }
+			get { return _wrapper ?? ( _wrapper = new GeckoResponse( _response ) ); }
 		}
 
 	}

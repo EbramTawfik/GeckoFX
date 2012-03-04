@@ -34,14 +34,14 @@ namespace Gecko
 			_observerService.Instance.RemoveObserver( observer, ObserverNotifications.HttpRequests.HttpOnModifyRequest );
 		}
 
-		public static void AddObserver(Observers.BaseHttpRequestResponceObserver observer)
+		public static void AddObserver(Observers.BaseHttpRequestResponseObserver observer)
 		{
 			if (observer._isRegistered) return;
 			_observerService.Instance.AddObserver(observer, ObserverNotifications.HttpRequests.HttpOnModifyRequest, false);
 			_observerService.Instance.AddObserver(observer, ObserverNotifications.HttpRequests.HttpOnExamineResponse, false);
 		}
 
-		public static void RemoveObserver(Observers.BaseHttpRequestResponceObserver observer)
+		public static void RemoveObserver(Observers.BaseHttpRequestResponseObserver observer)
 		{
 			if (!observer._isRegistered) return;
 			_observerService.Instance.RemoveObserver(observer, ObserverNotifications.HttpRequests.HttpOnModifyRequest);

@@ -9,9 +9,9 @@ namespace Gecko.Search
 			_searchEngine = searchEngine;
 		}
 
-		public void AddParam(string name,string value,string responceType)
+		public void AddParam(string name,string value,string responseType)
 		{
-			nsString.Set( _searchEngine.AddParam, name, value, responceType );
+			nsString.Set( _searchEngine.AddParam, name, value, responseType );
 		}
 
 		public string Name
