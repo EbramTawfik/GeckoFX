@@ -1,5 +1,6 @@
 using System;
 using System.Runtime.InteropServices;
+using System.Threading;
 
 namespace Gecko
 {
@@ -16,19 +17,20 @@ namespace Gecko
 
 		~InstanceWrapper()
 		{
-			FreeServiceReference();
+			FreeInstanceReference();
 		}
 
-		private void FreeServiceReference()
+		private void FreeInstanceReference()
 		{
 			if (Instance == null) return;
-			Marshal.ReleaseComObject(Instance);
-			Instance = null;
+			var obj = Interlocked.Exchange(ref Instance, null);
+			// May be Marshal.FinalReleaseComObject(  ) - but we must ABSOLUTLY sure.
+			Marshal.ReleaseComObject( obj );
 		}
 
 		public void Dispose()
 		{
-			FreeServiceReference();
+			FreeInstanceReference();
 			GC.SuppressFinalize( this );
 		}
 	}

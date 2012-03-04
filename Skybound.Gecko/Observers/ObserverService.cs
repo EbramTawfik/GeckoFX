@@ -29,7 +29,7 @@ namespace Gecko
 
 		public static void RemoveObserver(Observers.BaseBaseHttpModifyRequestObserver observer)
 		{
-			_observerService.Instance.RemoveObserver(observer, ObserverNotifications.HttpRequests.HttpOnModifyRequest);
+			_observerService.Instance.RemoveObserver( observer, ObserverNotifications.HttpRequests.HttpOnModifyRequest );
 		}
 	}
 }

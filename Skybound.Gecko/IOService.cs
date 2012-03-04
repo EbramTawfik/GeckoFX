@@ -15,6 +15,11 @@ namespace Gecko
 			_service = new ServiceWrapper<nsIIOService>( Contracts.NetworkIOService );
 		}
 
+		public static bool Offline
+		{
+			get { return _service.Instance.GetOfflineAttribute(); }
+			set{_service.Instance.SetOfflineAttribute( value );}
+		}
 		internal static nsIURI CreateNsIUri(string url)
 		{
 			nsIURI ret;

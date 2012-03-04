@@ -9,31 +9,31 @@ namespace Gecko
 	/// By default Xulrunner DOES NOT IMPLEMENT PrivateBrowsingService
 	/// YOU MUST REGISTER YOUR OWN IMPLEMENTATION BEFORE USE THIS WRAPPER!!!
 	/// </summary>
-	public sealed class PrivateBrowsingService
+	public static class PrivateBrowsingService
 	{
-		private ServiceWrapper<nsIPrivateBrowsingService> _privateBrowsingService;
-		public PrivateBrowsingService()
+		private static ServiceWrapper<nsIPrivateBrowsingService> _privateBrowsingService;
+		static PrivateBrowsingService()
 		{
 			_privateBrowsingService = new ServiceWrapper<nsIPrivateBrowsingService>(Contracts.PrivateBrowsing);
 		}
 
-		public bool AutoStarted
+		public static bool AutoStarted
 		{
 			get { return _privateBrowsingService.Instance.GetAutoStartedAttribute(); }
 		}
 
-		public bool LastChangedByCommandLine
+		public static bool LastChangedByCommandLine
 		{
 			get { return _privateBrowsingService.Instance.GetLastChangedByCommandLineAttribute(); }
 		}
 
-		public bool PrivateBrowsingEnabled
+		public static bool PrivateBrowsingEnabled
 		{
 			get { return _privateBrowsingService.Instance.GetPrivateBrowsingEnabledAttribute(); }
 			set { _privateBrowsingService.Instance.SetPrivateBrowsingEnabledAttribute(value); }
 		}
 
-		public void RemoveDataFromDomain(string domain)
+		public static void RemoveDataFromDomain(string domain)
 		{
 			nsString.Set(_privateBrowsingService.Instance.RemoveDataFromDomain, domain);
 		}

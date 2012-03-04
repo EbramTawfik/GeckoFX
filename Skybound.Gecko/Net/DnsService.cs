@@ -8,16 +8,16 @@ namespace Gecko.Net
 {
 	//IAsyncResult
 
-	public sealed class DnsService
+	public static class DnsService
 	{
-		private ServiceWrapper<nsIDNSService> _dnsService;
+		private static ServiceWrapper<nsIDNSService> _dnsService;
 
-		public DnsService()
+		static DnsService()
 		{
 			_dnsService = new ServiceWrapper<nsIDNSService>(Contracts.DnsService);
 		}
 
-		public string MyHostName
+		public static string MyHostName
 		{
 			get { return nsString.Get( _dnsService.Instance.GetMyHostNameAttribute ); }
 		}
@@ -30,7 +30,7 @@ namespace Gecko.Net
 		/// <param name="hostName"></param>
 		/// <param name="flags"></param>
 		/// <returns></returns>
-		public DnsRecord Resolve(string hostName,ResolveFlags flags)
+		public static DnsRecord Resolve(string hostName, ResolveFlags flags)
 		{
 			if (hostName==null)
 			{

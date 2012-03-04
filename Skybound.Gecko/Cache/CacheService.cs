@@ -3,21 +3,21 @@ using System.Collections.Generic;
 
 namespace Gecko.Cache
 {
-	public sealed class CacheService
+	public static class CacheService
 	{
-		private ServiceWrapper<nsICacheService> _cacheService;
+		private static ServiceWrapper<nsICacheService> _cacheService;
 
-		public CacheService()
+		static CacheService()
 		{
 			_cacheService = new ServiceWrapper<nsICacheService>(Contracts.CacheService);
 		}
 
-		public CacheSession CreateSession(string clientID, CacheStoragePolicy storagePolicy, bool streamBased)
+		public static CacheSession CreateSession(string clientID, CacheStoragePolicy storagePolicy, bool streamBased)
 		{
 			return new CacheSession(_cacheService.Instance.CreateSession(clientID, (IntPtr)(int)storagePolicy, streamBased));
 		}
 
-		public string[] Search(string deviceID, Predicate<CacheEntryInfo> predicate)
+		public static string[] Search(string deviceID, Predicate<CacheEntryInfo> predicate)
 		{
 			string[] ret = null;
 			using (var searcher = new CacheSearcher(predicate))
@@ -35,7 +35,7 @@ namespace Gecko.Cache
 		/// </summary>
 		/// <param name="predicate"></param>
 		/// <returns></returns>
-		public string[] Search(Predicate<CacheEntryInfo> predicate)
+		public static string[] Search(Predicate<CacheEntryInfo> predicate)
 		{
 			string[] ret = null;
 			using (var searcher = new CacheSearcher(predicate))
