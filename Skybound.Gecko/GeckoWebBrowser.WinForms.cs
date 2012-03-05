@@ -59,6 +59,9 @@ namespace Gecko
 		#endregion
 
 		#region Overriden WinForms functions	
+
+		private nsIDOMEventTarget _target;
+
 		protected override void OnHandleCreated(EventArgs e)
 		{
 #if GTK	
@@ -79,9 +82,12 @@ namespace Gecko
 				WebBrowser = Xpcom.CreateInstance<nsIWebBrowser>("@mozilla.org/embedding/browser/nsWebBrowser;1");
 				WebBrowserFocus = (nsIWebBrowserFocus)WebBrowser;
 				BaseWindow = (nsIBaseWindow)WebBrowser;
-				WebNav = (nsIWebNavigation)WebBrowser;
 
-				
+// Currently causes random crashes.
+#if false
+				WebNav = (nsIWebNavigation)WebBrowser;
+#endif
+
 
 				WebBrowser.SetContainerWindowAttribute(this);
 #if GTK
@@ -107,34 +113,36 @@ namespace Gecko
 					activityDistributor.AddObserver(this);
 				}
 
-				nsIDOMEventTarget target = Xpcom.QueryInterface<nsIDOMWindow>(WebBrowser.GetContentDOMWindowAttribute()).GetWindowRootAttribute();
+				_target = Xpcom.QueryInterface<nsIDOMWindow>(WebBrowser.GetContentDOMWindowAttribute()).GetWindowRootAttribute();
 
-				target.AddEventListener(new nsAString("submit"), this, true, true, 2);
-				target.AddEventListener(new nsAString("keydown"), this, true, true, 2);
-				target.AddEventListener(new nsAString("keyup"), this, true, true, 2);
-				target.AddEventListener(new nsAString("keypress"), this, true, true, 2);
-				target.AddEventListener(new nsAString("mousemove"), this, true, true, 2);
-				target.AddEventListener(new nsAString("mouseover"), this, true, true, 2);
-				target.AddEventListener(new nsAString("mouseout"), this, true, true, 2);
-				target.AddEventListener(new nsAString("mousedown"), this, true, true, 2);
-				target.AddEventListener(new nsAString("mouseup"), this, true, true, 2);
-				target.AddEventListener(new nsAString("click"), this, true, true, 2);
-				target.AddEventListener(new nsAString("dblclick"), this, true, true, 2);
-				target.AddEventListener(new nsAString("compositionstart"), this, true, true, 2);
-				target.AddEventListener(new nsAString("compositionend"), this, true, true, 2);
-				target.AddEventListener(new nsAString("contextmenu"), this, true, true, 2);
-				target.AddEventListener(new nsAString("DOMMouseScroll"), this, true, true, 2);
-				target.AddEventListener(new nsAString("focus"), this, true, true, 2);
-				target.AddEventListener(new nsAString("blur"), this, true, true, 2);
+				_target.AddEventListener(new nsAString("submit"), this, true, true, 2);
+				_target.AddEventListener(new nsAString("keydown"), this, true, true, 2);
+				_target.AddEventListener(new nsAString("keyup"), this, true, true, 2);
+				_target.AddEventListener(new nsAString("keypress"), this, true, true, 2);
+				_target.AddEventListener(new nsAString("mousemove"), this, true, true, 2);
+				_target.AddEventListener(new nsAString("mouseover"), this, true, true, 2);
+				_target.AddEventListener(new nsAString("mouseout"), this, true, true, 2);
+				_target.AddEventListener(new nsAString("mousedown"), this, true, true, 2);
+				_target.AddEventListener(new nsAString("mouseup"), this, true, true, 2);
+				_target.AddEventListener(new nsAString("click"), this, true, true, 2);
+				_target.AddEventListener(new nsAString("dblclick"), this, true, true, 2);
+				_target.AddEventListener(new nsAString("compositionstart"), this, true, true, 2);
+				_target.AddEventListener(new nsAString("compositionend"), this, true, true, 2);
+				_target.AddEventListener(new nsAString("contextmenu"), this, true, true, 2);
+				_target.AddEventListener(new nsAString("DOMMouseScroll"), this, true, true, 2);
+				_target.AddEventListener(new nsAString("focus"), this, true, true, 2);
+				_target.AddEventListener(new nsAString("blur"), this, true, true, 2);
 				// Load event added here rather than DOMDocument as DOMDocument recreated when navigating
 				// ths losing attached listener.
-				target.AddEventListener(new nsAString("load"), this, true, true, 2);
-				target.AddEventListener(new nsAString("change"), this, true, true, 2);
+				_target.AddEventListener(new nsAString("load"), this, true, true, 2);
+				_target.AddEventListener(new nsAString("change"), this, true, true, 2);
 
+// WebNav is currently disabled.
+#if false
 				// history
 				if (WebNav.GetSessionHistoryAttribute() != null)
 					WebNav.GetSessionHistoryAttribute().AddSHistoryListener(this);
-
+#endif
 				BaseWindow.SetVisibilityAttribute(true);
 
 				// this fix prevents the browser from crashing if the first page loaded is invalid (missing file, invalid URL, etc)

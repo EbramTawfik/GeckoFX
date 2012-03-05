@@ -96,7 +96,9 @@ namespace Gecko
 				m_wrapper = new GtkDotNet.GtkReparentingWrapperNoThread(new Gtk.Window(Gtk.WindowType.Popup), this);
 #endif
 
+#if true//false
 			NavigateFinishedNotifier = new NavigateFinishedNotifier(this);
+#endif
 		}
 
 		#region protected override void Dispose(bool disposing)
@@ -105,7 +107,8 @@ namespace Gecko
 			RemoveJsContextCallBack();
 
 			//var count = Gecko.Interop.ComDebug.GetRefCount(WebBrowser);
-			NavigateFinishedNotifier.Dispose();
+			if (NavigateFinishedNotifier != null)
+				NavigateFinishedNotifier.Dispose();
 
 			if (!Environment.HasShutdownStarted && !AppDomain.CurrentDomain.IsFinalizingForUnload())
 			{
@@ -163,7 +166,10 @@ namespace Gecko
 		}
 
 		protected void RemoveJsContextCallBack()
-		{			
+		{
+			if (_jsRuntime == IntPtr.Zero)
+				return;
+
 			AutoJSContext.JS_SetContextCallback(_jsRuntime, _originalContextCallBack);
 		}
 
