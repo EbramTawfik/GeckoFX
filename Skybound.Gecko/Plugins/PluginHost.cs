@@ -30,7 +30,7 @@ namespace Gecko.Plugins
 
 		public static bool SiteHasData(PluginTag tag, string domain)
 		{
-			return nsString.Pass(_pluginHost.Instance.SiteHasData, tag._pluginTag, domain);
+			return nsString.Pass<bool, nsIPluginTag>(_pluginHost.Instance.SiteHasData, tag._pluginTag, domain);
 		}
 
 		public static void ClearSiteData(PluginTag tag, string domain, ulong flags, long maxAge)

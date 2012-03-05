@@ -47,10 +47,10 @@ namespace Gecko.IO
 
 		public bool HasEntry(string entry)
 		{
-			return nsString.Pass(_zipReader.Instance.HasEntry, entry);
+			return nsString.Pass<bool>(_zipReader.Instance.HasEntry, entry);
 		}
 
-		public bool Test(nsAUTF8String entry=null)
+		public bool Test(nsAUTF8String entry)
 		{
 			bool ret;
 			try

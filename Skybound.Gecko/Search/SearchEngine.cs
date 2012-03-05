@@ -44,7 +44,7 @@ namespace Gecko.Search
 
 		public object GetSubmission(string data,string responseType)
 		{
-			return nsString.Pass( _searchEngine.GetSubmission, data, responseType );
+			return nsString.Pass<nsISearchSubmission>( _searchEngine.GetSubmission, data, responseType );
 		}
 
 		internal static SearchEngine Create(nsISearchEngine searchEngine)

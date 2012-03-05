@@ -146,7 +146,7 @@ namespace Gecko
 			if (string.IsNullOrEmpty(attributeName))
 				throw new ArgumentException("attributeName");
 
-			return nsString.Pass( _domElement.HasAttribute, attributeName );
+			return nsString.Pass<bool>( _domElement.HasAttribute, attributeName );
 		}
 
 		/// <summary>
@@ -179,7 +179,7 @@ namespace Gecko
 		#region Attribute Nodes
 		public GeckoAttribute GetAttributeNode(string name)
 		{
-			var ret = nsString.Pass(_domElement.GetAttributeNode, name);
+			var ret = nsString.Pass<nsIDOMAttr>(_domElement.GetAttributeNode, name);
 			return (ret == null) ? null : new GeckoAttribute(ret);
 		}
 
@@ -207,7 +207,7 @@ namespace Gecko
 			if (string.IsNullOrEmpty(attributeName))
 				throw new ArgumentException("attributeName");
 
-			return nsString.Pass( _domElement.HasAttributeNS, namespaceUri, attributeName );
+			return nsString.Pass<bool>( _domElement.HasAttributeNS, namespaceUri, attributeName );
 		}
 		
 		/// <summary>
@@ -255,7 +255,7 @@ namespace Gecko
 			if (string.IsNullOrEmpty(namespaceUri))
 				return GetAttributeNode(localName);
 
-			var ret = nsString.Pass(_domElement.GetAttributeNodeNS, namespaceUri,localName);
+			var ret = nsString.Pass<nsIDOMAttr>(_domElement.GetAttributeNodeNS, namespaceUri,localName);
 			return (ret == null) ? null : new GeckoAttribute(ret);
 		}
 
@@ -286,7 +286,7 @@ namespace Gecko
 			if ( string.IsNullOrEmpty( localName ) )
 				return null;
 
-			var ret = nsString.Pass( _domElement.GetElementsByTagNameNS, namespaceURI, localName );
+			var ret = nsString.Pass<nsIDOMNodeList>( _domElement.GetElementsByTagNameNS, namespaceURI, localName );
 			return ret == null ? null : new GeckoElementCollection( ret );
 		}
 
@@ -653,7 +653,7 @@ namespace Gecko
 				throw new ArgumentException("feature");
 			if (string.IsNullOrEmpty(version))
 				throw new ArgumentException("version");
-			return nsString.Pass( _domHtmlDocument.IsSupported, feature, version );
+			return nsString.Pass<bool>(_domHtmlDocument.IsSupported, feature, version);
 		}
 				
 	
