@@ -99,7 +99,7 @@ namespace Gecko
 
 		// TODO: remove the need for this to be public
 		[UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
-		public delegate bool CallBack(IntPtr cx, UInt32 contextOp);
+		public delegate int CallBack(IntPtr cx, UInt32 contextOp);
 
 		// TODO: remove the need for this to be public
 		[DllImport("mozjs")]

@@ -102,7 +102,7 @@ namespace Gecko
 		#region protected override void Dispose(bool disposing)
 		protected override void Dispose(bool disposing)
 		{
-			RemoveContextCallBack();
+			RemoveJsContextCallBack();
 
 			//var count = Gecko.Interop.ComDebug.GetRefCount(WebBrowser);
 			NavigateFinishedNotifier.Dispose();
@@ -148,27 +148,30 @@ namespace Gecko
 			// 1. call original hook
 			// 2. reinstates original hook when done.
 
-			nsIJSRuntimeService runtimeService = Xpcom.GetService<nsIJSRuntimeService>("@mozilla.org/js/xpc/RuntimeService;1");
-			IntPtr runtime = runtimeService.GetRuntimeAttribute();
+			_runtimeService = Xpcom.GetService<nsIJSRuntimeService>("@mozilla.org/js/xpc/RuntimeService;1");
+			_jsRuntime = _runtimeService.GetRuntimeAttribute();
 
-			AutoJSContext.CallBack cb = (cx, unitN) => { JSContext = cx; AutoJSContext.JS_SetContextCallback(runtime, null); return true; };
+			_managedCallback = (IntPtr cx, UInt32 unitN) => { JSContext = cx; AutoJSContext.JS_SetContextCallback(_jsRuntime, null); return 1; };
 
-			OriginalContextCallBack = AutoJSContext.JS_SetContextCallback(runtime, cb);
-			if (OriginalContextCallBack != null)
+			_originalContextCallBack = AutoJSContext.JS_SetContextCallback(_jsRuntime, _managedCallback);
+			if (_originalContextCallBack != null)
 			{
-				cb = (cx, unitN) => { JSContext = cx; AutoJSContext.JS_SetContextCallback(runtime, OriginalContextCallBack); return OriginalContextCallBack(cx, unitN); };
-				AutoJSContext.JS_SetContextCallback(runtime, cb);
+				RemoveJsContextCallBack();
+				_managedCallback = (IntPtr cx, UInt32 unitN) => { JSContext = cx; AutoJSContext.JS_SetContextCallback(_jsRuntime, _originalContextCallBack); return _originalContextCallBack(cx, unitN); };
+				AutoJSContext.JS_SetContextCallback(_jsRuntime, _managedCallback);
 			}
 		}
 
-		protected void RemoveContextCallBack()
-		{
-			nsIJSRuntimeService runtimeService = Xpcom.GetService<nsIJSRuntimeService>("@mozilla.org/js/xpc/RuntimeService;1");
-			IntPtr runtime = runtimeService.GetRuntimeAttribute();
-			AutoJSContext.JS_SetContextCallback(runtime, OriginalContextCallBack);
+		protected void RemoveJsContextCallBack()
+		{			
+			AutoJSContext.JS_SetContextCallback(_jsRuntime, _originalContextCallBack);
 		}
 
-		private AutoJSContext.CallBack OriginalContextCallBack;
+
+		private IntPtr _jsRuntime;
+		private nsIJSRuntimeService _runtimeService;
+		private AutoJSContext.CallBack _managedCallback;
+		private AutoJSContext.CallBack _originalContextCallBack;
 
 		public IntPtr JSContext { get; protected set; }
 		#endregion
