@@ -102,6 +102,8 @@ namespace Gecko
 		#region protected override void Dispose(bool disposing)
 		protected override void Dispose(bool disposing)
 		{
+			RemoveContextCallBack();
+
 			//var count = Gecko.Interop.ComDebug.GetRefCount(WebBrowser);
 			NavigateFinishedNotifier.Dispose();
 
@@ -151,13 +153,22 @@ namespace Gecko
 
 			AutoJSContext.CallBack cb = (cx, unitN) => { JSContext = cx; AutoJSContext.JS_SetContextCallback(runtime, null); return true; };
 
-			AutoJSContext.CallBack old = AutoJSContext.JS_SetContextCallback(runtime, cb);
-			if (old != null)
+			OriginalContextCallBack = AutoJSContext.JS_SetContextCallback(runtime, cb);
+			if (OriginalContextCallBack != null)
 			{
-				cb = (cx, unitN) => { JSContext = cx; AutoJSContext.JS_SetContextCallback(runtime, old); return old(cx, unitN); };
+				cb = (cx, unitN) => { JSContext = cx; AutoJSContext.JS_SetContextCallback(runtime, OriginalContextCallBack); return OriginalContextCallBack(cx, unitN); };
 				AutoJSContext.JS_SetContextCallback(runtime, cb);
 			}
 		}
+
+		protected void RemoveContextCallBack()
+		{
+			nsIJSRuntimeService runtimeService = Xpcom.GetService<nsIJSRuntimeService>("@mozilla.org/js/xpc/RuntimeService;1");
+			IntPtr runtime = runtimeService.GetRuntimeAttribute();
+			AutoJSContext.JS_SetContextCallback(runtime, OriginalContextCallBack);
+		}
+
+		private AutoJSContext.CallBack OriginalContextCallBack;
 
 		public IntPtr JSContext { get; protected set; }
 		#endregion
