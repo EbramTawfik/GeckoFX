@@ -96,14 +96,21 @@ namespace Gecko
 				m_wrapper = new GtkDotNet.GtkReparentingWrapperNoThread(new Gtk.Window(Gtk.WindowType.Popup), this);
 #endif
 
-#if true//false
 			NavigateFinishedNotifier = new NavigateFinishedNotifier(this);
-#endif
 		}
 
 		#region protected override void Dispose(bool disposing)
 		protected override void Dispose(bool disposing)
 		{
+			if (!disposing)
+			{
+				Debug.WriteLine("Warning: GeckoWebBrowser control not disposed.");
+				// If GC thread is calling Dispose
+				this.Invoke(new Action(Cleanup), new object[] { });
+				base.Dispose(disposing);
+				return;
+			}
+
 			RemoveJsContextCallBack();
 
 			//var count = Gecko.Interop.ComDebug.GetRefCount(WebBrowser);
@@ -112,7 +119,7 @@ namespace Gecko
 
 			if (!Environment.HasShutdownStarted && !AppDomain.CurrentDomain.IsFinalizingForUnload())
 			{
-				// make sure the object is still alove before we call a method on it
+				// make sure the object is still alive before we call a method on it
 				var webNav = Xpcom.QueryInterface<nsIWebNavigation>( WebNav );
 				if (webNav != null)
 				{
@@ -121,13 +128,7 @@ namespace Gecko
 				}
 				WebNav = null;
 
-				var baseWindow = Xpcom.QueryInterface<nsIBaseWindow>( BaseWindow );
-				if (baseWindow != null)
-				{
-					baseWindow.Destroy();
-					Marshal.ReleaseComObject(baseWindow);
-				}
-				BaseWindow = null;
+				Cleanup();
 			}
 
 #if GTK			
@@ -137,6 +138,19 @@ namespace Gecko
 			//count = Gecko.Interop.ComDebug.GetRefCount(WebBrowser);
 			base.Dispose(disposing);
 		}
+
+		// This method should only run on the Main Thread.
+		private void Cleanup()
+		{
+			var baseWindow = Xpcom.QueryInterface<nsIBaseWindow>(BaseWindow);
+			if (baseWindow != null)
+			{
+				baseWindow.Destroy();
+				Marshal.ReleaseComObject(baseWindow);
+			}
+			BaseWindow = null;
+		}
+
 		#endregion
 
 		#region JSContext

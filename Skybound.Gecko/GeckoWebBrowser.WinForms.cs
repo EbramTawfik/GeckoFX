@@ -83,9 +83,7 @@ namespace Gecko
 				WebBrowserFocus = (nsIWebBrowserFocus)WebBrowser;
 				BaseWindow = (nsIBaseWindow)WebBrowser;
 
-// Currently causes random crashes.
 				WebNav = (nsIWebNavigation)WebBrowser;
-
 
 				WebBrowser.SetContainerWindowAttribute(this);
 #if GTK
