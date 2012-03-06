@@ -111,6 +111,10 @@
     <Compile Include="Interop\ComDebug.cs" />
     <Compile Include="Interop\InstanceWrapper.cs" />
     <Compile Include="IOService.cs" />
+    <Compile Include="Listeners\GeckoBaseListener.cs" />
+    <Compile Include="Listeners\GeckoDOMEventListener.cs" />
+    <Compile Include="Listeners\GeckoSHistoryListener.cs" />
+    <Compile Include="Listeners\GeckoWebProgressListener.cs" />
     <Compile Include="Observers\BaseHttpRequestResponceObserver.cs" />
     <Compile Include="Search\BrowserSearchService.cs" />
     <Compile Include="ByteArrayInputStream.cs" />

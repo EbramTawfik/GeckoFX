@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
+using Gecko.Listeners;
 
 // PLZ keep all Windows Forms related code here
 namespace Gecko
@@ -98,7 +99,7 @@ namespace Gecko
 				BaseWindow.Create();
 
 				Guid nsIWebProgressListenerGUID = typeof(nsIWebProgressListener).GUID;
-				WebBrowser.AddWebBrowserListener(this, ref nsIWebProgressListenerGUID);
+				WebBrowser.AddWebBrowserListener(new GeckoWebProgressListener(this), ref nsIWebProgressListenerGUID);
 
 				if (UseHttpActivityObserver)
 				{
@@ -109,33 +110,35 @@ namespace Gecko
 					activityDistributor.AddObserver(this);
 				}
 
+                var domEventListener = new GeckoDOMEventListener(this);
+
 				_target = Xpcom.QueryInterface<nsIDOMWindow>(WebBrowser.GetContentDOMWindowAttribute()).GetWindowRootAttribute();
 
-				_target.AddEventListener(new nsAString("submit"), this, true, true, 2);
-				_target.AddEventListener(new nsAString("keydown"), this, true, true, 2);
-				_target.AddEventListener(new nsAString("keyup"), this, true, true, 2);
-				_target.AddEventListener(new nsAString("keypress"), this, true, true, 2);
-				_target.AddEventListener(new nsAString("mousemove"), this, true, true, 2);
-				_target.AddEventListener(new nsAString("mouseover"), this, true, true, 2);
-				_target.AddEventListener(new nsAString("mouseout"), this, true, true, 2);
-				_target.AddEventListener(new nsAString("mousedown"), this, true, true, 2);
-				_target.AddEventListener(new nsAString("mouseup"), this, true, true, 2);
-				_target.AddEventListener(new nsAString("click"), this, true, true, 2);
-				_target.AddEventListener(new nsAString("dblclick"), this, true, true, 2);
-				_target.AddEventListener(new nsAString("compositionstart"), this, true, true, 2);
-				_target.AddEventListener(new nsAString("compositionend"), this, true, true, 2);
-				_target.AddEventListener(new nsAString("contextmenu"), this, true, true, 2);
-				_target.AddEventListener(new nsAString("DOMMouseScroll"), this, true, true, 2);
-				_target.AddEventListener(new nsAString("focus"), this, true, true, 2);
-				_target.AddEventListener(new nsAString("blur"), this, true, true, 2);
+                _target.AddEventListener(new nsAString("submit"), domEventListener, true, true, 2);
+                _target.AddEventListener(new nsAString("keydown"), domEventListener, true, true, 2);
+                _target.AddEventListener(new nsAString("keyup"), domEventListener, true, true, 2);
+                _target.AddEventListener(new nsAString("keypress"), domEventListener, true, true, 2);
+                _target.AddEventListener(new nsAString("mousemove"), domEventListener, true, true, 2);
+                _target.AddEventListener(new nsAString("mouseover"), domEventListener, true, true, 2);
+                _target.AddEventListener(new nsAString("mouseout"), domEventListener, true, true, 2);
+                _target.AddEventListener(new nsAString("mousedown"), domEventListener, true, true, 2);
+                _target.AddEventListener(new nsAString("mouseup"), domEventListener, true, true, 2);
+                _target.AddEventListener(new nsAString("click"), domEventListener, true, true, 2);
+                _target.AddEventListener(new nsAString("dblclick"), domEventListener, true, true, 2);
+                _target.AddEventListener(new nsAString("compositionstart"), domEventListener, true, true, 2);
+                _target.AddEventListener(new nsAString("compositionend"), domEventListener, true, true, 2);
+                _target.AddEventListener(new nsAString("contextmenu"), domEventListener, true, true, 2);
+                _target.AddEventListener(new nsAString("DOMMouseScroll"), domEventListener, true, true, 2);
+                _target.AddEventListener(new nsAString("focus"), domEventListener, true, true, 2);
+                _target.AddEventListener(new nsAString("blur"), domEventListener, true, true, 2);
 				// Load event added here rather than DOMDocument as DOMDocument recreated when navigating
 				// ths losing attached listener.
-				_target.AddEventListener(new nsAString("load"), this, true, true, 2);
-				_target.AddEventListener(new nsAString("change"), this, true, true, 2);
+                _target.AddEventListener(new nsAString("load"), domEventListener, true, true, 2);
+                _target.AddEventListener(new nsAString("change"), domEventListener, true, true, 2);
 
 				// history
 				if (WebNav.GetSessionHistoryAttribute() != null)
-					WebNav.GetSessionHistoryAttribute().AddSHistoryListener(this);
+					WebNav.GetSessionHistoryAttribute().AddSHistoryListener(new GeckoSHistoryListener(this));
 
 				BaseWindow.SetVisibilityAttribute(true);
 

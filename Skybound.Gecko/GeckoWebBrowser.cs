@@ -56,8 +56,6 @@ namespace Gecko
 		nsIWebProgressListener,
 		nsIInterfaceRequestor,
 		nsIEmbeddingSiteWindow2,
-		nsISupportsWeakReference,
-		nsIWeakReference,
 		nsIDOMEventListener,
 		nsISHistoryListener,
 		nsITooltipListener,
@@ -1526,42 +1524,6 @@ namespace Gecko
 		void nsIEmbeddingSiteWindow2.Blur()
 		{
 		      //throw new NotImplementedException();			
-		}
-
-		#endregion
-		
-		#region nsISupportsWeakReference Members
-
-		nsIWeakReference nsISupportsWeakReference.GetWeakReference()
-		{
-			return this;			
-		}
-
-		#endregion
-
-		#region nsIWeakReference Members
-		IntPtr nsIWeakReference.QueryReferent(ref Guid uuid)
-		{
-            Xpcom.AssertCorrectThread();
-
-			IntPtr ppv, pUnk = Marshal.GetIUnknownForObject(this);
-			
-			Marshal.QueryInterface(pUnk, ref uuid, out ppv);
-
-			if (Xpcom.IsMono)
-			{
-				// TODO FIXME - remove this hack.
-				Marshal.AddRef(ppv);
-			}
-			
-			Marshal.Release(pUnk);
-			
-			if (ppv != IntPtr.Zero)
-			{
-			      Marshal.Release(ppv);
-			}
-
-			return ppv;
 		}
 
 		#endregion
