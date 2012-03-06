@@ -102,6 +102,8 @@ namespace Gecko
 		#region protected override void Dispose(bool disposing)
 		protected override void Dispose(bool disposing)
 		{
+            Xpcom.AssertCorrectThread();
+
 			if (!disposing)
 			{
 				Debug.WriteLine("Warning: GeckoWebBrowser control not disposed.");
@@ -160,6 +162,8 @@ namespace Gecko
 		/// </summary>
 		protected void RecordNewJsContext()
 		{
+            Xpcom.AssertCorrectThread();
+
 			// Add a hook to record when the a new Context is created.
 			// If an existing hook exists, replace hook with one that
 			// 1. call original hook
@@ -181,6 +185,8 @@ namespace Gecko
 
 		protected void RemoveJsContextCallBack()
 		{
+            Xpcom.AssertCorrectThread();
+
 			if (_jsRuntime == IntPtr.Zero)
 				return;
 

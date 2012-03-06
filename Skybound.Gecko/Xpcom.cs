@@ -40,6 +40,7 @@ using System.Diagnostics;
 using System.Windows.Forms;
 using System.Runtime.CompilerServices;
 using GeckoFX.Microsoft;
+using System.Threading;
 
 namespace Gecko
 {
@@ -84,6 +85,7 @@ namespace Gecko
 		static bool? m_isMono;
 		static bool _IsInitialized;
 		static string _ProfileDirectory;
+        static int _XpcomThreadId;
 		#endregion
 
 		#region CLR runtime
@@ -152,6 +154,8 @@ namespace Gecko
 		{
 			if (_IsInitialized)
 				return;
+
+            Interlocked.Exchange(ref _XpcomThreadId, Thread.CurrentThread.ManagedThreadId);
 
 			if (IsWindows)
 				Kernel32.SetDllDirectory(binDirectory);
@@ -229,6 +233,14 @@ namespace Gecko
 			NS_ShutdownXPCOM(ServiceManager);
 			_IsInitialized = false;
 		}
+
+        public static void AssertCorrectThread()
+        {
+            if (Thread.CurrentThread.ManagedThreadId != _XpcomThreadId)
+            {
+                throw new InvalidOperationException("Xpcom must run on own thread");
+            }
+        }
 		#endregion
 
 		/// <summary>
@@ -310,9 +322,11 @@ namespace Gecko
 		{
 			return (TInterfaceType)QueryInterface(obj, typeof(TInterfaceType).GUID);
 		}
-		
+
 		public static object QueryInterface(object obj, Guid iid)
 		{
+            AssertCorrectThread();
+
 			if (obj == null)
 				return null;
 
@@ -370,6 +384,8 @@ namespace Gecko
 		#region GetService
 		public static object GetService(Guid classIID)
 		{
+            AssertCorrectThread();
+
 			Guid iid = typeof(nsISupports).GUID;
 			return ServiceManager.GetService(ref classIID, ref iid);
 		}
@@ -381,6 +397,8 @@ namespace Gecko
 		
 		public static TInterfaceType GetService<TInterfaceType>(string contractID)
 		{
+            AssertCorrectThread();
+
 			Guid iid = typeof(TInterfaceType).GUID;
 			IntPtr ptr = ServiceManager.GetServiceByContractID(contractID, ref iid);
 			return (TInterfaceType)Marshal.GetObjectForIUnknown(ptr);
