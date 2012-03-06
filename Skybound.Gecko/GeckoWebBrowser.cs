@@ -1542,6 +1542,8 @@ namespace Gecko
 		#region nsIWeakReference Members
 		IntPtr nsIWeakReference.QueryReferent(ref Guid uuid)
 		{
+            Xpcom.AssertCorrectThread();
+
 			IntPtr ppv, pUnk = Marshal.GetIUnknownForObject(this);
 			
 			Marshal.QueryInterface(pUnk, ref uuid, out ppv);
@@ -2147,16 +2149,19 @@ namespace Gecko
             var xhr_status = m_notificationCallsbacks.GetStatusAttribute();
             var xhr_readyState = m_notificationCallsbacks.GetReadyStateAttribute();
 
+            bool bHandlerFailed = false;
+
             try
             {
                 m_origEventListener.HandleEvent(@event);
             }
-            catch (COMException)
+            catch (Exception)
             {
+                bHandlerFailed = true;
             }
 
             // remove when finished
-            if (xhr_readyState == 4)
+            if (bHandlerFailed || (xhr_readyState == 4))
             {
                 m_browser.origJavaScriptHttpChannels.Remove(m_httpChannel);
             }
