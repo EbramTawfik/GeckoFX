@@ -84,9 +84,7 @@ namespace Gecko
 				BaseWindow = (nsIBaseWindow)WebBrowser;
 
 // Currently causes random crashes.
-#if false
 				WebNav = (nsIWebNavigation)WebBrowser;
-#endif
 
 
 				WebBrowser.SetContainerWindowAttribute(this);
@@ -137,12 +135,10 @@ namespace Gecko
 				_target.AddEventListener(new nsAString("load"), this, true, true, 2);
 				_target.AddEventListener(new nsAString("change"), this, true, true, 2);
 
-// WebNav is currently disabled.
-#if false
 				// history
 				if (WebNav.GetSessionHistoryAttribute() != null)
 					WebNav.GetSessionHistoryAttribute().AddSHistoryListener(this);
-#endif
+
 				BaseWindow.SetVisibilityAttribute(true);
 
 				// this fix prevents the browser from crashing if the first page loaded is invalid (missing file, invalid URL, etc)
