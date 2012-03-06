@@ -99,9 +99,7 @@ namespace Gecko
 
 		#region protected override void Dispose(bool disposing)
 		protected override void Dispose(bool disposing)
-		{
-            Xpcom.AssertCorrectThread();
-
+		{            
 			if (!disposing)
 			{
 				Debug.WriteLine("Warning: GeckoWebBrowser control not disposed.");
