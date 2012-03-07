@@ -27,11 +27,11 @@ namespace Gecko.Listeners
                 b.OnProgressChange(aWebProgress, aRequest, aCurSelfProgress, aMaxSelfProgress, aCurTotalProgress, aMaxTotalProgress);
         }
 
-        public void OnLocationChange(nsIWebProgress aWebProgress, nsIRequest aRequest, nsIURI aLocation)
+        public void OnLocationChange(nsIWebProgress aWebProgress, nsIRequest aRequest, nsIURI aLocation, uint flags)
         {
             nsIWebProgressListener b = (nsIWebProgressListener)_browser;
             if (b != null)
-                b.OnLocationChange(aWebProgress, aRequest, aLocation);
+                b.OnLocationChange(aWebProgress, aRequest, aLocation, flags);
         }
 
         public void OnStatusChange(nsIWebProgress aWebProgress, nsIRequest aRequest, int aStatus, string aMessage)
