@@ -27,15 +27,7 @@ namespace Gecko.Listeners
 
         public IntPtr QueryReferent(ref Guid uuid)
         {
-            Xpcom.AssertCorrectThread();
-
-            IntPtr ppv, pUnk = Marshal.GetIUnknownForObject(this);
-
-            Marshal.QueryInterface(pUnk, ref uuid, out ppv);
-
-            Marshal.Release(pUnk);
-
-            return ppv;
+        	return Xpcom.QueryReferent( this, ref uuid );
         }
     }
 }

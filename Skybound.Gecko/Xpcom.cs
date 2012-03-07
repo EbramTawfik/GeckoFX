@@ -444,7 +444,22 @@ namespace Gecko
         /**/
 		#endregion
 
+		///	<summary>
+		/// Helper method for WeakReference
+		///	</summary>
+		internal static IntPtr QueryReferent(object obj, ref Guid uuid )
+		{		
+            Xpcom.AssertCorrectThread();
 
+			IntPtr ppv, pUnk = Marshal.GetIUnknownForObject(obj);
+
+            Marshal.QueryInterface(pUnk, ref uuid, out ppv);
+
+            Marshal.Release(pUnk);
+
+            return ppv;
+   
+		}
 
 		#region Internal class & interface declarations
 		#region QI_nsIInterfaceRequestor	
