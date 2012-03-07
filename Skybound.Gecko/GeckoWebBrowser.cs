@@ -43,6 +43,7 @@ using System.IO;
 using System.Reflection;
 using System.Diagnostics;
 using System.Text;
+using Gecko.Interop;
 using Gecko.Net;
 
 namespace Gecko
@@ -60,7 +61,8 @@ namespace Gecko
 		nsISHistoryListener,
 		nsITooltipListener,
         nsIObserver,
-         nsIHttpActivityObserver
+         nsIHttpActivityObserver,
+		nsISupportsWeakReference
 		//nsIWindowProvider,
 	{
 		#region Fields
@@ -1948,6 +1950,11 @@ namespace Gecko
             return true;
         }
         #endregion nsIHttpActivityObserver members
+
+		public nsIWeakReference GetWeakReference()
+		{
+			return new nsWeakReference( this );
+		}
 	}
 	
 

@@ -110,6 +110,7 @@
     <Compile Include="GeckoException.cs" />
     <Compile Include="Interop\ComDebug.cs" />
     <Compile Include="Interop\InstanceWrapper.cs" />
+    <Compile Include="Interop\nsWeakReference.cs" />
     <Compile Include="IOService.cs" />
     <Compile Include="Listeners\GeckoBaseListener.cs" />
     <Compile Include="Listeners\GeckoDOMEventListener.cs" />
@@ -167,7 +168,9 @@
     <Compile Include="GeckoWebBrowser.Events.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="GeckoWebBrowser.GTK.cs" />
+    <Compile Include="GeckoWebBrowser.GTK.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="GeckoWebBrowser.WinForms.cs">
       <SubType>Component</SubType>
     </Compile>

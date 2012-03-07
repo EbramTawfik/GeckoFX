@@ -99,7 +99,7 @@ namespace Gecko
 				BaseWindow.Create();
 
 				Guid nsIWebProgressListenerGUID = typeof(nsIWebProgressListener).GUID;
-				WebBrowser.AddWebBrowserListener(new GeckoWebProgressListener(this), ref nsIWebProgressListenerGUID);
+				WebBrowser.AddWebBrowserListener(this.GetWeakReference(), ref nsIWebProgressListenerGUID);
 
 				if (UseHttpActivityObserver)
 				{
