@@ -1,31 +1,53 @@
-﻿namespace Gecko
+﻿using System;
+using System.Runtime.InteropServices;
+using System.Threading;
+
+namespace Gecko
 {
 	public sealed class Sound
+		:IDisposable 
 	{
-		private nsISound _sound;
+		private InstanceWrapper<nsISound> _sound;
 
 		public Sound()
 		{
-			var sound = Xpcom.CreateInstance<nsISound>( Contracts.Sound );
-			_sound=Xpcom.QueryInterface<nsISound>(sound);
-			_sound.Init();
+			_sound = new InstanceWrapper<nsISound>(Contracts.Sound);
+			_sound.Instance.Init();
+		}
+
+		~Sound()
+		{
+			Close();
+		}
+
+		public void Dispose()
+		{
+			Close();
+		}
+
+		private void Close()
+		{
+			if (_sound == null) return;
+			var obj = Interlocked.Exchange( ref _sound, null );
+			obj.Dispose();
 		}
 
 		public void Beep()
 		{
-			_sound.Beep();
+			_sound.Instance.Beep();
 		}
 		
 		public void Play(string url)
 		{
 			var nsUrl = IOService.CreateNsIUrl( url );
-			_sound.Play( nsUrl );
+			_sound.Instance.Play(nsUrl);
+			Marshal.ReleaseComObject( nsUrl );
 		}
 
 
 		public void PlayEventSound(EventSound sound)
 		{
-			_sound.PlayEventSound( (uint)sound );
+			_sound.Instance.PlayEventSound((uint)sound);
 		}
 
 		public enum EventSound

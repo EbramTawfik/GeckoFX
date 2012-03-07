@@ -99,7 +99,7 @@ namespace Gecko
 
 		// TODO: remove the need for this to be public
 		[UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
-		public delegate bool CallBack(IntPtr cx, UInt32 contextOp);
+		public delegate int CallBack(IntPtr cx, UInt32 contextOp);
 
 		// TODO: remove the need for this to be public
 		[DllImport("mozjs")]
@@ -108,10 +108,14 @@ namespace Gecko
 		#endregion
 
 		IntPtr _cx;
-
-		IntPtr _jsPrincipals;
-
+		
 		public IntPtr ContextPointer { get { return _cx; } }
+
+		private readonly IntPtr _jsPrincipals;
+		private readonly nsIThreadJSContextStack _jsContextStack;
+		private readonly nsIJSContextStack _contextStack;
+		private readonly nsIScriptSecurityManager _securityManager;
+		private readonly nsIPrincipal _systemPrincipal;
 
 		/// <summary>
 		/// Create a AutoJSContext using the SafeJSContext.
@@ -122,8 +126,8 @@ namespace Gecko
 		{
 			if (context == IntPtr.Zero)
 			{
-				var jsContextStack = Xpcom.GetService<nsIThreadJSContextStack>("@mozilla.org/js/xpc/ContextStack;1");
-				context = jsContextStack.GetSafeJSContextAttribute();
+				_jsContextStack = Xpcom.GetService<nsIThreadJSContextStack>("@mozilla.org/js/xpc/ContextStack;1");
+				context = _jsContextStack.GetSafeJSContextAttribute();
 			}
 			
 			_cx = context;			
@@ -132,16 +136,16 @@ namespace Gecko
 			JS_BeginRequest(_cx);
 
 			// push the context onto the context stack
-			nsIJSContextStack contextStack = Xpcom.GetService<nsIJSContextStack>("@mozilla.org/js/xpc/ContextStack;1");
-			contextStack.Push(_cx);
+			_contextStack = Xpcom.GetService<nsIJSContextStack>("@mozilla.org/js/xpc/ContextStack;1");
+			_contextStack.Push(_cx);
 
 			// obtain the system principal (no security checks) (one could get a different principal by calling securityManager.GetObjectPrincipal())
-			nsIScriptSecurityManager securityManager = Xpcom.GetService<nsIScriptSecurityManager>("@mozilla.org/scriptsecuritymanager;1");
+			_securityManager = Xpcom.GetService<nsIScriptSecurityManager>("@mozilla.org/scriptsecuritymanager;1");
 
-			nsIPrincipal systemPrincipal = securityManager.GetSystemPrincipal();
-			_jsPrincipals = systemPrincipal.GetJSPrincipals(_cx);
+			_systemPrincipal = _securityManager.GetSystemPrincipal();
+			_jsPrincipals = _systemPrincipal.GetJSPrincipals(_cx);
 
-			securityManager.PushContextPrincipal(_cx, IntPtr.Zero, systemPrincipal);
+			_securityManager.PushContextPrincipal(_cx, IntPtr.Zero, _systemPrincipal);
 		}
 
 		/// <summary>
@@ -170,12 +174,9 @@ namespace Gecko
 
 		public void Dispose()
 		{
-			nsIScriptSecurityManager securityManager = Xpcom.GetService<nsIScriptSecurityManager>("@mozilla.org/scriptsecuritymanager;1");
-
-			securityManager.PopContextPrincipal(_cx);
-
-			nsIJSContextStack contextStack = Xpcom.GetService<nsIJSContextStack>("@mozilla.org/js/xpc/ContextStack;1");
-			contextStack.Pop();
+			_securityManager.PopContextPrincipal(_cx);
+			
+			_contextStack.Pop();
 			JS_EndRequest(_cx);
 		}
 	}

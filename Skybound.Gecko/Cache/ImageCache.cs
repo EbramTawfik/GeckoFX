@@ -5,29 +5,29 @@ using System.Text;
 
 namespace Gecko.Cache
 {
-	public sealed class ImageCache
+	public static class ImageCache
 	{
-		private ServiceWrapper<imgICache> _imgCache;
+		private static ServiceWrapper<imgICache> _imgCache;
 
-		public ImageCache()
+		static ImageCache()
 		{
 			_imgCache = new ServiceWrapper<imgICache>(Contracts.ImageCache);
 		}
 
-		public void ClearCache(bool chrome)
+		public static void ClearCache(bool chrome)
 		{
 			_imgCache.Instance.ClearCache(chrome);
 			
 		}
 
-		public object FindEntryProperties(string url)
+		public static object FindEntryProperties(string url)
 		{
 			// TODO - Add nsIProperties wrapper
 			var xpComUri = IOService.CreateNsIUri(url);
 			return _imgCache.Instance.FindEntryProperties(xpComUri);
 		}
 
-		public void RemoveEntry(string url)
+		public static void RemoveEntry(string url)
 		{
 			var xpComUri = IOService.CreateNsIUri(url);
 			_imgCache.Instance.RemoveEntry(xpComUri);

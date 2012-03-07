@@ -9,9 +9,9 @@ namespace Gecko.Search
 			_searchEngine = searchEngine;
 		}
 
-		public void AddParam(string name,string value,string responceType)
+		public void AddParam(string name,string value,string responseType)
 		{
-			nsString.Set( _searchEngine.AddParam, name, value, responceType );
+			nsString.Set( _searchEngine.AddParam, name, value, responseType );
 		}
 
 		public string Name
@@ -44,7 +44,7 @@ namespace Gecko.Search
 
 		public object GetSubmission(string data,string responseType)
 		{
-			return nsString.Pass( _searchEngine.GetSubmission, data, responseType );
+			return nsString.Pass<nsISearchSubmission>( _searchEngine.GetSubmission, data, responseType );
 		}
 
 		internal static SearchEngine Create(nsISearchEngine searchEngine)

@@ -33,7 +33,7 @@ namespace Gecko.Certificates
 
 		public bool ContainsEmailAddress(string email)
 		{
-			return nsString.Pass(_cert1.ContainsEmailAddress, email);
+			return nsString.Pass<bool>(_cert1.ContainsEmailAddress, email);
 		}
 
 		public string SubjectName

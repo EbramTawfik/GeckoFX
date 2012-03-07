@@ -101,7 +101,7 @@ namespace Gecko.Search
 		/// <returns>The corresponding SearchEngine object, or null if it doesn't exist.</returns>
 		public static SearchEngine GetEngineByAlias(string alias)
 		{
-			var ret = nsString.Pass(_browserSearchService.Instance.GetEngineByAlias, alias);
+			var ret = nsString.Pass<nsISearchEngine>(_browserSearchService.Instance.GetEngineByAlias, alias);
 			return SearchEngine.Create(ret);
 		}
 
@@ -112,7 +112,7 @@ namespace Gecko.Search
 		/// <returns>The corresponding SearchEngine object, or null if it doesn't exist.</returns>
 		public static SearchEngine GetEngineByName(string engineName)
 		{
-			var ret = nsString.Pass(_browserSearchService.Instance.GetEngineByName, engineName);
+			var ret = nsString.Pass<nsISearchEngine>(_browserSearchService.Instance.GetEngineByName, engineName);
 			return SearchEngine.Create( ret );
 		}
 

@@ -138,8 +138,7 @@ namespace GtkDotNet
 		{
 			if (m_xDisplayPointer == IntPtr.Zero)
 				throw new ArgumentNullException("m_xDisplayPointer");
-			
-			IntPtr xWindow = gdk_x11_drawable_get_xid(m_popupWindow.GdkWindow.Handle);
+						
 			XSetInputFocus(m_xDisplayPointer, IntPtr.Zero, RevertTo.Parent, IntPtr.Zero);
 		}
 	}

@@ -25,7 +25,7 @@ namespace Gecko.Utils
 
 		public int Compare(string x, string y)
 		{
-			return nsString.Pass( _versionComparator.Instance.Compare, x, y );
+			return nsString.Pass<int>( _versionComparator.Instance.Compare, x, y );
 		}
 	}
 }

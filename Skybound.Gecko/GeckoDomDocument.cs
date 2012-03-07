@@ -41,7 +41,7 @@ namespace Gecko
 			if (string.IsNullOrEmpty(tagName))
 				throw new ArgumentException("tagName");
 
-			var nativeElement = nsString.Pass( _domDocument.CreateElement, tagName );
+			var nativeElement = nsString.Pass<nsIDOMElement>( _domDocument.CreateElement, tagName );
 
 			return GeckoElement.Create( ( nsIDOMHTMLElement ) nativeElement );
 		}
@@ -53,13 +53,13 @@ namespace Gecko
 
 		public GeckoTextNode CreateTextNode(string data)
 		{
-			var native = nsString.Pass( _domDocument.CreateTextNode, data );
+			var native = nsString.Pass<nsIDOMText>( _domDocument.CreateTextNode, data );
 			return DOM.GeckoTextNode.CreateTextNodeWrapper( native );
 		}
 
 		public GeckoComment CreateComment(string data)
 		{
-			var native = nsString.Pass(_domDocument.CreateComment, data);
+			var native = nsString.Pass<nsIDOMComment>(_domDocument.CreateComment, data);
 			return GeckoComment.CreateCommentWrapper(native);
 		}
 
@@ -75,7 +75,7 @@ namespace Gecko
 		{
 			if (string.IsNullOrEmpty(name))
 				throw new ArgumentException("name");
-			var native = nsString.Pass(_domDocument.CreateAttribute, name);
+			var native = nsString.Pass<nsIDOMAttr>(_domDocument.CreateAttribute, name);
 			return GeckoAttribute.CreateAttributeWrapper( native );
 		}
 
@@ -89,7 +89,7 @@ namespace Gecko
 			if (string.IsNullOrEmpty(tagName))
 				return null;
 
-			var native = nsString.Pass(_domDocument.GetElementsByTagName, tagName);
+			var native = nsString.Pass<nsIDOMNodeList>(_domDocument.GetElementsByTagName, tagName);
 
 			return new GeckoElementCollection( native );
 		}
@@ -110,7 +110,7 @@ namespace Gecko
 			if (string.IsNullOrEmpty(qualifiedName))
 				throw new ArgumentException("qualifiedName");
 
-			var native = nsString.Pass( _domDocument.CreateElementNS, namespaceUri, qualifiedName );
+			var native = nsString.Pass<nsIDOMElement>( _domDocument.CreateElementNS, namespaceUri, qualifiedName );
 
 			return GeckoElement.Create( ( nsIDOMHTMLElement ) native );
 		}
@@ -122,7 +122,7 @@ namespace Gecko
 			if (string.IsNullOrEmpty(qualifiedName))
 				throw new ArgumentException("qualifiedName");
 
-			var native = nsString.Pass(_domDocument.CreateAttributeNS, namespaceUri, qualifiedName);
+			var native = nsString.Pass<nsIDOMAttr>(_domDocument.CreateAttributeNS, namespaceUri, qualifiedName);
 
 			return GeckoAttribute.CreateAttributeWrapper(native);
 		}
@@ -139,7 +139,7 @@ namespace Gecko
 			if (string.IsNullOrEmpty(localName))
 				throw new ArgumentException("localName");
 
-			var native = nsString.Pass(_domDocument.GetElementsByTagNameNS, namespaceUri, localName);
+			var native = nsString.Pass<nsIDOMNodeList>(_domDocument.GetElementsByTagNameNS, namespaceUri, localName);
 
 			return new GeckoElementCollection(native);
 		}
@@ -155,7 +155,7 @@ namespace Gecko
 			if (string.IsNullOrEmpty(id))
 				return null;
 
-			var native = nsString.Pass( _domDocument.GetElementById, id );
+			var native = nsString.Pass<nsIDOMElement>( _domDocument.GetElementById, id );
 
 			return GeckoElement.Create( ( nsIDOMHTMLElement ) native );
 		}
@@ -291,7 +291,7 @@ namespace Gecko
 		/// <returns></returns>
 		public GeckoNodeCollection GetElementsByClassName(string classes)
 		{
-			nsIDOMNodeList list = nsString.Pass(_domDocument.GetElementsByClassName, classes);
+			nsIDOMNodeList list = nsString.Pass<nsIDOMNodeList>(_domDocument.GetElementsByClassName, classes);
 			return GeckoNodeCollection.Create(list);
 		}
 

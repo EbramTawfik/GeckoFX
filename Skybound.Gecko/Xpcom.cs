@@ -40,6 +40,7 @@ using System.Diagnostics;
 using System.Windows.Forms;
 using System.Runtime.CompilerServices;
 using GeckoFX.Microsoft;
+using System.Threading;
 
 namespace Gecko
 {
@@ -84,6 +85,7 @@ namespace Gecko
 		static bool? m_isMono;
 		static bool _IsInitialized;
 		static string _ProfileDirectory;
+        static int _XpcomThreadId;
 		#endregion
 
 		#region CLR runtime
@@ -126,6 +128,11 @@ namespace Gecko
 		}
 		#endregion
 
+		public static bool IsInitialized
+		{
+			get { return _IsInitialized; }
+		}
+
 		public static nsIComponentManager ComponentManager;
 		public static nsIComponentRegistrar ComponentRegistrar;
 		public static nsIServiceManager ServiceManager;
@@ -147,6 +154,8 @@ namespace Gecko
 		{
 			if (_IsInitialized)
 				return;
+
+            Interlocked.Exchange(ref _XpcomThreadId, Thread.CurrentThread.ManagedThreadId);
 
 			if (IsWindows)
 				Kernel32.SetDllDirectory(binDirectory);
@@ -213,6 +222,9 @@ namespace Gecko
 			nsIDirectoryService directoryService = GetService<nsIDirectoryService>("@mozilla.org/file/directory_service;1");
 			if (directoryService != null)
 				directoryService.RegisterProvider(new ProfileProvider());
+
+			if (UseCustomPrompt)
+				PromptFactoryFactory.Register();
 			
 			_IsInitialized = true;
 		}
@@ -224,6 +236,14 @@ namespace Gecko
 			NS_ShutdownXPCOM(ServiceManager);
 			_IsInitialized = false;
 		}
+
+        public static void AssertCorrectThread()
+        {
+            if (Thread.CurrentThread.ManagedThreadId != _XpcomThreadId)
+            {
+                throw new InvalidOperationException("Xpcom must run on own thread");
+            }
+        }
 		#endregion
 
 		/// <summary>
@@ -305,9 +325,11 @@ namespace Gecko
 		{
 			return (TInterfaceType)QueryInterface(obj, typeof(TInterfaceType).GUID);
 		}
-		
+
 		public static object QueryInterface(object obj, Guid iid)
 		{
+            AssertCorrectThread();
+
 			if (obj == null)
 				return null;
 
@@ -365,6 +387,8 @@ namespace Gecko
 		#region GetService
 		public static object GetService(Guid classIID)
 		{
+            AssertCorrectThread();
+
 			Guid iid = typeof(nsISupports).GUID;
 			return ServiceManager.GetService(ref classIID, ref iid);
 		}
@@ -376,6 +400,8 @@ namespace Gecko
 		
 		public static TInterfaceType GetService<TInterfaceType>(string contractID)
 		{
+            AssertCorrectThread();
+
 			Guid iid = typeof(TInterfaceType).GUID;
 			IntPtr ptr = ServiceManager.GetServiceByContractID(contractID, ref iid);
 			return (TInterfaceType)Marshal.GetObjectForIUnknown(ptr);
@@ -418,7 +444,22 @@ namespace Gecko
         /**/
 		#endregion
 
+		///	<summary>
+		/// Helper method for WeakReference
+		///	</summary>
+		internal static IntPtr QueryReferent(object obj, ref Guid uuid )
+		{		
+            Xpcom.AssertCorrectThread();
 
+			IntPtr ppv, pUnk = Marshal.GetIUnknownForObject(obj);
+
+            Marshal.QueryInterface(pUnk, ref uuid, out ppv);
+
+            Marshal.Release(pUnk);
+
+            return ppv;
+   
+		}
 
 		#region Internal class & interface declarations
 		#region QI_nsIInterfaceRequestor	

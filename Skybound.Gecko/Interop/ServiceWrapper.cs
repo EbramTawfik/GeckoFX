@@ -17,6 +17,10 @@ namespace Gecko
 
 		internal ServiceWrapper(string contractID)
 		{
+			if (!Xpcom.IsInitialized)
+			{
+				throw new GeckoException("Xpcom.Initialize must be called before using of any xulrunner/gecko-fx services");
+			}
 			Instance = Xpcom.GetService<T>(contractID);
 		}
 

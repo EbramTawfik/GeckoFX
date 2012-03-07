@@ -1,3 +1,7 @@
+using System;
+using System.Runtime.InteropServices;
+using System.Threading;
+
 namespace Gecko
 {
 	/// <summary>
@@ -6,25 +10,45 @@ namespace Gecko
 	/// WARNING it seems that this class can be created only one time :(
 	/// </summary>
 	public sealed class Pipe
+		:IDisposable 
 	{
-		internal nsIPipe _pipe;
-		internal Pipe()
+		internal InstanceWrapper<nsIPipe> _pipe;
+
+		public Pipe()
 		{
-			var pipe = Xpcom.CreateInstance<nsIPipe>(Contracts.Pipe);
-			_pipe = Xpcom.QueryInterface<nsIPipe>(pipe);
-			_pipe.Init(true, true,0, 0, null);
+			_pipe = new InstanceWrapper<nsIPipe>( Contracts.Pipe );
+			_pipe.Instance.Init(true, true,0, 0, null);
+		}
+
+		~Pipe()
+		{
+			Release();
+		}
+
+		public void Dispose()
+		{
+			Release();
+			GC.SuppressFinalize( this );
+		}
+
+		private void Release()
+		{
+			if (_pipe == null) return;
+			var obj = Interlocked.Exchange(ref _pipe, null);
+			obj.Dispose();
 		}
 
 		public Gecko.IO.InputStream InputStream
 		{
-			get { return IO.InputStream.Create(_pipe.GetInputStreamAttribute()); }
+			get { return IO.InputStream.Create(_pipe.Instance.GetInputStreamAttribute()); }
 		}
 
 
 		public Gecko.IO.OutputStream OutputStream
 		{
-			get { return IO.OutputStream.Create(_pipe.GetOutputStreamAttribute()); }
+			get { return IO.OutputStream.Create(_pipe.Instance.GetOutputStreamAttribute()); }
 		}
+
 
 	}
 }

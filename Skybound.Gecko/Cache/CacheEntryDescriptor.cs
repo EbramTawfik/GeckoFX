@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
+using System.Threading;
 using Gecko.IO;
 
 namespace Gecko.Cache
@@ -17,7 +19,10 @@ namespace Gecko.Cache
 
 		public void Close()
 		{
-			_cacheEntryDescriptor.Close();
+			if (_cacheEntryDescriptor == null) return;
+			var obj = Interlocked.Exchange( ref _cacheEntryDescriptor, null );
+			obj.Close();
+			Marshal.ReleaseComObject( obj );
 		}
 
 		public void Doom()
@@ -45,35 +50,19 @@ namespace Gecko.Cache
 		public new uint ExpirationTime
 		{
 			get { return _cacheEntryDescriptor.GetExpirationTimeAttribute(); }
-			set { _cacheEntryDescriptor.SetExpirationTime( value ); }
-		}
-
-		public new uint DataSize
-		{
-			get { return _cacheEntryDescriptor.GetDataSizeAttribute(); }
-			set { _cacheEntryDescriptor.SetDataSize( value ); }
-		}
-
-		public InputStream OpenInputStream( uint offset )
-		{
-			return InputStream.Create( _cacheEntryDescriptor.OpenInputStream( offset ) );
-		}
-
-		public IO.OutputStream OpenOutputStream( uint offset )
-		{
-			return OutputStream.Create( _cacheEntryDescriptor.OpenOutputStream( offset ) );
+			set{_cacheEntryDescriptor.SetExpirationTime( value );}
 		}
 
 		public long PredictedDataSize
 		{
 			get { return _cacheEntryDescriptor.GetPredictedDataSizeAttribute(); }
-			set { _cacheEntryDescriptor.SetPredictedDataSizeAttribute( value ); }
+			set { _cacheEntryDescriptor.SetPredictedDataSizeAttribute(value); }
 		}
 
 		public CacheStoragePolicy StoragePolicy
 		{
 			get { return (CacheStoragePolicy)_cacheEntryDescriptor.GetStoragePolicyAttribute(); }
-			set { _cacheEntryDescriptor.SetStoragePolicyAttribute( ( IntPtr ) ( int ) value ); }
+			set { _cacheEntryDescriptor.SetStoragePolicyAttribute((IntPtr)(int)value); }
 		}
 
 		public nsIFile File
@@ -84,7 +73,25 @@ namespace Gecko.Cache
 		public nsISupports SecurityInfo
 		{
 			get { return _cacheEntryDescriptor.GetSecurityInfoAttribute(); }
-			set { _cacheEntryDescriptor.SetSecurityInfoAttribute( value ); }
+			set { _cacheEntryDescriptor.SetSecurityInfoAttribute(value); }
+		}
+
+		public new uint DataSize
+		{
+			get { return _cacheEntryDescriptor.GetDataSizeAttribute(); }
+			set { _cacheEntryDescriptor.SetDataSize(value); }
+		}
+
+		#region Functions
+		
+		public InputStream OpenInputStream(uint offset)
+		{
+			return InputStream.Create(_cacheEntryDescriptor.OpenInputStream(offset));
+		}
+
+		public IO.OutputStream OpenOutputStream( uint offset )
+		{
+			return OutputStream.Create( _cacheEntryDescriptor.OpenOutputStream( offset ) );
 		}
 
 		public void MarkValid()
@@ -113,6 +120,7 @@ namespace Gecko.Cache
 			}
 			return ret;
 		}
+		#endregion
 
 		// void VisitMetaData([MarshalAs(UnmanagedType.Interface)] nsICacheMetaDataVisitor visitor);
 

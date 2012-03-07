@@ -205,6 +205,19 @@ namespace GeckofxUnitTests
 			divElement.Id = String.Empty;
 
 			Assert.IsFalse(divElement.HasAttribute("iD"));
+		}
+
+		// TODO: move to a GeckoElementTests file.
+		[Test]
+		public void Style_GetInlineStyleWhenOneDoesNotExist_ValidGeckoStyleReturned()
+		{
+			LoadHtml("some random html");
+
+			var style = browser.Document.Body.Style;
+			Assert.NotNull(style);
+
+			// Test using it.
+			style.SetPropertyValue("white-space", "pre-wrap");
 
 		}
 

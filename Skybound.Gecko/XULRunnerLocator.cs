@@ -26,15 +26,13 @@ namespace Gecko
 			return dirs.OrderBy(x => x.Name).Last().FullName;
 		}
 
-		private static string  GetXULRunnerLocationWindows()
+		private static string GetXULRunnerLocationWindows()
 		{
-			var programFiles = System.Environment.GetFolderPath( Environment.SpecialFolder.ProgramFiles );
-			var firefoxLocation=Path.Combine( programFiles, "Mozilla Firefox" );
-			if (Directory.Exists(firefoxLocation))
-			{
-				return firefoxLocation;
-			}
-			return null;
+			var programFiles = Environment.GetFolderPath( Environment.SpecialFolder.ProgramFiles );
+
+			string[] folderSearch = new string[] { "Mozilla Firefox", "Mozilla Firefox 10" };
+
+			return folderSearch.Select( t => Path.Combine( programFiles, t ) ).FirstOrDefault( Directory.Exists );
 		}
 
 		public static string GetXULRunnerLocation()

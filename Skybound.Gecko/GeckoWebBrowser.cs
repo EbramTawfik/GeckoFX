@@ -43,6 +43,7 @@ using System.IO;
 using System.Reflection;
 using System.Diagnostics;
 using System.Text;
+using Gecko.Interop;
 using Gecko.Net;
 
 namespace Gecko
@@ -56,13 +57,12 @@ namespace Gecko
 		nsIWebProgressListener,
 		nsIInterfaceRequestor,
 		nsIEmbeddingSiteWindow2,
-		nsISupportsWeakReference,
-		nsIWeakReference,
 		nsIDOMEventListener,
 		nsISHistoryListener,
 		nsITooltipListener,
         nsIObserver,
-         nsIHttpActivityObserver
+         nsIHttpActivityObserver,
+		nsISupportsWeakReference
 		//nsIWindowProvider,
 	{
 		#region Fields
@@ -102,31 +102,57 @@ namespace Gecko
 		#region protected override void Dispose(bool disposing)
 		protected override void Dispose(bool disposing)
 		{
-			NavigateFinishedNotifier.Dispose();
+			// If GC thread is calling Dispose
+			if (!disposing)
+			{				
+				Debug.WriteLine("Warning: GeckoWebBrowser control not disposed.");				
+				if (!IsHandleCreated)
+					return;
+				Invoke(new Action(Cleanup), new object[] { });
+				base.Dispose(disposing);
+				return;
+			}
+
+			RemoveJsContextCallBack();
+
+			//var count = Gecko.Interop.ComDebug.GetRefCount(WebBrowser);
+			if (NavigateFinishedNotifier != null)
+				NavigateFinishedNotifier.Dispose();
 
 			if (!Environment.HasShutdownStarted && !AppDomain.CurrentDomain.IsFinalizingForUnload())
 			{
-				// make sure the object is still alove before we call a method on it
-				if (Xpcom.QueryInterface<nsIWebNavigation>(WebNav) != null)
+				// make sure the object is still alive before we call a method on it
+				var webNav = Xpcom.QueryInterface<nsIWebNavigation>( WebNav );
+				if (webNav != null)
 				{
-					WebNav.Stop(nsIWebNavigationConstants.STOP_ALL);
+					webNav.Stop(nsIWebNavigationConstants.STOP_ALL);
+					Marshal.ReleaseComObject( webNav );
 				}
 				WebNav = null;
 
-				if (Xpcom.QueryInterface<nsIBaseWindow>(BaseWindow) != null)
-				{
-					BaseWindow.Destroy();
-				}
-				BaseWindow = null;
+				Cleanup();
 			}
 
 #if GTK			
 			if (m_wrapper != null)
 				m_wrapper.Dispose();
 #endif
-
+			//count = Gecko.Interop.ComDebug.GetRefCount(WebBrowser);
 			base.Dispose(disposing);
 		}
+
+		// This method should only run on the Main Thread.
+		private void Cleanup()
+		{
+			var baseWindow = Xpcom.QueryInterface<nsIBaseWindow>(BaseWindow);
+			if (baseWindow != null)
+			{
+				baseWindow.Destroy();
+				Marshal.ReleaseComObject(baseWindow);
+			}
+			BaseWindow = null;
+		}
+
 		#endregion
 
 		#region JSContext
@@ -136,23 +162,42 @@ namespace Gecko
 		/// </summary>
 		protected void RecordNewJsContext()
 		{
+            Xpcom.AssertCorrectThread();
+
 			// Add a hook to record when the a new Context is created.
 			// If an existing hook exists, replace hook with one that
 			// 1. call original hook
 			// 2. reinstates original hook when done.
 
-			nsIJSRuntimeService runtimeService = Xpcom.GetService<nsIJSRuntimeService>("@mozilla.org/js/xpc/RuntimeService;1");
-			IntPtr runtime = runtimeService.GetRuntimeAttribute();
+			_runtimeService = Xpcom.GetService<nsIJSRuntimeService>("@mozilla.org/js/xpc/RuntimeService;1");
+			_jsRuntime = _runtimeService.GetRuntimeAttribute();
 
-			AutoJSContext.CallBack cb = (cx, unitN) => { JSContext = cx; AutoJSContext.JS_SetContextCallback(runtime, null); return true; };
+			_managedCallback = (IntPtr cx, UInt32 unitN) => { JSContext = cx; AutoJSContext.JS_SetContextCallback(_jsRuntime, null); return 1; };
 
-			AutoJSContext.CallBack old = AutoJSContext.JS_SetContextCallback(runtime, cb);
-			if (old != null)
+			_originalContextCallBack = AutoJSContext.JS_SetContextCallback(_jsRuntime, _managedCallback);
+			if (_originalContextCallBack != null)
 			{
-				cb = (cx, unitN) => { JSContext = cx; AutoJSContext.JS_SetContextCallback(runtime, old); return old(cx, unitN); };
-				AutoJSContext.JS_SetContextCallback(runtime, cb);
+				RemoveJsContextCallBack();
+				_managedCallback = (IntPtr cx, UInt32 unitN) => { JSContext = cx; AutoJSContext.JS_SetContextCallback(_jsRuntime, _originalContextCallBack); return _originalContextCallBack(cx, unitN); };
+				AutoJSContext.JS_SetContextCallback(_jsRuntime, _managedCallback);
 			}
 		}
+
+		protected void RemoveJsContextCallBack()
+		{
+            Xpcom.AssertCorrectThread();
+
+			if (_jsRuntime == IntPtr.Zero)
+				return;
+
+			AutoJSContext.JS_SetContextCallback(_jsRuntime, _originalContextCallBack);
+		}
+
+
+		private IntPtr _jsRuntime;
+		private nsIJSRuntimeService _runtimeService;
+		private AutoJSContext.CallBack _managedCallback;
+		private AutoJSContext.CallBack _originalContextCallBack;
 
 		public IntPtr JSContext { get; protected set; }
 		#endregion
@@ -1485,40 +1530,6 @@ namespace Gecko
 
 		#endregion
 		
-		#region nsISupportsWeakReference Members
-
-		nsIWeakReference nsISupportsWeakReference.GetWeakReference()
-		{
-			return this;			
-		}
-
-		#endregion
-
-		#region nsIWeakReference Members
-		IntPtr nsIWeakReference.QueryReferent(ref Guid uuid)
-		{
-			IntPtr ppv, pUnk = Marshal.GetIUnknownForObject(this);
-			
-			Marshal.QueryInterface(pUnk, ref uuid, out ppv);
-
-			if (Xpcom.IsMono)
-			{
-				// TODO FIXME - remove this hack.
-				Marshal.AddRef(ppv);
-			}
-			
-			Marshal.Release(pUnk);
-			
-			if (ppv != IntPtr.Zero)
-			{
-			      Marshal.Release(ppv);
-			}
-
-			return ppv;
-		}
-
-		#endregion
-		
 		#region nsIWebProgressListener Members
 
 		void nsIWebProgressListener.OnStateChange(nsIWebProgress aWebProgress, nsIRequest aRequest, uint aStateFlags, int aStatus)
@@ -1939,6 +1950,11 @@ namespace Gecko
             return true;
         }
         #endregion nsIHttpActivityObserver members
+
+		public nsIWeakReference GetWeakReference()
+		{
+			return new nsWeakReference( this );
+		}
 	}
 	
 
@@ -2102,16 +2118,19 @@ namespace Gecko
             var xhr_status = m_notificationCallsbacks.GetStatusAttribute();
             var xhr_readyState = m_notificationCallsbacks.GetReadyStateAttribute();
 
+            bool bHandlerFailed = false;
+
             try
             {
                 m_origEventListener.HandleEvent(@event);
             }
-            catch (COMException)
+            catch (Exception)
             {
+                bHandlerFailed = true;
             }
 
             // remove when finished
-            if (xhr_readyState == 4)
+            if (bHandlerFailed || (xhr_readyState == 4))
             {
                 m_browser.origJavaScriptHttpChannels.Remove(m_httpChannel);
             }
