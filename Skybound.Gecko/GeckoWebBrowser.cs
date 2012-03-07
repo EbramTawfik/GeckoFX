@@ -99,12 +99,14 @@ namespace Gecko
 
 		#region protected override void Dispose(bool disposing)
 		protected override void Dispose(bool disposing)
-		{            
+		{
+			// If GC thread is calling Dispose
 			if (!disposing)
-			{
-				Debug.WriteLine("Warning: GeckoWebBrowser control not disposed.");
-				// If GC thread is calling Dispose
-				this.Invoke(new Action(Cleanup), new object[] { });
+			{				
+				Debug.WriteLine("Warning: GeckoWebBrowser control not disposed.");				
+				if (!IsHandleCreated)
+					return;
+				Invoke(new Action(Cleanup), new object[] { });
 				base.Dispose(disposing);
 				return;
 			}
