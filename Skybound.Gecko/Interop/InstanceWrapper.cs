@@ -16,6 +16,16 @@ namespace Gecko
 			Instance = Xpcom.CreateInstance<T>(contractID);
 		}
 
+		/// <summary>
+		/// In usual cases second parameter is always false
+		/// </summary>
+		/// <param name="obj">Xulrunner object(interface)</param>
+		/// <param name="incrementReferenceCounter">true to perform QueryInterface on object</param>
+		internal InstanceWrapper(T obj,bool incrementReferenceCounter=false)
+		{
+			Instance = incrementReferenceCounter ? Xpcom.QueryInterface<T>(obj) : obj;
+		}
+
 		~InstanceWrapper()
 		{
 			FreeInstanceReference();

@@ -14,7 +14,16 @@ namespace Gecko
 		public static readonly string CacheService = "@mozilla.org/network/cache-service;1";
 		public static readonly string NetworkIOService = "@mozilla.org/network/io-service;1";
 		#endregion
+		#region Security
 		public static readonly string X509CertDb = "@mozilla.org/security/x509certdb;1";
+		public static readonly string RandomGenerator = "@mozilla.org/security/random-generator;1";
+		#endregion
+		#region AppShell
+		public static readonly string AppShellService = "@mozilla.org/appshell/appShellService;1";
+		public static readonly string WindowMediator = "@mozilla.org/appshell/window-mediator;1";
+		#endregion
+
+		public static readonly string WritableVariant = "@mozilla.org/variant;1";
 
 		public static readonly string ImageCache = "@mozilla.org/image/cache;1";
 		public static readonly string ZipReader = "@mozilla.org/libjar/zip-reader;1";
@@ -30,7 +39,10 @@ namespace Gecko
 		public static readonly string VersionComparator = "@mozilla.org/xpcom/version-comparator;1";
 		public static readonly string StorageStream = "@mozilla.org/storagestream;1";
 		public static readonly string ConsoleService = "@mozilla.org/consoleservice;1";
-		public static readonly string AppShellService = "@mozilla.org/appshell/appShellService;1";
+		public static readonly string ScreenManager = "@mozilla.org/gfx/screenmanager;1";
+		public static readonly string XulRuntime = "@mozilla.org/xre/app-info;1";
+		public static readonly string WiFiMonitor = "@mozilla.org/wifi/monitor;1";
+		public static readonly string ExceptionService = "@mozilla.org/exceptionservice;1";
 		#region nsISupportsPrimitive's
 		internal static readonly string SupportsID = "@mozilla.org/supports-id;1";
 		internal static readonly string SupportsString = "@mozilla.org/supports-string;1";
