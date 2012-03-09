@@ -457,30 +457,7 @@ namespace Gecko
 
 		public virtual string OuterHtml
 		{
-			get {
-				string contenteditableAttribute = String.Empty;
-				string contentEdiableValue = ContentEditable;
-
-				if (contentEdiableValue.ToLowerInvariant() != "inherit")
-					contenteditableAttribute = String.Format(" ContentEditable={0}", contentEdiableValue);
-
-				string nameAttribute = String.Empty;
-				string name = this.GetAttribute("name");
-				if (!String.IsNullOrEmpty(name))
-					nameAttribute = String.Format(" name=\"{0}\"", name);
-
-				string idAttribute = String.Empty;
-				string id = Id;
-				if (!String.IsNullOrEmpty(id))
-					idAttribute = String.Format(" id=\"{0}\"", id);
-
-				string classAttribute = String.Empty;
-				string className = ClassName;
-				if (!String.IsNullOrEmpty(className))
-					classAttribute = String.Format(" class=\"{0}\"", className);
-				
-				return String.Format("<{0}{1}{2}{3}{4}>{5}</{0}>", TagName, nameAttribute, idAttribute, classAttribute, contenteditableAttribute, InnerHtml);
-			}
+			get { return nsString.Get(DomElement.GetOuterHTMLAttribute); }			
 		}
 		
 		public int TabIndex
