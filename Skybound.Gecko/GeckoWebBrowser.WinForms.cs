@@ -137,8 +137,10 @@ namespace Gecko
                 _target.AddEventListener(new nsAString("change"), domEventListener, true, true, 2);
 
 				// history
-				if (WebNav.GetSessionHistoryAttribute() != null)
-					WebNav.GetSessionHistoryAttribute().AddSHistoryListener(new GeckoSHistoryListener(this));
+				{
+					var sessionHistory = WebNav.GetSessionHistoryAttribute();
+					if (sessionHistory!=null) sessionHistory.AddSHistoryListener( this );
+				}
 
 				BaseWindow.SetVisibilityAttribute(true);
 

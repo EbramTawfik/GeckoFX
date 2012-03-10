@@ -16,7 +16,6 @@ namespace Gecko.Plugins
 
 		public static void ReloadPlugins(bool reloadPages)
 		{
-			
 			_pluginHost.Instance.ReloadPlugins( reloadPages );
 		}
 

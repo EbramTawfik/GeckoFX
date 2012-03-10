@@ -58,7 +58,7 @@ namespace Gecko
 		/// </summary>
 		public bool HttpRequestSucceeded
 		{
-			get { return (HttpChannel == null) ? true : HttpChannel.GetRequestSucceededAttribute(); }
+			get { return (HttpChannel == null) || HttpChannel.GetRequestSucceededAttribute(); }
 		}
 		
 		/// <summary>

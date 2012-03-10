@@ -101,6 +101,12 @@
   <ItemGroup>
     <Compile Include="AppShellService.cs" />
     <Compile Include="AutoJSContext.cs" />
+    <Compile Include="RandomGenerator.cs" />
+    <Compile Include="Services\ExceptionService.cs" />
+    <Compile Include="Variant.cs" />
+    <Compile Include="WiFiMonitor.cs" />
+    <Compile Include="WindowMediator.cs" />
+    <Compile Include="XulRuntime.cs" />
     <None Include="ClassDiagrams\nsIDOMNode.cd" />
     <None Include="GeckoFX.snk" />
     <Compile Include="BaseNsFactory.cs" />
@@ -131,6 +137,7 @@
     <Compile Include="Listeners\GeckoSHistoryListener.cs" />
     <Compile Include="Listeners\GeckoWebProgressListener.cs" />
     <Compile Include="Observers\BaseHttpRequestResponceObserver.cs" />
+    <Compile Include="ScreenManager.cs" />
     <Compile Include="Search\BrowserSearchService.cs" />
     <Compile Include="ByteArrayInputStream.cs" />
     <Compile Include="Cache\CacheDeviceInfo.cs" />

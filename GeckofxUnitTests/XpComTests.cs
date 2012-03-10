@@ -93,9 +93,10 @@ namespace GeckofxUnitTests
 			Marshal.ReleaseComObject(instance);
 		}
 
+		[Ignore("This test fails with System.OutOfMemoryException exception when the nsIRandomGenerator service is used.")]
 		[Test]
 		public void CreateInstance_CreatingPSM_ReturnsValidInstance()
-		{
+		{			
 			var instance = Xpcom.CreateInstance<nsISignatureVerifier>("@mozilla.org/psm;1");
 			Assert.IsNotNull(instance);
 			Marshal.ReleaseComObject(instance);

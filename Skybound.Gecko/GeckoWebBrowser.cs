@@ -108,7 +108,15 @@ namespace Gecko
 				Debug.WriteLine("Warning: GeckoWebBrowser control not disposed.");				
 				if (!IsHandleCreated)
 					return;
-				Invoke(new Action(Cleanup), new object[] { });
+				try
+				{
+					Invoke(new Action(Cleanup), new object[] { });
+				}
+				catch
+				{
+					Debug.WriteLine( "exception in GeckoWebBroswer.Dispose -> Invoke(Cleanup)" );
+				}
+				
 				base.Dispose(disposing);
 				return;
 			}
@@ -122,14 +130,7 @@ namespace Gecko
 			if (!Environment.HasShutdownStarted && !AppDomain.CurrentDomain.IsFinalizingForUnload())
 			{
 				// make sure the object is still alive before we call a method on it
-				var webNav = Xpcom.QueryInterface<nsIWebNavigation>( WebNav );
-				if (webNav != null)
-				{
-					webNav.Stop(nsIWebNavigationConstants.STOP_ALL);
-					Marshal.ReleaseComObject( webNav );
-				}
-				WebNav = null;
-
+				CleanupWebNav();
 				Cleanup();
 			}
 
@@ -141,9 +142,22 @@ namespace Gecko
 			base.Dispose(disposing);
 		}
 
+		private void CleanupWebNav()
+		{
+			if (WebNav == null) return;
+			var webNav = Xpcom.QueryInterface<nsIWebNavigation>(WebNav);
+			if (webNav != null)
+			{
+				webNav.Stop(nsIWebNavigationConstants.STOP_ALL);
+				Marshal.ReleaseComObject(webNav);
+			}
+			WebNav = null;
+		}
+
 		// This method should only run on the Main Thread.
 		private void Cleanup()
 		{
+			if (BaseWindow == null) return;
 			var baseWindow = Xpcom.QueryInterface<nsIBaseWindow>(BaseWindow);
 			if (baseWindow != null)
 			{
@@ -491,7 +505,7 @@ namespace Gecko
 		}
 
 
-
+		[Obsolete]
 		public NavigateFinishedNotifier NavigateFinishedNotifier;
 		
 		/// <summary>

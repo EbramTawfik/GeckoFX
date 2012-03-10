@@ -23,4 +23,34 @@ namespace Gecko
 			
 		}
 	}
+
+	public sealed class GeckoNativeException
+		:GeckoException
+	{
+		private nsIException _exception;
+
+		private GeckoNativeException(nsIException exception)
+			:base(exception.GetMessageAttribute())
+		{
+			_exception = exception;
+
+			
+		}
+
+		public string Name
+		{
+			get { return _exception.GetNameAttribute(); }
+		}
+
+
+		public GeckoNativeException Inner
+		{
+			get { return Create(_exception.GetInnerAttribute()); }
+		}
+
+		internal static GeckoNativeException Create(nsIException exception)
+		{
+			return exception == null ? null : new GeckoNativeException( exception );
+		}
+	}
 }

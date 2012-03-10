@@ -6,6 +6,11 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 1. Initial version supporting firefox/xulrunner v11.0
 
+== v10.0-0.5 ==
+
+1. Numerious fixes to improve Geckofx stability.
+2. Added wrappers for XulRuntime WindowMediator WiFiMonitor ExceptionService ScreenManager RandomGenerator
+
 == v10.0-0.4 ==
 
 1. Fix infrequent Linux seg fault when calling SetInputFocus()
