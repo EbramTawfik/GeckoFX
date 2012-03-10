@@ -114,9 +114,6 @@ namespace Gecko
 			if (WebBrowser!=null)
 			{
 				count=Marshal.ReleaseComObject( _target );
-
-				CleanupWebNav();
-				RemoveJsContextCallBack();
 				// BaseWindow Destroy will be called automaticaly when object is released
 				count=Marshal.ReleaseComObject( WebBrowser );
 				if (count > 0)
@@ -125,6 +122,8 @@ namespace Gecko
 					Console.WriteLine("Warning: GeckoWebBrowser.Dispose RefCount != 0");
 					Marshal.FinalReleaseComObject( WebBrowser );
 				}
+				// set all references to null
+				WebNav = null;
 				BaseWindow = null;
 				WebBrowserFocus = null;
 				WebBrowser = null;
@@ -148,30 +147,6 @@ namespace Gecko
 #endif
 			
 			base.Dispose(disposing);
-		}
-
-		private void CleanupWebNav()
-		{
-			if (WebNav == null) return;
-			var webNav = Xpcom.QueryInterface<nsIWebNavigation>(WebNav);
-			if (webNav != null)
-			{
-				// At this time i don't know
-				try
-				{
-					webNav.Stop(nsIWebNavigationConstants.STOP_ALL);
-				}
-				catch (COMException comException)
-				{
-					if (comException.ErrorCode == 0x8000FFFF)
-					{
-						//ok just call is unexpected :)
-					}
-				}
-				
-				Marshal.ReleaseComObject(webNav);
-			}
-			WebNav = null;
 		}
 
 		#endregion
