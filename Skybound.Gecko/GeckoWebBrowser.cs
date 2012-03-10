@@ -38,6 +38,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Runtime.InteropServices;
+using System.Threading;
 using System.Windows.Forms;
 using System.IO;
 using System.Reflection;
@@ -102,43 +103,50 @@ namespace Gecko
 		#region protected override void Dispose(bool disposing)
 		protected override void Dispose(bool disposing)
 		{
-			// If GC thread is calling Dispose
-			if (!disposing)
-			{				
-				Debug.WriteLine("Warning: GeckoWebBrowser control not disposed.");				
-				if (!IsHandleCreated)
-					return;
-				try
-				{
-					Invoke(new Action(Cleanup), new object[] { });
-				}
-				catch
-				{
-					Debug.WriteLine( "exception in GeckoWebBroswer.Dispose -> Invoke(Cleanup)" );
-				}
-				
-				base.Dispose(disposing);
-				return;
-			}
-
-			RemoveJsContextCallBack();
-
-			//var count = Gecko.Interop.ComDebug.GetRefCount(WebBrowser);
-			if (NavigateFinishedNotifier != null)
-				NavigateFinishedNotifier.Dispose();
-
-			if (!Environment.HasShutdownStarted && !AppDomain.CurrentDomain.IsFinalizingForUnload())
+			int count;
+			// If system is performing shutdown or application is exiting all hannldes will be closed by OS
+			if (Environment.HasShutdownStarted) return;
+			if (AppDomain.CurrentDomain.IsFinalizingForUnload()) return;
+		
+			// If OnHandleCreated is called WebBrowser instance is exist
+			// Don't use HandleCreated in some situation (when webbrowser is removed from control)
+			// It is ALWAYS false
+			if (WebBrowser!=null)
 			{
-				// make sure the object is still alive before we call a method on it
+				count=Marshal.ReleaseComObject( _target );
+
 				CleanupWebNav();
-				Cleanup();
+				RemoveJsContextCallBack();
+				// BaseWindow Destroy will be called automaticaly when object is released
+				count=Marshal.ReleaseComObject( WebBrowser );
+				if (count > 0)
+				{
+					// if we are here - we need to find unbalanced QueryInterface
+					Console.WriteLine("Warning: GeckoWebBrowser.Dispose RefCount != 0");
+					Marshal.FinalReleaseComObject( WebBrowser );
+				}
+				BaseWindow = null;
+				WebBrowserFocus = null;
+				WebBrowser = null;
+			}
+			
+			// In ctor are created: m_wrapper & NavigateFinishedNotifier
+			// kill them in reverse order
+			if (NavigateFinishedNotifier != null)
+			{
+				var notifier = Interlocked.Exchange(ref NavigateFinishedNotifier, null);
+				notifier.Dispose();
 			}
 
 #if GTK			
 			if (m_wrapper != null)
-				m_wrapper.Dispose();
+			{
+				var w = Interlocked.Exchange( ref m_wrapper, null );
+				w.Dispose();
+			}
+				
 #endif
-			//count = Gecko.Interop.ComDebug.GetRefCount(WebBrowser);
+			
 			base.Dispose(disposing);
 		}
 
@@ -148,23 +156,22 @@ namespace Gecko
 			var webNav = Xpcom.QueryInterface<nsIWebNavigation>(WebNav);
 			if (webNav != null)
 			{
-				webNav.Stop(nsIWebNavigationConstants.STOP_ALL);
+				// At this time i don't know
+				try
+				{
+					webNav.Stop(nsIWebNavigationConstants.STOP_ALL);
+				}
+				catch (COMException comException)
+				{
+					if (comException.ErrorCode == 0x8000FFFF)
+					{
+						//ok just call is unexpected :)
+					}
+				}
+				
 				Marshal.ReleaseComObject(webNav);
 			}
 			WebNav = null;
-		}
-
-		// This method should only run on the Main Thread.
-		private void Cleanup()
-		{
-			if (BaseWindow == null) return;
-			var baseWindow = Xpcom.QueryInterface<nsIBaseWindow>(BaseWindow);
-			if (baseWindow != null)
-			{
-				baseWindow.Destroy();
-				Marshal.ReleaseComObject(baseWindow);
-			}
-			BaseWindow = null;
 		}
 
 		#endregion
