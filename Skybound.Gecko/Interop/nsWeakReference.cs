@@ -1,25 +1,66 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 
 namespace Gecko.Interop
 {
-	sealed class nsWeakReference
+	class nsWeakReference
 		:nsIWeakReference
 	{
-		private WeakReference _weakReference;
+		protected WeakReference _weakReference;
 
-		public nsWeakReference(object obj)
+		protected nsWeakReference(object obj)
 		{
-			_weakReference = new WeakReference( obj );
+			_weakReference = new WeakReference( obj, false );
 		}
 
-		public IntPtr QueryReferent(ref Guid uuid)
+		IntPtr nsIWeakReference.QueryReferent(  ref Guid uuid)
 		{
 			return _weakReference.IsAlive
-			       	? Xpcom.QueryReferent( _weakReference.Target, ref uuid )
+			       	? QueryReferentImplementation( ref uuid )
 			       	: IntPtr.Zero;
 		}
+
+		protected virtual IntPtr QueryReferentImplementation(ref Guid uuid)
+		{
+			return Xpcom.QueryReferent( _weakReference.Target, ref uuid );
+		}
+
+		/// <summary>
+		/// This fuction contains different logic for Controls
+		/// </summary>
+		/// <param name="obj"></param>
+		/// <returns></returns>
+		public static nsWeakReference Create(object obj)
+		{
+			if (obj is Control)
+			{
+				return new ControlWeakReference( ( Control ) obj );
+			}
+			return new nsWeakReference( obj );
+		}
 	}
+
+
+	sealed class ControlWeakReference
+		: nsWeakReference
+	{
+
+		internal ControlWeakReference(Control control)
+			:base(control)
+		{
+			
+		}
+
+		protected override IntPtr QueryReferentImplementation(ref Guid uuid)
+		{
+			return ((Control)_weakReference.Target).IsDisposed
+				? IntPtr.Zero
+				: base.QueryReferentImplementation(ref uuid);
+		}
+	}
+
 }

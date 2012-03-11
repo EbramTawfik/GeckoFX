@@ -110,31 +110,31 @@ namespace Gecko
 					activityDistributor.AddObserver(this);
 				}
 
-                var domEventListener = new GeckoDOMEventListener(this);
+               // var domEventListener = new GeckoDOMEventListener(this);
 
 				_target = Xpcom.QueryInterface<nsIDOMWindow>(WebBrowser.GetContentDOMWindowAttribute()).GetWindowRootAttribute();
 
-                _target.AddEventListener(new nsAString("submit"), domEventListener, true, true, 2);
-                _target.AddEventListener(new nsAString("keydown"), domEventListener, true, true, 2);
-                _target.AddEventListener(new nsAString("keyup"), domEventListener, true, true, 2);
-                _target.AddEventListener(new nsAString("keypress"), domEventListener, true, true, 2);
-                _target.AddEventListener(new nsAString("mousemove"), domEventListener, true, true, 2);
-                _target.AddEventListener(new nsAString("mouseover"), domEventListener, true, true, 2);
-                _target.AddEventListener(new nsAString("mouseout"), domEventListener, true, true, 2);
-                _target.AddEventListener(new nsAString("mousedown"), domEventListener, true, true, 2);
-                _target.AddEventListener(new nsAString("mouseup"), domEventListener, true, true, 2);
-                _target.AddEventListener(new nsAString("click"), domEventListener, true, true, 2);
-                _target.AddEventListener(new nsAString("dblclick"), domEventListener, true, true, 2);
-                _target.AddEventListener(new nsAString("compositionstart"), domEventListener, true, true, 2);
-                _target.AddEventListener(new nsAString("compositionend"), domEventListener, true, true, 2);
-                _target.AddEventListener(new nsAString("contextmenu"), domEventListener, true, true, 2);
-                _target.AddEventListener(new nsAString("DOMMouseScroll"), domEventListener, true, true, 2);
-                _target.AddEventListener(new nsAString("focus"), domEventListener, true, true, 2);
-                _target.AddEventListener(new nsAString("blur"), domEventListener, true, true, 2);
+                _target.AddEventListener(new nsAString("submit"), this, true, true, 2);
+				_target.AddEventListener(new nsAString("keydown"), this, true, true, 2);
+				_target.AddEventListener(new nsAString("keyup"), this, true, true, 2);
+				_target.AddEventListener(new nsAString("keypress"), this, true, true, 2);
+				_target.AddEventListener(new nsAString("mousemove"), this, true, true, 2);
+				_target.AddEventListener(new nsAString("mouseover"), this, true, true, 2);
+				_target.AddEventListener(new nsAString("mouseout"), this, true, true, 2);
+				_target.AddEventListener(new nsAString("mousedown"), this, true, true, 2);
+				_target.AddEventListener(new nsAString("mouseup"), this, true, true, 2);
+				_target.AddEventListener(new nsAString("click"), this, true, true, 2);
+				_target.AddEventListener(new nsAString("dblclick"), this, true, true, 2);
+				_target.AddEventListener(new nsAString("compositionstart"), this, true, true, 2);
+				_target.AddEventListener(new nsAString("compositionend"), this, true, true, 2);
+				_target.AddEventListener(new nsAString("contextmenu"), this, true, true, 2);
+				_target.AddEventListener(new nsAString("DOMMouseScroll"), this, true, true, 2);
+				_target.AddEventListener(new nsAString("focus"), this, true, true, 2);
+				_target.AddEventListener(new nsAString("blur"), this, true, true, 2);
 				// Load event added here rather than DOMDocument as DOMDocument recreated when navigating
 				// ths losing attached listener.
-                _target.AddEventListener(new nsAString("load"), domEventListener, true, true, 2);
-                _target.AddEventListener(new nsAString("change"), domEventListener, true, true, 2);
+				_target.AddEventListener(new nsAString("load"), this, true, true, 2);
+				_target.AddEventListener(new nsAString("change"), this, true, true, 2);
 
 				// history
 				{
@@ -162,7 +162,10 @@ namespace Gecko
 			// stopping navigation
 			try
 			{
-				WebNav.Stop(nsIWebNavigationConstants.STOP_ALL);
+				if (WebNav != null)
+				{
+					WebNav.Stop( nsIWebNavigationConstants.STOP_ALL );
+				}
 			}
 			catch (COMException comException)
 			{
@@ -171,7 +174,6 @@ namespace Gecko
 					//ok just call is unexpected :)
 				}
 			}
-			BaseWindow.Destroy();
 			base.OnHandleDestroyed(e);
 		}
 
