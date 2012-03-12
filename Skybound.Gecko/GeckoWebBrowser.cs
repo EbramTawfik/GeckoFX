@@ -103,50 +103,55 @@ namespace Gecko
 		#region protected override void Dispose(bool disposing)
 		protected override void Dispose(bool disposing)
 		{
-			int count;
-			// If system is performing shutdown or application is exiting all hannldes will be closed by OS
-			if (Environment.HasShutdownStarted) return;
-			if (AppDomain.CurrentDomain.IsFinalizingForUnload()) return;
-		
-			// If OnHandleCreated is called WebBrowser instance is exist
-			// Don't use HandleCreated in some situation (when webbrowser is removed from control)
-			// It is ALWAYS false
-			if (WebBrowser!=null)
-			{
-				count=Marshal.ReleaseComObject( _target );
-				// BaseWindow Destroy will be called automaticaly when object is released
-				count=Marshal.ReleaseComObject( WebBrowser );
-				if (count > 0)
-				{
-					// if we are here - we need to find unbalanced QueryInterface
-					Console.WriteLine("Warning: GeckoWebBrowser.Dispose RefCount != 0");
-					Marshal.FinalReleaseComObject( WebBrowser );
-				}
-				// set all references to null
-				WebNav = null;
-				BaseWindow = null;
-				WebBrowserFocus = null;
-				WebBrowser = null;
+			// If GC thread is calling Dispose
+			if (!disposing)
+			{				
+				Debug.WriteLine("Warning: GeckoWebBrowser control not disposed.");				
+				if (!IsHandleCreated)
+					return;
+				Invoke(new Action(Cleanup), new object[] { });
+				base.Dispose(disposing);
+				return;
 			}
-			
-			// In ctor are created: m_wrapper & NavigateFinishedNotifier
-			// kill them in reverse order
+
+			RemoveJsContextCallBack();
+
+			//var count = Gecko.Interop.ComDebug.GetRefCount(WebBrowser);
 			if (NavigateFinishedNotifier != null)
+				NavigateFinishedNotifier.Dispose();
+
+			if (!Environment.HasShutdownStarted && !AppDomain.CurrentDomain.IsFinalizingForUnload())
 			{
-				var notifier = Interlocked.Exchange(ref NavigateFinishedNotifier, null);
-				notifier.Dispose();
+				// make sure the object is still alive before we call a method on it
+				var webNav = Xpcom.QueryInterface<nsIWebNavigation>( WebNav );
+				if (webNav != null)
+				{
+					webNav.Stop(nsIWebNavigationConstants.STOP_ALL);
+					Marshal.ReleaseComObject( webNav );
+				}
+				WebNav = null;
+
+				Cleanup();
 			}
 
 #if GTK			
 			if (m_wrapper != null)
-			{
-				var w = Interlocked.Exchange( ref m_wrapper, null );
-				w.Dispose();
-			}
-				
+				m_wrapper.Dispose();
 #endif
-			
+			//count = Gecko.Interop.ComDebug.GetRefCount(WebBrowser);
 			base.Dispose(disposing);
+		}
+
+		// This method should only run on the Main Thread.
+		private void Cleanup()
+		{
+			var baseWindow = Xpcom.QueryInterface<nsIBaseWindow>(BaseWindow);
+			if (baseWindow != null)
+			{
+				baseWindow.Destroy();
+				Marshal.ReleaseComObject(baseWindow);
+			}
+			BaseWindow = null;
 		}
 
 		#endregion
@@ -1404,44 +1409,45 @@ namespace Gecko
 			
 			OnWindowSetBounds(new GeckoWindowSetBoundsEventArgs(new Rectangle(x, y, cx, cy), specified));			
 		}
-
+	
 		unsafe void nsIEmbeddingSiteWindow.GetDimensions(uint flags, int* x, int* y, int* cx, int* cy)
-		{
-			int localX = (x != ( void* ) 0)?*x:0;
-			int localY = (y!= (void*)0) ? *y : 0;
+		{			
+			int localX = (x != (void*)0) ? *x : 0;
+			int localY = (y != (void*)0) ? *y : 0;
 			int localCX = 0;
 			int localCY = 0;
 			if (!IsDisposed)
 			{
-				if ( ( flags & nsIEmbeddingSiteWindowConstants.DIM_FLAGS_POSITION ) != 0 )
-				{
-					Point pt = PointToScreen( Point.Empty );
+
+			if ((flags & nsIEmbeddingSiteWindowConstants.DIM_FLAGS_POSITION) != 0)
+			{
+				Point pt = PointToScreen(Point.Empty);
 					localX = pt.X;
 					localY = pt.Y;
-				}
+			}
+			
+			
 
-				Control topLevel = this.TopLevelControl;
-
-				Size nonClient = new Size( topLevel.Width - ClientSize.Width, topLevel.Height - ClientSize.Height );
+				
 				localCX = ClientSize.Width;
 				localCY = ClientSize.Height;
-
-
-				if ( ( this.ChromeFlags & ( int ) GeckoWindowFlags.OpenAsChrome ) != 0 )
-				{
-					BaseWindow.GetSize( ref localCX, ref localCY );
-				}
-
-				if ( ( flags & nsIEmbeddingSiteWindowConstants.DIM_FLAGS_SIZE_INNER ) == 0 )
-				{
-					localCX += nonClient.Width;
-					localCY += nonClient.Height;
-				}
+			
+			if ((this.ChromeFlags & (int)GeckoWindowFlags.OpenAsChrome) != 0)
+			{
+					BaseWindow.GetSize(ref localCX, ref localCY);
 			}
-			if (x != ( void* ) 0) *x = localX;
-			if (y != (void*)0) *y = localY;
-			if (cx != (void*)0) *cx = localCX;
-			if (cy != (void*)0) *cy = localCY;
+			
+			if ((flags & nsIEmbeddingSiteWindowConstants.DIM_FLAGS_SIZE_INNER) == 0)
+			{
+					Control topLevel = TopLevelControl;
+					if (topLevel != null)
+					{
+						Size nonClient = new Size( topLevel.Width - ClientSize.Width, topLevel.Height - ClientSize.Height );
+						localCX += nonClient.Width;
+						localCY += nonClient.Height;
+					}
+			}			
+		}
 		}
 
 		void nsIEmbeddingSiteWindow.SetFocus()
@@ -1498,7 +1504,7 @@ namespace Gecko
 
 		unsafe void nsIEmbeddingSiteWindow2.GetDimensions(uint flags, int* x, int* y, int* cx, int* cy)
 		{
-			(this as nsIEmbeddingSiteWindow).GetDimensions(flags, x, y, cx, cy);
+			(this as nsIEmbeddingSiteWindow).GetDimensions(flags, x,  y,  cx,  cy);
 		}
 
 		void nsIEmbeddingSiteWindow2.SetFocus()
@@ -1609,13 +1615,8 @@ namespace Gecko
 			      if (domWindow != domWindow.GetTopAttribute())
 			            return;
 			}
-			Uri uri = null;
-			using (nsAUTF8String strUri = new nsAUTF8String())
-			{
-				aLocation.GetSpecAttribute( strUri );
-				uri=new Uri( strUri.ToString() );
-			}
-			//Uri uri = new Uri(nsString.Get(aLocation.GetSpecAttribute));
+
+			Uri uri = new Uri(nsString.Get(aLocation.GetSpecAttribute));
 			
 			OnNavigated(new GeckoNavigatedEventArgs(uri, aRequest));
 			UpdateCommandStatus();

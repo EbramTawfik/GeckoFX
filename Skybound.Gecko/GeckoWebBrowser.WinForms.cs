@@ -155,28 +155,6 @@ namespace Gecko
 			base.OnHandleCreated(e);
 		}
 
-		protected override void OnHandleDestroyed(EventArgs e)
-		{
-			// removing js context callback
-			RemoveJsContextCallBack();
-			// stopping navigation
-			try
-			{
-				if (WebNav != null)
-				{
-					WebNav.Stop( nsIWebNavigationConstants.STOP_ALL );
-				}
-			}
-			catch (COMException comException)
-			{
-				if (comException.ErrorCode == 0x8000FFFF)
-				{
-					//ok just call is unexpected :)
-				}
-			}
-			base.OnHandleDestroyed(e);
-		}
-
 		protected override void OnEnter(EventArgs e)
 		{
 			if (WebBrowserFocus != null)
