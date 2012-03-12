@@ -1409,31 +1409,44 @@ namespace Gecko
 			OnWindowSetBounds(new GeckoWindowSetBoundsEventArgs(new Rectangle(x, y, cx, cy), specified));			
 		}
 	
-		void nsIEmbeddingSiteWindow.GetDimensions(uint flags, ref int x, ref int y, ref int cx, ref int cy)
-		{			
-			if ((flags & nsIEmbeddingSiteWindowConstants.DIM_FLAGS_POSITION) != 0)
+		unsafe void nsIEmbeddingSiteWindow.GetDimensions(uint flags, int* x, int* y, int* cx, int* cy)
+		{
+			int localX = (x != (void*)0) ? *x : 0;
+			int localY = (y != (void*)0) ? *y : 0;
+			int localCX = 0;
+			int localCY = 0;
+			if (!IsDisposed)
 			{
-				Point pt = PointToScreen(Point.Empty);
-				x = pt.X;
-				y = pt.Y;
+
+				if ( ( flags & nsIEmbeddingSiteWindowConstants.DIM_FLAGS_POSITION ) != 0 )
+				{
+					Point pt = PointToScreen( Point.Empty );
+					localX = pt.X;
+					localY = pt.Y;
+				}
+
+				
+
+				
+				localCX = ClientSize.Width;
+				localCY = ClientSize.Height;
+
+				if ( ( this.ChromeFlags & ( int ) GeckoWindowFlags.OpenAsChrome ) != 0 )
+				{
+					BaseWindow.GetSize(ref localCX, ref localCY);
+				}
+
+				if ( ( flags & nsIEmbeddingSiteWindowConstants.DIM_FLAGS_SIZE_INNER ) == 0 )
+				{
+					Control topLevel = TopLevelControl;
+					if (topLevel != null)
+					{
+						Size nonClient = new Size( topLevel.Width - ClientSize.Width, topLevel.Height - ClientSize.Height );
+						localCX += nonClient.Width;
+						localCY += nonClient.Height;
+					}
+				}
 			}
-			
-			Control topLevel = this.TopLevelControl;
-			
-			Size nonClient = new Size(topLevel.Width - ClientSize.Width, topLevel.Height - ClientSize.Height);
-			cx = ClientSize.Width;
-			cy = ClientSize.Height;
-			
-			if ((this.ChromeFlags & (int)GeckoWindowFlags.OpenAsChrome) != 0)
-			{
-				BaseWindow.GetSize(ref cx, ref cy);
-			}
-			
-			if ((flags & nsIEmbeddingSiteWindowConstants.DIM_FLAGS_SIZE_INNER) == 0)
-			{
-				cx += nonClient.Width;
-				cy += nonClient.Height;
-			}			
 		}
 
 		void nsIEmbeddingSiteWindow.SetFocus()
@@ -1488,9 +1501,9 @@ namespace Gecko
 			(this as nsIEmbeddingSiteWindow).SetDimensions(flags, x, y, cx, cy);
 		}
 
-		void nsIEmbeddingSiteWindow2.GetDimensions(uint flags, ref int x, ref int y, ref int cx, ref int cy)
+		unsafe void nsIEmbeddingSiteWindow2.GetDimensions(uint flags, int* x, int* y, int* cx, int* cy)
 		{
-			(this as nsIEmbeddingSiteWindow).GetDimensions(flags, ref x, ref y, ref cx, ref cy);
+			(this as nsIEmbeddingSiteWindow).GetDimensions(flags, x,  y,  cx,  cy);
 		}
 
 		void nsIEmbeddingSiteWindow2.SetFocus()
