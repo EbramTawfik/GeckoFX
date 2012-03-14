@@ -11,13 +11,21 @@ namespace Gecko
 		internal T Instance;
 
 		#region ctor & dror
+		/// <summary>
+		/// Creates InstanceWrapper for xulrunner object with contract <paramref name="contractID"/>
+		/// refcount of created object is 1, it will automatically decrement when InstanceWrapper is disposed
+		/// </summary>
+		/// <param name="contractID"></param>
 		internal InstanceWrapper(string contractID)
 		{
 			Instance = Xpcom.CreateInstance<T>(contractID);
 		}
 
 		/// <summary>
-		/// In usual cases second parameter is always false
+		/// Creates InstanceWrapper for xulrunner object instance
+		/// If <paramref name="incrementReferenceCounter"/> is true refcount of <paramref name="obj"/> is incremented by 1
+		/// If <paramref name="incrementReferenceCounter"/> is false refcount is not incremented
+		/// After disposing of InstanceWrapper refcount of <paramref name="obj"/> is decremented by 1
 		/// </summary>
 		/// <param name="obj">Xulrunner object(interface)</param>
 		/// <param name="incrementReferenceCounter">true to perform QueryInterface on object</param>

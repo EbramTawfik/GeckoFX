@@ -296,17 +296,20 @@ namespace Gecko
 			var htmlElement=Xpcom.QueryInterface<nsIDOMHTMLElement>( element );
 			if (htmlElement!=null)
 			{
-				return GeckoElement.Create(htmlElement);
+				Marshal.ReleaseComObject( htmlElement );
+				return GeckoElement.Create((nsIDOMHTMLElement)element);
 			}
 			var svgElement=Xpcom.QueryInterface<nsIDOMSVGElement>( element );
 			if (svgElement!=null)
 			{
-				return DOM.Svg.SvgElement.CreateSvgElementWrapper( svgElement );
+				Marshal.ReleaseComObject(svgElement);
+				return DOM.Svg.SvgElement.CreateSvgElementWrapper((nsIDOMSVGElement)element);
 			}
 			var xulElement=Xpcom.QueryInterface<nsIDOMXULElement>( element );
 			if (xulElement!=null)
 			{
-				return DOM.Xul.XulElement.CreateXulElementWrapper( xulElement );
+				Marshal.ReleaseComObject(xulElement);
+				return DOM.Xul.XulElement.CreateXulElementWrapper((nsIDOMXULElement)element);
 			}
 			return new GeckoDomElement( element );
 		}

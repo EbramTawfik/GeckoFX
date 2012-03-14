@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Gecko.Interop;
 
-namespace Gecko.Services
+namespace Gecko
 {
 	public static class ExceptionService
 	{

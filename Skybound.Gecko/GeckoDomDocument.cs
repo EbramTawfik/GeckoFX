@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.InteropServices;
 using Gecko.DOM;
 using Gecko.DOM.Svg;
 
@@ -513,9 +514,17 @@ namespace Gecko
 		public static GeckoDomDocument CreateDomDocumentWraper(nsIDOMDocument domDocument)
 		{
 			var htmlDocument = Xpcom.QueryInterface<nsIDOMHTMLDocument>( domDocument );
-			if (htmlDocument!=null) return new GeckoDocument( htmlDocument );
+			if (htmlDocument!=null)
+			{
+				Marshal.ReleaseComObject( htmlDocument );
+				return new GeckoDocument((nsIDOMHTMLDocument)domDocument);
+			}
 			var svgDocument = Xpcom.QueryInterface<nsIDOMSVGDocument>( domDocument );
-			if (svgDocument != null) return new SvgDocument( svgDocument );
+			if (svgDocument != null)
+			{
+				Marshal.ReleaseComObject(svgDocument);
+				return new SvgDocument((nsIDOMSVGDocument)domDocument);
+			}
 			return new GeckoDomDocument( domDocument );
 		}
 	}

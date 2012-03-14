@@ -19,14 +19,17 @@ namespace Gecko.Interop
 
 		IntPtr nsIWeakReference.QueryReferent(  ref Guid uuid)
 		{
+			// If object is alive we take it to QueryReferentImplementation
+			// else return IntPtr.Zero
 			return _weakReference.IsAlive
-			       	? QueryReferentImplementation( ref uuid )
+			       	? QueryReferentImplementation(_weakReference.Target, ref uuid )
 			       	: IntPtr.Zero;
 		}
 
-		protected virtual IntPtr QueryReferentImplementation(ref Guid uuid)
+		protected virtual IntPtr QueryReferentImplementation(object obj,ref Guid uuid)
 		{
-			return Xpcom.QueryReferent( _weakReference.Target, ref uuid );
+			// by default we make QueryReferent
+			return Xpcom.QueryReferent(obj, ref uuid);
 		}
 
 		/// <summary>
@@ -55,11 +58,13 @@ namespace Gecko.Interop
 			
 		}
 
-		protected override IntPtr QueryReferentImplementation(ref Guid uuid)
+		protected override IntPtr QueryReferentImplementation(object obj,ref Guid uuid)
 		{
-			return ((Control)_weakReference.Target).IsDisposed
+			// for Control we check it IsDisposed state
+			// if control is disposed -> return IntPtr.Zero 
+			return ((Control)obj).IsDisposed
 				? IntPtr.Zero
-				: base.QueryReferentImplementation(ref uuid);
+				: base.QueryReferentImplementation(obj,ref uuid);
 		}
 	}
 
