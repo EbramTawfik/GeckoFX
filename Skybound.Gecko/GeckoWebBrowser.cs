@@ -1828,7 +1828,9 @@ namespace Gecko
 		{
 			nsIDOMEventTarget target = Xpcom.QueryInterface<nsIDOMEventTarget>(Xpcom.QueryInterface<nsIDOMWindow>(WebBrowser.GetContentDOMWindowAttribute()).GetWindowRootAttribute());
 			if (target != null) {
-				target.AddEventListener(new nsAString(eventName), this, /*Review*/ useCapture, true, /*what's this?*/2);
+				// the argc parameter is the number of optionial argumetns we are passing. 
+				// (useCapture and wantsUntrusted are specified as optional so we always pass 2 when calling interface from C#)
+				target.AddEventListener(new nsAString(eventName), this, /*Review*/ useCapture, true, 2);
 				_messageEventListeners.Add(eventName, action);
 			}
 		}
