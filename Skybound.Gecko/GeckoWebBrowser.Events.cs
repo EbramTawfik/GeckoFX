@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using Gecko.Interop;
 
 //EventHandlerList http://msdn.microsoft.com/en-us/library/system.componentmodel.eventhandlerlist.aspx
 //Generic EventHandler http://msdn.microsoft.com/en-us/library/db0etb8x.aspx

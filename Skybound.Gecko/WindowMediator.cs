@@ -1,3 +1,5 @@
+using Gecko.Interop;
+
 namespace Gecko
 {
 	/// <summary>

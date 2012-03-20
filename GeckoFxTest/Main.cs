@@ -51,7 +51,7 @@ namespace GeckoFxTest
 			Controls.Add(m_tabControl);
 
 			m_tabControl.ControlRemoved += delegate {
-				if (m_tabControl.TabCount == 0) {
+				if (m_tabControl.TabCount == 1) {
 					AddTab();
 				}
 			};
@@ -157,18 +157,28 @@ namespace GeckoFxTest
 
 			Button nav = new Button();
 			nav.Text = "Go";
-			nav.Left = 200;
+			nav.Left = urlbox.Width;
 
 			Button newTab = new Button();
 			newTab.Text = "NewTab";
-			newTab.Left = 200 + nav.Width;
+			newTab.Left = nav.Left + nav.Width;
+
+			Button stop = new Button
+			              {
+			              	Text = "Stop",
+			              	Left = newTab.Left + newTab.Width
+			              };
 
 			Button closeTab = new Button();
-			closeTab.Text = "Close";
-			closeTab.Left = 200 + nav.Width + newTab.Width;
+			closeTab.Text = "GC.Collect";
+			closeTab.Left = stop.Left + stop.Width;
 
-			Button scrollDown = new Button { Text = "Down", Left = closeTab.Left + 250 };
-			Button scrollUp = new Button { Text = "Up", Left = closeTab.Left + 330 };
+			Button closeWithDisposeTab = new Button();
+			closeWithDisposeTab.Text = "Close";
+			closeWithDisposeTab.Left = closeTab.Left + closeTab.Width;
+
+			Button scrollDown = new Button { Text = "Down", Left = closeWithDisposeTab.Left + 250 };
+			Button scrollUp = new Button { Text = "Up", Left = closeWithDisposeTab.Left + 330 };
 
 			scrollDown.Click += (s, e) => { browser.Window.ScrollByPages(1); };
 			scrollUp.Click += (s, e) => { browser.Window.ScrollByPages(-1); };
@@ -184,15 +194,25 @@ namespace GeckoFxTest
 
 			newTab.Click += delegate { AddTab(); };
 
+			stop.Click += delegate { browser.Stop(); };
+
 			closeTab.Click += delegate {
+				GC.Collect();
+				GC.WaitForPendingFinalizers();
+			};
+
+			closeWithDisposeTab.Click += delegate
+			{
 				m_tabControl.Controls.Remove(tabPage);
-				browser.Dispose();
+				tabPage.Dispose();
 			};
 
 			tabPage.Controls.Add(urlbox);
 			tabPage.Controls.Add(nav);
 			tabPage.Controls.Add(newTab);
+			tabPage.Controls.Add(stop);
 			tabPage.Controls.Add(closeTab);
+			tabPage.Controls.Add(closeWithDisposeTab);
 			tabPage.Controls.Add(browser);
 			tabPage.Controls.Add(scrollDown);
 			tabPage.Controls.Add(scrollUp);
