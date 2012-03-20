@@ -2,6 +2,10 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v10.0-0.6 ==
+
+1. More fixes to improve GeckoFx stability.
+
 == v10.0-0.5 ==
 
 1. Numerious fixes to improve Geckofx stability.
