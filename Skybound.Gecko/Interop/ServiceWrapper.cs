@@ -1,7 +1,9 @@
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using System.Threading;
 
-namespace Gecko
+namespace Gecko.Interop
 {
 	/// <summary>
 	/// This is 'light' service wrapper
@@ -13,15 +15,12 @@ namespace Gecko
 		:IDisposable
 		where T : class
 	{
-		internal T Instance;
+		private T _instance;
 
+		#region ctor & dtor	
 		internal ServiceWrapper(string contractID)
 		{
-			if (!Xpcom.IsInitialized)
-			{
-				throw new GeckoException("Xpcom.Initialize must be called before using of any xulrunner/gecko-fx services");
-			}
-			Instance = Xpcom.GetService<T>(contractID);
+			CreateServiceReference( contractID );
 		}
 
 		~ServiceWrapper()
@@ -29,17 +28,44 @@ namespace Gecko
 			FreeServiceReference();
 		}
 
-		private void FreeServiceReference()
-		{
-			if (Instance == null) return;
-			Marshal.ReleaseComObject(Instance);
-			Instance = null;
-		}
-
 		public void Dispose()
 		{
 			FreeServiceReference();
-			GC.SuppressFinalize( this );
+			GC.SuppressFinalize(this);
 		}
+		#endregion
+
+		internal T Instance
+		{
+			get
+			{
+				// check for uninialized state (errors, or release)
+				if (_instance == null)
+				{
+					
+				}
+				return _instance;
+			}
+		}
+
+		#region creation and release
+		private void CreateServiceReference(string contractID)
+		{
+			if (!Xpcom.IsInitialized)
+			{
+				throw new GeckoException("Xpcom.Initialize must be called before using of any xulrunner/gecko-fx services");
+			}
+			_instance = Xpcom.GetService<T>(contractID);
+		}
+
+		private void FreeServiceReference()
+		{
+			if (_instance == null) return;
+			var service=Interlocked.Exchange( ref _instance, null );
+			Marshal.ReleaseComObject( service );
+		}
+		#endregion
+
 	}
+
 }

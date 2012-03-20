@@ -6,6 +6,10 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 1. Initial version supporting firefox/xulrunner v11.0
 
+== v10.0-0.6 ==
+
+1. More fixes to improve GeckoFx stability.
+
 == v10.0-0.5 ==
 
 1. Numerious fixes to improve Geckofx stability.

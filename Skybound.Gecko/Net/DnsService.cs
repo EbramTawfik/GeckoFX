@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Gecko.Collections;
+using Gecko.Interop;
 
 namespace Gecko.Net
 {

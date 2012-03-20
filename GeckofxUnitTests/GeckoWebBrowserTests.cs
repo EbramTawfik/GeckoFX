@@ -30,6 +30,36 @@ namespace GeckofxUnitTests
 			browser.Dispose();
 		}
 
+
+		public static string errorMessage = null;
+
+		private class TestGeckoWebBrowser : GeckoWebBrowser
+		{			
+			protected override void Dispose(bool disposing)
+			{
+				if (disposing == false)
+				{
+					var currentThread = System.Threading.Thread.CurrentThread;					
+					errorMessage = String.Format("Disposed called by GC {0} {1}", currentThread.ManagedThreadId, currentThread.ApartmentState);
+					Console.WriteLine(errorMessage);
+				}
+
+				base.Dispose(disposing);
+			}
+		}
+
+		[Test]		
+		public void MissingDisposeTest_ControlIsNotYetCreated_DoesNotThrowExceptions()
+		{
+			var nonDisposedBrowser = new TestGeckoWebBrowser();
+
+			nonDisposedBrowser = null;
+			GC.Collect();
+			GC.WaitForPendingFinalizers();
+			
+			Assert.IsTrue(errorMessage.Contains("Disposed called by"));
+		}
+
 		[Test]
 		public void LoadHtml_SomeSimpleHtml_HtmlIsLoadedAndAccessableAfterNavigationFinished()
 		{
