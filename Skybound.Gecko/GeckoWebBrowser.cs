@@ -1824,14 +1824,14 @@ namespace Gecko
 		/// <param name="eventName"></param>
 		/// <param name="action"></param>
 		/// <example>AddMessageEventListener("callMe", (message=>MessageBox.Show(message)));</example>
-		public void AddMessageEventListener(string eventName, Action<string> action, bool useCapture = true)
-		{
+    public void AddMessageEventListener(string eventName, Action<string> action, bool useCapture = true)
+    {
       nsIDOMEventTarget target = Xpcom.QueryInterface<nsIDOMEventTarget>(Xpcom.QueryInterface<nsIDOMWindow>(WebBrowser.GetContentDOMWindowAttribute()).GetWindowRootAttribute());
       if (target != null) {
         target.AddEventListener(new nsAString(eventName), this, /*Review*/ useCapture, true, /*what's this?*/2);
         _messageEventListeners.Add(eventName, action);
       }
-		}
+    }
 
 
         public void Observe(nsISupports aSubject, string aTopic, string aData)
