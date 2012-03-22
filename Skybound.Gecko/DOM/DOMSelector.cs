@@ -150,7 +150,7 @@ namespace Gecko.DOM
 				CreationMethod = (x) => new GeckoUListElement((nsIDOMHTMLUListElement)x) });
         }
 		
-		static GeckoWrapperCache<nsIDOMHTMLElement, GeckoElement> m_cache = new GeckoWrapperCache<nsIDOMHTMLElement, GeckoElement>(CreateGeckoElementWrapper);
+		static GeckoWrapperCache<nsIDOMHTMLElement, GeckoElement> m_cache = new GeckoWrapperCache<nsIDOMHTMLElement, GeckoElement>(CreateDomHtmlElementWrapper);
 
 		internal static GeckoElement GetClassFor(nsIDOMHTMLElement element)
 		{
@@ -165,7 +165,41 @@ namespace Gecko.DOM
 			return (T)m_cache.Get(element);
         }
 
-		internal static GeckoElement CreateGeckoElementWrapper(nsIDOMHTMLElement instance)
+		/// <summary>
+		/// Creates wrapper for nsIDOMNode object	
+		/// </summary>
+		/// <param name="domObject"></param>
+		/// <returns></returns>
+		internal static GeckoNode CreateDomNodeWrapper(nsIDOMNode domObject)
+		{
+			// if null -> return null
+			if (domObject == null) return null;
+			var nodeType = (NodeType)domObject.GetNodeTypeAttribute();
+			// by nodeType we can find proper wrapper faster, than perform QueryInterface
+			switch (nodeType)
+			{
+				case NodeType.Element:
+					nsIDOMHTMLElement element = Xpcom.QueryInterface<nsIDOMHTMLElement>(domObject);
+					if (element != null) return GeckoElement.Create( element );
+					break;
+				case NodeType.Attribute:
+					nsIDOMAttr attr = Xpcom.QueryInterface<nsIDOMAttr>(domObject);
+					if (attr != null) return GeckoAttribute.CreateAttributeWrapper(attr);
+					break;
+				case NodeType.Comment:
+					nsIDOMComment comment = Xpcom.QueryInterface<nsIDOMComment>(domObject);
+					if (comment != null) return GeckoComment.CreateCommentWrapper(comment);
+					break;
+				case NodeType.DocumentFragment:
+					nsIDOMDocumentFragment fragment = Xpcom.QueryInterface<nsIDOMDocumentFragment>(domObject);
+					if (fragment != null) return DOM.DocumentFragment.CreateDocumentFragmentWrapper(fragment);
+					break;
+			}
+			// if we don't handle this type - just create GeckoNode
+			return new GeckoNode(domObject);
+		}
+
+		internal static GeckoElement CreateDomHtmlElementWrapper(nsIDOMHTMLElement instance)
 		{
 			var lowerTagName = nsString.Get(instance.GetTagNameAttribute).ToLower();
         	GeckoClassDesc desc;
@@ -181,6 +215,8 @@ namespace Gecko.DOM
 			}
 			return null;
 		}
+
+		
     }
 }
 

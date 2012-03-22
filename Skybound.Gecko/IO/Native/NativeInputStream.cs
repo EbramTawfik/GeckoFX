@@ -66,6 +66,7 @@ namespace Gecko.IO.Native
 		private NativeInputStream2(byte[] array)
 		{
 			_handle = GCHandle.Alloc(array, GCHandleType.Pinned);
+			Init( _handle.AddrOfPinnedObject(), array.Length );
 		}
 
 

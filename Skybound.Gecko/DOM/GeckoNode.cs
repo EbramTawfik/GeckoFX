@@ -12,7 +12,7 @@ namespace Gecko
 	/// </summary>
 	public class GeckoNode
 	{
-		static GeckoWrapperCache<nsIDOMNode, GeckoNode> m_nodeCache = new GeckoWrapperCache<nsIDOMNode, GeckoNode>(CreateNodeWrapper);
+		static GeckoWrapperCache<nsIDOMNode, GeckoNode> m_nodeCache = new GeckoWrapperCache<nsIDOMNode, GeckoNode>(DOMSelector.CreateDomNodeWrapper);
 
 
 		#region ctor & creation methods
@@ -24,54 +24,6 @@ namespace Gecko
 		internal static GeckoNode Create(nsIDOMNode domObject)
 		{
 			return m_nodeCache.Get(domObject);
-		}
-
-		internal static GeckoNode CreateNodeWrapper(nsIDOMNode domObject)
-		{
-			// if null -> return null
-			if (domObject == null) return null;
-			var nodeType = ( NodeType ) domObject.GetNodeTypeAttribute();
-			// by nodeType we can find proper wrapper faster, than perform QueryInterface
-			switch ( nodeType )
-			{
-				case NodeType.Element:
-					nsIDOMHTMLElement element = Xpcom.QueryInterface<nsIDOMHTMLElement>(domObject);
-					if (element != null) return GeckoElement.Create(element);
-					break;
-				case NodeType.Attribute:
-					nsIDOMAttr attr = Xpcom.QueryInterface<nsIDOMAttr>(domObject);
-					if (attr != null) return GeckoAttribute.CreateAttributeWrapper(attr);
-					break;
-				case NodeType.Comment:
-					nsIDOMComment comment = Xpcom.QueryInterface<nsIDOMComment>(domObject);
-					if (comment != null) return GeckoComment.CreateCommentWrapper(comment);
-					break;
-				case NodeType.DocumentFragment:
-					nsIDOMDocumentFragment fragment = Xpcom.QueryInterface<nsIDOMDocumentFragment>(domObject);
-					if (fragment != null) return DOM.DocumentFragment.CreateDocumentFragmentWrapper( fragment );
-					break;
-			}
-			// if fast method is unsuccessful try old method :)
-			return OldCreateWrapper( domObject );
-		}
-
-		internal static GeckoNode OldCreateWrapper(nsIDOMNode domObject)
-		{
-			if (domObject == null)
-				return null;
-			nsIDOMHTMLElement element = Xpcom.QueryInterface<nsIDOMHTMLElement>(domObject);
-			if (element != null)
-				return GeckoElement.Create(element);
-
-			nsIDOMAttr attr = Xpcom.QueryInterface<nsIDOMAttr>(domObject);
-			if (attr != null)
-				return GeckoAttribute.CreateAttributeWrapper(attr);
-
-			nsIDOMComment comment = domObject as nsIDOMComment;
-			if (comment != null)
-				return GeckoComment.CreateCommentWrapper(comment);
-
-			return new GeckoNode(domObject);
 		}
 		#endregion
 

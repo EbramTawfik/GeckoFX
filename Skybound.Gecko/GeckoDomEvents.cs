@@ -38,9 +38,7 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace Gecko
-{
-	public delegate void GeckoDomEventHandler(Object sender, GeckoDomEventArgs e);
-	
+{	
 	/// <summary>
 	/// Provides data about a DOM event.
 	/// </summary>
@@ -133,8 +131,6 @@ namespace Gecko
 		}
 	};
 	
-	public delegate void GeckoDomKeyEventHandler(Object sender, GeckoDomKeyEventArgs e);
-	
 	/// <summary>
 	/// Provides data about a DOM key event.
 	/// </summary>
@@ -174,8 +170,6 @@ namespace Gecko
 			get { return _Event.GetShiftKeyAttribute(); }
 		}
 	};
-	
-	public delegate void GeckoDomMouseEventHandler(object sender, GeckoDomMouseEventArgs e);
 	
 	/// <summary>
 	/// Provides data about a DOM mouse event.
