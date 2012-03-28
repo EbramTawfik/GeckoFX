@@ -77,7 +77,7 @@ namespace GeckofxUnitTests
 			// Register a C# COM Object
 
 			const string ComponentManagerCID = "91775d60-d5dc-11d2-92fb-00e09805570f";
-			nsIComponentRegistrar mgr = (nsIComponentRegistrar)Marshal.GetObjectForIUnknown((IntPtr)Xpcom.GetService(new Guid(ComponentManagerCID)));
+			nsIComponentRegistrar mgr = (nsIComponentRegistrar)Xpcom.GetObjectForIUnknown((IntPtr)Xpcom.GetService(new Guid(ComponentManagerCID)));
 			Guid aClass = new Guid("a7139c0e-962c-44b6-bec3-aaaaaaaaaaab");
 			mgr.RegisterFactory(ref aClass, "Example C sharp com component", "@geckofx/myclass;1", new MyCSharpComClassFactory());
 
@@ -145,7 +145,7 @@ namespace GeckofxUnitTests
 			public nsISupports GetCurrentDescriptorAttribute()
 			{
 				const string ComponentManagerCID = "91775d60-d5dc-11d2-92fb-00e09805570f";
-				nsIComponentRegistrar mgr = (nsIComponentRegistrar)Marshal.GetObjectForIUnknown((IntPtr)Xpcom.GetService(new Guid(ComponentManagerCID)));
+				nsIComponentRegistrar mgr = (nsIComponentRegistrar)Xpcom.GetObjectForIUnknown((IntPtr)Xpcom.GetService(new Guid(ComponentManagerCID)));
 				return (nsISupports)mgr;
 			}
 		}

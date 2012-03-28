@@ -1094,7 +1094,7 @@ namespace Gecko
 			nsIDocShell shell = Xpcom.QueryInterface<nsIDocShell>(WebNav);
 			nsIContentViewer contentViewer;
 			IntPtr contentViewerPtr = shell.GetContentViewerAttribute();
-			contentViewer = (nsIContentViewer)Marshal.GetObjectForIUnknown(contentViewerPtr);
+			contentViewer = (nsIContentViewer)Xpcom.GetObjectForIUnknown(contentViewerPtr);
 
 			_MarkupDocumentViewer = new GeckoMarkupDocumentViewer((nsIMarkupDocumentViewer)contentViewer);
 

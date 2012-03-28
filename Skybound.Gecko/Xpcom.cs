@@ -321,7 +321,7 @@ namespace Gecko
 		{
 			Guid iid = typeof(TInterfaceType).GUID;
 			IntPtr ptr = ComponentManager.CreateInstanceByContractID(contractID, null, ref iid);
-			return (TInterfaceType)Marshal.GetObjectForIUnknown(ptr);
+			return (TInterfaceType)Xpcom.GetObjectForIUnknown(ptr);
 		}
 		#endregion
 
@@ -360,7 +360,7 @@ namespace Gecko
 				if (pInterfaceRequestor != IntPtr.Zero)
 				{
 					// convert it to a managed interface
-					QI_nsIInterfaceRequestor req = (QI_nsIInterfaceRequestor)Marshal.GetObjectForIUnknown(pInterfaceRequestor);
+					QI_nsIInterfaceRequestor req = (QI_nsIInterfaceRequestor)Xpcom.GetObjectForIUnknown(pInterfaceRequestor);
 					
 					if (req != null)
 					{
@@ -380,7 +380,7 @@ namespace Gecko
 				}
 			}
 			
-			object result = (ppv != IntPtr.Zero) ? Marshal.GetObjectForIUnknown(ppv) : null;
+			object result = (ppv != IntPtr.Zero) ? Xpcom.GetObjectForIUnknown(ppv) : null;
 			
 			Marshal.Release(pUnk);
 			if (ppv != IntPtr.Zero)
@@ -410,7 +410,7 @@ namespace Gecko
 
 			Guid iid = typeof(TInterfaceType).GUID;
 			IntPtr ptr = ServiceManager.GetServiceByContractID(contractID, ref iid);
-			return (TInterfaceType)Marshal.GetObjectForIUnknown(ptr);
+			return (TInterfaceType)Xpcom.GetObjectForIUnknown(ptr);
 		}
 		#endregion
 		/// <summary>
@@ -465,6 +465,30 @@ namespace Gecko
 
             return ppv;
    
+		}
+		
+		public static object GetObjectForIUnknown(IntPtr ptr)
+		{
+			if (ptr == IntPtr.Zero)
+				return null;
+			
+			int startRef = 0, endRef = 0;
+			
+			// Mono bug : Marshal.GetObjectForIUnknown is decrementing the COM objects ref count not incrementing in.
+			if (IsMono)			
+				startRef = Marshal.AddRef(ptr);			
+			
+			object ret = Marshal.GetObjectForIUnknown(ptr);
+			
+			if (IsMono)
+			{
+				endRef = Marshal.AddRef(ptr);
+				if (endRef > startRef + 1)
+					Debug.WriteLine("mono GetObjectForIUknown bug has been fixed! Please delete this fix.");
+			}
+			
+			return ret;
+				
 		}
 
 		#region Internal class & interface declarations

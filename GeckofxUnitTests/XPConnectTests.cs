@@ -21,7 +21,7 @@ namespace GeckofxUnitTests
 			// CB6593E0-F9B2-11d2-BDD6-000064657374
 			var ptr = (IntPtr)Xpcom.GetService(new Guid("CB6593E0-F9B2-11d2-BDD6-000064657374"));
 			Assert.IsNotNull(ptr);
-			m_instance = (nsIXPConnect)Marshal.GetObjectForIUnknown(ptr);			
+			m_instance = (nsIXPConnect)Xpcom.GetObjectForIUnknown(ptr);			
 			Assert.IsNotNull(m_instance);			
 		}
 

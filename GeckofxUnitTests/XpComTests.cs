@@ -1586,7 +1586,7 @@ namespace GeckofxUnitTests
 		public void GetAppShell_CleanXpComInstance_ReturnsValidInstance()
 		{
 			System.IntPtr ptr = (IntPtr)Xpcom.GetService(new Guid("2d96b3df-c051-11d1-a827-0040959a28c9"));
-			var instance = (nsIAppShell)Marshal.GetObjectForIUnknown(ptr);
+			var instance = (nsIAppShell)Xpcom.GetObjectForIUnknown(ptr);
 			Assert.IsNotNull(instance);						
 		}
 
@@ -1653,7 +1653,7 @@ namespace GeckofxUnitTests
 			// CB6593E0-F9B2-11d2-BDD6-000064657374
 			IntPtr instance = (IntPtr)Xpcom.GetService(new Guid("CB6593E0-F9B2-11d2-BDD6-000064657374"));
 			Assert.IsNotNull(instance);
-			var o = (nsIXPConnect)Marshal.GetObjectForIUnknown(instance);
+			var o = (nsIXPConnect)Xpcom.GetObjectForIUnknown(instance);
 			Assert.IsNotNull(o);						
 		}
 

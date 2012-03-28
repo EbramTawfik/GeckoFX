@@ -13,7 +13,7 @@ namespace Gecko.Collections
 		{
 			Guid uid = typeof(T).GUID;
 			var ptr = array.QueryElementAt((uint)index, ref uid);
-			var obj = ( T ) System.Runtime.InteropServices.Marshal.GetObjectForIUnknown( ptr );
+			var obj = ( T ) Xpcom.GetObjectForIUnknown( ptr );
 			return obj;
 		}
 	}
