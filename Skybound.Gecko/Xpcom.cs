@@ -428,28 +428,6 @@ namespace Gecko
 		
 		#endregion
 
-
-
-		#region Extension Methods for nsISupports
-		/**
-		internal static T QueryInterface<T>(this nsISupports proxy)
-		{
-			var guid = typeof(T).GUID;
-			IntPtr ptr = proxy.QueryInterface(ref guid);
-			var obj = (T)Marshal.GetObjectForIUnknown(ptr);
-			return obj;
-		}
-
-		internal static object QueryInterface(this nsISupports proxy, Type type)
-		{
-			var guid = type.GUID;
-			IntPtr ptr = proxy.QueryInterface(ref guid);
-			var obj = Marshal.GetObjectForIUnknown(ptr);
-			return obj;
-		}
-        /**/
-		#endregion
-
 		///	<summary>
 		/// Helper method for WeakReference
 		///	</summary>
