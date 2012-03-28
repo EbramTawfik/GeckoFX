@@ -107,6 +107,18 @@ namespace Gecko.DOM
 			set { DOMHTMLElement.SetValueAttribute(new nsAString(value)); }
 		}
 
+		public int SelectionStart
+		{
+			get	{ return DOMHTMLElement.GetSelectionStartAttribute(); }
+			set	{ DOMHTMLElement.SetSelectionStartAttribute(value);	}
+		}
+
+		public int SelectionEnd
+		{
+			get	{ return DOMHTMLElement.GetSelectionEndAttribute();	}
+			set	{ DOMHTMLElement.SetSelectionEndAttribute(value); }
+		}	
+
 		public void blur()
 		{
 			DOMHTMLElement.Blur();
@@ -125,28 +137,7 @@ namespace Gecko.DOM
 		public void click()
 		{
 			DOMHTMLElement.Click();
-		}
-        //#region GeckoWindowScrolled Event Handler
-        //public delegate void GeckoWindowScrolledEventHandler(object sender, GeckoWindowScrolledEventArgs e);
-        //public event GeckoWindowScrolledEventHandler WindowScrolled
-        //{
-        //    add { this.Events.AddHandler(WindowScrolledEvent, value); }
-        //    remove { this.Events.RemoveHandler(WindowScrolledEvent, value); }
-        //}
-        //private static object WindowScrolledEvent = new object();
-        //protected virtual void OnWindowScrolled(GeckoWindowScrolledEventArgs e)
-        //{
-        //    if (((GeckoWindowScrolledEventHandler)this.Events[WindowScrolledEvent]) != null)
-        //        ((GeckoWindowScrolledEventHandler)this.Events[WindowScrolledEvent])(this, e);
-        //}
-        //public class GeckoWindowScrolledEventArgs : System.EventArgs
-        //{
-        //    public GeckoWindowScrolledEventArgs()
-        //    {
-
-        //    }
-        //}
-        //#endregion
+		}			
 	}
 }
 

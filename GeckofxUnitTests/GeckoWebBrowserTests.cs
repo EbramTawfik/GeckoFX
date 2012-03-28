@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using Gecko;
 using System.IO;
 using System.Runtime.InteropServices;
+using Gecko.DOM;
 
 namespace GeckofxUnitTests
 {
@@ -248,9 +249,27 @@ namespace GeckofxUnitTests
 
 			// Test using it.
 			style.SetPropertyValue("white-space", "pre-wrap");
-
 		}
 
+		// TODO: move to HTMLInputElementTests file
+		[Test]
+		public void SelectionStart_NoSelection_ReturnsZero()
+		{
+			LoadHtml(@"<input type=""text"" id=""txtbox"" value=""text""/>");
+
+			GeckoInputElement element = (GeckoInputElement)browser.Document.GetElementById("txtbox");
+			Assert.AreEqual(0, element.SelectionStart);
+		}
+
+		[Test]
+		public void SelectionEnd_NoSelection_ReturnsZero()
+		{
+			LoadHtml(@"<input type=""text"" id=""txtbox"" value=""text""/>");
+
+			GeckoInputElement element = (GeckoInputElement)browser.Document.GetElementById("txtbox");
+			Assert.AreEqual(0, element.SelectionEnd);
+		}
+	
 		[Test]
 		public void DomContentChanged_ChangeContentOfTextInputWithKeyPressAndMoveToSecondInput_DomContentChangedShouldFire()
 		{
