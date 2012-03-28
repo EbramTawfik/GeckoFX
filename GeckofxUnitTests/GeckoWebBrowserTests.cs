@@ -82,199 +82,11 @@ namespace GeckofxUnitTests
 			Assert.AreEqual(browser.Document.Body.InnerHtml, innerHtml);
 		}
 
-		/// <summary>
-		/// Helper method to initalize a document with html and wait until document is ready.
-		/// </summary>
-		/// <param name="innerHtml"></param>
-		internal void LoadHtml(string innerHtml)
-		{
-			LoadHtml(innerHtml, false);
-		}
-
-		/// <summary>
-		/// Helper method to initalize a content editable document with html and wait until document is ready.
-		/// </summary>
-		/// <param name="innerHtml"></param>
-		internal void LoadEditableHtml(string innerHtml)
-		{
-			LoadHtml(innerHtml, true);
-		}
-
-		/// <summary>
-		/// Helper method to initalize a content editable document with html and wait until document is ready.
-		/// </summary>
-		/// <param name="innerHtml"></param>
-		/// <param name="editable"></param>
-		private void LoadHtml(string innerHtml, bool editable)
-		{
-			string contenteditable = editable ? "contenteditable=\"true\"" : string.Empty;
-			browser.LoadHtml("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">"
-
-							 + "<html xmlns=\"http://www.w3.org/1999/xhtml\" >"
-
-							 + "<body " + contenteditable + ">" + innerHtml + "</body></html>");
-
-			browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
-		}
-
-		/// <summary>
-		/// Helper method to initalize a document with html inside a frameset and wait until document is ready.
-		/// </summary>
-		/// <param name="innerHtml"></param>
-		internal void LoadFrameset(string innerHtml)
-		{
-			browser.LoadHtml("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">"
-
-						+ "<html xmlns=\"http://www.w3.org/1999/xhtml\" >"
-
-						+ "<frameset>" + innerHtml + "</frameset></html>");
-
-			browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
-		}
-
-		// TODO: move to a GeckoDocumentTests file.
-		[Test]
-		public void GetElementsByName_SingleElementExits_ReturnsCollectionWithSingleItem()
-		{
-			LoadHtml("<div name=\"a\" id=\"_lv5\">old value</div>");
-
-			var divElement = browser.Document.GetElementsByName("a");
-			Assert.AreEqual(1, divElement.Count);
-		}
-
-		// TODO: move to a GeckoDocumentTests file.
-		[Test]
-		public void GetElementsByName_NotElementExists_ReturnsEmptyCollection()
-		{
-			LoadHtml("<div name=\"a\" id=\"_lv5\">old value</div>");
-
-			var emptyCollection = browser.Document.GetElementsByName("div");
-			Assert.AreEqual(0, emptyCollection.Count);
-		}
-
-		// TODO: move to a GeckoDocumentTests file.
-		[Test]
-		public void GetElementById_SingleElementExists_CorrectElementReturned()
-		{
-			LoadHtml("<div name=\"a\" id=\"_lv5\">old value</div>");
-
-			var divElement = browser.Document.GetElementById("_lv5");
-			Assert.NotNull(divElement);
-			Assert.AreEqual(divElement.Id, "_lv5");
-		}
-
-		// TODO: move to a GeckoDocumentTests file.
-		[Test]
-		public void GetElements_XPathSelectsSingleElement_ReturnsCollectionWithSingleItem()
-		{
-			LoadHtml("<div name=\"a\" id=\"_lv5\">old value</div>");
-
-			var divElement = browser.Document.GetElements("//div");
-			Assert.AreEqual(1, divElement.Count());
-		}
-
-
-		// TODO: move to GeckoElementTests file.
-		[Test]
-		public void OuterHtml_AttributesHaveDoubleQuotes_()
-		{
-			string divString = "<div name=\"a\" id=\"_lv5\" class=\"none\">old value</div>";
-			LoadHtml(divString);
-
-			var divElement = (browser.Document.Body.FirstChild as GeckoElement);
-			Assert.AreEqual(divString.ToLowerInvariant(), divElement.OuterHtml.ToLowerInvariant());
-		}
-
-		// TODO: move to GeckoElementTests file.
-		[Test]
-		public void OuterHtml_AttributesHaveSingleQuotes_()
-		{
-			string divString = "<div name=\'a\' id=\'_lv5\' class='none'>old value</div>";
-			LoadHtml(divString);
-
-			var divElement = (browser.Document.Body.FirstChild as GeckoElement);
-			Assert.AreEqual(divString.ToLowerInvariant().Replace('\'', '"'), divElement.OuterHtml.ToLowerInvariant());
-		}
-
-		// TODO: move to a GeckoElementTests file.
-		[Test]
-		public void SetId_SettingToEmptyString_IdAttributeIsRemoved()
-		{
-			LoadHtml("<div id=\"a\">hello</div>");
-
-			var divElement = browser.Document.GetElementById("a");
-			Assert.AreEqual("a", divElement.Id);			
-
-			divElement.Id = String.Empty;
-
-			Assert.IsFalse(divElement.HasAttribute("id"));
-		}
-
-		// TODO: move to a GeckoElementTests file.
-		[Test]
-		public void SetId_SettingToNull_IdAttributeIsRemoved()
-		{
-			LoadHtml("<div id=\"a\">hello</div>");
-
-			var divElement = browser.Document.GetElementById("a");
-			Assert.AreEqual("a", divElement.Id);
-
-			divElement.Id = null;
-
-			Assert.IsFalse(divElement.HasAttribute("id"));
-		}
-
-		// TODO: move to a GeckoElementTests file.
-		[Test]
-		public void SetId_SettingToEmptyStringWhereIdIsMixedCase_IdAttributeIsRemoved()
-		{
-			LoadHtml("<div iD=\"a\">hello</div>");
-
-			var divElement = browser.Document.GetElementById("a");
-			Assert.AreEqual("a", divElement.Id);
-
-			divElement.Id = String.Empty;
-
-			Assert.IsFalse(divElement.HasAttribute("iD"));
-		}
-
-		// TODO: move to a GeckoElementTests file.
-		[Test]
-		public void Style_GetInlineStyleWhenOneDoesNotExist_ValidGeckoStyleReturned()
-		{
-			LoadHtml("some random html");
-
-			var style = browser.Document.Body.Style;
-			Assert.NotNull(style);
-
-			// Test using it.
-			style.SetPropertyValue("white-space", "pre-wrap");
-		}
-
-		// TODO: move to HTMLInputElementTests file
-		[Test]
-		public void SelectionStart_NoSelection_ReturnsZero()
-		{
-			LoadHtml(@"<input type=""text"" id=""txtbox"" value=""text""/>");
-
-			GeckoInputElement element = (GeckoInputElement)browser.Document.GetElementById("txtbox");
-			Assert.AreEqual(0, element.SelectionStart);
-		}
-
-		[Test]
-		public void SelectionEnd_NoSelection_ReturnsZero()
-		{
-			LoadHtml(@"<input type=""text"" id=""txtbox"" value=""text""/>");
-
-			GeckoInputElement element = (GeckoInputElement)browser.Document.GetElementById("txtbox");
-			Assert.AreEqual(0, element.SelectionEnd);
-		}
-	
 		[Test]
 		public void DomContentChanged_ChangeContentOfTextInputWithKeyPressAndMoveToSecondInput_DomContentChangedShouldFire()
 		{
 			string html = "<input id=\"one\" type=\"text\" value=\"hello\" /><input id=\"two\" type=\"text\"  value=\"world\" />";
-			LoadHtml(html);
+			browser.TestLoadHtml(html);
 
 			// Place browser on a form and show it. This is need to make the gecko accept the key press.
 			Form f = new Form();
@@ -314,20 +126,20 @@ namespace GeckofxUnitTests
 		public void LoadFrameset_RegressionTest_ShouldNotThrowException()
 		{
 			string innerHtml = "hello world";
-			LoadFrameset(innerHtml);						
+			browser.TestLoadFrameset(innerHtml);						
 		}
 
 		[Test]
 		public void Editor_LoadedReadonlyocument_ReturnsNull()
 		{
-			LoadHtml("hello world.");
+			browser.TestLoadHtml("hello world.");
 			Assert.Null(browser.Editor);
 		}
 
 		[Test]
 		public void Editor_LoadedEditableDocument_ReturnsNonNull()
 		{
-			LoadEditableHtml("hello world.");
+			browser.TestLoadEditableHtml("hello world.");
 			Assert.NotNull(browser.Editor);
 		}
 		 
@@ -371,7 +183,7 @@ namespace GeckofxUnitTests
 			browser.ConsoleMessage += eventHandler;
 
 			string html = "<p style=\"background: bluse; color: white;\">hello</p>";
-			LoadHtml(html);			
+			browser.TestLoadHtml(html);			
 			
 			browser.ConsoleMessage -= eventHandler;
 
@@ -406,8 +218,8 @@ namespace GeckofxUnitTests
 
 		[Test]
 		public void EvaluateScript_SimpleJavascript_ScriptExecutesAndReturnsExpectedResult()
-		{		
-			LoadHtml("");
+		{
+			browser.TestLoadHtml("");
 			
 			using (AutoJSContext context = new AutoJSContext())
 			{				
@@ -437,7 +249,7 @@ namespace GeckofxUnitTests
 		[Test]
 		public void EvaluateScript_JavascriptAccessExistingGlobalObjects_ScriptExecutesAndReturnsExpectedResult()
 		{
-			LoadHtml("hello world");
+			browser.TestLoadHtml("hello world");
 			
 			using (AutoJSContext context = new AutoJSContext(browser.JSContext))
 			{

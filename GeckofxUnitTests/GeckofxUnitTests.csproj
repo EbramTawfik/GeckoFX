@@ -64,7 +64,11 @@
     <Compile Include="CrossLanguageTests.cs" />
     <Compile Include="DOMWindowTests.cs" />
     <Compile Include="FocusManagerTests.cs" />
+    <Compile Include="GeckoDocumentTests.cs" />
+    <Compile Include="GeckoElementTests.cs" />
+    <Compile Include="GeckoInputElementTests.cs" />
     <Compile Include="GeckoMIMEInputStreamTests.cs" />
+    <Compile Include="GeckoWebBrowserTestExtensionMethods.cs" />
     <Compile Include="GeckoWebBrowserTests.cs" />
     <Compile Include="IOServiceTests.cs" />
     <Compile Include="nsIEditorTests.cs" />
