@@ -1,0 +1,15 @@
+syntax: glob
+PutXulRunnerFolderHere/
+Skybound.Gecko/Generated*
+Skybound.Gecko/obj/
+Skybound.Gecko/bin/
+Skybound.Gecko/_ReSharper.Skybound.Gecko
+*.orig
+GeckofxUnitTests/bin
+GeckofxUnitTests/obj/x86
+GeckofxUnitTests/obj
+GeckoWebBrowser/obj
+GeckoFxTest/bin
+GeckoFxTest/obj
+*.suo
+GeckoWebBrowser/bin
