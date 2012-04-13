@@ -24,9 +24,9 @@ namespace Gecko
 		/// <summary>
 		/// Gets the HTML body element.
 		/// </summary>
-		public GeckoBodyElement Body
+		public GeckoElement Body
 		{
-			get { return GeckoElement.Create<GeckoBodyElement>(_domHtmlDocument.GetBodyAttribute()); }
+			get { return GeckoElement.Create<GeckoElement>(_domHtmlDocument.GetBodyAttribute()); }
 		}
 		
 		/// <summary>

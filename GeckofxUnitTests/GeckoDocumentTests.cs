@@ -67,5 +67,25 @@ namespace GeckofxUnitTests
 			var divElement = browser.Document.GetElements("//div");
 			Assert.AreEqual(1, divElement.Count());
 		}
+
+		[Test]
+		public void Body_BodyIsDocumentBodyElement_ReturnedGeckoElementIsDocumentBody()
+		{
+			browser.TestLoadHtml("<span>hello world</span>");
+
+			var element = browser.Document.Body;
+			Assert.NotNull(element);
+			Assert.AreEqual(typeof(GeckoBodyElement), element.GetType());
+		}
+
+		[Test]
+		public void Body_BodyIsFrameset_ReturnedGeckoElementIsFrameSetElement()
+		{
+			browser.TestLoadFrameset("<span>hello world</span>");
+
+			var element = browser.Document.Body;
+			Assert.NotNull(element);
+			Assert.AreEqual(typeof(GeckoFrameSetElement), element.GetType());
+		}
 	}
 }
