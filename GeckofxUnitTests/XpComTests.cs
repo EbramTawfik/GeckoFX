@@ -1530,6 +1530,14 @@ namespace GeckofxUnitTests
 			Assert.IsNotNull(instance);
 			Marshal.ReleaseComObject(instance);
 		}
+
+		[Test]
+		public void CreateInstance_CreatingTransferable_ReturnsValidInstance()
+		{
+			var instance = Xpcom.CreateInstance<nsITransferable>("@mozilla.org/widget/transferable;1");
+			Assert.IsNotNull(instance);
+			Marshal.ReleaseComObject(instance);
+		}
 #endregion
 
 #region GetService Unittests
