@@ -113,6 +113,7 @@
     <Compile Include="DOM\Html\GeckoHtmlElementCollection.cs" />
     <Compile Include="RandomGenerator.cs" />
     <Compile Include="Services\ExceptionService.cs" />
+    <Compile Include="Utils\SaveImageElement.cs" />
     <Compile Include="Variant.cs" />
     <Compile Include="WiFiMonitor.cs" />
     <Compile Include="WindowMediator.cs" />
