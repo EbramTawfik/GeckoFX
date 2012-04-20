@@ -298,6 +298,59 @@ namespace GeckofxUnitTests
 			Assert.NotNull(browser.GetMarkupDocumentViewer());
 		}
 
+        [Test]
+        public void Navigating_IntialDocumentLoad_NavigatigEventIsCalled()
+        {
+            int counter = 0;
+            browser.Navigating += (sender, args) => counter++;
+
+            browser.TestLoadHtml("hello world");
+
+            Assert.AreEqual(1, counter);
+        }
+
+        [Test]
+        public void Navigating_TwoDocumentsLoaded_NavigatigEventIsCalledTwice()
+        {
+            int counter = 0;
+            browser.Navigating += (sender, args) => counter++;
+
+            browser.TestLoadHtml("hello world");
+            browser.TestLoadHtml("hello world");
+
+            Assert.AreEqual(2, counter);
+        }
+
+        [Test]
+        public void Navigating_UseJavaScriptToChangeDocument_NavigatigEventIsCalledWhenJavascriptChangesDocument()
+        {
+            int counter = 0;
+            browser.Navigating += (sender, args) => counter++;
+
+            browser.TestLoadHtml("hello world");
+            browser.Navigate("javascript:location.href='http://www.google.com';");
+            browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
+
+            Assert.AreEqual(2, counter);
+        }
+
+        [Test]
+        public void Navigating_UseJavaScriptToChangeDocumentToAUrlTheDoesNotExist_NavigatigEventIsCalled()
+        {
+            int counter = 0;
+            int shouldNotChangeCounter = 0;
+
+            browser.TestLoadHtml("hello world");
+			browser.Navigating += (sender, args) => { counter++; args.Cancel = true; };
+            browser.Navigated += (sender, args) => shouldNotChangeCounter++;
+
+            browser.Navigate("javascript:location.href='http://www.domaindoesnNotExitqwertyuuiasdf.com?helloworld';");
+            browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
+
+            Assert.AreEqual(1, counter);
+            Assert.AreEqual(0, shouldNotChangeCounter);
+        }
+
 		// TODO: move unittest into GeckoMarkupDocumentViewerTests
 		[Test]
 		public void SetFullZoomAttribute_SettingToDefault()
