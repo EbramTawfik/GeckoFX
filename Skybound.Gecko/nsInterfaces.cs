@@ -208,22 +208,22 @@ namespace Gecko
 	
 	static class nsIWebProgressListenerConstants
 	{
-		public const int STATE_START = 1;
-		public const int STATE_REDIRECTING = 2;
-		public const int STATE_TRANSFERRING = 4;
-		public const int STATE_NEGOTIATING = 8;
-		public const int STATE_STOP = 16;
-		public const int STATE_IS_REQUEST = 65536;
-		public const int STATE_IS_DOCUMENT = 131072;
-		public const int STATE_IS_NETWORK = 262144;
-		public const int STATE_IS_WINDOW = 524288;
-		public const int STATE_RESTORING = 16777216;
-		public const int STATE_IS_INSECURE = 4;
-		public const int STATE_IS_BROKEN = 1;
-		public const int STATE_IS_SECURE = 2;
-		public const int STATE_SECURE_HIGH = 262144;
-		public const int STATE_SECURE_MED = 65536;
-		public const int STATE_SECURE_LOW = 131072;
+		public const int STATE_START = 0x1;
+		public const int STATE_REDIRECTING = 0x2;
+		public const int STATE_TRANSFERRING = 0x4;
+		public const int STATE_NEGOTIATING = 0x8;
+		public const int STATE_STOP = 0x10;
+		public const int STATE_IS_REQUEST = 0x10000;
+		public const int STATE_IS_DOCUMENT = 0x20000;
+		public const int STATE_IS_NETWORK = 0x40000;
+		public const int STATE_IS_WINDOW = 0x80000;
+		public const int STATE_RESTORING = 0x1000000;
+		public const int STATE_IS_INSECURE = 0x4;
+		public const int STATE_IS_BROKEN = 0x1;
+		public const int STATE_IS_SECURE = 0x2;
+		public const int STATE_SECURE_HIGH = 0x40000;
+		public const int STATE_SECURE_MED = 0x10000;
+		public const int STATE_SECURE_LOW = 0x20000;
 	}
 
 	static class nsIDOMNodeConstants
