@@ -135,6 +135,7 @@ namespace Gecko
 				// ths losing attached listener.
 				_target.AddEventListener(new nsAString("load"), this, true, true, 2);
 				_target.AddEventListener(new nsAString("change"), this, true, true, 2);
+                _target.AddEventListener(new nsAString("hashchange"), this, false, true, 2);
 
 				// history
 				{

@@ -60,6 +60,7 @@ namespace Gecko
 		private static readonly object DomFocusEvent = new object();
 		private static readonly object DomBlurEvent = new object();
 		private static readonly object LoadEvent = new object();
+	    private static readonly object HashChangeEvent = new object();
 		private static readonly object DomContentChangedEvent = new object();
 		private static readonly object DomClickEvent = new object();
 		private static readonly object DomDoubleClickEvent = new object();
@@ -768,6 +769,23 @@ namespace Gecko
 			if (evnt != null) evnt(this, e);
 		}
 		#endregion
+
+        #region public event GeckoDomEventHandler HashChange
+        [Category("DOM Events")]
+        public event EventHandler<GeckoDomEventArgs> HashChange
+        {
+            add { Events.AddHandler(HashChangeEvent, value); }
+            remove { Events.RemoveHandler(HashChangeEvent, value); }
+        }
+
+        /// <summary>Raises the <see cref="HashChangeEvent"/> event.</summary>
+        /// <param name="e">The data for the event.</param>
+        protected virtual void OnHashChange(GeckoDomEventArgs e)
+        {
+            var evnt = (EventHandler<GeckoDomEventArgs>)Events[HashChangeEvent];
+            if (evnt != null) evnt(this, e);
+        }
+        #endregion
 
 		#region public event GeckoDomEventHandler DomContentChanged
 		[Category("DOM Events")]
