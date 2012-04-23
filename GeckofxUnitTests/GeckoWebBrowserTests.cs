@@ -351,6 +351,37 @@ namespace GeckofxUnitTests
             Assert.AreEqual(0, shouldNotChangeCounter);
         }
 
+        [Test]
+        public void Navigating_NavigatingIsCanceled_NavigateDoesNotComplete()
+        {
+            browser.TestLoadHtml("hello world");
+            bool navigatingCalled = false;
+            bool navigatedCalled = false;
+
+            browser.Navigated += (sender, args) => navigatedCalled = true;
+            browser.Navigating += (sender, args) =>
+                                      {
+                                          args.Cancel = true;
+                                          navigatingCalled = true;
+                                      };
+            browser.Navigate("www.google.com");
+
+            while (!navigatingCalled)
+                Application.DoEvents();
+
+            Assert.False(navigatedCalled);
+            Assert.AreEqual("hello world", browser.Document.Body.InnerHtml);
+
+            navigatingCalled = false;
+            browser.Navigate("javascript:location.href='http://www.google.co.uk';");
+
+            while (!navigatingCalled)
+                Application.DoEvents();
+
+            Assert.False(navigatedCalled);
+            Assert.AreEqual("hello world", browser.Document.Body.InnerHtml);
+        }
+
 		// TODO: move unittest into GeckoMarkupDocumentViewerTests
 		[Test]
 		public void SetFullZoomAttribute_SettingToDefault()
