@@ -171,8 +171,9 @@ namespace Gecko
 		/// <summary>
         /// Custom string data associated with this event.
         /// </summary>
+        [return: MarshalAs(UnmanagedType.U8)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetDataAttribute(System.IntPtr jsContext);
+		ulong GetDataAttribute(System.IntPtr jsContext);
 		
 		/// <summary>
         /// The origin of the site from which this event originated, which is the

@@ -66,9 +66,9 @@ namespace Gecko
 		[StructLayout(LayoutKind.Explicit)]
 		private struct JsVal
 		{
-			public static JsVal FromPtr(IntPtr value)
+			public static JsVal FromPtr(ulong value)
 			{
-				return new JsVal() {AsBits = (ulong)value};
+				return new JsVal() {AsBits = value};
 			}
 
 			[FieldOffset(0)] public ulong AsBits;
@@ -77,7 +77,7 @@ namespace Gecko
 			[FieldOffset(0)] public int I32;
 			[FieldOffset(0)] public uint U32;
 			[FieldOffset(0)] public int Boo;
-			[FieldOffset(0)] public IntPtr Ptr;
+			[FieldOffset(0)] public ulong Ptr;
 			[FieldOffset(4)] public ValueTag Tag;	//this is suspect
 
 			public enum ValueTag : uint
@@ -93,10 +93,10 @@ namespace Gecko
 			}
 
 			[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl)]
-			public static extern IntPtr JS_EncodeString(IntPtr cx, IntPtr str);
+			public static extern IntPtr JS_EncodeString(IntPtr cx, ulong str);
 
 			[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl)]
-			public static extern JSType JS_TypeOfValue(IntPtr cx, IntPtr jsVal);
+			public static extern JSType JS_TypeOfValue(IntPtr cx, ulong jsVal);
 
 			public enum JSType : int
 			{
