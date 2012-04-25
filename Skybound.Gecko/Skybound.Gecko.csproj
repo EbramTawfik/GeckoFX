@@ -111,6 +111,7 @@
     <Compile Include="DOM\Html\GeckoElement.cs" />
     <Compile Include="DOM\Html\GeckoDocument.cs" />
     <Compile Include="DOM\Html\GeckoHtmlElementCollection.cs" />
+    <Compile Include="Interop\JsVal.cs" />
     <Compile Include="RandomGenerator.cs" />
     <Compile Include="Services\ExceptionService.cs" />
     <Compile Include="Utils\SaveImageElement.cs" />
