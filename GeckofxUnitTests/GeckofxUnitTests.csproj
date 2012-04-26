@@ -80,6 +80,7 @@
     <Compile Include="SemanticUnitScannerTests.cs" />
     <Compile Include="ServiceBehaviorTest.cs" />
     <Compile Include="SpellCheckerEngineTests.cs" />
+    <Compile Include="SpiderMonkeyTests.cs" />
     <Compile Include="UserInfoTests.cs" />
     <Compile Include="WebBrowserPersistTests.cs" />
     <Compile Include="XpComTests.cs" />

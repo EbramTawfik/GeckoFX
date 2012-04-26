@@ -45,68 +45,7 @@ namespace Gecko
 	/// which prevent methods on nsIDOMCSSStyleSheet from working outside of javascript.
 	/// </summary>
 	public class AutoJSContext : IDisposable
-	{	
-		#region Native Members
-
-		[StructLayout(LayoutKind.Explicit)]
-		private struct JSVal
-		{
-			[FieldOffset(0)]
-			Int64 data;
-		}
-
-		[DllImport("mozjs", CharSet=CharSet.Ansi)]
-		static extern IntPtr JS_CompileScriptForPrincipals(IntPtr aJSContext, IntPtr aJSObject, IntPtr aJSPrincipals, string bytes, int length, string filename, int lineNumber);
-		
-		[DllImport("mozjs")]
-		static extern IntPtr JS_GetGlobalObject(IntPtr aJSContext);
-
-		[DllImport("mozjs")]
-		static extern IntPtr JS_NewContext(IntPtr aJSRuntime, int stackchunksize);
-
-		[DllImport("mozjs")]
-		static extern void JS_DestroyContextNoGC(IntPtr cx);
-
-		[DllImport("mozjs")]
-		static extern IntPtr JS_BeginRequest(IntPtr cx);
-
-		[DllImport("mozjs")]
-		static extern IntPtr JS_EndRequest(IntPtr cx);
-		
-		[DllImport("mozjs", CharSet = CharSet.Ansi)]
-		static extern bool JS_EvaluateScript(IntPtr cx, IntPtr obj, string src, UInt32 length, string filename, UInt32 lineno, ref JSVal jsval);
-
-		[DllImport("mozjs", CharSet = CharSet.Ansi)]
-		static extern bool JS_EvaluateScriptForPrincipals(IntPtr cx, IntPtr obj, IntPtr principals, string src, UInt32 length, string filename, UInt32 lineno, ref JSVal jsval);				
-		
-		[DllImport("mozjs")]
-		static extern IntPtr JS_GetGlobalForScopeChain(IntPtr aJSContext);
-		
-		[DllImport("mozjs")]
-		static extern bool JS_InitStandardClasses(IntPtr cx, IntPtr obj);
-
-		[DllImport("mozjs")]
-		static extern IntPtr JS_ValueToString(IntPtr cx, JSVal v);
-
-		[DllImport("mozjs")]
-		static extern IntPtr JS_EncodeString(IntPtr cx, IntPtr jsString);
-
-		[DllImport("mozjs")]
-		static extern void JS_SetGlobalObject(IntPtr cx, IntPtr jsObject);
-
-		[DllImport("mozjs")]
-		static extern IntPtr JS_EnterCrossCompartmentCall(IntPtr cx, IntPtr targetJSObject);
-
-		// TODO: remove the need for this to be public
-		[UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
-		public delegate int CallBack(IntPtr cx, UInt32 contextOp);
-
-		// TODO: remove the need for this to be public
-		[DllImport("mozjs")]
-		public static extern AutoJSContext.CallBack JS_SetContextCallback(IntPtr rt, CallBack cb);		
-
-		#endregion
-
+	{			
 		IntPtr _cx;
 		
 		public IntPtr ContextPointer { get { return _cx; } }
@@ -133,7 +72,7 @@ namespace Gecko
 			_cx = context;			
 
 			// begin a new request
-			JS_BeginRequest(_cx);
+			SpiderMonkey.JS_BeginRequest(_cx);
 
 			// push the context onto the context stack
 			_contextStack = Xpcom.GetService<nsIJSContextStack>("@mozilla.org/js/xpc/ContextStack;1");
@@ -163,12 +102,12 @@ namespace Gecko
 		/// <returns></returns>
 		public bool EvaluateScript(string jsScript, out string result)
 		{
-			JSVal ptr = new JSVal();
-			IntPtr globalObject = AutoJSContext.JS_GetGlobalForScopeChain(_cx);
-			bool ret = AutoJSContext.JS_EvaluateScriptForPrincipals(_cx, globalObject, _jsPrincipals, jsScript, (uint)jsScript.Length, "script", 1, ref ptr);		
+			var ptr = new JsVal();
+			IntPtr globalObject = SpiderMonkey.JS_GetGlobalForScopeChain(_cx);
+			bool ret = SpiderMonkey.JS_EvaluateScriptForPrincipals(_cx, globalObject, _jsPrincipals, jsScript, (uint)jsScript.Length, "script", 1, ref ptr);
 
-			IntPtr jsStringPtr = JS_ValueToString(_cx, ptr);
-			result = Marshal.PtrToStringAnsi(JS_EncodeString(_cx, jsStringPtr));
+			IntPtr jsStringPtr = SpiderMonkey.JS_ValueToString(_cx, ptr);
+			result = Marshal.PtrToStringAnsi(SpiderMonkey.JS_EncodeString(_cx, jsStringPtr));
 			return ret;
 		}		
 
@@ -177,7 +116,7 @@ namespace Gecko
 			_securityManager.PopContextPrincipal(_cx);
 			
 			_contextStack.Pop();
-			JS_EndRequest(_cx);
+			SpiderMonkey.JS_EndRequest(_cx);
 		}
 	}
 }

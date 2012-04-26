@@ -173,14 +173,14 @@ namespace Gecko
 			_runtimeService = Xpcom.GetService<nsIJSRuntimeService>("@mozilla.org/js/xpc/RuntimeService;1");
 			_jsRuntime = _runtimeService.GetRuntimeAttribute();
 
-			_managedCallback = (IntPtr cx, UInt32 unitN) => { JSContext = cx; AutoJSContext.JS_SetContextCallback(_jsRuntime, null); return 1; };
+			_managedCallback = (IntPtr cx, UInt32 unitN) => { JSContext = cx; SpiderMonkey.JS_SetContextCallback(_jsRuntime, null); return 1; };
 
-			_originalContextCallBack = AutoJSContext.JS_SetContextCallback(_jsRuntime, _managedCallback);
+			_originalContextCallBack = SpiderMonkey.JS_SetContextCallback(_jsRuntime, _managedCallback);
 			if (_originalContextCallBack != null)
 			{
 				RemoveJsContextCallBack();
-				_managedCallback = (IntPtr cx, UInt32 unitN) => { JSContext = cx; AutoJSContext.JS_SetContextCallback(_jsRuntime, _originalContextCallBack); return _originalContextCallBack(cx, unitN); };
-				AutoJSContext.JS_SetContextCallback(_jsRuntime, _managedCallback);
+				_managedCallback = (IntPtr cx, UInt32 unitN) => { JSContext = cx; SpiderMonkey.JS_SetContextCallback(_jsRuntime, _originalContextCallBack); return _originalContextCallBack(cx, unitN); };
+				SpiderMonkey.JS_SetContextCallback(_jsRuntime, _managedCallback);
 			}
 		}
 
@@ -191,14 +191,14 @@ namespace Gecko
 			if (_jsRuntime == IntPtr.Zero)
 				return;
 
-			AutoJSContext.JS_SetContextCallback(_jsRuntime, _originalContextCallBack);
+			SpiderMonkey.JS_SetContextCallback(_jsRuntime, _originalContextCallBack);
 		}
 
 
 		private IntPtr _jsRuntime;
 		private nsIJSRuntimeService _runtimeService;
-		private AutoJSContext.CallBack _managedCallback;
-		private AutoJSContext.CallBack _originalContextCallBack;
+		private SpiderMonkey.CallBack _managedCallback;
+		private SpiderMonkey.CallBack _originalContextCallBack;
 
 		public IntPtr JSContext { get; protected set; }
 		#endregion

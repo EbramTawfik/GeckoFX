@@ -14,10 +14,7 @@ namespace Gecko
 	///			Embeddings should not rely on observed representation details, the size of jsval, 
 	///			or whether jsval is a primitive type."
 	///	In the code below, we are just using API calls to access it, except for the attempt to get at the value tag directly (which didn't work).
-	///	
-	/// This JsVal implementations is very broken. 
-	/// (for a start IntPtr on 32 bit systems is only 4 bytes and casting it to (ulong doesn't help))
-	/// and C++ bit shifts AsBits >> 47 to access the ValueTag.
+	///		
 	/// </remarks>
 	[StructLayout(LayoutKind.Explicit)]
 	public struct JsVal
@@ -55,26 +52,7 @@ namespace Gecko
 			Null = Clear | 6,
 			Object = Clear | 7
 		}
-
-		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl)]
-		public static extern IntPtr JS_EncodeString(IntPtr cx, ulong str);
-
-		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl)]
-		public static extern JSType JS_TypeOfValue(IntPtr cx, ulong jsVal);
-
-		public enum JSType : int
-		{
-			JSTYPE_VOID,                /* undefined */
-			JSTYPE_OBJECT,              /* object */
-			JSTYPE_FUNCTION,            /* function */
-			JSTYPE_STRING,              /* string */
-			JSTYPE_NUMBER,              /* number */
-			JSTYPE_BOOLEAN,             /* boolean */
-			JSTYPE_NULL,                /* null */
-			JSTYPE_XML,                 /* xml object */
-			JSTYPE_LIMIT
-		}
-
+		
 		/*			
 					I've been unable to actually find out the type. See below:
  
@@ -96,7 +74,7 @@ namespace Gecko
 			{
 				using (AutoJSContext context = new AutoJSContext())
 				{
-					return JS_TypeOfValue(context.ContextPointer, Ptr);
+					return SpiderMonkey.JS_TypeOfValue(context.ContextPointer, Ptr);
 				}
 			}
 		}
@@ -108,7 +86,8 @@ namespace Gecko
 
 			using (AutoJSContext context = new AutoJSContext())
 			{
-				return Marshal.PtrToStringAnsi(JS_EncodeString(context.ContextPointer, Ptr));
+				IntPtr jsString = SpiderMonkey.JS_ValueToString(context.ContextPointer, this);
+				return Marshal.PtrToStringAnsi(SpiderMonkey.JS_EncodeString(context.ContextPointer, jsString));
 			}
 		}
 	}

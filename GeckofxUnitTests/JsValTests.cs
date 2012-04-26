@@ -23,14 +23,24 @@ namespace GeckofxUnitTests
 		}
 
 		[Test]
-		public void JS_TypeOfValue__()
+		public void ToString_OnStringJsVal_ReturnsStringContents()
 		{
-			using (AutoJSContext cx = new AutoJSContext())
-			{
-				Assert.AreEqual(JsVal.JSType.JSTYPE_NUMBER, JsVal.JS_TypeOfValue(cx.ContextPointer, 0));
-				Assert.AreEqual(JsVal.JSType.JSTYPE_NUMBER, JsVal.JS_TypeOfValue(cx.ContextPointer, 0xffff0000ffffffff));
-				Assert.AreEqual(JsVal.JSType.JSTYPE_BOOLEAN, JsVal.JS_TypeOfValue(cx.ContextPointer, 0xffffffffffffffff));
-			}			
+			JsVal stringJsVal = SpiderMonkeyTests.CreateStringJsVal("hello world");
+			Assert.AreEqual("hello world", stringJsVal.ToString());
+		}
+
+		[Test]
+		public void Type_OnStringJsVal_RetrunsStringType()
+		{
+			JsVal stringJsVal = SpiderMonkeyTests.CreateStringJsVal("hello world");
+			Assert.AreEqual(JSType.JSTYPE_STRING, stringJsVal.Type);
+		}
+
+		[Test]
+		public void Type_OnNumberJsVal_ReturnsNumberType()
+		{
+			JsVal numberJsVal = SpiderMonkeyTests.CreateNumberJsVal(23);
+			Assert.AreEqual(JSType.JSTYPE_NUMBER, numberJsVal.Type);
 		}
 	}
 }
