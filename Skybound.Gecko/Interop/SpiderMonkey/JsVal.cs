@@ -52,21 +52,18 @@ namespace Gecko
 			Null = Clear | 6,
 			Object = Clear | 7
 		}
-		
-		/*			
-					I've been unable to actually find out the type. See below:
- 
-					public bool IsString
-					{
-						get
-						{
-							//always killed the process just binding to it, before it was actually called: JS_GetTypeName(context.ContextPointer, Type);
-							//always returned JSTYPE_NUMBER: return Type == JSType.JSTYPE_STRING;
-							//always returned 0 return Tag == ValueTag.String; 
-							return true; ///argghhh
-						}
-					}
-		*/
+
+		/// <summary>
+		/// Return true if JsVal is a string type.
+		/// </summary>
+		public bool IsString
+		{
+			get
+			{
+				return Type == JSType.JSTYPE_STRING;
+			}
+		}
+
 
 		public JSType Type
 		{
@@ -79,10 +76,10 @@ namespace Gecko
 			}
 		}
 
-		public string ToString()
+		public override string ToString()
 		{
-			//		TODO		if (!IsString)
-			//					throw new NotImplementedException("JsVal.ToString() only supported when the type is String.");
+			if (!IsString)
+				throw new NotImplementedException("JsVal.ToString() only supported when the type is String.");
 
 			using (AutoJSContext context = new AutoJSContext())
 			{

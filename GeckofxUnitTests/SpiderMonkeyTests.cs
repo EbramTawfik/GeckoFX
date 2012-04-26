@@ -28,21 +28,20 @@ namespace GeckofxUnitTests
 		/// <param name="value"></param>
 		/// <returns></returns>
 		internal static JsVal CreateStringJsVal(string value)
-		{
-			using (AutoJSContext cx = new AutoJSContext())			
-			{
-				string jscript = String.Format("'{0}';", value);
-				var ptr = new JsVal();
-				var _securityManager = Xpcom.GetService<nsIScriptSecurityManager>("@mozilla.org/scriptsecuritymanager;1");
-				var _systemPrincipal = _securityManager.GetSystemPrincipal();
-				var _jsPrincipals = _systemPrincipal.GetJSPrincipals(cx.ContextPointer);
-				IntPtr globalObject = SpiderMonkey.JS_GetGlobalForScopeChain(cx.ContextPointer);
-				bool ret = SpiderMonkey.JS_EvaluateScriptForPrincipals(cx.ContextPointer, globalObject, _jsPrincipals, jscript, (uint)jscript.Length, "script", 1, ref ptr);
-				Assert.IsTrue(ret);
-				Marshal.ReleaseComObject(_securityManager);
+		{			
+			string jscript = String.Format("'{0}';", value);
+			return CreateJsVal(jscript);	
+		}
 
-				return ptr;
-			}
+		/// <summary>
+		/// Unittest helper method to create a Number JsVal
+		/// </summary>
+		/// <param name="value"></param>
+		/// <returns></returns>
+		internal static JsVal CreateNumberJsVal(int value)
+		{			
+			string jscript = String.Format("{0};", value);
+			return CreateJsVal(jscript);
 		}
 
 		/// <summary>
@@ -50,11 +49,10 @@ namespace GeckofxUnitTests
 		/// </summary>
 		/// <param name="value"></param>
 		/// <returns></returns>
-		internal static JsVal CreateNumberJsVal(int value)
+		private static JsVal CreateJsVal(string jscript)
 		{
 			using (AutoJSContext cx = new AutoJSContext())
-			{
-				string jscript = String.Format("{0};", value);
+			{				
 				var ptr = new JsVal();
 				var _securityManager = Xpcom.GetService<nsIScriptSecurityManager>("@mozilla.org/scriptsecuritymanager;1");
 				var _systemPrincipal = _securityManager.GetSystemPrincipal();

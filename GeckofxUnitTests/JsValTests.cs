@@ -42,5 +42,19 @@ namespace GeckofxUnitTests
 			JsVal numberJsVal = SpiderMonkeyTests.CreateNumberJsVal(23);
 			Assert.AreEqual(JSType.JSTYPE_NUMBER, numberJsVal.Type);
 		}
+
+		[Test]
+		public void IsString_OnStringJsVal_RetrunsTrue()
+		{
+			JsVal stringJsVal = SpiderMonkeyTests.CreateStringJsVal("hello world");
+			Assert.IsTrue(stringJsVal.IsString);
+		}
+
+		[Test]
+		public void IsString_OnNumberJsVal_RetrunsFalse()
+		{
+			JsVal numberJsVal = SpiderMonkeyTests.CreateNumberJsVal(23);
+			Assert.IsFalse(numberJsVal.IsString);
+		}
 	}
 }
