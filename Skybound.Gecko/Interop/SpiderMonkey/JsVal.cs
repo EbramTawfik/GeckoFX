@@ -77,10 +77,7 @@ namespace Gecko
 		}
 
 		public override string ToString()
-		{
-			if (!IsString)
-				throw new NotImplementedException("JsVal.ToString() only supported when the type is String.");
-
+		{			
 			using (AutoJSContext context = new AutoJSContext())
 			{
 				IntPtr jsString = SpiderMonkey.JS_ValueToString(context.ContextPointer, this);

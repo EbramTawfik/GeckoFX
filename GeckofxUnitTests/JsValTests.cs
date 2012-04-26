@@ -30,6 +30,20 @@ namespace GeckofxUnitTests
 		}
 
 		[Test]
+		public void ToString_OnNumberJsVal_ReturnsNumberContentsConvertedToAString()
+		{
+			JsVal stringJsVal = SpiderMonkeyTests.CreateNumberJsVal(23);
+			Assert.AreEqual("23", stringJsVal.ToString());
+		}
+
+		[Test]
+		public void ToString_OnBoolJsVal_ReturnsNumberContentsConvertedToAString()
+		{
+			JsVal stringJsVal = SpiderMonkeyTests.CreateBoolJsVal(false);
+			Assert.AreEqual("false", stringJsVal.ToString());
+		}
+
+		[Test]
 		public void Type_OnStringJsVal_RetrunsStringType()
 		{
 			JsVal stringJsVal = SpiderMonkeyTests.CreateStringJsVal("hello world");

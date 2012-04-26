@@ -45,6 +45,17 @@ namespace GeckofxUnitTests
 		}
 
 		/// <summary>
+		/// Unittest helper method to create a bool JsVal
+		/// </summary>
+		/// <param name="value"></param>
+		/// <returns></returns>
+		internal static JsVal CreateBoolJsVal(bool value)
+		{
+			string jscript = String.Format("{0};", value ? "true" : "false");
+			return CreateJsVal(jscript);
+		}
+
+		/// <summary>
 		/// Unittest helper method to create a String JsVal
 		/// </summary>
 		/// <param name="value"></param>
@@ -96,6 +107,16 @@ namespace GeckofxUnitTests
 			using (AutoJSContext cx = new AutoJSContext())
 			{
 				Assert.AreEqual(JSType.JSTYPE_NUMBER, SpiderMonkey.JS_TypeOfValue(cx.ContextPointer, jsVal.Ptr));
+			}
+		}
+
+		[Test]
+		public void JS_TypeOfValue_OnBoolJsValCreatedBySpiderMonkey_ReturnsTypeBool()
+		{
+			var jsVal = CreateBoolJsVal(true);
+			using (AutoJSContext cx = new AutoJSContext())
+			{
+				Assert.AreEqual(JSType.JSTYPE_BOOLEAN, SpiderMonkey.JS_TypeOfValue(cx.ContextPointer, jsVal.Ptr));
 			}
 		}
 
