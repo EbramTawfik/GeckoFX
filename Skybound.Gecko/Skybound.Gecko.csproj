@@ -111,6 +111,7 @@
     <Compile Include="DOM\Html\GeckoElement.cs" />
     <Compile Include="DOM\Html\GeckoDocument.cs" />
     <Compile Include="DOM\Html\GeckoHtmlElementCollection.cs" />
+    <Compile Include="Interop\SpiderMonkey\JSBool.cs" />
     <Compile Include="Interop\SpiderMonkey\JsType.cs" />
     <Compile Include="Interop\SpiderMonkey\JsVal.cs" />
     <Compile Include="Interop\SpiderMonkey\SpiderMonkey.cs" />
