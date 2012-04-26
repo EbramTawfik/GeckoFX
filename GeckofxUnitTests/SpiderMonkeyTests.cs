@@ -82,9 +82,9 @@ namespace GeckofxUnitTests
 		{
 			using (AutoJSContext cx = new AutoJSContext())
 			{
-				Assert.AreEqual(JSType.JSTYPE_NUMBER, SpiderMonkey.JS_TypeOfValue(cx.ContextPointer, 0));
-				Assert.AreEqual(JSType.JSTYPE_NUMBER, SpiderMonkey.JS_TypeOfValue(cx.ContextPointer, 0xffff0000ffffffff));
-				Assert.AreEqual(JSType.JSTYPE_BOOLEAN, SpiderMonkey.JS_TypeOfValue(cx.ContextPointer, 0xffffffffffffffff));
+				Assert.AreEqual(JSType.JSTYPE_NUMBER, SpiderMonkey.JS_TypeOfValue(cx.ContextPointer, JsVal.FromPtr(0)));
+				Assert.AreEqual(JSType.JSTYPE_NUMBER, SpiderMonkey.JS_TypeOfValue(cx.ContextPointer, JsVal.FromPtr(0xffff0000ffffffff)));
+				Assert.AreEqual(JSType.JSTYPE_BOOLEAN, SpiderMonkey.JS_TypeOfValue(cx.ContextPointer, JsVal.FromPtr(0xffffffffffffffff)));
 			}
 		}
 
@@ -95,7 +95,7 @@ namespace GeckofxUnitTests
 			var jsVal = CreateStringJsVal("hello world");
 			using (AutoJSContext cx = new AutoJSContext())
 			{
-				Assert.AreEqual(JSType.JSTYPE_STRING, SpiderMonkey.JS_TypeOfValue(cx.ContextPointer, jsVal.Ptr));
+				Assert.AreEqual(JSType.JSTYPE_STRING, SpiderMonkey.JS_TypeOfValue(cx.ContextPointer, jsVal));
 			}
 		}
 
@@ -106,7 +106,7 @@ namespace GeckofxUnitTests
 			var jsVal = CreateNumberJsVal(100);
 			using (AutoJSContext cx = new AutoJSContext())
 			{
-				Assert.AreEqual(JSType.JSTYPE_NUMBER, SpiderMonkey.JS_TypeOfValue(cx.ContextPointer, jsVal.Ptr));
+				Assert.AreEqual(JSType.JSTYPE_NUMBER, SpiderMonkey.JS_TypeOfValue(cx.ContextPointer, jsVal));
 			}
 		}
 
@@ -116,7 +116,7 @@ namespace GeckofxUnitTests
 			var jsVal = CreateBoolJsVal(true);
 			using (AutoJSContext cx = new AutoJSContext())
 			{
-				Assert.AreEqual(JSType.JSTYPE_BOOLEAN, SpiderMonkey.JS_TypeOfValue(cx.ContextPointer, jsVal.Ptr));
+				Assert.AreEqual(JSType.JSTYPE_BOOLEAN, SpiderMonkey.JS_TypeOfValue(cx.ContextPointer, jsVal));
 			}
 		}
 

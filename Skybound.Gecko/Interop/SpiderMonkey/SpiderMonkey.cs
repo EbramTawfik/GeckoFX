@@ -8,7 +8,7 @@ namespace Gecko
 		public static extern IntPtr JS_EncodeString(IntPtr cx, IntPtr jsString);
 
 		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl)]
-		public static extern JSType JS_TypeOfValue(IntPtr cx, ulong jsVal);
+		public static extern JSType JS_TypeOfValue(IntPtr cx, JsVal jsVal);
 
 		[DllImport("mozjs")]
 		public static extern IntPtr JS_ValueToString(IntPtr cx, JsVal v);

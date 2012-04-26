@@ -71,7 +71,7 @@ namespace Gecko
 			{
 				using (AutoJSContext context = new AutoJSContext())
 				{
-					return SpiderMonkey.JS_TypeOfValue(context.ContextPointer, Ptr);
+					return SpiderMonkey.JS_TypeOfValue(context.ContextPointer, this);
 				}
 			}
 		}
