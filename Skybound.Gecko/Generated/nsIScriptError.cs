@@ -32,7 +32,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("537ff844-c325-4047-92f5-e1c292d108bc")]
+	[Guid("c6dd877a-87b6-47cc-968d-90f4514ec65f")]
 	public interface nsIScriptError : nsIConsoleMessage
 	{
 		
@@ -89,23 +89,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		long GetTimeStampAttribute();
 		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string message, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string sourceName, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string sourceLine, uint lineNumber, uint columnNumber, uint flags, [MarshalAs(UnmanagedType.LPStr)] string category);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ToString([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase retval);
-	}
-	
-	/// <summary>
-    /// An interface that nsIScriptError objects can implement to allow
-    /// them to be initialized with a window id.
-    /// </summary>
-	[ComImport()]
-	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("444c5e66-a85d-4a3b-83ce-4c71882b09a3")]
-	public interface nsIScriptError2
-	{
-		
 		/// <summary>
         ///Get the window id this was initialized with.  Zero will be
         ///       returned if init() was used instead of initWithWindowID(). </summary>
@@ -118,11 +101,17 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		ulong GetInnerWindowIDAttribute();
 		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Init([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string message, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string sourceName, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string sourceLine, uint lineNumber, uint columnNumber, uint flags, [MarshalAs(UnmanagedType.LPStr)] string category);
+		
 		/// <summary>
         ///This should be called instead of nsIScriptError.init to
         ///       initialize with a window id.  The window id should be for the
         ///       inner window associated with this error. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void InitWithWindowID([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string message, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string sourceName, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string sourceLine, uint lineNumber, uint columnNumber, uint flags, [MarshalAs(UnmanagedType.LPStr)] string category, ulong innerWindowID);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void ToString([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase retval);
 	}
 }

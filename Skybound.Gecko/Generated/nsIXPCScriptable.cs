@@ -35,7 +35,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("a40ce52e-2d8c-400f-9af2-f8784a656070")]
+	[Guid("fca22e1e-a2bf-456e-83db-f73e8de0f7c5")]
 	public interface nsIXPCScriptable
 	{
 		
@@ -114,9 +114,6 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool HasInstance([MarshalAs(UnmanagedType.Interface)] nsIXPConnectWrappedNative wrapper, System.IntPtr cx, System.IntPtr obj, System.IntPtr val, [MarshalAs(UnmanagedType.U1)] ref bool bp);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Trace([MarshalAs(UnmanagedType.Interface)] nsIXPConnectWrappedNative wrapper, System.IntPtr trc, System.IntPtr obj);
 		
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

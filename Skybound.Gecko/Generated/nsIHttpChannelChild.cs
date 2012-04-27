@@ -30,7 +30,7 @@ namespace Gecko
 	/// <summary>nsIHttpChannelChild </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("40192377-f83c-4b31-92c6-dbc6c767c860")]
+	[Guid("306ACF4D-C6DF-4EF6-BDA9-5CB92E83EDD9")]
 	public interface nsIHttpChannelChild
 	{
 		
@@ -38,9 +38,10 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void AddCookiesToRequest();
 		
-		/// <summary>Member GetHeaderTuplesAttribute </summary>
-		/// <returns>A System.IntPtr</returns>
+		/// <summary>
+        /// Headers that the channel client has set via SetRequestHeader.
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetHeaderTuplesAttribute();
+		System.IntPtr GetClientSetRequestHeadersAttribute();
 	}
 }

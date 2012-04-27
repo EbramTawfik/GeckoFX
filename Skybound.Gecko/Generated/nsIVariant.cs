@@ -60,7 +60,7 @@ namespace Gecko
 		ushort GetDataTypeAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		sbyte GetAsInt8();
+		byte GetAsInt8();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		short GetAsInt16();
@@ -170,7 +170,7 @@ namespace Gecko
 		new ushort GetDataTypeAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new sbyte GetAsInt8();
+		new byte GetAsInt8();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new short GetAsInt16();
@@ -279,7 +279,7 @@ namespace Gecko
 		void SetWritableAttribute([MarshalAs(UnmanagedType.U1)] bool aWritable);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAsInt8(sbyte aValue);
+		void SetAsInt8(byte aValue);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetAsInt16(short aValue);

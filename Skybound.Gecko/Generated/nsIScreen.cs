@@ -30,15 +30,12 @@ namespace Gecko
 	/// <summary>nsIScreen </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("f728830e-1dd1-11b2-9598-fb9f414f2465")]
+	[Guid("498dcd6c-94a2-4c32-8c77-531b583dff37")]
 	public interface nsIScreen
 	{
 		
-		/// <summary>Member GetRect </summary>
-		/// <param name='left'> </param>
-		/// <param name='top'> </param>
-		/// <param name='width'> </param>
-		/// <param name='height'> </param>
+		/// <summary>
+        ///The number of different brightness levels </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetRect(ref int left, ref int top, ref int width, ref int height);
 		
@@ -49,24 +46,6 @@ namespace Gecko
 		/// <param name='height'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetAvailRect(ref int left, ref int top, ref int width, ref int height);
-		
-		/// <summary>Member GetPixelDepthAttribute </summary>
-		/// <returns>A System.Int32</returns>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetPixelDepthAttribute();
-		
-		/// <summary>Member GetColorDepthAttribute </summary>
-		/// <returns>A System.Int32</returns>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetColorDepthAttribute();
-	}
-	
-	/// <summary>nsIScreen_MOZILLA_2_0_BRANCH </summary>
-	[ComImport()]
-	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("f7c93d20-c4e4-4628-b343-cb5530b04f15")]
-	public interface nsIScreen_MOZILLA_2_0_BRANCH
-	{
 		
 		/// <summary>
         /// Locks the minimum brightness of the screen, forcing it to be at
@@ -87,5 +66,15 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void UnlockMinimumBrightness(uint brightness);
+		
+		/// <summary>Member GetPixelDepthAttribute </summary>
+		/// <returns>A System.Int32</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		int GetPixelDepthAttribute();
+		
+		/// <summary>Member GetColorDepthAttribute </summary>
+		/// <returns>A System.Int32</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		int GetColorDepthAttribute();
 	}
 }

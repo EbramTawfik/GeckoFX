@@ -59,7 +59,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("2e5fa0c4-57f8-4d16-bda3-1daeba9caa34")]
+	[Guid("5ca71b89-1a2f-475f-881d-d76c1531c4c8")]
 	public interface imgIDecoderObserver : imgIContainerObserver
 	{
 		
@@ -70,7 +70,7 @@ namespace Gecko
         /// @version 0.1
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void FrameChanged(imgIContainer aContainer, [MarshalAs(UnmanagedType.Interface)] nsIntRect aDirtyRect);
+		new void FrameChanged(imgIRequest aRequest, imgIContainer aContainer, [MarshalAs(UnmanagedType.Interface)] nsIntRect aDirtyRect);
 		
 		/// <summary>
         /// Load notification.

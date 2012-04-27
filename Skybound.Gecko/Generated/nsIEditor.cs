@@ -30,7 +30,7 @@ namespace Gecko
 	/// <summary>nsIEditor </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("20ee0b70-c528-11e0-9572-0800200c9a66")]
+	[Guid("14dbb6b1-7da4-42cf-be8e-77ae24eabe0f")]
 	public interface nsIEditor
 	{
 		
@@ -231,6 +231,18 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void EnableUndo([MarshalAs(UnmanagedType.U1)] bool enable);
+		
+		/// <summary>
+        /// The number of items on the undo stack.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		int GetNumberOfUndoItemsAttribute();
+		
+		/// <summary>
+        /// The number of items on the redo stack.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		int GetNumberOfRedoItemsAttribute();
 		
 		/// <summary>
         ///undo reverses the effects of the last Do operation,

@@ -35,7 +35,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("a6cf90ce-15b3-11d2-932e-00805f8add32")]
+	[Guid("a059eea8-fece-4c14-93d3-7f50a944ae43")]
 	public interface nsIDOMRange
 	{
 		
@@ -144,5 +144,36 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Detach();
+		
+		/// <summary>
+        /// http://html5.org/specs/dom-parsing.html#extensions-to-the-range-interface
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDocumentFragment CreateContextualFragment([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase fragment);
+		
+		/// <summary>
+        /// of the boundary points or is between them.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool IsPointInRange([MarshalAs(UnmanagedType.Interface)] nsIDOMNode parent, int offset);
+		
+		/// <summary>
+        /// Sort of a strcmp for ranges.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		short ComparePoint([MarshalAs(UnmanagedType.Interface)] nsIDOMNode parent, int offset);
+		
+		/// <summary>
+        /// http://dev.w3.org/csswg/cssom-view/#extensions-to-the-range-interface
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMClientRectList GetClientRects();
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMClientRect GetBoundingClientRect();
 	}
 }

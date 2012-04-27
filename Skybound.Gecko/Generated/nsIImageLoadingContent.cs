@@ -61,7 +61,7 @@ namespace Gecko
         /// @version 0.1
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void FrameChanged(imgIContainer aContainer, [MarshalAs(UnmanagedType.Interface)] nsIntRect aDirtyRect);
+		new void FrameChanged(imgIRequest aRequest, imgIContainer aContainer, [MarshalAs(UnmanagedType.Interface)] nsIntRect aDirtyRect);
 		
 		/// <summary>
         /// Load notification.

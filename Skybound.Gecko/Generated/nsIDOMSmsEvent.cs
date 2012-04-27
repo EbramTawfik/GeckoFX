@@ -30,7 +30,7 @@ namespace Gecko
 	/// <summary>nsIDOMMozSmsEvent </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("34dda4c3-4683-4323-9ee3-2a7bfef7df3b")]
+	[Guid("fa8d1c86-85b1-4e5b-978c-12dd296cd1cc")]
 	public interface nsIDOMMozSmsEvent : nsIDOMEvent
 	{
 		

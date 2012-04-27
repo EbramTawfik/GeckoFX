@@ -27,6 +27,35 @@ namespace Gecko
 	using System.Windows.Forms;
 	
 	
+	/// <summary>nsIIDBObjectStoreParameters </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("fb143548-08d1-43b4-95f2-a1cd58f8db76")]
+	public interface nsIIDBObjectStoreParameters
+	{
+		
+		/// <summary>Member GetKeyPathAttribute </summary>
+		/// <returns>A System.IntPtr</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		System.IntPtr GetKeyPathAttribute();
+		
+		/// <summary>Member SetKeyPathAttribute </summary>
+		/// <param name='aKeyPath'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetKeyPathAttribute(System.IntPtr aKeyPath);
+		
+		/// <summary>Member GetAutoIncrementAttribute </summary>
+		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetAutoIncrementAttribute();
+		
+		/// <summary>Member SetAutoIncrementAttribute </summary>
+		/// <param name='aAutoIncrement'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetAutoIncrementAttribute([MarshalAs(UnmanagedType.U1)] bool aAutoIncrement);
+	}
+	
 	/// <summary>
     /// IDBDatabase interface.  See
     /// http://dvcs.w3.org/hg/IndexedDB/raw-file/tip/Overview.html#idl-def-IDBDatabase

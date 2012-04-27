@@ -51,7 +51,7 @@ namespace Gecko
 		nsIInputStream GetInternalStreamAttribute();
 		
 		/// <summary>
-        /// moz-filedata: protocol handler
+        /// blob: protocol handler
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetInternalUrl([MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
@@ -109,7 +109,7 @@ namespace Gecko
 		new nsIInputStream GetInternalStreamAttribute();
 		
 		/// <summary>
-        /// moz-filedata: protocol handler
+        /// blob: protocol handler
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetInternalUrl([MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);

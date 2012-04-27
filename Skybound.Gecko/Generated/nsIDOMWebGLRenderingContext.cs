@@ -262,7 +262,7 @@ namespace Gecko
 	/// <summary>nsIDOMWebGLRenderingContext </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("ef15ae85-4670-4dc4-848d-51ca81e8397a")]
+	[Guid("f000afac-11b3-4c06-a35f-8db411f1cf54")]
 	public interface nsIDOMWebGLRenderingContext
 	{
 		
@@ -447,6 +447,39 @@ namespace Gecko
 		/// <param name='shader'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void CompileShader([MarshalAs(UnmanagedType.Interface)] nsIWebGLShader shader);
+		
+		/// <summary>Member CompressedTexImage2D </summary>
+		/// <param name='dummy'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void CompressedTexImage2D(int dummy);
+		
+		/// <summary>Member CompressedTexImage2D_array </summary>
+		/// <param name='target'> </param>
+		/// <param name='level'> </param>
+		/// <param name='internalformat'> </param>
+		/// <param name='width'> </param>
+		/// <param name='height'> </param>
+		/// <param name='border'> </param>
+		/// <param name='pixels'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void CompressedTexImage2D_array(uint target, int level, uint internalformat, int width, int height, int border, System.IntPtr pixels);
+		
+		/// <summary>Member CompressedTexSubImage2D </summary>
+		/// <param name='dummy'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void CompressedTexSubImage2D(int dummy);
+		
+		/// <summary>Member CompressedTexSubImage2D_array </summary>
+		/// <param name='target'> </param>
+		/// <param name='level'> </param>
+		/// <param name='xoffset'> </param>
+		/// <param name='yoffset'> </param>
+		/// <param name='width'> </param>
+		/// <param name='height'> </param>
+		/// <param name='format'> </param>
+		/// <param name='pixels'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void CompressedTexSubImage2D_array(uint target, int level, int xoffset, int yoffset, int width, int height, uint format, System.IntPtr pixels);
 		
 		/// <summary>Member CopyTexImage2D </summary>
 		/// <param name='target'> </param>

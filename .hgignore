@@ -1,6 +1,6 @@
 syntax: glob
 PutXulRunnerFolderHere/
-Skybound.Gecko/Generated*
+*.iip
 Skybound.Gecko/obj/
 Skybound.Gecko/bin/
 Skybound.Gecko/_ReSharper.Skybound.Gecko

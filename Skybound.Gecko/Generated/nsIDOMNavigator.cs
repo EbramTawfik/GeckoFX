@@ -30,7 +30,7 @@ namespace Gecko
 	/// <summary>nsIDOMNavigator </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("d6d01084-4a7d-469b-9654-76cf220cb124")]
+	[Guid("5d6575cc-43d6-40f9-ac8e-a4438474f4ba")]
 	public interface nsIDOMNavigator
 	{
 		

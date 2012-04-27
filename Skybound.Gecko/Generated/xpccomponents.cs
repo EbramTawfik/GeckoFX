@@ -161,7 +161,7 @@ namespace Gecko
     /// interface of Components.utils </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("b032a8f1-9149-4cbe-bee6-4ac5dfe7c80a")]
+	[Guid("9e9ba9d6-a0fa-4767-9f49-9b74bb2368cd")]
 	public interface nsIXPCComponents_Utils
 	{
 		
@@ -276,11 +276,26 @@ namespace Gecko
 		void ForceGC(System.IntPtr jsContext);
 		
 		/// <summary>
+        /// To be called from JS only.
+        ///
+        /// Force an immediate shrinking garbage collection cycle.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void ForceShrinkingGC(System.IntPtr jsContext);
+		
+		/// <summary>
         /// Schedule a garbage collection cycle for a point in the future when no JS
         /// is running. Call the provided function once this has occurred.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SchedulePreciseGC(ScheduledGCCallback callback, System.IntPtr jsContext);
+		
+		/// <summary>
+        /// Schedule a shrinking garbage collection cycle for a point in the future
+        /// when no JS is running. Call the provided function once this has occured.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SchedulePreciseShrinkingGC(ScheduledGCCallback callback, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Return the keys in a weak map.  This operation is

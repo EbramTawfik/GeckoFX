@@ -460,24 +460,26 @@ namespace Gecko
 		
 		/// <summary>
         /// The state of the selected patch:
-        /// "downloading"       The update is being downloaded.
-        /// "pending"           The update is ready to be applied.
-        /// "applying"          The update is being applied.
-        /// "succeeded"         The update was successfully applied.
-        /// "download-failed"   The update failed to be downloaded.
-        /// "failed"            The update failed to be applied.
+        /// "downloading"        The update is being downloaded.
+        /// "pending"            The update is ready to be applied.
+        /// "pending-service"    The update is ready to be applied with the service.
+        /// "applying"           The update is being applied.
+        /// "succeeded"          The update was successfully applied.
+        /// "download-failed"    The update failed to be downloaded.
+        /// "failed"             The update failed to be applied.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetStateAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aState);
 		
 		/// <summary>
         /// The state of the selected patch:
-        /// "downloading"       The update is being downloaded.
-        /// "pending"           The update is ready to be applied.
-        /// "applying"          The update is being applied.
-        /// "succeeded"         The update was successfully applied.
-        /// "download-failed"   The update failed to be downloaded.
-        /// "failed"            The update failed to be applied.
+        /// "downloading"        The update is being downloaded.
+        /// "pending"            The update is ready to be applied.
+        /// "pending-service"    The update is ready to be applied with the service.
+        /// "applying"           The update is being applied.
+        /// "succeeded"          The update was successfully applied.
+        /// "download-failed"    The update failed to be downloaded.
+        /// "failed"             The update failed to be applied.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetStateAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aState);

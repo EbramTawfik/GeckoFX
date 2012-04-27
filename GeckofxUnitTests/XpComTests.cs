@@ -689,14 +689,6 @@ namespace GeckofxUnitTests
 		}
 
 		[Test]
-		public void CreateInstance_CreatingDocumentCharSet_ReturnsValidInstance()
-		{			
-			var instance = Xpcom.CreateInstance<nsIDocumentCharsetInfo>("@mozilla.org/document-charset-info;1");
-			Assert.IsNotNull(instance);
-			Marshal.ReleaseComObject(instance);
-		}
-
-		[Test]
 		public void CreateInstance_CreatingLocaleService_ReturnsValidInstance()
 		{			
 			var instance = Xpcom.CreateInstance<nsILocaleService>("@mozilla.org/intl/nslocaleservice;1");
@@ -1374,14 +1366,6 @@ namespace GeckofxUnitTests
 		public void CreateInstance_CreatingPersistentProperties_ReturnsValidInstance()
 		{			
 			var instance = Xpcom.CreateInstance<nsIPersistentProperties>("@mozilla.org/persistent-properties;1");
-			Assert.IsNotNull(instance);
-			Marshal.ReleaseComObject(instance);
-		}
-
-		[Test]
-		public void CreateInstance_CreatingRecyclingAllocator_ReturnsValidInstance()
-		{			
-			var instance = Xpcom.CreateInstance<nsIRecyclingAllocator>("@mozilla.org/recycling-allocator;1");
 			Assert.IsNotNull(instance);
 			Marshal.ReleaseComObject(instance);
 		}

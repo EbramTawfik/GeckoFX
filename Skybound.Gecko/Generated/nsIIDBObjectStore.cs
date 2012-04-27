@@ -27,6 +27,36 @@ namespace Gecko
 	using System.Windows.Forms;
 	
 	
+	/// <summary>nsIIDBIndexParameters </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("450e02fd-a87a-47d4-beaf-321417dad781")]
+	public interface nsIIDBIndexParameters
+	{
+		
+		/// <summary>Member GetUniqueAttribute </summary>
+		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetUniqueAttribute();
+		
+		/// <summary>Member SetUniqueAttribute </summary>
+		/// <param name='aUnique'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetUniqueAttribute([MarshalAs(UnmanagedType.U1)] bool aUnique);
+		
+		/// <summary>Member GetMultiEntryAttribute </summary>
+		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetMultiEntryAttribute();
+		
+		/// <summary>Member SetMultiEntryAttribute </summary>
+		/// <param name='aMultiEntry'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetMultiEntryAttribute([MarshalAs(UnmanagedType.U1)] bool aMultiEntry);
+	}
+	
 	/// <summary>
     /// nsIIDBObjectStore interface.  See
     /// http://dev.w3.org/2006/webapi/WebSimpleDB/#idl-def-nsIIDBObjectStore

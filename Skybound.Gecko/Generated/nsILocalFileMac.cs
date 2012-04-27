@@ -30,7 +30,7 @@ namespace Gecko
 	/// <summary>nsILocalFileMac </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("DE4C75BE-D42B-4F8C-95D9-284C83CF29A4")]
+	[Guid("E5DE2CC9-BF06-4329-8F91-5D2D45284500")]
 	public interface nsILocalFileMac : nsILocalFile
 	{
 		
@@ -807,5 +807,15 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetBundleIdentifierAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aBundleIdentifier);
+		
+		/// <summary>
+        /// Last modified time of a bundle's contents (as opposed to its package
+        /// directory).  Our convention is to make the bundle's Info.plist file
+        /// stand in for the rest of its contents -- since this file contains the
+        /// bundle's version information and other identifiers.  For non-bundles
+        /// this is the same as lastModifiedTime.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		long GetBundleContentsLastModifiedTimeAttribute();
 	}
 }

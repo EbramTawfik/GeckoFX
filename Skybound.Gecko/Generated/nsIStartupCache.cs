@@ -30,7 +30,7 @@ namespace Gecko
 	/// <summary>nsIStartupCache </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("de798fab-af49-4a61-8144-81550986e1da")]
+	[Guid("8c2a360b-e337-455b-8c1b-04265ef9c5a3")]
 	public interface nsIStartupCache
 	{
 		
@@ -47,7 +47,7 @@ namespace Gecko
 		/// <param name='aBuffer'> </param>
 		/// <param name='aLength'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PutBuffer([MarshalAs(UnmanagedType.LPStr)] string aID, System.IntPtr aBuffer, uint aLength);
+		void PutBuffer([MarshalAs(UnmanagedType.LPStr)] string aID, [MarshalAs(UnmanagedType.LPStr)] string aBuffer, uint aLength);
 		
 		/// <summary>Member InvalidateCache </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

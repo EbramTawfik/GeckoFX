@@ -28,42 +28,20 @@ namespace Gecko
 	
 	
 	/// <summary>
-    /// The nsIDOMDOMError interface is "An non-zero implementation
-    /// dependent error code describing the error, or 0 if there is no
-    /// error." [sic]
-    ///
-    /// For more information on this interface please see
-    /// http://www.w3.org/TR/2002/WD-DOM-Level-3-Core-20020409/core.html
-    /// </summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this file,
+    /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("475790ce-d8fa-4e02-a167-e6308ba9b120")]
+	[Guid("e4e28307-d409-4cf7-93cd-6ea8e889f87a")]
 	public interface nsIDOMDOMError
 	{
 		
 		/// <summary>
-        /// The nsIDOMDOMError interface is "An non-zero implementation
-        /// dependent error code describing the error, or 0 if there is no
-        /// error." [sic]
-        ///
-        /// For more information on this interface please see
-        /// http://www.w3.org/TR/2002/WD-DOM-Level-3-Core-20020409/core.html
-        /// </summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this file,
+        /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		ushort GetSeverityAttribute();
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMessageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMessage);
-		
-		/// <summary>
-        /// do some magic to make that work?
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports GetRelatedExceptionAttribute();
-		
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMLocator GetLocationAttribute();
+		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
 	}
 }

@@ -43,7 +43,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("3f3901bb-6a1c-4998-b32e-6f10a51db470")]
+	[Guid("35a3a9b0-a120-4bf7-9739-46027fe96212")]
 	public interface nsICycleCollectorListener
 	{
 		
@@ -61,6 +61,17 @@ namespace Gecko
         /// a call to end().  If begin() returns an error none of the other
         /// functions will be called.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsICycleCollectorListener AllTraces();
+		
+		/// <summary>
+        /// false if allTraces() has not been called.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetWantAllTracesAttribute();
+		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Begin();
 		

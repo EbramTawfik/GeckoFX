@@ -50,6 +50,32 @@ namespace Gecko
 		System.IntPtr GetHistogramSnapshotsAttribute(System.IntPtr jsContext);
 		
 		/// <summary>
+        /// An object containing information about slow SQL prepared statements.
+        ///
+        /// {
+        /// mainThread: { "sqlString1": [<hit count>, <total time>], "sqlString2": [...], ... },
+        /// otherThreads: { "sqlString3": [<hit count>, <total time>], "sqlString4": [...], ... }
+        /// }
+        ///
+        /// where:
+        /// mainThread: Slow statements that executed on the main thread
+        /// otherThreads: Slow statements that executed on a non-main thread
+        /// sqlString - String of the offending prepared statement
+        /// hit count - The number of times this statement required longer than the threshold time to execute
+        /// total time - The sum of all execution times above the threshold time for this statement
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		System.IntPtr GetSlowSQLAttribute(System.IntPtr jsContext);
+		
+		/// <summary>
+        /// An object whose properties are the names of histograms defined in
+        /// TelemetryHistograms.h and whose corresponding values are the textual
+        /// comments associated with said histograms.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		System.IntPtr GetRegisteredHistogramsAttribute(System.IntPtr jsContext);
+		
+		/// <summary>
         /// Create and return a histogram where bucket sizes increase exponentially. Parameters:
         ///
         /// @param name Unique histogram name
@@ -63,6 +89,17 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr NewHistogram([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase name, uint min, uint max, uint bucket_count, uint histogram_type, System.IntPtr jsContext);
+		
+		/// <summary>
+        /// Create a histogram using the current state of an existing histogram.  The
+        /// existing histogram must be registered in TelemetryHistograms.h.
+        ///
+        /// @param name Unique histogram name
+        /// @param existing_name Existing histogram name
+        /// The returned object has the same functions as a histogram returned from newHistogram.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		System.IntPtr HistogramFrom([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase name, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase existing_name, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Same as newHistogram above, but for histograms registered in TelemetryHistograms.h.

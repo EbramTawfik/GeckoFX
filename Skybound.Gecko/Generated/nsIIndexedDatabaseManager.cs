@@ -44,7 +44,7 @@ namespace Gecko
 	/// <summary>nsIIndexedDatabaseManager </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("415f5684-6c84-4a8b-b777-d01f5df778f2")]
+	[Guid("02256aa7-70d8-473f-bf3b-8cb35d28fd75")]
 	public interface nsIIndexedDatabaseManager
 	{
 		
@@ -81,5 +81,15 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ClearDatabasesForURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
+		
+		/// <summary>
+        /// Defines mozIndexedDB and IDBKeyrange with its static functions on
+        /// aObject and initializes DOM exception providers if needed.
+        ///
+        /// @param aObject
+        /// The object, mozIndexedDB and IDBKeyrange should be defined on.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void InitWindowless(System.IntPtr aObject, System.IntPtr jsContext);
 	}
 }

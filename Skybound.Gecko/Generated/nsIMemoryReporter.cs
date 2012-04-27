@@ -62,21 +62,21 @@ namespace Gecko
         /// mmap/VirtualAlloc/vm_allocate) or a heap-level allocation (eg.
         /// malloc/calloc/operator new).
         ///
-        /// Each reporter can be viewed as representing a node in a tree rooted at
-        /// "explicit".  Not all nodes of the tree need have an associated reporter.
-        /// So, for example, the reporters "explicit/a/b", "explicit/a/c",
-        /// "explicit/d", "explicit/d/e", and "explicit/d/f" define this tree:
+        /// Each reporter can be viewed as representing a leaf node in a tree
+        /// rooted at "explicit".  Internal nodes of the tree don't have
+        /// reporters.  So, for example, the reporters "explicit/a/b",
+        /// "explicit/a/c", "explicit/d/e", and "explicit/d/f" define this tree:
         ///
         /// explicit
         /// |--a
         /// |  |--b [*]
         /// |  \--c [*]
-        /// \--d [*]
+        /// \--d
         /// |--e [*]
         /// \--f [*]
         ///
-        /// Nodes marked with a [*] have a reporter.  Notice that "explicit/a" is
-        /// implicitly defined.
+        /// Nodes marked with a [*] have a reporter.  Notice that the internal
+        /// nodes are implicitly defined by the paths.
         ///
         /// A node's children divide their parent's memory into disjoint pieces.
         /// So in the example above, |a| may not count any allocations counted by
@@ -155,7 +155,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("eae277ad-b67d-4389-95f4-03fa11c09d06")]
+	[Guid("61d498d5-b460-4398-a8ea-7f75208534b4")]
 	public interface nsIMemoryMultiReporter
 	{
 		
@@ -173,12 +173,25 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void CollectReports([MarshalAs(UnmanagedType.Interface)] nsIMemoryMultiReporterCallback callback, [MarshalAs(UnmanagedType.Interface)] nsISupports closure);
+		
+		/// <summary>
+        /// Return the sum of all this multi-reporter's measurements that have a
+        /// path that starts with "explicit" and are KIND_NONHEAP.
+        ///
+        /// This is a hack that's required to implement
+        /// nsIMemoryReporterManager::explicit efficiently, which is important --
+        /// multi-reporters can special-case this operation so it's much faster
+        /// than getting all the reports, filtering out the unneeded ones, and
+        /// summing the remainder.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		long GetExplicitNonHeapAttribute();
 	}
 	
 	/// <summary>nsIMemoryReporterManager </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("84ba9c85-3372-4423-b7ab-74708b9269a6")]
+	[Guid("4527b1d8-a81f-4af3-9623-80e4120392c7")]
 	public interface nsIMemoryReporterManager
 	{
 		
@@ -251,5 +264,12 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		long GetExplicitAttribute();
+		
+		/// <summary>
+        /// This attribute indicates if moz_malloc_usable_size() works.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetHasMozMallocUsableSizeAttribute();
 	}
 }

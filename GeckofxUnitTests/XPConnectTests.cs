@@ -8,7 +8,7 @@ using Gecko;
 
 namespace GeckofxUnitTests
 {
-	[TestFixture]	
+	[TestFixture]
 	public class XPConnectTests
 	{
 		nsIXPConnect m_instance;
@@ -21,8 +21,8 @@ namespace GeckofxUnitTests
 			// CB6593E0-F9B2-11d2-BDD6-000064657374
 			var ptr = (IntPtr)Xpcom.GetService(new Guid("CB6593E0-F9B2-11d2-BDD6-000064657374"));
 			Assert.IsNotNull(ptr);
-			m_instance = (nsIXPConnect)Xpcom.GetObjectForIUnknown(ptr);			
-			Assert.IsNotNull(m_instance);			
+			m_instance = (nsIXPConnect)Xpcom.GetObjectForIUnknown(ptr);
+			Assert.IsNotNull(m_instance);
 		}
 
 		[TearDown]
@@ -34,14 +34,18 @@ namespace GeckofxUnitTests
 		[Test]
 		public void GetCurrentJSStackAttribute_ReturnsNull()
 		{
-			Assert.IsNull(m_instance.GetCurrentJSStackAttribute());		
+			Assert.IsNull(m_instance.GetCurrentJSStackAttribute());
 		}
 
 		[Ignore("randomly crashes")]
 		[Test]
 		public void GarbageCollect_ShouldNotThrowException()
 		{
-			m_instance.GarbageCollect(true);
+			// nsGCType enum:
+			// nsGCNormal,
+			// nsGCShrinking,
+			// nsGCIncremental			
+			m_instance.GarbageCollect(0, 0);
 		}
 	}
 }

@@ -64,7 +64,7 @@ namespace Gecko
     /// ***** END LICENSE BLOCK ***** </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("25db9b8e-8123-4de1-b36d-8bbbedf2cdf4")]
+	[Guid("e388fded-1321-41af-a988-861a2bc5cfc3")]
 	public interface nsIProfiler
 	{
 		
@@ -104,7 +104,7 @@ namespace Gecko
         ///
         /// ***** END LICENSE BLOCK ***** </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void StartProfiler(uint aInterval, uint aEntries);
+		void StartProfiler(uint aInterval, uint aEntries, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=3)] string[] aFeatures, uint aFeatureCount);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void StopProfiler();
@@ -118,6 +118,9 @@ namespace Gecko
 		bool IsActive();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetResponsivenessTimes(ref uint aCount, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref float[] aResult);
+		void GetResponsivenessTimes(ref uint aCount, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref double[] aResult);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetFeatures(ref uint aCount, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref string[] aFeatures);
 	}
 }

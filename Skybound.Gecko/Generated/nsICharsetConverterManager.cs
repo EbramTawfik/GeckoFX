@@ -73,9 +73,10 @@ namespace Gecko
 		
 		/// <summary>
         /// A shortcut to calling nsICharsetAlias to do alias resolution
+        /// @throws if aCharset is an unknown charset.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCharsetAlias([MarshalAs(UnmanagedType.LPStr)] string charset, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
+		void GetCharsetAlias([MarshalAs(UnmanagedType.LPStr)] string aCharset, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
 		
 		/// <summary>
         /// Get the complete list of available decoders.
@@ -100,9 +101,10 @@ namespace Gecko
 		
 		/// <summary>
         /// Get the human-readable name for the given charset.
+        /// @throws if aCharset is an unknown charset.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCharsetTitle([MarshalAs(UnmanagedType.LPStr)] string charset, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void GetCharsetTitle([MarshalAs(UnmanagedType.LPStr)] string aCharset, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// Get some data about the given charset. This includes whether the
@@ -115,26 +117,28 @@ namespace Gecko
         /// isMultibyte    - is this a multi-byte charset?
         /// isXSSVulnerable - not to be used in untrusted web content
         ///
-        /// @param charset name of the character encoding, e.g. 'iso-8859-15'.
-        /// @param prop property desired for the character encoding.
+        /// @param aCharset name of the character encoding, e.g. 'iso-8859-15'.
+        /// @param aProp property desired for the character encoding.
+        /// @throws if aCharset is an unknown charset.
         /// @return the value of the property, for the character encoding.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCharsetData([MarshalAs(UnmanagedType.LPStr)] string charset, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string prop, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void GetCharsetData([MarshalAs(UnmanagedType.LPStr)] string aCharset, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string aProp, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// Get the language group for the given charset. This is similar to
         /// calling <tt>getCharsetData</tt> with the <tt>prop</tt> "LangGroup".
         ///
-        /// @param charset name of the character encoding, e.g. 'iso-8859-15'.
+        /// @param aCharset name of the character encoding, e.g. 'iso-8859-15'.
+        /// @throws if aCharset is an unknown charset.
         /// @return the language code for the character encoding.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIAtom GetCharsetLangGroup([MarshalAs(UnmanagedType.LPStr)] string charset);
+		nsIAtom GetCharsetLangGroup([MarshalAs(UnmanagedType.LPStr)] string aCharset);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIAtom GetCharsetLangGroupRaw([MarshalAs(UnmanagedType.LPStr)] string charset);
+		nsIAtom GetCharsetLangGroupRaw([MarshalAs(UnmanagedType.LPStr)] string aCharset);
 	}
 }

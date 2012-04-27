@@ -71,7 +71,7 @@ namespace Gecko
 		
 		/// <summary>
         /// Get the captured image/video/audio.  This may be a data URI, file URI,
-        /// or a moz-filedata reference URI.
+        /// or a blob reference URI.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

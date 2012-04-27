@@ -29,7 +29,7 @@ namespace Gecko
 	
 	/// <summary>nsISelectionController </summary>
 	[ComImport()]
-	[Guid("e0dd9365-470b-4ee8-b644-54add1c4c73f")]
+	[Guid("b1ff7faa-8097-431d-b7f1-b0615e3cd596")]
 	public interface nsISelectionController : nsISelectionDisplay
 	{
 		
@@ -244,11 +244,11 @@ namespace Gecko
 		void ScrollLine([MarshalAs(UnmanagedType.U1)] bool forward);
 		
 		/// <summary>
-        ///ScrolHorizontal will scroll left or right dependent on the boolean
-        /// @param aLeft if true will scroll left. if not will scroll right.
+        ///ScrollCharacter will scroll right or left dependent on the boolean
+        /// @param aRight if true will scroll right. if not will scroll left.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ScrollHorizontal([MarshalAs(UnmanagedType.U1)] bool left);
+		void ScrollCharacter([MarshalAs(UnmanagedType.U1)] bool right);
 		
 		/// <summary>
         ///SelectAll will select the whole page
@@ -267,5 +267,14 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool CheckVisibility([MarshalAs(UnmanagedType.Interface)] nsIDOMNode node, short startOffset, short endOffset);
+		
+		/// <summary>Member CheckVisibilityContent </summary>
+		/// <param name='node'> </param>
+		/// <param name='startOffset'> </param>
+		/// <param name='endOffset'> </param>
+		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool CheckVisibilityContent(System.IntPtr node, short startOffset, short endOffset);
 	}
 }

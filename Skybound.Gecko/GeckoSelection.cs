@@ -286,16 +286,13 @@ namespace Gecko
 	{
 		internal GeckoRange(nsIDOMRange range)
 		{
-			this.DomRange = range;
-			this.DomNsRange = (nsIDOMNSRange)range;
+			this.DomRange = range;			
 		}
 		
 		/// <summary>
 		/// Gets the unmanaged nsIDOMRange which this instance wraps.
 		/// </summary>
-		public nsIDOMRange DomRange { get; protected set; }
-
-		protected nsIDOMNSRange DomNsRange { get; set; }
+		public nsIDOMRange DomRange { get; protected set; }		
 		
 		public GeckoNode StartContainer
 		{
@@ -422,7 +419,7 @@ namespace Gecko
 		{
 			get
 			{
-				nsIDOMClientRect domRect = DomNsRange.GetBoundingClientRect();
+				nsIDOMClientRect domRect = DomRange.GetBoundingClientRect();
 				var r = new Rectangle((int)domRect.GetLeftAttribute(), (int)domRect.GetTopAttribute(), (int)domRect.GetWidthAttribute(), (int)domRect.GetHeightAttribute());
 				return r;				
 			}
@@ -436,7 +433,7 @@ namespace Gecko
 			get
 			{
 				//List<Rectangle> retVal = new List<Rectangle>();
-				nsIDOMClientRectList domRectangles = DomNsRange.GetClientRects();
+				nsIDOMClientRectList domRectangles = DomRange.GetClientRects();
 				for(uint i = 0; i < domRectangles.GetLengthAttribute(); i++)
 				{
 					nsIDOMClientRect domRect = domRectangles.Item(i);
@@ -450,7 +447,7 @@ namespace Gecko
 
 		public bool IsPointInRange(GeckoNode node, int offset)
 		{
-			return DomNsRange.IsPointInRange(node.DomObject, offset);			
+			return DomRange.IsPointInRange(node.DomObject, offset);			
 		}
 	}
 }

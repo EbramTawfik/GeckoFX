@@ -71,7 +71,8 @@ namespace Gecko
 	{
 		
 		/// <summary>
-        /// Do profile migration.
+        /// Migrate data from an outside source, if possible.  Does nothing
+        /// otherwise.
         ///
         /// When this method is called, a default profile has been created;
         /// XPCOM has been initialized such that compreg.dat is in the
@@ -83,7 +84,7 @@ namespace Gecko
         /// If your migrator needs to access services that use the profile (to
         /// set profile prefs or bookmarks, for example), use aStartup.doStartup.
         ///
-        /// The startup code ignores COM exceptions thrown from this method.
+        /// @note The startup code ignores COM exceptions thrown from this method.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Migrate([MarshalAs(UnmanagedType.Interface)] nsIProfileStartup aStartup);

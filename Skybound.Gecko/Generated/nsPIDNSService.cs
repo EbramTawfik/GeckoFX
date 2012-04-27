@@ -60,6 +60,24 @@ namespace Gecko
 		new nsICancelable AsyncResolve([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aHostName, uint aFlags, [MarshalAs(UnmanagedType.Interface)] nsIDNSListener aListener, [MarshalAs(UnmanagedType.Interface)] nsIEventTarget aListenerTarget);
 		
 		/// <summary>
+        /// Attempts to cancel a previously requested async DNS lookup
+        ///
+        /// @param aHostName
+        /// the hostname or IP-address-literal to resolve.
+        /// @param aFlags
+        /// a bitwise OR of the RESOLVE_ prefixed constants defined below.
+        /// @param aListener
+        /// the original listener which was to be notified about the host lookup
+        /// result - used to match request information to requestor.
+        /// @param aReason
+        /// nsresult reason for the cancellation
+        ///
+        /// @return An object that can be used to cancel the host lookup.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void CancelAsyncResolve([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aHostName, uint aFlags, [MarshalAs(UnmanagedType.Interface)] nsIDNSListener aListener, int aReason);
+		
+		/// <summary>
         /// called to synchronously resolve a hostname.  warning this method may
         /// block the calling thread for a long period of time.  it is extremely
         /// unwise to call this function on the UI thread of an application.

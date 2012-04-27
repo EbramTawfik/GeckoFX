@@ -393,7 +393,7 @@ namespace Gecko
 	/// <summary> </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("07661008-5505-4784-a612-89f7dc2144da")]
+	[Guid("686bb1d0-4711-11e1-b86c-0800200c9a66")]
 	public interface nsIXPConnect
 	{
 		
@@ -643,15 +643,6 @@ namespace Gecko
 		nsIVariant JSToVariant(System.IntPtr ctx, System.IntPtr value);
 		
 		/// <summary>
-        /// Restore an old prototype for wrapped natives of type
-        /// aClassInfo. This should be used only when restoring an old
-        /// scope into a state close to where it was prior to
-        /// being reinitialized.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RestoreWrappedNativePrototype(System.IntPtr aJSContext, System.IntPtr aScope, [MarshalAs(UnmanagedType.Interface)] nsIClassInfo aClassInfo, [MarshalAs(UnmanagedType.Interface)] nsIXPConnectJSObjectHolder aPrototype);
-		
-		/// <summary>
         /// Create a sandbox for evaluating code in isolation using
         /// evalInSandboxObject().
         ///
@@ -718,9 +709,11 @@ namespace Gecko
 		
 		/// <summary>
         /// Trigger a JS garbage collection.
+        /// Use a js::gcreason::Reason from jsfriendapi.h for the kind.
+        /// Use the nsGCType enum for the kind.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GarbageCollect([MarshalAs(UnmanagedType.U1)] bool shrinkingGC);
+		void GarbageCollect(uint reason, uint kind);
 		
 		/// <summary>
         /// Define quick stubs on the given object, @a proto.

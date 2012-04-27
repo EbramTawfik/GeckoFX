@@ -419,21 +419,21 @@ namespace Gecko
 		/// <param name='root'> </param>
 		/// <param name='whatToShow'> </param>
 		/// <param name='filter'> </param>
-		/// <param name='entityReferenceExpansion'> </param>
+		/// <param name='argc'> </param>
 		/// <returns>A nsIDOMNodeIterator</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMNodeIterator CreateNodeIterator([MarshalAs(UnmanagedType.Interface)] nsIDOMNode root, uint whatToShow, [MarshalAs(UnmanagedType.Interface)] nsIDOMNodeFilter filter, [MarshalAs(UnmanagedType.U1)] bool entityReferenceExpansion);
+		new nsIDOMNodeIterator CreateNodeIterator([MarshalAs(UnmanagedType.Interface)] nsIDOMNode root, uint whatToShow, [MarshalAs(UnmanagedType.Interface)] nsIDOMNodeFilter filter, int argc);
 		
 		/// <summary>Member CreateTreeWalker </summary>
 		/// <param name='root'> </param>
 		/// <param name='whatToShow'> </param>
 		/// <param name='filter'> </param>
-		/// <param name='entityReferenceExpansion'> </param>
+		/// <param name='argc'> </param>
 		/// <returns>A nsIDOMTreeWalker</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMTreeWalker CreateTreeWalker([MarshalAs(UnmanagedType.Interface)] nsIDOMNode root, uint whatToShow, [MarshalAs(UnmanagedType.Interface)] nsIDOMNodeFilter filter, [MarshalAs(UnmanagedType.U1)] bool entityReferenceExpansion);
+		new nsIDOMTreeWalker CreateTreeWalker([MarshalAs(UnmanagedType.Interface)] nsIDOMNode root, uint whatToShow, [MarshalAs(UnmanagedType.Interface)] nsIDOMNodeFilter filter, int argc);
 		
 		/// <summary>Member CreateEvent </summary>
 		/// <param name='eventType'> </param>

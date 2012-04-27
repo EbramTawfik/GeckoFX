@@ -32,7 +32,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("c1a56a45-8fa3-44e6-9f01-38c91c858cf9")]
+	[Guid("F6E05CC3-8A13-463D-877F-D59B20B59724")]
 	public interface nsIDNSService
 	{
 		
@@ -57,6 +57,24 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsICancelable AsyncResolve([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aHostName, uint aFlags, [MarshalAs(UnmanagedType.Interface)] nsIDNSListener aListener, [MarshalAs(UnmanagedType.Interface)] nsIEventTarget aListenerTarget);
+		
+		/// <summary>
+        /// Attempts to cancel a previously requested async DNS lookup
+        ///
+        /// @param aHostName
+        /// the hostname or IP-address-literal to resolve.
+        /// @param aFlags
+        /// a bitwise OR of the RESOLVE_ prefixed constants defined below.
+        /// @param aListener
+        /// the original listener which was to be notified about the host lookup
+        /// result - used to match request information to requestor.
+        /// @param aReason
+        /// nsresult reason for the cancellation
+        ///
+        /// @return An object that can be used to cancel the host lookup.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void CancelAsyncResolve([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aHostName, uint aFlags, [MarshalAs(UnmanagedType.Interface)] nsIDNSListener aListener, int aReason);
 		
 		/// <summary>
         /// called to synchronously resolve a hostname.  warning this method may

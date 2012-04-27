@@ -328,7 +328,7 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetRangesForInterval([MarshalAs(UnmanagedType.Interface)] nsIDOMNode beginNode, int beginOffset, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode endNode, int endOffset, [MarshalAs(UnmanagedType.U1)] bool allowAdjacent, ref uint resultCount, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=5)] ref nsIDOMRange[] results);
 		
-		/// <summary>Member GetRangesForIntervalCOMArray </summary>
+		/// <summary>Member GetRangesForIntervalArray </summary>
 		/// <param name='beginNode'> </param>
 		/// <param name='beginOffset'> </param>
 		/// <param name='endNode'> </param>
@@ -336,7 +336,7 @@ namespace Gecko
 		/// <param name='allowAdjacent'> </param>
 		/// <param name='results'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetRangesForIntervalCOMArray([MarshalAs(UnmanagedType.Interface)] nsIDOMNode beginNode, int beginOffset, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode endNode, int endOffset, [MarshalAs(UnmanagedType.U1)] bool allowAdjacent, System.IntPtr results);
+		void GetRangesForIntervalArray(System.IntPtr beginNode, int beginOffset, System.IntPtr endNode, int endOffset, [MarshalAs(UnmanagedType.U1)] bool allowAdjacent, System.IntPtr results);
 		
 		/// <summary>
         /// Scrolls a region of the selection, so that it is visible in

@@ -38,7 +38,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("c74b835f-bb68-4ab3-a02c-08152cbb09fa")]
+	[Guid("390c059a-0a26-4a44-96b6-3f8817bf92e9")]
 	public interface nsIDOMHTMLAudioElement : nsIDOMHTMLMediaElement
 	{
 		
@@ -680,6 +680,12 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetCurrentSrcAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCurrentSrc);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void GetCrossoriginAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCrossorigin);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetCrossoriginAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCrossorigin);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new ushort GetNetworkStateAttribute();

@@ -35,7 +35,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("aa2068c1-6b91-4f52-8603-487b14ac5f04")]
+	[Guid("f01efdb3-4b20-4313-a636-a2aa01a4ef5d")]
 	public interface imgIContainerObserver
 	{
 		
@@ -46,6 +46,6 @@ namespace Gecko
         /// @version 0.1
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void FrameChanged(imgIContainer aContainer, [MarshalAs(UnmanagedType.Interface)] nsIntRect aDirtyRect);
+		void FrameChanged(imgIRequest aRequest, imgIContainer aContainer, [MarshalAs(UnmanagedType.Interface)] nsIntRect aDirtyRect);
 	}
 }

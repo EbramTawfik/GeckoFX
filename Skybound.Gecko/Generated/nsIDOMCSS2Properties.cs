@@ -2278,6 +2278,18 @@ namespace Gecko
 		void SetOutlineOffsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aOutlineOffset);
 		
 		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetMozTextAlignLastAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozTextAlignLast);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetMozTextAlignLastAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozTextAlignLast);
+		
+		/// <summary>
         ///Mozilla extensions </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetOverflowXAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aOverflowX);

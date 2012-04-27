@@ -58,7 +58,7 @@ namespace Gecko
 	/// <summary>nsIFrameMessageManager </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("a27d8fcd-8de9-4a51-87f4-2b83bba901d5")]
+	[Guid("9be42627-a5db-456f-8de2-9097da45a8c3")]
 	public interface nsIFrameMessageManager
 	{
 		
@@ -81,12 +81,18 @@ namespace Gecko
 		/// <param name='argc'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SendAsyncMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, System.IntPtr obj, System.IntPtr jsContext, int argc);
+		
+		/// <summary>Member MarkForCC </summary>
+		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool MarkForCC();
 	}
 	
 	/// <summary>nsISyncMessageSender </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("21e5d940-d457-4c0f-bb5e-35c159ed19e3")]
+	[Guid("28a36ac7-2868-4fa0-ae24-be957d7dce10")]
 	public interface nsISyncMessageSender : nsIFrameMessageManager
 	{
 		
@@ -110,6 +116,12 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SendAsyncMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, System.IntPtr obj, System.IntPtr jsContext, int argc);
 		
+		/// <summary>Member MarkForCC </summary>
+		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool MarkForCC();
+		
 		/// <summary>
         /// Returns an array of JSON objects.
         /// </summary>
@@ -120,7 +132,7 @@ namespace Gecko
 	/// <summary>nsIContentFrameMessageManager </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("78a1d024-60e3-4b7b-98cd-4c6b84b4f060")]
+	[Guid("a83f4393-e3cf-44da-8867-1f9174c2c595")]
 	public interface nsIContentFrameMessageManager : nsISyncMessageSender
 	{
 		
@@ -143,6 +155,12 @@ namespace Gecko
 		/// <param name='argc'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SendAsyncMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, System.IntPtr obj, System.IntPtr jsContext, int argc);
+		
+		/// <summary>Member MarkForCC </summary>
+		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool MarkForCC();
 		
 		/// <summary>
         /// Returns an array of JSON objects.
@@ -193,7 +211,7 @@ namespace Gecko
 	/// <summary>nsIInProcessContentFrameMessageManager </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("1f7af930-a232-4a84-a049-73eaa45f2db5")]
+	[Guid("f0936c56-e92c-4927-a85b-e289c3d4a01c")]
 	public interface nsIInProcessContentFrameMessageManager : nsIContentFrameMessageManager
 	{
 		
@@ -216,6 +234,12 @@ namespace Gecko
 		/// <param name='argc'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SendAsyncMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, System.IntPtr obj, System.IntPtr jsContext, int argc);
+		
+		/// <summary>Member MarkForCC </summary>
+		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool MarkForCC();
 		
 		/// <summary>
         /// Returns an array of JSON objects.
@@ -271,7 +295,7 @@ namespace Gecko
 	/// <summary>nsITreeItemFrameMessageManager </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("e91b0939-a74a-4c4f-8cfd-17dd42e8642a")]
+	[Guid("09f79e8c-101b-432b-a494-02f9b5e111c0")]
 	public interface nsITreeItemFrameMessageManager : nsIFrameMessageManager
 	{
 		
@@ -295,6 +319,12 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SendAsyncMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, System.IntPtr obj, System.IntPtr jsContext, int argc);
 		
+		/// <summary>Member MarkForCC </summary>
+		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool MarkForCC();
+		
 		/// <summary>Member GetChildCountAttribute </summary>
 		/// <returns>A System.UInt32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -311,7 +341,7 @@ namespace Gecko
 	/// <summary>nsIChromeFrameMessageManager </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("14e1f147-793d-4788-bbbb-ae806ecdddbb")]
+	[Guid("a51597f0-d669-4260-83e6-1d426a8ac802")]
 	public interface nsIChromeFrameMessageManager : nsITreeItemFrameMessageManager
 	{
 		
@@ -334,6 +364,12 @@ namespace Gecko
 		/// <param name='argc'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SendAsyncMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, System.IntPtr obj, System.IntPtr jsContext, int argc);
+		
+		/// <summary>Member MarkForCC </summary>
+		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool MarkForCC();
 		
 		/// <summary>Member GetChildCountAttribute </summary>
 		/// <returns>A System.UInt32</returns>

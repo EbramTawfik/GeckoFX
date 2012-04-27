@@ -30,7 +30,7 @@ namespace Gecko
 	/// <summary>nsIXMLHttpRequestEventTarget </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("e2b59e48-3655-4429-a94c-b4332c346ba2")]
+	[Guid("5e346bf8-7083-4ef8-b9b9-736a1b5aa7ab")]
 	public interface nsIXMLHttpRequestEventTarget : nsIDOMEventTarget
 	{
 		
@@ -294,6 +294,17 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOnprogressAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnprogress);
 		
+		/// <summary>Member GetOntimeoutAttribute </summary>
+		/// <returns>A nsIDOMEventListener</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMEventListener GetOntimeoutAttribute();
+		
+		/// <summary>Member SetOntimeoutAttribute </summary>
+		/// <param name='aOntimeout'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOntimeoutAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOntimeout);
+		
 		/// <summary>Member GetOnloadendAttribute </summary>
 		/// <returns>A nsIDOMEventListener</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
@@ -309,7 +320,7 @@ namespace Gecko
 	/// <summary>nsIXMLHttpRequestUpload </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("db9357fc-edf7-42b2-aab2-c24ab19ece20")]
+	[Guid("8dbd2448-740a-412c-b314-434f24a1c510")]
 	public interface nsIXMLHttpRequestUpload : nsIXMLHttpRequestEventTarget
 	{
 		
@@ -573,6 +584,17 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetOnprogressAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnprogress);
 		
+		/// <summary>Member GetOntimeoutAttribute </summary>
+		/// <returns>A nsIDOMEventListener</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMEventListener GetOntimeoutAttribute();
+		
+		/// <summary>Member SetOntimeoutAttribute </summary>
+		/// <param name='aOntimeout'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetOntimeoutAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOntimeout);
+		
 		/// <summary>Member GetOnloadendAttribute </summary>
 		/// <returns>A nsIDOMEventListener</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
@@ -628,7 +650,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("5cf8d518-51d0-4cd6-a69a-c3674c2de599")]
+	[Guid("88ffc45a-22e2-44f4-9a6e-f4586fbde376")]
 	public interface nsIXMLHttpRequest
 	{
 		
@@ -809,6 +831,20 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetRequestHeader([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase header, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase value);
+		
+		/// <summary>
+        /// The amount of milliseconds a request can take before being terminated.
+        /// Initially zero. Zero means there is no timeout.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetTimeoutAttribute();
+		
+		/// <summary>
+        /// The amount of milliseconds a request can take before being terminated.
+        /// Initially zero. Zero means there is no timeout.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetTimeoutAttribute(uint aTimeout);
 		
 		/// <summary>
         /// The state of the request.

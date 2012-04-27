@@ -35,7 +35,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("f9841787-ad26-49e6-a2dd-ba9020ee1c64")]
+	[Guid("c738dc26-aa71-4561-a3fd-b5a0e4aa80d2")]
 	public interface nsIAutoCompleteSimpleResult : nsIAutoCompleteResult
 	{
 		
@@ -68,6 +68,15 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new uint GetMatchCountAttribute();
+		
+		/// <summary>
+        /// If true, the results will not be displayed in the popup. However,
+        /// if a default index is specified, the default item will still be
+        /// completed in the input.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool GetTypeAheadResultAttribute();
 		
 		/// <summary>
         /// Get the value of the result at the given index
@@ -134,6 +143,13 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetSearchResult(ushort aSearchResult);
+		
+		/// <summary>
+        /// A writer for the readonly attribute 'typeAheadResult', typically set
+        /// because a result is only intended for type-ahead completion.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetTypeAheadResult([MarshalAs(UnmanagedType.U1)] bool aHidden);
 		
 		/// <summary>
         /// Appends a result item consisting of the given value, comment, image and style.

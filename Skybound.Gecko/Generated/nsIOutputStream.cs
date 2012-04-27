@@ -77,8 +77,8 @@ namespace Gecko
         /// block the calling thread (non-blocking mode only)
         /// @throws <other-error> on failure
         /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint Write(IntPtr aBuf, uint aCount);
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		unsafe uint Write(IntPtr aBuf, uint aCount);
 		
 		/// <summary>
         /// Writes data into the stream from an input stream.

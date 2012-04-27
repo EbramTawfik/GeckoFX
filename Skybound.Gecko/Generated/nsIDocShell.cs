@@ -32,7 +32,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("0666adf8-8738-4ca7-a917-0348f47d2f40")]
+	[Guid("0615d1a6-313f-11e1-a043-6c626d69675c")]
 	public interface nsIDocShell
 	{
 		
@@ -184,20 +184,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetChromeEventHandlerAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventTarget aChromeEventHandler);
-		
-		/// <summary>
-        /// The document charset info.  This is used by a load to determine priorities
-        /// for charset detection etc.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetDocumentCharsetInfoAttribute();
-		
-		/// <summary>
-        /// The document charset info.  This is used by a load to determine priorities
-        /// for charset detection etc.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDocumentCharsetInfoAttribute(System.IntPtr aDocumentCharsetInfo);
 		
 		/// <summary>
         /// Whether to allow plugin execution
@@ -689,5 +675,126 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void CreateAboutBlankContentViewer([MarshalAs(UnmanagedType.Interface)] nsIPrincipal aPrincipal);
+		
+		/// <summary>
+        /// The charset attribute allows the user to view, hint, and set which
+        /// converter is used to read the document's data.
+        ///
+        /// <P>Inside Mozilla all text is encoded as Unicode. By standardizing
+        /// on Unicode every piece of code that handles characters no longer
+        /// needs to:
+        ///
+        /// Have access to a character encoding parameter.
+        /// Ask is the data stateful?
+        /// Ask is the data single byte?
+        /// Ask is the data multi-byte?
+        /// If multi-byte: have access to a routine that can
+        /// determine how many bytes in the current character.
+        ///
+        /// When the document is read in a converter is used to convert
+        /// the document's data to Unicode.
+        ///
+        /// The charset attribute provides the ability to:
+        ///
+        /// See what converter was used when inputting the documents
+        /// data.
+        ///
+        /// Override the character set for documents where the specified
+        /// fallback, or auto-detected character set is incorrect
+        ///
+        /// Get/sets the encoding (converter) used to read the
+        /// document. Get returns the encoding used. Set forces
+        /// (overrides) the encoding. After forcing the charset the
+        /// embedding application will need to cause the data to be
+        /// reparsed in order to update the DOM / display.
+        ///
+        /// A force also sets the fallback encoding for this frame.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStr)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		string GetCharsetAttribute();
+		
+		/// <summary>
+        /// The charset attribute allows the user to view, hint, and set which
+        /// converter is used to read the document's data.
+        ///
+        /// <P>Inside Mozilla all text is encoded as Unicode. By standardizing
+        /// on Unicode every piece of code that handles characters no longer
+        /// needs to:
+        ///
+        /// Have access to a character encoding parameter.
+        /// Ask is the data stateful?
+        /// Ask is the data single byte?
+        /// Ask is the data multi-byte?
+        /// If multi-byte: have access to a routine that can
+        /// determine how many bytes in the current character.
+        ///
+        /// When the document is read in a converter is used to convert
+        /// the document's data to Unicode.
+        ///
+        /// The charset attribute provides the ability to:
+        ///
+        /// See what converter was used when inputting the documents
+        /// data.
+        ///
+        /// Override the character set for documents where the specified
+        /// fallback, or auto-detected character set is incorrect
+        ///
+        /// Get/sets the encoding (converter) used to read the
+        /// document. Get returns the encoding used. Set forces
+        /// (overrides) the encoding. After forcing the charset the
+        /// embedding application will need to cause the data to be
+        /// reparsed in order to update the DOM / display.
+        ///
+        /// A force also sets the fallback encoding for this frame.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetCharsetAttribute([MarshalAs(UnmanagedType.LPStr)] string aCharset);
+		
+		/// <summary>
+        /// The charset forced by the user. When the charset attribute is set this
+        /// attribute is set to the same value.
+        ///
+        /// XXX Could this be replaced by a boolean?
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIAtom GetForcedCharsetAttribute();
+		
+		/// <summary>
+        /// The charset forced by the user. When the charset attribute is set this
+        /// attribute is set to the same value.
+        ///
+        /// XXX Could this be replaced by a boolean?
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetForcedCharsetAttribute([MarshalAs(UnmanagedType.Interface)] nsIAtom aForcedCharset);
+		
+		/// <summary>
+        /// In a child docshell, this is the charset of the parent docshell
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIAtom GetParentCharsetAttribute();
+		
+		/// <summary>
+        /// In a child docshell, this is the charset of the parent docshell
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetParentCharsetAttribute([MarshalAs(UnmanagedType.Interface)] nsIAtom aParentCharset);
+		
+		/// <summary>
+        /// In a child docshell, this is the source of parentCharset
+        /// @see nsIParser
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		int GetParentCharsetSourceAttribute();
+		
+		/// <summary>
+        /// In a child docshell, this is the source of parentCharset
+        /// @see nsIParser
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetParentCharsetSourceAttribute(int aParentCharsetSource);
 	}
 }

@@ -30,7 +30,7 @@ namespace Gecko
 	/// <summary>nsIAutoCompleteResult </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("0f06dae4-0b87-4c16-a7bd-903461771478")]
+	[Guid("7b43fad1-c735-4b45-9383-c3f057fed20d")]
 	public interface nsIAutoCompleteResult
 	{
 		
@@ -63,6 +63,15 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetMatchCountAttribute();
+		
+		/// <summary>
+        /// If true, the results will not be displayed in the popup. However,
+        /// if a default index is specified, the default item will still be
+        /// completed in the input.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetTypeAheadResultAttribute();
 		
 		/// <summary>
         /// Get the value of the result at the given index

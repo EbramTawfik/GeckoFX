@@ -30,7 +30,7 @@ namespace Gecko
 	/// <summary>nsISmsService </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("24edea1d-130a-4ae3-9522-0e2a7ee2885d")]
+	[Guid("a0fbbe74-5d61-4b7e-b7ab-9b5224f9e5e9")]
 	public interface nsISmsService
 	{
 		
@@ -49,7 +49,22 @@ namespace Gecko
 		/// <summary>Member Send </summary>
 		/// <param name='number'> </param>
 		/// <param name='message'> </param>
+		/// <param name='requestId'> </param>
+		/// <param name='processId'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Send([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase number, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase message);
+		void Send([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase number, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase message, int requestId, ulong processId);
+		
+		/// <summary>Member CreateSmsMessage </summary>
+		/// <param name='id'> </param>
+		/// <param name='delivery'> </param>
+		/// <param name='sender'> </param>
+		/// <param name='receiver'> </param>
+		/// <param name='body'> </param>
+		/// <param name='timestamp'> </param>
+		/// <param name='jsContext'> </param>
+		/// <returns>A nsIDOMMozSmsMessage</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMMozSmsMessage CreateSmsMessage(int id, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase delivery, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase sender, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase receiver, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase body, System.IntPtr timestamp, System.IntPtr jsContext);
 	}
 }

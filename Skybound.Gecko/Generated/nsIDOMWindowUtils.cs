@@ -36,7 +36,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("e01171b0-712a-47ce-8552-b7b2ef0a2507")]
+	[Guid("401b9315-c562-4066-a15c-7feb7ad5bb47")]
 	public interface nsIDOMWindowUtils
 	{
 		
@@ -373,9 +373,15 @@ namespace Gecko
         /// @param aListener listener that receives information about the CC graph
         /// (see @mozilla.org/cycle-collector-logger;1 for a logger
         /// component)
+        /// @param aExtraForgetSkippableCalls indicates how many times
+        /// nsCycleCollector_forgetSkippable will
+        /// be called before running cycle collection.
+        /// -1 prevents the default
+        /// nsCycleCollector_forgetSkippable call
+        /// which happens after garbage collection.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GarbageCollect([MarshalAs(UnmanagedType.Interface)] nsICycleCollectorListener aListener);
+		void GarbageCollect([MarshalAs(UnmanagedType.Interface)] nsICycleCollectorListener aListener, int aExtraForgetSkippableCalls);
 		
 		/// <summary>
         /// Force a cycle collection without garbage collection.
@@ -386,9 +392,15 @@ namespace Gecko
         /// @param aListener listener that receives information about the CC graph
         /// (see @mozilla.org/cycle-collector-logger;1 for a logger
         /// component)
+        /// @param aExtraForgetSkippableCalls indicates how many times
+        /// nsCycleCollector_forgetSkippable will
+        /// be called before running cycle collection.
+        /// -1 prevents the default
+        /// nsCycleCollector_forgetSkippable call
+        /// which happens after garbage collection.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CycleCollect([MarshalAs(UnmanagedType.Interface)] nsICycleCollectorListener aListener);
+		void CycleCollect([MarshalAs(UnmanagedType.Interface)] nsICycleCollectorListener aListener, int aExtraForgetSkippableCalls);
 		
 		/// <summary>
         /// Force processing of any queued paints
@@ -710,6 +722,12 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetLayerManagerTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aLayerManagerType);
 		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void StartFrameTimeRecording();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void StopFrameTimeRecording(ref uint frameCount, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref float[] frameTime);
+		
 		/// <summary>
         /// The DPI of the display
         /// </summary>
@@ -831,33 +849,33 @@ namespace Gecko
         /// runtime.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void StartPCCountProfiling();
+		void StartPCCountProfiling(System.IntPtr jsContext);
 		
 		/// <summary>
         /// Stop opcode-level profiling of JavaScript execution in the runtime, and
         /// collect all counts for use by getPCCount methods.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void StopPCCountProfiling();
+		void StopPCCountProfiling(System.IntPtr jsContext);
 		
 		/// <summary>
         /// Purge collected PC counters.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PurgePCCounts();
+		void PurgePCCounts(System.IntPtr jsContext);
 		
 		/// <summary>
         /// Get the number of scripts with opcode-level profiling information.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetPCCountScriptCount();
+		int GetPCCountScriptCount(System.IntPtr jsContext);
 		
 		/// <summary>
         /// Get a JSON string for a short summary of a script and the PC counts
         /// accumulated for it.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPCCountScriptSummary(int script, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void GetPCCountScriptSummary(int script, System.IntPtr jsContext, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// Get a JSON string with full information about a profiled script,
@@ -865,7 +883,7 @@ namespace Gecko
         /// operations within it, and PC counts for each operation.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPCCountScriptContents(int script, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void GetPCCountScriptContents(int script, System.IntPtr jsContext, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// Returns true if painting is suppressed for this window and false

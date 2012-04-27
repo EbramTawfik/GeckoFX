@@ -30,7 +30,7 @@ namespace Gecko
 	/// <summary>nsIInlineSpellChecker </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("f456dda1-965d-470c-8c55-e51b38e45212")]
+	[Guid("df635540-d073-47b8-8678-18776130691d")]
 	public interface nsIInlineSpellChecker
 	{
 		
@@ -97,6 +97,11 @@ namespace Gecko
 		/// <param name='aWord'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void AddWordToDictionary([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aWord);
+		
+		/// <summary>Member RemoveWordFromDictionary </summary>
+		/// <param name='aWord'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RemoveWordFromDictionary([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aWord);
 		
 		/// <summary>Member IgnoreWord </summary>
 		/// <param name='aWord'> </param>

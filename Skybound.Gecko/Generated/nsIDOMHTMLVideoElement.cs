@@ -38,7 +38,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("8e6d81a9-a6e1-44af-95be-cbe86de36ede")]
+	[Guid("2274055b-8b3a-4a5a-8d72-5d5aea07021a")]
 	public interface nsIDOMHTMLVideoElement : nsIDOMHTMLMediaElement
 	{
 		
@@ -680,6 +680,12 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetCurrentSrcAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCurrentSrc);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void GetCrossoriginAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCrossorigin);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetCrossoriginAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCrossorigin);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new ushort GetNetworkStateAttribute();
