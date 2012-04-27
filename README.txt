@@ -2,6 +2,11 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v12.0-0.1 ==
+
+1. Initial version supporting firefox/xulrunner v12.0
+2. Improved JsVal support.
+
 == v11.0-0.3 ==
 
 1. Some work to make geckofx more stable.
