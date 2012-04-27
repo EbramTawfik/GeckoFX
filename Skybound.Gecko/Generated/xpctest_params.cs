@@ -101,7 +101,7 @@ namespace Gecko
 		void TestACString([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase a, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase b, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr TestJsval(System.IntPtr a, ref System.IntPtr b);
+		Gecko.JsVal TestJsval(Gecko.JsVal a, ref Gecko.JsVal b);
 		
 		/// <summary>
         /// Test arrays.
@@ -110,7 +110,7 @@ namespace Gecko
 		@short TestShortArray(uint aLength, @short a, ref uint bLength, ref @short b, ref uint rvLength);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		@double TestDoubleArray(uint aLength, @double a, ref uint bLength, ref @double b, ref uint rvLength);
+		void TestDoubleArray(uint aLength, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] double[] a, ref uint bLength, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] ref double[] b, ref uint rvLength, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=4)] ref double[] rv);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void TestStringArray(uint aLength, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] string[] a, ref uint bLength, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] ref string[] b, ref uint rvLength, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=4)] ref string[] rv);

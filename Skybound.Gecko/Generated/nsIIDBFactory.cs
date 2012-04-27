@@ -52,6 +52,6 @@ namespace Gecko
 		nsIIDBOpenDBRequest DeleteDatabase([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		short Cmp(System.IntPtr first, System.IntPtr second, System.IntPtr jsContext);
+		short Cmp(Gecko.JsVal first, Gecko.JsVal second, System.IntPtr jsContext);
 	}
 }

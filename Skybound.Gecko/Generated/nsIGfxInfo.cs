@@ -144,6 +144,6 @@ namespace Gecko
 		void GetData();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetInfo(System.IntPtr jsContext);
+		Gecko.JsVal GetInfo(System.IntPtr jsContext);
 	}
 }

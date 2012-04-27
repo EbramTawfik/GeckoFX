@@ -30,7 +30,7 @@ namespace Gecko.DOM
 
 		public nsISupports getContext(string contextId)
 		{
-			return DOMHTMLElement.GetContext(new nsAString(contextId), IntPtr.Zero);
+			return DOMHTMLElement.GetContext(new nsAString(contextId), default(JsVal));
 		}
 
 		public string toDataURL(string type)

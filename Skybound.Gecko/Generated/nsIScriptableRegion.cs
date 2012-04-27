@@ -184,7 +184,7 @@ namespace Gecko
         /// The result will contain bogus data if values don't fit in 31 bit
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetRects(System.IntPtr jsContext);
+		Gecko.JsVal GetRects(System.IntPtr jsContext);
 		
 		/// <summary>
         /// does the region intersect the rectangle?

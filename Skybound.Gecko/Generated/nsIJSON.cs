@@ -42,7 +42,7 @@ namespace Gecko
         /// encode() is not a conforming JSON stringify implementation!
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Encode(System.IntPtr value, System.IntPtr jsContext, int argc, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void Encode(Gecko.JsVal value, System.IntPtr jsContext, int argc, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// New users should use JSON.stringify.
@@ -52,17 +52,17 @@ namespace Gecko
         /// encodeToStream() is not a conforming JSON stringify implementation!
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EncodeToStream([MarshalAs(UnmanagedType.Interface)] nsIOutputStream stream, [MarshalAs(UnmanagedType.LPStr)] string charset, [MarshalAs(UnmanagedType.U1)] bool writeBOM, System.IntPtr value, System.IntPtr jsContext, int argc);
+		void EncodeToStream([MarshalAs(UnmanagedType.Interface)] nsIOutputStream stream, [MarshalAs(UnmanagedType.LPStr)] string charset, [MarshalAs(UnmanagedType.U1)] bool writeBOM, Gecko.JsVal value, System.IntPtr jsContext, int argc);
 		
 		/// <summary>
         /// New users should use JSON.parse!
         /// The decode() method is only present for backward compatibility.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr Decode([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase str, System.IntPtr jsContext);
+		Gecko.JsVal Decode([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase str, System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr DecodeFromStream([MarshalAs(UnmanagedType.Interface)] nsIInputStream stream, int contentLength, System.IntPtr jsContext);
+		Gecko.JsVal DecodeFromStream([MarshalAs(UnmanagedType.Interface)] nsIInputStream stream, int contentLength, System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void EncodeFromJSVal(System.IntPtr value, System.IntPtr cx, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
@@ -71,7 +71,7 @@ namespace Gecko
         /// Make sure you GCroot the result of this function before using it.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr DecodeToJSVal([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase str, System.IntPtr cx);
+		Gecko.JsVal DecodeToJSVal([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase str, System.IntPtr cx);
 		
 		/// <summary>
         /// Decode a JSON string, but also accept some strings in non-JSON format, as
@@ -86,17 +86,17 @@ namespace Gecko
         /// @param str the string to parse
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr LegacyDecode([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase str, System.IntPtr jsContext);
+		Gecko.JsVal LegacyDecode([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase str, System.IntPtr jsContext);
 		
 		/// <summary>
         ///Identical to legacyDecode, but decode the contents of stream. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr LegacyDecodeFromStream([MarshalAs(UnmanagedType.Interface)] nsIInputStream stream, int contentLength, System.IntPtr jsContext);
+		Gecko.JsVal LegacyDecodeFromStream([MarshalAs(UnmanagedType.Interface)] nsIInputStream stream, int contentLength, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Make sure you GCroot the result of this function before using it.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr LegacyDecodeToJSVal([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase str, System.IntPtr cx);
+		Gecko.JsVal LegacyDecodeToJSVal([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase str, System.IntPtr cx);
 	}
 }

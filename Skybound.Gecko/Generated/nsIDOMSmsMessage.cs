@@ -63,8 +63,8 @@ namespace Gecko
 		
 		/// <summary>Member GetTimestampAttribute </summary>
 		/// <param name='jsContext'> </param>
-		/// <returns>A System.IntPtr</returns>
+		/// <returns>A Gecko.JsVal</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetTimestampAttribute(System.IntPtr jsContext);
+		Gecko.JsVal GetTimestampAttribute(System.IntPtr jsContext);
 	}
 }

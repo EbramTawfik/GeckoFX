@@ -35,14 +35,14 @@ namespace Gecko
 	{
 		
 		/// <summary>Member GetKeyPathAttribute </summary>
-		/// <returns>A System.IntPtr</returns>
+		/// <returns>A Gecko.JsVal</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetKeyPathAttribute();
+		Gecko.JsVal GetKeyPathAttribute();
 		
 		/// <summary>Member SetKeyPathAttribute </summary>
 		/// <param name='aKeyPath'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetKeyPathAttribute(System.IntPtr aKeyPath);
+		void SetKeyPathAttribute(Gecko.JsVal aKeyPath);
 		
 		/// <summary>Member GetAutoIncrementAttribute </summary>
 		/// <returns>A System.Boolean</returns>
@@ -85,7 +85,7 @@ namespace Gecko
         ///none </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIIDBObjectStore CreateObjectStore([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, System.IntPtr options, System.IntPtr jsContext);
+		nsIIDBObjectStore CreateObjectStore([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, Gecko.JsVal options, System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void DeleteObjectStore([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name);
@@ -94,7 +94,7 @@ namespace Gecko
         ///READ_ONLY </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIIDBTransaction Transaction(System.IntPtr storeNames, ushort mode, System.IntPtr jsContext, int argc);
+		nsIIDBTransaction Transaction(Gecko.JsVal storeNames, ushort mode, System.IntPtr jsContext, int argc);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Close();

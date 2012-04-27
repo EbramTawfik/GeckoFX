@@ -353,19 +353,19 @@ namespace Gecko
         /// HTML
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.IntPtr GetOnmouseenterAttribute(System.IntPtr jsContext);
+		new Gecko.JsVal GetOnmouseenterAttribute(System.IntPtr jsContext);
 		
 		/// <summary>
         /// HTML
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetOnmouseenterAttribute(System.IntPtr aOnmouseenter, System.IntPtr jsContext);
+		new void SetOnmouseenterAttribute(Gecko.JsVal aOnmouseenter, System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.IntPtr GetOnmouseleaveAttribute(System.IntPtr jsContext);
+		new Gecko.JsVal GetOnmouseleaveAttribute(System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetOnmouseleaveAttribute(System.IntPtr aOnmouseleave, System.IntPtr jsContext);
+		new void SetOnmouseleaveAttribute(Gecko.JsVal aOnmouseleave, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Retrieve a list of rectangles, one for each CSS border-box associated with
@@ -840,7 +840,7 @@ namespace Gecko
         /// Write audio to the audio stream
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint MozWriteAudio(System.IntPtr data, System.IntPtr jsContext);
+		uint MozWriteAudio(Gecko.JsVal data, System.IntPtr jsContext);
 		
 		/// <summary>
         /// stream created using mozWriteAudio().

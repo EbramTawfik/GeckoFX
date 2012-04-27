@@ -44,10 +44,10 @@ namespace Gecko
         /// information.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetLowerAttribute(System.IntPtr jsContext);
+		Gecko.JsVal GetLowerAttribute(System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetUpperAttribute(System.IntPtr jsContext);
+		Gecko.JsVal GetUpperAttribute(System.IntPtr jsContext);
 		
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

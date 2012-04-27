@@ -185,6 +185,6 @@ namespace Gecko
 		/// <param name='data'> </param>
 		/// <param name='jsContext'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Append(System.IntPtr data, System.IntPtr jsContext);
+		void Append(Gecko.JsVal data, System.IntPtr jsContext);
 	}
 }

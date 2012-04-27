@@ -180,16 +180,16 @@ namespace Gecko
 		/// <param name='iid'> </param>
 		/// <param name='jsContext'> </param>
 		/// <param name='argc'> </param>
-		/// <returns>A System.IntPtr</returns>
+		/// <returns>A Gecko.JsVal</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr CreateInstance(System.IntPtr iid, System.IntPtr jsContext, int argc);
+		Gecko.JsVal CreateInstance(Gecko.JsVal iid, System.IntPtr jsContext, int argc);
 		
 		/// <summary>Member GetService </summary>
 		/// <param name='iid'> </param>
 		/// <param name='jsContext'> </param>
 		/// <param name='argc'> </param>
-		/// <returns>A System.IntPtr</returns>
+		/// <returns>A Gecko.JsVal</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetService(System.IntPtr iid, System.IntPtr jsContext, int argc);
+		Gecko.JsVal GetService(Gecko.JsVal iid, System.IntPtr jsContext, int argc);
 	}
 }

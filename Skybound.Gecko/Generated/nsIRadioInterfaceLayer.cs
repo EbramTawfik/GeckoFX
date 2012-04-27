@@ -135,7 +135,7 @@ namespace Gecko
         /// Keep consistent with GECKO_DATACALL_STATE_* values in ril_consts.js
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetCurrentStateAttribute();
+		Gecko.JsVal GetCurrentStateAttribute();
 		
 		/// <summary>Member RegisterCallback </summary>
 		/// <param name='callback'> </param>

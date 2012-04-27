@@ -376,7 +376,7 @@ namespace Gecko
         /// defined error code.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		jsdIValue WrapValue(System.IntPtr value);
+		jsdIValue WrapValue(Gecko.JsVal value);
 		
 		/// <summary>
         /// Push a new network queue, and enter a new UI event loop.
@@ -1336,7 +1336,7 @@ namespace Gecko
         /// defined error code.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetWrappedValue(System.IntPtr jsContext);
+		Gecko.JsVal GetWrappedValue(System.IntPtr jsContext);
 		
 		/// <summary>
         /// If this is a function value, return its associated jsdIScript.

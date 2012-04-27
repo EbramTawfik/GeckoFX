@@ -38,37 +38,37 @@ namespace Gecko
         /// A date that can return null.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetStartDateAttribute(System.IntPtr jsContext);
+		Gecko.JsVal GetStartDateAttribute(System.IntPtr jsContext);
 		
 		/// <summary>
         /// A date that can return null.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetStartDateAttribute(System.IntPtr aStartDate, System.IntPtr jsContext);
+		void SetStartDateAttribute(Gecko.JsVal aStartDate, System.IntPtr jsContext);
 		
 		/// <summary>
         /// A date that can return null.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetEndDateAttribute(System.IntPtr jsContext);
+		Gecko.JsVal GetEndDateAttribute(System.IntPtr jsContext);
 		
 		/// <summary>
         /// A date that can return null.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetEndDateAttribute(System.IntPtr aEndDate, System.IntPtr jsContext);
+		void SetEndDateAttribute(Gecko.JsVal aEndDate, System.IntPtr jsContext);
 		
 		/// <summary>
         /// An array of DOMString that can return null.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetNumbersAttribute(System.IntPtr jsContext);
+		Gecko.JsVal GetNumbersAttribute(System.IntPtr jsContext);
 		
 		/// <summary>
         /// An array of DOMString that can return null.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetNumbersAttribute(System.IntPtr aNumbers, System.IntPtr jsContext);
+		void SetNumbersAttribute(Gecko.JsVal aNumbers, System.IntPtr jsContext);
 		
 		/// <summary>
         /// A DOMString that can return and be set to "sent", "received" or null.

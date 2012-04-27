@@ -247,7 +247,7 @@ namespace Gecko
         /// An array of SmsRequest objects otherwise.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr Send(System.IntPtr number, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase message);
+		Gecko.JsVal Send(Gecko.JsVal number, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase message);
 		
 		/// <summary>Member GetMessage </summary>
 		/// <param name='id'> </param>
@@ -261,7 +261,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMMozSmsRequest Delete(System.IntPtr param);
+		nsIDOMMozSmsRequest Delete(Gecko.JsVal param);
 		
 		/// <summary>Member GetMessages </summary>
 		/// <param name='filter'> </param>

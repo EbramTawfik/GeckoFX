@@ -48,6 +48,6 @@ namespace Gecko
         /// @retval rv the value returned by the sub-script
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr LoadSubScript([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase url, System.IntPtr obj, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase charset, System.IntPtr jsContext);
+		Gecko.JsVal LoadSubScript([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase url, Gecko.JsVal obj, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase charset, System.IntPtr jsContext);
 	}
 }

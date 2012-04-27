@@ -51,22 +51,22 @@ namespace Gecko
 		nsISupports GetSourceAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetKeyAttribute(System.IntPtr jsContext);
+		Gecko.JsVal GetKeyAttribute(System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetPrimaryKeyAttribute(System.IntPtr jsContext);
+		Gecko.JsVal GetPrimaryKeyAttribute(System.IntPtr jsContext);
 		
 		/// <summary>
         ///undefined </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Continue(System.IntPtr key, System.IntPtr jsContext);
+		void Continue(Gecko.JsVal key, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Success fires IDBTransactionEvent, result == key
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIIDBRequest Update(System.IntPtr value, System.IntPtr jsContext);
+		nsIIDBRequest Update(Gecko.JsVal value, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Success fires IDBTransactionEvent, result == null

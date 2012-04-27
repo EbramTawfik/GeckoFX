@@ -259,7 +259,7 @@ namespace Gecko
         /// @see <http://www.whatwg.org/html/#dom-window-postmessage>
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PostMessage(System.IntPtr message, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase targetOrigin, System.IntPtr jsContext);
+		void PostMessage(Gecko.JsVal message, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase targetOrigin, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Ascii base64 data to binary data and vice versa...
@@ -631,121 +631,121 @@ namespace Gecko
         /// HTML5 event attributes that only apply to windows and <body>/<frameset>
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetOnafterprintAttribute(System.IntPtr jsContext);
+		Gecko.JsVal GetOnafterprintAttribute(System.IntPtr jsContext);
 		
 		/// <summary>
         /// HTML5 event attributes that only apply to windows and <body>/<frameset>
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnafterprintAttribute(System.IntPtr aOnafterprint, System.IntPtr jsContext);
+		void SetOnafterprintAttribute(Gecko.JsVal aOnafterprint, System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetOnbeforeprintAttribute(System.IntPtr jsContext);
+		Gecko.JsVal GetOnbeforeprintAttribute(System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnbeforeprintAttribute(System.IntPtr aOnbeforeprint, System.IntPtr jsContext);
+		void SetOnbeforeprintAttribute(Gecko.JsVal aOnbeforeprint, System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetOnbeforeunloadAttribute(System.IntPtr jsContext);
+		Gecko.JsVal GetOnbeforeunloadAttribute(System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnbeforeunloadAttribute(System.IntPtr aOnbeforeunload, System.IntPtr jsContext);
+		void SetOnbeforeunloadAttribute(Gecko.JsVal aOnbeforeunload, System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetOnhashchangeAttribute(System.IntPtr jsContext);
+		Gecko.JsVal GetOnhashchangeAttribute(System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnhashchangeAttribute(System.IntPtr aOnhashchange, System.IntPtr jsContext);
+		void SetOnhashchangeAttribute(Gecko.JsVal aOnhashchange, System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetOnmessageAttribute(System.IntPtr jsContext);
+		Gecko.JsVal GetOnmessageAttribute(System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnmessageAttribute(System.IntPtr aOnmessage, System.IntPtr jsContext);
+		void SetOnmessageAttribute(Gecko.JsVal aOnmessage, System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetOnofflineAttribute(System.IntPtr jsContext);
+		Gecko.JsVal GetOnofflineAttribute(System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnofflineAttribute(System.IntPtr aOnoffline, System.IntPtr jsContext);
+		void SetOnofflineAttribute(Gecko.JsVal aOnoffline, System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetOnonlineAttribute(System.IntPtr jsContext);
+		Gecko.JsVal GetOnonlineAttribute(System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnonlineAttribute(System.IntPtr aOnonline, System.IntPtr jsContext);
+		void SetOnonlineAttribute(Gecko.JsVal aOnonline, System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetOnpopstateAttribute(System.IntPtr jsContext);
+		Gecko.JsVal GetOnpopstateAttribute(System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnpopstateAttribute(System.IntPtr aOnpopstate, System.IntPtr jsContext);
+		void SetOnpopstateAttribute(Gecko.JsVal aOnpopstate, System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetOnpagehideAttribute(System.IntPtr jsContext);
+		Gecko.JsVal GetOnpagehideAttribute(System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnpagehideAttribute(System.IntPtr aOnpagehide, System.IntPtr jsContext);
+		void SetOnpagehideAttribute(Gecko.JsVal aOnpagehide, System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetOnpageshowAttribute(System.IntPtr jsContext);
+		Gecko.JsVal GetOnpageshowAttribute(System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnpageshowAttribute(System.IntPtr aOnpageshow, System.IntPtr jsContext);
-		
-		/// <summary>
-        /// [implicit_jscontext] attribute jsval onredo;
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetOnresizeAttribute(System.IntPtr jsContext);
+		void SetOnpageshowAttribute(Gecko.JsVal aOnpageshow, System.IntPtr jsContext);
 		
 		/// <summary>
         /// [implicit_jscontext] attribute jsval onredo;
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnresizeAttribute(System.IntPtr aOnresize, System.IntPtr jsContext);
+		Gecko.JsVal GetOnresizeAttribute(System.IntPtr jsContext);
+		
+		/// <summary>
+        /// [implicit_jscontext] attribute jsval onredo;
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOnresizeAttribute(Gecko.JsVal aOnresize, System.IntPtr jsContext);
 		
 		/// <summary>
         /// [implicit_jscontext] attribute jsval onundo;
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetOnunloadAttribute(System.IntPtr jsContext);
+		Gecko.JsVal GetOnunloadAttribute(System.IntPtr jsContext);
 		
 		/// <summary>
         /// [implicit_jscontext] attribute jsval onundo;
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnunloadAttribute(System.IntPtr aOnunload, System.IntPtr jsContext);
+		void SetOnunloadAttribute(Gecko.JsVal aOnunload, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Non-HTML5 window-specific event attributes
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetOndevicemotionAttribute(System.IntPtr jsContext);
+		Gecko.JsVal GetOndevicemotionAttribute(System.IntPtr jsContext);
 		
 		/// <summary>
         /// Non-HTML5 window-specific event attributes
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOndevicemotionAttribute(System.IntPtr aOndevicemotion, System.IntPtr jsContext);
+		void SetOndevicemotionAttribute(Gecko.JsVal aOndevicemotion, System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetOndeviceorientationAttribute(System.IntPtr jsContext);
+		Gecko.JsVal GetOndeviceorientationAttribute(System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOndeviceorientationAttribute(System.IntPtr aOndeviceorientation, System.IntPtr jsContext);
+		void SetOndeviceorientationAttribute(Gecko.JsVal aOndeviceorientation, System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetOnmouseenterAttribute(System.IntPtr jsContext);
+		Gecko.JsVal GetOnmouseenterAttribute(System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnmouseenterAttribute(System.IntPtr aOnmouseenter, System.IntPtr jsContext);
+		void SetOnmouseenterAttribute(Gecko.JsVal aOnmouseenter, System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetOnmouseleaveAttribute(System.IntPtr jsContext);
+		Gecko.JsVal GetOnmouseleaveAttribute(System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnmouseleaveAttribute(System.IntPtr aOnmouseleave, System.IntPtr jsContext);
+		void SetOnmouseleaveAttribute(Gecko.JsVal aOnmouseleave, System.IntPtr jsContext);
 	}
 	
 	/// <summary>nsIDOMWindowPerformance </summary>
@@ -972,7 +972,7 @@ namespace Gecko
         /// @see <http://www.whatwg.org/html/#dom-window-postmessage>
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void PostMessage(System.IntPtr message, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase targetOrigin, System.IntPtr jsContext);
+		new void PostMessage(Gecko.JsVal message, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase targetOrigin, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Ascii base64 data to binary data and vice versa...
@@ -1344,120 +1344,120 @@ namespace Gecko
         /// HTML5 event attributes that only apply to windows and <body>/<frameset>
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.IntPtr GetOnafterprintAttribute(System.IntPtr jsContext);
+		new Gecko.JsVal GetOnafterprintAttribute(System.IntPtr jsContext);
 		
 		/// <summary>
         /// HTML5 event attributes that only apply to windows and <body>/<frameset>
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetOnafterprintAttribute(System.IntPtr aOnafterprint, System.IntPtr jsContext);
+		new void SetOnafterprintAttribute(Gecko.JsVal aOnafterprint, System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.IntPtr GetOnbeforeprintAttribute(System.IntPtr jsContext);
+		new Gecko.JsVal GetOnbeforeprintAttribute(System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetOnbeforeprintAttribute(System.IntPtr aOnbeforeprint, System.IntPtr jsContext);
+		new void SetOnbeforeprintAttribute(Gecko.JsVal aOnbeforeprint, System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.IntPtr GetOnbeforeunloadAttribute(System.IntPtr jsContext);
+		new Gecko.JsVal GetOnbeforeunloadAttribute(System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetOnbeforeunloadAttribute(System.IntPtr aOnbeforeunload, System.IntPtr jsContext);
+		new void SetOnbeforeunloadAttribute(Gecko.JsVal aOnbeforeunload, System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.IntPtr GetOnhashchangeAttribute(System.IntPtr jsContext);
+		new Gecko.JsVal GetOnhashchangeAttribute(System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetOnhashchangeAttribute(System.IntPtr aOnhashchange, System.IntPtr jsContext);
+		new void SetOnhashchangeAttribute(Gecko.JsVal aOnhashchange, System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.IntPtr GetOnmessageAttribute(System.IntPtr jsContext);
+		new Gecko.JsVal GetOnmessageAttribute(System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetOnmessageAttribute(System.IntPtr aOnmessage, System.IntPtr jsContext);
+		new void SetOnmessageAttribute(Gecko.JsVal aOnmessage, System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.IntPtr GetOnofflineAttribute(System.IntPtr jsContext);
+		new Gecko.JsVal GetOnofflineAttribute(System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetOnofflineAttribute(System.IntPtr aOnoffline, System.IntPtr jsContext);
+		new void SetOnofflineAttribute(Gecko.JsVal aOnoffline, System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.IntPtr GetOnonlineAttribute(System.IntPtr jsContext);
+		new Gecko.JsVal GetOnonlineAttribute(System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetOnonlineAttribute(System.IntPtr aOnonline, System.IntPtr jsContext);
+		new void SetOnonlineAttribute(Gecko.JsVal aOnonline, System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.IntPtr GetOnpopstateAttribute(System.IntPtr jsContext);
+		new Gecko.JsVal GetOnpopstateAttribute(System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetOnpopstateAttribute(System.IntPtr aOnpopstate, System.IntPtr jsContext);
+		new void SetOnpopstateAttribute(Gecko.JsVal aOnpopstate, System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.IntPtr GetOnpagehideAttribute(System.IntPtr jsContext);
+		new Gecko.JsVal GetOnpagehideAttribute(System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetOnpagehideAttribute(System.IntPtr aOnpagehide, System.IntPtr jsContext);
+		new void SetOnpagehideAttribute(Gecko.JsVal aOnpagehide, System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.IntPtr GetOnpageshowAttribute(System.IntPtr jsContext);
+		new Gecko.JsVal GetOnpageshowAttribute(System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetOnpageshowAttribute(System.IntPtr aOnpageshow, System.IntPtr jsContext);
-		
-		/// <summary>
-        /// [implicit_jscontext] attribute jsval onredo;
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.IntPtr GetOnresizeAttribute(System.IntPtr jsContext);
+		new void SetOnpageshowAttribute(Gecko.JsVal aOnpageshow, System.IntPtr jsContext);
 		
 		/// <summary>
         /// [implicit_jscontext] attribute jsval onredo;
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetOnresizeAttribute(System.IntPtr aOnresize, System.IntPtr jsContext);
+		new Gecko.JsVal GetOnresizeAttribute(System.IntPtr jsContext);
+		
+		/// <summary>
+        /// [implicit_jscontext] attribute jsval onredo;
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetOnresizeAttribute(Gecko.JsVal aOnresize, System.IntPtr jsContext);
 		
 		/// <summary>
         /// [implicit_jscontext] attribute jsval onundo;
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.IntPtr GetOnunloadAttribute(System.IntPtr jsContext);
+		new Gecko.JsVal GetOnunloadAttribute(System.IntPtr jsContext);
 		
 		/// <summary>
         /// [implicit_jscontext] attribute jsval onundo;
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetOnunloadAttribute(System.IntPtr aOnunload, System.IntPtr jsContext);
+		new void SetOnunloadAttribute(Gecko.JsVal aOnunload, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Non-HTML5 window-specific event attributes
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.IntPtr GetOndevicemotionAttribute(System.IntPtr jsContext);
+		new Gecko.JsVal GetOndevicemotionAttribute(System.IntPtr jsContext);
 		
 		/// <summary>
         /// Non-HTML5 window-specific event attributes
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetOndevicemotionAttribute(System.IntPtr aOndevicemotion, System.IntPtr jsContext);
+		new void SetOndevicemotionAttribute(Gecko.JsVal aOndevicemotion, System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.IntPtr GetOndeviceorientationAttribute(System.IntPtr jsContext);
+		new Gecko.JsVal GetOndeviceorientationAttribute(System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetOndeviceorientationAttribute(System.IntPtr aOndeviceorientation, System.IntPtr jsContext);
+		new void SetOndeviceorientationAttribute(Gecko.JsVal aOndeviceorientation, System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.IntPtr GetOnmouseenterAttribute(System.IntPtr jsContext);
+		new Gecko.JsVal GetOnmouseenterAttribute(System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetOnmouseenterAttribute(System.IntPtr aOnmouseenter, System.IntPtr jsContext);
+		new void SetOnmouseenterAttribute(Gecko.JsVal aOnmouseenter, System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.IntPtr GetOnmouseleaveAttribute(System.IntPtr jsContext);
+		new Gecko.JsVal GetOnmouseleaveAttribute(System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetOnmouseleaveAttribute(System.IntPtr aOnmouseleave, System.IntPtr jsContext);
+		new void SetOnmouseleaveAttribute(Gecko.JsVal aOnmouseleave, System.IntPtr jsContext);
 	}
 }

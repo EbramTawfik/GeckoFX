@@ -479,7 +479,7 @@ namespace Gecko
         /// aJSContext.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void WrapNativeToJSVal(System.IntPtr aJSContext, System.IntPtr aScope, [MarshalAs(UnmanagedType.Interface)] nsISupports aCOMObj, System.IntPtr aCache, System.Guid aIID, [MarshalAs(UnmanagedType.U1)] bool aAllowWrapper, ref System.IntPtr aVal, [MarshalAs(UnmanagedType.Interface)] ref nsIXPConnectJSObjectHolder aHolder);
+		void WrapNativeToJSVal(System.IntPtr aJSContext, System.IntPtr aScope, [MarshalAs(UnmanagedType.Interface)] nsISupports aCOMObj, System.IntPtr aCache, System.Guid aIID, [MarshalAs(UnmanagedType.U1)] bool aAllowWrapper, ref Gecko.JsVal aVal, [MarshalAs(UnmanagedType.Interface)] ref nsIXPConnectJSObjectHolder aHolder);
 		
 		/// <summary>
         /// wrapJS will yield a new or previously existing xpcom interface pointer
@@ -636,11 +636,11 @@ namespace Gecko
 		void ReleaseJSContext(System.IntPtr aJSContext, [MarshalAs(UnmanagedType.U1)] bool noGC);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr VariantToJS(System.IntPtr ctx, System.IntPtr scope, [MarshalAs(UnmanagedType.Interface)] nsIVariant value);
+		Gecko.JsVal VariantToJS(System.IntPtr ctx, System.IntPtr scope, [MarshalAs(UnmanagedType.Interface)] nsIVariant value);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant JSToVariant(System.IntPtr ctx, System.IntPtr value);
+		nsIVariant JSToVariant(System.IntPtr ctx, Gecko.JsVal value);
 		
 		/// <summary>
         /// Create a sandbox for evaluating code in isolation using
@@ -673,7 +673,7 @@ namespace Gecko
         /// to this method.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr EvalInSandboxObject([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase source, System.IntPtr cx, [MarshalAs(UnmanagedType.Interface)] nsIXPConnectJSObjectHolder sandbox, [MarshalAs(UnmanagedType.U1)] bool returnStringOnly);
+		Gecko.JsVal EvalInSandboxObject([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase source, System.IntPtr cx, [MarshalAs(UnmanagedType.Interface)] nsIXPConnectJSObjectHolder sandbox, [MarshalAs(UnmanagedType.U1)] bool returnStringOnly);
 		
 		/// <summary>
         /// Root JS objects held by aHolder.

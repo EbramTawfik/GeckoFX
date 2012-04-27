@@ -42,6 +42,6 @@ namespace Gecko
         /// @returns a JS Object to use use as the property's value.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr Init([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window);
+		Gecko.JsVal Init([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window);
 	}
 }

@@ -35,8 +35,8 @@ namespace Gecko
 	{
 		
 		/// <summary>Member GetWorkerAttribute </summary>
-		/// <returns>A System.IntPtr</returns>
+		/// <returns>A Gecko.JsVal</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetWorkerAttribute();
+		Gecko.JsVal GetWorkerAttribute();
 	}
 }

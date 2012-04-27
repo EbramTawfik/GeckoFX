@@ -48,9 +48,9 @@ namespace Gecko
 	{
 		
 		/// <summary>Member GetManifestAttribute </summary>
-		/// <returns>A System.IntPtr</returns>
+		/// <returns>A Gecko.JsVal</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetManifestAttribute();
+		Gecko.JsVal GetManifestAttribute();
 		
 		/// <summary>Member GetReceiptAttribute </summary>
 		/// <param name='aReceipt'> </param>

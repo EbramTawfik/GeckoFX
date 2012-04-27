@@ -65,7 +65,7 @@ namespace Gecko
         /// (This comment is duplicated to nsIXPCComponents_Utils.)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr Import([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aResourceURI, System.IntPtr targetObj, System.IntPtr jsContext, int argc);
+		Gecko.JsVal Import([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aResourceURI, Gecko.JsVal targetObj, System.IntPtr jsContext, int argc);
 		
 		/// <summary>
         /// Imports the JS module at aResourceURI to the JS object

@@ -95,7 +95,7 @@ namespace Gecko
         /// Properties may not be available depending on platform or application
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetStartupInfo(System.IntPtr jsContext);
+		Gecko.JsVal GetStartupInfo(System.IntPtr jsContext);
 		
 		/// <summary>
         /// True if startup was interrupted by an interactive prompt.

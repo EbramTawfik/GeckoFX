@@ -55,7 +55,7 @@ namespace Gecko
 		nsIIDBTransaction GetTransactionAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetResultAttribute();
+		Gecko.JsVal GetResultAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		ushort GetErrorCodeAttribute();

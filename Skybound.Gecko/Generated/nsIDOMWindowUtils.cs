@@ -554,7 +554,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string GetClassName(System.IntPtr aObject, System.IntPtr jsContext);
+		string GetClassName(Gecko.JsVal aObject, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Generate a content command event.
@@ -645,7 +645,7 @@ namespace Gecko
         /// @return the parent.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetParent(System.IntPtr obj, System.IntPtr jsContext);
+		Gecko.JsVal GetParent(Gecko.JsVal obj, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Get the id of the outer window of this window.  This will never throw.

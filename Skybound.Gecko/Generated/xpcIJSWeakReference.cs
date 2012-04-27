@@ -41,6 +41,6 @@ namespace Gecko
         /// been garbage collected.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr Get(System.IntPtr jsContext);
+		Gecko.JsVal Get(System.IntPtr jsContext);
 	}
 }

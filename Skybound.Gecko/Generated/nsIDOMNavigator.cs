@@ -181,6 +181,6 @@ namespace Gecko
         /// too long, or if any of its elements is too large.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MozVibrate(System.IntPtr aPattern, System.IntPtr jsContext);
+		void MozVibrate(Gecko.JsVal aPattern, System.IntPtr jsContext);
 	}
 }

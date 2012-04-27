@@ -50,7 +50,7 @@ namespace Gecko
 		void GetStoreNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aStoreName);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetKeyPathAttribute(System.IntPtr jsContext);
+		Gecko.JsVal GetKeyPathAttribute(System.IntPtr jsContext);
 		
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -66,41 +66,41 @@ namespace Gecko
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIIDBRequest Get(System.IntPtr key, System.IntPtr jsContext);
+		nsIIDBRequest Get(Gecko.JsVal key, System.IntPtr jsContext);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIIDBRequest GetKey(System.IntPtr key, System.IntPtr jsContext);
-		
-		/// <summary>
-        ///unlimited </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIIDBRequest GetAll(System.IntPtr key, uint limit, System.IntPtr jsContext, int argc);
+		nsIIDBRequest GetKey(Gecko.JsVal key, System.IntPtr jsContext);
 		
 		/// <summary>
         ///unlimited </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIIDBRequest GetAllKeys(System.IntPtr key, uint limit, System.IntPtr jsContext, int argc);
+		nsIIDBRequest GetAll(Gecko.JsVal key, uint limit, System.IntPtr jsContext, int argc);
+		
+		/// <summary>
+        ///unlimited </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIIDBRequest GetAllKeys(Gecko.JsVal key, uint limit, System.IntPtr jsContext, int argc);
 		
 		/// <summary>
         ///nsIIDBCursor::NEXT </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIIDBRequest OpenCursor(System.IntPtr key, ushort direction, System.IntPtr jsContext, int argc);
+		nsIIDBRequest OpenCursor(Gecko.JsVal key, ushort direction, System.IntPtr jsContext, int argc);
 		
 		/// <summary>
         ///nsIIDBCursor::NEXT </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIIDBRequest OpenKeyCursor(System.IntPtr key, ushort direction, System.IntPtr jsContext, int argc);
+		nsIIDBRequest OpenKeyCursor(Gecko.JsVal key, ushort direction, System.IntPtr jsContext, int argc);
 		
 		/// <summary>
         /// Accepts null, a key value, or a nsIIDBKeyRange object.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIIDBRequest Count(System.IntPtr key, System.IntPtr jsContext, int argc);
+		nsIIDBRequest Count(Gecko.JsVal key, System.IntPtr jsContext, int argc);
 	}
 }

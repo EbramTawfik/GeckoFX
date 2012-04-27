@@ -270,19 +270,19 @@ namespace Gecko
         /// generated via startTone.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetActiveAttribute();
+		Gecko.JsVal GetActiveAttribute();
 		
 		/// <summary>
         /// generated via startTone.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetActiveAttribute(System.IntPtr aActive);
+		void SetActiveAttribute(Gecko.JsVal aActive);
 		
 		/// <summary>
         /// Array of all calls that are currently connected.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetCallsAttribute();
+		Gecko.JsVal GetCallsAttribute();
 		
 		/// <summary>Member StartTone </summary>
 		/// <param name='tone'> </param>

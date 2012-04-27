@@ -177,7 +177,7 @@ namespace Gecko
         /// is converted to a string and reported as a new error.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ReportError(System.IntPtr error, System.IntPtr jsContext);
+		void ReportError(Gecko.JsVal error, System.IntPtr jsContext);
 		
 		/// <summary>
         ///lookupMethod is designed to be called from JavaScript only.
@@ -194,7 +194,7 @@ namespace Gecko
         /// any other use.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr LookupMethod(System.IntPtr obj, System.IntPtr name, System.IntPtr jsContext);
+		Gecko.JsVal LookupMethod(Gecko.JsVal obj, Gecko.JsVal name, System.IntPtr jsContext);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -213,7 +213,7 @@ namespace Gecko
         /// var thirtyFive = C.u.evalInSandbox("five * seven", s);
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr EvalInSandbox([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase source, System.IntPtr sandbox, System.IntPtr version, System.IntPtr filename, int lineNo, System.IntPtr jsContext, int argc);
+		Gecko.JsVal EvalInSandbox([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase source, Gecko.JsVal sandbox, Gecko.JsVal version, Gecko.JsVal filename, int lineNo, System.IntPtr jsContext, int argc);
 		
 		/// <summary>
         /// import is designed to be called from JavaScript only.
@@ -246,7 +246,7 @@ namespace Gecko
         /// (This comment is duplicated from xpcIJSModuleLoader.)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr Import([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aResourceURI, System.IntPtr targetObj, System.IntPtr jsContext, int argc);
+		Gecko.JsVal Import([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aResourceURI, Gecko.JsVal targetObj, System.IntPtr jsContext, int argc);
 		
 		/// <summary>
         /// Unloads the JS module at 'registryLocation'. Existing references to the
@@ -265,7 +265,7 @@ namespace Gecko
         /// Return a weak reference for the given JS object.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		xpcIJSWeakReference GetWeakReference(System.IntPtr obj, System.IntPtr jsContext);
+		xpcIJSWeakReference GetWeakReference(Gecko.JsVal obj, System.IntPtr jsContext);
 		
 		/// <summary>
         /// To be called from JS only.
@@ -310,7 +310,7 @@ namespace Gecko
         ///                map as an array.  Otherwise, return undefined.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr NondeterministicGetWeakMapKeys(System.IntPtr aMap, System.IntPtr jsContext);
+		Gecko.JsVal NondeterministicGetWeakMapKeys(Gecko.JsVal aMap, System.IntPtr jsContext);
 		
 		/// <summary>
         /// To be called from JS only.
@@ -321,7 +321,7 @@ namespace Gecko
         /// @return the corresponding global.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetGlobalForObject(System.IntPtr obj, System.IntPtr jsContext);
+		Gecko.JsVal GetGlobalForObject(Gecko.JsVal obj, System.IntPtr jsContext);
 		
 		/// <summary>
         /// To be called from JS only.
@@ -329,7 +329,7 @@ namespace Gecko
         /// Returns an object created in |vobj|'s compartment.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr CreateObjectIn(System.IntPtr vobj, System.IntPtr jsContext);
+		Gecko.JsVal CreateObjectIn(Gecko.JsVal vobj, System.IntPtr jsContext);
 		
 		/// <summary>
         /// To be called from JS only.
@@ -338,7 +338,7 @@ namespace Gecko
         /// compartment wrappers).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MakeObjectPropsNormal(System.IntPtr vobj, System.IntPtr jsContext);
+		void MakeObjectPropsNormal(Gecko.JsVal vobj, System.IntPtr jsContext);
 		
 		/// <summary>
         /// To be called from JS only.
@@ -473,11 +473,11 @@ namespace Gecko
         /// See http://developer-test.mozilla.org/en/docs/XPCNativeWrapper )
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr LookupMethod(System.IntPtr obj, System.IntPtr name, System.IntPtr jsContext);
+		Gecko.JsVal LookupMethod(Gecko.JsVal obj, Gecko.JsVal name, System.IntPtr jsContext);
 		
 		/// <summary>
         ///@deprecated Use Components.utils.reportError instead. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ReportError(System.IntPtr error, System.IntPtr jsContext);
+		void ReportError(Gecko.JsVal error, System.IntPtr jsContext);
 	}
 }

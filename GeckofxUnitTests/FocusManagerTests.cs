@@ -847,6 +847,172 @@ namespace GeckofxUnitTests
 		{
 			throw new NotImplementedException();
 		}
+
+
+		public void PostMessage(JsVal message, nsAStringBase targetOrigin, IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		JsVal nsIDOMWindow.GetOnafterprintAttribute(IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetOnafterprintAttribute(JsVal aOnafterprint, IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		JsVal nsIDOMWindow.GetOnbeforeprintAttribute(IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetOnbeforeprintAttribute(JsVal aOnbeforeprint, IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		JsVal nsIDOMWindow.GetOnbeforeunloadAttribute(IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetOnbeforeunloadAttribute(JsVal aOnbeforeunload, IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		JsVal nsIDOMWindow.GetOnhashchangeAttribute(IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetOnhashchangeAttribute(JsVal aOnhashchange, IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		JsVal nsIDOMWindow.GetOnmessageAttribute(IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetOnmessageAttribute(JsVal aOnmessage, IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		JsVal nsIDOMWindow.GetOnofflineAttribute(IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetOnofflineAttribute(JsVal aOnoffline, IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		JsVal nsIDOMWindow.GetOnonlineAttribute(IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetOnonlineAttribute(JsVal aOnonline, IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		JsVal nsIDOMWindow.GetOnpopstateAttribute(IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetOnpopstateAttribute(JsVal aOnpopstate, IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		JsVal nsIDOMWindow.GetOnpagehideAttribute(IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetOnpagehideAttribute(JsVal aOnpagehide, IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		JsVal nsIDOMWindow.GetOnpageshowAttribute(IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetOnpageshowAttribute(JsVal aOnpageshow, IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		JsVal nsIDOMWindow.GetOnresizeAttribute(IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetOnresizeAttribute(JsVal aOnresize, IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		JsVal nsIDOMWindow.GetOnunloadAttribute(IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetOnunloadAttribute(JsVal aOnunload, IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		JsVal nsIDOMWindow.GetOndevicemotionAttribute(IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetOndevicemotionAttribute(JsVal aOndevicemotion, IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		JsVal nsIDOMWindow.GetOndeviceorientationAttribute(IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetOndeviceorientationAttribute(JsVal aOndeviceorientation, IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		JsVal nsIDOMWindow.GetOnmouseenterAttribute(IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetOnmouseenterAttribute(JsVal aOnmouseenter, IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		JsVal nsIDOMWindow.GetOnmouseleaveAttribute(IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetOnmouseleaveAttribute(JsVal aOnmouseleave, IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
 	}
 	#endregion
 }

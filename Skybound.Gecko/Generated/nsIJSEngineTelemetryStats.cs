@@ -42,6 +42,6 @@ namespace Gecko
         /// the telemetry ping JSON blob.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetTelemetryValueAttribute(System.IntPtr jsContext);
+		Gecko.JsVal GetTelemetryValueAttribute(System.IntPtr jsContext);
 	}
 }

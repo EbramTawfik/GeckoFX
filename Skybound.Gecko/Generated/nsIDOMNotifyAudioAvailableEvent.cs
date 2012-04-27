@@ -164,9 +164,9 @@ namespace Gecko
 		
 		/// <summary>Member GetFrameBufferAttribute </summary>
 		/// <param name='jsContext'> </param>
-		/// <returns>A System.IntPtr</returns>
+		/// <returns>A Gecko.JsVal</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetFrameBufferAttribute(System.IntPtr jsContext);
+		Gecko.JsVal GetFrameBufferAttribute(System.IntPtr jsContext);
 		
 		/// <summary>Member GetTimeAttribute </summary>
 		/// <returns>A System.Single</returns>

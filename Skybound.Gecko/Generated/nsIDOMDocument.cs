@@ -715,25 +715,25 @@ namespace Gecko
         /// Inline event handler for readystatechange events.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetOnreadystatechangeAttribute(System.IntPtr jsContext);
+		Gecko.JsVal GetOnreadystatechangeAttribute(System.IntPtr jsContext);
 		
 		/// <summary>
         /// Inline event handler for readystatechange events.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnreadystatechangeAttribute(System.IntPtr aOnreadystatechange, System.IntPtr jsContext);
+		void SetOnreadystatechangeAttribute(Gecko.JsVal aOnreadystatechange, System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetOnmouseenterAttribute(System.IntPtr jsContext);
+		Gecko.JsVal GetOnmouseenterAttribute(System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnmouseenterAttribute(System.IntPtr aOnmouseenter, System.IntPtr jsContext);
+		void SetOnmouseenterAttribute(Gecko.JsVal aOnmouseenter, System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetOnmouseleaveAttribute(System.IntPtr jsContext);
+		Gecko.JsVal GetOnmouseleaveAttribute(System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnmouseleaveAttribute(System.IntPtr aOnmouseleave, System.IntPtr jsContext);
+		void SetOnmouseleaveAttribute(Gecko.JsVal aOnmouseleave, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Visibility API implementation.

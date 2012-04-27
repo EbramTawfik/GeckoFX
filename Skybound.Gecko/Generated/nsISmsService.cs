@@ -65,6 +65,6 @@ namespace Gecko
 		/// <returns>A nsIDOMMozSmsMessage</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMMozSmsMessage CreateSmsMessage(int id, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase delivery, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase sender, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase receiver, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase body, System.IntPtr timestamp, System.IntPtr jsContext);
+		nsIDOMMozSmsMessage CreateSmsMessage(int id, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase delivery, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase sender, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase receiver, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase body, Gecko.JsVal timestamp, System.IntPtr jsContext);
 	}
 }

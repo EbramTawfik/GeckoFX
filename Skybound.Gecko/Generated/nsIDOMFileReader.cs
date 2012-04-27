@@ -270,9 +270,9 @@ namespace Gecko
 		
 		/// <summary>Member GetResultAttribute </summary>
 		/// <param name='jsContext'> </param>
-		/// <returns>A System.IntPtr</returns>
+		/// <returns>A Gecko.JsVal</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetResultAttribute(System.IntPtr jsContext);
+		Gecko.JsVal GetResultAttribute(System.IntPtr jsContext);
 		
 		/// <summary>Member GetErrorAttribute </summary>
 		/// <returns>A nsIDOMFileError</returns>

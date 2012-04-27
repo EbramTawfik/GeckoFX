@@ -47,7 +47,7 @@ namespace Gecko
         /// static - true for histograms defined in TelemetryHistograms.h, false for ones defined with newHistogram
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetHistogramSnapshotsAttribute(System.IntPtr jsContext);
+		Gecko.JsVal GetHistogramSnapshotsAttribute(System.IntPtr jsContext);
 		
 		/// <summary>
         /// An object containing information about slow SQL prepared statements.
@@ -65,7 +65,7 @@ namespace Gecko
         /// total time - The sum of all execution times above the threshold time for this statement
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetSlowSQLAttribute(System.IntPtr jsContext);
+		Gecko.JsVal GetSlowSQLAttribute(System.IntPtr jsContext);
 		
 		/// <summary>
         /// An object whose properties are the names of histograms defined in
@@ -73,7 +73,7 @@ namespace Gecko
         /// comments associated with said histograms.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetRegisteredHistogramsAttribute(System.IntPtr jsContext);
+		Gecko.JsVal GetRegisteredHistogramsAttribute(System.IntPtr jsContext);
 		
 		/// <summary>
         /// Create and return a histogram where bucket sizes increase exponentially. Parameters:
@@ -88,7 +88,7 @@ namespace Gecko
         /// snapshot() - Returns a snapshot of the histogram with the same data fields as in histogramSnapshots()
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr NewHistogram([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase name, uint min, uint max, uint bucket_count, uint histogram_type, System.IntPtr jsContext);
+		Gecko.JsVal NewHistogram([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase name, uint min, uint max, uint bucket_count, uint histogram_type, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Create a histogram using the current state of an existing histogram.  The
@@ -99,7 +99,7 @@ namespace Gecko
         /// The returned object has the same functions as a histogram returned from newHistogram.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr HistogramFrom([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase name, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase existing_name, System.IntPtr jsContext);
+		Gecko.JsVal HistogramFrom([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase name, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase existing_name, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Same as newHistogram above, but for histograms registered in TelemetryHistograms.h.
@@ -107,7 +107,7 @@ namespace Gecko
         /// @param id - unique identifier from TelemetryHistograms.h
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetHistogramById([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase id, System.IntPtr jsContext);
+		Gecko.JsVal GetHistogramById([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase id, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Set this to false to disable gathering of telemetry statistics.

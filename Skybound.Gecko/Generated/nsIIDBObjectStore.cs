@@ -77,7 +77,7 @@ namespace Gecko
 		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetKeyPathAttribute(System.IntPtr jsContext);
+		Gecko.JsVal GetKeyPathAttribute(System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetIndexNamesAttribute();
@@ -95,32 +95,32 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIIDBRequest Get(System.IntPtr key, System.IntPtr jsContext);
+		nsIIDBRequest Get(Gecko.JsVal key, System.IntPtr jsContext);
 		
 		/// <summary>
         ///unlimited </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIIDBRequest GetAll(System.IntPtr key, uint limit, System.IntPtr jsContext, int argc);
+		nsIIDBRequest GetAll(Gecko.JsVal key, uint limit, System.IntPtr jsContext, int argc);
 		
 		/// <summary>
         ///undefined </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIIDBRequest Add(System.IntPtr value, System.IntPtr key, System.IntPtr jsContext, int argc);
+		nsIIDBRequest Add(Gecko.JsVal value, Gecko.JsVal key, System.IntPtr jsContext, int argc);
 		
 		/// <summary>
         ///undefined </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIIDBRequest Put(System.IntPtr value, System.IntPtr key, System.IntPtr jsContext, int argc);
+		nsIIDBRequest Put(Gecko.JsVal value, Gecko.JsVal key, System.IntPtr jsContext, int argc);
 		
 		/// <summary>
         /// Success fires IDBTransactionEvent, result == null
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIIDBRequest Delete(System.IntPtr key, System.IntPtr jsContext);
+		nsIIDBRequest Delete(Gecko.JsVal key, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Success fires IDBTransactionEvent, result == null
@@ -133,13 +133,13 @@ namespace Gecko
         ///NEXT </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIIDBRequest OpenCursor(System.IntPtr range, ushort direction, System.IntPtr jsContext, int argc);
+		nsIIDBRequest OpenCursor(Gecko.JsVal range, ushort direction, System.IntPtr jsContext, int argc);
 		
 		/// <summary>
         ///none </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIIDBIndex CreateIndex([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, System.IntPtr keyPath, System.IntPtr options, System.IntPtr jsContext);
+		nsIIDBIndex CreateIndex([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, Gecko.JsVal keyPath, Gecko.JsVal options, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Returns object immediately
@@ -156,6 +156,6 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIIDBRequest Count(System.IntPtr key, System.IntPtr jsContext, int argc);
+		nsIIDBRequest Count(Gecko.JsVal key, System.IntPtr jsContext, int argc);
 	}
 }

@@ -51,22 +51,22 @@ namespace Gecko
 		new nsISupports GetSourceAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.IntPtr GetKeyAttribute(System.IntPtr jsContext);
+		new Gecko.JsVal GetKeyAttribute(System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.IntPtr GetPrimaryKeyAttribute(System.IntPtr jsContext);
+		new Gecko.JsVal GetPrimaryKeyAttribute(System.IntPtr jsContext);
 		
 		/// <summary>
         ///undefined </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Continue(System.IntPtr key, System.IntPtr jsContext);
+		new void Continue(Gecko.JsVal key, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Success fires IDBTransactionEvent, result == key
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIIDBRequest Update(System.IntPtr value, System.IntPtr jsContext);
+		new nsIIDBRequest Update(Gecko.JsVal value, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Success fires IDBTransactionEvent, result == null
@@ -84,6 +84,6 @@ namespace Gecko
         /// information.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetValueAttribute(System.IntPtr jsContext);
+		Gecko.JsVal GetValueAttribute(System.IntPtr jsContext);
 	}
 }

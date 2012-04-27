@@ -80,7 +80,7 @@ namespace Gecko
 		/// <param name='jsContext'> </param>
 		/// <param name='argc'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendAsyncMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, System.IntPtr obj, System.IntPtr jsContext, int argc);
+		void SendAsyncMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, Gecko.JsVal obj, System.IntPtr jsContext, int argc);
 		
 		/// <summary>Member MarkForCC </summary>
 		/// <returns>A System.Boolean</returns>
@@ -114,7 +114,7 @@ namespace Gecko
 		/// <param name='jsContext'> </param>
 		/// <param name='argc'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SendAsyncMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, System.IntPtr obj, System.IntPtr jsContext, int argc);
+		new void SendAsyncMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, Gecko.JsVal obj, System.IntPtr jsContext, int argc);
 		
 		/// <summary>Member MarkForCC </summary>
 		/// <returns>A System.Boolean</returns>
@@ -126,7 +126,7 @@ namespace Gecko
         /// Returns an array of JSON objects.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr SendSyncMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, System.IntPtr obj, System.IntPtr jsContext, int argc);
+		Gecko.JsVal SendSyncMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, Gecko.JsVal obj, System.IntPtr jsContext, int argc);
 	}
 	
 	/// <summary>nsIContentFrameMessageManager </summary>
@@ -154,7 +154,7 @@ namespace Gecko
 		/// <param name='jsContext'> </param>
 		/// <param name='argc'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SendAsyncMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, System.IntPtr obj, System.IntPtr jsContext, int argc);
+		new void SendAsyncMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, Gecko.JsVal obj, System.IntPtr jsContext, int argc);
 		
 		/// <summary>Member MarkForCC </summary>
 		/// <returns>A System.Boolean</returns>
@@ -166,7 +166,7 @@ namespace Gecko
         /// Returns an array of JSON objects.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.IntPtr SendSyncMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, System.IntPtr obj, System.IntPtr jsContext, int argc);
+		new Gecko.JsVal SendSyncMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, Gecko.JsVal obj, System.IntPtr jsContext, int argc);
 		
 		/// <summary>
         /// The current top level window in the frame or null.
@@ -233,7 +233,7 @@ namespace Gecko
 		/// <param name='jsContext'> </param>
 		/// <param name='argc'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SendAsyncMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, System.IntPtr obj, System.IntPtr jsContext, int argc);
+		new void SendAsyncMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, Gecko.JsVal obj, System.IntPtr jsContext, int argc);
 		
 		/// <summary>Member MarkForCC </summary>
 		/// <returns>A System.Boolean</returns>
@@ -245,7 +245,7 @@ namespace Gecko
         /// Returns an array of JSON objects.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.IntPtr SendSyncMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, System.IntPtr obj, System.IntPtr jsContext, int argc);
+		new Gecko.JsVal SendSyncMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, Gecko.JsVal obj, System.IntPtr jsContext, int argc);
 		
 		/// <summary>
         /// The current top level window in the frame or null.
@@ -317,7 +317,7 @@ namespace Gecko
 		/// <param name='jsContext'> </param>
 		/// <param name='argc'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SendAsyncMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, System.IntPtr obj, System.IntPtr jsContext, int argc);
+		new void SendAsyncMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, Gecko.JsVal obj, System.IntPtr jsContext, int argc);
 		
 		/// <summary>Member MarkForCC </summary>
 		/// <returns>A System.Boolean</returns>
@@ -363,7 +363,7 @@ namespace Gecko
 		/// <param name='jsContext'> </param>
 		/// <param name='argc'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SendAsyncMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, System.IntPtr obj, System.IntPtr jsContext, int argc);
+		new void SendAsyncMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase messageName, Gecko.JsVal obj, System.IntPtr jsContext, int argc);
 		
 		/// <summary>Member MarkForCC </summary>
 		/// <returns>A System.Boolean</returns>

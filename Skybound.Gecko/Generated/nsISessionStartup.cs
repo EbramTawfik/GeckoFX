@@ -42,7 +42,7 @@ namespace Gecko
         /// Get session state
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetStateAttribute();
+		Gecko.JsVal GetStateAttribute();
 		
 		/// <summary>
         /// Determine if session should be restored

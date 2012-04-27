@@ -351,19 +351,19 @@ namespace Gecko
         /// HTML
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetOnmouseenterAttribute(System.IntPtr jsContext);
+		Gecko.JsVal GetOnmouseenterAttribute(System.IntPtr jsContext);
 		
 		/// <summary>
         /// HTML
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnmouseenterAttribute(System.IntPtr aOnmouseenter, System.IntPtr jsContext);
+		void SetOnmouseenterAttribute(Gecko.JsVal aOnmouseenter, System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetOnmouseleaveAttribute(System.IntPtr jsContext);
+		Gecko.JsVal GetOnmouseleaveAttribute(System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnmouseleaveAttribute(System.IntPtr aOnmouseleave, System.IntPtr jsContext);
+		void SetOnmouseleaveAttribute(Gecko.JsVal aOnmouseleave, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Retrieve a list of rectangles, one for each CSS border-box associated with

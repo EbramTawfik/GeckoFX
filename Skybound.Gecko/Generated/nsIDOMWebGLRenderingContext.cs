@@ -275,7 +275,7 @@ namespace Gecko
 		/// <summary>
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetContextAttributes();
+		Gecko.JsVal GetContextAttributes();
 		
 		/// <summary>Member ActiveTexture </summary>
 		/// <param name='texture'> </param>

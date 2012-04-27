@@ -90,6 +90,6 @@ namespace Gecko
         /// The object, mozIndexedDB and IDBKeyrange should be defined on.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitWindowless(System.IntPtr aObject, System.IntPtr jsContext);
+		void InitWindowless(Gecko.JsVal aObject, System.IntPtr jsContext);
 	}
 }

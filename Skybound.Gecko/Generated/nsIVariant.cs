@@ -127,7 +127,7 @@ namespace Gecko
 		nsISupports GetAsISupports();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetAsJSVal();
+		Gecko.JsVal GetAsJSVal();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetAsInterface(ref System.Guid iid);
@@ -237,7 +237,7 @@ namespace Gecko
 		new nsISupports GetAsISupports();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.IntPtr GetAsJSVal();
+		new Gecko.JsVal GetAsJSVal();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new System.IntPtr GetAsInterface(ref System.Guid iid);

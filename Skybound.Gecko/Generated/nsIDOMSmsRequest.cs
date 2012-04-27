@@ -253,7 +253,7 @@ namespace Gecko
         /// Can be bool, nsIDOMSmsMessage, nsIDOMSmsIterator or null.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetResultAttribute();
+		Gecko.JsVal GetResultAttribute();
 		
 		/// <summary>Member GetOnsuccessAttribute </summary>
 		/// <returns>A nsIDOMEventListener</returns>
