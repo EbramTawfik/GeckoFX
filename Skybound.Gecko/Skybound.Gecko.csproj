@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Gecko</RootNamespace>
-    <AssemblyName>geckofx-11</AssemblyName>
+    <AssemblyName>geckofx-12</AssemblyName>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>GeckoFX.snk</AssemblyOriginatorKeyFile>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
@@ -1586,7 +1586,7 @@
     </Compile>
     <Compile Include="GtkReparentingWrapperNoThread.cs" />
     <Compile Include="GtkOnceOnly.cs" />
-    <None Include="geckofx-11.dll.config">
+    <None Include="geckofx-12.dll.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
