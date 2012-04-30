@@ -76,7 +76,7 @@ namespace Gecko
 		/// <returns>A nsIKeyObject</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIKeyObject UnwrapKey(short aAlgorithm, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] System.IntPtr[] aWrappedKey, uint aWrappedKeyLen);
+		nsIKeyObject UnwrapKey(short aAlgorithm, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] byte[] aWrappedKey, uint aWrappedKeyLen);
 		
 		/// <summary>
         /// This is not FIPS compliant and should not be used.

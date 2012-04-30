@@ -101,6 +101,10 @@
   <ItemGroup>
     <Compile Include="AppShellService.cs" />
     <Compile Include="AutoJSContext.cs" />
+    <Compile Include="Cryptography\CryptoHash.cs" />
+    <Compile Include="Cryptography\Enums.cs" />
+    <Compile Include="Cryptography\KeyObject.cs" />
+    <Compile Include="Cryptography\KeyObjectFactory.cs" />
     <Compile Include="DOM\GeckoAttribute.cs" />
     <Compile Include="DOM\GeckoElementCollection.cs" />
     <Compile Include="DOM\GeckoElementEnumerable.cs" />

@@ -357,6 +357,18 @@ namespace Gecko
 		}
 
 		/// <summary>
+		/// Passes <paramref name="value"/> to function and return value
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="func"></param>
+		/// <param name="value"></param>
+		/// <returns></returns>
+		public static T Pass<T>(Func<nsACString, T> func, string value)
+		{
+			return GenericPass(func, value);
+		}
+
+		/// <summary>
 		/// Passes <paramref name="value1"/> and <paramref name="value2"/> to function and return value
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
@@ -578,6 +590,27 @@ namespace Gecko
 		public virtual void SetData(string value)
 		{
 			NS_CStringSetData(this, value, (value == null) ? 0 : value.Length);
+		}
+
+		/// <summary>
+		/// nsACStringBase can be used in cryptographic functions
+		/// Example - nsICryptoHash::Finish
+		/// This function
+		/// </summary>
+		/// <returns></returns>
+		public byte[] GetRawData()
+		{
+			IntPtr data;
+			int length = NS_CStringGetData(this, out data, IntPtr.Zero);
+
+			var ret = new byte[length];
+
+			if (length > 0)
+			{
+				Marshal.Copy(data, ret, 0, length);
+			}
+
+			return ret;
 		}
 
 		public override string ToString()

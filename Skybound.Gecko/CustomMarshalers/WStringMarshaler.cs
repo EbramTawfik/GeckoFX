@@ -14,7 +14,8 @@ namespace Gecko.CustomMarshalers
 	/// or for string return types use:
 	/// [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")]
 	/// </summary>
-	public class WStringMarshaler : ICustomMarshaler
+	public class WStringMarshaler
+		: ICustomMarshaler
 	{
 		public void CleanUpManagedData(object ManagedObj)
 		{
@@ -40,13 +41,16 @@ namespace Gecko.CustomMarshalers
 		public IntPtr MarshalManagedToNative(object ManagedObj)
 		{			
 			var str = ManagedObj as string;
-			var bytes = System.Text.Encoding.Unicode.GetBytes(str);
-			IntPtr unmangedMemory = Xpcom.Alloc(bytes.Length + 2);			
-			Marshal.Copy( bytes, 0, unmangedMemory, bytes.Length );
-			Marshal.WriteByte(unmangedMemory, bytes.Length, 0);
-			Marshal.WriteByte(unmangedMemory, bytes.Length + 1, 0);
-
-			return unmangedMemory;
+			if (str == null) return IntPtr.Zero;
+			// unicode char is 2 bytes and 2 bytes '\0\0'
+			byte[] bytes = new byte[str.Length*2 + 2];
+			// translate string into bytes
+			Encoding.Unicode.GetBytes( str, 0, str.Length, bytes, 0 );
+			// allocate memory by xulrunner runtime
+			IntPtr unmanagedMemory = Xpcom.Alloc( bytes.Length );
+			// copy byte array into unmanaged memory
+			Marshal.Copy( bytes, 0, unmanagedMemory, bytes.Length );
+			return unmanagedMemory;
 		}
 
 		/// <summary>
