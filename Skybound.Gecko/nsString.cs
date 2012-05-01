@@ -487,16 +487,16 @@ namespace Gecko
 	{
 		protected nsAUTF8StringBase() { }
 
-		[DllImport("xpcom", CharSet = CharSet.Ansi)]
+		[DllImport("xpcom", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
 		protected static extern int NS_CStringContainerInit(nsAUTF8StringBase container);
 
-		[DllImport("xpcom", CharSet = CharSet.Ansi)]
+		[DllImport("xpcom", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
 		protected static extern int NS_CStringSetData(nsAUTF8StringBase str, byte[] data, int length);
 
-		[DllImport("xpcom", CharSet = CharSet.Ansi)]
+		[DllImport("xpcom", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
 		protected static extern int NS_CStringGetData(nsAUTF8StringBase str, out IntPtr data, IntPtr nullTerm);
 
-		[DllImport("xpcom", CharSet = CharSet.Ansi)]
+		[DllImport("xpcom", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
 		protected static extern int NS_CStringContainerFinish(nsAUTF8StringBase container);
 
 		#region unused variables used to ensure struct is correct size on different platforms
@@ -567,16 +567,16 @@ namespace Gecko
 	{
 		protected nsACStringBase() { }
 
-		[DllImport("xpcom", CharSet = CharSet.Ansi)]
+		[DllImport("xpcom", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
 		protected static extern int NS_CStringContainerInit(nsACStringBase container);
 
-		[DllImport("xpcom", CharSet = CharSet.Ansi)]
+		[DllImport("xpcom", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
 		protected static extern int NS_CStringSetData(nsACStringBase str, string data, int length);
 
-		[DllImport("xpcom", CharSet = CharSet.Ansi)]
+		[DllImport("xpcom", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
 		protected internal static extern int NS_CStringGetData(nsACStringBase str, out IntPtr data, IntPtr nullTerm);
 
-		[DllImport("xpcom", CharSet = CharSet.Ansi)]
+		[DllImport("xpcom", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
 		protected static extern int NS_CStringContainerFinish(nsACStringBase container);
 
 		#region unused variables used to ensure struct is correct size on different platforms
@@ -664,16 +664,16 @@ namespace Gecko
 	{
 		protected nsAStringBase() { }
 
-		[DllImport("xpcom", CharSet = CharSet.Unicode)]
+		[DllImport("xpcom", CharSet = CharSet.Unicode,CallingConvention = CallingConvention.Cdecl)]
 		protected static extern int NS_StringContainerInit(nsAStringBase container);
 
-		[DllImport("xpcom", CharSet = CharSet.Unicode)]
+		[DllImport("xpcom", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
 		protected static extern int NS_StringSetData(nsAStringBase str, string data, int length);
 
-		[DllImport("xpcom", CharSet = CharSet.Unicode)]
+		[DllImport("xpcom", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
 		protected static extern int NS_StringGetData(nsAStringBase str, out IntPtr data, IntPtr nullTerm);
 
-		[DllImport("xpcom", CharSet = CharSet.Unicode)]
+		[DllImport("xpcom", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
 		protected static extern int NS_StringContainerFinish(nsAStringBase container);
 
 		#region unused variables used to ensure struct is correct size on different platforms

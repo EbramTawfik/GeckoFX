@@ -42,6 +42,21 @@ using System.Runtime.CompilerServices;
 using GeckoFX.Microsoft;
 using System.Threading;
 
+
+// XpCom function are declared like
+//XPCOM_API(nsresult)
+//NS_InitXPCOM2(nsIServiceManager* *result, 
+//              nsIFile* binDirectory,
+//              nsIDirectoryServiceProvider* appFileLocationProvider);
+
+// XPCOM_API(type) is EXPORT_XPCOM_API(type)
+
+// #define EXPORT_XPCOM_API(type) is NS_EXTERN_C NS_EXPORT type NS_FROZENCALL
+
+//NS_FROZENCALL is __cdecl
+
+// so all XPCOM_API functions MUST BE Cdecl
+
 namespace Gecko
 {
 	/// <summary>
@@ -50,34 +65,80 @@ namespace Gecko
 	public static class Xpcom
 	{
 		#region XpCom Methods
-		[DllImport("xpcom", CharSet = CharSet.Ansi)]
+		/// <summary>
+		/// Declaration in nsXPCOM.h
+		/// XPCOM_API(nsresult) NS_InitXPCOM2(nsIServiceManager* *result, nsIFile* binDirectory, nsIDirectoryServiceProvider* appFileLocationProvider);
+		/// </summary>
+		/// <param name="serviceManager"></param>
+		/// <param name="binDirectory"></param>
+		/// <param name="appFileLocationProvider"></param>
+		/// <returns></returns>
+		[DllImport("xpcom", CharSet = CharSet.Ansi,CallingConvention = CallingConvention.Cdecl)]
 		static extern int NS_InitXPCOM2([MarshalAs(UnmanagedType.Interface)] out nsIServiceManager serviceManager, [MarshalAs(UnmanagedType.IUnknown)] object binDirectory, nsIDirectoryServiceProvider appFileLocationProvider);
 
 		/// <summary>
 		/// Shutdown XPCOM. You must call this method after you are finished
-		/// using xpcom. 
+		/// using xpcom.
+		/// 
+		/// Declaration in nsXPCOM.h
+		/// XPCOM_API(nsresult) NS_ShutdownXPCOM(nsIServiceManager* servMgr);
 		/// </summary>
 		/// <param name="serviceManager"></param>
 		/// <returns></returns>
-		[DllImport("xpcom", CharSet = CharSet.Ansi)]
+		[DllImport("xpcom", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
 		static extern int NS_ShutdownXPCOM([MarshalAs(UnmanagedType.Interface)] nsIServiceManager serviceManager);
-		
-		[DllImport("xpcom", CharSet = CharSet.Ansi)]
+
+		/// <summary>
+		/// Declaration in nsXPCOM.h
+		/// XPCOM_API(nsresult) NS_NewNativeLocalFile(const nsACString &path, bool followLinks, nsILocalFile* *result);
+		/// </summary>
+		/// <param name="path"></param>
+		/// <param name="followLinks"></param>
+		/// <param name="result"></param>
+		/// <returns></returns>
+		[DllImport("xpcom", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
 		static extern int NS_NewNativeLocalFile(nsACString path, bool followLinks, [MarshalAs(UnmanagedType.IUnknown)] out object result);
-		
-		[DllImport("xpcom", CharSet = CharSet.Ansi)]
-		static extern int NS_GetComponentManager([MarshalAs(UnmanagedType.Interface)]out nsIComponentManager componentManager);		
-		
-		[DllImport("xpcom", CharSet = CharSet.Ansi)]
+
+		/// <summary>
+		/// Declaration in nsXPCOM.h
+		/// XPCOM_API(nsresult) NS_GetComponentManager(nsIComponentManager* *result);
+		/// </summary>
+		/// <param name="componentManager"></param>
+		/// <returns></returns>
+		[DllImport("xpcom", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+		static extern int NS_GetComponentManager([MarshalAs(UnmanagedType.Interface)]out nsIComponentManager componentManager);
+
+		/// <summary>
+		/// Declaration in nsXPCOM.h
+		/// XPCOM_API(nsresult) NS_GetComponentRegistrar(nsIComponentRegistrar* *result);
+		/// </summary>
+		/// <param name="componentRegistrar"></param>
+		/// <returns></returns>
+		[DllImport("xpcom", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
 		static extern int NS_GetComponentRegistrar([MarshalAs(UnmanagedType.Interface)] out nsIComponentRegistrar componentRegistrar);
-		
-		[DllImport("xpcom", EntryPoint="NS_Alloc")]
+
+		/// <summary>
+		/// XPCOM_API(void*) NS_Alloc(PRSize size);
+		/// </summary>
+		/// <param name="size"></param>
+		/// <returns></returns>
+		[DllImport("xpcom", EntryPoint = "NS_Alloc", CallingConvention = CallingConvention.Cdecl)]
 		public static extern IntPtr Alloc(int size);
-		
-		[DllImport("xpcom", EntryPoint="NS_Realloc")]
+
+		/// <summary>
+		/// XPCOM_API(void*) NS_Realloc(void* ptr, PRSize size);
+		/// </summary>
+		/// <param name="ptr"></param>
+		/// <param name="size"></param>
+		/// <returns></returns>
+		[DllImport("xpcom", EntryPoint = "NS_Realloc", CallingConvention = CallingConvention.Cdecl)]
 		public static extern IntPtr Realloc(IntPtr ptr, int size);
-		
-		[DllImport("xpcom", EntryPoint="NS_Free")]
+
+		/// <summary>
+		/// XPCOM_API(void) NS_Free(void* ptr)
+		/// </summary>
+		/// <param name="ptr"></param>
+		[DllImport("xpcom", EntryPoint = "NS_Free", CallingConvention = CallingConvention.Cdecl)]
 		public static extern void Free(IntPtr ptr);
 		#endregion
 
