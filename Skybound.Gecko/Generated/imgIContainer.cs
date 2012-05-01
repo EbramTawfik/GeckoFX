@@ -147,7 +147,7 @@ namespace Gecko
         /// @param aFlags Flags of the FLAG_* variety
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Draw(System.IntPtr aContext, gfxGraphicsFilter aFilter, gfxMatrix aUserSpaceToImageSpace, gfxRect aFill, [MarshalAs(UnmanagedType.Interface)] nsIntRect aSubimage, uint aViewportSize, uint aFlags);
+		void Draw(gfxContext aContext, gfxPattern.GraphicsFilter aFilter, gfxMatrix aUserSpaceToImageSpace, gfxRect aFill, [MarshalAs(UnmanagedType.Interface)] nsIntRect aSubimage, uint aViewportSize, uint aFlags);
 		
 		/// <summary>
         /// If this image is TYPE_VECTOR, i.e. is really an embedded SVG document,

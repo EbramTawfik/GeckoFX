@@ -5,7 +5,6 @@ using System.Text;
 
 namespace Gecko
 {
-	// TODO: make this class binary marshalable from struct nsConstRect
 	public class nsConstRect
 	{
 	}

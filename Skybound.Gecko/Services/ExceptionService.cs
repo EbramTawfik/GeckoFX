@@ -44,4 +44,5 @@ namespace Gecko
 			get { return GeckoNativeException.Create(_exceptionManager.GetCurrentException()); }
 		}
 	}
+
 }

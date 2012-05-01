@@ -102,10 +102,12 @@
   <ItemGroup>
     <Compile Include="AppShellService.cs" />
     <Compile Include="AutoJSContext.cs" />
+    <Compile Include="BaseTypes\gfxContext.cs" />
     <Compile Include="Cryptography\CryptoHash.cs" />
     <Compile Include="Cryptography\Enums.cs" />
     <Compile Include="Cryptography\KeyObject.cs" />
     <Compile Include="Cryptography\KeyObjectFactory.cs" />
+    <Compile Include="DOM\DomNavigator.cs" />
     <Compile Include="DOM\GeckoAttribute.cs" />
     <Compile Include="DOM\GeckoElementCollection.cs" />
     <Compile Include="DOM\GeckoElementEnumerable.cs" />
@@ -131,10 +133,12 @@
     <Compile Include="Generated\nsISmsDatabaseService.cs" />
     <Compile Include="Generated\nsIWifi.cs" />
     <Compile Include="Generated\nsIWorkerHolder.cs" />
+    <Compile Include="Images\ImageContainer.cs" />
     <Compile Include="Interop\SpiderMonkey\JSBool.cs" />
     <Compile Include="Interop\SpiderMonkey\JsType.cs" />
     <Compile Include="Interop\SpiderMonkey\JsVal.cs" />
     <Compile Include="Interop\SpiderMonkey\SpiderMonkey.cs" />
+    <Compile Include="Net\HttpActivityDistributor.cs" />
     <Compile Include="RandomGenerator.cs" />
     <Compile Include="Services\ExceptionService.cs" />
     <Compile Include="Utils\SaveImageElement.cs" />

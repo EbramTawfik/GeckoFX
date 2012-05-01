@@ -23,6 +23,11 @@ namespace Gecko.Interop
 			CreateServiceReference( contractID );
 		}
 
+		internal ServiceWrapper(T addRefedServiceInstance)
+		{
+			_instance = addRefedServiceInstance;
+		}
+
 		~ServiceWrapper()
 		{
 			FreeServiceReference();

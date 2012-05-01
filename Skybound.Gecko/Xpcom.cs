@@ -146,7 +146,8 @@ namespace Gecko
 		static bool? m_isMono;
 		static bool _IsInitialized;
 		static string _ProfileDirectory;
-        static int _XpcomThreadId;
+		static int _XpcomThreadId;
+		private static string _xulrunnerVersion;
 		#endregion
 
 		#region CLR runtime
@@ -194,6 +195,14 @@ namespace Gecko
 			get { return _IsInitialized; }
 		}
 
+		/// <summary>
+		/// Current Xulrunner version
+		/// </summary>
+		public static string XulRunnerVersion
+		{
+			get { return _xulrunnerVersion; }
+		}
+
 		public static nsIComponentManager ComponentManager;
 		public static nsIComponentRegistrar ComponentRegistrar;
 		public static nsIServiceManager ServiceManager;
@@ -216,7 +225,7 @@ namespace Gecko
 			if (_IsInitialized)
 				return;
 
-            Interlocked.Exchange(ref _XpcomThreadId, Thread.CurrentThread.ManagedThreadId);
+			Interlocked.Exchange(ref _XpcomThreadId, Thread.CurrentThread.ManagedThreadId);
 
 			if (IsWindows)
 				Kernel32.SetDllDirectory(binDirectory);
@@ -239,7 +248,19 @@ namespace Gecko
 					Environment.Exit(0);
 				}
 			}
+
+			try
+			{
+				// works on windows
+				// but some classes can be not exist on mono (may be)
+				// so make it in another function(stack allocation is making on function start)
+				ReadXulrunnerVersion(xpcomPath);
+			}
+			catch ( Exception )
+			{
+			}
 			
+
 			if (binDirectory != null)
 			{
 				Environment.SetEnvironmentVariable("path",
@@ -296,6 +317,12 @@ namespace Gecko
 			_IsInitialized = true;
 		}
 
+		private static void ReadXulrunnerVersion(string xulDll)
+		{
+			FileVersionInfo fileVersionInfo = FileVersionInfo.GetVersionInfo( xulDll );
+			_xulrunnerVersion = fileVersionInfo.FileVersion;
+		}
+
 		public static void Shutdown()
 		{
 			Marshal.ReleaseComObject(ComponentRegistrar);
@@ -304,13 +331,13 @@ namespace Gecko
 			_IsInitialized = false;
 		}
 
-        public static void AssertCorrectThread()
-        {
-            if (Thread.CurrentThread.ManagedThreadId != _XpcomThreadId)
-            {
-                throw new InvalidOperationException("Xpcom must run on own thread");
-            }
-        }
+		public static void AssertCorrectThread()
+		{
+			if (Thread.CurrentThread.ManagedThreadId != _XpcomThreadId)
+			{
+				throw new InvalidOperationException("Xpcom must run on own thread");
+			}
+		}
 		#endregion
 
 		/// <summary>
@@ -395,7 +422,7 @@ namespace Gecko
 
 		public static object QueryInterface(object obj, Guid iid)
 		{
-            AssertCorrectThread();
+			AssertCorrectThread();
 
 			if (obj == null)
 				return null;
@@ -454,7 +481,7 @@ namespace Gecko
 		#region GetService
 		public static object GetService(Guid classIID)
 		{
-            AssertCorrectThread();
+			AssertCorrectThread();
 
 			Guid iid = typeof(nsISupports).GUID;
 			return ServiceManager.GetService(ref classIID, ref iid);
@@ -467,7 +494,7 @@ namespace Gecko
 		
 		public static TInterfaceType GetService<TInterfaceType>(string contractID)
 		{
-            AssertCorrectThread();
+			AssertCorrectThread();
 
 			Guid iid = typeof(TInterfaceType).GUID;
 			IntPtr ptr = ServiceManager.GetServiceByContractID(contractID, ref iid);
@@ -494,15 +521,15 @@ namespace Gecko
 		///	</summary>
 		internal static IntPtr QueryReferent(object obj, ref Guid uuid )
 		{		
-            Xpcom.AssertCorrectThread();
+			Xpcom.AssertCorrectThread();
 
 			IntPtr ppv, pUnk = Marshal.GetIUnknownForObject(obj);
 
-            Marshal.QueryInterface(pUnk, ref uuid, out ppv);
+			Marshal.QueryInterface(pUnk, ref uuid, out ppv);
 
-            Marshal.Release(pUnk);
+			Marshal.Release(pUnk);
 
-            return ppv;
+			return ppv;
    
 		}
 		
