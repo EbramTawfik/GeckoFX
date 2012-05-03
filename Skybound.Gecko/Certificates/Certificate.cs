@@ -147,7 +147,7 @@ namespace Gecko.Certificates
 			get { return new ASN1Object(_cert1.GetASN1StructureAttribute()); }
 		}
 
-		public void GetRawDER(ref uint length,ref System.IntPtr[] data)
+		public void GetRawDER(ref uint length,ref byte[] data)
 		{
 			_cert1.GetRawDER( ref length, ref data );
 		}
@@ -170,7 +170,7 @@ namespace Gecko.Certificates
 		//void RequestUsagesArrayAsync([MarshalAs(UnmanagedType.Interface)] nsICertVerificationListener cvl);
 
 
-		public void ExportAsCMS(uint chainMode, ref uint length, ref System.IntPtr[] data)
+		public void ExportAsCMS(uint chainMode, ref uint length, ref byte[] data)
 		{
 			_cert3.ExportAsCMS( chainMode, ref length, ref data );
 		}

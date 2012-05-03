@@ -40,7 +40,7 @@ namespace Gecko
         /// Import a CRL into the certificate database.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ImportCrl([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] System.IntPtr[] data, uint length, [MarshalAs(UnmanagedType.Interface)] nsIURI uri, uint type, [MarshalAs(UnmanagedType.U1)] bool doSilentDownload, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string crlKey);
+		void ImportCrl([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] byte[] data, uint length, [MarshalAs(UnmanagedType.Interface)] nsIURI uri, uint type, [MarshalAs(UnmanagedType.U1)] bool doSilentDownload, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string crlKey);
 		
 		/// <summary>
         /// update crl from url

@@ -235,7 +235,7 @@ namespace Gecko
         /// @param data The bytes representing the DER encoded certificate.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetRawDER(ref uint length, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref System.IntPtr[] data);
+		void GetRawDER(ref uint length, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref byte[] data);
 		
 		/// <summary>
         /// Test whether two certificate instances represent the

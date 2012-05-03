@@ -119,7 +119,7 @@ namespace Gecko
         /// Thrown if the favicon is overbloated and won't be saved to the db.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ReplaceFaviconData([MarshalAs(UnmanagedType.Interface)] nsIURI aFaviconURI, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] System.IntPtr[] aData, uint aDataLen, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aMimeType, long aExpiration);
+		void ReplaceFaviconData([MarshalAs(UnmanagedType.Interface)] nsIURI aFaviconURI, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] byte[] aData, uint aDataLen, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aMimeType, long aExpiration);
 		
 		/// <summary>
         /// Same as replaceFaviconData but the data is provided by a string

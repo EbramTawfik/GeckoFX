@@ -141,7 +141,7 @@ namespace Gecko
         /// @deprecated Use mozIAsyncFavicons::replaceFaviconData
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFaviconData([MarshalAs(UnmanagedType.Interface)] nsIURI aFaviconURI, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] System.IntPtr[] aData, uint aDataLen, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aMimeType, long aExpiration);
+		void SetFaviconData([MarshalAs(UnmanagedType.Interface)] nsIURI aFaviconURI, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] byte[] aData, uint aDataLen, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aMimeType, long aExpiration);
 		
 		/// <summary>
         /// Same as setFaviconData but the data is provided by a string
@@ -185,7 +185,7 @@ namespace Gecko
         /// Thrown when we have never heard of this favicon URI.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetFaviconData([MarshalAs(UnmanagedType.Interface)] nsIURI aFaviconURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aMimeType, ref uint aDataLen, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] ref System.IntPtr[] aData);
+		void GetFaviconData([MarshalAs(UnmanagedType.Interface)] nsIURI aFaviconURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aMimeType, ref uint aDataLen, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] ref byte[] aData);
 		
 		/// <summary>
         /// Same as getFaviconData, but returns data as a string containing a data url.
@@ -355,6 +355,6 @@ namespace Gecko
         /// Mime type of the icon, null if aDataLen is 0.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnFaviconDataAvailable([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, uint aDataLen, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] System.IntPtr[] aData, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aMimeType);
+		void OnFaviconDataAvailable([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, uint aDataLen, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] byte[] aData, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aMimeType);
 	}
 }

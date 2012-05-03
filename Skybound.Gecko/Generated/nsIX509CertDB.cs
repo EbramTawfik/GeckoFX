@@ -135,7 +135,7 @@ namespace Gecko
         /// @param ctx A UI context.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ImportCertificates([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] System.IntPtr[] data, uint length, uint type, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor ctx);
+		void ImportCertificates([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] byte[] data, uint length, uint type, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor ctx);
 		
 		/// <summary>
         /// Import another person's email certificate into the database.
@@ -145,7 +145,7 @@ namespace Gecko
         /// @param ctx A UI context.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ImportEmailCertificate([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] System.IntPtr[] data, uint length, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor ctx);
+		void ImportEmailCertificate([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] byte[] data, uint length, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor ctx);
 		
 		/// <summary>
         /// Import a server machine's certificate into the database.
@@ -155,7 +155,7 @@ namespace Gecko
         /// @param ctx A UI context.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ImportServerCertificate([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] System.IntPtr[] data, uint length, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor ctx);
+		void ImportServerCertificate([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] byte[] data, uint length, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor ctx);
 		
 		/// <summary>
         /// Import a personal certificate into the database, assuming
@@ -166,7 +166,7 @@ namespace Gecko
         /// @param ctx A UI context.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ImportUserCertificate([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] System.IntPtr[] data, uint length, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor ctx);
+		void ImportUserCertificate([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] byte[] data, uint length, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor ctx);
 		
 		/// <summary>
         /// Delete a certificate stored in the database.

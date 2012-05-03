@@ -71,7 +71,7 @@ namespace Gecko
         /// called.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Update([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] System.IntPtr[] aData, uint aLen);
+		void Update([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] byte[] aData, uint aLen);
 		
 		/// <summary>
         /// Calculates and updates a new hash based on a given data stream.

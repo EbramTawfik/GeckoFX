@@ -65,14 +65,14 @@ namespace Gecko
         /// Converts an array of bytes to a unicode string.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ConvertFromByteArray([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] System.IntPtr[] aData, uint aCount, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void ConvertFromByteArray([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] byte[] aData, uint aCount, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// Convert a unicode string to an array of bytes. Finish does not need to be
         /// called.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ConvertToByteArray([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aString, ref uint aLen, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] ref System.IntPtr[] aData);
+		void ConvertToByteArray([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aString, ref uint aLen, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] ref byte[] aData);
 		
 		/// <summary>
         /// Converts a unicode string to an input stream. The bytes in the stream are

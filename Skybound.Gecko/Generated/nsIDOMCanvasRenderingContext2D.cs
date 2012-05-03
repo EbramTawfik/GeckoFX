@@ -552,7 +552,7 @@ namespace Gecko
         /// dataLen must be == width*height*4 in both of these calls
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetImageData_explicit(int x, int y, uint width, uint height, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=5)] System.IntPtr[] dataPtr, uint dataLen);
+		void GetImageData_explicit(int x, int y, uint width, uint height, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=5)] byte[] dataPtr, uint dataLen);
 		
 		/// <summary>Member PutImageData_explicit </summary>
 		/// <param name='x'> </param>
@@ -567,7 +567,7 @@ namespace Gecko
 		/// <param name='dirtyWidth'> </param>
 		/// <param name='dirtyHeight'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PutImageData_explicit(int x, int y, uint width, uint height, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=5)] System.IntPtr[] dataPtr, uint dataLen, [MarshalAs(UnmanagedType.U1)] bool hasDirtyRect, int dirtyX, int dirtyY, int dirtyWidth, int dirtyHeight);
+		void PutImageData_explicit(int x, int y, uint width, uint height, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=5)] byte[] dataPtr, uint dataLen, [MarshalAs(UnmanagedType.U1)] bool hasDirtyRect, int dirtyX, int dirtyY, int dirtyWidth, int dirtyHeight);
 		
 		/// <summary>
         /// a separate ImageData object.

@@ -54,6 +54,6 @@ namespace Gecko
         /// nsIRequest might offer.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMIMETypeFromContent([MarshalAs(UnmanagedType.Interface)] nsIRequest aRequest, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] System.IntPtr[] aData, uint aLength, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
+		void GetMIMETypeFromContent([MarshalAs(UnmanagedType.Interface)] nsIRequest aRequest, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] byte[] aData, uint aLength, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
 	}
 }

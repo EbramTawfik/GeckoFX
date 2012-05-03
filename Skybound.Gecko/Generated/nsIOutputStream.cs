@@ -77,7 +77,7 @@ namespace Gecko
         /// block the calling thread (non-blocking mode only)
         /// @throws <other-error> on failure
         /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		unsafe uint Write(IntPtr aBuf, uint aCount);
 		
 		/// <summary>

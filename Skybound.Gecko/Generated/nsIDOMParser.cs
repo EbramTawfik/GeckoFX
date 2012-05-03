@@ -65,7 +65,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDocument ParseFromBuffer([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] System.IntPtr[] buf, uint bufLen, [MarshalAs(UnmanagedType.LPStr)] string contentType);
+		nsIDOMDocument ParseFromBuffer([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] byte[] buf, uint bufLen, [MarshalAs(UnmanagedType.LPStr)] string contentType);
 		
 		/// <summary>
         /// The byte stream passed in is parsed into a DOM document.

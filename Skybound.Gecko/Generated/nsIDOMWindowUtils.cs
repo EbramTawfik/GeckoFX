@@ -742,7 +742,7 @@ namespace Gecko
 		nsIDOMWindow GetOuterWindowWithId(ulong aOuterWindowID);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RenderDocument(nsConstRect aRect, uint aFlags, nscolor aBackgroundColor, System.IntPtr aThebesContext);
+		void RenderDocument(nsConstRect aRect, uint aFlags, nscolor aBackgroundColor, gfxContext aThebesContext);
 		
 		/// <summary>
         /// advanceTimeAndRefresh allows the caller to take over the refresh
