@@ -226,6 +226,57 @@ namespace Gecko
 		public const int STATE_SECURE_LOW = 0x20000;
 	}
 
+	/// <summary>
+	/// attribute nsLoadFlags nsIRequest::loadFlags
+	/// </summary>
+	static class nsIRequestLoadFlagsConstants {
+
+		/// <summary>
+		/// Indicates no special load flags.
+		/// </summary>
+		public const ulong LOAD_NORMAL = 0;
+
+		/// <summary>
+		/// Don't deliver status notifications to the nsIProgressEventSink, or keep this load from completing the nsILoadGroup it may belong to.
+		/// </summary>
+		public const ulong LOAD_BACKGROUND = 1<<0;
+
+		/// <summary>
+		/// Prevents caching of any kind. This flag does not, however, prevent cached content from being used to satisfy this request.
+		/// </summary>
+		public const ulong INHIBIT_CACHING=1<<7;
+
+		/// <summary>
+		/// Prevents caching on disk (or other persistent media), which may be needed to preserve privacy. For HTTPS, this flag is set automatically.
+		/// </summary>
+		public const ulong INHIBIT_PERSISTENT_CACHING=1<<8;
+
+		/// <summary>
+		/// Forces an end-to-end download of content data from the origin server. This flag is used for a shift-reload. It has higher precedence than nsIRequest::LOAD_FROM_CACHE below.
+		/// </summary>
+		public const ulong LOAD_BYPASS_CACHE=1<<9;
+
+		/// <summary>
+		/// Loads from the cache, bypassing protocol specific validation logic. This flag is used when browsing via history. It is not recommended for normal browsing as it may likely violate reasonable assumptions made by the server and confuse users.
+		/// </summary>
+		public const ulong LOAD_FROM_CACHE=1<<10;
+
+		/// <summary>
+		/// Forces validation of any cached content independent of its expiration time
+		/// </summary>
+		public const ulong VALIDATE_ALWAYS=1<<11;
+
+		/// <summary>
+		/// Disables validation of expired content.
+		/// </summary>
+		public const ulong VALIDATE_NEVER=1<<12;
+
+		/// <summary>
+		/// Disables validation of expired content, provided it has already been validated (at least once) since the start of this session. 
+		/// </summary>
+		public const ulong VALIDATE_ONCE_PER_SESSION = 1 << 13;
+	}
+
 	static class nsIDOMNodeConstants
 	{
 		public const int ELEMENT_NODE = 1;

@@ -382,7 +382,7 @@ namespace Gecko
 				referrerUri = IOService.CreateNsIUri( referrer );
 			}
 
-		WebNav.LoadURI(url, (uint)loadFlags, referrerUri, postData != null ? postData.InputStream : null, headers != null ? headers.InputStream : null);
+			WebNav.LoadURI(url, (uint)loadFlags, referrerUri, postData != null ? postData.InputStream : null, headers != null ? headers.InputStream : null);
 
 			return true;
 		}
@@ -1479,49 +1479,140 @@ namespace Gecko
 		
 		#region nsIWebProgressListener Members
 
-		void nsIWebProgressListener.OnStateChange(nsIWebProgress aWebProgress, nsIRequest aRequest, uint aStateFlags, int aStatus)
-		{
-			bool cancelled = false;
+		void nsIWebProgressListener.OnStateChange(nsIWebProgress aWebProgress, nsIRequest aRequest, uint aStateFlags, int aStatus) {
+			#region validity checks
+			// The request parametere may be null
+			if (aRequest == null)
+				return;
 
-			/*
-			 *  http://zenit.senecac.on.ca/wiki/dxr/source.cgi/mozilla/netwerk/protocol/viewsource/src/nsViewSourceChannel.cpp
-			 *  "View source" always wants the currently cached content.
-			 *  Method "aRequest.GetNameAttribute" failed on such requests.
+			// Ignore ViewSource requests, they don't provide the URL
+			// see: http://mxr.mozilla.org/mozilla-central/source/netwerk/protocol/viewsource/nsViewSourceChannel.cpp#114
+			if (Xpcom.QueryInterface<nsIViewSourceChannel>(aRequest) != null)
+				return;
+			#endregion validity checks
+
+			#region request parameters
+			Uri destUri = null;
+			Uri.TryCreate(nsString.Get(aRequest.GetNameAttribute), UriKind.Absolute, out destUri);
+
+			/* This flag indicates that the state transition is for a request, which includes but is not limited to document requests.
+			 * Other types of requests, such as requests for inline content (for example images and stylesheets) are considered normal requests.
 			 */
-			uint loadAttr = aRequest.GetLoadFlagsAttribute();
-			if (((loadAttr & (1 << 10)) /* nsIRequest::LOAD_FROM_CACHE */) == 0)
-				if ((aStateFlags & nsIWebProgressListenerConstants.STATE_START) != 0 && (aStateFlags & nsIWebProgressListenerConstants.STATE_IS_NETWORK) != 0)
-				{
+			bool stateIsRequest = ((aStateFlags & nsIWebProgressListenerConstants.STATE_IS_REQUEST) != 0);
+
+			/* This flag indicates that the state transition is for a document request. This flag is set in addition to STATE_IS_REQUEST.
+			 * A document request supports the nsIChannel interface and its loadFlags attribute includes the nsIChannel ::LOAD_DOCUMENT_URI flag.
+			 * A document request does not complete until all requests associated with the loading of its corresponding document have completed.
+			 * This includes other document requests (for example corresponding to HTML <iframe> elements).
+			 * The document corresponding to a document request is available via the DOMWindow attribute of onStateChange()'s aWebProgress parameter.
+			 */
+			bool stateIsDocument = ((aStateFlags & nsIWebProgressListenerConstants.STATE_IS_DOCUMENT) != 0);
+
+			/* This flag indicates that the state transition corresponds to the start or stop of activity in the indicated nsIWebProgress instance.
+			 * This flag is accompanied by either STATE_START or STATE_STOP, and it may be combined with other State Type Flags.
+			 * 
+			 * Unlike STATE_IS_WINDOW, this flag is only set when activity within the nsIWebProgress instance being observed starts or stops.
+			 * If activity only occurs in a child nsIWebProgress instance, then this flag will be set to indicate the start and stop of that activity.
+			 * For example, in the case of navigation within a single frame of a HTML frameset, a nsIWebProgressListener instance attached to the
+			 * nsIWebProgress of the frameset window will receive onStateChange() calls with the STATE_IS_NETWORK flag set to indicate the start and
+			 * stop of said navigation. In other words, an observer of an outer window can determine when activity, that may be constrained to a
+			 * child window or set of child windows, starts and stops.
+			 */
+			bool stateIsNetwork = ((aStateFlags & nsIWebProgressListenerConstants.STATE_IS_NETWORK) != 0);
+
+			/* This flag indicates that the state transition corresponds to the start or stop of activity in the indicated nsIWebProgress instance.
+			 * This flag is accompanied by either STATE_START or STATE_STOP, and it may be combined with other State Type Flags.
+			 * This flag is similar to STATE_IS_DOCUMENT. However, when a document request completes, two onStateChange() calls with STATE_STOP are generated.
+			 * The document request is passed as aRequest to both calls. The first has STATE_IS_REQUEST and STATE_IS_DOCUMENT set, and the second has
+			 * the STATE_IS_WINDOW flag set (and possibly the STATE_IS_NETWORK flag set as well -- see above for a description of when the STATE_IS_NETWORK
+			 * flag may be set). This second STATE_STOP event may be useful as a way to partition the work that occurs when a document request completes.
+			 */
+			bool stateIsWindow = ((aStateFlags & nsIWebProgressListenerConstants.STATE_IS_WINDOW) != 0);
+			#endregion request parameters
+
+			#region STATE_START
+			/* This flag indicates the start of a request.
+			 * This flag is set when a request is initiated.
+			 * The request is complete when onStateChange() is called for the same request with the STATE_STOP flag set.
+			 */
+			if ((aStateFlags & nsIWebProgressListenerConstants.STATE_START) != 0) {
+				if (stateIsNetwork) {
 					IsBusy = true;
 
-					Uri uri;
-					Uri.TryCreate(nsString.Get(aRequest.GetNameAttribute), UriKind.Absolute, out uri);
-
-					GeckoNavigatingEventArgs ea = new GeckoNavigatingEventArgs(uri);
+					GeckoNavigatingEventArgs ea = new GeckoNavigatingEventArgs(destUri);
 					OnNavigating(ea);
 
-					if (ea.Cancel)
-					{
+					if (ea.Cancel) {
 						aRequest.Cancel(0);
-						cancelled = true;
+
+						//TODO: change the following handling of cancelled request
+
+						// clear busy state
+						IsBusy = false;
+
+						// kill any cached document and raise DocumentCompleted event
+						UnloadDocument();
+						OnDocumentCompleted(EventArgs.Empty);
+
+						// clear progress bar
+						OnProgressChanged(new GeckoProgressEventArgs(100, 100));
+
+						// clear status bar
+						StatusText = "";
 					}
 				}
-			
-			if (cancelled || ((aStateFlags & nsIWebProgressListenerConstants.STATE_STOP) != 0 && (aStateFlags & nsIWebProgressListenerConstants.STATE_IS_NETWORK) != 0))
-			{
-				// clear busy state
-				IsBusy = false;
-				
-				// kill any cached document and raise DocumentCompleted event
-				UnloadDocument();
-				OnDocumentCompleted(EventArgs.Empty);
-				
-				// clear progress bar
-				OnProgressChanged(new GeckoProgressEventArgs(100, 100));
-				
-				// clear status bar
-				StatusText = "";
 			}
+			#endregion STATE_START
+
+			#region STATE_REDIRECTING
+			/* This flag indicates that a request is being redirected.
+			 * The request passed to onStateChange() is the request that is being redirected.
+			 * When a redirect occurs, a new request is generated automatically to process the new request.
+			 * Expect a corresponding STATE_START event for the new request, and a STATE_STOP for the redirected request.
+			 */
+			else if ((aStateFlags & nsIWebProgressListenerConstants.STATE_REDIRECTING) != 0) {
+				//TODO: notify of redirection
+			}
+			#endregion STATE_REDIRECTING
+
+			#region STATE_TRANSFERRING
+			/* This flag indicates that data for a request is being transferred to an end consumer.
+			 * This flag indicates that the request has been targeted, and that the user may start seeing content corresponding to the request.
+			 */
+			else if ((aStateFlags & nsIWebProgressListenerConstants.STATE_TRANSFERRING) != 0) {
+			}
+			#endregion STATE_TRANSFERRING
+
+			#region STATE_STOP
+			/* This flag indicates the completion of a request.
+			 * The aStatus parameter to onStateChange() indicates the final status of the request.
+			 */
+			else if ((aStateFlags & nsIWebProgressListenerConstants.STATE_STOP) != 0) {
+				/* aStatus
+				 * Error status code associated with the state change.
+				 * This parameter should be ignored unless aStateFlags includes the STATE_STOP bit.
+				 * The status code indicates success or failure of the request associated with the state change.
+				 * 
+				 * Note: aStatus may be a success code even for server generated errors, such as the HTTP 404 File Not Found error.
+				 * In such cases, the request itself should be queried for extended error information (for example for HTTP requests see nsIHttpChannel).
+				 */
+
+				if (stateIsNetwork) {
+					// clear busy state
+					IsBusy = false;
+
+					// kill any cached document and raise DocumentCompleted event
+					UnloadDocument();
+					OnDocumentCompleted(EventArgs.Empty);
+
+					// clear progress bar
+					OnProgressChanged(new GeckoProgressEventArgs(100, 100));
+
+					// clear status bar
+					StatusText = "";
+				}
+			}
+			#endregion STATE_STOP
 		}
 
 		void nsIWebProgressListener.OnProgressChange(nsIWebProgress aWebProgress, nsIRequest aRequest, int aCurSelfProgress, int aMaxSelfProgress, int aCurTotalProgress, int aMaxTotalProgress)
@@ -1771,85 +1862,92 @@ namespace Gecko
 		}
 
 
-        public void Observe(nsISupports aSubject, string aTopic, string aData)
-        {
-            if (aTopic.Equals(ObserverNotifications.HttpRequests.HttpOnModifyRequest))
-            {
-                HttpChannel httpChannel =HttpChannel.Create(aSubject);
+		public void Observe(nsISupports aSubject, string aTopic, string aData) {
+			if (aTopic.Equals(ObserverNotifications.HttpRequests.HttpOnModifyRequest)) {
+				HttpChannel httpChannel = HttpChannel.Create(aSubject);
 
-            	Uri uri = httpChannel.Uri;
-                Uri uriRef = httpChannel.Referrer;
-            	var reqMethod = httpChannel.RequestMethod;
-                var evt = new GeckoObserveHttpModifyRequestEventArgs(uri, uriRef, reqMethod, aData);
+				Uri uri = httpChannel.Uri;
+				Uri uriRef = httpChannel.Referrer;
+				var reqMethod = httpChannel.RequestMethod;
+				var evt = new GeckoObserveHttpModifyRequestEventArgs(uri, uriRef, reqMethod, aData, httpChannel);
 
-                OnObserveHttpModifyRequest(evt);
+				OnObserveHttpModifyRequest(evt);
 
-                if (evt.Cancel)
-                {
-                    httpChannel.Cancel(nsIHelperAppLauncherConstants.NS_BINDING_ABORTED);
-                }
-            }
-        }
+				if (evt.Cancel) {
+					httpChannel.Cancel(nsIHelperAppLauncherConstants.NS_BINDING_ABORTED);
+				}
+			}
+		}
 
-        #region nsIHttpActivityObserver members
+		#region nsIHttpActivityObserver members
 
-        public Dictionary<nsIHttpChannel, GeckoJavaScriptHttpChannelWrapper> origJavaScriptHttpChannels = new Dictionary<nsIHttpChannel, GeckoJavaScriptHttpChannelWrapper>();
+		public Dictionary<nsIHttpChannel, GeckoJavaScriptHttpChannelWrapper> origJavaScriptHttpChannels = new Dictionary<nsIHttpChannel, GeckoJavaScriptHttpChannelWrapper>();
 
-        public bool IsAjaxBusy
-        {
-            get { return (origJavaScriptHttpChannels.Count > 0); }
-        }
+		public bool IsAjaxBusy {
+			get {
+				return (origJavaScriptHttpChannels.Count > 0);
+			}
+		}
 
-        //public void ObserveActivity(nsISupports aHttpChannel, uint aActivityType, uint aActivitySubtype, uint aTimestamp, ulong aExtraSizeData, nsACString aExtraStringData)
-        public void ObserveActivity(nsISupports aHttpChannel,
-                             UInt32 aActivityType,
-                             UInt32 aActivitySubtype,
-                             Int64 aTimestamp,
-                             UInt64 aExtraSizeData,
-							 nsACStringBase aExtraStringData)
-        {
-            nsIHttpChannel httpChannel = Xpcom.QueryInterface<nsIHttpChannel>(aHttpChannel);
+		public int ActiveAjaxHttpChannels {
+			get {
+				return origJavaScriptHttpChannels.Count;
+			}
+		}
 
-            if (httpChannel != null)
-            {
-                switch (aActivityType)
-                {
-                    case nsIHttpActivityObserverConstants.ACTIVITY_TYPE_SOCKET_TRANSPORT:
-                        switch (aActivitySubtype)
-                        {
-                            case nsISocketTransportConstants.STATUS_RESOLVING:
-                                break;
-                            case nsISocketTransportConstants.STATUS_RESOLVED:
-                                break;
-                            case nsISocketTransportConstants.STATUS_CONNECTING_TO:
-                                break;
-                            case nsISocketTransportConstants.STATUS_CONNECTED_TO:
-                                break;
-                            case nsISocketTransportConstants.STATUS_SENDING_TO:
-                                break;
-                            case nsISocketTransportConstants.STATUS_WAITING_FOR:
-                                break;
-                            case nsISocketTransportConstants.STATUS_RECEIVING_FROM:
-                                break;
-                        }
-                        break;
-                    case nsIHttpActivityObserverConstants.ACTIVITY_TYPE_HTTP_TRANSACTION:
-                        switch (aActivitySubtype)
-                        {
-                            case nsIHttpActivityObserverConstants.ACTIVITY_SUBTYPE_REQUEST_HEADER:
-                                {
-                                    var callbacks = httpChannel.GetNotificationCallbacksAttribute();
-                                    var httpChannelXHR = Xpcom.QueryInterface<nsIXMLHttpRequest>(callbacks);
+		private uint activeNetworkChannels = 0;
 
-                                    if (httpChannelXHR != null)
-                                    {
-                                        nsIDOMEventListener origEventListener = httpChannelXHR.GetOnreadystatechangeAttribute();
-                                        var newEventListener = new GeckoJavaScriptHttpChannelWrapper(this, httpChannel, origEventListener);
-                                        origJavaScriptHttpChannels.Add(httpChannel, newEventListener);
-                                        httpChannelXHR.SetOnreadystatechangeAttribute(newEventListener);
-                                         
-                                        #region POST data
-                                        /**
+		public uint ActiveNetworkChannels {
+			get {
+				return activeNetworkChannels;
+			}
+		}
+
+		//public void ObserveActivity(nsISupports aHttpChannel, uint aActivityType, uint aActivitySubtype, uint aTimestamp, ulong aExtraSizeData, nsACString aExtraStringData)
+		public void ObserveActivity(nsISupports aHttpChannel,
+												 UInt32 aActivityType,
+												 UInt32 aActivitySubtype,
+												 Int64 aTimestamp,
+												 UInt64 aExtraSizeData,
+					 nsACStringBase aExtraStringData) {
+			nsIHttpChannel httpChannel = Xpcom.QueryInterface<nsIHttpChannel>(aHttpChannel);
+
+			if (httpChannel != null) {
+				switch (aActivityType) {
+					case nsIHttpActivityObserverConstants.ACTIVITY_TYPE_SOCKET_TRANSPORT:
+						switch (aActivitySubtype) {
+							case nsISocketTransportConstants.STATUS_RESOLVING:
+								break;
+							case nsISocketTransportConstants.STATUS_RESOLVED:
+								break;
+							case nsISocketTransportConstants.STATUS_CONNECTING_TO:
+								break;
+							case nsISocketTransportConstants.STATUS_CONNECTED_TO:
+								break;
+							case nsISocketTransportConstants.STATUS_SENDING_TO:
+								break;
+							case nsISocketTransportConstants.STATUS_WAITING_FOR:
+								break;
+							case nsISocketTransportConstants.STATUS_RECEIVING_FROM:
+								break;
+						}
+						break;
+					case nsIHttpActivityObserverConstants.ACTIVITY_TYPE_HTTP_TRANSACTION:
+						switch (aActivitySubtype) {
+							case nsIHttpActivityObserverConstants.ACTIVITY_SUBTYPE_REQUEST_HEADER: {
+									activeNetworkChannels++;
+
+									var callbacks = httpChannel.GetNotificationCallbacksAttribute();
+									var httpChannelXHR = Xpcom.QueryInterface<nsIXMLHttpRequest>(callbacks);
+
+									if (httpChannelXHR != null) {
+										nsIDOMEventListener origEventListener = httpChannelXHR.GetOnreadystatechangeAttribute();
+										var newEventListener = new GeckoJavaScriptHttpChannelWrapper(this, httpChannel, origEventListener);
+										origJavaScriptHttpChannels.Add(httpChannel, newEventListener);
+										httpChannelXHR.SetOnreadystatechangeAttribute(newEventListener);
+
+										#region POST data
+										/**
                                         nsIUploadChannel uploadChannel = Xpcom.QueryInterface<nsIUploadChannel>(httpChannel);
 
                                         if (uploadChannel != null)
@@ -1880,29 +1978,29 @@ namespace Gecko
                                             }
                                         }
                                         /**/
-                                        #endregion POST data
-                                    }
-                                }
-                                break;
-                            case nsIHttpActivityObserverConstants.ACTIVITY_SUBTYPE_REQUEST_BODY_SENT:
-                                break;
-                            case nsIHttpActivityObserverConstants.ACTIVITY_SUBTYPE_RESPONSE_START:
-                                break;
-                            case nsIHttpActivityObserverConstants.ACTIVITY_SUBTYPE_RESPONSE_COMPLETE:
-                                break;
-                            case nsIHttpActivityObserverConstants.ACTIVITY_SUBTYPE_TRANSACTION_CLOSE:
-                                break;
-                        }
-                        break;
-                }
-            }
-        }
+										#endregion POST data
+									}
+								}
+								break;
+							case nsIHttpActivityObserverConstants.ACTIVITY_SUBTYPE_REQUEST_BODY_SENT:
+								break;
+							case nsIHttpActivityObserverConstants.ACTIVITY_SUBTYPE_RESPONSE_START:
+								break;
+							case nsIHttpActivityObserverConstants.ACTIVITY_SUBTYPE_RESPONSE_COMPLETE:
+								break;
+							case nsIHttpActivityObserverConstants.ACTIVITY_SUBTYPE_TRANSACTION_CLOSE:
+								activeNetworkChannels--;
+								break;
+						}
+						break;
+				}
+			}
+		}
 
-        public bool GetIsActiveAttribute()
-        {
-            return true;
-        }
-        #endregion nsIHttpActivityObserver members
+		public bool GetIsActiveAttribute() {
+			return true;
+		}
+		#endregion nsIHttpActivityObserver members
 
 		public nsIWeakReference GetWeakReference()
 		{

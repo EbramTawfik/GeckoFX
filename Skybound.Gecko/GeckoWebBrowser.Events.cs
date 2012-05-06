@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using Gecko.Interop;
+using Gecko.Net;
 
 //EventHandlerList http://msdn.microsoft.com/en-us/library/system.componentmodel.eventhandlerlist.aspx
 //Generic EventHandler http://msdn.microsoft.com/en-us/library/db0etb8x.aspx
@@ -1215,19 +1216,21 @@ namespace Gecko
 		public readonly Uri Referrer;
 		public readonly string RequestMethod;
 		public readonly string RequestData;
+		public readonly HttpChannel Channel;
 
 		/// <summary>Creates a new instance of a <see cref="GeckoObserveHttpModifyRequestEventArgs"/> object.</summary>
 		/// <param name="value"></param>
 		/// <param name="refVal"></param>
 		/// <param name="reqMethod"></param>
 		/// <param name="reqData"></param>
-		public GeckoObserveHttpModifyRequestEventArgs(Uri value, Uri refVal, String reqMethod, String reqData)
+		public GeckoObserveHttpModifyRequestEventArgs(Uri value, Uri refVal, String reqMethod, String reqData, HttpChannel httpChan)
 			:base(false)
 		{
 			Uri = value;
 			Referrer = refVal;
 			RequestMethod = reqMethod;
 			RequestData = reqData;
+			Channel = httpChan;
 		}
 	}
 	#endregion
