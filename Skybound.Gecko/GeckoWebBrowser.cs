@@ -234,13 +234,9 @@ namespace Gecko
 		{
 			static WindowCreator()
 			{
-				// give an nsIWindowCreator to the WindowWatcher service
-				nsIWindowWatcher watcher = Xpcom.GetService<nsIWindowWatcher>("@mozilla.org/embedcomp/window-watcher;1");
-				if (watcher != null)
-				{
-					//disabled for now because it's not loading the proper URL automatically
-					watcher.SetWindowCreator(new WindowCreator());
-				}
+				// Register it to window watcher service
+
+				Services.WindowWatcher.WindowCreator = new WindowCreator();
 			}
 			
 			public static void Register()

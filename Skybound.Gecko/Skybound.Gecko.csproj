@@ -141,6 +141,7 @@
     <Compile Include="Net\HttpActivityDistributor.cs" />
     <Compile Include="RandomGenerator.cs" />
     <Compile Include="Services\ExceptionService.cs" />
+    <Compile Include="Services\WindowWatcher.cs" />
     <Compile Include="Utils\SaveImageElement.cs" />
     <Compile Include="Variant.cs" />
     <Compile Include="WiFiMonitor.cs" />
