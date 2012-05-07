@@ -1,7 +1,14 @@
 using System;
 
+// Mozilla error lookup utility is located here
+// http://james-ross.co.uk/mozilla/misc/nserror
+
 namespace Gecko
 {
+	/// <summary>
+	/// Base exception class for all xullrunner exceptions
+	/// General errors may be mapped here
+	/// </summary>
 	public class GeckoException
 		:ApplicationException
 	{
@@ -24,6 +31,9 @@ namespace Gecko
 		}
 	}
 
+	/// <summary>
+	/// nsIException wrapper
+	/// </summary>
 	public sealed class GeckoNativeException
 		:GeckoException
 	{
@@ -53,4 +63,77 @@ namespace Gecko
 			return exception == null ? null : new GeckoNativeException( exception );
 		}
 	}
+
+	/// <summary>
+	/// File Errors
+	/// </summary>
+	public class GeckoFileException
+		: GeckoException
+	{
+		
+	}
+
+	/// <summary>
+	/// Stream Errors
+	/// </summary>
+	public class GeckoStreamException
+		: GeckoException
+	{
+
+	}
+
+	/// <summary>
+	/// Document and Node Errors
+	/// </summary>
+	public class GeckoDomException
+		: GeckoException
+	{
+
+	}
+
+	/// <summary>
+	/// Network Errors
+	/// </summary>
+	public class GeckoNetworkException
+		: GeckoException
+	{
+
+	}
+
+	/// <summary>
+	/// JavaScript Errors
+	/// </summary>
+	public class GeckoJavaScriptException
+		: GeckoException
+	{
+
+	}
+
+	/// <summary>
+	/// XPath Errors
+	/// </summary>
+	public class GeckoXPathException
+		: GeckoException
+	{
+
+	}
+
+	/// <summary>
+	/// XSLT Errors
+	/// </summary>
+	public class GeckoXsltException
+		: GeckoException
+	{
+
+	}
+
+	/// <summary>
+	/// Miscellaneous Errors
+	/// </summary>
+	public class GeckoMiscellaneousException
+		: GeckoException
+	{
+
+	}
+
 }

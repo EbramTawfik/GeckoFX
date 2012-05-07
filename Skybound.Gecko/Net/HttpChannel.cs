@@ -151,13 +151,13 @@ namespace Gecko.Net
 		/// <returns></returns>
 		public static HttpChannel Create(nsISupports supports)
 		{
-			int count = Interop.ComDebug.GetRefCount(supports);
+			//int count = Interop.ComDebug.GetRcwRefCount(supports);
 			var channel = Xpcom.QueryInterface<nsIHttpChannel>(supports);
 			if (channel == null) return null;
 			Marshal.ReleaseComObject( channel );
 			var ret = new HttpChannel((nsIHttpChannel)supports);
 
-			var count2=Interop.ComDebug.GetRefCount( supports );
+			//var count2=Interop.ComDebug.GetRcwRefCount( supports );
 			
 			return ret;
 		}

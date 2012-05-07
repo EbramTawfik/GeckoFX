@@ -116,7 +116,7 @@ namespace Gecko
 
 			RemoveJsContextCallBack();
 
-			//var count = Gecko.Interop.ComDebug.GetRefCount(WebBrowser);
+			//var count = Gecko.Interop.ComDebug.GetRcwRefCount(WebBrowser);
 			if (NavigateFinishedNotifier != null)
 				NavigateFinishedNotifier.Dispose();
 
@@ -138,7 +138,7 @@ namespace Gecko
 			if (m_wrapper != null)
 				m_wrapper.Dispose();
 #endif
-			//count = Gecko.Interop.ComDebug.GetRefCount(WebBrowser);
+			//count = Gecko.Interop.ComDebug.GetRcwRefCount(WebBrowser);
 			base.Dispose(disposing);
 		}
 

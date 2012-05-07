@@ -134,6 +134,7 @@
     <Compile Include="Generated\nsIWifi.cs" />
     <Compile Include="Generated\nsIWorkerHolder.cs" />
     <Compile Include="Images\ImageContainer.cs" />
+    <Compile Include="Interop\ExceptionTranslator.cs" />
     <Compile Include="Interop\SpiderMonkey\JSBool.cs" />
     <Compile Include="Interop\SpiderMonkey\JsType.cs" />
     <Compile Include="Interop\SpiderMonkey\JsVal.cs" />
