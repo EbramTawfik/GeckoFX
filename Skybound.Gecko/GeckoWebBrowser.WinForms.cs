@@ -94,12 +94,13 @@ namespace Gecko
 #endif
 				BaseWindow.InitWindow(this.Handle, IntPtr.Zero, 0, 0, this.Width, this.Height);
 
-
 				RecordNewJsContext();
 				BaseWindow.Create();
 
 				Guid nsIWebProgressListenerGUID = typeof(nsIWebProgressListener).GUID;
+				Guid nsIWebProgressListener2GUID = typeof(nsIWebProgressListener2).GUID;
 				WebBrowser.AddWebBrowserListener(this.GetWeakReference(), ref nsIWebProgressListenerGUID);
+				WebBrowser.AddWebBrowserListener(this.GetWeakReference(), ref nsIWebProgressListener2GUID);
 
 				if (UseHttpActivityObserver)
 				{
@@ -114,7 +115,7 @@ namespace Gecko
 
 				_target = Xpcom.QueryInterface<nsIDOMWindow>(WebBrowser.GetContentDOMWindowAttribute()).GetWindowRootAttribute();
 
-                _target.AddEventListener(new nsAString("submit"), this, true, true, 2);
+				_target.AddEventListener(new nsAString("submit"), this, true, true, 2);
 				_target.AddEventListener(new nsAString("keydown"), this, true, true, 2);
 				_target.AddEventListener(new nsAString("keyup"), this, true, true, 2);
 				_target.AddEventListener(new nsAString("keypress"), this, true, true, 2);
@@ -135,7 +136,7 @@ namespace Gecko
 				// ths losing attached listener.
 				_target.AddEventListener(new nsAString("load"), this, true, true, 2);
 				_target.AddEventListener(new nsAString("change"), this, true, true, 2);
-                _target.AddEventListener(new nsAString("hashchange"), this, false, true, 2);
+				_target.AddEventListener(new nsAString("hashchange"), this, false, true, 2);
 
 				// history
 				{

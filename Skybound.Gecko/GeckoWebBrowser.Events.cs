@@ -23,6 +23,7 @@ namespace Gecko
 		private static readonly object CanGoBackChangedEvent = new object();
 		private static readonly object CanGoForwardChangedEvent = new object();
 		// ProgressChanged
+		private static readonly object RequestProgressChangedEvent = new object();
 		private static readonly object ProgressChangedEvent = new object();
 		// History
 		private static readonly object HistoryNewEntryEvent = new object();
@@ -304,7 +305,37 @@ namespace Gecko
 
 		#endregion
 
-		#region public event GeckoProgressEventHandler ProgressChanged
+		#region public event GeckoRequestProgressEventHandler ProgressChanged
+
+		/// <summary>
+		/// Occurs when the control has updated progress information.
+		/// </summary>
+		[Category("Navigation")]
+		[Description("Occurs when the Request has updated progress information.")]
+		public event EventHandler<GeckoRequestProgressEventArgs> RequestProgressChanged
+		{
+			add
+			{
+				Events.AddHandler(RequestProgressChangedEvent, value);
+			}
+			remove
+			{
+				Events.RemoveHandler(RequestProgressChangedEvent, value);
+			}
+		}
+
+		/// <summary>Raises the <see cref="ProgressChanged"/> event.</summary>
+		/// <param name="e">The data for the event.</param>
+		protected virtual void OnRequestProgressChanged(GeckoRequestProgressEventArgs e)
+		{
+			var evnt = (EventHandler<GeckoRequestProgressEventArgs>)Events[RequestProgressChangedEvent];
+			if (evnt != null)
+				evnt(this, e);
+		}
+
+		#endregion
+
+		#region public event GeckoRequestProgressEventHandler ProgressChanged
 
 		/// <summary>
 		/// Occurs when the control has updated progress information.
@@ -1017,15 +1048,43 @@ namespace Gecko
 	}
 	#endregion
 
+	#region GeckoRequestProgressEventArgs
+	/// <summary>Provides data for event.</summary>
+	public class GeckoRequestProgressEventArgs
+		: EventArgs
+	{
+		private nsIRequest _request;
+		private GeckoResponse _reqWrapper;
+
+		public readonly long CurrentProgress;
+		public readonly long MaximumProgress;
+		/// <summary>Creates a new instance of a <see cref="GeckoRequestProgressEventArgs"/> object.</summary>
+		public GeckoRequestProgressEventArgs(long current, long max, nsIRequest req)
+		{
+			CurrentProgress = current;
+			MaximumProgress = max;
+			_request = req;
+		}
+
+		public GeckoResponse Request
+		{
+			get
+			{
+				return _reqWrapper ?? (_reqWrapper = new GeckoResponse(_request));
+			}
+		}
+	}
+	#endregion
+
 	#region GeckoProgressEventArgs
 	/// <summary>Provides data for  event.</summary>
 	public class GeckoProgressEventArgs
 		: EventArgs
 	{
-		public readonly int CurrentProgress;
-		public readonly int MaximumProgress;
+		public readonly long CurrentProgress;
+		public readonly long MaximumProgress;
 		/// <summary>Creates a new instance of a <see cref="GeckoProgressEventArgs"/> object.</summary>
-		public GeckoProgressEventArgs(int current, int max)
+		public GeckoProgressEventArgs(long current, long max)
 		{
 			CurrentProgress = current;
 			MaximumProgress = max;
@@ -1042,22 +1101,32 @@ namespace Gecko
 		private nsIRequest _response;
 		private GeckoResponse _wrapper;
 
+		public readonly GeckoWindow DomWindow;
+		public readonly Boolean DomWindowTopLevel;
+
 		public readonly Uri Uri;
+
+		public readonly Boolean IsSameDocument;
+		public readonly Boolean IsErrorPage;
 
 		/// <summary>Creates a new instance of a <see cref="GeckoNavigatedEventArgs"/> object.</summary>
 		/// <param name="value"></param>
 		/// <param name="response"></param>
-		internal GeckoNavigatedEventArgs(Uri value, nsIRequest response)
+		internal GeckoNavigatedEventArgs(Uri value, nsIRequest response, GeckoWindow domWind, bool _sameDocument, bool _errorPage)
 		{
 			Uri = value;
 			_response = response;
+			DomWindow = domWind;
+			DomWindowTopLevel = ((domWind == null) ? true : DomWindow.DomWindow.Equals(DomWindow.Top.DomWindow));
+
+			IsSameDocument = _sameDocument;
+			IsErrorPage = _errorPage;
 		}
 
 		public GeckoResponse Response
 		{
 			get { return _wrapper ?? ( _wrapper = new GeckoResponse( _response ) ); }
 		}
-
 	}
 	#endregion
 
@@ -1067,12 +1136,16 @@ namespace Gecko
 		: CancelEventArgs
 	{
 		public readonly Uri Uri;
+		public readonly GeckoWindow DomWindow;
+		public readonly Boolean DomWindowTopLevel;
 
 		/// <summary>Creates a new instance of a <see cref="GeckoNavigatingEventArgs"/> object.</summary>
 		/// <param name="value"></param>
-		public GeckoNavigatingEventArgs(Uri value)
+		public GeckoNavigatingEventArgs(Uri value, GeckoWindow domWind)
 		{
 			Uri = value;
+			DomWindow = domWind;
+			DomWindowTopLevel = ((domWind == null) ? true : DomWindow.DomWindow.Equals(DomWindow.Top.DomWindow));
 		}
 	}
 	#endregion
