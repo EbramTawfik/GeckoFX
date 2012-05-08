@@ -208,22 +208,35 @@ namespace Gecko
 	
 	static class nsIWebProgressListenerConstants
 	{
-		public const int STATE_START = 0x1;
-		public const int STATE_REDIRECTING = 0x2;
-		public const int STATE_TRANSFERRING = 0x4;
-		public const int STATE_NEGOTIATING = 0x8;
-		public const int STATE_STOP = 0x10;
-		public const int STATE_IS_REQUEST = 0x10000;
-		public const int STATE_IS_DOCUMENT = 0x20000;
-		public const int STATE_IS_NETWORK = 0x40000;
-		public const int STATE_IS_WINDOW = 0x80000;
+		// State transition flags
+		public const ulong STATE_START = 0x1;
+		public const ulong STATE_REDIRECTING = 0x2;
+		public const ulong STATE_TRANSFERRING = 0x4;
+		public const ulong STATE_NEGOTIATING = 0x8;
+		public const ulong STATE_STOP = 0x10;
+
+		// State type flags
+		public const ulong STATE_IS_REQUEST = 0x10000;
+		public const ulong STATE_IS_DOCUMENT = 0x20000;
+		public const ulong STATE_IS_NETWORK = 0x40000;
+		public const ulong STATE_IS_WINDOW = 0x80000;
+
+		// State modifier flags
 		public const int STATE_RESTORING = 0x1000000;
-		public const int STATE_IS_INSECURE = 0x4;
-		public const int STATE_IS_BROKEN = 0x1;
-		public const int STATE_IS_SECURE = 0x2;
-		public const int STATE_SECURE_HIGH = 0x40000;
-		public const int STATE_SECURE_MED = 0x10000;
-		public const int STATE_SECURE_LOW = 0x20000;
+
+		// State security flags
+		public const ulong STATE_IS_INSECURE = 0x4;
+		public const ulong STATE_IS_BROKEN = 0x1;
+		public const ulong STATE_IS_SECURE = 0x2;
+
+		// Security strength flags
+		public const ulong STATE_SECURE_HIGH = 0x40000;
+		public const ulong STATE_SECURE_MED = 0x10000;
+		public const ulong STATE_SECURE_LOW = 0x20000;
+
+		// State identity flags
+		public const ulong LOCATION_CHANGE_SAME_DOCUMENT = 0x00000001;
+		public const ulong LOCATION_CHANGE_ERROR_PAGE = 0x00000002;
 	}
 
 	/// <summary>
