@@ -114,6 +114,7 @@
     <Compile Include="DOM\GeckoNamedNodeMap.cs" />
     <Compile Include="DOM\GeckoNodeCollection.cs" />
     <Compile Include="DOM\GeckoNodeEnumerable.cs" />
+    <Compile Include="DOM\WindowUtils.cs" />
     <Compile Include="GeckoWindow.cs" />
     <Compile Include="DOM\Html\GeckoElement.cs" />
     <Compile Include="DOM\Html\GeckoDocument.cs" />
@@ -134,6 +135,7 @@
     <Compile Include="Generated\nsIWifi.cs" />
     <Compile Include="Generated\nsIWorkerHolder.cs" />
     <Compile Include="Images\ImageContainer.cs" />
+    <Compile Include="Interop\ExceptionTranslator.cs" />
     <Compile Include="Interop\SpiderMonkey\JSBool.cs" />
     <Compile Include="Interop\SpiderMonkey\JsType.cs" />
     <Compile Include="Interop\SpiderMonkey\JsVal.cs" />
@@ -141,6 +143,7 @@
     <Compile Include="Net\HttpActivityDistributor.cs" />
     <Compile Include="RandomGenerator.cs" />
     <Compile Include="Services\ExceptionService.cs" />
+    <Compile Include="Services\WindowWatcher.cs" />
     <Compile Include="Utils\SaveImageElement.cs" />
     <Compile Include="Variant.cs" />
     <Compile Include="WiFiMonitor.cs" />

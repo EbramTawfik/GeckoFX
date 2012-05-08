@@ -1546,7 +1546,9 @@ namespace Gecko
 					GeckoNavigatingEventArgs ea = new GeckoNavigatingEventArgs(destUri, domWindow);
 					OnNavigating(ea);
 
-					if (ea.Cancel) {
+					if (ea.Cancel)
+					{
+						;
 						aRequest.Cancel(NS_BINDING_ABORTED);
 
 						//TODO: change the following handling of cancelled request

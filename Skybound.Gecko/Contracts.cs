@@ -30,6 +30,7 @@ namespace Gecko
 		public static readonly string ImageContainer = "@mozilla.org/image/container;1";
 		#endregion
 
+		public static readonly string WindowWatcher = "@mozilla.org/embedcomp/window-watcher;1";
 		public static readonly string WritableVariant = "@mozilla.org/variant;1";
 		public static readonly string ZipReader = "@mozilla.org/libjar/zip-reader;1";
 		public static readonly string Sound = "@mozilla.org/sound;1";

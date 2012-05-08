@@ -7,6 +7,9 @@ using System.Windows.Forms;
 
 namespace Gecko.Interop
 {
+	/// <summary>
+	/// nsIWeakReference implementation for .NET object
+	/// </summary>
 	class nsWeakReference
 		:nsIWeakReference
 	{
@@ -48,6 +51,9 @@ namespace Gecko.Interop
 	}
 
 
+	/// <summary>
+	/// Special implementation for Control objects
+	/// </summary>
 	sealed class ControlWeakReference
 		: nsWeakReference
 	{

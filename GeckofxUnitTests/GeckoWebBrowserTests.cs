@@ -105,13 +105,9 @@ namespace GeckofxUnitTests
 			browser.DomContentChanged += (sender, e) => contentChangedEventReceived = true;
 
 
-			// Modify first input by sending a keypress.
-			// TODO: create wrapper for nsIDOMWindowUtils
+			// Modify first input by sending a keypress.			
 			nsIDOMWindowUtils utils = Xpcom.QueryInterface<nsIDOMWindowUtils>(browser.Window.DomWindow);
-			using (nsAString type = new nsAString("keypress"))
-			{
-				utils.SendKeyEvent(type, 0, 102, 0, false);
-			}
+			browser.Window.WindowUtils.SendKeyEvent("keypress", 0, 102, 0, false);			
 
 			// DomContentChanged Event should fire when we move we move to next element.
 			browser.Document.GetElementById("two").Focus();
