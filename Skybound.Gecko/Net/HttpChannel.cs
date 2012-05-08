@@ -151,8 +151,8 @@ namespace Gecko.Net
 		/// <returns></returns>
 		public static HttpChannel Create(nsISupports supports)
 		{
+			//int count = Interop.ComDebug.GetRcwRefCount(supports);
       #if DEBUG
-			int count = Interop.ComDebug.GetRefCount(supports);
       #endif
 
 			var channel = Xpcom.QueryInterface<nsIHttpChannel>(supports);
@@ -161,7 +161,7 @@ namespace Gecko.Net
 			var ret = new HttpChannel((nsIHttpChannel)supports);
 
       #if DEBUG
-			var count2=Interop.ComDebug.GetRefCount( supports );
+			//var count2=Interop.ComDebug.GetRcwRefCount( supports );
       #endif
 
       return ret;

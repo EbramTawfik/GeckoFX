@@ -17,7 +17,7 @@ namespace Gecko.Interop
 		/// </summary>
 		/// <param name="xulrunnerObject"></param>
 		/// <returns></returns>
-		public static int GetRefCount(object xulrunnerObject)
+		public static int GetRcwRefCount(object xulrunnerObject)
 		{
 			nsISupports supports = null;
 			try
@@ -31,6 +31,14 @@ namespace Gecko.Interop
 			// If this is not xulrunner COM object - simply return 0
 			if (supports == null) return 0;
 			int count = Marshal.ReleaseComObject(supports);
+			return count;
+		}
+
+		public static int GetComRefCount(object xulrunnerObject)
+		{
+			IntPtr pUnk = Marshal.GetIUnknownForObject(xulrunnerObject);
+			if (pUnk == IntPtr.Zero) return -1;
+			int count=Marshal.Release( pUnk );
 			return count;
 		}
 	}
