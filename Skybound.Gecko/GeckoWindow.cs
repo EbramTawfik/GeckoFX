@@ -1,3 +1,4 @@
+using Gecko.DOM;
 namespace Gecko
 {
 	/// <summary>
@@ -18,6 +19,11 @@ namespace Gecko
 			get { return _DomWindow; }
 		}
 		nsIDOMWindow _DomWindow;
+
+		public WindowUtils WindowUtils 
+		{
+			get { return new WindowUtils(Xpcom.QueryInterface<nsIDOMWindowUtils>(DomWindow)); }
+		}
 		
 		internal static GeckoWindow Create(nsIDOMWindow window)
 		{

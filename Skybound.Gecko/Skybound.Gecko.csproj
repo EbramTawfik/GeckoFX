@@ -114,6 +114,7 @@
     <Compile Include="DOM\GeckoNamedNodeMap.cs" />
     <Compile Include="DOM\GeckoNodeCollection.cs" />
     <Compile Include="DOM\GeckoNodeEnumerable.cs" />
+    <Compile Include="DOM\WindowUtils.cs" />
     <Compile Include="GeckoWindow.cs" />
     <Compile Include="DOM\Html\GeckoElement.cs" />
     <Compile Include="DOM\Html\GeckoDocument.cs" />
