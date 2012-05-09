@@ -142,5 +142,107 @@ namespace GeckofxUnitTests
 
 			Assert.IsFalse(browser.Window.WindowUtils.IMEIsOpen);
 		}
+
+		private class TestCycleCollectorListener : nsICycleCollectorListener
+		{
+			public int _allTraces;
+			public int _wantAllTraces;
+			public int _begin;
+			public int _noteRefCountedOject;
+			public int _noteGCedObject;
+			public int _noteEdge;
+			public int _beginResults;
+			public int _describeRoot;
+			public int _describeGarbage;
+			public int _end;
+
+			public nsICycleCollectorListener AllTraces()
+			{
+				_allTraces++;
+				return null;
+			}
+
+			public bool GetWantAllTracesAttribute()
+			{
+				_wantAllTraces++;
+				return false;
+			}
+
+			public void Begin()
+			{
+				_begin++;
+			}
+
+			public void NoteRefCountedObject(ulong aAddress, uint aRefCount, string aObjectDescription)
+			{
+				_noteRefCountedOject++;
+			}
+
+			public void NoteGCedObject(ulong aAddress, bool aMarked, string aObjectDescription)
+			{
+				_noteGCedObject++;
+			}
+
+			public void NoteEdge(ulong aToAddress, string aEdgeName)
+			{
+				_noteEdge++;
+			}
+
+			public void BeginResults()
+			{
+				_beginResults++;
+			}
+
+			public void DescribeRoot(ulong aAddress, uint aKnownEdges)
+			{
+				_describeRoot++;
+			}
+
+			public void DescribeGarbage(ulong aAddress)
+			{
+				_describeGarbage++;
+			}
+
+			public void End()
+			{
+				_end++;
+			}
+		}
+
+		[Test]
+		public void GarbageCollect()
+		{
+			var listener = new TestCycleCollectorListener();
+			browser.Window.WindowUtils.GarbageCollect(listener, 0);
+
+			Assert.AreEqual(1, listener._begin);
+			Assert.AreEqual(1, listener._end);
+		}
+
+		[Test]
+		public void CycleCollect()
+		{
+			var listener = new TestCycleCollectorListener();
+			browser.Window.WindowUtils.CycleCollect(listener, 0);
+
+			Assert.AreEqual(1, listener._begin);
+			Assert.AreEqual(1, listener._end);
+		}
+
+		[Test]
+		public void ProcessUpdates()
+		{
+			browser.Window.WindowUtils.ProcessUpdates();				
+		}
+
+		[Test]
+		public void ElementFromPoint()
+		{
+			browser.TestLoadHtml("<body>hello world</body>");
+
+			GeckoDomElement element = browser.Window.WindowUtils.ElementFromPoint(1, 1, true, false);
+
+			Assert.AreEqual("HTML", element.TagName);
+		}
 	}
 }

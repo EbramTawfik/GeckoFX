@@ -362,7 +362,7 @@ namespace Gecko.DOM
         /// </summary>		
 		public void GarbageCollect(nsICycleCollectorListener aListener, int aExtraForgetSkippableCalls)
 		{
-			throw new NotImplementedException();
+			_windowUtils.GarbageCollect(aListener, aExtraForgetSkippableCalls);
 		}
 		
 		/// <summary>
@@ -383,7 +383,7 @@ namespace Gecko.DOM
         /// </summary>		
 		public void CycleCollect(nsICycleCollectorListener aListener, int aExtraForgetSkippableCalls)
 		{
-			throw new NotImplementedException();
+			_windowUtils.GarbageCollect(aListener, aExtraForgetSkippableCalls);
 		}
 		
 		/// <summary>
@@ -391,7 +391,7 @@ namespace Gecko.DOM
         /// </summary>		
 		public void ProcessUpdates()
 		{
-			throw new NotImplementedException();
+			_windowUtils.ProcessUpdates();
 		}
 		
 		/// <summary>
@@ -427,7 +427,11 @@ namespace Gecko.DOM
         /// </summary>		
 		public GeckoDomElement ElementFromPoint(float aX, float aY, bool aIgnoreRootScrollFrame, bool aFlushLayout)
 		{
-			throw new NotImplementedException();
+			nsIDOMElement element = _windowUtils.ElementFromPoint(aX, aY, aIgnoreRootScrollFrame, aFlushLayout);
+			if (element == null)
+				return null;
+
+			return new GeckoDomElement(element);
 		}
 		
 		/// <summary>
