@@ -138,4 +138,22 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Stop([MarshalAs(UnmanagedType.Interface)] nsISupports aLoadCookie);
 	}
+	
+	/// <summary>nsIURILoaderConsts </summary>
+	public class nsIURILoaderConsts
+	{
+		
+		// <summary>
+        // Should the content be displayed in a container that prefers the
+        // content-type, or will any container do.
+        // </summary>
+		public const ulong IS_CONTENT_PREFERRED = 1<<0;
+		
+		// <summary>
+        // If this flag is set, only the listener of the specified window context will
+        // be considered for content handling; if it refuses the load, an error will
+        // be indicated.
+        // </summary>
+		public const ulong DONT_RETARGET = 1<<1;
+	}
 }

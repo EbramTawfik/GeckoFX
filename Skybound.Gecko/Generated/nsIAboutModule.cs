@@ -51,4 +51,29 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetURIFlags([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 	}
+	
+	/// <summary>nsIAboutModuleConsts </summary>
+	public class nsIAboutModuleConsts
+	{
+		
+		// <summary>
+        // A flag that indicates whether a URI is safe for untrusted
+        // content.  If it is, web pages and so forth will be allowed to
+        // link to this about: URI.  Otherwise, only chrome will be able
+        // to link to it.
+        // </summary>
+		public const ulong URI_SAFE_FOR_UNTRUSTED_CONTENT = (1<<0);
+		
+		// <summary>
+        // A flag that indicates whether script should be enabled for the
+        // given about: URI even if it's disabled in general.
+        // </summary>
+		public const ulong ALLOW_SCRIPT = (1<<1);
+		
+		// <summary>
+        // A flag that indicates whether this about: URI doesn't want to be listed
+        // in about:about, especially if it's not useful without a query string.
+        // </summary>
+		public const ulong HIDE_FROM_ABOUTABOUT = (1<<2);
+	}
 }

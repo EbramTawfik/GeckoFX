@@ -226,4 +226,24 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetImageBuffer();
 	}
+	
+	/// <summary>imgIEncoderConsts </summary>
+	public class imgIEncoderConsts
+	{
+		
+		// <summary>
+        // R, G, and B (in that order, regardless of host endianness)
+        // </summary>
+		public const long INPUT_FORMAT_RGB = 0;
+		
+		// <summary>
+        // POST-MULTIPLIED alpha us used (50% transparent red is 0xff000080)
+        // </summary>
+		public const long INPUT_FORMAT_RGBA = 1;
+		
+		// <summary>
+        // not 0x80ff0000
+        // </summary>
+		public const long INPUT_FORMAT_HOSTARGB = 2;
+	}
 }

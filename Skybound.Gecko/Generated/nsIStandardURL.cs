@@ -81,4 +81,33 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Init(uint aUrlType, int aDefaultPort, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aSpec, [MarshalAs(UnmanagedType.LPStr)] string aOriginCharset, [MarshalAs(UnmanagedType.Interface)] nsIURI aBaseURI);
 	}
+	
+	/// <summary>nsIStandardURLConsts </summary>
+	public class nsIStandardURLConsts
+	{
+		
+		// <summary>
+        // blah:foo/bar    => blah://foo/bar
+        // blah:/foo/bar   => blah:///foo/bar
+        // blah://foo/bar  => blah://foo/bar
+        // blah:///foo/bar => blah:///foo/bar
+        // </summary>
+		public const ulong URLTYPE_STANDARD = 1;
+		
+		// <summary>
+        // blah:foo/bar    => blah://foo/bar
+        // blah:/foo/bar   => blah://foo/bar
+        // blah://foo/bar  => blah://foo/bar
+        // blah:///foo/bar => blah://foo/bar
+        // </summary>
+		public const ulong URLTYPE_AUTHORITY = 2;
+		
+		// <summary>
+        // blah:foo/bar    => blah:///foo/bar
+        // blah:/foo/bar   => blah:///foo/bar
+        // blah://foo/bar  => blah://foo/bar
+        // blah:///foo/bar => blah:///foo/bar
+        // </summary>
+		public const ulong URLTYPE_NO_AUTHORITY = 3;
+	}
 }

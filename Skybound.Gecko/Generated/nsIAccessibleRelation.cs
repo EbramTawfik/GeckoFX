@@ -65,4 +65,115 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIArray GetTargets();
 	}
+	
+	/// <summary>nsIAccessibleRelationConsts </summary>
+	public class nsIAccessibleRelationConsts
+	{
+		
+		// <summary>
+        // This interface gives access to an accessible's set of relations.
+        // Be carefull, do not change constants until ATK has a structure to map gecko
+        // constants into ATK constants.
+        // </summary>
+		public const ulong RELATION_NUL = 0x00;
+		
+		// <summary>
+        // Some attribute of this object is affected by a target object.
+        // </summary>
+		public const ulong RELATION_CONTROLLED_BY = 0x01;
+		
+		// <summary>
+        // First relation
+        // </summary>
+		public const ulong RELATION_FIRST = RELATION_CONTROLLED_BY;
+		
+		// <summary>
+        // This object is interactive and controls some attribute of a target object.
+        // </summary>
+		public const ulong RELATION_CONTROLLER_FOR = 0x02;
+		
+		// <summary>
+        // This object is label for a target object.
+        // </summary>
+		public const ulong RELATION_LABEL_FOR = 0x03;
+		
+		// <summary>
+        // This object is labelled by a target object.
+        // </summary>
+		public const ulong RELATION_LABELLED_BY = 0x04;
+		
+		// <summary>
+        // This object is a member of a group of one or more objects. When there is
+        // more than one object in the group each member may have one and the same
+        // target, e.g. a grouping object.  It is also possible that each member has
+        // multiple additional targets, e.g. one for every other member in the group.
+        // </summary>
+		public const ulong RELATION_MEMBER_OF = 0x05;
+		
+		// <summary>
+        // This object is a child of a target object.
+        // </summary>
+		public const ulong RELATION_NODE_CHILD_OF = 0x06;
+		
+		// <summary>
+        // Content flows from this object to a target object, i.e. has content that
+        // flows logically to another object in a sequential way, e.g. text flow.
+        // </summary>
+		public const ulong RELATION_FLOWS_TO = 0x07;
+		
+		// <summary>
+        // Content flows to this object from a target object, i.e. has content that
+        // flows logically from another object in a sequential way, e.g. text flow.
+        // </summary>
+		public const ulong RELATION_FLOWS_FROM = 0x08;
+		
+		// <summary>
+        // This object is a sub window of a target object.
+        // </summary>
+		public const ulong RELATION_SUBWINDOW_OF = 0x09;
+		
+		// <summary>
+        // This object embeds a target object. This relation can be used on the
+        // OBJID_CLIENT accessible for a top level window to show where the content
+        // areas are.
+        // </summary>
+		public const ulong RELATION_EMBEDS = 0x0a;
+		
+		// <summary>
+        // This object is embedded by a target object.
+        // </summary>
+		public const ulong RELATION_EMBEDDED_BY = 0x0b;
+		
+		// <summary>
+        // This object is a transient component related to the target object. When
+        // this object is activated the target object doesn't lose focus.
+        // </summary>
+		public const ulong RELATION_POPUP_FOR = 0x0c;
+		
+		// <summary>
+        // This object is a parent window of the target object.
+        // </summary>
+		public const ulong RELATION_PARENT_WINDOW_OF = 0x0d;
+		
+		// <summary>
+        // This object is described by the target object.
+        // </summary>
+		public const ulong RELATION_DESCRIBED_BY = 0x0e;
+		
+		// <summary>
+        // This object is describes the target object.
+        // </summary>
+		public const ulong RELATION_DESCRIPTION_FOR = 0x0f;
+		
+		// <summary>
+        // Last relation that is standard to desktop accessibility APIs
+        // </summary>
+		public const ulong RELATION_LAST = RELATION_DESCRIPTION_FOR;
+		
+		// <summary>
+        // Part of a form/dialog with a related default button. It is used for
+        // MSAA only, no for IA2 nor ATK.
+        // </summary>
+		public const ulong RELATION_DEFAULT_BUTTON = 0x4000;
+	}
 }

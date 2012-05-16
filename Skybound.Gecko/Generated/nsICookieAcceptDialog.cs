@@ -37,4 +37,27 @@ namespace Gecko
 	public interface nsICookieAcceptDialog
 	{
 	}
+	
+	/// <summary>nsICookieAcceptDialogConsts </summary>
+	public class nsICookieAcceptDialogConsts
+	{
+		
+		// <summary>
+        //This file contains some constants for the cookie accept dialog
+        //
+        // </summary>
+		public const int ACCEPT_COOKIE = 0;
+		
+		// 
+		public const int REMEMBER_DECISION = 1;
+		
+		// 
+		public const int HOSTNAME = 2;
+		
+		// 
+		public const int COOKIESFROMHOST = 3;
+		
+		// 
+		public const int CHANGINGCOOKIE = 4;
+	}
 }

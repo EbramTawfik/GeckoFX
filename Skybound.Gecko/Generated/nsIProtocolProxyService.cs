@@ -204,4 +204,82 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetProxyConfigTypeAttribute();
 	}
+	
+	/// <summary>nsIProtocolProxyServiceConsts </summary>
+	public class nsIProtocolProxyServiceConsts
+	{
+		
+		// <summary>
+        // This flag may be passed to the resolve method to request that it fail
+        // instead of block the calling thread.  Proxy Auto Config (PAC) may
+        // perform a synchronous DNS query, which may not return immediately.  So,
+        // calling resolve without this flag may result in locking up the calling
+        // thread for a lengthy period of time.
+        //
+        // By passing this flag to resolve, one can failover to asyncResolve to
+        // avoid locking up the calling thread if a PAC query is required.
+        //
+        // When this flag is passed to resolve, resolve may throw the exception
+        // NS_BASE_STREAM_WOULD_BLOCK to indicate that it failed due to this flag
+        // being present.
+        // </summary>
+		public const ulong RESOLVE_NON_BLOCKING = 1<<0;
+		
+		// <summary>
+        // When the proxy configuration is manual this flag may be passed to the
+        // resolve and asyncResolve methods to request to prefer the SOCKS proxy
+        // to HTTP ones.
+        // </summary>
+		public const ulong RESOLVE_PREFER_SOCKS_PROXY = 1<<1;
+		
+		// <summary>
+        // When the proxy configuration is manual this flag may be passed to the
+        // resolve and asyncResolve methods to request to not analyze the uri's
+        // scheme specific proxy. When this flag is set the main HTTP proxy is the
+        // preferred one.
+        //
+        // NOTE: if RESOLVE_PREFER_SOCKS_PROXY is set then the SOCKS proxy is
+        // the preferred one.
+        //
+        // NOTE: if RESOLVE_PREFER_HTTPS_PROXY is set then the HTTPS proxy
+        // is the preferred one.
+        // </summary>
+		public const ulong RESOLVE_IGNORE_URI_SCHEME = 1<<2;
+		
+		// <summary>
+        // When the proxy configuration is manual this flag may be passed to the
+        // resolve and asyncResolve methods to request to prefer the HTTPS proxy
+        // to the others HTTP ones.
+        //
+        // NOTE: RESOLVE_PREFER_SOCKS_PROXY takes precedence over this flag.
+        //
+        // NOTE: This flag implies RESOLVE_IGNORE_URI_SCHEME.
+        // </summary>
+		public const ulong RESOLVE_PREFER_HTTPS_PROXY = (1<<3)|RESOLVE_IGNORE_URI_SCHEME;
+		
+		// <summary>
+        // When the proxy configuration is manual this flag may be passed to the
+        // resolve and asyncResolve methods to that all methods will be tunneled via
+        // CONNECT through the http proxy.
+        // </summary>
+		public const ulong RESOLVE_ALWAYS_TUNNEL = (1<<4);
+		
+		// <summary>
+        // These values correspond to the possible integer values for the
+        // network.proxy.type preference.
+        // </summary>
+		public const ulong PROXYCONFIG_DIRECT = 0;
+		
+		// 
+		public const ulong PROXYCONFIG_MANUAL = 1;
+		
+		// 
+		public const ulong PROXYCONFIG_PAC = 2;
+		
+		// 
+		public const ulong PROXYCONFIG_WPAD = 4;
+		
+		// 
+		public const ulong PROXYCONFIG_SYSTEM = 5;
+	}
 }

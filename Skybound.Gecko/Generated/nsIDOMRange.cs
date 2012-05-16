@@ -112,9 +112,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SelectNodeContents([MarshalAs(UnmanagedType.Interface)] nsIDOMNode refNode);
 		
-		/// <summary>
-        /// CompareHow
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		short CompareBoundaryPoints(ushort how, [MarshalAs(UnmanagedType.Interface)] nsIDOMRange sourceRange);
 		
@@ -175,5 +172,24 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMClientRect GetBoundingClientRect();
+	}
+	
+	/// <summary>nsIDOMRangeConsts </summary>
+	public class nsIDOMRangeConsts
+	{
+		
+		// <summary>
+        // CompareHow
+        // </summary>
+		public const ulong START_TO_START = 0;
+		
+		// 
+		public const ulong START_TO_END = 1;
+		
+		// 
+		public const ulong END_TO_END = 2;
+		
+		// 
+		public const ulong END_TO_START = 3;
 	}
 }

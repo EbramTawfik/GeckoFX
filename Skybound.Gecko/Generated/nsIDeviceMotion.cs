@@ -55,6 +55,17 @@ namespace Gecko
 		double GetZAttribute();
 	}
 	
+	/// <summary>nsIDeviceMotionDataConsts </summary>
+	public class nsIDeviceMotionDataConsts
+	{
+		
+		// 
+		public const ulong TYPE_ACCELERATION = 0;
+		
+		// 
+		public const ulong TYPE_ORIENTATION = 1;
+	}
+	
 	/// <summary>nsIDeviceMotionListener </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]

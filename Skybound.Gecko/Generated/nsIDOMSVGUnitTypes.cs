@@ -40,4 +40,20 @@ namespace Gecko
 	public interface nsIDOMSVGUnitTypes
 	{
 	}
+	
+	/// <summary>nsIDOMSVGUnitTypesConsts </summary>
+	public class nsIDOMSVGUnitTypesConsts
+	{
+		
+		// <summary>
+        // Unit Types
+        // </summary>
+		public const ulong SVG_UNIT_TYPE_UNKNOWN = 0;
+		
+		// 
+		public const ulong SVG_UNIT_TYPE_USERSPACEONUSE = 1;
+		
+		// 
+		public const ulong SVG_UNIT_TYPE_OBJECTBOUNDINGBOX = 2;
+	}
 }

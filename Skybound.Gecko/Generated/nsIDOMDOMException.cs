@@ -44,10 +44,90 @@ namespace Gecko
 	public interface nsIDOMDOMException
 	{
 		
-		/// <summary>
-        /// Introduced in DOM Level 3:
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetCodeAttribute();
+	}
+	
+	/// <summary>nsIDOMDOMExceptionConsts </summary>
+	public class nsIDOMDOMExceptionConsts
+	{
+		
+		// <summary>
+        // In general, DOM methods return specific error values in ordinary
+        // processing situations, such as out-of-bound errors.
+        // However, DOM operations can raise exceptions in "exceptional"
+        // circumstances, i.e., when an operation is impossible to perform
+        // (either for logical reasons, because data is lost, or because the
+        // implementation has become unstable)
+        //
+        // For more information on this interface please see
+        // http://www.w3.org/TR/DOM-Level-3-Core/
+        // </summary>
+		public const ulong INDEX_SIZE_ERR = 1;
+		
+		// 
+		public const ulong DOMSTRING_SIZE_ERR = 2;
+		
+		// 
+		public const ulong HIERARCHY_REQUEST_ERR = 3;
+		
+		// 
+		public const ulong WRONG_DOCUMENT_ERR = 4;
+		
+		// 
+		public const ulong INVALID_CHARACTER_ERR = 5;
+		
+		// 
+		public const ulong NO_DATA_ALLOWED_ERR = 6;
+		
+		// 
+		public const ulong NO_MODIFICATION_ALLOWED_ERR = 7;
+		
+		// 
+		public const ulong NOT_FOUND_ERR = 8;
+		
+		// 
+		public const ulong NOT_SUPPORTED_ERR = 9;
+		
+		// 
+		public const ulong INUSE_ATTRIBUTE_ERR = 10;
+		
+		// <summary>
+        // Introduced in DOM Level 2:
+        // </summary>
+		public const ulong INVALID_STATE_ERR = 11;
+		
+		// <summary>
+        // Introduced in DOM Level 2:
+        // </summary>
+		public const ulong SYNTAX_ERR = 12;
+		
+		// <summary>
+        // Introduced in DOM Level 2:
+        // </summary>
+		public const ulong INVALID_MODIFICATION_ERR = 13;
+		
+		// <summary>
+        // Introduced in DOM Level 2:
+        // </summary>
+		public const ulong NAMESPACE_ERR = 14;
+		
+		// <summary>
+        // Introduced in DOM Level 2:
+        // </summary>
+		public const ulong INVALID_ACCESS_ERR = 15;
+		
+		// <summary>
+        // Introduced in DOM Level 3:
+        // </summary>
+		public const ulong VALIDATION_ERR = 16;
+		
+		// <summary>
+        // Introduced in DOM Level 3:
+        // </summary>
+		public const ulong TYPE_MISMATCH_ERR = 17;
+		
+		// 
+		public const ulong DATA_CLONE_ERR = 25;
 	}
 }

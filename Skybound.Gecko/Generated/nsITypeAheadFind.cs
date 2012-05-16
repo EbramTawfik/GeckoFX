@@ -111,4 +111,23 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMWindow GetCurrentWindowAttribute();
 	}
+	
+	/// <summary>nsITypeAheadFindConsts </summary>
+	public class nsITypeAheadFindConsts
+	{
+		
+		// <summary>
+        //Find return codes </summary>
+		public const ulong FIND_FOUND = 0;
+		
+		// <summary>
+        // Successful find
+        // </summary>
+		public const ulong FIND_NOTFOUND = 1;
+		
+		// <summary>
+        // Unsuccessful find
+        // </summary>
+		public const ulong FIND_WRAPPED = 2;
+	}
 }

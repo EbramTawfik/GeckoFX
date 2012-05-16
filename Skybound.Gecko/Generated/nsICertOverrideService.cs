@@ -121,4 +121,24 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint IsCertUsedForOverrides([MarshalAs(UnmanagedType.Interface)] nsIX509Cert aCert, [MarshalAs(UnmanagedType.U1)] bool aCheckTemporaries, [MarshalAs(UnmanagedType.U1)] bool aCheckPermanents);
 	}
+	
+	/// <summary>nsICertOverrideServiceConsts </summary>
+	public class nsICertOverrideServiceConsts
+	{
+		
+		// <summary>
+        // Override Untrusted
+        // </summary>
+		public const int ERROR_UNTRUSTED = 1;
+		
+		// <summary>
+        // Override hostname Mismatch
+        // </summary>
+		public const int ERROR_MISMATCH = 2;
+		
+		// <summary>
+        // Override Time error
+        // </summary>
+		public const int ERROR_TIME = 4;
+	}
 }

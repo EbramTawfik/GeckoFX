@@ -34,9 +34,8 @@ namespace Gecko
 	public interface nsISaveAsCharset
 	{
 		
-		/// <summary>
-        /// generate entity before charset conversion, use decimal NCR
-        /// </summary>
+		/// <summary>Member GetCharsetAttribute </summary>
+		/// <returns>A System.String</returns>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string GetCharsetAttribute();
@@ -53,5 +52,80 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string Convert([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string inString);
+	}
+	
+	/// <summary>nsISaveAsCharsetConsts </summary>
+	public class nsISaveAsCharsetConsts
+	{
+		
+		// <summary>
+        // attributes
+        // </summary>
+		public const ulong mask_Fallback = 0x000000FF;
+		
+		// <summary>
+        // mask for fallback (8bits)
+        // </summary>
+		public const ulong mask_Entity = 0x00000300;
+		
+		// <summary>
+        // mask for entity (2bits)
+        // </summary>
+		public const ulong mask_CharsetFallback = 0x00000400;
+		
+		// <summary>
+        // mask for charset fallback (1bit)
+        // </summary>
+		public const ulong attr_FallbackNone = 0;
+		
+		// <summary>
+        // no fall back for unconverted chars (skipped)
+        // </summary>
+		public const ulong attr_FallbackQuestionMark = 1;
+		
+		// <summary>
+        // unconverted chars are replaced by '?'
+        // </summary>
+		public const ulong attr_FallbackEscapeU = 2;
+		
+		// <summary>
+        // unconverted chars are escaped as \uxxxx
+        // </summary>
+		public const ulong attr_FallbackDecimalNCR = 3;
+		
+		// <summary>
+        // unconverted chars are replaced by decimal NCR
+        // </summary>
+		public const ulong attr_FallbackHexNCR = 4;
+		
+		// <summary>
+        // unconverted chars are replaced by hex NCR
+        // </summary>
+		public const ulong attr_EntityNone = 0;
+		
+		// <summary>
+        // generate no Named Entity
+        // </summary>
+		public const ulong attr_EntityBeforeCharsetConv = 0x00000100;
+		
+		// <summary>
+        // generate Named Entity before charset conversion
+        // </summary>
+		public const ulong attr_EntityAfterCharsetConv = 0x00000200;
+		
+		// <summary>
+        // generate Named Entity after charset conversion
+        // </summary>
+		public const ulong attr_CharsetFallback = 0x00000400;
+		
+		// <summary>
+        // default attribute for plain text
+        // </summary>
+		public const ulong attr_plainTextDefault = attr_FallbackNone+attr_EntityNone;
+		
+		// <summary>
+        // generate entity before charset conversion, use decimal NCR
+        // </summary>
+		public const ulong attr_htmlTextDefault = attr_FallbackDecimalNCR+attr_EntityBeforeCharsetConv;
 	}
 }

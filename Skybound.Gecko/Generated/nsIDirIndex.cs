@@ -127,4 +127,29 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetLastModifiedAttribute(long aLastModified);
 	}
+	
+	/// <summary>nsIDirIndexConsts </summary>
+	public class nsIDirIndexConsts
+	{
+		
+		// <summary>
+        // Entry's type is unknown
+        // </summary>
+		public const ulong TYPE_UNKNOWN = 0;
+		
+		// <summary>
+        // Entry is a directory
+        // </summary>
+		public const ulong TYPE_DIRECTORY = 1;
+		
+		// <summary>
+        // Entry is a file
+        // </summary>
+		public const ulong TYPE_FILE = 2;
+		
+		// <summary>
+        // Entry is a symlink
+        // </summary>
+		public const ulong TYPE_SYMLINK = 3;
+	}
 }

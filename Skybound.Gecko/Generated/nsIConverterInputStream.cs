@@ -107,4 +107,14 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Init([MarshalAs(UnmanagedType.Interface)] nsIInputStream aStream, [MarshalAs(UnmanagedType.LPStr)] string aCharset, int aBufferSize, [MarshalAs(UnmanagedType.LPWStr)] string aReplacementChar);
 	}
+	
+	/// <summary>nsIConverterInputStreamConsts </summary>
+	public class nsIConverterInputStreamConsts
+	{
+		
+		// <summary>
+        // Default replacement char value, U+FFFD REPLACEMENT CHARACTER.
+        // </summary>
+		public const long DEFAULT_REPLACEMENT_CHARACTER = 0xFFFD;
+	}
 }

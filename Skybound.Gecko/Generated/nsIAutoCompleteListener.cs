@@ -34,9 +34,36 @@ namespace Gecko
 	{
 	}
 	
-	/// <summary>
-    /// the following status values indicate that the async search hasn't ended
-    /// </summary>
+	/// <summary>nsIAutoCompleteStatusConsts </summary>
+	public class nsIAutoCompleteStatusConsts
+	{
+		
+		// 
+		public const long failed = -1;
+		
+		// 
+		public const long noMatch = 0;
+		
+		// 
+		public const long matchFound = 1;
+		
+		// 
+		public const long ignored = 2;
+		
+		// <summary>
+        // </summary>
+		public const long failureItems = 3;
+		
+		// <summary>
+        // the following status values indicate that the async search hasn't ended
+        // </summary>
+		public const long noMatchYet = 4;
+		
+		// 
+		public const long matchSoFar = 5;
+	}
+	
+	/// <summary>nsIAutoCompleteListener </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("4BA0A181-097C-11d4-A449-CD1A8B47ED7C")]

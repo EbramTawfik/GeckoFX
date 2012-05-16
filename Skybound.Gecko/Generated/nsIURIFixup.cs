@@ -71,4 +71,31 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIURI KeywordToURI([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aKeyword);
 	}
+	
+	/// <summary>nsIURIFixupConsts </summary>
+	public class nsIURIFixupConsts
+	{
+		
+		// <summary>
+        //No fixup flags. </summary>
+		public const ulong FIXUP_FLAG_NONE = 0;
+		
+		// <summary>
+        // Allow the fixup to use a keyword lookup service to complete the URI.
+        // The fixup object implementer should honour this flag and only perform
+        // any lengthy keyword (or search) operation if it is set.
+        // </summary>
+		public const ulong FIXUP_FLAG_ALLOW_KEYWORD_LOOKUP = 1;
+		
+		// <summary>
+        // Tell the fixup to make an alternate URI from the input URI, for example
+        // to turn foo into www.foo.com.
+        // </summary>
+		public const ulong FIXUP_FLAGS_MAKE_ALTERNATE_URI = 2;
+		
+		// <summary>
+        // Use UTF-8 to encode the URI instead of platform charset.
+        // </summary>
+		public const ulong FIXUP_FLAG_USE_UTF8 = 4;
+	}
 }

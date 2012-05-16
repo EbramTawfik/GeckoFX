@@ -51,16 +51,32 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool DoRestore();
 		
-		/// <summary>
-        /// What type of session we're restoring.
-        /// NO_SESSION       There is no data available from the previous session
-        /// RECOVER_SESSION  The last session crashed. It will either be restored or
-        /// about:sessionrestore will be shown.
-        /// RESUME_SESSION   The previous session should be restored at startup
-        /// DEFER_SESSION    The previous session is fine, but it shouldn't be restored
-        /// without explicit action (with the exception of pinned tabs)
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetSessionTypeAttribute();
+	}
+	
+	/// <summary>nsISessionStartupConsts </summary>
+	public class nsISessionStartupConsts
+	{
+		
+		// <summary>
+        // What type of session we're restoring.
+        // NO_SESSION       There is no data available from the previous session
+        // RECOVER_SESSION  The last session crashed. It will either be restored or
+        // about:sessionrestore will be shown.
+        // RESUME_SESSION   The previous session should be restored at startup
+        // DEFER_SESSION    The previous session is fine, but it shouldn't be restored
+        // without explicit action (with the exception of pinned tabs)
+        // </summary>
+		public const ulong NO_SESSION = 0;
+		
+		// 
+		public const ulong RECOVER_SESSION = 1;
+		
+		// 
+		public const ulong RESUME_SESSION = 2;
+		
+		// 
+		public const ulong DEFER_SESSION = 3;
 	}
 }

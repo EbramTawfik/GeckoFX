@@ -86,4 +86,15 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string ComputeNextAutoUpdateTime([MarshalAs(UnmanagedType.Interface)] nsICRLInfo info, uint autoUpdateType, double noOfDays);
 	}
+	
+	/// <summary>nsICRLManagerConsts </summary>
+	public class nsICRLManagerConsts
+	{
+		
+		// 
+		public const ulong TYPE_AUTOUPDATE_TIME_BASED = 1;
+		
+		// 
+		public const ulong TYPE_AUTOUPDATE_FREQ_BASED = 2;
+	}
 }

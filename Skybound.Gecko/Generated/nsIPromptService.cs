@@ -285,4 +285,76 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool Select([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aParent, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string aDialogTitle, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string aText, uint aCount, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=3)] System.IntPtr[] aSelectList, ref int aOutSelection);
 	}
+	
+	/// <summary>nsIPromptServiceConsts </summary>
+	public class nsIPromptServiceConsts
+	{
+		
+		// <summary>
+        // Button Position Flags
+        // </summary>
+		public const ulong BUTTON_POS_0 = 1;
+		
+		// 
+		public const ulong BUTTON_POS_1 = 1<<8;
+		
+		// 
+		public const ulong BUTTON_POS_2 = 1<<16;
+		
+		// <summary>
+        // Button Title Flags (used to set the labels of buttons in the prompt)
+        // </summary>
+		public const ulong BUTTON_TITLE_OK = 1;
+		
+		// 
+		public const ulong BUTTON_TITLE_CANCEL = 2;
+		
+		// 
+		public const ulong BUTTON_TITLE_YES = 3;
+		
+		// 
+		public const ulong BUTTON_TITLE_NO = 4;
+		
+		// 
+		public const ulong BUTTON_TITLE_SAVE = 5;
+		
+		// 
+		public const ulong BUTTON_TITLE_DONT_SAVE = 6;
+		
+		// 
+		public const ulong BUTTON_TITLE_REVERT = 7;
+		
+		// 
+		public const ulong BUTTON_TITLE_IS_STRING = 127;
+		
+		// <summary>
+        // Button Default Flags (used to select which button is the default one)
+        // </summary>
+		public const ulong BUTTON_POS_0_DEFAULT = 0;
+		
+		// 
+		public const ulong BUTTON_POS_1_DEFAULT = 1<<24;
+		
+		// 
+		public const ulong BUTTON_POS_2_DEFAULT = 1<<25;
+		
+		// <summary>
+        // Causes the buttons to be initially disabled.  They are enabled after a
+        // timeout expires.  The implementation may interpret this loosely as the
+        // intent is to ensure that the user does not click through a security dialog
+        // too quickly.  Strictly speaking, the implementation could choose to ignore
+        // this flag.
+        // </summary>
+		public const ulong BUTTON_DELAY_ENABLE = 1<<26;
+		
+		// <summary>
+        // Selects the standard set of OK/Cancel buttons.
+        // </summary>
+		public const ulong STD_OK_CANCEL_BUTTONS = (BUTTON_TITLE_OK*BUTTON_POS_0)+(BUTTON_TITLE_CANCEL*BUTTON_POS_1);
+		
+		// <summary>
+        // Selects the standard set of Yes/No buttons.
+        // </summary>
+		public const ulong STD_YES_NO_BUTTONS = (BUTTON_TITLE_YES*BUTTON_POS_0)+(BUTTON_TITLE_NO*BUTTON_POS_1);
+	}
 }

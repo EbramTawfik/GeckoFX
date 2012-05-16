@@ -109,4 +109,21 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void BeginWindowMove([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent mouseDownEvent, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement panel);
 	}
+	
+	/// <summary>nsIDOMChromeWindowConsts </summary>
+	public class nsIDOMChromeWindowConsts
+	{
+		
+		// 
+		public const ulong STATE_MAXIMIZED = 1;
+		
+		// 
+		public const ulong STATE_MINIMIZED = 2;
+		
+		// 
+		public const ulong STATE_NORMAL = 3;
+		
+		// 
+		public const ulong STATE_FULLSCREEN = 4;
+	}
 }

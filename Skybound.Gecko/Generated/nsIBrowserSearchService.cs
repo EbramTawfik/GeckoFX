@@ -172,6 +172,30 @@ namespace Gecko
 		int GetTypeAttribute();
 	}
 	
+	/// <summary>nsISearchEngineConsts </summary>
+	public class nsISearchEngineConsts
+	{
+		
+		// <summary>
+        // Supported search engine types.
+        // </summary>
+		public const ulong TYPE_MOZSEARCH = 1;
+		
+		// 
+		public const ulong TYPE_SHERLOCK = 2;
+		
+		// 
+		public const ulong TYPE_OPENSEARCH = 3;
+		
+		// <summary>
+        // Supported search engine data types.
+        // </summary>
+		public const ulong DATA_XML = 1;
+		
+		// 
+		public const ulong DATA_TEXT = 2;
+	}
+	
 	/// <summary>nsIBrowserSearchService </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]

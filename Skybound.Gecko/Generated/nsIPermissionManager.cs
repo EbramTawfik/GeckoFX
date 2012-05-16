@@ -135,4 +135,37 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISimpleEnumerator GetEnumeratorAttribute();
 	}
+	
+	/// <summary>nsIPermissionManagerConsts </summary>
+	public class nsIPermissionManagerConsts
+	{
+		
+		// <summary>
+        // Predefined return values for the testPermission method and for
+        // the permission param of the add method
+        // NOTE: UNKNOWN_ACTION (0) is reserved to represent the
+        // default permission when no entry is found for a host, and
+        // should not be used by consumers to indicate otherwise.
+        // </summary>
+		public const long UNKNOWN_ACTION = 0;
+		
+		// 
+		public const long ALLOW_ACTION = 1;
+		
+		// 
+		public const long DENY_ACTION = 2;
+		
+		// <summary>
+        // Predefined expiration types for permissions.  Permissions can be permanent
+        // (never expire), expire at the end of the session, or expire at a specified
+        // time.
+        // </summary>
+		public const long EXPIRE_NEVER = 0;
+		
+		// 
+		public const long EXPIRE_SESSION = 1;
+		
+		// 
+		public const long EXPIRE_TIME = 2;
+	}
 }

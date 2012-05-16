@@ -55,6 +55,33 @@ namespace Gecko
 		short GetType();
 	}
 	
+	/// <summary>nsIKeyObjectConsts </summary>
+	public class nsIKeyObjectConsts
+	{
+		
+		// <summary>
+        // Key types
+        // </summary>
+		public const int SYM_KEY = 1;
+		
+		// 
+		public const int PRIVATE_KEY = 2;
+		
+		// 
+		public const int PUBLIC_KEY = 3;
+		
+		// <summary>
+        // Algorithm types
+        // </summary>
+		public const int RC4 = 1;
+		
+		// 
+		public const int AES_CBC = 2;
+		
+		// 
+		public const int HMAC = 257;
+	}
+	
 	/// <summary>nsIKeyObjectFactory </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]

@@ -53,4 +53,36 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint IsTypeSupported([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aType, [MarshalAs(UnmanagedType.Interface)] nsIWebNavigation aWebNav);
 	}
+	
+	/// <summary>nsIWebNavigationInfoConsts </summary>
+	public class nsIWebNavigationInfoConsts
+	{
+		
+		// <summary>
+        // Returned by isTypeSupported to indicate lack of support for a type.
+        // @note this is guaranteed not to change, so that boolean tests can be done
+        // on the return value if isTypeSupported to detect whether a type is
+        // supported at all.
+        // </summary>
+		public const ulong UNSUPPORTED = 0;
+		
+		// <summary>
+        // Returned by isTypeSupported to indicate that a type is supported as an
+        // image.
+        // </summary>
+		public const ulong IMAGE = 1;
+		
+		// <summary>
+        // Returned by isTypeSupported to indicate that a type is supported via an
+        // NPAPI ("Netscape 4 API") plug-in.  This is not the value returned for
+        // "XPCOM plug-ins".
+        // </summary>
+		public const ulong PLUGIN = 2;
+		
+		// <summary>
+        // Returned by isTypeSupported to indicate that a type is supported via some
+        // other means.
+        // </summary>
+		public const ulong OTHER = 1<<15;
+	}
 }

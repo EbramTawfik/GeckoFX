@@ -37,4 +37,69 @@ namespace Gecko
 	public interface nsICMSMessageErrors
 	{
 	}
+	
+	/// <summary>nsICMSMessageErrorsConsts </summary>
+	public class nsICMSMessageErrorsConsts
+	{
+		
+		// <summary>
+        // nsICMSMessageErrors
+        // Scriptable error constants for nsICMSMessage
+        // </summary>
+		public const long SUCCESS = 0;
+		
+		// 
+		public const long GENERAL_ERROR = 1;
+		
+		// 
+		public const long VERIFY_NOT_SIGNED = 1024;
+		
+		// 
+		public const long VERIFY_NO_CONTENT_INFO = 1025;
+		
+		// 
+		public const long VERIFY_BAD_DIGEST = 1026;
+		
+		// 
+		public const long VERIFY_NOCERT = 1028;
+		
+		// 
+		public const long VERIFY_UNTRUSTED = 1029;
+		
+		// 
+		public const long VERIFY_ERROR_UNVERIFIED = 1031;
+		
+		// 
+		public const long VERIFY_ERROR_PROCESSING = 1032;
+		
+		// 
+		public const long VERIFY_BAD_SIGNATURE = 1033;
+		
+		// 
+		public const long VERIFY_DIGEST_MISMATCH = 1034;
+		
+		// 
+		public const long VERIFY_UNKNOWN_ALGO = 1035;
+		
+		// 
+		public const long VERIFY_UNSUPPORTED_ALGO = 1036;
+		
+		// 
+		public const long VERIFY_MALFORMED_SIGNATURE = 1037;
+		
+		// 
+		public const long VERIFY_HEADER_MISMATCH = 1038;
+		
+		// 
+		public const long VERIFY_NOT_YET_ATTEMPTED = 1039;
+		
+		// 
+		public const long VERIFY_CERT_WITHOUT_ADDRESS = 1040;
+		
+		// 
+		public const long ENCRYPT_NO_BULK_ALG = 1056;
+		
+		// 
+		public const long ENCRYPT_INCOMPLETE = 1057;
+	}
 }

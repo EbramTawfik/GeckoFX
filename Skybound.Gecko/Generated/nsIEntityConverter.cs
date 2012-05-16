@@ -34,9 +34,10 @@ namespace Gecko
 	public interface nsIEntityConverter
 	{
 		
-		/// <summary>
-        /// excludes &quot, &amp, &lt, &gt
-        /// </summary>
+		/// <summary>Member ConvertUTF32ToEntity </summary>
+		/// <param name='character'> </param>
+		/// <param name='entityVersion'> </param>
+		/// <returns>A System.String</returns>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string ConvertUTF32ToEntity(uint character, uint entityVersion);
@@ -56,5 +57,39 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string ConvertToEntities([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string inString, uint entityVersion);
+	}
+	
+	/// <summary>nsIEntityConverterConsts </summary>
+	public class nsIEntityConverterConsts
+	{
+		
+		// 
+		public const ulong entityNone = 0;
+		
+		// 
+		public const ulong html40Latin1 = 1;
+		
+		// 
+		public const ulong html40Symbols = 2;
+		
+		// 
+		public const ulong html40Special = 4;
+		
+		// <summary>
+        // excludes &quot, &amp, &lt, &gt
+        // </summary>
+		public const ulong transliterate = 8;
+		
+		// 
+		public const ulong mathml20 = 16;
+		
+		// 
+		public const ulong html32 = html40Latin1;
+		
+		// 
+		public const ulong html40 = html40Latin1+html40Symbols+html40Special;
+		
+		// 
+		public const ulong entityW3C = html40+mathml20;
 	}
 }

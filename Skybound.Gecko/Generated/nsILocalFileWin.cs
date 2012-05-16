@@ -687,4 +687,18 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetFileAttributesWinAttribute(uint aFileAttributesWin);
 	}
+	
+	/// <summary>nsILocalFileWinConsts </summary>
+	public class nsILocalFileWinConsts
+	{
+		
+		// <summary>
+        // Windows specific file attributes.
+        //
+        // WFA_SEARCH_INDEXED: Generally the default on files in Windows except
+        // those created in temp locations. Valid on XP and up. When set the
+        // file or directory is marked to be indexed by desktop search services.
+        // </summary>
+		public const ulong WFA_SEARCH_INDEXED = 1;
+	}
 }

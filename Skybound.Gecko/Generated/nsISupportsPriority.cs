@@ -72,4 +72,26 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void AdjustPriority(int delta);
 	}
+	
+	/// <summary>nsISupportsPriorityConsts </summary>
+	public class nsISupportsPriorityConsts
+	{
+		
+		// <summary>
+        // Typical priority values.
+        // </summary>
+		public const long PRIORITY_HIGHEST = -20;
+		
+		// 
+		public const long PRIORITY_HIGH = -10;
+		
+		// 
+		public const long PRIORITY_NORMAL = 0;
+		
+		// 
+		public const long PRIORITY_LOW = 10;
+		
+		// 
+		public const long PRIORITY_LOWEST = 20;
+	}
 }

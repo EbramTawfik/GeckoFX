@@ -36,9 +36,6 @@ namespace Gecko
 	public interface nsIGIOMimeApp
 	{
 		
-		/// <summary>
-        /// 66009894-9877-405b-9321-bf30420e34e6 prev uuid
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetIdAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aId);
 		
@@ -69,6 +66,22 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetAsDefaultForURIScheme([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase uriScheme);
+	}
+	
+	/// <summary>nsIGIOMimeAppConsts </summary>
+	public class nsIGIOMimeAppConsts
+	{
+		
+		// <summary>
+        // 66009894-9877-405b-9321-bf30420e34e6 prev uuid
+        // </summary>
+		public const long EXPECTS_URIS = 0;
+		
+		// 
+		public const long EXPECTS_PATHS = 1;
+		
+		// 
+		public const long EXPECTS_URIS_FOR_NON_FILES = 2;
 	}
 	
 	/// <summary>

@@ -99,4 +99,39 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetMyHostNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aMyHostName);
 	}
+	
+	/// <summary>nsIDNSServiceConsts </summary>
+	public class nsIDNSServiceConsts
+	{
+		
+		// <summary>
+        // if set, this flag suppresses the internal DNS lookup cache.
+        // </summary>
+		public const ulong RESOLVE_BYPASS_CACHE = (1<<0);
+		
+		// <summary>
+        // if set, the canonical name of the specified host will be queried.
+        // </summary>
+		public const ulong RESOLVE_CANONICAL_NAME = (1<<1);
+		
+		// <summary>
+        // if set, the query is given lower priority. Medium takes precedence
+        // if both are used.
+        // </summary>
+		public const ulong RESOLVE_PRIORITY_MEDIUM = (1<<2);
+		
+		// 
+		public const ulong RESOLVE_PRIORITY_LOW = (1<<3);
+		
+		// <summary>
+        // if set, indicates request is speculative. Speculative requests
+        // return errors if prefetching is disabled by configuration.
+        // </summary>
+		public const ulong RESOLVE_SPECULATE = (1<<4);
+		
+		// <summary>
+        // If set, only IPv4 addresses will be returned from resolve/asyncResolve.
+        // </summary>
+		public const ulong RESOLVE_DISABLE_IPV6 = (1<<5);
+	}
 }

@@ -124,4 +124,23 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool StartSoftwareUpdate([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aUrl, int aFlags);
 	}
+	
+	/// <summary>amIInstallTriggerConsts </summary>
+	public class amIInstallTriggerConsts
+	{
+		
+		// <summary>
+        // Retained for backwards compatibility.
+        // </summary>
+		public const long SKIN = 1;
+		
+		// 
+		public const long LOCALE = 2;
+		
+		// 
+		public const long CONTENT = 4;
+		
+		// 
+		public const long PACKAGE = 7;
+	}
 }

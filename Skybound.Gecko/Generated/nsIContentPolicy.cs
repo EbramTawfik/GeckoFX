@@ -129,4 +129,149 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		short ShouldProcess(uint aContentType, [MarshalAs(UnmanagedType.Interface)] nsIURI aContentLocation, [MarshalAs(UnmanagedType.Interface)] nsIURI aRequestOrigin, [MarshalAs(UnmanagedType.Interface)] nsISupports aContext, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aMimeType, [MarshalAs(UnmanagedType.Interface)] nsISupports aExtra);
 	}
+	
+	/// <summary>nsIContentPolicyConsts </summary>
+	public class nsIContentPolicyConsts
+	{
+		
+		// <summary>
+        // Interface for content policy mechanism.  Implementations of this
+        // interface can be used to control loading of various types of out-of-line
+        // content, or processing of certain types of in-line content.
+        //
+        // WARNING: do not block the caller from shouldLoad or shouldProcess (e.g.,
+        // by launching a dialog to prompt the user for something).
+        // </summary>
+		public const ulong TYPE_OTHER = 1;
+		
+		// <summary>
+        // Indicates an executable script (such as JavaScript).
+        // </summary>
+		public const ulong TYPE_SCRIPT = 2;
+		
+		// <summary>
+        // Indicates an image (e.g., IMG elements).
+        // </summary>
+		public const ulong TYPE_IMAGE = 3;
+		
+		// <summary>
+        // Indicates a stylesheet (e.g., STYLE elements).
+        // </summary>
+		public const ulong TYPE_STYLESHEET = 4;
+		
+		// <summary>
+        // Indicates a generic object (plugin-handled content typically falls under
+        // this category).
+        // </summary>
+		public const ulong TYPE_OBJECT = 5;
+		
+		// <summary>
+        // Indicates a document at the top-level (i.e., in a browser).
+        // </summary>
+		public const ulong TYPE_DOCUMENT = 6;
+		
+		// <summary>
+        // Indicates a document contained within another document (e.g., IFRAMEs,
+        // FRAMES, and OBJECTs).
+        // </summary>
+		public const ulong TYPE_SUBDOCUMENT = 7;
+		
+		// <summary>
+        // Indicates a timed refresh.
+        //
+        // shouldLoad will never get this, because it does not represent content
+        // to be loaded (the actual load triggered by the refresh will go through
+        // shouldLoad as expected).
+        //
+        // shouldProcess will get this for, e.g., META Refresh elements and HTTP
+        // Refresh headers.
+        // </summary>
+		public const ulong TYPE_REFRESH = 8;
+		
+		// <summary>
+        // Indicates an XBL binding request, triggered either by -moz-binding CSS
+        // property or Document.addBinding method.
+        // </summary>
+		public const ulong TYPE_XBL = 9;
+		
+		// <summary>
+        // Indicates a ping triggered by a click on <A PING="..."> element.
+        // </summary>
+		public const ulong TYPE_PING = 10;
+		
+		// <summary>
+        // Indicates an XMLHttpRequest. Also used for document.load and for EventSource.
+        // </summary>
+		public const ulong TYPE_XMLHTTPREQUEST = 11;
+		
+		// 
+		public const ulong TYPE_DATAREQUEST = 11;
+		
+		// <summary>
+        // Indicates a request by a plugin.
+        // </summary>
+		public const ulong TYPE_OBJECT_SUBREQUEST = 12;
+		
+		// <summary>
+        // Indicates a DTD loaded by an XML document.
+        // </summary>
+		public const ulong TYPE_DTD = 13;
+		
+		// <summary>
+        // Indicates a font loaded via @font-face rule.
+        // </summary>
+		public const ulong TYPE_FONT = 14;
+		
+		// <summary>
+        // Indicates a video or audio load.
+        // </summary>
+		public const ulong TYPE_MEDIA = 15;
+		
+		// <summary>
+        // Indicates a WebSocket load.
+        // </summary>
+		public const ulong TYPE_WEBSOCKET = 16;
+		
+		// <summary>
+        // Returned from shouldLoad or shouldProcess if the load or process request
+        // is rejected based on details of the request.
+        // </summary>
+		public const int REJECT_REQUEST = -1;
+		
+		// <summary>
+        // Returned from shouldLoad or shouldProcess if the load/process is rejected
+        // based solely on its type (of the above flags).
+        //
+        // NOTE that it is not meant to stop future requests for this type--only the
+        // current request.
+        // </summary>
+		public const int REJECT_TYPE = -2;
+		
+		// <summary>
+        // Returned from shouldLoad or shouldProcess if the load/process is rejected
+        // based on the server it is hosted on or requested from (aContentLocation or
+        // aRequestOrigin), e.g., if you block an IMAGE because it is served from
+        // goatse.cx (even if you don't necessarily block other types from that
+        // server/domain).
+        //
+        // NOTE that it is not meant to stop future requests for this server--only the
+        // current request.
+        // </summary>
+		public const int REJECT_SERVER = -3;
+		
+		// <summary>
+        // Returned from shouldLoad or shouldProcess if the load/process is rejected
+        // based on some other criteria. Mozilla callers will handle this like
+        // REJECT_REQUEST; third-party implementors may, for example, use this to
+        // direct their own callers to consult the extra parameter for additional
+        // details.
+        // </summary>
+		public const int REJECT_OTHER = -4;
+		
+		// <summary>
+        // Returned from shouldLoad or shouldProcess if the load or process request
+        // is not rejected.
+        // </summary>
+		public const int ACCEPT = 1;
+	}
 }

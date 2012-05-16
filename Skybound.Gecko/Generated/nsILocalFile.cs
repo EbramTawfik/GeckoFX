@@ -590,4 +590,15 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetRelativeDescriptor([MarshalAs(UnmanagedType.Interface)] nsILocalFile fromFile, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase relativeDesc);
 	}
+	
+	/// <summary>nsILocalFileConsts </summary>
+	public class nsILocalFileConsts
+	{
+		
+		// 
+		public const ulong OS_READAHEAD = 0x40000000;
+		
+		// 
+		public const ulong DELETE_ON_CLOSE = 0x80000000;
+	}
 }

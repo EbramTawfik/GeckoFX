@@ -130,4 +130,39 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetSiteWindowAttribute();
 	}
+	
+	/// <summary>nsIEmbeddingSiteWindowConsts </summary>
+	public class nsIEmbeddingSiteWindowConsts
+	{
+		
+		// <summary>
+        // Flag indicates that position of the top left corner of the outer area
+        // is required/specified.
+        //
+        // @see setDimensions
+        // @see getDimensions
+        // </summary>
+		public const ulong DIM_FLAGS_POSITION = 1;
+		
+		// <summary>
+        // Flag indicates that the size of the inner area is required/specified.
+        //
+        // @note The inner and outer flags are mutually exclusive and it is
+        // invalid to combine them.
+        //
+        // @see setDimensions
+        // @see getDimensions
+        // @see DIM_FLAGS_SIZE_OUTER
+        // </summary>
+		public const ulong DIM_FLAGS_SIZE_INNER = 2;
+		
+		// <summary>
+        // Flag indicates that the size of the outer area is required/specified.
+        //
+        // @see setDimensions
+        // @see getDimensions
+        // @see DIM_FLAGS_SIZE_INNER
+        // </summary>
+		public const ulong DIM_FLAGS_SIZE_OUTER = 4;
+	}
 }

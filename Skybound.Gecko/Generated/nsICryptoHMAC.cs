@@ -120,4 +120,33 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Reset();
 	}
+	
+	/// <summary>nsICryptoHMACConsts </summary>
+	public class nsICryptoHMACConsts
+	{
+		
+		// <summary>
+        // Hashing Algorithms.  These values are to be used by the
+        // |init| method to indicate which hashing function to
+        // use.  These values map onto the values defined in
+        // mozilla/security/nss/lib/softoken/pkcs11t.h and are
+        // switched to CKM_*_HMAC constant.
+        // </summary>
+		public const int MD2 = 1;
+		
+		// 
+		public const int MD5 = 2;
+		
+		// 
+		public const int SHA1 = 3;
+		
+		// 
+		public const int SHA256 = 4;
+		
+		// 
+		public const int SHA384 = 5;
+		
+		// 
+		public const int SHA512 = 6;
+	}
 }

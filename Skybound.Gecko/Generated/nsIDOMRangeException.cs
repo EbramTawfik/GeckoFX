@@ -37,11 +37,21 @@ namespace Gecko
 	public interface nsIDOMRangeException
 	{
 		
-		/// <summary>
-        /// The complete Range spec is located at:
-        /// http://www.w3.org/TR/DOM-Level-2-Traversal-Range/ranges.html
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		ushort GetCodeAttribute();
+	}
+	
+	/// <summary>nsIDOMRangeExceptionConsts </summary>
+	public class nsIDOMRangeExceptionConsts
+	{
+		
+		// <summary>
+        // The complete Range spec is located at:
+        // http://www.w3.org/TR/DOM-Level-2-Traversal-Range/ranges.html
+        // </summary>
+		public const ulong BAD_BOUNDARYPOINTS_ERR = 1;
+		
+		// 
+		public const ulong INVALID_NODE_TYPE_ERR = 2;
 	}
 }

@@ -114,4 +114,26 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void PlayPlugin();
 	}
+	
+	/// <summary>nsIObjectLoadingContentConsts </summary>
+	public class nsIObjectLoadingContentConsts
+	{
+		
+		// <summary>
+        // This interface represents a content node that loads objects.
+        // </summary>
+		public const ulong TYPE_LOADING = 0;
+		
+		// 
+		public const ulong TYPE_IMAGE = 1;
+		
+		// 
+		public const ulong TYPE_PLUGIN = 2;
+		
+		// 
+		public const ulong TYPE_DOCUMENT = 3;
+		
+		// 
+		public const ulong TYPE_NULL = 4;
+	}
 }

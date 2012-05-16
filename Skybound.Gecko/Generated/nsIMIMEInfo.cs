@@ -161,6 +161,29 @@ namespace Gecko
 		void SetAlwaysAskBeforeHandlingAttribute([MarshalAs(UnmanagedType.U1)] bool aAlwaysAskBeforeHandling);
 	}
 	
+	/// <summary>nsIHandlerInfoConsts </summary>
+	public class nsIHandlerInfoConsts
+	{
+		
+		// 
+		public const long saveToDisk = 0;
+		
+		// <summary>
+        // Used to indicate that we know nothing about what to do with this.  You
+        // could consider this to be not initialized.
+        // </summary>
+		public const long alwaysAsk = 1;
+		
+		// 
+		public const long useHelperApp = 2;
+		
+		// 
+		public const long handleInternally = 3;
+		
+		// 
+		public const long useSystemDefault = 4;
+	}
+	
 	/// <summary>
     /// nsIMIMEInfo extends nsIHandlerInfo with a bunch of information specific to
     /// MIME content-types. There is a one-to-many relationship between MIME types

@@ -275,4 +275,25 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetCspAttribute(System.IntPtr aCsp);
 	}
+	
+	/// <summary>nsIPrincipalConsts </summary>
+	public class nsIPrincipalConsts
+	{
+		
+		// <summary>
+        // Values of capabilities for each principal. Order is
+        // significant: if an operation is performed on a set
+        // of capabilities, the minimum is computed.
+        // </summary>
+		public const int ENABLE_DENIED = 1;
+		
+		// 
+		public const int ENABLE_UNKNOWN = 2;
+		
+		// 
+		public const int ENABLE_WITH_USER_PERMISSION = 3;
+		
+		// 
+		public const int ENABLE_GRANTED = 4;
+	}
 }

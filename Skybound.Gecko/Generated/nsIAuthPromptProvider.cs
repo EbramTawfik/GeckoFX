@@ -48,4 +48,19 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetAuthPrompt(uint aPromptReason, ref System.Guid iid);
 	}
+	
+	/// <summary>nsIAuthPromptProviderConsts </summary>
+	public class nsIAuthPromptProviderConsts
+	{
+		
+		// <summary>
+        // Normal (non-proxy) prompt request.
+        // </summary>
+		public const long PROMPT_NORMAL = 0;
+		
+		// <summary>
+        // Proxy auth request.
+        // </summary>
+		public const long PROMPT_PROXY = 1;
+	}
 }

@@ -114,4 +114,33 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RemoveObjectResizeEventListener([MarshalAs(UnmanagedType.Interface)] nsIHTMLObjectResizeListener aListener);
 	}
+	
+	/// <summary>nsIHTMLObjectResizerConsts </summary>
+	public class nsIHTMLObjectResizerConsts
+	{
+		
+		// 
+		public const int eTopLeft = 0;
+		
+		// 
+		public const int eTop = 1;
+		
+		// 
+		public const int eTopRight = 2;
+		
+		// 
+		public const int eLeft = 3;
+		
+		// 
+		public const int eRight = 4;
+		
+		// 
+		public const int eBottomLeft = 5;
+		
+		// 
+		public const int eBottom = 6;
+		
+		// 
+		public const int eBottomRight = 7;
+	}
 }

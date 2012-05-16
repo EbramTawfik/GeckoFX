@@ -40,9 +40,6 @@ namespace Gecko
 	public interface nsIDOMCSSRule
 	{
 		
-		/// <summary>
-        /// RuleType
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		ushort GetTypeAttribute();
 		
@@ -62,5 +59,39 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMCSSRule GetParentRuleAttribute();
+	}
+	
+	/// <summary>nsIDOMCSSRuleConsts </summary>
+	public class nsIDOMCSSRuleConsts
+	{
+		
+		// <summary>
+        // RuleType
+        // </summary>
+		public const ulong UNKNOWN_RULE = 0;
+		
+		// 
+		public const ulong STYLE_RULE = 1;
+		
+		// 
+		public const ulong CHARSET_RULE = 2;
+		
+		// 
+		public const ulong IMPORT_RULE = 3;
+		
+		// 
+		public const ulong MEDIA_RULE = 4;
+		
+		// 
+		public const ulong FONT_FACE_RULE = 5;
+		
+		// 
+		public const ulong PAGE_RULE = 6;
+		
+		// 
+		public const ulong MOZ_KEYFRAMES_RULE = 7;
+		
+		// 
+		public const ulong MOZ_KEYFRAME_RULE = 8;
 	}
 }

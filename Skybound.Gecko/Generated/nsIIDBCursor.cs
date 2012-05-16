@@ -38,11 +38,6 @@ namespace Gecko
 	public interface nsIIDBCursor
 	{
 		
-		/// <summary>
-        /// IDBCursor interface.  See
-        /// http://dev.w3.org/2006/webapi/WebSimpleDB/#idl-def-IDBCursor for more
-        /// information.
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		ushort GetDirectionAttribute();
 		
@@ -77,5 +72,26 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Advance(int count);
+	}
+	
+	/// <summary>nsIIDBCursorConsts </summary>
+	public class nsIIDBCursorConsts
+	{
+		
+		// <summary>
+        // IDBCursor interface.  See
+        // http://dev.w3.org/2006/webapi/WebSimpleDB/#idl-def-IDBCursor for more
+        // information.
+        // </summary>
+		public const ulong NEXT = 0;
+		
+		// 
+		public const ulong NEXT_NO_DUPLICATE = 1;
+		
+		// 
+		public const ulong PREV = 2;
+		
+		// 
+		public const ulong PREV_NO_DUPLICATE = 3;
 	}
 }

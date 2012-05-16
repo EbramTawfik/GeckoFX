@@ -56,6 +56,35 @@ namespace Gecko
 		void ApplicationCacheAvailable([MarshalAs(UnmanagedType.Interface)] nsIApplicationCache applicationCache);
 	}
 	
+	/// <summary>nsIOfflineCacheUpdateObserverConsts </summary>
+	public class nsIOfflineCacheUpdateObserverConsts
+	{
+		
+		// 
+		public const ulong STATE_ERROR = 1;
+		
+		// 
+		public const ulong STATE_CHECKING = 2;
+		
+		// 
+		public const ulong STATE_NOUPDATE = 3;
+		
+		// 
+		public const ulong STATE_OBSOLETE = 4;
+		
+		// 
+		public const ulong STATE_DOWNLOADING = 5;
+		
+		// 
+		public const ulong STATE_ITEMSTARTED = 6;
+		
+		// 
+		public const ulong STATE_ITEMCOMPLETED = 7;
+		
+		// 
+		public const ulong STATE_FINISHED = 10;
+	}
+	
 	/// <summary>
     /// An nsIOfflineCacheUpdate is used to update an application's offline
     /// resources.
@@ -248,5 +277,16 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool OfflineAppAllowedForURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIPrefBranch aPrefBranch);
+	}
+	
+	/// <summary>nsIOfflineCacheUpdateServiceConsts </summary>
+	public class nsIOfflineCacheUpdateServiceConsts
+	{
+		
+		// <summary>
+        // Allow the domain to use offline APIs, and don't warn about excessive
+        // usage.
+        // </summary>
+		public const ulong ALLOW_NO_WARN = 3;
 	}
 }

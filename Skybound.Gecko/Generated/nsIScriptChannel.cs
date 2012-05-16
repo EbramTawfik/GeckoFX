@@ -100,4 +100,25 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetExecuteAsyncAttribute([MarshalAs(UnmanagedType.U1)] bool aExecuteAsync);
 	}
+	
+	/// <summary>nsIScriptChannelConsts </summary>
+	public class nsIScriptChannelConsts
+	{
+		
+		// <summary>
+        // Don't execute at all.
+        // </summary>
+		public const ulong NO_EXECUTION = 0;
+		
+		// <summary>
+        // Execute in a sandbox, no matter how the various principals involved are
+        // related to each other.
+        // </summary>
+		public const ulong EXECUTE_IN_SANDBOX = 1;
+		
+		// <summary>
+        // Execute against the target environment if the principals allow it.
+        // </summary>
+		public const ulong EXECUTE_NORMAL = 2;
+	}
 }

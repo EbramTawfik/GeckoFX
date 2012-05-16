@@ -38,6 +38,53 @@ namespace Gecko
 	{
 	}
 	
+	/// <summary>nsIAccessibleScrollTypeConsts </summary>
+	public class nsIAccessibleScrollTypeConsts
+	{
+		
+		// <summary>
+        // Scroll the top left of the object or substring to the top left of the
+        // window (or as close as possible).
+        // </summary>
+		public const ulong SCROLL_TYPE_TOP_LEFT = 0x00;
+		
+		// <summary>
+        // Scroll the bottom right of the object or substring to the bottom right of
+        // the window (or as close as possible).
+        // </summary>
+		public const ulong SCROLL_TYPE_BOTTOM_RIGHT = 0x01;
+		
+		// <summary>
+        // Scroll the top edge of the object or substring to the top edge of the
+        // window (or as close as possible).
+        // </summary>
+		public const ulong SCROLL_TYPE_TOP_EDGE = 0x02;
+		
+		// <summary>
+        // Scroll the bottom edge of the object or substring to the bottom edge of
+        // the window (or as close as possible).
+        // </summary>
+		public const ulong SCROLL_TYPE_BOTTOM_EDGE = 0x03;
+		
+		// <summary>
+        // Scroll the left edge of the object or substring to the left edge of the
+        // window (or as close as possible).
+        // </summary>
+		public const ulong SCROLL_TYPE_LEFT_EDGE = 0x04;
+		
+		// <summary>
+        // Scroll the right edge of the object or substring to the right edge of the
+        // window (or as close as possible).
+        // </summary>
+		public const ulong SCROLL_TYPE_RIGHT_EDGE = 0x05;
+		
+		// <summary>
+        // Scroll an object the minimum amount necessary in order for the entire
+        // frame to be visible (if possible).
+        // </summary>
+		public const ulong SCROLL_TYPE_ANYWHERE = 0x06;
+	}
+	
 	/// <summary>
     /// These constants define which coordinate system a point is located in.
     /// </summary>
@@ -46,5 +93,26 @@ namespace Gecko
 	[Guid("c9fbdf10-619e-436f-bf4b-8566686f1577")]
 	public interface nsIAccessibleCoordinateType
 	{
+	}
+	
+	/// <summary>nsIAccessibleCoordinateTypeConsts </summary>
+	public class nsIAccessibleCoordinateTypeConsts
+	{
+		
+		// <summary>
+        // The coordinates are relative to the screen.
+        // </summary>
+		public const ulong COORDTYPE_SCREEN_RELATIVE = 0x00;
+		
+		// <summary>
+        // The coordinates are relative to the window.
+        // </summary>
+		public const ulong COORDTYPE_WINDOW_RELATIVE = 0x01;
+		
+		// <summary>
+        // The coordinates are relative to the upper left corner of the bounding box
+        // of the immediate parent.
+        // </summary>
+		public const ulong COORDTYPE_PARENT_RELATIVE = 0x02;
 	}
 }

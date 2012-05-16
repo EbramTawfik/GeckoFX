@@ -229,4 +229,45 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ScrollSubstringToPoint(int startIndex, int endIndex, uint coordinateType, int x, int y);
 	}
+	
+	/// <summary>nsIAccessibleTextConsts </summary>
+	public class nsIAccessibleTextConsts
+	{
+		
+		// <summary>
+        //  -2 will be treated as the caret position
+        // </summary>
+		public const int TEXT_OFFSET_END_OF_TEXT = -1;
+		
+		// 
+		public const int TEXT_OFFSET_CARET = -2;
+		
+		// 
+		public const long BOUNDARY_CHAR = 0;
+		
+		// 
+		public const long BOUNDARY_WORD_START = 1;
+		
+		// 
+		public const long BOUNDARY_WORD_END = 2;
+		
+		// 
+		public const long BOUNDARY_SENTENCE_START = 3;
+		
+		// <summary>
+        // don't use, deprecated
+        // </summary>
+		public const long BOUNDARY_SENTENCE_END = 4;
+		
+		// <summary>
+        // don't use, deprecated
+        // </summary>
+		public const long BOUNDARY_LINE_START = 5;
+		
+		// 
+		public const long BOUNDARY_LINE_END = 6;
+		
+		// 
+		public const long BOUNDARY_ATTRIBUTE_RANGE = 7;
+	}
 }

@@ -36,9 +36,6 @@ namespace Gecko
 	public interface nsIGnomeVFSMimeApp
 	{
 		
-		/// <summary>
-        ///nsIGnomeVFSMimeApp holds information about an application that is looked up
-        ///   with nsIGnomeVFSService::GetAppForMimeType. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetIdAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aId);
 		
@@ -68,6 +65,22 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Launch([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase uri);
+	}
+	
+	/// <summary>nsIGnomeVFSMimeAppConsts </summary>
+	public class nsIGnomeVFSMimeAppConsts
+	{
+		
+		// <summary>
+        //nsIGnomeVFSMimeApp holds information about an application that is looked up
+        //   with nsIGnomeVFSService::GetAppForMimeType. </summary>
+		public const long EXPECTS_URIS = 0;
+		
+		// 
+		public const long EXPECTS_PATHS = 1;
+		
+		// 
+		public const long EXPECTS_URIS_FOR_NON_FILES = 2;
 	}
 	
 	/// <summary>

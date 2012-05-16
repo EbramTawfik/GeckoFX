@@ -66,4 +66,33 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetErrorClass(int aXPCOMErrorCode);
 	}
+	
+	/// <summary>nsINSSErrorsServiceConsts </summary>
+	public class nsINSSErrorsServiceConsts
+	{
+		
+		// 
+		public const ulong ERROR_CLASS_SSL_PROTOCOL = 1;
+		
+		// 
+		public const ulong ERROR_CLASS_BAD_CERT = 2;
+		
+		// <summary>
+        // The following values define the range of NSPR error codes used by NSS.
+        // NSS remains the authorative source for these numbers, as a result,
+        // the values might change in the future.
+        // The security module will perform a runtime check and assertion
+        // to ensure the values are in synch with NSS.
+        // </summary>
+		public const long NSS_SEC_ERROR_BASE = -(0x2000);
+		
+		// 
+		public const long NSS_SEC_ERROR_LIMIT = (NSS_SEC_ERROR_BASE+1000);
+		
+		// 
+		public const long NSS_SSL_ERROR_BASE = -(0x3000);
+		
+		// 
+		public const long NSS_SSL_ERROR_LIMIT = (NSS_SSL_ERROR_BASE+1000);
+	}
 }

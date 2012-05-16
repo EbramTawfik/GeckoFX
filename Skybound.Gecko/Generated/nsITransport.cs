@@ -141,11 +141,30 @@ namespace Gecko
 		void SetEventSink([MarshalAs(UnmanagedType.Interface)] nsITransportEventSink aSink, [MarshalAs(UnmanagedType.Interface)] nsIEventTarget aEventTarget);
 	}
 	
-	/// <summary>
-    /// Generic nsITransportEventSink status codes.  nsITransport
-    /// implementations may override these status codes with their own more
-    /// specific status codes (e.g., see nsISocketTransport).
-    /// </summary>
+	/// <summary>nsITransportConsts </summary>
+	public class nsITransportConsts
+	{
+		
+		// <summary>
+        // Open flags.
+        // </summary>
+		public const ulong OPEN_BLOCKING = 1<<0;
+		
+		// 
+		public const ulong OPEN_UNBUFFERED = 1<<1;
+		
+		// <summary>
+        // Generic nsITransportEventSink status codes.  nsITransport
+        // implementations may override these status codes with their own more
+        // specific status codes (e.g., see nsISocketTransport).
+        // </summary>
+		public const ulong STATUS_READING = 0x804b0008;
+		
+		// 
+		public const ulong STATUS_WRITING = 0x804b0009;
+	}
+	
+	/// <summary>nsITransportEventSink </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("EDA4F520-67F7-484b-A691-8C3226A5B0A6")]

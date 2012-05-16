@@ -73,4 +73,18 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void UnregisterSheet([MarshalAs(UnmanagedType.Interface)] nsIURI sheetURI, uint type);
 	}
+	
+	/// <summary>nsIStyleSheetServiceConsts </summary>
+	public class nsIStyleSheetServiceConsts
+	{
+		
+		// <summary>
+        // nsIStyleSheetService allows extensions or embeddors to add to the
+        // built-in list of user or agent style sheets.
+        // </summary>
+		public const ulong AGENT_SHEET = 0;
+		
+		// 
+		public const ulong USER_SHEET = 1;
+	}
 }

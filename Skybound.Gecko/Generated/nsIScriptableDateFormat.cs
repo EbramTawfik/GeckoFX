@@ -92,4 +92,73 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string FormatTime([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string locale, int timeFormatSelector, int hour, int minute, int second);
 	}
+	
+	/// <summary>nsIScriptableDateFormatConsts </summary>
+	public class nsIScriptableDateFormatConsts
+	{
+		
+		// <summary>
+        // Do not include the date in the format string.
+        // </summary>
+		public const long dateFormatNone = 0;
+		
+		// <summary>
+        // Provide the long date format.
+        //
+        // NOTE:
+        // The original definitions of dateFormatLong and dateFormatShort are from
+        // the Windows platform.
+        // In US English dateFormatLong output will be like:
+        // Wednesday, January 29, 2003 4:02:14 PM
+        // In US English dateFormatShort output will be like:
+        // 1/29/03 4:02:14 PM
+        // On platforms like Linux and OS2, it is rather difficult to achieve exact
+        // same output, and since we are aiming at human readers, it does not make
+        // sense to achieve exact same result. We will do just enough as the
+        // platform allow us to do.
+        // </summary>
+		public const long dateFormatLong = 1;
+		
+		// <summary>
+        // Provide the short date format. See also dateFormatLong.
+        // </summary>
+		public const long dateFormatShort = 2;
+		
+		// <summary>
+        // Format using only the year and month.
+        // </summary>
+		public const long dateFormatYearMonth = 3;
+		
+		// <summary>
+        // Provide the Week day (e.g. Mo, Mon, Monday or similar).
+        // </summary>
+		public const long dateFormatWeekday = 4;
+		
+		// <summary>
+        // Don't include the time in the format string.
+        // </summary>
+		public const long timeFormatNone = 0;
+		
+		// <summary>
+        // Provide the time format with seconds.
+        // </summary>
+		public const long timeFormatSeconds = 1;
+		
+		// <summary>
+        // Provide the time format without seconds.
+        // </summary>
+		public const long timeFormatNoSeconds = 2;
+		
+		// <summary>
+        // Provide the time format with seconds, and force the time format to use
+        // 24-hour clock, regardless of the locale conventions.
+        // </summary>
+		public const long timeFormatSecondsForce24Hour = 3;
+		
+		// <summary>
+        // Provide the time format without seconds, and force the time format to use
+        // 24-hour clock, regardless of the locale conventions.
+        // </summary>
+		public const long timeFormatNoSecondsForce24Hour = 4;
+	}
 }

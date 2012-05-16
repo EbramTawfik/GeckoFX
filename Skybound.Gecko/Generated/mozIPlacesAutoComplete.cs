@@ -65,4 +65,77 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void UnregisterOpenPage([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 	}
+	
+	/// <summary>mozIPlacesAutoCompleteConsts </summary>
+	public class mozIPlacesAutoCompleteConsts
+	{
+		
+		// <summary>
+        // Match anywhere in each searchable term.
+        // </summary>
+		public const long MATCH_ANYWHERE = 0;
+		
+		// <summary>
+        // Match first on word boundaries, and if we do not get enough results, then
+        // match anywhere in each searchable term.
+        // </summary>
+		public const long MATCH_BOUNDARY_ANYWHERE = 1;
+		
+		// <summary>
+        // Match on word boundaries in each searchable term.
+        // </summary>
+		public const long MATCH_BOUNDARY = 2;
+		
+		// <summary>
+        // Match only the beginning of each search term.
+        // </summary>
+		public const long MATCH_BEGINNING = 3;
+		
+		// <summary>
+        // Match anywhere in each searchable term without doing any transformation
+        // or stripping on the underlying data.
+        // </summary>
+		public const long MATCH_ANYWHERE_UNMODIFIED = 4;
+		
+		// <summary>
+        // Search through history.
+        // </summary>
+		public const long BEHAVIOR_HISTORY = 1<<0;
+		
+		// <summary>
+        // Search though bookmarks.
+        // </summary>
+		public const long BEHAVIOR_BOOKMARK = 1<<1;
+		
+		// <summary>
+        // Search through tags.
+        // </summary>
+		public const long BEHAVIOR_TAG = 1<<2;
+		
+		// <summary>
+        // Search the title of pages.
+        // </summary>
+		public const long BEHAVIOR_TITLE = 1<<3;
+		
+		// <summary>
+        // Search the URL of pages.
+        // </summary>
+		public const long BEHAVIOR_URL = 1<<4;
+		
+		// <summary>
+        // Search for typed pages.
+        // </summary>
+		public const long BEHAVIOR_TYPED = 1<<5;
+		
+		// <summary>
+        // Search javascript: URLs.
+        // </summary>
+		public const long BEHAVIOR_JAVASCRIPT = 1<<6;
+		
+		// <summary>
+        // Search for pages that have been marked as being opened, such as a tab
+        // in a tabbrowser.
+        // </summary>
+		public const long BEHAVIOR_OPENPAGE = 1<<7;
+	}
 }

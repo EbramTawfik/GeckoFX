@@ -34,14 +34,8 @@ namespace Gecko
 	public interface nsIDOMXULPopupElement : nsIDOMXULElement
 	{
 		
-		/// <summary>
-        /// The nsIDOMNode interface is the primary datatype for the entire
-        /// Document Object Model.
-        /// It represents a single node in the document tree.
-        ///
-        /// For more information on this interface please see
-        /// http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html
-        /// </summary>
+		/// <summary>Member GetNodeNameAttribute </summary>
+		/// <param name='aNodeName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetNodeNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNodeName);
 		
@@ -984,5 +978,43 @@ namespace Gecko
 		/// <summary>Member HidePopup </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void HidePopup();
+	}
+	
+	/// <summary>nsIDOMXULPopupElementConsts </summary>
+	public class nsIDOMXULPopupElementConsts
+	{
+		
+		// 
+		public const ulong BEFORE_START = 1;
+		
+		// 
+		public const ulong BEFORE_END = 2;
+		
+		// 
+		public const ulong AFTER_START = 3;
+		
+		// 
+		public const ulong AFTER_END = 4;
+		
+		// 
+		public const ulong START_BEFORE = 5;
+		
+		// 
+		public const ulong START_AFTER = 6;
+		
+		// 
+		public const ulong END_BEFORE = 7;
+		
+		// 
+		public const ulong END_AFTER = 8;
+		
+		// 
+		public const ulong OVERLAP = 9;
+		
+		// 
+		public const ulong AT_POINTER = 10;
+		
+		// 
+		public const ulong AFTER_POINTER = 11;
 	}
 }

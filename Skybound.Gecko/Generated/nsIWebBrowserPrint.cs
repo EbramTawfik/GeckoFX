@@ -181,4 +181,26 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ExitPrintPreview();
 	}
+	
+	/// <summary>nsIWebBrowserPrintConsts </summary>
+	public class nsIWebBrowserPrintConsts
+	{
+		
+		// <summary>
+        // PrintPreview Navigation Constants
+        // </summary>
+		public const int PRINTPREVIEW_GOTO_PAGENUM = 0;
+		
+		// 
+		public const int PRINTPREVIEW_PREV_PAGE = 1;
+		
+		// 
+		public const int PRINTPREVIEW_NEXT_PAGE = 2;
+		
+		// 
+		public const int PRINTPREVIEW_HOME = 3;
+		
+		// 
+		public const int PRINTPREVIEW_END = 4;
+	}
 }

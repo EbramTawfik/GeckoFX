@@ -185,10 +185,10 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetImageSrc(int row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn col, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
-		/// <summary>
-        /// The progress mode for a given cell. This method is only called for
-        /// columns of type |progressmeter|.
-        /// </summary>
+		/// <summary>Member GetProgressMode </summary>
+		/// <param name='row'> </param>
+		/// <param name='col'> </param>
+		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new int GetProgressMode(int row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn col);
 		

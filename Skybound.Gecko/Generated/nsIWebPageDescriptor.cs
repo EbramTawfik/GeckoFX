@@ -54,4 +54,19 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISupports GetCurrentDescriptorAttribute();
 	}
+	
+	/// <summary>nsIWebPageDescriptorConsts </summary>
+	public class nsIWebPageDescriptorConsts
+	{
+		
+		// <summary>
+        // The nsIWebPageDescriptor interface allows content being displayed in one
+        // window to be loaded into another window without refetching it from the
+        // network.
+        // </summary>
+		public const ulong DISPLAY_AS_SOURCE = 0x0001;
+		
+		// 
+		public const ulong DISPLAY_NORMAL = 0x0002;
+	}
 }

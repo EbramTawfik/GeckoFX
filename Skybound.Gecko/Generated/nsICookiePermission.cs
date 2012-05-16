@@ -119,4 +119,28 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIURI GetOriginatingURI([MarshalAs(UnmanagedType.Interface)] nsIChannel aChannel);
 	}
+	
+	/// <summary>nsICookiePermissionConsts </summary>
+	public class nsICookiePermissionConsts
+	{
+		
+		// <summary>
+        // nsCookieAccess values
+        // </summary>
+		public const long ACCESS_DEFAULT = 0;
+		
+		// 
+		public const long ACCESS_ALLOW = 1;
+		
+		// 
+		public const long ACCESS_DENY = 2;
+		
+		// <summary>
+        // additional values for nsCookieAccess, which are not directly used by
+        // any methods on this interface, but are nevertheless convenient to define
+        // here. these may be relocated somewhere else if we ever consider freezing
+        // this interface.
+        // </summary>
+		public const long ACCESS_SESSION = 8;
+	}
 }

@@ -160,4 +160,43 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SendBinaryStream([MarshalAs(UnmanagedType.Interface)] nsIInputStream aStream, uint length);
 	}
+	
+	/// <summary>nsIWebSocketChannelConsts </summary>
+	public class nsIWebSocketChannelConsts
+	{
+		
+		// <summary>
+        // section 7.4.1 defines these close codes
+        // </summary>
+		public const ulong CLOSE_NORMAL = 1000;
+		
+		// 
+		public const ulong CLOSE_GOING_AWAY = 1001;
+		
+		// 
+		public const ulong CLOSE_PROTOCOL_ERROR = 1002;
+		
+		// 
+		public const ulong CLOSE_UNSUPPORTED_DATATYPE = 1003;
+		
+		// <summary>
+        //  code 1004 is reserved
+        // </summary>
+		public const ulong CLOSE_NO_STATUS = 1005;
+		
+		// 
+		public const ulong CLOSE_ABNORMAL = 1006;
+		
+		// 
+		public const ulong CLOSE_INVALID_PAYLOAD = 1007;
+		
+		// 
+		public const ulong CLOSE_POLICY_VIOLATION = 1008;
+		
+		// 
+		public const ulong CLOSE_TOO_LARGE = 1009;
+		
+		// 
+		public const ulong CLOSE_EXTENSION_MISSING = 1010;
+	}
 }

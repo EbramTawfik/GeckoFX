@@ -237,4 +237,23 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Close();
 	}
+	
+	/// <summary>nsIZipWriterConsts </summary>
+	public class nsIZipWriterConsts
+	{
+		
+		// <summary>
+        // Some predefined compression levels
+        // </summary>
+		public const long COMPRESSION_NONE = 0;
+		
+		// 
+		public const long COMPRESSION_FASTEST = 1;
+		
+		// 
+		public const long COMPRESSION_DEFAULT = 6;
+		
+		// 
+		public const long COMPRESSION_BEST = 9;
+	}
 }

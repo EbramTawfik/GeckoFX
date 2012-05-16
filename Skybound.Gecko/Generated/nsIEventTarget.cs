@@ -65,4 +65,26 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsOnCurrentThread();
 	}
+	
+	/// <summary>nsIEventTargetConsts </summary>
+	public class nsIEventTargetConsts
+	{
+		
+		// <summary>
+        // This flag specifies the default mode of event dispatch, whereby the event
+        // is simply queued for later processing.  When this flag is specified,
+        // dispatch returns immediately after the event is queued.
+        // </summary>
+		public const ulong DISPATCH_NORMAL = 0;
+		
+		// <summary>
+        // This flag specifies the synchronous mode of event dispatch, in which the
+        // dispatch method does not return until the event has been processed.
+        //
+        // NOTE: passing this flag to dispatch may have the side-effect of causing
+        // other events on the current thread to be processed while waiting for the
+        // given event to be processed.
+        // </summary>
+		public const ulong DISPATCH_SYNC = 1;
+	}
 }

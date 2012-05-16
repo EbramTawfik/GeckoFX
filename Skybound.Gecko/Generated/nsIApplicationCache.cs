@@ -66,6 +66,33 @@ namespace Gecko
 		void GetDataAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aData);
 	}
 	
+	/// <summary>nsIApplicationCacheNamespaceConsts </summary>
+	public class nsIApplicationCacheNamespaceConsts
+	{
+		
+		// <summary>
+        // Items matching this namespace can be fetched from the network
+        // when loading from this cache.  The "data" attribute is unused.
+        // </summary>
+		public const ulong NAMESPACE_BYPASS = 1<<0;
+		
+		// <summary>
+        // Items matching this namespace can be fetched from the network
+        // when loading from this cache.  If the load fails, the cache entry
+        // specified by the "data" attribute should be loaded instead.
+        // </summary>
+		public const ulong NAMESPACE_FALLBACK = 1<<1;
+		
+		// <summary>
+        // Items matching this namespace should be cached
+        // opportunistically.  Successful toplevel loads of documents
+        // in this namespace should be placed in the application cache.
+        // Namespaces specifying NAMESPACE_OPPORTUNISTIC may also specify
+        // NAMESPACE_FALLBACK to supply a fallback entry.
+        // </summary>
+		public const ulong NAMESPACE_OPPORTUNISTIC = 1<<2;
+	}
+	
 	/// <summary>
     /// Application caches store resources for offline use.  Each
     /// application cache has a unique client ID for use with
@@ -178,5 +205,41 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIApplicationCacheNamespace GetMatchingNamespace([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase key);
+	}
+	
+	/// <summary>nsIApplicationCacheConsts </summary>
+	public class nsIApplicationCacheConsts
+	{
+		
+		// <summary>
+        //This item is the application manifest. </summary>
+		public const ulong ITEM_MANIFEST = 1<<0;
+		
+		// <summary>
+        //This item was explicitly listed in the application manifest. </summary>
+		public const ulong ITEM_EXPLICIT = 1<<1;
+		
+		// <summary>
+        //This item was navigated in a toplevel browsing context, and
+        // named this cache's group as its manifest. </summary>
+		public const ulong ITEM_IMPLICIT = 1<<2;
+		
+		// <summary>
+        //This item was added by the dynamic scripting API </summary>
+		public const ulong ITEM_DYNAMIC = 1<<3;
+		
+		// <summary>
+        //This item was listed in the application manifest, but named a
+        // different cache group as its manifest. </summary>
+		public const ulong ITEM_FOREIGN = 1<<4;
+		
+		// <summary>
+        //This item was listed as a fallback entry. </summary>
+		public const ulong ITEM_FALLBACK = 1<<5;
+		
+		// <summary>
+        //This item matched an opportunistic cache namespace and was
+        // cached accordingly. </summary>
+		public const ulong ITEM_OPPORTUNISTIC = 1<<6;
 	}
 }

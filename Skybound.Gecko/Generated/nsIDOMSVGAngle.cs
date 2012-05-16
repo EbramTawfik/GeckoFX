@@ -40,9 +40,6 @@ namespace Gecko
 	public interface nsIDOMSVGAngle
 	{
 		
-		/// <summary>
-        /// Angle Unit Types
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		ushort GetUnitTypeAttribute();
 		
@@ -84,5 +81,27 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ConvertToSpecifiedUnits(ushort unitType);
+	}
+	
+	/// <summary>nsIDOMSVGAngleConsts </summary>
+	public class nsIDOMSVGAngleConsts
+	{
+		
+		// <summary>
+        // Angle Unit Types
+        // </summary>
+		public const ulong SVG_ANGLETYPE_UNKNOWN = 0;
+		
+		// 
+		public const ulong SVG_ANGLETYPE_UNSPECIFIED = 1;
+		
+		// 
+		public const ulong SVG_ANGLETYPE_DEG = 2;
+		
+		// 
+		public const ulong SVG_ANGLETYPE_RAD = 3;
+		
+		// 
+		public const ulong SVG_ANGLETYPE_GRAD = 4;
 	}
 }

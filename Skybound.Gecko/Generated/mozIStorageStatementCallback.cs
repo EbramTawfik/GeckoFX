@@ -56,16 +56,31 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void HandleError(mozIStorageError aError);
 		
-		/// <summary>
-        /// Called when the statement has finished executing.  This function will only
-        /// be called once for any given asynchronous statement.
-        ///
-        /// @param aReason
-        /// Indicates if the statement is no longer executing because it either
-        /// finished (REASON_FINISHED), was canceled (REASON_CANCELED), or
-        /// a fatal error occurred (REASON_ERROR).
-        /// </summary>
+		/// <summary>Member HandleCompletion </summary>
+		/// <param name='aReason'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void HandleCompletion(ushort aReason);
+	}
+	
+	/// <summary>mozIStorageStatementCallbackConsts </summary>
+	public class mozIStorageStatementCallbackConsts
+	{
+		
+		// <summary>
+        // Called when the statement has finished executing.  This function will only
+        // be called once for any given asynchronous statement.
+        //
+        // @param aReason
+        // Indicates if the statement is no longer executing because it either
+        // finished (REASON_FINISHED), was canceled (REASON_CANCELED), or
+        // a fatal error occurred (REASON_ERROR).
+        // </summary>
+		public const ulong REASON_FINISHED = 0;
+		
+		// 
+		public const ulong REASON_CANCELED = 1;
+		
+		// 
+		public const ulong REASON_ERROR = 2;
 	}
 }

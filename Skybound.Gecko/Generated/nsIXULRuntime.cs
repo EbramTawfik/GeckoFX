@@ -118,4 +118,23 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void EnsureContentProcess();
 	}
+	
+	/// <summary>nsIXULRuntimeConsts </summary>
+	public class nsIXULRuntimeConsts
+	{
+		
+		// <summary>
+        // The legal values of processType.
+        // </summary>
+		public const ulong PROCESS_TYPE_DEFAULT = 0;
+		
+		// 
+		public const ulong PROCESS_TYPE_PLUGIN = 1;
+		
+		// 
+		public const ulong PROCESS_TYPE_CONTENT = 2;
+		
+		// 
+		public const ulong PROCESS_TYPE_IPDLUNITTEST = 3;
+	}
 }

@@ -34,23 +34,13 @@ namespace Gecko
 	public interface nsIAppShellService
 	{
 		
-		/// <summary>
-        /// Create a window, which will be initially invisible.
-        /// @param aParent the parent window.  Can be null.
-        /// @param aUrl the contents of the new window.
-        /// @param aChromeMask chrome flags affecting the kind of OS border
-        /// given to the window. see nsIBrowserWindow for
-        /// bit/flag definitions.
-        /// @param aCallbacks interface providing C++ hooks for window initialization
-        /// before the window is made visible.  Can be null.
-        /// Deprecated.
-        /// @param aInitialWidth width, in pixels, of the window.  Width of window
-        /// at creation.  Can be overridden by the "width"
-        /// tag in the XUL.  Set to NS_SIZETOCONTENT to force
-        /// the window to wrap to its contents.
-        /// @param aInitialHeight like aInitialWidth, but subtly different.
-        /// @param aResult the newly created window is returned here.
-        /// </summary>
+		/// <summary>Member CreateTopLevelWindow </summary>
+		/// <param name='aParent'> </param>
+		/// <param name='aUrl'> </param>
+		/// <param name='aChromeMask'> </param>
+		/// <param name='aInitialWidth'> </param>
+		/// <param name='aInitialHeight'> </param>
+		/// <returns>A nsIXULWindow</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIXULWindow CreateTopLevelWindow([MarshalAs(UnmanagedType.Interface)] nsIXULWindow aParent, [MarshalAs(UnmanagedType.Interface)] nsIURI aUrl, uint aChromeMask, int aInitialWidth, int aInitialHeight);
@@ -121,5 +111,29 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void UnregisterTopLevelWindow([MarshalAs(UnmanagedType.Interface)] nsIXULWindow aWindow);
+	}
+	
+	/// <summary>nsIAppShellServiceConsts </summary>
+	public class nsIAppShellServiceConsts
+	{
+		
+		// <summary>
+        // Create a window, which will be initially invisible.
+        // @param aParent the parent window.  Can be null.
+        // @param aUrl the contents of the new window.
+        // @param aChromeMask chrome flags affecting the kind of OS border
+        // given to the window. see nsIBrowserWindow for
+        // bit/flag definitions.
+        // @param aCallbacks interface providing C++ hooks for window initialization
+        // before the window is made visible.  Can be null.
+        // Deprecated.
+        // @param aInitialWidth width, in pixels, of the window.  Width of window
+        // at creation.  Can be overridden by the "width"
+        // tag in the XUL.  Set to NS_SIZETOCONTENT to force
+        // the window to wrap to its contents.
+        // @param aInitialHeight like aInitialWidth, but subtly different.
+        // @param aResult the newly created window is returned here.
+        // </summary>
+		public const long SIZE_TO_CONTENT = -1;
 	}
 }

@@ -40,15 +40,9 @@ namespace Gecko
 	public interface nsIDOMCSSValueList : nsIDOMCSSValue
 	{
 		
-		/// <summary>
-        /// UnitTypes
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetCssTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCssText);
 		
-		/// <summary>
-        /// UnitTypes
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetCssTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCssText);
 		

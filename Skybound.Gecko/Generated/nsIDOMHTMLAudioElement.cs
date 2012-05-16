@@ -42,14 +42,6 @@ namespace Gecko
 	public interface nsIDOMHTMLAudioElement : nsIDOMHTMLMediaElement
 	{
 		
-		/// <summary>
-        /// The nsIDOMNode interface is the primary datatype for the entire
-        /// Document Object Model.
-        /// It represents a single node in the document tree.
-        ///
-        /// For more information on this interface please see
-        /// http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetNodeNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNodeName);
 		
@@ -706,9 +698,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void CanPlayType([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase type, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
-		/// <summary>
-        /// ready state
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new ushort GetReadyStateAttribute();
 		

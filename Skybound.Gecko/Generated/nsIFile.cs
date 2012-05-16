@@ -422,4 +422,20 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISimpleEnumerator GetDirectoryEntriesAttribute();
 	}
+	
+	/// <summary>nsIFileConsts </summary>
+	public class nsIFileConsts
+	{
+		
+		// <summary>
+        // Create Types
+        //
+        // NORMAL_FILE_TYPE - A normal file.
+        // DIRECTORY_TYPE   - A directory/folder.
+        // </summary>
+		public const ulong NORMAL_FILE_TYPE = 0;
+		
+		// 
+		public const ulong DIRECTORY_TYPE = 1;
+	}
 }

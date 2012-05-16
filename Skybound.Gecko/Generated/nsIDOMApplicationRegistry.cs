@@ -40,6 +40,29 @@ namespace Gecko
 		short GetCodeAttribute();
 	}
 	
+	/// <summary>mozIDOMApplicationRegistryErrorConsts </summary>
+	public class mozIDOMApplicationRegistryErrorConsts
+	{
+		
+		// 
+		public const ulong DENIED = 1;
+		
+		// 
+		public const ulong PERMISSION_DENIED = 2;
+		
+		// 
+		public const ulong MANIFEST_URL_ERROR = 3;
+		
+		// 
+		public const ulong NETWORK_ERROR = 4;
+		
+		// 
+		public const ulong MANIFEST_PARSE_ERROR = 5;
+		
+		// 
+		public const ulong INVALID_MANIFEST = 6;
+	}
+	
 	/// <summary>mozIDOMApplication </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]

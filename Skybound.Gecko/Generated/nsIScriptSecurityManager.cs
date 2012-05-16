@@ -56,9 +56,15 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void CanGetService(System.IntPtr aJSContext, ref System.Guid aCID);
 		
-		/// <summary>
-        /// Used for aAction below
-        /// </summary>
+		/// <summary>Member CanAccess </summary>
+		/// <param name='aAction'> </param>
+		/// <param name='aCallContext'> </param>
+		/// <param name='aJSContext'> </param>
+		/// <param name='aJSObject'> </param>
+		/// <param name='aObj'> </param>
+		/// <param name='aClassInfo'> </param>
+		/// <param name='aName'> </param>
+		/// <param name='aPolicy'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void CanAccess(uint aAction, System.IntPtr aCallContext, System.IntPtr aJSContext, System.IntPtr aJSObject, [MarshalAs(UnmanagedType.Interface)] nsISupports aObj, [MarshalAs(UnmanagedType.Interface)] nsIClassInfo aClassInfo, System.IntPtr aName, ref System.IntPtr aPolicy);
 		
@@ -326,5 +332,40 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void PopContextPrincipal(System.IntPtr cx);
+	}
+	
+	/// <summary>nsIScriptSecurityManagerConsts </summary>
+	public class nsIScriptSecurityManagerConsts
+	{
+		
+		// <summary>
+        // Default permissions
+        // </summary>
+		public const ulong STANDARD = 0;
+		
+		// <summary>
+        // nsIProtocolHandler::URI_FORBIDS_AUTOMATIC_DOCUMENT_REPLACEMENT flag set.
+        // </summary>
+		public const ulong LOAD_IS_AUTOMATIC_DOCUMENT_REPLACEMENT = 1<<0;
+		
+		// <summary>
+        // probably means at least chrome: and resource:.
+        // </summary>
+		public const ulong ALLOW_CHROME = 1<<1;
+		
+		// <summary>
+        // nsIProtocolHandler::URI_INHERITS_SECURITY_CONTEXT.
+        // </summary>
+		public const ulong DISALLOW_INHERIT_PRINCIPAL = 1<<2;
+		
+		// <summary>
+        // JS-implemented extensions.
+        // </summary>
+		public const ulong DISALLOW_SCRIPT_OR_DATA = DISALLOW_INHERIT_PRINCIPAL;
+		
+		// <summary>
+        // DISALLOW_INHERIT_PRINCIPAL
+        // </summary>
+		public const ulong DISALLOW_SCRIPT = 1<<3;
 	}
 }

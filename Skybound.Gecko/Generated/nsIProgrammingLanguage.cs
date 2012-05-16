@@ -36,4 +36,51 @@ namespace Gecko
 	public interface nsIProgrammingLanguage
 	{
 	}
+	
+	/// <summary>nsIProgrammingLanguageConsts </summary>
+	public class nsIProgrammingLanguageConsts
+	{
+		
+		// <summary>
+        // Identifiers for programming languages.
+        // </summary>
+		public const long UNKNOWN = 0;
+		
+		// 
+		public const long CPLUSPLUS = 1;
+		
+		// 
+		public const long JAVASCRIPT = 2;
+		
+		// 
+		public const long PYTHON = 3;
+		
+		// 
+		public const long PERL = 4;
+		
+		// 
+		public const long JAVA = 5;
+		
+		// 
+		public const long ZX81_BASIC = 6;
+		
+		// <summary>
+        // it could happen :)
+        // </summary>
+		public const long JAVASCRIPT2 = 7;
+		
+		// 
+		public const long RUBY = 8;
+		
+		// 
+		public const long PHP = 9;
+		
+		// 
+		public const long TCL = 10;
+		
+		// <summary>
+        // This list can grow indefinitely. Just don't ever change an existing item.
+        // </summary>
+		public const long MAX = 10;
+	}
 }

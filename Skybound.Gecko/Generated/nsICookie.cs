@@ -85,16 +85,52 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		ulong GetExpiresAttribute();
 		
-		/// <summary>
-        /// @DEPRECATED status implementation will return STATUS_UNKNOWN in all cases.
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetStatusAttribute();
 		
-		/// <summary>
-        /// @DEPRECATED policy implementation will return POLICY_UNKNOWN in all cases.
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetPolicyAttribute();
+	}
+	
+	/// <summary>nsICookieConsts </summary>
+	public class nsICookieConsts
+	{
+		
+		// <summary>
+        // @DEPRECATED status implementation will return STATUS_UNKNOWN in all cases.
+        // </summary>
+		public const long STATUS_UNKNOWN = 0;
+		
+		// 
+		public const long STATUS_ACCEPTED = 1;
+		
+		// 
+		public const long STATUS_DOWNGRADED = 2;
+		
+		// 
+		public const long STATUS_FLAGGED = 3;
+		
+		// 
+		public const long STATUS_REJECTED = 4;
+		
+		// <summary>
+        // @DEPRECATED policy implementation will return POLICY_UNKNOWN in all cases.
+        // </summary>
+		public const long POLICY_UNKNOWN = 0;
+		
+		// 
+		public const long POLICY_NONE = 1;
+		
+		// 
+		public const long POLICY_NO_CONSENT = 2;
+		
+		// 
+		public const long POLICY_IMPLICIT_CONSENT = 3;
+		
+		// 
+		public const long POLICY_EXPLICIT_CONSENT = 4;
+		
+		// 
+		public const long POLICY_NO_II = 5;
 	}
 }

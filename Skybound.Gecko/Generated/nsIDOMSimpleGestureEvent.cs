@@ -402,4 +402,29 @@ namespace Gecko
 					uint directionArg, 
 					double deltaArg);
 	}
+	
+	/// <summary>nsIDOMSimpleGestureEventConsts </summary>
+	public class nsIDOMSimpleGestureEventConsts
+	{
+		
+		// <summary>
+        //Swipe direction constants </summary>
+		public const ulong DIRECTION_UP = 1;
+		
+		// 
+		public const ulong DIRECTION_DOWN = 2;
+		
+		// 
+		public const ulong DIRECTION_LEFT = 4;
+		
+		// 
+		public const ulong DIRECTION_RIGHT = 8;
+		
+		// <summary>
+        //Rotational direction constants </summary>
+		public const ulong ROTATION_COUNTERCLOCKWISE = 1;
+		
+		// 
+		public const ulong ROTATION_CLOCKWISE = 2;
+	}
 }

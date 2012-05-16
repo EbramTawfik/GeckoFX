@@ -98,4 +98,15 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsCycleCollectorThreadAttribute();
 	}
+	
+	/// <summary>nsIThreadManagerConsts </summary>
+	public class nsIThreadManagerConsts
+	{
+		
+		// <summary>
+        // Default number of bytes reserved for a thread's stack, if no stack size
+        // is specified in newThread(). 0 means use platform default.
+        // </summary>
+		public const ulong DEFAULT_STACK_SIZE = 0;
+	}
 }

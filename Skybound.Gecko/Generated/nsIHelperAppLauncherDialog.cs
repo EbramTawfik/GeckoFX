@@ -83,4 +83,26 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsILocalFile PromptForSaveToFile([MarshalAs(UnmanagedType.Interface)] nsIHelperAppLauncher aLauncher, [MarshalAs(UnmanagedType.Interface)] nsISupports aWindowContext, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string aDefaultFileName, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string aSuggestedFileExtension, [MarshalAs(UnmanagedType.U1)] bool aForcePrompt);
 	}
+	
+	/// <summary>nsIHelperAppLauncherDialogConsts </summary>
+	public class nsIHelperAppLauncherDialogConsts
+	{
+		
+		// <summary>
+        // This request is passed to the helper app dialog because Gecko can not
+        // handle content of this type.
+        // </summary>
+		public const ulong REASON_CANTHANDLE = 0;
+		
+		// <summary>
+        // The server requested external handling.
+        // </summary>
+		public const ulong REASON_SERVERREQUEST = 1;
+		
+		// <summary>
+        // Gecko detected that the type sent by the server (e.g. text/plain) does
+        // not match the actual type.
+        // </summary>
+		public const ulong REASON_TYPESNIFFED = 2;
+	}
 }

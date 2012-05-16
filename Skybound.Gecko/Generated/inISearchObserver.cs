@@ -57,4 +57,24 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void OnSearchError(inISearchProcess aModule, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMessage);
 	}
+	
+	/// <summary>inISearchObserverConsts </summary>
+	public class inISearchObserverConsts
+	{
+		
+		// <summary>
+        // result codes which are sent to onSearchEnd
+        // </summary>
+		public const int IN_SUCCESS = 1;
+		
+		// <summary>
+        // search completed successfully
+        // </summary>
+		public const int IN_INTERRUPTED = 2;
+		
+		// <summary>
+        // search stopped due to user interruption
+        // </summary>
+		public const int IN_ERROR = 3;
+	}
 }

@@ -43,4 +43,15 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void PerformSimpleAction(int isLongPress);
 	}
+	
+	/// <summary>nsIHapticFeedbackConsts </summary>
+	public class nsIHapticFeedbackConsts
+	{
+		
+		// 
+		public const long ShortPress = 0;
+		
+		// 
+		public const long LongPress = 1;
+	}
 }

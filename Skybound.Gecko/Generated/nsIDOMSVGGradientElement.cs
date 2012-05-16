@@ -43,14 +43,8 @@ namespace Gecko
 	public interface nsIDOMSVGGradientElement : nsIDOMSVGElement
 	{
 		
-		/// <summary>
-        /// The nsIDOMNode interface is the primary datatype for the entire
-        /// Document Object Model.
-        /// It represents a single node in the document tree.
-        ///
-        /// For more information on this interface please see
-        /// http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html
-        /// </summary>
+		/// <summary>Member GetNodeNameAttribute </summary>
+		/// <param name='aNodeName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetNodeNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNodeName);
 		
@@ -622,16 +616,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMSVGElement GetViewportElementAttribute();
 		
-		/// <summary>
-        ///The SVG DOM makes use of multiple interface inheritance.
-        ///        Since XPCOM only supports single interface inheritance,
-        ///        the best thing that we can do is to promise that whenever
-        ///        an object implements _this_ interface it will also
-        ///        implement the following interfaces. (We then have to QI to
-        ///        hop between them.)
-        ///
-        ///    nsIDOMSVGURIReference,
-        ///    nsIDOMSVGStylable </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMSVGAnimatedEnumeration GetGradientUnitsAttribute();
@@ -645,6 +629,32 @@ namespace Gecko
 		nsIDOMSVGAnimatedEnumeration GetSpreadMethodAttribute();
 	}
 	
+	/// <summary>nsIDOMSVGGradientElementConsts </summary>
+	public class nsIDOMSVGGradientElementConsts
+	{
+		
+		// <summary>
+        //The SVG DOM makes use of multiple interface inheritance.
+        //        Since XPCOM only supports single interface inheritance,
+        //        the best thing that we can do is to promise that whenever
+        //        an object implements _this_ interface it will also
+        //        implement the following interfaces. (We then have to QI to
+        //        hop between them.)
+        //
+        //    nsIDOMSVGURIReference,
+        //    nsIDOMSVGStylable </summary>
+		public const ulong SVG_SPREADMETHOD_UNKNOWN = 0;
+		
+		// 
+		public const ulong SVG_SPREADMETHOD_PAD = 1;
+		
+		// 
+		public const ulong SVG_SPREADMETHOD_REFLECT = 2;
+		
+		// 
+		public const ulong SVG_SPREADMETHOD_REPEAT = 3;
+	}
+	
 	/// <summary>
     /// Linear gradient
     /// </summary>
@@ -654,14 +664,8 @@ namespace Gecko
 	public interface nsIDOMSVGLinearGradientElement : nsIDOMSVGGradientElement
 	{
 		
-		/// <summary>
-        /// The nsIDOMNode interface is the primary datatype for the entire
-        /// Document Object Model.
-        /// It represents a single node in the document tree.
-        ///
-        /// For more information on this interface please see
-        /// http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html
-        /// </summary>
+		/// <summary>Member GetNodeNameAttribute </summary>
+		/// <param name='aNodeName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetNodeNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNodeName);
 		
@@ -1233,16 +1237,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMSVGElement GetViewportElementAttribute();
 		
-		/// <summary>
-        ///The SVG DOM makes use of multiple interface inheritance.
-        ///        Since XPCOM only supports single interface inheritance,
-        ///        the best thing that we can do is to promise that whenever
-        ///        an object implements _this_ interface it will also
-        ///        implement the following interfaces. (We then have to QI to
-        ///        hop between them.)
-        ///
-        ///    nsIDOMSVGURIReference,
-        ///    nsIDOMSVGStylable </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMSVGAnimatedEnumeration GetGradientUnitsAttribute();
@@ -1284,14 +1278,8 @@ namespace Gecko
 	public interface nsIDOMSVGRadialGradientElement : nsIDOMSVGGradientElement
 	{
 		
-		/// <summary>
-        /// The nsIDOMNode interface is the primary datatype for the entire
-        /// Document Object Model.
-        /// It represents a single node in the document tree.
-        ///
-        /// For more information on this interface please see
-        /// http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html
-        /// </summary>
+		/// <summary>Member GetNodeNameAttribute </summary>
+		/// <param name='aNodeName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetNodeNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNodeName);
 		
@@ -1863,16 +1851,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMSVGElement GetViewportElementAttribute();
 		
-		/// <summary>
-        ///The SVG DOM makes use of multiple interface inheritance.
-        ///        Since XPCOM only supports single interface inheritance,
-        ///        the best thing that we can do is to promise that whenever
-        ///        an object implements _this_ interface it will also
-        ///        implement the following interfaces. (We then have to QI to
-        ///        hop between them.)
-        ///
-        ///    nsIDOMSVGURIReference,
-        ///    nsIDOMSVGStylable </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMSVGAnimatedEnumeration GetGradientUnitsAttribute();

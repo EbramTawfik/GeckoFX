@@ -280,27 +280,13 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetAllowWindowControlAttribute([MarshalAs(UnmanagedType.U1)] bool aAllowWindowControl);
 		
-		/// <summary>
-        /// Get an enumerator over this docShell and its children.
-        ///
-        /// @param aItemType  - Only include docShells of this type, or if typeAll,
-        /// include all child shells.
-        /// Uses types from nsIDocShellTreeItem.
-        /// @param aDirection - Whether to enumerate forwards or backwards.
-        /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISimpleEnumerator GetDocShellEnumerator(int aItemType, int aDirection);
 		
-		/// <summary>
-        /// The type of application that created this window
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetAppTypeAttribute();
 		
-		/// <summary>
-        /// The type of application that created this window
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetAppTypeAttribute(uint aAppType);
 		
@@ -796,5 +782,91 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetParentCharsetSourceAttribute(int aParentCharsetSource);
+	}
+	
+	/// <summary>nsIDocShellConsts </summary>
+	public class nsIDocShellConsts
+	{
+		
+		// 
+		public const long INTERNAL_LOAD_FLAGS_NONE = 0x0;
+		
+		// 
+		public const long INTERNAL_LOAD_FLAGS_INHERIT_OWNER = 0x1;
+		
+		// 
+		public const long INTERNAL_LOAD_FLAGS_DONT_SEND_REFERRER = 0x2;
+		
+		// 
+		public const long INTERNAL_LOAD_FLAGS_ALLOW_THIRD_PARTY_FIXUP = 0x4;
+		
+		// <summary>
+        // @see nsIWebNavigation::LOAD_FLAGS_FIRST_LOAD
+        // </summary>
+		public const long INTERNAL_LOAD_FLAGS_FIRST_LOAD = 0x8;
+		
+		// 
+		public const long INTERNAL_LOAD_FLAGS_BYPASS_CLASSIFIER = 0x10;
+		
+		// 
+		public const long INTERNAL_LOAD_FLAGS_FORCE_ALLOW_COOKIES = 0x20;
+		
+		// <summary>
+        // Get an enumerator over this docShell and its children.
+        //
+        // @param aItemType  - Only include docShells of this type, or if typeAll,
+        // include all child shells.
+        // Uses types from nsIDocShellTreeItem.
+        // @param aDirection - Whether to enumerate forwards or backwards.
+        // </summary>
+		public const long ENUMERATE_FORWARDS = 0;
+		
+		// 
+		public const long ENUMERATE_BACKWARDS = 1;
+		
+		// <summary>
+        // The type of application that created this window
+        // </summary>
+		public const ulong APP_TYPE_UNKNOWN = 0;
+		
+		// 
+		public const ulong APP_TYPE_MAIL = 1;
+		
+		// 
+		public const ulong APP_TYPE_EDITOR = 2;
+		
+		// <summary>
+        // Current busy state for DocShell
+        // </summary>
+		public const ulong BUSY_FLAGS_NONE = 0;
+		
+		// 
+		public const ulong BUSY_FLAGS_BUSY = 1;
+		
+		// 
+		public const ulong BUSY_FLAGS_BEFORE_PAGE_LOAD = 2;
+		
+		// 
+		public const ulong BUSY_FLAGS_PAGE_LOADING = 4;
+		
+		// <summary>
+        // Load commands for the document
+        // </summary>
+		public const ulong LOAD_CMD_NORMAL = 0x1;
+		
+		// <summary>
+        // Normal load
+        // </summary>
+		public const ulong LOAD_CMD_RELOAD = 0x2;
+		
+		// <summary>
+        // Reload
+        // </summary>
+		public const ulong LOAD_CMD_HISTORY = 0x4;
+		
+		// <summary>
+        // Load from history
+        // </summary>
+		public const ulong LOAD_CMD_PUSHSTATE = 0x8;
 	}
 }

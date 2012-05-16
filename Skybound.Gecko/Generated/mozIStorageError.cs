@@ -46,4 +46,130 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetMessageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aMessage);
 	}
+	
+	/// <summary>mozIStorageErrorConsts </summary>
+	public class mozIStorageErrorConsts
+	{
+		
+		// <summary>
+        // General SQL error or missing database.
+        // </summary>
+		public const long ERROR = 1;
+		
+		// <summary>
+        // Internal logic error.
+        // </summary>
+		public const long INTERNAL = 2;
+		
+		// <summary>
+        // Access permission denied.
+        // </summary>
+		public const long PERM = 3;
+		
+		// <summary>
+        // A callback routine requested an abort.
+        // </summary>
+		public const long ABORT = 4;
+		
+		// <summary>
+        // The database file is locked.
+        // </summary>
+		public const long BUSY = 5;
+		
+		// <summary>
+        // A table in the database is locked.
+        // </summary>
+		public const long LOCKED = 6;
+		
+		// <summary>
+        // An allocation failed.
+        // </summary>
+		public const long NOMEM = 7;
+		
+		// <summary>
+        // Attempt to write to a readonly database.
+        // </summary>
+		public const long READONLY = 8;
+		
+		// <summary>
+        // Operation was terminated by an interrupt.
+        // </summary>
+		public const long INTERRUPT = 9;
+		
+		// <summary>
+        // Some kind of disk I/O error occurred.
+        // </summary>
+		public const long IOERR = 10;
+		
+		// <summary>
+        // The database disk image is malformed.
+        // </summary>
+		public const long CORRUPT = 11;
+		
+		// <summary>
+        // An insertion failed because the database is full.
+        // </summary>
+		public const long FULL = 13;
+		
+		// <summary>
+        // Unable to open the database file.
+        // </summary>
+		public const long CANTOPEN = 14;
+		
+		// <summary>
+        // The database is empty.
+        // </summary>
+		public const long EMPTY = 16;
+		
+		// <summary>
+        // The database scheme changed.
+        // </summary>
+		public const long SCHEMA = 17;
+		
+		// <summary>
+        // A string or blob exceeds the size limit.
+        // </summary>
+		public const long TOOBIG = 18;
+		
+		// <summary>
+        // Abort due to a constraint violation.
+        // </summary>
+		public const long CONSTRAINT = 19;
+		
+		// <summary>
+        // Data type mismatch.
+        // </summary>
+		public const long MISMATCH = 20;
+		
+		// <summary>
+        // Library used incorrectly.
+        // </summary>
+		public const long MISUSE = 21;
+		
+		// <summary>
+        // Uses OS features not supported on the host system.
+        // </summary>
+		public const long NOLFS = 22;
+		
+		// <summary>
+        // Authorization denied.
+        // </summary>
+		public const long AUTH = 23;
+		
+		// <summary>
+        // Auxiliary database format error.
+        // </summary>
+		public const long FORMAT = 24;
+		
+		// <summary>
+        // Attempt to bind a parameter using an out-of-range index or nonexistent
+        // named parameter name.
+        // </summary>
+		public const long RANGE = 25;
+		
+		// <summary>
+        // File opened that is not a database file.
+        // </summary>
+		public const long NOTADB = 26;
+	}
 }

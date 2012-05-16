@@ -117,4 +117,42 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool DeleteActiveList();
 	}
+	
+	/// <summary>nsIJumpListBuilderConsts </summary>
+	public class nsIJumpListBuilderConsts
+	{
+		
+		// <summary>
+        // Task List
+        //
+        // Tasks are common actions performed by users within the application. A task
+        // can be represented by an application shortcut and associated command line
+        // parameters or a URI. Task lists should generally be static lists that do not
+        // change often, if at all - similar to an application menu.
+        //
+        // Tasks are given the highest priority of all lists when space is limited.
+        // </summary>
+		public const int JUMPLIST_CATEGORY_TASKS = 0;
+		
+		// <summary>
+        // Recent or Frequent list
+        //
+        // Recent and frequent lists are based on Window's recent document lists. The
+        // lists are generated automatically by Windows. Applications that use recent
+        // or frequent lists should keep document use tracking up to date by calling
+        // the SHAddToRecentDocs shell api.
+        // </summary>
+		public const int JUMPLIST_CATEGORY_RECENT = 1;
+		
+		// 
+		public const int JUMPLIST_CATEGORY_FREQUENT = 2;
+		
+		// <summary>
+        // Custom Lists
+        //
+        // Custom lists can be made up of tasks, links, and separators. The title of
+        // of the list is passed through the optional string parameter of addBuildList.
+        // </summary>
+		public const int JUMPLIST_CATEGORY_CUSTOMLIST = 3;
+	}
 }

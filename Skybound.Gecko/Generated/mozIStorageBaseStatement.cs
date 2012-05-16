@@ -154,4 +154,28 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void EscapeStringForLIKE([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aValue, char aEscapeChar, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 	}
+	
+	/// <summary>mozIStorageBaseStatementConsts </summary>
+	public class mozIStorageBaseStatementConsts
+	{
+		
+		// <summary>
+        // The statement is not usable, either because it failed to initialize or
+        // was explicitly finalized.
+        // </summary>
+		public const long MOZ_STORAGE_STATEMENT_INVALID = 0;
+		
+		// <summary>
+        // The statement is usable.
+        // </summary>
+		public const long MOZ_STORAGE_STATEMENT_READY = 1;
+		
+		// <summary>
+        // Indicates that the statement is executing and the row getters may be used.
+        //
+        // @note This is only relevant for mozIStorageStatement instances being used
+        // in a synchronous fashion.
+        // </summary>
+		public const long MOZ_STORAGE_STATEMENT_EXECUTING = 2;
+	}
 }

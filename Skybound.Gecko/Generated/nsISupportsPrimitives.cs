@@ -39,14 +39,69 @@ namespace Gecko
 	public interface nsISupportsPrimitive
 	{
 		
-		/// <summary>
-        /// Primitive base interface.
-        ///
-        /// These first three are pointer types and do data copying
-        /// using the nsIMemory. Be careful!
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		ushort GetTypeAttribute();
+	}
+	
+	/// <summary>nsISupportsPrimitiveConsts </summary>
+	public class nsISupportsPrimitiveConsts
+	{
+		
+		// <summary>
+        // Primitive base interface.
+        //
+        // These first three are pointer types and do data copying
+        // using the nsIMemory. Be careful!
+        // </summary>
+		public const ulong TYPE_ID = 1;
+		
+		// 
+		public const ulong TYPE_CSTRING = 2;
+		
+		// 
+		public const ulong TYPE_STRING = 3;
+		
+		// 
+		public const ulong TYPE_PRBOOL = 4;
+		
+		// 
+		public const ulong TYPE_PRUINT8 = 5;
+		
+		// 
+		public const ulong TYPE_PRUINT16 = 6;
+		
+		// 
+		public const ulong TYPE_PRUINT32 = 7;
+		
+		// 
+		public const ulong TYPE_PRUINT64 = 8;
+		
+		// 
+		public const ulong TYPE_PRTIME = 9;
+		
+		// 
+		public const ulong TYPE_CHAR = 10;
+		
+		// 
+		public const ulong TYPE_PRINT16 = 11;
+		
+		// 
+		public const ulong TYPE_PRINT32 = 12;
+		
+		// 
+		public const ulong TYPE_PRINT64 = 13;
+		
+		// 
+		public const ulong TYPE_FLOAT = 14;
+		
+		// 
+		public const ulong TYPE_DOUBLE = 15;
+		
+		// 
+		public const ulong TYPE_VOID = 16;
+		
+		// 
+		public const ulong TYPE_INTERFACE_POINTER = 17;
 	}
 	
 	/// <summary>
@@ -58,12 +113,6 @@ namespace Gecko
 	public interface nsISupportsID : nsISupportsPrimitive
 	{
 		
-		/// <summary>
-        /// Primitive base interface.
-        ///
-        /// These first three are pointer types and do data copying
-        /// using the nsIMemory. Be careful!
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new ushort GetTypeAttribute();
 		
@@ -93,12 +142,6 @@ namespace Gecko
 	public interface nsISupportsCString : nsISupportsPrimitive
 	{
 		
-		/// <summary>
-        /// Primitive base interface.
-        ///
-        /// These first three are pointer types and do data copying
-        /// using the nsIMemory. Be careful!
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new ushort GetTypeAttribute();
 		
@@ -128,12 +171,6 @@ namespace Gecko
 	public interface nsISupportsString : nsISupportsPrimitive
 	{
 		
-		/// <summary>
-        /// Primitive base interface.
-        ///
-        /// These first three are pointer types and do data copying
-        /// using the nsIMemory. Be careful!
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new ushort GetTypeAttribute();
 		
@@ -163,12 +200,6 @@ namespace Gecko
 	public interface nsISupportsPRBool : nsISupportsPrimitive
 	{
 		
-		/// <summary>
-        /// Primitive base interface.
-        ///
-        /// These first three are pointer types and do data copying
-        /// using the nsIMemory. Be careful!
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new ushort GetTypeAttribute();
 		
@@ -199,12 +230,6 @@ namespace Gecko
 	public interface nsISupportsPRUint8 : nsISupportsPrimitive
 	{
 		
-		/// <summary>
-        /// Primitive base interface.
-        ///
-        /// These first three are pointer types and do data copying
-        /// using the nsIMemory. Be careful!
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new ushort GetTypeAttribute();
 		
@@ -234,12 +259,6 @@ namespace Gecko
 	public interface nsISupportsPRUint16 : nsISupportsPrimitive
 	{
 		
-		/// <summary>
-        /// Primitive base interface.
-        ///
-        /// These first three are pointer types and do data copying
-        /// using the nsIMemory. Be careful!
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new ushort GetTypeAttribute();
 		
@@ -269,12 +288,6 @@ namespace Gecko
 	public interface nsISupportsPRUint32 : nsISupportsPrimitive
 	{
 		
-		/// <summary>
-        /// Primitive base interface.
-        ///
-        /// These first three are pointer types and do data copying
-        /// using the nsIMemory. Be careful!
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new ushort GetTypeAttribute();
 		
@@ -304,12 +317,6 @@ namespace Gecko
 	public interface nsISupportsPRUint64 : nsISupportsPrimitive
 	{
 		
-		/// <summary>
-        /// Primitive base interface.
-        ///
-        /// These first three are pointer types and do data copying
-        /// using the nsIMemory. Be careful!
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new ushort GetTypeAttribute();
 		
@@ -339,12 +346,6 @@ namespace Gecko
 	public interface nsISupportsPRTime : nsISupportsPrimitive
 	{
 		
-		/// <summary>
-        /// Primitive base interface.
-        ///
-        /// These first three are pointer types and do data copying
-        /// using the nsIMemory. Be careful!
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new ushort GetTypeAttribute();
 		
@@ -375,12 +376,6 @@ namespace Gecko
 	public interface nsISupportsChar : nsISupportsPrimitive
 	{
 		
-		/// <summary>
-        /// Primitive base interface.
-        ///
-        /// These first three are pointer types and do data copying
-        /// using the nsIMemory. Be careful!
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new ushort GetTypeAttribute();
 		
@@ -412,12 +407,6 @@ namespace Gecko
 	public interface nsISupportsPRInt16 : nsISupportsPrimitive
 	{
 		
-		/// <summary>
-        /// Primitive base interface.
-        ///
-        /// These first three are pointer types and do data copying
-        /// using the nsIMemory. Be careful!
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new ushort GetTypeAttribute();
 		
@@ -447,12 +436,6 @@ namespace Gecko
 	public interface nsISupportsPRInt32 : nsISupportsPrimitive
 	{
 		
-		/// <summary>
-        /// Primitive base interface.
-        ///
-        /// These first three are pointer types and do data copying
-        /// using the nsIMemory. Be careful!
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new ushort GetTypeAttribute();
 		
@@ -482,12 +465,6 @@ namespace Gecko
 	public interface nsISupportsPRInt64 : nsISupportsPrimitive
 	{
 		
-		/// <summary>
-        /// Primitive base interface.
-        ///
-        /// These first three are pointer types and do data copying
-        /// using the nsIMemory. Be careful!
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new ushort GetTypeAttribute();
 		
@@ -517,12 +494,6 @@ namespace Gecko
 	public interface nsISupportsFloat : nsISupportsPrimitive
 	{
 		
-		/// <summary>
-        /// Primitive base interface.
-        ///
-        /// These first three are pointer types and do data copying
-        /// using the nsIMemory. Be careful!
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new ushort GetTypeAttribute();
 		
@@ -552,12 +523,6 @@ namespace Gecko
 	public interface nsISupportsDouble : nsISupportsPrimitive
 	{
 		
-		/// <summary>
-        /// Primitive base interface.
-        ///
-        /// These first three are pointer types and do data copying
-        /// using the nsIMemory. Be careful!
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new ushort GetTypeAttribute();
 		
@@ -587,12 +552,6 @@ namespace Gecko
 	public interface nsISupportsVoid : nsISupportsPrimitive
 	{
 		
-		/// <summary>
-        /// Primitive base interface.
-        ///
-        /// These first three are pointer types and do data copying
-        /// using the nsIMemory. Be careful!
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new ushort GetTypeAttribute();
 		
@@ -622,12 +581,6 @@ namespace Gecko
 	public interface nsISupportsInterfacePointer : nsISupportsPrimitive
 	{
 		
-		/// <summary>
-        /// Primitive base interface.
-        ///
-        /// These first three are pointer types and do data copying
-        /// using the nsIMemory. Be careful!
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new ushort GetTypeAttribute();
 		

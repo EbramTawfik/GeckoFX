@@ -41,4 +41,16 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIPrincipal VerifySignature([MarshalAs(UnmanagedType.LPStr)] string aSignature, uint aSignatureLen, [MarshalAs(UnmanagedType.LPStr)] string plaintext, uint plaintextLen, ref int errorCode);
 	}
+	
+	/// <summary>nsISignatureVerifierConsts </summary>
+	public class nsISignatureVerifierConsts
+	{
+		
+		// <summary>
+        //Sig Verification Error Codes </summary>
+		public const long VERIFY_OK = 0;
+		
+		// 
+		public const long VERIFY_ERROR_UNKNOWN_CA = -8172;
+	}
 }

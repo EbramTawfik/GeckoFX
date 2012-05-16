@@ -38,11 +38,6 @@ namespace Gecko
 	public interface nsIIDBRequest
 	{
 		
-		/// <summary>
-        /// IDBReqeust interface.  See
-        /// http://dev.w3.org/2006/webapi/WebSimpleDB/#idl-def-IDBRequest for more
-        /// information.
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		ushort GetReadyStateAttribute();
 		
@@ -73,5 +68,20 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOnerrorAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnerror);
+	}
+	
+	/// <summary>nsIIDBRequestConsts </summary>
+	public class nsIIDBRequestConsts
+	{
+		
+		// <summary>
+        // IDBReqeust interface.  See
+        // http://dev.w3.org/2006/webapi/WebSimpleDB/#idl-def-IDBRequest for more
+        // information.
+        // </summary>
+		public const ulong LOADING = 1;
+		
+		// 
+		public const ulong DONE = 2;
 	}
 }

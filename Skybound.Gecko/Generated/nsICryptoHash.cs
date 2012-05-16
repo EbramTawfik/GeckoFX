@@ -119,4 +119,37 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Finish([MarshalAs(UnmanagedType.U1)] bool aASCII, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
 	}
+	
+	/// <summary>nsICryptoHashConsts </summary>
+	public class nsICryptoHashConsts
+	{
+		
+		// <summary>
+        // Hashing Algorithms.  These values are to be used by the
+        // |init| method to indicate which hashing function to
+        // use.  These values map directly onto the values defined
+        // in mozilla/security/nss/lib/cryptohi/hasht.h.
+        // </summary>
+		public const int MD2 = 1;
+		
+		// <summary>
+        //String value: "md2" </summary>
+		public const int MD5 = 2;
+		
+		// <summary>
+        //String value: "md5" </summary>
+		public const int SHA1 = 3;
+		
+		// <summary>
+        //String value: "sha1" </summary>
+		public const int SHA256 = 4;
+		
+		// <summary>
+        //String value: "sha256" </summary>
+		public const int SHA384 = 5;
+		
+		// <summary>
+        //String value: "sha384" </summary>
+		public const int SHA512 = 6;
+	}
 }

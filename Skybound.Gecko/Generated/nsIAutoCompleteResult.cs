@@ -111,4 +111,39 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RemoveValueAt(int rowIndex, [MarshalAs(UnmanagedType.U1)] bool removeFromDb);
 	}
+	
+	/// <summary>nsIAutoCompleteResultConsts </summary>
+	public class nsIAutoCompleteResultConsts
+	{
+		
+		// <summary>
+        // Possible values for the searchResult attribute
+        // </summary>
+		public const ulong RESULT_IGNORED = 1;
+		
+		// <summary>
+        //indicates invalid searchString </summary>
+		public const ulong RESULT_FAILURE = 2;
+		
+		// <summary>
+        //indicates failure </summary>
+		public const ulong RESULT_NOMATCH = 3;
+		
+		// <summary>
+        //indicates success with no matches
+        //                                              and that the search is complete </summary>
+		public const ulong RESULT_SUCCESS = 4;
+		
+		// <summary>
+        //indicates success with matches
+        //                                              and that the search is complete </summary>
+		public const ulong RESULT_NOMATCH_ONGOING = 5;
+		
+		// <summary>
+        //indicates success
+        //                                                      with no matches
+        //                                                      and that the search
+        //                                                      is still ongoing </summary>
+		public const ulong RESULT_SUCCESS_ONGOING = 6;
+	}
 }

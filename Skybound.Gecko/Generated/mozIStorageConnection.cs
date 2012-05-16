@@ -251,9 +251,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void BeginTransaction();
 		
-		/// <summary>
-        /// Begins a new transaction with the given type.
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void BeginTransactionAs(int transactionType);
 		
@@ -389,5 +386,29 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void EnableModule([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aModuleName);
+	}
+	
+	/// <summary>mozIStorageConnectionConsts </summary>
+	public class mozIStorageConnectionConsts
+	{
+		
+		// <summary>
+        // The default size for SQLite database pages used by mozStorage for new
+        // databases.
+        // This value must stay in sync with the SQLITE_DEFAULT_PAGE_SIZE define in
+        // /db/sqlite3/src/Makefile.in
+        // </summary>
+		public const long DEFAULT_PAGE_SIZE = 32768;
+		
+		// <summary>
+        // Begins a new transaction with the given type.
+        // </summary>
+		public const int TRANSACTION_DEFERRED = 0;
+		
+		// 
+		public const int TRANSACTION_IMMEDIATE = 1;
+		
+		// 
+		public const int TRANSACTION_EXCLUSIVE = 2;
 	}
 }

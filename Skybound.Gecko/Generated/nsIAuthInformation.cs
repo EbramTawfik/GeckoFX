@@ -131,4 +131,46 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetDomainAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDomain);
 	}
+	
+	/// <summary>nsIAuthInformationConsts </summary>
+	public class nsIAuthInformationConsts
+	{
+		
+		// <summary>
+        // This dialog belongs to a network host.
+        // </summary>
+		public const long AUTH_HOST = 1;
+		
+		// <summary>
+        // This dialog belongs to a proxy.
+        // </summary>
+		public const long AUTH_PROXY = 2;
+		
+		// <summary>
+        // This dialog needs domain information. The user interface should show a
+        // domain field, prefilled with the domain attribute's value.
+        // </summary>
+		public const long NEED_DOMAIN = 4;
+		
+		// <summary>
+        // This dialog only asks for password information. Authentication prompts
+        // SHOULD NOT show a username field. Attempts to change the username field
+        // will have no effect. nsIAuthPrompt2 implementations should, however, show
+        // its initial value to the user in some form. For example, a paragraph in
+        // the dialog might say "Please enter your password for user jsmith at
+        // server intranet".
+        //
+        // This flag is mutually exclusive with #NEED_DOMAIN.
+        // </summary>
+		public const long ONLY_PASSWORD = 8;
+		
+		// <summary>
+        // We have already tried to log in for this channel
+        // (with auth values from a previous promptAuth call),
+        // but it failed, so we now ask the user to provide a new, correct login.
+        //
+        // @see also RFC 2616, Section 10.4.2
+        // </summary>
+		public const long PREVIOUS_FAILED = 16;
+	}
 }

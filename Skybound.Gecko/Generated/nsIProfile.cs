@@ -75,4 +75,15 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void CloneProfile([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string profileName);
 	}
+	
+	/// <summary>nsIProfileConsts </summary>
+	public class nsIProfileConsts
+	{
+		
+		// 
+		public const ulong SHUTDOWN_PERSIST = 0x00000001;
+		
+		// 
+		public const ulong SHUTDOWN_CLEANSE = 0x00000002;
+	}
 }

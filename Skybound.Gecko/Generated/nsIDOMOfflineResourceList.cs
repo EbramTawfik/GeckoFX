@@ -87,8 +87,8 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void MozRemove([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase uri);
 		
-		/// <summary>
-        ///The application cache group is now obsolete. </summary>
+		/// <summary>Member GetStatusAttribute </summary>
+		/// <returns>A System.UInt16</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		ushort GetStatusAttribute();
 		
@@ -192,5 +192,34 @@ namespace Gecko
 		/// <param name='aOnobsolete'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOnobsoleteAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnobsolete);
+	}
+	
+	/// <summary>nsIDOMOfflineResourceListConsts </summary>
+	public class nsIDOMOfflineResourceListConsts
+	{
+		
+		// <summary>
+        //This object is not associated with an application cache. </summary>
+		public const ulong UNCACHED = 0;
+		
+		// <summary>
+        //The application cache is not being updated. </summary>
+		public const ulong IDLE = 1;
+		
+		// <summary>
+        //The manifest is being fetched and checked for updates </summary>
+		public const ulong CHECKING = 2;
+		
+		// <summary>
+        //Resources are being downloaded to be added to the cache </summary>
+		public const ulong DOWNLOADING = 3;
+		
+		// <summary>
+        //There is a new version of the application cache available </summary>
+		public const ulong UPDATEREADY = 4;
+		
+		// <summary>
+        //The application cache group is now obsolete. </summary>
+		public const ulong OBSOLETE = 5;
 	}
 }

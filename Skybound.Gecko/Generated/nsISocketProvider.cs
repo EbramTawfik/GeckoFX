@@ -73,4 +73,27 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void AddToSocket(int aFamily, [MarshalAs(UnmanagedType.LPStr)] string aHost, int aPort, [MarshalAs(UnmanagedType.LPStr)] string aProxyHost, int aProxyPort, uint aFlags, System.IntPtr aFileDesc, [MarshalAs(UnmanagedType.Interface)] ref nsISupports aSecurityInfo);
 	}
+	
+	/// <summary>nsISocketProviderConsts </summary>
+	public class nsISocketProviderConsts
+	{
+		
+		// <summary>
+        // PROXY_RESOLVES_HOST
+        //
+        // This flag is set if the proxy is to perform hostname resolution instead
+        // of the client.  When set, the hostname parameter passed when in this
+        // interface will be used instead of the address structure passed for a
+        // later connect et al. request.
+        // </summary>
+		public const long PROXY_RESOLVES_HOST = 1<<0;
+		
+		// <summary>
+        // When setting this flag, the socket will not apply any
+        // credentials when establishing a connection. For example,
+        // an SSL connection would not send any client-certificates
+        // if this flag is set.
+        // </summary>
+		public const long ANONYMOUS_CONNECT = 1<<1;
+	}
 }

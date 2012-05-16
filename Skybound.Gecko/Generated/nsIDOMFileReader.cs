@@ -346,4 +346,18 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOnloadendAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnloadend);
 	}
+	
+	/// <summary>nsIDOMFileReaderConsts </summary>
+	public class nsIDOMFileReaderConsts
+	{
+		
+		// 
+		public const ulong EMPTY = 0;
+		
+		// 
+		public const ulong LOADING = 1;
+		
+		// 
+		public const ulong DONE = 2;
+	}
 }

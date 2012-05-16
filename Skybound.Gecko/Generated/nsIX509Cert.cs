@@ -247,4 +247,93 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool Equals([MarshalAs(UnmanagedType.Interface)] nsIX509Cert other);
 	}
+	
+	/// <summary>nsIX509CertConsts </summary>
+	public class nsIX509CertConsts
+	{
+		
+		// <summary>
+        // Constants to classify the type of a certificate.
+        // </summary>
+		public const ulong UNKNOWN_CERT = 0;
+		
+		// 
+		public const ulong CA_CERT = 1<<0;
+		
+		// 
+		public const ulong USER_CERT = 1<<1;
+		
+		// 
+		public const ulong EMAIL_CERT = 1<<2;
+		
+		// 
+		public const ulong SERVER_CERT = 1<<3;
+		
+		// <summary>
+        // Constants for certificate verification results.
+        // </summary>
+		public const ulong VERIFIED_OK = 0;
+		
+		// 
+		public const ulong NOT_VERIFIED_UNKNOWN = 1<<0;
+		
+		// 
+		public const ulong CERT_REVOKED = 1<<1;
+		
+		// 
+		public const ulong CERT_EXPIRED = 1<<2;
+		
+		// 
+		public const ulong CERT_NOT_TRUSTED = 1<<3;
+		
+		// 
+		public const ulong ISSUER_NOT_TRUSTED = 1<<4;
+		
+		// 
+		public const ulong ISSUER_UNKNOWN = 1<<5;
+		
+		// 
+		public const ulong INVALID_CA = 1<<6;
+		
+		// 
+		public const ulong USAGE_NOT_ALLOWED = 1<<7;
+		
+		// <summary>
+        // Constants that describe the certified usages of a certificate.
+        // </summary>
+		public const ulong CERT_USAGE_SSLClient = 0;
+		
+		// 
+		public const ulong CERT_USAGE_SSLServer = 1;
+		
+		// 
+		public const ulong CERT_USAGE_SSLServerWithStepUp = 2;
+		
+		// 
+		public const ulong CERT_USAGE_SSLCA = 3;
+		
+		// 
+		public const ulong CERT_USAGE_EmailSigner = 4;
+		
+		// 
+		public const ulong CERT_USAGE_EmailRecipient = 5;
+		
+		// 
+		public const ulong CERT_USAGE_ObjectSigner = 6;
+		
+		// 
+		public const ulong CERT_USAGE_UserCertImport = 7;
+		
+		// 
+		public const ulong CERT_USAGE_VerifyCA = 8;
+		
+		// 
+		public const ulong CERT_USAGE_ProtectedObjectSigner = 9;
+		
+		// 
+		public const ulong CERT_USAGE_StatusResponder = 10;
+		
+		// 
+		public const ulong CERT_USAGE_AnyCA = 11;
+	}
 }

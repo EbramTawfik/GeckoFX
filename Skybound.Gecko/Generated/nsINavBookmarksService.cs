@@ -635,4 +635,30 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RunInBatchMode([MarshalAs(UnmanagedType.Interface)] nsINavHistoryBatchCallback aCallback, [MarshalAs(UnmanagedType.Interface)] nsISupports aUserData);
 	}
+	
+	/// <summary>nsINavBookmarksServiceConsts </summary>
+	public class nsINavBookmarksServiceConsts
+	{
+		
+		// <summary>
+        // This value should be used for APIs that allow passing in an index
+        // where an index is not known, or not required to be specified.
+        // e.g.: When appending an item to a folder.
+        // </summary>
+		public const int DEFAULT_INDEX = -1;
+		
+		// 
+		public const ulong TYPE_BOOKMARK = 1;
+		
+		// 
+		public const ulong TYPE_FOLDER = 2;
+		
+		// 
+		public const ulong TYPE_SEPARATOR = 3;
+		
+		// <summary>
+        // This const exists just to avoid reusing the value.
+        // </summary>
+		public const ulong TYPE_DYNAMIC_CONTAINER = 4;
+	}
 }

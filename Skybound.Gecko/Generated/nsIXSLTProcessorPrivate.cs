@@ -48,4 +48,16 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetFlagsAttribute(uint aFlags);
 	}
+	
+	/// <summary>nsIXSLTProcessorPrivateConsts </summary>
+	public class nsIXSLTProcessorPrivateConsts
+	{
+		
+		// <summary>
+        // Disables all loading of external documents, such as from
+        // <xsl:import> and document()
+        // Defaults to off and is *not* reset by calls to reset()
+        // </summary>
+		public const ulong DISABLE_ALL_LOADS = 1;
+	}
 }

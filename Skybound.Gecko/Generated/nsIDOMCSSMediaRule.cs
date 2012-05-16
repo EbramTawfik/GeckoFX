@@ -34,9 +34,8 @@ namespace Gecko
 	public interface nsIDOMCSSMediaRule : nsIDOMCSSRule
 	{
 		
-		/// <summary>
-        /// RuleType
-        /// </summary>
+		/// <summary>Member GetTypeAttribute </summary>
+		/// <returns>A System.UInt16</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new ushort GetTypeAttribute();
 		

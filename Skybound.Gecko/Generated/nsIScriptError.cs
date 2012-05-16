@@ -114,4 +114,25 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ToString([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase retval);
 	}
+	
+	/// <summary>nsIScriptErrorConsts </summary>
+	public class nsIScriptErrorConsts
+	{
+		
+		// <summary>
+        //pseudo-flag for default case </summary>
+		public const ulong errorFlag = 0x0;
+		
+		// <summary>
+        //message is warning </summary>
+		public const ulong warningFlag = 0x1;
+		
+		// <summary>
+        //exception was thrown for this case - exception-aware hosts can ignore </summary>
+		public const ulong exceptionFlag = 0x2;
+		
+		// <summary>
+        //error or warning is due to strict option </summary>
+		public const ulong strictFlag = 0x4;
+	}
 }

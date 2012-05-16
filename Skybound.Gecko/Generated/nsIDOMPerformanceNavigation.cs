@@ -44,4 +44,21 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		ushort GetRedirectCountAttribute();
 	}
+	
+	/// <summary>nsIDOMPerformanceNavigationConsts </summary>
+	public class nsIDOMPerformanceNavigationConsts
+	{
+		
+		// 
+		public const long TYPE_NAVIGATE = 0;
+		
+		// 
+		public const long TYPE_RELOAD = 1;
+		
+		// 
+		public const long TYPE_BACK_FORWARD = 2;
+		
+		// 
+		public const long TYPE_RESERVED = 255;
+	}
 }

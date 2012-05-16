@@ -48,9 +48,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetUrlAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aUrl);
 		
-		/// <summary>
-        /// ready state
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetReadyStateAttribute();
 		
@@ -112,5 +109,21 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Init([MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, System.IntPtr scriptContext, System.IntPtr ownerWindow, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase url, [MarshalAs(UnmanagedType.U1)] bool withCredentials);
+	}
+	
+	/// <summary>nsIEventSourceConsts </summary>
+	public class nsIEventSourceConsts
+	{
+		
+		// <summary>
+        // ready state
+        // </summary>
+		public const ulong CONNECTING = 0;
+		
+		// 
+		public const ulong OPEN = 1;
+		
+		// 
+		public const ulong CLOSED = 2;
 	}
 }

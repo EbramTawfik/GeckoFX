@@ -208,4 +208,19 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RemoveListener([MarshalAs(UnmanagedType.Interface)] nsIWindowMediatorListener aListener);
 	}
+	
+	/// <summary>nsIWindowMediatorConsts </summary>
+	public class nsIWindowMediatorConsts
+	{
+		
+		// <summary>
+        //z-ordering: </summary>
+		public const ulong zLevelTop = 1;
+		
+		// 
+		public const ulong zLevelBottom = 2;
+		
+		// 
+		public const ulong zLevelBelow = 3;
+	}
 }

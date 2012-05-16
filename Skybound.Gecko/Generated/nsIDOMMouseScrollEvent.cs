@@ -409,4 +409,15 @@ namespace Gecko
 					[MarshalAs(UnmanagedType.Interface)] nsIDOMEventTarget relatedTargetArg, 
 					int axis);
 	}
+	
+	/// <summary>nsIDOMMouseScrollEventConsts </summary>
+	public class nsIDOMMouseScrollEventConsts
+	{
+		
+		// 
+		public const long HORIZONTAL_AXIS = 1;
+		
+		// 
+		public const long VERTICAL_AXIS = 2;
+	}
 }

@@ -141,4 +141,33 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string GetNext();
 	}
+	
+	/// <summary>nsICommandParamsConsts </summary>
+	public class nsICommandParamsConsts
+	{
+		
+		// <summary>
+        // List of primitive types for parameter values.
+        // </summary>
+		public const int eNoType = 0;
+		
+		// <summary>
+        //Only used for sanity checking </summary>
+		public const int eBooleanType = 1;
+		
+		// 
+		public const int eLongType = 2;
+		
+		// 
+		public const int eDoubleType = 3;
+		
+		// 
+		public const int eWStringType = 4;
+		
+		// 
+		public const int eISupportsType = 5;
+		
+		// 
+		public const int eStringType = 6;
+	}
 }

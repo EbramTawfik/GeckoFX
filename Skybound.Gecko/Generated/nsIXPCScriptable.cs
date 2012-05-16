@@ -39,9 +39,6 @@ namespace Gecko
 	public interface nsIXPCScriptable
 	{
 		
-		/// <summary>
-        /// with this bit set.
-        /// </summary>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string GetClassNameAttribute();
@@ -124,5 +121,103 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void PostCreatePrototype(System.IntPtr cx, System.IntPtr proto);
+	}
+	
+	/// <summary>nsIXPCScriptableConsts </summary>
+	public class nsIXPCScriptableConsts
+	{
+		
+		// <summary>
+        //bitflags used for 'flags' (only 32 bits available!) </summary>
+		public const long WANT_PRECREATE = 1<<0;
+		
+		// 
+		public const long WANT_CREATE = 1<<1;
+		
+		// 
+		public const long WANT_POSTCREATE = 1<<2;
+		
+		// 
+		public const long WANT_ADDPROPERTY = 1<<3;
+		
+		// 
+		public const long WANT_DELPROPERTY = 1<<4;
+		
+		// 
+		public const long WANT_GETPROPERTY = 1<<5;
+		
+		// 
+		public const long WANT_SETPROPERTY = 1<<6;
+		
+		// 
+		public const long WANT_ENUMERATE = 1<<7;
+		
+		// 
+		public const long WANT_NEWENUMERATE = 1<<8;
+		
+		// 
+		public const long WANT_NEWRESOLVE = 1<<9;
+		
+		// 
+		public const long WANT_CONVERT = 1<<10;
+		
+		// 
+		public const long WANT_FINALIZE = 1<<11;
+		
+		// 
+		public const long WANT_CHECKACCESS = 1<<12;
+		
+		// 
+		public const long WANT_CALL = 1<<13;
+		
+		// 
+		public const long WANT_CONSTRUCT = 1<<14;
+		
+		// 
+		public const long WANT_HASINSTANCE = 1<<15;
+		
+		// 
+		public const long USE_JSSTUB_FOR_ADDPROPERTY = 1<<17;
+		
+		// 
+		public const long USE_JSSTUB_FOR_DELPROPERTY = 1<<18;
+		
+		// 
+		public const long USE_JSSTUB_FOR_SETPROPERTY = 1<<19;
+		
+		// 
+		public const long DONT_ENUM_STATIC_PROPS = 1<<20;
+		
+		// 
+		public const long DONT_ENUM_QUERY_INTERFACE = 1<<21;
+		
+		// 
+		public const long DONT_ASK_INSTANCE_FOR_SCRIPTABLE = 1<<22;
+		
+		// 
+		public const long CLASSINFO_INTERFACES_ONLY = 1<<23;
+		
+		// 
+		public const long ALLOW_PROP_MODS_DURING_RESOLVE = 1<<24;
+		
+		// 
+		public const long ALLOW_PROP_MODS_TO_PROTOTYPE = 1<<25;
+		
+		// 
+		public const long DONT_REFLECT_INTERFACE_NAMES = 1<<27;
+		
+		// 
+		public const long WANT_EQUALITY = 1<<28;
+		
+		// 
+		public const long WANT_OUTER_OBJECT = 1<<29;
+		
+		// 
+		public const long USE_STUB_EQUALITY_HOOK = 1<<30;
+		
+		// <summary>
+        // with this bit set.
+        // </summary>
+		public const long RESERVED = 1<<31;
 	}
 }

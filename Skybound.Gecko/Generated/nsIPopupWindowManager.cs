@@ -45,4 +45,20 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint TestPermission([MarshalAs(UnmanagedType.Interface)] nsIURI uri);
 	}
+	
+	/// <summary>nsIPopupWindowManagerConsts </summary>
+	public class nsIPopupWindowManagerConsts
+	{
+		
+		// <summary>
+        // These values are returned by the testPermission method
+        // </summary>
+		public const long ALLOW_POPUP = 1;
+		
+		// 
+		public const long DENY_POPUP = 2;
+		
+		// 
+		public const long ALLOW_POPUP_WITH_PREJUDICE = 3;
+	}
 }

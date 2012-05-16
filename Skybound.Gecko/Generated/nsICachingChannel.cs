@@ -235,4 +235,66 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIFile GetCacheFileAttribute();
 	}
+	
+	/// <summary>nsICachingChannelConsts </summary>
+	public class nsICachingChannelConsts
+	{
+		
+		// <summary>
+        // This load flag inhibits fetching from the net.  An error of
+        // NS_ERROR_DOCUMENT_NOT_CACHED will be sent to the listener's
+        // onStopRequest if network IO is necessary to complete the request.
+        //
+        // This flag can be used to find out whether fetching this URL would
+        // cause validation of the cache entry via the network.
+        //
+        // Combining this flag with LOAD_BYPASS_LOCAL_CACHE will cause all
+        // loads to fail. This flag differs from LOAD_ONLY_FROM_CACHE in that
+        // this flag fails the load if validation is required while
+        // LOAD_ONLY_FROM_CACHE skips validation where possible.
+        // </summary>
+		public const ulong LOAD_NO_NETWORK_IO = 1<<26;
+		
+		// <summary>
+        // This load flag causes the offline cache to be checked when fetching
+        // a request.  It will be set automatically if the browser is offline.
+        //
+        // This flag will not be transferred through a redirect.
+        // </summary>
+		public const ulong LOAD_CHECK_OFFLINE_CACHE = 1<<27;
+		
+		// <summary>
+        // This load flag causes the local cache to be skipped when fetching a
+        // request.  Unlike LOAD_BYPASS_CACHE, it does not force an end-to-end load
+        // (i.e., it does not affect proxy caches).
+        // </summary>
+		public const ulong LOAD_BYPASS_LOCAL_CACHE = 1<<28;
+		
+		// <summary>
+        // This load flag causes the local cache to be skipped if the request
+        // would otherwise block waiting to access the cache.
+        // </summary>
+		public const ulong LOAD_BYPASS_LOCAL_CACHE_IF_BUSY = 1<<29;
+		
+		// <summary>
+        // This load flag inhibits fetching from the net if the data in the cache
+        // has been evicted.  An error of NS_ERROR_DOCUMENT_NOT_CACHED will be sent
+        // to the listener's onStopRequest in this case.  This flag is set
+        // automatically when the application is offline.
+        // </summary>
+		public const ulong LOAD_ONLY_FROM_CACHE = 1<<30;
+		
+		// <summary>
+        // This load flag controls what happens when a document would be loaded
+        // from the cache to satisfy a call to AsyncOpen.  If this attribute is
+        // set to TRUE, then the document will not be loaded from the cache.  A
+        // stream listener can check nsICachingChannel::isFromCache to determine
+        // if the AsyncOpen will actually result in data being streamed.
+        //
+        // If this flag has been set, and the request can be satisfied via the
+        // cache, then the OnDataAvailable events will be skipped.  The listener
+        // will only see OnStartRequest followed by OnStopRequest.
+        // </summary>
+		public const ulong LOAD_ONLY_IF_MODIFIED = (ulong)1<<31;
+	}
 }

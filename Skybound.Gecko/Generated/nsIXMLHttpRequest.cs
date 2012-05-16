@@ -846,17 +846,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetTimeoutAttribute(uint aTimeout);
 		
-		/// <summary>
-        /// The state of the request.
-        ///
-        /// Possible values:
-        /// 0 UNSENT   open() has not been called yet.
-        /// 1 OPENED   send() has not been called yet.
-        /// 2 HEADERS_RECEIVED
-        /// send() has been called, headers and status are available.
-        /// 3 LOADING  Downloading, responseText holds the partial data.
-        /// 4 DONE     Finished with all operations.
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		ushort GetReadyStateAttribute();
 		
@@ -999,6 +988,36 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOnreadystatechangeAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnreadystatechange);
+	}
+	
+	/// <summary>nsIXMLHttpRequestConsts </summary>
+	public class nsIXMLHttpRequestConsts
+	{
+		
+		// <summary>
+        // The state of the request.
+        //
+        // Possible values:
+        // 0 UNSENT   open() has not been called yet.
+        // 1 OPENED   send() has not been called yet.
+        // 2 HEADERS_RECEIVED
+        // send() has been called, headers and status are available.
+        // 3 LOADING  Downloading, responseText holds the partial data.
+        // 4 DONE     Finished with all operations.
+        // </summary>
+		public const ulong UNSENT = 0;
+		
+		// 
+		public const ulong OPENED = 1;
+		
+		// 
+		public const ulong HEADERS_RECEIVED = 2;
+		
+		// 
+		public const ulong LOADING = 3;
+		
+		// 
+		public const ulong DONE = 4;
 	}
 	
 	/// <summary>nsIXHRSendable </summary>

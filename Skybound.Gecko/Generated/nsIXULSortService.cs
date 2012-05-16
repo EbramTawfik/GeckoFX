@@ -54,4 +54,17 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Sort([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aNode, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSortKey, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSortHints);
 	}
+	
+	/// <summary>nsIXULSortServiceConsts </summary>
+	public class nsIXULSortServiceConsts
+	{
+		
+		// <summary>
+        // A service used to sort the contents of a XUL widget.
+        // </summary>
+		public const ulong SORT_COMPARECASE = 0x0001;
+		
+		// 
+		public const ulong SORT_INTEGER = 0x0100;
+	}
 }

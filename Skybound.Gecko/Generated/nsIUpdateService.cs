@@ -617,6 +617,28 @@ namespace Gecko
 		void StopChecking(ushort duration);
 	}
 	
+	/// <summary>nsIUpdateCheckerConsts </summary>
+	public class nsIUpdateCheckerConsts
+	{
+		
+		// <summary>
+        // Constants for the |stopChecking| function that tell the Checker how long
+        // to stop checking:
+        //
+        // CURRENT_CHECK:     Stops the current (active) check only
+        // CURRENT_SESSION:   Stops all checking for the current session
+        // ANY_CHECKS:        Stops all checking, any session from now on
+        // (disables update checking preferences)
+        // </summary>
+		public const ulong CURRENT_CHECK = 1;
+		
+		// 
+		public const ulong CURRENT_SESSION = 2;
+		
+		// 
+		public const ulong ANY_CHECKS = 3;
+	}
+	
 	/// <summary>
     /// An interface describing a global application service that handles performing
     /// background update checks and provides utilities for selecting and

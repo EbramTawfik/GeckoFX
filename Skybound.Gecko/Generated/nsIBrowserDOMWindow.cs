@@ -72,4 +72,44 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsTabContentWindow([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow);
 	}
+	
+	/// <summary>nsIBrowserDOMWindowConsts </summary>
+	public class nsIBrowserDOMWindowConsts
+	{
+		
+		// <summary>
+        // Do whatever the default is based on application state, user preferences,
+        // and the value of the aContext parameter to openURI.
+        // </summary>
+		public const int OPEN_DEFAULTWINDOW = 0;
+		
+		// <summary>
+        // Open in the "current window".  If aOpener is provided, this should be the
+        // top window in aOpener's window hierarchy, but exact behavior is
+        // application-dependent.  If aOpener is not provided, it's up to the
+        // application to decide what constitutes a "current window".
+        // </summary>
+		public const int OPEN_CURRENTWINDOW = 1;
+		
+		// <summary>
+        // Open in a new window.
+        // </summary>
+		public const int OPEN_NEWWINDOW = 2;
+		
+		// <summary>
+        // Open in a new content tab in the toplevel browser window corresponding to
+        // this nsIBrowserDOMWindow.
+        // </summary>
+		public const int OPEN_NEWTAB = 3;
+		
+		// <summary>
+        // external link (load request from another application, xremote, etc).
+        // </summary>
+		public const int OPEN_EXTERNAL = 1;
+		
+		// <summary>
+        // internal open new window
+        // </summary>
+		public const int OPEN_NEW = 2;
+	}
 }

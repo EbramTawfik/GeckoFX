@@ -63,4 +63,17 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void FindNextWord([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string word, uint length, uint offset, ref int begin, ref int end);
 	}
+	
+	/// <summary>mozISpellI18NUtilConsts </summary>
+	public class mozISpellI18NUtilConsts
+	{
+		
+		// <summary>
+        // This interface contains various I18N related code used in various places by the spell checker.
+        // </summary>
+		public const long kCheck = 0;
+		
+		// 
+		public const long kSuggest = 1;
+	}
 }

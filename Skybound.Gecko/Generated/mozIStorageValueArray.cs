@@ -105,4 +105,28 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetSharedBlob(uint aIndex, ref uint aLength);
 	}
+	
+	/// <summary>mozIStorageValueArrayConsts </summary>
+	public class mozIStorageValueArrayConsts
+	{
+		
+		// <summary>
+        // These type values are returned by getTypeOfIndex
+        // to indicate what type of value is present at
+        // a given column.
+        // </summary>
+		public const long VALUE_TYPE_NULL = 0;
+		
+		// 
+		public const long VALUE_TYPE_INTEGER = 1;
+		
+		// 
+		public const long VALUE_TYPE_FLOAT = 2;
+		
+		// 
+		public const long VALUE_TYPE_TEXT = 3;
+		
+		// 
+		public const long VALUE_TYPE_BLOB = 4;
+	}
 }

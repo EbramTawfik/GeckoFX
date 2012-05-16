@@ -39,4 +39,24 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		ushort GetCodeAttribute();
 	}
+	
+	/// <summary>nsIDOMFileExceptionConsts </summary>
+	public class nsIDOMFileExceptionConsts
+	{
+		
+		// 
+		public const ulong NOT_FOUND_ERR = 1;
+		
+		// 
+		public const ulong SECURITY_ERR = 2;
+		
+		// 
+		public const ulong ABORT_ERR = 3;
+		
+		// 
+		public const ulong NOT_READABLE_ERR = 4;
+		
+		// 
+		public const ulong ENCODING_ERR = 5;
+	}
 }

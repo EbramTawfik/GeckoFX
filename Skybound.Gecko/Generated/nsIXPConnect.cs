@@ -760,4 +760,18 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetDebugModeWhenPossible([MarshalAs(UnmanagedType.U1)] bool mode, [MarshalAs(UnmanagedType.U1)] bool allowSyncDisable);
 	}
+	
+	/// <summary>nsIXPConnectConsts </summary>
+	public class nsIXPConnectConsts
+	{
+		
+		// 
+		public const long INIT_JS_STANDARD_CLASSES = 1<<0;
+		
+		// 
+		public const long FLAG_SYSTEM_GLOBAL_OBJECT = 1<<1;
+		
+		// 
+		public const long OMIT_COMPONENTS_OBJECT = 1<<2;
+	}
 }

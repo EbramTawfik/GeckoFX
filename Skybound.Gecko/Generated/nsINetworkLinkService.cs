@@ -64,4 +64,34 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetLinkTypeAttribute();
 	}
+	
+	/// <summary>nsINetworkLinkServiceConsts </summary>
+	public class nsINetworkLinkServiceConsts
+	{
+		
+		// <summary>
+        //Link type constants </summary>
+		public const ulong LINK_TYPE_UNKNOWN = 0;
+		
+		// 
+		public const ulong LINK_TYPE_ETHERNET = 1;
+		
+		// 
+		public const ulong LINK_TYPE_USB = 2;
+		
+		// 
+		public const ulong LINK_TYPE_WIFI = 3;
+		
+		// 
+		public const ulong LINK_TYPE_WIMAX = 4;
+		
+		// 
+		public const ulong LINK_TYPE_2G = 5;
+		
+		// 
+		public const ulong LINK_TYPE_3G = 6;
+		
+		// 
+		public const ulong LINK_TYPE_4G = 7;
+	}
 }

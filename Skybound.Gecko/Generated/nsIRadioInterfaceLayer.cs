@@ -131,9 +131,8 @@ namespace Gecko
 	public interface nsIRadioInterfaceLayer
 	{
 		
-		/// <summary>
-        /// Keep consistent with GECKO_DATACALL_STATE_* values in ril_consts.js
-        /// </summary>
+		/// <summary>Member GetCurrentStateAttribute </summary>
+		/// <returns>A Gecko.JsVal</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		Gecko.JsVal GetCurrentStateAttribute();
 		
@@ -243,5 +242,63 @@ namespace Gecko
 		/// <param name='message'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SendSMS([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase number, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase message);
+	}
+	
+	/// <summary>nsIRadioInterfaceLayerConsts </summary>
+	public class nsIRadioInterfaceLayerConsts
+	{
+		
+		// 
+		public const ulong CALL_STATE_UNKNOWN = 0;
+		
+		// 
+		public const ulong CALL_STATE_DIALING = 1;
+		
+		// 
+		public const ulong CALL_STATE_RINGING = 2;
+		
+		// 
+		public const ulong CALL_STATE_BUSY = 3;
+		
+		// 
+		public const ulong CALL_STATE_CONNECTING = 4;
+		
+		// 
+		public const ulong CALL_STATE_CONNECTED = 5;
+		
+		// 
+		public const ulong CALL_STATE_HOLDING = 6;
+		
+		// 
+		public const ulong CALL_STATE_HELD = 7;
+		
+		// 
+		public const ulong CALL_STATE_RESUMING = 8;
+		
+		// 
+		public const ulong CALL_STATE_DISCONNECTING = 9;
+		
+		// 
+		public const ulong CALL_STATE_DISCONNECTED = 10;
+		
+		// 
+		public const ulong CALL_STATE_INCOMING = 11;
+		
+		// <summary>
+        // Keep consistent with GECKO_DATACALL_STATE_* values in ril_consts.js
+        // </summary>
+		public const ulong DATACALL_STATE_UNKNOWN = 0;
+		
+		// 
+		public const ulong DATACALL_STATE_CONNECTING = 1;
+		
+		// 
+		public const ulong DATACALL_STATE_CONNECTED = 2;
+		
+		// 
+		public const ulong DATACALL_STATE_DISCONNECTING = 3;
+		
+		// 
+		public const ulong DATACALL_STATE_DISCONNECTED = 4;
 	}
 }

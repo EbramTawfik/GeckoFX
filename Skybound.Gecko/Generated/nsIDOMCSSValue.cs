@@ -40,15 +40,9 @@ namespace Gecko
 	public interface nsIDOMCSSValue
 	{
 		
-		/// <summary>
-        /// UnitTypes
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetCssTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCssText);
 		
-		/// <summary>
-        /// UnitTypes
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetCssTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCssText);
 		
@@ -57,5 +51,24 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		ushort GetCssValueTypeAttribute();
+	}
+	
+	/// <summary>nsIDOMCSSValueConsts </summary>
+	public class nsIDOMCSSValueConsts
+	{
+		
+		// <summary>
+        // UnitTypes
+        // </summary>
+		public const ulong CSS_INHERIT = 0;
+		
+		// 
+		public const ulong CSS_PRIMITIVE_VALUE = 1;
+		
+		// 
+		public const ulong CSS_VALUE_LIST = 2;
+		
+		// 
+		public const ulong CSS_CUSTOM = 3;
 	}
 }

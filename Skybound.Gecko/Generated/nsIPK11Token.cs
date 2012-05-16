@@ -162,4 +162,18 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsFriendly();
 	}
+	
+	/// <summary>nsIPK11TokenConsts </summary>
+	public class nsIPK11TokenConsts
+	{
+		
+		// 
+		public const long ASK_EVERY_TIME = -1;
+		
+		// 
+		public const long ASK_FIRST_TIME = 0;
+		
+		// 
+		public const long ASK_EXPIRE_TIME = 1;
+	}
 }
