@@ -177,6 +177,10 @@ namespace GeckoFxTest
 			closeWithDisposeTab.Text = "Close";
 			closeWithDisposeTab.Left = closeTab.Left + closeTab.Width;
 
+			Button open = new Button();
+			open.Text = "FileOpen";
+			open.Left = closeWithDisposeTab.Left + closeWithDisposeTab.Width;
+
 			Button scrollDown = new Button { Text = "Down", Left = closeWithDisposeTab.Left + 250 };
 			Button scrollUp = new Button { Text = "Up", Left = closeWithDisposeTab.Left + 330 };
 
@@ -207,12 +211,30 @@ namespace GeckoFxTest
 				tabPage.Dispose();
 			};
 
+			open.Click += (s, a) =>
+			{
+				nsIFilePicker filePicker = Xpcom.CreateInstance<nsIFilePicker>("@mozilla.org/filepicker;1");
+				filePicker.Init(browser.Window.DomWindow, new nsAString("hello"), nsIFilePickerConsts.modeOpen);
+				filePicker.AppendFilter(new nsAString("png"), new nsAString("*.png"));
+				filePicker.AppendFilter(new nsAString("html"), new nsAString("*.html"));
+				if (nsIFilePickerConsts.returnOK == filePicker.Show())
+				{
+					using(nsACString str = new nsACString())
+					{
+						filePicker.GetFileAttribute().GetNativePathAttribute(str);
+						browser.Navigate(str.ToString());
+					}					
+				}
+
+			};
+
 			tabPage.Controls.Add(urlbox);
 			tabPage.Controls.Add(nav);
 			tabPage.Controls.Add(newTab);
 			tabPage.Controls.Add(stop);
 			tabPage.Controls.Add(closeTab);
 			tabPage.Controls.Add(closeWithDisposeTab);
+			tabPage.Controls.Add(open);
 			tabPage.Controls.Add(browser);
 			tabPage.Controls.Add(scrollDown);
 			tabPage.Controls.Add(scrollUp);
