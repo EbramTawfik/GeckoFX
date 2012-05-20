@@ -20,6 +20,7 @@ namespace Gecko
 		private static readonly object NavigatingEvent = new object();
 		private static readonly object NavigatedEvent = new object();
 		private static readonly object DocumentCompletedEvent = new object();
+		private static readonly object RedirectingEvent = new object();
 		private static readonly object CanGoBackChangedEvent = new object();
 		private static readonly object CanGoForwardChangedEvent = new object();
 		// ProgressChanged
@@ -115,6 +116,37 @@ namespace Gecko
 		}
 
 		#endregion
+
+		#region public event EventHandler<GeckoRedirectingEventArgs> Redirecting
+
+		/// <summary>
+		/// Occurs before the browser redirects to a new page.
+		/// </summary>
+		[Category("Navigation")]
+		[Description("Occurs before the browser redirects to a new page.")]
+		public event EventHandler<GeckoRedirectingEventArgs> Redirecting
+		{
+			add
+			{
+				Events.AddHandler(RedirectingEvent, value);
+			}
+			remove
+			{
+				Events.RemoveHandler(RedirectingEvent, value);
+			}
+		}
+
+		/// <summary>Raises the <see cref="Redirecting"/> event.</summary>
+		/// <param name="e">The data for the event.</param>
+		protected virtual void OnRedirecting(GeckoRedirectingEventArgs e)
+		{
+			var evnt = ((EventHandler<GeckoRedirectingEventArgs>)Events[RedirectingEvent]);
+			if (evnt != null)
+				evnt(this, e);
+		}
+
+		#endregion
+
 
 		#region public event EventHandler DocumentCompleted
 
@@ -1142,6 +1174,26 @@ namespace Gecko
 		/// <summary>Creates a new instance of a <see cref="GeckoNavigatingEventArgs"/> object.</summary>
 		/// <param name="value"></param>
 		public GeckoNavigatingEventArgs(Uri value, GeckoWindow domWind)
+		{
+			Uri = value;
+			DomWindow = domWind;
+			DomWindowTopLevel = ((domWind == null) ? true : DomWindow.DomWindow.Equals(DomWindow.Top.DomWindow));
+		}
+	}
+	#endregion
+
+	#region GeckoRedirectingEventArgs
+	/// <summary>Provides data for event.</summary>
+	public class GeckoRedirectingEventArgs
+		: CancelEventArgs
+	{
+		public readonly Uri Uri;
+		public readonly GeckoWindow DomWindow;
+		public readonly Boolean DomWindowTopLevel;
+
+		/// <summary>Creates a new instance of a <see cref="GeckoRedirectingEventArgs"/> object.</summary>
+		/// <param name="value"></param>
+		public GeckoRedirectingEventArgs(Uri value, GeckoWindow domWind)
 		{
 			Uri = value;
 			DomWindow = domWind;

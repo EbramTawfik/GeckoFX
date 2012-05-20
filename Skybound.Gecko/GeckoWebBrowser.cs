@@ -62,8 +62,8 @@ namespace Gecko
 		nsIDOMEventListener,
 		nsISHistoryListener,
 		nsITooltipListener,
-        nsIObserver,
-         nsIHttpActivityObserver,
+		nsIObserver,
+		nsIHttpActivityObserver,
 		nsISupportsWeakReference
 		//nsIWindowProvider,
 	{
@@ -1579,10 +1579,8 @@ namespace Gecko
 			else if ((aStateFlags & nsIWebProgressListenerConstants.STATE_REDIRECTING) != 0) {
 
 				// make sure we're loading the top-level window
-				GeckoNavigatingEventArgs ea = new GeckoNavigatingEventArgs(destUri, domWindow);
-				//OnRedirecting(ea);
-
-				ea.Cancel = true;
+				GeckoRedirectingEventArgs ea = new GeckoRedirectingEventArgs(destUri, domWindow);
+				OnRedirecting(ea);
 
 				if (ea.Cancel)
 				{
