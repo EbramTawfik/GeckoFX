@@ -22,6 +22,14 @@ namespace Gecko
 		}
 		
 		/// <summary>
+		/// Gets the HTML head element.
+		/// </summary>
+		public GeckoHeadElement Head
+		{
+			get { return GeckoElement.Create<GeckoHeadElement>(_domHtmlDocument.GetHeadAttribute()); }
+		}
+
+		/// <summary>
 		/// Gets the HTML body element.
 		/// </summary>
 		public GeckoElement Body
