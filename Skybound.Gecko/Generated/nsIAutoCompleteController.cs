@@ -178,4 +178,23 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetSearchStringAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSearchString);
 	}
+	
+	/// <summary>nsIAutoCompleteControllerConsts </summary>
+	public class nsIAutoCompleteControllerConsts
+	{
+		
+		// <summary>
+        // Possible values for the searchStatus attribute
+        // </summary>
+		public const ulong STATUS_NONE = 1;
+		
+		// 
+		public const ulong STATUS_SEARCHING = 2;
+		
+		// 
+		public const ulong STATUS_COMPLETE_NO_MATCH = 3;
+		
+		// 
+		public const ulong STATUS_COMPLETE_MATCH = 4;
+	}
 }

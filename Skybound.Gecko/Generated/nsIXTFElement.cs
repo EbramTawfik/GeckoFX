@@ -170,4 +170,65 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void PerformAccesskey();
 	}
+	
+	/// <summary>nsIXTFElementConsts </summary>
+	public class nsIXTFElementConsts
+	{
+		
+		// <summary>
+        // nsIXTFElementWrapper::notificationMask.
+        // </summary>
+		public const ulong NOTIFY_WILL_CHANGE_DOCUMENT = 0x00000001;
+		
+		// 
+		public const ulong NOTIFY_DOCUMENT_CHANGED = 0x00000002;
+		
+		// 
+		public const ulong NOTIFY_WILL_CHANGE_PARENT = 0x00000004;
+		
+		// 
+		public const ulong NOTIFY_PARENT_CHANGED = 0x00000008;
+		
+		// 
+		public const ulong NOTIFY_WILL_INSERT_CHILD = 0x00000010;
+		
+		// 
+		public const ulong NOTIFY_CHILD_INSERTED = 0x00000020;
+		
+		// 
+		public const ulong NOTIFY_WILL_APPEND_CHILD = 0x00000040;
+		
+		// 
+		public const ulong NOTIFY_CHILD_APPENDED = 0x00000080;
+		
+		// 
+		public const ulong NOTIFY_WILL_REMOVE_CHILD = 0x00000100;
+		
+		// 
+		public const ulong NOTIFY_CHILD_REMOVED = 0x00000200;
+		
+		// 
+		public const ulong NOTIFY_WILL_SET_ATTRIBUTE = 0x00000400;
+		
+		// 
+		public const ulong NOTIFY_ATTRIBUTE_SET = 0x00000800;
+		
+		// 
+		public const ulong NOTIFY_WILL_REMOVE_ATTRIBUTE = 0x00001000;
+		
+		// 
+		public const ulong NOTIFY_ATTRIBUTE_REMOVED = 0x00002000;
+		
+		// 
+		public const ulong NOTIFY_BEGIN_ADDING_CHILDREN = 0x00004000;
+		
+		// 
+		public const ulong NOTIFY_DONE_ADDING_CHILDREN = 0x00008000;
+		
+		// 
+		public const ulong NOTIFY_HANDLE_DEFAULT = 0x00010000;
+		
+		// 
+		public const ulong NOTIFY_PERFORM_ACCESSKEY = 0x00020000;
+	}
 }

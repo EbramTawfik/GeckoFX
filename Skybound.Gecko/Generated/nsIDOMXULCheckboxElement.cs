@@ -34,14 +34,8 @@ namespace Gecko
 	public interface nsIDOMXULCheckboxElement : nsIDOMXULLabeledControlElement
 	{
 		
-		/// <summary>
-        /// The nsIDOMNode interface is the primary datatype for the entire
-        /// Document Object Model.
-        /// It represents a single node in the document tree.
-        ///
-        /// For more information on this interface please see
-        /// http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html
-        /// </summary>
+		/// <summary>Member GetNodeNameAttribute </summary>
+		/// <param name='aNodeName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetNodeNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNodeName);
 		
@@ -1066,5 +1060,19 @@ namespace Gecko
 		/// <param name='aAutoCheck'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetAutoCheckAttribute([MarshalAs(UnmanagedType.U1)] bool aAutoCheck);
+	}
+	
+	/// <summary>nsIDOMXULCheckboxElementConsts </summary>
+	public class nsIDOMXULCheckboxElementConsts
+	{
+		
+		// 
+		public const int CHECKSTATE_UNCHECKED = 0;
+		
+		// 
+		public const int CHECKSTATE_CHECKED = 1;
+		
+		// 
+		public const int CHECKSTATE_MIXED = 2;
 	}
 }

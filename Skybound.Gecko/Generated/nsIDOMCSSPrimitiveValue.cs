@@ -40,15 +40,9 @@ namespace Gecko
 	public interface nsIDOMCSSPrimitiveValue : nsIDOMCSSValue
 	{
 		
-		/// <summary>
-        /// UnitTypes
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetCssTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCssText);
 		
-		/// <summary>
-        /// UnitTypes
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetCssTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCssText);
 		
@@ -58,9 +52,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new ushort GetCssValueTypeAttribute();
 		
-		/// <summary>
-        /// UnitTypes
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		ushort GetPrimitiveTypeAttribute();
 		
@@ -87,5 +78,90 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMRGBColor GetRGBColorValue();
+	}
+	
+	/// <summary>nsIDOMCSSPrimitiveValueConsts </summary>
+	public class nsIDOMCSSPrimitiveValueConsts
+	{
+		
+		// <summary>
+        // UnitTypes
+        // </summary>
+		public const ulong CSS_UNKNOWN = 0;
+		
+		// 
+		public const ulong CSS_NUMBER = 1;
+		
+		// 
+		public const ulong CSS_PERCENTAGE = 2;
+		
+		// 
+		public const ulong CSS_EMS = 3;
+		
+		// 
+		public const ulong CSS_EXS = 4;
+		
+		// 
+		public const ulong CSS_PX = 5;
+		
+		// 
+		public const ulong CSS_CM = 6;
+		
+		// 
+		public const ulong CSS_MM = 7;
+		
+		// 
+		public const ulong CSS_IN = 8;
+		
+		// 
+		public const ulong CSS_PT = 9;
+		
+		// 
+		public const ulong CSS_PC = 10;
+		
+		// 
+		public const ulong CSS_DEG = 11;
+		
+		// 
+		public const ulong CSS_RAD = 12;
+		
+		// 
+		public const ulong CSS_GRAD = 13;
+		
+		// 
+		public const ulong CSS_MS = 14;
+		
+		// 
+		public const ulong CSS_S = 15;
+		
+		// 
+		public const ulong CSS_HZ = 16;
+		
+		// 
+		public const ulong CSS_KHZ = 17;
+		
+		// 
+		public const ulong CSS_DIMENSION = 18;
+		
+		// 
+		public const ulong CSS_STRING = 19;
+		
+		// 
+		public const ulong CSS_URI = 20;
+		
+		// 
+		public const ulong CSS_IDENT = 21;
+		
+		// 
+		public const ulong CSS_ATTR = 22;
+		
+		// 
+		public const ulong CSS_COUNTER = 23;
+		
+		// 
+		public const ulong CSS_RECT = 24;
+		
+		// 
+		public const ulong CSS_RGBCOLOR = 25;
 	}
 }

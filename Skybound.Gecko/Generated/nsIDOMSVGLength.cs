@@ -34,9 +34,8 @@ namespace Gecko
 	public interface nsIDOMSVGLength
 	{
 		
-		/// <summary>
-        /// Length Unit Types
-        /// </summary>
+		/// <summary>Member GetUnitTypeAttribute </summary>
+		/// <returns>A System.UInt16</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		ushort GetUnitTypeAttribute();
 		
@@ -84,5 +83,45 @@ namespace Gecko
 		/// <param name='unitType'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ConvertToSpecifiedUnits(ushort unitType);
+	}
+	
+	/// <summary>nsIDOMSVGLengthConsts </summary>
+	public class nsIDOMSVGLengthConsts
+	{
+		
+		// <summary>
+        // Length Unit Types
+        // </summary>
+		public const ulong SVG_LENGTHTYPE_UNKNOWN = 0;
+		
+		// 
+		public const ulong SVG_LENGTHTYPE_NUMBER = 1;
+		
+		// 
+		public const ulong SVG_LENGTHTYPE_PERCENTAGE = 2;
+		
+		// 
+		public const ulong SVG_LENGTHTYPE_EMS = 3;
+		
+		// 
+		public const ulong SVG_LENGTHTYPE_EXS = 4;
+		
+		// 
+		public const ulong SVG_LENGTHTYPE_PX = 5;
+		
+		// 
+		public const ulong SVG_LENGTHTYPE_CM = 6;
+		
+		// 
+		public const ulong SVG_LENGTHTYPE_MM = 7;
+		
+		// 
+		public const ulong SVG_LENGTHTYPE_IN = 8;
+		
+		// 
+		public const ulong SVG_LENGTHTYPE_PT = 9;
+		
+		// 
+		public const ulong SVG_LENGTHTYPE_PC = 10;
 	}
 }

@@ -91,4 +91,17 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool SupportImageWithMimeType([MarshalAs(UnmanagedType.LPStr)] string mimeType);
 	}
+	
+	/// <summary>imgILoaderConsts </summary>
+	public class imgILoaderConsts
+	{
+		
+		// <summary>
+        // validation.
+        // </summary>
+		public const ulong LOAD_CORS_ANONYMOUS = 1<<16;
+		
+		// 
+		public const ulong LOAD_CORS_USE_CREDENTIALS = 1<<17;
+	}
 }

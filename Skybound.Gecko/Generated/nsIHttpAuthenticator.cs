@@ -117,4 +117,68 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetAuthFlagsAttribute();
 	}
+	
+	/// <summary>nsIHttpAuthenticatorConsts </summary>
+	public class nsIHttpAuthenticatorConsts
+	{
+		
+		// <summary>
+        // Indicates that the authenticator has used an out-of-band or internal
+        // source of identity and tells the consumer that it must not cache
+        // the returned identity because it might not be valid and would overwrite
+        // the cached identity.  See bug 542318 comment 32.
+        // </summary>
+		public const ulong USING_INTERNAL_IDENTITY = (1<<0);
+		
+		// <summary>
+        // A request based authentication scheme only authenticates an individual
+        // request (or a set of requests under the same authentication domain as
+        // defined by RFC 2617).  BASIC and DIGEST are request based authentication
+        // schemes.
+        // </summary>
+		public const ulong REQUEST_BASED = (1<<0);
+		
+		// <summary>
+        // A connection based authentication scheme authenticates an individual
+        // connection.  Multiple requests may be issued over the connection without
+        // repeating the authentication steps.  Connection based authentication
+        // schemes can associate state with the connection being authenticated via
+        // the aContinuationState parameter (see generateCredentials).
+        // </summary>
+		public const ulong CONNECTION_BASED = (1<<1);
+		
+		// <summary>
+        // The credentials returned from generateCredentials may be reused with any
+        // other URLs within "the protection space" as defined by RFC 2617 section
+        // 1.2.  If this flag is not set, then generateCredentials must be called
+        // for each request within the protection space.  REUSABLE_CREDENTIALS
+        // implies REUSABLE_CHALLENGE.
+        // </summary>
+		public const ulong REUSABLE_CREDENTIALS = (1<<2);
+		
+		// <summary>
+        // A challenge may be reused to later generate credentials in anticipation
+        // of a duplicate server challenge for URLs within "the protection space"
+        // as defined by RFC 2617 section 1.2.
+        // </summary>
+		public const ulong REUSABLE_CHALLENGE = (1<<3);
+		
+		// <summary>
+        // This flag indicates that the identity of the user is not required by
+        // this authentication scheme.
+        // </summary>
+		public const ulong IDENTITY_IGNORED = (1<<10);
+		
+		// <summary>
+        // This flag indicates that the identity of the user includes a domain
+        // attribute that the user must supply.
+        // </summary>
+		public const ulong IDENTITY_INCLUDES_DOMAIN = (1<<11);
+		
+		// <summary>
+        // This flag indicates that the identity will be sent encrypted. It does
+        // not make sense to combine this flag with IDENTITY_IGNORED.
+        // </summary>
+		public const ulong IDENTITY_ENCRYPTED = (1<<12);
+	}
 }

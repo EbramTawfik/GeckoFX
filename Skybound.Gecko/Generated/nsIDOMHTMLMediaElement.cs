@@ -36,14 +36,6 @@ namespace Gecko
 	public interface nsIDOMHTMLMediaElement : nsIDOMHTMLElement
 	{
 		
-		/// <summary>
-        /// The nsIDOMNode interface is the primary datatype for the entire
-        /// Document Object Model.
-        /// It represents a single node in the document tree.
-        ///
-        /// For more information on this interface please see
-        /// http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetNodeNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNodeName);
 		
@@ -700,9 +692,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void CanPlayType([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase type, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
-		/// <summary>
-        /// ready state
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		ushort GetReadyStateAttribute();
 		
@@ -823,5 +812,39 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		double GetMozFragmentEndAttribute();
+	}
+	
+	/// <summary>nsIDOMHTMLMediaElementConsts </summary>
+	public class nsIDOMHTMLMediaElementConsts
+	{
+		
+		// 
+		public const ulong NETWORK_EMPTY = 0;
+		
+		// 
+		public const ulong NETWORK_IDLE = 1;
+		
+		// 
+		public const ulong NETWORK_LOADING = 2;
+		
+		// 
+		public const ulong NETWORK_NO_SOURCE = 3;
+		
+		// <summary>
+        // ready state
+        // </summary>
+		public const ulong HAVE_NOTHING = 0;
+		
+		// 
+		public const ulong HAVE_METADATA = 1;
+		
+		// 
+		public const ulong HAVE_CURRENT_DATA = 2;
+		
+		// 
+		public const ulong HAVE_FUTURE_DATA = 3;
+		
+		// 
+		public const ulong HAVE_ENOUGH_DATA = 4;
 	}
 }

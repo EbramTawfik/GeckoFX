@@ -38,11 +38,6 @@ namespace Gecko
 	public interface nsIIDBCursorWithValue : nsIIDBCursor
 	{
 		
-		/// <summary>
-        /// IDBCursor interface.  See
-        /// http://dev.w3.org/2006/webapi/WebSimpleDB/#idl-def-IDBCursor for more
-        /// information.
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new ushort GetDirectionAttribute();
 		

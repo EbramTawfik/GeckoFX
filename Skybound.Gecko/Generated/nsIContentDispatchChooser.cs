@@ -56,4 +56,15 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Ask([MarshalAs(UnmanagedType.Interface)] nsIHandlerInfo aHandler, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor aWindowContext, [MarshalAs(UnmanagedType.Interface)] nsIURI aURI, uint aReason);
 	}
+	
+	/// <summary>nsIContentDispatchChooserConsts </summary>
+	public class nsIContentDispatchChooserConsts
+	{
+		
+		// <summary>
+        // This request is passed to the helper app dialog because Gecko can not
+        // handle content of this type.
+        // </summary>
+		public const ulong REASON_CANNOT_HANDLE = 0;
+	}
 }

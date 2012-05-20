@@ -34,15 +34,13 @@ namespace Gecko
 	public interface nsIDOMSVGPreserveAspectRatio
 	{
 		
-		/// <summary>
-        /// Meet-or-slice Types
-        /// </summary>
+		/// <summary>Member GetAlignAttribute </summary>
+		/// <returns>A System.UInt16</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		ushort GetAlignAttribute();
 		
-		/// <summary>
-        /// Meet-or-slice Types
-        /// </summary>
+		/// <summary>Member SetAlignAttribute </summary>
+		/// <param name='aAlign'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetAlignAttribute(ushort aAlign);
 		
@@ -57,5 +55,56 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetMeetOrSliceAttribute(ushort aMeetOrSlice);
+	}
+	
+	/// <summary>nsIDOMSVGPreserveAspectRatioConsts </summary>
+	public class nsIDOMSVGPreserveAspectRatioConsts
+	{
+		
+		// <summary>
+        // Alignment Types
+        // </summary>
+		public const ulong SVG_PRESERVEASPECTRATIO_UNKNOWN = 0;
+		
+		// 
+		public const ulong SVG_PRESERVEASPECTRATIO_NONE = 1;
+		
+		// 
+		public const ulong SVG_PRESERVEASPECTRATIO_XMINYMIN = 2;
+		
+		// 
+		public const ulong SVG_PRESERVEASPECTRATIO_XMIDYMIN = 3;
+		
+		// 
+		public const ulong SVG_PRESERVEASPECTRATIO_XMAXYMIN = 4;
+		
+		// 
+		public const ulong SVG_PRESERVEASPECTRATIO_XMINYMID = 5;
+		
+		// 
+		public const ulong SVG_PRESERVEASPECTRATIO_XMIDYMID = 6;
+		
+		// 
+		public const ulong SVG_PRESERVEASPECTRATIO_XMAXYMID = 7;
+		
+		// 
+		public const ulong SVG_PRESERVEASPECTRATIO_XMINYMAX = 8;
+		
+		// 
+		public const ulong SVG_PRESERVEASPECTRATIO_XMIDYMAX = 9;
+		
+		// 
+		public const ulong SVG_PRESERVEASPECTRATIO_XMAXYMAX = 10;
+		
+		// <summary>
+        // Meet-or-slice Types
+        // </summary>
+		public const ulong SVG_MEETORSLICE_UNKNOWN = 0;
+		
+		// 
+		public const ulong SVG_MEETORSLICE_MEET = 1;
+		
+		// 
+		public const ulong SVG_MEETORSLICE_SLICE = 2;
 	}
 }

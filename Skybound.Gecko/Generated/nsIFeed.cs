@@ -370,4 +370,23 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetSkipHoursAttribute([MarshalAs(UnmanagedType.Interface)] nsIArray aSkipHours);
 	}
+	
+	/// <summary>nsIFeedConsts </summary>
+	public class nsIFeedConsts
+	{
+		
+		// <summary>
+        // All content classifies as a "feed" - it is the transport.
+        // </summary>
+		public const ulong TYPE_FEED = 0;
+		
+		// 
+		public const ulong TYPE_AUDIO = 1;
+		
+		// 
+		public const ulong TYPE_IMAGE = 2;
+		
+		// 
+		public const ulong TYPE_VIDEO = 4;
+	}
 }

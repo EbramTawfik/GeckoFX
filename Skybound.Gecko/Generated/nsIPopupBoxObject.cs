@@ -185,4 +185,25 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMClientRect GetOuterScreenRect();
 	}
+	
+	/// <summary>nsIPopupBoxObjectConsts </summary>
+	public class nsIPopupBoxObjectConsts
+	{
+		
+		// <summary>
+        // Control whether the event that caused the popup to be automatically
+        // dismissed ("rolled up") should be consumed, or dispatched as a
+        // normal event.  This should be set immediately before calling showPopup()
+        // if non-default behavior is desired.
+        // </summary>
+		public const long ROLLUP_DEFAULT = 0;
+		
+		// <summary>
+        //widget/platform default </summary>
+		public const long ROLLUP_CONSUME = 1;
+		
+		// <summary>
+        //consume the rollup event </summary>
+		public const long ROLLUP_NO_CONSUME = 2;
+	}
 }

@@ -36,10 +36,20 @@ namespace Gecko
 	public interface nsIDOMXPathException
 	{
 		
-		/// <summary>
-        /// XPathExceptionCode
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		ushort GetCodeAttribute();
+	}
+	
+	/// <summary>nsIDOMXPathExceptionConsts </summary>
+	public class nsIDOMXPathExceptionConsts
+	{
+		
+		// <summary>
+        // XPathExceptionCode
+        // </summary>
+		public const ulong INVALID_EXPRESSION_ERR = 51;
+		
+		// 
+		public const ulong TYPE_ERR = 52;
 	}
 }

@@ -40,14 +40,57 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int DumpFrameModel([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindowToDump, [MarshalAs(UnmanagedType.Interface)] nsILocalFile aFile, uint aFlagsMask);
 		
-		/// <summary>
-        /// Compares the contents of frame model files
-        /// @param aBaseFile           the baseline file, opened with read permissions
-        /// @param aVerFile            file containing the results to verify, opened with read permissions
-        /// @param aFlags              flags specifying output verbosity
-        /// @param aResult             result of the comparison: zero if the files are same, non-zero if different
-        /// </summary>
+		/// <summary>Member CompareFrameModels </summary>
+		/// <param name='aBaseFile'> </param>
+		/// <param name='aVerFile'> </param>
+		/// <param name='aFlags'> </param>
+		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int CompareFrameModels([MarshalAs(UnmanagedType.Interface)] nsILocalFile aBaseFile, [MarshalAs(UnmanagedType.Interface)] nsILocalFile aVerFile, uint aFlags);
+	}
+	
+	/// <summary>nsILayoutRegressionTesterConsts </summary>
+	public class nsILayoutRegressionTesterConsts
+	{
+		
+		// <summary>
+        // Dumps the content of a window
+        // @param aWindowToDump       the window to dump (may be an iframe etc)
+        // @param aFile               the file to dump to. It will be created if necessary, otherwise
+        //                                truncated. If nil, write to stdout.
+        // @param aFlagsMask          some flags that determine what to dump
+        // @param aFlagsMask          some flags that determine what to dump
+        // @param aResult             a status value indicating whether the dump happened,
+        //                                whether the page was still loading, or whether some other error happened.
+        // </summary>
+		public const int DUMP_FLAGS_MASK_DEFAULT = 0;
+		
+		// 
+		public const int DUMP_FLAGS_MASK_PRINT_MODE = 1;
+		
+		// 
+		public const long DUMP_RESULT_COMPLETED = 0;
+		
+		// <summary>
+        // loaded OK
+        // </summary>
+		public const long DUMP_RESULT_LOADING = 1;
+		
+		// <summary>
+        // still loading
+        // </summary>
+		public const long DUMP_RESULT_ERROR = 2;
+		
+		// <summary>
+        // Compares the contents of frame model files
+        // @param aBaseFile           the baseline file, opened with read permissions
+        // @param aVerFile            file containing the results to verify, opened with read permissions
+        // @param aFlags              flags specifying output verbosity
+        // @param aResult             result of the comparison: zero if the files are same, non-zero if different
+        // </summary>
+		public const int COMPARE_FLAGS_VERBOSE = 0;
+		
+		// 
+		public const int COMPARE_FLAGS_BRIEF = 1;
 	}
 }

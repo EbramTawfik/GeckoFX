@@ -44,14 +44,8 @@ namespace Gecko
 	public interface nsIDOMSVGMarkerElement : nsIDOMSVGElement
 	{
 		
-		/// <summary>
-        /// The nsIDOMNode interface is the primary datatype for the entire
-        /// Document Object Model.
-        /// It represents a single node in the document tree.
-        ///
-        /// For more information on this interface please see
-        /// http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html
-        /// </summary>
+		/// <summary>Member GetNodeNameAttribute </summary>
+		/// <param name='aNodeName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetNodeNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNodeName);
 		
@@ -623,9 +617,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMSVGElement GetViewportElementAttribute();
 		
-		/// <summary>
-        /// Marker Orientation Types
-        /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMSVGAnimatedLength GetRefXAttribute();
@@ -659,5 +650,32 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOrientToAngle([MarshalAs(UnmanagedType.Interface)] nsIDOMSVGAngle angle);
+	}
+	
+	/// <summary>nsIDOMSVGMarkerElementConsts </summary>
+	public class nsIDOMSVGMarkerElementConsts
+	{
+		
+		// <summary>
+        // Marker Unit Types
+        // </summary>
+		public const ulong SVG_MARKERUNITS_UNKNOWN = 0;
+		
+		// 
+		public const ulong SVG_MARKERUNITS_USERSPACEONUSE = 1;
+		
+		// 
+		public const ulong SVG_MARKERUNITS_STROKEWIDTH = 2;
+		
+		// <summary>
+        // Marker Orientation Types
+        // </summary>
+		public const ulong SVG_MARKER_ORIENT_UNKNOWN = 0;
+		
+		// 
+		public const ulong SVG_MARKER_ORIENT_AUTO = 1;
+		
+		// 
+		public const ulong SVG_MARKER_ORIENT_ANGLE = 2;
 	}
 }

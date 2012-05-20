@@ -182,4 +182,193 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void CancelSave();
 	}
+	
+	/// <summary>nsIWebBrowserPersistConsts </summary>
+	public class nsIWebBrowserPersistConsts
+	{
+		
+		// <summary>
+        //No special persistence behaviour. </summary>
+		public const ulong PERSIST_FLAGS_NONE = 0;
+		
+		// <summary>
+        //Only use cached data (could result in failure if data is not cached). </summary>
+		public const ulong PERSIST_FLAGS_FROM_CACHE = 1;
+		
+		// <summary>
+        //Bypass the cached data. </summary>
+		public const ulong PERSIST_FLAGS_BYPASS_CACHE = 2;
+		
+		// <summary>
+        //Ignore any redirected data (usually adverts). </summary>
+		public const ulong PERSIST_FLAGS_IGNORE_REDIRECTED_DATA = 4;
+		
+		// <summary>
+        //Ignore IFRAME content (usually adverts). </summary>
+		public const ulong PERSIST_FLAGS_IGNORE_IFRAMES = 8;
+		
+		// <summary>
+        //Do not run the incoming data through a content converter e.g. to decompress it </summary>
+		public const ulong PERSIST_FLAGS_NO_CONVERSION = 16;
+		
+		// <summary>
+        //Replace existing files on the disk (use with due diligence!) </summary>
+		public const ulong PERSIST_FLAGS_REPLACE_EXISTING_FILES = 32;
+		
+		// <summary>
+        //Don't modify or add base tags </summary>
+		public const ulong PERSIST_FLAGS_NO_BASE_TAG_MODIFICATIONS = 64;
+		
+		// <summary>
+        //Make changes to original dom rather than cloning nodes </summary>
+		public const ulong PERSIST_FLAGS_FIXUP_ORIGINAL_DOM = 128;
+		
+		// <summary>
+        //Fix links relative to destination location (not origin) </summary>
+		public const ulong PERSIST_FLAGS_FIXUP_LINKS_TO_DESTINATION = 256;
+		
+		// <summary>
+        //Don't make any adjustments to links </summary>
+		public const ulong PERSIST_FLAGS_DONT_FIXUP_LINKS = 512;
+		
+		// <summary>
+        //Force serialization of output (one file at a time; not concurrent) </summary>
+		public const ulong PERSIST_FLAGS_SERIALIZE_OUTPUT = 1024;
+		
+		// <summary>
+        //Don't make any adjustments to filenames </summary>
+		public const ulong PERSIST_FLAGS_DONT_CHANGE_FILENAMES = 2048;
+		
+		// <summary>
+        //Fail on broken inline links </summary>
+		public const ulong PERSIST_FLAGS_FAIL_ON_BROKEN_LINKS = 4096;
+		
+		// <summary>
+        // Automatically cleanup after a failed or cancelled operation, deleting all
+        // created files and directories. This flag does nothing for failed upload
+        // operations to remote servers.
+        // </summary>
+		public const ulong PERSIST_FLAGS_CLEANUP_ON_FAILURE = 8192;
+		
+		// <summary>
+        // Let the WebBrowserPersist decide whether the incoming data is encoded
+        // and whether it needs to go through a content converter e.g. to
+        // decompress it.
+        // </summary>
+		public const ulong PERSIST_FLAGS_AUTODETECT_APPLY_CONVERSION = 16384;
+		
+		// <summary>
+        // Append the downloaded data to the target file.
+        // This can only be used when persisting to a local file.
+        // </summary>
+		public const ulong PERSIST_FLAGS_APPEND_TO_FILE = 32768;
+		
+		// <summary>
+        // Force relevant cookies to be sent with this load even if normally they
+        // wouldn't be.
+        // </summary>
+		public const ulong PERSIST_FLAGS_FORCE_ALLOW_COOKIES = 65536;
+		
+		// <summary>
+        //Persister is ready to save data </summary>
+		public const ulong PERSIST_STATE_READY = 1;
+		
+		// <summary>
+        //Persister is saving data </summary>
+		public const ulong PERSIST_STATE_SAVING = 2;
+		
+		// <summary>
+        //Persister has finished saving data </summary>
+		public const ulong PERSIST_STATE_FINISHED = 3;
+		
+		// <summary>
+        //Output only the current selection as opposed to the whole document. </summary>
+		public const ulong ENCODE_FLAGS_SELECTION_ONLY = 1;
+		
+		// <summary>
+        // For plaintext output. Convert html to plaintext that looks like the html.
+        // Implies wrap (except inside &lt;pre&gt;), since html wraps.
+        // HTML output: always do prettyprinting, ignoring existing formatting.
+        // </summary>
+		public const ulong ENCODE_FLAGS_FORMATTED = 2;
+		
+		// <summary>
+        // Output without formatting or wrapping the content. This flag
+        // may be used to preserve the original formatting as much as possible.
+        // </summary>
+		public const ulong ENCODE_FLAGS_RAW = 4;
+		
+		// <summary>
+        //Output only the body section, no HTML tags. </summary>
+		public const ulong ENCODE_FLAGS_BODY_ONLY = 8;
+		
+		// <summary>
+        //Wrap even if when not doing formatted output (e.g. for text fields). </summary>
+		public const ulong ENCODE_FLAGS_PREFORMATTED = 16;
+		
+		// <summary>
+        //Wrap documents at the specified column. </summary>
+		public const ulong ENCODE_FLAGS_WRAP = 32;
+		
+		// <summary>
+        // For plaintext output. Output for format flowed (RFC 2646). This is used
+        // when converting to text for mail sending. This differs just slightly
+        // but in an important way from normal formatted, and that is that
+        // lines are space stuffed. This can't (correctly) be done later.
+        // </summary>
+		public const ulong ENCODE_FLAGS_FORMAT_FLOWED = 64;
+		
+		// <summary>
+        //Convert links to absolute links where possible. </summary>
+		public const ulong ENCODE_FLAGS_ABSOLUTE_LINKS = 128;
+		
+		// <summary>
+        // Attempt to encode entities standardized at W3C (HTML, MathML, etc).
+        // This is a catch-all flag for documents with mixed contents. Beware of
+        // interoperability issues. See below for other flags which might likely
+        // do what you want.
+        // </summary>
+		public const ulong ENCODE_FLAGS_ENCODE_W3C_ENTITIES = 256;
+		
+		// <summary>
+        // Output with carriage return line breaks. May also be combined with
+        // ENCODE_FLAGS_LF_LINEBREAKS and if neither is specified, the platform
+        // default format is used.
+        // </summary>
+		public const ulong ENCODE_FLAGS_CR_LINEBREAKS = 512;
+		
+		// <summary>
+        // Output with linefeed line breaks. May also be combined with
+        // ENCODE_FLAGS_CR_LINEBREAKS and if neither is specified, the platform
+        // default format is used.
+        // </summary>
+		public const ulong ENCODE_FLAGS_LF_LINEBREAKS = 1024;
+		
+		// <summary>
+        //For plaintext output. Output the content of noscript elements. </summary>
+		public const ulong ENCODE_FLAGS_NOSCRIPT_CONTENT = 2048;
+		
+		// <summary>
+        //For plaintext output. Output the content of noframes elements. </summary>
+		public const ulong ENCODE_FLAGS_NOFRAMES_CONTENT = 4096;
+		
+		// <summary>
+        // Encode basic entities, e.g. output &nbsp; instead of character code 0xa0.
+        // The basic set is just &nbsp; &amp; &lt; &gt; &quot; for interoperability
+        // with older products that don't support &alpha; and friends.
+        // </summary>
+		public const ulong ENCODE_FLAGS_ENCODE_BASIC_ENTITIES = 8192;
+		
+		// <summary>
+        // Encode Latin1 entities. This includes the basic set and
+        // accented letters between 128 and 255.
+        // </summary>
+		public const ulong ENCODE_FLAGS_ENCODE_LATIN1_ENTITIES = 16384;
+		
+		// <summary>
+        // Encode HTML4 entities. This includes the basic set, accented
+        // letters, greek letters and certain special markup symbols.
+        // </summary>
+		public const ulong ENCODE_FLAGS_ENCODE_HTML_ENTITIES = 32768;
+	}
 }

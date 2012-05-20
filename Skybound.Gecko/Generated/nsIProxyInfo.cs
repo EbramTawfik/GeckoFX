@@ -101,4 +101,16 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetFailoverProxyAttribute([MarshalAs(UnmanagedType.Interface)] nsIProxyInfo aFailoverProxy);
 	}
+	
+	/// <summary>nsIProxyInfoConsts </summary>
+	public class nsIProxyInfoConsts
+	{
+		
+		// <summary>
+        // This flag is set if the proxy is to perform name resolution itself.  If
+        // this is the case, the hostname is used in some fashion, and we shouldn't
+        // do any form of DNS lookup ourselves.
+        // </summary>
+		public const ulong TRANSPARENT_PROXY_RESOLVES_HOST = 1<<0;
+	}
 }

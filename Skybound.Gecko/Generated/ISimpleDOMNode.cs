@@ -155,4 +155,45 @@ namespace Gecko
 			get;
 		}
 	}
+	
+	/// <summary>ISimpleDOMNodeConsts </summary>
+	public class ISimpleDOMNodeConsts
+	{
+		
+		// 
+		public const ulong NODETYPE_ELEMENT = 1;
+		
+		// 
+		public const ulong NODETYPE_ATTRIBUTE = 2;
+		
+		// 
+		public const ulong NODETYPE_TEXT = 3;
+		
+		// 
+		public const ulong NODETYPE_CDATA_SECTION = 4;
+		
+		// 
+		public const ulong NODETYPE_ENTITY_REFERENCE = 5;
+		
+		// 
+		public const ulong NODETYPE_ENTITY = 6;
+		
+		// 
+		public const ulong NODETYPE_PROCESSING_INSTRUCTION = 7;
+		
+		// 
+		public const ulong NODETYPE_COMMENT = 8;
+		
+		// 
+		public const ulong NODETYPE_DOCUMENT = 9;
+		
+		// 
+		public const ulong NODETYPE_DOCUMENT_TYPE = 10;
+		
+		// 
+		public const ulong NODETYPE_DOCUMENT_FRAGMENT = 11;
+		
+		// 
+		public const ulong NODETYPE_NOTATION = 12;
+	}
 }

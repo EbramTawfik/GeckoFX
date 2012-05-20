@@ -102,4 +102,21 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool SelectAllSelection();
 	}
+	
+	/// <summary>nsIAccessibleSelectableConsts </summary>
+	public class nsIAccessibleSelectableConsts
+	{
+		
+		// <summary>
+        // An interface for the accessibility module and in-process accessibility clients
+        // for dealing with getting and changing the selection of accessible nodes.
+        // </summary>
+		public const ulong eSelection_Add = 0;
+		
+		// 
+		public const ulong eSelection_Remove = 1;
+		
+		// 
+		public const ulong eSelection_GetState = 2;
+	}
 }

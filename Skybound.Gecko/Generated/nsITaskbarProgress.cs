@@ -49,4 +49,36 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetProgressState(System.IntPtr state, ulong currentValue, ulong maxValue);
 	}
+	
+	/// <summary>nsITaskbarProgressConsts </summary>
+	public class nsITaskbarProgressConsts
+	{
+		
+		// <summary>
+        // Stop displaying progress on the taskbar button. This should be used when
+        // the operation is complete or cancelled.
+        // </summary>
+		public const long STATE_NO_PROGRESS = 0;
+		
+		// <summary>
+        // Display a cycling, indeterminate progress bar.
+        // </summary>
+		public const long STATE_INDETERMINATE = 1;
+		
+		// <summary>
+        // Display a determinate, normal progress bar.
+        // </summary>
+		public const long STATE_NORMAL = 2;
+		
+		// <summary>
+        // Display a determinate, error progress bar.
+        // </summary>
+		public const long STATE_ERROR = 3;
+		
+		// <summary>
+        // Display a determinate progress bar indicating that the operation has
+        // paused.
+        // </summary>
+		public const long STATE_PAUSED = 4;
+	}
 }

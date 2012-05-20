@@ -67,8 +67,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool ConfirmCheck([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string dialogTitle, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string text, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string checkMsg, [MarshalAs(UnmanagedType.U1)] ref bool checkValue);
 		
-		/// <summary>
-        ///used for security dialogs, buttons are initially disabled </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int ConfirmEx([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string dialogTitle, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string text, uint buttonFlags, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string button0Title, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string button1Title, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string button2Title, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string checkMsg, [MarshalAs(UnmanagedType.U1)] ref bool checkValue);
 		
@@ -87,5 +85,62 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool Select([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string dialogTitle, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string text, uint count, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] System.IntPtr[] selectList, ref int outSelection);
+	}
+	
+	/// <summary>nsIPromptConsts </summary>
+	public class nsIPromptConsts
+	{
+		
+		// 
+		public const ulong BUTTON_POS_0 = 1;
+		
+		// 
+		public const ulong BUTTON_POS_1 = 1<<8;
+		
+		// 
+		public const ulong BUTTON_POS_2 = 1<<16;
+		
+		// 
+		public const ulong BUTTON_TITLE_OK = 1;
+		
+		// 
+		public const ulong BUTTON_TITLE_CANCEL = 2;
+		
+		// 
+		public const ulong BUTTON_TITLE_YES = 3;
+		
+		// 
+		public const ulong BUTTON_TITLE_NO = 4;
+		
+		// 
+		public const ulong BUTTON_TITLE_SAVE = 5;
+		
+		// 
+		public const ulong BUTTON_TITLE_DONT_SAVE = 6;
+		
+		// 
+		public const ulong BUTTON_TITLE_REVERT = 7;
+		
+		// 
+		public const ulong BUTTON_TITLE_IS_STRING = 127;
+		
+		// 
+		public const ulong BUTTON_POS_0_DEFAULT = 0<<24;
+		
+		// 
+		public const ulong BUTTON_POS_1_DEFAULT = 1<<24;
+		
+		// 
+		public const ulong BUTTON_POS_2_DEFAULT = 2<<24;
+		
+		// <summary>
+        //used for security dialogs, buttons are initially disabled </summary>
+		public const ulong BUTTON_DELAY_ENABLE = 1<<26;
+		
+		// 
+		public const ulong STD_OK_CANCEL_BUTTONS = (BUTTON_TITLE_OK*BUTTON_POS_0)+(BUTTON_TITLE_CANCEL*BUTTON_POS_1);
+		
+		// 
+		public const ulong STD_YES_NO_BUTTONS = (BUTTON_TITLE_YES*BUTTON_POS_0)+(BUTTON_TITLE_NO*BUTTON_POS_1);
 	}
 }

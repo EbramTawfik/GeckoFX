@@ -276,4 +276,43 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void DecrementAnimationConsumers();
 	}
+	
+	/// <summary>imgIRequestConsts </summary>
+	public class imgIRequestConsts
+	{
+		
+		// <summary>
+        //@{
+        // </summary>
+		public const long STATUS_NONE = 0x0;
+		
+		// 
+		public const long STATUS_SIZE_AVAILABLE = 0x1;
+		
+		// 
+		public const long STATUS_LOAD_PARTIAL = 0x2;
+		
+		// 
+		public const long STATUS_LOAD_COMPLETE = 0x4;
+		
+		// 
+		public const long STATUS_ERROR = 0x8;
+		
+		// 
+		public const long STATUS_FRAME_COMPLETE = 0x10;
+		
+		// 
+		public const long STATUS_DECODE_COMPLETE = 0x20;
+		
+		// <summary>
+        //@{
+        // </summary>
+		public const long CORS_NONE = 1;
+		
+		// 
+		public const long CORS_ANONYMOUS = 2;
+		
+		// 
+		public const long CORS_USE_CREDENTIALS = 3;
+	}
 }

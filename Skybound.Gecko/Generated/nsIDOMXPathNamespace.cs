@@ -36,14 +36,6 @@ namespace Gecko
 	public interface nsIDOMXPathNamespace : nsIDOMNode
 	{
 		
-		/// <summary>
-        /// The nsIDOMNode interface is the primary datatype for the entire
-        /// Document Object Model.
-        /// It represents a single node in the document tree.
-        ///
-        /// For more information on this interface please see
-        /// http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetNodeNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNodeName);
 		
@@ -228,11 +220,18 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool Contains([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aOther);
 		
-		/// <summary>
-        /// XPathNodeType
-        /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMElement GetOwnerElementAttribute();
+	}
+	
+	/// <summary>nsIDOMXPathNamespaceConsts </summary>
+	public class nsIDOMXPathNamespaceConsts
+	{
+		
+		// <summary>
+        // XPathNodeType
+        // </summary>
+		public const ulong XPATH_NAMESPACE_NODE = 13;
 	}
 }

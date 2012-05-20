@@ -34,9 +34,8 @@ namespace Gecko
 	public interface nsIDOMSVGTransform
 	{
 		
-		/// <summary>
-        /// Transform Types
-        /// </summary>
+		/// <summary>Member GetTypeAttribute </summary>
+		/// <returns>A System.UInt16</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		ushort GetTypeAttribute();
 		
@@ -84,5 +83,33 @@ namespace Gecko
 		/// <param name='angle'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetSkewY(float angle);
+	}
+	
+	/// <summary>nsIDOMSVGTransformConsts </summary>
+	public class nsIDOMSVGTransformConsts
+	{
+		
+		// <summary>
+        // Transform Types
+        // </summary>
+		public const ulong SVG_TRANSFORM_UNKNOWN = 0;
+		
+		// 
+		public const ulong SVG_TRANSFORM_MATRIX = 1;
+		
+		// 
+		public const ulong SVG_TRANSFORM_TRANSLATE = 2;
+		
+		// 
+		public const ulong SVG_TRANSFORM_SCALE = 3;
+		
+		// 
+		public const ulong SVG_TRANSFORM_ROTATE = 4;
+		
+		// 
+		public const ulong SVG_TRANSFORM_SKEWX = 5;
+		
+		// 
+		public const ulong SVG_TRANSFORM_SKEWY = 6;
 	}
 }

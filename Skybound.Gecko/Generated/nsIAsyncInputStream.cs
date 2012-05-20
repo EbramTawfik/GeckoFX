@@ -192,6 +192,20 @@ namespace Gecko
 		void AsyncWait([MarshalAs(UnmanagedType.Interface)] nsIInputStreamCallback aCallback, uint aFlags, uint aRequestedCount, [MarshalAs(UnmanagedType.Interface)] nsIEventTarget aEventTarget);
 	}
 	
+	/// <summary>nsIAsyncInputStreamConsts </summary>
+	public class nsIAsyncInputStreamConsts
+	{
+		
+		// <summary>
+        // If passed to asyncWait, this flag overrides the default behavior,
+        // causing the OnInputStreamReady notification to be suppressed until the
+        // stream becomes closed (either as a result of closeWithStatus/close being
+        // called on the stream or possibly due to some error in the underlying
+        // stream).
+        // </summary>
+		public const ulong WAIT_CLOSURE_ONLY = (1<<0);
+	}
+	
 	/// <summary>
     /// This is a companion interface for nsIAsyncInputStream::asyncWait.
     /// </summary>

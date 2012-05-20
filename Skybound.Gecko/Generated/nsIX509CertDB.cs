@@ -272,4 +272,24 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIX509Cert ConstructX509FromBase64([MarshalAs(UnmanagedType.LPStr)] string base64);
 	}
+	
+	/// <summary>nsIX509CertDBConsts </summary>
+	public class nsIX509CertDBConsts
+	{
+		
+		// <summary>
+        // Constants that define which usages a certificate
+        // is trusted for.
+        // </summary>
+		public const ulong UNTRUSTED = 0;
+		
+		// 
+		public const ulong TRUSTED_SSL = 1<<0;
+		
+		// 
+		public const ulong TRUSTED_EMAIL = 1<<1;
+		
+		// 
+		public const ulong TRUSTED_OBJSIGN = 1<<2;
+	}
 }

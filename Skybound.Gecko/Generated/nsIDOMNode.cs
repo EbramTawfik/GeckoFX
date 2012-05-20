@@ -41,14 +41,6 @@ namespace Gecko
 	public interface nsIDOMNode
 	{
 		
-		/// <summary>
-        /// The nsIDOMNode interface is the primary datatype for the entire
-        /// Document Object Model.
-        /// It represents a single node in the document tree.
-        ///
-        /// For more information on this interface please see
-        /// http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetNodeNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNodeName);
 		
@@ -232,5 +224,73 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool Contains([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aOther);
+	}
+	
+	/// <summary>nsIDOMNodeConsts </summary>
+	public class nsIDOMNodeConsts
+	{
+		
+		// <summary>
+        // The nsIDOMNode interface is the primary datatype for the entire
+        // Document Object Model.
+        // It represents a single node in the document tree.
+        //
+        // For more information on this interface please see
+        // http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html
+        // </summary>
+		public const ulong ELEMENT_NODE = 1;
+		
+		// 
+		public const ulong ATTRIBUTE_NODE = 2;
+		
+		// 
+		public const ulong TEXT_NODE = 3;
+		
+		// 
+		public const ulong CDATA_SECTION_NODE = 4;
+		
+		// 
+		public const ulong ENTITY_REFERENCE_NODE = 5;
+		
+		// 
+		public const ulong ENTITY_NODE = 6;
+		
+		// 
+		public const ulong PROCESSING_INSTRUCTION_NODE = 7;
+		
+		// 
+		public const ulong COMMENT_NODE = 8;
+		
+		// 
+		public const ulong DOCUMENT_NODE = 9;
+		
+		// 
+		public const ulong DOCUMENT_TYPE_NODE = 10;
+		
+		// 
+		public const ulong DOCUMENT_FRAGMENT_NODE = 11;
+		
+		// 
+		public const ulong NOTATION_NODE = 12;
+		
+		// <summary>
+        // DocumentPosition
+        // </summary>
+		public const ulong DOCUMENT_POSITION_DISCONNECTED = 0x01;
+		
+		// 
+		public const ulong DOCUMENT_POSITION_PRECEDING = 0x02;
+		
+		// 
+		public const ulong DOCUMENT_POSITION_FOLLOWING = 0x04;
+		
+		// 
+		public const ulong DOCUMENT_POSITION_CONTAINS = 0x08;
+		
+		// 
+		public const ulong DOCUMENT_POSITION_CONTAINED_BY = 0x10;
+		
+		// 
+		public const ulong DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC = 0x20;
 	}
 }

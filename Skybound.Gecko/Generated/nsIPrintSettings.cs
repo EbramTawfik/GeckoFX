@@ -663,4 +663,203 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetPageRanges(System.IntPtr aPages);
 	}
+	
+	/// <summary>nsIPrintSettingsConsts </summary>
+	public class nsIPrintSettingsConsts
+	{
+		
+		// <summary>
+        // PrintSettings to be Saved Navigation Constants
+        // </summary>
+		public const ulong kInitSaveOddEvenPages = 0x00000001;
+		
+		// 
+		public const ulong kInitSaveHeaderLeft = 0x00000002;
+		
+		// 
+		public const ulong kInitSaveHeaderCenter = 0x00000004;
+		
+		// 
+		public const ulong kInitSaveHeaderRight = 0x00000008;
+		
+		// 
+		public const ulong kInitSaveFooterLeft = 0x00000010;
+		
+		// 
+		public const ulong kInitSaveFooterCenter = 0x00000020;
+		
+		// 
+		public const ulong kInitSaveFooterRight = 0x00000040;
+		
+		// 
+		public const ulong kInitSaveBGColors = 0x00000080;
+		
+		// 
+		public const ulong kInitSaveBGImages = 0x00000100;
+		
+		// 
+		public const ulong kInitSavePaperSize = 0x00000200;
+		
+		// <summary>
+        //Flag 0x00001000 is unused </summary>
+		public const ulong kInitSavePaperData = 0x00002000;
+		
+		// 
+		public const ulong kInitSaveUnwriteableMargins = 0x00004000;
+		
+		// 
+		public const ulong kInitSaveEdges = 0x00008000;
+		
+		// 
+		public const ulong kInitSaveReversed = 0x00010000;
+		
+		// 
+		public const ulong kInitSaveInColor = 0x00020000;
+		
+		// 
+		public const ulong kInitSaveOrientation = 0x00040000;
+		
+		// 
+		public const ulong kInitSavePrintCommand = 0x00080000;
+		
+		// 
+		public const ulong kInitSavePrinterName = 0x00100000;
+		
+		// 
+		public const ulong kInitSavePrintToFile = 0x00200000;
+		
+		// 
+		public const ulong kInitSaveToFileName = 0x00400000;
+		
+		// 
+		public const ulong kInitSavePageDelay = 0x00800000;
+		
+		// 
+		public const ulong kInitSaveMargins = 0x01000000;
+		
+		// 
+		public const ulong kInitSaveNativeData = 0x02000000;
+		
+		// 
+		public const ulong kInitSavePlexName = 0x04000000;
+		
+		// 
+		public const ulong kInitSaveShrinkToFit = 0x08000000;
+		
+		// 
+		public const ulong kInitSaveScaling = 0x10000000;
+		
+		// 
+		public const ulong kInitSaveColorspace = 0x20000000;
+		
+		// 
+		public const ulong kInitSaveResolutionName = 0x40000000;
+		
+		// 
+		public const ulong kInitSaveDownloadFonts = 0x80000000;
+		
+		// 
+		public const ulong kInitSaveAll = 0xFFFFFFFF;
+		
+		// <summary>
+        //Print Option Flags for Bit Field </summary>
+		public const long kPrintOddPages = 0x00000001;
+		
+		// 
+		public const long kPrintEvenPages = 0x00000002;
+		
+		// 
+		public const long kEnableSelectionRB = 0x00000004;
+		
+		// <summary>
+        //Print Range Enums </summary>
+		public const long kRangeAllPages = 0;
+		
+		// 
+		public const long kRangeSpecifiedPageRange = 1;
+		
+		// 
+		public const long kRangeSelection = 2;
+		
+		// 
+		public const long kRangeFocusFrame = 3;
+		
+		// <summary>
+        //Justification Enums </summary>
+		public const long kJustLeft = 0;
+		
+		// 
+		public const long kJustCenter = 1;
+		
+		// 
+		public const long kJustRight = 2;
+		
+		// <summary>
+        // FrameSet Default Type Constants
+        // </summary>
+		public const int kUseInternalDefault = 0;
+		
+		// 
+		public const int kUseSettingWhenPossible = 1;
+		
+		// <summary>
+        // Page Size Type Constants
+        // </summary>
+		public const int kPaperSizeNativeData = 0;
+		
+		// 
+		public const int kPaperSizeDefined = 1;
+		
+		// <summary>
+        // Page Size Unit Constants
+        // </summary>
+		public const int kPaperSizeInches = 0;
+		
+		// 
+		public const int kPaperSizeMillimeters = 1;
+		
+		// <summary>
+        // Orientation Constants
+        // </summary>
+		public const int kPortraitOrientation = 0;
+		
+		// 
+		public const int kLandscapeOrientation = 1;
+		
+		// <summary>
+        // Print Frame Constants
+        // </summary>
+		public const int kNoFrames = 0;
+		
+		// 
+		public const int kFramesAsIs = 1;
+		
+		// 
+		public const int kSelectedFrame = 2;
+		
+		// 
+		public const int kEachFrameSep = 3;
+		
+		// <summary>
+        // How to Enable Frame Set Printing Constants
+        // </summary>
+		public const int kFrameEnableNone = 0;
+		
+		// 
+		public const int kFrameEnableAll = 1;
+		
+		// 
+		public const int kFrameEnableAsIsAndEach = 2;
+		
+		// <summary>
+        // Output file format
+        // </summary>
+		public const int kOutputFormatNative = 0;
+		
+		// 
+		public const int kOutputFormatPS = 1;
+		
+		// 
+		public const int kOutputFormatPDF = 2;
+	}
 }

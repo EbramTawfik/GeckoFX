@@ -57,4 +57,27 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		short GetSelectionFlags();
 	}
+	
+	/// <summary>nsISelectionDisplayConsts </summary>
+	public class nsISelectionDisplayConsts
+	{
+		
+		// 
+		public const int DISPLAY_TEXT = 1;
+		
+		// <summary>
+        //display text selected.
+        // </summary>
+		public const int DISPLAY_IMAGES = 2;
+		
+		// <summary>
+        //show images selected
+        // </summary>
+		public const int DISPLAY_FRAMES = 4;
+		
+		// <summary>
+        //display hrules ect.
+        // </summary>
+		public const int DISPLAY_ALL = 7;
+	}
 }

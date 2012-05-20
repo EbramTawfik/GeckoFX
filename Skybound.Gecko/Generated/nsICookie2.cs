@@ -86,15 +86,9 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new ulong GetExpiresAttribute();
 		
-		/// <summary>
-        /// @DEPRECATED status implementation will return STATUS_UNKNOWN in all cases.
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new System.IntPtr GetStatusAttribute();
 		
-		/// <summary>
-        /// @DEPRECATED policy implementation will return POLICY_UNKNOWN in all cases.
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new System.IntPtr GetPolicyAttribute();
 		

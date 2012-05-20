@@ -36,10 +36,29 @@ namespace Gecko
 	public interface nsIDOMUserDataHandler
 	{
 		
-		/// <summary>
-        /// OperationType
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Handle(ushort operation, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase key, [MarshalAs(UnmanagedType.Interface)] nsIVariant data, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode src, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode dst);
+	}
+	
+	/// <summary>nsIDOMUserDataHandlerConsts </summary>
+	public class nsIDOMUserDataHandlerConsts
+	{
+		
+		// <summary>
+        // OperationType
+        // </summary>
+		public const ulong NODE_CLONED = 1;
+		
+		// 
+		public const ulong NODE_IMPORTED = 2;
+		
+		// 
+		public const ulong NODE_DELETED = 3;
+		
+		// 
+		public const ulong NODE_RENAMED = 4;
+		
+		// 
+		public const ulong NODE_ADOPTED = 5;
 	}
 }

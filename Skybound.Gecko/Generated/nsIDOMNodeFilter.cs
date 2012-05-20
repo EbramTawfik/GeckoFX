@@ -36,10 +36,64 @@ namespace Gecko
 	public interface nsIDOMNodeFilter
 	{
 		
-		/// <summary>
-        /// Constants for whatToShow
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		short AcceptNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode n);
+	}
+	
+	/// <summary>nsIDOMNodeFilterConsts </summary>
+	public class nsIDOMNodeFilterConsts
+	{
+		
+		// <summary>
+        // Constants returned by acceptNode
+        // </summary>
+		public const int FILTER_ACCEPT = 1;
+		
+		// 
+		public const int FILTER_REJECT = 2;
+		
+		// 
+		public const int FILTER_SKIP = 3;
+		
+		// <summary>
+        // Constants for whatToShow
+        // </summary>
+		public const ulong SHOW_ALL = 0xFFFFFFFF;
+		
+		// 
+		public const ulong SHOW_ELEMENT = 0x00000001;
+		
+		// 
+		public const ulong SHOW_ATTRIBUTE = 0x00000002;
+		
+		// 
+		public const ulong SHOW_TEXT = 0x00000004;
+		
+		// 
+		public const ulong SHOW_CDATA_SECTION = 0x00000008;
+		
+		// 
+		public const ulong SHOW_ENTITY_REFERENCE = 0x00000010;
+		
+		// 
+		public const ulong SHOW_ENTITY = 0x00000020;
+		
+		// 
+		public const ulong SHOW_PROCESSING_INSTRUCTION = 0x00000040;
+		
+		// 
+		public const ulong SHOW_COMMENT = 0x00000080;
+		
+		// 
+		public const ulong SHOW_DOCUMENT = 0x00000100;
+		
+		// 
+		public const ulong SHOW_DOCUMENT_TYPE = 0x00000200;
+		
+		// 
+		public const ulong SHOW_DOCUMENT_FRAGMENT = 0x00000400;
+		
+		// 
+		public const ulong SHOW_NOTATION = 0x00000800;
 	}
 }

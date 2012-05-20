@@ -373,4 +373,38 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ScrollIntoView(short aRegion, [MarshalAs(UnmanagedType.U1)] bool aIsSynchronous, short aVPercent, short aHPercent);
 	}
+	
+	/// <summary>nsISelectionPrivateConsts </summary>
+	public class nsISelectionPrivateConsts
+	{
+		
+		// 
+		public const int ENDOFPRECEDINGLINE = 0;
+		
+		// 
+		public const int STARTOFNEXTLINE = 1;
+		
+		// <summary>
+        //Table selection stuff
+        //       We should probably move this and table-related
+        //       items in nsFrameSelection  to a
+        //       new nsITableSelection interface
+        // </summary>
+		public const long TABLESELECTION_NONE = 0;
+		
+		// 
+		public const long TABLESELECTION_CELL = 1;
+		
+		// 
+		public const long TABLESELECTION_ROW = 2;
+		
+		// 
+		public const long TABLESELECTION_COLUMN = 3;
+		
+		// 
+		public const long TABLESELECTION_TABLE = 4;
+		
+		// 
+		public const long TABLESELECTION_ALLCELLS = 5;
+	}
 }

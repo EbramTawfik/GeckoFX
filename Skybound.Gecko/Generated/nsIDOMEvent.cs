@@ -169,6 +169,26 @@ namespace Gecko
 		void StopImmediatePropagation();
 	}
 	
+	/// <summary>nsIDOMEventConsts </summary>
+	public class nsIDOMEventConsts
+	{
+		
+		// <summary>
+        // The current event phase is the capturing phase.
+        // </summary>
+		public const ulong CAPTURING_PHASE = 1;
+		
+		// <summary>
+        // The event is currently being evaluated at the target EventTarget.
+        // </summary>
+		public const ulong AT_TARGET = 2;
+		
+		// <summary>
+        // The current event phase is the bubbling phase.
+        // </summary>
+		public const ulong BUBBLING_PHASE = 3;
+	}
+	
 	/// <summary>nsIEventInit </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]

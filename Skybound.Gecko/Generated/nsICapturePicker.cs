@@ -89,4 +89,35 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType);
 	}
+	
+	/// <summary>nsICapturePickerConsts </summary>
+	public class nsICapturePickerConsts
+	{
+		
+		// 
+		public const long MODE_STILL = 1;
+		
+		// <summary>
+        // Capture a still (image)
+        // </summary>
+		public const long MODE_AUDIO_CLIP = 2;
+		
+		// <summary>
+        // Capture a clip of audio
+        // </summary>
+		public const long MODE_VIDEO_CLIP = 3;
+		
+		// <summary>
+        // Capture a clip of video
+        // </summary>
+		public const long MODE_VIDEO_NO_SOUND_CLIP = 4;
+		
+		// <summary>
+        // Return codes from the dialog
+        // </summary>
+		public const long RETURN_OK = 0;
+		
+		// 
+		public const long RETURN_CANCEL = 1;
+	}
 }

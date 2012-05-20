@@ -408,6 +408,91 @@ namespace Gecko
 		void DumpHeap([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase fileName);
 	}
 	
+	/// <summary>jsdIDebuggerServiceConsts </summary>
+	public class jsdIDebuggerServiceConsts
+	{
+		
+		// <summary>
+        // Possible values for jsdIScript::version and jsdIContext::version.
+        // </summary>
+		public const long VERSION_1_0 = 100;
+		
+		// 
+		public const long VERSION_1_1 = 110;
+		
+		// 
+		public const long VERSION_1_2 = 120;
+		
+		// 
+		public const long VERSION_1_3 = 130;
+		
+		// 
+		public const long VERSION_1_4 = 140;
+		
+		// 
+		public const long VERSION_1_5 = 150;
+		
+		// 
+		public const long VERSION_DEFAULT = 0;
+		
+		// 
+		public const long VERSION_UNKNOWN = -1;
+		
+		// <summary>
+        // Link native frames in call stacks.
+        // </summary>
+		public const ulong ENABLE_NATIVE_FRAMES = 0x01;
+		
+		// <summary>
+        // Normally, if a script has a 0 in JSD_SCRIPT_PROFILE_BIT it is included in
+        // profile data, otherwise it is not profiled. Setting the
+        // PROFILE_WHEN_SET flag reverses this convention.
+        // </summary>
+		public const ulong PROFILE_WHEN_SET = 0x02;
+		
+		// <summary>
+        // Normally, when the script in the top frame of a thread state has a 1 in
+        // JSD_SCRIPT_DEBUG_BIT, the execution hook is ignored. Setting the
+        // DEBUG_WHEN_SET flag reverses this convention.
+        // </summary>
+		public const ulong DEBUG_WHEN_SET = 0x04;
+		
+		// <summary>
+        // When this flag is set the internal call hook will collect profile data.
+        // </summary>
+		public const ulong COLLECT_PROFILE_DATA = 0x08;
+		
+		// <summary>
+        // When this flag is set, stack frames that are disabled for debugging
+        // will not appear in the call stack chain.
+        // </summary>
+		public const ulong HIDE_DISABLED_FRAMES = 0x10;
+		
+		// <summary>
+        // When this flag is set, the debugger will only check the
+        // JSD_SCRIPT_DEBUG_BIT on the top (most recent) stack frame. This
+        // makes it possible to stop in an enabled frame which was called from
+        // a stack that contains a disabled frame.
+        //
+        // When this flag is *not* set, any stack that contains a disabled frame
+        // will not be debugged (the execution hook will not be invoked.)
+        //
+        // This only applies when the reason for calling the hook would have
+        // been TYPE_INTERRUPTED or TYPE_THROW. TYPE_BREAKPOINT,
+        // TYPE_DEBUG_REQUESTED, and TYPE_DEBUGGER_KEYWORD always stop, regardless
+        // of this setting, as long as the top frame is not disabled.
+        //
+        // If HIDE_DISABLED_FRAMES is set, this is effectively set as well.
+        // </summary>
+		public const ulong MASK_TOP_FRAME_ONLY = 0x20;
+		
+		// <summary>
+        // This flag has been retired, do not re-use. It previously provided a hook
+        // for object allocation.
+        // </summary>
+		public const ulong DISABLE_OBJECT_TRACE_RETIRED = 0x40;
+	}
+	
 	/// <summary>
     /// Object representing a pattern of global object and/or url the debugger should
     /// ignore. The debugger service itself will not modify properties of these
@@ -511,6 +596,29 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetEndLineAttribute(uint aEndLine);
+	}
+	
+	/// <summary>jsdIFilterConsts </summary>
+	public class jsdIFilterConsts
+	{
+		
+		// <summary>
+        // These two bytes of the flags attribute are reserved for interpretation
+        // by the jsdService implementation. You can do what you like with the
+        // remaining flags.
+        // </summary>
+		public const ulong FLAG_RESERVED_MASK = 0xFF;
+		
+		// <summary>
+        // Filters without this flag set are ignored.
+        // </summary>
+		public const ulong FLAG_ENABLED = 0x01;
+		
+		// <summary>
+        // Filters with this flag set are "pass" filters, they allow matching hooks
+        // to continue. Filters without this flag block matching hooks.
+        // </summary>
+		public const ulong FLAG_PASS = 0x02;
 	}
 	
 	/// <summary>
@@ -639,6 +747,31 @@ namespace Gecko
 		void OnCall(jsdIStackFrame frame, uint type);
 	}
 	
+	/// <summary>jsdICallHookConsts </summary>
+	public class jsdICallHookConsts
+	{
+		
+		// <summary>
+        // Toplevel script is starting.
+        // </summary>
+		public const ulong TYPE_TOPLEVEL_START = 0;
+		
+		// <summary>
+        // Toplevel script has completed.
+        // </summary>
+		public const ulong TYPE_TOPLEVEL_END = 1;
+		
+		// <summary>
+        // Function is being called.
+        // </summary>
+		public const ulong TYPE_FUNCTION_CALL = 2;
+		
+		// <summary>
+        // Function is returning.
+        // </summary>
+		public const ulong TYPE_FUNCTION_RETURN = 3;
+	}
+	
 	/// <summary>jsdIErrorHook </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -653,6 +786,31 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool OnError([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase message, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase fileName, uint line, uint pos, uint flags, uint errnum, jsdIValue exc);
+	}
+	
+	/// <summary>jsdIErrorHookConsts </summary>
+	public class jsdIErrorHookConsts
+	{
+		
+		// <summary>
+        // Report is an error.
+        // </summary>
+		public const ulong REPORT_ERROR = 0x00;
+		
+		// <summary>
+        // Report is only a warning.
+        // </summary>
+		public const ulong REPORT_WARNING = 0x01;
+		
+		// <summary>
+        // Report represents an uncaught exception.
+        // </summary>
+		public const ulong REPORT_EXCEPTION = 0x02;
+		
+		// <summary>
+        // Report is due to strict mode.
+        // </summary>
+		public const ulong REPORT_STRICT = 0x04;
 	}
 	
 	/// <summary>
@@ -678,6 +836,72 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint OnExecute(jsdIStackFrame frame, uint type, ref jsdIValue val);
+	}
+	
+	/// <summary>jsdIExecutionHookConsts </summary>
+	public class jsdIExecutionHookConsts
+	{
+		
+		// <summary>
+        // Execution stopped because we're in single step mode.
+        // </summary>
+		public const ulong TYPE_INTERRUPTED = 0;
+		
+		// <summary>
+        // Execution stopped by a trap instruction (i.e. breakoint.)
+        // </summary>
+		public const ulong TYPE_BREAKPOINT = 1;
+		
+		// <summary>
+        // Error handler returned an "invoke debugger" value.
+        // </summary>
+		public const ulong TYPE_DEBUG_REQUESTED = 2;
+		
+		// <summary>
+        // Debugger keyword encountered.
+        // </summary>
+		public const ulong TYPE_DEBUGGER_KEYWORD = 3;
+		
+		// <summary>
+        // Exception was thrown.
+        // </summary>
+		public const ulong TYPE_THROW = 4;
+		
+		// <summary>
+        // Indicates unrecoverable error processing the hook. This will cause
+        // the script being executed to be aborted without raising a JavaScript
+        // exception.
+        // </summary>
+		public const ulong RETURN_HOOK_ERROR = 0;
+		
+		// <summary>
+        // Continue processing normally. This is the "do nothing special" return
+        // value for all hook types *except* TYPE_THROW. Returning RETURN_CONTINUE
+        // from TYPE_THROW cause the exception to be ignored. Return
+        // RETURN_CONTINUE_THROW to continue exception processing from TYPE_THROW
+        // hooks.
+        // </summary>
+		public const ulong RETURN_CONTINUE = 1;
+		
+		// <summary>
+        // Same effect as RETURN_HOOK_ERROR.
+        // </summary>
+		public const ulong RETURN_ABORT = 2;
+		
+		// <summary>
+        // Return the value of the |val| parameter.
+        // </summary>
+		public const ulong RETURN_RET_WITH_VAL = 3;
+		
+		// <summary>
+        // Throw the value of the |val| parameter.
+        // </summary>
+		public const ulong RETURN_THROW_WITH_VAL = 4;
+		
+		// <summary>
+        // Continue the current throw.
+        // </summary>
+		public const ulong RETURN_CONTINUE_THROW = 5;
 	}
 	
 	/// <summary>
@@ -807,6 +1031,33 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetScriptsEnabledAttribute([MarshalAs(UnmanagedType.U1)] bool aScriptsEnabled);
+	}
+	
+	/// <summary>jsdIContextConsts </summary>
+	public class jsdIContextConsts
+	{
+		
+		// <summary>
+        // Strict mode is on.
+        // </summary>
+		public const long OPT_STRICT = 0x01;
+		
+		// <summary>
+        // Warnings reported as errors.
+        // </summary>
+		public const long OPT_WERR = 0x02;
+		
+		// <summary>
+        // Makes eval() use the last object on its 'obj' param's scope chain as the
+        // ECMA 'variables object'.
+        // </summary>
+		public const long OPT_VAROBJFIX = 0x04;
+		
+		// <summary>
+        // Private data for this object is an nsISupports object. Attempting to
+        // alter this bit will result in an NS_ERROR_ILLEGAL_VALUE.
+        // </summary>
+		public const long OPT_ISUPPORTS = 0x08;
 	}
 	
 	/// <summary>
@@ -1163,6 +1414,30 @@ namespace Gecko
 		void EnableSingleStepInterrupts([MarshalAs(UnmanagedType.U1)] bool mode);
 	}
 	
+	/// <summary>jsdIScriptConsts </summary>
+	public class jsdIScriptConsts
+	{
+		
+		// <summary>
+        // Determines whether or not to collect profile information for this
+        // script. The context flag FLAG_PROFILE_WHEN_SET decides the logic.
+        // </summary>
+		public const ulong FLAG_PROFILE = 0x01;
+		
+		// <summary>
+        // Determines whether or not to ignore breakpoints, etc. in this script.
+        // The context flag JSD_DEBUG_WHEN_SET decides the logic.
+        // </summary>
+		public const ulong FLAG_DEBUG = 0x02;
+		
+		// 
+		public const ulong PCMAP_SOURCETEXT = 1;
+		
+		// <summary>
+        //map to actual source text </summary>
+		public const ulong PCMAP_PRETTYPRINT = 2;
+	}
+	
 	/// <summary>
     /// Value objects. Represents typeless JavaScript values (jsval in SpiderMonkey
     /// terminology.)  These are valid until the debugger is turned off. Holding a
@@ -1346,6 +1621,43 @@ namespace Gecko
 		jsdIScript GetScriptAttribute();
 	}
 	
+	/// <summary>jsdIValueConsts </summary>
+	public class jsdIValueConsts
+	{
+		
+		// <summary>
+        //Value is either |true| or |false|. </summary>
+		public const ulong TYPE_BOOLEAN = 0;
+		
+		// <summary>
+        //Value is a primitive number that is too large to fit in an integer. </summary>
+		public const ulong TYPE_DOUBLE = 1;
+		
+		// <summary>
+        //Value is a primitive number that fits into an integer. </summary>
+		public const ulong TYPE_INT = 2;
+		
+		// <summary>
+        //Value is a function. </summary>
+		public const ulong TYPE_FUNCTION = 3;
+		
+		// <summary>
+        //Value is |null|. </summary>
+		public const ulong TYPE_NULL = 4;
+		
+		// <summary>
+        //Value is an object. </summary>
+		public const ulong TYPE_OBJECT = 5;
+		
+		// <summary>
+        //Value is a primitive AUTF8String. </summary>
+		public const ulong TYPE_STRING = 6;
+		
+		// <summary>
+        //Value is void. </summary>
+		public const ulong TYPE_VOID = 7;
+	}
+	
 	/// <summary>
     /// Properties specific to values which are also objects.
     /// XXX We don't add roots for these yet, so make sure you hold on to the
@@ -1462,5 +1774,46 @@ namespace Gecko
         ///slot number if this property is a local variable or parameter. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetVarArgSlotAttribute();
+	}
+	
+	/// <summary>jsdIPropertyConsts </summary>
+	public class jsdIPropertyConsts
+	{
+		
+		// <summary>
+        //visible to for/in loop </summary>
+		public const ulong FLAG_ENUMERATE = 0x01;
+		
+		// <summary>
+        //assignment is error </summary>
+		public const ulong FLAG_READONLY = 0x02;
+		
+		// <summary>
+        //property cannot be deleted </summary>
+		public const ulong FLAG_PERMANENT = 0x04;
+		
+		// <summary>
+        //property has an alias id </summary>
+		public const ulong FLAG_ALIAS = 0x08;
+		
+		// <summary>
+        //argument to function </summary>
+		public const ulong FLAG_ARGUMENT = 0x10;
+		
+		// <summary>
+        //local variable in function </summary>
+		public const ulong FLAG_VARIABLE = 0x20;
+		
+		// <summary>
+        //exception occurred looking up property, value is exception </summary>
+		public const ulong FLAG_EXCEPTION = 0x40;
+		
+		// <summary>
+        //native getter returned JS_FALSE without throwing an exception </summary>
+		public const ulong FLAG_ERROR = 0x80;
+		
+		// <summary>
+        //found via explicit lookup (property defined elsewhere.) </summary>
+		public const ulong FLAG_HINTED = 0x800;
 	}
 }

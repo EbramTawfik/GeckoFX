@@ -132,4 +132,18 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsILocalFile GetDefaultFeedReaderAttribute();
 	}
+	
+	/// <summary>nsIMacShellServiceConsts </summary>
+	public class nsIMacShellServiceConsts
+	{
+		
+		// 
+		public const long APPLICATION_KEYCHAIN_ACCESS = 2;
+		
+		// 
+		public const long APPLICATION_NETWORK = 3;
+		
+		// 
+		public const long APPLICATION_DESKTOP = 4;
+	}
 }

@@ -128,4 +128,24 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void DragMoved(int aX, int aY);
 	}
+	
+	/// <summary>nsIDragServiceConsts </summary>
+	public class nsIDragServiceConsts
+	{
+		
+		// 
+		public const long DRAGDROP_ACTION_NONE = 0;
+		
+		// 
+		public const long DRAGDROP_ACTION_COPY = 1;
+		
+		// 
+		public const long DRAGDROP_ACTION_MOVE = 2;
+		
+		// 
+		public const long DRAGDROP_ACTION_LINK = 4;
+		
+		// 
+		public const long DRAGDROP_ACTION_UNINITIALIZED = 64;
+	}
 }

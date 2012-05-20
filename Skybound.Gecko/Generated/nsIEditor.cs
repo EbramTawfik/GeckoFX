@@ -687,4 +687,30 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetLastKeypressEventTrustedAttribute();
 	}
+	
+	/// <summary>nsIEditorConsts </summary>
+	public class nsIEditorConsts
+	{
+		
+		// 
+		public const int eNone = 0;
+		
+		// 
+		public const int eNext = 1;
+		
+		// 
+		public const int ePrevious = 2;
+		
+		// 
+		public const int eNextWord = 3;
+		
+		// 
+		public const int ePreviousWord = 4;
+		
+		// 
+		public const int eToBeginningOfLine = 5;
+		
+		// 
+		public const int eToEndOfLine = 6;
+	}
 }

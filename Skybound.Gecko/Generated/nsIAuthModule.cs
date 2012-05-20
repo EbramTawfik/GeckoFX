@@ -116,4 +116,26 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Unwrap(System.IntPtr aInToken, uint aInTokenLength, ref System.IntPtr aOutToken, ref uint aOutTokenLength);
 	}
+	
+	/// <summary>nsIAuthModuleConsts </summary>
+	public class nsIAuthModuleConsts
+	{
+		
+		// <summary>
+        // Default behavior.
+        // </summary>
+		public const ulong REQ_DEFAULT = 0;
+		
+		// <summary>
+        // Client and server will be authenticated.
+        // </summary>
+		public const ulong REQ_MUTUAL_AUTH = (1<<0);
+		
+		// <summary>
+        // The server is allowed to impersonate the client.  The REQ_MUTUAL_AUTH
+        // flag may also need to be specified in order for this flag to take
+        // effect.
+        // </summary>
+		public const ulong REQ_DELEGATE = (1<<1);
+	}
 }

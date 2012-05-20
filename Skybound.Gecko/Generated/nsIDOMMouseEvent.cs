@@ -293,6 +293,32 @@ namespace Gecko
 					ushort inputSourceArg);
 	}
 	
+	/// <summary>nsIDOMMouseEventConsts </summary>
+	public class nsIDOMMouseEventConsts
+	{
+		
+		// 
+		public const ulong MOZ_SOURCE_UNKNOWN = 0;
+		
+		// 
+		public const ulong MOZ_SOURCE_MOUSE = 1;
+		
+		// 
+		public const ulong MOZ_SOURCE_PEN = 2;
+		
+		// 
+		public const ulong MOZ_SOURCE_ERASER = 3;
+		
+		// 
+		public const ulong MOZ_SOURCE_CURSOR = 4;
+		
+		// 
+		public const ulong MOZ_SOURCE_TOUCH = 5;
+		
+		// 
+		public const ulong MOZ_SOURCE_KEYBOARD = 6;
+	}
+	
 	/// <summary>nsIMouseEventInit </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]

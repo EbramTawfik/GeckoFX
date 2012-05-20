@@ -43,4 +43,18 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void OpenDialog(uint aType, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aName, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aFeatures, [MarshalAs(UnmanagedType.Interface)] nsIDialogParamBlock aArguments, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement aFrameElement);
 	}
+	
+	/// <summary>nsIDialogCreatorConsts </summary>
+	public class nsIDialogCreatorConsts
+	{
+		
+		// 
+		public const ulong UNKNOWN_DIALOG = 0;
+		
+		// 
+		public const ulong GENERIC_DIALOG = 1;
+		
+		// 
+		public const ulong SELECT_DIALOG = 2;
+	}
 }

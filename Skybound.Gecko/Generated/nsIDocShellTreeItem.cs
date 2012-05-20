@@ -214,4 +214,34 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetTreeOwner([MarshalAs(UnmanagedType.Interface)] nsIDocShellTreeOwner treeOwner);
 	}
+	
+	/// <summary>nsIDocShellTreeItemConsts </summary>
+	public class nsIDocShellTreeItemConsts
+	{
+		
+		// <summary>
+        //Definitions for the item types.
+        //	 </summary>
+		public const long typeChrome = 0;
+		
+		// <summary>
+        // typeChrome must equal 0
+        // </summary>
+		public const long typeContent = 1;
+		
+		// <summary>
+        // typeContent must equal 1
+        // </summary>
+		public const long typeContentWrapper = 2;
+		
+		// <summary>
+        // typeContentWrapper must equal 2
+        // </summary>
+		public const long typeChromeWrapper = 3;
+		
+		// <summary>
+        // typeChromeWrapper must equal 3
+        // </summary>
+		public const long typeAll = 0x7FFFFFFF;
+	}
 }

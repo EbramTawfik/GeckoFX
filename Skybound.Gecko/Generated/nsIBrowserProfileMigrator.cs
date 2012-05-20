@@ -86,4 +86,35 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetSourceHomePageURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aSourceHomePageURL);
 	}
+	
+	/// <summary>nsIBrowserProfileMigratorConsts </summary>
+	public class nsIBrowserProfileMigratorConsts
+	{
+		
+		// <summary>
+        // profile items to migrate. use with migrate().
+        // </summary>
+		public const ulong ALL = 0x0000;
+		
+		// 
+		public const ulong SETTINGS = 0x0001;
+		
+		// 
+		public const ulong COOKIES = 0x0002;
+		
+		// 
+		public const ulong HISTORY = 0x0004;
+		
+		// 
+		public const ulong FORMDATA = 0x0008;
+		
+		// 
+		public const ulong PASSWORDS = 0x0010;
+		
+		// 
+		public const ulong BOOKMARKS = 0x0020;
+		
+		// 
+		public const ulong OTHERDATA = 0x0040;
+	}
 }

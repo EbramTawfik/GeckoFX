@@ -191,4 +191,92 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		short Show();
 	}
+	
+	/// <summary>nsIFilePickerConsts </summary>
+	public class nsIFilePickerConsts
+	{
+		
+		// 
+		public const int modeOpen = 0;
+		
+		// <summary>
+        // Load a file or directory
+        // </summary>
+		public const int modeSave = 1;
+		
+		// <summary>
+        // Save a file or directory
+        // </summary>
+		public const int modeGetFolder = 2;
+		
+		// <summary>
+        // Select a folder/directory
+        // </summary>
+		public const int modeOpenMultiple = 3;
+		
+		// <summary>
+        // Load multiple files
+        // </summary>
+		public const int returnOK = 0;
+		
+		// <summary>
+        // User hit Ok, process selection
+        // </summary>
+		public const int returnCancel = 1;
+		
+		// <summary>
+        // User hit cancel, ignore selection
+        // </summary>
+		public const int returnReplace = 2;
+		
+		// <summary>
+        // User acknowledged file already exists so ok to replace, process selection
+        // </summary>
+		public const long filterAll = 0x001;
+		
+		// <summary>
+        // .*
+        // </summary>
+		public const long filterHTML = 0x002;
+		
+		// <summary>
+        // .html; *.htm
+        // </summary>
+		public const long filterText = 0x004;
+		
+		// <summary>
+        // .txt
+        // </summary>
+		public const long filterImages = 0x008;
+		
+		// <summary>
+        // .psd; *.raw
+        // </summary>
+		public const long filterXML = 0x010;
+		
+		// <summary>
+        // .xml
+        // </summary>
+		public const long filterXUL = 0x020;
+		
+		// <summary>
+        // .xul
+        // </summary>
+		public const long filterApps = 0x040;
+		
+		// <summary>
+        // Applications (per-platform implementation)
+        // </summary>
+		public const long filterAllowURLs = 0x080;
+		
+		// <summary>
+        // Allow URLs
+        // </summary>
+		public const long filterAudio = 0x100;
+		
+		// <summary>
+        // .wav; *.wma
+        // </summary>
+		public const long filterVideo = 0x200;
+	}
 }

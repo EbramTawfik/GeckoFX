@@ -34,16 +34,30 @@ namespace Gecko
 	public interface nsIDOMSVGZoomAndPan
 	{
 		
-		/// <summary>
-        /// Zoom and Pan Types
-        /// </summary>
+		/// <summary>Member GetZoomAndPanAttribute </summary>
+		/// <returns>A System.UInt16</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		ushort GetZoomAndPanAttribute();
 		
-		/// <summary>
-        /// Zoom and Pan Types
-        /// </summary>
+		/// <summary>Member SetZoomAndPanAttribute </summary>
+		/// <param name='aZoomAndPan'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetZoomAndPanAttribute(ushort aZoomAndPan);
+	}
+	
+	/// <summary>nsIDOMSVGZoomAndPanConsts </summary>
+	public class nsIDOMSVGZoomAndPanConsts
+	{
+		
+		// <summary>
+        // Zoom and Pan Types
+        // </summary>
+		public const ulong SVG_ZOOMANDPAN_UNKNOWN = 0;
+		
+		// 
+		public const ulong SVG_ZOOMANDPAN_DISABLE = 1;
+		
+		// 
+		public const ulong SVG_ZOOMANDPAN_MAGNIFY = 2;
 	}
 }

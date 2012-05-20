@@ -122,4 +122,23 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetCanRecordAttribute([MarshalAs(UnmanagedType.U1)] bool aCanRecord);
 	}
+	
+	/// <summary>nsITelemetryConsts </summary>
+	public class nsITelemetryConsts
+	{
+		
+		// <summary>
+        // Histogram types:
+        // HISTOGRAM_EXPONENTIAL - buckets increase exponentially
+        // HISTOGRAM_LINEAR - buckets increase linearly
+        // HISTOGRAM_BOOLEAN - For storing 0/1 values
+        // </summary>
+		public const ulong HISTOGRAM_EXPONENTIAL = 0;
+		
+		// 
+		public const ulong HISTOGRAM_LINEAR = 1;
+		
+		// 
+		public const ulong HISTOGRAM_BOOLEAN = 2;
+	}
 }

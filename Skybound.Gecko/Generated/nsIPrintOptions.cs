@@ -66,11 +66,18 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void DisplayJobProperties([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string aPrinter, [MarshalAs(UnmanagedType.Interface)] nsIPrintSettings aPrintSettings, [MarshalAs(UnmanagedType.U1)] ref bool aDisplayed);
 		
-		/// <summary>
-        /// Native data constants
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetNativeData(short aDataType);
+	}
+	
+	/// <summary>nsIPrintOptionsConsts </summary>
+	public class nsIPrintOptionsConsts
+	{
+		
+		// <summary>
+        // Native data constants
+        // </summary>
+		public const int kNativeDataPrintRecord = 0;
 	}
 	
 	/// <summary>nsIPrinterEnumerator </summary>

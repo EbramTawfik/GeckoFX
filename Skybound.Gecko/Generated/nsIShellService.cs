@@ -132,4 +132,32 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsILocalFile GetDefaultFeedReaderAttribute();
 	}
+	
+	/// <summary>nsIShellServiceConsts </summary>
+	public class nsIShellServiceConsts
+	{
+		
+		// <summary>
+        // Flags for positioning/sizing of the Desktop Background image.
+        // </summary>
+		public const long BACKGROUND_TILE = 1;
+		
+		// 
+		public const long BACKGROUND_STRETCH = 2;
+		
+		// 
+		public const long BACKGROUND_CENTER = 3;
+		
+		// 
+		public const long BACKGROUND_FILL = 4;
+		
+		// <summary>
+        // Constants identifying applications that can be opened with
+        // openApplication.
+        // </summary>
+		public const long APPLICATION_MAIL = 0;
+		
+		// 
+		public const long APPLICATION_NEWS = 1;
+	}
 }

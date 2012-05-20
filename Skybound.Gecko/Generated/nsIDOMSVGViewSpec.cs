@@ -42,15 +42,13 @@ namespace Gecko
 	public interface nsIDOMSVGViewSpec : nsIDOMSVGZoomAndPan
 	{
 		
-		/// <summary>
-        /// Zoom and Pan Types
-        /// </summary>
+		/// <summary>Member GetZoomAndPanAttribute </summary>
+		/// <returns>A System.UInt16</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new ushort GetZoomAndPanAttribute();
 		
-		/// <summary>
-        /// Zoom and Pan Types
-        /// </summary>
+		/// <summary>Member SetZoomAndPanAttribute </summary>
+		/// <param name='aZoomAndPan'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetZoomAndPanAttribute(ushort aZoomAndPan);
 		

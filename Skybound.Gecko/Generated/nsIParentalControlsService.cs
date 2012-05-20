@@ -95,4 +95,20 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Log(short aEntryType, [MarshalAs(UnmanagedType.U1)] bool aFlag, [MarshalAs(UnmanagedType.Interface)] nsIURI aSource, [MarshalAs(UnmanagedType.Interface)] nsIFile aTarget);
 	}
+	
+	/// <summary>nsIParentalControlsServiceConsts </summary>
+	public class nsIParentalControlsServiceConsts
+	{
+		
+		// <summary>
+        // Log entry types. Additional types can be defined and implemented
+        // as needed. Other possible event types might include email events,
+        // media related events, and IM events.
+        // </summary>
+		public const int ePCLog_URIVisit = 1;
+		
+		// <summary>
+        //Web content </summary>
+		public const int ePCLog_FileDownload = 2;
+	}
 }

@@ -166,10 +166,10 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetImageSrc(int row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn col, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
-		/// <summary>
-        /// The progress mode for a given cell. This method is only called for
-        /// columns of type |progressmeter|.
-        /// </summary>
+		/// <summary>Member GetProgressMode </summary>
+		/// <param name='row'> </param>
+		/// <param name='col'> </param>
+		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetProgressMode(int row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn col);
 		
@@ -267,6 +267,32 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void PerformActionOnCell([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string action, int row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn col);
+	}
+	
+	/// <summary>nsITreeViewConsts </summary>
+	public class nsITreeViewConsts
+	{
+		
+		// 
+		public const int DROP_BEFORE = -1;
+		
+		// 
+		public const int DROP_ON = 0;
+		
+		// 
+		public const int DROP_AFTER = 1;
+		
+		// <summary>
+        // The progress mode for a given cell. This method is only called for
+        // columns of type |progressmeter|.
+        // </summary>
+		public const int PROGRESS_NORMAL = 1;
+		
+		// 
+		public const int PROGRESS_UNDETERMINED = 2;
+		
+		// 
+		public const int PROGRESS_NONE = 3;
 	}
 	
 	/// <summary>
@@ -406,10 +432,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetImageSrc(int row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn col, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
-		/// <summary>
-        /// The progress mode for a given cell. This method is only called for
-        /// columns of type |progressmeter|.
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new int GetProgressMode(int row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn col);
 		

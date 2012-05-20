@@ -588,9 +588,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SendCompositionEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aData, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aLocale);
 		
-		/// <summary>
-        /// NOTE: These values must be same to NS_TEXTRANGE_* in nsGUIEvent.h
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SendTextEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCompositionString, int aFirstClauseLength, uint aFirstClauseAttr, int aSecondClauseLength, uint aSecondClauseAttr, int aThirdClauseLength, uint aThirdClauseAttr, int aCaretStart, int aCaretLength);
 		
@@ -892,5 +889,136 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetPaintingSuppressedAttribute();
+	}
+	
+	/// <summary>nsIDOMWindowUtilsConsts </summary>
+	public class nsIDOMWindowUtilsConsts
+	{
+		
+		// <summary>
+        // DISABLED means users cannot use IME completely.
+        // Note that this state is *not* same as |ime-mode: disabled;|.
+        // </summary>
+		public const ulong IME_STATUS_DISABLED = 0;
+		
+		// <summary>
+        // ENABLED means users can use all functions of IME. This state is same as
+        // |ime-mode: normal;|.
+        // </summary>
+		public const ulong IME_STATUS_ENABLED = 1;
+		
+		// <summary>
+        // PASSWORD means users cannot use most functions of IME. But on GTK2,
+        // users can use "Simple IM" which only supports dead key inputting.
+        // The behavior is same as the behavior of the native password field.
+        // This state is same as |ime-mode: disabled;|.
+        // </summary>
+		public const ulong IME_STATUS_PASSWORD = 2;
+		
+		// <summary>
+        // PLUGIN means a plug-in has focus. At this time we should not touch to
+        // controlling the IME state.
+        // </summary>
+		public const ulong IME_STATUS_PLUGIN = 3;
+		
+		// <summary>
+        // NOTE: These values must be same to NS_TEXTRANGE_* in nsGUIEvent.h
+        // </summary>
+		public const ulong COMPOSITION_ATTR_RAWINPUT = 0x02;
+		
+		// 
+		public const ulong COMPOSITION_ATTR_SELECTEDRAWTEXT = 0x03;
+		
+		// 
+		public const ulong COMPOSITION_ATTR_CONVERTEDTEXT = 0x04;
+		
+		// 
+		public const ulong COMPOSITION_ATTR_SELECTEDCONVERTEDTEXT = 0x05;
+		
+		// <summary>
+        // QUERY_SELECTED_TEXT queries the first selection range's information.
+        //
+        // @param aOffset   Not used.
+        // @param aLength   Not used.
+        // @param aX        Not used.
+        // @param aY        Not used.
+        //
+        // @return offset, reversed and text properties of the result are available.
+        // </summary>
+		public const ulong QUERY_SELECTED_TEXT = 3200;
+		
+		// <summary>
+        // QUERY_TEXT_CONTENT queries the text at the specified range.
+        //
+        // @param aOffset   The first character's offset.  0 is the first character.
+        // @param aLength   The length of getting text.  If the aLength is too long,
+        // the result text is shorter than this value.
+        // @param aX        Not used.
+        // @param aY        Not used.
+        //
+        // @return text property of the result is available.
+        // </summary>
+		public const ulong QUERY_TEXT_CONTENT = 3201;
+		
+		// <summary>
+        // QUERY_CARET_RECT queries the (collapsed) caret rect of the offset.
+        // If the actual caret is there at the specified offset, this returns the
+        // actual caret rect.  Otherwise, this guesses the caret rect from the
+        // metrics of the text.
+        //
+        // @param aOffset   The caret offset.  0 is the left side of the first
+        // caracter in LTR text.
+        // @param aLength   Not used.
+        // @param aX        Not used.
+        // @param aY        Not used.
+        //
+        // @return left, top, width and height properties of the result are available.
+        // The left and the top properties are offset in the client area of
+        // the DOM window.
+        // </summary>
+		public const ulong QUERY_CARET_RECT = 3203;
+		
+		// <summary>
+        // QUERY_TEXT_RECT queries the specified text's rect.
+        //
+        // @param aOffset   The first character's offset.  0 is the first character.
+        // @param aLength   The length of getting text.  If the aLength is too long,
+        // the extra length is ignored.
+        // @param aX        Not used.
+        // @param aY        Not used.
+        //
+        // @return left, top, width and height properties of the result are available.
+        // The left and the top properties are offset in the client area of
+        // the DOM window.
+        // </summary>
+		public const ulong QUERY_TEXT_RECT = 3204;
+		
+		// <summary>
+        // QUERY_TEXT_RECT queries the focused editor's rect.
+        //
+        // @param aOffset   Not used.
+        // @param aLength   Not used.
+        // @param aX        Not used.
+        // @param aY        Not used.
+        //
+        // @return left, top, width and height properties of the result are available.
+        // </summary>
+		public const ulong QUERY_EDITOR_RECT = 3205;
+		
+		// <summary>
+        // QUERY_CHARACTER_AT_POINT queries the character information at the
+        // specified point.  The point is offset in the window.
+        // NOTE: If there are some panels at the point, this method send the query
+        // event to the panel's widget automatically.
+        //
+        // @param aOffset   Not used.
+        // @param aLength   Not used.
+        // @param aX        X offset in the widget.
+        // @param aY        Y offset in the widget.
+        //
+        // @return offset, notFound, left, top, width and height properties of the
+        // result are available.
+        // </summary>
+		public const ulong QUERY_CHARACTER_AT_POINT = 3208;
 	}
 }

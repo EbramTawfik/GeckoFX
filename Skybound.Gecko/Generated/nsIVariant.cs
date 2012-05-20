@@ -36,6 +36,149 @@ namespace Gecko
 	{
 	}
 	
+	/// <summary>nsIDataTypeConsts </summary>
+	public class nsIDataTypeConsts
+	{
+		
+		// <summary>
+        // From xpt_struct.h ...
+        // </summary>
+		public const long VTYPE_INT8 = 0;
+		
+		// <summary>
+        // TD_INT8              = 0,
+        // </summary>
+		public const long VTYPE_INT16 = 1;
+		
+		// <summary>
+        // TD_INT16             = 1,
+        // </summary>
+		public const long VTYPE_INT32 = 2;
+		
+		// <summary>
+        // TD_INT32             = 2,
+        // </summary>
+		public const long VTYPE_INT64 = 3;
+		
+		// <summary>
+        // TD_INT64             = 3,
+        // </summary>
+		public const long VTYPE_UINT8 = 4;
+		
+		// <summary>
+        // TD_UINT8             = 4,
+        // </summary>
+		public const long VTYPE_UINT16 = 5;
+		
+		// <summary>
+        // TD_UINT16            = 5,
+        // </summary>
+		public const long VTYPE_UINT32 = 6;
+		
+		// <summary>
+        // TD_UINT32            = 6,
+        // </summary>
+		public const long VTYPE_UINT64 = 7;
+		
+		// <summary>
+        // TD_UINT64            = 7,
+        // </summary>
+		public const long VTYPE_FLOAT = 8;
+		
+		// <summary>
+        // TD_FLOAT             = 8,
+        // </summary>
+		public const long VTYPE_DOUBLE = 9;
+		
+		// <summary>
+        // TD_DOUBLE            = 9,
+        // </summary>
+		public const long VTYPE_BOOL = 10;
+		
+		// <summary>
+        // TD_BOOL              = 10,
+        // </summary>
+		public const long VTYPE_CHAR = 11;
+		
+		// <summary>
+        // TD_CHAR              = 11,
+        // </summary>
+		public const long VTYPE_WCHAR = 12;
+		
+		// <summary>
+        // TD_WCHAR             = 12,
+        // </summary>
+		public const long VTYPE_VOID = 13;
+		
+		// <summary>
+        // TD_VOID              = 13,
+        // </summary>
+		public const long VTYPE_ID = 14;
+		
+		// <summary>
+        // TD_PNSIID            = 14,
+        // </summary>
+		public const long VTYPE_DOMSTRING = 15;
+		
+		// <summary>
+        // TD_DOMSTRING         = 15,
+        // </summary>
+		public const long VTYPE_CHAR_STR = 16;
+		
+		// <summary>
+        // TD_PSTRING           = 16,
+        // </summary>
+		public const long VTYPE_WCHAR_STR = 17;
+		
+		// <summary>
+        // TD_PWSTRING          = 17,
+        // </summary>
+		public const long VTYPE_INTERFACE = 18;
+		
+		// <summary>
+        // TD_INTERFACE_TYPE    = 18,
+        // </summary>
+		public const long VTYPE_INTERFACE_IS = 19;
+		
+		// <summary>
+        // TD_INTERFACE_IS_TYPE = 19,
+        // </summary>
+		public const long VTYPE_ARRAY = 20;
+		
+		// <summary>
+        // TD_ARRAY             = 20,
+        // </summary>
+		public const long VTYPE_STRING_SIZE_IS = 21;
+		
+		// <summary>
+        // TD_PSTRING_SIZE_IS   = 21,
+        // </summary>
+		public const long VTYPE_WSTRING_SIZE_IS = 22;
+		
+		// <summary>
+        // TD_PWSTRING_SIZE_IS  = 22,
+        // </summary>
+		public const long VTYPE_UTF8STRING = 23;
+		
+		// <summary>
+        // TD_UTF8STRING        = 23,
+        // </summary>
+		public const long VTYPE_CSTRING = 24;
+		
+		// <summary>
+        // TD_CSTRING           = 24,
+        // </summary>
+		public const long VTYPE_ASTRING = 25;
+		
+		// <summary>
+        // TD_ASTRING           = 25,
+        // </summary>
+		public const long VTYPE_EMPTY_ARRAY = 254;
+		
+		// 
+		public const long VTYPE_EMPTY = 255;
+	}
+	
 	/// <summary>
     /// XPConnect has magic to transparently convert between nsIVariant and JS types.
     /// We mark the interface [scriptable] so that JS can use methods

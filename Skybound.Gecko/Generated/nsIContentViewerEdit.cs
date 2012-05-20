@@ -86,4 +86,21 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetCanGetContentsAttribute();
 	}
+	
+	/// <summary>nsIContentViewerEditConsts </summary>
+	public class nsIContentViewerEditConsts
+	{
+		
+		// 
+		public const long COPY_IMAGE_TEXT = 0x0001;
+		
+		// 
+		public const long COPY_IMAGE_HTML = 0x0002;
+		
+		// 
+		public const long COPY_IMAGE_DATA = 0x0004;
+		
+		// 
+		public const long COPY_IMAGE_ALL = -1;
+	}
 }

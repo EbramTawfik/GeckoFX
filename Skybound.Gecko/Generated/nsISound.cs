@@ -59,15 +59,45 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Init();
 		
-		/// <summary>
-        /// In some situations, playEventSound will be called.  Then, each
-        /// implementations will play a system sound for the event if it's necessary.
-        ///
-        /// NOTE: Don't change these values because they are used in
-        /// nsPIPromptService.idl. So, if they are changed, that makes big impact for
-        /// the embedders.
-        /// </summary>
+		/// <summary>Member PlayEventSound </summary>
+		/// <param name='aEventId'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void PlayEventSound(uint aEventId);
+	}
+	
+	/// <summary>nsISoundConsts </summary>
+	public class nsISoundConsts
+	{
+		
+		// <summary>
+        // In some situations, playEventSound will be called.  Then, each
+        // implementations will play a system sound for the event if it's necessary.
+        //
+        // NOTE: Don't change these values because they are used in
+        // nsPIPromptService.idl. So, if they are changed, that makes big impact for
+        // the embedders.
+        // </summary>
+		public const ulong EVENT_NEW_MAIL_RECEIVED = 0;
+		
+		// 
+		public const ulong EVENT_ALERT_DIALOG_OPEN = 1;
+		
+		// 
+		public const ulong EVENT_CONFIRM_DIALOG_OPEN = 2;
+		
+		// 
+		public const ulong EVENT_PROMPT_DIALOG_OPEN = 3;
+		
+		// 
+		public const ulong EVENT_SELECT_DIALOG_OPEN = 4;
+		
+		// 
+		public const ulong EVENT_MENU_EXECUTE = 5;
+		
+		// 
+		public const ulong EVENT_MENU_POPUP = 6;
+		
+		// 
+		public const ulong EVENT_EDITOR_MAX_LEN = 7;
 	}
 }

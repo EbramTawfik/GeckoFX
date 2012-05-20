@@ -34,10 +34,52 @@ namespace Gecko
 	public interface nsIIDBDatabaseException
 	{
 		
-		/// <summary>
-        /// const unsigned short NO_ERR = 0;
-        /// </summary>
+		/// <summary>Member GetCodeAttribute </summary>
+		/// <returns>A System.UInt16</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		ushort GetCodeAttribute();
+	}
+	
+	/// <summary>nsIIDBDatabaseExceptionConsts </summary>
+	public class nsIIDBDatabaseExceptionConsts
+	{
+		
+		// <summary>
+        // const unsigned short NO_ERR = 0;
+        // </summary>
+		public const ulong UNKNOWN_ERR = 1;
+		
+		// 
+		public const ulong NON_TRANSIENT_ERR = 2;
+		
+		// 
+		public const ulong NOT_FOUND_ERR = 3;
+		
+		// 
+		public const ulong CONSTRAINT_ERR = 4;
+		
+		// 
+		public const ulong DATA_ERR = 5;
+		
+		// 
+		public const ulong NOT_ALLOWED_ERR = 6;
+		
+		// 
+		public const ulong TRANSACTION_INACTIVE_ERR = 7;
+		
+		// 
+		public const ulong ABORT_ERR = 8;
+		
+		// 
+		public const ulong READ_ONLY_ERR = 9;
+		
+		// 
+		public const ulong TIMEOUT_ERR = 10;
+		
+		// 
+		public const ulong QUOTA_ERR = 11;
+		
+		// 
+		public const ulong VERSION_ERR = 12;
 	}
 }

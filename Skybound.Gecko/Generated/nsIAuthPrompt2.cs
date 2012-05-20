@@ -103,4 +103,25 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsICancelable AsyncPromptAuth([MarshalAs(UnmanagedType.Interface)] nsIChannel aChannel, [MarshalAs(UnmanagedType.Interface)] nsIAuthPromptCallback aCallback, [MarshalAs(UnmanagedType.Interface)] nsISupports aContext, uint level, [MarshalAs(UnmanagedType.Interface)] nsIAuthInformation authInfo);
 	}
+	
+	/// <summary>nsIAuthPrompt2Consts </summary>
+	public class nsIAuthPrompt2Consts
+	{
+		
+		// <summary>
+        // The password will be sent unencrypted. No security provided.
+        // </summary>
+		public const long LEVEL_NONE = 0;
+		
+		// <summary>
+        // Password will be sent encrypted, but the connection is otherwise
+        // insecure.
+        // </summary>
+		public const long LEVEL_PW_ENCRYPTED = 1;
+		
+		// <summary>
+        // The connection, both for password and data, is secure.
+        // </summary>
+		public const long LEVEL_SECURE = 2;
+	}
 }

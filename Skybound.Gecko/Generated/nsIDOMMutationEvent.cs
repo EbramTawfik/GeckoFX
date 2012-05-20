@@ -200,4 +200,18 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void InitMutationEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase typeArg, [MarshalAs(UnmanagedType.U1)] bool canBubbleArg, [MarshalAs(UnmanagedType.U1)] bool cancelableArg, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode relatedNodeArg, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase prevValueArg, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase newValueArg, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase attrNameArg, ushort attrChangeArg);
 	}
+	
+	/// <summary>nsIDOMMutationEventConsts </summary>
+	public class nsIDOMMutationEventConsts
+	{
+		
+		// 
+		public const ulong MODIFICATION = 1;
+		
+		// 
+		public const ulong ADDITION = 2;
+		
+		// 
+		public const ulong REMOVAL = 3;
+	}
 }

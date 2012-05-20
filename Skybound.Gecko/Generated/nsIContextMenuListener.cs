@@ -72,4 +72,33 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void OnShowContextMenu(uint aContextFlags, [MarshalAs(UnmanagedType.Interface)] nsIDOMEvent aEvent, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aNode);
 	}
+	
+	/// <summary>nsIContextMenuListenerConsts </summary>
+	public class nsIContextMenuListenerConsts
+	{
+		
+		// <summary>
+        //Flag. No context. </summary>
+		public const ulong CONTEXT_NONE = 0;
+		
+		// <summary>
+        //Flag. Context is a link element. </summary>
+		public const ulong CONTEXT_LINK = 1;
+		
+		// <summary>
+        //Flag. Context is an image element. </summary>
+		public const ulong CONTEXT_IMAGE = 2;
+		
+		// <summary>
+        //Flag. Context is the whole document. </summary>
+		public const ulong CONTEXT_DOCUMENT = 4;
+		
+		// <summary>
+        //Flag. Context is a text area element. </summary>
+		public const ulong CONTEXT_TEXT = 8;
+		
+		// <summary>
+        //Flag. Context is an input element. </summary>
+		public const ulong CONTEXT_INPUT = 16;
+	}
 }

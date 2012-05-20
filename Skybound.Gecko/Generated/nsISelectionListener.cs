@@ -34,9 +34,37 @@ namespace Gecko
 	public interface nsISelectionListener
 	{
 		
-		/// <summary>
-        ///bitflags </summary>
+		/// <summary>Member NotifySelectionChanged </summary>
+		/// <param name='doc'> </param>
+		/// <param name='sel'> </param>
+		/// <param name='reason'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void NotifySelectionChanged([MarshalAs(UnmanagedType.Interface)] nsIDOMDocument doc, [MarshalAs(UnmanagedType.Interface)] nsISelection sel, short reason);
+	}
+	
+	/// <summary>nsISelectionListenerConsts </summary>
+	public class nsISelectionListenerConsts
+	{
+		
+		// 
+		public const int NO_REASON = 0;
+		
+		// 
+		public const int DRAG_REASON = 1;
+		
+		// 
+		public const int MOUSEDOWN_REASON = 2;
+		
+		// <summary>
+        //bitflags </summary>
+		public const int MOUSEUP_REASON = 4;
+		
+		// <summary>
+        //bitflags </summary>
+		public const int KEYPRESS_REASON = 8;
+		
+		// <summary>
+        //bitflags </summary>
+		public const int SELECTALL_REASON = 16;
 	}
 }

@@ -125,4 +125,103 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ExitModalEventLoop(int aStatus);
 	}
+	
+	/// <summary>nsIWebBrowserChromeConsts </summary>
+	public class nsIWebBrowserChromeConsts
+	{
+		
+		// <summary>
+        // nsIWebBrowserChrome corresponds to the top-level, outermost window
+        // containing an embedded Gecko web browser.
+        // </summary>
+		public const ulong STATUS_SCRIPT = 0x00000001;
+		
+		// 
+		public const ulong STATUS_SCRIPT_DEFAULT = 0x00000002;
+		
+		// 
+		public const ulong STATUS_LINK = 0x00000003;
+		
+		// <summary>
+        // Definitions for the chrome flags
+        // </summary>
+		public const ulong CHROME_DEFAULT = 0x00000001;
+		
+		// 
+		public const ulong CHROME_WINDOW_BORDERS = 0x00000002;
+		
+		// 
+		public const ulong CHROME_WINDOW_CLOSE = 0x00000004;
+		
+		// 
+		public const ulong CHROME_WINDOW_RESIZE = 0x00000008;
+		
+		// 
+		public const ulong CHROME_MENUBAR = 0x00000010;
+		
+		// 
+		public const ulong CHROME_TOOLBAR = 0x00000020;
+		
+		// 
+		public const ulong CHROME_LOCATIONBAR = 0x00000040;
+		
+		// 
+		public const ulong CHROME_STATUSBAR = 0x00000080;
+		
+		// 
+		public const ulong CHROME_PERSONAL_TOOLBAR = 0x00000100;
+		
+		// 
+		public const ulong CHROME_SCROLLBARS = 0x00000200;
+		
+		// 
+		public const ulong CHROME_TITLEBAR = 0x00000400;
+		
+		// 
+		public const ulong CHROME_EXTRA = 0x00000800;
+		
+		// <summary>
+        // createBrowserWindow specific flags
+        // </summary>
+		public const ulong CHROME_WITH_SIZE = 0x00001000;
+		
+		// 
+		public const ulong CHROME_WITH_POSITION = 0x00002000;
+		
+		// <summary>
+        // special cases
+        // </summary>
+		public const ulong CHROME_WINDOW_MIN = 0x00004000;
+		
+		// 
+		public const ulong CHROME_WINDOW_POPUP = 0x00008000;
+		
+		// 
+		public const ulong CHROME_WINDOW_RAISED = 0x02000000;
+		
+		// 
+		public const ulong CHROME_WINDOW_LOWERED = 0x04000000;
+		
+		// 
+		public const ulong CHROME_CENTER_SCREEN = 0x08000000;
+		
+		// <summary>
+        // dependent.
+        // </summary>
+		public const ulong CHROME_DEPENDENT = 0x10000000;
+		
+		// <summary>
+        //       mean it's actually modal.
+        // </summary>
+		public const ulong CHROME_MODAL = 0x20000000;
+		
+		// 
+		public const ulong CHROME_OPENAS_DIALOG = 0x40000000;
+		
+		// 
+		public const ulong CHROME_OPENAS_CHROME = 0x80000000;
+		
+		// 
+		public const ulong CHROME_ALL = 0x00000ffe;
+	}
 }

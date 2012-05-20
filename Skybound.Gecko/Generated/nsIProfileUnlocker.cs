@@ -44,4 +44,15 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Unlock(uint aSeverity);
 	}
+	
+	/// <summary>nsIProfileUnlockerConsts </summary>
+	public class nsIProfileUnlockerConsts
+	{
+		
+		// 
+		public const ulong ATTEMPT_QUIT = 0;
+		
+		// 
+		public const ulong FORCE_QUIT = 1;
+	}
 }

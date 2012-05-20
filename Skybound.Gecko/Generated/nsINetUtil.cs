@@ -152,4 +152,97 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool ExtractCharsetFromContentType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aTypeHeader, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aCharset, ref int aCharsetStart, ref int aCharsetEnd);
 	}
+	
+	/// <summary>nsINetUtilConsts </summary>
+	public class nsINetUtilConsts
+	{
+		
+		// <summary>
+        //Escape every character with its %XX-escaped equivalent </summary>
+		public const ulong ESCAPE_ALL = 0;
+		
+		// <summary>
+        //Leave alphanumeric characters intact and %XX-escape all others </summary>
+		public const ulong ESCAPE_XALPHAS = 1;
+		
+		// <summary>
+        //Leave alphanumeric characters intact, convert spaces to '+',
+        //      %XX-escape all others </summary>
+		public const ulong ESCAPE_XPALPHAS = 2;
+		
+		// <summary>
+        //Leave alphanumeric characters and forward slashes intact,
+        //      %XX-escape all others </summary>
+		public const ulong ESCAPE_URL_PATH = 4;
+		
+		// <summary>
+        //%XX-escape URL scheme </summary>
+		public const ulong ESCAPE_URL_SCHEME = 1;
+		
+		// <summary>
+        //%XX-escape username in the URL </summary>
+		public const ulong ESCAPE_URL_USERNAME = 1<<1;
+		
+		// <summary>
+        //%XX-escape password in the URL </summary>
+		public const ulong ESCAPE_URL_PASSWORD = 1<<2;
+		
+		// <summary>
+        //%XX-escape URL host </summary>
+		public const ulong ESCAPE_URL_HOST = 1<<3;
+		
+		// <summary>
+        //%XX-escape URL directory </summary>
+		public const ulong ESCAPE_URL_DIRECTORY = 1<<4;
+		
+		// <summary>
+        //%XX-escape file basename in the URL </summary>
+		public const ulong ESCAPE_URL_FILE_BASENAME = 1<<5;
+		
+		// <summary>
+        //%XX-escape file extension in the URL </summary>
+		public const ulong ESCAPE_URL_FILE_EXTENSION = 1<<6;
+		
+		// <summary>
+        //%XX-escape URL parameters </summary>
+		public const ulong ESCAPE_URL_PARAM = 1<<7;
+		
+		// <summary>
+        //%XX-escape URL query </summary>
+		public const ulong ESCAPE_URL_QUERY = 1<<8;
+		
+		// <summary>
+        //%XX-escape URL ref </summary>
+		public const ulong ESCAPE_URL_REF = 1<<9;
+		
+		// <summary>
+        //%XX-escape URL path - same as escaping directory, basename and extension </summary>
+		public const ulong ESCAPE_URL_FILEPATH = ESCAPE_URL_DIRECTORY|ESCAPE_URL_FILE_BASENAME|ESCAPE_URL_FILE_EXTENSION;
+		
+		// <summary>
+        //%XX-escape scheme, username, password, host, path, params, query and ref </summary>
+		public const ulong ESCAPE_URL_MINIMAL = ESCAPE_URL_SCHEME|ESCAPE_URL_USERNAME|ESCAPE_URL_PASSWORD|ESCAPE_URL_HOST|ESCAPE_URL_FILEPATH|ESCAPE_URL_PARAM|ESCAPE_URL_QUERY|ESCAPE_URL_REF;
+		
+		// <summary>
+        //Force %XX-escaping of already escaped sequences </summary>
+		public const ulong ESCAPE_URL_FORCED = 1<<10;
+		
+		// <summary>
+        //Skip non-ascii octets, %XX-escape all others </summary>
+		public const ulong ESCAPE_URL_ONLY_ASCII = 1<<11;
+		
+		// <summary>
+        // Skip graphic octets (0x20-0x7E) when escaping
+        // Skips all ASCII octets (0x00-0x7F) when unescaping
+        // </summary>
+		public const ulong ESCAPE_URL_ONLY_NONASCII = 1<<12;
+		
+		// <summary>
+        //Force %XX-escape of colon </summary>
+		public const ulong ESCAPE_URL_COLON = 1<<14;
+		
+		// <summary>
+        //Skip C0 and DEL from unescaping </summary>
+		public const ulong ESCAPE_URL_SKIP_CONTROL = 1<<15;
+	}
 }

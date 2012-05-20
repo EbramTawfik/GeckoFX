@@ -80,4 +80,26 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetEOF();
 	}
+	
+	/// <summary>nsISeekableStreamConsts </summary>
+	public class nsISeekableStreamConsts
+	{
+		
+		// <summary>
+        // Sets the stream pointer to the value of the 'offset' parameter
+        // </summary>
+		public const int NS_SEEK_SET = 0;
+		
+		// <summary>
+        // Sets the stream pointer to its current location plus the value
+        // of the offset parameter.
+        // </summary>
+		public const int NS_SEEK_CUR = 1;
+		
+		// <summary>
+        // Sets the stream pointer to the size of the stream plus the value
+        // of the offset parameter.
+        // </summary>
+		public const int NS_SEEK_END = 2;
+	}
 }

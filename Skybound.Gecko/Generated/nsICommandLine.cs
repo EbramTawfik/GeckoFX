@@ -182,4 +182,18 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIURI ResolveURI([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aArgument);
 	}
+	
+	/// <summary>nsICommandLineConsts </summary>
+	public class nsICommandLineConsts
+	{
+		
+		// 
+		public const ulong STATE_INITIAL_LAUNCH = 0;
+		
+		// 
+		public const ulong STATE_REMOTE_AUTO = 1;
+		
+		// 
+		public const ulong STATE_REMOTE_EXPLICIT = 2;
+	}
 }

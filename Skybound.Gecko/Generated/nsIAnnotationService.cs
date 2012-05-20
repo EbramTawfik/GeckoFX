@@ -452,4 +452,56 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIURI GetAnnotationURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aName);
 	}
+	
+	/// <summary>nsIAnnotationServiceConsts </summary>
+	public class nsIAnnotationServiceConsts
+	{
+		
+		// <summary>
+        // Removed at application exit.
+        // </summary>
+		public const ulong EXPIRE_SESSION = 0;
+		
+		// <summary>
+        // Removed at 30 days.
+        // </summary>
+		public const ulong EXPIRE_WEEKS = 2;
+		
+		// <summary>
+        // Removed at 180 days.
+        // </summary>
+		public const ulong EXPIRE_MONTHS = 3;
+		
+		// <summary>
+        // An item annotation will expire when the item is deleted.
+        // </summary>
+		public const ulong EXPIRE_NEVER = 4;
+		
+		// <summary>
+        // Valid only for page annotations.
+        // </summary>
+		public const ulong EXPIRE_WITH_HISTORY = 5;
+		
+		// <summary>
+        // Removed at 7 days.
+        // </summary>
+		public const ulong EXPIRE_DAYS = 6;
+		
+		// <summary>
+        // type constants
+        // </summary>
+		public const ulong TYPE_INT32 = 1;
+		
+		// 
+		public const ulong TYPE_DOUBLE = 2;
+		
+		// 
+		public const ulong TYPE_STRING = 3;
+		
+		// 
+		public const ulong TYPE_BINARY = 4;
+		
+		// 
+		public const ulong TYPE_INT64 = 5;
+	}
 }

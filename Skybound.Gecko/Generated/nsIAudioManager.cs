@@ -72,21 +72,19 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetMasterMutedAttribute([MarshalAs(UnmanagedType.U1)] bool aMasterMuted);
 		
-		/// <summary>
-        /// Set the phone's audio mode.
-        /// </summary>
+		/// <summary>Member GetPhoneStateAttribute </summary>
+		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetPhoneStateAttribute();
 		
-		/// <summary>
-        /// Set the phone's audio mode.
-        /// </summary>
+		/// <summary>Member SetPhoneStateAttribute </summary>
+		/// <param name='aPhoneState'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetPhoneStateAttribute(int aPhoneState);
 		
-		/// <summary>
-        /// the default
-        /// </summary>
+		/// <summary>Member SetForceForUse </summary>
+		/// <param name='usage'> </param>
+		/// <param name='force'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetForceForUse(int usage, int force);
 		
@@ -95,5 +93,71 @@ namespace Gecko
 		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetForceForUse(int usage);
+	}
+	
+	/// <summary>nsIAudioManagerConsts </summary>
+	public class nsIAudioManagerConsts
+	{
+		
+		// <summary>
+        // Set the phone's audio mode.
+        // </summary>
+		public const long PHONE_STATE_INVALID = -2;
+		
+		// 
+		public const long PHONE_STATE_CURRENT = -1;
+		
+		// 
+		public const long PHONE_STATE_NORMAL = 0;
+		
+		// 
+		public const long PHONE_STATE_RINGTONE = 1;
+		
+		// 
+		public const long PHONE_STATE_IN_CALL = 2;
+		
+		// 
+		public const long PHONE_STATE_IN_COMMUNICATION = 3;
+		
+		// <summary>
+        // Configure a particular device ("force") to be used for one of the uses
+        // (communication, media playback, etc.)
+        // </summary>
+		public const long FORCE_NONE = 0;
+		
+		// <summary>
+        // the default
+        // </summary>
+		public const long FORCE_SPEAKER = 1;
+		
+		// 
+		public const long FORCE_HEADPHONES = 2;
+		
+		// 
+		public const long FORCE_BT_SCO = 3;
+		
+		// 
+		public const long FORCE_BT_A2DP = 4;
+		
+		// 
+		public const long FORCE_WIRED_ACCESSORY = 5;
+		
+		// 
+		public const long FORCE_BT_CAR_DOCK = 6;
+		
+		// 
+		public const long FORCE_BT_DESK_DOCK = 7;
+		
+		// 
+		public const long USE_COMMUNICATION = 0;
+		
+		// 
+		public const long USE_MEDIA = 1;
+		
+		// 
+		public const long USE_RECORD = 2;
+		
+		// 
+		public const long USE_DOCK = 3;
 	}
 }

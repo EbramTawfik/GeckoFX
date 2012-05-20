@@ -201,21 +201,9 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RequestRefresh(ulong aTime);
 		
-		/// <summary>
-        /// Animation mode Constants
-        /// 0 = normal
-        /// 1 = don't animate
-        /// 2 = loop once
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		ushort GetAnimationModeAttribute();
 		
-		/// <summary>
-        /// Animation mode Constants
-        /// 0 = normal
-        /// 1 = don't animate
-        /// 2 = loop once
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetAnimationModeAttribute(ushort aAnimationMode);
 		
@@ -223,5 +211,79 @@ namespace Gecko
         ///Methods to control animation </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ResetAnimation();
+	}
+	
+	/// <summary>imgIContainerConsts </summary>
+	public class imgIContainerConsts
+	{
+		
+		// <summary>
+        // Enumerated values for the 'type' attribute (below).
+        // </summary>
+		public const ulong TYPE_RASTER = 0;
+		
+		// 
+		public const ulong TYPE_VECTOR = 1;
+		
+		// <summary>
+        // Flags for imgIContainer operations.
+        //
+        // Meanings:
+        //
+        // FLAG_NONE: Lack of flags
+        //
+        // FLAG_SYNC_DECODE: Forces synchronous/non-progressive decode of all
+        // available data before the call returns. It is an error to pass this flag
+        // from a call stack that originates in a decoder (ie, from a decoder
+        // observer event).
+        //
+        // FLAG_DECODE_NO_PREMULTIPLY_ALPHA: Do not premultiply alpha if
+        // it's not already premultiplied in the image data.
+        //
+        // FLAG_DECODE_NO_COLORSPACE_CONVERSION: Do not do any colorspace conversion;
+        // ignore any embedded profiles, and don't convert to any particular destination
+        // space.
+        // </summary>
+		public const long FLAG_NONE = 0x0;
+		
+		// 
+		public const long FLAG_SYNC_DECODE = 0x1;
+		
+		// 
+		public const long FLAG_DECODE_NO_PREMULTIPLY_ALPHA = 0x2;
+		
+		// 
+		public const long FLAG_DECODE_NO_COLORSPACE_CONVERSION = 0x4;
+		
+		// <summary>
+        // Constants for specifying various "special" frames.
+        //
+        // FRAME_FIRST: The first frame
+        // FRAME_CURRENT: The current frame
+        //
+        // FRAME_MAX_VALUE should be set to the value of the maximum constant above,
+        // as it is used for ensuring that a valid value was passed in.
+        // </summary>
+		public const ulong FRAME_FIRST = 0;
+		
+		// 
+		public const ulong FRAME_CURRENT = 1;
+		
+		// 
+		public const ulong FRAME_MAX_VALUE = 1;
+		
+		// <summary>
+        // Animation mode Constants
+        // 0 = normal
+        // 1 = don't animate
+        // 2 = loop once
+        // </summary>
+		public const int kNormalAnimMode = 0;
+		
+		// 
+		public const int kDontAnimMode = 1;
+		
+		// 
+		public const int kLoopOnceAnimMode = 2;
 	}
 }

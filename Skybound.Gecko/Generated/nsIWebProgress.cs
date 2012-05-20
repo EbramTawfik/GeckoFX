@@ -99,4 +99,85 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsLoadingDocumentAttribute();
 	}
+	
+	/// <summary>nsIWebProgressConsts </summary>
+	public class nsIWebProgressConsts
+	{
+		
+		// <summary>
+        // These flags indicate the state transistions to observe, corresponding to
+        // nsIWebProgressListener::onStateChange.
+        //
+        // NOTIFY_STATE_REQUEST
+        // Only receive the onStateChange event if the aStateFlags parameter
+        // includes nsIWebProgressListener::STATE_IS_REQUEST.
+        //
+        // NOTIFY_STATE_DOCUMENT
+        // Only receive the onStateChange event if the aStateFlags parameter
+        // includes nsIWebProgressListener::STATE_IS_DOCUMENT.
+        //
+        // NOTIFY_STATE_NETWORK
+        // Only receive the onStateChange event if the aStateFlags parameter
+        // includes nsIWebProgressListener::STATE_IS_NETWORK.
+        //
+        // NOTIFY_STATE_WINDOW
+        // Only receive the onStateChange event if the aStateFlags parameter
+        // includes nsIWebProgressListener::STATE_IS_WINDOW.
+        //
+        // NOTIFY_STATE_ALL
+        // Receive all onStateChange events.
+        // </summary>
+		public const ulong NOTIFY_STATE_REQUEST = 0x00000001;
+		
+		// 
+		public const ulong NOTIFY_STATE_DOCUMENT = 0x00000002;
+		
+		// 
+		public const ulong NOTIFY_STATE_NETWORK = 0x00000004;
+		
+		// 
+		public const ulong NOTIFY_STATE_WINDOW = 0x00000008;
+		
+		// 
+		public const ulong NOTIFY_STATE_ALL = 0x0000000f;
+		
+		// <summary>
+        // These flags indicate the other events to observe, corresponding to the
+        // other four methods defined on nsIWebProgressListener.
+        //
+        // NOTIFY_PROGRESS
+        // Receive onProgressChange events.
+        //
+        // NOTIFY_STATUS
+        // Receive onStatusChange events.
+        //
+        // NOTIFY_SECURITY
+        // Receive onSecurityChange events.
+        //
+        // NOTIFY_LOCATION
+        // Receive onLocationChange events.
+        //
+        // NOTIFY_REFRESH
+        // Receive onRefreshAttempted events.
+        // This is defined on nsIWebProgressListener2.
+        // </summary>
+		public const ulong NOTIFY_PROGRESS = 0x00000010;
+		
+		// 
+		public const ulong NOTIFY_STATUS = 0x00000020;
+		
+		// 
+		public const ulong NOTIFY_SECURITY = 0x00000040;
+		
+		// 
+		public const ulong NOTIFY_LOCATION = 0x00000080;
+		
+		// 
+		public const ulong NOTIFY_REFRESH = 0x00000100;
+		
+		// <summary>
+        // This flag enables all notifications.
+        // </summary>
+		public const ulong NOTIFY_ALL = 0x000001ff;
+	}
 }

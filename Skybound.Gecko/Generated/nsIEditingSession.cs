@@ -124,4 +124,30 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetJsAndPluginsDisabledAttribute();
 	}
+	
+	/// <summary>nsIEditingSessionConsts </summary>
+	public class nsIEditingSessionConsts
+	{
+		
+		// <summary>
+        // Error codes when we fail to create an editor
+        // is placed in attribute editorStatus
+        // </summary>
+		public const long eEditorOK = 0;
+		
+		// 
+		public const long eEditorCreationInProgress = 1;
+		
+		// 
+		public const long eEditorErrorCantEditMimeType = 2;
+		
+		// 
+		public const long eEditorErrorFileNotFound = 3;
+		
+		// 
+		public const long eEditorErrorCantEditFramesets = 8;
+		
+		// 
+		public const long eEditorErrorUnknown = 9;
+	}
 }

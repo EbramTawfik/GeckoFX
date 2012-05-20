@@ -459,4 +459,73 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetContentDispositionHeaderAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aContentDispositionHeader);
 	}
+	
+	/// <summary>nsIChannelConsts </summary>
+	public class nsIChannelConsts
+	{
+		
+		// <summary>
+        // Set (e.g., by the docshell) to indicate whether or not the channel
+        // corresponds to a document URI.
+        // </summary>
+		public const ulong LOAD_DOCUMENT_URI = 1<<16;
+		
+		// <summary>
+        // If the end consumer for this load has been retargeted after discovering
+        // its content, this flag will be set:
+        // </summary>
+		public const ulong LOAD_RETARGETED_DOCUMENT_URI = 1<<17;
+		
+		// <summary>
+        // This flag is set to indicate that this channel is replacing another
+        // channel.  This means that:
+        //
+        // 1) the stream listener this channel will be notifying was initially
+        // passed to the asyncOpen method of some other channel
+        //
+        // and
+        //
+        // 2) this channel's URI is a better identifier of the resource being
+        // accessed than this channel's originalURI.
+        //
+        // This flag can be set, for example, for redirects or for cases when a
+        // single channel has multiple parts to it (and thus can follow
+        // onStopRequest with another onStartRequest/onStopRequest pair, each pair
+        // for a different request).
+        // </summary>
+		public const ulong LOAD_REPLACE = 1<<18;
+		
+		// <summary>
+        // Set (e.g., by the docshell) to indicate whether or not the channel
+        // corresponds to an initial document URI load (e.g., link click).
+        // </summary>
+		public const ulong LOAD_INITIAL_DOCUMENT_URI = 1<<19;
+		
+		// <summary>
+        // Set (e.g., by the URILoader) to indicate whether or not the end consumer
+        // for this load has been determined.
+        // </summary>
+		public const ulong LOAD_TARGETED = 1<<20;
+		
+		// <summary>
+        // If this flag is set, the channel should call the content sniffers as
+        // described in nsNetCID.h about NS_CONTENT_SNIFFER_CATEGORY.
+        //
+        // Note: Channels may ignore this flag; however, new channel implementations
+        // should only do so with good reason.
+        // </summary>
+		public const ulong LOAD_CALL_CONTENT_SNIFFERS = 1<<21;
+		
+		// <summary>
+        // This flag tells the channel to use URI classifier service to check
+        // the URI when opening the channel.
+        // </summary>
+		public const ulong LOAD_CLASSIFY_URI = 1<<22;
+		
+		// 
+		public const ulong DISPOSITION_INLINE = 0;
+		
+		// 
+		public const ulong DISPOSITION_ATTACHMENT = 1;
+	}
 }

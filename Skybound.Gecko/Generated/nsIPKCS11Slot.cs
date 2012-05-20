@@ -84,4 +84,27 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string GetTokenNameAttribute();
 	}
+	
+	/// <summary>nsIPKCS11SlotConsts </summary>
+	public class nsIPKCS11SlotConsts
+	{
+		
+		// 
+		public const ulong SLOT_DISABLED = 0;
+		
+		// 
+		public const ulong SLOT_NOT_PRESENT = 1;
+		
+		// 
+		public const ulong SLOT_UNINITIALIZED = 2;
+		
+		// 
+		public const ulong SLOT_NOT_LOGGED_IN = 3;
+		
+		// 
+		public const ulong SLOT_LOGGED_IN = 4;
+		
+		// 
+		public const ulong SLOT_READY = 5;
+	}
 }

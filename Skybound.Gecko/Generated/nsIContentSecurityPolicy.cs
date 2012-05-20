@@ -171,4 +171,15 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		short ShouldProcess(uint aContentType, [MarshalAs(UnmanagedType.Interface)] nsIURI aContentLocation, [MarshalAs(UnmanagedType.Interface)] nsIURI aRequestOrigin, [MarshalAs(UnmanagedType.Interface)] nsISupports aContext, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aMimeType, [MarshalAs(UnmanagedType.Interface)] nsISupports aExtra);
 	}
+	
+	/// <summary>nsIContentSecurityPolicyConsts </summary>
+	public class nsIContentSecurityPolicyConsts
+	{
+		
+		// 
+		public const ulong VIOLATION_TYPE_INLINE_SCRIPT = 1;
+		
+		// 
+		public const ulong VIOLATION_TYPE_EVAL = 2;
+	}
 }

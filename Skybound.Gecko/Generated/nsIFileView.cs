@@ -89,4 +89,18 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIArray GetSelectedFilesAttribute();
 	}
+	
+	/// <summary>nsIFileViewConsts </summary>
+	public class nsIFileViewConsts
+	{
+		
+		// 
+		public const int sortName = 0;
+		
+		// 
+		public const int sortSize = 1;
+		
+		// 
+		public const int sortDate = 2;
+	}
 }

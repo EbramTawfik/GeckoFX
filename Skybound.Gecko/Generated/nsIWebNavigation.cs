@@ -187,4 +187,141 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetSessionHistoryAttribute([MarshalAs(UnmanagedType.Interface)] nsISHistory aSessionHistory);
 	}
+	
+	/// <summary>nsIWebNavigationConsts </summary>
+	public class nsIWebNavigationConsts
+	{
+		
+		// <summary>
+        // This flags defines the range of bits that may be specified.  Flags
+        // outside this range may be used, but may not be passed to Reload().
+        // </summary>
+		public const ulong LOAD_FLAGS_MASK = 0xffff;
+		
+		// <summary>
+        // This is the default value for the load flags parameter.
+        // </summary>
+		public const ulong LOAD_FLAGS_NONE = 0x0000;
+		
+		// <summary>
+        // This flag specifies that the load should have the semantics of an HTML
+        // Meta-refresh tag (i.e., that the cache should be bypassed).  This flag
+        // is only applicable to loadURI.
+        // XXX the meaning of this flag is poorly defined.
+        // XXX no one uses this, so we should probably deprecate and remove it.
+        // </summary>
+		public const ulong LOAD_FLAGS_IS_REFRESH = 0x0010;
+		
+		// <summary>
+        // This flag specifies that the load should have the semantics of a link
+        // click.  This flag is only applicable to loadURI.
+        // XXX the meaning of this flag is poorly defined.
+        // </summary>
+		public const ulong LOAD_FLAGS_IS_LINK = 0x0020;
+		
+		// <summary>
+        // This flag specifies that history should not be updated.  This flag is only
+        // applicable to loadURI.
+        // </summary>
+		public const ulong LOAD_FLAGS_BYPASS_HISTORY = 0x0040;
+		
+		// <summary>
+        // This flag specifies that any existing history entry should be replaced.
+        // This flag is only applicable to loadURI.
+        // </summary>
+		public const ulong LOAD_FLAGS_REPLACE_HISTORY = 0x0080;
+		
+		// <summary>
+        // This flag specifies that the local web cache should be bypassed, but an
+        // intermediate proxy cache could still be used to satisfy the load.
+        // </summary>
+		public const ulong LOAD_FLAGS_BYPASS_CACHE = 0x0100;
+		
+		// <summary>
+        // This flag specifies that any intermediate proxy caches should be bypassed
+        // (i.e., that the content should be loaded from the origin server).
+        // </summary>
+		public const ulong LOAD_FLAGS_BYPASS_PROXY = 0x0200;
+		
+		// <summary>
+        // This flag specifies that a reload was triggered as a result of detecting
+        // an incorrect character encoding while parsing a previously loaded
+        // document.
+        // </summary>
+		public const ulong LOAD_FLAGS_CHARSET_CHANGE = 0x0400;
+		
+		// <summary>
+        // If this flag is set, Stop() will be called before the load starts
+        // and will stop both content and network activity (the default is to
+        // only stop network activity).  Effectively, this passes the
+        // STOP_CONTENT flag to Stop(), in addition to the STOP_NETWORK flag.
+        // </summary>
+		public const ulong LOAD_FLAGS_STOP_CONTENT = 0x0800;
+		
+		// <summary>
+        // A hint this load was prompted by an external program: take care!
+        // </summary>
+		public const ulong LOAD_FLAGS_FROM_EXTERNAL = 0x1000;
+		
+		// <summary>
+        // This flag specifies that the URI may be submitted to a third-party
+        // server for correction. This should only be applied to non-sensitive
+        // URIs entered by users.  This flag must not be passed to Reload.
+        // </summary>
+		public const ulong LOAD_FLAGS_ALLOW_THIRD_PARTY_FIXUP = 0x2000;
+		
+		// <summary>
+        // This flag specifies that this is the first load in this object.
+        // Set with care, since setting incorrectly can cause us to assume that
+        // nothing was actually loaded in this object if the load ends up being
+        // handled by an external application.  This flag must not be passed to
+        // Reload.
+        // </summary>
+		public const ulong LOAD_FLAGS_FIRST_LOAD = 0x4000;
+		
+		// <summary>
+        // This flag specifies that the load should not be subject to popup
+        // blocking checks.  This flag must not be passed to Reload.
+        // </summary>
+		public const ulong LOAD_FLAGS_ALLOW_POPUPS = 0x8000;
+		
+		// <summary>
+        // This flag specifies that the URI classifier should not be checked for
+        // this load.  This flag must not be passed to Reload.
+        // </summary>
+		public const ulong LOAD_FLAGS_BYPASS_CLASSIFIER = 0x10000;
+		
+		// <summary>
+        // Force relevant cookies to be sent with this load even if normally they
+        // wouldn't be.
+        // </summary>
+		public const ulong LOAD_FLAGS_FORCE_ALLOW_COOKIES = 0x20000;
+		
+		// <summary>
+        // Prevent the owner principal from being inherited for this load.
+        // </summary>
+		public const ulong LOAD_FLAGS_DISALLOW_INHERIT_OWNER = 0x40000;
+		
+		// <summary>
+        // Assume the URI is encoded in UTF-8.
+        // </summary>
+		public const ulong LOAD_FLAGS_URI_IS_UTF8 = 0x80000;
+		
+		// <summary>
+        // This flag specifies that all network activity should be stopped.  This
+        // includes both active network loads and pending META-refreshes.
+        // </summary>
+		public const ulong STOP_NETWORK = 0x01;
+		
+		// <summary>
+        // This flag specifies that all content activity should be stopped.  This
+        // includes animated images, plugins and pending Javascript timeouts.
+        // </summary>
+		public const ulong STOP_CONTENT = 0x02;
+		
+		// <summary>
+        // This flag specifies that all activity should be stopped.
+        // </summary>
+		public const ulong STOP_ALL = 0x03;
+	}
 }

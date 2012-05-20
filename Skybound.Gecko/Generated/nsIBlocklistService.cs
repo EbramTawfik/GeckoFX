@@ -110,6 +110,31 @@ namespace Gecko
 		void GetPluginBlocklistURL([MarshalAs(UnmanagedType.Interface)] nsIPluginTag plugin, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 	}
 	
+	/// <summary>nsIBlocklistServiceConsts </summary>
+	public class nsIBlocklistServiceConsts
+	{
+		
+		// <summary>
+        // Indicates that the item does not appear in the blocklist.
+        // </summary>
+		public const ulong STATE_NOT_BLOCKED = 0;
+		
+		// <summary>
+        // enough to warant forcibly blocking.
+        // </summary>
+		public const ulong STATE_SOFTBLOCKED = 1;
+		
+		// <summary>
+        // Indicates that the item should be blocked and never used.
+        // </summary>
+		public const ulong STATE_BLOCKED = 2;
+		
+		// <summary>
+        // update available.
+        // </summary>
+		public const ulong STATE_OUTDATED = 3;
+	}
+	
 	/// <summary>
     /// nsIBlocklistPrompt is used, if available, by the default implementation of
     /// nsIBlocklistService to display a confirmation UI to the user before blocking

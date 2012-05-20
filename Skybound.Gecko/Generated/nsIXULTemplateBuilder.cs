@@ -440,6 +440,25 @@ namespace Gecko
 		void OnPerformActionOnCell([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string action, int row, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string colID);
 	}
 	
+	/// <summary>nsIXULTreeBuilderObserverConsts </summary>
+	public class nsIXULTreeBuilderObserverConsts
+	{
+		
+		// <summary>
+        // nsIXULTreeBuilderObserver
+        // This interface allows clients of the XULTreeBuilder to define domain
+        // specific handling of specific nsITreeView methods that
+        // XULTreeBuilder does not implement.
+        // </summary>
+		public const long DROP_BEFORE = -1;
+		
+		// 
+		public const long DROP_ON = 0;
+		
+		// 
+		public const long DROP_AFTER = 1;
+	}
+	
 	/// <summary>nsIXULTreeBuilder </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]

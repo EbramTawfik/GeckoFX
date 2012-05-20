@@ -39,4 +39,18 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		short GetCodeAttribute();
 	}
+	
+	/// <summary>nsIDOMGeoPositionErrorConsts </summary>
+	public class nsIDOMGeoPositionErrorConsts
+	{
+		
+		// 
+		public const ulong PERMISSION_DENIED = 1;
+		
+		// 
+		public const ulong POSITION_UNAVAILABLE = 2;
+		
+		// 
+		public const ulong TIMEOUT = 3;
+	}
 }

@@ -49,6 +49,56 @@ namespace Gecko
 		void Init([MarshalAs(UnmanagedType.Interface)] nsIFile file, int ioFlags, int perm, int behaviorFlags);
 	}
 	
+	/// <summary>nsIFileInputStreamConsts </summary>
+	public class nsIFileInputStreamConsts
+	{
+		
+		// <summary>
+        // If this is set, the file will be deleted by the time the stream is
+        // closed.  It may be removed before the stream is closed if it is possible
+        // to delete it and still read from it.
+        //
+        // If OPEN_ON_READ is defined, and the file was recreated after the first
+        // delete, the file will be deleted again when it is closed again.
+        // </summary>
+		public const long DELETE_ON_CLOSE = 1<<1;
+		
+		// <summary>
+        // If this is set, the file will close automatically when the end of the
+        // file is reached.
+        // </summary>
+		public const long CLOSE_ON_EOF = 1<<2;
+		
+		// <summary>
+        // If this is set, the file will be reopened whenever Seek(0) occurs.  If
+        // the file is already open and the seek occurs, it will happen naturally.
+        // (The file will only be reopened if it is closed for some reason.)
+        // </summary>
+		public const long REOPEN_ON_REWIND = 1<<3;
+		
+		// <summary>
+        // If this is set, the file will be opened (i.e., a call to
+        // PR_Open done) only when we do an actual operation on the stream,
+        // or more specifically, when one of the following is called:
+        // - Seek
+        // - Tell
+        // - Available
+        // - Read
+        // - ReadLine
+        //
+        // DEFER_OPEN is useful if we use the stream on a background
+        // thread, so that the opening and possible |stat|ing of the file
+        // happens there as well.
+        //
+        // @note Using this flag results in the file not being opened
+        // during the call to Init.  This means that any errors that might
+        // happen when this flag is not set would happen during the
+        // first read.  Also, the file is not locked when Init is called,
+        // so it might be deleted before we try to read from it.
+        // </summary>
+		public const long DEFER_OPEN = 1<<4;
+	}
+	
 	/// <summary>
     /// An output stream that lets you stream to a file.
     /// </summary>
@@ -163,6 +213,27 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Init([MarshalAs(UnmanagedType.Interface)] nsIFile file, int ioFlags, int perm, int behaviorFlags);
+	}
+	
+	/// <summary>nsIFileOutputStreamConsts </summary>
+	public class nsIFileOutputStreamConsts
+	{
+		
+		// <summary>
+        // See the same constant in nsIFileInputStream. The deferred open will
+        // be performed when one of the following is called:
+        // - Seek
+        // - Tell
+        // - Write
+        // - Flush
+        //
+        // @note Using this flag results in the file not being opened
+        // during the call to Init.  This means that any errors that might
+        // happen when this flag is not set would happen during the
+        // first write, and if the file is to be created, then it will not
+        // appear on the disk until the first write.
+        // </summary>
+		public const long DEFER_OPEN = 1<<0;
 	}
 	
 	/// <summary>

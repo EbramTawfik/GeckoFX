@@ -646,4 +646,23 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetActiveEditingHost();
 	}
+	
+	/// <summary>nsIHTMLEditorConsts </summary>
+	public class nsIHTMLEditorConsts
+	{
+		
+		// <summary>
+        // used by GetAlignment()
+        // </summary>
+		public const int eLeft = 0;
+		
+		// 
+		public const int eCenter = 1;
+		
+		// 
+		public const int eRight = 2;
+		
+		// 
+		public const int eJustify = 3;
+	}
 }

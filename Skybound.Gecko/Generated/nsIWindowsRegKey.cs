@@ -343,4 +343,98 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool HasChanged();
 	}
+	
+	/// <summary>nsIWindowsRegKeyConsts </summary>
+	public class nsIWindowsRegKeyConsts
+	{
+		
+		// <summary>
+        // Root keys.  The values for these keys correspond to the values from
+        // WinReg.h in the MS Platform SDK.  The ROOT_KEY_ prefix corresponds to the
+        // HKEY_ prefix in the MS Platform SDK.
+        //
+        // This interface is not restricted to using only these root keys.
+        // </summary>
+		public const ulong ROOT_KEY_CLASSES_ROOT = 0x80000000;
+		
+		// 
+		public const ulong ROOT_KEY_CURRENT_USER = 0x80000001;
+		
+		// 
+		public const ulong ROOT_KEY_LOCAL_MACHINE = 0x80000002;
+		
+		// <summary>
+        // Values for the mode parameter passed to the open and create methods.
+        // The values defined here correspond to the REGSAM values defined in
+        // WinNT.h in the MS Platform SDK, where ACCESS_ is replaced with KEY_.
+        //
+        // This interface is not restricted to using only these access types.
+        // </summary>
+		public const ulong ACCESS_BASIC = 0x00020000;
+		
+		// 
+		public const ulong ACCESS_QUERY_VALUE = 0x00000001;
+		
+		// 
+		public const ulong ACCESS_SET_VALUE = 0x00000002;
+		
+		// 
+		public const ulong ACCESS_CREATE_SUB_KEY = 0x00000004;
+		
+		// 
+		public const ulong ACCESS_ENUMERATE_SUB_KEYS = 0x00000008;
+		
+		// 
+		public const ulong ACCESS_NOTIFY = 0x00000010;
+		
+		// 
+		public const ulong ACCESS_READ = ACCESS_BASIC|ACCESS_QUERY_VALUE|ACCESS_ENUMERATE_SUB_KEYS|ACCESS_NOTIFY;
+		
+		// 
+		public const ulong ACCESS_WRITE = ACCESS_BASIC|ACCESS_SET_VALUE|ACCESS_CREATE_SUB_KEY;
+		
+		// 
+		public const ulong ACCESS_ALL = ACCESS_READ|ACCESS_WRITE;
+		
+		// 
+		public const ulong WOW64_32 = 0x00000200;
+		
+		// 
+		public const ulong WOW64_64 = 0x00000100;
+		
+		// <summary>
+        // Values for the type of a registry value.  The numeric values of these
+        // constants are taken directly from WinNT.h in the MS Platform SDK.
+        // The Microsoft documentation should be consulted for the exact meaning of
+        // these value types.
+        //
+        // This interface is somewhat restricted to using only these value types.
+        // There is no method that is directly equivalent to RegQueryValueEx or
+        // RegSetValueEx.  In particular, this interface does not support the
+        // REG_MULTI_SZ and REG_EXPAND_SZ value types.  It is still possible to
+        // enumerate values that have other types (i.e., getValueType may return a
+        // type not defined below).
+        // </summary>
+		public const ulong TYPE_NONE = 0;
+		
+		// <summary>
+        // REG_NONE
+        // </summary>
+		public const ulong TYPE_STRING = 1;
+		
+		// <summary>
+        // REG_SZ
+        // </summary>
+		public const ulong TYPE_BINARY = 3;
+		
+		// <summary>
+        // REG_BINARY
+        // </summary>
+		public const ulong TYPE_INT = 4;
+		
+		// <summary>
+        // REG_DWORD
+        // </summary>
+		public const ulong TYPE_INT64 = 11;
+	}
 }

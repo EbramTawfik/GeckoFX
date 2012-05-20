@@ -86,4 +86,34 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void AsyncOnChannelRedirect([MarshalAs(UnmanagedType.Interface)] nsIChannel oldChannel, [MarshalAs(UnmanagedType.Interface)] nsIChannel newChannel, uint flags, [MarshalAs(UnmanagedType.Interface)] nsIAsyncVerifyRedirectCallback callback);
 	}
+	
+	/// <summary>nsIChannelEventSinkConsts </summary>
+	public class nsIChannelEventSinkConsts
+	{
+		
+		// <summary>
+        // This is a temporary redirect. New requests for this resource should
+        // continue to use the URI of the old channel.
+        //
+        // The new URI may be identical to the old one.
+        // </summary>
+		public const ulong REDIRECT_TEMPORARY = 1<<0;
+		
+		// <summary>
+        // This is a permanent redirect. New requests for this resource should use
+        // the URI of the new channel (This might be an HTTP 301 reponse).
+        // If this flag is not set, this is a temporary redirect.
+        //
+        // The new URI may be identical to the old one.
+        // </summary>
+		public const ulong REDIRECT_PERMANENT = 1<<1;
+		
+		// <summary>
+        // This is an internal redirect, i.e. it was not initiated by the remote
+        // server, but is specific to the channel implementation.
+        //
+        // The new URI may be identical to the old one.
+        // </summary>
+		public const ulong REDIRECT_INTERNAL = 1<<2;
+	}
 }

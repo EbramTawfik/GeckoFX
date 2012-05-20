@@ -301,4 +301,25 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void NotifyOwnerDocumentChanged(System.IntPtr aOldDoc);
 	}
+	
+	/// <summary>nsIImageLoadingContentConsts </summary>
+	public class nsIImageLoadingContentConsts
+	{
+		
+		// <summary>
+        // Request types.  Image loading content nodes attempt to do atomic
+        // image changes when the image url is changed.  This means that
+        // when the url changes the new image load will start, but the old
+        // image will remain the "current" request until the new image is
+        // fully loaded.  At that point, the old "current" request will be
+        // discarded and the "pending" request will become "current".
+        // </summary>
+		public const long UNKNOWN_REQUEST = -1;
+		
+		// 
+		public const long CURRENT_REQUEST = 0;
+		
+		// 
+		public const long PENDING_REQUEST = 1;
+	}
 }

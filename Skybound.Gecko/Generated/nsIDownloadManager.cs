@@ -232,4 +232,72 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsILocalFile GetUserDownloadsDirectoryAttribute();
 	}
+	
+	/// <summary>nsIDownloadManagerConsts </summary>
+	public class nsIDownloadManagerConsts
+	{
+		
+		// <summary>
+        // Download type for generic file download.
+        // </summary>
+		public const int DOWNLOAD_TYPE_DOWNLOAD = 0;
+		
+		// <summary>
+        // Download state for uninitialized download object.
+        // </summary>
+		public const int DOWNLOAD_NOTSTARTED = -1;
+		
+		// <summary>
+        // Download is currently transferring data.
+        // </summary>
+		public const int DOWNLOAD_DOWNLOADING = 0;
+		
+		// <summary>
+        // Download completed including any processing of the target
+        // file.  (completed)
+        // </summary>
+		public const int DOWNLOAD_FINISHED = 1;
+		
+		// <summary>
+        // Transfer failed due to error. (completed)
+        // </summary>
+		public const int DOWNLOAD_FAILED = 2;
+		
+		// <summary>
+        // Download was canceled by the user. (completed)
+        // </summary>
+		public const int DOWNLOAD_CANCELED = 3;
+		
+		// <summary>
+        // Transfer was paused by the user.
+        // </summary>
+		public const int DOWNLOAD_PAUSED = 4;
+		
+		// <summary>
+        // Download is active but data has not yet been received.
+        // </summary>
+		public const int DOWNLOAD_QUEUED = 5;
+		
+		// <summary>
+        // Transfer request was blocked by parental controls proxies. (completed)
+        // </summary>
+		public const int DOWNLOAD_BLOCKED_PARENTAL = 6;
+		
+		// <summary>
+        // Transferred download is being scanned by virus scanners.
+        // </summary>
+		public const int DOWNLOAD_SCANNING = 7;
+		
+		// <summary>
+        // A virus was detected in the download. The target will most likely
+        // no longer exist. (completed)
+        // </summary>
+		public const int DOWNLOAD_DIRTY = 8;
+		
+		// <summary>
+        // Win specific: Request was blocked by zone policy settings.
+        // (see bug #416683) (completed)
+        // </summary>
+		public const int DOWNLOAD_BLOCKED_POLICY = 9;
+	}
 }

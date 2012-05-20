@@ -81,4 +81,34 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int CompareRawSortKey([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] byte[] key1, uint len1, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=3)] byte[] key2, uint len2);
 	}
+	
+	/// <summary>nsICollationConsts </summary>
+	public class nsICollationConsts
+	{
+		
+		// <summary>
+        // use the primary comparison for the given locale - no flags
+        // </summary>
+		public const long kCollationStrengthDefault = 0;
+		
+		// <summary>
+        // do not consider case differences when doing the comparison i.e. A=a)
+        // </summary>
+		public const long kCollationCaseInsensitiveAscii = 1;
+		
+		// <summary>
+        // do not consider accent differences when doing the comparison a=Ã¡)
+        // </summary>
+		public const long kCollationAccentInsenstive = 2;
+		
+		// <summary>
+        // case sensitive collation (default)
+        // </summary>
+		public const long kCollationCaseSensitive = kCollationStrengthDefault;
+		
+		// <summary>
+        // case insensitive collation
+        // </summary>
+		public const long kCollationCaseInSensitive = (kCollationCaseInsensitiveAscii|kCollationAccentInsenstive);
+	}
 }

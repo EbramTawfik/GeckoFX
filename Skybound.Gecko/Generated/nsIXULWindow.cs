@@ -121,13 +121,9 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ShowModal();
 		
-		/// <summary>
-        ///"alwaysRaised" attribute </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetZLevelAttribute();
 		
-		/// <summary>
-        ///"alwaysRaised" attribute </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetZLevelAttribute(uint aZLevel);
 		
@@ -180,5 +176,27 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ApplyChromeFlags();
+	}
+	
+	/// <summary>nsIXULWindowConsts </summary>
+	public class nsIXULWindowConsts
+	{
+		
+		// 
+		public const ulong lowestZ = 0;
+		
+		// 
+		public const ulong loweredZ = 4;
+		
+		// <summary>
+        //"alwaysLowered" attribute </summary>
+		public const ulong normalZ = 5;
+		
+		// 
+		public const ulong raisedZ = 6;
+		
+		// <summary>
+        //"alwaysRaised" attribute </summary>
+		public const ulong highestZ = 9;
 	}
 }

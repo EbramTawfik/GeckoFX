@@ -122,6 +122,80 @@ namespace Gecko
 		void GetDescriptionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aDescription);
 	}
 	
+	/// <summary>nsIMemoryReporterConsts </summary>
+	public class nsIMemoryReporterConsts
+	{
+		
+		// <summary>
+        // There are three categories of memory reporters:
+        //
+        // - HEAP: memory allocated by the heap allocator, e.g. by calling malloc,
+        // calloc, realloc, memalign, operator new, or operator new[].  Reporters
+        // in this category must have units UNITS_BYTES and must have a path
+        // starting with "explicit".
+        //
+        // - NONHEAP: memory which the program explicitly allocated, but does not
+        // live on the heap.  Such memory is commonly allocated by calling one of
+        // the OS's memory-mapping functions (e.g. mmap, VirtualAlloc, or
+        // vm_allocate).  Reporters in this category must have units UNITS_BYTES
+        // and must have a path starting with "explicit" or "map".
+        //
+        // - OTHER: reporters which don't fit into either of these categories. Such
+        // reporters must have a path that does not start with "explicit" or "map"
+        // and may have any units.
+        // </summary>
+		public const int KIND_NONHEAP = 0;
+		
+		// 
+		public const int KIND_HEAP = 1;
+		
+		// 
+		public const int KIND_OTHER = 2;
+		
+		// <summary>
+        // KIND_MAPPED is a deprecated synonym for KIND_NONHEAP.  We keep it around
+        // to as not to break extensions which might use this interface, but we will
+        // remove it eventually.
+        // </summary>
+		public const int KIND_MAPPED = 0;
+		
+		// <summary>
+        // The amount reported by a memory reporter must have one of the following
+        // units, but you may of course add new units as necessary:
+        //
+        // - BYTES: The amount contains a number of bytes.
+        //
+        // - COUNT: The amount is an instantaneous count of things currently in
+        // existence.  For instance, the number of tabs currently open would have
+        // units COUNT.
+        //
+        // - COUNT_CUMULATIVE: The amount contains the number of times some event
+        // has occurred since the application started up.  For instance, the
+        // number of times the user has opened a new tab would have units
+        // COUNT_CUMULATIVE.
+        //
+        // The amount returned by a reporter with units COUNT_CUMULATIVE must
+        // never decrease over the lifetime of the application.
+        //
+        // - PERCENTAGE: The amount contains a fraction that should be expressed as
+        // a percentage.  NOTE!  The |amount| field should be given a value 100x
+        // the actual percentage;  this number will be divided by 100 when shown.
+        // This allows a fractional percentage to be shown even though |amount| is
+        // an integer.  E.g. if the actual percentage is 12.34%, |amount| should
+        // be 1234.
+        // </summary>
+		public const int UNITS_BYTES = 0;
+		
+		// 
+		public const int UNITS_COUNT = 1;
+		
+		// 
+		public const int UNITS_COUNT_CUMULATIVE = 2;
+		
+		// 
+		public const int UNITS_PERCENTAGE = 3;
+	}
+	
 	/// <summary>nsIMemoryMultiReporterCallback </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]

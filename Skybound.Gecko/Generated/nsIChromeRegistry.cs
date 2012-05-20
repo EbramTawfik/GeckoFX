@@ -69,6 +69,20 @@ namespace Gecko
 		bool WrappersEnabled([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 	}
 	
+	/// <summary>nsIChromeRegistryConsts </summary>
+	public class nsIChromeRegistryConsts
+	{
+		
+		// 
+		public const int NONE = 0;
+		
+		// 
+		public const int PARTIAL = 1;
+		
+		// 
+		public const int FULL = 2;
+	}
+	
 	/// <summary>nsIXULChromeRegistry </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]

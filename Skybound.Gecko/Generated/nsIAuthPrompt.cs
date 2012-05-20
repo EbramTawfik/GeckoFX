@@ -90,4 +90,18 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool PromptPassword([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string dialogTitle, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string text, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string passwordRealm, uint savePassword, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] ref string pwd);
 	}
+	
+	/// <summary>nsIAuthPromptConsts </summary>
+	public class nsIAuthPromptConsts
+	{
+		
+		// 
+		public const long SAVE_PASSWORD_NEVER = 0;
+		
+		// 
+		public const long SAVE_PASSWORD_FOR_SESSION = 1;
+		
+		// 
+		public const long SAVE_PASSWORD_PERMANENTLY = 2;
+	}
 }

@@ -110,4 +110,42 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetInterruptedAttribute([MarshalAs(UnmanagedType.U1)] bool aInterrupted);
 	}
+	
+	/// <summary>nsIAppStartupConsts </summary>
+	public class nsIAppStartupConsts
+	{
+		
+		// <summary>
+        // Attempt to quit if all windows are closed.
+        // </summary>
+		public const long eConsiderQuit = 0x01;
+		
+		// <summary>
+        // Try to close all windows, then quit if successful.
+        // </summary>
+		public const long eAttemptQuit = 0x02;
+		
+		// <summary>
+        // Quit, damnit!
+        // </summary>
+		public const long eForceQuit = 0x03;
+		
+		// <summary>
+        // Restart the application after quitting.  The application will be
+        // restarted with the same profile and an empty command line.
+        // </summary>
+		public const long eRestart = 0x10;
+		
+		// <summary>
+        // When restarting attempt to start in the i386 architecture. Only supported
+        // on OSX.
+        // </summary>
+		public const long eRestarti386 = 0x20;
+		
+		// <summary>
+        // When restarting attempt to start in the x86_64 architecture. Only
+        // supported on OSX.
+        // </summary>
+		public const long eRestartx86_64 = 0x40;
+	}
 }

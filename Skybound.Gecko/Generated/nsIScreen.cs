@@ -34,8 +34,11 @@ namespace Gecko
 	public interface nsIScreen
 	{
 		
-		/// <summary>
-        ///The number of different brightness levels </summary>
+		/// <summary>Member GetRect </summary>
+		/// <param name='left'> </param>
+		/// <param name='top'> </param>
+		/// <param name='width'> </param>
+		/// <param name='height'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetRect(ref int left, ref int top, ref int width, ref int height);
 		
@@ -76,5 +79,22 @@ namespace Gecko
 		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetColorDepthAttribute();
+	}
+	
+	/// <summary>nsIScreenConsts </summary>
+	public class nsIScreenConsts
+	{
+		
+		// <summary>
+        // Levels of brightness for the screen, from off to full brightness.
+        // </summary>
+		public const ulong BRIGHTNESS_DIM = 0;
+		
+		// 
+		public const ulong BRIGHTNESS_FULL = 1;
+		
+		// <summary>
+        //The number of different brightness levels </summary>
+		public const ulong BRIGHTNESS_LEVELS = 2;
 	}
 }

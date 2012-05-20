@@ -36,9 +36,6 @@ namespace Gecko
 	public interface nsIDOMCSSMozDocumentRule : nsIDOMCSSRule
 	{
 		
-		/// <summary>
-        /// RuleType
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new ushort GetTypeAttribute();
 		

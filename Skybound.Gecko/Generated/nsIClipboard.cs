@@ -92,4 +92,15 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool SupportsSelectionClipboard();
 	}
+	
+	/// <summary>nsIClipboardConsts </summary>
+	public class nsIClipboardConsts
+	{
+		
+		// 
+		public const long kSelectionClipboard = 0;
+		
+		// 
+		public const long kGlobalClipboard = 1;
+	}
 }

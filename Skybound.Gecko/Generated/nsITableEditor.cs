@@ -412,4 +412,18 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMElement GetNextSelectedCell([MarshalAs(UnmanagedType.Interface)] ref nsIDOMRange aRange);
 	}
+	
+	/// <summary>nsITableEditorConsts </summary>
+	public class nsITableEditorConsts
+	{
+		
+		// 
+		public const int eNoSearch = 0;
+		
+		// 
+		public const int ePreviousColumn = 1;
+		
+		// 
+		public const int ePreviousRow = 2;
+	}
 }

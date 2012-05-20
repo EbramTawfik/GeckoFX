@@ -87,4 +87,22 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool SiteHasData([MarshalAs(UnmanagedType.Interface)] nsIPluginTag plugin, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase domain);
 	}
+	
+	/// <summary>nsIPluginHostConsts </summary>
+	public class nsIPluginHostConsts
+	{
+		
+		// <summary>
+        // Flags for use with clearSiteData.
+        //
+        // FLAG_CLEAR_ALL: clear all data associated with a site.
+        // FLAG_CLEAR_CACHE: clear cached data that can be retrieved again without
+        // loss of functionality. To be used out of concern for
+        // space and not necessarily privacy.
+        // </summary>
+		public const long FLAG_CLEAR_ALL = 0;
+		
+		// 
+		public const long FLAG_CLEAR_CACHE = 1;
+	}
 }

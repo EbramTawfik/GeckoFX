@@ -34,9 +34,8 @@ namespace Gecko
 	public interface nsIDOMSVGPathSeg
 	{
 		
-		/// <summary>
-        /// Path Segment Types
-        /// </summary>
+		/// <summary>Member GetPathSegTypeAttribute </summary>
+		/// <returns>A System.UInt16</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		ushort GetPathSegTypeAttribute();
 		
@@ -44,6 +43,73 @@ namespace Gecko
 		/// <param name='aPathSegTypeAsLetter'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetPathSegTypeAsLetterAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPathSegTypeAsLetter);
+	}
+	
+	/// <summary>nsIDOMSVGPathSegConsts </summary>
+	public class nsIDOMSVGPathSegConsts
+	{
+		
+		// <summary>
+        // Path Segment Types
+        // </summary>
+		public const ulong PATHSEG_UNKNOWN = 0;
+		
+		// 
+		public const ulong PATHSEG_CLOSEPATH = 1;
+		
+		// 
+		public const ulong PATHSEG_MOVETO_ABS = 2;
+		
+		// 
+		public const ulong PATHSEG_MOVETO_REL = 3;
+		
+		// 
+		public const ulong PATHSEG_LINETO_ABS = 4;
+		
+		// 
+		public const ulong PATHSEG_LINETO_REL = 5;
+		
+		// 
+		public const ulong PATHSEG_CURVETO_CUBIC_ABS = 6;
+		
+		// 
+		public const ulong PATHSEG_CURVETO_CUBIC_REL = 7;
+		
+		// 
+		public const ulong PATHSEG_CURVETO_QUADRATIC_ABS = 8;
+		
+		// 
+		public const ulong PATHSEG_CURVETO_QUADRATIC_REL = 9;
+		
+		// 
+		public const ulong PATHSEG_ARC_ABS = 10;
+		
+		// 
+		public const ulong PATHSEG_ARC_REL = 11;
+		
+		// 
+		public const ulong PATHSEG_LINETO_HORIZONTAL_ABS = 12;
+		
+		// 
+		public const ulong PATHSEG_LINETO_HORIZONTAL_REL = 13;
+		
+		// 
+		public const ulong PATHSEG_LINETO_VERTICAL_ABS = 14;
+		
+		// 
+		public const ulong PATHSEG_LINETO_VERTICAL_REL = 15;
+		
+		// 
+		public const ulong PATHSEG_CURVETO_CUBIC_SMOOTH_ABS = 16;
+		
+		// 
+		public const ulong PATHSEG_CURVETO_CUBIC_SMOOTH_REL = 17;
+		
+		// 
+		public const ulong PATHSEG_CURVETO_QUADRATIC_SMOOTH_ABS = 18;
+		
+		// 
+		public const ulong PATHSEG_CURVETO_QUADRATIC_SMOOTH_REL = 19;
 	}
 	
 	/// <summary>nsIDOMSVGPathSegClosePath </summary>

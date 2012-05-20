@@ -165,6 +165,52 @@ namespace Gecko
 		void GetTagsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTags);
 	}
 	
+	/// <summary>nsINavHistoryResultNodeConsts </summary>
+	public class nsINavHistoryResultNodeConsts
+	{
+		
+		// <summary>
+        // Identifies the type of this node. This node can then be QI-ed to the
+        // corresponding specialized result node interface.
+        // </summary>
+		public const ulong RESULT_TYPE_URI = 0;
+		
+		// <summary>
+        // nsINavHistoryResultNode
+        // </summary>
+		public const ulong RESULT_TYPE_VISIT = 1;
+		
+		// <summary>
+        // nsINavHistoryVisitResultNode
+        // </summary>
+		public const ulong RESULT_TYPE_FULL_VISIT = 2;
+		
+		// <summary>
+        // This const exists just to avoid reusing the value.
+        // </summary>
+		public const ulong RESULT_TYPE_DYNAMIC_CONTAINER = 4;
+		
+		// <summary>
+        // nsINavHistoryContainerResultNode
+        // </summary>
+		public const ulong RESULT_TYPE_QUERY = 5;
+		
+		// <summary>
+        // nsINavHistoryQueryResultNode
+        // </summary>
+		public const ulong RESULT_TYPE_FOLDER = 6;
+		
+		// <summary>
+        // nsINavHistoryQueryResultNode
+        // </summary>
+		public const ulong RESULT_TYPE_SEPARATOR = 7;
+		
+		// <summary>
+        // nsINavHistoryResultNode
+        // </summary>
+		public const ulong RESULT_TYPE_FOLDER_SHORTCUT = 9;
+	}
+	
 	/// <summary>
     /// When you request RESULT_TYPE_VISIT from query options, you will get this
     /// interface for each item, which includes the session ID so that we can
@@ -719,6 +765,20 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetChildrenReadOnlyAttribute();
+	}
+	
+	/// <summary>nsINavHistoryContainerResultNodeConsts </summary>
+	public class nsINavHistoryContainerResultNodeConsts
+	{
+		
+		// 
+		public const ulong STATE_CLOSED = 0;
+		
+		// 
+		public const ulong STATE_LOADING = 1;
+		
+		// 
+		public const ulong STATE_OPENED = 2;
 	}
 	
 	/// <summary>
@@ -1450,20 +1510,27 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsINavHistoryResultNode NodeForTreeIndex(uint aIndex);
 		
-		/// <summary>
-        /// Reverse of nodeForFlatIndex, returns the row index for a given result node.
-        /// Returns INDEX_INVISIBLE if the item is not visible (for example, its
-        /// parent is collapsed). This is only valid when a tree is attached. The
-        /// the result will always be INDEX_INVISIBLE if not.
-        ///
-        /// Note: This sounds sort of obvious, but it got me: aNode must be a node
-        /// retrieved from the same result that this viewer is for. If you
-        /// execute another query and get a node from a _different_ result, this
-        /// function will always return the index of that node in the tree that
-        /// is attached to that result.
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint TreeIndexForNode([MarshalAs(UnmanagedType.Interface)] nsINavHistoryResultNode aNode);
+	}
+	
+	/// <summary>nsINavHistoryResultTreeViewerConsts </summary>
+	public class nsINavHistoryResultTreeViewerConsts
+	{
+		
+		// <summary>
+        // Reverse of nodeForFlatIndex, returns the row index for a given result node.
+        // Returns INDEX_INVISIBLE if the item is not visible (for example, its
+        // parent is collapsed). This is only valid when a tree is attached. The
+        // the result will always be INDEX_INVISIBLE if not.
+        //
+        // Note: This sounds sort of obvious, but it got me: aNode must be a node
+        // retrieved from the same result that this viewer is for. If you
+        // execute another query and get a node from a _different_ result, this
+        // function will always return the index of that node in the tree that
+        // is attached to that result.
+        // </summary>
+		public const ulong INDEX_INVISIBLE = 0xffffffff;
 	}
 	
 	/// <summary>
@@ -1721,6 +1788,27 @@ namespace Gecko
 		void OnDeleteVisits([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, long aVisitTime, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGUID, ushort aReason);
 	}
 	
+	/// <summary>nsINavHistoryObserverConsts </summary>
+	public class nsINavHistoryObserverConsts
+	{
+		
+		// <summary>
+        // Removed by the user.
+        // </summary>
+		public const ulong REASON_DELETED = 0;
+		
+		// <summary>
+        // Removed by automatic expiration.
+        // </summary>
+		public const ulong REASON_EXPIRED = 1;
+		
+		// <summary>
+        // onPageChanged attribute indicating that favicon has been updated.
+        // aNewValue parameter will be set to the new favicon URI string.
+        // </summary>
+		public const ulong ATTRIBUTE_FAVICON = 3;
+	}
+	
 	/// <summary>
     /// This object encapsulates all the query parameters you're likely to need
     /// when building up history UI. All parameters are ANDed together.
@@ -1736,57 +1824,9 @@ namespace Gecko
 	public interface nsINavHistoryQuery
 	{
 		
-		/// <summary>
-        /// Time range for results (INCLUSIVE). The *TimeReference is one of the
-        /// constants TIME_RELATIVE_* which indicates how to interpret the
-        /// corresponding time value.
-        /// TIME_RELATIVE_EPOCH (default):
-        /// The time is relative to Jan 1 1970 GMT, (this is a normal PRTime)
-        /// TIME_RELATIVE_TODAY:
-        /// The time is relative to this morning at midnight. Normally used for
-        /// queries relative to today. For example, a "past week" query would be
-        /// today-6 days -> today+1 day
-        /// TIME_RELATIVE_NOW:
-        /// The time is relative to right now.
-        ///
-        /// Note: PRTime is in MICROseconds since 1 Jan 1970. Javascript date objects
-        /// are expressed in MILLIseconds since 1 Jan 1970.
-        ///
-        /// As a special case, a 0 time relative to TIME_RELATIVE_EPOCH indicates that
-        /// the time is not part of the query. This is the default, so an empty query
-        /// will match any time. The has* functions return whether the corresponding
-        /// time is considered.
-        ///
-        /// You can read absolute*Time to get the time value that the currently loaded
-        /// reference points + offset resolve to.
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		long GetBeginTimeAttribute();
 		
-		/// <summary>
-        /// Time range for results (INCLUSIVE). The *TimeReference is one of the
-        /// constants TIME_RELATIVE_* which indicates how to interpret the
-        /// corresponding time value.
-        /// TIME_RELATIVE_EPOCH (default):
-        /// The time is relative to Jan 1 1970 GMT, (this is a normal PRTime)
-        /// TIME_RELATIVE_TODAY:
-        /// The time is relative to this morning at midnight. Normally used for
-        /// queries relative to today. For example, a "past week" query would be
-        /// today-6 days -> today+1 day
-        /// TIME_RELATIVE_NOW:
-        /// The time is relative to right now.
-        ///
-        /// Note: PRTime is in MICROseconds since 1 Jan 1970. Javascript date objects
-        /// are expressed in MILLIseconds since 1 Jan 1970.
-        ///
-        /// As a special case, a 0 time relative to TIME_RELATIVE_EPOCH indicates that
-        /// the time is not part of the query. This is the default, so an empty query
-        /// will match any time. The has* functions return whether the corresponding
-        /// time is considered.
-        ///
-        /// You can read absolute*Time to get the time value that the currently loaded
-        /// reference points + offset resolve to.
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetBeginTimeAttribute(long aBeginTime);
 		
@@ -2092,6 +2132,43 @@ namespace Gecko
 		nsINavHistoryQuery Clone();
 	}
 	
+	/// <summary>nsINavHistoryQueryConsts </summary>
+	public class nsINavHistoryQueryConsts
+	{
+		
+		// <summary>
+        // Time range for results (INCLUSIVE). The *TimeReference is one of the
+        // constants TIME_RELATIVE_* which indicates how to interpret the
+        // corresponding time value.
+        // TIME_RELATIVE_EPOCH (default):
+        // The time is relative to Jan 1 1970 GMT, (this is a normal PRTime)
+        // TIME_RELATIVE_TODAY:
+        // The time is relative to this morning at midnight. Normally used for
+        // queries relative to today. For example, a "past week" query would be
+        // today-6 days -> today+1 day
+        // TIME_RELATIVE_NOW:
+        // The time is relative to right now.
+        //
+        // Note: PRTime is in MICROseconds since 1 Jan 1970. Javascript date objects
+        // are expressed in MILLIseconds since 1 Jan 1970.
+        //
+        // As a special case, a 0 time relative to TIME_RELATIVE_EPOCH indicates that
+        // the time is not part of the query. This is the default, so an empty query
+        // will match any time. The has* functions return whether the corresponding
+        // time is considered.
+        //
+        // You can read absolute*Time to get the time value that the currently loaded
+        // reference points + offset resolve to.
+        // </summary>
+		public const ulong TIME_RELATIVE_EPOCH = 0;
+		
+		// 
+		public const ulong TIME_RELATIVE_TODAY = 1;
+		
+		// 
+		public const ulong TIME_RELATIVE_NOW = 2;
+	}
+	
 	/// <summary>
     /// This object represents the global options for executing a query.
     /// </summary>
@@ -2361,6 +2438,181 @@ namespace Gecko
 		nsINavHistoryQueryOptions Clone();
 	}
 	
+	/// <summary>nsINavHistoryQueryOptionsConsts </summary>
+	public class nsINavHistoryQueryOptionsConsts
+	{
+		
+		// <summary>
+        // You can ask for the results to be pre-sorted. Since the DB has indices
+        // of many items, it can produce sorted results almost for free. These should
+        // be self-explanatory.
+        //
+        // Note: re-sorting is slower, as is sorting by title or when you have a
+        // host name.
+        //
+        // For bookmark items, SORT_BY_NONE means sort by the natural bookmark order.
+        // </summary>
+		public const ulong SORT_BY_NONE = 0;
+		
+		// 
+		public const ulong SORT_BY_TITLE_ASCENDING = 1;
+		
+		// 
+		public const ulong SORT_BY_TITLE_DESCENDING = 2;
+		
+		// 
+		public const ulong SORT_BY_DATE_ASCENDING = 3;
+		
+		// 
+		public const ulong SORT_BY_DATE_DESCENDING = 4;
+		
+		// 
+		public const ulong SORT_BY_URI_ASCENDING = 5;
+		
+		// 
+		public const ulong SORT_BY_URI_DESCENDING = 6;
+		
+		// 
+		public const ulong SORT_BY_VISITCOUNT_ASCENDING = 7;
+		
+		// 
+		public const ulong SORT_BY_VISITCOUNT_DESCENDING = 8;
+		
+		// 
+		public const ulong SORT_BY_KEYWORD_ASCENDING = 9;
+		
+		// 
+		public const ulong SORT_BY_KEYWORD_DESCENDING = 10;
+		
+		// 
+		public const ulong SORT_BY_DATEADDED_ASCENDING = 11;
+		
+		// 
+		public const ulong SORT_BY_DATEADDED_DESCENDING = 12;
+		
+		// 
+		public const ulong SORT_BY_LASTMODIFIED_ASCENDING = 13;
+		
+		// 
+		public const ulong SORT_BY_LASTMODIFIED_DESCENDING = 14;
+		
+		// 
+		public const ulong SORT_BY_TAGS_ASCENDING = 17;
+		
+		// 
+		public const ulong SORT_BY_TAGS_DESCENDING = 18;
+		
+		// 
+		public const ulong SORT_BY_ANNOTATION_ASCENDING = 19;
+		
+		// 
+		public const ulong SORT_BY_ANNOTATION_DESCENDING = 20;
+		
+		// 
+		public const ulong SORT_BY_FRECENCY_ASCENDING = 21;
+		
+		// 
+		public const ulong SORT_BY_FRECENCY_DESCENDING = 22;
+		
+		// <summary>
+        // "URI" results, one for each URI visited in the range. Individual result
+        // nodes will be of type "URI".
+        // </summary>
+		public const ulong RESULTS_AS_URI = 0;
+		
+		// <summary>
+        // "Visit" results, with one for each time a page was visited (this will
+        // often give you multiple results for one URI). Individual result nodes will
+        // have type "Visit"
+        //
+        // @note This result type is only supported by QUERY_TYPE_HISTORY.
+        // </summary>
+		public const ulong RESULTS_AS_VISIT = 1;
+		
+		// <summary>
+        // This is identical to RESULT_TYPE_VISIT except that individual result nodes
+        // will have type "FullVisit".  This is used for the attributes that are not
+        // commonly accessed to save space in the common case (the lists can be very
+        // long).
+        //
+        // @note Not yet implemented. See bug 409662.
+        // @note This result type is only supported by QUERY_TYPE_HISTORY.
+        // </summary>
+		public const ulong RESULTS_AS_FULL_VISIT = 2;
+		
+		// <summary>
+        // This returns query nodes for each predefined date range where we
+        // had visits. The node contains information how to load its content:
+        // - visits for the given date range will be loaded.
+        //
+        // @note This result type is only supported by QUERY_TYPE_HISTORY.
+        // </summary>
+		public const ulong RESULTS_AS_DATE_QUERY = 3;
+		
+		// <summary>
+        // This returns nsINavHistoryQueryResultNode nodes for each site where we
+        // have visits. The node contains information how to load its content:
+        // - last visit for each url in the given host will be loaded.
+        //
+        // @note This result type is only supported by QUERY_TYPE_HISTORY.
+        // </summary>
+		public const ulong RESULTS_AS_SITE_QUERY = 4;
+		
+		// <summary>
+        // This returns nsINavHistoryQueryResultNode nodes for each day where we
+        // have visits. The node contains information how to load its content:
+        // - list of hosts visited in the given period will be loaded.
+        //
+        // @note This result type is only supported by QUERY_TYPE_HISTORY.
+        // </summary>
+		public const ulong RESULTS_AS_DATE_SITE_QUERY = 5;
+		
+		// <summary>
+        // This returns nsINavHistoryQueryResultNode nodes for each tag.
+        // The node contains information how to load its content:
+        // - list of bookmarks with the given tag will be loaded.
+        //
+        // @note Setting this resultType will force queryType to QUERY_TYPE_BOOKMARKS.
+        // </summary>
+		public const ulong RESULTS_AS_TAG_QUERY = 6;
+		
+		// <summary>
+        // This is a container with an URI result type that contains the last
+        // modified bookmarks for the given tag.
+        // Tag folder id must be defined in the query.
+        //
+        // @note Setting this resultType will force queryType to QUERY_TYPE_BOOKMARKS.
+        // </summary>
+		public const ulong RESULTS_AS_TAG_CONTENTS = 7;
+		
+		// <summary>
+        // Include both redirected-from and redirected-to pages into results.
+        // </summary>
+		public const ulong REDIRECTS_MODE_ALL = 0;
+		
+		// <summary>
+        // Query results will not include redirected-to pages, but will include
+        // redirected-from pages.
+        // </summary>
+		public const ulong REDIRECTS_MODE_SOURCE = 1;
+		
+		// <summary>
+        // Query results will not include redirected-from pages but will include
+        // redirected-to pages.
+        // </summary>
+		public const ulong REDIRECTS_MODE_TARGET = 2;
+		
+		// 
+		public const ulong QUERY_TYPE_HISTORY = 0;
+		
+		// 
+		public const ulong QUERY_TYPE_BOOKMARKS = 1;
+		
+		// <summary>
+        //Unified queries are not yet implemented. See bug 378798 </summary>
+		public const ulong QUERY_TYPE_UNIFIED = 2;
+	}
+	
 	/// <summary>nsINavHistoryService </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -2542,6 +2794,80 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetHistoryDisabledAttribute();
+	}
+	
+	/// <summary>nsINavHistoryServiceConsts </summary>
+	public class nsINavHistoryServiceConsts
+	{
+		
+		// <summary>
+        // This transition type means the user followed a link and got a new toplevel
+        // window.
+        // </summary>
+		public const ulong TRANSITION_LINK = 1;
+		
+		// <summary>
+        // This transition type means that the user typed the page's URL in the
+        // URL bar or selected it from URL bar autocomplete results, clicked on
+        // it from a history query (from the History sidebar, History menu,
+        // or history query in the personal toolbar or Places organizer.
+        // </summary>
+		public const ulong TRANSITION_TYPED = 2;
+		
+		// <summary>
+        // This transition is set when the user followed a bookmark to get to the
+        // page.
+        // </summary>
+		public const ulong TRANSITION_BOOKMARK = 3;
+		
+		// <summary>
+        // This transition type is set when some inner content is loaded. This is
+        // true of all images on a page, and the contents of the iframe. It is also
+        // true of any content in a frame if the user did not explicitly follow
+        // a link to get there.
+        // </summary>
+		public const ulong TRANSITION_EMBED = 4;
+		
+		// <summary>
+        // Set when the transition was a permanent redirect.
+        // </summary>
+		public const ulong TRANSITION_REDIRECT_PERMANENT = 5;
+		
+		// <summary>
+        // Set when the transition was a temporary redirect.
+        // </summary>
+		public const ulong TRANSITION_REDIRECT_TEMPORARY = 6;
+		
+		// <summary>
+        // Set when the transition is a download.
+        // </summary>
+		public const ulong TRANSITION_DOWNLOAD = 7;
+		
+		// <summary>
+        // This transition type means the user followed a link and got a visit in
+        // a frame.
+        // </summary>
+		public const ulong TRANSITION_FRAMED_LINK = 8;
+		
+		// <summary>
+        // Set when database is coherent
+        // </summary>
+		public const ulong DATABASE_STATUS_OK = 0;
+		
+		// <summary>
+        // Set when database did not exist and we created a new one
+        // </summary>
+		public const ulong DATABASE_STATUS_CREATE = 1;
+		
+		// <summary>
+        // Set when database was corrupt and we replaced it
+        // </summary>
+		public const ulong DATABASE_STATUS_CORRUPT = 2;
+		
+		// <summary>
+        // Set when database schema has been upgraded
+        // </summary>
+		public const ulong DATABASE_STATUS_UPGRADED = 3;
 	}
 	
 	/// <summary>

@@ -36,10 +36,23 @@ namespace Gecko
 	public interface nsIDOMSVGException
 	{
 		
-		/// <summary>
-        /// SVGExceptionCode
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		ushort GetCodeAttribute();
+	}
+	
+	/// <summary>nsIDOMSVGExceptionConsts </summary>
+	public class nsIDOMSVGExceptionConsts
+	{
+		
+		// <summary>
+        // SVGExceptionCode
+        // </summary>
+		public const ulong SVG_WRONG_TYPE_ERR = 0;
+		
+		// 
+		public const ulong SVG_INVALID_VALUE_ERR = 1;
+		
+		// 
+		public const ulong SVG_MATRIX_NOT_INVERTABLE = 2;
 	}
 }

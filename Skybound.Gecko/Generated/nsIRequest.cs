@@ -151,4 +151,95 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetLoadFlagsAttribute(uint aLoadFlags);
 	}
+	
+	/// <summary>nsIRequestConsts </summary>
+	public class nsIRequestConsts
+	{
+		
+		// <summary>
+        // Mask defining the bits reserved for nsIRequest LoadFlags
+        // </summary>
+		public const ulong LOAD_REQUESTMASK = 0xFFFF;
+		
+		// <summary>
+        // No special load flags:
+        // </summary>
+		public const ulong LOAD_NORMAL = 0;
+		
+		// <summary>
+        // Don't deliver status notifications to the nsIProgressEventSink, or keep
+        // this load from completing the nsILoadGroup it may belong to.
+        // </summary>
+		public const ulong LOAD_BACKGROUND = 1<<0;
+		
+		// <summary>
+        // This flag prevents caching of any kind.  It does not, however, prevent
+        // cached content from being used to satisfy this request.
+        // </summary>
+		public const ulong INHIBIT_CACHING = 1<<7;
+		
+		// <summary>
+        // This flag prevents caching on disk (or other persistent media), which
+        // may be needed to preserve privacy.  For HTTPS, this flag is set auto-
+        // matically.
+        // </summary>
+		public const ulong INHIBIT_PERSISTENT_CACHING = 1<<8;
+		
+		// <summary>
+        // Force an end-to-end download of content data from the origin server.
+        // This flag is used for a shift-reload.
+        // </summary>
+		public const ulong LOAD_BYPASS_CACHE = 1<<9;
+		
+		// <summary>
+        // Load from the cache, bypassing protocol specific validation logic.  This
+        // flag is used when browsing via history.  It is not recommended for normal
+        // browsing as it may likely violate reasonable assumptions made by the
+        // server and confuse users.
+        // </summary>
+		public const ulong LOAD_FROM_CACHE = 1<<10;
+		
+		// <summary>
+        // The following flags control the frequency of cached content validation
+        // when neither LOAD_BYPASS_CACHE or LOAD_FROM_CACHE are set.  By default,
+        // cached content is automatically validated if necessary before reuse.
+        //
+        // VALIDATE_ALWAYS forces validation of any cached content independent of
+        // its expiration time.
+        //
+        // VALIDATE_NEVER disables validation of expired content.
+        //
+        // VALIDATE_ONCE_PER_SESSION disables validation of expired content,
+        // provided it has already been validated (at least once) since the start
+        // of this session.
+        //
+        // NOTE TO IMPLEMENTORS:
+        // These flags are intended for normal browsing, and they should therefore
+        // not apply to content that must be validated before each use.  Consider,
+        // for example, a HTTP response with a "Cache-control: no-cache" header.
+        // According to RFC2616, this response must be validated before it can
+        // be taken from a cache.  Breaking this requirement could result in
+        // incorrect and potentially undesirable side-effects.
+        // </summary>
+		public const ulong VALIDATE_ALWAYS = 1<<11;
+		
+		// 
+		public const ulong VALIDATE_NEVER = 1<<12;
+		
+		// 
+		public const ulong VALIDATE_ONCE_PER_SESSION = 1<<13;
+		
+		// <summary>
+        // When set, this flag indicates that no user-specific data should be added
+        // to the request when opened. This means that things like authorization
+        // tokens or cookie headers should not be added.
+        // </summary>
+		public const ulong LOAD_ANONYMOUS = 1<<14;
+		
+		// <summary>
+        // When set, this flag indicates that caches of network connections,
+        // particularly HTTP persistent connections, should not be used.
+        // </summary>
+		public const ulong LOAD_FRESH_CONNECTION = 1<<15;
+	}
 }

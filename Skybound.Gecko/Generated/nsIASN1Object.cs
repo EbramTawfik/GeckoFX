@@ -91,4 +91,80 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetDisplayValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDisplayValue);
 	}
+	
+	/// <summary>nsIASN1ObjectConsts </summary>
+	public class nsIASN1ObjectConsts
+	{
+		
+		// <summary>
+        // Identifiers for the possible types of object.
+        // </summary>
+		public const ulong ASN1_END_CONTENTS = 0;
+		
+		// 
+		public const ulong ASN1_BOOLEAN = 1;
+		
+		// 
+		public const ulong ASN1_INTEGER = 2;
+		
+		// 
+		public const ulong ASN1_BIT_STRING = 3;
+		
+		// 
+		public const ulong ASN1_OCTET_STRING = 4;
+		
+		// 
+		public const ulong ASN1_NULL = 5;
+		
+		// 
+		public const ulong ASN1_OBJECT_ID = 6;
+		
+		// 
+		public const ulong ASN1_ENUMERATED = 10;
+		
+		// 
+		public const ulong ASN1_UTF8_STRING = 12;
+		
+		// 
+		public const ulong ASN1_SEQUENCE = 16;
+		
+		// 
+		public const ulong ASN1_SET = 17;
+		
+		// 
+		public const ulong ASN1_PRINTABLE_STRING = 19;
+		
+		// 
+		public const ulong ASN1_T61_STRING = 20;
+		
+		// 
+		public const ulong ASN1_IA5_STRING = 22;
+		
+		// 
+		public const ulong ASN1_UTC_TIME = 23;
+		
+		// 
+		public const ulong ASN1_GEN_TIME = 24;
+		
+		// 
+		public const ulong ASN1_VISIBLE_STRING = 26;
+		
+		// 
+		public const ulong ASN1_UNIVERSAL_STRING = 28;
+		
+		// 
+		public const ulong ASN1_BMP_STRING = 30;
+		
+		// 
+		public const ulong ASN1_HIGH_TAG_NUMBER = 31;
+		
+		// 
+		public const ulong ASN1_CONTEXT_SPECIFIC = 32;
+		
+		// 
+		public const ulong ASN1_APPLICATION = 33;
+		
+		// 
+		public const ulong ASN1_PRIVATE = 34;
+	}
 }

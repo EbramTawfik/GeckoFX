@@ -123,6 +123,20 @@ namespace Gecko
 		void Invalidate();
 	}
 	
+	/// <summary>nsITreeColumnConsts </summary>
+	public class nsITreeColumnConsts
+	{
+		
+		// 
+		public const int TYPE_TEXT = 1;
+		
+		// 
+		public const int TYPE_CHECKBOX = 2;
+		
+		// 
+		public const int TYPE_PROGRESSMETER = 3;
+	}
+	
 	/// <summary>nsITreeColumns </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]

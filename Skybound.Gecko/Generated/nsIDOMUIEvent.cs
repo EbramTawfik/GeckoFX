@@ -219,6 +219,17 @@ namespace Gecko
 		bool GetIsCharAttribute();
 	}
 	
+	/// <summary>nsIDOMUIEventConsts </summary>
+	public class nsIDOMUIEventConsts
+	{
+		
+		// 
+		public const long SCROLL_PAGE_UP = -32768;
+		
+		// 
+		public const long SCROLL_PAGE_DOWN = 32768;
+	}
+	
 	/// <summary>nsIUIEventInit </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]

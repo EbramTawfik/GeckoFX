@@ -107,4 +107,37 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetScrollbarVisibility([MarshalAs(UnmanagedType.U1)] ref bool verticalVisible, [MarshalAs(UnmanagedType.U1)] ref bool horizontalVisible);
 	}
+	
+	/// <summary>nsIScrollableConsts </summary>
+	public class nsIScrollableConsts
+	{
+		
+		// <summary>
+        //Constants declaring the two scroll orientations a scroll bar can be in.
+        //        ScrollOrientation_X - Horizontal scrolling.  When passing this
+        //                in to a scroll position method you are requesting or
+        //                setting the positions for the horizontal scroll bar.
+        //        ScrollOrientation_Y - Vertical scrolling.  When passing this
+        //                in to a scroll position you are requesting or setting
+        //                the positions for the vertical scroll bar.
+        //	 </summary>
+		public const long ScrollOrientation_X = 1;
+		
+		// 
+		public const long ScrollOrientation_Y = 2;
+		
+		// <summary>
+        //Constants declaring the states of the scroll bars.
+        //	ScrollPref_Auto - bars visible only when needed.
+        //	ScrollPref_Never - bars never visible, even when scrolling still possible.
+        //	ScrollPref_Always - bars always visible, even when scrolling is not possible
+        //	 </summary>
+		public const long Scrollbar_Auto = 1;
+		
+		// 
+		public const long Scrollbar_Never = 2;
+		
+		// 
+		public const long Scrollbar_Always = 3;
+	}
 }

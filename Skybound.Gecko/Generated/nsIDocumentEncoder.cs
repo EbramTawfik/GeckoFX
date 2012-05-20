@@ -186,4 +186,172 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetNodeFixup([MarshalAs(UnmanagedType.Interface)] nsIDocumentEncoderNodeFixup aFixup);
 	}
+	
+	/// <summary>nsIDocumentEncoderConsts </summary>
+	public class nsIDocumentEncoderConsts
+	{
+		
+		// <summary>
+        // Output only the selection (as opposed to the whole document).
+        // </summary>
+		public const ulong OutputSelectionOnly = (1<<0);
+		
+		// <summary>
+        //Plaintext output: Convert html to plaintext that looks like the html.
+        // Implies wrap (except inside <pre>), since html wraps.
+        // HTML, XHTML and XML output: do prettyprinting, ignoring existing formatting.
+        // XML output : it doesn't implicitly wrap
+        // </summary>
+		public const ulong OutputFormatted = (1<<1);
+		
+		// <summary>
+        //Don't do prettyprinting. Don't do any wrapping that's not in the existing
+        // HTML/XML source. This option overrides OutputFormatted if both are set.
+        // HTML/XHTML output: If neither are set, there won't be prettyprinting too, but
+        // long lines will be wrapped.
+        // Supported also in XML and Plaintext output.
+        // @note This option does not affect entity conversion.
+        // </summary>
+		public const ulong OutputRaw = (1<<2);
+		
+		// <summary>
+        // Do not print html head tags.
+        // XHTML/HTML output only.
+        // </summary>
+		public const ulong OutputBodyOnly = (1<<3);
+		
+		// <summary>
+        // Output as though the content is preformatted
+        // (e.g. maybe it's wrapped in a PRE or PRE_WRAP style tag)
+        // Plaintext output only.
+        // XXXbz How does this interact with
+        // OutputFormatted/OutputRaw/OutputPreformatted/OutputFormatFlowed?
+        // </summary>
+		public const ulong OutputPreformatted = (1<<4);
+		
+		// <summary>
+        // Wrap even if we're not doing formatted output (e.g. for text fields).
+        // Supported in XML, XHTML, HTML and Plaintext output.
+        // Set implicitly in HTML/XHTML output when no OutputRaw.
+        // Ignored when OutputRaw.
+        // XXXLJ: set implicitly in HTML/XHTML output, to keep compatible behaviors
+        // for old callers of this interface
+        // XXXbz How does this interact with OutputFormatFlowed?
+        // </summary>
+		public const ulong OutputWrap = (1<<5);
+		
+		// <summary>
+        // Output for format flowed (RFC 2646). This is used when converting
+        // to text for mail sending. This differs just slightly
+        // but in an important way from normal formatted, and that is that
+        // lines are space stuffed. This can't (correctly) be done later.
+        // PlainText output only.
+        // XXXbz How does this interact with
+        // OutputFormatted/OutputRaw/OutputPreformatted/OutputWrap?
+        // </summary>
+		public const ulong OutputFormatFlowed = (1<<6);
+		
+		// <summary>
+        // Convert links, image src, and script src to absolute URLs when possible.
+        // XHTML/HTML output only.
+        // </summary>
+		public const ulong OutputAbsoluteLinks = (1<<7);
+		
+		// <summary>
+        // Attempt to encode entities standardized at W3C (HTML, MathML, etc).
+        // This is a catch-all flag for documents with mixed contents. Beware of
+        // interoperability issues. See below for other flags which might likely
+        // do what you want.
+        // HTML output only.
+        // </summary>
+		public const ulong OutputEncodeW3CEntities = (1<<8);
+		
+		// <summary>
+        // LineBreak processing: if this flag is set than CR line breaks will
+        // be written. If neither this nor OutputLFLineBreak is set, then we
+        // will use platform line breaks. The combination of the two flags will
+        // cause CRLF line breaks to be written.
+        // </summary>
+		public const ulong OutputCRLineBreak = (1<<9);
+		
+		// <summary>
+        // LineBreak processing: if this flag is set than LF line breaks will
+        // be written. If neither this nor OutputCRLineBreak is set, then we
+        // will use platform line breaks. The combination of the two flags will
+        // cause CRLF line breaks to be written.
+        // </summary>
+		public const ulong OutputLFLineBreak = (1<<10);
+		
+		// <summary>
+        // Output the content of noscript elements (only for serializing
+        // to plaintext).
+        // </summary>
+		public const ulong OutputNoScriptContent = (1<<11);
+		
+		// <summary>
+        // Output the content of noframes elements (only for serializing
+        // to plaintext).
+        // </summary>
+		public const ulong OutputNoFramesContent = (1<<12);
+		
+		// <summary>
+        // Don't allow any formatting nodes (e.g. <br>, <b>) inside a <pre>.
+        // This is used primarily by mail. XHTML/HTML output only.
+        // </summary>
+		public const ulong OutputNoFormattingInPre = (1<<13);
+		
+		// <summary>
+        // Encode entities when outputting to a string.
+        // E.g. If set, we'll output &nbsp; if clear, we'll output 0xa0.
+        // The basic set is just &nbsp; &amp; &lt; &gt; &quot; for interoperability
+        // with older products that don't support &alpha; and friends.
+        // HTML output only.
+        // </summary>
+		public const ulong OutputEncodeBasicEntities = (1<<14);
+		
+		// <summary>
+        // Encode entities when outputting to a string.
+        // The Latin1 entity set additionally includes 8bit accented letters
+        // between 128 and 255.
+        // HTML output only.
+        // </summary>
+		public const ulong OutputEncodeLatin1Entities = (1<<15);
+		
+		// <summary>
+        // Encode entities when outputting to a string.
+        // The HTML entity set additionally includes accented letters, greek
+        // letters, and other special markup symbols as defined in HTML4.
+        // HTML output only.
+        // </summary>
+		public const ulong OutputEncodeHTMLEntities = (1<<16);
+		
+		// <summary>
+        // Normally &nbsp; is replaced with a space character when
+        // encoding data as plain text, set this flag if that's
+        // not desired.
+        // Plaintext output only.
+        // </summary>
+		public const ulong OutputPersistNBSP = (1<<17);
+		
+		// <summary>
+        // Normally when serializing the whole document using the HTML or
+        // XHTML serializer, the encoding declaration is rewritten to match.
+        // This flag suppresses that behavior.
+        // </summary>
+		public const ulong OutputDontRewriteEncodingDeclaration = (1<<18);
+		
+		// <summary>
+        // When using the HTML or XHTML serializer, skip elements that are not
+        // visible when this flag is set.  Elements are not visible when they
+        // have CSS style display:none or visibility:collapse, for example.
+        // </summary>
+		public const ulong SkipInvisibleContent = (1<<19);
+		
+		// <summary>
+        // Output for delsp=yes (RFC 3676). This is used with OutputFormatFlowed
+        // when converting to text for mail sending.
+        // PlainText output only.
+        // </summary>
+		public const ulong OutputFormatDelSp = (1<<20);
+	}
 }

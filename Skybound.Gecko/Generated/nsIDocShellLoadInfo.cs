@@ -168,4 +168,72 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetSendReferrerAttribute([MarshalAs(UnmanagedType.U1)] bool aSendReferrer);
 	}
+	
+	/// <summary>nsIDocShellLoadInfoConsts </summary>
+	public class nsIDocShellLoadInfoConsts
+	{
+		
+		// <summary>
+        //these are load type enums... </summary>
+		public const long loadNormal = 0;
+		
+		// <summary>
+        // Normal Load
+        // </summary>
+		public const long loadNormalReplace = 1;
+		
+		// <summary>
+        // Normal Load but replaces current history slot
+        // </summary>
+		public const long loadHistory = 2;
+		
+		// <summary>
+        // Load from history
+        // </summary>
+		public const long loadReloadNormal = 3;
+		
+		// <summary>
+        // Reload
+        // </summary>
+		public const long loadReloadBypassCache = 4;
+		
+		// 
+		public const long loadReloadBypassProxy = 5;
+		
+		// 
+		public const long loadReloadBypassProxyAndCache = 6;
+		
+		// 
+		public const long loadLink = 7;
+		
+		// 
+		public const long loadRefresh = 8;
+		
+		// 
+		public const long loadReloadCharsetChange = 9;
+		
+		// 
+		public const long loadBypassHistory = 10;
+		
+		// 
+		public const long loadStopContent = 11;
+		
+		// 
+		public const long loadStopContentAndReplace = 12;
+		
+		// 
+		public const long loadNormalExternal = 13;
+		
+		// 
+		public const long loadNormalBypassCache = 14;
+		
+		// 
+		public const long loadNormalBypassProxy = 15;
+		
+		// 
+		public const long loadNormalBypassProxyAndCache = 16;
+		
+		// 
+		public const long loadPushState = 17;
+	}
 }

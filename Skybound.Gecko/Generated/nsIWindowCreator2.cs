@@ -81,4 +81,14 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIWebBrowserChrome CreateChromeWindow2([MarshalAs(UnmanagedType.Interface)] nsIWebBrowserChrome parent, uint chromeFlags, uint contextFlags, [MarshalAs(UnmanagedType.Interface)] nsIURI uri, [MarshalAs(UnmanagedType.U1)] ref bool cancel);
 	}
+	
+	/// <summary>nsIWindowCreator2Consts </summary>
+	public class nsIWindowCreator2Consts
+	{
+		
+		// <summary>
+        // Likely that the window is an advertising popup.
+        // </summary>
+		public const ulong PARENT_IS_LOADING_OR_RUNNING_TIMEOUT = 0x00000001;
+	}
 }

@@ -241,4 +241,89 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void FocusPlugin(System.IntPtr aPlugin);
 	}
+	
+	/// <summary>nsIFocusManagerConsts </summary>
+	public class nsIFocusManagerConsts
+	{
+		
+		// <summary>
+        // Raise the window when switching focus
+        // </summary>
+		public const ulong FLAG_RAISE = 1;
+		
+		// <summary>
+        // Do not scroll the element to focus into view
+        // </summary>
+		public const ulong FLAG_NOSCROLL = 2;
+		
+		// <summary>
+        // If attempting to change focus in a window that is not focused, do not
+        // switch focus to that window. Instead, just update the focus within that
+        // window and leave the application focus as is. This flag will have no
+        // effect if a child window is focused and an attempt is made to adjust the
+        // focus in an ancestor, as the frame must be switched in this case.
+        // </summary>
+		public const ulong FLAG_NOSWITCHFRAME = 4;
+		
+		// <summary>
+        // Focus is changing due to a mouse operation, for instance the mouse was
+        // clicked on an element.
+        // </summary>
+		public const ulong FLAG_BYMOUSE = 0x1000;
+		
+		// <summary>
+        // Focus is changing due to a key operation, for instance pressing the tab
+        // key. This flag would normally be passed when MOVEFOCUS_FORWARD or
+        // MOVEFOCUS_BACKWARD is used.
+        // </summary>
+		public const ulong FLAG_BYKEY = 0x2000;
+		
+		// <summary>
+        // Focus is changing due to a call to MoveFocus. This flag will be implied
+        // when MoveFocus is called except when one of the other mechanisms (mouse
+        // or key) is specified, or when the type is MOVEFOCUS_ROOT or
+        // MOVEFOCUS_CARET.
+        // </summary>
+		public const ulong FLAG_BYMOVEFOCUS = 0x4000;
+		
+		// <summary>
+        // Always show the focus ring or other indicator of focus, regardless of
+        // other state.
+        // </summary>
+		public const ulong FLAG_SHOWRING = 0x100000;
+		
+		// <summary>
+        //move focus forward one element, used when pressing TAB </summary>
+		public const ulong MOVEFOCUS_FORWARD = 1;
+		
+		// <summary>
+        //move focus backward one element, used when pressing Shift+TAB </summary>
+		public const ulong MOVEFOCUS_BACKWARD = 2;
+		
+		// <summary>
+        //move focus forward to the next frame document, used when pressing F6 </summary>
+		public const ulong MOVEFOCUS_FORWARDDOC = 3;
+		
+		// <summary>
+        //move focus forward to the previous frame document, used when pressing Shift+F6 </summary>
+		public const ulong MOVEFOCUS_BACKWARDDOC = 4;
+		
+		// <summary>
+        //move focus to the first focusable element </summary>
+		public const ulong MOVEFOCUS_FIRST = 5;
+		
+		// <summary>
+        //move focus to the last focusable element </summary>
+		public const ulong MOVEFOCUS_LAST = 6;
+		
+		// <summary>
+        //move focus to the root element in the document </summary>
+		public const ulong MOVEFOCUS_ROOT = 7;
+		
+		// <summary>
+        //move focus to a link at the position of the caret. This is a special value used to
+        // focus links as the caret moves over them in caret browsing mode.
+        // </summary>
+		public const ulong MOVEFOCUS_CARET = 8;
+	}
 }

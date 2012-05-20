@@ -198,4 +198,14 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetEnableCustomDrawingAttribute([MarshalAs(UnmanagedType.U1)] bool aEnableCustomDrawing);
 	}
+	
+	/// <summary>nsITaskbarWindowPreviewConsts </summary>
+	public class nsITaskbarWindowPreviewConsts
+	{
+		
+		// <summary>
+        // Max 7 buttons per preview per the Windows Taskbar API
+        // </summary>
+		public const long NUM_TOOLBAR_BUTTONS = 7;
+	}
 }

@@ -243,39 +243,23 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetDelayRemoteDialogsAttribute([MarshalAs(UnmanagedType.U1)] bool aDelayRemoteDialogs);
 		
-		/// <summary>
-        /// When asynchronous scrolling is enabled, a target viewport can be
-        /// set to transform content pixels wrt its CSS viewport.
-        ///
-        /// NB: when async scrolling is enabled, it's the *user's*
-        /// responsibility to update the target scroll offset.  In effect,
-        /// the platform hands over control of scroll offset to the user.
-        /// </summary>
+		/// <summary>Member GetRenderModeAttribute </summary>
+		/// <returns>A System.UInt32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetRenderModeAttribute();
 		
-		/// <summary>
-        /// When asynchronous scrolling is enabled, a target viewport can be
-        /// set to transform content pixels wrt its CSS viewport.
-        ///
-        /// NB: when async scrolling is enabled, it's the *user's*
-        /// responsibility to update the target scroll offset.  In effect,
-        /// the platform hands over control of scroll offset to the user.
-        /// </summary>
+		/// <summary>Member SetRenderModeAttribute </summary>
+		/// <param name='aRenderMode'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetRenderModeAttribute(uint aRenderMode);
 		
-		/// <summary>
-        /// With this event mode, it's the application's responsability to
-        /// convert and forward events to the content process
-        /// </summary>
+		/// <summary>Member GetEventModeAttribute </summary>
+		/// <returns>A System.UInt32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetEventModeAttribute();
 		
-		/// <summary>
-        /// With this event mode, it's the application's responsability to
-        /// convert and forward events to the content process
-        /// </summary>
+		/// <summary>Member SetEventModeAttribute </summary>
+		/// <param name='aEventMode'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetEventModeAttribute(uint aEventMode);
 		
@@ -295,6 +279,43 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetClipSubdocumentAttribute([MarshalAs(UnmanagedType.U1)] bool aClipSubdocument);
+	}
+	
+	/// <summary>nsIFrameLoaderConsts </summary>
+	public class nsIFrameLoaderConsts
+	{
+		
+		// <summary>
+        // The default rendering mode is synchronous scrolling.  In this
+        // mode, it's an error to try to set a target viewport.
+        // </summary>
+		public const ulong RENDER_MODE_DEFAULT = 0x00000000;
+		
+		// <summary>
+        // When asynchronous scrolling is enabled, a target viewport can be
+        // set to transform content pixels wrt its CSS viewport.
+        //
+        // NB: when async scrolling is enabled, it's the *user's*
+        // responsibility to update the target scroll offset.  In effect,
+        // the platform hands over control of scroll offset to the user.
+        // </summary>
+		public const ulong RENDER_MODE_ASYNC_SCROLL = 0x00000001;
+		
+		// <summary>
+        // The default event mode automatically forwards the events
+        // handled in nsEventStateManager::HandleCrossProcessEvent to
+        // the child content process when these events are targeted to
+        // the remote browser element.
+        //
+        // Used primarly for input events (mouse, keyboard)
+        // </summary>
+		public const ulong EVENT_MODE_NORMAL_DISPATCH = 0x00000000;
+		
+		// <summary>
+        // With this event mode, it's the application's responsability to
+        // convert and forward events to the content process
+        // </summary>
+		public const ulong EVENT_MODE_DONT_FORWARD_TO_CHILD = 0x00000001;
 	}
 	
 	/// <summary>nsIFrameLoaderOwner </summary>

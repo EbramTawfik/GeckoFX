@@ -34,14 +34,8 @@ namespace Gecko
 	public interface nsIDOMSVGFilterPrimitiveStandardAttributes : nsIDOMSVGElement
 	{
 		
-		/// <summary>
-        /// The nsIDOMNode interface is the primary datatype for the entire
-        /// Document Object Model.
-        /// It represents a single node in the document tree.
-        ///
-        /// For more information on this interface please see
-        /// http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html
-        /// </summary>
+		/// <summary>Member GetNodeNameAttribute </summary>
+		/// <param name='aNodeName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetNodeNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNodeName);
 		
@@ -651,14 +645,8 @@ namespace Gecko
 	public interface nsIDOMSVGFEBlendElement : nsIDOMSVGFilterPrimitiveStandardAttributes
 	{
 		
-		/// <summary>
-        /// The nsIDOMNode interface is the primary datatype for the entire
-        /// Document Object Model.
-        /// It represents a single node in the document tree.
-        ///
-        /// For more information on this interface please see
-        /// http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html
-        /// </summary>
+		/// <summary>Member GetNodeNameAttribute </summary>
+		/// <param name='aNodeName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetNodeNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNodeName);
 		
@@ -1279,6 +1267,29 @@ namespace Gecko
 		nsIDOMSVGAnimatedEnumeration GetModeAttribute();
 	}
 	
+	/// <summary>nsIDOMSVGFEBlendElementConsts </summary>
+	public class nsIDOMSVGFEBlendElementConsts
+	{
+		
+		// 
+		public const ulong SVG_MODE_UNKNOWN = 0;
+		
+		// 
+		public const ulong SVG_MODE_NORMAL = 1;
+		
+		// 
+		public const ulong SVG_MODE_MULTIPLY = 2;
+		
+		// 
+		public const ulong SVG_MODE_SCREEN = 3;
+		
+		// 
+		public const ulong SVG_MODE_DARKEN = 4;
+		
+		// 
+		public const ulong SVG_MODE_LIGHTEN = 5;
+	}
+	
 	/// <summary>nsIDOMSVGFEColorMatrixElement </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -1286,14 +1297,8 @@ namespace Gecko
 	public interface nsIDOMSVGFEColorMatrixElement : nsIDOMSVGFilterPrimitiveStandardAttributes
 	{
 		
-		/// <summary>
-        /// The nsIDOMNode interface is the primary datatype for the entire
-        /// Document Object Model.
-        /// It represents a single node in the document tree.
-        ///
-        /// For more information on this interface please see
-        /// http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html
-        /// </summary>
+		/// <summary>Member GetNodeNameAttribute </summary>
+		/// <param name='aNodeName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetNodeNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNodeName);
 		
@@ -1895,9 +1900,8 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMSVGAnimatedString GetResultAttribute();
 		
-		/// <summary>
-        /// Color Matrix Types
-        /// </summary>
+		/// <summary>Member GetIn1Attribute </summary>
+		/// <returns>A nsIDOMSVGAnimatedString</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMSVGAnimatedString GetIn1Attribute();
@@ -1915,6 +1919,28 @@ namespace Gecko
 		nsIDOMSVGAnimatedNumberList GetValuesAttribute();
 	}
 	
+	/// <summary>nsIDOMSVGFEColorMatrixElementConsts </summary>
+	public class nsIDOMSVGFEColorMatrixElementConsts
+	{
+		
+		// <summary>
+        // Color Matrix Types
+        // </summary>
+		public const ulong SVG_FECOLORMATRIX_TYPE_UNKNOWN = 0;
+		
+		// 
+		public const ulong SVG_FECOLORMATRIX_TYPE_MATRIX = 1;
+		
+		// 
+		public const ulong SVG_FECOLORMATRIX_TYPE_SATURATE = 2;
+		
+		// 
+		public const ulong SVG_FECOLORMATRIX_TYPE_HUE_ROTATE = 3;
+		
+		// 
+		public const ulong SVG_FECOLORMATRIX_TYPE_LUMINANCE_TO_ALPHA = 4;
+	}
+	
 	/// <summary>nsIDOMSVGFEComponentTransferElement </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -1922,14 +1948,8 @@ namespace Gecko
 	public interface nsIDOMSVGFEComponentTransferElement : nsIDOMSVGFilterPrimitiveStandardAttributes
 	{
 		
-		/// <summary>
-        /// The nsIDOMNode interface is the primary datatype for the entire
-        /// Document Object Model.
-        /// It represents a single node in the document tree.
-        ///
-        /// For more information on this interface please see
-        /// http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html
-        /// </summary>
+		/// <summary>Member GetNodeNameAttribute </summary>
+		/// <param name='aNodeName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetNodeNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNodeName);
 		
@@ -2545,14 +2565,8 @@ namespace Gecko
 	public interface nsIDOMSVGComponentTransferFunctionElement : nsIDOMSVGElement
 	{
 		
-		/// <summary>
-        /// The nsIDOMNode interface is the primary datatype for the entire
-        /// Document Object Model.
-        /// It represents a single node in the document tree.
-        ///
-        /// For more information on this interface please see
-        /// http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html
-        /// </summary>
+		/// <summary>Member GetNodeNameAttribute </summary>
+		/// <param name='aNodeName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetNodeNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNodeName);
 		
@@ -3124,9 +3138,8 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMSVGElement GetViewportElementAttribute();
 		
-		/// <summary>
-        /// Component Transfer Types
-        /// </summary>
+		/// <summary>Member GetTypeAttribute </summary>
+		/// <returns>A nsIDOMSVGAnimatedEnumeration</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMSVGAnimatedEnumeration GetTypeAttribute();
@@ -3168,6 +3181,31 @@ namespace Gecko
 		nsIDOMSVGAnimatedNumber GetOffsetAttribute();
 	}
 	
+	/// <summary>nsIDOMSVGComponentTransferFunctionElementConsts </summary>
+	public class nsIDOMSVGComponentTransferFunctionElementConsts
+	{
+		
+		// <summary>
+        // Component Transfer Types
+        // </summary>
+		public const ulong SVG_FECOMPONENTTRANSFER_TYPE_UNKNOWN = 0;
+		
+		// 
+		public const ulong SVG_FECOMPONENTTRANSFER_TYPE_IDENTITY = 1;
+		
+		// 
+		public const ulong SVG_FECOMPONENTTRANSFER_TYPE_TABLE = 2;
+		
+		// 
+		public const ulong SVG_FECOMPONENTTRANSFER_TYPE_DISCRETE = 3;
+		
+		// 
+		public const ulong SVG_FECOMPONENTTRANSFER_TYPE_LINEAR = 4;
+		
+		// 
+		public const ulong SVG_FECOMPONENTTRANSFER_TYPE_GAMMA = 5;
+	}
+	
 	/// <summary>nsIDOMSVGFECompositeElement </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -3175,14 +3213,8 @@ namespace Gecko
 	public interface nsIDOMSVGFECompositeElement : nsIDOMSVGFilterPrimitiveStandardAttributes
 	{
 		
-		/// <summary>
-        /// The nsIDOMNode interface is the primary datatype for the entire
-        /// Document Object Model.
-        /// It represents a single node in the document tree.
-        ///
-        /// For more information on this interface please see
-        /// http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html
-        /// </summary>
+		/// <summary>Member GetNodeNameAttribute </summary>
+		/// <param name='aNodeName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetNodeNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNodeName);
 		
@@ -3784,9 +3816,8 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMSVGAnimatedString GetResultAttribute();
 		
-		/// <summary>
-        /// Operator Types
-        /// </summary>
+		/// <summary>Member GetIn1Attribute </summary>
+		/// <returns>A nsIDOMSVGAnimatedString</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMSVGAnimatedString GetIn1Attribute();
@@ -3836,6 +3867,34 @@ namespace Gecko
 		void SetK(float k1, float k2, float k3, float k4);
 	}
 	
+	/// <summary>nsIDOMSVGFECompositeElementConsts </summary>
+	public class nsIDOMSVGFECompositeElementConsts
+	{
+		
+		// <summary>
+        // Operator Types
+        // </summary>
+		public const ulong SVG_OPERATOR_UNKNOWN = 0;
+		
+		// 
+		public const ulong SVG_OPERATOR_OVER = 1;
+		
+		// 
+		public const ulong SVG_OPERATOR_IN = 2;
+		
+		// 
+		public const ulong SVG_OPERATOR_OUT = 3;
+		
+		// 
+		public const ulong SVG_OPERATOR_ATOP = 4;
+		
+		// 
+		public const ulong SVG_OPERATOR_XOR = 5;
+		
+		// 
+		public const ulong SVG_OPERATOR_ARITHMETIC = 6;
+	}
+	
 	/// <summary>nsIDOMSVGFEFuncRElement </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -3843,14 +3902,8 @@ namespace Gecko
 	public interface nsIDOMSVGFEFuncRElement : nsIDOMSVGComponentTransferFunctionElement
 	{
 		
-		/// <summary>
-        /// The nsIDOMNode interface is the primary datatype for the entire
-        /// Document Object Model.
-        /// It represents a single node in the document tree.
-        ///
-        /// For more information on this interface please see
-        /// http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html
-        /// </summary>
+		/// <summary>Member GetNodeNameAttribute </summary>
+		/// <param name='aNodeName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetNodeNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNodeName);
 		
@@ -4422,9 +4475,8 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMSVGElement GetViewportElementAttribute();
 		
-		/// <summary>
-        /// Component Transfer Types
-        /// </summary>
+		/// <summary>Member GetTypeAttribute </summary>
+		/// <returns>A nsIDOMSVGAnimatedEnumeration</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMSVGAnimatedEnumeration GetTypeAttribute();
@@ -4473,14 +4525,8 @@ namespace Gecko
 	public interface nsIDOMSVGFEFuncGElement : nsIDOMSVGComponentTransferFunctionElement
 	{
 		
-		/// <summary>
-        /// The nsIDOMNode interface is the primary datatype for the entire
-        /// Document Object Model.
-        /// It represents a single node in the document tree.
-        ///
-        /// For more information on this interface please see
-        /// http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html
-        /// </summary>
+		/// <summary>Member GetNodeNameAttribute </summary>
+		/// <param name='aNodeName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetNodeNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNodeName);
 		
@@ -5052,9 +5098,8 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMSVGElement GetViewportElementAttribute();
 		
-		/// <summary>
-        /// Component Transfer Types
-        /// </summary>
+		/// <summary>Member GetTypeAttribute </summary>
+		/// <returns>A nsIDOMSVGAnimatedEnumeration</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMSVGAnimatedEnumeration GetTypeAttribute();
@@ -5103,14 +5148,8 @@ namespace Gecko
 	public interface nsIDOMSVGFEFuncBElement : nsIDOMSVGComponentTransferFunctionElement
 	{
 		
-		/// <summary>
-        /// The nsIDOMNode interface is the primary datatype for the entire
-        /// Document Object Model.
-        /// It represents a single node in the document tree.
-        ///
-        /// For more information on this interface please see
-        /// http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html
-        /// </summary>
+		/// <summary>Member GetNodeNameAttribute </summary>
+		/// <param name='aNodeName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetNodeNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNodeName);
 		
@@ -5682,9 +5721,8 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMSVGElement GetViewportElementAttribute();
 		
-		/// <summary>
-        /// Component Transfer Types
-        /// </summary>
+		/// <summary>Member GetTypeAttribute </summary>
+		/// <returns>A nsIDOMSVGAnimatedEnumeration</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMSVGAnimatedEnumeration GetTypeAttribute();
@@ -5733,14 +5771,8 @@ namespace Gecko
 	public interface nsIDOMSVGFEFuncAElement : nsIDOMSVGComponentTransferFunctionElement
 	{
 		
-		/// <summary>
-        /// The nsIDOMNode interface is the primary datatype for the entire
-        /// Document Object Model.
-        /// It represents a single node in the document tree.
-        ///
-        /// For more information on this interface please see
-        /// http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html
-        /// </summary>
+		/// <summary>Member GetNodeNameAttribute </summary>
+		/// <param name='aNodeName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetNodeNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNodeName);
 		
@@ -6312,9 +6344,8 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMSVGElement GetViewportElementAttribute();
 		
-		/// <summary>
-        /// Component Transfer Types
-        /// </summary>
+		/// <summary>Member GetTypeAttribute </summary>
+		/// <returns>A nsIDOMSVGAnimatedEnumeration</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMSVGAnimatedEnumeration GetTypeAttribute();
@@ -6363,14 +6394,8 @@ namespace Gecko
 	public interface nsIDOMSVGFEGaussianBlurElement : nsIDOMSVGFilterPrimitiveStandardAttributes
 	{
 		
-		/// <summary>
-        /// The nsIDOMNode interface is the primary datatype for the entire
-        /// Document Object Model.
-        /// It represents a single node in the document tree.
-        ///
-        /// For more information on this interface please see
-        /// http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html
-        /// </summary>
+		/// <summary>Member GetNodeNameAttribute </summary>
+		/// <param name='aNodeName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetNodeNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNodeName);
 		
@@ -7004,14 +7029,8 @@ namespace Gecko
 	public interface nsIDOMSVGFEMergeElement : nsIDOMSVGFilterPrimitiveStandardAttributes
 	{
 		
-		/// <summary>
-        /// The nsIDOMNode interface is the primary datatype for the entire
-        /// Document Object Model.
-        /// It represents a single node in the document tree.
-        ///
-        /// For more information on this interface please see
-        /// http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html
-        /// </summary>
+		/// <summary>Member GetNodeNameAttribute </summary>
+		/// <param name='aNodeName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetNodeNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNodeName);
 		
@@ -7621,14 +7640,8 @@ namespace Gecko
 	public interface nsIDOMSVGFEMergeNodeElement : nsIDOMSVGElement
 	{
 		
-		/// <summary>
-        /// The nsIDOMNode interface is the primary datatype for the entire
-        /// Document Object Model.
-        /// It represents a single node in the document tree.
-        ///
-        /// For more information on this interface please see
-        /// http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html
-        /// </summary>
+		/// <summary>Member GetNodeNameAttribute </summary>
+		/// <param name='aNodeName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetNodeNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNodeName);
 		
@@ -8214,14 +8227,8 @@ namespace Gecko
 	public interface nsIDOMSVGFEOffsetElement : nsIDOMSVGFilterPrimitiveStandardAttributes
 	{
 		
-		/// <summary>
-        /// The nsIDOMNode interface is the primary datatype for the entire
-        /// Document Object Model.
-        /// It represents a single node in the document tree.
-        ///
-        /// For more information on this interface please see
-        /// http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html
-        /// </summary>
+		/// <summary>Member GetNodeNameAttribute </summary>
+		/// <param name='aNodeName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetNodeNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNodeName);
 		
@@ -8849,14 +8856,8 @@ namespace Gecko
 	public interface nsIDOMSVGFEFloodElement : nsIDOMSVGFilterPrimitiveStandardAttributes
 	{
 		
-		/// <summary>
-        /// The nsIDOMNode interface is the primary datatype for the entire
-        /// Document Object Model.
-        /// It represents a single node in the document tree.
-        ///
-        /// For more information on this interface please see
-        /// http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html
-        /// </summary>
+		/// <summary>Member GetNodeNameAttribute </summary>
+		/// <param name='aNodeName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetNodeNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNodeName);
 		
@@ -9466,14 +9467,8 @@ namespace Gecko
 	public interface nsIDOMSVGFETileElement : nsIDOMSVGFilterPrimitiveStandardAttributes
 	{
 		
-		/// <summary>
-        /// The nsIDOMNode interface is the primary datatype for the entire
-        /// Document Object Model.
-        /// It represents a single node in the document tree.
-        ///
-        /// For more information on this interface please see
-        /// http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html
-        /// </summary>
+		/// <summary>Member GetNodeNameAttribute </summary>
+		/// <param name='aNodeName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetNodeNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNodeName);
 		
@@ -10089,14 +10084,8 @@ namespace Gecko
 	public interface nsIDOMSVGFETurbulenceElement : nsIDOMSVGFilterPrimitiveStandardAttributes
 	{
 		
-		/// <summary>
-        /// The nsIDOMNode interface is the primary datatype for the entire
-        /// Document Object Model.
-        /// It represents a single node in the document tree.
-        ///
-        /// For more information on this interface please see
-        /// http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html
-        /// </summary>
+		/// <summary>Member GetNodeNameAttribute </summary>
+		/// <param name='aNodeName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetNodeNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNodeName);
 		
@@ -10698,9 +10687,8 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMSVGAnimatedString GetResultAttribute();
 		
-		/// <summary>
-        /// Stitch Options
-        /// </summary>
+		/// <summary>Member GetBaseFrequencyXAttribute </summary>
+		/// <returns>A nsIDOMSVGAnimatedNumber</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMSVGAnimatedNumber GetBaseFrequencyXAttribute();
@@ -10736,6 +10724,33 @@ namespace Gecko
 		nsIDOMSVGAnimatedEnumeration GetTypeAttribute();
 	}
 	
+	/// <summary>nsIDOMSVGFETurbulenceElementConsts </summary>
+	public class nsIDOMSVGFETurbulenceElementConsts
+	{
+		
+		// <summary>
+        // Turbulence Types
+        // </summary>
+		public const ulong SVG_TURBULENCE_TYPE_UNKNOWN = 0;
+		
+		// 
+		public const ulong SVG_TURBULENCE_TYPE_FRACTALNOISE = 1;
+		
+		// 
+		public const ulong SVG_TURBULENCE_TYPE_TURBULENCE = 2;
+		
+		// <summary>
+        // Stitch Options
+        // </summary>
+		public const ulong SVG_STITCHTYPE_UNKNOWN = 0;
+		
+		// 
+		public const ulong SVG_STITCHTYPE_STITCH = 1;
+		
+		// 
+		public const ulong SVG_STITCHTYPE_NOSTITCH = 2;
+	}
+	
 	/// <summary>nsIDOMSVGFEMorphologyElement </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -10743,14 +10758,8 @@ namespace Gecko
 	public interface nsIDOMSVGFEMorphologyElement : nsIDOMSVGFilterPrimitiveStandardAttributes
 	{
 		
-		/// <summary>
-        /// The nsIDOMNode interface is the primary datatype for the entire
-        /// Document Object Model.
-        /// It represents a single node in the document tree.
-        ///
-        /// For more information on this interface please see
-        /// http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html
-        /// </summary>
+		/// <summary>Member GetNodeNameAttribute </summary>
+		/// <param name='aNodeName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetNodeNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNodeName);
 		
@@ -11352,9 +11361,8 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMSVGAnimatedString GetResultAttribute();
 		
-		/// <summary>
-        /// Operator Types
-        /// </summary>
+		/// <summary>Member GetIn1Attribute </summary>
+		/// <returns>A nsIDOMSVGAnimatedString</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMSVGAnimatedString GetIn1Attribute();
@@ -11384,6 +11392,22 @@ namespace Gecko
 		void SetRadius(float rx, float ry);
 	}
 	
+	/// <summary>nsIDOMSVGFEMorphologyElementConsts </summary>
+	public class nsIDOMSVGFEMorphologyElementConsts
+	{
+		
+		// <summary>
+        // Operator Types
+        // </summary>
+		public const ulong SVG_OPERATOR_UNKNOWN = 0;
+		
+		// 
+		public const ulong SVG_OPERATOR_ERODE = 1;
+		
+		// 
+		public const ulong SVG_OPERATOR_DILATE = 2;
+	}
+	
 	/// <summary>nsIDOMSVGFEConvolveMatrixElement </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -11391,14 +11415,8 @@ namespace Gecko
 	public interface nsIDOMSVGFEConvolveMatrixElement : nsIDOMSVGFilterPrimitiveStandardAttributes
 	{
 		
-		/// <summary>
-        /// The nsIDOMNode interface is the primary datatype for the entire
-        /// Document Object Model.
-        /// It represents a single node in the document tree.
-        ///
-        /// For more information on this interface please see
-        /// http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html
-        /// </summary>
+		/// <summary>Member GetNodeNameAttribute </summary>
+		/// <param name='aNodeName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetNodeNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNodeName);
 		
@@ -12000,9 +12018,8 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMSVGAnimatedString GetResultAttribute();
 		
-		/// <summary>
-        /// Edge Mode Values
-        /// </summary>
+		/// <summary>Member GetIn1Attribute </summary>
+		/// <returns>A nsIDOMSVGAnimatedString</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMSVGAnimatedString GetIn1Attribute();
@@ -12074,6 +12091,25 @@ namespace Gecko
 		nsIDOMSVGAnimatedBoolean GetPreserveAlphaAttribute();
 	}
 	
+	/// <summary>nsIDOMSVGFEConvolveMatrixElementConsts </summary>
+	public class nsIDOMSVGFEConvolveMatrixElementConsts
+	{
+		
+		// <summary>
+        // Edge Mode Values
+        // </summary>
+		public const ulong SVG_EDGEMODE_UNKNOWN = 0;
+		
+		// 
+		public const ulong SVG_EDGEMODE_DUPLICATE = 1;
+		
+		// 
+		public const ulong SVG_EDGEMODE_WRAP = 2;
+		
+		// 
+		public const ulong SVG_EDGEMODE_NONE = 3;
+	}
+	
 	/// <summary>nsIDOMSVGFEDiffuseLightingElement </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -12081,14 +12117,8 @@ namespace Gecko
 	public interface nsIDOMSVGFEDiffuseLightingElement : nsIDOMSVGFilterPrimitiveStandardAttributes
 	{
 		
-		/// <summary>
-        /// The nsIDOMNode interface is the primary datatype for the entire
-        /// Document Object Model.
-        /// It represents a single node in the document tree.
-        ///
-        /// For more information on this interface please see
-        /// http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html
-        /// </summary>
+		/// <summary>Member GetNodeNameAttribute </summary>
+		/// <param name='aNodeName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetNodeNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNodeName);
 		
@@ -12728,14 +12758,8 @@ namespace Gecko
 	public interface nsIDOMSVGFESpecularLightingElement : nsIDOMSVGFilterPrimitiveStandardAttributes
 	{
 		
-		/// <summary>
-        /// The nsIDOMNode interface is the primary datatype for the entire
-        /// Document Object Model.
-        /// It represents a single node in the document tree.
-        ///
-        /// For more information on this interface please see
-        /// http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html
-        /// </summary>
+		/// <summary>Member GetNodeNameAttribute </summary>
+		/// <param name='aNodeName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetNodeNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNodeName);
 		
@@ -13381,14 +13405,8 @@ namespace Gecko
 	public interface nsIDOMSVGFEDistantLightElement : nsIDOMSVGElement
 	{
 		
-		/// <summary>
-        /// The nsIDOMNode interface is the primary datatype for the entire
-        /// Document Object Model.
-        /// It represents a single node in the document tree.
-        ///
-        /// For more information on this interface please see
-        /// http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html
-        /// </summary>
+		/// <summary>Member GetNodeNameAttribute </summary>
+		/// <param name='aNodeName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetNodeNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNodeName);
 		
@@ -13980,14 +13998,8 @@ namespace Gecko
 	public interface nsIDOMSVGFEPointLightElement : nsIDOMSVGElement
 	{
 		
-		/// <summary>
-        /// The nsIDOMNode interface is the primary datatype for the entire
-        /// Document Object Model.
-        /// It represents a single node in the document tree.
-        ///
-        /// For more information on this interface please see
-        /// http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html
-        /// </summary>
+		/// <summary>Member GetNodeNameAttribute </summary>
+		/// <param name='aNodeName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetNodeNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNodeName);
 		
@@ -14585,14 +14597,8 @@ namespace Gecko
 	public interface nsIDOMSVGFESpotLightElement : nsIDOMSVGElement
 	{
 		
-		/// <summary>
-        /// The nsIDOMNode interface is the primary datatype for the entire
-        /// Document Object Model.
-        /// It represents a single node in the document tree.
-        ///
-        /// For more information on this interface please see
-        /// http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html
-        /// </summary>
+		/// <summary>Member GetNodeNameAttribute </summary>
+		/// <param name='aNodeName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetNodeNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNodeName);
 		
@@ -15223,14 +15229,8 @@ namespace Gecko
 	public interface nsIDOMSVGFEImageElement : nsIDOMSVGFilterPrimitiveStandardAttributes
 	{
 		
-		/// <summary>
-        /// The nsIDOMNode interface is the primary datatype for the entire
-        /// Document Object Model.
-        /// It represents a single node in the document tree.
-        ///
-        /// For more information on this interface please see
-        /// http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html
-        /// </summary>
+		/// <summary>Member GetNodeNameAttribute </summary>
+		/// <param name='aNodeName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetNodeNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNodeName);
 		
@@ -15833,14 +15833,8 @@ namespace Gecko
 	public interface nsIDOMSVGFEDisplacementMapElement : nsIDOMSVGFilterPrimitiveStandardAttributes
 	{
 		
-		/// <summary>
-        /// The nsIDOMNode interface is the primary datatype for the entire
-        /// Document Object Model.
-        /// It represents a single node in the document tree.
-        ///
-        /// For more information on this interface please see
-        /// http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html
-        /// </summary>
+		/// <summary>Member GetNodeNameAttribute </summary>
+		/// <param name='aNodeName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetNodeNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNodeName);
 		
@@ -16432,9 +16426,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMSVGAnimatedString GetResultAttribute();
 		
-		/// <summary>
-        /// Channel Selectors
-        /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMSVGAnimatedString GetIn1Attribute();
@@ -16454,5 +16445,27 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMSVGAnimatedEnumeration GetYChannelSelectorAttribute();
+	}
+	
+	/// <summary>nsIDOMSVGFEDisplacementMapElementConsts </summary>
+	public class nsIDOMSVGFEDisplacementMapElementConsts
+	{
+		
+		// <summary>
+        // Channel Selectors
+        // </summary>
+		public const ulong SVG_CHANNEL_UNKNOWN = 0;
+		
+		// 
+		public const ulong SVG_CHANNEL_R = 1;
+		
+		// 
+		public const ulong SVG_CHANNEL_G = 2;
+		
+		// 
+		public const ulong SVG_CHANNEL_B = 3;
+		
+		// 
+		public const ulong SVG_CHANNEL_A = 4;
 	}
 }

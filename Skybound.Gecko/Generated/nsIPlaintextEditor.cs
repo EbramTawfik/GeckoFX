@@ -120,4 +120,111 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void InsertLineBreak();
 	}
+	
+	/// <summary>nsIPlaintextEditorConsts </summary>
+	public class nsIPlaintextEditorConsts
+	{
+		
+		// <summary>
+        // only plain text entry is allowed via events
+        // </summary>
+		public const long eEditorPlaintextMask = 0x0001;
+		
+		// <summary>
+        // enter key and CR-LF handled specially
+        // </summary>
+		public const long eEditorSingleLineMask = 0x0002;
+		
+		// <summary>
+        // text is not entered into content, only a representative character
+        // </summary>
+		public const long eEditorPasswordMask = 0x0004;
+		
+		// <summary>
+        // editing events are disabled.  Editor may still accept focus.
+        // </summary>
+		public const long eEditorReadonlyMask = 0x0008;
+		
+		// <summary>
+        // all events are disabled (like scrolling).  Editor will not accept focus.
+        // </summary>
+		public const long eEditorDisabledMask = 0x0010;
+		
+		// <summary>
+        // text input is limited to certain character types, use mFilter
+        // </summary>
+		public const long eEditorFilterInputMask = 0x0020;
+		
+		// <summary>
+        // use mail-compose editing rules
+        // </summary>
+		public const long eEditorMailMask = 0x0040;
+		
+		// <summary>
+        // prevent immediate reflows and view refreshes
+        // </summary>
+		public const long eEditorUseAsyncUpdatesMask = 0x0080;
+		
+		// <summary>
+        // allow the editor to set font: monospace on the root node
+        // </summary>
+		public const long eEditorEnableWrapHackMask = 0x0100;
+		
+		// <summary>
+        // bit for widgets (form elements)
+        // </summary>
+		public const long eEditorWidgetMask = 0x0200;
+		
+		// <summary>
+        // this HTML editor should not create css styles
+        // </summary>
+		public const long eEditorNoCSSMask = 0x0400;
+		
+		// <summary>
+        // besides, anchors of HTML are not clickable.
+        // </summary>
+		public const long eEditorAllowInteraction = 0x0800;
+		
+		// <summary>
+        // see bug 530367 for the detail.
+        // </summary>
+		public const long eEditorDontEchoPassword = 0x1000;
+		
+		// <summary>
+        // from the text control's content node.
+        // </summary>
+		public const long eEditorRightToLeft = 0x2000;
+		
+		// <summary>
+        // when this flag is set, the internal direction of the editor is LTR.
+        // </summary>
+		public const long eEditorLeftToRight = 0x4000;
+		
+		// <summary>
+        // when this flag is set, the editor's text content is not spell checked.
+        // </summary>
+		public const long eEditorSkipSpellCheck = 0x8000;
+		
+		// <summary>
+        // The valid values for newlines handling.
+        // Can't change the values unless we remove
+        // use of the pref.
+        // </summary>
+		public const long eNewlinesPasteIntact = 0;
+		
+		// 
+		public const long eNewlinesPasteToFirst = 1;
+		
+		// 
+		public const long eNewlinesReplaceWithSpaces = 2;
+		
+		// 
+		public const long eNewlinesStrip = 3;
+		
+		// 
+		public const long eNewlinesReplaceWithCommas = 4;
+		
+		// 
+		public const long eNewlinesStripSurroundingWhitespace = 5;
+	}
 }

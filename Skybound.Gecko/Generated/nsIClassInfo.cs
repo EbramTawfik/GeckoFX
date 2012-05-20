@@ -93,9 +93,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetImplementationLanguageAttribute();
 		
-		/// <summary>
-        /// with this bit set.
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetFlagsAttribute();
 		
@@ -108,5 +105,38 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetClassIDNoAllocAttribute();
+	}
+	
+	/// <summary>nsIClassInfoConsts </summary>
+	public class nsIClassInfoConsts
+	{
+		
+		// <summary>
+        // Bitflags for 'flags' attribute.
+        // </summary>
+		public const long SINGLETON = 1<<0;
+		
+		// 
+		public const long THREADSAFE = 1<<1;
+		
+		// 
+		public const long MAIN_THREAD_ONLY = 1<<2;
+		
+		// 
+		public const long DOM_OBJECT = 1<<3;
+		
+		// 
+		public const long PLUGIN_OBJECT = 1<<4;
+		
+		// <summary>
+        // 'flags' attribute bitflag: whether objects of this type implement
+        // nsIContent.
+        // </summary>
+		public const long CONTENT_NODE = 1<<6;
+		
+		// <summary>
+        // with this bit set.
+        // </summary>
+		public const long RESERVED = 1<<31;
 	}
 }

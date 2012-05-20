@@ -146,4 +146,68 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		Gecko.JsVal GetInfo(System.IntPtr jsContext);
 	}
+	
+	/// <summary>nsIGfxInfoConsts </summary>
+	public class nsIGfxInfoConsts
+	{
+		
+		// <summary>
+        //Whether Direct2D is supported for content rendering. </summary>
+		public const long FEATURE_DIRECT2D = 1;
+		
+		// <summary>
+        //Whether Direct3D 9 is supported for layers. </summary>
+		public const long FEATURE_DIRECT3D_9_LAYERS = 2;
+		
+		// <summary>
+        //Whether Direct3D 10.0 is supported for layers. </summary>
+		public const long FEATURE_DIRECT3D_10_LAYERS = 3;
+		
+		// <summary>
+        //Whether Direct3D 10.1 is supported for layers. </summary>
+		public const long FEATURE_DIRECT3D_10_1_LAYERS = 4;
+		
+		// <summary>
+        //Whether OpenGL is supported for layers </summary>
+		public const long FEATURE_OPENGL_LAYERS = 5;
+		
+		// <summary>
+        //Whether WebGL is supported via OpenGL. </summary>
+		public const long FEATURE_WEBGL_OPENGL = 6;
+		
+		// <summary>
+        //Whether WebGL is supported via ANGLE (D3D9 -- does not check for the presence of ANGLE libs). </summary>
+		public const long FEATURE_WEBGL_ANGLE = 7;
+		
+		// <summary>
+        //Whether WebGL antialiasing is supported. </summary>
+		public const long FEATURE_WEBGL_MSAA = 8;
+		
+		// <summary>
+        //We don't explicitly block or discourage the feature. Which means we'll try getting it from the
+        // hardware, and see what happens. </summary>
+		public const long FEATURE_NO_INFO = 1;
+		
+		// <summary>
+        //We don't know the status of the feature yet. The analysis probably hasn't finished yet. </summary>
+		public const long FEATURE_STATUS_UNKNOWN = 2;
+		
+		// <summary>
+        //This feature is blocked on this driver version. Updating driver will typically unblock it. </summary>
+		public const long FEATURE_BLOCKED_DRIVER_VERSION = 3;
+		
+		// <summary>
+        //This feature is blocked on this device, regardless of driver version.
+        // Typically means we hit too many driver crashes without a good reason to hope for them to
+        // get fixed soon. </summary>
+		public const long FEATURE_BLOCKED_DEVICE = 4;
+		
+		// <summary>
+        //This feature is available and can be used, but is not suggested (e.g. shouldn't be used by default </summary>
+		public const long FEATURE_DISCOURAGED = 5;
+		
+		// <summary>
+        //This feature is blocked on this OS version. </summary>
+		public const long FEATURE_BLOCKED_OS_VERSION = 6;
+	}
 }

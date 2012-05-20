@@ -242,19 +242,27 @@ namespace Gecko
 	{
 	}
 	
-	/// <summary>
-    ///Fragment shader hint </summary>
+	/// <summary>nsIWebGLExtensionStandardDerivativesConsts </summary>
+	public class nsIWebGLExtensionStandardDerivativesConsts
+	{
+		
+		// <summary>
+        //Fragment shader hint </summary>
+		public const long FRAGMENT_SHADER_DERIVATIVE_HINT_OES = 0x8B8B;
+	}
+	
+	/// <summary>nsIWebGLExtensionLoseContext </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("b0afc2eb-0895-4509-98de-5c383d160694")]
 	public interface nsIWebGLExtensionLoseContext : nsIWebGLExtension
 	{
 		
-		/// <summary>
-        ///Fragment shader hint </summary>
+		/// <summary>Member LoseContext </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void LoseContext();
 		
+		/// <summary>Member RestoreContext </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RestoreContext();
 	}
@@ -1366,5 +1374,940 @@ namespace Gecko
 		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetDrawingBufferHeightAttribute();
+	}
+	
+	/// <summary>nsIDOMWebGLRenderingContextConsts </summary>
+	public class nsIDOMWebGLRenderingContextConsts
+	{
+		
+		// <summary>
+        //ClearBufferMask </summary>
+		public const ulong DEPTH_BUFFER_BIT = 0x00000100;
+		
+		// 
+		public const ulong STENCIL_BUFFER_BIT = 0x00000400;
+		
+		// 
+		public const ulong COLOR_BUFFER_BIT = 0x00004000;
+		
+		// <summary>
+        //BeginMode </summary>
+		public const ulong POINTS = 0x0000;
+		
+		// 
+		public const ulong LINES = 0x0001;
+		
+		// 
+		public const ulong LINE_LOOP = 0x0002;
+		
+		// 
+		public const ulong LINE_STRIP = 0x0003;
+		
+		// 
+		public const ulong TRIANGLES = 0x0004;
+		
+		// 
+		public const ulong TRIANGLE_STRIP = 0x0005;
+		
+		// 
+		public const ulong TRIANGLE_FAN = 0x0006;
+		
+		// <summary>
+        //BlendingFactorDest </summary>
+		public const ulong ZERO = 0;
+		
+		// 
+		public const ulong ONE = 1;
+		
+		// 
+		public const ulong SRC_COLOR = 0x0300;
+		
+		// 
+		public const ulong ONE_MINUS_SRC_COLOR = 0x0301;
+		
+		// 
+		public const ulong SRC_ALPHA = 0x0302;
+		
+		// 
+		public const ulong ONE_MINUS_SRC_ALPHA = 0x0303;
+		
+		// 
+		public const ulong DST_ALPHA = 0x0304;
+		
+		// 
+		public const ulong ONE_MINUS_DST_ALPHA = 0x0305;
+		
+		// <summary>
+        //GL_ONE </summary>
+		public const ulong DST_COLOR = 0x0306;
+		
+		// 
+		public const ulong ONE_MINUS_DST_COLOR = 0x0307;
+		
+		// 
+		public const ulong SRC_ALPHA_SATURATE = 0x0308;
+		
+		// <summary>
+        //BlendEquationSeparate </summary>
+		public const ulong FUNC_ADD = 0x8006;
+		
+		// 
+		public const ulong BLEND_EQUATION = 0x8009;
+		
+		// 
+		public const ulong BLEND_EQUATION_RGB = 0x8009;
+		
+		// <summary>
+        //same as BLEND_EQUATION </summary>
+		public const ulong BLEND_EQUATION_ALPHA = 0x883D;
+		
+		// <summary>
+        //BlendSubtract </summary>
+		public const ulong FUNC_SUBTRACT = 0x800A;
+		
+		// 
+		public const ulong FUNC_REVERSE_SUBTRACT = 0x800B;
+		
+		// <summary>
+        //Separate Blend Functions </summary>
+		public const ulong BLEND_DST_RGB = 0x80C8;
+		
+		// 
+		public const ulong BLEND_SRC_RGB = 0x80C9;
+		
+		// 
+		public const ulong BLEND_DST_ALPHA = 0x80CA;
+		
+		// 
+		public const ulong BLEND_SRC_ALPHA = 0x80CB;
+		
+		// 
+		public const ulong CONSTANT_COLOR = 0x8001;
+		
+		// 
+		public const ulong ONE_MINUS_CONSTANT_COLOR = 0x8002;
+		
+		// 
+		public const ulong CONSTANT_ALPHA = 0x8003;
+		
+		// 
+		public const ulong ONE_MINUS_CONSTANT_ALPHA = 0x8004;
+		
+		// 
+		public const ulong BLEND_COLOR = 0x8005;
+		
+		// <summary>
+        //Buffer Objects </summary>
+		public const ulong ARRAY_BUFFER = 0x8892;
+		
+		// 
+		public const ulong ELEMENT_ARRAY_BUFFER = 0x8893;
+		
+		// 
+		public const ulong ARRAY_BUFFER_BINDING = 0x8894;
+		
+		// 
+		public const ulong ELEMENT_ARRAY_BUFFER_BINDING = 0x8895;
+		
+		// 
+		public const ulong STREAM_DRAW = 0x88E0;
+		
+		// 
+		public const ulong STATIC_DRAW = 0x88E4;
+		
+		// 
+		public const ulong DYNAMIC_DRAW = 0x88E8;
+		
+		// 
+		public const ulong BUFFER_SIZE = 0x8764;
+		
+		// 
+		public const ulong BUFFER_USAGE = 0x8765;
+		
+		// 
+		public const ulong CURRENT_VERTEX_ATTRIB = 0x8626;
+		
+		// <summary>
+        //CullFaceMode </summary>
+		public const ulong FRONT = 0x0404;
+		
+		// 
+		public const ulong BACK = 0x0405;
+		
+		// 
+		public const ulong FRONT_AND_BACK = 0x0408;
+		
+		// <summary>
+        //EnableCap </summary>
+		public const ulong TEXTURE_2D = 0x0DE1;
+		
+		// 
+		public const ulong CULL_FACE = 0x0B44;
+		
+		// 
+		public const ulong BLEND = 0x0BE2;
+		
+		// 
+		public const ulong DITHER = 0x0BD0;
+		
+		// 
+		public const ulong STENCIL_TEST = 0x0B90;
+		
+		// 
+		public const ulong DEPTH_TEST = 0x0B71;
+		
+		// 
+		public const ulong SCISSOR_TEST = 0x0C11;
+		
+		// 
+		public const ulong POLYGON_OFFSET_FILL = 0x8037;
+		
+		// 
+		public const ulong SAMPLE_ALPHA_TO_COVERAGE = 0x809E;
+		
+		// 
+		public const ulong SAMPLE_COVERAGE = 0x80A0;
+		
+		// <summary>
+        //ErrorCode </summary>
+		public const ulong NO_ERROR = 0;
+		
+		// 
+		public const ulong INVALID_ENUM = 0x0500;
+		
+		// 
+		public const ulong INVALID_VALUE = 0x0501;
+		
+		// 
+		public const ulong INVALID_OPERATION = 0x0502;
+		
+		// 
+		public const ulong OUT_OF_MEMORY = 0x0505;
+		
+		// <summary>
+        //FrontFaceDirection </summary>
+		public const ulong CW = 0x0900;
+		
+		// 
+		public const ulong CCW = 0x0901;
+		
+		// <summary>
+        //GetPName </summary>
+		public const ulong LINE_WIDTH = 0x0B21;
+		
+		// 
+		public const ulong ALIASED_POINT_SIZE_RANGE = 0x846D;
+		
+		// 
+		public const ulong ALIASED_LINE_WIDTH_RANGE = 0x846E;
+		
+		// 
+		public const ulong CULL_FACE_MODE = 0x0B45;
+		
+		// 
+		public const ulong FRONT_FACE = 0x0B46;
+		
+		// 
+		public const ulong DEPTH_RANGE = 0x0B70;
+		
+		// 
+		public const ulong DEPTH_WRITEMASK = 0x0B72;
+		
+		// 
+		public const ulong DEPTH_CLEAR_VALUE = 0x0B73;
+		
+		// 
+		public const ulong DEPTH_FUNC = 0x0B74;
+		
+		// 
+		public const ulong STENCIL_CLEAR_VALUE = 0x0B91;
+		
+		// 
+		public const ulong STENCIL_FUNC = 0x0B92;
+		
+		// 
+		public const ulong STENCIL_FAIL = 0x0B94;
+		
+		// 
+		public const ulong STENCIL_PASS_DEPTH_FAIL = 0x0B95;
+		
+		// 
+		public const ulong STENCIL_PASS_DEPTH_PASS = 0x0B96;
+		
+		// 
+		public const ulong STENCIL_REF = 0x0B97;
+		
+		// 
+		public const ulong STENCIL_VALUE_MASK = 0x0B93;
+		
+		// 
+		public const ulong STENCIL_WRITEMASK = 0x0B98;
+		
+		// 
+		public const ulong STENCIL_BACK_FUNC = 0x8800;
+		
+		// 
+		public const ulong STENCIL_BACK_FAIL = 0x8801;
+		
+		// 
+		public const ulong STENCIL_BACK_PASS_DEPTH_FAIL = 0x8802;
+		
+		// 
+		public const ulong STENCIL_BACK_PASS_DEPTH_PASS = 0x8803;
+		
+		// 
+		public const ulong STENCIL_BACK_REF = 0x8CA3;
+		
+		// 
+		public const ulong STENCIL_BACK_VALUE_MASK = 0x8CA4;
+		
+		// 
+		public const ulong STENCIL_BACK_WRITEMASK = 0x8CA5;
+		
+		// <summary>
+        //const unsigned long VIEWPORT                       = 0x0BA2;
+        // </summary>
+		public const ulong SCISSOR_BOX = 0x0C10;
+		
+		// <summary>
+        //GL_SCISSOR_TEST </summary>
+		public const ulong COLOR_CLEAR_VALUE = 0x0C22;
+		
+		// 
+		public const ulong COLOR_WRITEMASK = 0x0C23;
+		
+		// 
+		public const ulong UNPACK_ALIGNMENT = 0x0CF5;
+		
+		// 
+		public const ulong PACK_ALIGNMENT = 0x0D05;
+		
+		// 
+		public const ulong MAX_TEXTURE_SIZE = 0x0D33;
+		
+		// 
+		public const ulong MAX_VIEWPORT_DIMS = 0x0D3A;
+		
+		// 
+		public const ulong SUBPIXEL_BITS = 0x0D50;
+		
+		// 
+		public const ulong RED_BITS = 0x0D52;
+		
+		// 
+		public const ulong GREEN_BITS = 0x0D53;
+		
+		// 
+		public const ulong BLUE_BITS = 0x0D54;
+		
+		// 
+		public const ulong ALPHA_BITS = 0x0D55;
+		
+		// 
+		public const ulong DEPTH_BITS = 0x0D56;
+		
+		// 
+		public const ulong STENCIL_BITS = 0x0D57;
+		
+		// 
+		public const ulong POLYGON_OFFSET_UNITS = 0x2A00;
+		
+		// <summary>
+        //GL_POLYGON_OFFSET_FILL </summary>
+		public const ulong POLYGON_OFFSET_FACTOR = 0x8038;
+		
+		// 
+		public const ulong TEXTURE_BINDING_2D = 0x8069;
+		
+		// 
+		public const ulong SAMPLE_BUFFERS = 0x80A8;
+		
+		// 
+		public const ulong SAMPLES = 0x80A9;
+		
+		// 
+		public const ulong SAMPLE_COVERAGE_VALUE = 0x80AA;
+		
+		// 
+		public const ulong SAMPLE_COVERAGE_INVERT = 0x80AB;
+		
+		// <summary>
+        //GL_TEXTURE_WRAP_T </summary>
+		public const ulong NUM_COMPRESSED_TEXTURE_FORMATS = 0x86A2;
+		
+		// 
+		public const ulong COMPRESSED_TEXTURE_FORMATS = 0x86A3;
+		
+		// <summary>
+        //HintMode </summary>
+		public const ulong DONT_CARE = 0x1100;
+		
+		// 
+		public const ulong FASTEST = 0x1101;
+		
+		// 
+		public const ulong NICEST = 0x1102;
+		
+		// <summary>
+        //HintTarget </summary>
+		public const ulong GENERATE_MIPMAP_HINT = 0x8192;
+		
+		// <summary>
+        //DataType </summary>
+		public const ulong BYTE = 0x1400;
+		
+		// 
+		public const ulong UNSIGNED_BYTE = 0x1401;
+		
+		// 
+		public const ulong SHORT = 0x1402;
+		
+		// 
+		public const ulong UNSIGNED_SHORT = 0x1403;
+		
+		// 
+		public const ulong INT = 0x1404;
+		
+		// 
+		public const ulong UNSIGNED_INT = 0x1405;
+		
+		// 
+		public const ulong FLOAT = 0x1406;
+		
+		// <summary>
+        //PixelFormat </summary>
+		public const ulong DEPTH_COMPONENT = 0x1902;
+		
+		// 
+		public const ulong ALPHA = 0x1906;
+		
+		// 
+		public const ulong RGB = 0x1907;
+		
+		// 
+		public const ulong RGBA = 0x1908;
+		
+		// 
+		public const ulong LUMINANCE = 0x1909;
+		
+		// 
+		public const ulong LUMINANCE_ALPHA = 0x190A;
+		
+		// <summary>
+        //GL_UNSIGNED_BYTE </summary>
+		public const ulong UNSIGNED_SHORT_4_4_4_4 = 0x8033;
+		
+		// 
+		public const ulong UNSIGNED_SHORT_5_5_5_1 = 0x8034;
+		
+		// 
+		public const ulong UNSIGNED_SHORT_5_6_5 = 0x8363;
+		
+		// <summary>
+        //Shaders </summary>
+		public const ulong FRAGMENT_SHADER = 0x8B30;
+		
+		// 
+		public const ulong VERTEX_SHADER = 0x8B31;
+		
+		// 
+		public const ulong MAX_VERTEX_ATTRIBS = 0x8869;
+		
+		// 
+		public const ulong MAX_VERTEX_UNIFORM_VECTORS = 0x8DFB;
+		
+		// 
+		public const ulong MAX_VARYING_VECTORS = 0x8DFC;
+		
+		// 
+		public const ulong MAX_COMBINED_TEXTURE_IMAGE_UNITS = 0x8B4D;
+		
+		// 
+		public const ulong MAX_VERTEX_TEXTURE_IMAGE_UNITS = 0x8B4C;
+		
+		// 
+		public const ulong MAX_TEXTURE_IMAGE_UNITS = 0x8872;
+		
+		// 
+		public const ulong MAX_FRAGMENT_UNIFORM_VECTORS = 0x8DFD;
+		
+		// 
+		public const ulong SHADER_TYPE = 0x8B4F;
+		
+		// 
+		public const ulong DELETE_STATUS = 0x8B80;
+		
+		// 
+		public const ulong LINK_STATUS = 0x8B82;
+		
+		// 
+		public const ulong VALIDATE_STATUS = 0x8B83;
+		
+		// 
+		public const ulong ATTACHED_SHADERS = 0x8B85;
+		
+		// 
+		public const ulong ACTIVE_UNIFORMS = 0x8B86;
+		
+		// 
+		public const ulong ACTIVE_ATTRIBUTES = 0x8B89;
+		
+		// 
+		public const ulong SHADING_LANGUAGE_VERSION = 0x8B8C;
+		
+		// 
+		public const ulong CURRENT_PROGRAM = 0x8B8D;
+		
+		// <summary>
+        //StencilFunction </summary>
+		public const ulong NEVER = 0x0200;
+		
+		// 
+		public const ulong LESS = 0x0201;
+		
+		// 
+		public const ulong EQUAL = 0x0202;
+		
+		// 
+		public const ulong LEQUAL = 0x0203;
+		
+		// 
+		public const ulong GREATER = 0x0204;
+		
+		// 
+		public const ulong NOTEQUAL = 0x0205;
+		
+		// 
+		public const ulong GEQUAL = 0x0206;
+		
+		// 
+		public const ulong ALWAYS = 0x0207;
+		
+		// <summary>
+        //GL_ZERO </summary>
+		public const ulong KEEP = 0x1E00;
+		
+		// 
+		public const ulong REPLACE = 0x1E01;
+		
+		// 
+		public const ulong INCR = 0x1E02;
+		
+		// 
+		public const ulong DECR = 0x1E03;
+		
+		// 
+		public const ulong INVERT = 0x150A;
+		
+		// 
+		public const ulong INCR_WRAP = 0x8507;
+		
+		// 
+		public const ulong DECR_WRAP = 0x8508;
+		
+		// <summary>
+        //StringName </summary>
+		public const ulong VENDOR = 0x1F00;
+		
+		// 
+		public const ulong RENDERER = 0x1F01;
+		
+		// 
+		public const ulong VERSION = 0x1F02;
+		
+		// 
+		public const ulong EXTENSIONS = 0x1F03;
+		
+		// <summary>
+        //TextureMagFilter </summary>
+		public const ulong NEAREST = 0x2600;
+		
+		// 
+		public const ulong LINEAR = 0x2601;
+		
+		// <summary>
+        //GL_LINEAR </summary>
+		public const ulong NEAREST_MIPMAP_NEAREST = 0x2700;
+		
+		// 
+		public const ulong LINEAR_MIPMAP_NEAREST = 0x2701;
+		
+		// 
+		public const ulong NEAREST_MIPMAP_LINEAR = 0x2702;
+		
+		// 
+		public const ulong LINEAR_MIPMAP_LINEAR = 0x2703;
+		
+		// <summary>
+        //TextureParameterName </summary>
+		public const ulong TEXTURE_MAG_FILTER = 0x2800;
+		
+		// 
+		public const ulong TEXTURE_MIN_FILTER = 0x2801;
+		
+		// 
+		public const ulong TEXTURE_WRAP_S = 0x2802;
+		
+		// 
+		public const ulong TEXTURE_WRAP_T = 0x2803;
+		
+		// <summary>
+        //GL_TEXTURE_2D </summary>
+		public const ulong TEXTURE = 0x1702;
+		
+		// 
+		public const ulong TEXTURE_CUBE_MAP = 0x8513;
+		
+		// 
+		public const ulong TEXTURE_BINDING_CUBE_MAP = 0x8514;
+		
+		// 
+		public const ulong TEXTURE_CUBE_MAP_POSITIVE_X = 0x8515;
+		
+		// 
+		public const ulong TEXTURE_CUBE_MAP_NEGATIVE_X = 0x8516;
+		
+		// 
+		public const ulong TEXTURE_CUBE_MAP_POSITIVE_Y = 0x8517;
+		
+		// 
+		public const ulong TEXTURE_CUBE_MAP_NEGATIVE_Y = 0x8518;
+		
+		// 
+		public const ulong TEXTURE_CUBE_MAP_POSITIVE_Z = 0x8519;
+		
+		// 
+		public const ulong TEXTURE_CUBE_MAP_NEGATIVE_Z = 0x851A;
+		
+		// 
+		public const ulong MAX_CUBE_MAP_TEXTURE_SIZE = 0x851C;
+		
+		// <summary>
+        //TextureUnit </summary>
+		public const ulong TEXTURE0 = 0x84C0;
+		
+		// 
+		public const ulong TEXTURE1 = 0x84C1;
+		
+		// 
+		public const ulong TEXTURE2 = 0x84C2;
+		
+		// 
+		public const ulong TEXTURE3 = 0x84C3;
+		
+		// 
+		public const ulong TEXTURE4 = 0x84C4;
+		
+		// 
+		public const ulong TEXTURE5 = 0x84C5;
+		
+		// 
+		public const ulong TEXTURE6 = 0x84C6;
+		
+		// 
+		public const ulong TEXTURE7 = 0x84C7;
+		
+		// 
+		public const ulong TEXTURE8 = 0x84C8;
+		
+		// 
+		public const ulong TEXTURE9 = 0x84C9;
+		
+		// 
+		public const ulong TEXTURE10 = 0x84CA;
+		
+		// 
+		public const ulong TEXTURE11 = 0x84CB;
+		
+		// 
+		public const ulong TEXTURE12 = 0x84CC;
+		
+		// 
+		public const ulong TEXTURE13 = 0x84CD;
+		
+		// 
+		public const ulong TEXTURE14 = 0x84CE;
+		
+		// 
+		public const ulong TEXTURE15 = 0x84CF;
+		
+		// 
+		public const ulong TEXTURE16 = 0x84D0;
+		
+		// 
+		public const ulong TEXTURE17 = 0x84D1;
+		
+		// 
+		public const ulong TEXTURE18 = 0x84D2;
+		
+		// 
+		public const ulong TEXTURE19 = 0x84D3;
+		
+		// 
+		public const ulong TEXTURE20 = 0x84D4;
+		
+		// 
+		public const ulong TEXTURE21 = 0x84D5;
+		
+		// 
+		public const ulong TEXTURE22 = 0x84D6;
+		
+		// 
+		public const ulong TEXTURE23 = 0x84D7;
+		
+		// 
+		public const ulong TEXTURE24 = 0x84D8;
+		
+		// 
+		public const ulong TEXTURE25 = 0x84D9;
+		
+		// 
+		public const ulong TEXTURE26 = 0x84DA;
+		
+		// 
+		public const ulong TEXTURE27 = 0x84DB;
+		
+		// 
+		public const ulong TEXTURE28 = 0x84DC;
+		
+		// 
+		public const ulong TEXTURE29 = 0x84DD;
+		
+		// 
+		public const ulong TEXTURE30 = 0x84DE;
+		
+		// 
+		public const ulong TEXTURE31 = 0x84DF;
+		
+		// 
+		public const ulong ACTIVE_TEXTURE = 0x84E0;
+		
+		// <summary>
+        //TextureWrapMode </summary>
+		public const ulong REPEAT = 0x2901;
+		
+		// 
+		public const ulong CLAMP_TO_EDGE = 0x812F;
+		
+		// 
+		public const ulong MIRRORED_REPEAT = 0x8370;
+		
+		// <summary>
+        //Uniform Types </summary>
+		public const ulong FLOAT_VEC2 = 0x8B50;
+		
+		// 
+		public const ulong FLOAT_VEC3 = 0x8B51;
+		
+		// 
+		public const ulong FLOAT_VEC4 = 0x8B52;
+		
+		// 
+		public const ulong INT_VEC2 = 0x8B53;
+		
+		// 
+		public const ulong INT_VEC3 = 0x8B54;
+		
+		// 
+		public const ulong INT_VEC4 = 0x8B55;
+		
+		// 
+		public const ulong BOOL = 0x8B56;
+		
+		// 
+		public const ulong BOOL_VEC2 = 0x8B57;
+		
+		// 
+		public const ulong BOOL_VEC3 = 0x8B58;
+		
+		// 
+		public const ulong BOOL_VEC4 = 0x8B59;
+		
+		// 
+		public const ulong FLOAT_MAT2 = 0x8B5A;
+		
+		// 
+		public const ulong FLOAT_MAT3 = 0x8B5B;
+		
+		// 
+		public const ulong FLOAT_MAT4 = 0x8B5C;
+		
+		// 
+		public const ulong SAMPLER_2D = 0x8B5E;
+		
+		// 
+		public const ulong SAMPLER_CUBE = 0x8B60;
+		
+		// <summary>
+        //Vertex Arrays </summary>
+		public const ulong VERTEX_ATTRIB_ARRAY_ENABLED = 0x8622;
+		
+		// 
+		public const ulong VERTEX_ATTRIB_ARRAY_SIZE = 0x8623;
+		
+		// 
+		public const ulong VERTEX_ATTRIB_ARRAY_STRIDE = 0x8624;
+		
+		// 
+		public const ulong VERTEX_ATTRIB_ARRAY_TYPE = 0x8625;
+		
+		// 
+		public const ulong VERTEX_ATTRIB_ARRAY_NORMALIZED = 0x886A;
+		
+		// 
+		public const ulong VERTEX_ATTRIB_ARRAY_POINTER = 0x8645;
+		
+		// 
+		public const ulong VERTEX_ATTRIB_ARRAY_BUFFER_BINDING = 0x889F;
+		
+		// <summary>
+        //Shader Source </summary>
+		public const ulong COMPILE_STATUS = 0x8B81;
+		
+		// 
+		public const ulong SHADER_COMPILER = 0x8DFA;
+		
+		// <summary>
+        //Shader Precision-Specified Types </summary>
+		public const ulong LOW_FLOAT = 0x8DF0;
+		
+		// 
+		public const ulong MEDIUM_FLOAT = 0x8DF1;
+		
+		// 
+		public const ulong HIGH_FLOAT = 0x8DF2;
+		
+		// 
+		public const ulong LOW_INT = 0x8DF3;
+		
+		// 
+		public const ulong MEDIUM_INT = 0x8DF4;
+		
+		// 
+		public const ulong HIGH_INT = 0x8DF5;
+		
+		// <summary>
+        //Framebuffer Object. </summary>
+		public const ulong FRAMEBUFFER = 0x8D40;
+		
+		// 
+		public const ulong RENDERBUFFER = 0x8D41;
+		
+		// 
+		public const ulong RGBA4 = 0x8056;
+		
+		// 
+		public const ulong RGB5_A1 = 0x8057;
+		
+		// 
+		public const ulong RGB565 = 0x8D62;
+		
+		// 
+		public const ulong DEPTH_COMPONENT16 = 0x81A5;
+		
+		// 
+		public const ulong STENCIL_INDEX = 0x1901;
+		
+		// 
+		public const ulong STENCIL_INDEX8 = 0x8D48;
+		
+		// 
+		public const ulong DEPTH_STENCIL = 0x84F9;
+		
+		// 
+		public const ulong RENDERBUFFER_WIDTH = 0x8D42;
+		
+		// 
+		public const ulong RENDERBUFFER_HEIGHT = 0x8D43;
+		
+		// 
+		public const ulong RENDERBUFFER_INTERNAL_FORMAT = 0x8D44;
+		
+		// 
+		public const ulong RENDERBUFFER_RED_SIZE = 0x8D50;
+		
+		// 
+		public const ulong RENDERBUFFER_GREEN_SIZE = 0x8D51;
+		
+		// 
+		public const ulong RENDERBUFFER_BLUE_SIZE = 0x8D52;
+		
+		// 
+		public const ulong RENDERBUFFER_ALPHA_SIZE = 0x8D53;
+		
+		// 
+		public const ulong RENDERBUFFER_DEPTH_SIZE = 0x8D54;
+		
+		// 
+		public const ulong RENDERBUFFER_STENCIL_SIZE = 0x8D55;
+		
+		// 
+		public const ulong FRAMEBUFFER_ATTACHMENT_OBJECT_TYPE = 0x8CD0;
+		
+		// 
+		public const ulong FRAMEBUFFER_ATTACHMENT_OBJECT_NAME = 0x8CD1;
+		
+		// 
+		public const ulong FRAMEBUFFER_ATTACHMENT_TEXTURE_LEVEL = 0x8CD2;
+		
+		// 
+		public const ulong FRAMEBUFFER_ATTACHMENT_TEXTURE_CUBE_MAP_FACE = 0x8CD3;
+		
+		// 
+		public const ulong COLOR_ATTACHMENT0 = 0x8CE0;
+		
+		// 
+		public const ulong DEPTH_ATTACHMENT = 0x8D00;
+		
+		// 
+		public const ulong STENCIL_ATTACHMENT = 0x8D20;
+		
+		// 
+		public const ulong DEPTH_STENCIL_ATTACHMENT = 0x821A;
+		
+		// 
+		public const ulong NONE = 0;
+		
+		// 
+		public const ulong FRAMEBUFFER_COMPLETE = 0x8CD5;
+		
+		// 
+		public const ulong FRAMEBUFFER_INCOMPLETE_ATTACHMENT = 0x8CD6;
+		
+		// 
+		public const ulong FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT = 0x8CD7;
+		
+		// 
+		public const ulong FRAMEBUFFER_INCOMPLETE_DIMENSIONS = 0x8CD9;
+		
+		// 
+		public const ulong FRAMEBUFFER_UNSUPPORTED = 0x8CDD;
+		
+		// 
+		public const ulong FRAMEBUFFER_BINDING = 0x8CA6;
+		
+		// 
+		public const ulong RENDERBUFFER_BINDING = 0x8CA7;
+		
+		// 
+		public const ulong MAX_RENDERBUFFER_SIZE = 0x84E8;
+		
+		// 
+		public const ulong INVALID_FRAMEBUFFER_OPERATION = 0x0506;
+		
+		// 
+		public const ulong UNPACK_FLIP_Y_WEBGL = 0x9240;
+		
+		// 
+		public const ulong UNPACK_PREMULTIPLY_ALPHA_WEBGL = 0x9241;
+		
+		// 
+		public const ulong CONTEXT_LOST_WEBGL = 0x9242;
+		
+		// 
+		public const ulong UNPACK_COLORSPACE_CONVERSION_WEBGL = 0x9243;
+		
+		// 
+		public const ulong BROWSER_DEFAULT_WEBGL = 0x9244;
 	}
 }

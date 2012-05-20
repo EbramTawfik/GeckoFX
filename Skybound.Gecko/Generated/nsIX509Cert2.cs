@@ -247,9 +247,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool Equals([MarshalAs(UnmanagedType.Interface)] nsIX509Cert other);
 		
-		/// <summary>
-        /// Additional constants to classify the type of a certificate.
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetCertTypeAttribute();
 		
@@ -258,5 +255,15 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetCert();
+	}
+	
+	/// <summary>nsIX509Cert2Consts </summary>
+	public class nsIX509Cert2Consts
+	{
+		
+		// <summary>
+        // Additional constants to classify the type of a certificate.
+        // </summary>
+		public const ulong ANY_CERT = 0xffff;
 	}
 }

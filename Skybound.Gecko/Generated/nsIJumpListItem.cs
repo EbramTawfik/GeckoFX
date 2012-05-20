@@ -63,6 +63,37 @@ namespace Gecko
 		bool Equals([MarshalAs(UnmanagedType.Interface)] nsIJumpListItem item);
 	}
 	
+	/// <summary>nsIJumpListItemConsts </summary>
+	public class nsIJumpListItemConsts
+	{
+		
+		// <summary>
+        // Implements Win7 Taskbar jump list item interfaces.
+        //
+        // Note to consumers: it's reasonable to expect we'll need support for other types
+        // of jump list items (an audio file, an email message, etc.). To add types,
+        // create the specific interface here, add an implementation class to WinJumpListItem,
+        // and add support to addListBuild & removed items processing.
+        //
+        // </summary>
+		public const int JUMPLIST_ITEM_EMPTY = 0;
+		
+		// <summary>
+        // Empty list item
+        // </summary>
+		public const int JUMPLIST_ITEM_SEPARATOR = 1;
+		
+		// <summary>
+        // Separator
+        // </summary>
+		public const int JUMPLIST_ITEM_LINK = 2;
+		
+		// <summary>
+        // Web link item
+        // </summary>
+		public const int JUMPLIST_ITEM_SHORTCUT = 3;
+	}
+	
 	/// <summary>
     /// A menu separator.
     /// </summary>

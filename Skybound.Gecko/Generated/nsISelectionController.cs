@@ -277,4 +277,82 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool CheckVisibilityContent(System.IntPtr node, short startOffset, short endOffset);
 	}
+	
+	/// <summary>nsISelectionControllerConsts </summary>
+	public class nsISelectionControllerConsts
+	{
+		
+		// 
+		public const int SELECTION_NONE = 0;
+		
+		// 
+		public const int SELECTION_NORMAL = 1;
+		
+		// 
+		public const int SELECTION_SPELLCHECK = 2;
+		
+		// 
+		public const int SELECTION_IME_RAWINPUT = 4;
+		
+		// 
+		public const int SELECTION_IME_SELECTEDRAWTEXT = 8;
+		
+		// 
+		public const int SELECTION_IME_CONVERTEDTEXT = 16;
+		
+		// 
+		public const int SELECTION_IME_SELECTEDCONVERTEDTEXT = 32;
+		
+		// 
+		public const int SELECTION_ACCESSIBILITY = 64;
+		
+		// <summary>
+        // For accessibility API usage
+        // </summary>
+		public const int SELECTION_FIND = 128;
+		
+		// 
+		public const int SELECTION_URLSECONDARY = 256;
+		
+		// 
+		public const int NUM_SELECTIONTYPES = 10;
+		
+		// 
+		public const int SELECTION_ANCHOR_REGION = 0;
+		
+		// 
+		public const int SELECTION_FOCUS_REGION = 1;
+		
+		// 
+		public const int SELECTION_WHOLE_SELECTION = 2;
+		
+		// 
+		public const int NUM_SELECTION_REGIONS = 3;
+		
+		// 
+		public const int SELECTION_OFF = 0;
+		
+		// 
+		public const int SELECTION_HIDDEN = 1;
+		
+		// <summary>
+        //>HIDDEN displays selection
+        // </summary>
+		public const int SELECTION_ON = 2;
+		
+		// 
+		public const int SELECTION_DISABLED = 3;
+		
+		// 
+		public const int SELECTION_ATTENTION = 4;
+		
+		// 
+		public const int SCROLL_SYNCHRONOUS = 1<<1;
+		
+		// 
+		public const int SCROLL_FIRST_ANCESTOR_ONLY = 1<<2;
+		
+		// 
+		public const int SCROLL_CENTER_VERTICALLY = 1<<4;
+	}
 }

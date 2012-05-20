@@ -36,9 +36,6 @@ namespace Gecko
 	public interface nsIDOMXPathResult
 	{
 		
-		/// <summary>
-        /// XPathResultType
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		ushort GetResultTypeAttribute();
 		
@@ -85,5 +82,42 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMNode SnapshotItem(uint index);
+	}
+	
+	/// <summary>nsIDOMXPathResultConsts </summary>
+	public class nsIDOMXPathResultConsts
+	{
+		
+		// <summary>
+        // XPathResultType
+        // </summary>
+		public const ulong ANY_TYPE = 0;
+		
+		// 
+		public const ulong NUMBER_TYPE = 1;
+		
+		// 
+		public const ulong STRING_TYPE = 2;
+		
+		// 
+		public const ulong BOOLEAN_TYPE = 3;
+		
+		// 
+		public const ulong UNORDERED_NODE_ITERATOR_TYPE = 4;
+		
+		// 
+		public const ulong ORDERED_NODE_ITERATOR_TYPE = 5;
+		
+		// 
+		public const ulong UNORDERED_NODE_SNAPSHOT_TYPE = 6;
+		
+		// 
+		public const ulong ORDERED_NODE_SNAPSHOT_TYPE = 7;
+		
+		// 
+		public const ulong ANY_UNORDERED_NODE_TYPE = 8;
+		
+		// 
+		public const ulong FIRST_ORDERED_NODE_TYPE = 9;
 	}
 }

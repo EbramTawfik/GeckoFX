@@ -245,4 +245,76 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetQoSBitsAttribute(System.IntPtr aQoSBits);
 	}
+	
+	/// <summary>nsISocketTransportConsts </summary>
+	public class nsISocketTransportConsts
+	{
+		
+		// <summary>
+        // Values for the aType parameter passed to get/setTimeout.
+        // </summary>
+		public const ulong TIMEOUT_CONNECT = 0;
+		
+		// 
+		public const ulong TIMEOUT_READ_WRITE = 1;
+		
+		// <summary>
+        // nsITransportEventSink status codes.
+        //
+        // Although these look like XPCOM error codes and are passed in an nsresult
+        // variable, they are *not* error codes.  Note that while they *do* overlap
+        // with existing error codes in Necko, these status codes are confined
+        // within a very limited context where no error codes may appear, so there
+        // is no ambiguity.
+        //
+        // The values of these status codes must never change.
+        //
+        // The status codes appear in near-chronological order (not in numeric
+        // order).  STATUS_RESOLVING may be skipped if the host does not need to be
+        // resolved.  STATUS_WAITING_FOR is an optional status code, which the impl
+        // of this interface may choose not to generate.
+        // </summary>
+		public const ulong STATUS_RESOLVING = 0x804b0003;
+		
+		// 
+		public const ulong STATUS_RESOLVED = 0x804b000b;
+		
+		// 
+		public const ulong STATUS_CONNECTING_TO = 0x804b0007;
+		
+		// 
+		public const ulong STATUS_CONNECTED_TO = 0x804b0004;
+		
+		// 
+		public const ulong STATUS_SENDING_TO = 0x804b0005;
+		
+		// 
+		public const ulong STATUS_WAITING_FOR = 0x804b000a;
+		
+		// 
+		public const ulong STATUS_RECEIVING_FROM = 0x804b0006;
+		
+		// <summary>
+        // Values for the connectionFlags
+        //
+        // When making a new connection BYPASS_CACHE will force the Necko DNS
+        // cache entry to be refreshed with a new call to NSPR if it is set before
+        // opening the new stream.
+        // </summary>
+		public const ulong BYPASS_CACHE = (1<<0);
+		
+		// <summary>
+        // When setting this flag, the socket will not apply any
+        // credentials when establishing a connection. For example,
+        // an SSL connection would not send any client-certificates
+        // if this flag is set.
+        // </summary>
+		public const ulong ANONYMOUS_CONNECT = (1<<1);
+		
+		// <summary>
+        // If set, we will skip all IPv6 addresses the host may have and only
+        // connect to IPv4 ones.
+        // </summary>
+		public const ulong DISABLE_IPV6 = (1<<2);
+	}
 }

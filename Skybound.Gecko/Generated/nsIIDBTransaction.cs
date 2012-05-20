@@ -99,4 +99,30 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOnabortAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnabort);
 	}
+	
+	/// <summary>nsIIDBTransactionConsts </summary>
+	public class nsIIDBTransactionConsts
+	{
+		
+		// 
+		public const ulong INITIAL = 0;
+		
+		// 
+		public const ulong LOADING = 1;
+		
+		// 
+		public const ulong COMMITTING = 2;
+		
+		// 
+		public const ulong DONE = 3;
+		
+		// 
+		public const ulong READ_ONLY = 0;
+		
+		// 
+		public const ulong READ_WRITE = 1;
+		
+		// 
+		public const ulong VERSION_CHANGE = 2;
+	}
 }

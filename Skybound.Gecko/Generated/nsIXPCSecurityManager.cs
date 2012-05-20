@@ -56,10 +56,55 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void CanGetService(System.IntPtr aJSContext, ref System.Guid aCID);
 		
-		/// <summary>
-        /// Used for aAction below
-        /// </summary>
+		/// <summary>Member CanAccess </summary>
+		/// <param name='aAction'> </param>
+		/// <param name='aCallContext'> </param>
+		/// <param name='aJSContext'> </param>
+		/// <param name='aJSObject'> </param>
+		/// <param name='aObj'> </param>
+		/// <param name='aClassInfo'> </param>
+		/// <param name='aName'> </param>
+		/// <param name='aPolicy'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void CanAccess(uint aAction, System.IntPtr aCallContext, System.IntPtr aJSContext, System.IntPtr aJSObject, [MarshalAs(UnmanagedType.Interface)] nsISupports aObj, [MarshalAs(UnmanagedType.Interface)] nsIClassInfo aClassInfo, System.IntPtr aName, ref System.IntPtr aPolicy);
+	}
+	
+	/// <summary>nsIXPCSecurityManagerConsts </summary>
+	public class nsIXPCSecurityManagerConsts
+	{
+		
+		// <summary>
+        // These flags are used when calling nsIXPConnect::SetSecurityManager
+        // </summary>
+		public const long HOOK_CREATE_WRAPPER = 1<<0;
+		
+		// 
+		public const long HOOK_CREATE_INSTANCE = 1<<1;
+		
+		// 
+		public const long HOOK_GET_SERVICE = 1<<2;
+		
+		// 
+		public const long HOOK_CALL_METHOD = 1<<3;
+		
+		// 
+		public const long HOOK_GET_PROPERTY = 1<<4;
+		
+		// 
+		public const long HOOK_SET_PROPERTY = 1<<5;
+		
+		// 
+		public const long HOOK_ALL = HOOK_CREATE_WRAPPER|HOOK_CREATE_INSTANCE|HOOK_GET_SERVICE|HOOK_CALL_METHOD|HOOK_GET_PROPERTY|HOOK_SET_PROPERTY;
+		
+		// <summary>
+        // Used for aAction below
+        // </summary>
+		public const long ACCESS_CALL_METHOD = 0;
+		
+		// 
+		public const long ACCESS_GET_PROPERTY = 1;
+		
+		// 
+		public const long ACCESS_SET_PROPERTY = 2;
 	}
 }

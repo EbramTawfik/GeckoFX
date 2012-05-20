@@ -637,4 +637,34 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void AsyncDrawXULElement([MarshalAs(UnmanagedType.Interface)] nsIDOMXULElement elem, float x, float y, float w, float h, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase bgColor, uint flags);
 	}
+	
+	/// <summary>nsIDOMCanvasRenderingContext2DConsts </summary>
+	public class nsIDOMCanvasRenderingContext2DConsts
+	{
+		
+		// <summary>
+        // Show the caret if appropriate when drawing
+        // </summary>
+		public const ulong DRAWWINDOW_DRAW_CARET = 0x01;
+		
+		// <summary>
+        // be batched up
+        // </summary>
+		public const ulong DRAWWINDOW_DO_NOT_FLUSH = 0x02;
+		
+		// <summary>
+        // Draw scrollbars and scroll the viewport if they are present
+        // </summary>
+		public const ulong DRAWWINDOW_DRAW_VIEW = 0x04;
+		
+		// <summary>
+        // the pixels rendered to the screen.
+        // </summary>
+		public const ulong DRAWWINDOW_USE_WIDGET_LAYERS = 0x08;
+		
+		// <summary>
+        // Don't synchronously decode images - draw what we have
+        // </summary>
+		public const ulong DRAWWINDOW_ASYNC_DECODE_IMAGES = 0x10;
+	}
 }

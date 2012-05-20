@@ -343,4 +343,25 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ResetBranch([MarshalAs(UnmanagedType.LPStr)] string aStartingAt);
 	}
+	
+	/// <summary>nsIPrefBranchConsts </summary>
+	public class nsIPrefBranchConsts
+	{
+		
+		// <summary>
+        // Values describing the basic preference types.
+        //
+        // @see getPrefType
+        // </summary>
+		public const long PREF_INVALID = 0;
+		
+		// 
+		public const long PREF_STRING = 32;
+		
+		// 
+		public const long PREF_INT = 64;
+		
+		// 
+		public const long PREF_BOOL = 128;
+	}
 }

@@ -184,4 +184,31 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void FindURLInPlaintext([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string text, int aLength, int aPos, ref int aStartPos, ref int aEndPos);
 	}
+	
+	/// <summary>mozITXTToHTMLConvConsts </summary>
+	public class mozITXTToHTMLConvConsts
+	{
+		
+		// <summary>
+        //Description: Currently only functions to enhance plain text with HTML tags.
+        //  <p>
+        //  Wrapper class for various parsing routines, that convert plain text to HTML.
+        //  They try to recognize cites, URLs, plain text formattting like *bold* etc.
+        //  See <http://www.bucksch.org/1/projects/mozilla/16507/> for a description.
+        // </summary>
+		public const ulong kEntities = 0;
+		
+		// <summary>
+        // just convert < & > to &lt; &amp; and &gt;
+        // </summary>
+		public const ulong kURLs = 1<<1;
+		
+		// 
+		public const ulong kGlyphSubstitution = 1<<2;
+		
+		// <summary>
+        // Smilies, &reg; etc.
+        // </summary>
+		public const ulong kStructPhrase = 1<<3;
+	}
 }

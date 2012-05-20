@@ -65,4 +65,21 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		ushort GetStatusAttribute();
 	}
+	
+	/// <summary>nsIDOMLoadStatusConsts </summary>
+	public class nsIDOMLoadStatusConsts
+	{
+		
+		// 
+		public const ulong UNINITIALIZED = 0;
+		
+		// 
+		public const ulong REQUESTED = 1;
+		
+		// 
+		public const ulong RECEIVING = 2;
+		
+		// 
+		public const ulong LOADED = 3;
+	}
 }

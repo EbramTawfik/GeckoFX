@@ -155,4 +155,12 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetConverterAttribute([MarshalAs(UnmanagedType.Interface)] nsIFormatConverter aConverter);
 	}
+	
+	/// <summary>nsITransferableConsts </summary>
+	public class nsITransferableConsts
+	{
+		
+		// 
+		public const long kFlavorHasDataProvider = 0;
+	}
 }

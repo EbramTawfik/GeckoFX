@@ -53,4 +53,20 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int CookieDialog([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow parent, [MarshalAs(UnmanagedType.Interface)] nsICookie cookie, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase hostname, int cookiesFromHost, [MarshalAs(UnmanagedType.U1)] bool changingCookie, [MarshalAs(UnmanagedType.U1)] ref bool rememberDecision);
 	}
+	
+	/// <summary>nsICookiePromptServiceConsts </summary>
+	public class nsICookiePromptServiceConsts
+	{
+		
+		// <summary>
+        // An interface to open a dialog to ask to permission to accept the cookie.
+        // </summary>
+		public const long DENY_COOKIE = 0;
+		
+		// 
+		public const long ACCEPT_COOKIE = 1;
+		
+		// 
+		public const long ACCEPT_SESSION_COOKIE = 2;
+	}
 }
