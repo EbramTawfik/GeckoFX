@@ -6,7 +6,7 @@ using Gecko.Interop;
 
 namespace Gecko
 {
-	internal static class AppShellService
+	public static class AppShellService
 	{
 		private static ServiceWrapper<nsIAppShellService> _appShellService;
 
@@ -22,7 +22,7 @@ namespace Gecko
 			_appShellService.Instance.CreateHiddenWindow();
 		}
 
-		internal static nsIXULWindow CreateTopLevelWindow( nsIXULWindow aParent,  nsIURI aUrl, uint aChromeMask, int aInitialWidth, int aInitialHeight)
+		public static nsIXULWindow CreateTopLevelWindow( nsIXULWindow aParent,  nsIURI aUrl, uint aChromeMask, int aInitialWidth, int aInitialHeight)
 		{
 			return _appShellService.Instance.CreateTopLevelWindow( aParent, aUrl, aChromeMask, aInitialWidth, aInitialHeight );
 		}

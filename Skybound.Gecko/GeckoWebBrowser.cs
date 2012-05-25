@@ -124,14 +124,16 @@ namespace Gecko
 			if (!Environment.HasShutdownStarted && !AppDomain.CurrentDomain.IsFinalizingForUnload())
 			{
 				// make sure the object is still alive before we call a method on it
-				var webNav = Xpcom.QueryInterface<nsIWebNavigation>( WebNav );
-				if (webNav != null)
+				if (WebNav != null)
 				{
-					webNav.Stop(nsIWebNavigationConstants.STOP_ALL);
-					Marshal.ReleaseComObject( webNav );
+					var webNav = Xpcom.QueryInterface<nsIWebNavigation>( WebNav );
+					if ( webNav != null )
+					{
+						webNav.Stop( nsIWebNavigationConstants.STOP_ALL );
+						Marshal.ReleaseComObject( webNav );
+					}
+					WebNav = null;
 				}
-				WebNav = null;
-
 				Cleanup();
 			}
 
@@ -146,11 +148,13 @@ namespace Gecko
 		// This method should only run on the Main Thread.
 		private void Cleanup()
 		{
-			var baseWindow = Xpcom.QueryInterface<nsIBaseWindow>(BaseWindow);
-			if (baseWindow != null)
+			// If control is not shown simply return
+			if (BaseWindow == null) return;
+			var baseWindow = Xpcom.QueryInterface<nsIBaseWindow>( BaseWindow );
+			if ( baseWindow != null )
 			{
 				baseWindow.Destroy();
-				Marshal.ReleaseComObject(baseWindow);
+				Marshal.ReleaseComObject( baseWindow );
 			}
 			BaseWindow = null;
 		}
@@ -187,11 +191,10 @@ namespace Gecko
 
 		protected void RemoveJsContextCallBack()
 		{
-            Xpcom.AssertCorrectThread();
-
 			if (_jsRuntime == IntPtr.Zero)
 				return;
 
+            Xpcom.AssertCorrectThread();
 			SpiderMonkey.JS_SetContextCallback(_jsRuntime, _originalContextCallBack);
 		}
 
