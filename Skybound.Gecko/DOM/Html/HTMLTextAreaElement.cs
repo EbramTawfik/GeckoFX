@@ -18,74 +18,142 @@ namespace Gecko.DOM
 		{
 			this.DOMHTMLElement = element as nsIDOMHTMLTextAreaElement;
 		}
-		public string DefaultValue {
-			get { return nsString.Get(DOMHTMLElement.GetDefaultValueAttribute); }
-			set { DOMHTMLElement.SetDefaultValueAttribute(new nsAString(value)); }
+		
+		#region nsIDOMHTMLTextAreaElement members
+		public bool Autofocus
+		{
+			get { return DOMHTMLElement.GetAutofocusAttribute(); }
+			set { DOMHTMLElement.SetAutofocusAttribute(value); }
 		}
 
-		public GeckoFormElement Form {
-			get { return new GeckoFormElement(DOMHTMLElement.GetFormAttribute()); }
-		}
-
-		public string AccessKey {
-			get { return nsString.Get(DOMHTMLElement.GetAccessKeyAttribute); }
-			set { DOMHTMLElement.SetAccessKeyAttribute(new nsAString(value)); }
-		}
-
-		public uint Cols {
+		public uint Cols
+		{
 			get { return DOMHTMLElement.GetColsAttribute(); }
 			set { DOMHTMLElement.SetColsAttribute(value); }
 		}
 
-		public bool Disabled {
+		public bool Disabled
+		{
 			get { return DOMHTMLElement.GetDisabledAttribute(); }
 			set { DOMHTMLElement.SetDisabledAttribute(value); }
 		}
 
-		public string Name {
-			get { return nsString.Get(DOMHTMLElement.GetNameAttribute); }
-			set { DOMHTMLElement.SetNameAttribute(new nsAString(value)); }
+		public GeckoFormElement Form
+		{
+			get { return new GeckoFormElement(DOMHTMLElement.GetFormAttribute()); }
 		}
 
-		public bool ReadOnly {
+		public int MaxLength 
+		{
+			get { return DOMHTMLElement.GetMaxLengthAttribute(); }
+			set { DOMHTMLElement.SetMaxLengthAttribute(value); }
+		}
+
+		public string Name
+		{
+			get { return nsString.Get(DOMHTMLElement.GetNameAttribute); }
+			set { nsString.Set(DOMHTMLElement.SetNameAttribute, value); }
+		}
+
+		public string Placeholder
+		{
+			get { return nsString.Get(DOMHTMLElement.GetPlaceholderAttribute); }
+			set { nsString.Set(DOMHTMLElement.SetPlaceholderAttribute, value); }
+		}
+
+		public bool ReadOnly
+		{
 			get { return DOMHTMLElement.GetReadOnlyAttribute(); }
 			set { DOMHTMLElement.SetReadOnlyAttribute(value); }
 		}
 
-		public uint Rows {
+		public bool Required
+		{
+			get { return DOMHTMLElement.GetRequiredAttribute(); }
+			set { DOMHTMLElement.SetRequiredAttribute(value); }
+		}
+
+		public uint Rows
+		{
 			get { return DOMHTMLElement.GetRowsAttribute(); }
 			set { DOMHTMLElement.SetRowsAttribute(value); }
 		}
 
-		public new int TabIndex {
-			get { return DOMHTMLElement.GetTabIndexAttribute(); }
-			set { DOMHTMLElement.SetTabIndexAttribute(value); }
+		public string Wrap
+		{
+			get { return nsString.Get(DOMHTMLElement.GetWrapAttribute); }
+			set { nsString.Set(DOMHTMLElement.SetWrapAttribute, value); }
 		}
 
-		public string Type {
+		public string Type
+		{
 			get { return nsString.Get(DOMHTMLElement.GetTypeAttribute); }
 		}
 
-		public string Value {
+		public string DefaultValue {
+			get { return nsString.Get(DOMHTMLElement.GetDefaultValueAttribute); }
+			set { nsString.Set(DOMHTMLElement.SetDefaultValueAttribute, value); }
+		}
+
+		public string Value
+		{
 			get { return nsString.Get(DOMHTMLElement.GetValueAttribute); }
-			set { DOMHTMLElement.SetValueAttribute(new nsAString(value)); }
+			set { nsString.Set(DOMHTMLElement.SetValueAttribute, value); }
 		}
 
-		public void blur()
+		public int TextLength
 		{
-			DOMHTMLElement.Blur();
+			get { return DOMHTMLElement.GetTextLengthAttribute(); }
 		}
 
-		public void focus()
+		public bool WillValidate
 		{
-			DOMHTMLElement.Focus();
+			get { return DOMHTMLElement.GetWillValidateAttribute(); }
+		}
+		
+		public string ValidationMessage
+		{
+			get { return nsString.Get(DOMHTMLElement.GetValidationMessageAttribute); }
 		}
 
-		public void select()
+		public bool CheckValidity()
+		{
+			return DOMHTMLElement.CheckValidity();
+		}
+
+		public void SetCustomValidity(string error)
+		{
+			DOMHTMLElement.SetCustomValidity(new nsAString(error));
+		}
+
+		public void Select()
 		{
 			DOMHTMLElement.Select();
 		}
 
+		public int SelectionStart
+		{
+			get { return DOMHTMLElement.GetSelectionStartAttribute(); }
+			set { DOMHTMLElement.SetSelectionStartAttribute(value); }				
+		}
+
+		public int SelectionEnd
+		{
+			get { return DOMHTMLElement.GetSelectionEndAttribute(); }
+			set { DOMHTMLElement.SetSelectionEndAttribute(value); }
+		}
+
+		public void SetSelectionRange(int selectionStart, int selectionEnd, string direction)
+		{
+			DOMHTMLElement.SetSelectionRange(selectionStart, selectionEnd, new nsAString(direction));
+		}
+
+		public string SelectionDirection
+		{
+			get { return nsString.Get(DOMHTMLElement.GetSelectionDirectionAttribute); }
+			set { nsString.Set(DOMHTMLElement.SetSelectionDirectionAttribute, value); }
+		}
+		#endregion
 	}
 }
 

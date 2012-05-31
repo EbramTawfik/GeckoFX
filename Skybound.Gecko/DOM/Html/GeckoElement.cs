@@ -86,6 +86,12 @@ namespace Gecko
 			DomElement.Blur();
 		}
 
+		public string AccessKey
+		{
+			get { return nsString.Get(DomElement.GetAccessKeyAttribute); }
+			set { DomElement.SetAccessKeyAttribute(new nsAString(value)); }
+		}
+
 		public void Focus()
 		{
 			DomElement.Focus();
