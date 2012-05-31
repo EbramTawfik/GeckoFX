@@ -68,6 +68,7 @@
     <Compile Include="GeckoElementTests.cs" />
     <Compile Include="GeckoInputElementTests.cs" />
     <Compile Include="GeckoMIMEInputStreamTests.cs" />
+    <Compile Include="GeckoStyleTests.cs" />
     <Compile Include="GeckoWebBrowserTestExtensionMethods.cs" />
     <Compile Include="GeckoWebBrowserTests.cs" />
     <Compile Include="IOServiceTests.cs" />
