@@ -87,5 +87,14 @@ namespace GeckofxUnitTests
 			Assert.NotNull(element);
 			Assert.AreEqual(typeof(GeckoFrameSetElement), element.GetType());
 		}
+
+		[Test]
+		public void Forms_GetTwoFormsInADocument()
+		{
+			browser.TestLoadHtml("<form id=\"a\">hello world</form><form id=\"b\">hi</form>");
+
+			Assert.AreEqual(2, browser.Document.Forms.Count);
+			Assert.AreEqual("a", browser.Document.Forms[0].Id);
+		}
 	}
 }

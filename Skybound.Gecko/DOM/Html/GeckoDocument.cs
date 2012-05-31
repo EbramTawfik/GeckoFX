@@ -113,7 +113,7 @@ namespace Gecko
 			get { return new Uri(nsString.Get(_domHtmlDocument.GetURLAttribute)); }
 		}
 		
-		public GeckoElementCollection Frames
+		public GeckoElementCollection Forms
 		{
 			get { return new GeckoHtmlElementCollection(_domHtmlDocument.GetFormsAttribute()); }
 		}
