@@ -163,7 +163,7 @@ namespace Gecko
 
 		private NodeType m_cachedType;
 
-		public NodeType Type
+		public NodeType NodeType
 		{
 			get {
 				if (m_cachedType != 0)
