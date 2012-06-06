@@ -1925,9 +1925,11 @@ namespace Gecko
 
 		public void Observe(nsISupports aSubject, string aTopic, string aData) {
 			if (aTopic.Equals(ObserverNotifications.HttpRequests.HttpOnModifyRequest)) {
-				using (httpChannel = HttpChannel.Create(aSubject)) {
+				using (var httpChannel = HttpChannel.Create(aSubject)) {
 
 					var origUri = httpChannel.OriginalUri;
+					if (origUri.Equals("http://ocsp.thawte.com/"))
+						return;
 
 					var uri = httpChannel.Uri;
 					var uriRef = httpChannel.Referrer;
@@ -1935,7 +1937,7 @@ namespace Gecko
 					var reqHeaders = httpChannel.GetRequestHeaders();
 					var reqBody = "";
 
-					var evt = new GeckoObserveHttpModifyRequestEventArgs(uri, uriRef, reqMethod, reqBody, reqHeaders);
+					var evt = new GeckoObserveHttpModifyRequestEventArgs(uri, uriRef, reqMethod, reqBody, reqHeaders, httpChannel);
 
 					#region POST data
 
@@ -1966,6 +1968,7 @@ namespace Gecko
 								reqBody = sb.ToString();
 							}
 						}
+
 					}
 
 					#endregion POST data

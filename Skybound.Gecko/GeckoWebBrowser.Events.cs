@@ -1342,19 +1342,21 @@ namespace Gecko
 		public readonly string RequestMethod;
 		public readonly string RequestBody;
 		public readonly Dictionary<string, string> RequestHeaders;
+		public readonly HttpChannel Channel;
 
 		/// <summary>Creates a new instance of a <see cref="GeckoObserveHttpModifyRequestEventArgs"/> object.</summary>
 		/// <param name="value"></param>
 		/// <param name="refVal"></param>
 		/// <param name="reqMethod"></param>
 		/// <param name="reqData"></param>
-		public GeckoObserveHttpModifyRequestEventArgs(Uri value, Uri refVal, String reqMethod, String reqBody, Dictionary<string, string> reqHeaders)
+		public GeckoObserveHttpModifyRequestEventArgs(Uri value, Uri refVal, String reqMethod, String reqBody, Dictionary<string, string> reqHeaders, HttpChannel httpChan)
 			: base(false) {
 			Uri = value;
 			Referrer = refVal;
 			RequestMethod = reqMethod;
 			RequestBody = reqBody;
 			RequestHeaders = reqHeaders;
+			Channel = httpChan;
 		}
 	}
 	#endregion
