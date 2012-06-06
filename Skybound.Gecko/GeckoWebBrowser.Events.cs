@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using Gecko.Interop;
 using Gecko.Net;
+using System.Collections.Generic;
 
 //EventHandlerList http://msdn.microsoft.com/en-us/library/system.componentmodel.eventhandlerlist.aspx
 //Generic EventHandler http://msdn.microsoft.com/en-us/library/db0etb8x.aspx
@@ -1335,27 +1336,25 @@ namespace Gecko
 	#region GeckoObserveHttpModifyRequestEventArgs
 	/// <summary>Provides data for event.</summary>
 	public class GeckoObserveHttpModifyRequestEventArgs
-		: CancelEventArgs
-	{
+		: CancelEventArgs {
 		public readonly Uri Uri;
 		public readonly Uri Referrer;
 		public readonly string RequestMethod;
-		public readonly string RequestData;
-		public readonly HttpChannel Channel;
+		public readonly string RequestBody;
+		public readonly Dictionary<string, string> RequestHeaders;
 
 		/// <summary>Creates a new instance of a <see cref="GeckoObserveHttpModifyRequestEventArgs"/> object.</summary>
 		/// <param name="value"></param>
 		/// <param name="refVal"></param>
 		/// <param name="reqMethod"></param>
 		/// <param name="reqData"></param>
-		public GeckoObserveHttpModifyRequestEventArgs(Uri value, Uri refVal, String reqMethod, String reqData, HttpChannel httpChan)
-			:base(false)
-		{
+		public GeckoObserveHttpModifyRequestEventArgs(Uri value, Uri refVal, String reqMethod, String reqBody, Dictionary<string, string> reqHeaders)
+			: base(false) {
 			Uri = value;
 			Referrer = refVal;
 			RequestMethod = reqMethod;
-			RequestData = reqData;
-			Channel = httpChan;
+			RequestBody = reqBody;
+			RequestHeaders = reqHeaders;
 		}
 	}
 	#endregion

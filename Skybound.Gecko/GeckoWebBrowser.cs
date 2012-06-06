@@ -1925,17 +1925,56 @@ namespace Gecko
 
 		public void Observe(nsISupports aSubject, string aTopic, string aData) {
 			if (aTopic.Equals(ObserverNotifications.HttpRequests.HttpOnModifyRequest)) {
-				HttpChannel httpChannel = HttpChannel.Create(aSubject);
+				using (httpChannel = HttpChannel.Create(aSubject)) {
 
-				Uri uri = httpChannel.Uri;
-				Uri uriRef = httpChannel.Referrer;
-				var reqMethod = httpChannel.RequestMethod;
-				var evt = new GeckoObserveHttpModifyRequestEventArgs(uri, uriRef, reqMethod, aData, httpChannel);
+					var origUri = httpChannel.OriginalUri;
 
-				OnObserveHttpModifyRequest(evt);
+					var uri = httpChannel.Uri;
+					var uriRef = httpChannel.Referrer;
+					var reqMethod = httpChannel.RequestMethod;
+					var reqHeaders = httpChannel.GetRequestHeaders();
+					var reqBody = "";
 
-				if (evt.Cancel) {
-					httpChannel.Cancel(nsIHelperAppLauncherConstants.NS_BINDING_ABORTED);
+					var evt = new GeckoObserveHttpModifyRequestEventArgs(uri, uriRef, reqMethod, reqBody, reqHeaders);
+
+					#region POST data
+
+					nsIUploadChannel uploadChannel = Xpcom.QueryInterface<nsIUploadChannel>(aSubject);
+
+					if (uploadChannel != null) {
+						var uploadChannelStream = uploadChannel.GetUploadStreamAttribute();
+
+						if (uploadChannelStream != null) {
+							nsISeekableStream seekableChannelStream = Xpcom.QueryInterface<nsISeekableStream>(uploadChannelStream);
+
+							if (seekableChannelStream != null) {
+								seekableChannelStream.Seek(nsISeekableStreamConsts.NS_SEEK_SET, 0);
+
+								var sis = Xpcom.CreateInstance<nsIScriptableInputStream>("@mozilla.org/scriptableinputstream;1");
+
+								nsIInputStream stream = Xpcom.QueryInterface<nsIInputStream>(uploadChannelStream);
+
+								sis.Init(stream);
+
+								StringBuilder sb = new StringBuilder();
+
+								for (var count = uploadChannelStream.Available(); count > 0; count = uploadChannelStream.Available()) {
+									var tmps = nsString.Get(sis.ReadBytes, count);
+									sb.Append(tmps);
+								}
+
+								reqBody = sb.ToString();
+							}
+						}
+					}
+
+					#endregion POST data
+
+					OnObserveHttpModifyRequest(evt);
+
+					if (evt.Cancel) {
+						httpChannel.Cancel(nsIHelperAppLauncherConstants.NS_BINDING_ABORTED);
+					}
 				}
 			}
 		}
@@ -2006,40 +2045,6 @@ namespace Gecko
 										var newEventListener = new GeckoJavaScriptHttpChannelWrapper(this, httpChannel, origEventListener);
 										origJavaScriptHttpChannels.Add(httpChannel, newEventListener);
 										httpChannelXHR.SetOnreadystatechangeAttribute(newEventListener);
-
-										#region POST data
-										/**
-                                        nsIUploadChannel uploadChannel = Xpcom.QueryInterface<nsIUploadChannel>(httpChannel);
-
-                                        if (uploadChannel != null)
-                                        {
-                                            var uploadChannelStream = uploadChannel.GetUploadStreamAttribute();
-
-                                            if (uploadChannelStream != null)
-                                            {
-                                                nsISeekableStream seekableChannelStream = Xpcom.QueryInterface<nsISeekableStream>(uploadChannelStream);
-
-                                                if (seekableChannelStream != null)
-                                                {
-                                                    seekableChannelStream.Seek(0, 0);
-
-                                                    var sis = Xpcom.CreateInstance<nsIScriptableInputStream>("@mozilla.org/scriptableinputstream;1");
-
-                                                    var stream = Xpcom.QueryInterface<nsIInputStream>(uploadChannelStream);
-
-                                                    sis.Init(stream);
-
-                                                    StringBuilder sb = new StringBuilder();
-
-                                                    for (var count = sis.Available(); count != 0; count = sis.Available())
-                                                    {
-                                                        sb.Append(sis.Read(count));
-                                                    }
-                                                }
-                                            }
-                                        }
-                                        /**/
-										#endregion POST data
 									}
 								}
 								break;
