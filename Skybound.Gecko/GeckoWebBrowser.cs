@@ -105,8 +105,12 @@ namespace Gecko
 		protected override void Dispose(bool disposing)
 		{
 
-                //Remove Event Listener
-                _target.RemoveEventListener(new nsAString("submit"), this, true);
+
+
+			if (_target != null)
+			{
+				//Remove Event Listener			
+				_target.RemoveEventListener(new nsAString("submit"), this, true);
 				_target.RemoveEventListener(new nsAString("keydown"), this, true);
 				_target.RemoveEventListener(new nsAString("keyup"), this, true);
 				_target.RemoveEventListener(new nsAString("keypress"), this, true);
@@ -122,10 +126,11 @@ namespace Gecko
 				_target.RemoveEventListener(new nsAString("contextmenu"), this, true);
 				_target.RemoveEventListener(new nsAString("DOMMouseScroll"), this, true);
 				_target.RemoveEventListener(new nsAString("focus"), this, true);
-				_target.RemoveEventListener(new nsAString("blur"), this, true); 
+				_target.RemoveEventListener(new nsAString("blur"), this, true);
 				_target.RemoveEventListener(new nsAString("load"), this, true);
 				_target.RemoveEventListener(new nsAString("change"), this, true);
 				_target.RemoveEventListener(new nsAString("hashchange"), this, false);
+			}
 
 			// If GC thread is calling Dispose
 			if (!disposing)
