@@ -26,7 +26,7 @@ namespace Gecko.Cryptography
 
 		public static KeyObject LookupKeyByName(string name)
 		{
-			var keyObj = nsString.Pass( _keyObjectFactory.Instance.LookupKeyByName, name );
+			var keyObj = nsString.Pass<nsIKeyObject>( _keyObjectFactory.Instance.LookupKeyByName, name );
 			return new KeyObject( keyObj );
 		}
 	}

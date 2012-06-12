@@ -376,6 +376,20 @@ namespace Gecko
 		{
 			return Navigate(url, loadFlags, null, null, null);
 		}
+
+		/// <summary>
+		///  Navigates to the specified URL using the given load flags, referrer and post data
+		///  In order to find out when Navigate has finished attach a handler to NavigateFinishedNotifier.NavigateFinished.
+		/// </summary>
+		/// <param name="url">The url to navigate to.  If the url is empty or null, the browser does not navigate and the method returns false.</param>
+		/// <param name="loadFlags">Flags which specify how the page is loaded.</param>
+		/// <param name="referrer">The referring URL, or null.</param>
+		/// <param name="postData">post data and headers, or null</param>
+		/// <returns>true if Navigate started. false otherwise.</returns>
+		public bool Navigate(string url, GeckoLoadFlags loadFlags, string referrer, GeckoMIMEInputStream postData)
+		{
+			return Navigate(url, loadFlags, referrer, postData, null);
+		}
 				
 		/// <summary>
 		///  Navigates to the specified URL using the given load flags, referrer and post data
@@ -385,8 +399,9 @@ namespace Gecko
 		/// <param name="loadFlags">Flags which specify how the page is loaded.</param>
 		/// <param name="referrer">The referring URL, or null.</param>
 		/// <param name="postData">post data and headers, or null</param>
-		/// <returns></returns>
-		public bool Navigate(string url, GeckoLoadFlags loadFlags, string referrer, GeckoMIMEInputStream postData, GeckoMIMEInputStream headers = null)
+		/// <param name="headers">headers, or null</param>
+		/// <returns>true if Navigate started. false otherwise.</returns>
+		public bool Navigate(string url, GeckoLoadFlags loadFlags, string referrer, GeckoMIMEInputStream postData, GeckoMIMEInputStream headers)
 		{
 			if (string.IsNullOrEmpty(url))
 				return false;
@@ -1939,7 +1954,20 @@ namespace Gecko
 		/// <param name="eventName"></param>
 		/// <param name="action"></param>
 		/// <example>AddMessageEventListener("callMe", (message=>MessageBox.Show(message)));</example>
-		public void AddMessageEventListener(string eventName, Action<string> action, bool useCapture = true)
+		public void AddMessageEventListener(string eventName, Action<string> action)
+		{
+			AddMessageEventListener(eventName, action, true);
+		}
+
+		/// <summary>
+		/// Register a listener for a custom jscrip-initiated MessageEvent
+		/// https://developer.mozilla.org/en/DOM/document.createEvent
+		/// http://help.dottoro.com/ljknkjqd.php
+		/// </summary>
+		/// <param name="eventName"></param>
+		/// <param name="action"></param>
+		/// <example>AddMessageEventListener("callMe", (message=>MessageBox.Show(message)));</example>
+		public void AddMessageEventListener(string eventName, Action<string> action, bool useCapture)
 		{
 			nsIDOMEventTarget target = Xpcom.QueryInterface<nsIDOMEventTarget>(Xpcom.QueryInterface<nsIDOMWindow>(WebBrowser.GetContentDOMWindowAttribute()).GetWindowRootAttribute());
 			if (target != null) {

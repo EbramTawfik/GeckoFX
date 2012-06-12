@@ -22,6 +22,17 @@ namespace Gecko
 		}
 
 		/// <summary>
+		/// Creates InstanceWrapper for xulrunner object instance		
+		/// refcount is not incremented
+		/// After disposing of InstanceWrapper refcount of <paramref name="obj"/> is decremented by 1
+		/// </summary>
+		/// <param name="obj">Xulrunner object(interface)</param>		
+		internal InstanceWrapper(T obj) : this(obj, false)
+		{
+			
+		}
+
+		/// <summary>
 		/// Creates InstanceWrapper for xulrunner object instance
 		/// If <paramref name="incrementReferenceCounter"/> is true refcount of <paramref name="obj"/> is incremented by 1
 		/// If <paramref name="incrementReferenceCounter"/> is false refcount is not incremented
@@ -29,7 +40,7 @@ namespace Gecko
 		/// </summary>
 		/// <param name="obj">Xulrunner object(interface)</param>
 		/// <param name="incrementReferenceCounter">true to perform QueryInterface on object</param>
-		internal InstanceWrapper(T obj,bool incrementReferenceCounter=false)
+		internal InstanceWrapper(T obj,bool incrementReferenceCounter)
 		{
 			Instance = incrementReferenceCounter ? Xpcom.QueryInterface<T>(obj) : obj;
 		}
