@@ -150,7 +150,7 @@ namespace Gecko
 		/// Searches for and returns the element in the document with the given id.
 		/// </summary>
 		/// <param name="id"></param>
-		/// <returns></returns>
+		/// <returns>Found element or null if element does not exist</returns>
 		public GeckoDomElement GetElementById(string id)
 		{
 			if (string.IsNullOrEmpty(id))

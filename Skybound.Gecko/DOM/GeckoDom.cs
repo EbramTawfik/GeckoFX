@@ -240,6 +240,9 @@ namespace Gecko
 
 		public static GeckoDomElement CreateDomElementWrapper(nsIDOMElement element)
 		{
+			if (element == null)
+				return null;
+
 			var htmlElement=Xpcom.QueryInterface<nsIDOMHTMLElement>( element );
 			if (htmlElement!=null)
 			{

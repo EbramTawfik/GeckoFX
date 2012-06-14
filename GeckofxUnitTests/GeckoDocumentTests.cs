@@ -60,6 +60,13 @@ namespace GeckofxUnitTests
 		}
 
 		[Test]
+		public void GetHtmlElementById_ElementDoesNotExist_ReturnNull()
+		{
+			browser.TestLoadHtml("<div name=\"a\" id=\"_lv5\">old value</div>");
+			Assert.IsNull(browser.Document.GetHtmlElementById("elementDoesNotExist"));
+		}
+
+		[Test]
 		public void GetElementById_GetSvgElement_CorrectElementReturned()
 		{
 			browser.TestLoadHtml("<svg id=\"sss\" width=\"380\" height=\"100\"><text id=\"t1\" class=\"caption\" x=\"10\" y=\"35\">Mouseover a square</text></svg>");
@@ -77,6 +84,14 @@ namespace GeckofxUnitTests
 			var svgElement = browser.Document.GetElementById("t1");
 			Assert.NotNull(svgElement);
 			Assert.AreEqual(svgElement.TagName, "text");
+		}
+
+		[Test]
+		public void GetElementById_ElementDoesNotExist_ReturnNull()
+		{
+			browser.TestLoadHtml("<svg id=\"sss\" width=\"380\" height=\"100\"><text id=\"t1\" class=\"caption\" x=\"10\" y=\"35\">Mouseover a square</text></svg>");
+
+			Assert.IsNull(browser.Document.GetElementById("idDoesNotExist"));			
 		}
 		
 		[Test]
