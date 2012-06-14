@@ -37,7 +37,7 @@ namespace Gecko
 			}
 		}
 
-		public GeckoHtmlElement CreateElement(string tagName)
+		public GeckoHtmlElement CreateHtmlElement(string tagName)
 		{
 			if (string.IsNullOrEmpty(tagName))
 				throw new ArgumentException("tagName");
@@ -45,6 +45,16 @@ namespace Gecko
 			var nativeElement = nsString.Pass<nsIDOMElement>( _domDocument.CreateElement, tagName );
 
 			return GeckoHtmlElement.Create( ( nsIDOMHTMLElement ) nativeElement );
+		}
+
+		public GeckoElement CreateElement(string tagName)
+		{
+			if (string.IsNullOrEmpty(tagName))
+				throw new ArgumentException("tagName");
+
+			var nativeElement = nsString.Pass<nsIDOMElement>(_domDocument.CreateElement, tagName);
+
+			return GeckoElement.CreateDomElementWrapper(nativeElement);
 		}
 
 		public DocumentFragment CreateDocumentFragment()

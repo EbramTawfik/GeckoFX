@@ -65,6 +65,7 @@
     <Compile Include="DOMWindowTests.cs" />
     <Compile Include="FocusManagerTests.cs" />
     <Compile Include="GeckoDocumentTests.cs" />
+    <Compile Include="GeckoDomDocumentTests.cs" />
     <Compile Include="GeckoElementTests.cs" />
     <Compile Include="GeckoInputElementTests.cs" />
     <Compile Include="GeckoMIMEInputStreamTests.cs" />

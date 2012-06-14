@@ -438,8 +438,18 @@ namespace Gecko
 		/// <param name="htmlDocument"></param>
 		public void LoadHtml(string htmlDocument)
 		{
-			var bytes = System.Text.Encoding.UTF8.GetBytes(htmlDocument);						
-			Navigate(string.Format("data:text/html;base64,{0}", Convert.ToBase64String(bytes)));
+			LoadBase64EncodedData("text/html", htmlDocument);
+		}
+
+		/// <summary>
+		/// Load supplied string.encoded as base64.
+		/// </summary>
+		/// <param name="type">the type of the data eg. text/html </param>
+		/// <param name="data">string that will be encoded as base64 </param>
+		public void LoadBase64EncodedData(string type, string data)
+		{
+			var bytes = System.Text.Encoding.UTF8.GetBytes(data);
+			Navigate(string.Format("data:{0};base64,{1}", type, Convert.ToBase64String(bytes)));
 		}
 
 		/// <summary>

@@ -49,6 +49,26 @@ namespace GeckofxUnitTests
 		}
 
 		/// <summary>
+		/// Helper method to initalize a document with html and wait until document is ready.
+		/// </summary>
+		/// <param name="innerHtml"></param>
+		internal static void TestLoadSvg(this GeckoWebBrowser browser, string innerSvg)
+		{
+			LoadSvg(browser, innerSvg);
+		}
+
+		private static void LoadSvg(this GeckoWebBrowser browser, string innerSvg)
+		{
+			browser.LoadBase64EncodedData("image/svg+xml", "<!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.0//EN\" \"http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd\">"
+
+							 + "<svg xmlns=\"http://www.w3.org/2000/svg\">"
+
+							 + innerSvg + "</svg>");
+
+			browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
+		}
+
+		/// <summary>
 		/// Helper method to initalize a document with html inside a frameset and wait until document is ready.
 		/// </summary>
 		/// <param name="innerHtml"></param>
