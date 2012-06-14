@@ -2,6 +2,18 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v12.0-0.3 ==
+
+1. Improve WindowWatcher service
+2. Rename missnamed propertie from Frames to Forms.
+3. Improve GeckoTextAreaElement wrapper.
+4. Added Request Data (for POST/PUT) to GeckoObserveHttpModifyRequestEvent
+5. Renamed GeckoNode.Type to GeckoNode.NodeType
+6. Fix GeckoWebBrowser memory leak.
+7. Rename GetElementById to GetHtmlElementById
+8. Add GetElementById that returns a GeckoDomElement
+9. Remove version from ProfileDirectory default path and make path cross platform.
+
 == v12.0-0.2 ==
 
 1. Added Cryptography classes.
