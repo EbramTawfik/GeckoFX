@@ -350,8 +350,7 @@ namespace Gecko
 			{
 				if (_ProfileDirectory == null)
 				{
-
-					string directory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"Geckofx\1.9\DefaultProfile");
+					string directory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), Path.Combine("Geckofx", "DefaultProfile"));
 
 					if (!Directory.Exists(directory))
 					{
