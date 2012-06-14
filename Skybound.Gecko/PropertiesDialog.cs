@@ -69,8 +69,8 @@ namespace Gecko
 			{
 				// display a simple about box when you press F1
 				string versionString = GetType().Assembly.GetName().Version.ToString();
-				
-				MessageBox.Show("Skybound GeckoFX v" + versionString + "\r\n\r\n(C) 2008 Skybound Software. All Rights Reserved.\r\nhttp://www.geckofx.org",
+
+				MessageBox.Show("GeckoFX v" + versionString + "\r\n\r\nhttp://bitbucket.org/geckofx/",
 					"About GeckoFX", MessageBoxButtons.OK, MessageBoxIcon.Information);
 				return true;
 			}

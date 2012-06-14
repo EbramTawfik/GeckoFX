@@ -246,14 +246,13 @@ namespace Gecko
 		{
 			if (this.DesignMode)
 			{
-				string versionString = ((AssemblyFileVersionAttribute)Attribute.GetCustomAttribute(GetType().Assembly, typeof(AssemblyFileVersionAttribute))).Version;
-				string copyright = ((AssemblyCopyrightAttribute)Attribute.GetCustomAttribute(GetType().Assembly, typeof(AssemblyCopyrightAttribute))).Copyright;
+				string versionString = ((AssemblyFileVersionAttribute)Attribute.GetCustomAttribute(GetType().Assembly, typeof(AssemblyFileVersionAttribute))).Version;				
 
 				using (Brush brush = new System.Drawing.Drawing2D.HatchBrush(System.Drawing.Drawing2D.HatchStyle.SolidDiamond, Color.FromArgb(240, 240, 240), Color.White))
 					e.Graphics.FillRectangle(brush, this.ClientRectangle);
 
 				e.Graphics.DrawString(
-					string.Format( "Skybound GeckoFX v{0}\r\n{1}\r\n" + "http://www.geckofx.org", versionString, copyright ),
+					string.Format("GeckoFX v{0}\r\n{1}\r\n" + "http://bitbucket.org/geckofx/", versionString),
 					SystemFonts.MessageBoxFont,
 					Brushes.Black,
 					new RectangleF( 2, 2, this.Width - 4, this.Height - 4 ) );
