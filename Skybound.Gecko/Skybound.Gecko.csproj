@@ -109,14 +109,15 @@
     <Compile Include="Cryptography\KeyObjectFactory.cs" />
     <Compile Include="DOM\DomNavigator.cs" />
     <Compile Include="DOM\GeckoAttribute.cs" />
+    <Compile Include="DOM\GeckoElement.cs" />
     <Compile Include="DOM\GeckoElementCollection.cs" />
     <Compile Include="DOM\GeckoElementEnumerable.cs" />
     <Compile Include="DOM\GeckoNamedNodeMap.cs" />
     <Compile Include="DOM\GeckoNodeCollection.cs" />
     <Compile Include="DOM\GeckoNodeEnumerable.cs" />
+    <Compile Include="DOM\Html\GeckoHtmlElement.cs" />
     <Compile Include="DOM\WindowUtils.cs" />
     <Compile Include="GeckoWindow.cs" />
-    <Compile Include="DOM\Html\GeckoElement.cs" />
     <Compile Include="DOM\Html\GeckoDocument.cs" />
     <Compile Include="DOM\Html\GeckoHtmlElementCollection.cs" />
     <Compile Include="Generated\nsIDOMCallEvent.cs" />
@@ -1530,7 +1531,6 @@
     <Compile Include="BaseTypes\nsConstRect.cs" />
     <Compile Include="BaseTypes\nsIntRect.cs" />
     <Compile Include="CustomMarshalers\WStringMarshaler.cs" />
-    <Compile Include="DOM\GeckoDom.cs" />
     <Compile Include="GeckoDomEvents.cs" />
     <Compile Include="GeckoHistoryEntry.cs" />
     <Compile Include="GeckoPreferences.cs" />
