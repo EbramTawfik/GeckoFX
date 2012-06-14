@@ -180,7 +180,7 @@ namespace Gecko
 			}
 		}
 
-		public GeckoElement ParentElement
+		public GeckoHtmlElement ParentElement
 		{
 			get
 			{
@@ -191,7 +191,7 @@ namespace Gecko
 				if (node == null)
 					return null;
 
-				return (GeckoElement)GeckoNode.Create(node);
+				return (GeckoHtmlElement)GeckoNode.Create(node);
 			}
 		}
 
@@ -215,7 +215,7 @@ namespace Gecko
 		/// </summary>
 		/// <param name="xpath"></param>
 		/// <returns></returns>
-		public IEnumerable<GeckoElement> GetElements(string xpath)
+		public IEnumerable<GeckoHtmlElement> GetElements(string xpath)
 		{
 			nsIDOMXPathEvaluator evaluator = Xpcom.CreateInstance<nsIDOMXPathEvaluator>("@mozilla.org/dom/xpath-evaluator;1");
 			nsIDOMNode node = (nsIDOMNode)this.DomObject;

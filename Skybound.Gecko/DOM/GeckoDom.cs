@@ -247,7 +247,7 @@ namespace Gecko
 			if (htmlElement!=null)
 			{
 				Marshal.ReleaseComObject( htmlElement );
-				return GeckoElement.Create((nsIDOMHTMLElement)element);
+				return GeckoHtmlElement.Create((nsIDOMHTMLElement)element);
 			}
 			var svgElement=Xpcom.QueryInterface<nsIDOMSVGElement>( element );
 			if (svgElement!=null)

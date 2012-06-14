@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Gecko.DOM
 {	
-	public class GeckoTableElement : GeckoElement
+	public class GeckoTableElement : GeckoHtmlElement
 	{
 		nsIDOMHTMLTableElement DOMHTMLElement;
 		internal GeckoTableElement(nsIDOMHTMLTableElement element) : base(element)
@@ -86,9 +86,9 @@ namespace Gecko.DOM
 			set { DOMHTMLElement.SetWidthAttribute(new nsAString(value)); }
 		}
 
-		public GeckoElement createTHead()
+		public GeckoHtmlElement createTHead()
 		{
-			return new GeckoElement(DOMHTMLElement.CreateTHead());
+			return new GeckoHtmlElement(DOMHTMLElement.CreateTHead());
 		}
 
 		public void deleteTHead()
@@ -96,9 +96,9 @@ namespace Gecko.DOM
 			DOMHTMLElement.DeleteTHead();
 		}
 
-		public GeckoElement createTFoot()
+		public GeckoHtmlElement createTFoot()
 		{
-			return new GeckoElement(DOMHTMLElement.CreateTFoot());
+			return new GeckoHtmlElement(DOMHTMLElement.CreateTFoot());
 		}
 
 		public void deleteTFoot()
@@ -106,9 +106,9 @@ namespace Gecko.DOM
 			DOMHTMLElement.DeleteTFoot();
 		}
 
-		public GeckoElement createCaption()
+		public GeckoHtmlElement createCaption()
 		{
-			return new GeckoElement(DOMHTMLElement.CreateCaption());
+			return new GeckoHtmlElement(DOMHTMLElement.CreateCaption());
 		}
 
 		public void deleteCaption()
@@ -116,9 +116,9 @@ namespace Gecko.DOM
 			DOMHTMLElement.DeleteCaption();
 		}
 
-		public GeckoElement insertRow(int index)
+		public GeckoHtmlElement insertRow(int index)
 		{
-			return new GeckoElement(DOMHTMLElement.InsertRow(index));
+			return new GeckoHtmlElement(DOMHTMLElement.InsertRow(index));
 		}
 
 		public void deleteRow(int index)

@@ -12,7 +12,7 @@ namespace Gecko
 		/// </summary>
 		/// <param name="dataAttributeName">Microdata label in data-label attribute</param>
 		/// <returns></returns>
-		public static string GetData(this GeckoElement node, string dataAttributeName)
+		public static string GetData(this GeckoHtmlElement node, string dataAttributeName)
 		{
 			if (string.IsNullOrEmpty(dataAttributeName))
 				throw new ArgumentException("attributeName");
@@ -28,16 +28,16 @@ namespace Gecko
 		/// <param name="element"></param>
 		/// <param name="predicate"></param>
 		/// <returns></returns>
-		public static GeckoElement FindFirstChildInTree(this GeckoElement element, Predicate<GeckoElement> predicate)
+		public static GeckoHtmlElement FindFirstChildInTree(this GeckoHtmlElement element, Predicate<GeckoHtmlElement> predicate)
 		{
 			for (int i = 0; i < element.ChildNodes.Count; i++)
 			{
 				var node = element.ChildNodes[i];
-				if ( !( node is GeckoElement ) )
+				if ( !( node is GeckoHtmlElement ) )
 				{
 					continue;
 				}
-				var childElement = (GeckoElement)node;
+				var childElement = (GeckoHtmlElement)node;
 				if (predicate(childElement))
 				{
 					return childElement;

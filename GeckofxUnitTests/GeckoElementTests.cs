@@ -37,7 +37,7 @@ namespace GeckofxUnitTests
 			string divString = "<div name=\"a\" id=\"_lv5\" class=\"none\">old value</div>";
 			browser.TestLoadHtml(divString);
 
-			var divElement = (browser.Document.Body.FirstChild as GeckoElement);
+			var divElement = (browser.Document.Body.FirstChild as GeckoHtmlElement);
 			Assert.AreEqual(divString.ToLowerInvariant(), divElement.OuterHtml.ToLowerInvariant());
 		}
 
@@ -47,7 +47,7 @@ namespace GeckofxUnitTests
 			string divString = "<div name=\'a\' id=\'_lv5\' class='none'>old value</div>";
 			browser.TestLoadHtml(divString);
 
-			var divElement = (browser.Document.Body.FirstChild as GeckoElement);
+			var divElement = (browser.Document.Body.FirstChild as GeckoHtmlElement);
 			Assert.AreEqual(divString.ToLowerInvariant().Replace('\'', '"'), divElement.OuterHtml.ToLowerInvariant());
 		}
 

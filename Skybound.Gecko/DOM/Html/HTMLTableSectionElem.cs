@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Gecko.DOM
 {	
-	public class GeckoTableSectionElement : GeckoElement
+	public class GeckoTableSectionElement : GeckoHtmlElement
 	{
 		nsIDOMHTMLTableSectionElement DOMHTMLElement;
 		internal GeckoTableSectionElement(nsIDOMHTMLTableSectionElement element) : base(element)
@@ -42,9 +42,9 @@ namespace Gecko.DOM
 			get { return new GeckoHtmlElementCollection(DOMHTMLElement.GetRowsAttribute()); }
 		}
 
-		public GeckoElement insertRow(int index)
+		public GeckoHtmlElement insertRow(int index)
 		{
-			return new GeckoElement(DOMHTMLElement.InsertRow(index));
+			return new GeckoHtmlElement(DOMHTMLElement.InsertRow(index));
 		}
 
 		public void deleteRow(int index)

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Gecko
 {
 	/// <summary>
-	/// Represents a collection of <see cref="GeckoElement"/> objects.
+	/// Represents a collection of <see cref="GeckoHtmlElement"/> objects.
 	/// </summary>
 	public class GeckoNodeCollection : IEnumerable<GeckoNode>
 	{

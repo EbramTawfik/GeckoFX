@@ -5,21 +5,21 @@ namespace Gecko
 	/// <summary>
 	/// Represents a DOM HTML element.
 	/// </summary>
-	public class GeckoElement
+	public class GeckoHtmlElement
 		: GeckoDomElement
 	{
-		internal GeckoElement(nsIDOMHTMLElement element)
+		internal GeckoHtmlElement(nsIDOMHTMLElement element)
 			: base(element)
 		{
 			this.DomElement = element;			
 		}
 		
-		internal static GeckoElement Create(nsIDOMHTMLElement element)
+		internal static GeckoHtmlElement Create(nsIDOMHTMLElement element)
 		{
 			return (element == null) ? null : DOM.DOMSelector.GetClassFor(element);
 		}
 
-		internal static T Create<T>(nsIDOMHTMLElement element) where T : GeckoElement 
+		internal static T Create<T>(nsIDOMHTMLElement element) where T : GeckoHtmlElement 
 		{
 			return (element == null) ? null : DOM.DOMSelector.GetClassFor<T>(element);
 		}
@@ -40,12 +40,12 @@ namespace Gecko
 		/// <summary>
 		/// Gets the parent element of this one.
 		/// </summary>
-		public GeckoElement Parent
+		public GeckoHtmlElement Parent
 		{
 			get
 			{
 				// note: the parent node could also be the document
-				return GeckoElement.Create(Xpcom.QueryInterface<nsIDOMHTMLElement>(DomElement.GetParentNodeAttribute()));
+				return GeckoHtmlElement.Create(Xpcom.QueryInterface<nsIDOMHTMLElement>(DomElement.GetParentNodeAttribute()));
 			}
 		}
 
@@ -135,9 +135,9 @@ namespace Gecko
 		public int OffsetWidth { get { return DomElement.GetOffsetWidthAttribute(); } }
 		public int OffsetHeight { get { return DomElement.GetOffsetHeightAttribute(); } }
 		
-		public GeckoElement OffsetParent
+		public GeckoHtmlElement OffsetParent
 		{
-			get { return GeckoElement.Create((nsIDOMHTMLElement)DomElement.GetOffsetParentAttribute()); }
+			get { return GeckoHtmlElement.Create((nsIDOMHTMLElement)DomElement.GetOffsetParentAttribute()); }
 		}
 		
 		public void ScrollIntoView(bool top)

@@ -66,8 +66,8 @@ namespace GeckoFxTest
 				{
 					mod(element);
 				}
-				ModifyElements(element.FirstChild as GeckoElement, tagName, mod);
-				element = (element.NextSibling as GeckoElement);
+				ModifyElements(element.FirstChild as GeckoHtmlElement, tagName, mod);
+				element = (element.NextSibling as GeckoHtmlElement);
 			}
 		}
 
@@ -90,8 +90,8 @@ namespace GeckoFxTest
 			while (g != null)
 			{
 				Console.WriteLine("tag = {0} value = {1}", g.TagName, g.TextContent);
-				DisplayElements(g.FirstChild as GeckoElement);
-				g = (g.NextSibling as GeckoElement);
+				DisplayElements(g.FirstChild as GeckoHtmlElement);
+				g = (g.NextSibling as GeckoHtmlElement);
 			}
 
 		}
@@ -137,7 +137,7 @@ namespace GeckoFxTest
 		{
 			if (sender != null && e != null && e.Target != null && e.Target.TagName != null)
 			{
-				GeckoElement clicked = e.Target;
+				GeckoHtmlElement clicked = e.Target;
 
 				// prevent clicking on Links from navigation to the
 				if (clicked.TagName == "A")

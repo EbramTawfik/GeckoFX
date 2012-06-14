@@ -18,7 +18,7 @@ namespace Gecko.DOM
             public Type GeckoElement { get; set; }
 
 			public ObjectCreator CreationMethod { get; set; }
-			public delegate GeckoElement ObjectCreator(object htmlElementInterface);
+			public delegate GeckoHtmlElement ObjectCreator(object htmlElementInterface);
         }
 
 		private static void Add(GeckoClassDesc classDesc)
@@ -78,8 +78,8 @@ namespace Gecko.DOM
 				CreationMethod = (x) => new GeckoHeadingElement((nsIDOMHTMLHeadingElement)x) });
 			Add(new GeckoClassDesc() { TagName = "hr", InterfaceType = typeof(nsIDOMHTMLHRElement), GeckoElement = typeof(GeckoHRElement), 
 				CreationMethod = (x) => new GeckoHRElement((nsIDOMHTMLHRElement)x) });
-			Add(new GeckoClassDesc() { TagName = "html", InterfaceType = typeof(nsIDOMHTMLHtmlElement), GeckoElement = typeof(GeckoHtmlElement), 
-				CreationMethod = (x) => new GeckoHtmlElement((nsIDOMHTMLHtmlElement)x) });
+			Add(new GeckoClassDesc() { TagName = "html", InterfaceType = typeof(nsIDOMHTMLHtmlElement), GeckoElement = typeof(GeckoHtmlHtmlElement), 
+				CreationMethod = (x) => new GeckoHtmlHtmlElement((nsIDOMHTMLHtmlElement)x) });
 			Add(new GeckoClassDesc() { TagName = "iframe", InterfaceType = typeof(nsIDOMHTMLIFrameElement), GeckoElement = typeof(GeckoIFrameElement), 
 				CreationMethod = (x) => new GeckoIFrameElement((nsIDOMHTMLIFrameElement)x) });
 			Add(new GeckoClassDesc() { TagName = "img", InterfaceType = typeof(nsIDOMHTMLImageElement), GeckoElement = typeof(GeckoImageElement), 
@@ -150,17 +150,17 @@ namespace Gecko.DOM
 				CreationMethod = (x) => new GeckoUListElement((nsIDOMHTMLUListElement)x) });
         }
 		
-		static GeckoWrapperCache<nsIDOMHTMLElement, GeckoElement> m_cache = new GeckoWrapperCache<nsIDOMHTMLElement, GeckoElement>(CreateDomHtmlElementWrapper);
+		static GeckoWrapperCache<nsIDOMHTMLElement, GeckoHtmlElement> m_cache = new GeckoWrapperCache<nsIDOMHTMLElement, GeckoHtmlElement>(CreateDomHtmlElementWrapper);
 
-		internal static GeckoElement GetClassFor(nsIDOMHTMLElement element)
+		internal static GeckoHtmlElement GetClassFor(nsIDOMHTMLElement element)
 		{
-			GeckoElement ret = GetClassFor<GeckoElement>(element);
+			GeckoHtmlElement ret = GetClassFor<GeckoHtmlElement>(element);
 			if (ret == null)
-				ret = new GeckoElement(element);
+				ret = new GeckoHtmlElement(element);
 			return ret;
 		}
 
-        internal static T GetClassFor<T>(nsIDOMHTMLElement element)  where T : GeckoElement
+        internal static T GetClassFor<T>(nsIDOMHTMLElement element)  where T : GeckoHtmlElement
         {
 			return (T)m_cache.Get(element);
         }
@@ -180,7 +180,7 @@ namespace Gecko.DOM
 			{
 				case NodeType.Element:
 					nsIDOMHTMLElement element = Xpcom.QueryInterface<nsIDOMHTMLElement>(domObject);
-					if (element != null) return GeckoElement.Create( element );
+					if (element != null) return GeckoHtmlElement.Create( element );
 					break;
 				case NodeType.Attribute:
 					nsIDOMAttr attr = Xpcom.QueryInterface<nsIDOMAttr>(domObject);
@@ -199,7 +199,7 @@ namespace Gecko.DOM
 			return new GeckoNode(domObject);
 		}
 
-		internal static GeckoElement CreateDomHtmlElementWrapper(nsIDOMHTMLElement instance)
+		internal static GeckoHtmlElement CreateDomHtmlElementWrapper(nsIDOMHTMLElement instance)
 		{
 			var lowerTagName = nsString.Get(instance.GetTagNameAttribute).ToLower();
         	GeckoClassDesc desc;
@@ -209,7 +209,7 @@ namespace Gecko.DOM
 				object HTMLElement = Xpcom.QueryInterface(instance, desc.InterfaceType.GUID);
 				if(HTMLElement != null)
 				{
-					GeckoElement e = desc.CreationMethod(HTMLElement);
+					GeckoHtmlElement e = desc.CreationMethod(HTMLElement);
 					return e;
 				}
 			}

@@ -339,7 +339,7 @@ namespace Gecko.DOM
         /// nsIFocusManager::SetFocus instead.
         ///
         /// </summary>		
-		public void Focus(GeckoElement aElement)
+		public void Focus(GeckoHtmlElement aElement)
 		{
 			throw new NotImplementedException();
 		}
@@ -655,7 +655,7 @@ namespace Gecko.DOM
         /// to this API, and is sufficient for the present testing
         /// requirements (which are essentially testing 'color').
         /// </summary>		
-		public string GetVisitedDependentComputedStyle(GeckoElement aElement, string aPseudoElement, string aPropertyName)
+		public string GetVisitedDependentComputedStyle(GeckoHtmlElement aElement, string aPseudoElement, string aPropertyName)
 		{
 			throw new NotImplementedException();
 		}
@@ -837,7 +837,7 @@ namespace Gecko.DOM
         /// nsStyleAnimation::ComputeDistance for the given element and
         /// property.
         /// </summary>		
-		public double ComputeAnimationDistance(GeckoElement element, string property, string value1, string value2)
+		public double ComputeAnimationDistance(GeckoHtmlElement element, string property, string value1, string value2)
 		{
 			throw new NotImplementedException();
 		}
@@ -864,7 +864,7 @@ namespace Gecko.DOM
         /// associated with a view. For scrollpanes for documents, the root
         /// element of the document is returned.
         /// </summary>		
-		public GeckoElement FindElementWithViewId(System.IntPtr aId)
+		public GeckoHtmlElement FindElementWithViewId(System.IntPtr aId)
 		{
 			throw new NotImplementedException();
 		}
@@ -892,7 +892,7 @@ namespace Gecko.DOM
         /// Check if any ThebesLayer painting has been done for this element,
         /// clears the painted flags if they have.
         /// </summary>		
-		public bool CheckAndClearPaintedState(GeckoElement aElement)
+		public bool CheckAndClearPaintedState(GeckoHtmlElement aElement)
 		{
 			throw new NotImplementedException();
 		}

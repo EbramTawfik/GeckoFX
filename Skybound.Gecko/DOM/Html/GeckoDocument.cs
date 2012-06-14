@@ -26,15 +26,15 @@ namespace Gecko
 		/// </summary>
 		public GeckoHeadElement Head
 		{
-			get { return GeckoElement.Create<GeckoHeadElement>(_domHtmlDocument.GetHeadAttribute()); }
+			get { return GeckoHtmlElement.Create<GeckoHeadElement>(_domHtmlDocument.GetHeadAttribute()); }
 		}
 
 		/// <summary>
 		/// Gets the HTML body element.
 		/// </summary>
-		public GeckoElement Body
+		public GeckoHtmlElement Body
 		{
-			get { return GeckoElement.Create<GeckoElement>(_domHtmlDocument.GetBodyAttribute()); }
+			get { return GeckoHtmlElement.Create<GeckoHtmlElement>(_domHtmlDocument.GetBodyAttribute()); }
 		}
 		
 		/// <summary>

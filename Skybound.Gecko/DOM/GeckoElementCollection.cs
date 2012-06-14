@@ -4,9 +4,9 @@ using System.Collections.Generic;
 namespace Gecko
 {
 	/// <summary>
-	/// Represents a collection of <see cref="GeckoElement"/> objects.
+	/// Represents a collection of <see cref="GeckoHtmlElement"/> objects.
 	/// </summary>
-	public class GeckoElementCollection : IEnumerable<GeckoElement>
+	public class GeckoElementCollection : IEnumerable<GeckoHtmlElement>
 	{
 		internal GeckoElementCollection(nsIDOMNodeList list)
 		{
@@ -19,25 +19,25 @@ namespace Gecko
 			get { return (List == null) ? 0 : (int)List.GetLengthAttribute(); }
 		}
 		
-		public virtual GeckoElement this[int index]
+		public virtual GeckoHtmlElement this[int index]
 		{
 			get
 			{
 				if (index < 0 || index >= Count)
 					throw new ArgumentOutOfRangeException("index");
 
-				return GeckoElement.Create((nsIDOMHTMLElement)List.Item((uint)index));
+				return GeckoHtmlElement.Create((nsIDOMHTMLElement)List.Item((uint)index));
 			}
 		}
 		
 		#region IEnumerable<GeckoElement> Members
 
-		public virtual IEnumerator<GeckoElement> GetEnumerator()
+		public virtual IEnumerator<GeckoHtmlElement> GetEnumerator()
 		{
 			int length = Count;
 			for (int i = 0; i < length; i++)
 			{
-				yield return GeckoElement.Create((nsIDOMHTMLElement)List.Item((uint)i));
+				yield return GeckoHtmlElement.Create((nsIDOMHTMLElement)List.Item((uint)i));
 			}
 		}
 		
@@ -47,7 +47,7 @@ namespace Gecko
 		
 		System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
 		{
-			foreach (GeckoElement element in this)
+			foreach (GeckoHtmlElement element in this)
 				yield return element;
 		}
 

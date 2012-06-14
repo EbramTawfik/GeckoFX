@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Gecko.DOM
 {	
-	public class GeckoSelectElement : GeckoElement
+	public class GeckoSelectElement : GeckoHtmlElement
 	{
 		nsIDOMHTMLSelectElement DOMHTMLElement;
 		internal GeckoSelectElement(nsIDOMHTMLSelectElement element) : base(element)
@@ -70,7 +70,7 @@ namespace Gecko.DOM
 			set { DOMHTMLElement.SetTabIndexAttribute(value); }
 		}
 
-        public void add(GeckoElement element, GeckoElement before)
+        public void add(GeckoHtmlElement element, GeckoHtmlElement before)
 		{
             DOMHTMLElement.Add(element.DomObject as nsIDOMHTMLElement, before.DomObject as nsIVariant);
 		}

@@ -7,14 +7,14 @@ using System.Text;
 
 namespace Gecko.DOM
 {	
-	public class GeckoHtmlElement : GeckoElement
+	public class GeckoHtmlHtmlElement : GeckoHtmlElement
 	{
 		nsIDOMHTMLHtmlElement DOMHTMLElement;
-		internal GeckoHtmlElement(nsIDOMHTMLHtmlElement element) : base(element)
+		internal GeckoHtmlHtmlElement(nsIDOMHTMLHtmlElement element) : base(element)
 		{
 			this.DOMHTMLElement = element;
 		}
-		public GeckoHtmlElement(object element) : base(element as nsIDOMHTMLElement)
+		public GeckoHtmlHtmlElement(object element) : base(element as nsIDOMHTMLElement)
 		{
 			this.DOMHTMLElement = element as nsIDOMHTMLHtmlElement;
 		}

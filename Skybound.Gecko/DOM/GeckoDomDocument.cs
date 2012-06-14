@@ -37,14 +37,14 @@ namespace Gecko
 			}
 		}
 
-		public GeckoElement CreateElement(string tagName)
+		public GeckoHtmlElement CreateElement(string tagName)
 		{
 			if (string.IsNullOrEmpty(tagName))
 				throw new ArgumentException("tagName");
 
 			var nativeElement = nsString.Pass<nsIDOMElement>( _domDocument.CreateElement, tagName );
 
-			return GeckoElement.Create( ( nsIDOMHTMLElement ) nativeElement );
+			return GeckoHtmlElement.Create( ( nsIDOMHTMLElement ) nativeElement );
 		}
 
 		public DocumentFragment CreateDocumentFragment()
@@ -104,7 +104,7 @@ namespace Gecko
 		}
 
 
-		public GeckoElement CreateElement(string namespaceUri, string qualifiedName)
+		public GeckoHtmlElement CreateElement(string namespaceUri, string qualifiedName)
 		{
 			if (string.IsNullOrEmpty(namespaceUri))
 				throw new ArgumentException("namespaceUri");
@@ -113,7 +113,7 @@ namespace Gecko
 
 			var native = nsString.Pass<nsIDOMElement>( _domDocument.CreateElementNS, namespaceUri, qualifiedName );
 
-			return GeckoElement.Create( ( nsIDOMHTMLElement ) native );
+			return GeckoHtmlElement.Create( ( nsIDOMHTMLElement ) native );
 		}
 
 		public GeckoAttribute CreateAttribute(string namespaceUri, string qualifiedName)
@@ -167,14 +167,14 @@ namespace Gecko
 		/// </summary>
 		/// <param name="id"></param>
 		/// <returns></returns>
-		public GeckoElement GetHtmlElementById(string id)
+		public GeckoHtmlElement GetHtmlElementById(string id)
 		{
 			if (string.IsNullOrEmpty(id))
 				return null;
 
 			var native = nsString.Pass<nsIDOMElement>( _domDocument.GetElementById, id );
 
-			return GeckoElement.Create( ( nsIDOMHTMLElement ) native );
+			return GeckoHtmlElement.Create( ( nsIDOMHTMLElement ) native );
 		}
 
 		public string InputEncoding
@@ -296,9 +296,9 @@ namespace Gecko
 		/// <summary>
 		/// Gets the currently focused element.
 		/// </summary>
-		public GeckoElement ActiveElement
+		public GeckoHtmlElement ActiveElement
 		{
-			get { return (GeckoElement)Create(_domDocument.GetActiveElementAttribute()); }
+			get { return (GeckoHtmlElement)Create(_domDocument.GetActiveElementAttribute()); }
 		}
 
 		/// <summary>
@@ -374,9 +374,9 @@ namespace Gecko
 		/// <param name="x"></param>
 		/// <param name="y"></param>
 		/// <returns></returns>
-		public GeckoElement ElementFromPoint(int x, int y)
+		public GeckoHtmlElement ElementFromPoint(int x, int y)
 		{
-			return GeckoElement.Create((nsIDOMHTMLElement)_domDocument.ElementFromPoint(x, y));
+			return GeckoHtmlElement.Create((nsIDOMHTMLElement)_domDocument.ElementFromPoint(x, y));
 		}
 
 		public string ContentType

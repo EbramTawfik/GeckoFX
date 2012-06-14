@@ -16,23 +16,23 @@ namespace Gecko
 			get { return (Collection == null) ? 0 : (int)Collection.GetLengthAttribute(); }
 		}
 
-		public override GeckoElement this[int index]
+		public override GeckoHtmlElement this[int index]
 		{
 			get
 			{
 				if (index < 0 || index >= Count)
 					throw new ArgumentOutOfRangeException("index");
 
-				return GeckoElement.Create((nsIDOMHTMLElement)Collection.Item((uint)index));
+				return GeckoHtmlElement.Create((nsIDOMHTMLElement)Collection.Item((uint)index));
 			}
 		}
 
-		public override IEnumerator<GeckoElement> GetEnumerator()
+		public override IEnumerator<GeckoHtmlElement> GetEnumerator()
 		{
 			int length = Count;
 			for (int i = 0; i < length; i++)
 			{
-				yield return GeckoElement.Create((nsIDOMHTMLElement)Collection.Item((uint)i));
+				yield return GeckoHtmlElement.Create((nsIDOMHTMLElement)Collection.Item((uint)i));
 			}
 		}
 	}

@@ -5,7 +5,7 @@ namespace Gecko
 	/// <summary>
 	/// Represents a collection of GeckoNode's
 	/// </summary>
-	internal class GeckoElementEnumerable : IEnumerable<GeckoElement>
+	internal class GeckoElementEnumerable : IEnumerable<GeckoHtmlElement>
 	{
 		private nsIDOMXPathResult xpathResult = null;
 
@@ -19,12 +19,12 @@ namespace Gecko
 		// TODO: This current implementation only also GetEnumerator to be called once!
 		// refactor so that Enumerator is inplemented in seperate class and GetEnumerator can
 		// be called multiple times.
-		public IEnumerator<GeckoElement> GetEnumerator()
+		public IEnumerator<GeckoHtmlElement> GetEnumerator()
 		{
 			nsIDOMNode node;
 			while ((node = xpathResult.IterateNext()) != null)
 				if (node is nsIDOMHTMLElement)
-					yield return GeckoElement.Create((nsIDOMHTMLElement)node);
+					yield return GeckoHtmlElement.Create((nsIDOMHTMLElement)node);
 		}
 
 		#endregion

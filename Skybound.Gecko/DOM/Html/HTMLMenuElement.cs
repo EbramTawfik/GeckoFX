@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Gecko.DOM
 {	
-	public class GeckoMenuElement : GeckoElement
+	public class GeckoMenuElement : GeckoHtmlElement
 	{
 		nsIDOMHTMLMenuElement DOMHTMLElement;
 		internal GeckoMenuElement(nsIDOMHTMLMenuElement element) : base(element)

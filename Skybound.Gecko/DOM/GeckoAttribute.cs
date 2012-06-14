@@ -25,11 +25,11 @@ namespace Gecko
 		}
 		
 		/// <summary>
-		/// Gets the <see cref="GeckoElement"/> which contains this attribute.
+		/// Gets the <see cref="GeckoHtmlElement"/> which contains this attribute.
 		/// </summary>
-		public GeckoElement OwnerElement
+		public GeckoHtmlElement OwnerElement
 		{
-			get { return GeckoElement.Create((nsIDOMHTMLElement)DomAttr.GetOwnerElementAttribute()); }
+			get { return GeckoHtmlElement.Create((nsIDOMHTMLElement)DomAttr.GetOwnerElementAttribute()); }
 		}
 		
 		/// <summary>

@@ -72,17 +72,17 @@ namespace Gecko
 			get { return _Event.GetCancelableAttribute(); }
 		}
 		
-		public GeckoElement CurrentTarget
+		public GeckoHtmlElement CurrentTarget
 		{
-			get { return GeckoElement.Create(Xpcom.QueryInterface<nsIDOMHTMLElement>(_Event.GetCurrentTargetAttribute())); }
+			get { return GeckoHtmlElement.Create(Xpcom.QueryInterface<nsIDOMHTMLElement>(_Event.GetCurrentTargetAttribute())); }
 		}
 		
 		/// <summary>
 		/// Gets the final destination of the event.
 		/// </summary>
-		public GeckoElement Target
+		public GeckoHtmlElement Target
 		{
-			get { return GeckoElement.Create(Xpcom.QueryInterface<nsIDOMHTMLElement>(_Event.GetTargetAttribute())); }
+			get { return GeckoHtmlElement.Create(Xpcom.QueryInterface<nsIDOMHTMLElement>(_Event.GetTargetAttribute())); }
 		}
 
 		/// <summary>
