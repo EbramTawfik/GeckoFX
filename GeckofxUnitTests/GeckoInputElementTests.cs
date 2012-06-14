@@ -36,7 +36,7 @@ namespace GeckofxUnitTests
 		{
 			browser.TestLoadHtml(@"<input type=""text"" id=""txtbox"" value=""text""/>");
 
-			GeckoInputElement element = (GeckoInputElement)browser.Document.GetElementById("txtbox");
+			GeckoInputElement element = (GeckoInputElement)browser.Document.GetHtmlElementById("txtbox");
 			Assert.AreEqual(0, element.SelectionStart);
 		}
 
@@ -45,7 +45,7 @@ namespace GeckofxUnitTests
 		{
 			browser.TestLoadHtml(@"<input type=""text"" id=""txtbox"" value=""text""/>");
 
-			GeckoInputElement element = (GeckoInputElement)browser.Document.GetElementById("txtbox");
+			GeckoInputElement element = (GeckoInputElement)browser.Document.GetHtmlElementById("txtbox");
 			Assert.AreEqual(0, element.SelectionEnd);
 		}
 	}

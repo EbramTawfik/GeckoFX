@@ -95,9 +95,9 @@ namespace GeckofxUnitTests
 			f.Show();
 
 			// Focus first input box
-			browser.Document.GetElementById("one").Focus();
+			browser.Document.GetHtmlElementById("one").Focus();
 			GeckoRange range = browser.Document.CreateRange();
-			range.SelectNode(browser.Document.GetElementById("one"));
+			range.SelectNode(browser.Document.GetHtmlElementById("one"));
 			browser.Window.Selection.AddRange(range);
 
 			// record if DomContentChanged event happened.
@@ -110,8 +110,8 @@ namespace GeckofxUnitTests
 			browser.Window.WindowUtils.SendKeyEvent("keypress", 0, 102, 0, false);			
 
 			// DomContentChanged Event should fire when we move we move to next element.
-			browser.Document.GetElementById("two").Focus();
-			range.SelectNode(browser.Document.GetElementById("two"));
+			browser.Document.GetHtmlElementById("two").Focus();
+			range.SelectNode(browser.Document.GetHtmlElementById("two"));
 			browser.Window.Selection.RemoveAllRanges();
 			browser.Window.Selection.AddRange(range);
 

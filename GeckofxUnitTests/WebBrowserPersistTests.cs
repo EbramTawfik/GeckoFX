@@ -58,7 +58,7 @@ namespace GeckofxUnitTests
 		public void SaveDocument_DOMChanged_ChangesSaved()
 		{
 			LoadHtml("<p id='a'>original</p>");
-			_browser.Document.GetElementById("a").TextContent = "changed";
+			_browser.Document.GetHtmlElementById("a").TextContent = "changed";
 			_browser.SaveDocument(_tempPath);
 			Assert.IsTrue(File.Exists(_tempPath));
 			Assert.IsTrue(File.ReadAllText(_tempPath).Contains("changed"));

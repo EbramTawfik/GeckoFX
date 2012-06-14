@@ -56,7 +56,7 @@ namespace GeckofxUnitTests
 		{
 			browser.TestLoadHtml("<div id=\"a\">hello</div>");
 
-			var divElement = browser.Document.GetElementById("a");
+			var divElement = browser.Document.GetHtmlElementById("a");
 			Assert.AreEqual("a", divElement.Id);
 
 			divElement.Id = String.Empty;
@@ -69,7 +69,7 @@ namespace GeckofxUnitTests
 		{
 			browser.TestLoadHtml("<div id=\"a\">hello</div>");
 
-			var divElement = browser.Document.GetElementById("a");
+			var divElement = browser.Document.GetHtmlElementById("a");
 			Assert.AreEqual("a", divElement.Id);
 
 			divElement.Id = null;
@@ -82,7 +82,7 @@ namespace GeckofxUnitTests
 		{
 			browser.TestLoadHtml("<div iD=\"a\">hello</div>");
 
-			var divElement = browser.Document.GetElementById("a");
+			var divElement = browser.Document.GetHtmlElementById("a");
 			Assert.AreEqual("a", divElement.Id);
 
 			divElement.Id = String.Empty;

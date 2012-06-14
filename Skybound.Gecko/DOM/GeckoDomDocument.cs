@@ -151,7 +151,23 @@ namespace Gecko
 		/// </summary>
 		/// <param name="id"></param>
 		/// <returns></returns>
-		public GeckoElement GetElementById(string id)
+		public GeckoDomElement GetElementById(string id)
+		{
+			if (string.IsNullOrEmpty(id))
+				return null;
+
+			var native = nsString.Pass<nsIDOMElement>(_domDocument.GetElementById, id);
+
+			return GeckoDomElement.CreateDomElementWrapper((nsIDOMElement)native);
+		}
+
+		/// <summary>
+		/// Searches for and returns the Html element in the document with the given id.
+		/// Will throw an invalid cast exception is element is not a HtmlElement.
+		/// </summary>
+		/// <param name="id"></param>
+		/// <returns></returns>
+		public GeckoElement GetHtmlElementById(string id)
 		{
 			if (string.IsNullOrEmpty(id))
 				return null;
