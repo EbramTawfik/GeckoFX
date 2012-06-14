@@ -122,7 +122,7 @@ namespace Gecko.DOM
         /// The caller of this method must have UniversalXPConnect
         /// privileges.
         /// </summary>		
-		public void SetDisplayPortForElement(float aXPx, float aYPx, float aWidthPx, float aHeightPx, GeckoDomElement aElement)
+		public void SetDisplayPortForElement(float aXPx, float aYPx, float aWidthPx, float aHeightPx, GeckoElement aElement)
 		{
 			_windowUtils.SetDisplayPortForElement(aXPx, aYPx, aWidthPx, aHeightPx, (nsIDOMElement)aElement.DomObject);
 		}
@@ -291,7 +291,7 @@ namespace Gecko.DOM
         /// Will throw a DOM security error if called without UniversalXPConnect
         /// privileges.
         /// </summary>
-		public void SendNativeMouseEvent(int aScreenX, int aScreenY, int aNativeMessage, int aModifierFlags, GeckoDomElement aElement)
+		public void SendNativeMouseEvent(int aScreenX, int aScreenY, int aNativeMessage, int aModifierFlags, GeckoElement aElement)
 		{
 			_windowUtils.SendNativeMouseEvent(aScreenX, aScreenY, aNativeMessage, aModifierFlags, (nsIDOMElement)aElement.DomObject);
 		}
@@ -425,13 +425,13 @@ namespace Gecko.DOM
         /// null for coordinates outside of the viewport.
         /// @param aFlushLayout flushes layout if true. Otherwise, no flush occurs.
         /// </summary>		
-		public GeckoDomElement ElementFromPoint(float aX, float aY, bool aIgnoreRootScrollFrame, bool aFlushLayout)
+		public GeckoElement ElementFromPoint(float aX, float aY, bool aIgnoreRootScrollFrame, bool aFlushLayout)
 		{
 			nsIDOMElement element = _windowUtils.ElementFromPoint(aX, aY, aIgnoreRootScrollFrame, aFlushLayout);
 			if (element == null)
 				return null;
 
-			return new GeckoDomElement(element);
+			return new GeckoElement(element);
 		}
 		
 		/// <summary>

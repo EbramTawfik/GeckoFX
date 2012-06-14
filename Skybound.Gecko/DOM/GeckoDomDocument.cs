@@ -27,13 +27,13 @@ namespace Gecko
 		/// <summary>
 		/// Gets the top-level document element (for HTML documents, this is the html tag).
 		/// </summary>
-		public GeckoDomElement DocumentElement
+		public GeckoElement DocumentElement
 		{
 			get
 			{
 				nsIDOMElement domElement = _domDocument.GetDocumentElementAttribute();
 
-				return GeckoDomElement.CreateDomElementWrapper(domElement);
+				return GeckoElement.CreateDomElementWrapper(domElement);
 			}
 		}
 
@@ -151,14 +151,14 @@ namespace Gecko
 		/// </summary>
 		/// <param name="id"></param>
 		/// <returns>Found element or null if element does not exist</returns>
-		public GeckoDomElement GetElementById(string id)
+		public GeckoElement GetElementById(string id)
 		{
 			if (string.IsNullOrEmpty(id))
 				return null;
 
 			var native = nsString.Pass<nsIDOMElement>(_domDocument.GetElementById, id);
 
-			return GeckoDomElement.CreateDomElementWrapper((nsIDOMElement)native);
+			return GeckoElement.CreateDomElementWrapper((nsIDOMElement)native);
 		}
 
 		/// <summary>

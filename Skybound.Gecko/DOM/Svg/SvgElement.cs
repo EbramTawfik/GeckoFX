@@ -6,7 +6,7 @@ using System.Text;
 namespace Gecko.DOM.Svg
 {
 	public class SvgElement
-		:GeckoDomElement
+		:GeckoElement
 	{
 		private nsIDOMSVGElement _svgElement;
 

@@ -240,7 +240,7 @@ namespace GeckofxUnitTests
 		{
 			browser.TestLoadHtml("<body>hello world</body>");
 
-			GeckoDomElement element = browser.Window.WindowUtils.ElementFromPoint(1, 1, true, false);
+			GeckoElement element = browser.Window.WindowUtils.ElementFromPoint(1, 1, true, false);
 
 			Assert.AreEqual("HTML", element.TagName);
 		}

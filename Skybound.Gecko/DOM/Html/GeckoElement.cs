@@ -6,7 +6,7 @@ namespace Gecko
 	/// Represents a DOM HTML element.
 	/// </summary>
 	public class GeckoHtmlElement
-		: GeckoDomElement
+		: GeckoElement
 	{
 		internal GeckoHtmlElement(nsIDOMHTMLElement element)
 			: base(element)

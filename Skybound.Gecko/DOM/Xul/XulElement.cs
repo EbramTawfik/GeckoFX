@@ -6,7 +6,7 @@ using System.Text;
 namespace Gecko.DOM.Xul
 {
 	public class XulElement
-		:GeckoDomElement
+		:GeckoElement
 	{
 		protected XulElement(nsIDOMXULElement xulElement)
 			:base(xulElement)

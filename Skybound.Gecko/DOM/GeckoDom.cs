@@ -39,15 +39,13 @@ using System.Diagnostics;
 
 namespace Gecko
 {
-#warning rename GeckoDomElement->GeckoElement & GeckoElement ->GeckoHtmlElement
-	public class GeckoDomElement
-		:GeckoNode
+	public class GeckoElement : GeckoNode
 	{
 		private nsIDOMElement _domElement;
 
 		private string m_cachedTagName;
 
-		internal GeckoDomElement(nsIDOMElement domElement)
+		internal GeckoElement(nsIDOMElement domElement)
 			:base(domElement)
 		{
 			_domElement = domElement;
@@ -238,7 +236,7 @@ namespace Gecko
 		}
 
 
-		public static GeckoDomElement CreateDomElementWrapper(nsIDOMElement element)
+		public static GeckoElement CreateDomElementWrapper(nsIDOMElement element)
 		{
 			if (element == null)
 				return null;
@@ -261,7 +259,7 @@ namespace Gecko
 				Marshal.ReleaseComObject(xulElement);
 				return DOM.Xul.XulElement.CreateXulElementWrapper((nsIDOMXULElement)element);
 			}
-			return new GeckoDomElement( element );
+			return new GeckoElement( element );
 		}
 	}
 }
