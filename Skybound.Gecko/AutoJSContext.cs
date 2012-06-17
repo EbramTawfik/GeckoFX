@@ -82,7 +82,9 @@ namespace Gecko
 			_securityManager = Xpcom.GetService<nsIScriptSecurityManager>("@mozilla.org/scriptsecuritymanager;1");
 
 			_systemPrincipal = _securityManager.GetSystemPrincipal();
+#if false // GetJSPrincipals no longer exists in firefox 13. https://bugzilla.mozilla.org/show_bug.cgi?id=728250
 			_jsPrincipals = _systemPrincipal.GetJSPrincipals(_cx);
+#endif
 
 			_securityManager.PushContextPrincipal(_cx, IntPtr.Zero, _systemPrincipal);
 		}

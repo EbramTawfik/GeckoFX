@@ -28,10 +28,8 @@ namespace Gecko
 	
 	
 	/// <summary>
-    /// An interface for in-process accessibility clients
-    /// wishing to get an nsIAccessible or nsIAccessNode for
-    /// a given DOM node.
-    /// More documentation at:
+    /// An interface for in-process accessibility clients wishing to get an
+    /// nsIAccessible for a given DOM node.  More documentation at:
     /// http://www.mozilla.org/projects/ui/accessibility
     /// </summary>
 	[ComImport()]
@@ -104,5 +102,15 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIAccessible GetAccessibleFromCache([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aNode);
+		
+		/// <summary>
+        /// Create a new pivot for tracking a position and traversing a subtree.
+        ///
+        /// @param aRoot [in] the accessible root for the pivot
+        /// @return a new pivot
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIAccessiblePivot CreateAccessiblePivot([MarshalAs(UnmanagedType.Interface)] nsIAccessible aRoot);
 	}
 }

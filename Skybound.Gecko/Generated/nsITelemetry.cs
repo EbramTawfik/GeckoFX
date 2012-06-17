@@ -27,6 +27,55 @@ namespace Gecko
 	using System.Windows.Forms;
 	
 	
+	/// <summary>nsITelemetrySessionData </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("c177b6b0-5ef1-44f5-bc67-6bcf7d2518e5")]
+	public interface nsITelemetrySessionData
+	{
+		
+		/// <summary>
+        /// The UUID of our previous session.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetUuidAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aUuid);
+		
+		/// <summary>
+        /// An object containing a snapshot from all registered histograms that had
+        /// data recorded in the previous session.
+        /// { name1: data1, name2: data2, .... }
+        /// where the individual dataN are as nsITelemetry.histogramSnapshots.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetSnapshotsAttribute(System.IntPtr jsContext);
+	}
+	
+	/// <summary>nsITelemetryLoadSessionDataCallback </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("aff36c9d-7e4c-41ab-a9b6-53773bbca0cd")]
+	public interface nsITelemetryLoadSessionDataCallback
+	{
+		
+		/// <summary>Member Handle </summary>
+		/// <param name='data'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Handle([MarshalAs(UnmanagedType.Interface)] nsITelemetrySessionData data);
+	}
+	
+	/// <summary>nsITelemetrySaveSessionDataCallback </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("40065f26-afd2-4417-93de-c1de9adb1548")]
+	public interface nsITelemetrySaveSessionDataCallback
+	{
+		
+		/// <summary>Member Handle </summary>
+		/// <param name='success'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Handle([MarshalAs(UnmanagedType.U1)] bool success);
+	}
+	
 	/// <summary>nsITelemetry </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -40,7 +89,7 @@ namespace Gecko
         /// where data is consists of the following properties:
         /// min - Minimal bucket size
         /// max - Maximum bucket size
-        /// histogram_type - HISTOGRAM_EXPONENTIAL or HISTOGRAM_LINEAR
+        /// histogram_type - HISTOGRAM_EXPONENTIAL, HISTOGRAM_LINEAR, or HISTOGRAM_BOOLEAN
         /// counts - array representing contents of the buckets in the histogram
         /// ranges -  an array with calculated bucket sizes
         /// sum - sum of the bucket contents
@@ -76,13 +125,13 @@ namespace Gecko
 		Gecko.JsVal GetRegisteredHistogramsAttribute(System.IntPtr jsContext);
 		
 		/// <summary>
-        /// Create and return a histogram where bucket sizes increase exponentially. Parameters:
+        /// Create and return a histogram.  Parameters:
         ///
         /// @param name Unique histogram name
         /// @param min - Minimal bucket size
         /// @param max - Maximum bucket size
         /// @param bucket_count - number of buckets in the histogram.
-        /// @param type - HISTOGRAM_EXPONENTIAL or HISTOGRAM_LINEAR
+        /// @param type - HISTOGRAM_EXPONENTIAL, HISTOGRAM_LINEAR or HISTOGRAM_BOOLEAN
         /// The returned object has the following functions:
         /// add(int) - Adds an int value to the appropriate bucket
         /// snapshot() - Returns a snapshot of the histogram with the same data fields as in histogramSnapshots()
@@ -110,6 +159,32 @@ namespace Gecko
 		Gecko.JsVal GetHistogramById([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase id, System.IntPtr jsContext);
 		
 		/// <summary>
+        /// Save persistent histograms to the given file.
+        ///
+        /// @param file - filename for saving
+        /// @param uuid - UUID of this session
+        /// @param callback - function to be caled when file writing is complete
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SaveHistograms([MarshalAs(UnmanagedType.Interface)] nsIFile file, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase uuid, [MarshalAs(UnmanagedType.Interface)] nsITelemetrySaveSessionDataCallback callback, [MarshalAs(UnmanagedType.U1)] bool isSynchronous);
+		
+		/// <summary>
+        ///Reconstruct an nsITelemetryDataSession object containing histogram
+        /// information from the given file; the file must have been produced
+        /// via saveHistograms.
+        ///
+        /// This method does not modify the histogram information being
+        /// collected in the current session.
+        ///
+        /// The reconstructed object is then passed to the given callback.
+        ///
+        /// @param file - the file to load histogram information from
+        /// @param callback - function to process histogram information
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void LoadHistograms([MarshalAs(UnmanagedType.Interface)] nsIFile file, [MarshalAs(UnmanagedType.Interface)] nsITelemetryLoadSessionDataCallback callback, [MarshalAs(UnmanagedType.U1)] bool isSynchronous);
+		
+		/// <summary>
         /// Set this to false to disable gathering of telemetry statistics.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
@@ -121,6 +196,62 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetCanRecordAttribute([MarshalAs(UnmanagedType.U1)] bool aCanRecord);
+		
+		/// <summary>
+        /// A flag indicating whether Telemetry can submit official results.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetCanSendAttribute();
+		
+		/// <summary>
+        /// Register a histogram for an addon.  Throws an error if the
+        /// histogram name has been registered previously.
+        ///
+        /// @param addon_id - Unique ID of the addon
+        /// @param name - Unique histogram name
+        /// @param min - Minimal bucket size
+        /// @param max - Maximum bucket size
+        /// @param bucket_count - number of buckets in the histogram
+        /// @param histogram_type - HISTOGRAM_EXPONENTIAL, HISTOGRAM_LINEAR, or
+        /// HISTOGRAM_BOOLEAN
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RegisterAddonHistogram([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase addon_id, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase name, uint min, uint max, uint bucket_count, uint histogram_type);
+		
+		/// <summary>
+        /// Return a histogram previously registered via
+        /// registerAddonHistogram.  Throws an error if the id/name combo has
+        /// not been registered via registerAddonHistogram.
+        ///
+        /// @param addon_id - Unique ID of the addon
+        /// @param name - Registered histogram name
+        ///
+        /// The returned object has the same functions as a histogram returned
+        /// from newHistogram.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetAddonHistogram([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase addon_id, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase name, System.IntPtr jsContext);
+		
+		/// <summary>
+        /// Delete all histograms associated with the given addon id.
+        ///
+        /// @param addon_id - Unique ID of the addon
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void UnregisterAddonHistograms([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase addon_id);
+		
+		/// <summary>
+        /// An object containing a snapshot from all of the currently
+        /// registered addon histograms.
+        /// { addon-id1 : data1, ... }
+        ///
+        /// where data is an object whose properties are the names of the
+        /// addon's histograms and whose corresponding values are as in
+        /// histogramSnapshots.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetAddonHistogramSnapshotsAttribute(System.IntPtr jsContext);
 	}
 	
 	/// <summary>nsITelemetryConsts </summary>
@@ -132,6 +263,7 @@ namespace Gecko
         // HISTOGRAM_EXPONENTIAL - buckets increase exponentially
         // HISTOGRAM_LINEAR - buckets increase linearly
         // HISTOGRAM_BOOLEAN - For storing 0/1 values
+        // HISTOGRAM_FLAG - For storing a single value; its count is always == 1.
         // </summary>
 		public const ulong HISTOGRAM_EXPONENTIAL = 0;
 		
@@ -140,5 +272,8 @@ namespace Gecko
 		
 		// 
 		public const ulong HISTOGRAM_BOOLEAN = 2;
+		
+		// 
+		public const ulong HISTOGRAM_FLAG = 3;
 	}
 }

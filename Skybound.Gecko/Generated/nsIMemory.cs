@@ -66,8 +66,8 @@ namespace Gecko
 		
 		/// <summary>
         /// Allocates a block of memory of a particular size. If the memory
-        /// cannot be allocated (because of an out-of-memory condition), null
-        /// is returned.
+        /// cannot be allocated (because of an out-of-memory condition), the
+        /// process aborts.
         ///
         /// @param size - the size of the block to allocate
         /// @result the block of memory
@@ -86,8 +86,7 @@ namespace Gecko
         /// If s is the size of the block to which ptr points, the first
         /// min(s, size) bytes of ptr's block are copied to the new block.
         /// If the allocation succeeds, ptr is freed and a pointer to the
-        /// new block returned.  If the allocation fails, ptr is not freed
-        /// and null is returned. The returned value may be the same as ptr.
+        /// new block returned.  If the allocation fails, the process aborts.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr Realloc(System.IntPtr ptr, uint newSize);

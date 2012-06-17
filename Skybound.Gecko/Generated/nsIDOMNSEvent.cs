@@ -30,7 +30,7 @@ namespace Gecko
 	/// <summary>nsIDOMNSEvent </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("9be8096b-f795-4045-9664-0c275f36fe5b")]
+	[Guid("07F905C1-9170-4103-86CA-766374DA149A")]
 	public interface nsIDOMNSEvent
 	{
 		
@@ -53,16 +53,6 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMEventTarget GetExplicitOriginalTargetAttribute();
-		
-		/// <summary>
-        ///XXX This is TEMPORARY.
-        /// The original target, without any retargeting (like textnode retargeting).
-        /// This really needs to be in .originalTarget, but this is a less risky way of
-        /// fixing it.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventTarget GetTmpRealOriginalTargetAttribute();
 		
 		/// <summary>
         /// @deprecated Use nsIDOMEvent::stopPropagation.

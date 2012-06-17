@@ -28,7 +28,7 @@ namespace Gecko
 	
 	
 	/// <summary>
-    /// A utility class that unescapes HTML strings.
+    /// A utility class for HTML parsing in the feed processor.
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -37,15 +37,26 @@ namespace Gecko
 	{
 		
 		/// <summary>
-        /// Converts all entities to Unicode.
+        /// Converts HTML to plain text. This is equivalent to calling
+        /// nsIParserUtils::convertToPlainText(src,
+        /// nsIDocumentEncoder::OutputSelectionOnly |
+        /// nsIDocumentEncoder::OutputAbsoluteLinks, 0).
         ///
-        /// @param src The HTML string to escape.
+        /// You should most likely call nsIParserUtils::convertToPlainText()
+        /// instead of calling this method.
+        ///
+        /// @param src The HTML string to convert to plain text.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Unescape([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase src, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
-        /// Appends the text to the element.
+        /// Parses markup into a sanitized document fragment.
+        ///
+        /// @param fragment the input markup
+        /// @param isXML true if |fragment| is XML and false if HTML
+        /// @param baseURI the base URL for this fragment
+        /// @param element the context node for the fragment parsing algorithm
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

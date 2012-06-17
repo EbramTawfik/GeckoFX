@@ -56,7 +56,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("f6e3b10d-d5f4-4fcd-aa4c-5f98626d428a")]
+	[Guid("17400E2B-F78B-4E69-B500-C2A3135A40FD")]
 	public interface nsIDOMWindow
 	{
 		
@@ -174,15 +174,52 @@ namespace Gecko
 		uint GetLengthAttribute();
 		
 		/// <summary>
-        /// Accessor for the root of this hierarchy of windows. This root may
-        /// be the window itself if there is no parent, or if the parent is
-        /// of different type (i.e. this does not cross chrome-content
-        /// boundaries).
+        /// |top| gets the root of the window hierarchy.
         ///
-        /// This property is "replaceable" in JavaScript </summary>
+        /// This function does not cross chrome-content boundaries, so if this
+        /// window's parent is of a different type, |top| will return this window.
+        ///
+        /// When script reads the top property, we run GetScriptableTop, which
+        /// will not cross an <iframe mozbrowser> boundary.
+        ///
+        /// In contrast, C++ calls to GetTop are forwarded to GetRealTop, which
+        /// ignores <iframe mozbrowser> boundaries.
+        ///
+        /// This property is "replaceable" in JavaScript.
+        /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMWindow GetTopAttribute();
+		
+		/// <summary>
+        /// You shouldn't need to call this function directly; call GetTop instead.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMWindow GetRealTopAttribute();
+		
+		/// <summary>
+        /// |parent| gets this window's parent window.  If this window has no parent,
+        /// we return the window itself.
+        ///
+        /// This property does not cross chrome-content boundaries, so if this
+        /// window's parent is of a different type, we return the window itself as its
+        /// parent.
+        ///
+        /// When script reads the property (or when C++ calls ScriptableTop), this
+        /// property does not cross <iframe mozbrowser> boundaries.  In contrast, when
+        /// C++ calls GetParent, we ignore the mozbrowser attribute.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMWindow GetParentAttribute();
+		
+		/// <summary>
+        /// You shouldn't need to read this property directly; call GetParent instead.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMWindow GetRealParentAttribute();
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -192,17 +229,25 @@ namespace Gecko
 		void SetOpenerAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aOpener);
 		
 		/// <summary>
-        /// Accessor for this window's parent window, or the window itself if
-        /// there is no parent, or if the parent is of different type
-        /// (i.e. this does not cross chrome-content boundaries).
+        /// |frameElement| gets this window's <iframe> or <frame> element, if it has
+        /// one.
+        ///
+        /// When script reads this property (or when C++ calls
+        /// ScriptableFrameElement), we return |null| if the window is inside an
+        /// <iframe mozbrowser>.  In contrast, when C++ calls GetFrameElement, we
+        /// ignore the mozbrowser attribute.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMWindow GetParentAttribute();
+		nsIDOMElement GetFrameElementAttribute();
 		
+		/// <summary>
+        /// You shouldn't need to read this property directly; call GetFrameElement
+        /// instead.
+        /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMElement GetFrameElementAttribute();
+		nsIDOMElement GetRealFrameElementAttribute();
 		
 		/// <summary>
         /// the user agent
@@ -621,13 +666,6 @@ namespace Gecko
 		nsIDOMMozURLProperty GetURLAttribute();
 		
 		/// <summary>
-        /// Global storage, accessible by domain.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMStorageList GetGlobalStorageAttribute();
-		
-		/// <summary>
         /// HTML5 event attributes that only apply to windows and <body>/<frameset>
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -887,15 +925,52 @@ namespace Gecko
 		new uint GetLengthAttribute();
 		
 		/// <summary>
-        /// Accessor for the root of this hierarchy of windows. This root may
-        /// be the window itself if there is no parent, or if the parent is
-        /// of different type (i.e. this does not cross chrome-content
-        /// boundaries).
+        /// |top| gets the root of the window hierarchy.
         ///
-        /// This property is "replaceable" in JavaScript </summary>
+        /// This function does not cross chrome-content boundaries, so if this
+        /// window's parent is of a different type, |top| will return this window.
+        ///
+        /// When script reads the top property, we run GetScriptableTop, which
+        /// will not cross an <iframe mozbrowser> boundary.
+        ///
+        /// In contrast, C++ calls to GetTop are forwarded to GetRealTop, which
+        /// ignores <iframe mozbrowser> boundaries.
+        ///
+        /// This property is "replaceable" in JavaScript.
+        /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMWindow GetTopAttribute();
+		
+		/// <summary>
+        /// You shouldn't need to call this function directly; call GetTop instead.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMWindow GetRealTopAttribute();
+		
+		/// <summary>
+        /// |parent| gets this window's parent window.  If this window has no parent,
+        /// we return the window itself.
+        ///
+        /// This property does not cross chrome-content boundaries, so if this
+        /// window's parent is of a different type, we return the window itself as its
+        /// parent.
+        ///
+        /// When script reads the property (or when C++ calls ScriptableTop), this
+        /// property does not cross <iframe mozbrowser> boundaries.  In contrast, when
+        /// C++ calls GetParent, we ignore the mozbrowser attribute.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMWindow GetParentAttribute();
+		
+		/// <summary>
+        /// You shouldn't need to read this property directly; call GetParent instead.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMWindow GetRealParentAttribute();
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -905,17 +980,25 @@ namespace Gecko
 		new void SetOpenerAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aOpener);
 		
 		/// <summary>
-        /// Accessor for this window's parent window, or the window itself if
-        /// there is no parent, or if the parent is of different type
-        /// (i.e. this does not cross chrome-content boundaries).
+        /// |frameElement| gets this window's <iframe> or <frame> element, if it has
+        /// one.
+        ///
+        /// When script reads this property (or when C++ calls
+        /// ScriptableFrameElement), we return |null| if the window is inside an
+        /// <iframe mozbrowser>.  In contrast, when C++ calls GetFrameElement, we
+        /// ignore the mozbrowser attribute.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMWindow GetParentAttribute();
+		new nsIDOMElement GetFrameElementAttribute();
 		
+		/// <summary>
+        /// You shouldn't need to read this property directly; call GetFrameElement
+        /// instead.
+        /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMElement GetFrameElementAttribute();
+		new nsIDOMElement GetRealFrameElementAttribute();
 		
 		/// <summary>
         /// the user agent
@@ -1332,13 +1415,6 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMMozURLProperty GetURLAttribute();
-		
-		/// <summary>
-        /// Global storage, accessible by domain.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMStorageList GetGlobalStorageAttribute();
 		
 		/// <summary>
         /// HTML5 event attributes that only apply to windows and <body>/<frameset>

@@ -30,9 +30,15 @@ namespace Gecko
 	/// <summary>nsISmsDatabaseService </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("3ddf7dc3-626c-47ee-8b41-3f55d5af49c9")]
+	[Guid("74d6ff05-818a-4179-a745-6258e1c3cd08")]
 	public interface nsISmsDatabaseService
 	{
+		
+		/// <summary>
+        /// Takes some information required to save the message and returns its id.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		int SaveReceivedMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSender, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBody, ulong aDate);
 		
 		/// <summary>
         /// Takes some information required to save the message and returns its id.

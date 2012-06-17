@@ -27,6 +27,37 @@ namespace Gecko
 	using System.Windows.Forms;
 	
 	
+	/// <summary>nsIWifiNetwork </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("14c815f0-e9db-41d4-a15e-f3e69140f83b")]
+	public interface nsIWifiNetwork
+	{
+		
+		/// <summary>Member GetSsidAttribute </summary>
+		/// <param name='aSsid'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetSsidAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSsid);
+		
+		/// <summary>
+        /// can be null
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetBssidAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBssid);
+		
+		/// <summary>
+        /// can be null
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetFlagsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFlags);
+		
+		/// <summary>
+        /// TODO make this be real flags instead of a string
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		int GetSignalAttribute();
+	}
+	
 	/// <summary>nsIWifi </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]

@@ -30,7 +30,7 @@ namespace Gecko
 	/// <summary>nsIDOMFileReader </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("d158de26-904e-4731-b42c-8b3a4d172703")]
+	[Guid("faed1779-b523-4060-8c3b-7199f347b273")]
 	public interface nsIDOMFileReader : nsIDOMEventTarget
 	{
 		
@@ -275,10 +275,10 @@ namespace Gecko
 		Gecko.JsVal GetResultAttribute(System.IntPtr jsContext);
 		
 		/// <summary>Member GetErrorAttribute </summary>
-		/// <returns>A nsIDOMFileError</returns>
+		/// <returns>A nsIDOMDOMError</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMFileError GetErrorAttribute();
+		nsIDOMDOMError GetErrorAttribute();
 		
 		/// <summary>Member GetOnloadstartAttribute </summary>
 		/// <returns>A nsIDOMEventListener</returns>

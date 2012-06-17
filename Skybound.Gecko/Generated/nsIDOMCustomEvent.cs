@@ -176,45 +176,4 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void InitCustomEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase typeArg, [MarshalAs(UnmanagedType.U1)] bool canBubbleArg, [MarshalAs(UnmanagedType.U1)] bool cancelableArg, [MarshalAs(UnmanagedType.Interface)] nsIVariant detailArg);
 	}
-	
-	/// <summary>nsICustomEventInit </summary>
-	[ComImport()]
-	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("8c166794-06af-4eac-b76b-bc132e421b06")]
-	public interface nsICustomEventInit : nsIEventInit
-	{
-		
-		/// <summary>Member GetBubblesAttribute </summary>
-		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool GetBubblesAttribute();
-		
-		/// <summary>Member SetBubblesAttribute </summary>
-		/// <param name='aBubbles'> </param>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetBubblesAttribute([MarshalAs(UnmanagedType.U1)] bool aBubbles);
-		
-		/// <summary>Member GetCancelableAttribute </summary>
-		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool GetCancelableAttribute();
-		
-		/// <summary>Member SetCancelableAttribute </summary>
-		/// <param name='aCancelable'> </param>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetCancelableAttribute([MarshalAs(UnmanagedType.U1)] bool aCancelable);
-		
-		/// <summary>Member GetDetailAttribute </summary>
-		/// <returns>A nsIVariant</returns>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant GetDetailAttribute();
-		
-		/// <summary>Member SetDetailAttribute </summary>
-		/// <param name='aDetail'> </param>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDetailAttribute([MarshalAs(UnmanagedType.Interface)] nsIVariant aDetail);
-	}
 }

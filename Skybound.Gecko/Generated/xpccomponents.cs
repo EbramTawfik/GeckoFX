@@ -161,7 +161,7 @@ namespace Gecko
     /// interface of Components.utils </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("9e9ba9d6-a0fa-4767-9f49-9b74bb2368cd")]
+	[Guid("9e43a260-5db2-11e1-b86c-0800200c9a66")]
 	public interface nsIXPCComponents_Utils
 	{
 		
@@ -311,6 +311,9 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		Gecko.JsVal NondeterministicGetWeakMapKeys(Gecko.JsVal aMap, System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetJSTestingFunctions(System.IntPtr jsContext);
 		
 		/// <summary>
         /// To be called from JS only.

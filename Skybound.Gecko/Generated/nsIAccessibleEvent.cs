@@ -496,9 +496,14 @@ namespace Gecko
 		public const ulong EVENT_OBJECT_ATTRIBUTE_CHANGED = 0x0055;
 		
 		// <summary>
+        // A cursorable's virtual cursor has changed.
+        // </summary>
+		public const ulong EVENT_VIRTUALCURSOR_CHANGED = 0x0056;
+		
+		// <summary>
         // Help make sure event map does not get out-of-line.
         // </summary>
-		public const ulong EVENT_LAST_ENTRY = 0x0056;
+		public const ulong EVENT_LAST_ENTRY = 0x0057;
 	}
 	
 	/// <summary>nsIAccessibleStateChangeEvent </summary>
@@ -563,6 +568,35 @@ namespace Gecko
 		void GetModifiedTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aModifiedText);
 	}
 	
+	/// <summary>nsIAccessibleHideEvent </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("a2bd2eca-3afa-489b-afb2-f93ef32ad99c")]
+	public interface nsIAccessibleHideEvent
+	{
+		
+		/// <summary>
+        /// Return an accessible that was a parent of the target.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIAccessible GetTargetParentAttribute();
+		
+		/// <summary>
+        /// Return an accessible that was a next sibling of the target
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIAccessible GetTargetNextSiblingAttribute();
+		
+		/// <summary>
+        /// Return an accessible that was a parent of the target
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIAccessible GetTargetPrevSiblingAttribute();
+	}
+	
 	/// <summary>nsIAccessibleCaretMoveEvent </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -595,5 +629,35 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetNumRowsOrColsAttribute();
+	}
+	
+	/// <summary>
+    /// An interface for virtual cursor changed events.
+    /// Passes previous cursor position and text offsets.
+    /// </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("370e8b9b-2bbc-4bff-a9c7-16ddc54aea21")]
+	public interface nsIAccessibleVirtualCursorChangeEvent
+	{
+		
+		/// <summary>
+        /// Previous object pointed at by virtual cursor. null if none.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIAccessible GetOldAccessibleAttribute();
+		
+		/// <summary>
+        /// Previous start offset of pivot. -1 if none.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		int GetOldStartOffsetAttribute();
+		
+		/// <summary>
+        /// Previous end offset of pivot. -1 if none.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		int GetOldEndOffsetAttribute();
 	}
 }

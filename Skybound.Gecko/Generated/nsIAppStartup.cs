@@ -30,7 +30,7 @@ namespace Gecko
 	/// <summary>nsIAppStartup </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("dd3e7b3c-0974-4a38-b4d3-ce2213452432")]
+	[Guid("50c4194b-61c6-4292-963f-6e1a8e11c9d3")]
 	public interface nsIAppStartup
 	{
 		
@@ -72,6 +72,42 @@ namespace Gecko
 		/// <summary>Member ExitLastWindowClosingSurvivalArea </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ExitLastWindowClosingSurvivalArea();
+		
+		/// <summary>
+        /// Whether automatic safe mode is necessary at this time.  This gets set
+        /// in trackStartupCrashBegin.
+        ///
+        /// @see trackStartupCrashBegin
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetAutomaticSafeModeNecessaryAttribute();
+		
+		/// <summary>
+        /// Restart the application in safe mode
+        /// @param aQuitMode
+        /// This parameter modifies how the app is shutdown.
+        /// @see nsIAppStartup::quit
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RestartInSafeMode(uint aQuitMode);
+		
+		/// <summary>
+        /// If the last startup crashed then increment a counter.
+        /// Set a flag so on next startup we can detect whether TrackStartupCrashEnd
+        /// was called (and therefore the application crashed).
+        /// @return whether safe mode is necessary
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool TrackStartupCrashBegin();
+		
+		/// <summary>
+        /// We have succesfully started without crashing. Clear flags that were
+        /// tracking past crashes.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void TrackStartupCrashEnd();
 		
 		/// <summary>
         /// Exit the event loop, and shut down the app.

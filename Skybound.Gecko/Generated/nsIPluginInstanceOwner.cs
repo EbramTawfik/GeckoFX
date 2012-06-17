@@ -27,10 +27,12 @@ namespace Gecko
 	using System.Windows.Forms;
 	
 	
-	/// <summary>nsIPluginInstanceOwner </summary>
+	/// <summary>
+    /// blocks will make script call the wrong functions.
+    /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("17E89C1F-AE62-448E-83D5-C33FA6E07A19")]
+	[Guid("23bd0a76-a5dc-4a1d-be76-13d7a0dfd9ff")]
 	public interface nsIPluginInstanceOwner
 	{
 		
@@ -92,10 +94,10 @@ namespace Gecko
 		void InvalidateRegion(System.IntPtr aRegion);
 		
 		/// <summary>
-        /// Force a redraw
+        /// Have the plugin recomposited.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ForceRedraw();
+		void RedrawPlugin();
 		
 		/// <summary>
         /// Get NetscapeWindow, corresponds to NPNVnetscapeWindow
@@ -113,6 +115,6 @@ namespace Gecko
         /// Call NPP_SetWindow on the plugin.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetWindow();
+		void CallSetWindow();
 	}
 }

@@ -66,7 +66,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("24ce8b9d-b7ff-4279-aef4-26e158f03e34")]
+	[Guid("3df284a5-2258-4d46-a664-761ecdc04c22")]
 	public interface nsIProfileMigrator
 	{
 		
@@ -84,9 +84,12 @@ namespace Gecko
         /// If your migrator needs to access services that use the profile (to
         /// set profile prefs or bookmarks, for example), use aStartup.doStartup.
         ///
+        /// @param  aStartup nsIProfileStartup object to use during migration.
+        /// @param  aKey     optional key of a migrator to use to skip source selection.
+        ///
         /// @note The startup code ignores COM exceptions thrown from this method.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Migrate([MarshalAs(UnmanagedType.Interface)] nsIProfileStartup aStartup);
+		void Migrate([MarshalAs(UnmanagedType.Interface)] nsIProfileStartup aStartup, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aKey);
 	}
 }

@@ -404,7 +404,7 @@ namespace Gecko
         /// @param aObserver An observer previously registered with addObserver().
         ///
         /// @note
-        /// Note that you must call removeObserver() on the same nsIPrefBranch2
+        /// Note that you must call removeObserver() on the same nsIPrefBranch
         /// instance on which you called addObserver() in order to remove aObserver;
         /// otherwise, the observer will not be removed.
         ///

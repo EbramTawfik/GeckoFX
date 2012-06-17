@@ -37,7 +37,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("ce82fb71-60f2-4c38-be31-de5f2f90dada")]
+	[Guid("5e9bcec9-5928-4f77-8a9c-424ef01c20e1")]
 	public interface nsIDOMNode
 	{
 		
@@ -115,9 +115,12 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool HasChildNodes();
 		
+		/// <summary>
+        /// Modified in DOM Level 4:
+        /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMNode CloneNode([MarshalAs(UnmanagedType.U1)] bool deep);
+		nsIDOMNode CloneNode([MarshalAs(UnmanagedType.U1)] bool deep, int argc);
 		
 		/// <summary>
         /// Modified in DOM Level 2:

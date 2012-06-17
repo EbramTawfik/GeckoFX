@@ -55,9 +55,15 @@ namespace Gecko
 		
 		/// <summary>
         /// The path that this memory usage should be reported under.  Paths are
-        /// '/'-delimited, eg. "a/b/c".  There are three categories of paths.
+        /// '/'-delimited, eg. "a/b/c".  If you want to include a '/' not as a path
+        /// separator, e.g. because the path contains a URL, you need to convert
+        /// each '/' in the URL to a '\'.  Consumers of the path will undo this
+        /// change.  Any other '\' character in a path will also be changed.  This
+        /// is clumsy but hasn't caused any problems so far.
         ///
-        /// - Paths starting with "explicit" represent regions of memory that have
+        /// There are several categories of paths.
+        ///
+        /// - Paths starting with "explicit/" represent regions of memory that have
         /// been explicitly allocated with an OS-level allocation (eg.
         /// mmap/VirtualAlloc/vm_allocate) or a heap-level allocation (eg.
         /// malloc/calloc/operator new).
@@ -82,16 +88,21 @@ namespace Gecko
         /// So in the example above, |a| may not count any allocations counted by
         /// |d|, and vice versa.
         ///
-        /// - Paths starting with "map" represent regions of virtual memory that the
-        /// process has mapped.  The reporter immediately beneath "map" describes
-        /// the type of measurement; for instance, the reporter "map/rss/[stack]"
-        /// might report how much of the process's stack is currently in physical
-        /// memory.
+        /// - Paths starting with "smaps/" represent regions of virtual memory that the
+        /// process has mapped.  The rest of the path describes the type of
+        /// measurement; for instance, the reporter "smaps/rss/[stack]" might report
+        /// how much of the process's stack is currently in physical memory.
         ///
         /// Reporters in this category must have kind NONHEAP and units BYTES.
         ///
+        /// - Paths starting with "compartments/" represent the names of JS
+        /// compartments.  Reporters in this category must paths of the form
+        /// "compartments/user/<name>" or "compartments/system/<name>", amount 1,
+        /// kind OTHER, units COUNT, and an empty description.
+        ///
         /// - All other paths represent cross-cutting values and may overlap with any
-        /// other reporter.
+        /// other reporter.  Reporters in this category must have paths that do not
+        /// contain '/' separators, and kind OTHER.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetPathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aPath);
@@ -132,17 +143,17 @@ namespace Gecko
         // - HEAP: memory allocated by the heap allocator, e.g. by calling malloc,
         // calloc, realloc, memalign, operator new, or operator new[].  Reporters
         // in this category must have units UNITS_BYTES and must have a path
-        // starting with "explicit".
+        // starting with "explicit/".
         //
         // - NONHEAP: memory which the program explicitly allocated, but does not
         // live on the heap.  Such memory is commonly allocated by calling one of
         // the OS's memory-mapping functions (e.g. mmap, VirtualAlloc, or
         // vm_allocate).  Reporters in this category must have units UNITS_BYTES
-        // and must have a path starting with "explicit" or "map".
+        // and must have a path starting with "explicit/" or "smaps/".
         //
         // - OTHER: reporters which don't fit into either of these categories. Such
-        // reporters must have a path that does not start with "explicit" or "map"
-        // and may have any units.
+        // reporters must have a path that does not start with "explicit/" or
+        // "smaps/" and may have any units.
         // </summary>
 		public const int KIND_NONHEAP = 0;
 		
@@ -234,16 +245,15 @@ namespace Gecko
 	{
 		
 		/// <summary>
-        /// An nsIMemoryMultiReporter reports multiple memory measurements via a
-        /// callback function which is called once for each measurement.  Use this
-        /// when you want to gather multiple measurements in a single operation (eg.
-        /// a single traversal of a large data structure).
-        ///
-        /// The arguments to the callback deliberately match the fields in
-        /// nsIMemoryReporter, but note that seeing any of these arguments requires
-        /// calling collectReports which will trigger all relevant computation.
-        /// (Compare and contrast this with nsIMemoryReporter, which allows all
-        /// fields except |amount| to be accessed without triggering computation.)
+        /// The name of the multi-reporter.  Useful when only one multi-reporter
+        /// needs to be run.  Must be unique;  if multi-reporters share names it's
+        /// likely the wrong one will be called in certain circumstances.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aName);
+		
+		/// <summary>
+        /// Run the multi-reporter.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void CollectReports([MarshalAs(UnmanagedType.Interface)] nsIMemoryMultiReporterCallback callback, [MarshalAs(UnmanagedType.Interface)] nsISupports closure);

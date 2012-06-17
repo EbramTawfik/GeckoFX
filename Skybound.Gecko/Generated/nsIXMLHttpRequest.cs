@@ -740,11 +740,10 @@ namespace Gecko
         /// part of a multipart request, not from the original channel.
         ///
         /// @returns A string containing all of the response headers.
-        /// NULL if the response has not yet been received.
+        /// The empty string if the response has not yet been received.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string GetAllResponseHeaders();
+		void GetAllResponseHeaders([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// Returns the text of the header with the specified name for

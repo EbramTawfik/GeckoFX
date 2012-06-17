@@ -27,6 +27,46 @@ namespace Gecko
 	using System.Windows.Forms;
 	
 	
+	/// <summary>nsICycleCollectorHandler </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("0ef15f15-7783-4991-af68-4976d7ec2267")]
+	public interface nsICycleCollectorHandler
+	{
+		
+		/// <summary>Member NoteRefCountedObject </summary>
+		/// <param name='aAddress'> </param>
+		/// <param name='aRefCount'> </param>
+		/// <param name='aObjectDescription'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void NoteRefCountedObject([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aAddress, uint aRefCount, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aObjectDescription);
+		
+		/// <summary>Member NoteGCedObject </summary>
+		/// <param name='aAddress'> </param>
+		/// <param name='aMarked'> </param>
+		/// <param name='aObjectDescription'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void NoteGCedObject([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aAddress, [MarshalAs(UnmanagedType.U1)] bool aMarked, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aObjectDescription);
+		
+		/// <summary>Member NoteEdge </summary>
+		/// <param name='aFromAddress'> </param>
+		/// <param name='aToAddress'> </param>
+		/// <param name='aEdgeName'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void NoteEdge([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aFromAddress, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aToAddress, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aEdgeName);
+		
+		/// <summary>Member DescribeRoot </summary>
+		/// <param name='aAddress'> </param>
+		/// <param name='aKnownEdges'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void DescribeRoot([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aAddress, uint aKnownEdges);
+		
+		/// <summary>Member DescribeGarbage </summary>
+		/// <param name='aAddress'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void DescribeGarbage([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aAddress);
+	}
+	
 	/// <summary>
     ///Interface to pass to the cycle collector to get information about
     /// the CC graph while it's being built. The order of calls will be a
@@ -43,7 +83,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("35a3a9b0-a120-4bf7-9739-46027fe96212")]
+	[Guid("5d1c5d51-2022-4242-8c33-0a942b5fed06")]
 	public interface nsICycleCollectorListener
 	{
 		
@@ -72,6 +112,26 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetWantAllTracesAttribute();
 		
+		/// <summary>
+        /// a log to a file unless disableLog is set to true.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetDisableLogAttribute();
+		
+		/// <summary>
+        /// a log to a file unless disableLog is set to true.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetDisableLogAttribute([MarshalAs(UnmanagedType.U1)] bool aDisableLog);
+		
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetWantAfterProcessingAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetWantAfterProcessingAttribute([MarshalAs(UnmanagedType.U1)] bool aWantAfterProcessing);
+		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Begin();
 		
@@ -95,5 +155,12 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void End();
+		
+		/// <summary>
+        /// Returns false if there isn't anything more to process.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool ProcessNext([MarshalAs(UnmanagedType.Interface)] nsICycleCollectorHandler aHandler);
 	}
 }

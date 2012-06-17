@@ -37,7 +37,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("8c82b89f-f90c-4a31-a544-6e1f759673d4")]
+	[Guid("8bf87433-be67-413b-9497-00071c5002bd")]
 	public interface imgIContainer
 	{
 		
@@ -98,11 +98,9 @@ namespace Gecko
 		/// <summary>
         /// Attempts to create an ImageContainer (and Image) containing the current
         /// frame. Only valid for RASTER type images.
-        ///
-        /// @param aManager The layer manager to use to create the ImageContainer.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetImageContainer(System.IntPtr aManager);
+		System.IntPtr GetImageContainer();
 		
 		/// <summary>
         /// Create and return a new copy of the given frame that you can write to
@@ -192,6 +190,13 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void UnlockImage();
+		
+		/// <summary>
+        /// If this image is unlocked, discard its decoded data.  If the image is
+        /// locked or has already been discarded, do nothing.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RequestDiscard();
 		
 		/// <summary>
         /// Indicates that this imgIContainer has been triggered to update

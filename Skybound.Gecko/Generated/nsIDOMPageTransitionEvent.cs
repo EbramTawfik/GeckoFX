@@ -180,45 +180,4 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void InitPageTransitionEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase typeArg, [MarshalAs(UnmanagedType.U1)] bool canBubbleArg, [MarshalAs(UnmanagedType.U1)] bool canCancelArg, [MarshalAs(UnmanagedType.U1)] bool persisted);
 	}
-	
-	/// <summary>nsIPageTransitionEventInit </summary>
-	[ComImport()]
-	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("bf3eaa61-5048-48c4-b8b9-9bf833ca63d6")]
-	public interface nsIPageTransitionEventInit : nsIEventInit
-	{
-		
-		/// <summary>Member GetBubblesAttribute </summary>
-		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool GetBubblesAttribute();
-		
-		/// <summary>Member SetBubblesAttribute </summary>
-		/// <param name='aBubbles'> </param>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetBubblesAttribute([MarshalAs(UnmanagedType.U1)] bool aBubbles);
-		
-		/// <summary>Member GetCancelableAttribute </summary>
-		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool GetCancelableAttribute();
-		
-		/// <summary>Member SetCancelableAttribute </summary>
-		/// <param name='aCancelable'> </param>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetCancelableAttribute([MarshalAs(UnmanagedType.U1)] bool aCancelable);
-		
-		/// <summary>Member GetPersistedAttribute </summary>
-		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetPersistedAttribute();
-		
-		/// <summary>Member SetPersistedAttribute </summary>
-		/// <param name='aPersisted'> </param>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPersistedAttribute([MarshalAs(UnmanagedType.U1)] bool aPersisted);
-	}
 }

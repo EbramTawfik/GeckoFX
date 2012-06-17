@@ -127,14 +127,14 @@ namespace Gecko
 	/// <summary>nsIRadioInterfaceLayer </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("9b7e3a01-9c45-4af3-81bb-1bf08a842226")]
+	[Guid("78fc7ef6-0941-4fc8-89ff-de9398ef478a")]
 	public interface nsIRadioInterfaceLayer
 	{
 		
-		/// <summary>Member GetCurrentStateAttribute </summary>
+		/// <summary>Member GetRadioStateAttribute </summary>
 		/// <returns>A Gecko.JsVal</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal GetCurrentStateAttribute();
+		Gecko.JsVal GetRadioStateAttribute();
 		
 		/// <summary>Member RegisterCallback </summary>
 		/// <param name='callback'> </param>
@@ -240,8 +240,10 @@ namespace Gecko
 		/// <summary>Member SendSMS </summary>
 		/// <param name='number'> </param>
 		/// <param name='message'> </param>
+		/// <param name='requestId'> </param>
+		/// <param name='processId'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendSMS([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase number, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase message);
+		void SendSMS([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase number, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase message, int requestId, ulong processId);
 	}
 	
 	/// <summary>nsIRadioInterfaceLayerConsts </summary>

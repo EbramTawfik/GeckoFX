@@ -32,7 +32,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("e5330f90-91a3-41d7-b29e-af38a23a6602")]
+	[Guid("6D8914C7-0E22-4452-8962-11B69BBE84D7")]
 	public interface nsIObjectLoadingContent
 	{
 		
@@ -67,25 +67,6 @@ namespace Gecko
 		System.IntPtr GetPluginInstanceAttribute();
 		
 		/// <summary>
-        /// Makes sure that a frame for this object exists, and that the plugin is
-        /// instantiated. This method does nothing if the type is not #TYPE_PLUGIN.
-        /// There is no guarantee that there will be a frame after this method is
-        /// called; for example, the node may have a display:none style. If plugin
-        /// instantiation is possible, it will be done synchronously by this method,
-        /// and the plugin instance will be returned. A success return value does not
-        /// necessarily mean that the instance is nonnull.
-        ///
-        /// This is a noscript method because it is internal and will go away once
-        /// plugin loading moves to content.
-        ///
-        /// @note If there is an error instantiating the plugin, this method will
-        /// trigger fallback to replacement content, and the type will change (and
-        /// this method will return a failure code)
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr EnsureInstantiation();
-		
-		/// <summary>
         /// Tells the content about an associated object frame.
         /// This can be called multiple times for different frames.
         ///
@@ -94,6 +75,9 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void HasNewFrame(System.IntPtr aFrame);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void DisconnectFrame();
 		
 		/// <summary>
         /// If this object is in going to be printed, this method
@@ -113,6 +97,23 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void PlayPlugin();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void StopPluginInstance();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SyncStartPluginInstance();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void AsyncStartPluginInstance();
+		
+		/// <summary>
+        /// The URL of the data/src loaded in the object. This may be null (i.e.
+        /// an <embed> with no src).
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIURI GetSrcURIAttribute();
 	}
 	
 	/// <summary>nsIObjectLoadingContentConsts </summary>

@@ -30,7 +30,7 @@ namespace Gecko
 	/// <summary>nsILoginManagerCrypto </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("73f85239-421d-4d34-8d9c-79cf820ea1e6")]
+	[Guid("2030770e-542e-40cd-8061-cd9d4ad4227f")]
 	public interface nsILoginManagerCrypto
 	{
 		
@@ -85,5 +85,24 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsLoggedInAttribute();
+		
+		/// <summary>
+        /// defaultEncType
+        ///
+        /// Default encryption type used by an implementation of this interface.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetDefaultEncTypeAttribute();
+	}
+	
+	/// <summary>nsILoginManagerCryptoConsts </summary>
+	public class nsILoginManagerCryptoConsts
+	{
+		
+		// 
+		public const ulong ENCTYPE_BASE64 = 0;
+		
+		// 
+		public const ulong ENCTYPE_SDR = 1;
 	}
 }

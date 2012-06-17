@@ -31,7 +31,7 @@ namespace Gecko
     ///Defines the abstract interface for a principal. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("B406A2DB-E547-4C95-B8E2-AD09ECB54CE0")]
+	[Guid("f8c4c89a-d726-421b-8415-3e34b241175b")]
 	public interface nsIPrincipal : nsISerializable
 	{
 		
@@ -90,13 +90,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetHashValueAttribute();
-		
-		/// <summary>
-        /// Returns the JS equivalent of the principal.
-        /// @see JSPrincipals.h
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetJSPrincipals(System.IntPtr cx);
 		
 		/// <summary>
         /// method.
@@ -218,6 +211,14 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool Subsumes([MarshalAs(UnmanagedType.Interface)] nsIPrincipal other);
+		
+		/// <summary>
+        /// Same as the previous method, subsumes(), but for codebase principals
+        /// ignores changes to document.domain.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool SubsumesIgnoringDomain([MarshalAs(UnmanagedType.Interface)] nsIPrincipal other);
 		
 		/// <summary>
         /// Checks whether this principal is allowed to load the network resource

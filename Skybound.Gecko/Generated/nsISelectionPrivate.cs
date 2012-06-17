@@ -90,6 +90,12 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void Collapse([MarshalAs(UnmanagedType.Interface)] nsIDOMNode parentNode, int offset);
 		
+		/// <summary>Member CollapseNative </summary>
+		/// <param name='parentNode'> </param>
+		/// <param name='offset'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void CollapseNative(System.IntPtr parentNode, int offset);
+		
 		/// <summary>
         /// Extends the selection by moving the selection end to the specified node and offset,
         /// preserving the selection begin position. The new selection end result will always

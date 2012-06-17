@@ -33,10 +33,9 @@ namespace Gecko
     /// When accessibility is turned on in Gecko,
     /// there is an nsIAccessibleDocument for each document
     /// whether it is XUL, HTML or whatever.
-    /// You can QueryInterface to nsIAccessibleDocument from
-    /// the nsIAccessible or nsIAccessNode for the root node
-    /// of a document. You can also get one from
-    /// nsIAccessNode::GetAccessibleDocument() or
+    /// You can QueryInterface to nsIAccessibleDocument from the nsIAccessible for
+    /// the root node of a document. You can also get one from
+    /// nsIAccessible::GetAccessibleDocument() or
     /// nsIAccessibleEvent::GetAccessibleDocument()
     /// </summary>
 	[ComImport()]

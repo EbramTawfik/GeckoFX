@@ -34,7 +34,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("233ec586-7b34-4263-b27e-a4991b757597")]
+	[Guid("a859747a-0f05-4dfb-8f42-05c61415d4e4")]
 	public interface nsIIDBIndex
 	{
 		
@@ -85,16 +85,16 @@ namespace Gecko
 		nsIIDBRequest GetAllKeys(Gecko.JsVal key, uint limit, System.IntPtr jsContext, int argc);
 		
 		/// <summary>
-        ///nsIIDBCursor::NEXT </summary>
+        ///"next" </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIIDBRequest OpenCursor(Gecko.JsVal key, ushort direction, System.IntPtr jsContext, int argc);
+		nsIIDBRequest OpenCursor(Gecko.JsVal key, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase direction, System.IntPtr jsContext, int argc);
 		
 		/// <summary>
-        ///nsIIDBCursor::NEXT </summary>
+        ///"next" </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIIDBRequest OpenKeyCursor(Gecko.JsVal key, ushort direction, System.IntPtr jsContext, int argc);
+		nsIIDBRequest OpenKeyCursor(Gecko.JsVal key, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase direction, System.IntPtr jsContext, int argc);
 		
 		/// <summary>
         /// Accepts null, a key value, or a nsIIDBKeyRange object.

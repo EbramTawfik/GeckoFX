@@ -34,7 +34,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("6D827DF5-B5CD-416C-85CB-3CDD05C7AED1")]
+	[Guid("ED83A4D9-77D2-40EA-B140-F160EDB3FE1C")]
 	public interface nsIPluginTagInfo
 	{
 		
@@ -137,12 +137,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetBorderHorizSpaceAttribute();
-		
-		/// <summary>
-        /// Returns a unique id for the current document containing plugin
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetUniqueIDAttribute();
 		
 		/// <summary>
         /// Returns the DOM element corresponding to the tag which references

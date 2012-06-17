@@ -290,7 +290,8 @@ namespace Gecko
 		
 		// <summary>
         // Output the content of noframes elements (only for serializing
-        // to plaintext).
+        // to plaintext). (Used only internally in the plain text serializer;
+        // ignored if passed by the caller.)
         // </summary>
 		public const ulong OutputNoFramesContent = (1<<12);
 		
@@ -353,5 +354,11 @@ namespace Gecko
         // PlainText output only.
         // </summary>
 		public const ulong OutputFormatDelSp = (1<<20);
+		
+		// <summary>
+        // Drop <br> elements considered "invisible" by the editor. OutputPreformatted
+        // implies this flag.
+        // </summary>
+		public const ulong OutputDropInvisibleBreak = (1<<21);
 	}
 }

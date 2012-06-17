@@ -266,6 +266,14 @@ namespace Gecko
 		public const ulong FLAG_NOSWITCHFRAME = 4;
 		
 		// <summary>
+        // This flag is only used when passed to moveFocus. If set, focus is never
+        // moved to the parent frame of the starting element's document, instead
+        // iterating around to the beginning of that document again. Child frames
+        // are navigated as normal.
+        // </summary>
+		public const ulong FLAG_NOPARENTFRAME = 8;
+		
+		// <summary>
         // Focus is changing due to a mouse operation, for instance the mouse was
         // clicked on an element.
         // </summary>

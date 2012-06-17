@@ -44,7 +44,7 @@ namespace Gecko
         /// @param aManager the transaction manager doing the transaction.
         /// @param aTransaction the transaction being executed.
         /// @result boolean value returned by listener which indicates
-        /// it's desire to interrupt normal control flow. Listeners should
+        /// its desire to interrupt normal control flow. Listeners should
         /// return true if they want to interrupt normal control flow, without
         /// throwing an error.
         /// </summary>
@@ -69,7 +69,7 @@ namespace Gecko
         /// @param aManager the transaction manager undoing the transaction.
         /// @param aTransaction the transaction being undone.
         /// @result boolean value returned by listener which indicates
-        /// it's desire to interrupt normal control flow. Listeners should
+        /// its desire to interrupt normal control flow. Listeners should
         /// return true if they want to interrupt normal control flow, without
         /// throwing an error. Note that listeners can also interrupt normal
         /// control flow by throwing an nsresult that indicates an error.
@@ -94,7 +94,7 @@ namespace Gecko
         /// @param aManager the transaction manager redoing the transaction.
         /// @param aTransaction the transaction being redone.
         /// @result boolean value returned by listener which indicates
-        /// it's desire to interrupt normal control flow. Listeners should
+        /// its desire to interrupt normal control flow. Listeners should
         /// return true if they want to interrupt normal control flow, without
         /// throwing an error. Note that listeners can also interrupt normal
         /// control flow by throwing an nsresult that indicates an error.
@@ -117,7 +117,7 @@ namespace Gecko
         /// Called before a transaction manager begins a batch.
         /// @param aManager the transaction manager beginning a batch.
         /// @result boolean value returned by listener which indicates
-        /// it's desire to interrupt normal control flow. Listeners should
+        /// its desire to interrupt normal control flow. Listeners should
         /// return true if they want to interrupt normal control flow, without
         /// throwing an error. Note that listeners can also interrupt normal
         /// control flow by throwing an nsresult that indicates an error.
@@ -138,7 +138,7 @@ namespace Gecko
         /// Called before a transaction manager ends a batch.
         /// @param aManager the transaction manager ending a batch.
         /// @result boolean value returned by listener which indicates
-        /// it's desire to interrupt normal control flow. Listeners should
+        /// its desire to interrupt normal control flow. Listeners should
         /// return true if they want to interrupt normal control flow, without
         /// throwing an error. Note that listeners can also interrupt normal
         /// control flow by throwing an nsresult that indicates an error.
@@ -163,7 +163,7 @@ namespace Gecko
         /// @param aTopTransaction the transaction at the top of the undo stack.
         /// @param aTransactionToMerge the transaction to merge.
         /// @result boolean value returned by listener which indicates
-        /// it's desire to interrupt normal control flow. Listeners should
+        /// its desire to interrupt normal control flow. Listeners should
         /// return true if they want to interrupt normal control flow, without
         /// throwing an error. Note that listeners can also interrupt normal
         /// control flow by throwing an nsresult that indicates an error.

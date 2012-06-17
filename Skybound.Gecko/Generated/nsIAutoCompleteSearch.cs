@@ -78,4 +78,35 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void OnUpdateSearchResult([MarshalAs(UnmanagedType.Interface)] nsIAutoCompleteSearch search, [MarshalAs(UnmanagedType.Interface)] nsIAutoCompleteResult result);
 	}
+	
+	/// <summary>nsIAutoCompleteSearchDescriptor </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("02314d6e-b730-40cc-a215-221554d77064")]
+	public interface nsIAutoCompleteSearchDescriptor
+	{
+		
+		/// <summary>
+        /// Identifies the search behavior.
+        /// Should be one of the SEARCH_TYPE_* constants above.
+        /// Defaults to SEARCH_TYPE_DELAYED.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		ushort GetSearchTypeAttribute();
+	}
+	
+	/// <summary>nsIAutoCompleteSearchDescriptorConsts </summary>
+	public class nsIAutoCompleteSearchDescriptorConsts
+	{
+		
+		// <summary>
+        // nsIAutoCompleteInput implementation.
+        // </summary>
+		public const ulong SEARCH_TYPE_DELAYED = 0;
+		
+		// <summary>
+        // The search is started synchronously, before any delayed searches.
+        // </summary>
+		public const ulong SEARCH_TYPE_IMMEDIATE = 1;
+	}
 }

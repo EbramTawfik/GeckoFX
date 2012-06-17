@@ -177,45 +177,4 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void InitPopStateEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase typeArg, [MarshalAs(UnmanagedType.U1)] bool canBubbleArg, [MarshalAs(UnmanagedType.U1)] bool cancelableArg, [MarshalAs(UnmanagedType.Interface)] nsIVariant stateArg);
 	}
-	
-	/// <summary>nsIPopStateEventInit </summary>
-	[ComImport()]
-	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("2300bd68-f6e0-4c58-a1aa-45f94cdabfbd")]
-	public interface nsIPopStateEventInit : nsIEventInit
-	{
-		
-		/// <summary>Member GetBubblesAttribute </summary>
-		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool GetBubblesAttribute();
-		
-		/// <summary>Member SetBubblesAttribute </summary>
-		/// <param name='aBubbles'> </param>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetBubblesAttribute([MarshalAs(UnmanagedType.U1)] bool aBubbles);
-		
-		/// <summary>Member GetCancelableAttribute </summary>
-		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool GetCancelableAttribute();
-		
-		/// <summary>Member SetCancelableAttribute </summary>
-		/// <param name='aCancelable'> </param>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetCancelableAttribute([MarshalAs(UnmanagedType.U1)] bool aCancelable);
-		
-		/// <summary>Member GetStateAttribute </summary>
-		/// <returns>A nsIVariant</returns>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant GetStateAttribute();
-		
-		/// <summary>Member SetStateAttribute </summary>
-		/// <param name='aState'> </param>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetStateAttribute([MarshalAs(UnmanagedType.Interface)] nsIVariant aState);
-	}
 }

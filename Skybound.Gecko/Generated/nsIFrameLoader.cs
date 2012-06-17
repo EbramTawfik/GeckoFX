@@ -49,7 +49,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("fbd25468-d2cf-487b-bc58-a0e105398b47")]
+	[Guid("c04c5c40-fa2a-4e9c-94f5-b362a10a86cb")]
 	public interface nsIContentView
 	{
 		
@@ -279,6 +279,23 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetClipSubdocumentAttribute([MarshalAs(UnmanagedType.U1)] bool aClipSubdocument);
+		
+		/// <summary>
+        /// If false, then the subdocument's scroll coordinates will not be clamped
+        /// to their scroll boundaries.
+        /// Defaults to true.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetClampScrollPositionAttribute();
+		
+		/// <summary>
+        /// If false, then the subdocument's scroll coordinates will not be clamped
+        /// to their scroll boundaries.
+        /// Defaults to true.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetClampScrollPositionAttribute([MarshalAs(UnmanagedType.U1)] bool aClampScrollPosition);
 	}
 	
 	/// <summary>nsIFrameLoaderConsts </summary>

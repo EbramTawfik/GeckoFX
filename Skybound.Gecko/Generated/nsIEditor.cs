@@ -30,7 +30,7 @@ namespace Gecko
 	/// <summary>nsIEditor </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("14dbb6b1-7da4-42cf-be8e-77ae24eabe0f")]
+	[Guid("656005d2-d900-4839-81bf-6274a3c38537")]
 	public interface nsIEditor
 	{
 		
@@ -450,28 +450,6 @@ namespace Gecko
         ///sets the document selection to the end of the document </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void EndOfDocument();
-		
-		/// <summary>
-        /// canDrag decides if a drag should be started
-        /// (for example, based on the current selection and mousepoint).
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool CanDrag([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent aEvent);
-		
-		/// <summary>
-        /// doDrag transfers the relevant data (as appropriate)
-        /// to a transferable so it can later be dropped.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DoDrag([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent aEvent);
-		
-		/// <summary>
-        /// insertFromDrop looks for a dragsession and inserts the
-        /// relevant data in response to a drop.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InsertFromDrop([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent aEvent);
 		
 		/// <summary>
         /// setAttribute() sets the attribute of aElement.

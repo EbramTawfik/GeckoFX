@@ -107,7 +107,7 @@ namespace Gecko
 
 		public GeckoNode CloneNode(bool deep)
 		{
-			return GeckoNode.Create(_DomObject.CloneNode(deep));
+			return GeckoNode.Create(_DomObject.CloneNode(deep, 1));
 		}
 
 		public GeckoNode InsertBefore(GeckoNode newChild, GeckoNode before)

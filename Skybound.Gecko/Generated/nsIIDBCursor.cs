@@ -34,12 +34,15 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("9d5ddd43-132d-418e-81e8-17d64a6467a2")]
+	[Guid("01136b3a-d84c-487c-b929-f5d012346c44")]
 	public interface nsIIDBCursor
 	{
 		
+		/// <summary>
+        /// "next", "nextunique", "prev" or "prevunique"
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		ushort GetDirectionAttribute();
+		void GetDirectionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDirection);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -72,26 +75,5 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Advance(int count);
-	}
-	
-	/// <summary>nsIIDBCursorConsts </summary>
-	public class nsIIDBCursorConsts
-	{
-		
-		// <summary>
-        // IDBCursor interface.  See
-        // http://dev.w3.org/2006/webapi/WebSimpleDB/#idl-def-IDBCursor for more
-        // information.
-        // </summary>
-		public const ulong NEXT = 0;
-		
-		// 
-		public const ulong NEXT_NO_DUPLICATE = 1;
-		
-		// 
-		public const ulong PREV = 2;
-		
-		// 
-		public const ulong PREV_NO_DUPLICATE = 3;
 	}
 }

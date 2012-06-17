@@ -69,6 +69,14 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMSVGTransform GetItemAt(uint index);
+		
+		/// <summary>Member InsertItemBefore </summary>
+		/// <param name='newItem'> </param>
+		/// <param name='index'> </param>
+		/// <returns>A nsIDOMSVGTransform</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMSVGTransform InsertItemBefore([MarshalAs(UnmanagedType.Interface)] nsIDOMSVGTransform newItem, uint index);
 		
 		/// <summary>

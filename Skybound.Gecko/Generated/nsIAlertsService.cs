@@ -61,6 +61,11 @@ namespace Gecko
         /// topic   - "alertfinished" when the alert goes away
         /// "alertclickcallback" when the text is clicked
         /// data    - the value of the cookie parameter passed to showAlertNotification.
+        ///
+        /// @note Depending on current circumstances (if the user's in a fullscreen
+        /// application, for instance), the alert might not be displayed at all.
+        /// In that case, if an alert listener is passed in it will receive the
+        /// "alertfinished" notification immediately.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ShowAlertNotification([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase imageUrl, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase title, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase text, [MarshalAs(UnmanagedType.U1)] bool textClickable, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase cookie, [MarshalAs(UnmanagedType.Interface)] nsIObserver alertListener, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name);

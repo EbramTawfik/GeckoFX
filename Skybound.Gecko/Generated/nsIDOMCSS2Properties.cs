@@ -37,7 +37,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("0a6fc4c6-a62a-4f52-9ab6-3d398b958843")]
+	[Guid("76732e62-da09-4aef-850a-78b9f6d5c8cf")]
 	public interface nsIDOMCSS2Properties
 	{
 		
@@ -1947,6 +1947,18 @@ namespace Gecko
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetMozColumnFillAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozColumnFill);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetMozColumnFillAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozColumnFill);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetMozColumnGapAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozColumnGap);
 		
 		/// <summary>
@@ -2043,18 +2055,6 @@ namespace Gecko
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozOpacityAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozOpacity);
-		
-		/// <summary>
-        /// raises(DOMException) on setting
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozOpacityAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozOpacity);
-		
-		/// <summary>
-        /// raises(DOMException) on setting
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetMozOrientAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozOrient);
 		
 		/// <summary>
@@ -2062,30 +2062,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetMozOrientAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozOrient);
-		
-		/// <summary>
-        /// raises(DOMException) on setting
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozOutlineAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozOutline);
-		
-		/// <summary>
-        /// raises(DOMException) on setting
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozOutlineAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozOutline);
-		
-		/// <summary>
-        /// raises(DOMException) on setting
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozOutlineColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozOutlineColor);
-		
-		/// <summary>
-        /// raises(DOMException) on setting
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozOutlineColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozOutlineColor);
 		
 		/// <summary>
         /// raises(DOMException) on setting
@@ -2146,42 +2122,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetMozOutlineRadiusBottomrightAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozOutlineRadiusBottomright);
-		
-		/// <summary>
-        /// raises(DOMException) on setting
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozOutlineStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozOutlineStyle);
-		
-		/// <summary>
-        /// raises(DOMException) on setting
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozOutlineStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozOutlineStyle);
-		
-		/// <summary>
-        /// raises(DOMException) on setting
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozOutlineWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozOutlineWidth);
-		
-		/// <summary>
-        /// raises(DOMException) on setting
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozOutlineWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozOutlineWidth);
-		
-		/// <summary>
-        /// raises(DOMException) on setting
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozOutlineOffsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozOutlineOffset);
-		
-		/// <summary>
-        /// raises(DOMException) on setting
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozOutlineOffsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozOutlineOffset);
 		
 		/// <summary>
         /// raises(DOMException) on setting

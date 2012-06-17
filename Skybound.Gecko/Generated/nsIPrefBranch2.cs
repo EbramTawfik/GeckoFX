@@ -28,13 +28,13 @@ namespace Gecko
 	
 	
 	/// <summary>
-    /// nsIPrefBranch2 allows clients to observe changes to pref values.
+    /// An empty interface to provide backwards compatibility for existing code.
     ///
     /// @see nsIPrefBranch
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("d9bb54df-daac-4ce6-a70c-95d87b770cd8")]
+	[Guid("8892016d-07f7-4530-b5c1-d73dfcde4a1c")]
 	public interface nsIPrefBranch2 : nsIPrefBranch
 	{
 		
@@ -394,7 +394,7 @@ namespace Gecko
         /// @see removeObserver
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddObserver([MarshalAs(UnmanagedType.LPStr)] string aDomain, [MarshalAs(UnmanagedType.Interface)] nsIObserver aObserver, [MarshalAs(UnmanagedType.U1)] bool aHoldWeak);
+		new void AddObserver([MarshalAs(UnmanagedType.LPStr)] string aDomain, [MarshalAs(UnmanagedType.Interface)] nsIObserver aObserver, [MarshalAs(UnmanagedType.U1)] bool aHoldWeak);
 		
 		/// <summary>
         /// Remove a preference change observer.
@@ -403,7 +403,7 @@ namespace Gecko
         /// @param aObserver An observer previously registered with addObserver().
         ///
         /// @note
-        /// Note that you must call removeObserver() on the same nsIPrefBranch2
+        /// Note that you must call removeObserver() on the same nsIPrefBranch
         /// instance on which you called addObserver() in order to remove aObserver;
         /// otherwise, the observer will not be removed.
         ///
@@ -411,6 +411,6 @@ namespace Gecko
         /// @see addObserver
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveObserver([MarshalAs(UnmanagedType.LPStr)] string aDomain, [MarshalAs(UnmanagedType.Interface)] nsIObserver aObserver);
+		new void RemoveObserver([MarshalAs(UnmanagedType.LPStr)] string aDomain, [MarshalAs(UnmanagedType.Interface)] nsIObserver aObserver);
 	}
 }

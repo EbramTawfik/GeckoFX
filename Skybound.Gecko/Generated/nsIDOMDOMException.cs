@@ -36,16 +36,16 @@ namespace Gecko
     /// implementation has become unstable)
     ///
     /// For more information on this interface please see
-    /// http://www.w3.org/TR/DOM-Level-3-Core/
+    /// http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html#domexception
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("a6cf910a-15b3-11d2-932e-00805f8add32")]
+	[Guid("5bd766d3-57a9-4833-995d-dbe21da29595")]
 	public interface nsIDOMDOMException
 	{
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetCodeAttribute();
+		ushort GetCodeAttribute();
 	}
 	
 	/// <summary>nsIDOMDOMExceptionConsts </summary>
@@ -61,14 +61,16 @@ namespace Gecko
         // implementation has become unstable)
         //
         // For more information on this interface please see
-        // http://www.w3.org/TR/DOM-Level-3-Core/
+        // http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html#domexception
         // </summary>
 		public const ulong INDEX_SIZE_ERR = 1;
 		
 		// 
 		public const ulong DOMSTRING_SIZE_ERR = 2;
 		
-		// 
+		// <summary>
+        // historical
+        // </summary>
 		public const ulong HIERARCHY_REQUEST_ERR = 3;
 		
 		// 
@@ -80,7 +82,9 @@ namespace Gecko
 		// 
 		public const ulong NO_DATA_ALLOWED_ERR = 6;
 		
-		// 
+		// <summary>
+        // historical
+        // </summary>
 		public const ulong NO_MODIFICATION_ALLOWED_ERR = 7;
 		
 		// 
@@ -93,39 +97,50 @@ namespace Gecko
 		public const ulong INUSE_ATTRIBUTE_ERR = 10;
 		
 		// <summary>
-        // Introduced in DOM Level 2:
+        // historical
         // </summary>
 		public const ulong INVALID_STATE_ERR = 11;
 		
-		// <summary>
-        // Introduced in DOM Level 2:
-        // </summary>
+		// 
 		public const ulong SYNTAX_ERR = 12;
 		
-		// <summary>
-        // Introduced in DOM Level 2:
-        // </summary>
+		// 
 		public const ulong INVALID_MODIFICATION_ERR = 13;
 		
-		// <summary>
-        // Introduced in DOM Level 2:
-        // </summary>
+		// 
 		public const ulong NAMESPACE_ERR = 14;
 		
-		// <summary>
-        // Introduced in DOM Level 2:
-        // </summary>
+		// 
 		public const ulong INVALID_ACCESS_ERR = 15;
 		
-		// <summary>
-        // Introduced in DOM Level 3:
-        // </summary>
+		// 
 		public const ulong VALIDATION_ERR = 16;
 		
 		// <summary>
-        // Introduced in DOM Level 3:
+        // historical
         // </summary>
 		public const ulong TYPE_MISMATCH_ERR = 17;
+		
+		// 
+		public const ulong SECURITY_ERR = 18;
+		
+		// 
+		public const ulong NETWORK_ERR = 19;
+		
+		// 
+		public const ulong ABORT_ERR = 20;
+		
+		// 
+		public const ulong URL_MISMATCH_ERR = 21;
+		
+		// 
+		public const ulong QUOTA_EXCEEDED_ERR = 22;
+		
+		// 
+		public const ulong TIMEOUT_ERR = 23;
+		
+		// 
+		public const ulong INVALID_NODE_TYPE_ERR = 24;
 		
 		// 
 		public const ulong DATA_CLONE_ERR = 25;
