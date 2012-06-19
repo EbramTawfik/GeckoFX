@@ -2,6 +2,10 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v13.0-0.1 ==
+
+1. Initial version supporting firefox/xulrunner v13.0
+
 == v12.0-0.3 ==
 
 1. Improve WindowWatcher service
