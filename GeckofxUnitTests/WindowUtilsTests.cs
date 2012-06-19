@@ -207,6 +207,32 @@ namespace GeckofxUnitTests
 			{
 				_end++;
 			}
+
+
+			public bool GetDisableLogAttribute()
+			{
+				throw new NotImplementedException();
+			}
+
+			public void SetDisableLogAttribute(bool aDisableLog)
+			{
+				throw new NotImplementedException();
+			}
+
+			public bool GetWantAfterProcessingAttribute()
+			{
+				throw new NotImplementedException();
+			}
+
+			public void SetWantAfterProcessingAttribute(bool aWantAfterProcessing)
+			{
+				throw new NotImplementedException();
+			}
+
+			public bool ProcessNext(nsICycleCollectorHandler aHandler)
+			{
+				throw new NotImplementedException();
+			}
 		}
 
 		[Test]
@@ -227,12 +253,6 @@ namespace GeckofxUnitTests
 
 			Assert.AreEqual(1, listener._begin);
 			Assert.AreEqual(1, listener._end);
-		}
-
-		[Test]
-		public void ProcessUpdates()
-		{
-			browser.Window.WindowUtils.ProcessUpdates();				
 		}
 
 		[Test]

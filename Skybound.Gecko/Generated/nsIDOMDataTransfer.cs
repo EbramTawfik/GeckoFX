@@ -30,7 +30,7 @@ namespace Gecko
 	/// <summary>nsIDOMDataTransfer </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("34042440-60A8-4992-AE5C-798E69148955")]
+	[Guid("E929ACB6-435C-4CB8-9AD1-AE3B9353BCC5")]
 	public interface nsIDOMDataTransfer
 	{
 		
@@ -211,48 +211,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void AddElement([MarshalAs(UnmanagedType.Interface)] nsIDOMElement element);
-	}
-	
-	/// <summary>nsIDOMNSDataTransfer </summary>
-	[ComImport()]
-	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("AE6DF4E2-FA37-4701-A33E-A5678F826EED")]
-	public interface nsIDOMNSDataTransfer
-	{
-		
-		/// <summary>
-        /// Integer version of dropEffect, set to one of the constants in nsIDragService.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetDropEffectIntAttribute();
-		
-		/// <summary>
-        /// Integer version of dropEffect, set to one of the constants in nsIDragService.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDropEffectIntAttribute(uint aDropEffectInt);
-		
-		/// <summary>
-        /// Integer version of effectAllowed, set to one or a combination of the
-        /// constants in nsIDragService.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetEffectAllowedIntAttribute();
-		
-		/// <summary>
-        /// Integer version of effectAllowed, set to one or a combination of the
-        /// constants in nsIDragService.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetEffectAllowedIntAttribute(uint aEffectAllowedInt);
-		
-		/// <summary>
-        /// Creates a copy of the data transfer object, for the given event type and
-        /// user cancelled flag.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDataTransfer Clone(uint aEventType, [MarshalAs(UnmanagedType.U1)] bool aUserCancelled);
 		
 		/// <summary>
         /// The number of items being dragged.
@@ -369,5 +327,39 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMNode GetMozSourceNodeAttribute();
+		
+		/// <summary>
+        /// Integer version of dropEffect, set to one of the constants in nsIDragService.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetDropEffectIntAttribute();
+		
+		/// <summary>
+        /// Integer version of dropEffect, set to one of the constants in nsIDragService.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetDropEffectIntAttribute(uint aDropEffectInt);
+		
+		/// <summary>
+        /// Integer version of effectAllowed, set to one or a combination of the
+        /// constants in nsIDragService.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetEffectAllowedIntAttribute();
+		
+		/// <summary>
+        /// Integer version of effectAllowed, set to one or a combination of the
+        /// constants in nsIDragService.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetEffectAllowedIntAttribute(uint aEffectAllowedInt);
+		
+		/// <summary>
+        /// Creates a copy of the data transfer object, for the given event type and
+        /// user cancelled flag.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDataTransfer Clone(uint aEventType, [MarshalAs(UnmanagedType.U1)] bool aUserCancelled);
 	}
 }

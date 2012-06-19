@@ -176,7 +176,9 @@ namespace Gecko
 		// 
 		public const long WANT_HASINSTANCE = 1<<15;
 		
-		// 
+		// <summary>
+        // Unused bit here!
+        // </summary>
 		public const long USE_JSSTUB_FOR_ADDPROPERTY = 1<<17;
 		
 		// 
@@ -202,6 +204,9 @@ namespace Gecko
 		
 		// 
 		public const long ALLOW_PROP_MODS_TO_PROTOTYPE = 1<<25;
+		
+		// 
+		public const long IS_GLOBAL_OBJECT = 1<<26;
 		
 		// 
 		public const long DONT_REFLECT_INTERFACE_NAMES = 1<<27;

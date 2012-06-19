@@ -30,7 +30,7 @@ namespace Gecko
 	/// <summary>inIDOMUtils </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("0D9E5532-F5D5-44DD-94CA-D9EED5778B1C")]
+	[Guid("983475e4-6bdf-4741-a733-76e9a8d119b9")]
 	public interface inIDOMUtils
 	{
 		
@@ -101,5 +101,30 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMFontFaceList GetUsedFontFaces([MarshalAs(UnmanagedType.Interface)] nsIDOMRange aRange);
+		
+		/// <summary>
+        /// pseudo-classes are ignored.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void AddPseudoClassLock([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPseudoClass);
+		
+		/// <summary>Member RemovePseudoClassLock </summary>
+		/// <param name='aElement'> </param>
+		/// <param name='aPseudoClass'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RemovePseudoClassLock([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPseudoClass);
+		
+		/// <summary>Member HasPseudoClassLock </summary>
+		/// <param name='aElement'> </param>
+		/// <param name='aPseudoClass'> </param>
+		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool HasPseudoClassLock([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPseudoClass);
+		
+		/// <summary>Member ClearPseudoClassLocks </summary>
+		/// <param name='aElement'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void ClearPseudoClassLocks([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement);
 	}
 }

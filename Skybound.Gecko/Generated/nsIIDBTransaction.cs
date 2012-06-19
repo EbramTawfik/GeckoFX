@@ -34,7 +34,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("4f25832d-de40-4c0b-a176-358d94384b19")]
+	[Guid("e4927c76-4f1f-4d7d-80ad-8186e1677da6")]
 	public interface nsIIDBTransaction
 	{
 		
@@ -47,11 +47,11 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIIDBDatabase GetDbAttribute();
 		
+		/// <summary>
+        /// "readonly", "readwrite" or "versionchange"
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		ushort GetReadyStateAttribute();
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		ushort GetModeAttribute();
+		void GetModeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMode);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetObjectStoreNamesAttribute();
@@ -98,31 +98,5 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOnabortAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnabort);
-	}
-	
-	/// <summary>nsIIDBTransactionConsts </summary>
-	public class nsIIDBTransactionConsts
-	{
-		
-		// 
-		public const ulong INITIAL = 0;
-		
-		// 
-		public const ulong LOADING = 1;
-		
-		// 
-		public const ulong COMMITTING = 2;
-		
-		// 
-		public const ulong DONE = 3;
-		
-		// 
-		public const ulong READ_ONLY = 0;
-		
-		// 
-		public const ulong READ_WRITE = 1;
-		
-		// 
-		public const ulong VERSION_CHANGE = 2;
 	}
 }

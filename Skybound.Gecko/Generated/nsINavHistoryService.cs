@@ -2174,7 +2174,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("2d8ff86b-f8c2-451c-8a1a-1ff0749a074e")]
+	[Guid("d46a1ae7-aef8-47a2-9a5c-e6347253f9b2")]
 	public interface nsINavHistoryQueryOptions
 	{
 		
@@ -2276,26 +2276,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetExcludeReadOnlyFoldersAttribute([MarshalAs(UnmanagedType.U1)] bool aExcludeReadOnlyFolders);
-		
-		/// <summary>
-        /// This option excludes items from a bookmarks query
-        /// if the parent of the item has this annotation.
-        /// An example is to exclude livemark items
-        /// (parent folders have the "livemark/feedURI" annotation)
-        /// Ignored for queries over history.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetExcludeItemIfParentHasAnnotationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aExcludeItemIfParentHasAnnotation);
-		
-		/// <summary>
-        /// This option excludes items from a bookmarks query
-        /// if the parent of the item has this annotation.
-        /// An example is to exclude livemark items
-        /// (parent folders have the "livemark/feedURI" annotation)
-        /// Ignored for queries over history.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetExcludeItemIfParentHasAnnotationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aExcludeItemIfParentHasAnnotation);
 		
 		/// <summary>
         /// When set, allows items with "place:" URIs to appear as containers,

@@ -30,7 +30,7 @@ namespace Gecko
 	/// <summary>nsIAccessibleEditableText </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("52837507-202d-4e72-a482-5f068a1fd720")]
+	[Guid("e242d495-5cde-4b1c-8c84-2525b14939f5")]
 	public interface nsIAccessibleEditableText
 	{
 		
@@ -97,12 +97,5 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void PasteText(int position);
-		
-		/// <summary>
-        /// Returns an editor associated with the accessible.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIEditor GetAssociatedEditorAttribute();
 	}
 }

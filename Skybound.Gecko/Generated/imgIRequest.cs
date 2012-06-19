@@ -36,7 +36,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("c3bf4e2a-f64b-4ac1-a84e-18631b1802ab")]
+	[Guid("d35a9adb-8328-4b64-b06f-72a165acd080")]
 	public interface imgIRequest : nsIRequest
 	{
 		
@@ -251,6 +251,13 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void UnlockImage();
+		
+		/// <summary>
+        /// If this image is unlocked, discard the image's decoded data.  If the image
+        /// is locked or is already discarded, do nothing.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RequestDiscard();
 		
 		/// <summary>
         /// If this request is for an animated image, the method creates a new

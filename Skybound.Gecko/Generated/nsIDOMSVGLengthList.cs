@@ -69,6 +69,14 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMSVGLength GetItemAt(uint index);
+		
+		/// <summary>Member InsertItemBefore </summary>
+		/// <param name='newItem'> </param>
+		/// <param name='index'> </param>
+		/// <returns>A nsIDOMSVGLength</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMSVGLength InsertItemBefore([MarshalAs(UnmanagedType.Interface)] nsIDOMSVGLength newItem, uint index);
 		
 		/// <summary>

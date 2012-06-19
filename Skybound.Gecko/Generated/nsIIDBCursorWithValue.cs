@@ -38,8 +38,11 @@ namespace Gecko
 	public interface nsIIDBCursorWithValue : nsIIDBCursor
 	{
 		
+		/// <summary>
+        /// "next", "nextunique", "prev" or "prevunique"
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new ushort GetDirectionAttribute();
+		new void GetDirectionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDirection);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

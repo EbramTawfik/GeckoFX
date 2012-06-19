@@ -56,7 +56,7 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetInternalUrl([MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
-		/// <summary>Member MozSlice </summary>
+		/// <summary>Member Slice </summary>
 		/// <param name='start'> </param>
 		/// <param name='end'> </param>
 		/// <param name='contentType'> </param>
@@ -64,7 +64,7 @@ namespace Gecko
 		/// <returns>A nsIDOMBlob</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMBlob MozSlice(long start, long end, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase contentType, int argc);
+		nsIDOMBlob Slice(long start, long end, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase contentType, int argc);
 		
 		/// <summary>
         /// Intended only for testing. It can be called on any thread.
@@ -83,6 +83,24 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetFileInfo(System.IntPtr aFileManager);
+	}
+	
+	/// <summary>nsIDOMBlob_GECKO_13 </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("96a9f6f5-2353-47a3-9bf5-4b1e0fe11c08")]
+	public interface nsIDOMBlob_GECKO_13
+	{
+		
+		/// <summary>Member MozSlice </summary>
+		/// <param name='start'> </param>
+		/// <param name='end'> </param>
+		/// <param name='contentType'> </param>
+		/// <param name='argc'> </param>
+		/// <returns>A nsIDOMBlob</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMBlob MozSlice(long start, long end, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase contentType, int argc);
 	}
 	
 	/// <summary>nsIDOMFile </summary>
@@ -114,7 +132,7 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetInternalUrl([MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
-		/// <summary>Member MozSlice </summary>
+		/// <summary>Member Slice </summary>
 		/// <param name='start'> </param>
 		/// <param name='end'> </param>
 		/// <param name='contentType'> </param>
@@ -122,7 +140,7 @@ namespace Gecko
 		/// <returns>A nsIDOMBlob</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMBlob MozSlice(long start, long end, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase contentType, int argc);
+		new nsIDOMBlob Slice(long start, long end, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase contentType, int argc);
 		
 		/// <summary>
         /// Intended only for testing. It can be called on any thread.
@@ -162,7 +180,7 @@ namespace Gecko
 	/// <summary>nsIDOMMozBlobBuilder </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("006d2cde-ec18-41d4-acc3-43682dd418e2")]
+	[Guid("57195950-edd9-496b-9b45-e4893a9ffca9")]
 	public interface nsIDOMMozBlobBuilder
 	{
 		
@@ -183,8 +201,9 @@ namespace Gecko
 		
 		/// <summary>Member Append </summary>
 		/// <param name='data'> </param>
+		/// <param name='endings'> </param>
 		/// <param name='jsContext'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Append(Gecko.JsVal data, System.IntPtr jsContext);
+		void Append(Gecko.JsVal data, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase endings, System.IntPtr jsContext);
 	}
 }

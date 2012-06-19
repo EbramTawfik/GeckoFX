@@ -151,6 +151,9 @@ namespace Gecko
 		// 
 		public const long BACKGROUND_FILL = 4;
 		
+		// 
+		public const long BACKGROUND_FIT = 5;
+		
 		// <summary>
         // Constants identifying applications that can be opened with
         // openApplication.

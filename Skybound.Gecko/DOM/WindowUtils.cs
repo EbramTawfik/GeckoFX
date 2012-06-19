@@ -387,14 +387,6 @@ namespace Gecko.DOM
 		}
 		
 		/// <summary>
-        /// Force processing of any queued paints
-        /// </summary>		
-		public void ProcessUpdates()
-		{
-			_windowUtils.ProcessUpdates();
-		}
-		
-		/// <summary>
         ///Synthesize a simple gesture event for a window. The event types
         /// supported are: MozSwipeGesture, MozMagnifyGestureStart,
         /// MozMagnifyGestureUpdate, MozMagnifyGesture, MozRotateGestureStart,

@@ -35,7 +35,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("7685dac8-3637-4660-a544-928c5ec0e714")]
+	[Guid("cb0b8eda-4c83-4d0e-a63c-d3b65714bc85")]
 	public interface nsIXULRuntime
 	{
 		
@@ -117,6 +117,14 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void EnsureContentProcess();
+		
+		/// <summary>
+        /// Modification time of the profile lock before the profile was locked on
+        /// this startup. Used to know the last time the profile was used and not
+        /// closed cleanly. This is set to 0 if there was no existing profile lock.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		long GetReplacedLockTimeAttribute();
 	}
 	
 	/// <summary>nsIXULRuntimeConsts </summary>

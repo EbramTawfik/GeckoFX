@@ -27,36 +27,6 @@ namespace Gecko
 	using System.Windows.Forms;
 	
 	
-	/// <summary>nsIIDBIndexParameters </summary>
-	[ComImport()]
-	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("450e02fd-a87a-47d4-beaf-321417dad781")]
-	public interface nsIIDBIndexParameters
-	{
-		
-		/// <summary>Member GetUniqueAttribute </summary>
-		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetUniqueAttribute();
-		
-		/// <summary>Member SetUniqueAttribute </summary>
-		/// <param name='aUnique'> </param>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetUniqueAttribute([MarshalAs(UnmanagedType.U1)] bool aUnique);
-		
-		/// <summary>Member GetMultiEntryAttribute </summary>
-		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetMultiEntryAttribute();
-		
-		/// <summary>Member SetMultiEntryAttribute </summary>
-		/// <param name='aMultiEntry'> </param>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMultiEntryAttribute([MarshalAs(UnmanagedType.U1)] bool aMultiEntry);
-	}
-	
 	/// <summary>
     /// nsIIDBObjectStore interface.  See
     /// http://dev.w3.org/2006/webapi/WebSimpleDB/#idl-def-nsIIDBObjectStore
@@ -64,7 +34,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("e0d308ea-b804-4962-918a-28ec0aa4e42b")]
+	[Guid("43157a3c-bed1-4ce7-98c0-11365b852560")]
 	public interface nsIIDBObjectStore
 	{
 		
@@ -130,10 +100,10 @@ namespace Gecko
 		nsIIDBRequest Clear();
 		
 		/// <summary>
-        ///NEXT </summary>
+        ///"next" </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIIDBRequest OpenCursor(Gecko.JsVal range, ushort direction, System.IntPtr jsContext, int argc);
+		nsIIDBRequest OpenCursor(Gecko.JsVal range, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase direction, System.IntPtr jsContext, int argc);
 		
 		/// <summary>
         ///none </summary>

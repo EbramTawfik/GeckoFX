@@ -30,7 +30,7 @@ namespace Gecko
 	/// <summary>nsIDOMTelephony </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("047be0d8-a9cd-49aa-8948-2f60ff3a7a18")]
+	[Guid("0de46b73-be83-4970-ad15-45f92cb0902a")]
 	public interface nsIDOMTelephony : nsIDOMEventTarget
 	{
 		
@@ -273,12 +273,6 @@ namespace Gecko
 		Gecko.JsVal GetActiveAttribute();
 		
 		/// <summary>
-        /// generated via startTone.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetActiveAttribute(Gecko.JsVal aActive);
-		
-		/// <summary>
         /// Array of all calls that are currently connected.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -293,13 +287,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void StopTone();
 		
-		/// <summary>Member SendTones </summary>
-		/// <param name='tones'> </param>
-		/// <param name='toneDuration'> </param>
-		/// <param name='intervalDuration'> </param>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendTones([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase tones, uint toneDuration, uint intervalDuration);
-		
 		/// <summary>Member GetOnincomingAttribute </summary>
 		/// <returns>A nsIDOMEventListener</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
@@ -310,5 +297,16 @@ namespace Gecko
 		/// <param name='aOnincoming'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOnincomingAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnincoming);
+		
+		/// <summary>Member GetOncallschangedAttribute </summary>
+		/// <returns>A nsIDOMEventListener</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMEventListener GetOncallschangedAttribute();
+		
+		/// <summary>Member SetOncallschangedAttribute </summary>
+		/// <param name='aOncallschanged'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOncallschangedAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOncallschanged);
 	}
 }

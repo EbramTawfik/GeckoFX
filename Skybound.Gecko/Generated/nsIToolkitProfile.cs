@@ -33,7 +33,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("50e07b0a-f338-4da3-bcdb-f4bb0db94dbe")]
+	[Guid("7c58c703-d245-4864-8d75-9648ca4a6139")]
 	public interface nsIProfileLock
 	{
 		
@@ -55,6 +55,12 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsILocalFile GetLocalDirectoryAttribute();
+		
+		/// <summary>
+        /// The timestamp of an existing profile lock at lock time.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		long GetReplacedLockTimeAttribute();
 		
 		/// <summary>
         /// Unlock the profile.

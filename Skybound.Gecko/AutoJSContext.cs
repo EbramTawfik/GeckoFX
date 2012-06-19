@@ -50,7 +50,6 @@ namespace Gecko
 		
 		public IntPtr ContextPointer { get { return _cx; } }
 
-		private readonly IntPtr _jsPrincipals;
 		private readonly nsIThreadJSContextStack _jsContextStack;
 		private readonly nsIJSContextStack _contextStack;
 		private readonly nsIScriptSecurityManager _securityManager;
@@ -80,10 +79,7 @@ namespace Gecko
 
 			// obtain the system principal (no security checks) (one could get a different principal by calling securityManager.GetObjectPrincipal())
 			_securityManager = Xpcom.GetService<nsIScriptSecurityManager>("@mozilla.org/scriptsecuritymanager;1");
-
 			_systemPrincipal = _securityManager.GetSystemPrincipal();
-			_jsPrincipals = _systemPrincipal.GetJSPrincipals(_cx);
-
 			_securityManager.PushContextPrincipal(_cx, IntPtr.Zero, _systemPrincipal);
 		}
 
@@ -104,7 +100,7 @@ namespace Gecko
 		{
 			var ptr = new JsVal();
 			IntPtr globalObject = SpiderMonkey.JS_GetGlobalForScopeChain(_cx);
-			bool ret = SpiderMonkey.JS_EvaluateScriptForPrincipals(_cx, globalObject, _jsPrincipals, jsScript, (uint)jsScript.Length, "script", 1, ref ptr);
+			bool ret = SpiderMonkey.JS_EvaluateScript(_cx, globalObject, jsScript, (uint)jsScript.Length, "script", 1, ref ptr);
 
 			IntPtr jsStringPtr = SpiderMonkey.JS_ValueToString(_cx, ptr);
 			result = Marshal.PtrToStringAnsi(SpiderMonkey.JS_EncodeString(_cx, jsStringPtr));

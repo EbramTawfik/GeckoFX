@@ -11,7 +11,8 @@ namespace Gecko
 		internal GeckoHtmlElement(nsIDOMHTMLElement element)
 			: base(element)
 		{
-			this.DomElement = element;			
+			this.DomElement = element;
+			this.DomNSElement = (nsIDOMNSElement)element;
 		}
 		
 		internal static GeckoHtmlElement Create(nsIDOMHTMLElement element)
@@ -24,7 +25,9 @@ namespace Gecko
 			return (element == null) ? null : DOM.DOMSelector.GetClassFor<T>(element);
 		}
 		
-		nsIDOMHTMLElement DomElement;		
+		nsIDOMHTMLElement DomElement;
+
+		nsIDOMNSElement DomNSElement;
 		
 		/// <summary>
 		/// Gets the inline style of the GeckoElement. 
@@ -117,18 +120,18 @@ namespace Gecko
 		{
 			get
 			{
-				nsIDOMClientRect domRect = DomElement.GetBoundingClientRect();
+				nsIDOMClientRect domRect = DomNSElement.GetBoundingClientRect();
 				var r = new Rectangle((int)domRect.GetLeftAttribute(), (int)domRect.GetTopAttribute(), (int)domRect.GetWidthAttribute(), (int)domRect.GetHeightAttribute());
 				return r;				
 			}
 		}
 
-		public int ScrollLeft { get { return DomElement.GetScrollLeftAttribute(); } set { DomElement.SetScrollLeftAttribute(value); } }
-		public int ScrollTop { get { return DomElement.GetScrollTopAttribute(); } set { DomElement.SetScrollTopAttribute(value); } }
-		public int ScrollWidth { get { return DomElement.GetScrollWidthAttribute(); } }
-		public int ScrollHeight { get { return DomElement.GetScrollHeightAttribute(); } }
-		public int ClientWidth { get { return DomElement.GetClientWidthAttribute(); } }
-		public int ClientHeight { get { return DomElement.GetClientHeightAttribute(); } }
+		public int ScrollLeft { get { return DomNSElement.GetScrollLeftAttribute(); } set { DomNSElement.SetScrollLeftAttribute(value); } }
+		public int ScrollTop { get { return DomNSElement.GetScrollTopAttribute(); } set { DomNSElement.SetScrollTopAttribute(value); } }
+		public int ScrollWidth { get { return DomNSElement.GetScrollWidthAttribute(); } }
+		public int ScrollHeight { get { return DomNSElement.GetScrollHeightAttribute(); } }
+		public int ClientWidth { get { return DomNSElement.GetClientWidthAttribute(); } }
+		public int ClientHeight { get { return DomNSElement.GetClientHeightAttribute(); } }
 
 		public int OffsetLeft { get { return DomElement.GetOffsetLeftAttribute(); } }
 		public int OffsetTop { get { return DomElement.GetOffsetTopAttribute(); } }

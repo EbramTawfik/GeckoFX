@@ -52,14 +52,14 @@ namespace Gecko
 		void DoTransaction([MarshalAs(UnmanagedType.Interface)] nsITransaction aTransaction);
 		
 		/// <summary>
-        /// Pops the topmost transaction on the undo stack, calls it's
+        /// Pops the topmost transaction on the undo stack, calls its
         /// undoTransaction() method, then pushes it on the redo stack.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void UndoTransaction();
 		
 		/// <summary>
-        /// Pops the topmost transaction on the redo stack, calls it's
+        /// Pops the topmost transaction on the redo stack, calls its
         /// redoTransaction() method, then pushes it on the undo stack.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

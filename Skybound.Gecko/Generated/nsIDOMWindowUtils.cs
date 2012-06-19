@@ -36,7 +36,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("401b9315-c562-4066-a15c-7feb7ad5bb47")]
+	[Guid("73b48170-55d5-11e1-b86c-0800200c9a66")]
 	public interface nsIDOMWindowUtils
 	{
 		
@@ -401,12 +401,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void CycleCollect([MarshalAs(UnmanagedType.Interface)] nsICycleCollectorListener aListener, int aExtraForgetSkippableCalls);
-		
-		/// <summary>
-        /// Force processing of any queued paints
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ProcessUpdates();
 		
 		/// <summary>
         ///Synthesize a simple gesture event for a window. The event types
@@ -840,6 +834,13 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetFileReferences([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDatabaseName, long aId, ref int aRefCnt, ref int aDBRefCnt, ref int aSliceRefCnt);
+		
+		/// <summary>
+        /// Return whether incremental GC has been disabled due to a binary add-on.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool IsIncrementalGCEnabled(System.IntPtr jsContext);
 		
 		/// <summary>
         /// Begin opcode-level profiling of all JavaScript execution in the window's

@@ -72,9 +72,17 @@ namespace Gecko
 		void StopSearch();
 		
 		/// <summary>
-        /// Notify the controller that the user has changed text in the textbox.  This includes all
-        /// means of changing the text value, including typing a character, backspacing, deleting, or
-        /// pasting in an entirely new value.
+        /// Notify the controller that the user has changed text in the textbox.
+        /// This includes all means of changing the text value, including typing a
+        /// character, backspacing, deleting, pasting, committing composition or
+        /// canceling composition.
+        ///
+        /// NOTE: handleText() must be called after composition actually ends, even if
+        /// the composition is canceled and the textbox value isn't changed.
+        /// Then, implementation of handleText() can access the editor when
+        /// it's not in composing mode. DOM compositionend event is not good
+        /// timing for calling handleText(). DOM input event immediately after
+        /// DOM compositionend event is the best timing to call this.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void HandleText();
@@ -102,12 +110,18 @@ namespace Gecko
 		
 		/// <summary>
         /// Notify the controller that the user wishes to start composition
+        ///
+        /// NOTE: nsIAutoCompleteController implementation expects that this is called
+        /// by DOM compositionstart handler.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void HandleStartComposition();
 		
 		/// <summary>
         /// Notify the controller that the user wishes to end composition
+        ///
+        /// NOTE: nsIAutoCompleteController implementation expects that this is called
+        /// by DOM compositionend handler.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void HandleEndComposition();

@@ -113,6 +113,9 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string GetProfile();
 		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetProfileData(System.IntPtr jsContext);
+		
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsActive();
@@ -122,5 +125,14 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetFeatures(ref uint aCount, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref string[] aFeatures);
+		
+		/// <summary>
+        /// Returns a JSON string of an array of shared library objects.
+        /// Every object has three properties: start, end, and name.
+        /// start and end are integers describing the address range that the library
+        /// occupies in memory. name is the path of the library as a string.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetSharedLibraryInformation([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 	}
 }

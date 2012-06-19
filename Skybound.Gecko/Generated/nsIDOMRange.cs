@@ -49,42 +49,24 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMNode GetStartContainerAttribute();
 		
-		/// <summary>
-        /// raises(DOMException) on retrieval
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetStartOffsetAttribute();
 		
-		/// <summary>
-        /// raises(DOMException) on retrieval
-        /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMNode GetEndContainerAttribute();
 		
-		/// <summary>
-        /// raises(DOMException) on retrieval
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetEndOffsetAttribute();
 		
-		/// <summary>
-        /// raises(DOMException) on retrieval
-        /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetCollapsedAttribute();
 		
-		/// <summary>
-        /// raises(DOMException) on retrieval
-        /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMNode GetCommonAncestorContainerAttribute();
 		
-		/// <summary>
-        /// raises(DOMException) on retrieval
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetStart([MarshalAs(UnmanagedType.Interface)] nsIDOMNode refNode, int offset);
 		

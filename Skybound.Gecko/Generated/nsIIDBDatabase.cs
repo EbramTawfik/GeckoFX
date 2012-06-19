@@ -27,35 +27,6 @@ namespace Gecko
 	using System.Windows.Forms;
 	
 	
-	/// <summary>nsIIDBObjectStoreParameters </summary>
-	[ComImport()]
-	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("fb143548-08d1-43b4-95f2-a1cd58f8db76")]
-	public interface nsIIDBObjectStoreParameters
-	{
-		
-		/// <summary>Member GetKeyPathAttribute </summary>
-		/// <returns>A Gecko.JsVal</returns>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal GetKeyPathAttribute();
-		
-		/// <summary>Member SetKeyPathAttribute </summary>
-		/// <param name='aKeyPath'> </param>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetKeyPathAttribute(Gecko.JsVal aKeyPath);
-		
-		/// <summary>Member GetAutoIncrementAttribute </summary>
-		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetAutoIncrementAttribute();
-		
-		/// <summary>Member SetAutoIncrementAttribute </summary>
-		/// <param name='aAutoIncrement'> </param>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAutoIncrementAttribute([MarshalAs(UnmanagedType.U1)] bool aAutoIncrement);
-	}
-	
 	/// <summary>
     /// IDBDatabase interface.  See
     /// http://dvcs.w3.org/hg/IndexedDB/raw-file/tip/Overview.html#idl-def-IDBDatabase
@@ -63,7 +34,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("bb877dff-ab5b-4ebb-9b3c-a7fa97cd4b51")]
+	[Guid("bedee48a-f47f-44f2-ba1e-d8fe595bbfee")]
 	public interface nsIIDBDatabase
 	{
 		
@@ -91,10 +62,10 @@ namespace Gecko
 		void DeleteObjectStore([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name);
 		
 		/// <summary>
-        ///READ_ONLY </summary>
+        ///"readonly" </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIIDBTransaction Transaction(Gecko.JsVal storeNames, ushort mode, System.IntPtr jsContext, int argc);
+		nsIIDBTransaction Transaction(Gecko.JsVal storeNames, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase mode, System.IntPtr jsContext, int argc);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Close();

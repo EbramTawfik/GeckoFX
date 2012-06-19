@@ -39,7 +39,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("3126544c-826c-4694-a2ed-67bfe56a1f37")]
+	[Guid("e7c44e0d-736e-4ead-afee-b51f4b574020")]
 	public interface nsIAccessible
 	{
 		
@@ -97,6 +97,41 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetIndexInParentAttribute();
+		
+		/// <summary>
+        /// The innerHTML for the HTML element associated with this accessible if applicable.
+        /// This is a text string of all the markup inside the DOM
+        /// node, not including the start and end tag for the node.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetInnerHTMLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aInnerHTML);
+		
+		/// <summary>
+        /// The DOM node this nsIAccessible is associated with.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMNode GetDOMNodeAttribute();
+		
+		/// <summary>
+        /// The document accessible that this access node resides in.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIAccessibleDocument GetDocumentAttribute();
+		
+		/// <summary>
+        /// The root document accessible that this access node resides in.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIAccessibleDocument GetRootDocumentAttribute();
+		
+		/// <summary>
+        /// The language for the current DOM node, e.g. en, de, etc.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetLanguageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aLanguage);
 		
 		/// <summary>
         /// Accessible name -- the main text equivalent for this node. The name is
@@ -327,6 +362,28 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void DoAction(byte index);
+		
+		/// <summary>
+        /// Makes an object visible on screen.
+        ///
+        /// @param scrollType - defines where the object should be placed on
+        /// the screen (see nsIAccessibleScrollType for
+        /// available constants).
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void ScrollTo(uint aScrollType);
+		
+		/// <summary>
+        /// Moves the top left of an object to a specified location.
+        ///
+        /// @param coordinateType [in] - specifies whether the coordinates are relative to
+        /// the screen or the parent object (for available
+        /// constants refer to nsIAccessibleCoordinateType)
+        /// @param x [in] - defines the x coordinate
+        /// @param y [in] - defines the y coordinate
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void ScrollToPoint(uint coordinateType, int x, int y);
 		
 		/// <summary>
         /// Get a pointer to accessibility interface for this node, which is specific

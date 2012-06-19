@@ -267,10 +267,29 @@ namespace Gecko
 		void RestoreContext();
 	}
 	
+	/// <summary>nsIWebGLExtensionTextureFilterAnisotropic </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("73bfb64d-94bd-4a7a-9eab-6b6d32e57aa0")]
+	public interface nsIWebGLExtensionTextureFilterAnisotropic : nsIWebGLExtension
+	{
+	}
+	
+	/// <summary>nsIWebGLExtensionTextureFilterAnisotropicConsts </summary>
+	public class nsIWebGLExtensionTextureFilterAnisotropicConsts
+	{
+		
+		// 
+		public const long TEXTURE_MAX_ANISOTROPY_EXT = 0x84FE;
+		
+		// 
+		public const long MAX_TEXTURE_MAX_ANISOTROPY_EXT = 0x84FF;
+	}
+	
 	/// <summary>nsIDOMWebGLRenderingContext </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("f000afac-11b3-4c06-a35f-8db411f1cf54")]
+	[Guid("020474b1-2d3f-403b-b85d-11d9082ccd92")]
 	public interface nsIDOMWebGLRenderingContext
 	{
 		
@@ -1005,7 +1024,7 @@ namespace Gecko
         /// HTMLImageElement, HTMLCanvasElement, HTMLVideoElement
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void TexImage2D_dom(uint target, int level, uint internalformat, uint format, uint type, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement element);
+		void TexImage2D_dom(uint target, int level, uint internalformat, uint format, uint type, Element element);
 		
 		/// <summary>Member TexSubImage2D </summary>
 		/// <param name='dummy'> </param>
@@ -1042,7 +1061,7 @@ namespace Gecko
         /// HTMLImageElement, HTMLCanvasElement, HTMLVideoElement
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void TexSubImage2D_dom(uint target, int level, int xoffset, int yoffset, uint format, uint type, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement element);
+		void TexSubImage2D_dom(uint target, int level, int xoffset, int yoffset, uint format, uint type, Element element);
 		
 		/// <summary>
         /// Modified: This replaces glTexParameterf, glTexParameterfv, glTexParameteri and glTexParameteriv

@@ -32,7 +32,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("0615d1a6-313f-11e1-a043-6c626d69675c")]
+	[Guid("DBD39C21-5788-4C68-9D97-0FCEE289BCE1")]
 	public interface nsIDocShell
 	{
 		
@@ -782,6 +782,33 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetParentCharsetSourceAttribute(int aParentCharsetSource);
+		
+		/// <summary>
+        /// Is this docshell a browser frame (i.e., does it correspond to an <iframe
+        /// mozbrowser>)?  The frameloader is responsible for setting this property
+        /// when it initializes the docshell.
+        ///
+        /// If so, this docshell should act like a chrome/content boundary for the
+        /// purposes of window.top and window.parent.
+        ///
+        /// See also nsIMozBrowserFrame.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetIsBrowserFrameAttribute();
+		
+		/// <summary>
+        /// Is this docshell a browser frame (i.e., does it correspond to an <iframe
+        /// mozbrowser>)?  The frameloader is responsible for setting this property
+        /// when it initializes the docshell.
+        ///
+        /// If so, this docshell should act like a chrome/content boundary for the
+        /// purposes of window.top and window.parent.
+        ///
+        /// See also nsIMozBrowserFrame.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetIsBrowserFrameAttribute([MarshalAs(UnmanagedType.U1)] bool aIsBrowserFrame);
 	}
 	
 	/// <summary>nsIDocShellConsts </summary>

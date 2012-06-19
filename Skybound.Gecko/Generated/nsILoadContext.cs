@@ -34,7 +34,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("314d8a54-1caf-4721-94d7-f6c82d9b82ed")]
+	[Guid("386806c3-c4cb-4b3d-b05d-c08ea10f5585")]
 	public interface nsILoadContext
 	{
 		
@@ -80,5 +80,18 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsContentAttribute();
+		
+		/// <summary>
+        /// Attribute that determines if private browsing should be used.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetUsePrivateBrowsingAttribute();
+		
+		/// <summary>
+        /// Attribute that determines if private browsing should be used.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetUsePrivateBrowsingAttribute([MarshalAs(UnmanagedType.U1)] bool aUsePrivateBrowsing);
 	}
 }

@@ -34,12 +34,15 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("a1e4a0ff-e0b2-431c-89cf-43b078189e27")]
+	[Guid("fe30ca60-bb90-4d68-af2f-4735f9228a54")]
 	public interface nsIIDBRequest
 	{
 		
+		/// <summary>
+        /// "pending" or "done"
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		ushort GetReadyStateAttribute();
+		void GetReadyStateAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aReadyState);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -68,20 +71,5 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOnerrorAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnerror);
-	}
-	
-	/// <summary>nsIIDBRequestConsts </summary>
-	public class nsIIDBRequestConsts
-	{
-		
-		// <summary>
-        // IDBReqeust interface.  See
-        // http://dev.w3.org/2006/webapi/WebSimpleDB/#idl-def-IDBRequest for more
-        // information.
-        // </summary>
-		public const ulong LOADING = 1;
-		
-		// 
-		public const ulong DONE = 2;
 	}
 }

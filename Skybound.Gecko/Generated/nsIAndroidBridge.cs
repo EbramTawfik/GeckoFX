@@ -48,6 +48,40 @@ namespace Gecko
 		bool PaintingSuppressed();
 	}
 	
+	/// <summary>nsIBrowserTab </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("0843f3c1-043e-4c64-9d8c-091370548c05")]
+	public interface nsIBrowserTab
+	{
+		
+		/// <summary>Member GetWindowAttribute </summary>
+		/// <returns>A nsIDOMWindow</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMWindow GetWindowAttribute();
+		
+		/// <summary>Member GetScaleAttribute </summary>
+		/// <returns>A System.Single</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		float GetScaleAttribute();
+	}
+	
+	/// <summary>nsIAndroidBrowserApp </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("d10377b4-1c90-493a-a532-63cb3f16ee2b")]
+	public interface nsIAndroidBrowserApp
+	{
+		
+		/// <summary>Member GetBrowserTab </summary>
+		/// <param name='tabId'> </param>
+		/// <returns>A nsIBrowserTab</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIBrowserTab GetBrowserTab(int tabId);
+	}
+	
 	/// <summary>nsIAndroidBridge </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -65,5 +99,16 @@ namespace Gecko
 		/// <param name='provider'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetDrawMetadataProvider([MarshalAs(UnmanagedType.Interface)] nsIAndroidDrawMetadataProvider provider);
+		
+		/// <summary>Member GetBrowserAppAttribute </summary>
+		/// <returns>A nsIAndroidBrowserApp</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIAndroidBrowserApp GetBrowserAppAttribute();
+		
+		/// <summary>Member SetBrowserAppAttribute </summary>
+		/// <param name='aBrowserApp'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetBrowserAppAttribute([MarshalAs(UnmanagedType.Interface)] nsIAndroidBrowserApp aBrowserApp);
 	}
 }

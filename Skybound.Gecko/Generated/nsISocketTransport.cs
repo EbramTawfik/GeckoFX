@@ -39,7 +39,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("19c37caa-fb41-4c32-bbf1-c6b31b75d789")]
+	[Guid("704c0859-cb64-43bd-bfdf-c8b28427f812")]
 	public interface nsISocketTransport : nsITransport
 	{
 		
@@ -160,6 +160,22 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetSelfAddr();
+		
+		/// <summary>
+        /// Returns a scriptable version of getPeerAddr. This attribute is defined
+        /// only once a connection has been established.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsINetAddr GetScriptablePeerAddr();
+		
+		/// <summary>
+        /// Returns a scriptable version of getSelfAddr. This attribute is defined
+        /// only once a connection has been established.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsINetAddr GetScriptableSelfAddr();
 		
 		/// <summary>
         /// Security info object returned from the secure socket provider.  This

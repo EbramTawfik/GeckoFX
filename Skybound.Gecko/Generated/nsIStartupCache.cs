@@ -30,7 +30,7 @@ namespace Gecko
 	/// <summary>nsIStartupCache </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("8c2a360b-e337-455b-8c1b-04265ef9c5a3")]
+	[Guid("c1b3796b-33af-4ff0-b83d-8eb0ca2c080f")]
 	public interface nsIStartupCache
 	{
 		
@@ -74,6 +74,12 @@ namespace Gecko
 		/// <summary>Member ResetStartupWriteTimer </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ResetStartupWriteTimer();
+		
+		/// <summary>
+        ///Instruct clients to always post cache ages to Telemetry, even in
+        ///     cases where it would not normally make sense. </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RecordAgesAlways();
 		
 		/// <summary>
         ///Allows clients to simulate the behavior of ObserverService. </summary>

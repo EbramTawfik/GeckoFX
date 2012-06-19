@@ -30,7 +30,7 @@ namespace Gecko
 	/// <summary>nsIDOMNavigator </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("5d6575cc-43d6-40f9-ac8e-a4438474f4ba")]
+	[Guid("e0737ed5-89c5-4fe3-891e-a75bf3a1bb55")]
 	public interface nsIDOMNavigator
 	{
 		
@@ -123,6 +123,12 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetDoNotTrackAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDoNotTrack);
 		
+		/// <summary>Member GetMozPowerAttribute </summary>
+		/// <returns>A nsIDOMMozPowerManager</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMMozPowerManager GetMozPowerAttribute();
+		
 		/// <summary>Member JavaEnabled </summary>
 		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
@@ -182,5 +188,37 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void MozVibrate(Gecko.JsVal aPattern, System.IntPtr jsContext);
+		
+		/// <summary>
+        /// Request a wake lock for a resource.
+        ///
+        /// A page holds a wake lock to request that a resource not be turned
+        /// off (or otherwise made unavailable).
+        ///
+        /// The topic is the name of a resource that might be made unavailable for
+        /// various reasons. For example, on a mobile device the power manager might
+        /// decide to turn off the screen after a period of idle time to save power.
+        ///
+        /// The resource manager checks the lock state of a topic before turning off
+        /// the associated resource. For example, a page could hold a lock on the
+        /// "screen" topic to prevent the screensaver from appearing or the screen
+        /// from turning off.
+        ///
+        /// The resource manager defines what each topic means and sets policy.  For
+        /// example, the resource manager might decide to ignore 'screen' wake locks
+        /// held by pages which are not visible.
+        ///
+        /// One topic can be locked multiple times; it is considered released only when
+        /// all locks on the topic have been released.
+        ///
+        /// The returned nsIDOMMozWakeLock object is a token of the lock.  You can
+        /// unlock the lock via the object's |unlock| method.  The lock is released
+        /// automatically when its associated window is unloaded.
+        ///
+        /// @param aTopic resource name
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMMozWakeLock RequestWakeLock([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTopic);
 	}
 }

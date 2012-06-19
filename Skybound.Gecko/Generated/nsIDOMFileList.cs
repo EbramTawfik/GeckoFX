@@ -45,5 +45,12 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMFile Item(uint index);
+		
+		/// <summary>Member GetItemAt </summary>
+		/// <param name='index'> </param>
+		/// <returns>A nsIDOMFile</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMFile GetItemAt(uint index);
 	}
 }

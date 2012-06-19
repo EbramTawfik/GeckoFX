@@ -85,7 +85,7 @@ namespace Gecko
         /// @returns A string value or an empty string if none is set.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTabValue([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aTab, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aKey, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void GetTabValue(Gecko.JsVal aTab, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aKey, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// @param aTab         is the browser tab to set the value for.
@@ -93,14 +93,14 @@ namespace Gecko
         /// @param aStringValue is the value itself (use JSON.stringify/parse before setting JS objects).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTabValue([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aTab, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aKey, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aStringValue);
+		void SetTabValue(Gecko.JsVal aTab, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aKey, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aStringValue);
 		
 		/// <summary>
         /// @param aTab is the browser tab to get the value for.
         /// @param aKey is the value's name.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DeleteTabValue([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aTab, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aKey);
+		void DeleteTabValue(Gecko.JsVal aTab, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aKey);
 		
 		/// <summary>
         /// @returns A boolean indicating we should restore previous browser session

@@ -30,7 +30,7 @@ namespace Gecko
 	/// <summary>nsIPlaintextEditor </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("05d312ef-8914-494e-91c9-2be8ed7f8e29")]
+	[Guid("07b6d070-ccea-4a00-84b4-f4b94dd9eb52")]
 	public interface nsIPlaintextEditor
 	{
 		
@@ -161,49 +161,44 @@ namespace Gecko
 		public const long eEditorMailMask = 0x0040;
 		
 		// <summary>
-        // prevent immediate reflows and view refreshes
-        // </summary>
-		public const long eEditorUseAsyncUpdatesMask = 0x0080;
-		
-		// <summary>
         // allow the editor to set font: monospace on the root node
         // </summary>
-		public const long eEditorEnableWrapHackMask = 0x0100;
+		public const long eEditorEnableWrapHackMask = 0x0080;
 		
 		// <summary>
         // bit for widgets (form elements)
         // </summary>
-		public const long eEditorWidgetMask = 0x0200;
+		public const long eEditorWidgetMask = 0x0100;
 		
 		// <summary>
         // this HTML editor should not create css styles
         // </summary>
-		public const long eEditorNoCSSMask = 0x0400;
+		public const long eEditorNoCSSMask = 0x0200;
 		
 		// <summary>
         // besides, anchors of HTML are not clickable.
         // </summary>
-		public const long eEditorAllowInteraction = 0x0800;
+		public const long eEditorAllowInteraction = 0x0400;
 		
 		// <summary>
         // see bug 530367 for the detail.
         // </summary>
-		public const long eEditorDontEchoPassword = 0x1000;
+		public const long eEditorDontEchoPassword = 0x0800;
 		
 		// <summary>
         // from the text control's content node.
         // </summary>
-		public const long eEditorRightToLeft = 0x2000;
+		public const long eEditorRightToLeft = 0x1000;
 		
 		// <summary>
         // when this flag is set, the internal direction of the editor is LTR.
         // </summary>
-		public const long eEditorLeftToRight = 0x4000;
+		public const long eEditorLeftToRight = 0x2000;
 		
 		// <summary>
         // when this flag is set, the editor's text content is not spell checked.
         // </summary>
-		public const long eEditorSkipSpellCheck = 0x8000;
+		public const long eEditorSkipSpellCheck = 0x4000;
 		
 		// <summary>
         // The valid values for newlines handling.

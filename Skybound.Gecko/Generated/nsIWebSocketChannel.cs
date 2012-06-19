@@ -198,5 +198,10 @@ namespace Gecko
 		
 		// 
 		public const ulong CLOSE_EXTENSION_MISSING = 1010;
+		
+		// <summary>
+        // errors: just use CLOSE_GOING_AWAY for now
+        // </summary>
+		public const ulong CLOSE_INTERNAL_ERROR = CLOSE_GOING_AWAY;
 	}
 }

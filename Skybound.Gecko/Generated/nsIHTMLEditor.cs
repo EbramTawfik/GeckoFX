@@ -30,7 +30,7 @@ namespace Gecko
 	/// <summary>nsIHTMLEditor </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("d58f35a7-c269-4292-b9aa-a79e200a7c99")]
+	[Guid("FF67AD39-ED58-4CD1-A1A3-DCD988390A97")]
 	public interface nsIHTMLEditor
 	{
 		
@@ -167,28 +167,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void DecreaseFontSize();
-		
-		/// <summary>
-        /// canDrag decides if a drag should be started
-        /// (for example, based on the current selection and mousepoint).
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool CanDrag([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent aEvent);
-		
-		/// <summary>
-        /// doDrag transfers the relevant data (as appropriate)
-        /// to a transferable so it can later be dropped.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DoDrag([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent aEvent);
-		
-		/// <summary>
-        /// insertFromDrop looks for a dragsession and inserts the
-        /// relevant data in response to a drop.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InsertFromDrop([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent aEvent);
 		
 		/// <summary>
         /// Tests if a node is a BLOCK element according the the HTML 4.0 DTD.
@@ -519,13 +497,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetBodyAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAttr, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aValue);
-		
-		/// <summary>
-        /// XXX Used to suppress spurious drag/drop events to workaround bug 50703
-        /// Don't use this method! It will go away after first release!
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void IgnoreSpuriousDragEvent([MarshalAs(UnmanagedType.U1)] bool aIgnoreSpuriousDragEvent);
 		
 		/// <summary>
         /// Find all the nodes in the document which contain references

@@ -67,9 +67,9 @@ namespace GeckofxUnitTests
 				var ptr = new JsVal();
 				var _securityManager = Xpcom.GetService<nsIScriptSecurityManager>("@mozilla.org/scriptsecuritymanager;1");
 				var _systemPrincipal = _securityManager.GetSystemPrincipal();
-				var _jsPrincipals = _systemPrincipal.GetJSPrincipals(cx.ContextPointer);
+
 				IntPtr globalObject = SpiderMonkey.JS_GetGlobalForScopeChain(cx.ContextPointer);
-				bool ret = SpiderMonkey.JS_EvaluateScriptForPrincipals(cx.ContextPointer, globalObject, _jsPrincipals, jscript, (uint)jscript.Length, "script", 1, ref ptr);
+				bool ret = SpiderMonkey.JS_EvaluateScript(cx.ContextPointer, globalObject, jscript, (uint)jscript.Length, "script", 1, ref ptr);
 				Assert.IsTrue(ret);
 				Marshal.ReleaseComObject(_securityManager);
 

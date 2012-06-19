@@ -27,7 +27,12 @@ namespace Gecko
 	using System.Windows.Forms;
 	
 	
-	/// <summary>nsILivemarkService </summary>
+	/// <summary>
+    /// WARNING:
+    ///
+    /// This interface is deprecated and will be removed in a future release.
+    /// Use the mozIAsyncLivemarks interface instead.
+    /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("62a5fe00-d85c-4a63-aef7-176d8f1b189d")]
@@ -38,12 +43,20 @@ namespace Gecko
         /// Starts the livemark refresh timer.
         /// Being able to manually control this allows activity such
         /// as bookmarks import to occur without kicking off HTTP traffic.
+        ///
+        /// @note This is a no-op and exists just as a compatibility shim.
+        ///
+        /// @deprecated use the mozIAsyncLivemarks interface instead.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Start();
 		
 		/// <summary>
         /// Stop the livemark refresh timer.
+        ///
+        /// @note This is a no-op and exists just as a compatibility shim.
+        ///
+        /// @deprecated use the mozIAsyncLivemarks interface instead.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void StopUpdateLivemarks();
@@ -57,6 +70,8 @@ namespace Gecko
         /// @param index       The index to insert at, or
         /// nsINavBookmarksService.DEFAULT_INDEX to append.
         /// @returns the ID of the folder for the livemark
+        ///
+        /// @deprecated use the mozIAsyncLivemarks interface instead.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int CreateLivemark(long folder, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, [MarshalAs(UnmanagedType.Interface)] nsIURI siteURI, [MarshalAs(UnmanagedType.Interface)] nsIURI feedURI, int index);
@@ -77,6 +92,8 @@ namespace Gecko
         /// false otherwise
         ///
         /// @throws NS_ERROR_INVALID_ARG if the folder ID isn't known
+        ///
+        /// @deprecated use the mozIAsyncLivemarks interface instead.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -89,6 +106,8 @@ namespace Gecko
         /// Feed URI to look for.
         ///
         /// @returns the found livemark folder id, or -1 if nothing was found.
+        ///
+        /// @deprecated use the mozIAsyncLivemarks interface instead.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetLivemarkIdForFeedURI([MarshalAs(UnmanagedType.Interface)] nsIURI aFeedURI);
@@ -105,6 +124,8 @@ namespace Gecko
         /// a folder that isn't a livemark container
         /// @throws NS_ERROR_MALFORMED_URI if the site URI annotation has
         /// somehow been corrupted (and can't be turned into an nsIURI)
+        ///
+        /// @deprecated use the mozIAsyncLivemarks interface instead.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -120,6 +141,10 @@ namespace Gecko
         /// @throws NS_ERROR_INVALID_ARG if the folder ID isn't known or identifies
         /// a folder that isn't a livemark container; also if the siteURI
         /// argument isn't a valid nsIURI object (or null)
+        ///
+        /// @note This is a no-op and exists just as a compatibility shim.
+        ///
+        /// @deprecated use the mozIAsyncLivemarks interface instead.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetSiteURI(long container, [MarshalAs(UnmanagedType.Interface)] nsIURI siteURI);
@@ -137,6 +162,8 @@ namespace Gecko
         /// a folder that isn't a livemark container
         /// @throws NS_ERROR_MALFORMED_URI if the site URI annotation has
         /// somehow been corrupted (and can't be turned into an nsIURI)
+        ///
+        /// @deprecated use the mozIAsyncLivemarks interface instead.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -155,20 +182,28 @@ namespace Gecko
         /// @throws NS_ERROR_INVALID_ARG if the folder ID isn't known or identifies
         /// a folder that isn't a livemark container; also if the feedURI
         /// argument isn't a valid nsIURI object
+        ///
+        /// @note This is a no-op and exists just as a compatibility shim.
+        ///
+        /// @deprecated use the mozIAsyncLivemarks interface instead.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetFeedURI(long container, [MarshalAs(UnmanagedType.Interface)] nsIURI feedURI);
 		
 		/// <summary>
         /// Reloads all livemark subscriptions, whether or not they've expired.
-        ///	 </summary>
+        ///
+        /// @deprecated use the mozIAsyncLivemarks interface instead.
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ReloadAllLivemarks();
 		
 		/// <summary>
         /// Reloads the livemark with this folder ID, whether or not it's expired.
-        /// @param folderID		The ID of the folder to be reloaded
-        ///	 </summary>
+        /// @param folderID The ID of the folder to be reloaded
+        ///
+        /// @deprecated use the mozIAsyncLivemarks interface instead.
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ReloadLivemarkFolder(long folderID);
 	}

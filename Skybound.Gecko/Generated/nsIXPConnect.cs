@@ -87,9 +87,14 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void DebugDump(short depth);
 		
-		/// <summary>Member RefreshPrototype </summary>
+		/// <summary>
+        /// This finishes initializing a wrapped global, doing the parts that we
+        /// couldn't do while the global and window were being simultaneously
+        /// bootstrapped. This should be called exactly once, and only for wrapped
+        /// globals.
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RefreshPrototype();
+		void FinishInitForWrappedGlobal();
 		
 		/// <summary>
         /// This returns a pointer into the instance and care should be taken
@@ -393,7 +398,7 @@ namespace Gecko
 	/// <summary> </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("686bb1d0-4711-11e1-b86c-0800200c9a66")]
+	[Guid("0213cb40-2dd5-4ac8-a9d3-157bd53c3824")]
 	public interface nsIXPConnect
 	{
 		
@@ -412,18 +417,14 @@ namespace Gecko
         ///
         /// @param aJSContext the context to use while creating the global object.
         /// @param aCOMObj the native object that represents the global object.
-        /// @param aIID the IID used to wrap the global object.
         /// @param aPrincipal the principal of the code that will run in this
         /// compartment. Can be null if not on the main thread.
-        /// @param aExtraPtr must be passed if aPrincipal is null. Used to separate
-        /// code from the same principal into different
-        /// compartments, as for sandboxes.
         /// @param aFlags one of the flags below specifying what options this
         /// global object wants.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIXPConnectJSObjectHolder InitClassesWithNewWrappedGlobal(System.IntPtr aJSContext, [MarshalAs(UnmanagedType.Interface)] nsISupports aCOMObj, ref System.Guid aIID, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal aPrincipal, [MarshalAs(UnmanagedType.Interface)] nsISupports aExtraPtr, uint aFlags);
+		nsIXPConnectJSObjectHolder InitClassesWithNewWrappedGlobal(System.IntPtr aJSContext, [MarshalAs(UnmanagedType.Interface)] nsISupports aCOMObj, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal aPrincipal, uint aFlags);
 		
 		/// <summary>
         /// wrapNative will create a new JSObject or return an existing one.
@@ -714,6 +715,13 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GarbageCollect(uint reason, uint kind);
+		
+		/// <summary>
+        /// Signals a good place to do an incremental GC slice, because the
+        /// browser is drawing a frame.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void NotifyDidPaint();
 		
 		/// <summary>
         /// Define quick stubs on the given object, @a proto.

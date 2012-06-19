@@ -30,7 +30,7 @@ namespace Gecko
 	/// <summary>nsIScreen </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("498dcd6c-94a2-4c32-8c77-531b583dff37")]
+	[Guid("d961f76e-8437-4bc6-9ada-a1c98ace9560")]
 	public interface nsIScreen
 	{
 		
@@ -79,6 +79,20 @@ namespace Gecko
 		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetColorDepthAttribute();
+		
+		/// <summary>
+        /// Get/set the screen rotation, on platforms that support changing
+        /// screen rotation.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetRotationAttribute();
+		
+		/// <summary>
+        /// Get/set the screen rotation, on platforms that support changing
+        /// screen rotation.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetRotationAttribute(uint aRotation);
 	}
 	
 	/// <summary>nsIScreenConsts </summary>
@@ -96,5 +110,22 @@ namespace Gecko
 		// <summary>
         //The number of different brightness levels </summary>
 		public const ulong BRIGHTNESS_LEVELS = 2;
+		
+		// <summary>
+        // Allowable screen rotations, when the underlying widget toolkit
+        // supports rotating the screen.
+        //
+        // ROTATION_0_DEG is the default, unrotated configuration.
+        // </summary>
+		public const ulong ROTATION_0_DEG = 0;
+		
+		// 
+		public const ulong ROTATION_90_DEG = 1;
+		
+		// 
+		public const ulong ROTATION_180_DEG = 2;
+		
+		// 
+		public const ulong ROTATION_270_DEG = 3;
 	}
 }

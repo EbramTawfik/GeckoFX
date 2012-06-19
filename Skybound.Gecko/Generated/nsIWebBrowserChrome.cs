@@ -33,7 +33,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("BA434C60-9D52-11d3-AFB0-00A024FFC08C")]
+	[Guid("E8C414C4-DC38-4BA3-AB4E-EC4CBBE22907")]
 	public interface nsIWebBrowserChrome
 	{
 		
@@ -195,6 +195,11 @@ namespace Gecko
 		
 		// 
 		public const ulong CHROME_WINDOW_POPUP = 0x00008000;
+		
+		// <summary>
+        // platforms.
+        // </summary>
+		public const ulong CHROME_MAC_SUPPRESS_ANIMATION = 0x01000000;
 		
 		// 
 		public const ulong CHROME_WINDOW_RAISED = 0x02000000;

@@ -1013,6 +1013,22 @@ namespace GeckofxUnitTests
 		{
 			throw new NotImplementedException();
 		}
+
+
+		public nsIDOMWindow GetRealTopAttribute()
+		{
+			throw new NotImplementedException();
+		}
+
+		public nsIDOMWindow GetRealParentAttribute()
+		{
+			throw new NotImplementedException();
+		}
+
+		public nsIDOMElement GetRealFrameElementAttribute()
+		{
+			throw new NotImplementedException();
+		}
 	}
 	#endregion
 }

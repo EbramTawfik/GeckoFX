@@ -89,7 +89,7 @@ namespace Gecko
         /// @param element    The element you are looking for
         /// @returns a number >= startIndex which is the position of the
         /// element in the array.
-        /// @throws NS_ERROR_NOT_FOUND if the element was not in the array.
+        /// @throws NS_ERROR_FAILURE if the element was not in the array.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new uint IndexOf(uint startIndex, [MarshalAs(UnmanagedType.Interface)] nsISupports element);
@@ -99,7 +99,7 @@ namespace Gecko
         ///
         /// @returns a new enumerator positioned at the start of the array
         /// @throws NS_ERROR_FAILURE if the array is empty (to make it easy
-        /// to detect errors)
+        /// to detect errors), or NS_ERROR_OUT_OF_MEMORY if out of memory.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
