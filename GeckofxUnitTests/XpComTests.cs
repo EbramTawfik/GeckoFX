@@ -195,15 +195,7 @@ namespace GeckofxUnitTests
 			Assert.IsNotNull(instance);
 			Marshal.ReleaseComObject(instance);
 		}
-
-		[Test]
-		public void CreateInstance_CreatingPlainTextSink_ReturnsValidInstance()
-		{			
-			var instance = Xpcom.CreateInstance<nsISupports>("@mozilla.org/layout/plaintextsink;1");
-			Assert.IsNotNull(instance);
-			Marshal.ReleaseComObject(instance);
-		}
-
+		
 		[Test]
 		public void CreateInstance_CreatingNameSpaceManager_ReturnsValidInstance()
 		{			
@@ -788,14 +780,6 @@ namespace GeckofxUnitTests
 		public void CreateInstance_CreatingTextToSubUri_ReturnsValidInstance()
 		{			
 			var instance = Xpcom.CreateInstance<nsITextToSubURI>("@mozilla.org/intl/texttosuburi;1");
-			Assert.IsNotNull(instance);
-			Marshal.ReleaseComObject(instance);
-		}
-
-		[Test]
-		public void CreateInstance_CreatingCharSetAlias_ReturnsValidInstance()
-		{			
-			var instance = Xpcom.CreateInstance<nsISupports>("@mozilla.org/intl/charsetalias;1");
 			Assert.IsNotNull(instance);
 			Marshal.ReleaseComObject(instance);
 		}

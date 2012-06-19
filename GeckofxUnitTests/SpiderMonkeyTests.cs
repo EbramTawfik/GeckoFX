@@ -67,11 +67,9 @@ namespace GeckofxUnitTests
 				var ptr = new JsVal();
 				var _securityManager = Xpcom.GetService<nsIScriptSecurityManager>("@mozilla.org/scriptsecuritymanager;1");
 				var _systemPrincipal = _securityManager.GetSystemPrincipal();
-#if false // GetJSPrincipals no longer exists in firefox 13. // https://bugzilla.mozilla.org/show_bug.cgi?id=728250
-				var _jsPrincipals = _systemPrincipal.GetJSPrincipals(cx.ContextPointer);
-#endif				
+
 				IntPtr globalObject = SpiderMonkey.JS_GetGlobalForScopeChain(cx.ContextPointer);
-				bool ret = SpiderMonkey.JS_EvaluateScriptForPrincipals(cx.ContextPointer, globalObject, /*_jsPrincipals*/ IntPtr.Zero, jscript, (uint)jscript.Length, "script", 1, ref ptr);
+				bool ret = SpiderMonkey.JS_EvaluateScript(cx.ContextPointer, globalObject, jscript, (uint)jscript.Length, "script", 1, ref ptr);
 				Assert.IsTrue(ret);
 				Marshal.ReleaseComObject(_securityManager);
 

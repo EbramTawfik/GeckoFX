@@ -260,14 +260,14 @@ namespace GeckofxUnitTests
 				Assert.IsTrue(context.EvaluateScript("this.document.body.innerHTML;", out result));
 				Assert.AreEqual("hi", result);
 
-				Assert.IsTrue(context.EvaluateScript("eval(\"x=10;y=20;x*y;\");", out result));
+				Assert.IsTrue(context.EvaluateScript("x=10;y=20;x*y;", out result));
 				Assert.AreEqual("200", result);
 			}
 		}
 
 		[Test]
 		public void EvaluateScript_JavascriptAccessExistingGlobalObjectsWithoutNormalDocumentSetup_ScriptExecutesAndReturnsExpectedResult()
-		{			
+		{
 			using (AutoJSContext context = new AutoJSContext(browser.JSContext))
 			{
 				string result;
@@ -281,7 +281,7 @@ namespace GeckofxUnitTests
 				Assert.IsTrue(context.EvaluateScript("this.document.body.innerHTML;", out result));
 				Assert.AreEqual("hi", result);
 
-				Assert.IsTrue(context.EvaluateScript("eval(\"x=10;y=20;x*y;\");", out result));
+				Assert.IsTrue(context.EvaluateScript("x=10;y=20;x*y;", out result));
 				Assert.AreEqual("200", result);
 			}
 		}

@@ -127,9 +127,6 @@ namespace Gecko
 			{
 				get
 				{
-#if false
-					// for some reason normal marshalling doesn't work for this property, so we have to do it manually					
-#endif
 					return Entry.GetTitleAttribute();					
 				}
 			}
