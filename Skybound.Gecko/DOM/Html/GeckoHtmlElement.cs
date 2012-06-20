@@ -104,6 +104,12 @@ namespace Gecko
 		{
 			DomElement.Click();
 		}
+
+		public bool Draggable
+		{
+			get { return DomElement.GetDraggableAttribute(); }
+			set { DomElement.SetDraggableAttribute(value); }
+		}
 	
 		/// <summary>
 		/// Get the value of the ContentEditable Attribute
@@ -113,8 +119,6 @@ namespace Gecko
 			get { return nsString.Get(DomElement.GetContentEditableAttribute); }
 			set { nsString.Set(DomElement.GetContentEditableAttribute, value); }
 		}
-		
-
 		
 		public System.Drawing.Rectangle BoundingClientRect
 		{
@@ -148,6 +152,13 @@ namespace Gecko
 			DomElement.ScrollIntoView(top, 1);
 		}
 		
+
+		public bool Spellcheck
+		{
+			get { return DomElement.GetSpellcheckAttribute(); }
+			set { DomElement.SetSpellcheckAttribute(value); }
+		}
+
 		public string InnerHtml
 		{
 			get { return nsString.Get(DomElement.GetInnerHTMLAttribute); }
@@ -163,6 +174,19 @@ namespace Gecko
 		{
 			get { return DomElement.GetTabIndexAttribute(); }
 			set { DomElement.SetTabIndexAttribute(value); }
+		}
+
+		public void InsertAdjacentHTML(string position, string text)
+		{
+			using(nsAString tempPos = new nsAString(position), tempText = new nsAString(text))
+			{
+				DomElement.InsertAdjacentHTML(tempPos, tempText);
+			}
+		}
+
+		public void MozRequestFullScreen()
+		{
+			DomElement.MozRequestFullScreen();
 		}
 	}
 }
