@@ -217,7 +217,7 @@ namespace Gecko
 						}
 						return;
 					case WM_IME_SETCONTEXT:
-						if (!DisableWmImeSetContext)
+						if (!DisableWmImeSetContext && WebBrowserFocus != null)
 						{
 							//Console.WriteLine("WM_IME_SETCONTEXT {0} {1}", m.WParam, m.LParam.ToString("X8"));
 							if (m.WParam == IntPtr.Zero)

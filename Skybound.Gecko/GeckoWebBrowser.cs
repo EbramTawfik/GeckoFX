@@ -293,8 +293,11 @@ namespace Gecko
 						EventHandler gotFocus = null;
 						gotFocus = delegate (object sender, EventArgs e)
 						{
-							(sender as GeckoWebBrowser).GotFocus -= gotFocus;
-							(sender as GeckoWebBrowser).WebBrowserFocus.Activate();
+							var geckoWebBrowser = (GeckoWebBrowser)sender;
+							geckoWebBrowser.GotFocus -= gotFocus;
+							
+							if (geckoWebBrowser.WebBrowserFocus != null)
+								geckoWebBrowser.WebBrowserFocus.Activate();
 						};
 						(parent as GeckoWebBrowser).GotFocus += gotFocus;
 				      }
