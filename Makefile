@@ -1,10 +1,19 @@
 all: Skybound.Gecko.dll
 
 clean:
-	cd Skybound.Gecko && xbuild Skybound.Gecko.csproj /target:clean
+	cd Skybound.Gecko && xbuild /p:Configuration=Debug_Linux Skybound.Gecko.csproj /target:clean
+	cd Skybound.Gecko && xbuild /p:Configuration=Release_Linux Skybound.Gecko.csproj /target:clean
+	cd GeckoFxTest && xbuild /p:Configuration=Debug_Linux GeckoFxTest.csproj /target:clean
+	cd GeckoFxTest && xbuild /p:Configuration=Release_Linux GeckoFxTest.csproj /target:clean
 
 Skybound.Gecko.dll: Skybound.Gecko/Skybound.Gecko.csproj
-	cd Skybound.Gecko && xbuild Skybound.Gecko.csproj
+	cd Skybound.Gecko && xbuild /p:Configuration=Debug_Linux Skybound.Gecko.csproj
+	cd Skybound.Gecko && xbuild /p:Configuration=Release_Linux Skybound.Gecko.csproj
+
+test: GeckoFxTest/GeckoFxTest.csproj
+	cd GeckoFxTest && xbuild /p:Configuration=Debug_Linux GeckoFxTest.csproj
+	cd GeckoFxTest && xbuild /p:Configuration=Release_Linux GeckoFxTest.csproj
+	cd GeckoFxTest/bin/x86/Debug_Linux && LD_LIBRARY_PATH="/usr/lib/firefox/" mono --debug GeckoFxTest.exe
 
 install:
 	install -d $(DESTDIR)/usr/lib
