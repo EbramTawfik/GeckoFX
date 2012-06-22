@@ -17,10 +17,10 @@ namespace GeckoFxTest
 		public static void Main(string[] args)
 		{
 #if GTK		
-			if (!Environment.GetEnvironmentVariable("LD_LIBRARY_PATH").Contains("/usr/lib/firefox-9.0.1/"))
-				throw new ApplicationException(String.Format("LD_LIBRARY_PATH must contain {0}", "/usr/lib/firefox-9.0.1/"));
+			if (!Environment.GetEnvironmentVariable("LD_LIBRARY_PATH").Contains("/usr/lib/firefox/"))
+				throw new ApplicationException(String.Format("LD_LIBRARY_PATH must contain {0}", "/usr/lib/firefox/"));
 
-			Xpcom.Initialize("/usr/lib/firefox-11.0.1/");
+			Xpcom.Initialize("/usr/lib/firefox/");
 #else
 			Xpcom.Initialize(XULRunnerLocator.GetXULRunnerLocation());
 #endif
