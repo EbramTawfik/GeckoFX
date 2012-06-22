@@ -13,7 +13,8 @@ Skybound.Gecko.dll: Skybound.Gecko/Skybound.Gecko.csproj
 test: GeckoFxTest/GeckoFxTest.csproj
 	cd GeckoFxTest && xbuild /p:Configuration=Debug_Linux GeckoFxTest.csproj
 	cd GeckoFxTest && xbuild /p:Configuration=Release_Linux GeckoFxTest.csproj
-	cd GeckoFxTest/bin/x86/Debug_Linux && LD_LIBRARY_PATH="/usr/lib/firefox/" mono --debug GeckoFxTest.exe
+	cp GeckoFxTest/GeckoFxTest.sh GeckoFxTest/bin/x86/Debug_Linux/
+	cd GeckoFxTest/bin/x86/Debug_Linux && ./GeckoFxTest.sh
 
 install:
 	install -d $(DESTDIR)/usr/lib
