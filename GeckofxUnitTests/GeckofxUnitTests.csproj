@@ -24,7 +24,7 @@
     <WarningLevel>4</WarningLevel>
     <EnvironmentVariables>
       <EnvironmentVariables>
-        <Variable name="LD_LIBRARY_PATH" value="/usr/lib/firefox-7.0/" />
+        <Variable name="LD_LIBRARY_PATH" value="/usr/lib/firefox/" />
         <Variable name="MONO_PATH" value="/usr/lib/cli/gdk-sharp-2.0/" />
       </EnvironmentVariables>
     </EnvironmentVariables>
