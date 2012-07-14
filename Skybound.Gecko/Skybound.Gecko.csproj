@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Release_Windows</Configuration>
@@ -33,7 +33,6 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release_Windows|x86'">
     <PlatformTarget>x86</PlatformTarget>
@@ -80,23 +79,28 @@
     <Reference Include="System.Xml" />
     <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\usr\local\lib\mono\gac\gdk-sharp\2.12.0.0__35e10195dab3c99f\gdk-sharp.dll</HintPath>
-    </Reference>
-    <Reference Include="gtk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\usr\local\lib\mono\gac\gtk-sharp\2.12.0.0__35e10195dab3c99f\gtk-sharp.dll</HintPath>
+      <HintPath>\usr\lib\fieldworks\mono\lib\mono\gac\gdk-sharp\2.12.0.0__35e10195dab3c99f\gdk-sharp.dll</HintPath>
     </Reference>
     <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\usr\local\lib\mono\gac\glib-sharp\2.12.0.0__35e10195dab3c99f\glib-sharp.dll</HintPath>
+      <HintPath>\usr\lib\fieldworks\mono\lib\mono\gac\glib-sharp\2.12.0.0__35e10195dab3c99f\glib-sharp.dll</HintPath>
     </Reference>
-    <Reference Include="gdk-sharp, Version=2.14.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
-    <Reference Include="glib-sharp, Version=2.14.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
+    <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <Package>gtk-sharp-2.0</Package>
+    </Reference>
+    <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
+      <Package>glib-sharp-2.0</Package>
+    </Reference>
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Core" />
-    <Reference Include="atk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\usr\local\lib\mono\gac\atk-sharp\2.12.0.0__35e10195dab3c99f\atk-sharp.dll</HintPath>
+    <Reference Include="gtk-sharp">
+      <HintPath>\usr\lib\fieldworks\mono\lib\mono\gac\gtk-sharp\2.12.0.0__35e10195dab3c99f\gtk-sharp.dll</HintPath>
+    </Reference>
+    <Reference Include="glib-sharp">
+      <HintPath>\usr\lib\fieldworks\mono\lib\mono\gac\glib-sharp\2.12.0.0__35e10195dab3c99f\glib-sharp.dll</HintPath>
+    </Reference>
+    <Reference Include="atk-sharp">
+      <HintPath>\usr\lib\fieldworks\mono\lib\mono\gac\atk-sharp\2.12.0.0__35e10195dab3c99f\atk-sharp.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
