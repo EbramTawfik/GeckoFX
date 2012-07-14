@@ -24,6 +24,7 @@ namespace GeckoFxTest
 #else
 			Xpcom.Initialize(XULRunnerLocator.GetXULRunnerLocation());
 #endif
+			GeckoPreferences.User["gfx.font_rendering.graphite.enabled"] = true;
 			Application.ApplicationExit += (sender, e) => 
 			{
         		Xpcom.Shutdown();
