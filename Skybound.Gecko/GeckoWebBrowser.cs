@@ -409,6 +409,11 @@ namespace Gecko
 			if (string.IsNullOrEmpty(url))
 				return false;
 
+			// added these from http://code.google.com/p/geckofx/issues/detail?id=5 so that it will work even if browser isn't currently shown
+			if (!IsHandleCreated) CreateHandle(); 
+			if (IsBusy) this.Stop();
+
+
 			if (!IsHandleCreated)
 				throw new InvalidOperationException("Cannot call Navigate() before the window handle is created.");
 
