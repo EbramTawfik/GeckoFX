@@ -30,7 +30,7 @@ namespace Gecko
 	/// <summary>nsICacheListener </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("638c3848-778b-4851-8ff3-9400f65b8773")]
+	[Guid("8eadf2ed-8cac-4961-8025-6da6d5827e74")]
 	public interface nsICacheListener
 	{
 		
@@ -41,5 +41,13 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void OnCacheEntryAvailable([MarshalAs(UnmanagedType.Interface)] nsICacheEntryDescriptor descriptor, System.IntPtr accessGranted, int status);
+		
+		/// <summary>
+        /// Called when nsCacheSession::DoomEntry() is completed. The status
+        /// parameter is NS_OK when the entry was doomed, or NS_ERROR_NOT_AVAILABLE
+        /// when there is no such entry.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void OnCacheEntryDoomed(int status);
 	}
 }

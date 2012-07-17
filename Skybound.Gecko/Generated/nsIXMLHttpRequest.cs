@@ -650,7 +650,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("88ffc45a-22e2-44f4-9a6e-f4586fbde376")]
+	[Guid("8681ffbc-4755-45de-9fc1-b63e6930e76a")]
 	public interface nsIXMLHttpRequest
 	{
 		
@@ -713,7 +713,7 @@ namespace Gecko
 		Gecko.JsVal GetResponseAttribute(System.IntPtr jsContext);
 		
 		/// <summary>
-        /// The status of the response to the request for HTTP requests.
+        /// XXX spec says unsigned short
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetStatusAttribute();
@@ -723,7 +723,7 @@ namespace Gecko
         /// HTTP requests.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetStatusTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aStatusText);
+		void GetStatusTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aStatusText);
 		
 		/// <summary>
         /// If the request has been sent already, this method will
@@ -809,7 +809,7 @@ namespace Gecko
         /// calling send.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Send([MarshalAs(UnmanagedType.Interface)] nsIVariant body);
+		void Send([MarshalAs(UnmanagedType.Interface)] nsIVariant body, System.IntPtr jsContext);
 		
 		/// <summary>
         /// A variant of the send() method used to send binary data.
@@ -819,7 +819,7 @@ namespace Gecko
         /// high-order byte of each character will be discarded).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendAsBinary([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase body);
+		void SendAsBinary([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase body, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Sets a HTTP request header for HTTP requests. You must call open
@@ -858,7 +858,7 @@ namespace Gecko
         /// (if any).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OverrideMimeType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase mimetype);
+		void OverrideMimeType([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase mimetype);
 		
 		/// <summary>
         /// Set to true if the response is expected to be a stream of

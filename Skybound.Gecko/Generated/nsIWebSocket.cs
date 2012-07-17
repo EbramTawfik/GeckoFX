@@ -36,7 +36,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("f463b9b5-1408-4057-9224-e4f5bc33f17b")]
+	[Guid("e59c8c65-df29-485c-a00b-8fac3dc1573a")]
 	public interface nsIWebSocket
 	{
 		
@@ -117,7 +117,7 @@ namespace Gecko
         /// sent successfully.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Send([MarshalAs(UnmanagedType.Interface)] nsIVariant data);
+		void Send([MarshalAs(UnmanagedType.Interface)] nsIVariant data, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Closes the Web Socket connection or connection attempt, if any.

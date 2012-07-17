@@ -124,25 +124,52 @@ namespace Gecko
 		void ReceiveDataCallList([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] nsIRILDataCallInfo[] dataCalls, uint length);
 	}
 	
-	/// <summary>nsIRadioInterfaceLayer </summary>
+	/// <summary>
+    /// Helper that runs in the content process and exposes information
+    /// to the DOM.
+    /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("78fc7ef6-0941-4fc8-89ff-de9398ef478a")]
+	[Guid("cc9832fd-d3ce-4cab-9abe-48c6046bcebe")]
+	public interface nsIRILContentHelper : nsIMobileConnectionProvider
+	{
+		
+		/// <summary>
+        /// XPCOM component (in the content process) that provides the mobile
+        /// network information.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void GetCardStateAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCardState);
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMMozMobileConnectionInfo GetVoiceConnectionInfoAttribute();
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMMozMobileConnectionInfo GetDataConnectionInfoAttribute();
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMDOMRequest GetNetworks([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window);
+	}
+	
+	/// <summary>
+    /// Helper that runs in the content process and exposes information
+    /// to the DOM.
+    /// </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("d2025763-fc32-436e-b207-0228ea1ccd12")]
 	public interface nsIRadioInterfaceLayer
 	{
 		
-		/// <summary>Member GetRadioStateAttribute </summary>
-		/// <returns>A Gecko.JsVal</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		Gecko.JsVal GetRadioStateAttribute();
 		
-		/// <summary>Member RegisterCallback </summary>
-		/// <param name='callback'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RegisterCallback([MarshalAs(UnmanagedType.Interface)] nsIRILTelephonyCallback callback);
 		
-		/// <summary>Member UnregisterCallback </summary>
-		/// <param name='callback'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void UnregisterCallback([MarshalAs(UnmanagedType.Interface)] nsIRILTelephonyCallback callback);
 		
@@ -159,49 +186,38 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Dial([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase number);
 		
-		/// <summary>Member HangUp </summary>
-		/// <param name='callIndex'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void HangUp(uint callIndex);
 		
-		/// <summary>Member StartTone </summary>
-		/// <param name='dtmfChar'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void StartTone([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase dtmfChar);
 		
-		/// <summary>Member StopTone </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void StopTone();
 		
-		/// <summary>Member AnswerCall </summary>
-		/// <param name='callIndex'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void AnswerCall(uint callIndex);
 		
-		/// <summary>Member RejectCall </summary>
-		/// <param name='callIndex'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RejectCall(uint callIndex);
 		
-		/// <summary>Member GetMicrophoneMutedAttribute </summary>
-		/// <returns>A System.Boolean</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void HoldCall(uint callIndex);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void ResumeCall(uint callIndex);
+		
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetMicrophoneMutedAttribute();
 		
-		/// <summary>Member SetMicrophoneMutedAttribute </summary>
-		/// <param name='aMicrophoneMuted'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetMicrophoneMutedAttribute([MarshalAs(UnmanagedType.U1)] bool aMicrophoneMuted);
 		
-		/// <summary>Member GetSpeakerEnabledAttribute </summary>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetSpeakerEnabledAttribute();
 		
-		/// <summary>Member SetSpeakerEnabledAttribute </summary>
-		/// <param name='aSpeakerEnabled'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetSpeakerEnabledAttribute([MarshalAs(UnmanagedType.U1)] bool aSpeakerEnabled);
 		
@@ -211,23 +227,15 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetupDataCall(int radioTech, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase apn, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase user, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase passwd, int chappap, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase pdptype);
 		
-		/// <summary>Member DeactivateDataCall </summary>
-		/// <param name='cid'> </param>
-		/// <param name='reason'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void DeactivateDataCall([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase cid, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase reason);
 		
-		/// <summary>Member GetDataCallList </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetDataCallList();
 		
-		/// <summary>Member RegisterDataCallCallback </summary>
-		/// <param name='callback'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RegisterDataCallCallback([MarshalAs(UnmanagedType.Interface)] nsIRILDataCallback callback);
 		
-		/// <summary>Member UnregisterDataCallCallback </summary>
-		/// <param name='callback'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void UnregisterDataCallCallback([MarshalAs(UnmanagedType.Interface)] nsIRILDataCallback callback);
 		
@@ -237,11 +245,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetNumberOfMessagesForText([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase text);
 		
-		/// <summary>Member SendSMS </summary>
-		/// <param name='number'> </param>
-		/// <param name='message'> </param>
-		/// <param name='requestId'> </param>
-		/// <param name='processId'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SendSMS([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase number, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase message, int requestId, ulong processId);
 	}
@@ -250,14 +253,17 @@ namespace Gecko
 	public class nsIRadioInterfaceLayerConsts
 	{
 		
-		// 
+		// <summary>
+        // Helper that runs in the content process and exposes information
+        // to the DOM.
+        // </summary>
 		public const ulong CALL_STATE_UNKNOWN = 0;
 		
 		// 
 		public const ulong CALL_STATE_DIALING = 1;
 		
 		// 
-		public const ulong CALL_STATE_RINGING = 2;
+		public const ulong CALL_STATE_ALERTING = 2;
 		
 		// 
 		public const ulong CALL_STATE_BUSY = 3;

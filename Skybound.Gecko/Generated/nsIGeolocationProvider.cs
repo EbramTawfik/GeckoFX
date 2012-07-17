@@ -54,7 +54,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("701413ED-0F51-64F7-71C7-4369D8E07D6E")]
+	[Guid("483BE98B-F747-490A-8AF1-53146D2D5373")]
 	public interface nsIGeolocationProvider
 	{
 		
@@ -78,5 +78,11 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Shutdown();
+		
+		/// <summary>
+        /// hint to provide to use any amount of power to provide a better result
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetHighAccuracy([MarshalAs(UnmanagedType.U1)] bool enable);
 	}
 }

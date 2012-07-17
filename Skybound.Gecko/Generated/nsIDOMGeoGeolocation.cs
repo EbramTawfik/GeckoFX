@@ -30,24 +30,19 @@ namespace Gecko
 	/// <summary>nsIDOMGeoGeolocation </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("37687DAF-B85F-4E4D-8881-85A0AD24CF78")]
+	[Guid("b9a301f7-285b-4be9-b739-fb869019c77a")]
 	public interface nsIDOMGeoGeolocation
 	{
 		
-		/// <summary>Member GetCurrentPosition </summary>
-		/// <param name='successCallback'> </param>
-		/// <param name='errorCallback'> </param>
-		/// <param name='options'> </param>
+		/// <summary>
+        ///GeoPositionOptions </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetCurrentPosition([MarshalAs(UnmanagedType.Interface)] nsIDOMGeoPositionCallback successCallback, [MarshalAs(UnmanagedType.Interface)] nsIDOMGeoPositionErrorCallback errorCallback, [MarshalAs(UnmanagedType.Interface)] nsIDOMGeoPositionOptions options);
+		void GetCurrentPosition([MarshalAs(UnmanagedType.Interface)] nsIDOMGeoPositionCallback successCallback, [MarshalAs(UnmanagedType.Interface)] nsIDOMGeoPositionErrorCallback errorCallback, Gecko.JsVal options, System.IntPtr jsContext);
 		
-		/// <summary>Member WatchPosition </summary>
-		/// <param name='successCallback'> </param>
-		/// <param name='errorCallback'> </param>
-		/// <param name='options'> </param>
-		/// <returns>A System.Int32</returns>
+		/// <summary>
+        ///GeoPositionOptions </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int WatchPosition([MarshalAs(UnmanagedType.Interface)] nsIDOMGeoPositionCallback successCallback, [MarshalAs(UnmanagedType.Interface)] nsIDOMGeoPositionErrorCallback errorCallback, [MarshalAs(UnmanagedType.Interface)] nsIDOMGeoPositionOptions options);
+		int WatchPosition([MarshalAs(UnmanagedType.Interface)] nsIDOMGeoPositionCallback successCallback, [MarshalAs(UnmanagedType.Interface)] nsIDOMGeoPositionErrorCallback errorCallback, Gecko.JsVal options, System.IntPtr jsContext);
 		
 		/// <summary>Member ClearWatch </summary>
 		/// <param name='watchId'> </param>

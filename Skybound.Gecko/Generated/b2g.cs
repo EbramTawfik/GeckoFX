@@ -42,4 +42,18 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetCameraURI(Gecko.JsVal options, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 	}
+	
+	/// <summary>nsIB2GKeyboard </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("80ad05f8-e5f6-4a36-b25d-5d5a969b365d")]
+	public interface nsIB2GKeyboard
+	{
+		
+		/// <summary>Member SendKey </summary>
+		/// <param name='aKeyCode'> </param>
+		/// <param name='aCharCode'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SendKey(int aKeyCode, int aCharCode);
+	}
 }

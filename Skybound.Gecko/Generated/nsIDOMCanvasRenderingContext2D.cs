@@ -62,10 +62,34 @@ namespace Gecko
 		float GetWidthAttribute();
 	}
 	
+	/// <summary>nsIDOMImageData </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("1ea11207-b3e3-4ffc-a256-bf5c7011e806")]
+	public interface nsIDOMImageData
+	{
+		
+		/// <summary>Member GetWidthAttribute </summary>
+		/// <returns>A System.UInt32</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetWidthAttribute();
+		
+		/// <summary>Member GetHeightAttribute </summary>
+		/// <returns>A System.UInt32</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetHeightAttribute();
+		
+		/// <summary>Member GetDataAttribute </summary>
+		/// <param name='jsContext'> </param>
+		/// <returns>A Gecko.JsVal</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetDataAttribute(System.IntPtr jsContext);
+	}
+	
 	/// <summary>nsIDOMCanvasRenderingContext2D </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("274213a8-df51-4b52-bfad-d306a1d5f642")]
+	[Guid("c835c768-2dcc-461c-82f5-3653710d2942")]
 	public interface nsIDOMCanvasRenderingContext2D
 	{
 		
@@ -539,33 +563,21 @@ namespace Gecko
 		bool IsPointInPath(float x, float y);
 		
 		/// <summary>
-        /// methods directly.
+        /// ImageData = { width: #, height: #, data: [r, g, b, a, ...] }
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetImageData();
+		nsIDOMImageData GetImageData(double sx, double sy, double sw, double sh, System.IntPtr jsContext);
 		
-		/// <summary>Member PutImageData </summary>
+		/// <summary>
+        /// _explicit method directly.
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void PutImageData();
 		
 		/// <summary>
-        /// dataLen must be == width*height*4 in both of these calls
+        /// dataLen must be == width*height*4 in this call
         /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetImageData_explicit(int x, int y, uint width, uint height, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=5)] byte[] dataPtr, uint dataLen);
-		
-		/// <summary>Member PutImageData_explicit </summary>
-		/// <param name='x'> </param>
-		/// <param name='y'> </param>
-		/// <param name='width'> </param>
-		/// <param name='height'> </param>
-		/// <param name='dataPtr'> </param>
-		/// <param name='dataLen'> </param>
-		/// <param name='hasDirtyRect'> </param>
-		/// <param name='dirtyX'> </param>
-		/// <param name='dirtyY'> </param>
-		/// <param name='dirtyWidth'> </param>
-		/// <param name='dirtyHeight'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void PutImageData_explicit(int x, int y, uint width, uint height, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=5)] byte[] dataPtr, uint dataLen, [MarshalAs(UnmanagedType.U1)] bool hasDirtyRect, int dirtyX, int dirtyY, int dirtyWidth, int dirtyHeight);
 		

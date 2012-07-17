@@ -80,6 +80,17 @@ namespace Gecko
 		void SetShouldCheckDefaultBrowserAttribute([MarshalAs(UnmanagedType.U1)] bool aShouldCheckDefaultBrowser);
 		
 		/// <summary>
+        /// Used to determine whether or not to offer "Set as desktop background"
+        /// functionality. Even if shell service is available it is not
+        /// guaranteed that it is able to set the background for every desktop
+        /// which is especially true for Linux with its many different desktop
+        /// environments.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetCanSetDesktopBackgroundAttribute();
+		
+		/// <summary>
         /// Sets the desktop background image using either the HTML <IMG>
         /// element supplied or the background image of the element supplied.
         ///

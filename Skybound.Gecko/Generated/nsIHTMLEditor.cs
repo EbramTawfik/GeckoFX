@@ -30,7 +30,7 @@ namespace Gecko
 	/// <summary>nsIHTMLEditor </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("FF67AD39-ED58-4CD1-A1A3-DCD988390A97")]
+	[Guid("833f30de-94c7-4630-a852-2300ef329d7b")]
 	public interface nsIHTMLEditor
 	{
 		
@@ -81,13 +81,6 @@ namespace Gecko
         /// Example: aProperty="font", aAttribute="color",
         /// aValue="0x00FFFF"
         /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCSSInlineProperty([MarshalAs(UnmanagedType.Interface)] nsIAtom aProperty, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAttribute, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aValue);
-		
-		/// <summary>Member SetInlineProperty </summary>
-		/// <param name='aProperty'> </param>
-		/// <param name='aAttribute'> </param>
-		/// <param name='aValue'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetInlineProperty([MarshalAs(UnmanagedType.Interface)] nsIAtom aProperty, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAttribute, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aValue);
 		

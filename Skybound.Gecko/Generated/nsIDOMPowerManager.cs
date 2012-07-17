@@ -32,7 +32,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("abf4b2b1-139d-4eff-998d-8f24616910ae")]
+	[Guid("256a3287-f528-45b5-9ba8-2b3650c056e6")]
 	public interface nsIDOMMozPowerManager
 	{
 		
@@ -74,5 +74,73 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetWakeLockState([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTopic, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		
+		/// <summary>
+        /// Is the device's screen currently enabled?  This attribute controls the
+        /// device's screen, so setting it to false will turn off the screen.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetScreenEnabledAttribute();
+		
+		/// <summary>
+        /// Is the device's screen currently enabled?  This attribute controls the
+        /// device's screen, so setting it to false will turn off the screen.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetScreenEnabledAttribute([MarshalAs(UnmanagedType.U1)] bool aScreenEnabled);
+		
+		/// <summary>
+        /// How bright is the screen's backlight, on a scale from 0 (very dim) to 1
+        /// (full brightness)?  Setting this attribute modifies the screen's
+        /// brightness.
+        ///
+        /// You can read and write this attribute even when the screen is disabled,
+        /// but the backlight is off while the screen is disabled.
+        ///
+        /// If you write a value of X into this attribute, the attribute may not have
+        /// the same value X when you later read it.  Most screens don't support as
+        /// many different brightness levels as there are doubles between 0 and 1, so
+        /// we may reduce the value's precision before storing it.
+        ///
+        /// @throw NS_ERROR_INVALID_ARG if brightness is not in the range [0, 1].
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		double GetScreenBrightnessAttribute();
+		
+		/// <summary>
+        /// How bright is the screen's backlight, on a scale from 0 (very dim) to 1
+        /// (full brightness)?  Setting this attribute modifies the screen's
+        /// brightness.
+        ///
+        /// You can read and write this attribute even when the screen is disabled,
+        /// but the backlight is off while the screen is disabled.
+        ///
+        /// If you write a value of X into this attribute, the attribute may not have
+        /// the same value X when you later read it.  Most screens don't support as
+        /// many different brightness levels as there are doubles between 0 and 1, so
+        /// we may reduce the value's precision before storing it.
+        ///
+        /// @throw NS_ERROR_INVALID_ARG if brightness is not in the range [0, 1].
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetScreenBrightnessAttribute(double aScreenBrightness);
+		
+		/// <summary>
+        /// Is it possible that the device's CPU will sleep after the screen is
+        /// disabled?  Setting this attribute to false will prevent the device
+        /// entering suspend state.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetCpuSleepAllowedAttribute();
+		
+		/// <summary>
+        /// Is it possible that the device's CPU will sleep after the screen is
+        /// disabled?  Setting this attribute to false will prevent the device
+        /// entering suspend state.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetCpuSleepAllowedAttribute([MarshalAs(UnmanagedType.U1)] bool aCpuSleepAllowed);
 	}
 }

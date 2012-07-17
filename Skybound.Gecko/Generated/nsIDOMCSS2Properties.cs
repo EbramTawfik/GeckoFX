@@ -37,7 +37,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("76732e62-da09-4aef-850a-78b9f6d5c8cf")]
+	[Guid("0640c095-3d15-4b18-aca9-5a65d866978f")]
 	public interface nsIDOMCSS2Properties
 	{
 		
@@ -1942,18 +1942,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetMozColumnWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozColumnWidth);
-		
-		/// <summary>
-        /// raises(DOMException) on setting
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozColumnFillAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozColumnFill);
-		
-		/// <summary>
-        /// raises(DOMException) on setting
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozColumnFillAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozColumnFill);
 		
 		/// <summary>
         /// raises(DOMException) on setting

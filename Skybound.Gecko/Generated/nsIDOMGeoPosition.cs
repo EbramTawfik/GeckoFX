@@ -30,7 +30,7 @@ namespace Gecko
 	/// <summary>nsIDOMGeoPosition </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("23E5269F-4DD7-41C4-B52A-75918694C2DE")]
+	[Guid("dd9f7e81-0f74-4fb5-b361-37019bf60c3f")]
 	public interface nsIDOMGeoPosition
 	{
 		
@@ -44,11 +44,5 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMGeoPositionCoords GetCoordsAttribute();
-		
-		/// <summary>Member GetAddressAttribute </summary>
-		/// <returns>A nsIDOMGeoPositionAddress</returns>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMGeoPositionAddress GetAddressAttribute();
 	}
 }

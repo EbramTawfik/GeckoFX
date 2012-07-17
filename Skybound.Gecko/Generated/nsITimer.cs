@@ -89,8 +89,7 @@ namespace Gecko
 		
 		/// <summary>
         /// Initialize a timer to fire after the given millisecond interval.
-        /// This version takes a function to call and a closure to pass to
-        /// that function.
+        /// This version takes a function to call.
         ///
         /// @param aFunc      nsITimerCallback interface to call when timer expires
         /// @param aDelay     The millisecond interval

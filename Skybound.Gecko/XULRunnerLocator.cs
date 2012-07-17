@@ -52,7 +52,7 @@ namespace Gecko
 
 			//look for firefox itself
 
-			string[] folderSearch = new string[] { solutionXulRunnerFolder, "Mozilla Firefox 13.0", "Mozilla Firefox 13", "Mozilla Firefox" };
+			string[] folderSearch = new string[] { solutionXulRunnerFolder, "Mozilla Firefox 14.0", "Mozilla Firefox 14", "Mozilla Firefox" };
 
 			var programFiles = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
 			return folderSearch.Select(t => Path.Combine(programFiles, t)).FirstOrDefault(Directory.Exists);

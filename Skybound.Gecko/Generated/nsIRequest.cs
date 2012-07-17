@@ -173,6 +173,13 @@ namespace Gecko
 		public const ulong LOAD_BACKGROUND = 1<<0;
 		
 		// <summary>
+        // This flag prevents loading of the request with an HTTP pipeline.
+        // Generally this is because the resource is expected to take a
+        // while to load and may cause head of line blocking problems.
+        // </summary>
+		public const ulong INHIBIT_PIPELINE = 1<<6;
+		
+		// <summary>
         // This flag prevents caching of any kind.  It does not, however, prevent
         // cached content from being used to satisfy this request.
         // </summary>

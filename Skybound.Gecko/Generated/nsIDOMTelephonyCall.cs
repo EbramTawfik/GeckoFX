@@ -30,7 +30,7 @@ namespace Gecko
 	/// <summary>nsIDOMTelephonyCall </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("832b7551-ff53-403f-9e2c-d7d28e2bb40b")]
+	[Guid("2fb9502b-2054-4eda-8db7-3726c39144f7")]
 	public interface nsIDOMTelephonyCall : nsIDOMEventTarget
 	{
 		
@@ -255,6 +255,14 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void HangUp();
 		
+		/// <summary>Member Hold </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Hold();
+		
+		/// <summary>Member Resume </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Resume();
+		
 		/// <summary>Member GetOnstatechangeAttribute </summary>
 		/// <returns>A nsIDOMEventListener</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
@@ -277,16 +285,16 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOndialingAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOndialing);
 		
-		/// <summary>Member GetOnringingAttribute </summary>
+		/// <summary>Member GetOnalertingAttribute </summary>
 		/// <returns>A nsIDOMEventListener</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener GetOnringingAttribute();
+		nsIDOMEventListener GetOnalertingAttribute();
 		
-		/// <summary>Member SetOnringingAttribute </summary>
-		/// <param name='aOnringing'> </param>
+		/// <summary>Member SetOnalertingAttribute </summary>
+		/// <param name='aOnalerting'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnringingAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnringing);
+		void SetOnalertingAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnalerting);
 		
 		/// <summary>Member GetOnbusyAttribute </summary>
 		/// <returns>A nsIDOMEventListener</returns>
@@ -343,15 +351,37 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOndisconnectedAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOndisconnected);
 		
-		/// <summary>Member GetOnincomingAttribute </summary>
+		/// <summary>Member GetOnholdingAttribute </summary>
 		/// <returns>A nsIDOMEventListener</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener GetOnincomingAttribute();
+		nsIDOMEventListener GetOnholdingAttribute();
 		
-		/// <summary>Member SetOnincomingAttribute </summary>
-		/// <param name='aOnincoming'> </param>
+		/// <summary>Member SetOnholdingAttribute </summary>
+		/// <param name='aOnholding'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnincomingAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnincoming);
+		void SetOnholdingAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnholding);
+		
+		/// <summary>Member GetOnheldAttribute </summary>
+		/// <returns>A nsIDOMEventListener</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMEventListener GetOnheldAttribute();
+		
+		/// <summary>Member SetOnheldAttribute </summary>
+		/// <param name='aOnheld'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOnheldAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnheld);
+		
+		/// <summary>Member GetOnresumingAttribute </summary>
+		/// <returns>A nsIDOMEventListener</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMEventListener GetOnresumingAttribute();
+		
+		/// <summary>Member SetOnresumingAttribute </summary>
+		/// <param name='aOnresuming'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOnresumingAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnresuming);
 	}
 }

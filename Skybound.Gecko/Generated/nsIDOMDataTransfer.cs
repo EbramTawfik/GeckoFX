@@ -30,7 +30,7 @@ namespace Gecko
 	/// <summary>nsIDOMDataTransfer </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("E929ACB6-435C-4CB8-9AD1-AE3B9353BCC5")]
+	[Guid("7D73CFBF-EC30-4F8E-B6A4-BB31EB943580")]
 	public interface nsIDOMDataTransfer
 	{
 		
@@ -356,10 +356,12 @@ namespace Gecko
 		
 		/// <summary>
         /// Creates a copy of the data transfer object, for the given event type and
-        /// user cancelled flag.
+        /// user cancelled flag. If isCrossDomainSubFrameDrop is set, then this is a
+        /// cross-domain drop from a subframe where access to the data should be
+        /// prevented.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDataTransfer Clone(uint aEventType, [MarshalAs(UnmanagedType.U1)] bool aUserCancelled);
+		nsIDOMDataTransfer Clone(uint aEventType, [MarshalAs(UnmanagedType.U1)] bool aUserCancelled, [MarshalAs(UnmanagedType.U1)] bool isCrossDomainSubFrameDrop);
 	}
 }

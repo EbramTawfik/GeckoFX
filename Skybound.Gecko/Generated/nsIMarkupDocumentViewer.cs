@@ -34,7 +34,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("79286cd6-8293-4def-ba26-76422efc3d2a")]
+	[Guid("1016d5e8-690f-4d97-8ac5-d50ffa341c46")]
 	public interface nsIMarkupDocumentViewer
 	{
 		
@@ -238,5 +238,12 @@ namespace Gecko
         ///The minimum font size </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetMinFontSizeAttribute(int aMinFontSize);
+		
+		/// <summary>
+        /// Append |this| and all of its descendants to the given array,
+        /// in depth-first pre-order traversal.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void AppendSubtree(IntPtr array);
 	}
 }

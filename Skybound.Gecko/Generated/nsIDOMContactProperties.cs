@@ -121,10 +121,34 @@ namespace Gecko
         /// DOMString[], e.g. ["givenName", "nickname"]
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetFilterLimitAttribute();
+		void GetSortByAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSortBy);
 		
 		/// <summary>
         /// DOMString[], e.g. ["givenName", "nickname"]
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetSortByAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSortBy);
+		
+		/// <summary>
+        /// e.g. "givenName"
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetSortOrderAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSortOrder);
+		
+		/// <summary>
+        /// e.g. "givenName"
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetSortOrderAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSortOrder);
+		
+		/// <summary>
+        /// e.g. "descending"
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetFilterLimitAttribute();
+		
+		/// <summary>
+        /// e.g. "descending"
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetFilterLimitAttribute(uint aFilterLimit);

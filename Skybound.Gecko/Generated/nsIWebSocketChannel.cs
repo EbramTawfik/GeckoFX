@@ -32,7 +32,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("ace34548-6dde-4570-b0b4-451aa6a877e0")]
+	[Guid("0683E9A4-994D-11E1-9478-1E356188709B")]
 	public interface nsIWebSocketChannel
 	{
 		
@@ -200,8 +200,13 @@ namespace Gecko
 		public const ulong CLOSE_EXTENSION_MISSING = 1010;
 		
 		// <summary>
-        // errors: just use CLOSE_GOING_AWAY for now
+        // http://www.ietf.org/mail-archive/web/hybi/current/msg09372.html
         // </summary>
-		public const ulong CLOSE_INTERNAL_ERROR = CLOSE_GOING_AWAY;
+		public const ulong CLOSE_INTERNAL_ERROR = 1011;
+		
+		// <summary>
+        // To be used if TLS handshake failed (ex: server certificate unverifiable)
+        // </summary>
+		public const ulong CLOSE_TLS_FAILED = 1015;
 	}
 }

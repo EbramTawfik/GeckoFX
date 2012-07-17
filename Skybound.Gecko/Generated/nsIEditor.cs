@@ -30,7 +30,7 @@ namespace Gecko
 	/// <summary>nsIEditor </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("656005d2-d900-4839-81bf-6274a3c38537")]
+	[Guid("2e14b183-29d4-4282-9475-589277a70654")]
 	public interface nsIEditor
 	{
 		
@@ -657,13 +657,15 @@ namespace Gecko
 		bool IsModifiableNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aNode);
 		
 		/// <summary>
-        /// Will be set to true if the last keypress event that the editor has handled
-        /// has been trusted.  The value will only be valid when the edit action listeners
-        /// are being called, and will throw upon access at all other times.
-        /// </summary>
+        ///Set true if you want to suppress dispatching input event. </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetLastKeypressEventTrustedAttribute();
+		bool GetSuppressDispatchingInputEventAttribute();
+		
+		/// <summary>
+        ///Set true if you want to suppress dispatching input event. </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetSuppressDispatchingInputEventAttribute([MarshalAs(UnmanagedType.U1)] bool aSuppressDispatchingInputEvent);
 	}
 	
 	/// <summary>nsIEditorConsts </summary>

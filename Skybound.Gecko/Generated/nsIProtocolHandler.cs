@@ -215,6 +215,12 @@ namespace Gecko
 		public const ulong URI_OPENING_EXECUTES_SCRIPT = (1<<13);
 		
 		// <summary>
+        // Channels for this protocol don't need to spin the event loop to handle
+        // Open() and reads on the resulting stream.
+        // </summary>
+		public const ulong URI_SYNC_LOAD_IS_OK = (1<<15);
+		
+		// <summary>
         // This protocol handler can be proxied via a proxy (socks or http)
         // (e.g., irc, smtp, http, etc.).  If the protocol supports transparent
         // proxying, the handler should implement nsIProxiedProtocolHandler.

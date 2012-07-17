@@ -232,7 +232,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("5398fdee-72d8-4100-9863-6bb7f88274e0")]
+	[Guid("2299598b-8d83-4b67-9b13-b6d4707dcf7b")]
 	public interface nsINavBookmarksService
 	{
 		
@@ -376,39 +376,6 @@ namespace Gecko
 		int GetIdForItemAt(long aParentId, int aIndex);
 		
 		/// <summary>
-        /// Get a globally unique identifier for an item, meant to be used in
-        /// sync scenarios.  Even if their contents are exactly the same
-        /// (including an item in a different profile with the same ItemId),
-        /// the GUID would be different.
-        /// @param   aItemId
-        /// The ID of the item to get the GUID for
-        /// @return The GUID string.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetItemGUID(long aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
-		
-		/// <summary>
-        /// Set a globally unique identifier.  This can be useful when a sync
-        /// algorithm deems two independently created items (on different
-        /// profiles) to be the same item.
-        /// @param   aItemId
-        /// The id of the item to set the GUID of
-        /// @param   aGUID
-        /// The GUID string
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetItemGUID(long aItemId, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aGUID);
-		
-		/// <summary>
-        /// Get the ID of the item with the given GUID.
-        /// @param   aGUID
-        /// The GUID string of the item to search for
-        /// @return The item ID, or -1 if not found.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetItemIdForGUID([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aGUID);
-		
-		/// <summary>
         /// Set the title for an item.
         /// @param aItemId
         /// The id of the item whose title should be updated.
@@ -547,8 +514,8 @@ namespace Gecko
         ///
         /// If there is no bookmarked page found, it will return NULL.
         ///
-        /// @note The function will only return bookmarks in the first 3 levels of
-        /// redirection (1 -> 2 -> 3 -> aURI).
+        /// @note The function will only return bookmarks in the first 2 levels of
+        /// redirection (1 -> 2 -> aURI).
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

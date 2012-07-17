@@ -35,7 +35,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("cc1af020-6543-429c-82d7-840cda3be0b9")]
+	[Guid("1B93973F-28CC-4F33-8E7B-B89C63AA9200")]
 	public interface nsIDOMHTMLDocument : nsIDOMDocument
 	{
 		
@@ -668,7 +668,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMHTMLElement GetMozFullScreenElementAttribute();
+		new nsIDOMElement GetMozFullScreenElementAttribute();
 		
 		/// <summary>
         /// Causes the document to leave DOM full-screen mode, if it's in
@@ -699,6 +699,24 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetMozFullScreenEnabledAttribute();
+		
+		/// <summary>
+        /// The element to which the mouse pointer is locked, if any, as per the
+        /// DOM pointer lock api.
+        ///
+        /// @see <http://dvcs.w3.org/hg/pointerlock/raw-file/default/index.html>
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMElement GetMozPointerLockElementAttribute();
+		
+		/// <summary>
+        /// Exit pointer is lock if locked, as per the DOM pointer lock api.
+        ///
+        /// @see <http://dvcs.w3.org/hg/pointerlock/raw-file/default/index.html>
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void MozExitPointerLock();
 		
 		/// <summary>
         /// Inline event handler for readystatechange events.
@@ -836,13 +854,6 @@ namespace Gecko
 		bool ExecCommand([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase commandID, [MarshalAs(UnmanagedType.U1)] bool doShowUI, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase value);
 		
 		/// <summary>
-        /// returns true if the help is being shown for command (false if not)
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool ExecCommandShowHelp([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase commandID);
-		
-		/// <summary>
         /// returns true if the command is enabled (false otherwise)
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
@@ -869,11 +880,6 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool QueryCommandSupported([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase commandID);
-		
-		/// <summary>
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void QueryCommandText([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase commandID, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// returns the current value of the document or current selection for command

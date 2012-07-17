@@ -790,9 +790,14 @@ namespace Gecko
 		public const ulong ROLE_FIGURE = 124;
 		
 		// <summary>
+        // Represents a rich item with a check box.
+        // </summary>
+		public const ulong ROLE_CHECK_RICH_OPTION = 125;
+		
+		// <summary>
         // It's not role actually. This constant is important to help ensure
         // nsRoleMap's are synchronized.
         // </summary>
-		public const ulong ROLE_LAST_ENTRY = 125;
+		public const ulong ROLE_LAST_ENTRY = 126;
 	}
 }

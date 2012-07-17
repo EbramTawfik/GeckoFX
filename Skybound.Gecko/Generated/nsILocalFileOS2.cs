@@ -487,7 +487,7 @@ namespace Gecko
         /// the file this becomes equivalent to
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void InitWithFile([MarshalAs(UnmanagedType.Interface)] nsILocalFile aFile);
+		new void InitWithFile([MarshalAs(UnmanagedType.Interface)] nsIFile aFile);
 		
 		/// <summary>
         /// followLinks
@@ -623,7 +623,7 @@ namespace Gecko
         /// There is no defined result if this param is null.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetRelativeDescriptor([MarshalAs(UnmanagedType.Interface)] nsILocalFile fromFile, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
+		new void GetRelativeDescriptor([MarshalAs(UnmanagedType.Interface)] nsIFile fromFile, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
 		
 		/// <summary>
         /// setRelativeDescriptor
@@ -637,7 +637,7 @@ namespace Gecko
         /// the relative descriptor obtained from getRelativeDescriptor
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetRelativeDescriptor([MarshalAs(UnmanagedType.Interface)] nsILocalFile fromFile, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase relativeDesc);
+		new void SetRelativeDescriptor([MarshalAs(UnmanagedType.Interface)] nsIFile fromFile, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase relativeDesc);
 		
 		/// <summary>
         /// getFileTypes

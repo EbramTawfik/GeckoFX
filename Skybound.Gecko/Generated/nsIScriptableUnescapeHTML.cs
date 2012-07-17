@@ -28,7 +28,7 @@ namespace Gecko
 	
 	
 	/// <summary>
-    /// A utility class for HTML parsing in the feed processor.
+    /// This interface is OBSOLETE and exists solely for legacy extensions.
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -42,8 +42,8 @@ namespace Gecko
         /// nsIDocumentEncoder::OutputSelectionOnly |
         /// nsIDocumentEncoder::OutputAbsoluteLinks, 0).
         ///
-        /// You should most likely call nsIParserUtils::convertToPlainText()
-        /// instead of calling this method.
+        /// You should call nsIParserUtils::convertToPlainText() instead of calling
+        /// this method.
         ///
         /// @param src The HTML string to convert to plain text.
         /// </summary>
@@ -51,8 +51,12 @@ namespace Gecko
 		void Unescape([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase src, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
-        /// Parses markup into a sanitized document fragment.
+        /// Parses markup into a sanitized document fragment. This is equivalent to
+        /// calling nsIParserUtils::parseFragment(fragment, 0, isXML, baseURI,
+        /// element).
         ///
+        /// You should call nsIParserUtils::parseFragment() instead of calling this
+        /// method.
         /// @param fragment the input markup
         /// @param isXML true if |fragment| is XML and false if HTML
         /// @param baseURI the base URL for this fragment

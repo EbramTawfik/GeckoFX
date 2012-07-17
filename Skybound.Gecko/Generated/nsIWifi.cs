@@ -27,42 +27,472 @@ namespace Gecko
 	using System.Windows.Forms;
 	
 	
-	/// <summary>nsIWifiNetwork </summary>
-	[ComImport()]
-	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("14c815f0-e9db-41d4-a15e-f3e69140f83b")]
-	public interface nsIWifiNetwork
-	{
-		
-		/// <summary>Member GetSsidAttribute </summary>
-		/// <param name='aSsid'> </param>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSsidAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSsid);
-		
-		/// <summary>
-        /// can be null
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetBssidAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBssid);
-		
-		/// <summary>
-        /// can be null
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetFlagsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFlags);
-		
-		/// <summary>
-        /// TODO make this be real flags instead of a string
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetSignalAttribute();
-	}
-	
 	/// <summary>nsIWifi </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("9DCE05BF-659C-4427-A050-0EAC3BB6C1C0")]
+	[Guid("abb936bc-ba81-4c23-8dfa-3e5d96557044")]
 	public interface nsIWifi
 	{
+		
+		/// <summary>
+        /// Shutdown the wifi system.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Shutdown();
+	}
+	
+	/// <summary>nsIDOMWifiManager </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("e3d5a7d7-6abd-4ac2-83dc-5315ec08a1c3")]
+	public interface nsIDOMWifiManager
+	{
+		
+		/// <summary>
+        /// TODO Remove in favor of a settings API.
+        /// Activates or disactivates wifi.
+        /// onsuccess: Wifi has been successfully activated and can start
+        /// attempting to connect to networks. request.value will be true.
+        /// onerror: Wifi was not successfully activated. (TODO provide details!)
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest SetEnabled([MarshalAs(UnmanagedType.U1)] bool enabled);
+		
+		/// <summary>
+        /// Returns the list of currently available networks as well as the list of
+        /// currently configured networks.
+        /// onsuccess: We have obtained the current list of networks. request.value
+        /// is an object whose property names are SSIDs and values are
+        /// network objects.
+        /// onerror: We were unable to obtain a list of property names.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest GetNetworks();
+		
+		/// <summary>
+        /// Takes one of the networks returned from getNetworks and tries to
+        /// connect to it.
+        /// @param network A network object with information about the network,
+        /// such as the SSID, key management desired, etc.
+        /// onsuccess: We have started attempting to associate with the network.
+        /// request.value is true.
+        /// onerror: We were unable to select the network. This most likely means a
+        /// configuration error.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest Associate(Gecko.JsVal network);
+		
+		/// <summary>
+        /// Given a network, removes it from the list of networks that we'll
+        /// automatically connect to. In order to re-connect to the network, it is
+        /// necessary to call associate on it.
+        /// @param network A network object with the SSID of the network to remove.
+        /// onsuccess: We have removed this network. If we were previously
+        /// connected to it, we have started reconnecting to the next
+        /// network in the list.
+        /// onerror: We were unable to remove the network.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest Forget(Gecko.JsVal network);
+		
+		/// <summary>
+        /// TODO Remove in favor of a settings API.
+        /// Returns whether or not wifi is currently enabled.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetEnabledAttribute();
+		
+		/// <summary>
+        /// An non-null object containing the following information:
+        /// - status ("disconnected", "connecting", "associated", "connected")
+        /// - network
+        ///
+        /// Note that the object returned is read only. Any changes required must
+        /// be done by calling other APIs.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetConnectionAttribute();
+		
+		/// <summary>
+        /// A connectionInformation object with the same information found in an
+        /// nsIDOMWifiConnectionInfoEvent (but without the network).
+        /// If we are not currently connected to a network, this will be null.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetConnectionInformationAttribute();
+		
+		/// <summary>
+        /// State notification listeners. These all take an
+        /// nsIDOMWifiStatusChangeEvent with the new status and a network (which
+        /// may be null).
+        ///
+        /// The possible statuses are:
+        /// - connecting: Fires when we start the process of connecting to a
+        /// network.
+        /// - associated: Fires when we have connected to an access point but do
+        /// not yet have an IP address.
+        /// - connected: Fires once we are fully connected to an access point and
+        /// can access the internet.
+        /// - disconnected: Fires when we either fail to connect to an access
+        /// point (transition: associated -> disconnected) or
+        /// when we were connected to a network but have
+        /// disconnected for any reason (transition: connected ->
+        /// disconnected).
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMEventListener GetOnstatuschangeAttribute();
+		
+		/// <summary>
+        /// State notification listeners. These all take an
+        /// nsIDOMWifiStatusChangeEvent with the new status and a network (which
+        /// may be null).
+        ///
+        /// The possible statuses are:
+        /// - connecting: Fires when we start the process of connecting to a
+        /// network.
+        /// - associated: Fires when we have connected to an access point but do
+        /// not yet have an IP address.
+        /// - connected: Fires once we are fully connected to an access point and
+        /// can access the internet.
+        /// - disconnected: Fires when we either fail to connect to an access
+        /// point (transition: associated -> disconnected) or
+        /// when we were connected to a network but have
+        /// disconnected for any reason (transition: connected ->
+        /// disconnected).
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOnstatuschangeAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnstatuschange);
+		
+		/// <summary>
+        /// An event listener that is called with information about the signal
+        /// strength and link speed every 5 seconds.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMEventListener GetConnectionInfoUpdateAttribute();
+		
+		/// <summary>
+        /// An event listener that is called with information about the signal
+        /// strength and link speed every 5 seconds.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetConnectionInfoUpdateAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aConnectionInfoUpdate);
+	}
+	
+	/// <summary>nsIDOMWifiStatusChangeEvent </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("4674c6f1-ea64-44db-ac2f-e7bd6514dfd6")]
+	public interface nsIDOMWifiStatusChangeEvent : nsIDOMEvent
+	{
+		
+		/// <summary>
+        /// The name of the event (case-insensitive). The name must be an XML
+        /// name.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType);
+		
+		/// <summary>
+        /// Used to indicate the EventTarget to which the event was originally
+        /// dispatched.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMEventTarget GetTargetAttribute();
+		
+		/// <summary>
+        /// Used to indicate the EventTarget whose EventListeners are currently
+        /// being processed. This is particularly useful during capturing and
+        /// bubbling.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMEventTarget GetCurrentTargetAttribute();
+		
+		/// <summary>
+        /// Used to indicate which phase of event flow is currently being
+        /// evaluated.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new ushort GetEventPhaseAttribute();
+		
+		/// <summary>
+        /// Used to indicate whether or not an event is a bubbling event. If the
+        /// event can bubble the value is true, else the value is false.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool GetBubblesAttribute();
+		
+		/// <summary>
+        /// Used to indicate whether or not an event can have its default action
+        /// prevented. If the default action can be prevented the value is true,
+        /// else the value is false.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool GetCancelableAttribute();
+		
+		/// <summary>
+        /// Used to specify the time (in milliseconds relative to the epoch) at
+        /// which the event was created. Due to the fact that some systems may
+        /// not provide this information the value of timeStamp may be not
+        /// available for all events. When not available, a value of 0 will be
+        /// returned. Examples of epoch time are the time of the system start or
+        /// 0:0:0 UTC 1st January 1970.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new long GetTimeStampAttribute();
+		
+		/// <summary>
+        /// The stopPropagation method is used prevent further propagation of an
+        /// event during event flow. If this method is called by any
+        /// EventListener the event will cease propagating through the tree. The
+        /// event will complete dispatch to all listeners on the current
+        /// EventTarget before event flow stops. This method may be used during
+        /// any stage of event flow.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void StopPropagation();
+		
+		/// <summary>
+        /// If an event is cancelable, the preventDefault method is used to
+        /// signify that the event is to be canceled, meaning any default action
+        /// normally taken by the implementation as a result of the event will
+        /// not occur. If, during any stage of event flow, the preventDefault
+        /// method is called the event is canceled. Any default action associated
+        /// with the event will not occur. Calling this method for a
+        /// non-cancelable event has no effect. Once preventDefault has been
+        /// called it will remain in effect throughout the remainder of the
+        /// event's propagation. This method may be used during any stage of
+        /// event flow.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void PreventDefault();
+		
+		/// <summary>
+        /// The initEvent method is used to initialize the value of an Event
+        /// created through the DocumentEvent interface. This method may only be
+        /// called before the Event has been dispatched via the dispatchEvent
+        /// method, though it may be called multiple times during that phase if
+        /// necessary. If called multiple times the final invocation takes
+        /// precedence. If called from a subclass of Event interface only the
+        /// values specified in the initEvent method are modified, all other
+        /// attributes are left unchanged.
+        ///
+        /// @param   eventTypeArg Specifies the event type. This type may be
+        /// any event type currently defined in this
+        /// specification or a new event type.. The string
+        /// must be an XML name.
+        /// Any new event type must not begin with any
+        /// upper, lower, or mixed case version of the
+        /// string "DOM". This prefix is reserved for
+        /// future DOM event sets. It is also strongly
+        /// recommended that third parties adding their
+        /// own events use their own prefix to avoid
+        /// confusion and lessen the probability of
+        /// conflicts with other new events.
+        /// @param   canBubbleArg Specifies whether or not the event can bubble.
+        /// @param   cancelableArg Specifies whether or not the event's default
+        /// action can be prevented.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void InitEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase eventTypeArg, [MarshalAs(UnmanagedType.U1)] bool canBubbleArg, [MarshalAs(UnmanagedType.U1)] bool cancelableArg);
+		
+		/// <summary>
+        /// Used to indicate whether preventDefault() has been called for this event.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool GetDefaultPreventedAttribute();
+		
+		/// <summary>
+        /// Prevents other event listeners from being triggered and,
+        /// unlike Event.stopPropagation() its effect is immediate.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void StopImmediatePropagation();
+		
+		/// <summary>
+        /// Network object with a SSID field describing the network affected by
+        /// this change. This might be null.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetNetworkAttribute();
+		
+		/// <summary>
+        /// String describing the current status of the wifi manager. See above for
+        /// the possible values.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.LPStr)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		string GetStatusAttribute();
+	}
+	
+	/// <summary>nsIDOMWifiConnectionInfoEvent </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("5c9ee332-dd98-4227-b7fc-768418fd50e3")]
+	public interface nsIDOMWifiConnectionInfoEvent : nsIDOMEvent
+	{
+		
+		/// <summary>
+        /// The name of the event (case-insensitive). The name must be an XML
+        /// name.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType);
+		
+		/// <summary>
+        /// Used to indicate the EventTarget to which the event was originally
+        /// dispatched.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMEventTarget GetTargetAttribute();
+		
+		/// <summary>
+        /// Used to indicate the EventTarget whose EventListeners are currently
+        /// being processed. This is particularly useful during capturing and
+        /// bubbling.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMEventTarget GetCurrentTargetAttribute();
+		
+		/// <summary>
+        /// Used to indicate which phase of event flow is currently being
+        /// evaluated.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new ushort GetEventPhaseAttribute();
+		
+		/// <summary>
+        /// Used to indicate whether or not an event is a bubbling event. If the
+        /// event can bubble the value is true, else the value is false.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool GetBubblesAttribute();
+		
+		/// <summary>
+        /// Used to indicate whether or not an event can have its default action
+        /// prevented. If the default action can be prevented the value is true,
+        /// else the value is false.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool GetCancelableAttribute();
+		
+		/// <summary>
+        /// Used to specify the time (in milliseconds relative to the epoch) at
+        /// which the event was created. Due to the fact that some systems may
+        /// not provide this information the value of timeStamp may be not
+        /// available for all events. When not available, a value of 0 will be
+        /// returned. Examples of epoch time are the time of the system start or
+        /// 0:0:0 UTC 1st January 1970.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new long GetTimeStampAttribute();
+		
+		/// <summary>
+        /// The stopPropagation method is used prevent further propagation of an
+        /// event during event flow. If this method is called by any
+        /// EventListener the event will cease propagating through the tree. The
+        /// event will complete dispatch to all listeners on the current
+        /// EventTarget before event flow stops. This method may be used during
+        /// any stage of event flow.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void StopPropagation();
+		
+		/// <summary>
+        /// If an event is cancelable, the preventDefault method is used to
+        /// signify that the event is to be canceled, meaning any default action
+        /// normally taken by the implementation as a result of the event will
+        /// not occur. If, during any stage of event flow, the preventDefault
+        /// method is called the event is canceled. Any default action associated
+        /// with the event will not occur. Calling this method for a
+        /// non-cancelable event has no effect. Once preventDefault has been
+        /// called it will remain in effect throughout the remainder of the
+        /// event's propagation. This method may be used during any stage of
+        /// event flow.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void PreventDefault();
+		
+		/// <summary>
+        /// The initEvent method is used to initialize the value of an Event
+        /// created through the DocumentEvent interface. This method may only be
+        /// called before the Event has been dispatched via the dispatchEvent
+        /// method, though it may be called multiple times during that phase if
+        /// necessary. If called multiple times the final invocation takes
+        /// precedence. If called from a subclass of Event interface only the
+        /// values specified in the initEvent method are modified, all other
+        /// attributes are left unchanged.
+        ///
+        /// @param   eventTypeArg Specifies the event type. This type may be
+        /// any event type currently defined in this
+        /// specification or a new event type.. The string
+        /// must be an XML name.
+        /// Any new event type must not begin with any
+        /// upper, lower, or mixed case version of the
+        /// string "DOM". This prefix is reserved for
+        /// future DOM event sets. It is also strongly
+        /// recommended that third parties adding their
+        /// own events use their own prefix to avoid
+        /// confusion and lessen the probability of
+        /// conflicts with other new events.
+        /// @param   canBubbleArg Specifies whether or not the event can bubble.
+        /// @param   cancelableArg Specifies whether or not the event's default
+        /// action can be prevented.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void InitEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase eventTypeArg, [MarshalAs(UnmanagedType.U1)] bool canBubbleArg, [MarshalAs(UnmanagedType.U1)] bool cancelableArg);
+		
+		/// <summary>
+        /// Used to indicate whether preventDefault() has been called for this event.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool GetDefaultPreventedAttribute();
+		
+		/// <summary>
+        /// Prevents other event listeners from being triggered and,
+        /// unlike Event.stopPropagation() its effect is immediate.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void StopImmediatePropagation();
+		
+		/// <summary>
+        /// Network object with an SSID field.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetNetworkAttribute();
+		
+		/// <summary>
+        /// Strength of the signal to network, in dBm between -55 and -100 dBm.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		short GetSignalStrengthAttribute();
+		
+		/// <summary>
+        /// Relative signal strength between 0 and 100.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		short GetRelSignalStrengthAttribute();
+		
+		/// <summary>
+        /// Link spead in Mb/s.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		int GetLinkSpeedAttribute();
 	}
 }

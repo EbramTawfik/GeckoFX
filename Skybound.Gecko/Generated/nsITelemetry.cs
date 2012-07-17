@@ -30,7 +30,7 @@ namespace Gecko
 	/// <summary>nsITelemetrySessionData </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("c177b6b0-5ef1-44f5-bc67-6bcf7d2518e5")]
+	[Guid("02719ffb-1a87-46cd-b8d3-5583f3267b32")]
 	public interface nsITelemetrySessionData
 	{
 		
@@ -79,7 +79,7 @@ namespace Gecko
 	/// <summary>nsITelemetry </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("db854295-478d-4de9-8211-d73ed7d81cd0")]
+	[Guid("f23a2c8d-9286-42e9-ab1b-ed287eeade6d")]
 	public interface nsITelemetry
 	{
 		
@@ -99,7 +99,7 @@ namespace Gecko
 		Gecko.JsVal GetHistogramSnapshotsAttribute(System.IntPtr jsContext);
 		
 		/// <summary>
-        /// An object containing information about slow SQL prepared statements.
+        /// An object containing information about slow SQL statements.
         ///
         /// {
         /// mainThread: { "sqlString1": [<hit count>, <total time>], "sqlString2": [...], ... },
@@ -109,12 +109,33 @@ namespace Gecko
         /// where:
         /// mainThread: Slow statements that executed on the main thread
         /// otherThreads: Slow statements that executed on a non-main thread
-        /// sqlString - String of the offending prepared statement
+        /// sqlString - String of the offending statement (see note)
         /// hit count - The number of times this statement required longer than the threshold time to execute
         /// total time - The sum of all execution times above the threshold time for this statement
+        ///
+        /// Note that dynamic SQL strings and SQL strings executed against addon DBs could contain private information.
+        /// This property represents such SQL as aggregate database-level stats and the sqlString contains the database
+        /// filename instead.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		Gecko.JsVal GetSlowSQLAttribute(System.IntPtr jsContext);
+		
+		/// <summary>
+        /// See slowSQL above.
+        ///
+        /// An object containing full strings of every slow SQL statement if toolkit.telemetry.debugSlowSql = true
+        /// The returned SQL strings may contain private information and should not be reported to Telemetry.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetDebugSlowSQLAttribute(System.IntPtr jsContext);
+		
+		/// <summary>
+        /// An array of chrome hang reports. Each element is a hang report represented
+        /// as an object containing the hang duration, call stack PCs and information
+        /// about modules in memory.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetChromeHangsAttribute(System.IntPtr jsContext);
 		
 		/// <summary>
         /// An object whose properties are the names of histograms defined in

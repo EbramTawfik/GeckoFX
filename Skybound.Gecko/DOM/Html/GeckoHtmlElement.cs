@@ -12,7 +12,7 @@ namespace Gecko
 			: base(element)
 		{
 			this.DomElement = element;
-			this.DomNSElement = (nsIDOMNSElement)element;
+			this.DomNSElement = (nsIDOMElement)element;
 		}
 		
 		internal static GeckoHtmlElement Create(nsIDOMHTMLElement element)
@@ -27,7 +27,7 @@ namespace Gecko
 		
 		nsIDOMHTMLElement DomElement;
 
-		nsIDOMNSElement DomNSElement;
+		nsIDOMElement DomNSElement;
 		
 		/// <summary>
 		/// Gets the inline style of the GeckoElement. 

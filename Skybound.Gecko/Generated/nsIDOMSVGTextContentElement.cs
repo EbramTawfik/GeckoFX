@@ -42,7 +42,7 @@ namespace Gecko
     ///    events::nsIDOMEventTarget </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("7531a45b-5f5a-4b30-9fb0-87498a87d4b4")]
+	[Guid("8A884160-DB64-4BF7-B932-15398E536A8D")]
 	public interface nsIDOMSVGTextContentElement : nsIDOMSVGElement
 	{
 		
@@ -279,10 +279,17 @@ namespace Gecko
         /// XML document.
         ///
         /// For more information on this interface please see
-        /// http://www.w3.org/TR/DOM-Level-2-Core/
+        /// http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html#interface-element
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetTagNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTagName);
+		
+		/// <summary>
+        /// Returns a DOMTokenList object reflecting the class attribute.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMDOMTokenList GetClassListAttribute();
 		
 		/// <summary>Member GetAttribute </summary>
 		/// <param name='name'> </param>
@@ -290,20 +297,55 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
+		/// <summary>Member GetAttributeNS </summary>
+		/// <param name='namespaceURI'> </param>
+		/// <param name='localName'> </param>
+		/// <param name='retval'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void GetAttributeNS([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase namespaceURI, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase localName, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		
 		/// <summary>Member SetAttribute </summary>
 		/// <param name='name'> </param>
 		/// <param name='value'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase value);
 		
+		/// <summary>Member SetAttributeNS </summary>
+		/// <param name='namespaceURI'> </param>
+		/// <param name='qualifiedName'> </param>
+		/// <param name='value'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetAttributeNS([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase namespaceURI, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase qualifiedName, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase value);
+		
 		/// <summary>Member RemoveAttribute </summary>
 		/// <param name='name'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void RemoveAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name);
 		
-		/// <summary>Member GetAttributeNode </summary>
+		/// <summary>Member RemoveAttributeNS </summary>
+		/// <param name='namespaceURI'> </param>
+		/// <param name='localName'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void RemoveAttributeNS([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase namespaceURI, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase localName);
+		
+		/// <summary>Member HasAttribute </summary>
 		/// <param name='name'> </param>
-		/// <returns>A nsIDOMAttr</returns>
+		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool HasAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name);
+		
+		/// <summary>Member HasAttributeNS </summary>
+		/// <param name='namespaceURI'> </param>
+		/// <param name='localName'> </param>
+		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool HasAttributeNS([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase namespaceURI, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase localName);
+		
+		/// <summary>
+        /// Obsolete methods.
+        /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMAttr GetAttributeNode([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name);
@@ -322,6 +364,21 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMAttr RemoveAttributeNode([MarshalAs(UnmanagedType.Interface)] nsIDOMAttr oldAttr);
 		
+		/// <summary>Member GetAttributeNodeNS </summary>
+		/// <param name='namespaceURI'> </param>
+		/// <param name='localName'> </param>
+		/// <returns>A nsIDOMAttr</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMAttr GetAttributeNodeNS([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase namespaceURI, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase localName);
+		
+		/// <summary>Member SetAttributeNodeNS </summary>
+		/// <param name='newAttr'> </param>
+		/// <returns>A nsIDOMAttr</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMAttr SetAttributeNodeNS([MarshalAs(UnmanagedType.Interface)] nsIDOMAttr newAttr);
+		
 		/// <summary>Member GetElementsByTagName </summary>
 		/// <param name='name'> </param>
 		/// <returns>A nsIDOMNodeList</returns>
@@ -329,68 +386,70 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMNodeList GetElementsByTagName([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name);
 		
-		/// <summary>
-        /// Introduced in DOM Level 2:
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetAttributeNS([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase namespaceURI, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase localName, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
-		
-		/// <summary>
-        /// Introduced in DOM Level 2:
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetAttributeNS([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase namespaceURI, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase qualifiedName, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase value);
-		
-		/// <summary>
-        /// Introduced in DOM Level 2:
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void RemoveAttributeNS([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase namespaceURI, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase localName);
-		
-		/// <summary>
-        /// Introduced in DOM Level 2:
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMAttr GetAttributeNodeNS([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase namespaceURI, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase localName);
-		
-		/// <summary>
-        /// Introduced in DOM Level 2:
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMAttr SetAttributeNodeNS([MarshalAs(UnmanagedType.Interface)] nsIDOMAttr newAttr);
-		
-		/// <summary>
-        /// Introduced in DOM Level 2:
-        /// </summary>
+		/// <summary>Member GetElementsByTagNameNS </summary>
+		/// <param name='namespaceURI'> </param>
+		/// <param name='localName'> </param>
+		/// <returns>A nsIDOMNodeList</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMNodeList GetElementsByTagNameNS([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase namespaceURI, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase localName);
 		
 		/// <summary>
-        /// Introduced in DOM Level 2:
+        /// Retrieve elements matching all classes listed in a
+        /// space-separated string.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.U1)]
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool HasAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name);
+		new nsIDOMNodeList GetElementsByClassName([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase classes);
 		
 		/// <summary>
-        /// Introduced in DOM Level 2:
+        /// Returns a live nsIDOMNodeList of the current child elements.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.U1)]
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool HasAttributeNS([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase namespaceURI, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase localName);
+		new nsIDOMNodeList GetChildrenAttribute();
 		
-		/// <summary>Member GetOnmouseenterAttribute </summary>
-		/// <param name='jsContext'> </param>
-		/// <returns>A Gecko.JsVal</returns>
+		/// <summary>
+        /// Similar as the attributes on nsIDOMNode, but navigates just elements
+        /// rather than all nodes.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMElement GetFirstElementChildAttribute();
+		
+		/// <summary>Member GetLastElementChildAttribute </summary>
+		/// <returns>A nsIDOMElement</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMElement GetLastElementChildAttribute();
+		
+		/// <summary>Member GetPreviousElementSiblingAttribute </summary>
+		/// <returns>A nsIDOMElement</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMElement GetPreviousElementSiblingAttribute();
+		
+		/// <summary>Member GetNextElementSiblingAttribute </summary>
+		/// <returns>A nsIDOMElement</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMElement GetNextElementSiblingAttribute();
+		
+		/// <summary>
+        /// Returns the number of child nodes that are nsIDOMElements.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new uint GetChildElementCountAttribute();
+		
+		/// <summary>
+        /// HTML
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new Gecko.JsVal GetOnmouseenterAttribute(System.IntPtr jsContext);
 		
-		/// <summary>Member SetOnmouseenterAttribute </summary>
-		/// <param name='aOnmouseenter'> </param>
-		/// <param name='jsContext'> </param>
+		/// <summary>
+        /// HTML
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetOnmouseenterAttribute(Gecko.JsVal aOnmouseenter, System.IntPtr jsContext);
 		
@@ -405,6 +464,155 @@ namespace Gecko
 		/// <param name='jsContext'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetOnmouseleaveAttribute(Gecko.JsVal aOnmouseleave, System.IntPtr jsContext);
+		
+		/// <summary>
+        /// Retrieve a list of rectangles, one for each CSS border-box associated with
+        /// the element. The coordinates are in CSS pixels, and relative to
+        /// the top-left of the document's viewport, unless the document
+        /// has an SVG foreignobject ancestor, in which case the coordinates are
+        /// relative to the top-left of the content box of the nearest SVG foreignobject
+        /// ancestor. The coordinates are calculated as if every scrollable element
+        /// is scrolled to its default position.
+        ///
+        /// Note: the boxes of overflowing children do not affect these rectangles.
+        /// Note: some elements have empty CSS boxes. Those return empty rectangles,
+        /// but the coordinates may still be meaningful.
+        /// Note: some elements have no CSS boxes (including display:none elements,
+        /// HTML AREA elements, and SVG elements that do not render). Those return
+        /// an empty list.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMClientRectList GetClientRects();
+		
+		/// <summary>
+        /// Returns the union of all rectangles in the getClientRects() list. Empty
+        /// rectangles are ignored, except that if all rectangles are empty,
+        /// we return an empty rectangle positioned at the top-left of the first
+        /// rectangle in getClientRects().
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMClientRect GetBoundingClientRect();
+		
+		/// <summary>
+        /// The vertical scroll position of the element, or 0 if the element is not
+        /// scrollable. This property may be assigned a value to change the
+        /// vertical scroll position.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new int GetScrollTopAttribute();
+		
+		/// <summary>
+        /// The vertical scroll position of the element, or 0 if the element is not
+        /// scrollable. This property may be assigned a value to change the
+        /// vertical scroll position.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetScrollTopAttribute(int aScrollTop);
+		
+		/// <summary>
+        /// The horizontal scroll position of the element, or 0 if the element is not
+        /// scrollable. This property may be assigned a value to change the
+        /// horizontal scroll position.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new int GetScrollLeftAttribute();
+		
+		/// <summary>
+        /// The horizontal scroll position of the element, or 0 if the element is not
+        /// scrollable. This property may be assigned a value to change the
+        /// horizontal scroll position.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetScrollLeftAttribute(int aScrollLeft);
+		
+		/// <summary>
+        /// The width of the scrollable area of the element. If the element is not
+        /// scrollable, scrollWidth is equivalent to the offsetWidth.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new int GetScrollWidthAttribute();
+		
+		/// <summary>
+        /// The height of the scrollable area of the element. If the element is not
+        /// scrollable, scrollHeight is equivalent to the offsetHeight.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new int GetScrollHeightAttribute();
+		
+		/// <summary>
+        /// The height in CSS pixels of the element's top border.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new int GetClientTopAttribute();
+		
+		/// <summary>
+        /// The width in CSS pixels of the element's left border and scrollbar
+        /// if it is present on the left side.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new int GetClientLeftAttribute();
+		
+		/// <summary>
+        /// The height in CSS pixels of the element's padding box. If the element is
+        /// scrollable, the scroll bars are included inside this width.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new int GetClientWidthAttribute();
+		
+		/// <summary>
+        /// The width in CSS pixels of the element's padding box. If the element is
+        /// scrollable, the scroll bars are included inside this height.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new int GetClientHeightAttribute();
+		
+		/// <summary>
+        /// Returns whether this element would be selected by the given selector
+        /// string.
+        ///
+        /// See <http://dev.w3.org/2006/webapi/selectors-api2/#matchesselector>
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool MozMatchesSelector([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase selector);
+		
+		/// <summary>
+        /// Set this during a mousedown event to grab and retarget all mouse events
+        /// to this element until the mouse button is released or releaseCapture is
+        /// called. If retargetToElement is true, then all events are targetted at
+        /// this element. If false, events can also fire at descendants of this
+        /// element.
+        ///
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetCapture([MarshalAs(UnmanagedType.U1)] bool retargetToElement);
+		
+		/// <summary>
+        /// If this element has captured the mouse, release the capture. If another
+        /// element has captured the mouse, this method has no effect.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void ReleaseCapture();
+		
+		/// <summary>
+        /// Requests that this element be made the full-screen element, as per the DOM
+        /// full-screen api.
+        ///
+        /// @see <https://wiki.mozilla.org/index.php?title=Gecko:FullScreenAPI>
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void MozRequestFullScreen();
+		
+		/// <summary>
+        /// Requests that this element be made the pointer-locked element, as per the DOM
+        /// pointer lock api.
+        ///
+        /// @see <http://dvcs.w3.org/hg/pointerlock/raw-file/default/index.html>
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void MozRequestPointerLock();
 		
 		/// <summary>Member GetIdAttribute </summary>
 		/// <param name='aId'> </param>

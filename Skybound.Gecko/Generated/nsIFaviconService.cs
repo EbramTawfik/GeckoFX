@@ -39,9 +39,9 @@ namespace Gecko
         ///
         /// Will create an entry linking the favicon URI to the page, regardless
         /// of whether we have data for that icon.  You can populate it later with
-        /// SetFaviconData.  However, remember that any favicons not associated with a
-        /// visited web page, a bookmark, or a "place:" URI, will be removed during
-        /// expiration runs.
+        /// SetFaviconData.  However, remember that favicons must only be associated
+        /// with a visited web page, a bookmark, or a "place:" URI.  Trying to
+        /// associate the icon to any other page will throw.
         ///
         /// This will send out history pageChanged notification if the new favicon has
         /// any data and it's different from the old associated favicon.  This means
@@ -52,6 +52,7 @@ namespace Gecko
         /// URI of the page whose favicon is being set.
         /// @param aFaviconURI
         /// URI of the favicon to associate with the page.
+        /// @throws NS_ERROR_NOT_AVAILABLE if aPageURI doesn't exist in the database.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetFaviconUrlForPage([MarshalAs(UnmanagedType.Interface)] nsIURI aPageURI, [MarshalAs(UnmanagedType.Interface)] nsIURI aFaviconURI);
@@ -324,15 +325,15 @@ namespace Gecko
 	/// <summary>nsIFaviconDataCallback </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("22ebd780-f4ab-11de-8a39-0800200c9a66")]
+	[Guid("c85e5c82-b70f-4621-9528-beb2aa47fb44")]
 	public interface nsIFaviconDataCallback
 	{
 		
 		/// <summary>
         /// Called when the required favicon's information is available.
         ///
-        /// This callback will be called only if the operation is successful, otherwise
-        /// you won't get notified.
+        /// It's up to the invoking method to state if the callback is always invoked,
+        /// or called on success only.  Check the method documentation to ensure that.
         ///
         /// The caller will receive the most information we can gather on the icon,
         /// but it's not guaranteed that all of them will be set.  For some method
@@ -341,20 +342,23 @@ namespace Gecko
         /// It's up to the caller to check aDataLen > 0 before using any data-related
         /// information like mime-type or data itself.
         ///
-        /// @param aURI
-        /// Depending on caller method it could be:
-        /// - a dataURI: has "data:" scheme, with base64 encoded icon data.
-        /// - a faviconURI: the URI of the icon in the favicon service.
-        /// - a faviconLinkURI: has "moz-anno" scheme, used to get data async.
+        /// @param aFaviconURI
+        /// Receives the "favicon URI" (not the "favicon link URI") associated
+        /// to the requested page.  This can be null if there is no associated
+        /// favicon URI, or the callback is notifying a failure.
         /// @param aDataLen
         /// Size of the icon data in bytes.  Notice that a value of 0 does not
         /// necessarily mean that we don't have an icon.
         /// @param aData
-        /// Icon data, null if aDataLen is 0.
+        /// Icon data, or an empty array if aDataLen is 0.
         /// @param aMimeType
-        /// Mime type of the icon, null if aDataLen is 0.
+        /// Mime type of the icon, or an empty string if aDataLen is 0.
+        ///
+        /// @note If you want to open a network channel to access the favicon, it's
+        /// recommended that you call the getFaviconLinkForIcon method to convert
+        /// the "favicon URI" into a "favicon link URI".
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnFaviconDataAvailable([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, uint aDataLen, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] byte[] aData, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aMimeType);
+		void OnComplete([MarshalAs(UnmanagedType.Interface)] nsIURI aFaviconURI, uint aDataLen, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] byte[] aData, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aMimeType);
 	}
 }

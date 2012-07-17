@@ -34,15 +34,21 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("fe30ca60-bb90-4d68-af2f-4735f9228a54")]
+	[Guid("4b9d901b-14a4-430c-b41b-5ecb238f4184")]
 	public interface nsIIDBRequest
 	{
 		
 		/// <summary>
-        /// "pending" or "done"
+        /// IDBReqeust interface.  See
+        /// http://dev.w3.org/2006/webapi/WebSimpleDB/#idl-def-IDBRequest for more
+        /// information.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetReadyStateAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aReadyState);
+		Gecko.JsVal GetResultAttribute();
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMError GetErrorAttribute();
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -52,11 +58,11 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIIDBTransaction GetTransactionAttribute();
 		
+		/// <summary>
+        /// "pending" or "done"
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal GetResultAttribute();
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		ushort GetErrorCodeAttribute();
+		void GetReadyStateAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aReadyState);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

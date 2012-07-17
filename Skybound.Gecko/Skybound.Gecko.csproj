@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Release_Windows</Configuration>
@@ -107,6 +107,7 @@
     <Compile Include="AppShellService.cs" />
     <Compile Include="AutoJSContext.cs" />
     <Compile Include="BaseTypes\gfxContext.cs" />
+    <Compile Include="BaseTypes\ScrollAxis.cs" />
     <Compile Include="BaseTypes\TextBoundaryType.cs" />
     <Compile Include="Cryptography\CryptoHash.cs" />
     <Compile Include="Cryptography\Enums.cs" />
@@ -129,18 +130,22 @@
     <Compile Include="Generated\mozIAsyncLivemarks.cs" />
     <Compile Include="Generated\nsIAccessibleCursorable.cs" />
     <Compile Include="Generated\nsIAccessiblePivot.cs" />
+    <Compile Include="Generated\nsIDeviceSensors.cs" />
     <Compile Include="Generated\nsIDOMBluetoothAdapter.cs" />
+    <Compile Include="Generated\nsIDOMBluetoothDevice.cs" />
     <Compile Include="Generated\nsIDOMCallEvent.cs" />
     <Compile Include="Generated\nsIDOMConnection.cs" />
     <Compile Include="Generated\nsIDOMContactManager.cs" />
     <Compile Include="Generated\nsIDOMContactProperties.cs" />
     <Compile Include="Generated\nsIDOMDOMRequest.cs" />
+    <Compile Include="Generated\nsIDOMMobileConnection.cs" />
     <Compile Include="Generated\nsIDOMMozBrowserFrame.cs" />
+    <Compile Include="Generated\nsIDOMMutationObserver.cs" />
     <Compile Include="Generated\nsIDOMNavigatorBluetooth.cs" />
     <Compile Include="Generated\nsIDOMNavigatorNetwork.cs" />
     <Compile Include="Generated\nsIDOMNavigatorTelephony.cs" />
-    <Compile Include="Generated\nsIDOMNSElement.cs" />
     <Compile Include="Generated\nsIDOMPowerManager.cs" />
+    <Compile Include="Generated\nsIDOMSettingsManager.cs" />
     <Compile Include="Generated\nsIDOMSmsCursor.cs" />
     <Compile Include="Generated\nsIDOMSmsFilter.cs" />
     <Compile Include="Generated\nsIDOMSmsRequest.cs" />
@@ -151,8 +156,10 @@
     <Compile Include="Generated\nsIDOMWakeLock.cs" />
     <Compile Include="Generated\nsIDOMWakeLockListener.cs" />
     <Compile Include="Generated\nsIJSInspector.cs" />
+    <Compile Include="Generated\nsIMobileConnectionProvider.cs" />
     <Compile Include="Generated\nsIMozBrowserFrame.cs" />
     <Compile Include="Generated\nsINetAddr.cs" />
+    <Compile Include="Generated\nsINetworkManager.cs" />
     <Compile Include="Generated\nsIParserUtils.cs" />
     <Compile Include="Generated\nsIRadioInterfaceLayer.cs" />
     <Compile Include="Generated\nsISmsDatabaseService.cs" />
@@ -584,7 +591,6 @@
     <Compile Include="Generated\nsIDataSignatureVerifier.cs" />
     <Compile Include="Generated\nsIDebug.cs" />
     <Compile Include="Generated\nsIDebug2.cs" />
-    <Compile Include="Generated\nsIDeviceMotion.cs" />
     <Compile Include="Generated\nsIDialogCreator.cs" />
     <Compile Include="Generated\nsIDialogParamBlock.cs" />
     <Compile Include="Generated\nsIDirectoryEnumerator.cs" />
@@ -671,7 +677,6 @@
     <Compile Include="Generated\nsIDOMEventListener.cs" />
     <Compile Include="Generated\nsIDOMEventTarget.cs" />
     <Compile Include="Generated\nsIDOMFile.cs" />
-    <Compile Include="Generated\nsIDOMFileException.cs" />
     <Compile Include="Generated\nsIDOMFileList.cs" />
     <Compile Include="Generated\nsIDOMFileReader.cs" />
     <Compile Include="Generated\nsIDOMFontFace.cs" />
@@ -679,12 +684,10 @@
     <Compile Include="Generated\nsIDOMFormData.cs" />
     <Compile Include="Generated\nsIDOMGeoGeolocation.cs" />
     <Compile Include="Generated\nsIDOMGeoPosition.cs" />
-    <Compile Include="Generated\nsIDOMGeoPositionAddress.cs" />
     <Compile Include="Generated\nsIDOMGeoPositionCallback.cs" />
     <Compile Include="Generated\nsIDOMGeoPositionCoords.cs" />
     <Compile Include="Generated\nsIDOMGeoPositionError.cs" />
     <Compile Include="Generated\nsIDOMGeoPositionErrorCallback.cs" />
-    <Compile Include="Generated\nsIDOMGeoPositionOptions.cs" />
     <Compile Include="Generated\nsIDOMGetSVGDocument.cs" />
     <Compile Include="Generated\nsIDOMGlobalPropertyInitializer.cs" />
     <Compile Include="Generated\nsIDOMHashChangeEvent.cs" />
@@ -819,7 +822,6 @@
     <Compile Include="Generated\nsIDOMStorageEventObsolete.cs" />
     <Compile Include="Generated\nsIDOMStorageIndexedDB.cs" />
     <Compile Include="Generated\nsIDOMStorageItem.cs" />
-    <Compile Include="Generated\nsIDOMStorageList.cs" />
     <Compile Include="Generated\nsIDOMStorageManager.cs" />
     <Compile Include="Generated\nsIDOMStorageObsolete.cs" />
     <Compile Include="Generated\nsIDOMStyleSheet.cs" />
@@ -1061,7 +1063,6 @@
     <Compile Include="Generated\nsIIDBCursor.cs" />
     <Compile Include="Generated\nsIIDBCursorWithValue.cs" />
     <Compile Include="Generated\nsIIDBDatabase.cs" />
-    <Compile Include="Generated\nsIIDBDatabaseException.cs" />
     <Compile Include="Generated\nsIIDBFactory.cs" />
     <Compile Include="Generated\nsIIDBIndex.cs" />
     <Compile Include="Generated\nsIIDBKeyRange.cs" />

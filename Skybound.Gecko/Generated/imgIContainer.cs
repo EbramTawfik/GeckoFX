@@ -37,7 +37,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("8bf87433-be67-413b-9497-00071c5002bd")]
+	[Guid("ead94080-cfd6-4a3e-8353-bd45333061d2")]
 	public interface imgIContainer
 	{
 		
@@ -131,7 +131,9 @@ namespace Gecko
         /// @param aFilter The filter to be used if we're scaling the image.
         /// @param aUserSpaceToImageSpace The transformation from user space (e.g.,
         /// appunits) to image space.
-        /// @param aFill The area in the context to draw pixels to. Image will be
+        /// @param aFill The area in the context to draw pixels to. When aFlags includes
+        /// FLAG_CLAMP, the image will be extended to this area by clampling
+        /// image sample coordinates. Otherwise, the image will be
         /// automatically tiled as necessary.
         /// @param aSubimage The area of the image, in pixels, that we are allowed to
         /// sample from.
@@ -248,6 +250,9 @@ namespace Gecko
         // FLAG_DECODE_NO_COLORSPACE_CONVERSION: Do not do any colorspace conversion;
         // ignore any embedded profiles, and don't convert to any particular destination
         // space.
+        //
+        // FLAG_CLAMP: Extend the image to the fill area by clamping image sample
+        // coordinates instead of by tiling. This only affects 'draw'.
         // </summary>
 		public const long FLAG_NONE = 0x0;
 		
@@ -259,6 +264,9 @@ namespace Gecko
 		
 		// 
 		public const long FLAG_DECODE_NO_COLORSPACE_CONVERSION = 0x4;
+		
+		// 
+		public const long FLAG_CLAMP = 0x8;
 		
 		// <summary>
         // Constants for specifying various "special" frames.

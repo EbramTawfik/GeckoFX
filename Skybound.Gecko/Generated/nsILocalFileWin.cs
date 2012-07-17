@@ -30,7 +30,7 @@ namespace Gecko
 	/// <summary>nsILocalFileWin </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("def24611-88a1-2cac-74fd-4b0b12bcaed5")]
+	[Guid("c7b3fd13-30f2-46e5-a0d9-7a79a9b73c5b")]
 	public interface nsILocalFileWin : nsILocalFile
 	{
 		
@@ -487,7 +487,7 @@ namespace Gecko
         /// the file this becomes equivalent to
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void InitWithFile([MarshalAs(UnmanagedType.Interface)] nsILocalFile aFile);
+		new void InitWithFile([MarshalAs(UnmanagedType.Interface)] nsIFile aFile);
 		
 		/// <summary>
         /// followLinks
@@ -623,7 +623,7 @@ namespace Gecko
         /// There is no defined result if this param is null.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetRelativeDescriptor([MarshalAs(UnmanagedType.Interface)] nsILocalFile fromFile, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
+		new void GetRelativeDescriptor([MarshalAs(UnmanagedType.Interface)] nsIFile fromFile, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
 		
 		/// <summary>
         /// setRelativeDescriptor
@@ -637,7 +637,7 @@ namespace Gecko
         /// the relative descriptor obtained from getRelativeDescriptor
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetRelativeDescriptor([MarshalAs(UnmanagedType.Interface)] nsILocalFile fromFile, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase relativeDesc);
+		new void SetRelativeDescriptor([MarshalAs(UnmanagedType.Interface)] nsIFile fromFile, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase relativeDesc);
 		
 		/// <summary>
         /// getVersionInfoValue
@@ -689,6 +689,34 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetFileAttributesWinAttribute(uint aFileAttributesWin);
+		
+		/// <summary>
+        /// setShortcut
+        ///
+        /// Creates the specified shortcut, or updates it if it already exists.
+        ///
+        /// If the shortcut is being updated (i.e. the shortcut already exists),
+        /// any excluded parameters will remain unchanged in the shortcut file.
+        /// For example, if you want to change the description of a specific
+        /// shortcut but keep the target, working dir, args, and icon the same,
+        /// pass null for those parameters and only pass in a value for the
+        /// description.
+        ///
+        /// If the shortcut does not already exist and targetFile is not specified,
+        /// setShortcut will throw NS_ERROR_FILE_TARGET_DOES_NOT_EXIST.
+        ///
+        /// @param targetFile      the path that the shortcut should target
+        /// @param workingDir      the working dir that should be set for the shortcut
+        /// @param args            the args string that should be set for the shortcut
+        /// @param description     the description that should be set for the shortcut
+        /// @param iconFile        the file containing an icon to be used for this
+        ///                              shortcut
+        /// @param iconIndex       this value selects a specific icon from within
+        ///                              iconFile.  If iconFile contains only one icon, this
+        ///                              value should be 0.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetShortcut([MarshalAs(UnmanagedType.Interface)] nsILocalFile targetFile, [MarshalAs(UnmanagedType.Interface)] nsILocalFile workingDir, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string args, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string description, [MarshalAs(UnmanagedType.Interface)] nsILocalFile iconFile, int iconIndex);
 	}
 	
 	/// <summary>nsILocalFileWinConsts </summary>

@@ -36,7 +36,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("73b48170-55d5-11e1-b86c-0800200c9a66")]
+	[Guid("2b3ac53c-2a88-421f-af09-f10665c88acf")]
 	public interface nsIDOMWindowUtils
 	{
 		
@@ -184,6 +184,27 @@ namespace Gecko
 		void SetResolution(float aXResolution, float aYResolution);
 		
 		/// <summary>
+        /// Whether the next paint should be flagged as the first paint for a document.
+        /// This gives a way to track the next paint that occurs after the flag is
+        /// set. The flag gets cleared after the next paint.
+        ///
+        /// Can only be accessed with UniversalXPConnect privileges.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetIsFirstPaintAttribute();
+		
+		/// <summary>
+        /// Whether the next paint should be flagged as the first paint for a document.
+        /// This gives a way to track the next paint that occurs after the flag is
+        /// set. The flag gets cleared after the next paint.
+        ///
+        /// Can only be accessed with UniversalXPConnect privileges.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetIsFirstPaintAttribute([MarshalAs(UnmanagedType.U1)] bool aIsFirstPaint);
+		
+		/// <summary>
         ///Synthesize a mouse event. The event types supported are:
         /// mousedown, mouseup, mousemove, mouseover, mouseout, contextmenu
         ///
@@ -325,6 +346,23 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SendNativeMouseEvent(int aScreenX, int aScreenY, int aNativeMessage, int aModifierFlags, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement);
+		
+		/// <summary>
+        /// See nsIWidget::SynthesizeNativeMouseScrollEvent
+        ///
+        /// Will be called on the widget that contains aElement.
+        /// Cannot be accessed from unprivileged context (not content-accessible)
+        /// Will throw a DOM security error if called without UniversalXPConnect
+        /// privileges.
+        ///
+        /// NOTE: The synthesized native event may be fired asynchronously.
+        ///
+        /// @param aNativeMessage
+        /// On Windows:  WM_MOUSEWHEEL (0x020A), WM_MOUSEHWHEEL(0x020E),
+        /// WM_VSCROLL (0x0115) or WM_HSCROLL (0x114).
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SendNativeMouseScrollEvent(int aScreenX, int aScreenY, uint aNativeMessage, double aDeltaX, double aDeltaY, double aDeltaZ, uint aModifierFlags, uint aAdditionalFlags, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement);
 		
 		/// <summary>
         /// See nsIWidget::ActivateNativeMenuItemAt
@@ -505,6 +543,15 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetScrollXY([MarshalAs(UnmanagedType.U1)] bool aFlushLayout, ref int aScrollX, ref int aScrollY);
+		
+		/// <summary>
+        /// Returns the bounds of the window's currently loaded document. This will
+        /// generally be (0, 0, pageWidth, pageHeight) but in some cases (e.g. RTL
+        /// documents) may have a negative left value.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMClientRect GetRootBounds();
 		
 		/// <summary>
         /// Get IME open state. TRUE means 'Open', otherwise, 'Close'.
@@ -890,11 +937,45 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetPaintingSuppressedAttribute();
+		
+		/// <summary>
+        /// Returns an array of plugins on the page for opt-in activation.
+        ///
+        /// Cannot be accessed from unprivileged context (not content-accessible).
+        /// Will throw a DOM security error if called without UniversalXPConnect
+        /// privileges.
+        ///
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetPluginsAttribute(System.IntPtr jsContext);
+		
+		/// <summary>
+        /// Set the scrollport size for the purposes of clamping scroll positions for
+        /// the root scroll frame of this document to be (aWidth,aHeight) in CSS pixels.
+        ///
+        /// The caller of this method must have UniversalXPConnect privileges.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetScrollPositionClampingScrollPortSize(float aWidth, float aHeight);
 	}
 	
 	/// <summary>nsIDOMWindowUtilsConsts </summary>
 	public class nsIDOMWindowUtilsConsts
 	{
+		
+		// <summary>
+        // If MOUSESCROLL_PREFER_WIDGET_AT_POINT is set, widget will dispatch
+        // the event to a widget which is under the cursor.  Otherwise, dispatch to
+        // a default target on the platform.  E.g., on Windows, it's focused window.
+        // </summary>
+		public const ulong MOUSESCROLL_PREFER_WIDGET_AT_POINT = 0x00000001;
+		
+		// <summary>
+        // If MOUSESCROLL_WIN_SCROLL_LPARAM_NOT_NULL is set and aNativeMessage is
+        // WM_VSCROLL or WM_HSCROLL, widget will set the window handle to the lParam
+        // instead of NULL.
+        // </summary>
+		public const ulong MOUSESCROLL_WIN_SCROLL_LPARAM_NOT_NULL = 0x00010000;
 		
 		// <summary>
         // DISABLED means users cannot use IME completely.

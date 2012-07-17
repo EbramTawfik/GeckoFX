@@ -30,7 +30,7 @@ namespace Gecko
 	/// <summary>nsISelectionPrivate </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("1820a940-6203-4e27-bc94-fa81131722a4")]
+	[Guid("0ced91b9-3e77-4191-943f-95bcde5e2d14")]
 	public interface nsISelectionPrivate : nsISelection
 	{
 		
@@ -354,30 +354,29 @@ namespace Gecko
         /// @param aIsSynchronous - when true, scrolls the selection into view
         /// before returning. If false, posts a request which
         /// is processed at some point after the method returns.
-        /// @param aVPercent - how to align the frame vertically. A value of 0
-        /// means the frame's upper edge is aligned with the top edge
-        /// of the visible area. A value of 100 means the frame's
-        /// bottom edge is aligned with the bottom edge of
-        /// the visible area. For values in between, the point
-        /// "aVPercent" down the frame is placed at the point
-        /// "aVPercent" down the visible area. A value of 50 centers
-        /// the frame vertically. A value of -1 means move
-        /// the frame the minimum amount necessary in order for
-        /// the entire frame to be visible vertically (if possible).
-        /// @param aHPercent - how to align the frame horizontally. A value of 0
-        /// means the frame's left edge is aligned with the left
-        /// edge of the visible area. A value of 100 means the
-        /// frame's right edge is aligned with the right edge of
-        /// the visible area. For values in between, the point
-        /// "aHPercent" across the frame is placed at the point
-        /// "aHPercent" across the visible area. A value of 50
-        /// centers the frame horizontally . A value of -1 means
-        /// move the frame the minimum amount necessary in order
-        /// for the entire frame to be visible horizontally
-        /// (if possible).
+        /// @param aVPercent - how to align the frame vertically.
+        /// @param aHPercent - how to align the frame horizontally.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ScrollIntoView(short aRegion, [MarshalAs(UnmanagedType.U1)] bool aIsSynchronous, short aVPercent, short aHPercent);
+		
+		/// <summary>
+        /// Scrolls a region of the selection, so that it is visible in
+        /// the scrolled view.
+        ///
+        /// @param aRegion - the region inside the selection to scroll into view
+        /// (see selection region constants defined in
+        /// nsISelectionController).
+        /// @param aIsSynchronous - when true, scrolls the selection into view
+        /// before returning. If false, posts a request which
+        /// is processed at some point after the method returns.
+        /// @param aVertical - how to align the frame vertically and when.
+        /// See nsIPresShell.h:ScrollAxis for details.
+        /// @param aHorizontal - how to align the frame horizontally and when.
+        /// See nsIPresShell.h:ScrollAxis for details.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void ScrollIntoViewInternal(short aRegion, [MarshalAs(UnmanagedType.U1)] bool aIsSynchronous, ScrollAxis aVertical, ScrollAxis aHorizontal);
 	}
 	
 	/// <summary>nsISelectionPrivateConsts </summary>

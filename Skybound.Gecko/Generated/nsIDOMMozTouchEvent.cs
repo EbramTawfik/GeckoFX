@@ -255,6 +255,16 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new int GetScreenYAttribute();
 		
+		/// <summary>Member GetMozMovementXAttribute </summary>
+		/// <returns>A System.Int32</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new int GetMozMovementXAttribute();
+		
+		/// <summary>Member GetMozMovementYAttribute </summary>
+		/// <returns>A System.Int32</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new int GetMozMovementYAttribute();
+		
 		/// <summary>Member GetClientXAttribute </summary>
 		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

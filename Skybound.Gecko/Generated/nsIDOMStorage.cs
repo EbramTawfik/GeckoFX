@@ -56,8 +56,7 @@ namespace Gecko
         /// Retrieve the name of the key at a particular index.
         ///
         /// @param index index of the item to retrieve
-        /// @returns the key at index
-        /// @throws INDEX_SIZE_ERR if there is no key at that index
+        /// @returns the key at index, null if there is no key at that index
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Key(uint index, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);

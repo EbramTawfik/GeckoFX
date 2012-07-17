@@ -30,7 +30,7 @@ namespace Gecko
 	/// <summary>nsIDOMMozNavigatorNetwork </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("1dd6773e-30dc-419b-9766-b05458fd96c8")]
+	[Guid("fb7c3429-aa2c-4ccc-948a-467c0de29fff")]
 	public interface nsIDOMMozNavigatorNetwork
 	{
 		
@@ -39,5 +39,11 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMMozConnection GetMozConnectionAttribute();
+		
+		/// <summary>Member GetMozMobileConnectionAttribute </summary>
+		/// <returns>A nsIDOMMozMobileConnection</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMMozMobileConnection GetMozMobileConnectionAttribute();
 	}
 }

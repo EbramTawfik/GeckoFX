@@ -32,7 +32,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("6D8914C7-0E22-4452-8962-11B69BBE84D7")]
+	[Guid("e3e284a3-b4a8-49ef-af6b-c8c4a158db86")]
 	public interface nsIObjectLoadingContent
 	{
 		
@@ -97,6 +97,14 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void PlayPlugin();
+		
+		/// <summary>
+        /// This attribute will return true if the plugin has been activated
+        /// and false if the plugin is still in the click-to-play state.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetActivatedAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void StopPluginInstance();

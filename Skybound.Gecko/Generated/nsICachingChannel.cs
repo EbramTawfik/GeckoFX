@@ -295,6 +295,6 @@ namespace Gecko
         // cache, then the OnDataAvailable events will be skipped.  The listener
         // will only see OnStartRequest followed by OnStopRequest.
         // </summary>
-		public const ulong LOAD_ONLY_IF_MODIFIED = (ulong)1 << 31;
+		public const ulong LOAD_ONLY_IF_MODIFIED = (ulong)1<<31;
 	}
 }

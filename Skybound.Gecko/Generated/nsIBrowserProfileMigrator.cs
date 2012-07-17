@@ -30,7 +30,7 @@ namespace Gecko
 	/// <summary>nsIBrowserProfileMigrator </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("5f445759-86a8-4dd3-ab84-4fc5341d9d9d")]
+	[Guid("44993E0E-74E8-4BEC-9D66-AD8156E0A274")]
 	public interface nsIBrowserProfileMigrator
 	{
 		
@@ -65,20 +65,11 @@ namespace Gecko
 		bool GetSourceExistsAttribute();
 		
 		/// <summary>
-        /// Whether or not the import source implementing this interface
-        /// has multiple user profiles configured.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetSourceHasMultipleProfilesAttribute();
-		
-		/// <summary>
         /// An enumeration of available profiles. If the import source does
         /// not support profiles, this attribute is null.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIArray GetSourceProfilesAttribute();
+		Gecko.JsVal GetSourceProfilesAttribute();
 		
 		/// <summary>
         /// The import source homepage.  Returns null if not present/available

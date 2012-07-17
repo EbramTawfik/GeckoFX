@@ -398,7 +398,7 @@ namespace Gecko
 	/// <summary> </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("0213cb40-2dd5-4ac8-a9d3-157bd53c3824")]
+	[Guid("1239b432-b835-4d28-9dc0-53063cb7f60f")]
 	public interface nsIXPConnect
 	{
 		
@@ -724,27 +724,6 @@ namespace Gecko
 		void NotifyDidPaint();
 		
 		/// <summary>
-        /// Define quick stubs on the given object, @a proto.
-        ///
-        /// @param cx
-        /// A context.  Requires request.
-        /// @param proto
-        /// The (newly created) prototype object for a DOM class.  The JS half
-        /// of an XPCWrappedNativeProto.
-        /// @param flags
-        /// Property flags for the quick stub properties--should be either
-        /// JSPROP_ENUMERATE or 0.
-        /// @param interfaceCount
-        /// The number of interfaces the class implements.
-        /// @param interfaceArray
-        /// The interfaces the class implements; interfaceArray and
-        /// interfaceCount are like what nsIClassInfo.getInterfaces returns.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool DefineDOMQuickStubs(System.IntPtr cx, System.IntPtr proto, uint flags, uint interfaceCount, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=3)] System.Guid[] interfaceArray);
-		
-		/// <summary>
         /// Creates a JS object holder around aObject that will hold the object
         /// alive for as long as the holder stays alive.
         /// </summary>
@@ -767,6 +746,18 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetDebugModeWhenPossible([MarshalAs(UnmanagedType.U1)] bool mode, [MarshalAs(UnmanagedType.U1)] bool allowSyncDisable);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void WriteScript([MarshalAs(UnmanagedType.Interface)] nsIObjectOutputStream aStream, System.IntPtr aJSContext, System.IntPtr aJSScript);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		System.IntPtr ReadScript([MarshalAs(UnmanagedType.Interface)] nsIObjectInputStream aStream, System.IntPtr aJSContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void WriteFunction([MarshalAs(UnmanagedType.Interface)] nsIObjectOutputStream aStream, System.IntPtr aJSContext, System.IntPtr aJSObject);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		System.IntPtr ReadFunction([MarshalAs(UnmanagedType.Interface)] nsIObjectInputStream aStream, System.IntPtr aJSContext);
 	}
 	
 	/// <summary>nsIXPConnectConsts </summary>

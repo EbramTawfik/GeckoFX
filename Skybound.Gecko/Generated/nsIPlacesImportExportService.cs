@@ -28,53 +28,16 @@ namespace Gecko
 	
 	
 	/// <summary>
-    /// The PlacesImportExport interface provides methods for importing
-    /// and exporting Places data.
+    /// The PlacesImportExport interface provides methods for exporting Places data.
+    /// The word "Import" is in the name for legacy reasons and was kept to avoid
+    /// disrupting potential extension code using the export part. The new importer
+    /// lives in BookmarkHTMLUtils.jsm.
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("47a4a09e-c708-4e68-b2f2-664d982ce026")]
 	public interface nsIPlacesImportExportService
 	{
-		
-		/// <summary>
-        /// Loads the given bookmarks.html file and replaces it with the current
-        /// bookmarks hierarchy (if aIsInitialImport is true) or appends it
-        /// (if aIsInitialImport is false).
-        ///
-        /// Three nsIObserverService notifications are fired as a result of the
-        /// import.  "bookmarks-restore-begin" is fired just before the import is
-        /// started.  "bookmarks-restore-success" is fired right after the
-        /// bookmarks are successfully imported.  "bookmarks-restore-failed" is
-        /// fired right after a failure occurs when importing the bookmarks.
-        /// Observers will be passed through their data parameters either "html"
-        /// if aIsInitialImport is false or "html-initial" if aIsInitialImport is
-        /// true.  The observer subject will be null.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ImportHTMLFromFile([MarshalAs(UnmanagedType.Interface)] nsILocalFile aFile, [MarshalAs(UnmanagedType.U1)] bool aIsInitialImport);
-		
-		/// <summary>
-        /// Same thing as importHTMLFromFile, but takes a URI instead
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ImportHTMLFromURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.U1)] bool aIsInitialImport);
-		
-		/// <summary>
-        /// Loads the given bookmarks.html file and puts it in the given folder
-        ///
-        /// Three nsIObserverService notifications are fired as a result of the
-        /// import.  "bookmarks-restore-begin" is fired just before the import is
-        /// started.  "bookmarks-restore-success" is fired right after the
-        /// bookmarks are successfully imported.  "bookmarks-restore-failed" is
-        /// fired right after a failure occurs when importing the bookmarks.
-        /// Observers will be passed through their data parameters either "html"
-        /// if aIsInitialImport is false or "html-initial" if aIsInitialImport is
-        /// true.  The observer subject will be an nsISupportsPRInt64 whose value
-        /// is aFolder.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ImportHTMLFromFileToFolder([MarshalAs(UnmanagedType.Interface)] nsILocalFile aFile, long aFolder, [MarshalAs(UnmanagedType.U1)] bool aIsInitialImport);
 		
 		/// <summary>
         /// Saves the current bookmarks hierarchy to a bookmarks.html file.

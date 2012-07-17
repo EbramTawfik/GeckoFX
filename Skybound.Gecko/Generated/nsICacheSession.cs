@@ -30,7 +30,7 @@ namespace Gecko
 	/// <summary>nsICacheSession </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("ae9e84b5-3e2d-457e-8fcd-5bbd2a8b832e")]
+	[Guid("1dd7708c-de48-4ffe-b5aa-cd218c762887")]
 	public interface nsICacheSession
 	{
 		
@@ -66,12 +66,15 @@ namespace Gecko
 		nsICacheEntryDescriptor OpenCacheEntry([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase key, System.IntPtr accessRequested, [MarshalAs(UnmanagedType.U1)] bool blockingMode);
 		
 		/// <summary>
-        /// Asynchronous cache access. Does not block the calling thread.
-        /// Instead, the listener will be notified when the descriptor is
-        /// available.
+        /// Asynchronous cache access. Does not block the calling thread. Instead,
+        /// the listener will be notified when the descriptor is available. If
+        /// 'noWait' is set to true, the listener will be notified immediately with
+        /// status NS_ERROR_CACHE_WAIT_FOR_VALIDATION rather than queuing the request
+        /// when another descriptor has been given WRITE access but hasn't validated
+        /// the entry yet.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AsyncOpenCacheEntry([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase key, System.IntPtr accessRequested, [MarshalAs(UnmanagedType.Interface)] nsICacheListener listener);
+		void AsyncOpenCacheEntry([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase key, System.IntPtr accessRequested, [MarshalAs(UnmanagedType.Interface)] nsICacheListener listener, [MarshalAs(UnmanagedType.U1)] bool noWait);
 		
 		/// <summary>
         /// Evict all entries for this session's clientID according to its storagePolicy.
@@ -86,5 +89,13 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsStorageEnabled();
+		
+		/// <summary>
+        /// Asynchronously doom an entry specified by the key. Listener will be
+        /// notified about the status of the operation. Null may be passed if caller
+        /// doesn't care about the result.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void DoomEntry([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase key, [MarshalAs(UnmanagedType.Interface)] nsICacheListener listener);
 	}
 }

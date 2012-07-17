@@ -27,27 +27,6 @@ namespace Gecko
 	using System.Windows.Forms;
 	
 	
-	/// <summary>nsIAndroidDrawMetadataProvider </summary>
-	[ComImport()]
-	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("38b5c83a-3e8d-45c2-8311-6e36bd5116c0")]
-	public interface nsIAndroidDrawMetadataProvider
-	{
-		
-		/// <summary>Member GetDrawMetadata </summary>
-		/// <param name='retval'> </param>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDrawMetadata([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
-		
-		/// <summary>
-        /// Returns true if the presentation shell corresponding to the currently-viewed document is
-        /// suppressing painting (which occurs during page transitions) and false otherwise.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool PaintingSuppressed();
-	}
-	
 	/// <summary>nsIBrowserTab </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -85,7 +64,7 @@ namespace Gecko
 	/// <summary>nsIAndroidBridge </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("7dd8441a-4f38-49b2-bd90-da69d02a96cf")]
+	[Guid("bbb8e0d7-5cca-4ad0-88be-538ce6d04f63")]
 	public interface nsIAndroidBridge
 	{
 		
@@ -94,11 +73,6 @@ namespace Gecko
 		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void HandleGeckoMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase message, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
-		
-		/// <summary>Member SetDrawMetadataProvider </summary>
-		/// <param name='provider'> </param>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDrawMetadataProvider([MarshalAs(UnmanagedType.Interface)] nsIAndroidDrawMetadataProvider provider);
 		
 		/// <summary>Member GetBrowserAppAttribute </summary>
 		/// <returns>A nsIAndroidBrowserApp</returns>

@@ -33,7 +33,7 @@ namespace Gecko
     /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("3dbaa9f4-5c93-11e1-8592-ff9bfcc3ab4b")]
+	[Guid("ac288eab-dcdb-4f6a-b94d-6c0e286d6a73")]
 	public interface nsIDOMBluetoothAdapter : nsIDOMEventTarget
 	{
 		
@@ -246,20 +246,10 @@ namespace Gecko
         /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetPowerAttribute();
-		
-		/// <summary>
-        ///This Source Code Form is subject to the terms of the Mozilla Public
-        /// License, v. 2.0. If a copy of the MPL was not distributed with this file,
-        /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPowerAttribute([MarshalAs(UnmanagedType.U1)] bool aPower);
+		bool GetEnabledAttribute();
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener GetOnpoweredAttribute();
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnpoweredAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnpowered);
+		nsIDOMDOMRequest SetEnabled([MarshalAs(UnmanagedType.U1)] bool enabled);
 	}
 }

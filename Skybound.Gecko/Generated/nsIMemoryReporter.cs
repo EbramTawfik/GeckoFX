@@ -88,21 +88,25 @@ namespace Gecko
         /// So in the example above, |a| may not count any allocations counted by
         /// |d|, and vice versa.
         ///
+        /// Reporters in this category must have kind HEAP or NONHEAP, units BYTES,
+        /// and a description that is a sentence (i.e. starts with a capital letter
+        /// and ends with a period, or similar).
+        ///
         /// - Paths starting with "smaps/" represent regions of virtual memory that the
         /// process has mapped.  The rest of the path describes the type of
         /// measurement; for instance, the reporter "smaps/rss/[stack]" might report
         /// how much of the process's stack is currently in physical memory.
         ///
-        /// Reporters in this category must have kind NONHEAP and units BYTES.
+        /// Reporters in this category must have kind NONHEAP, units BYTES, and
+        /// a non-empty description.
         ///
-        /// - Paths starting with "compartments/" represent the names of JS
-        /// compartments.  Reporters in this category must paths of the form
-        /// "compartments/user/<name>" or "compartments/system/<name>", amount 1,
-        /// kind OTHER, units COUNT, and an empty description.
+        /// - Reporters with kind SUMMARY may have any path which doesn't start with
+        /// "explicit/" or "smaps/".
         ///
         /// - All other paths represent cross-cutting values and may overlap with any
         /// other reporter.  Reporters in this category must have paths that do not
-        /// contain '/' separators, and kind OTHER.
+        /// contain '/' separators, kind OTHER, and a description that is a
+        /// sentence.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetPathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aPath);
@@ -154,6 +158,17 @@ namespace Gecko
         // - OTHER: reporters which don't fit into either of these categories. Such
         // reporters must have a path that does not start with "explicit/" or
         // "smaps/" and may have any units.
+        //
+        // - SUMMARY: reporters which report data that's available in a more
+        // detailed form via other reporters.  These reporters are sometimes
+        // useful for efficiency purposes -- for example, a KIND_SUMMARY reporter
+        // might list all the JS compartments without the overhead of the full JS
+        // memory reporter, which walks the JS heap.
+        //
+        // Unlike other reporters, SUMMARY reporters may have empty descriptions.
+        //
+        // SUMMARY reporters must not have a path starting with "explicit/" or
+        // "smaps/".
         // </summary>
 		public const int KIND_NONHEAP = 0;
 		
@@ -162,6 +177,9 @@ namespace Gecko
 		
 		// 
 		public const int KIND_OTHER = 2;
+		
+		// 
+		public const int KIND_SUMMARY = 3;
 		
 		// <summary>
         // KIND_MAPPED is a deprecated synonym for KIND_NONHEAP.  We keep it around

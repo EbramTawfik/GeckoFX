@@ -36,7 +36,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("7f57aa45-6792-4d8b-ba5b-201533cf0b2f")]
+	[Guid("53E29996-F851-4032-B896-8AAFBD0BDF25")]
 	public interface nsIDOMMouseEvent : nsIDOMUIEvent
 	{
 		
@@ -230,6 +230,12 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetScreenYAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		int GetMozMovementXAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		int GetMozMovementYAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetClientXAttribute();

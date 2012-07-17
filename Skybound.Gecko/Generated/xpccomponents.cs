@@ -273,7 +273,7 @@ namespace Gecko
         /// Force an immediate garbage collection cycle.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ForceGC(System.IntPtr jsContext);
+		void ForceGC();
 		
 		/// <summary>
         /// To be called from JS only.
@@ -281,21 +281,21 @@ namespace Gecko
         /// Force an immediate shrinking garbage collection cycle.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ForceShrinkingGC(System.IntPtr jsContext);
+		void ForceShrinkingGC();
 		
 		/// <summary>
         /// Schedule a garbage collection cycle for a point in the future when no JS
         /// is running. Call the provided function once this has occurred.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SchedulePreciseGC(ScheduledGCCallback callback, System.IntPtr jsContext);
+		void SchedulePreciseGC(ScheduledGCCallback callback);
 		
 		/// <summary>
         /// Schedule a shrinking garbage collection cycle for a point in the future
         /// when no JS is running. Call the provided function once this has occured.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SchedulePreciseShrinkingGC(ScheduledGCCallback callback, System.IntPtr jsContext);
+		void SchedulePreciseShrinkingGC(ScheduledGCCallback callback);
 		
 		/// <summary>
         /// Return the keys in a weak map.  This operation is

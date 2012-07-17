@@ -42,7 +42,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("c8c0a080-0868-11d3-915f-d9d889d48e3c")]
+	[Guid("272a5020-64f5-485c-a8c4-44b2882ae0a2")]
 	public interface nsIFile
 	{
 		
@@ -421,6 +421,184 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISimpleEnumerator GetDirectoryEntriesAttribute();
+		
+		/// <summary>
+        /// initWith[Native]Path
+        ///
+        /// This function will initialize the nsILocalFile object.  Any
+        /// internal state information will be reset.
+        ///
+        /// @param filePath
+        /// A string which specifies a full file path to a
+        /// location.  Relative paths will be treated as an
+        /// error (NS_ERROR_FILE_UNRECOGNIZED_PATH).  For
+        /// initWithNativePath, the filePath must be in the native
+        /// filesystem charset.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void InitWithPath([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase filePath);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void InitWithNativePath([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase filePath);
+		
+		/// <summary>
+        /// initWithFile
+        ///
+        /// Initialize this object with another file
+        ///
+        /// @param aFile
+        /// the file this becomes equivalent to
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void InitWithFile([MarshalAs(UnmanagedType.Interface)] nsIFile aFile);
+		
+		/// <summary>
+        /// followLinks
+        ///
+        /// This attribute will determine if the nsLocalFile will auto
+        /// resolve symbolic links.  By default, this value will be false
+        /// on all non unix systems.  On unix, this attribute is effectively
+        /// a noop.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetFollowLinksAttribute();
+		
+		/// <summary>
+        /// followLinks
+        ///
+        /// This attribute will determine if the nsLocalFile will auto
+        /// resolve symbolic links.  By default, this value will be false
+        /// on all non unix systems.  On unix, this attribute is effectively
+        /// a noop.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetFollowLinksAttribute([MarshalAs(UnmanagedType.U1)] bool aFollowLinks);
+		
+		/// <summary>
+        /// Return the result of PR_Open on the file.  The caller is
+        /// responsible for calling PR_Close on the result.
+        ///
+        /// @param flags the PR_Open flags from prio.h, plus optionally
+        /// OS_READAHEAD or DELETE_ON_CLOSE. OS_READAHEAD is a hint to the
+        /// OS that the file will be read sequentially with agressive
+        /// readahead. DELETE_ON_CLOSE may be implemented by removing the
+        /// file (by path name) immediately after opening it, so beware of
+        /// possible races; the file should be exclusively owned by this
+        /// process.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		System.IntPtr OpenNSPRFileDesc(int flags, int mode);
+		
+		/// <summary>
+        /// Return the result of fopen on the file.  The caller is
+        /// responsible for calling fclose on the result.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		System.IntPtr OpenANSIFileDesc([MarshalAs(UnmanagedType.LPStr)] string mode);
+		
+		/// <summary>
+        /// Return the result of PR_LoadLibrary on the file.  The caller is
+        /// responsible for calling PR_UnloadLibrary on the result.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		System.IntPtr Load();
+		
+		/// <summary>
+        /// number of bytes available on disk to non-superuser
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		long GetDiskSpaceAvailableAttribute();
+		
+		/// <summary>
+        /// appendRelative[Native]Path
+        ///
+        /// Append a relative path to the current path of the nsILocalFile object.
+        ///
+        /// @param relativeFilePath
+        /// relativeFilePath is a native relative path. For security reasons,
+        /// this cannot contain .. or cannot start with a directory separator.
+        /// For the |appendRelativeNativePath| method, the relativeFilePath
+        /// must be in the native filesystem charset.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void AppendRelativePath([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase relativeFilePath);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void AppendRelativeNativePath([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase relativeFilePath);
+		
+		/// <summary>
+        /// Accessor to a null terminated string which will specify
+        /// the file in a persistent manner for disk storage.
+        ///
+        /// The character set of this attribute is undefined.  DO NOT TRY TO
+        /// INTERPRET IT AS HUMAN READABLE TEXT!
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetPersistentDescriptorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aPersistentDescriptor);
+		
+		/// <summary>
+        /// Accessor to a null terminated string which will specify
+        /// the file in a persistent manner for disk storage.
+        ///
+        /// The character set of this attribute is undefined.  DO NOT TRY TO
+        /// INTERPRET IT AS HUMAN READABLE TEXT!
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetPersistentDescriptorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aPersistentDescriptor);
+		
+		/// <summary>
+        /// reveal
+        ///
+        /// Ask the operating system to open the folder which contains
+        /// this file or folder. This routine only works on platforms which
+        /// support the ability to open a folder and is run async on Windows.
+        /// This routine must be called on the main.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Reveal();
+		
+		/// <summary>
+        /// launch
+        ///
+        /// Ask the operating system to attempt to open the file.
+        /// this really just simulates "double clicking" the file on your platform.
+        /// This routine only works on platforms which support this functionality
+        /// and is run async on Windows.  This routine must be called on the
+        /// main thread.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Launch();
+		
+		/// <summary>
+        /// getRelativeDescriptor
+        ///
+        /// Returns a relative file path in an opaque, XP format. It is therefore
+        /// not a native path.
+        ///
+        /// The character set of the string returned from this function is
+        /// undefined.  DO NOT TRY TO INTERPRET IT AS HUMAN READABLE TEXT!
+        ///
+        /// @param fromFile
+        /// the file from which the descriptor is relative.
+        /// There is no defined result if this param is null.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetRelativeDescriptor([MarshalAs(UnmanagedType.Interface)] nsIFile fromFile, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
+		
+		/// <summary>
+        /// setRelativeDescriptor
+        ///
+        /// Initializes the file to the location relative to fromFile using
+        /// a string returned by getRelativeDescriptor.
+        ///
+        /// @param fromFile
+        /// the file to which the descriptor is relative
+        /// @param relative
+        /// the relative descriptor obtained from getRelativeDescriptor
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetRelativeDescriptor([MarshalAs(UnmanagedType.Interface)] nsIFile fromFile, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase relativeDesc);
 	}
 	
 	/// <summary>nsIFileConsts </summary>
@@ -437,5 +615,11 @@ namespace Gecko
 		
 		// 
 		public const ulong DIRECTORY_TYPE = 1;
+		
+		// 
+		public const ulong OS_READAHEAD = 0x40000000;
+		
+		// 
+		public const ulong DELETE_ON_CLOSE = 0x80000000;
 	}
 }

@@ -33,7 +33,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("611161c8-37d0-450f-a4fe-457c47bbaf64")]
+	[Guid("10fdea21-1224-4c29-8507-8f3205a121d5")]
 	public interface nsIApplicationCacheService
 	{
 		
@@ -92,5 +92,12 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetGroups(ref uint count, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref string[] groupIDs);
+		
+		/// <summary>
+        /// Get the list of application cache groups in the order of
+        /// activating time.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetGroupsTimeOrdered(ref uint count, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref string[] groupIDs);
 	}
 }

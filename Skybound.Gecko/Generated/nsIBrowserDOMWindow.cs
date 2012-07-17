@@ -103,6 +103,12 @@ namespace Gecko
 		public const int OPEN_NEWTAB = 3;
 		
 		// <summary>
+        // Open in an existing content tab based on the URI. If a match can't be
+        // found, revert to OPEN_NEWTAB behavior.
+        // </summary>
+		public const int OPEN_SWITCHTAB = 4;
+		
+		// <summary>
         // external link (load request from another application, xremote, etc).
         // </summary>
 		public const int OPEN_EXTERNAL = 1;

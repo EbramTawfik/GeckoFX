@@ -32,7 +32,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("DBD39C21-5788-4C68-9D97-0FCEE289BCE1")]
+	[Guid("c7325422-817e-4321-957a-c0bdd764941d")]
 	public interface nsIDocShell
 	{
 		
@@ -809,6 +809,14 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetIsBrowserFrameAttribute([MarshalAs(UnmanagedType.U1)] bool aIsBrowserFrame);
+		
+		/// <summary>
+        /// Is this docshell contained in an <iframe mozbrowser>, either directly or
+        /// indirectly?
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetContainedInBrowserFrameAttribute();
 	}
 	
 	/// <summary>nsIDocShellConsts </summary>

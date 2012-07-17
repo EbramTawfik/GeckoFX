@@ -466,6 +466,30 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOnmozfullscreenerrorAttribute(Gecko.JsVal aOnmozfullscreenerror, System.IntPtr jsContext);
 		
+		/// <summary>Member GetOnmozpointerlockchangeAttribute </summary>
+		/// <param name='jsContext'> </param>
+		/// <returns>A Gecko.JsVal</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetOnmozpointerlockchangeAttribute(System.IntPtr jsContext);
+		
+		/// <summary>Member SetOnmozpointerlockchangeAttribute </summary>
+		/// <param name='aOnmozpointerlockchange'> </param>
+		/// <param name='jsContext'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOnmozpointerlockchangeAttribute(Gecko.JsVal aOnmozpointerlockchange, System.IntPtr jsContext);
+		
+		/// <summary>Member GetOnmozpointerlockerrorAttribute </summary>
+		/// <param name='jsContext'> </param>
+		/// <returns>A Gecko.JsVal</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetOnmozpointerlockerrorAttribute(System.IntPtr jsContext);
+		
+		/// <summary>Member SetOnmozpointerlockerrorAttribute </summary>
+		/// <param name='aOnmozpointerlockerror'> </param>
+		/// <param name='jsContext'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOnmozpointerlockerrorAttribute(Gecko.JsVal aOnmozpointerlockerror, System.IntPtr jsContext);
+		
 		/// <summary>Member GetOnpauseAttribute </summary>
 		/// <param name='jsContext'> </param>
 		/// <returns>A Gecko.JsVal</returns>

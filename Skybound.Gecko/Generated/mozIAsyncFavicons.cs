@@ -48,8 +48,8 @@ namespace Gecko
         /// cache we won't do anything unless aForceReload is true, in which case
         /// we'll try to reload the favicon.
         ///
-        /// This function will only save favicons for "good" URIs, as defined by what
-        /// gets added to history or is a bookmark.  For "bad" URIs, this function
+        /// This function will only save favicons for pages that are already stored in
+        /// the database, like visited pages or bookmarks.  For any other URIs, it
         /// will succeed but do nothing.  This function will also ignore the error
         /// page favicon URI (see FAVICON_ERRORPAGE_URL below).
         ///
@@ -142,14 +142,18 @@ namespace Gecko
 		void ReplaceFaviconDataFromDataURL([MarshalAs(UnmanagedType.Interface)] nsIURI aFaviconURI, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDataURL, long aExpiration);
 		
 		/// <summary>
-        /// Retrieve the URL of the favicon for the given page.
+        /// Retrieves the favicon URI associated to the given page, if any.
         ///
         /// @param aPageURI
-        /// URI of the page whose favicon's URL we're looking up
+        /// URI of the page whose favicon URI we're looking up.
         /// @param aCallback
-        /// Once we've found the favicon's URL, we invoke this callback.  Note
-        /// that the callback's aDataLen will be 0, aData will be null, and
-        /// aMimeType will be empty -- only aURI will be non-zero/null/empty.
+        /// This callback is always invoked to notify the result of the lookup.
+        /// The aURI parameter will be the favicon URI, or null when no favicon
+        /// is associated with the page or an error occurred while fetching it.
+        ///
+        /// @note When the callback is invoked, aDataLen will be always 0, aData will
+        /// be an empty array, and aMimeType will be an empty string, regardless
+        /// of whether a favicon is associated with the page.
         ///
         /// @see nsIFaviconDataCallback in nsIFaviconService.idl.
         /// </summary>
@@ -157,13 +161,18 @@ namespace Gecko
 		void GetFaviconURLForPage([MarshalAs(UnmanagedType.Interface)] nsIURI aPageURI, [MarshalAs(UnmanagedType.Interface)] nsIFaviconDataCallback aCallback);
 		
 		/// <summary>
-        /// Retrieve the URL and data of the favicon for the given page.
+        /// Retrieves the favicon URI and data associated to the given page, if any.
         ///
         /// @param aPageURI
-        /// URI of the page whose favicon's URL and data we're looking up
+        /// URI of the page whose favicon URI and data we're looking up.
         /// @param aCallback
-        /// Once we've found the favicon's URL, we invoke this callback with
-        /// the favicon data.
+        /// This callback is always invoked to notify the result of the lookup.  The aURI
+        /// parameter will be the favicon URI, or null when no favicon is
+        /// associated with the page or an error occurred while fetching it.  If
+        /// aURI is not null, the other parameters may contain the favicon data.
+        /// However, if no favicon data is currently associated with the favicon
+        /// URI, aDataLen will be 0, aData will be an empty array, and aMimeType
+        /// will be an empty string.
         ///
         /// @see nsIFaviconDataCallback in nsIFaviconService.idl.
         /// </summary>

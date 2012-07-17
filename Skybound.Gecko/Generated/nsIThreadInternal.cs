@@ -33,7 +33,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("e0d35c22-53d5-4b48-8627-93e05b94cf2c")]
+	[Guid("504e9e1f-70e1-4f33-a785-5840a4680414")]
 	public interface nsIThreadInternal : nsIThread
 	{
 		
@@ -159,28 +159,6 @@ namespace Gecko
 		void SetObserverAttribute([MarshalAs(UnmanagedType.Interface)] nsIThreadObserver aObserver);
 		
 		/// <summary>
-        /// This method causes any events currently enqueued on the thread to be
-        /// suppressed until PopEventQueue is called.  Additionally, any new events
-        /// dispatched to the thread will only be processed if they are accepted by
-        /// the given filter.  If the filter is null, then new events are accepted.
-        /// Calls to PushEventQueue may be nested and must each be paired with a call
-        /// to PopEventQueue in order to restore the original state of the thread.
-        ///
-        /// @param filter
-        /// The thread event filter to apply to dispatched events, or null to accept
-        /// all dispatched events.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PushEventQueue([MarshalAs(UnmanagedType.Interface)] nsIThreadEventFilter filter);
-		
-		/// <summary>
-        /// Revert a call to PushEventQueue.  When an event queue is popped, any
-        /// events remaining in the queue are appended to the elder queue.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PopEventQueue();
-		
-		/// <summary>
         /// The current recursion depth, 0 when no events are running, 1 when a single
         /// event is running, and higher when nested events are running. Must only be
         /// called on the target thread.
@@ -279,28 +257,5 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void AfterProcessNextEvent([MarshalAs(UnmanagedType.Interface)] nsIThreadInternal thread, uint recursionDepth);
-	}
-	
-	/// <summary>
-    /// Interface passed to the nsIThreadInternal::PushEventQueue method.
-    /// </summary>
-	[ComImport()]
-	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("a0605c0b-17f5-4681-b8cd-a1cd75d42559")]
-	public interface nsIThreadEventFilter
-	{
-		
-		/// <summary>
-        /// This method is called to determine whether or not an event may be accepted
-        /// by a "nested" event queue (see nsIThreadInternal::PushEventQueue).
-        ///
-        /// @param event
-        /// The event being dispatched.
-        ///
-        /// WARNING: This method must not make any calls on the thread object.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool AcceptEvent([MarshalAs(UnmanagedType.Interface)] nsIRunnable @event);
 	}
 }

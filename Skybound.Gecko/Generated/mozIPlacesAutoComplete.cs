@@ -98,6 +98,12 @@ namespace Gecko
 		public const long MATCH_ANYWHERE_UNMODIFIED = 4;
 		
 		// <summary>
+        // Match only the beginning of each search term using a case sensitive
+        // comparator.
+        // </summary>
+		public const long MATCH_BEGINNING_CASE_SENSITIVE = 5;
+		
+		// <summary>
         // Search through history.
         // </summary>
 		public const long BEHAVIOR_HISTORY = 1<<0;

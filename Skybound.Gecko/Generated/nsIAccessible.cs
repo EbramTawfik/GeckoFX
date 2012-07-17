@@ -39,7 +39,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("e7c44e0d-736e-4ead-afee-b51f4b574020")]
+	[Guid("46d422d1-c92f-4536-bdef-f77bc8350ec7")]
 	public interface nsIAccessible
 	{
 		
@@ -97,14 +97,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetIndexInParentAttribute();
-		
-		/// <summary>
-        /// The innerHTML for the HTML element associated with this accessible if applicable.
-        /// This is a text string of all the markup inside the DOM
-        /// node, not including the start and end tag for the node.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetInnerHTMLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aInnerHTML);
 		
 		/// <summary>
         /// The DOM node this nsIAccessible is associated with.

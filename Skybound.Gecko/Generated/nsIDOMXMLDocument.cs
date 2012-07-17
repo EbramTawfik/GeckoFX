@@ -30,7 +30,7 @@ namespace Gecko
 	/// <summary>nsIDOMXMLDocument </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("b53a4bab-0065-468b-810a-4c4659a04f00")]
+	[Guid("18C55EFC-560B-4BDD-9776-A8D239EF7052")]
 	public interface nsIDOMXMLDocument : nsIDOMDocument
 	{
 		
@@ -747,7 +747,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMHTMLElement GetMozFullScreenElementAttribute();
+		new nsIDOMElement GetMozFullScreenElementAttribute();
 		
 		/// <summary>
         /// Causes the document to leave DOM full-screen mode, if it's in
@@ -778,6 +778,24 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetMozFullScreenEnabledAttribute();
+		
+		/// <summary>
+        /// The element to which the mouse pointer is locked, if any, as per the
+        /// DOM pointer lock api.
+        ///
+        /// @see <http://dvcs.w3.org/hg/pointerlock/raw-file/default/index.html>
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMElement GetMozPointerLockElementAttribute();
+		
+		/// <summary>
+        /// Exit pointer is lock if locked, as per the DOM pointer lock api.
+        ///
+        /// @see <http://dvcs.w3.org/hg/pointerlock/raw-file/default/index.html>
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void MozExitPointerLock();
 		
 		/// <summary>
         /// Inline event handler for readystatechange events.

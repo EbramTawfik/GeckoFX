@@ -534,12 +534,7 @@ namespace GeckofxUnitTests
 		{
 			throw new NotImplementedException();
 		}
-
-		public nsIDOMStorageList GetGlobalStorageAttribute()
-		{
-			throw new NotImplementedException();
-		}
-
+		
 
 		public IntPtr GetOnafterprintAttribute()
 		{

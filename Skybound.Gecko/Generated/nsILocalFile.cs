@@ -28,14 +28,13 @@ namespace Gecko
 	
 	
 	/// <summary>
-    /// This interface adds methods to nsIFile that are particular to a file
-    /// that is accessible via the local file system.
+    /// An empty interface to provide backwards compatibility for existing code.
     ///
-    /// It follows the same string conventions as nsIFile.
+    /// @see nsIFile
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("aa610f20-a889-11d3-8c81-000064657374")]
+	[Guid("ce4ef184-7660-445e-9e59-6731bdc65505")]
 	public interface nsILocalFile : nsIFile
 	{
 		
@@ -429,10 +428,10 @@ namespace Gecko
         /// filesystem charset.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitWithPath([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase filePath);
+		new void InitWithPath([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase filePath);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitWithNativePath([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase filePath);
+		new void InitWithNativePath([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase filePath);
 		
 		/// <summary>
         /// initWithFile
@@ -443,7 +442,7 @@ namespace Gecko
         /// the file this becomes equivalent to
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitWithFile([MarshalAs(UnmanagedType.Interface)] nsILocalFile aFile);
+		new void InitWithFile([MarshalAs(UnmanagedType.Interface)] nsIFile aFile);
 		
 		/// <summary>
         /// followLinks
@@ -455,7 +454,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetFollowLinksAttribute();
+		new bool GetFollowLinksAttribute();
 		
 		/// <summary>
         /// followLinks
@@ -466,7 +465,7 @@ namespace Gecko
         /// a noop.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetFollowLinksAttribute([MarshalAs(UnmanagedType.U1)] bool aFollowLinks);
+		new void SetFollowLinksAttribute([MarshalAs(UnmanagedType.U1)] bool aFollowLinks);
 		
 		/// <summary>
         /// Return the result of PR_Open on the file.  The caller is
@@ -481,27 +480,27 @@ namespace Gecko
         /// process.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr OpenNSPRFileDesc(int flags, int mode);
+		new System.IntPtr OpenNSPRFileDesc(int flags, int mode);
 		
 		/// <summary>
         /// Return the result of fopen on the file.  The caller is
         /// responsible for calling fclose on the result.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr OpenANSIFileDesc([MarshalAs(UnmanagedType.LPStr)] string mode);
+		new System.IntPtr OpenANSIFileDesc([MarshalAs(UnmanagedType.LPStr)] string mode);
 		
 		/// <summary>
         /// Return the result of PR_LoadLibrary on the file.  The caller is
         /// responsible for calling PR_UnloadLibrary on the result.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr Load();
+		new System.IntPtr Load();
 		
 		/// <summary>
         /// number of bytes available on disk to non-superuser
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		long GetDiskSpaceAvailableAttribute();
+		new long GetDiskSpaceAvailableAttribute();
 		
 		/// <summary>
         /// appendRelative[Native]Path
@@ -515,20 +514,10 @@ namespace Gecko
         /// must be in the native filesystem charset.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AppendRelativePath([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase relativeFilePath);
+		new void AppendRelativePath([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase relativeFilePath);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AppendRelativeNativePath([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase relativeFilePath);
-		
-		/// <summary>
-        /// Accessor to a null terminated string which will specify
-        /// the file in a persistent manner for disk storage.
-        ///
-        /// The character set of this attribute is undefined.  DO NOT TRY TO
-        /// INTERPRET IT AS HUMAN READABLE TEXT!
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPersistentDescriptorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aPersistentDescriptor);
+		new void AppendRelativeNativePath([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase relativeFilePath);
 		
 		/// <summary>
         /// Accessor to a null terminated string which will specify
@@ -538,7 +527,17 @@ namespace Gecko
         /// INTERPRET IT AS HUMAN READABLE TEXT!
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPersistentDescriptorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aPersistentDescriptor);
+		new void GetPersistentDescriptorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aPersistentDescriptor);
+		
+		/// <summary>
+        /// Accessor to a null terminated string which will specify
+        /// the file in a persistent manner for disk storage.
+        ///
+        /// The character set of this attribute is undefined.  DO NOT TRY TO
+        /// INTERPRET IT AS HUMAN READABLE TEXT!
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetPersistentDescriptorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aPersistentDescriptor);
 		
 		/// <summary>
         /// reveal
@@ -549,7 +548,7 @@ namespace Gecko
         /// This routine must be called on the main.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Reveal();
+		new void Reveal();
 		
 		/// <summary>
         /// launch
@@ -561,7 +560,7 @@ namespace Gecko
         /// main thread.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Launch();
+		new void Launch();
 		
 		/// <summary>
         /// getRelativeDescriptor
@@ -577,7 +576,7 @@ namespace Gecko
         /// There is no defined result if this param is null.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetRelativeDescriptor([MarshalAs(UnmanagedType.Interface)] nsILocalFile fromFile, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
+		new void GetRelativeDescriptor([MarshalAs(UnmanagedType.Interface)] nsIFile fromFile, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
 		
 		/// <summary>
         /// setRelativeDescriptor
@@ -591,17 +590,6 @@ namespace Gecko
         /// the relative descriptor obtained from getRelativeDescriptor
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetRelativeDescriptor([MarshalAs(UnmanagedType.Interface)] nsILocalFile fromFile, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase relativeDesc);
-	}
-	
-	/// <summary>nsILocalFileConsts </summary>
-	public class nsILocalFileConsts
-	{
-		
-		// 
-		public const ulong OS_READAHEAD = 0x40000000;
-		
-		// 
-		public const ulong DELETE_ON_CLOSE = 0x80000000;
+		new void SetRelativeDescriptor([MarshalAs(UnmanagedType.Interface)] nsIFile fromFile, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase relativeDesc);
 	}
 }
