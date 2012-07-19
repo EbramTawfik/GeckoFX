@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Geckofx_Winforms</RootNamespace>
-    <AssemblyName>Geckofx-Winforms</AssemblyName>
+    <AssemblyName>Geckofx-Winforms-14</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
