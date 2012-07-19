@@ -24,7 +24,6 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-	using System.Windows.Forms;
 	
 	
 	/// <summary>nsIIPCSerializable </summary>
@@ -45,6 +44,6 @@ namespace Gecko
 		/// <summary>Member Write </summary>
 		/// <param name='msg'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Write(Message msg);
+		void Write(System.IntPtr msg);
 	}
 }

@@ -24,7 +24,7 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-	using System.Windows.Forms;
+
 	
 	
 	/// <summary>nsIUserCertPicker </summary>
