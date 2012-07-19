@@ -12,10 +12,10 @@ namespace Gecko
 	/// </summary>
 	[Obsolete("Use the DocumentCompleted event instead of the NavigateFinished event.",false)]
 	public class NavigateFinishedNotifier : IDisposable
-	{		
-		GeckoWebBrowser m_browser;
+	{
+		IGeckoWebBrowser m_browser;
 
-		public NavigateFinishedNotifier(GeckoWebBrowser browser)
+		public NavigateFinishedNotifier(IGeckoWebBrowser browser)
 		{
 			m_browser = browser;
 		}		

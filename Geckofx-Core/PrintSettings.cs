@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Windows.Forms;
 
 namespace Gecko
 {
-	class PrintSettings : nsIPrintSettings
+	public class PrintSettings : nsIPrintSettings
 	{
 		Dictionary<int, bool> m_printOptions = new Dictionary<int, bool>();
 		int m_printOptionsBits;
@@ -766,8 +765,6 @@ namespace Gecko
 		public void SetupSilentPrinting()
 		{
 			Console.WriteLine("66");
-			Application.DoEvents();
-			Application.RaiseIdle(new EventArgs());
 		}
 
 		public void SetUnwriteableMarginInTwips(IntPtr aEdge)

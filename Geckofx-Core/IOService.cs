@@ -21,7 +21,7 @@ namespace Gecko
 			get { return _service.Instance.GetOfflineAttribute(); }
 			set{_service.Instance.SetOfflineAttribute( value );}
 		}
-		internal static nsIURI CreateNsIUri(string url)
+		public static nsIURI CreateNsIUri(string url)
 		{
 			nsIURI ret;
 			using (var str = new nsAUTF8String(url))

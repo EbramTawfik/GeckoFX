@@ -9,7 +9,7 @@ namespace Gecko.Utils
     /// </summary> 
     public class SaveImageElement
     {
-        internal static GeckoCanvasElement CreateCanvasOfImageElement(GeckoWebBrowser browser, GeckoHtmlElement element, float xOffset,
+		internal static GeckoCanvasElement CreateCanvasOfImageElement(IGeckoWebBrowser browser, GeckoHtmlElement element, float xOffset,
                                                            float yOffset, float width, float height)
         {
             if (width == 0)
@@ -43,7 +43,7 @@ namespace Gecko.Utils
         /// Need the GeckoWebBrowser , ImageElement , X-OffSet , Y-Offset (put 0.0F if you want offset), Width , height) 
         /// Return the png image in data bytes[] 
         /// </summary>
-        public static byte[] ConvertGeckoImageElementToPng(GeckoWebBrowser browser, GeckoHtmlElement element, float xOffset,
+		public static byte[] ConvertGeckoImageElementToPng(IGeckoWebBrowser browser, GeckoHtmlElement element, float xOffset,
                                                            float yOffset, float width, float height)
         {
             GeckoCanvasElement canvas = CreateCanvasOfImageElement(browser, element, xOffset, yOffset, width, height);
@@ -57,7 +57,7 @@ namespace Gecko.Utils
         /// Need the GeckoWebBrowser , ImageElement , X-OffSet , Y-Offset (put 0.0F if you want offset), Width , height)
         /// Return true if the image was copied in the ClipBoard
         /// </summary>
-        public bool CopyGeckoImageElementToPng(GeckoWebBrowser browser, GeckoHtmlElement element, float xOffset,
+		public bool CopyGeckoImageElementToPng(IGeckoWebBrowser browser, GeckoHtmlElement element, float xOffset,
                                                       float yOffset, float width, float height)
         {
             GeckoCanvasElement canvas = CreateCanvasOfImageElement(browser, element, xOffset, yOffset, width, height);

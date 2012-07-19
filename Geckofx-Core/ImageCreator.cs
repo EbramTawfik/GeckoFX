@@ -12,9 +12,9 @@ namespace Gecko
 	/// </summary>
 	public class ImageCreator
 	{
-		GeckoWebBrowser m_browser;
+		IGeckoWebBrowser m_browser;
 
-		public ImageCreator(GeckoWebBrowser browser)
+		public ImageCreator(IGeckoWebBrowser browser)
 		{
 			if (Xpcom.IsLinux)
 				throw new NotImplementedException();
@@ -97,6 +97,7 @@ namespace Gecko
 			return CanvasGetPngImage(0, 0, width, height);
 		}
 
+#if false // TODO move these method this into Geckofx-Winforms.
 		public byte[] GraphicsGetBitmapPng(int width, int height)
 		{
 			return GraphicsGetBitmapPng(0, 0, width, height);
@@ -117,6 +118,7 @@ namespace Gecko
 			}
 			return ret;
 		}
+#endif
 
 		/// <summary>
 		/// Capture whole WebBrowser window (Only on MS Windows Platform)

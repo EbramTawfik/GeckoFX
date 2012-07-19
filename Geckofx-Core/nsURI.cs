@@ -150,7 +150,7 @@ namespace Gecko
 
 		#endregion
 
-		internal static Uri ToUri(nsIURI value )
+		public static Uri ToUri(nsIURI value )
 		{
 			if (value == null) return null;
 			var spec=nsString.Get( value.GetSpecAttribute );

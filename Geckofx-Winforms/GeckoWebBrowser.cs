@@ -52,7 +52,8 @@ namespace Gecko
 	/// <summary>
 	/// A Gecko-based web browser.
 	/// </summary>
-	public partial class GeckoWebBrowser : 
+	public partial class GeckoWebBrowser :
+ 		IGeckoWebBrowser, 
 		nsIWebBrowserChrome,
 		nsIContextMenuListener2,
 		nsIWebProgressListener,

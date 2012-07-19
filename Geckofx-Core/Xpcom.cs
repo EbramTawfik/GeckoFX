@@ -293,9 +293,14 @@ namespace Gecko
 			nsIDirectoryService directoryService = GetService<nsIDirectoryService>("@mozilla.org/file/directory_service;1");
 			if (directoryService != null)
 				directoryService.RegisterProvider(new ProfileProvider());
+#if TODO 
+
+			// TODO: refactor so that all the PrompFactoryFactory and be called
+			// even though it exists in other modules. (Use interface or delegates)
 
 			if (UseCustomPrompt)
 				PromptFactoryFactory.Register();
+#endif
 			
 			_IsInitialized = true;
 		}

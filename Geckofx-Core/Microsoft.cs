@@ -26,7 +26,7 @@ namespace GeckoFX.Microsoft
 		public static extern IntPtr SelectObject(IntPtr hDC, IntPtr hObject);
 	}
 
-	internal static class User32
+	public static class User32
 	{
 		[StructLayout(LayoutKind.Sequential)]
 		public struct RECT

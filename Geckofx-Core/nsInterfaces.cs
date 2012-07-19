@@ -46,7 +46,7 @@ namespace Gecko
 		eDirPrevious = 1
 	};
 
-	static class nsIWebBrowserChromeConstants
+	public static class nsIWebBrowserChromeConstants
 	{
 		public const int STATUS_SCRIPT = 1;
 		public const int STATUS_SCRIPT_DEFAULT = 2;
@@ -78,7 +78,7 @@ namespace Gecko
 		public const int CHROME_ALL = 4094;
 	}
 
-	static class nsIXulWindowConstants
+	public static class nsIXulWindowConstants
 	{
 		public const uint lowestZ = 0;
 		public const uint loweredZ = 4;	// "alwaysLowered" attribute
@@ -86,8 +86,8 @@ namespace Gecko
 		public const uint raisedZ = 6;	// "alwaysRaised" attribute
 		public const uint highestZ = 9;
 	}
-	
-	static class nsIWebNavigationConstants
+
+	public static class nsIWebNavigationConstants
 	{
 		/****************************************************************************
 		 * The following flags may be bitwise combined to form the load flags
@@ -117,7 +117,7 @@ namespace Gecko
 		public const int STOP_ALL = 3;
 	}
 
-	static class nsIWebBrowserPersistConstants
+	public static class nsIWebBrowserPersistConstants
 	{
 		public const uint PERSIST_FLAGS_NONE = 0;
 		public const uint PERSIST_FLAGS_FROM_CACHE = 1;
@@ -160,7 +160,7 @@ namespace Gecko
 		public const uint ENCODE_FLAGS_ENCLODE_HTML_ENTITIES = 32768;
 	}
 
-	static class nsIContextMenuListener2Constants
+	public static class nsIContextMenuListener2Constants
 	{
 		public const uint CONTEXT_NONE = 0;
 		public const uint CONTEXT_LINK = 1;
@@ -171,7 +171,7 @@ namespace Gecko
 		public const uint CONTEXT_BACKGROUND_IMAGE = 32;
 	}
 
-	static class imgIContainerConstants
+	public static class imgIContainerConstants
 	{
 		public const ushort TYPE_RASTER = 0;
 		public const ushort TYPE_VECTOR = 1;
@@ -189,15 +189,15 @@ namespace Gecko
 		public const short kDontAnimMode = 1;
 		public const short kLoopOnceAnimMode = 2;
 	}
-	
-	static class nsIEmbeddingSiteWindowConstants
+
+	public static class nsIEmbeddingSiteWindowConstants
 	{
 		public const int DIM_FLAGS_POSITION = 1;
 		public const int DIM_FLAGS_SIZE_INNER = 2;
 		public const int DIM_FLAGS_SIZE_OUTER = 4;
 	}
-	
-	static class nsIDocShellTreeItemConstants
+
+	public static class nsIDocShellTreeItemConstants
 	{
 		public const int typeChrome = 0;
 		public const int typeContent = 1;
@@ -205,8 +205,8 @@ namespace Gecko
 		public const int typeChromeWrapper = 3;
 		public const int typeAll = 2147483647;
 	}
-	
-	static class nsIWebProgressListenerConstants
+
+	public static class nsIWebProgressListenerConstants
 	{
 		// State transition flags
 		public const ulong STATE_START = 0x1;
@@ -242,7 +242,8 @@ namespace Gecko
 	/// <summary>
 	/// attribute nsLoadFlags nsIRequest::loadFlags
 	/// </summary>
-	static class nsIRequestLoadFlagsConstants {
+	public static class nsIRequestLoadFlagsConstants
+	{
 
 		/// <summary>
 		/// Indicates no special load flags.
@@ -290,7 +291,7 @@ namespace Gecko
 		public const ulong VALIDATE_ONCE_PER_SESSION = 1 << 13;
 	}
 
-	static class nsIDOMNodeConstants
+	public static class nsIDOMNodeConstants
 	{
 		public const int ELEMENT_NODE = 1;
 		public const int ATTRIBUTE_NODE = 2;
@@ -306,7 +307,7 @@ namespace Gecko
 		public const int NOTATION_NODE = 12;
 	}
 
-	static class nsIDataTypeConstants
+	public static class nsIDataTypeConstants
 	{
 		public const int VTYPE_INT8 = 0; // TD_INT8					= 0,
 		public const int VTYPE_INT16 = 1; // TD_INT16				= 1,
@@ -336,9 +337,9 @@ namespace Gecko
 		public const int VTYPE_ASTRING = 25; // TD_ASTRING				= 25,
 		public const int VTYPE_EMPTY_ARRAY = 254;
 		public const int VTYPE_EMPTY = 255;
-	}	
-	
-	class PRUnicharMarshaler : ICustomMarshaler
+	}
+
+	public class PRUnicharMarshaler : ICustomMarshaler
 	{
 		public static ICustomMarshaler GetInstance(string cookie)
 		{
@@ -362,9 +363,9 @@ namespace Gecko
 		{
 			return Marshal.PtrToStringUni(pNativeData);
 		}
-	}	
+	}
 
-	static class nsIPromptServiceConstants
+	public static class nsIPromptServiceConstants
 	{
 		public const int BUTTON_POS_0 = 1;
 		public const int BUTTON_POS_1 = 256;
@@ -395,7 +396,7 @@ namespace Gecko
 	}
 
     /// <see cref="https://developer.mozilla.org/en/XPCOM_Interface_Reference/nsIHttpActivityObserver"/>
-    static class nsIHttpActivityObserverConstants
+	public static class nsIHttpActivityObserverConstants
     {
         public const uint ACTIVITY_TYPE_SOCKET_TRANSPORT = 0x0001;
         public const uint ACTIVITY_TYPE_HTTP_TRANSACTION = 0x0002;
@@ -407,7 +408,7 @@ namespace Gecko
     }
 
     /// <see cref="https://developer.mozilla.org/en/XPCOM_Interface_Reference/nsISocketTransport"/>
-    static class nsISocketTransportConstants
+	public static class nsISocketTransportConstants
     {
         public const uint STATUS_RESOLVING      = 0x804b0003;
         public const uint STATUS_RESOLVED       = 0x804b000b;
@@ -418,7 +419,7 @@ namespace Gecko
         public const uint STATUS_RECEIVING_FROM = 0x804b0006;
     }
 
-    static class nsISeekableStreamConstants
+	public static class nsISeekableStreamConstants
     {
         public const int    NS_SEEK_SET = 0;
         public const int    NS_SEEK_CUR = 1;

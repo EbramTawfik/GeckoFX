@@ -10,13 +10,14 @@ namespace Gecko.Listeners
     {
         protected System.WeakReference _weakBrowser;
 
-        protected GeckoWebBrowser _browser {
+		protected IGeckoWebBrowser _browser
+		{
             get {
                 if (!_weakBrowser.IsAlive) return null;
-                GeckoWebBrowser b = (GeckoWebBrowser)_weakBrowser.Target;
+				IGeckoWebBrowser b = (IGeckoWebBrowser)_weakBrowser.Target;
                 if (b.IsDisposed) return null;
 
-                return (GeckoWebBrowser)b;
+				return (IGeckoWebBrowser)b;
             }
         }
 

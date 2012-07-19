@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using System.Drawing;
 using System.Diagnostics;
 using Gecko.DOM;
 

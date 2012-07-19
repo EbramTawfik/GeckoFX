@@ -75,7 +75,6 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="gdk-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f">
       <SpecificVersion>False</SpecificVersion>
@@ -166,6 +165,7 @@
     <Compile Include="Generated\nsISmsRequestManager.cs" />
     <Compile Include="Generated\nsIWifi.cs" />
     <Compile Include="Generated\nsIWorkerHolder.cs" />
+    <Compile Include="Interfaces\IGeckoWebBrowser.cs" />
     <Compile Include="Images\ImageContainer.cs" />
     <Compile Include="Interop\ExceptionTranslator.cs" />
     <Compile Include="Interop\SimpleNameMaps.cs" />
@@ -177,7 +177,6 @@
     <Compile Include="RandomGenerator.cs" />
     <Compile Include="Services\ExceptionService.cs" />
     <Compile Include="Services\WindowWatcher.cs" />
-    <Compile Include="Utils\SaveImageElement.cs" />
     <Compile Include="Variant.cs" />
     <Compile Include="WiFiMonitor.cs" />
     <Compile Include="WindowMediator.cs" />
@@ -202,7 +201,6 @@
     <Compile Include="Generated\nsISmsService.cs" />
     <Compile Include="Generated\nsIWebSocket.cs" />
     <Compile Include="Interop\InstanceWrapper.cs" />
-    <Compile Include="Interop\nsWeakReference.cs" />
     <Compile Include="IOService.cs" />
     <Compile Include="Listeners\GeckoBaseListener.cs" />
     <Compile Include="Listeners\GeckoDOMEventListener.cs" />
@@ -228,12 +226,6 @@
     <Compile Include="Certificates\CertificateValidity.cs" />
     <Compile Include="Certificates\CertTree.cs" />
     <Compile Include="Certificates\CertTreeItem.cs" />
-    <Compile Include="ChromeDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ChromeDialog.Designer.cs">
-      <DependentUpon>ChromeDialog.cs</DependentUpon>
-    </Compile>
     <Compile Include="Collections\GeckoArray.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -241,12 +233,6 @@
     <Compile Include="Collections\GeckoEnumerableCollection.cs" />
     <Compile Include="Collections\GeckoEnumerator.cs" />
     <Compile Include="Collections\StringEnumerator.cs" />
-    <Compile Include="ConfirmDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ConfirmDialog.Designer.cs">
-      <DependentUpon>ConfirmDialog.cs</DependentUpon>
-    </Compile>
     <Compile Include="Services\ConsoleService.cs" />
     <Compile Include="Contracts.cs" />
     <Compile Include="DOM\DocumentFragment.cs" />
@@ -258,15 +244,6 @@
     <Compile Include="DOM\Svg\SvgSvgElement.cs" />
     <Compile Include="DOM\Xul\XulElement.cs" />
     <Compile Include="DOM\GeckoDomDocument.cs" />
-    <Compile Include="GeckoWebBrowser.Events.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="GeckoWebBrowser.GTK.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="GeckoWebBrowser.WinForms.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Interop\MemCopy.cs" />
     <Compile Include="Interop\nsSupports.cs" />
     <Compile Include="Interop\WrapperManager.cs" />
@@ -354,7 +331,6 @@
     <Compile Include="DOM\Html\HTMLUListElement.cs" />
     <Compile Include="DOM\GeckoComment.cs" />
     <Compile Include="GeckoElementExtensions.cs" />
-    <Compile Include="GeckoHelperAppLauncherDialog.cs" />
     <Compile Include="GeckoMarkupDocumentViewer.cs" />
     <Compile Include="GeckoMIMEInputStream.cs" />
     <Compile Include="GeckoMouseButton.cs" />
@@ -1558,13 +1534,9 @@
     <Compile Include="GeckoResponse.cs" />
     <Compile Include="GeckoSelection.cs" />
     <Compile Include="DOM\GeckoStyle.cs" />
-    <Compile Include="GeckoWebBrowser.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Generated\xpctest_interfaces.cs" />
     <Compile Include="ImageCreator.cs" />
     <Compile Include="JavascriptErrorEventArgs.cs" />
-    <Compile Include="NavigateFinishedNotifier.cs" />
     <Compile Include="DOM\NodeType.cs" />
     <Compile Include="nsInterfaces.cs" />
     <Compile Include="nsString.cs" />
@@ -1572,31 +1544,12 @@
     <Compile Include="ObserverNotifications.cs" />
     <Compile Include="Observers\ObserverService.cs" />
     <Compile Include="Observers\BaseHttpModifyRequestObserver.cs" />
-    <Compile Include="PasswordDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PasswordDialog.Designer.cs">
-      <DependentUpon>PasswordDialog.cs</DependentUpon>
-    </Compile>
     <Compile Include="Pipe.cs" />
     <Compile Include="Plugins\PluginHost.cs" />
     <Compile Include="Plugins\PluginTag.cs" />
     <Compile Include="PrintSettings.cs" />
     <Compile Include="PrivateBrowsingService.cs" />
-    <Compile Include="PromptDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PromptDialog.Designer.cs">
-      <DependentUpon>PromptDialog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PromptService.cs" />
     <Compile Include="Properties.cs" />
-    <Compile Include="PropertiesDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PropertiesDialog.Designer.cs">
-      <DependentUpon>PropertiesDialog.cs</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Search\SearchEngine.cs" />
     <Compile Include="Search\SearchSubmission.cs" />
@@ -1611,37 +1564,12 @@
     <Compile Include="Windows\Taskbar\JumpListShortcut.cs" />
     <Compile Include="Windows\Taskbar\WinTaskbar.cs" />
     <Compile Include="Xpcom.cs" />
-    <Compile Include="GtkWrapperNoThread.cs" />
-    <Compile Include="X11Structs.cs" />
     <Compile Include="XULRunnerLocator.cs" />
     <Compile Include="OffScreenGeckoWebBrowser.cs" />
-    <Compile Include="GtkReparentingWrapperNoThread.cs" />
     <Compile Include="GtkOnceOnly.cs" />
     <None Include="geckofx-14.dll.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="ChromeDialog.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>ChromeDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ConfirmDialog.resx">
-      <DependentUpon>ConfirmDialog.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PasswordDialog.resx">
-      <DependentUpon>PasswordDialog.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PromptDialog.resx">
-      <DependentUpon>PromptDialog.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PropertiesDialog.resx">
-      <DependentUpon>PropertiesDialog.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Readme.txt" />
