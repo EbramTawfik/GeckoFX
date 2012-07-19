@@ -89,6 +89,20 @@ namespace Gecko
 		uint ChromeFlags;
 		bool m_javascriptDebuggingEnabled;
 		#endregion
+
+		#region static constructor
+
+		static GeckoWebBrowser()
+		{
+			Xpcom.AfterInitalization += () =>
+			{
+				if (Xpcom.UseCustomPrompt)
+					PromptFactoryFactory.Register();
+			};
+		}
+
+		#endregion
+
 		/// <summary>
 		/// Initializes a new instance of <see cref="GeckoWebBrowser"/>.
 		/// </summary>

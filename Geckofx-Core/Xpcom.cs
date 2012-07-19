@@ -149,6 +149,20 @@ namespace Gecko
 		private static string _xulrunnerVersion;
 		#endregion
 
+		#region Events
+
+		/// <summary>
+		/// Occurs once after XpCom has been initalized.
+		/// </summary>
+		public static event Action BeforeInitalization;
+
+		/// <summary>
+		/// Occurs once after XpCom has been initalized.
+		/// </summary>
+		public static event Action AfterInitalization;
+
+		#endregion
+
 		#region CLR runtime
 		/// <summary>
 		/// GeckoFX is running on Linux
@@ -224,6 +238,9 @@ namespace Gecko
 			if (_IsInitialized)
 				return;
 
+			if (BeforeInitalization != null)
+				BeforeInitalization();
+
 			Interlocked.Exchange(ref _XpcomThreadId, Thread.CurrentThread.ManagedThreadId);
 
 			if (IsWindows)
@@ -293,14 +310,9 @@ namespace Gecko
 			nsIDirectoryService directoryService = GetService<nsIDirectoryService>("@mozilla.org/file/directory_service;1");
 			if (directoryService != null)
 				directoryService.RegisterProvider(new ProfileProvider());
-#if TODO 
 
-			// TODO: refactor so that all the PrompFactoryFactory and be called
-			// even though it exists in other modules. (Use interface or delegates)
-
-			if (UseCustomPrompt)
-				PromptFactoryFactory.Register();
-#endif
+			if (AfterInitalization != null)
+				AfterInitalization();
 			
 			_IsInitialized = true;
 		}
@@ -361,6 +373,8 @@ namespace Gecko
 			}
 		}
 
+		// TODO: remove UseCustomPrompt from Xpcom.		
+		[Obsolete]
 		public static bool UseCustomPrompt
 		{
 			get;
