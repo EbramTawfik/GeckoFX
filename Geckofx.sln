@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skybound.Gecko", "Skybound.Gecko.csproj", "{6AB4EEE6-1889-43AB-83F7-A4F083230BE7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skybound.Gecko", "Geckofx-Core\Skybound.Gecko.csproj", "{6AB4EEE6-1889-43AB-83F7-A4F083230BE7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeckoFxTest", "..\GeckoFxTest\GeckoFxTest.csproj", "{9F904D01-0295-4866-8F11-34482E2E2715}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeckoFxTest", "GeckoFxTest\GeckoFxTest.csproj", "{9F904D01-0295-4866-8F11-34482E2E2715}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeckofxUnitTests", "..\GeckofxUnitTests\GeckofxUnitTests.csproj", "{F11A8E22-9540-472A-8D08-8262060A33AD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeckofxUnitTests", "GeckofxUnitTests\GeckofxUnitTests.csproj", "{F11A8E22-9540-472A-8D08-8262060A33AD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -93,6 +93,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = ..\GeckoFxTest\GeckoFxTest.csproj
+		StartupItem = GeckoFxTest\GeckoFxTest.csproj
 	EndGlobalSection
 EndGlobal
