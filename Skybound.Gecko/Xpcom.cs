@@ -37,7 +37,6 @@ using System;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
-using System.Windows.Forms;
 using System.Runtime.CompilerServices;
 using GeckoFX.Microsoft;
 using System.Threading;
@@ -232,23 +231,7 @@ namespace Gecko
 			
 			string folder = binDirectory ?? Environment.CurrentDirectory;
 			string xpcomPath = Path.Combine(folder, IsLinux ? "libxpcom.so" : "xpcom.dll");
-			
-			if (Debugger.IsAttached)
-			{
-				// make sure this DLL is there
-				if (!File.Exists(xpcomPath))
-				{
-					if (MessageBox.Show("Couldn't find XULRunner in '" + folder + "'.  Call Xpcom.Initialize() in your application startup code and specify the directory where XULRunner is installed.\r\n\r\n" +
-						"If you do not have XULRunner installed, click Yes to open the download page.  Otherwise, click No, and update your application startup code.",
-							"XULRunner Not Found", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.Yes)
-					{
-						Process.Start("http://releases.mozilla.org/pub/mozilla.org/xulrunner/releases/1.9.1.2/runtimes/xulrunner-1.9.1.2.en-US.win32.zip");
-					}
-					
-					Environment.Exit(0);
-				}
-			}
-
+						
 			try
 			{
 				// works on windows
