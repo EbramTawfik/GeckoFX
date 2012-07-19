@@ -71,7 +71,7 @@ namespace Gecko
 				}
 				else
 				{
-					path = System.Windows.Forms.Application.ExecutablePath;
+					path = AppDomain.CurrentDomain.BaseDirectory;					
 				}
 				return Directory.GetParent(path).FullName;
 			}
