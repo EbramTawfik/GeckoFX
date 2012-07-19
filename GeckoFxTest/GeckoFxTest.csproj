@@ -96,7 +96,7 @@
     <Compile Include="AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Skybound.Gecko\Skybound.Gecko.csproj">
+    <ProjectReference Include="..\Geckofx-Core\Skybound.Gecko.csproj">
       <Project>{6AB4EEE6-1889-43AB-83F7-A4F083230BE7}</Project>
       <Name>Skybound.Gecko</Name>
     </ProjectReference>
@@ -106,7 +106,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <None Include="..\Skybound.Gecko\geckofx-14.dll.config">
+    <None Include="..\Geckofx-Core\geckofx-14.dll.config">
       <Link>geckofx-11.dll.config</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Gettext-ScanForTranslations>false</Gettext-ScanForTranslations>

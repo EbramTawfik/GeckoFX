@@ -99,7 +99,7 @@
     <None Include="NUnit\nunit.core.dll" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Skybound.Gecko\Skybound.Gecko.csproj">
+    <ProjectReference Include="..\Geckofx-Core\Skybound.Gecko.csproj">
       <Project>{6AB4EEE6-1889-43AB-83F7-A4F083230BE7}</Project>
       <Name>Skybound.Gecko</Name>
     </ProjectReference>
