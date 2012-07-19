@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Skybound.Gecko", "Geckofx-Core\Skybound.Gecko.csproj", "{6AB4EEE6-1889-43AB-83F7-A4F083230BE7}"
+# Visual C# Express 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geckofx-Core", "Geckofx-Core\Geckofx-Core.csproj", "{6AB4EEE6-1889-43AB-83F7-A4F083230BE7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeckoFxTest", "GeckoFxTest\GeckoFxTest.csproj", "{9F904D01-0295-4866-8F11-34482E2E2715}"
 EndProject
