@@ -51,43 +51,43 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ChromeDialog.cs">
+    <Compile Include="Dialogs\ChromeDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ChromeDialog.Designer.cs">
+    <Compile Include="Dialogs\ChromeDialog.Designer.cs">
       <DependentUpon>ChromeDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="ConfirmDialog.cs">
+    <Compile Include="Dialogs\ConfirmDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ConfirmDialog.Designer.cs">
+    <Compile Include="Dialogs\ConfirmDialog.Designer.cs">
       <DependentUpon>ConfirmDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="GeckoHelperAppLauncherDialog.cs" />
+    <Compile Include="Dialogs\GeckoHelperAppLauncherDialog.cs" />
     <Compile Include="GeckoWebBrowser.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="GeckoWebBrowser.Events.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="GeckoWebBrowser.GTK.cs" />
+    <Compile Include="Linux\GeckoWebBrowser.GTK.cs" />
     <Compile Include="GeckoWebBrowser.WinForms.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="GtkReparentingWrapperNoThread.cs" />
-    <Compile Include="GtkWrapperNoThread.cs" />
+    <Compile Include="Linux\GtkReparentingWrapperNoThread.cs" />
+    <Compile Include="Linux\GtkWrapperNoThread.cs" />
     <Compile Include="Interop\nsWeakReference.cs" />
     <Compile Include="NavigateFinishedNotifier.cs" />
-    <Compile Include="PasswordDialog.cs">
+    <Compile Include="Dialogs\PasswordDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PasswordDialog.Designer.cs">
+    <Compile Include="Dialogs\PasswordDialog.Designer.cs">
       <DependentUpon>PasswordDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="PromptDialog.cs">
+    <Compile Include="Dialogs\PromptDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PromptDialog.Designer.cs">
+    <Compile Include="Dialogs\PromptDialog.Designer.cs">
       <DependentUpon>PromptDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="PromptService.cs" />
@@ -99,22 +99,22 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\SaveImageElement.cs" />
-    <Compile Include="X11Structs.cs" />
+    <Compile Include="Linux\X11Structs.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ChromeDialog.resx">
+    <EmbeddedResource Include="Dialogs\ChromeDialog.resx">
       <DependentUpon>ChromeDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConfirmDialog.resx">
+    <EmbeddedResource Include="Dialogs\ConfirmDialog.resx">
       <DependentUpon>ConfirmDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="PasswordDialog.resx">
+    <EmbeddedResource Include="Dialogs\PasswordDialog.resx">
       <DependentUpon>PasswordDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="PromptDialog.resx">
+    <EmbeddedResource Include="Dialogs\PromptDialog.resx">
       <DependentUpon>PromptDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
