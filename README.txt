@@ -2,6 +2,16 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v14.0-0.1 ==
+
+1. Initial version supporting firefox/xulrunner v14.0
+2. Geckofx has been split into two dlls.
+* Geckofx-Core.dll 
+* Geckofx-Winfoms.dll 
+3. Improvements to the Linux build process.
+4. Enhance GeckoHtmlElement wrapper.
+5. GeckoWebBrowser Naviagate method now automatically creates initlaizes Geckofx if needed.
+
 == v13.0-0.1 ==
 
 1. Initial version supporting firefox/xulrunner v13.0
