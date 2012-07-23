@@ -2017,50 +2017,49 @@ namespace Gecko
 				using (var httpChannel = HttpChannel.Create(aSubject)) {
 
 					var origUri = httpChannel.OriginalUri;
-					if (origUri.Equals("http://ocsp.thawte.com/"))
-						return;
 
 					var uri = httpChannel.Uri;
 					var uriRef = httpChannel.Referrer;
 					var reqMethod = httpChannel.RequestMethod;
 					var reqHeaders = httpChannel.GetRequestHeaders();
-					var reqBody = "";
-
-					var evt = new GeckoObserveHttpModifyRequestEventArgs(uri, uriRef, reqMethod, reqBody, reqHeaders, httpChannel);
+					byte[] reqBody = null;
+					bool? reqBodyContainsHeaders = null;
 
 					#region POST data
 
-					nsIUploadChannel uploadChannel = Xpcom.QueryInterface<nsIUploadChannel>(aSubject);
+					var uploadChannel = Xpcom.QueryInterface<nsIUploadChannel>(aSubject);
+					var uploadChannel2 = Xpcom.QueryInterface<nsIUploadChannel2>(aSubject);
 
 					if (uploadChannel != null) {
-						var uploadChannelStream = uploadChannel.GetUploadStreamAttribute();
-
-						if (uploadChannelStream != null) {
-							nsISeekableStream seekableChannelStream = Xpcom.QueryInterface<nsISeekableStream>(uploadChannelStream);
-
-							if (seekableChannelStream != null) {
-								seekableChannelStream.Seek(nsISeekableStreamConsts.NS_SEEK_SET, 0);
-
-								var sis = Xpcom.CreateInstance<nsIScriptableInputStream>("@mozilla.org/scriptableinputstream;1");
-
-								nsIInputStream stream = Xpcom.QueryInterface<nsIInputStream>(uploadChannelStream);
-
-								sis.Init(stream);
-
-								StringBuilder sb = new StringBuilder();
-
-								for (var count = uploadChannelStream.Available(); count > 0; count = uploadChannelStream.Available()) {
-									var tmps = nsString.Get(sis.ReadBytes, count);
-									sb.Append(tmps);
+						var uc = new UploadChannel(uploadChannel);
+						var uploadStream = uc.GetUploadStream();
+						
+						if (uploadStream.CanSeek) {
+							var rdr = new BinaryReader(uploadStream);
+							var reqBodyStream = new MemoryStream();
+							try {
+								reqBody = new byte[] { };
+								int avl = 0;
+								while ((avl = ((int)uploadStream.Available)) > 0) {
+									reqBodyStream.Write(rdr.ReadBytes(avl), 0, avl);
 								}
+								reqBody = reqBodyStream.ToArray();
 
-								reqBody = sb.ToString();
+								if (uploadChannel2 != null)
+									reqBodyContainsHeaders = uploadChannel2.GetUploadStreamHasHeadersAttribute();
 							}
-						}
+							catch (IOException ex) {
+								// failed to read body, ignore
+							}
 
+							// rewind stream, so browser can read it as usual
+							uploadStream.Seek(0, 0);
+						}
 					}
 
 					#endregion POST data
+
+					var evt = new GeckoObserveHttpModifyRequestEventArgs(uri, uriRef, reqMethod, reqBody, reqHeaders, httpChannel, reqBodyContainsHeaders);
 
 					OnObserveHttpModifyRequest(evt);
 

@@ -1340,23 +1340,28 @@ namespace Gecko
 		public readonly Uri Uri;
 		public readonly Uri Referrer;
 		public readonly string RequestMethod;
-		public readonly string RequestBody;
+		public readonly Byte[] RequestBody;
 		public readonly Dictionary<string, string> RequestHeaders;
 		public readonly HttpChannel Channel;
+		public readonly bool? ReqBodyContainsHeaders;
 
 		/// <summary>Creates a new instance of a <see cref="GeckoObserveHttpModifyRequestEventArgs"/> object.</summary>
-		/// <param name="value"></param>
-		/// <param name="refVal"></param>
-		/// <param name="reqMethod"></param>
-		/// <param name="reqData"></param>
-		public GeckoObserveHttpModifyRequestEventArgs(Uri value, Uri refVal, String reqMethod, String reqBody, Dictionary<string, string> reqHeaders, HttpChannel httpChan)
+		/// <param name="uri">Uri</param>
+		/// <param name="refVal">Referrer</param>
+		/// <param name="reqMethod">Request Method</param>
+		/// <param name="reqBody">Request Body</param>
+		/// <param name="reqHeaders">Request Headers</param>
+		/// <param name="httpChan">Reference to Http Channel</param>
+		/// <param name="bodyContainsHeaders">Does ReqBody contain the headers</param>
+		public GeckoObserveHttpModifyRequestEventArgs(Uri uri, Uri refVal, String reqMethod, Byte[] reqBody, Dictionary<string, string> reqHeaders, HttpChannel httpChan, bool? bodyContainsHeaders)
 			: base(false) {
-			Uri = value;
+			Uri = uri;
 			Referrer = refVal;
 			RequestMethod = reqMethod;
 			RequestBody = reqBody;
 			RequestHeaders = reqHeaders;
 			Channel = httpChan;
+			ReqBodyContainsHeaders = bodyContainsHeaders;
 		}
 	}
 	#endregion
