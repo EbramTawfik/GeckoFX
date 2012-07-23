@@ -8,7 +8,7 @@ namespace Gecko.DOM
 		internal DomDocumentType(nsIDOMDocumentType documentType)
 			:base(documentType)
 		{
-			
+			_documentType = documentType;
 		}
 
 		/// <summary>

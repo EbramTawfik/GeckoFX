@@ -203,10 +203,9 @@ namespace Gecko.Certificates
 			return false;
 		}
 
-		
-
-	
-
+		public override int GetHashCode() {
+			return _cert1.GetHashCode();
+		}
 
 		public static Certificate Create(nsIX509Cert certificate)
 		{

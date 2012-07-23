@@ -22,7 +22,7 @@ namespace Gecko.DOM
 			get { return new GeckoFormElement(DOMHTMLElement.GetFormAttribute()); }
 		}
 
-		public string AccessKey {
+		new public string AccessKey {
 			get { return nsString.Get(DOMHTMLElement.GetAccessKeyAttribute); }
 			set { DOMHTMLElement.SetAccessKeyAttribute(new nsAString(value)); }
 		}

@@ -87,7 +87,7 @@ namespace Gecko
 		internal PersistentProperties (nsIPersistentProperties persistentProperties)
 			:base(persistentProperties)
 		{
-			
+			_persistentProperties = persistentProperties;
 		}
 	}
 }

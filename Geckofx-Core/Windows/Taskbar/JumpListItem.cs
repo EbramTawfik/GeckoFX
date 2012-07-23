@@ -28,6 +28,10 @@ namespace Gecko.Windows
 			return false;
 		}
 
+		public override int GetHashCode() {
+			return _item.GetHashCode();
+		}
+
 		internal static JumpListItem Create(nsIJumpListItem item)
 		{
 			return new JumpListItem( item );

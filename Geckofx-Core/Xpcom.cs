@@ -460,9 +460,9 @@ namespace Gecko
 							// clean up
 							Marshal.ReleaseComObject(req);
 						}
-						catch(NullReferenceException e)
+						catch(NullReferenceException ex)
 						{
-							Debug.WriteLine("NullRefException from native code.");
+							Debug.WriteLine("NullRefException from native code.\n" + ex.ToString());
 						}
 					}
 					Marshal.Release(pInterfaceRequestor);

@@ -59,7 +59,7 @@ namespace Gecko.Cache
 			{
 				descriptor = _cacheSession.OpenCacheEntry( new nsACString( key ), ( IntPtr ) ( int ) accessRequested, blockingMode );
 			}
-			catch ( System.Runtime.InteropServices.COMException comException )
+			catch ( System.Runtime.InteropServices.COMException )
 			{
 				
 			}

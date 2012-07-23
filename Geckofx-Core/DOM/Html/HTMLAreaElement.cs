@@ -18,7 +18,7 @@ namespace Gecko.DOM
 		{
 			this.DOMHTMLElement = element as nsIDOMHTMLAreaElement;
 		}
-		public string AccessKey {
+		new public string AccessKey {
 			get { return nsString.Get(DOMHTMLElement.GetAccessKeyAttribute); }
 			set { DOMHTMLElement.SetAccessKeyAttribute(new nsAString(value)); }
 		}
