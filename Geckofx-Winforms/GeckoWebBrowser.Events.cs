@@ -1341,7 +1341,7 @@ namespace Gecko
 		public readonly Uri Referrer;
 		public readonly string RequestMethod;
 		public readonly Byte[] RequestBody;
-		public readonly Dictionary<string, string> RequestHeaders;
+		public readonly List<KeyValuePair<string, string>> RequestHeaders;
 		public readonly HttpChannel Channel;
 		public readonly bool? ReqBodyContainsHeaders;
 
@@ -1353,7 +1353,7 @@ namespace Gecko
 		/// <param name="reqHeaders">Request Headers</param>
 		/// <param name="httpChan">Reference to Http Channel</param>
 		/// <param name="bodyContainsHeaders">Does ReqBody contain the headers</param>
-		public GeckoObserveHttpModifyRequestEventArgs(Uri uri, Uri refVal, String reqMethod, Byte[] reqBody, Dictionary<string, string> reqHeaders, HttpChannel httpChan, bool? bodyContainsHeaders)
+		public GeckoObserveHttpModifyRequestEventArgs(Uri uri, Uri refVal, String reqMethod, Byte[] reqBody, List<KeyValuePair<string, string>> reqHeaders, HttpChannel httpChan, bool? bodyContainsHeaders)
 			: base(false) {
 			Uri = uri;
 			Referrer = refVal;

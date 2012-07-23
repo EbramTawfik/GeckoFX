@@ -69,11 +69,28 @@ namespace Gecko.Net
 			nsString.Set( ( x, y ) => _httpChannel.SetRequestHeader( x, y, merge ), header, value );
 		}
 
-		public Dictionary<string,string> GetRequestHeaders()
+		public List<KeyValuePair<string, string>> GetRequestHeaders()
 		{
-			HttpHeaderVisitor visitor=new HttpHeaderVisitor();
+			HttpHeaderVisitor visitor = new HttpHeaderVisitor();
 			_httpChannel.VisitRequestHeaders(visitor);
-			return visitor.Dictionary;
+			return visitor.httpHeadersList;
+		}
+
+		public Dictionary<string, List<string>> GetRequestHeadersDict()
+		{
+			var headersList = GetRequestHeaders();
+			var dictRes = new Dictionary<string, List<string>>();
+			foreach (var header in headersList) {
+				if (dictRes.ContainsKey(header.Key)) {
+					var listVal = dictRes[header.Key];
+					listVal.Add(header.Value);
+					dictRes[header.Key] = listVal;
+				}
+				else {
+					dictRes.Add(header.Key, new List<string> { header.Value });
+				}
+			}
+			return dictRes;
 		}
 
 		public bool AllowPipelining
@@ -113,11 +130,27 @@ namespace Gecko.Net
 			nsString.Set((x, y) => _httpChannel.SetResponseHeader(x, y, merge), header, value);
 		}
 
-		public Dictionary<string, string> GetResponseHeaders()
-		{
-			HttpHeaderVisitor visitor=new HttpHeaderVisitor();
+		public List<KeyValuePair<string, string>> GetResponseHeaders() {
+			HttpHeaderVisitor visitor = new HttpHeaderVisitor();
 			_httpChannel.VisitResponseHeaders(visitor);
-			return visitor.Dictionary;
+			return visitor.httpHeadersList;
+		}
+
+		public Dictionary<string, List<string>> GetResponseHeadersDict()
+		{
+			var headersList = GetResponseHeaders();
+			var dictRes = new Dictionary<string, List<string>>();
+			foreach (var header in headersList) {
+				if (dictRes.ContainsKey(header.Key)) {
+					var listVal = dictRes[header.Key];
+					listVal.Add(header.Value);
+					dictRes[header.Key] = listVal;
+				}
+				else {
+					dictRes.Add(header.Key, new List<string> { header.Value });
+				}
+			}
+			return dictRes;
 		}
 
 		public bool IsNoStoreResponse
@@ -171,11 +204,11 @@ namespace Gecko.Net
 		private sealed class HttpHeaderVisitor
 			: nsIHttpHeaderVisitor
 		{
-			internal readonly Dictionary<string, string> Dictionary=new Dictionary<string, string>();  
+			internal readonly List<KeyValuePair<string, string>> httpHeadersList = new List<KeyValuePair<string, string>>();
 
 			public void VisitHeader( nsACStringBase aHeader, nsACStringBase aValue )
 			{
-				Dictionary.Add( aHeader.ToString(), aValue.ToString() );
+				httpHeadersList.Add(new KeyValuePair<string, string>(aHeader.ToString(), aValue.ToString()));
 			}
 		}
 
