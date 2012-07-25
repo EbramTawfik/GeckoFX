@@ -23,8 +23,8 @@ unittest: GeckofxUnitTests/GeckofxUnitTests.csproj
 	cd GeckofxUnitTests && xbuild GeckofxUnitTests.csproj
 
 tarclean: clean
-	rm *.tar.gz
-	rm -f ../geckofx*.tar.gz
+	-rm *.tar.gz
+	-rm ../geckofx*.tar.gz
 
 dist: tarclean
 	tar --exclude-vcs --exclude-backups --exclude=obj --exclude=bin --exclude=debian --exclude=PutXulRunnerFolderHere --exclude=".*~" -czf ../geckofx-$(VERSION).tar.gz .
