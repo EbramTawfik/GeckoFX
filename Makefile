@@ -1,3 +1,9 @@
+#!/usr/bin/make -f
+
+FF_MAJOR=`firefox --version|cut -d\  -f3|cut -d\. -f1`
+FF_VERSION=`firefox --version|cut -d\  -f3`
+VERSION="$(FF_VERSION).2"
+
 all: Skybound.Gecko.dll
 
 clean:
@@ -22,6 +28,15 @@ test: GeckoFxTest/GeckoFxTest.csproj
 unittest: GeckofxUnitTests/GeckofxUnitTests.csproj
 	cd GeckofxUnitTests && xbuild GeckofxUnitTests.csproj
 
-install:
-	install -d $(DESTDIR)/usr/lib
-	install Skybound.Gecko/bin/Debug/Skybound.Gecko.dll $(DESTDIR)/usr/lib/Skybound.Gecko.dll
+tarclean: clean
+	rm -f ../geckofx*.tar.gz
+
+dist: tarclean
+	tar --exclude-vcs --exclude-backups --exclude=obj --exclude=bin --exclude=debian --exclude=PutXulRunnerFolderHere --exclude=".*~" -czf ../geckofx-$(VERSION).tar.gz .
+	cd .. && ln -s geckofx-$(VERSION).tar.gz geckofx_$(VERSION).orig.tar.gz 
+
+install: Skybound.Gecko.dll
+	install -d $(DESTDIR)
+	install Skybound.Gecko/bin/x86/Debug_Linux/geckofx-14.dll $(DESTDIR)/geckofx-14.dll
+	install Skybound.Gecko/bin/x86/Debug_Linux/geckofx-14.dll.config $(DESTDIR)/geckofx-14.dll.config
+	install Skybound.Gecko/Linux/geckofix.so $(DESTDIR)/geckofix.so
