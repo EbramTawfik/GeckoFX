@@ -1565,7 +1565,6 @@
     <Compile Include="Windows\Taskbar\WinTaskbar.cs" />
     <Compile Include="Xpcom.cs" />
     <Compile Include="XULRunnerLocator.cs" />
-    <Compile Include="OffScreenGeckoWebBrowser.cs" />
     <Compile Include="GtkOnceOnly.cs" />
     <None Include="geckofx-core-14.dll.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
