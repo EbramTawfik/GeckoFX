@@ -4,7 +4,7 @@ geckofix.so: jemallocfix.o HashFunctions.o
 	gcc --shared  -o geckofix.so jemallocfix.o HashFunctions.o
 	#strip geckofix.so
 
-jemallocfix.o:
+jemallocfix.o: jemallocfix.c
 	gcc -c jemallocfix.c -o jemallocfix.o
 
 HashFunctions.o:
