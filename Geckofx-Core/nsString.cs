@@ -51,9 +51,7 @@ namespace Gecko
 		{
 			using (var str = new TString())
 			{
-				if (!string.IsNullOrEmpty(value))
-					str.SetData(value);
-
+				str.SetData(value);
 				setter(str);
 			}
 		}
@@ -63,9 +61,7 @@ namespace Gecko
 		{
 			using (var native = new TString())
 			{
-				if (!string.IsNullOrEmpty(stringValue))
-					native.SetData(stringValue);
-
+				native.SetData(stringValue);
 				setter(value, native);
 			}
 		}
@@ -75,12 +71,8 @@ namespace Gecko
 		{
 			using (TString native1 = new TString(), native2 = new TString())
 			{
-				if (!string.IsNullOrEmpty(value1))
-					native1.SetData(value1);
-
-				if (!string.IsNullOrEmpty(value2))
-					native2.SetData(value2);
-
+				native1.SetData(value1);
+				native2.SetData(value2);
 				setter( native1, native2 );
 			}
 		}
@@ -92,15 +84,9 @@ namespace Gecko
 				native2 = new TString(),
 				native3 = new TString())
 			{
-				if (!string.IsNullOrEmpty(value1))
-					native1.SetData(value1);
-
-				if (!string.IsNullOrEmpty(value2))
-					native2.SetData(value2);
-
-				if (!string.IsNullOrEmpty(value3))
-					native3.SetData(value3);
-
+				native1.SetData(value1);
+				native2.SetData(value2);
+				native3.SetData(value3);
 				setter( native1, native2, native3 );
 			}
 		}
@@ -110,9 +96,7 @@ namespace Gecko
 		{
 			using (var native = new TString())
 			{
-				if (!string.IsNullOrEmpty(stringValue))
-					native.SetData(stringValue);
-
+				native.SetData(stringValue);
 				func(value1, value2, native);
 			}
 		}
@@ -122,9 +106,7 @@ namespace Gecko
 		{
 			using (var native = new TString())
 			{
-				if (!string.IsNullOrEmpty(stringValue))
-					native.SetData(stringValue);
-
+				native.SetData(stringValue);
 				func(value1, native, value2);
 			}
 		}
@@ -166,8 +148,7 @@ namespace Gecko
 			string ret;
 			using (TString nativeIn = new TString(), nativeOut = new TString())
 			{
-				if (!string.IsNullOrEmpty(inValue))
-					nativeIn.SetData(inValue);
+				nativeIn.SetData(inValue);
 				getter(nativeIn, nativeOut);
 				ret = nativeOut.ToString();
 			}
@@ -236,9 +217,7 @@ namespace Gecko
 			T ret;
 			using (var str = new TString())
 			{
-				if (!string.IsNullOrEmpty(value))
-					str.SetData(value);
-
+				str.SetData(value);
 				ret = func(str);
 			}
 			return ret;
@@ -261,9 +240,7 @@ namespace Gecko
 			T2 ret;
 			using (TString native = new TString())
 			{
-				if (!string.IsNullOrEmpty(stringValue))
-					native.SetData(stringValue);
-
+				native.SetData(stringValue);
 				ret = func(value, native);
 			}
 			return ret;
@@ -285,10 +262,8 @@ namespace Gecko
 			T ret;
 			using (TString str1 = new TString(), str2 =new TString())
 			{
-				if (!string.IsNullOrEmpty(value1))
-					str1.SetData(value1);
-				if (!string.IsNullOrEmpty(value2))
-					str2.SetData(value2);
+				str1.SetData(value1);
+				str2.SetData(value2);
 				ret = func(str1, str2);
 			}
 			return ret;
@@ -499,6 +474,13 @@ namespace Gecko
 		[DllImport("xpcom", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
 		protected static extern int NS_CStringContainerFinish(nsAUTF8StringBase container);
 
+		[DllImport("xpcom", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+		[return: MarshalAs(UnmanagedType.Bool)]
+		protected static extern bool NS_CStringGetIsVoid(nsAUTF8StringBase str);
+
+		[DllImport("xpcom", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+		protected static extern void NS_CStringSetIsVoid(nsAUTF8StringBase str, [MarshalAs(UnmanagedType.Bool)] bool isVoid);
+
 		#region unused variables used to ensure struct is correct size on different platforms
 #pragma warning disable 169
 		IntPtr mData;
@@ -509,9 +491,15 @@ namespace Gecko
 
 		public virtual void SetData(string value)
 		{
-			byte[] utf8 = Encoding.UTF8.GetBytes(value ?? string.Empty);
-
-			NS_CStringSetData(this, utf8, utf8.Length);
+			if (value != null)
+			{
+				byte[] utf8 = Encoding.UTF8.GetBytes(value);
+				NS_CStringSetData(this, utf8, utf8.Length);
+			}
+			else
+			{
+				NS_CStringSetIsVoid(this, true);
+			}
 		}
 
 		public override string ToString()
@@ -524,6 +512,10 @@ namespace Gecko
 				byte[] result = new byte[length];
 				Marshal.Copy(data, result, 0, length);
 				return Encoding.UTF8.GetString(result);
+			}
+			if (NS_CStringGetIsVoid(this))
+			{
+				return null;
 			}
 			return string.Empty;
 		}
@@ -544,6 +536,10 @@ namespace Gecko
 			if (value != null)
 			{
 				SetData(value);
+			}
+			else
+			{
+				NS_CStringSetIsVoid(this, true);
 			}
 		}
 		
@@ -579,6 +575,13 @@ namespace Gecko
 		[DllImport("xpcom", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
 		protected static extern int NS_CStringContainerFinish(nsACStringBase container);
 
+		[DllImport("xpcom", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+		[return: MarshalAs(UnmanagedType.Bool)]
+		protected static extern bool NS_CStringGetIsVoid(nsACStringBase str);
+		
+		[DllImport("xpcom", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+		protected static extern void NS_CStringSetIsVoid(nsACStringBase str, [MarshalAs(UnmanagedType.Bool)] bool isVoid);
+
 		#region unused variables used to ensure struct is correct size on different platforms
 #pragma warning disable 169
 		IntPtr mData;
@@ -589,7 +592,14 @@ namespace Gecko
 
 		public virtual void SetData(string value)
 		{
-			NS_CStringSetData(this, value, (value == null) ? 0 : value.Length);
+			if (value != null)
+			{
+				NS_CStringSetData(this, value, value.Length);
+			}
+			else
+			{
+				NS_CStringSetIsVoid(this, true);
+			}
 		}
 
 		/// <summary>
@@ -622,6 +632,10 @@ namespace Gecko
 			{
 				return Marshal.PtrToStringAnsi(data, length);
 			}
+			if (NS_CStringGetIsVoid(this))
+			{
+				return null;
+			}
 			return string.Empty;
 		}
 	}
@@ -641,6 +655,10 @@ namespace Gecko
 			if (value != null)
 			{
 				NS_CStringSetData(this, value, value.Length);
+			}
+			else
+			{
+				NS_CStringSetIsVoid(this, true);
 			}
 		}
 		
@@ -676,6 +694,13 @@ namespace Gecko
 		[DllImport("xpcom", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl)]
 		protected static extern int NS_StringContainerFinish(nsAStringBase container);
 
+		[DllImport("xpcom", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+		[return: MarshalAs(UnmanagedType.Bool)]
+		protected static extern bool NS_StringGetIsVoid(nsAStringBase str);
+
+		[DllImport("xpcom", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+		protected static extern void NS_StringSetIsVoid(nsAStringBase str, [MarshalAs(UnmanagedType.Bool)] bool isVoid);
+
 		#region unused variables used to ensure struct is correct size on different platforms
 		#pragma warning disable 169
 		IntPtr mData;
@@ -686,7 +711,14 @@ namespace Gecko
 
 		public void SetData(string value)
 		{
-			NS_StringSetData(this, value, (value == null) ? 0 : value.Length);
+			if (value != null)
+			{
+				NS_StringSetData(this, value, value.Length);
+			}
+			else
+			{
+				NS_StringSetIsVoid(this, true);
+			}
 		}
 
 		public override string ToString()
@@ -697,6 +729,10 @@ namespace Gecko
 			if (length > 0)
 			{
 				return Marshal.PtrToStringUni(data, length);
+			}
+			if (NS_StringGetIsVoid(this))
+			{
+				return null;
 			}
 			return string.Empty;
 		}
@@ -718,6 +754,10 @@ namespace Gecko
 			if (value != null)
 			{
 				NS_StringSetData(this, value, value.Length);
+			}
+			else
+			{
+				NS_StringSetIsVoid(this, true);
 			}
 		}
 		
