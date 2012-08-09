@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Gecko.Interop;
+using System.Runtime.InteropServices;
 
 namespace Gecko.Plugins
 {
@@ -22,10 +23,38 @@ namespace Gecko.Plugins
 
 		public static PluginTag[] GetPluginTags()
 		{
-			uint count = 0;
-			nsIPluginTag[] tags = null;
-			_pluginHost.Instance.GetPluginTags( ref count, ref tags );
-			return null;
+			PluginTag[] tags;
+			IntPtr pluginTagsArrayPtr = IntPtr.Zero;
+			try
+			{
+				uint aCount;
+				pluginTagsArrayPtr = _pluginHost.Instance.GetPluginTags(out aCount);
+				int count = (int)aCount;
+				IntPtr[] tagPtrs = new IntPtr[count];
+				tags = new PluginTag[count];
+				Marshal.Copy(pluginTagsArrayPtr, tagPtrs, 0, tagPtrs.Length);
+
+				for (int i = 0; i < count; i++)
+				{
+					object tag = null;
+					try
+					{
+						tag = Xpcom.GetObjectForIUnknown(tagPtrs[i]);
+						tags[i] = new PluginTag(Xpcom.QueryInterface<nsIPluginTag>(tag));
+					}
+					finally
+					{
+						if (tag != null)
+							Marshal.ReleaseComObject(tag);
+					}
+				}
+			}
+			finally
+			{
+				if (pluginTagsArrayPtr != IntPtr.Zero)
+					Xpcom.Free(pluginTagsArrayPtr);
+			}
+			return tags;
 		}
 
 		public static bool SiteHasData(PluginTag tag, string domain)
