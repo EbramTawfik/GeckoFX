@@ -119,34 +119,6 @@ namespace Gecko
 		#region protected override void Dispose(bool disposing)
 		protected override void Dispose(bool disposing)
 		{
-
-
-
-			if (_target != null)
-			{
-				//Remove Event Listener			
-				_target.RemoveEventListener(new nsAString("submit"), this, true);
-				_target.RemoveEventListener(new nsAString("keydown"), this, true);
-				_target.RemoveEventListener(new nsAString("keyup"), this, true);
-				_target.RemoveEventListener(new nsAString("keypress"), this, true);
-				_target.RemoveEventListener(new nsAString("mousemove"), this, true);
-				_target.RemoveEventListener(new nsAString("mouseover"), this, true);
-				_target.RemoveEventListener(new nsAString("mouseout"), this, true);
-				_target.RemoveEventListener(new nsAString("mousedown"), this, true);
-				_target.RemoveEventListener(new nsAString("mouseup"), this, true);
-				_target.RemoveEventListener(new nsAString("click"), this, true);
-				_target.RemoveEventListener(new nsAString("dblclick"), this, true);
-				_target.RemoveEventListener(new nsAString("compositionstart"), this, true);
-				_target.RemoveEventListener(new nsAString("compositionend"), this, true);
-				_target.RemoveEventListener(new nsAString("contextmenu"), this, true);
-				_target.RemoveEventListener(new nsAString("DOMMouseScroll"), this, true);
-				_target.RemoveEventListener(new nsAString("focus"), this, true);
-				_target.RemoveEventListener(new nsAString("blur"), this, true);
-				_target.RemoveEventListener(new nsAString("load"), this, true);
-				_target.RemoveEventListener(new nsAString("change"), this, true);
-				_target.RemoveEventListener(new nsAString("hashchange"), this, false);
-			}
-
 			// If GC thread is calling Dispose
 			if (!disposing)
 			{				
