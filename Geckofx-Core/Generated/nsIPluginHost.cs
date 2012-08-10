@@ -24,7 +24,6 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
 	/// <summary>nsIPluginHost </summary>
@@ -46,10 +45,9 @@ namespace Gecko
 		
 		/// <summary>Member GetPluginTags </summary>
 		/// <param name='aPluginCount'> </param>
-		/// <param name='aResults'> </param>
+		/// <returns>A System.IntPtr</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		//void GetPluginTags(ref uint aPluginCount, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref nsIPluginTag[] aResults);
-		IntPtr GetPluginTags(out uint aPluginCount); // The array being controlled cannot be passed as ref or out parameters (http://msdn.microsoft.com/en-US/library/z6cfh6e6(v=vs.90).aspx)
+		System.IntPtr GetPluginTags(ref uint aPluginCount);
 		
 		/// <summary>
         /// Clear site data for a given plugin.

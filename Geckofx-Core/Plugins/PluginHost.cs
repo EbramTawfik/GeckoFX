@@ -27,8 +27,8 @@ namespace Gecko.Plugins
 			IntPtr pluginTagsArrayPtr = IntPtr.Zero;
 			try
 			{
-				uint aCount;
-				pluginTagsArrayPtr = _pluginHost.Instance.GetPluginTags(out aCount);
+				uint aCount = 0;
+				pluginTagsArrayPtr = _pluginHost.Instance.GetPluginTags(ref aCount);
 				int count = (int)aCount;
 				IntPtr[] tagPtrs = new IntPtr[count];
 				tags = new PluginTag[count];
