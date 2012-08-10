@@ -74,6 +74,7 @@
     <Compile Include="GeckoWebBrowserTests.cs" />
     <Compile Include="IOServiceTests.cs" />
     <Compile Include="JsValTests.cs" />
+    <Compile Include="nsACStringTests.cs" />
     <Compile Include="nsIEditorTests.cs" />
     <Compile Include="nsURITests.cs" />
     <Compile Include="PluginHostTests.cs" />
