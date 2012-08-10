@@ -76,6 +76,7 @@
     <Compile Include="JsValTests.cs" />
     <Compile Include="nsIEditorTests.cs" />
     <Compile Include="nsURITests.cs" />
+    <Compile Include="PluginHostTests.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RandomGeneratorTests.cs" />
