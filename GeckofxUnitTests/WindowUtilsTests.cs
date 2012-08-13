@@ -110,7 +110,8 @@ namespace GeckofxUnitTests
 
 			Assert.AreEqual(true, browser.Window.WindowUtils.SendKeyEvent("keypress", 0, 68, 0, false));
 		}
-
+		
+		[Platform("Win")]
 		[Test]
 		public void SendNativeKeyEvent()
 		{
@@ -126,7 +127,8 @@ namespace GeckofxUnitTests
 
 			browser.Window.WindowUtils.SendNativeMouseEvent(0, 0, 0, 0, browser.Document.Body);
 		}
-
+		
+		[Platform("Win")]
 		[Test]
 		public void ActivateNativeMenuItemAt_ThrowsNotImplementedException()
 		{
@@ -135,6 +137,7 @@ namespace GeckofxUnitTests
 			Assert.Throws<NotImplementedException>(() => browser.Window.WindowUtils.ActivateNativeMenuItemAt("0"));				
 		}
 
+		[Platform("Win")]
 		[Test]
 		public void IMEIsOpen()
 		{

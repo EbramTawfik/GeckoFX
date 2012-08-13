@@ -42,7 +42,8 @@ namespace GeckofxUnitTests
 			LoadHtml("");
 			Assert.Throws<DirectoryNotFoundException>(()=> _browser.SaveDocument("notthere/a.html"));
 		}
-
+		
+		[Platform("Win")]
 		[Test]
 		public void SaveDocument_FileLocked_IOException()
 		{

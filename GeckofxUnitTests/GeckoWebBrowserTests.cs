@@ -139,6 +139,7 @@ namespace GeckofxUnitTests
 			Assert.NotNull(browser.Editor);
 		}
 		 
+		[Platform("Win")]
 		[Test]
 		public void JavascriptError_NaviagateWithSomeJavascriptThatThrowsException_AttachedEventHandlerShouldExecute()
 		{
@@ -346,7 +347,8 @@ namespace GeckofxUnitTests
             Assert.AreEqual(1, counter);
             Assert.AreEqual(0, shouldNotChangeCounter);
         }
-
+		
+		[Platform("Win")]
         [Test]
         public void Navigating_NavigatingIsCanceled_NavigateDoesNotComplete()
         {

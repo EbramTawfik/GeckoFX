@@ -1640,7 +1640,8 @@ namespace GeckofxUnitTests
 			Assert.IsNotNull(instance);
 			Marshal.ReleaseComObject(instance);
 		}
-
+		
+		[Platform("Win")]
 		[Test]
 		public void GetUpdateManager_CleanXpComInstance_ReturnsValidInstance()
 		{
