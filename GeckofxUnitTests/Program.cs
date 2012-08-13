@@ -27,7 +27,8 @@ namespace GeckofxUnitTests
 			if (returnCode != 0)
 				Console.Beep();
 			
-			Xpcom.Shutdown();
+			if (Xpcom.IsLinux)
+				Xpcom.Shutdown();
 		}
 		
 		#region Linux only - override the ErrorHandler to ignore X11 warnings/errors
