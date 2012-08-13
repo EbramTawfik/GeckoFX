@@ -22,6 +22,9 @@ test: Geckofx
 unittest: GeckofxUnitTests/GeckofxUnitTests.csproj
 	cd GeckofxUnitTests && xbuild GeckofxUnitTests.csproj
 
+runtests: unittest Geckofx
+	cd GeckofxUnitTests/bin/Debug && LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/lib/firefox/ MONO_PATH=/usr/lib/cli/gdk-sharp-2.0/ LD_PRELOAD=../../../Geckofx-Core/Linux/geckofix.so PATH=/usr/local/bin:${PATH} mono GeckofxUnitTests.exe
+
 tarclean: clean
 	-rm *.tar.gz
 	-rm ../geckofx*.tar.gz
