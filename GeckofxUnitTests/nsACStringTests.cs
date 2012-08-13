@@ -50,5 +50,22 @@ namespace GeckofxUnitTests
 
 			Assert.AreEqual("hello world", objectUnderTest.ToString());
 		}
+		
+		[Test]
+		public void GetRawData_OfTestValue_ReturnsExpectedByteString()
+		{
+			var objectUnderTest = new nsACString();
+			objectUnderTest.SetData("hello world");	
+			
+			byte[] bytes = objectUnderTest.GetRawData();
+			Assert.AreEqual(new byte[] { 104, 101, 108, 108, 111, 32, 119, 111, 114, 108, 100}, bytes);
+		}
+		
+		[Test]
+		public void ConstructorWithString_ToTestValue_ToStringReturnsTestValue()
+		{
+			var objectUnderTest = new nsACString("Hello world");
+			Assert.AreEqual("Hello world", objectUnderTest.ToString());
+		}
 	}
 }

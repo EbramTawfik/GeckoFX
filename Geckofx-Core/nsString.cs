@@ -649,17 +649,10 @@ namespace Gecko
 		{
 			NS_CStringContainerInit(this);
 		}
-		
+				
 		public nsACString(string value) : this()
 		{
-			if (value != null)
-			{
-				NS_CStringSetData(this, value, value.Length);
-			}
-			else
-			{
-				NS_CStringSetIsVoid(this, true);
-			}
+			SetData(value);			
 		}
 		
 		~nsACString()
