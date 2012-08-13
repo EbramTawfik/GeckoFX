@@ -863,7 +863,8 @@ namespace GeckofxUnitTests
 			Assert.IsNotNull(instance);
 			Marshal.ReleaseComObject(instance);
 		}
-
+		
+		[Ignore("Creating multiple jsloaders causes multiple copies of mozJSComponentLoader (Singleton) to be inialized, This causes Xpcom.Shutdown to segfault")]		
 		[Test]
 		public void CreateInstance_CreatingJsLoader_ReturnsValidInstance()
 		{			
