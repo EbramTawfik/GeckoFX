@@ -17,19 +17,10 @@ namespace Gecko
 	{
 		private static string GetXULRunnerLocationLinux()
 		{
-			if (!Directory.Exists("/usr/lib"))
+			if (!Directory.Exists("/usr/lib/firefox"))
 				throw new ApplicationException("/usr/lib doesn't exist");
 
-			DirectoryInfo d = new DirectoryInfo("/usr/lib");
-
-			//review: This looks rather out of date: what should it be on Linux?
-
-			DirectoryInfo[] dirs = d.GetDirectories("xulrunner-2.0", SearchOption.TopDirectoryOnly);
-
-			if (dirs.Length == 0)
-				return null;
-
-			return dirs.OrderBy(x => x.Name).Last().FullName;
+			return "/usr/lib/firefox";
 		}
 
 		private static string GetXULRunnerLocationWindows()

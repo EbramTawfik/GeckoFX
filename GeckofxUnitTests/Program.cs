@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Reflection;
+using Gecko;
 
 namespace GeckofxUnitTests
 {
@@ -11,7 +12,11 @@ namespace GeckofxUnitTests
 		[STAThread]
 		static void Main(string[] args)
 		{
-			string[] my_args = { Assembly.GetExecutingAssembly().Location, "/nothread", "/domain=None" };			
+			string prefix = Xpcom.IsLinux ? "--" : "/";
+			string nothread = prefix + "nothread";
+			string domain = prefix + "domain=None";
+			
+			string[] my_args = { Assembly.GetExecutingAssembly().Location, nothread, domain };
 
 			int returnCode = NUnit.ConsoleRunner.Runner.Main(my_args);
 
