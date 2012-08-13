@@ -137,6 +137,11 @@ namespace Gecko
 				_target.AddEventListener(new nsAString("load"), this, true, true, 2);
 				_target.AddEventListener(new nsAString("change"), this, true, true, 2);
 				_target.AddEventListener(new nsAString("hashchange"), this, false, true, 2);
+				_target.AddEventListener(new nsAString("dragstart"), this, true, true, 2);
+				_target.AddEventListener(new nsAString("dragleave"), this, true, true, 2);
+				_target.AddEventListener(new nsAString("drag"), this, true, true, 2);
+				_target.AddEventListener(new nsAString("drop"), this, true, true, 2);
+				_target.AddEventListener(new nsAString("dragend"), this, true, true, 2);
 
 				// history
 				{
@@ -182,6 +187,13 @@ namespace Gecko
 				_target.RemoveEventListener(new nsAString("load"), this, true);
 				_target.RemoveEventListener(new nsAString("change"), this, true);
 				_target.RemoveEventListener(new nsAString("hashchange"), this, false);
+				_target.RemoveEventListener(new nsAString("dragstart"), this, true);
+				_target.RemoveEventListener(new nsAString("dragenter"), this, true);
+				_target.RemoveEventListener(new nsAString("dragover"), this, true);
+				_target.RemoveEventListener(new nsAString("dragleave"), this, true);
+				_target.RemoveEventListener(new nsAString("drag"), this, true);
+				_target.RemoveEventListener(new nsAString("drop"), this, true);
+				_target.RemoveEventListener(new nsAString("dragend"), this, true);
 			}
 			base.OnHandleDestroyed(e);
 		}

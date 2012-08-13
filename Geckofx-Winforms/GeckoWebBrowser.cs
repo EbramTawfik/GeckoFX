@@ -1840,6 +1840,13 @@ namespace Gecko
 				case "load": OnLoad(ea = new GeckoDomEventArgs(e)); break;
 				case "change": OnDomContentChanged(ea = new GeckoDomEventArgs(e)); break;
 				case "hashchange": OnHashChange(ea = new GeckoDomEventArgs(e)); break;
+				case "dragstart": OnDomDragStart((GeckoDomDragEventArgs)(ea = new GeckoDomDragEventArgs((nsIDOMDragEvent)e))); break;
+				case "dragenter": OnDomDragEnter((GeckoDomDragEventArgs)(ea = new GeckoDomDragEventArgs((nsIDOMDragEvent)e))); break;
+				case "dragover": OnDomDragOver((GeckoDomDragEventArgs)(ea = new GeckoDomDragEventArgs((nsIDOMDragEvent)e))); break;
+				case "dragleave": OnDomDragLeave((GeckoDomDragEventArgs)(ea = new GeckoDomDragEventArgs((nsIDOMDragEvent)e))); break;
+				case "drag": OnDomDrag((GeckoDomDragEventArgs)(ea = new GeckoDomDragEventArgs((nsIDOMDragEvent)e))); break;
+				case "drop": OnDomDrop((GeckoDomDragEventArgs)(ea = new GeckoDomDragEventArgs((nsIDOMDragEvent)e))); break;
+				case "dragend": OnDomDragEnd((GeckoDomDragEventArgs)(ea = new GeckoDomDragEventArgs((nsIDOMDragEvent)e))); break;
 
 				default:
 					Action<string> action;

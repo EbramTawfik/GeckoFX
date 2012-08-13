@@ -259,4 +259,23 @@ namespace Gecko
 			get { return _Event.GetShiftKeyAttribute(); }
 		}
 	};
+
+	/// <summary>
+	/// Provides data about a drag event
+	/// </summary>
+	public class GeckoDomDragEventArgs : GeckoDomMouseEventArgs
+	{
+		internal GeckoDomDragEventArgs(nsIDOMDragEvent ev)
+			: base(ev)
+		{
+			_Event = ev;
+		}
+
+		nsIDOMDragEvent _Event;
+
+		public nsIDOMDataTransfer GetDataTransfer()
+		{
+			return _Event.GetDataTransferAttribute();
+		}
+	}
 }

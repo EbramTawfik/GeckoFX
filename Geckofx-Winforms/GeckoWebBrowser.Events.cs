@@ -68,6 +68,13 @@ namespace Gecko
 		private static readonly object DomContentChangedEvent = new object();
 		private static readonly object DomClickEvent = new object();
 		private static readonly object DomDoubleClickEvent = new object();
+		private static readonly object DomDragStartEvent = new object();
+		private static readonly object DomDragEnterEvent = new object();
+		private static readonly object DomDragOverEvent = new object();
+		private static readonly object DomDragLeaveEvent = new object();
+		private static readonly object DomDragEvent = new object();
+		private static readonly object DomDropEvent = new object();
+		private static readonly object DomDragEndEvent = new object();
 		#endregion
 
 		#region Navigation events
@@ -852,6 +859,122 @@ namespace Gecko
         }
         #endregion
 
+		#region drag events
+
+		// DragStart
+
+		public event EventHandler<GeckoDomDragEventArgs> DomDragStart
+		{
+			add { Events.AddHandler(DomDragStartEvent, value); }
+			remove { Events.RemoveHandler(DomDragStartEvent, value); }
+		}
+
+		/// <summary>Raises the <see cref="DomDragStart"/> event.</summary>
+		/// <param name="e">The data for the event.</param>
+		protected virtual void OnDomDragStart(GeckoDomDragEventArgs e)
+		{
+			var evnt = (EventHandler<GeckoDomDragEventArgs>)Events[DomDragStartEvent];
+			if (evnt != null) evnt(this, e);
+		}
+
+		// DragEnter
+
+		public event EventHandler<GeckoDomDragEventArgs> DomDragEnter
+		{
+			add { Events.AddHandler(DomDragEnterEvent, value); }
+			remove { Events.RemoveHandler(DomDragEnterEvent, value); }
+		}
+
+		/// <summary>Raises the <see cref="DomDragEnter"/> event.</summary>
+		/// <param name="e">The data for the event.</param>
+		protected virtual void OnDomDragEnter(GeckoDomDragEventArgs e)
+		{
+			var evnt = (EventHandler<GeckoDomDragEventArgs>)Events[DomDragEnterEvent];
+			if (evnt != null) evnt(this, e);
+		}
+
+		// DragOver
+
+		public event EventHandler<GeckoDomDragEventArgs> DomDragOver
+		{
+			add { Events.AddHandler(DomDragOverEvent, value); }
+			remove { Events.RemoveHandler(DomDragOverEvent, value); }
+		}
+
+		/// <summary>Raises the <see cref="DomDragOver"/> event.</summary>
+		/// <param name="e">The data for the event.</param>
+		protected virtual void OnDomDragOver(GeckoDomDragEventArgs e)
+		{
+			var evnt = (EventHandler<GeckoDomDragEventArgs>)Events[DomDragOverEvent];
+			if (evnt != null) evnt(this, e);
+		}
+
+		// DragLeave
+
+		public event EventHandler<GeckoDomDragEventArgs> DomDragLeave
+		{
+			add { Events.AddHandler(DomDragLeaveEvent, value); }
+			remove { Events.RemoveHandler(DomDragLeaveEvent, value); }
+		}
+
+		/// <summary>Raises the <see cref="DomDragLeave"/> event.</summary>
+		/// <param name="e">The data for the event.</param>
+		protected virtual void OnDomDragLeave(GeckoDomDragEventArgs e)
+		{
+			var evnt = (EventHandler<GeckoDomDragEventArgs>)Events[DomDragLeaveEvent];
+			if (evnt != null) evnt(this, e);
+		}
+
+		// Drag
+
+		public event EventHandler<GeckoDomDragEventArgs> DomDrag
+		{
+			add { Events.AddHandler(DomDragEvent, value); }
+			remove { Events.RemoveHandler(DomDragEvent, value); }
+		}
+
+		/// <summary>Raises the <see cref="DomDrag"/> event.</summary>
+		/// <param name="e">The data for the event.</param>
+		protected virtual void OnDomDrag(GeckoDomDragEventArgs e)
+		{
+			var evnt = (EventHandler<GeckoDomDragEventArgs>)Events[DomDragEvent];
+			if (evnt != null) evnt(this, e);
+		}
+
+		// Drop
+
+		public event EventHandler<GeckoDomDragEventArgs> DomDrop
+		{
+			add { Events.AddHandler(DomDropEvent, value); }
+			remove { Events.RemoveHandler(DomDropEvent, value); }
+		}
+
+		/// <summary>Raises the <see cref="DomDrop"/> event.</summary>
+		/// <param name="e">The data for the event.</param>
+		protected virtual void OnDomDrop(GeckoDomDragEventArgs e)
+		{
+			var evnt = (EventHandler<GeckoDomDragEventArgs>)Events[DomDropEvent];
+			if (evnt != null) evnt(this, e);
+		}
+
+		// DragEnd
+
+		public event EventHandler<GeckoDomDragEventArgs> DomDragEnd
+		{
+			add { Events.AddHandler(DomDragEndEvent, value); }
+			remove { Events.RemoveHandler(DomDragEndEvent, value); }
+		}
+
+		/// <summary>Raises the <see cref="DomDragEnd"/> event.</summary>
+		/// <param name="e">The data for the event.</param>
+		protected virtual void OnDomDragEnd(GeckoDomDragEventArgs e)
+		{
+			var evnt = (EventHandler<GeckoDomDragEventArgs>)Events[DomDragEndEvent];
+			if (evnt != null) evnt(this, e);
+		}
+
+		#endregion
+
 		#region public event GeckoDomEventHandler DomContentChanged
 		[Category("DOM Events")]
 		public event EventHandler<GeckoDomEventArgs> DomContentChanged
@@ -859,8 +982,8 @@ namespace Gecko
 			add { Events.AddHandler(DomContentChangedEvent, value); }
 			remove { Events.RemoveHandler(DomContentChangedEvent, value); }
 		}
-		
-		/// <summary>Raises the <see cref="DomContentChangedEvent"/> event.</summary>
+
+		/// <summary>Raises the <see cref="DomContentChanged"/> event.</summary>
 		/// <param name="e">The data for the event.</param>
 		protected virtual void OnDomContentChanged(GeckoDomEventArgs e)
 		{
