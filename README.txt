@@ -2,6 +2,11 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v14.0-0.2 ==
+
+1. Numerious bug fixes.
+2. Lots of improvements to the Linux build, including 64bit Linux.
+
 == v14.0-0.1 ==
 
 1. Initial version supporting firefox/xulrunner v14.0
