@@ -105,7 +105,37 @@ namespace Gecko
 			IntPtr jsStringPtr = SpiderMonkey.JS_ValueToString(_cx, ptr);
 			result = Marshal.PtrToStringAnsi(SpiderMonkey.JS_EncodeString(_cx, jsStringPtr));
 			return ret;
-		}		
+		}
+
+		/// <summary>
+		/// Evaluate javascript in the current context.
+		/// </summary>
+		/// <param name="jsScript"></param>
+		/// <param name="thisObject">a nsISupports com object that this is set too.</param>
+		/// <param name="result"></param>
+		/// <returns></returns>
+		public bool EvaluateScript(string jsScript, nsISupports thisObject, out string result)
+		{			
+			var ptr = new JsVal();
+			IntPtr globalObject = SpiderMonkey.JS_GetGlobalForScopeChain(_cx);			
+			var xpcomPtr = (IntPtr)Xpcom.GetService(new Guid("CB6593E0-F9B2-11d2-BDD6-000064657374"));
+			var m_instance = (nsIXPConnect)Xpcom.GetObjectForIUnknown(xpcomPtr);
+			Guid guid = typeof(nsISupports).GUID;
+			try
+			{
+				var wrapper = m_instance.WrapNative(_cx, globalObject, thisObject, ref guid);				
+				bool ret = SpiderMonkey.JS_EvaluateScript(_cx, wrapper.GetJSObjectAttribute(), jsScript, (uint)jsScript.Length, "script", 1, ref ptr);				
+				IntPtr jsStringPtr = SpiderMonkey.JS_ValueToString(_cx, ptr);
+				result = Marshal.PtrToStringAnsi(SpiderMonkey.JS_EncodeString(_cx, jsStringPtr));
+				return ret;
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine("Execption {0}", e);
+				result = String.Empty;
+				return false;
+			}
+		}
 
 		public void Dispose()
 		{

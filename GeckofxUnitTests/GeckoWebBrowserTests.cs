@@ -288,6 +288,34 @@ namespace GeckofxUnitTests
 		}
 
 		[Test]
+		public void EvaluateScript_PassBodyasThis_ThisEqualsBodyObject()
+		{
+			browser.TestLoadHtml("hello world");
+
+			using (AutoJSContext context = new AutoJSContext(browser.JSContext))
+			{
+				string result;
+				context.EvaluateScript("this;", (nsISupports)browser.Document.Body.DomObject, out result);
+
+				Assert.AreEqual("[object HTMLBodyElement]", result);
+			}
+		}
+
+		[Test]
+		public void EvaluateScript_PassBodysFirstChildAndPassToAInlineFunction_FunctionReturnsExpectedResults()
+		{
+			browser.TestLoadHtml("hello <span>world</span>");
+
+			using (AutoJSContext context = new AutoJSContext(browser.JSContext))
+			{
+				string result;
+				context.EvaluateScript("function dosomthing(node) { return node.textContent; } dosomthing(this);", (nsISupports)browser.Document.Body.FirstChild.DomObject, out result);
+
+				Assert.AreEqual("hello ", result);
+			}
+		}
+
+		[Test]
 		public void GetMarkupDocumentViewer_InitalizedDocument_ValidGeckoMarkupDocumentViewerReturned()
 		{
 			browser.TestLoadHtml("hello world.");
