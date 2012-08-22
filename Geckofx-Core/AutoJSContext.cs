@@ -50,10 +50,13 @@ namespace Gecko
 		
 		public IntPtr ContextPointer { get { return _cx; } }
 
-		private readonly nsIThreadJSContextStack _jsContextStack;
+		private nsIThreadJSContextStack _jsContextStack;
 		private readonly nsIJSContextStack _contextStack;
-		private readonly nsIScriptSecurityManager _securityManager;
+
 		private readonly nsIPrincipal _systemPrincipal;
+		
+		static private nsIXPConnect _xpConnect;
+		static private nsIScriptSecurityManager _securityManager;
 
 		/// <summary>
 		/// Create a AutoJSContext using the SafeJSContext.
@@ -78,7 +81,10 @@ namespace Gecko
 			_contextStack.Push(_cx);
 
 			// obtain the system principal (no security checks) (one could get a different principal by calling securityManager.GetObjectPrincipal())
-			_securityManager = Xpcom.GetService<nsIScriptSecurityManager>("@mozilla.org/scriptsecuritymanager;1");
+			if (_securityManager == null)
+			{
+				_securityManager = Xpcom.GetService<nsIScriptSecurityManager>("@mozilla.org/scriptsecuritymanager;1");
+			}
 			_systemPrincipal = _securityManager.GetSystemPrincipal();
 			_securityManager.PushContextPrincipal(_cx, IntPtr.Zero, _systemPrincipal);
 		}
@@ -115,15 +121,19 @@ namespace Gecko
 		/// <param name="result"></param>
 		/// <returns></returns>
 		public bool EvaluateScript(string jsScript, nsISupports thisObject, out string result)
-		{			
-			var ptr = new JsVal();
-			IntPtr globalObject = SpiderMonkey.JS_GetGlobalForScopeChain(_cx);			
-			var xpcomPtr = (IntPtr)Xpcom.GetService(new Guid("CB6593E0-F9B2-11d2-BDD6-000064657374"));
-			var m_instance = (nsIXPConnect)Xpcom.GetObjectForIUnknown(xpcomPtr);
-			Guid guid = typeof(nsISupports).GUID;
+		{	
+			if (_xpConnect == null)
+			{
+				var xpcomPtr = (IntPtr)Xpcom.GetService(new Guid("CB6593E0-F9B2-11d2-BDD6-000064657374"));
+				_xpConnect = (nsIXPConnect)Xpcom.GetObjectForIUnknown(xpcomPtr);	
+			}
+
 			try
 			{
-				var wrapper = m_instance.WrapNative(_cx, globalObject, thisObject, ref guid);				
+				Guid guid = typeof(nsISupports).GUID;
+				IntPtr globalObject = SpiderMonkey.JS_GetGlobalForScopeChain(_cx);
+				var ptr = new JsVal();
+				var wrapper = _xpConnect.WrapNative(_cx, globalObject, thisObject, ref guid);				
 				bool ret = SpiderMonkey.JS_EvaluateScript(_cx, wrapper.GetJSObjectAttribute(), jsScript, (uint)jsScript.Length, "script", 1, ref ptr);				
 				IntPtr jsStringPtr = SpiderMonkey.JS_ValueToString(_cx, ptr);
 				result = Marshal.PtrToStringAnsi(SpiderMonkey.JS_EncodeString(_cx, jsStringPtr));
