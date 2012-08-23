@@ -1594,9 +1594,9 @@ namespace Gecko
 
 					if (ea.Cancel)
 					{
-						;
-						aRequest.Cancel(NS_BINDING_ABORTED);
-
+						// Calling Cancel(NS_BINDING_ABORTED) on Linux causes subsequent navigations on browser instance to fail.
+						if (!Xpcom.IsLinux)
+							aRequest.Cancel(NS_BINDING_ABORTED);
 						//TODO: change the following handling of cancelled request
 
 						// clear busy state
