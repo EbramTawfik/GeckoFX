@@ -16,15 +16,27 @@ namespace GeckoFxTest
 		[STAThread]
 		public static void Main(string[] args)
 		{
+			// Uncomment the follow line to enable CustomPrompt's
+			GeckoWebBrowser.UseCustomPrompt();						
+			
+			// If you want to further customize the GeckoFx PromptService then 
+			// you will need make a class that implements nsIPromptService2 and nsIPrompt interfaces and
+			// set the PromptFactory.PromptServiceCreator delegate. for example:
+			// PromptFactory.PromptServiceCreator = () => new MyPromptService();
+			
 #if GTK		
 			if (!Environment.GetEnvironmentVariable("LD_LIBRARY_PATH").Contains("/usr/lib/firefox/"))
 				throw new ApplicationException(String.Format("LD_LIBRARY_PATH must contain {0}", "/usr/lib/firefox/"));
-
+			
 			Xpcom.Initialize("/usr/lib/firefox/");
 #else
 			Xpcom.Initialize(XULRunnerLocator.GetXULRunnerLocation());
 #endif
-			GeckoPreferences.User["gfx.font_rendering.graphite.enabled"] = true;
+			// Uncomment the follow line to enable CustomPrompt's
+			// GeckoPreferences.User["browser.xul.error_pages.enabled"] = false;
+			
+			GeckoPreferences.User["gfx.font_rendering.graphite.enabled"] = true;			
+			
 			Application.ApplicationExit += (sender, e) => 
 			{
         		Xpcom.Shutdown();
@@ -193,7 +205,9 @@ namespace GeckoFxTest
 				if (string.IsNullOrEmpty(urlbox.Text.Trim()))
 					browser.Navigate("javascript:alert('hey try typing a url!');");
 
+				try{
 				browser.Navigate(urlbox.Text);
+				}catch { }
 				tabPage.Text = urlbox.Text;
 			};
 

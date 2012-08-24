@@ -373,14 +373,6 @@ namespace Gecko
 			}
 		}
 
-		// TODO: remove UseCustomPrompt from Xpcom.		
-		[Obsolete]
-		public static bool UseCustomPrompt
-		{
-			get;
-			set;
-		}
-
 		#region External Methods
 		
 		public static object NewNativeLocalFile(string filename)

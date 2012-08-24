@@ -90,14 +90,19 @@ namespace Gecko
 		bool m_javascriptDebuggingEnabled;
 		#endregion
 
-		#region static constructor
-
-		static GeckoWebBrowser()
+		#region public static methods
+		
+		/// <summary>
+		/// Use the GeckoFx Custom Prompt.
+		/// This must be called before calling Xpcom.Initalize.
+		/// To probvide you own implementation of Custom Prompt set the PromptFactory.PromptServiceCreator.
+		/// This also should be called before Xpcom.Initalize.
+		/// </summary>
+		public static void UseCustomPrompt()
 		{
 			Xpcom.AfterInitalization += () =>
-			{
-				if (Xpcom.UseCustomPrompt)
-					PromptFactoryFactory.Register();
+			{				
+				PromptFactoryFactory.Register();
 			};
 		}
 
