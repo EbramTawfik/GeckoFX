@@ -359,6 +359,7 @@ namespace GeckofxUnitTests
             Assert.AreEqual(2, counter);
         }
 
+		[Platform("Win")]
         [Test]
         public void Navigating_UseJavaScriptToChangeDocumentToAUrlTheDoesNotExist_NavigatigEventIsCalled()
         {

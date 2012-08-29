@@ -17,7 +17,7 @@ Geckofx: Geckofx.sln
 test: Geckofx
 	cp GeckoFxTest/GeckoFxTest.sh GeckoFxTest/bin/x86/Debug_Linux/
 	cp Geckofx-Core/Linux/geckofix.so GeckoFxTest/bin/x86/Debug_Linux
-	cd GeckoFxTest/bin/x86/Debug_Linux && ./GeckoFxTest.sh
+	cd GeckoFxTest/bin/x86/Debug_Linux &&  LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/lib/firefox/ MONO_PATH=/usr/lib/cli/gdk-sharp-2.0/ LD_PRELOAD=../../../Geckofx-Core/Linux/geckofix.so PATH=/usr/local/bin:${PATH} ./GeckoFxTest.sh
 
 unittest: GeckofxUnitTests/GeckofxUnitTests.csproj
 	cd GeckofxUnitTests && xbuild GeckofxUnitTests.csproj
