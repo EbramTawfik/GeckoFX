@@ -51,7 +51,11 @@ namespace GtkDotNet
 		protected virtual void Cleanup()
 		{							
 			System.Windows.Forms.Application.Idle -= HandleSystemWindowsFormsApplicationIdle;
-			m_popupWindow.Destroy();
+			if (m_popupWindow != null)
+			{
+				m_popupWindow.Destroy();
+				m_popupWindow.Dispose();
+			}
 		}
 
 		public virtual void SetInputFocus()
