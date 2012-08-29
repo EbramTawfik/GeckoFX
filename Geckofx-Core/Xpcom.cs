@@ -325,9 +325,14 @@ namespace Gecko
 
 		public static void Shutdown()
 		{
-			Marshal.ReleaseComObject(ComponentRegistrar);
-			Marshal.ReleaseComObject(ComponentManager);
-			NS_ShutdownXPCOM(ServiceManager);
+			if (ComponentRegistrar != null)
+				Marshal.ReleaseComObject(ComponentRegistrar);
+			
+			if (ComponentManager != null)
+				Marshal.ReleaseComObject(ComponentManager);
+			
+			if (ServiceManager != null)
+				NS_ShutdownXPCOM(ServiceManager);
 			_IsInitialized = false;
 		}
 
