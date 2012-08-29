@@ -43,7 +43,7 @@ namespace Gecko
 
 		public enum ValueTag : uint
 		{
-			Clear = 0xFFFF0000,
+			Clear = 0xFFFFFF80,
 			Int32 = Clear | 1,
 			Undefined = Clear | 2,
 			String = Clear | 5,
