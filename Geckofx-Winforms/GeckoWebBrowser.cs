@@ -85,6 +85,7 @@ namespace Gecko
 		/// nsIWebBrowser casted no nsIWebNavigation
 		/// </summary>
 		nsIWebNavigation WebNav;
+        nsICommandParams CommandParams;
 
 		uint ChromeFlags;
 		bool m_javascriptDebuggingEnabled;
@@ -897,6 +898,20 @@ namespace Gecko
 			
 			CommandManager.DoCommand(name, null, null);
 		}
+
+        public void ExecuteCommand(string name, string pname, string pvalue)
+        {
+            CommandParams = Xpcom.CreateInstance<nsICommandParams>("@mozilla.org/embedcomp/command-params;1");
+            if (string.IsNullOrEmpty(name))
+                throw new ArgumentException("name");
+
+            CommandParams.SetCStringValue(pname, pvalue);
+            if (CommandManager.IsCommandEnabled(name, null))
+            {
+
+                CommandManager.DoCommand(name, CommandParams, null);
+            }
+        }
 		
 		/// <summary>
 		/// Gets the <see cref="Url"/> currently displayed in the web browser.
