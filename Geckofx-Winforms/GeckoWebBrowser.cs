@@ -162,8 +162,7 @@ namespace Gecko
 			if (m_wrapper != null)
 				m_wrapper.Dispose();
 #endif
-			//count = Gecko.Interop.ComDebug.GetRefCount(WebBrowser);
-            Marshal.ReleaseComObject(CommandParams);
+			//count = Gecko.Interop.ComDebug.GetRefCount(WebBrowser);            
 			base.Dispose(disposing);
 		}
 
@@ -172,13 +171,17 @@ namespace Gecko
 		{
 			// If control is not shown simply return
 			if (BaseWindow == null) return;
-			var baseWindow = Xpcom.QueryInterface<nsIBaseWindow>( BaseWindow );
-			if ( baseWindow != null )
+			var baseWindow = Xpcom.QueryInterface<nsIBaseWindow>(BaseWindow);
+			if (baseWindow != null)
 			{
 				baseWindow.Destroy();
-				Marshal.ReleaseComObject( baseWindow );
-			}
-			BaseWindow = null;
+				Marshal.ReleaseComObject(baseWindow);
+			}			
+			if (CommandParams != null)
+			{
+				Marshal.ReleaseComObject(CommandParams);
+				CommandParams = null;
+			}			
 		}
 
 		#endregion
@@ -909,7 +912,6 @@ namespace Gecko
             CommandParams.SetCStringValue(pname, pvalue);
             if (CommandManager.IsCommandEnabled(name, null))
             {
-
                 CommandManager.DoCommand(name, CommandParams, null);
             }
         }
