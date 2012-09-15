@@ -163,6 +163,7 @@ namespace Gecko
 				m_wrapper.Dispose();
 #endif
 			//count = Gecko.Interop.ComDebug.GetRefCount(WebBrowser);
+            Marshal.ReleaseComObject(CommandParams);
 			base.Dispose(disposing);
 		}
 
