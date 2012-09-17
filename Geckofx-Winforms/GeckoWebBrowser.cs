@@ -1016,6 +1016,14 @@ namespace Gecko
 			m_wrapper.RemoveInputFocus();		
 #endif
 		}
+		
+		public bool HasInputFocus()
+		{
+#if GTK
+			return m_wrapper.HasInputFocus();
+#endif
+			return false;
+		}
 
 		/// <summary>
 		/// Gets whether the browser is busy loading a page.

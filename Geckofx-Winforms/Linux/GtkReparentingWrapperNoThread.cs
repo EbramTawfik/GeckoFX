@@ -34,6 +34,9 @@ namespace GtkDotNet
 	
 		[DllImport ("libX11")]
 		public extern static int XSetInputFocus(IntPtr display, IntPtr window, RevertTo revert_to, IntPtr time);
+		
+		[DllImport ("libX11")]
+        public extern static int XGetInputFocus(IntPtr display, out IntPtr focus_return, out RevertTo revert_to_return);
 
 		IntPtr m_xDisplayPointer;		
 		#endregion
@@ -141,6 +144,21 @@ namespace GtkDotNet
 						
 			XSetInputFocus(m_xDisplayPointer, IntPtr.Zero, RevertTo.Parent, IntPtr.Zero);
 		}
+		
+		public override bool HasInputFocus()
+		{
+			if (m_xDisplayPointer == IntPtr.Zero)
+				return false;
+						
+			IntPtr xWindow = gdk_x11_drawable_get_xid(m_popupWindow.GdkWindow.Handle);
+			if (xWindow == IntPtr.Zero)
+				return false;
+						
+			IntPtr focus_return;
+            RevertTo val;
+			XGetInputFocus(m_xDisplayPointer, out focus_return, out val);
+			return focus_return == xWindow;
+		}	
 	}
 }
 #endif

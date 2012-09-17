@@ -67,6 +67,11 @@ namespace GtkDotNet
 		{
 			
 		}
+		
+		public virtual bool HasInputFocus()
+		{
+			return false;	
+		}
 
 #region IDisposable implementation
 		public void Dispose()
