@@ -121,7 +121,7 @@ namespace Gecko
 				m_wrapper = new GtkDotNet.GtkReparentingWrapperNoThread(new Gtk.Window(Gtk.WindowType.Popup), this);
 			}
 #endif
-
+			GlobalJSContextHolderInitalizer.Initalize();
 			NavigateFinishedNotifier = new NavigateFinishedNotifier(this);
 		}
 
