@@ -73,6 +73,9 @@
     <AssemblyName>Geckofx-Winforms</AssemblyName>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyName>Geckofx-Winforms-15</AssemblyName>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.AddIn" />
