@@ -24,7 +24,6 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
 	/// <summary>
@@ -38,16 +37,13 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("bf733b00-198f-4553-a061-637a21793330")]
+	[Guid("a0550d46-8d9c-47dd-acc7-c083620dff12")]
 	public interface nsICharsetConverterManager
 	{
 		
 		/// <summary>
         /// Get the Unicode decoder for the given charset.
         /// The "Raw" version skips charset alias resolution
-        /// The "Internal" version will return a decoder for any charset; the others
-        /// will return NS_ERROR_UCONV_NOCONV if the requested charsets is
-        /// vulnerable to XSS attacks and should not be used with untrusted input
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetUnicodeDecoder([MarshalAs(UnmanagedType.LPStr)] string charset);
@@ -57,9 +53,6 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetUnicodeDecoderInternal([MarshalAs(UnmanagedType.LPStr)] string charset);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetUnicodeDecoderRawInternal([MarshalAs(UnmanagedType.LPStr)] string charset);
 		
 		/// <summary>
         /// Get the Unicode encoder for the given charset.

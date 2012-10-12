@@ -24,7 +24,6 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
 	/// <summary>
@@ -124,8 +123,8 @@ namespace Gecko
 		int GetUnitsAttribute();
 		
 		/// <summary>
-        /// The numeric value reported by this memory reporter.  -1 means "unknown",
-        /// ie. something went wrong when getting the amount.
+        /// The numeric value reported by this memory reporter.  Accesses can fail if
+        /// something goes wrong when getting the amount.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		long GetAmountAttribute();
@@ -212,6 +211,8 @@ namespace Gecko
         // This allows a fractional percentage to be shown even though |amount| is
         // an integer.  E.g. if the actual percentage is 12.34%, |amount| should
         // be 1234.
+        //
+        // Values greater than 100% are allowed.
         // </summary>
 		public const int UNITS_BYTES = 0;
 		
@@ -351,7 +352,7 @@ namespace Gecko
         /// Get the resident size (aka. RSS, physical memory used).  This reporter
         /// is special-cased because it's interesting, is available on all
         /// platforms, and returns a meaningful result on all common platforms.
-        /// -1 means unknown.
+        /// Accesses can fail.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		long GetResidentAttribute();
@@ -362,7 +363,7 @@ namespace Gecko
         /// calloc, operator new).  (Nb: it covers all heap allocations, but will
         /// miss any OS-level ones not covered by memory reporters.)  This reporter
         /// is special-cased because it's interesting, and is moderately difficult
-        /// to compute in JS.  -1 means unknown.
+        /// to compute in JS.  Accesses can fail.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		long GetExplicitAttribute();

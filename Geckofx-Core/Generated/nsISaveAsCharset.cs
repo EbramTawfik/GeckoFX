@@ -24,18 +24,18 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsISaveAsCharset </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("33B87F70-7A9C-11d3-915C-006008A6EDF6")]
 	public interface nsISaveAsCharset
 	{
 		
-		/// <summary>Member GetCharsetAttribute </summary>
-		/// <returns>A System.String</returns>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string GetCharsetAttribute();

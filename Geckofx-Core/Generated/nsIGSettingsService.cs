@@ -24,56 +24,41 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIGSettingsCollection </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("16d5b0ed-e756-4f1b-a8ce-9132e869acd8")]
 	public interface nsIGSettingsCollection
 	{
 		
-		/// <summary>Member SetString </summary>
-		/// <param name='key'> </param>
-		/// <param name='value'> </param>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetString([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase key, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase value);
 		
-		/// <summary>Member SetBoolean </summary>
-		/// <param name='key'> </param>
-		/// <param name='value'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetBoolean([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase key, [MarshalAs(UnmanagedType.U1)] bool value);
 		
-		/// <summary>Member SetInt </summary>
-		/// <param name='key'> </param>
-		/// <param name='value'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetInt([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase key, int value);
 		
-		/// <summary>Member GetString </summary>
-		/// <param name='key'> </param>
-		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetString([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase key, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase retval);
 		
-		/// <summary>Member GetBoolean </summary>
-		/// <param name='key'> </param>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetBoolean([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase key);
 		
-		/// <summary>Member GetInt </summary>
-		/// <param name='key'> </param>
-		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetInt([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase key);
 		
-		/// <summary>Member GetStringList </summary>
-		/// <param name='key'> </param>
-		/// <returns>A nsIArray</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIArray GetStringList([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase key);

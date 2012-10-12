@@ -24,36 +24,38 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIDOMNSRGBAColor </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("742dc816-5134-4214-adfa-cad9dd3377cd")]
 	public interface nsIDOMNSRGBAColor : nsIDOMRGBColor
 	{
 		
-		/// <summary>Member GetRedAttribute </summary>
-		/// <returns>A nsIDOMCSSPrimitiveValue</returns>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMCSSPrimitiveValue GetRedAttribute();
 		
-		/// <summary>Member GetGreenAttribute </summary>
-		/// <returns>A nsIDOMCSSPrimitiveValue</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMCSSPrimitiveValue GetGreenAttribute();
 		
-		/// <summary>Member GetBlueAttribute </summary>
-		/// <returns>A nsIDOMCSSPrimitiveValue</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMCSSPrimitiveValue GetBlueAttribute();
 		
-		/// <summary>Member GetAlphaAttribute </summary>
-		/// <returns>A nsIDOMCSSPrimitiveValue</returns>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMCSSPrimitiveValue GetAlphaAttribute();

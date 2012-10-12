@@ -24,49 +24,42 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIDOMSVGLocatable </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("9cf4fc9c-90b2-4d66-88f5-35049b558aee")]
 	public interface nsIDOMSVGLocatable
 	{
 		
-		/// <summary>Member GetNearestViewportElementAttribute </summary>
-		/// <returns>A nsIDOMSVGElement</returns>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMSVGElement GetNearestViewportElementAttribute();
 		
-		/// <summary>Member GetFarthestViewportElementAttribute </summary>
-		/// <returns>A nsIDOMSVGElement</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMSVGElement GetFarthestViewportElementAttribute();
 		
-		/// <summary>Member GetBBox </summary>
-		/// <returns>A nsIDOMSVGRect</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMSVGRect GetBBox();
 		
-		/// <summary>Member GetCTM </summary>
-		/// <returns>A nsIDOMSVGMatrix</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMSVGMatrix GetCTM();
 		
-		/// <summary>Member GetScreenCTM </summary>
-		/// <returns>A nsIDOMSVGMatrix</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMSVGMatrix GetScreenCTM();
 		
-		/// <summary>Member GetTransformToElement </summary>
-		/// <param name='element'> </param>
-		/// <returns>A nsIDOMSVGMatrix</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMSVGMatrix GetTransformToElement([MarshalAs(UnmanagedType.Interface)] nsIDOMSVGElement element);

@@ -24,10 +24,14 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>mozIStorageRow </summary>
+	/// <summary>
+    ///-*- Mode: C++; tab-width: 2; indent-tabs-mode: nil; c-basic-offset: 2 -*-
+    /// vim: sw=2 ts=2 sts=2 expandtab
+    /// This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("62d1b6bd-cbfe-4f9b-aee1-0ead4af4e6dc")]
@@ -66,27 +70,15 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new int GetInt32(uint aIndex);
 		
-		/// <summary>Member GetInt64 </summary>
-		/// <param name='aIndex'> </param>
-		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new int GetInt64(uint aIndex);
 		
-		/// <summary>Member GetDouble </summary>
-		/// <param name='aIndex'> </param>
-		/// <returns>A System.Double</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new double GetDouble(uint aIndex);
 		
-		/// <summary>Member GetUTF8String </summary>
-		/// <param name='aIndex'> </param>
-		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetUTF8String(uint aIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase retval);
 		
-		/// <summary>Member GetString </summary>
-		/// <param name='aIndex'> </param>
-		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetString(uint aIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
@@ -96,9 +88,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetBlob(uint aIndex, ref uint aDataSize, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] ref byte[] aData);
 		
-		/// <summary>Member GetIsNull </summary>
-		/// <param name='aIndex'> </param>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetIsNull(uint aIndex);
@@ -110,18 +99,10 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new string GetSharedUTF8String(uint aIndex, ref uint aLength);
 		
-		/// <summary>Member GetSharedString </summary>
-		/// <param name='aIndex'> </param>
-		/// <param name='aLength'> </param>
-		/// <returns>A System.String</returns>
 		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new string GetSharedString(uint aIndex, ref uint aLength);
 		
-		/// <summary>Member GetSharedBlob </summary>
-		/// <param name='aIndex'> </param>
-		/// <param name='aLength'> </param>
-		/// <returns>A System.IntPtr</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new System.IntPtr GetSharedBlob(uint aIndex, ref uint aLength);
 		

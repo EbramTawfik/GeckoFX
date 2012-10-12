@@ -24,25 +24,29 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIPKIParamBlock </summary>
+	/// <summary>
+    ///-*- Mode: C++; tab-width: 2; indent-tabs-mode: nil; c-basic-offset: 2 -*-
+    ///
+    /// This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("b6fe3d78-1dd1-11b2-9058-ced9016984c8")]
 	public interface nsIPKIParamBlock
 	{
 		
-		/// <summary>Member SetISupportAtIndex </summary>
-		/// <param name='index'> </param>
-		/// <param name='object'> </param>
+		/// <summary>
+        ///-*- Mode: C++; tab-width: 2; indent-tabs-mode: nil; c-basic-offset: 2 -*-
+        ///
+        /// This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetISupportAtIndex(int index, [MarshalAs(UnmanagedType.Interface)] nsISupports @object);
 		
-		/// <summary>Member GetISupportAtIndex </summary>
-		/// <param name='index'> </param>
-		/// <returns>A nsISupports</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISupports GetISupportAtIndex(int index);

@@ -24,32 +24,25 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIAppShellService </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("EBCD34E2-2E43-45C0-AAC8-E6F1C692B371")]
 	public interface nsIAppShellService
 	{
 		
-		/// <summary>Member CreateTopLevelWindow </summary>
-		/// <param name='aParent'> </param>
-		/// <param name='aUrl'> </param>
-		/// <param name='aChromeMask'> </param>
-		/// <param name='aInitialWidth'> </param>
-		/// <param name='aInitialHeight'> </param>
-		/// <returns>A nsIXULWindow</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIXULWindow CreateTopLevelWindow([MarshalAs(UnmanagedType.Interface)] nsIXULWindow aParent, [MarshalAs(UnmanagedType.Interface)] nsIURI aUrl, uint aChromeMask, int aInitialWidth, int aInitialHeight);
 		
-		/// <summary>Member CreateHiddenWindow </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void CreateHiddenWindow();
 		
-		/// <summary>Member DestroyHiddenWindow </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void DestroyHiddenWindow();
 		

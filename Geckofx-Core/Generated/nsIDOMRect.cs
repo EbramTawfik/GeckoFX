@@ -24,36 +24,34 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIDOMRect </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("71735f62-ac5c-4236-9a1f-5ffb280d531c")]
 	public interface nsIDOMRect
 	{
 		
-		/// <summary>Member GetTopAttribute </summary>
-		/// <returns>A nsIDOMCSSPrimitiveValue</returns>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMCSSPrimitiveValue GetTopAttribute();
 		
-		/// <summary>Member GetRightAttribute </summary>
-		/// <returns>A nsIDOMCSSPrimitiveValue</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMCSSPrimitiveValue GetRightAttribute();
 		
-		/// <summary>Member GetBottomAttribute </summary>
-		/// <returns>A nsIDOMCSSPrimitiveValue</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMCSSPrimitiveValue GetBottomAttribute();
 		
-		/// <summary>Member GetLeftAttribute </summary>
-		/// <returns>A nsIDOMCSSPrimitiveValue</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMCSSPrimitiveValue GetLeftAttribute();

@@ -24,47 +24,34 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsISmsService </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this file,
+    /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("a0fbbe74-5d61-4b7e-b7ab-9b5224f9e5e9")]
+	[Guid("00d23a50-6ed1-48b4-b1e9-5987b155e54b")]
 	public interface nsISmsService
 	{
 		
-		/// <summary>Member HasSupport </summary>
-		/// <returns>A System.Boolean</returns>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this file,
+        /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool HasSupport();
 		
-		/// <summary>Member GetNumberOfMessagesForText </summary>
-		/// <param name='text'> </param>
-		/// <returns>A System.UInt32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetNumberOfMessagesForText([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase text);
 		
-		/// <summary>Member Send </summary>
-		/// <param name='number'> </param>
-		/// <param name='message'> </param>
-		/// <param name='requestId'> </param>
-		/// <param name='processId'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Send([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase number, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase message, int requestId, ulong processId);
 		
-		/// <summary>Member CreateSmsMessage </summary>
-		/// <param name='id'> </param>
-		/// <param name='delivery'> </param>
-		/// <param name='sender'> </param>
-		/// <param name='receiver'> </param>
-		/// <param name='body'> </param>
-		/// <param name='timestamp'> </param>
-		/// <param name='jsContext'> </param>
-		/// <returns>A nsIDOMMozSmsMessage</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMMozSmsMessage CreateSmsMessage(int id, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase delivery, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase sender, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase receiver, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase body, Gecko.JsVal timestamp, System.IntPtr jsContext);
+		nsIDOMMozSmsMessage CreateSmsMessage(int id, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase delivery, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase sender, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase receiver, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase body, Gecko.JsVal timestamp, [MarshalAs(UnmanagedType.U1)] bool read, System.IntPtr jsContext);
 	}
 }

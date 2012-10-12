@@ -24,59 +24,51 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>inIFlasher </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("7B4A099F-6F6E-4565-977B-FB622ADBFF49")]
 	public interface inIFlasher
 	{
 		
-		/// <summary>Member GetColorAttribute </summary>
-		/// <param name='aColor'> </param>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aColor);
 		
-		/// <summary>Member SetColorAttribute </summary>
-		/// <param name='aColor'> </param>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aColor);
 		
-		/// <summary>Member GetInvertAttribute </summary>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetInvertAttribute();
 		
-		/// <summary>Member SetInvertAttribute </summary>
-		/// <param name='aInvert'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetInvertAttribute([MarshalAs(UnmanagedType.U1)] bool aInvert);
 		
-		/// <summary>Member GetThicknessAttribute </summary>
-		/// <returns>A System.UInt16</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		ushort GetThicknessAttribute();
 		
-		/// <summary>Member SetThicknessAttribute </summary>
-		/// <param name='aThickness'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetThicknessAttribute(ushort aThickness);
 		
-		/// <summary>Member DrawElementOutline </summary>
-		/// <param name='aElement'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void DrawElementOutline([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement);
 		
-		/// <summary>Member RepaintElement </summary>
-		/// <param name='aElement'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RepaintElement([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement);
 		
-		/// <summary>Member ScrollElementIntoView </summary>
-		/// <param name='aElement'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ScrollElementIntoView([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement);
 	}

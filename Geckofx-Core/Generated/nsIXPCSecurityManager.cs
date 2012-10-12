@@ -24,10 +24,14 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIXPCSecurityManager </summary>
+	/// <summary>
+    ///-*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*-
+    ///
+    /// This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("31431440-f1ce-11d2-985a-006008962422")]
@@ -44,27 +48,12 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void CanCreateWrapper(System.IntPtr aJSContext, ref System.Guid aIID, [MarshalAs(UnmanagedType.Interface)] nsISupports aObj, [MarshalAs(UnmanagedType.Interface)] nsIClassInfo aClassInfo, ref System.IntPtr aPolicy);
 		
-		/// <summary>Member CanCreateInstance </summary>
-		/// <param name='aJSContext'> </param>
-		/// <param name='aCID'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void CanCreateInstance(System.IntPtr aJSContext, ref System.Guid aCID);
 		
-		/// <summary>Member CanGetService </summary>
-		/// <param name='aJSContext'> </param>
-		/// <param name='aCID'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void CanGetService(System.IntPtr aJSContext, ref System.Guid aCID);
 		
-		/// <summary>Member CanAccess </summary>
-		/// <param name='aAction'> </param>
-		/// <param name='aCallContext'> </param>
-		/// <param name='aJSContext'> </param>
-		/// <param name='aJSObject'> </param>
-		/// <param name='aObj'> </param>
-		/// <param name='aClassInfo'> </param>
-		/// <param name='aName'> </param>
-		/// <param name='aPolicy'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void CanAccess(uint aAction, System.IntPtr aCallContext, System.IntPtr aJSContext, System.IntPtr aJSObject, [MarshalAs(UnmanagedType.Interface)] nsISupports aObj, [MarshalAs(UnmanagedType.Interface)] nsIClassInfo aClassInfo, System.IntPtr aName, ref System.IntPtr aPolicy);
 	}

@@ -24,20 +24,26 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIContentViewerContainer </summary>
+	/// <summary>
+    ///-*- Mode: IDL; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 2 -*-
+    ///
+    /// This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("ea2ce7a0-5c3d-11d4-90c2-0050041caf44")]
 	public interface nsIContentViewerContainer
 	{
 		
-		/// <summary>Member Embed </summary>
-		/// <param name='aDocViewer'> </param>
-		/// <param name='aCommand'> </param>
-		/// <param name='aExtraInfo'> </param>
+		/// <summary>
+        ///-*- Mode: IDL; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 2 -*-
+        ///
+        /// This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Embed(System.IntPtr aDocViewer, [MarshalAs(UnmanagedType.LPStr)] string aCommand, [MarshalAs(UnmanagedType.Interface)] nsISupports aExtraInfo);
 		

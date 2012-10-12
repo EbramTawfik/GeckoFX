@@ -24,23 +24,21 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIDOMSVGPathSeg </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("b9022da7-e26d-4df3-8c94-b45c4aedda7c")]
 	public interface nsIDOMSVGPathSeg
 	{
 		
-		/// <summary>Member GetPathSegTypeAttribute </summary>
-		/// <returns>A System.UInt16</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		ushort GetPathSegTypeAttribute();
 		
-		/// <summary>Member GetPathSegTypeAsLetterAttribute </summary>
-		/// <param name='aPathSegTypeAsLetter'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetPathSegTypeAsLetterAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPathSegTypeAsLetter);
 	}

@@ -24,10 +24,12 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsILayoutRegressionTester </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("B249B2C0-EE11-11DA-8AD9-0800200C9A66")]
@@ -40,11 +42,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int DumpFrameModel([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindowToDump, [MarshalAs(UnmanagedType.Interface)] nsILocalFile aFile, uint aFlagsMask);
 		
-		/// <summary>Member CompareFrameModels </summary>
-		/// <param name='aBaseFile'> </param>
-		/// <param name='aVerFile'> </param>
-		/// <param name='aFlags'> </param>
-		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int CompareFrameModels([MarshalAs(UnmanagedType.Interface)] nsILocalFile aBaseFile, [MarshalAs(UnmanagedType.Interface)] nsILocalFile aVerFile, uint aFlags);
 	}

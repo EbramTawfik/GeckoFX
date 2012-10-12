@@ -24,7 +24,6 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
 	/// <summary>
@@ -33,7 +32,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("10fdea21-1224-4c29-8507-8f3205a121d5")]
+	[Guid("28adfdc7-6718-4b3e-bdb2-ecfefa3c8910")]
 	public interface nsIApplicationCacheService
 	{
 		
@@ -44,6 +43,22 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIApplicationCache CreateApplicationCache([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase group);
+		
+		/// <summary>
+        /// Create a new, empty application cache for the given cache
+        /// group residing in a custom directory with a custom quota.
+        ///
+        /// @param group
+        /// URL of the manifest
+        /// @param directory
+        /// Actually a reference to a profile directory where to
+        /// create the OfflineCache sub-dir.
+        /// @param quota
+        /// Optional override of the default quota.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIApplicationCache CreateCustomApplicationCache([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase group, [MarshalAs(UnmanagedType.Interface)] nsILocalFile profileDir, int quota);
 		
 		/// <summary>
         /// Get an application cache object for the given client ID.

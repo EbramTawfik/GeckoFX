@@ -24,36 +24,34 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIDOMSVGAnimatedPathData </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("6ef2b400-dbf4-4c12-8787-fe15caac5648")]
 	public interface nsIDOMSVGAnimatedPathData
 	{
 		
-		/// <summary>Member GetPathSegListAttribute </summary>
-		/// <returns>A nsIDOMSVGPathSegList</returns>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMSVGPathSegList GetPathSegListAttribute();
 		
-		/// <summary>Member GetNormalizedPathSegListAttribute </summary>
-		/// <returns>A nsIDOMSVGPathSegList</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMSVGPathSegList GetNormalizedPathSegListAttribute();
 		
-		/// <summary>Member GetAnimatedPathSegListAttribute </summary>
-		/// <returns>A nsIDOMSVGPathSegList</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMSVGPathSegList GetAnimatedPathSegListAttribute();
 		
-		/// <summary>Member GetAnimatedNormalizedPathSegListAttribute </summary>
-		/// <returns>A nsIDOMSVGPathSegList</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMSVGPathSegList GetAnimatedNormalizedPathSegListAttribute();

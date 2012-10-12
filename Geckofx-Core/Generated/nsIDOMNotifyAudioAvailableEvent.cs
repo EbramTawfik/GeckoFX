@@ -24,10 +24,12 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIDOMNotifyAudioAvailableEvent </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("cd362d2f-a9a1-4127-940d-477ba0e82bd6")]
@@ -162,25 +164,16 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void StopImmediatePropagation();
 		
-		/// <summary>Member GetFrameBufferAttribute </summary>
-		/// <param name='jsContext'> </param>
-		/// <returns>A Gecko.JsVal</returns>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		Gecko.JsVal GetFrameBufferAttribute(System.IntPtr jsContext);
 		
-		/// <summary>Member GetTimeAttribute </summary>
-		/// <returns>A System.Single</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		float GetTimeAttribute();
 		
-		/// <summary>Member InitAudioAvailableEvent </summary>
-		/// <param name='typeArg'> </param>
-		/// <param name='canBubbleArg'> </param>
-		/// <param name='cancelableArg'> </param>
-		/// <param name='frameBufferPtr'> </param>
-		/// <param name='frameBufferLength'> </param>
-		/// <param name='time'> </param>
-		/// <param name='allowAudioData'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void InitAudioAvailableEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase typeArg, [MarshalAs(UnmanagedType.U1)] bool canBubbleArg, [MarshalAs(UnmanagedType.U1)] bool cancelableArg, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=4)] float[] frameBufferPtr, uint frameBufferLength, float time, [MarshalAs(UnmanagedType.U1)] bool allowAudioData);
 	}

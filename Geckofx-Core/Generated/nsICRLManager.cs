@@ -24,10 +24,14 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsICRLManager </summary>
+	/// <summary>
+    ///-*- Mode: C++; tab-width: 2; indent-tabs-mode: nil; c-basic-offset: 2 -*-
+    ///
+    /// This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("486755db-627a-4678-a21b-f6a63bb9c56a")]
@@ -77,11 +81,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RescheduleCRLAutoUpdate();
 		
-		/// <summary>Member ComputeNextAutoUpdateTime </summary>
-		/// <param name='info'> </param>
-		/// <param name='autoUpdateType'> </param>
-		/// <param name='noOfDays'> </param>
-		/// <returns>A System.String</returns>
 		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string ComputeNextAutoUpdateTime([MarshalAs(UnmanagedType.Interface)] nsICRLInfo info, uint autoUpdateType, double noOfDays);

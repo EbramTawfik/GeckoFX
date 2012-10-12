@@ -24,7 +24,6 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
 	/// <summary>
@@ -32,8 +31,15 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("a89f8ab5-ff71-492a-8ed5-71185446fa66")]
+	[Guid("bf1eddf9-731b-4a4b-bd65-9a712a892832")]
 	public interface nsITabChild
 	{
+		
+		/// <summary>
+        /// Sole purpose is to be able to identify the concrete class nsTabChild
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIContentFrameMessageManager GetMessageManagerAttribute();
 	}
 }

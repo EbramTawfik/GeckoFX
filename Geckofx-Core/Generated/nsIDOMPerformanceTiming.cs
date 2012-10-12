@@ -24,113 +24,79 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIDOMPerformanceTiming </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("8e09c825-da49-4a39-876b-ce2ff767dbe1")]
 	public interface nsIDOMPerformanceTiming
 	{
 		
-		/// <summary>Member GetNavigationStartAttribute </summary>
-		/// <returns>A System.IntPtr</returns>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetNavigationStartAttribute();
 		
-		/// <summary>Member GetUnloadEventStartAttribute </summary>
-		/// <returns>A System.IntPtr</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetUnloadEventStartAttribute();
 		
-		/// <summary>Member GetUnloadEventEndAttribute </summary>
-		/// <returns>A System.IntPtr</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetUnloadEventEndAttribute();
 		
-		/// <summary>Member GetRedirectStartAttribute </summary>
-		/// <returns>A System.IntPtr</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetRedirectStartAttribute();
 		
-		/// <summary>Member GetRedirectEndAttribute </summary>
-		/// <returns>A System.IntPtr</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetRedirectEndAttribute();
 		
-		/// <summary>Member GetFetchStartAttribute </summary>
-		/// <returns>A System.IntPtr</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetFetchStartAttribute();
 		
-		/// <summary>Member GetDomainLookupStartAttribute </summary>
-		/// <returns>A System.IntPtr</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetDomainLookupStartAttribute();
 		
-		/// <summary>Member GetDomainLookupEndAttribute </summary>
-		/// <returns>A System.IntPtr</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetDomainLookupEndAttribute();
 		
-		/// <summary>Member GetConnectStartAttribute </summary>
-		/// <returns>A System.IntPtr</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetConnectStartAttribute();
 		
-		/// <summary>Member GetConnectEndAttribute </summary>
-		/// <returns>A System.IntPtr</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetConnectEndAttribute();
 		
-		/// <summary>Member GetRequestStartAttribute </summary>
-		/// <returns>A System.IntPtr</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetRequestStartAttribute();
 		
-		/// <summary>Member GetResponseStartAttribute </summary>
-		/// <returns>A System.IntPtr</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetResponseStartAttribute();
 		
-		/// <summary>Member GetResponseEndAttribute </summary>
-		/// <returns>A System.IntPtr</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetResponseEndAttribute();
 		
-		/// <summary>Member GetDomLoadingAttribute </summary>
-		/// <returns>A System.IntPtr</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetDomLoadingAttribute();
 		
-		/// <summary>Member GetDomInteractiveAttribute </summary>
-		/// <returns>A System.IntPtr</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetDomInteractiveAttribute();
 		
-		/// <summary>Member GetDomContentLoadedEventStartAttribute </summary>
-		/// <returns>A System.IntPtr</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetDomContentLoadedEventStartAttribute();
 		
-		/// <summary>Member GetDomContentLoadedEventEndAttribute </summary>
-		/// <returns>A System.IntPtr</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetDomContentLoadedEventEndAttribute();
 		
-		/// <summary>Member GetDomCompleteAttribute </summary>
-		/// <returns>A System.IntPtr</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetDomCompleteAttribute();
 		
-		/// <summary>Member GetLoadEventStartAttribute </summary>
-		/// <returns>A System.IntPtr</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetLoadEventStartAttribute();
 		
-		/// <summary>Member GetLoadEventEndAttribute </summary>
-		/// <returns>A System.IntPtr</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetLoadEventEndAttribute();
 	}

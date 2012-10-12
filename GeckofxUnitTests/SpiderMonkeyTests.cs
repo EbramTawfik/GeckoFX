@@ -14,7 +14,7 @@ namespace GeckofxUnitTests
 		[SetUp]
 		public void BeforeEachTestSetup()
 		{
-
+			GlobalJSContextHolderInitalizer.Initalize();
 		}
 
 		[TearDown]
@@ -62,7 +62,7 @@ namespace GeckofxUnitTests
 		/// <returns></returns>
 		private static JsVal CreateJsVal(string jscript)
 		{
-			using (AutoJSContext cx = new AutoJSContext())
+			using (AutoJSContext cx = new AutoJSContext(GlobalJSContextHolder.JSContext))
 			{				
 				var ptr = new JsVal();
 				var _securityManager = Xpcom.GetService<nsIScriptSecurityManager>("@mozilla.org/scriptsecuritymanager;1");
@@ -83,7 +83,7 @@ namespace GeckofxUnitTests
 			if (Xpcom.IsLinux && IntPtr.Size == 8)
 				Assert.Ignore("unsafe test:seg faults on 64bit Linux");
 
-			using (AutoJSContext cx = new AutoJSContext())
+			using (AutoJSContext cx = new AutoJSContext(GlobalJSContextHolder.JSContext))
 			{
 				Assert.AreEqual(JSType.JSTYPE_NUMBER, SpiderMonkey.JS_TypeOfValue(cx.ContextPointer, JsVal.FromPtr(0)));
 				Assert.AreEqual(JSType.JSTYPE_NUMBER, SpiderMonkey.JS_TypeOfValue(cx.ContextPointer, JsVal.FromPtr(0xffff0000ffffffff)));
@@ -96,7 +96,7 @@ namespace GeckofxUnitTests
 		{
 
 			var jsVal = CreateStringJsVal("hello world");
-			using (AutoJSContext cx = new AutoJSContext())
+			using (AutoJSContext cx = new AutoJSContext(GlobalJSContextHolder.JSContext))
 			{
 				Assert.AreEqual(JSType.JSTYPE_STRING, SpiderMonkey.JS_TypeOfValue(cx.ContextPointer, jsVal));
 			}
@@ -107,7 +107,7 @@ namespace GeckofxUnitTests
 		{
 
 			var jsVal = CreateNumberJsVal(100);
-			using (AutoJSContext cx = new AutoJSContext())
+			using (AutoJSContext cx = new AutoJSContext(GlobalJSContextHolder.JSContext))
 			{
 				Assert.AreEqual(JSType.JSTYPE_NUMBER, SpiderMonkey.JS_TypeOfValue(cx.ContextPointer, jsVal));
 			}
@@ -117,7 +117,7 @@ namespace GeckofxUnitTests
 		public void JS_TypeOfValue_OnBoolJsValCreatedBySpiderMonkey_ReturnsTypeBool()
 		{
 			var jsVal = CreateBoolJsVal(true);
-			using (AutoJSContext cx = new AutoJSContext())
+			using (AutoJSContext cx = new AutoJSContext(GlobalJSContextHolder.JSContext))
 			{
 				Assert.AreEqual(JSType.JSTYPE_BOOLEAN, SpiderMonkey.JS_TypeOfValue(cx.ContextPointer, jsVal));
 			}
@@ -126,7 +126,7 @@ namespace GeckofxUnitTests
 		[Test]
 		public void JS_NewStringCopyN()
 		{
-			using (AutoJSContext cx = new AutoJSContext())
+			using (AutoJSContext cx = new AutoJSContext(GlobalJSContextHolder.JSContext))
 			{
 				IntPtr jsString = SpiderMonkey.JS_NewStringCopyN(cx.ContextPointer, "hello world", 11);
 				Assert.NotNull(jsString);

@@ -24,7 +24,6 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
 	/// <summary>
@@ -33,7 +32,7 @@ namespace Gecko
     /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("27a568b0-cee1-11e0-9572-0800200c9a66")]
+	[Guid("eba48030-89e8-11e1-b0c4-0800200c9a66")]
 	public interface nsIDOMContactAddress
 	{
 		
@@ -42,12 +41,18 @@ namespace Gecko
         /// License, v. 2.0. If a copy of the MPL was not distributed with this file,
         /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetStreetAddressAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aStreetAddress);
+		void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType);
 		
 		/// <summary>
         ///This Source Code Form is subject to the terms of the Mozilla Public
         /// License, v. 2.0. If a copy of the MPL was not distributed with this file,
         /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetStreetAddressAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aStreetAddress);
+		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetStreetAddressAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aStreetAddress);
 		
@@ -74,6 +79,34 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetCountryNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCountryName);
+	}
+	
+	/// <summary>nsIDOMContactTelephone </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("82601b20-89e8-11e1-b0c4-0800200c9a66")]
+	public interface nsIDOMContactTelephone
+	{
+		
+		/// <summary>Member GetTypeAttribute </summary>
+		/// <param name='aType'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType);
+		
+		/// <summary>Member SetTypeAttribute </summary>
+		/// <param name='aType'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType);
+		
+		/// <summary>Member GetNumberAttribute </summary>
+		/// <param name='aNumber'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetNumberAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNumber);
+		
+		/// <summary>Member SetNumberAttribute </summary>
+		/// <param name='aNumber'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetNumberAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNumber);
 	}
 	
 	/// <summary>nsIDOMContactFindOptions </summary>
@@ -130,13 +163,13 @@ namespace Gecko
 		void SetSortByAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSortBy);
 		
 		/// <summary>
-        /// e.g. "givenName"
+        /// "givenName" or "familyName"
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetSortOrderAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSortOrder);
 		
 		/// <summary>
-        /// e.g. "givenName"
+        /// "givenName" or "familyName"
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetSortOrderAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSortOrder);
@@ -157,7 +190,7 @@ namespace Gecko
 	/// <summary>nsIDOMContactProperties </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("53ed7c20-ceda-11e0-9572-0800200c9a66")]
+	[Guid("f5181640-89e8-11e1-b0c4-0800200c9a66")]
 	public interface nsIDOMContactProperties
 	{
 		
@@ -316,16 +349,28 @@ namespace Gecko
 		void SetTelAttribute(Gecko.JsVal aTel);
 		
 		/// <summary>
-        /// DOMString[]
+        /// ContactTelephone[]
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		Gecko.JsVal GetOrgAttribute();
 		
 		/// <summary>
-        /// DOMString[]
+        /// ContactTelephone[]
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOrgAttribute(Gecko.JsVal aOrg);
+		
+		/// <summary>
+        /// DOMString[]
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetJobTitleAttribute();
+		
+		/// <summary>
+        /// DOMString[]
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetJobTitleAttribute(Gecko.JsVal aJobTitle);
 		
 		/// <summary>
         /// DOMString[]

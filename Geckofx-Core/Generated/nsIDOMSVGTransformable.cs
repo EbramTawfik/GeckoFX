@@ -24,55 +24,50 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIDOMSVGTransformable </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("b81f6e37-1842-4534-a546-1ab86e59a3c6")]
 	public interface nsIDOMSVGTransformable : nsIDOMSVGLocatable
 	{
 		
-		/// <summary>Member GetNearestViewportElementAttribute </summary>
-		/// <returns>A nsIDOMSVGElement</returns>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMSVGElement GetNearestViewportElementAttribute();
 		
-		/// <summary>Member GetFarthestViewportElementAttribute </summary>
-		/// <returns>A nsIDOMSVGElement</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMSVGElement GetFarthestViewportElementAttribute();
 		
-		/// <summary>Member GetBBox </summary>
-		/// <returns>A nsIDOMSVGRect</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMSVGRect GetBBox();
 		
-		/// <summary>Member GetCTM </summary>
-		/// <returns>A nsIDOMSVGMatrix</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMSVGMatrix GetCTM();
 		
-		/// <summary>Member GetScreenCTM </summary>
-		/// <returns>A nsIDOMSVGMatrix</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMSVGMatrix GetScreenCTM();
 		
-		/// <summary>Member GetTransformToElement </summary>
-		/// <param name='element'> </param>
-		/// <returns>A nsIDOMSVGMatrix</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMSVGMatrix GetTransformToElement([MarshalAs(UnmanagedType.Interface)] nsIDOMSVGElement element);
 		
-		/// <summary>Member GetTransformAttribute </summary>
-		/// <returns>A nsIDOMSVGAnimatedTransformList</returns>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMSVGAnimatedTransformList GetTransformAttribute();

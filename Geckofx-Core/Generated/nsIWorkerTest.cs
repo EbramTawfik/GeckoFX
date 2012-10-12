@@ -24,23 +24,25 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIWorkerTestCallback </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("10f8ebdf-1373-4640-9c34-53dee99f526f")]
 	public interface nsIWorkerTestCallback
 	{
 		
-		/// <summary>Member Onmessage </summary>
-		/// <param name='data'> </param>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Onmessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase data);
 		
-		/// <summary>Member Onerror </summary>
-		/// <param name='data'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Onerror([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase data);
 	}

@@ -24,10 +24,12 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIDOMMutationEvent </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("72b3ddba-6cbb-4011-ac3b-50bd900b223d")]
@@ -162,41 +164,22 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void StopImmediatePropagation();
 		
-		/// <summary>Member GetRelatedNodeAttribute </summary>
-		/// <returns>A nsIDOMNode</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMNode GetRelatedNodeAttribute();
 		
-		/// <summary>Member GetPrevValueAttribute </summary>
-		/// <param name='aPrevValue'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetPrevValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPrevValue);
 		
-		/// <summary>Member GetNewValueAttribute </summary>
-		/// <param name='aNewValue'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetNewValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNewValue);
 		
-		/// <summary>Member GetAttrNameAttribute </summary>
-		/// <param name='aAttrName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetAttrNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAttrName);
 		
-		/// <summary>Member GetAttrChangeAttribute </summary>
-		/// <returns>A System.UInt16</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		ushort GetAttrChangeAttribute();
 		
-		/// <summary>Member InitMutationEvent </summary>
-		/// <param name='typeArg'> </param>
-		/// <param name='canBubbleArg'> </param>
-		/// <param name='cancelableArg'> </param>
-		/// <param name='relatedNodeArg'> </param>
-		/// <param name='prevValueArg'> </param>
-		/// <param name='newValueArg'> </param>
-		/// <param name='attrNameArg'> </param>
-		/// <param name='attrChangeArg'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void InitMutationEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase typeArg, [MarshalAs(UnmanagedType.U1)] bool canBubbleArg, [MarshalAs(UnmanagedType.U1)] bool cancelableArg, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode relatedNodeArg, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase prevValueArg, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase newValueArg, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase attrNameArg, ushort attrChangeArg);
 	}
@@ -205,7 +188,10 @@ namespace Gecko
 	public class nsIDOMMutationEventConsts
 	{
 		
-		// 
+		// <summary>
+        //This Source Code Form is subject to the terms of the Mozilla Public
+        // License, v. 2.0. If a copy of the MPL was not distributed with this
+        // file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		public const ulong MODIFICATION = 1;
 		
 		// 

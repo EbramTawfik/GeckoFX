@@ -24,97 +24,64 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIInlineSpellChecker </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("df635540-d073-47b8-8678-18776130691d")]
 	public interface nsIInlineSpellChecker
 	{
 		
-		/// <summary>Member GetSpellCheckerAttribute </summary>
-		/// <returns>A nsIEditorSpellCheck</returns>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIEditorSpellCheck GetSpellCheckerAttribute();
 		
-		/// <summary>Member Init </summary>
-		/// <param name='aEditor'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Init([MarshalAs(UnmanagedType.Interface)] nsIEditor aEditor);
 		
-		/// <summary>Member Cleanup </summary>
-		/// <param name='aDestroyingFrames'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Cleanup([MarshalAs(UnmanagedType.U1)] bool aDestroyingFrames);
 		
-		/// <summary>Member GetEnableRealTimeSpellAttribute </summary>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetEnableRealTimeSpellAttribute();
 		
-		/// <summary>Member SetEnableRealTimeSpellAttribute </summary>
-		/// <param name='aEnableRealTimeSpell'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetEnableRealTimeSpellAttribute([MarshalAs(UnmanagedType.U1)] bool aEnableRealTimeSpell);
 		
-		/// <summary>Member SpellCheckAfterEditorChange </summary>
-		/// <param name='aAction'> </param>
-		/// <param name='aSelection'> </param>
-		/// <param name='aPreviousSelectedNode'> </param>
-		/// <param name='aPreviousSelectedOffset'> </param>
-		/// <param name='aStartNode'> </param>
-		/// <param name='aStartOffset'> </param>
-		/// <param name='aEndNode'> </param>
-		/// <param name='aEndOffset'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SpellCheckAfterEditorChange(int aAction, [MarshalAs(UnmanagedType.Interface)] nsISelection aSelection, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aPreviousSelectedNode, int aPreviousSelectedOffset, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aStartNode, int aStartOffset, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode aEndNode, int aEndOffset);
 		
-		/// <summary>Member SpellCheckRange </summary>
-		/// <param name='aSelection'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SpellCheckRange([MarshalAs(UnmanagedType.Interface)] nsIDOMRange aSelection);
 		
-		/// <summary>Member GetMisspelledWord </summary>
-		/// <param name='aNode'> </param>
-		/// <param name='aOffset'> </param>
-		/// <returns>A nsIDOMRange</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMRange GetMisspelledWord([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aNode, int aOffset);
 		
-		/// <summary>Member ReplaceWord </summary>
-		/// <param name='aNode'> </param>
-		/// <param name='aOffset'> </param>
-		/// <param name='aNewword'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ReplaceWord([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aNode, int aOffset, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNewword);
 		
-		/// <summary>Member AddWordToDictionary </summary>
-		/// <param name='aWord'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void AddWordToDictionary([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aWord);
 		
-		/// <summary>Member RemoveWordFromDictionary </summary>
-		/// <param name='aWord'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RemoveWordFromDictionary([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aWord);
 		
-		/// <summary>Member IgnoreWord </summary>
-		/// <param name='aWord'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void IgnoreWord([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aWord);
 		
-		/// <summary>Member IgnoreWords </summary>
-		/// <param name='aWordsToIgnore'> </param>
-		/// <param name='aCount'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void IgnoreWords([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] System.IntPtr[] aWordsToIgnore, uint aCount);
 		
-		/// <summary>Member UpdateCurrentDictionary </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void UpdateCurrentDictionary();
 	}

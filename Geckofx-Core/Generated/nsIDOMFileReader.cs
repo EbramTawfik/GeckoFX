@@ -24,10 +24,12 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIDOMFileReader </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("faed1779-b523-4060-8c3b-7199f347b273")]
@@ -237,112 +239,74 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new System.IntPtr GetJSContextForEventHandlers();
 		
-		/// <summary>Member ReadAsArrayBuffer </summary>
-		/// <param name='filedata'> </param>
-		/// <param name='jsContext'> </param>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ReadAsArrayBuffer([MarshalAs(UnmanagedType.Interface)] nsIDOMBlob filedata, System.IntPtr jsContext);
 		
-		/// <summary>Member ReadAsBinaryString </summary>
-		/// <param name='filedata'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ReadAsBinaryString([MarshalAs(UnmanagedType.Interface)] nsIDOMBlob filedata);
 		
-		/// <summary>Member ReadAsText </summary>
-		/// <param name='filedata'> </param>
-		/// <param name='encoding'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ReadAsText([MarshalAs(UnmanagedType.Interface)] nsIDOMBlob filedata, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase encoding);
 		
-		/// <summary>Member ReadAsDataURL </summary>
-		/// <param name='file'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ReadAsDataURL([MarshalAs(UnmanagedType.Interface)] nsIDOMBlob file);
 		
-		/// <summary>Member Abort </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Abort();
 		
-		/// <summary>Member GetReadyStateAttribute </summary>
-		/// <returns>A System.UInt16</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		ushort GetReadyStateAttribute();
 		
-		/// <summary>Member GetResultAttribute </summary>
-		/// <param name='jsContext'> </param>
-		/// <returns>A Gecko.JsVal</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		Gecko.JsVal GetResultAttribute(System.IntPtr jsContext);
 		
-		/// <summary>Member GetErrorAttribute </summary>
-		/// <returns>A nsIDOMDOMError</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMDOMError GetErrorAttribute();
 		
-		/// <summary>Member GetOnloadstartAttribute </summary>
-		/// <returns>A nsIDOMEventListener</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMEventListener GetOnloadstartAttribute();
 		
-		/// <summary>Member SetOnloadstartAttribute </summary>
-		/// <param name='aOnloadstart'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOnloadstartAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnloadstart);
 		
-		/// <summary>Member GetOnprogressAttribute </summary>
-		/// <returns>A nsIDOMEventListener</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMEventListener GetOnprogressAttribute();
 		
-		/// <summary>Member SetOnprogressAttribute </summary>
-		/// <param name='aOnprogress'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOnprogressAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnprogress);
 		
-		/// <summary>Member GetOnloadAttribute </summary>
-		/// <returns>A nsIDOMEventListener</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMEventListener GetOnloadAttribute();
 		
-		/// <summary>Member SetOnloadAttribute </summary>
-		/// <param name='aOnload'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOnloadAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnload);
 		
-		/// <summary>Member GetOnabortAttribute </summary>
-		/// <returns>A nsIDOMEventListener</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMEventListener GetOnabortAttribute();
 		
-		/// <summary>Member SetOnabortAttribute </summary>
-		/// <param name='aOnabort'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOnabortAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnabort);
 		
-		/// <summary>Member GetOnerrorAttribute </summary>
-		/// <returns>A nsIDOMEventListener</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMEventListener GetOnerrorAttribute();
 		
-		/// <summary>Member SetOnerrorAttribute </summary>
-		/// <param name='aOnerror'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOnerrorAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnerror);
 		
-		/// <summary>Member GetOnloadendAttribute </summary>
-		/// <returns>A nsIDOMEventListener</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMEventListener GetOnloadendAttribute();
 		
-		/// <summary>Member SetOnloadendAttribute </summary>
-		/// <param name='aOnloadend'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOnloadendAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnloadend);
 	}

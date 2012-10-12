@@ -24,7 +24,6 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
 	/// <summary>
@@ -94,7 +93,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("156e2ce4-e44a-45f3-92c2-e6611f391dae")]
+	[Guid("573105b5-d64e-468f-959f-87eebf93913e")]
 	public interface nsIDOMMutationObserver
 	{
 		
@@ -115,7 +114,7 @@ namespace Gecko
 	/// <summary>nsIMutationObserverCallback </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("fb539590-b088-4d07-96ff-2cefbc90a198")]
+	[Guid("5b52ce60-2210-42f0-842b-7f9f03d62f85")]
 	public interface nsIMutationObserverCallback
 	{
 		

@@ -24,10 +24,14 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIAccessibleText </summary>
+	/// <summary>
+    ///-*- Mode: C++; tab-width: 2; indent-tabs-mode: nil; c-basic-offset: 2 -*-
+    ///
+    /// This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("0f4633b1-550c-4b50-8c04-0eb1005eef2f")]
@@ -48,13 +52,9 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetCaretOffsetAttribute(int aCaretOffset);
 		
-		/// <summary>Member GetCharacterCountAttribute </summary>
-		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetCharacterCountAttribute();
 		
-		/// <summary>Member GetSelectionCountAttribute </summary>
-		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetSelectionCountAttribute();
 		
@@ -67,32 +67,14 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetText(int startOffset, int endOffset, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
-		/// <summary>Member GetTextAfterOffset </summary>
-		/// <param name='offset'> </param>
-		/// <param name='boundaryType'> </param>
-		/// <param name='startOffset'> </param>
-		/// <param name='endOffset'> </param>
-		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTextAfterOffset(int offset, System.IntPtr boundaryType, ref int startOffset, ref int endOffset, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void GetTextAfterOffset(int offset, AccessibleTextBoundary boundaryType, ref int startOffset, ref int endOffset, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
-		/// <summary>Member GetTextAtOffset </summary>
-		/// <param name='offset'> </param>
-		/// <param name='boundaryType'> </param>
-		/// <param name='startOffset'> </param>
-		/// <param name='endOffset'> </param>
-		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTextAtOffset(int offset, System.IntPtr boundaryType, ref int startOffset, ref int endOffset, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void GetTextAtOffset(int offset, AccessibleTextBoundary boundaryType, ref int startOffset, ref int endOffset, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
-		/// <summary>Member GetTextBeforeOffset </summary>
-		/// <param name='offset'> </param>
-		/// <param name='boundaryType'> </param>
-		/// <param name='startOffset'> </param>
-		/// <param name='endOffset'> </param>
-		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTextBeforeOffset(int offset, System.IntPtr boundaryType, ref int startOffset, ref int endOffset, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		void GetTextBeforeOffset(int offset, AccessibleTextBoundary boundaryType, ref int startOffset, ref int endOffset, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// It would be better to return an unsigned long here,
@@ -149,14 +131,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetCharacterExtents(int offset, ref int x, ref int y, ref int width, ref int height, uint coordType);
 		
-		/// <summary>Member GetRangeExtents </summary>
-		/// <param name='startOffset'> </param>
-		/// <param name='endOffset'> </param>
-		/// <param name='x'> </param>
-		/// <param name='y'> </param>
-		/// <param name='width'> </param>
-		/// <param name='height'> </param>
-		/// <param name='coordType'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetRangeExtents(int startOffset, int endOffset, ref int x, ref int y, ref int width, ref int height, uint coordType);
 		
@@ -177,10 +151,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetOffsetAtPoint(int x, int y, uint coordType);
 		
-		/// <summary>Member GetSelectionBounds </summary>
-		/// <param name='selectionNum'> </param>
-		/// <param name='startOffset'> </param>
-		/// <param name='endOffset'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetSelectionBounds(int selectionNum, ref int startOffset, ref int endOffset);
 		
@@ -190,14 +160,9 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetSelectionBounds(int selectionNum, int startOffset, int endOffset);
 		
-		/// <summary>Member AddSelection </summary>
-		/// <param name='startOffset'> </param>
-		/// <param name='endOffset'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void AddSelection(int startOffset, int endOffset);
 		
-		/// <summary>Member RemoveSelection </summary>
-		/// <param name='selectionNum'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RemoveSelection(int selectionNum);
 		

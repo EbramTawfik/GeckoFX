@@ -24,7 +24,6 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
 	/// <summary>
@@ -42,13 +41,9 @@ namespace Gecko
 	public interface nsIDOMSVGViewSpec : nsIDOMSVGZoomAndPan
 	{
 		
-		/// <summary>Member GetZoomAndPanAttribute </summary>
-		/// <returns>A System.UInt16</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new ushort GetZoomAndPanAttribute();
 		
-		/// <summary>Member SetZoomAndPanAttribute </summary>
-		/// <param name='aZoomAndPan'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetZoomAndPanAttribute(ushort aZoomAndPan);
 		

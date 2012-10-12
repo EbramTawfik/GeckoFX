@@ -24,7 +24,6 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
 	/// <summary>
@@ -344,6 +343,17 @@ namespace Gecko
 		void MakeObjectPropsNormal(Gecko.JsVal vobj, System.IntPtr jsContext);
 		
 		/// <summary>
+        /// Determines whether this object is backed by a DeadObjectProxy.
+        ///
+        /// Dead-wrapper objects hold no other objects alive (they have no outgoing
+        /// reference edges) and will throw if you touch them (e.g. by
+        /// reading/writing a property).
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool IsDeadWrapper(Gecko.JsVal obj);
+		
+		/// <summary>
         /// To be called from JS only.
         ///
         /// These are the set of JSContext options that privileged script
@@ -413,6 +423,13 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetMethodjit_alwaysAttribute([MarshalAs(UnmanagedType.U1)] bool aMethodjit_always, System.IntPtr jsContext);
+		
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetStrict_modeAttribute(System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetStrict_modeAttribute([MarshalAs(UnmanagedType.U1)] bool aStrict_mode, System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetGCZeal(int zeal, System.IntPtr jsContext);

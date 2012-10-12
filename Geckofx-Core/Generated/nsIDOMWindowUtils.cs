@@ -24,7 +24,6 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
 	/// <summary>
@@ -36,7 +35,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("2b3ac53c-2a88-421f-af09-f10665c88acf")]
+	[Guid("858578f1-9653-4d5c-821a-07479bf2d9b2")]
 	public interface nsIDOMWindowUtils
 	{
 		
@@ -232,7 +231,7 @@ namespace Gecko
         /// @param aY y offset in CSS pixels
         /// @param aButton button to synthesize
         /// @param aClickCount number of clicks that have been performed
-        /// @param aModifiers modifiers pressed, using constants defined in nsIDOMNSEvent
+        /// @param aModifiers modifiers pressed, using constants defined as MODIFIER_*
         /// @param aIgnoreRootScrollFrame whether the event should ignore viewport bounds
         /// during dispatch
         /// </summary>
@@ -261,7 +260,7 @@ namespace Gecko
         /// @param rotationAngles array of angles in degrees for each touch to be sent
         /// @param forces array of forces (floats from 0 to 1) for each touch to be sent
         /// @param count number of touches in this set
-        /// @param aModifiers modifiers pressed, using constants defined in nsIDOMNSEvent
+        /// @param aModifiers modifiers pressed, using constants defined as MODIFIER_*
         /// @param aIgnoreRootScrollFrame whether the event should ignore viewport bounds
         /// during dispatch
         ///
@@ -297,34 +296,14 @@ namespace Gecko
         /// @param aScrollFlags flag bits --- see nsMouseScrollFlags in nsGUIEvent.h
         /// @param aDelta the direction and amount to scroll (in lines or pixels,
         /// depending on the event type)
-        /// @param aModifiers modifiers pressed, using constants defined in nsIDOMNSEvent
+        /// @param aModifiers modifiers pressed, using constants defined as MODIFIER_*
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SendMouseScrollEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType, float aX, float aY, int aButton, int aScrollFlags, int aDelta, int aModifiers);
 		
-		/// <summary>
-        /// Synthesize a key event to the window. The event types supported are:
-        /// keydown, keyup, keypress
-        ///
-        /// Key events generally end up being sent to the focused node.
-        ///
-        /// Cannot be accessed from unprivileged context (not content-accessible)
-        /// Will throw a DOM security error if called without UniversalXPConnect
-        /// privileges.
-        ///
-        /// @param aType event type
-        /// @param aKeyCode key code
-        /// @param aCharCode character code
-        /// @param aModifiers modifiers pressed, using constants defined in nsIDOMNSEvent
-        /// @param aPreventDefault if true, preventDefault() the event before dispatch
-        ///
-        /// @return false if the event had preventDefault() called on it,
-        /// true otherwise.  In other words, true if and only if the
-        /// default action was taken.
-        /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool SendKeyEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType, int aKeyCode, int aCharCode, int aModifiers, [MarshalAs(UnmanagedType.U1)] bool aPreventDefault);
+		bool SendKeyEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType, int aKeyCode, int aCharCode, int aModifiers, uint aAdditionalFlags);
 		
 		/// <summary>
         /// See nsIWidget::SynthesizeNativeKeyEvent
@@ -869,10 +848,28 @@ namespace Gecko
 		bool CheckAndClearPaintedState([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement);
 		
 		/// <summary>
-        /// Get internal id of the stored blob.
+        /// Internal file constructor intended for testing of File objects.
+        /// Example of constructor usage:
+        /// getFile("myfile.txt", [b1, "foo"], { type: "text/plain" })
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMFile GetFile([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName, Gecko.JsVal aBlobParts, Gecko.JsVal aParameters, System.IntPtr jsContext, int argc);
+		
+		/// <summary>
+        /// Internal blob constructor intended for testing of Blob objects.
+        /// Example of constructor usage:
+        /// getBlob([b1, "foo"], { type: "text/plain" })
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMBlob GetBlob(Gecko.JsVal aBlobParts, Gecko.JsVal aParameters, System.IntPtr jsContext, int argc);
+		
+		/// <summary>
+        /// Get internal id of the stored blob, file or file handle.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int GetFileId([MarshalAs(UnmanagedType.Interface)] nsIDOMBlob aBlob);
+		int GetFileId(Gecko.JsVal aFile, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Get file ref count info for given database and file id.
@@ -957,11 +954,94 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetScrollPositionClampingScrollPortSize(float aWidth, float aHeight);
+		
+		/// <summary>
+        /// Mark if the window is an application window or not.
+        /// This should only be set for top-level mozApp or mozBrowser frames.
+        /// It should not be set for other frames unless you want a frame (and its
+        /// children) to have a different value for IsPartOfApp than the frame's
+        /// parent.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetIsApp([MarshalAs(UnmanagedType.U1)] bool value);
+		
+		/// <summary>
+        /// Associate the window with an application by passing the URL of the
+        /// application's manifest.
+        ///
+        /// This method will throw an exception if the manifest URL isn't a valid URL
+        /// or isn't the manifest URL of an installed application.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetApp([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase manifestURL);
 	}
 	
 	/// <summary>nsIDOMWindowUtilsConsts </summary>
 	public class nsIDOMWindowUtilsConsts
 	{
+		
+		// <summary>
+        // Following modifiers are for sent*Event() except sendNative*Event().
+        // NOTE: MODIFIER_ALT, MODIFIER_CONTROL, MODIFIER_SHIFT and MODIFIER_META
+        // are must be same values as nsIDOMNSEvent::*_MASK for backward
+        // compatibility.
+        // </summary>
+		public const long MODIFIER_ALT = 0x0001;
+		
+		// 
+		public const long MODIFIER_CONTROL = 0x0002;
+		
+		// 
+		public const long MODIFIER_SHIFT = 0x0004;
+		
+		// 
+		public const long MODIFIER_META = 0x0008;
+		
+		// 
+		public const long MODIFIER_ALTGRAPH = 0x0010;
+		
+		// 
+		public const long MODIFIER_CAPSLOCK = 0x0020;
+		
+		// 
+		public const long MODIFIER_FN = 0x0040;
+		
+		// 
+		public const long MODIFIER_NUMLOCK = 0x0080;
+		
+		// 
+		public const long MODIFIER_SCROLLLOCK = 0x0100;
+		
+		// 
+		public const long MODIFIER_SYMBOLLOCK = 0x0200;
+		
+		// 
+		public const long MODIFIER_OS = 0x0400;
+		
+		// <summary>
+        // If this is set, preventDefault() the event before dispatch.
+        // </summary>
+		public const ulong KEY_FLAG_PREVENT_DEFAULT = 0x0001;
+		
+		// <summary>
+        // Otherwise, it will be computed from aKeyCode.
+        // </summary>
+		public const ulong KEY_FLAG_LOCATION_STANDARD = 0x0010;
+		
+		// 
+		public const ulong KEY_FLAG_LOCATION_LEFT = 0x0020;
+		
+		// 
+		public const ulong KEY_FLAG_LOCATION_RIGHT = 0x0040;
+		
+		// 
+		public const ulong KEY_FLAG_LOCATION_NUMPAD = 0x0080;
+		
+		// 
+		public const ulong KEY_FLAG_LOCATION_MOBILE = 0x0100;
+		
+		// 
+		public const ulong KEY_FLAG_LOCATION_JOYSTICK = 0x0200;
 		
 		// <summary>
         // If MOUSESCROLL_PREFER_WIDGET_AT_POINT is set, widget will dispatch

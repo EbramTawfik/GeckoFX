@@ -24,7 +24,6 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
 	/// <summary>
@@ -192,7 +191,7 @@ namespace Gecko
 		public const ulong PERSIST_FLAGS_NONE = 0;
 		
 		// <summary>
-        //Only use cached data (could result in failure if data is not cached). </summary>
+        //Use cached data if present (skipping validation), else load from network </summary>
 		public const ulong PERSIST_FLAGS_FROM_CACHE = 1;
 		
 		// <summary>

@@ -24,7 +24,6 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
 	/// <summary>
@@ -286,10 +285,36 @@ namespace Gecko
 		public const long MAX_TEXTURE_MAX_ANISOTROPY_EXT = 0x84FF;
 	}
 	
+	/// <summary>nsIWebGLExtensionCompressedTextureS3TC </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("a1508b6f-f2ab-44cf-bbb4-3cfb339e1e8a")]
+	public interface nsIWebGLExtensionCompressedTextureS3TC : nsIWebGLExtension
+	{
+	}
+	
+	/// <summary>nsIWebGLExtensionCompressedTextureS3TCConsts </summary>
+	public class nsIWebGLExtensionCompressedTextureS3TCConsts
+	{
+		
+		// <summary>
+        //Compressed Texture Formats </summary>
+		public const long COMPRESSED_RGB_S3TC_DXT1_EXT = 0x83F0;
+		
+		// 
+		public const long COMPRESSED_RGBA_S3TC_DXT1_EXT = 0x83F1;
+		
+		// 
+		public const long COMPRESSED_RGBA_S3TC_DXT3_EXT = 0x83F2;
+		
+		// 
+		public const long COMPRESSED_RGBA_S3TC_DXT5_EXT = 0x83F3;
+	}
+	
 	/// <summary>nsIDOMWebGLRenderingContext </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("ba7635d7-98af-41ac-8bf9-9f08cf441958")]
+	[Guid("a1fdfb76-6a08-4a1a-b0c9-d92ef3357cb9")]
 	public interface nsIDOMWebGLRenderingContext
 	{
 		
@@ -383,7 +408,7 @@ namespace Gecko
         /// Modified: void glBufferData(WebGLenum target, long size, const void* data, WebGLenum usage);
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BufferData(int target, Gecko.JsVal data, int usage, System.IntPtr jsContext);
+		void BufferData(uint target, Gecko.JsVal data, uint usage, System.IntPtr jsContext);
 		
 		/// <summary>Member BufferSubData </summary>
 		/// <param name='target'> </param>
@@ -391,7 +416,7 @@ namespace Gecko
 		/// <param name='data'> </param>
 		/// <param name='jsContext'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void BufferSubData(int target, int offset, Gecko.JsVal data, System.IntPtr jsContext);
+		void BufferSubData(uint target, System.IntPtr offset, Gecko.JsVal data, System.IntPtr jsContext);
 		
 		/// <summary>Member CheckFramebufferStatus </summary>
 		/// <param name='target'> </param>
@@ -599,7 +624,7 @@ namespace Gecko
         /// Modified: void glDrawElements(WebGLenum mode, WebGLsizei count, WebGLenum type, const void* indices);
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DrawElements(uint mode, int count, uint type, int offset);
+		void DrawElements(uint mode, int count, uint type, System.IntPtr offset);
 		
 		/// <summary>Member Enable </summary>
 		/// <param name='cap'> </param>
@@ -678,17 +703,16 @@ namespace Gecko
 		
 		/// <summary>Member GetParameter </summary>
 		/// <param name='pname'> </param>
-		/// <returns>A nsIVariant</returns>
-		[return: MarshalAs(UnmanagedType.Interface)]
+		/// <param name='jsContext'> </param>
+		/// <returns>A Gecko.JsVal</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant GetParameter(uint pname);
+		Gecko.JsVal GetParameter(uint pname, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Modified: void glGetBufferParameteriv(WebGLenum target, WebGLenum pname, WebGLint* params);
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant GetBufferParameter(uint target, uint pname);
+		Gecko.JsVal GetBufferParameter(uint target, uint pname);
 		
 		/// <summary>Member GetError </summary>
 		/// <returns>A System.UInt32</returns>
@@ -698,16 +722,14 @@ namespace Gecko
 		/// <summary>
         /// Modified: void glGetFramebufferAttachmentParameteriv(WebGLenum target, WebGLenum attachment, WebGLenum pname, WebGLint* params);
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant GetFramebufferAttachmentParameter(uint target, uint attachment, uint pname);
+		Gecko.JsVal GetFramebufferAttachmentParameter(uint target, uint attachment, uint pname, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Modified: void glGetProgramiv(nsIWebGLProgram program, WebGLenum pname, WebGLint* params);
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant GetProgramParameter([MarshalAs(UnmanagedType.Interface)] nsIWebGLProgram program, uint pname);
+		Gecko.JsVal GetProgramParameter([MarshalAs(UnmanagedType.Interface)] nsIWebGLProgram program, uint pname);
 		
 		/// <summary>
         /// Modified: void glGetProgramInfoLog(WebGLuint program, WebGLsizei bufsize, WebGLsizei* length, char* infolog);
@@ -718,17 +740,15 @@ namespace Gecko
 		/// <summary>
         ///nsIWebGLIntArray getRenderbufferParameteriv(in WebGLenum target, in WebGLenum pname);
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant GetRenderbufferParameter(uint target, uint pname);
+		Gecko.JsVal GetRenderbufferParameter(uint target, uint pname);
 		
 		/// <summary>Member GetShaderParameter </summary>
 		/// <param name='shader'> </param>
 		/// <param name='pname'> </param>
-		/// <returns>A nsIVariant</returns>
-		[return: MarshalAs(UnmanagedType.Interface)]
+		/// <returns>A Gecko.JsVal</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant GetShaderParameter([MarshalAs(UnmanagedType.Interface)] nsIWebGLShader shader, uint pname);
+		Gecko.JsVal GetShaderParameter([MarshalAs(UnmanagedType.Interface)] nsIWebGLShader shader, uint pname);
 		
 		/// <summary>
         /// Modified: void glGetShaderInfoLog(WebGLuint shader, WebGLsizei bufsize, WebGLsizei* length, char* infolog);
@@ -753,18 +773,17 @@ namespace Gecko
 		/// <summary>Member GetTexParameter </summary>
 		/// <param name='target'> </param>
 		/// <param name='pname'> </param>
-		/// <returns>A nsIVariant</returns>
-		[return: MarshalAs(UnmanagedType.Interface)]
+		/// <returns>A Gecko.JsVal</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant GetTexParameter(uint target, uint pname);
+		Gecko.JsVal GetTexParameter(uint target, uint pname);
 		
 		/// <summary>Member GetUniform </summary>
 		/// <param name='program'> </param>
 		/// <param name='location'> </param>
-		/// <returns>A nsIVariant</returns>
-		[return: MarshalAs(UnmanagedType.Interface)]
+		/// <param name='jsContext'> </param>
+		/// <returns>A Gecko.JsVal</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant GetUniform([MarshalAs(UnmanagedType.Interface)] nsIWebGLProgram program, [MarshalAs(UnmanagedType.Interface)] nsIWebGLUniformLocation location);
+		Gecko.JsVal GetUniform([MarshalAs(UnmanagedType.Interface)] nsIWebGLProgram program, [MarshalAs(UnmanagedType.Interface)] nsIWebGLUniformLocation location, System.IntPtr jsContext);
 		
 		/// <summary>Member GetUniformLocation </summary>
 		/// <param name='program'> </param>
@@ -777,10 +796,10 @@ namespace Gecko
 		/// <summary>Member GetVertexAttrib </summary>
 		/// <param name='index'> </param>
 		/// <param name='pname'> </param>
-		/// <returns>A nsIVariant</returns>
-		[return: MarshalAs(UnmanagedType.Interface)]
+		/// <param name='jsContext'> </param>
+		/// <returns>A Gecko.JsVal</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant GetVertexAttrib(uint index, uint pname);
+		Gecko.JsVal GetVertexAttrib(uint index, uint pname, System.IntPtr jsContext);
 		
 		/// <summary>
         /// void glGetVertexAttribPointerv(WebGLuint index, WebGLenum pname, void** pointer);

@@ -264,7 +264,7 @@ namespace Gecko.DOM
 		{
 			using (nsAString type = new nsAString(aType))
 			{
-				return _windowUtils.SendKeyEvent(type, aKeyCode, aCharCode, aModifiers, aPreventDefault);
+				return _windowUtils.SendKeyEvent(type, aKeyCode, aCharCode, aModifiers, aPreventDefault ? 1U : 0U);
 			}
 		}	
 		

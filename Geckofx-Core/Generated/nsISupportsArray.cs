@@ -24,7 +24,6 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
 	/// <summary>
@@ -61,48 +60,33 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void Write([MarshalAs(UnmanagedType.Interface)] nsIObjectOutputStream aOutputStream);
 		
-		/// <summary>Member Count </summary>
-		/// <returns>A System.UInt32</returns>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new uint Count();
 		
-		/// <summary>Member GetElementAt </summary>
-		/// <param name='index'> </param>
-		/// <returns>A nsISupports</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsISupports GetElementAt(uint index);
 		
-		/// <summary>Member QueryElementAt </summary>
-		/// <param name='index'> </param>
-		/// <param name='uuid'> </param>
-		/// <returns>A System.IntPtr</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new System.IntPtr QueryElementAt(uint index, ref System.Guid uuid);
 		
-		/// <summary>Member SetElementAt </summary>
-		/// <param name='index'> </param>
-		/// <param name='item'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetElementAt(uint index, [MarshalAs(UnmanagedType.Interface)] nsISupports item);
 		
-		/// <summary>Member AppendElement </summary>
-		/// <param name='item'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void AppendElement([MarshalAs(UnmanagedType.Interface)] nsISupports item);
 		
-		/// <summary>Member RemoveElement </summary>
-		/// <param name='item'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void RemoveElement([MarshalAs(UnmanagedType.Interface)] nsISupports item);
 		
-		/// <summary>Member Enumerate </summary>
-		/// <returns>A nsIEnumerator</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIEnumerator Enumerate();
 		
-		/// <summary>Member Clear </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void Clear();
 		

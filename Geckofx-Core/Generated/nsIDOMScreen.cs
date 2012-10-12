@@ -24,10 +24,12 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIDOMScreen </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("9b978f58-5bfe-409d-aa3f-946ca934e51d")]
@@ -237,53 +239,37 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new System.IntPtr GetJSContextForEventHandlers();
 		
-		/// <summary>Member GetTopAttribute </summary>
-		/// <returns>A System.Int32</returns>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetTopAttribute();
 		
-		/// <summary>Member GetLeftAttribute </summary>
-		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetLeftAttribute();
 		
-		/// <summary>Member GetWidthAttribute </summary>
-		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetWidthAttribute();
 		
-		/// <summary>Member GetHeightAttribute </summary>
-		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetHeightAttribute();
 		
-		/// <summary>Member GetPixelDepthAttribute </summary>
-		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetPixelDepthAttribute();
 		
-		/// <summary>Member GetColorDepthAttribute </summary>
-		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetColorDepthAttribute();
 		
-		/// <summary>Member GetAvailWidthAttribute </summary>
-		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetAvailWidthAttribute();
 		
-		/// <summary>Member GetAvailHeightAttribute </summary>
-		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetAvailHeightAttribute();
 		
-		/// <summary>Member GetAvailLeftAttribute </summary>
-		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetAvailLeftAttribute();
 		
-		/// <summary>Member GetAvailTopAttribute </summary>
-		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetAvailTopAttribute();
 		
@@ -295,14 +281,10 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetMozOrientationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozOrientation);
 		
-		/// <summary>Member GetOnmozorientationchangeAttribute </summary>
-		/// <returns>A nsIDOMEventListener</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMEventListener GetOnmozorientationchangeAttribute();
 		
-		/// <summary>Member SetOnmozorientationchangeAttribute </summary>
-		/// <param name='aOnmozorientationchange'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOnmozorientationchangeAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnmozorientationchange);
 		

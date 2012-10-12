@@ -24,64 +24,56 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIContentViewerEdit </summary>
+	/// <summary>
+    ///-*- Mode: IDL; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 2 -*-
+    ///
+    /// This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("AF13EA3A-D488-4308-B843-526E055AB943")]
 	public interface nsIContentViewerEdit
 	{
 		
-		/// <summary>Member ClearSelection </summary>
+		/// <summary>
+        ///-*- Mode: IDL; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 2 -*-
+        ///
+        /// This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ClearSelection();
 		
-		/// <summary>Member SelectAll </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SelectAll();
 		
-		/// <summary>Member CopySelection </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void CopySelection();
 		
-		/// <summary>Member GetCopyableAttribute </summary>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetCopyableAttribute();
 		
-		/// <summary>Member CopyLinkLocation </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void CopyLinkLocation();
 		
-		/// <summary>Member GetInLinkAttribute </summary>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetInLinkAttribute();
 		
-		/// <summary>Member CopyImage </summary>
-		/// <param name='aCopyFlags'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void CopyImage(int aCopyFlags);
 		
-		/// <summary>Member GetInImageAttribute </summary>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetInImageAttribute();
 		
-		/// <summary>Member GetContents </summary>
-		/// <param name='aMimeType'> </param>
-		/// <param name='aSelectionOnly'> </param>
-		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetContents([MarshalAs(UnmanagedType.LPStr)] string aMimeType, [MarshalAs(UnmanagedType.U1)] bool aSelectionOnly, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
-		/// <summary>Member GetCanGetContentsAttribute </summary>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetCanGetContentsAttribute();

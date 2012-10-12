@@ -24,7 +24,6 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
 	/// <summary>
@@ -33,7 +32,7 @@ namespace Gecko
     /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("677f2c2d-c4d1-41ea-addc-21d30d0d3858")]
+	[Guid("3d6741c7-f0c4-4925-a606-38415f660f34")]
 	public interface nsIDOMNavigatorBluetooth
 	{
 		
@@ -43,6 +42,6 @@ namespace Gecko
         /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMBluetoothAdapter GetMozBluetoothAttribute();
+		nsIDOMBluetoothManager GetMozBluetoothAttribute();
 	}
 }

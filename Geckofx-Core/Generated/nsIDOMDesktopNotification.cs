@@ -24,21 +24,22 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIDOMDesktopNotificationCenter </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("CCEA6185-0A3D-45AB-9058-1004DD4B8C50")]
 	public interface nsIDOMDesktopNotificationCenter
 	{
 		
-		/// <summary>Member CreateNotification </summary>
-		/// <param name='title'> </param>
-		/// <param name='description'> </param>
-		/// <param name='iconURL'> </param>
-		/// <returns>A nsIDOMDesktopNotification</returns>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMDesktopNotification CreateNotification([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase title, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase description, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase iconURL);

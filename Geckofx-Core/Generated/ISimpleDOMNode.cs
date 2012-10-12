@@ -24,10 +24,12 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>ISimpleDOMNode </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("1814ceeb-49e2-407f-af99-fa755a7d2607")]
@@ -40,20 +42,9 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		ushort get_NodeInfo([MarshalAs(UnmanagedType.BStr)] ref string nodeName, ref short nameSpaceID, [MarshalAs(UnmanagedType.BStr)] ref string nodeValue, ref uint numChildren, ref uint uniqueID);
 		
-		/// <summary>Member get_Attributes </summary>
-		/// <param name='maxAttribs'> </param>
-		/// <param name='attribNames'> </param>
-		/// <param name='nameSpaceID'> </param>
-		/// <param name='attribValues'> </param>
-		/// <returns>A System.UInt16</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		ushort get_Attributes(ushort maxAttribs, [MarshalAs(UnmanagedType.BStr, SizeParamIndex=0)] ref string attribNames, ref short nameSpaceID, [MarshalAs(UnmanagedType.BStr, SizeParamIndex=0)] ref string attribValues);
 		
-		/// <summary>Member get_AttributesForNames </summary>
-		/// <param name='numAttribs'> </param>
-		/// <param name='attribNames'> </param>
-		/// <param name='nameSpaceID'> </param>
-		/// <returns>A System.String</returns>
 		[return: MarshalAs(UnmanagedType.BStr, SizeParamIndex=0)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string get_AttributesForNames(ushort numAttribs, [MarshalAs(UnmanagedType.BStr, SizeParamIndex=0)] string attribNames, short nameSpaceID);
@@ -71,14 +62,9 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string get_ComputedStyleForProperties(ushort numStyleProperties, [MarshalAs(UnmanagedType.U1)] bool useAlternateView, [MarshalAs(UnmanagedType.BStr, SizeParamIndex=0)] string styleProperties);
 		
-		/// <summary>Member ScrollTo </summary>
-		/// <param name='placeTopLeft'> </param>
-		/// <returns>A System.UInt32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint ScrollTo([MarshalAs(UnmanagedType.U1)] bool placeTopLeft);
 		
-		/// <summary>Gets a ParentNode </summary>
-		/// <returns>A ISimpleDOMNode </returns>
 		ISimpleDOMNode ParentNode
 		{
 			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -86,8 +72,6 @@ namespace Gecko
 			get;
 		}
 		
-		/// <summary>Gets a FirstChild </summary>
-		/// <returns>A ISimpleDOMNode </returns>
 		ISimpleDOMNode FirstChild
 		{
 			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -95,8 +79,6 @@ namespace Gecko
 			get;
 		}
 		
-		/// <summary>Gets a LastChild </summary>
-		/// <returns>A ISimpleDOMNode </returns>
 		ISimpleDOMNode LastChild
 		{
 			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -104,8 +86,6 @@ namespace Gecko
 			get;
 		}
 		
-		/// <summary>Gets a PreviousSibling </summary>
-		/// <returns>A ISimpleDOMNode </returns>
 		ISimpleDOMNode PreviousSibling
 		{
 			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -113,8 +93,6 @@ namespace Gecko
 			get;
 		}
 		
-		/// <summary>Gets a NextSibling </summary>
-		/// <returns>A ISimpleDOMNode </returns>
 		ISimpleDOMNode NextSibling
 		{
 			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -122,15 +100,10 @@ namespace Gecko
 			get;
 		}
 		
-		/// <summary>Member get_ChildAt </summary>
-		/// <param name='childIndex'> </param>
-		/// <returns>A ISimpleDOMNode</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		ISimpleDOMNode get_ChildAt(uint childIndex);
 		
-		/// <summary>Gets a InnerHTML </summary>
-		/// <returns>A System.String </returns>
 		string InnerHTML
 		{
 			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -138,16 +111,12 @@ namespace Gecko
 			get;
 		}
 		
-		/// <summary>Gets a LocalInterface </summary>
-		/// <returns>A System.IntPtr </returns>
 		System.IntPtr LocalInterface
 		{
 			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 			get;
 		}
 		
-		/// <summary>Gets a Language </summary>
-		/// <returns>A System.String </returns>
 		string Language
 		{
 			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -160,7 +129,10 @@ namespace Gecko
 	public class ISimpleDOMNodeConsts
 	{
 		
-		// 
+		// <summary>
+        //This Source Code Form is subject to the terms of the Mozilla Public
+        // License, v. 2.0. If a copy of the MPL was not distributed with this
+        // file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		public const ulong NODETYPE_ELEMENT = 1;
 		
 		// 

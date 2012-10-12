@@ -24,7 +24,6 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
 	/// <summary>
@@ -33,7 +32,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("40bc6280-ad83-471e-b197-80ab90e2065e")]
+	[Guid("2d10ca53-f143-439a-bb2e-c1fbc71f6a05")]
 	public interface nsIAppShell
 	{
 		
@@ -108,6 +107,14 @@ namespace Gecko
         /// be executed, in the order in which runInStableState() was called.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RunInStableState([MarshalAs(UnmanagedType.Interface)] nsIRunnable aRunnable);
+		void RunInStableState([MarshalAs(UnmanagedType.Interface)] nsIRunnable runnable);
+		
+		/// <summary>
+        /// Run the given runnable before the next iteration of the event loop (this
+        /// includes native events too). If a nested loop is spawned within the current
+        /// event then the runnable will not be run until that loop has terminated.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RunBeforeNextEvent([MarshalAs(UnmanagedType.Interface)] nsIRunnable runnable);
 	}
 }

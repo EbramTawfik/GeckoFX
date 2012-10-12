@@ -24,13 +24,15 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIDOMTelephonyCall </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("2fb9502b-2054-4eda-8db7-3726c39144f7")]
+	[Guid("d902afb1-2e1d-412e-bfa3-cb6a9453a4db")]
 	public interface nsIDOMTelephonyCall : nsIDOMEventTarget
 	{
 		
@@ -237,151 +239,114 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new System.IntPtr GetJSContextForEventHandlers();
 		
-		/// <summary>Member GetNumberAttribute </summary>
-		/// <param name='aNumber'> </param>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetNumberAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNumber);
 		
-		/// <summary>Member GetStateAttribute </summary>
-		/// <param name='aState'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetStateAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aState);
 		
-		/// <summary>Member Answer </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMError GetErrorAttribute();
+		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Answer();
 		
-		/// <summary>Member HangUp </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void HangUp();
 		
-		/// <summary>Member Hold </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Hold();
 		
-		/// <summary>Member Resume </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Resume();
 		
-		/// <summary>Member GetOnstatechangeAttribute </summary>
-		/// <returns>A nsIDOMEventListener</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMEventListener GetOnstatechangeAttribute();
 		
-		/// <summary>Member SetOnstatechangeAttribute </summary>
-		/// <param name='aOnstatechange'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOnstatechangeAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnstatechange);
 		
-		/// <summary>Member GetOndialingAttribute </summary>
-		/// <returns>A nsIDOMEventListener</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMEventListener GetOndialingAttribute();
 		
-		/// <summary>Member SetOndialingAttribute </summary>
-		/// <param name='aOndialing'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOndialingAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOndialing);
 		
-		/// <summary>Member GetOnalertingAttribute </summary>
-		/// <returns>A nsIDOMEventListener</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMEventListener GetOnalertingAttribute();
 		
-		/// <summary>Member SetOnalertingAttribute </summary>
-		/// <param name='aOnalerting'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOnalertingAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnalerting);
 		
-		/// <summary>Member GetOnbusyAttribute </summary>
-		/// <returns>A nsIDOMEventListener</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMEventListener GetOnbusyAttribute();
 		
-		/// <summary>Member SetOnbusyAttribute </summary>
-		/// <param name='aOnbusy'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOnbusyAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnbusy);
 		
-		/// <summary>Member GetOnconnectingAttribute </summary>
-		/// <returns>A nsIDOMEventListener</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMEventListener GetOnconnectingAttribute();
 		
-		/// <summary>Member SetOnconnectingAttribute </summary>
-		/// <param name='aOnconnecting'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOnconnectingAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnconnecting);
 		
-		/// <summary>Member GetOnconnectedAttribute </summary>
-		/// <returns>A nsIDOMEventListener</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMEventListener GetOnconnectedAttribute();
 		
-		/// <summary>Member SetOnconnectedAttribute </summary>
-		/// <param name='aOnconnected'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOnconnectedAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnconnected);
 		
-		/// <summary>Member GetOndisconnectingAttribute </summary>
-		/// <returns>A nsIDOMEventListener</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMEventListener GetOndisconnectingAttribute();
 		
-		/// <summary>Member SetOndisconnectingAttribute </summary>
-		/// <param name='aOndisconnecting'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOndisconnectingAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOndisconnecting);
 		
-		/// <summary>Member GetOndisconnectedAttribute </summary>
-		/// <returns>A nsIDOMEventListener</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMEventListener GetOndisconnectedAttribute();
 		
-		/// <summary>Member SetOndisconnectedAttribute </summary>
-		/// <param name='aOndisconnected'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOndisconnectedAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOndisconnected);
 		
-		/// <summary>Member GetOnholdingAttribute </summary>
-		/// <returns>A nsIDOMEventListener</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMEventListener GetOnholdingAttribute();
 		
-		/// <summary>Member SetOnholdingAttribute </summary>
-		/// <param name='aOnholding'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOnholdingAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnholding);
 		
-		/// <summary>Member GetOnheldAttribute </summary>
-		/// <returns>A nsIDOMEventListener</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMEventListener GetOnheldAttribute();
 		
-		/// <summary>Member SetOnheldAttribute </summary>
-		/// <param name='aOnheld'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOnheldAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnheld);
 		
-		/// <summary>Member GetOnresumingAttribute </summary>
-		/// <returns>A nsIDOMEventListener</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMEventListener GetOnresumingAttribute();
 		
-		/// <summary>Member SetOnresumingAttribute </summary>
-		/// <param name='aOnresuming'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOnresumingAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnresuming);
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMEventListener GetOnerrorAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOnerrorAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnerror);
 	}
 }

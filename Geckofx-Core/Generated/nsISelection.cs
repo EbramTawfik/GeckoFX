@@ -24,7 +24,6 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
 	/// <summary>
@@ -35,7 +34,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("5ac0cd5d-3c08-4c4c-8e70-230c433f5d5c")]
+	[Guid("dd40d5b8-1fe1-487f-b66e-28f4b837024f")]
 	public interface nsISelection
 	{
 		
@@ -72,6 +71,10 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsCollapsedAttribute();
 		
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool Collapsed();
+		
 		/// <summary>
         /// Returns the number of ranges in the selection.
         /// </summary>
@@ -107,6 +110,9 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Extend([MarshalAs(UnmanagedType.Interface)] nsIDOMNode parentNode, int offset);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void ExtendNative(System.IntPtr parentNode, int offset);
 		
 		/// <summary>
         /// Collapses the whole selection to a single point at the start

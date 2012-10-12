@@ -24,10 +24,12 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIDOMDocumentXBL </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("1a38762b-4da5-4f61-80fb-9317e198cb92")]
@@ -41,36 +43,20 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMNodeList GetAnonymousNodes([MarshalAs(UnmanagedType.Interface)] nsIDOMElement elt);
 		
-		/// <summary>Member GetAnonymousElementByAttribute </summary>
-		/// <param name='elt'> </param>
-		/// <param name='attrName'> </param>
-		/// <param name='attrValue'> </param>
-		/// <returns>A nsIDOMElement</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMElement GetAnonymousElementByAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMElement elt, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase attrName, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase attrValue);
 		
-		/// <summary>Member AddBinding </summary>
-		/// <param name='elt'> </param>
-		/// <param name='bindingURL'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void AddBinding([MarshalAs(UnmanagedType.Interface)] nsIDOMElement elt, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase bindingURL);
 		
-		/// <summary>Member RemoveBinding </summary>
-		/// <param name='elt'> </param>
-		/// <param name='bindingURL'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RemoveBinding([MarshalAs(UnmanagedType.Interface)] nsIDOMElement elt, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase bindingURL);
 		
-		/// <summary>Member GetBindingParent </summary>
-		/// <param name='node'> </param>
-		/// <returns>A nsIDOMElement</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMElement GetBindingParent([MarshalAs(UnmanagedType.Interface)] nsIDOMNode node);
 		
-		/// <summary>Member LoadBindingDocument </summary>
-		/// <param name='documentURL'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void LoadBindingDocument([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase documentURL);
 	}

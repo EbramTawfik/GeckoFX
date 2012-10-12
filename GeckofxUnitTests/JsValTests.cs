@@ -14,7 +14,7 @@ namespace GeckofxUnitTests
 		[SetUp]
 		public void BeforeEachTestSetup()
 		{
-
+			GlobalJSContextHolderInitalizer.Initalize();
 		}
 
 		[TearDown]

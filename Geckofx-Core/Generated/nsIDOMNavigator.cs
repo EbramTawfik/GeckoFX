@@ -24,119 +24,85 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIDOMNavigator </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("e0737ed5-89c5-4fe3-891e-a75bf3a1bb55")]
 	public interface nsIDOMNavigator
 	{
 		
-		/// <summary>Member GetAppCodeNameAttribute </summary>
-		/// <param name='aAppCodeName'> </param>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetAppCodeNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAppCodeName);
 		
-		/// <summary>Member GetAppNameAttribute </summary>
-		/// <param name='aAppName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetAppNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAppName);
 		
-		/// <summary>Member GetAppVersionAttribute </summary>
-		/// <param name='aAppVersion'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetAppVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAppVersion);
 		
-		/// <summary>Member GetLanguageAttribute </summary>
-		/// <param name='aLanguage'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetLanguageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aLanguage);
 		
-		/// <summary>Member GetMimeTypesAttribute </summary>
-		/// <returns>A nsIDOMMimeTypeArray</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMMimeTypeArray GetMimeTypesAttribute();
 		
-		/// <summary>Member GetPlatformAttribute </summary>
-		/// <param name='aPlatform'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetPlatformAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPlatform);
 		
-		/// <summary>Member GetOscpuAttribute </summary>
-		/// <param name='aOscpu'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetOscpuAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aOscpu);
 		
-		/// <summary>Member GetVendorAttribute </summary>
-		/// <param name='aVendor'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetVendorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aVendor);
 		
-		/// <summary>Member GetVendorSubAttribute </summary>
-		/// <param name='aVendorSub'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetVendorSubAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aVendorSub);
 		
-		/// <summary>Member GetProductAttribute </summary>
-		/// <param name='aProduct'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetProductAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aProduct);
 		
-		/// <summary>Member GetProductSubAttribute </summary>
-		/// <param name='aProductSub'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetProductSubAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aProductSub);
 		
-		/// <summary>Member GetPluginsAttribute </summary>
-		/// <returns>A nsIDOMPluginArray</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMPluginArray GetPluginsAttribute();
 		
-		/// <summary>Member GetUserAgentAttribute </summary>
-		/// <param name='aUserAgent'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetUserAgentAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aUserAgent);
 		
-		/// <summary>Member GetCookieEnabledAttribute </summary>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetCookieEnabledAttribute();
 		
-		/// <summary>Member GetOnLineAttribute </summary>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetOnLineAttribute();
 		
-		/// <summary>Member GetBuildIDAttribute </summary>
-		/// <param name='aBuildID'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetBuildIDAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBuildID);
 		
-		/// <summary>Member GetDoNotTrackAttribute </summary>
-		/// <param name='aDoNotTrack'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetDoNotTrackAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDoNotTrack);
 		
-		/// <summary>Member GetMozPowerAttribute </summary>
-		/// <returns>A nsIDOMMozPowerManager</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMMozPowerManager GetMozPowerAttribute();
 		
-		/// <summary>Member JavaEnabled </summary>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool JavaEnabled();
 		
-		/// <summary>Member TaintEnabled </summary>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool TaintEnabled();

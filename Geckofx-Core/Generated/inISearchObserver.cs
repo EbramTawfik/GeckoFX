@@ -24,10 +24,12 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>inISearchObserver </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("46226D9B-E398-4106-8D9B-225D4D0589F5")]
@@ -40,20 +42,12 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void OnSearchStart(inISearchProcess aModule);
 		
-		/// <summary>Member OnSearchResult </summary>
-		/// <param name='aModule'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void OnSearchResult(inISearchProcess aModule);
 		
-		/// <summary>Member OnSearchEnd </summary>
-		/// <param name='aModule'> </param>
-		/// <param name='aResult'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void OnSearchEnd(inISearchProcess aModule, short aResult);
 		
-		/// <summary>Member OnSearchError </summary>
-		/// <param name='aModule'> </param>
-		/// <param name='aMessage'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void OnSearchError(inISearchProcess aModule, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMessage);
 	}

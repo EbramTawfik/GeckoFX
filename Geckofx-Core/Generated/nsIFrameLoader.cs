@@ -24,7 +24,6 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
 	/// <summary>
@@ -144,7 +143,7 @@ namespace Gecko
 	/// <summary>nsIFrameLoader </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("efc0b731-45dc-4189-8ffa-d3eeeb850977")]
+	[Guid("fc338eea-47dc-475e-add7-a3933fcfa07c")]
 	public interface nsIFrameLoader
 	{
 		
@@ -296,6 +295,16 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetClampScrollPositionAttribute([MarshalAs(UnmanagedType.U1)] bool aClampScrollPosition);
+		
+		/// <summary>
+        /// The element which owns this frame loader.
+        ///
+        /// For example, if this is a frame loader for an <iframe>, this attribute
+        /// returns the iframe element.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMElement GetOwnerElementAttribute();
 	}
 	
 	/// <summary>nsIFrameLoaderConsts </summary>

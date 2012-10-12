@@ -24,51 +24,41 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIDOMPlugin </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("ff69a292-c74d-4ef5-9d0f-86112fff2d5b")]
 	public interface nsIDOMPlugin
 	{
 		
-		/// <summary>Member GetDescriptionAttribute </summary>
-		/// <param name='aDescription'> </param>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetDescriptionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDescription);
 		
-		/// <summary>Member GetFilenameAttribute </summary>
-		/// <param name='aFilename'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetFilenameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFilename);
 		
-		/// <summary>Member GetVersionAttribute </summary>
-		/// <param name='aVersion'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aVersion);
 		
-		/// <summary>Member GetNameAttribute </summary>
-		/// <param name='aName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
 		
-		/// <summary>Member GetLengthAttribute </summary>
-		/// <returns>A System.UInt32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetLengthAttribute();
 		
-		/// <summary>Member Item </summary>
-		/// <param name='index'> </param>
-		/// <returns>A nsIDOMMimeType</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMMimeType Item(uint index);
 		
-		/// <summary>Member NamedItem </summary>
-		/// <param name='name'> </param>
-		/// <returns>A nsIDOMMimeType</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMMimeType NamedItem([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name);

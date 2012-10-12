@@ -24,18 +24,22 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>ISimpleDOMDocument </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("0D68D6D0-D93D-4d08-A30D-F00DD1F45B24")]
 	public interface ISimpleDOMDocument
 	{
 		
-		/// <summary>Gets a URL </summary>
-		/// <returns>A System.String </returns>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		string URL
 		{
 			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -43,8 +47,6 @@ namespace Gecko
 			get;
 		}
 		
-		/// <summary>Gets a Title </summary>
-		/// <returns>A System.String </returns>
 		string Title
 		{
 			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -52,8 +54,6 @@ namespace Gecko
 			get;
 		}
 		
-		/// <summary>Gets a MimeType </summary>
-		/// <returns>A System.String </returns>
 		string MimeType
 		{
 			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -61,8 +61,6 @@ namespace Gecko
 			get;
 		}
 		
-		/// <summary>Gets a DocType </summary>
-		/// <returns>A System.String </returns>
 		string DocType
 		{
 			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -70,15 +68,10 @@ namespace Gecko
 			get;
 		}
 		
-		/// <summary>Member get_NameSpaceURIForID </summary>
-		/// <param name='nameSpaceID'> </param>
-		/// <returns>A System.String</returns>
 		[return: MarshalAs(UnmanagedType.BStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string get_NameSpaceURIForID(short nameSpaceID);
 		
-		/// <summary>Sets a AlternateViewMediaTypes </summary>
-		/// <returns>A System.String </returns>
 		string AlternateViewMediaTypes
 		{
 			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

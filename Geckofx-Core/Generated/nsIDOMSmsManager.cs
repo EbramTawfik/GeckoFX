@@ -24,13 +24,15 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIDOMMozSmsManager </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this file,
+    /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("c9916dce-2947-41bb-95c2-818f792a020c")]
+	[Guid("6363c0ff-b58f-4fb3-9707-0ba27f120b2c")]
 	public interface nsIDOMMozSmsManager : nsIDOMEventTarget
 	{
 		
@@ -237,9 +239,10 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new System.IntPtr GetJSContextForEventHandlers();
 		
-		/// <summary>Member GetNumberOfMessagesForText </summary>
-		/// <param name='text'> </param>
-		/// <returns>A System.UInt32</returns>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this file,
+        /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetNumberOfMessagesForText([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase text);
 		
@@ -249,9 +252,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		Gecko.JsVal Send(Gecko.JsVal number, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase message);
 		
-		/// <summary>Member GetMessage </summary>
-		/// <param name='id'> </param>
-		/// <returns>A nsIDOMMozSmsRequest</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMMozSmsRequest GetMessage(int id);
@@ -263,44 +263,32 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMMozSmsRequest Delete(Gecko.JsVal param);
 		
-		/// <summary>Member GetMessages </summary>
-		/// <param name='filter'> </param>
-		/// <param name='reverse'> </param>
-		/// <returns>A nsIDOMMozSmsRequest</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMMozSmsRequest GetMessages([MarshalAs(UnmanagedType.Interface)] nsIDOMMozSmsFilter filter, [MarshalAs(UnmanagedType.U1)] bool reverse);
 		
-		/// <summary>Member GetOnreceivedAttribute </summary>
-		/// <returns>A nsIDOMEventListener</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMMozSmsRequest MarkMessageRead(int id, [MarshalAs(UnmanagedType.U1)] bool aValue);
+		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMEventListener GetOnreceivedAttribute();
 		
-		/// <summary>Member SetOnreceivedAttribute </summary>
-		/// <param name='aOnreceived'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOnreceivedAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnreceived);
 		
-		/// <summary>Member GetOnsentAttribute </summary>
-		/// <returns>A nsIDOMEventListener</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMEventListener GetOnsentAttribute();
 		
-		/// <summary>Member SetOnsentAttribute </summary>
-		/// <param name='aOnsent'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOnsentAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnsent);
 		
-		/// <summary>Member GetOndeliveredAttribute </summary>
-		/// <returns>A nsIDOMEventListener</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMEventListener GetOndeliveredAttribute();
 		
-		/// <summary>Member SetOndeliveredAttribute </summary>
-		/// <param name='aOndelivered'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOndeliveredAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOndelivered);
 	}

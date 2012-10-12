@@ -24,7 +24,6 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
 	/// <summary>
@@ -375,7 +374,24 @@ namespace Gecko
         // This flag is on when |aWebProgress| did not load a new document.
         // For example, the location change is due to an anchor scroll or a
         // pushState/popState/replaceState.
+        //
+        // LOCATION_CHANGE_ERROR_PAGE
+        // This flag is on when |aWebProgress| redirected from the requested
+        // contents to an internal page to show error status, such as
+        // <about:neterror>, <about:certerror> and so on.
+        //
+        // Generally speaking, |aURI| and |aRequest| are the original data. DOM
+        // |window.location.href| is also the original location, while
+        // |document.documentURI| is the redirected location. Sometimes |aURI| is
+        // <about:blank> and |aRequest| is null when the original data does not
+        //   +   remain.
+        //
+        // |aWebProgress| does NOT set this flag when it did not try to load a new
+        // document. In this case, it should set LOCATION_CHANGE_SAME_DOCUMENT.
         // </summary>
 		public const ulong LOCATION_CHANGE_SAME_DOCUMENT = 0x00000001;
+		
+		// 
+		public const ulong LOCATION_CHANGE_ERROR_PAGE = 0x00000002;
 	}
 }

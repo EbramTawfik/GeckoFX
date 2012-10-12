@@ -24,20 +24,18 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsISelectionListener </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("A6CF90E2-15B3-11d2-932E-00805F8ADD32")]
 	public interface nsISelectionListener
 	{
 		
-		/// <summary>Member NotifySelectionChanged </summary>
-		/// <param name='doc'> </param>
-		/// <param name='sel'> </param>
-		/// <param name='reason'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void NotifySelectionChanged([MarshalAs(UnmanagedType.Interface)] nsIDOMDocument doc, [MarshalAs(UnmanagedType.Interface)] nsISelection sel, short reason);
 	}
@@ -46,7 +44,10 @@ namespace Gecko
 	public class nsISelectionListenerConsts
 	{
 		
-		// 
+		// <summary>
+        //This Source Code Form is subject to the terms of the Mozilla Public
+        // License, v. 2.0. If a copy of the MPL was not distributed with this
+        // file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		public const int NO_REASON = 0;
 		
 		// 

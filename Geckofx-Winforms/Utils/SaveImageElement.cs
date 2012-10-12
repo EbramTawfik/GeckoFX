@@ -19,7 +19,7 @@ namespace Gecko.Utils
                 throw new ArgumentException("height");
 
             // Some opertations fail without a proper JSContext.
-            using (var jsContext = new AutoJSContext())
+			using (var jsContext = new AutoJSContext(GlobalJSContextHolder.JSContext))
             {
                 GeckoCanvasElement canvas = (GeckoCanvasElement)browser.Document.CreateElement("canvas");
                 canvas.Width = (uint)width;

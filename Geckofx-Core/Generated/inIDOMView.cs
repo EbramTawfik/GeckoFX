@@ -24,95 +24,74 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>inIDOMView </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("FBB67442-27A3-483C-8EB2-29C3EED7514C")]
 	public interface inIDOMView
 	{
 		
-		/// <summary>Member GetRootNodeAttribute </summary>
-		/// <returns>A nsIDOMNode</returns>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMNode GetRootNodeAttribute();
 		
-		/// <summary>Member SetRootNodeAttribute </summary>
-		/// <param name='aRootNode'> </param>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetRootNodeAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aRootNode);
 		
-		/// <summary>Member GetShowAnonymousContentAttribute </summary>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetShowAnonymousContentAttribute();
 		
-		/// <summary>Member SetShowAnonymousContentAttribute </summary>
-		/// <param name='aShowAnonymousContent'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetShowAnonymousContentAttribute([MarshalAs(UnmanagedType.U1)] bool aShowAnonymousContent);
 		
-		/// <summary>Member GetShowSubDocumentsAttribute </summary>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetShowSubDocumentsAttribute();
 		
-		/// <summary>Member SetShowSubDocumentsAttribute </summary>
-		/// <param name='aShowSubDocuments'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetShowSubDocumentsAttribute([MarshalAs(UnmanagedType.U1)] bool aShowSubDocuments);
 		
-		/// <summary>Member GetShowWhitespaceNodesAttribute </summary>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetShowWhitespaceNodesAttribute();
 		
-		/// <summary>Member SetShowWhitespaceNodesAttribute </summary>
-		/// <param name='aShowWhitespaceNodes'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetShowWhitespaceNodesAttribute([MarshalAs(UnmanagedType.U1)] bool aShowWhitespaceNodes);
 		
-		/// <summary>Member GetShowAccessibleNodesAttribute </summary>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetShowAccessibleNodesAttribute();
 		
-		/// <summary>Member SetShowAccessibleNodesAttribute </summary>
-		/// <param name='aShowAccessibleNodes'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetShowAccessibleNodesAttribute([MarshalAs(UnmanagedType.U1)] bool aShowAccessibleNodes);
 		
-		/// <summary>Member GetWhatToShowAttribute </summary>
-		/// <returns>A System.UInt32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetWhatToShowAttribute();
 		
-		/// <summary>Member SetWhatToShowAttribute </summary>
-		/// <param name='aWhatToShow'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetWhatToShowAttribute(uint aWhatToShow);
 		
-		/// <summary>Member GetNodeFromRowIndex </summary>
-		/// <param name='rowIndex'> </param>
-		/// <returns>A nsIDOMNode</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMNode GetNodeFromRowIndex(int rowIndex);
 		
-		/// <summary>Member GetRowIndexFromNode </summary>
-		/// <param name='node'> </param>
-		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetRowIndexFromNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode node);
 		
-		/// <summary>Member Rebuild </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Rebuild();
 	}

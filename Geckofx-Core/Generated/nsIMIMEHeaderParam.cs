@@ -24,7 +24,6 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
 	/// <summary>
@@ -90,6 +89,30 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetParameter5987([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aHeaderVal, [MarshalAs(UnmanagedType.LPStr)] string aParamName, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aFallbackCharset, [MarshalAs(UnmanagedType.U1)] bool aTryLocaleCharset, [MarshalAs(UnmanagedType.LPStr)] ref string aLang, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		
+		/// <summary>
+        /// Given the value of a header field parameter using the encoding
+        /// defined in RFC 5987, decode the value into a Unicode string, and extract
+        /// the optional language parameter.
+        ///
+        /// <p>
+        /// This function is purposefully picky; it will abort for all (most?)
+        /// invalid inputs. This is by design. In particular, it does not support
+        /// any character encodings other than UTF-8, in order not to promote
+        /// non-interoperable usage.
+        ///
+        /// <p>
+        /// This code is currently not used inside nsMIMEHeaderParamImpl, but
+        /// might be in the future. New code that needs RFC2231/5987
+        /// encoding should use this one.
+        ///
+        /// @param  aParamVal         a header field parameter to decode.
+        /// @param  aLang             will be set to the language part (possibly
+        /// empty).
+        /// @return the decoded parameter value.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void DecodeRFC5987Param([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aParamVal, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aLang, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// Given the value of a single header field  (such as

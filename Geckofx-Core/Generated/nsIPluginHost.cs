@@ -26,7 +26,10 @@ namespace Gecko
 	using System.Runtime.CompilerServices;
 	
 	
-	/// <summary>nsIPluginHost </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("28F1F9E1-CD23-4FE2-BCC8-BBB0B2D49A4A")]
@@ -43,9 +46,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ReloadPlugins([MarshalAs(UnmanagedType.U1)] bool reloadPages);
 		
-		/// <summary>Member GetPluginTags </summary>
-		/// <param name='aPluginCount'> </param>
-		/// <returns>A System.IntPtr</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetPluginTags(ref uint aPluginCount);
 		

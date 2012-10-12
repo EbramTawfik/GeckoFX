@@ -24,29 +24,23 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIScreen </summary>
+	/// <summary>
+    ///-*- Mode: IDL; tab-width: 2; indent-tabs-mode: nil; c-basic-offset: 2 -*-
+    ///
+    /// This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("d961f76e-8437-4bc6-9ada-a1c98ace9560")]
 	public interface nsIScreen
 	{
 		
-		/// <summary>Member GetRect </summary>
-		/// <param name='left'> </param>
-		/// <param name='top'> </param>
-		/// <param name='width'> </param>
-		/// <param name='height'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetRect(ref int left, ref int top, ref int width, ref int height);
 		
-		/// <summary>Member GetAvailRect </summary>
-		/// <param name='left'> </param>
-		/// <param name='top'> </param>
-		/// <param name='width'> </param>
-		/// <param name='height'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetAvailRect(ref int left, ref int top, ref int width, ref int height);
 		
@@ -70,13 +64,9 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void UnlockMinimumBrightness(uint brightness);
 		
-		/// <summary>Member GetPixelDepthAttribute </summary>
-		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetPixelDepthAttribute();
 		
-		/// <summary>Member GetColorDepthAttribute </summary>
-		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetColorDepthAttribute();
 		

@@ -24,23 +24,29 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIJSRuntimeService </summary>
+	/// <summary>
+    ///-*- Mode: C++; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*-
+    ///
+    /// This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("364bcec3-7034-4a4e-bff5-b3f796ca9771")]
 	public interface nsIJSRuntimeService
 	{
 		
-		/// <summary>Member GetRuntimeAttribute </summary>
-		/// <returns>A System.IntPtr</returns>
+		/// <summary>
+        ///-*- Mode: C++; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*-
+        ///
+        /// This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetRuntimeAttribute();
 		
-		/// <summary>Member GetBackstagePassAttribute </summary>
-		/// <returns>A nsIXPCScriptable</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIXPCScriptable GetBackstagePassAttribute();
@@ -52,8 +58,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RegisterGCCallback(System.IntPtr func);
 		
-		/// <summary>Member UnregisterGCCallback </summary>
-		/// <param name='func'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void UnregisterGCCallback(System.IntPtr func);
 	}

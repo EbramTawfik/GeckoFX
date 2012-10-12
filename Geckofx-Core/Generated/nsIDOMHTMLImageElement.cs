@@ -24,7 +24,6 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
 	/// <summary>
@@ -39,7 +38,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("c4ef8a40-dd56-4b95-a007-630a0ac04341")]
+	[Guid("76cf0381-19fd-442d-bb18-c794fd8b5c25")]
 	public interface nsIDOMHTMLImageElement : nsIDOMHTMLElement
 	{
 		

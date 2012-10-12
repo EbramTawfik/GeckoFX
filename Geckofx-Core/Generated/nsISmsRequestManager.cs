@@ -24,7 +24,6 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
 	/// <summary>
@@ -33,7 +32,7 @@ namespace Gecko
     /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("1638b963-3a45-4937-b6a9-280c1bfb166c")]
+	[Guid("be747cca-ba07-410a-8b91-2754d5406d66")]
 	public interface nsISmsRequestManager
 	{
 		
@@ -82,6 +81,12 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void NotifyReadMessageListFailed(int aRequestId, int aError);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void NotifyMarkedMessageRead(int aRequestId, [MarshalAs(UnmanagedType.U1)] bool aRead);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void NotifyMarkMessageReadFailed(int aRequestId, int aError);
 	}
 	
 	/// <summary>nsISmsRequestManagerConsts </summary>

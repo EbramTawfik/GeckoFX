@@ -24,43 +24,47 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsISOCKSSocketInfo </summary>
+	/// <summary>
+    ///-*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*-
+    ///
+    /// This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("8f755c44-1dd2-11b2-a613-91117453fa95")]
 	public interface nsISOCKSSocketInfo
 	{
 		
-		/// <summary>Member GetDestinationAddrAttribute </summary>
-		/// <returns>A System.IntPtr</returns>
+		/// <summary>
+        ///-*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*-
+        ///
+        /// This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetDestinationAddrAttribute();
 		
-		/// <summary>Member SetDestinationAddrAttribute </summary>
-		/// <param name='aDestinationAddr'> </param>
+		/// <summary>
+        ///-*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*-
+        ///
+        /// This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetDestinationAddrAttribute(System.IntPtr aDestinationAddr);
 		
-		/// <summary>Member GetExternalProxyAddrAttribute </summary>
-		/// <returns>A System.IntPtr</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetExternalProxyAddrAttribute();
 		
-		/// <summary>Member SetExternalProxyAddrAttribute </summary>
-		/// <param name='aExternalProxyAddr'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetExternalProxyAddrAttribute(System.IntPtr aExternalProxyAddr);
 		
-		/// <summary>Member GetInternalProxyAddrAttribute </summary>
-		/// <returns>A System.IntPtr</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetInternalProxyAddrAttribute();
 		
-		/// <summary>Member SetInternalProxyAddrAttribute </summary>
-		/// <param name='aInternalProxyAddr'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetInternalProxyAddrAttribute(System.IntPtr aInternalProxyAddr);
 	}

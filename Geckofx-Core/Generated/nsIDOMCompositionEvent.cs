@@ -24,10 +24,12 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIDOMCompositionEvent </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("9244a692-2827-4f98-8335-fff958d046fc")]
@@ -173,90 +175,55 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMWindow GetViewAttribute();
 		
-		/// <summary>Member GetDetailAttribute </summary>
-		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new int GetDetailAttribute();
 		
-		/// <summary>Member InitUIEvent </summary>
-		/// <param name='typeArg'> </param>
-		/// <param name='canBubbleArg'> </param>
-		/// <param name='cancelableArg'> </param>
-		/// <param name='viewArg'> </param>
-		/// <param name='detailArg'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void InitUIEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase typeArg, [MarshalAs(UnmanagedType.U1)] bool canBubbleArg, [MarshalAs(UnmanagedType.U1)] bool cancelableArg, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow viewArg, int detailArg);
 		
-		/// <summary>Member GetLayerXAttribute </summary>
-		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new int GetLayerXAttribute();
 		
-		/// <summary>Member GetLayerYAttribute </summary>
-		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new int GetLayerYAttribute();
 		
-		/// <summary>Member GetPageXAttribute </summary>
-		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new int GetPageXAttribute();
 		
-		/// <summary>Member GetPageYAttribute </summary>
-		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new int GetPageYAttribute();
 		
-		/// <summary>Member GetWhichAttribute </summary>
-		/// <returns>A System.UInt32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new uint GetWhichAttribute();
 		
-		/// <summary>Member GetRangeParentAttribute </summary>
-		/// <returns>A nsIDOMNode</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMNode GetRangeParentAttribute();
 		
-		/// <summary>Member GetRangeOffsetAttribute </summary>
-		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new int GetRangeOffsetAttribute();
 		
-		/// <summary>Member GetCancelBubbleAttribute </summary>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetCancelBubbleAttribute();
 		
-		/// <summary>Member SetCancelBubbleAttribute </summary>
-		/// <param name='aCancelBubble'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetCancelBubbleAttribute([MarshalAs(UnmanagedType.U1)] bool aCancelBubble);
 		
-		/// <summary>Member GetIsCharAttribute </summary>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetIsCharAttribute();
 		
-		/// <summary>Member GetDataAttribute </summary>
-		/// <param name='aData'> </param>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetDataAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aData);
 		
-		/// <summary>Member GetLocaleAttribute </summary>
-		/// <param name='aLocale'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetLocaleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aLocale);
 		
-		/// <summary>Member InitCompositionEvent </summary>
-		/// <param name='typeArg'> </param>
-		/// <param name='canBubbleArg'> </param>
-		/// <param name='cancelableArg'> </param>
-		/// <param name='viewArg'> </param>
-		/// <param name='dataArg'> </param>
-		/// <param name='localeArg'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void InitCompositionEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase typeArg, [MarshalAs(UnmanagedType.U1)] bool canBubbleArg, [MarshalAs(UnmanagedType.U1)] bool cancelableArg, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow viewArg, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase dataArg, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase localeArg);
 	}

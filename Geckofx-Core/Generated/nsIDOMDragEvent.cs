@@ -24,13 +24,15 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIDOMDragEvent </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("74fb5f01-e473-4302-93f5-6f74bdaaddf2")]
+	[Guid("179c67d0-283e-4178-9b72-458313b197eb")]
 	public interface nsIDOMDragEvent : nsIDOMMouseEvent
 	{
 		
@@ -173,69 +175,41 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMWindow GetViewAttribute();
 		
-		/// <summary>Member GetDetailAttribute </summary>
-		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new int GetDetailAttribute();
 		
-		/// <summary>Member InitUIEvent </summary>
-		/// <param name='typeArg'> </param>
-		/// <param name='canBubbleArg'> </param>
-		/// <param name='cancelableArg'> </param>
-		/// <param name='viewArg'> </param>
-		/// <param name='detailArg'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void InitUIEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase typeArg, [MarshalAs(UnmanagedType.U1)] bool canBubbleArg, [MarshalAs(UnmanagedType.U1)] bool cancelableArg, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow viewArg, int detailArg);
 		
-		/// <summary>Member GetLayerXAttribute </summary>
-		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new int GetLayerXAttribute();
 		
-		/// <summary>Member GetLayerYAttribute </summary>
-		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new int GetLayerYAttribute();
 		
-		/// <summary>Member GetPageXAttribute </summary>
-		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new int GetPageXAttribute();
 		
-		/// <summary>Member GetPageYAttribute </summary>
-		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new int GetPageYAttribute();
 		
-		/// <summary>Member GetWhichAttribute </summary>
-		/// <returns>A System.UInt32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new uint GetWhichAttribute();
 		
-		/// <summary>Member GetRangeParentAttribute </summary>
-		/// <returns>A nsIDOMNode</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMNode GetRangeParentAttribute();
 		
-		/// <summary>Member GetRangeOffsetAttribute </summary>
-		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new int GetRangeOffsetAttribute();
 		
-		/// <summary>Member GetCancelBubbleAttribute </summary>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetCancelBubbleAttribute();
 		
-		/// <summary>Member SetCancelBubbleAttribute </summary>
-		/// <param name='aCancelBubble'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetCancelBubbleAttribute([MarshalAs(UnmanagedType.U1)] bool aCancelBubble);
 		
-		/// <summary>Member GetIsCharAttribute </summary>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetIsCharAttribute();
@@ -250,82 +224,47 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new int GetScreenXAttribute();
 		
-		/// <summary>Member GetScreenYAttribute </summary>
-		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new int GetScreenYAttribute();
 		
-		/// <summary>Member GetMozMovementXAttribute </summary>
-		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new int GetMozMovementXAttribute();
 		
-		/// <summary>Member GetMozMovementYAttribute </summary>
-		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new int GetMozMovementYAttribute();
 		
-		/// <summary>Member GetClientXAttribute </summary>
-		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new int GetClientXAttribute();
 		
-		/// <summary>Member GetClientYAttribute </summary>
-		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new int GetClientYAttribute();
 		
-		/// <summary>Member GetCtrlKeyAttribute </summary>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetCtrlKeyAttribute();
 		
-		/// <summary>Member GetShiftKeyAttribute </summary>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetShiftKeyAttribute();
 		
-		/// <summary>Member GetAltKeyAttribute </summary>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetAltKeyAttribute();
 		
-		/// <summary>Member GetMetaKeyAttribute </summary>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetMetaKeyAttribute();
 		
-		/// <summary>Member GetButtonAttribute </summary>
-		/// <returns>A System.UInt16</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new ushort GetButtonAttribute();
 		
-		/// <summary>Member GetRelatedTargetAttribute </summary>
-		/// <returns>A nsIDOMEventTarget</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new ushort GetButtonsAttribute();
+		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMEventTarget GetRelatedTargetAttribute();
 		
-		/// <summary>Member InitMouseEvent </summary>
-		/// <param name='typeArg'> </param>
-		/// <param name='canBubbleArg'> </param>
-		/// <param name='cancelableArg'> </param>
-		/// <param name='viewArg'> </param>
-		/// <param name='detailArg'> </param>
-		/// <param name='screenXArg'> </param>
-		/// <param name='screenYArg'> </param>
-		/// <param name='clientXArg'> </param>
-		/// <param name='clientYArg'> </param>
-		/// <param name='ctrlKeyArg'> </param>
-		/// <param name='altKeyArg'> </param>
-		/// <param name='shiftKeyArg'> </param>
-		/// <param name='metaKeyArg'> </param>
-		/// <param name='buttonArg'> </param>
-		/// <param name='relatedTargetArg'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void InitMouseEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase typeArg, [MarshalAs(UnmanagedType.U1)] bool canBubbleArg, [MarshalAs(UnmanagedType.U1)] bool cancelableArg, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow viewArg, int detailArg, int screenXArg, int screenYArg, int clientXArg, int clientYArg, [MarshalAs(UnmanagedType.U1)] bool ctrlKeyArg, [MarshalAs(UnmanagedType.U1)] bool altKeyArg, [MarshalAs(UnmanagedType.U1)] bool shiftKeyArg, [MarshalAs(UnmanagedType.U1)] bool metaKeyArg, ushort buttonArg, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventTarget relatedTargetArg);
 		
@@ -335,29 +274,9 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new float GetMozPressureAttribute();
 		
-		/// <summary>Member GetMozInputSourceAttribute </summary>
-		/// <returns>A System.UInt16</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new ushort GetMozInputSourceAttribute();
 		
-		/// <summary>Member InitNSMouseEvent </summary>
-		/// <param name='typeArg'> </param>
-		/// <param name='canBubbleArg'> </param>
-		/// <param name='cancelableArg'> </param>
-		/// <param name='viewArg'> </param>
-		/// <param name='detailArg'> </param>
-		/// <param name='screenXArg'> </param>
-		/// <param name='screenYArg'> </param>
-		/// <param name='clientXArg'> </param>
-		/// <param name='clientYArg'> </param>
-		/// <param name='ctrlKeyArg'> </param>
-		/// <param name='altKeyArg'> </param>
-		/// <param name='shiftKeyArg'> </param>
-		/// <param name='metaKeyArg'> </param>
-		/// <param name='buttonArg'> </param>
-		/// <param name='relatedTargetArg'> </param>
-		/// <param name='pressure'> </param>
-		/// <param name='inputSourceArg'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void InitNSMouseEvent(
 					[MarshalAs(UnmanagedType.LPStruct)] nsAStringBase typeArg, 
@@ -378,29 +297,18 @@ namespace Gecko
 					float pressure, 
 					ushort inputSourceArg);
 		
-		/// <summary>Member GetDataTransferAttribute </summary>
-		/// <returns>A nsIDOMDataTransfer</returns>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool GetModifierState([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase keyArg);
+		
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMDataTransfer GetDataTransferAttribute();
 		
-		/// <summary>Member InitDragEvent </summary>
-		/// <param name='typeArg'> </param>
-		/// <param name='canBubbleArg'> </param>
-		/// <param name='cancelableArg'> </param>
-		/// <param name='aView'> </param>
-		/// <param name='aDetail'> </param>
-		/// <param name='aScreenX'> </param>
-		/// <param name='aScreenY'> </param>
-		/// <param name='aClientX'> </param>
-		/// <param name='aClientY'> </param>
-		/// <param name='aCtrlKey'> </param>
-		/// <param name='aAltKey'> </param>
-		/// <param name='aShiftKey'> </param>
-		/// <param name='aMetaKey'> </param>
-		/// <param name='aButton'> </param>
-		/// <param name='aRelatedTarget'> </param>
-		/// <param name='aDataTransfer'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void InitDragEvent(
 					[MarshalAs(UnmanagedType.LPStruct)] nsAStringBase typeArg, 

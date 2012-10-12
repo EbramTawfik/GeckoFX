@@ -24,24 +24,30 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIDOMXULDocument </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("b16d13c3-837d-445d-8f56-05d83d9b9eae")]
 	public interface nsIDOMXULDocument
 	{
 		
-		/// <summary>Member GetPopupNodeAttribute </summary>
-		/// <returns>A nsIDOMNode</returns>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMNode GetPopupNodeAttribute();
 		
-		/// <summary>Member SetPopupNodeAttribute </summary>
-		/// <param name='aPopupNode'> </param>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetPopupNodeAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aPopupNode);
 		
@@ -55,78 +61,43 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMNode GetPopupRangeParentAttribute();
 		
-		/// <summary>Member GetPopupRangeOffsetAttribute </summary>
-		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetPopupRangeOffsetAttribute();
 		
-		/// <summary>Member GetTooltipNodeAttribute </summary>
-		/// <returns>A nsIDOMNode</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMNode GetTooltipNodeAttribute();
 		
-		/// <summary>Member SetTooltipNodeAttribute </summary>
-		/// <param name='aTooltipNode'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetTooltipNodeAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aTooltipNode);
 		
-		/// <summary>Member GetCommandDispatcherAttribute </summary>
-		/// <returns>A nsIDOMXULCommandDispatcher</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMXULCommandDispatcher GetCommandDispatcherAttribute();
 		
-		/// <summary>Member GetWidthAttribute </summary>
-		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetWidthAttribute();
 		
-		/// <summary>Member GetHeightAttribute </summary>
-		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetHeightAttribute();
 		
-		/// <summary>Member GetElementsByAttribute </summary>
-		/// <param name='name'> </param>
-		/// <param name='value'> </param>
-		/// <returns>A nsIDOMNodeList</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMNodeList GetElementsByAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase value);
 		
-		/// <summary>Member GetElementsByAttributeNS </summary>
-		/// <param name='namespaceURI'> </param>
-		/// <param name='name'> </param>
-		/// <param name='value'> </param>
-		/// <returns>A nsIDOMNodeList</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMNodeList GetElementsByAttributeNS([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase namespaceURI, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase value);
 		
-		/// <summary>Member AddBroadcastListenerFor </summary>
-		/// <param name='broadcaster'> </param>
-		/// <param name='observer'> </param>
-		/// <param name='attr'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void AddBroadcastListenerFor([MarshalAs(UnmanagedType.Interface)] nsIDOMElement broadcaster, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement observer, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase attr);
 		
-		/// <summary>Member RemoveBroadcastListenerFor </summary>
-		/// <param name='broadcaster'> </param>
-		/// <param name='observer'> </param>
-		/// <param name='attr'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RemoveBroadcastListenerFor([MarshalAs(UnmanagedType.Interface)] nsIDOMElement broadcaster, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement observer, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase attr);
 		
-		/// <summary>Member Persist </summary>
-		/// <param name='id'> </param>
-		/// <param name='attr'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Persist([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase id, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase attr);
 		
-		/// <summary>Member GetBoxObjectFor </summary>
-		/// <param name='elt'> </param>
-		/// <returns>A nsIBoxObject</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIBoxObject GetBoxObjectFor([MarshalAs(UnmanagedType.Interface)] nsIDOMElement elt);

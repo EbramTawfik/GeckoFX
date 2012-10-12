@@ -24,10 +24,12 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIAutoCompleteStatus </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[Guid("4BA0A180-097C-11d4-A449-CD1A8B47ED7C")]
 	public interface nsIAutoCompleteStatus
@@ -38,7 +40,10 @@ namespace Gecko
 	public class nsIAutoCompleteStatusConsts
 	{
 		
-		// 
+		// <summary>
+        //This Source Code Form is subject to the terms of the Mozilla Public
+        // License, v. 2.0. If a copy of the MPL was not distributed with this
+        // file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		public const long failed = -1;
 		
 		// 

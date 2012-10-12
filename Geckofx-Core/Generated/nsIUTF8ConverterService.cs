@@ -24,10 +24,12 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIUTF8ConverterService </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("249f52a3-2599-4b00-ba40-0481364831a2")]
@@ -49,12 +51,15 @@ namespace Gecko
         /// The most common case is the input is in 7bit non-ASCII charsets
         /// like ISO-2022-JP, HZ or UTF-7 (in its original form or
         /// a modified form used in IMAP folder names).
+        /// @param aAllowSubstitution when true, allow the decoder to substitute
+        /// invalid input sequences by replacement characters (defaults to
+        /// true)
         /// @return the converted string in UTF-8.
         /// @throws NS_ERROR_UCONV_NOCONV when there is no decoder for aCharset
         /// or error code of nsIUnicodeDecoder in case of conversion failure
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ConvertStringToUTF8([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aString, [MarshalAs(UnmanagedType.LPStr)] string aCharset, [MarshalAs(UnmanagedType.U1)] bool aSkipCheck, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase retval);
+		void ConvertStringToUTF8([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aString, [MarshalAs(UnmanagedType.LPStr)] string aCharset, [MarshalAs(UnmanagedType.U1)] bool aSkipCheck, [MarshalAs(UnmanagedType.U1)] bool aAllowSubstitution, int argc, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase retval);
 		
 		/// <summary>
         /// Ensure that |aSpec| (after URL-unescaping it) is encoded in UTF-8.

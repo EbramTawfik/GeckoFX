@@ -24,13 +24,15 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIRILTelephonyCallback </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("03eafd60-d138-4f09-81b4-90cd4996b3c7")]
+	[Guid("c14c71b8-afba-403b-8320-94593de9380f")]
 	public interface nsIRILTelephonyCallback
 	{
 		
@@ -43,13 +45,15 @@ namespace Gecko
         /// One of the nsIRadioInterfaceLayer::CALL_STATE_* values.
         /// @param number
         /// Number of the other party.
+        /// @param isActive
+        /// Indicates whether this call is the currently active one.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CallStateChanged(uint callIndex, ushort callState, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase number);
+		void CallStateChanged(uint callIndex, ushort callState, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase number, [MarshalAs(UnmanagedType.U1)] bool isActive);
 		
 		/// <summary>
-        /// Called when nsIRadioInterfaceLayer is asked to enumerate the current
-        /// telephony call state (nsIRadioInterfaceLayer::enumerateCalls). This is
+        /// Called when nsIRILContentHelper is asked to enumerate the current
+        /// telephony call state (nsIRILContentHelper::enumerateCalls). This is
         /// called once per call that is currently managed by the RIL.
         ///
         /// @param callIndex
@@ -66,6 +70,17 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool EnumerateCallState(uint callIndex, ushort callState, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase number, [MarshalAs(UnmanagedType.U1)] bool isActive);
+		
+		/// <summary>
+        /// Called when RIL error occurs.
+        ///
+        /// @param callIndex
+        /// Call identifier assigned by the RIL. -1 if no connection
+        /// @param error
+        /// Error from RIL.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void NotifyError(int callIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase error);
 	}
 	
 	/// <summary>nsIRILDataCallInfo </summary>
@@ -124,13 +139,32 @@ namespace Gecko
 		void ReceiveDataCallList([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] nsIRILDataCallInfo[] dataCalls, uint length);
 	}
 	
+	/// <summary>nsIRILContactCallback </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("2bc2f51a-78be-4c0e-95dd-55a3ce2ded40")]
+	public interface nsIRILContactCallback
+	{
+		
+		/// <summary>
+        /// Called when nsIRadioInterfaceLayer is asked to provide ICC contacts.
+        ///
+        /// @param type
+        /// Type of the dialling number, i.e. ADN, FDN.
+        /// @param contacts
+        /// Array of the ICC contacts of the specified type.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void ReceiveContactsList([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase type, Gecko.JsVal contacts);
+	}
+	
 	/// <summary>
     /// Helper that runs in the content process and exposes information
     /// to the DOM.
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("cc9832fd-d3ce-4cab-9abe-48c6046bcebe")]
+	[Guid("2f8b0929-2ecf-498c-bfa7-42690509696e")]
 	public interface nsIRILContentHelper : nsIMobileConnectionProvider
 	{
 		
@@ -152,26 +186,28 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMDOMRequest GetNetworks([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window);
-	}
-	
-	/// <summary>
-    /// Helper that runs in the content process and exposes information
-    /// to the DOM.
-    /// </summary>
-	[ComImport()]
-	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("d2025763-fc32-436e-b207-0228ea1ccd12")]
-	public interface nsIRadioInterfaceLayer
-	{
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMDOMRequest GetCardLock([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase lockType);
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMDOMRequest UnlockCardLock([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, Gecko.JsVal info);
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMDOMRequest SetCardLock([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, Gecko.JsVal info);
+		
+		/// <summary>
+        /// Helper that runs in the content process and exposes information
+        /// to the DOM.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RegisterTelephonyCallback([MarshalAs(UnmanagedType.Interface)] nsIRILTelephonyCallback callback);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal GetRadioStateAttribute();
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RegisterCallback([MarshalAs(UnmanagedType.Interface)] nsIRILTelephonyCallback callback);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void UnregisterCallback([MarshalAs(UnmanagedType.Interface)] nsIRILTelephonyCallback callback);
+		void UnregisterTelephonyCallback([MarshalAs(UnmanagedType.Interface)] nsIRILTelephonyCallback callback);
 		
 		/// <summary>
         /// Will continue calling callback.enumerateCallState until the callback
@@ -220,6 +256,25 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetSpeakerEnabledAttribute([MarshalAs(UnmanagedType.U1)] bool aSpeakerEnabled);
+	}
+	
+	/// <summary>nsIRadioInterfaceLayer </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("fa923335-4cbd-40d7-8d4a-5689a6db2b6d")]
+	public interface nsIRadioInterfaceLayer
+	{
+		
+		/// <summary>
+        /// Activates or deactivates radio power.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetRadioEnabled([MarshalAs(UnmanagedType.U1)] bool value);
+		
+		/// <summary>Member GetRadioStateAttribute </summary>
+		/// <returns>A Gecko.JsVal</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetRadioStateAttribute();
 		
 		/// <summary>
         /// PDP APIs
@@ -227,15 +282,23 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetupDataCall(int radioTech, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase apn, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase user, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase passwd, int chappap, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase pdptype);
 		
+		/// <summary>Member DeactivateDataCall </summary>
+		/// <param name='cid'> </param>
+		/// <param name='reason'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void DeactivateDataCall([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase cid, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase reason);
 		
+		/// <summary>Member GetDataCallList </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetDataCallList();
 		
+		/// <summary>Member RegisterDataCallCallback </summary>
+		/// <param name='callback'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RegisterDataCallCallback([MarshalAs(UnmanagedType.Interface)] nsIRILDataCallback callback);
 		
+		/// <summary>Member UnregisterDataCallCallback </summary>
+		/// <param name='callback'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void UnregisterDataCallCallback([MarshalAs(UnmanagedType.Interface)] nsIRILDataCallback callback);
 		
@@ -245,18 +308,26 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetNumberOfMessagesForText([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase text);
 		
+		/// <summary>Member SendSMS </summary>
+		/// <param name='number'> </param>
+		/// <param name='message'> </param>
+		/// <param name='requestId'> </param>
+		/// <param name='processId'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SendSMS([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase number, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase message, int requestId, ulong processId);
+		
+		/// <summary>
+        /// ICC-related functionality.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetICCContacts([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase type, [MarshalAs(UnmanagedType.Interface)] nsIRILContactCallback callback);
 	}
 	
 	/// <summary>nsIRadioInterfaceLayerConsts </summary>
 	public class nsIRadioInterfaceLayerConsts
 	{
 		
-		// <summary>
-        // Helper that runs in the content process and exposes information
-        // to the DOM.
-        // </summary>
+		// 
 		public const ulong CALL_STATE_UNKNOWN = 0;
 		
 		// 

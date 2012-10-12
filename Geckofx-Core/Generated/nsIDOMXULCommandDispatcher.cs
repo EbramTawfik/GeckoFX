@@ -24,89 +24,70 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIDOMXULCommandDispatcher </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("f3c50361-14fe-11d3-bf87-00105a1b0627")]
 	public interface nsIDOMXULCommandDispatcher
 	{
 		
-		/// <summary>Member GetFocusedElementAttribute </summary>
-		/// <returns>A nsIDOMElement</returns>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMElement GetFocusedElementAttribute();
 		
-		/// <summary>Member SetFocusedElementAttribute </summary>
-		/// <param name='aFocusedElement'> </param>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetFocusedElementAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aFocusedElement);
 		
-		/// <summary>Member GetFocusedWindowAttribute </summary>
-		/// <returns>A nsIDOMWindow</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMWindow GetFocusedWindowAttribute();
 		
-		/// <summary>Member SetFocusedWindowAttribute </summary>
-		/// <param name='aFocusedWindow'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetFocusedWindowAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aFocusedWindow);
 		
-		/// <summary>Member AddCommandUpdater </summary>
-		/// <param name='updater'> </param>
-		/// <param name='events'> </param>
-		/// <param name='targets'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void AddCommandUpdater([MarshalAs(UnmanagedType.Interface)] nsIDOMElement updater, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase events, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase targets);
 		
-		/// <summary>Member RemoveCommandUpdater </summary>
-		/// <param name='updater'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RemoveCommandUpdater([MarshalAs(UnmanagedType.Interface)] nsIDOMElement updater);
 		
-		/// <summary>Member UpdateCommands </summary>
-		/// <param name='eventName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void UpdateCommands([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase eventName);
 		
-		/// <summary>Member GetControllerForCommand </summary>
-		/// <param name='command'> </param>
-		/// <returns>A nsIController</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIController GetControllerForCommand([MarshalAs(UnmanagedType.LPStr)] string command);
 		
-		/// <summary>Member GetControllers </summary>
-		/// <returns>A nsIControllers</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIControllers GetControllers();
 		
-		/// <summary>Member AdvanceFocus </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void AdvanceFocus();
 		
-		/// <summary>Member RewindFocus </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RewindFocus();
 		
-		/// <summary>Member AdvanceFocusIntoSubtree </summary>
-		/// <param name='elt'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void AdvanceFocusIntoSubtree([MarshalAs(UnmanagedType.Interface)] nsIDOMElement elt);
 		
-		/// <summary>Member GetSuppressFocusScrollAttribute </summary>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetSuppressFocusScrollAttribute();
 		
-		/// <summary>Member SetSuppressFocusScrollAttribute </summary>
-		/// <param name='aSuppressFocusScroll'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetSuppressFocusScrollAttribute([MarshalAs(UnmanagedType.U1)] bool aSuppressFocusScroll);
 	}

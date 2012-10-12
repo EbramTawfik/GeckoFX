@@ -24,13 +24,15 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIScriptSecurityManager </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("50eda256-4dd2-4c7c-baed-96983910af9f")]
+	[Guid("3708aa92-e2d9-4fd1-9e46-edfa3eb5ebf5")]
 	public interface nsIScriptSecurityManager : nsIXPCSecurityManager
 	{
 		
@@ -44,27 +46,12 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void CanCreateWrapper(System.IntPtr aJSContext, ref System.Guid aIID, [MarshalAs(UnmanagedType.Interface)] nsISupports aObj, [MarshalAs(UnmanagedType.Interface)] nsIClassInfo aClassInfo, ref System.IntPtr aPolicy);
 		
-		/// <summary>Member CanCreateInstance </summary>
-		/// <param name='aJSContext'> </param>
-		/// <param name='aCID'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void CanCreateInstance(System.IntPtr aJSContext, ref System.Guid aCID);
 		
-		/// <summary>Member CanGetService </summary>
-		/// <param name='aJSContext'> </param>
-		/// <param name='aCID'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void CanGetService(System.IntPtr aJSContext, ref System.Guid aCID);
 		
-		/// <summary>Member CanAccess </summary>
-		/// <param name='aAction'> </param>
-		/// <param name='aCallContext'> </param>
-		/// <param name='aJSContext'> </param>
-		/// <param name='aJSObject'> </param>
-		/// <param name='aObj'> </param>
-		/// <param name='aClassInfo'> </param>
-		/// <param name='aName'> </param>
-		/// <param name='aPolicy'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void CanAccess(uint aAction, System.IntPtr aCallContext, System.IntPtr aJSContext, System.IntPtr aJSObject, [MarshalAs(UnmanagedType.Interface)] nsISupports aObj, [MarshalAs(UnmanagedType.Interface)] nsIClassInfo aClassInfo, System.IntPtr aName, ref System.IntPtr aPolicy);
 		
@@ -215,27 +202,6 @@ namespace Gecko
 		void EnableCapability([MarshalAs(UnmanagedType.LPStr)] string capability);
 		
 		/// <summary>
-        /// Remove 'capability' from the innermost frame of the currently
-        /// executing script. Any setting of 'capability' from enclosing
-        /// frames thus comes into effect.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RevertCapability([MarshalAs(UnmanagedType.LPStr)] string capability);
-		
-		/// <summary>
-        /// Disable 'capability' in the innermost frame of the currently executing
-        /// script.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DisableCapability([MarshalAs(UnmanagedType.LPStr)] string capability);
-		
-		/// <summary>
-        /// cert we're enabling for...
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCanEnableCapability([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase certificateFingerprint, [MarshalAs(UnmanagedType.LPStr)] string capability, short canEnable);
-		
-		/// <summary>
         /// Return the principal of the specified object in the specified context.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
@@ -302,10 +268,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIPrincipal GetCxSubjectPrincipal(System.IntPtr cx);
 		
-		/// <summary>Member GetCxSubjectPrincipalAndFrame </summary>
-		/// <param name='cx'> </param>
-		/// <param name='fp'> </param>
-		/// <returns>A nsIPrincipal</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIPrincipal GetCxSubjectPrincipalAndFrame(System.IntPtr cx, ref System.IntPtr fp);

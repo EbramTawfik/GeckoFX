@@ -24,33 +24,35 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIJSContextStack </summary>
+	/// <summary>
+    ///-*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*-
+    ///
+    /// This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("c67d8270-3189-11d3-9885-006008962422")]
 	public interface nsIJSContextStack
 	{
 		
-		/// <summary>Member GetCountAttribute </summary>
-		/// <returns>A System.Int32</returns>
+		/// <summary>
+        ///-*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*-
+        ///
+        /// This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetCountAttribute();
 		
-		/// <summary>Member Peek </summary>
-		/// <returns>A System.IntPtr</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr Peek();
 		
-		/// <summary>Member Pop </summary>
-		/// <returns>A System.IntPtr</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr Pop();
 		
-		/// <summary>Member Push </summary>
-		/// <param name='cx'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Push(System.IntPtr cx);
 	}
@@ -92,12 +94,16 @@ namespace Gecko
 	/// <summary>nsIThreadJSContextStack </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("b7056a2a-a02d-43b1-abb9-47f81f8bf258")]
+	[Guid("59ad3ff1-a2d3-4c11-b825-098bff3c3e15")]
 	public interface nsIThreadJSContextStack : nsIJSContextStack
 	{
 		
-		/// <summary>Member GetCountAttribute </summary>
-		/// <returns>A System.Int32</returns>
+		/// <summary>
+        ///-*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*-
+        ///
+        /// This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new int GetCountAttribute();
 		
@@ -119,6 +125,6 @@ namespace Gecko
 		/// <summary>
         ///inherits methods of nsIJSContextStack </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetSafeJSContextAttribute();
+		System.IntPtr GetSafeJSContext();
 	}
 }

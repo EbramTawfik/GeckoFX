@@ -55,6 +55,9 @@ namespace Gecko
 
 		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl)]
 		public static extern IntPtr JS_EnterCrossCompartmentCall(IntPtr cx, IntPtr targetJSObject);
+
+		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl)]
+		public static extern IntPtr JS_Init(UInt32 maxbytes);
 		
 		[UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
 		public delegate int CallBack(IntPtr cx, UInt32 contextOp);

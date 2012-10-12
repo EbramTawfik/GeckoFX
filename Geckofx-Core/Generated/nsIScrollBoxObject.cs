@@ -24,10 +24,12 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIScrollBoxObject </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("56E2ADA8-4631-11d4-BA11-001083023C1E")]
@@ -50,28 +52,18 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ScrollBy(int dx, int dy);
 		
-		/// <summary>Member ScrollByLine </summary>
-		/// <param name='dlines'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ScrollByLine(int dlines);
 		
-		/// <summary>Member ScrollByIndex </summary>
-		/// <param name='dindexes'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ScrollByIndex(int dindexes);
 		
-		/// <summary>Member ScrollToLine </summary>
-		/// <param name='line'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ScrollToLine(int line);
 		
-		/// <summary>Member ScrollToElement </summary>
-		/// <param name='child'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ScrollToElement([MarshalAs(UnmanagedType.Interface)] nsIDOMElement child);
 		
-		/// <summary>Member ScrollToIndex </summary>
-		/// <param name='index'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ScrollToIndex(int index);
 		
@@ -82,24 +74,15 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetPosition(ref int x, ref int y);
 		
-		/// <summary>Member GetScrolledSize </summary>
-		/// <param name='width'> </param>
-		/// <param name='height'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetScrolledSize(ref int width, ref int height);
 		
-		/// <summary>Member EnsureElementIsVisible </summary>
-		/// <param name='child'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void EnsureElementIsVisible([MarshalAs(UnmanagedType.Interface)] nsIDOMElement child);
 		
-		/// <summary>Member EnsureIndexIsVisible </summary>
-		/// <param name='index'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void EnsureIndexIsVisible(int index);
 		
-		/// <summary>Member EnsureLineIsVisible </summary>
-		/// <param name='line'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void EnsureLineIsVisible(int line);
 	}

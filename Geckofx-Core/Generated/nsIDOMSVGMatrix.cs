@@ -24,23 +24,29 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIDOMSVGMatrix </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("ec2da3ef-5a99-49ed-aaef-b5af916c14ac")]
 	public interface nsIDOMSVGMatrix
 	{
 		
-		/// <summary>Member GetAAttribute </summary>
-		/// <returns>A System.Single</returns>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		float GetAAttribute();
 		
-		/// <summary>Member SetAAttribute </summary>
-		/// <param name='aA'> </param>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetAAttribute(float aA);
 		
@@ -111,8 +117,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMSVGMatrix Multiply([MarshalAs(UnmanagedType.Interface)] nsIDOMSVGMatrix secondMatrix);
 		
-		/// <summary>Member Inverse </summary>
-		/// <returns>A nsIDOMSVGMatrix</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMSVGMatrix Inverse();
@@ -124,32 +128,18 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMSVGMatrix Translate(float x, float y);
 		
-		/// <summary>Member Scale </summary>
-		/// <param name='scaleFactor'> </param>
-		/// <returns>A nsIDOMSVGMatrix</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMSVGMatrix Scale(float scaleFactor);
 		
-		/// <summary>Member ScaleNonUniform </summary>
-		/// <param name='scaleFactorX'> </param>
-		/// <param name='scaleFactorY'> </param>
-		/// <returns>A nsIDOMSVGMatrix</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMSVGMatrix ScaleNonUniform(float scaleFactorX, float scaleFactorY);
 		
-		/// <summary>Member Rotate </summary>
-		/// <param name='angle'> </param>
-		/// <returns>A nsIDOMSVGMatrix</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMSVGMatrix Rotate(float angle);
 		
-		/// <summary>Member RotateFromVector </summary>
-		/// <param name='x'> </param>
-		/// <param name='y'> </param>
-		/// <returns>A nsIDOMSVGMatrix</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMSVGMatrix RotateFromVector(float x, float y);
@@ -161,22 +151,14 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMSVGMatrix FlipX();
 		
-		/// <summary>Member FlipY </summary>
-		/// <returns>A nsIDOMSVGMatrix</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMSVGMatrix FlipY();
 		
-		/// <summary>Member SkewX </summary>
-		/// <param name='angle'> </param>
-		/// <returns>A nsIDOMSVGMatrix</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMSVGMatrix SkewX(float angle);
 		
-		/// <summary>Member SkewY </summary>
-		/// <param name='angle'> </param>
-		/// <returns>A nsIDOMSVGMatrix</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMSVGMatrix SkewY(float angle);

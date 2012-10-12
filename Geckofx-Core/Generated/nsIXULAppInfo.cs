@@ -24,7 +24,6 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
 	/// <summary>
@@ -33,7 +32,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("a61ede2a-ef09-11d9-a5ce-001124787b2e")]
+	[Guid("1518e7d2-022a-4dae-b02e-bbe7ffcf2145")]
 	public interface nsIXULAppInfo
 	{
 		
@@ -86,5 +85,12 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetPlatformBuildIDAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aPlatformBuildID);
+		
+		/// <summary>
+        /// @see nsXREAppData.UAName
+        /// @returns an empty string if nsXREAppData.UAName is not set.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetUANameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aUAName);
 	}
 }

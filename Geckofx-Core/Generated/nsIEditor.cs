@@ -24,18 +24,20 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIEditor </summary>
+	/// <summary>
+    ///-*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 2 -*-
+    ///
+    /// This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("2e14b183-29d4-4282-9475-589277a70654")]
+	[Guid("7ad59e28-f3d5-4e14-8ea3-794ad4a86de3")]
 	public interface nsIEditor
 	{
 		
-		/// <summary>Member GetSelectionAttribute </summary>
-		/// <returns>A nsISelection</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISelection GetSelectionAttribute();
@@ -54,18 +56,9 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Init([MarshalAs(UnmanagedType.Interface)] nsIDOMDocument doc, System.IntPtr aRoot, [MarshalAs(UnmanagedType.Interface)] nsISelectionController aSelCon, uint aFlags);
 		
-		/// <summary>Member SetAttributeOrEquivalent </summary>
-		/// <param name='element'> </param>
-		/// <param name='sourceAttrName'> </param>
-		/// <param name='sourceAttrValue'> </param>
-		/// <param name='aSuppressTransaction'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetAttributeOrEquivalent([MarshalAs(UnmanagedType.Interface)] nsIDOMElement element, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase sourceAttrName, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase sourceAttrValue, [MarshalAs(UnmanagedType.U1)] bool aSuppressTransaction);
 		
-		/// <summary>Member RemoveAttributeOrEquivalent </summary>
-		/// <param name='element'> </param>
-		/// <param name='sourceAttrName'> </param>
-		/// <param name='aSuppressTransaction'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RemoveAttributeOrEquivalent([MarshalAs(UnmanagedType.Interface)] nsIDOMElement element, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase sourceAttrName, [MarshalAs(UnmanagedType.U1)] bool aSuppressTransaction);
 		
@@ -146,9 +139,13 @@ namespace Gecko
         /// DeleteSelection removes all nodes in the current selection.
         /// @param aDir  if eNext, delete to the right (for example, the DEL key)
         /// if ePrevious, delete to the left (for example, the BACKSPACE key)
+        /// @param stripWrappers If eStrip, strip any empty inline elements left
+        /// behind after the deletion; if eNoStrip, don't.  If in
+        /// doubt, pass eStrip -- eNoStrip is only for if you're
+        /// about to insert text or similar right after.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DeleteSelection(short action);
+		void DeleteSelection(short action, short stripWrappers);
 		
 		/// <summary>
         ///Returns true if the document has no *meaningful* content </summary>
@@ -314,17 +311,12 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void EndTransaction();
 		
-		/// <summary>Member BeginPlaceHolderTransaction </summary>
-		/// <param name='name'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void BeginPlaceHolderTransaction([MarshalAs(UnmanagedType.Interface)] nsIAtom name);
 		
-		/// <summary>Member EndPlaceHolderTransaction </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void EndPlaceHolderTransaction();
 		
-		/// <summary>Member ShouldTxnSetSelection </summary>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool ShouldTxnSetSelection();
@@ -575,6 +567,14 @@ namespace Gecko
 		void DeleteNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode child);
 		
 		/// <summary>
+        /// Returns true if markNodeDirty() has any effect.  Returns false if
+        /// markNodeDirty() is a no-op.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool OutputsMozDirty();
+		
+		/// <summary>
         /// markNodeDirty() sets a special dirty attribute on the node.
         /// Usually this will be called immediately after creating a new node.
         /// @param aNode      The node for which to insert formatting.
@@ -596,11 +596,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void OutputToString([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase formatType, uint flags, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
-		/// <summary>Member OutputToStream </summary>
-		/// <param name='aStream'> </param>
-		/// <param name='formatType'> </param>
-		/// <param name='charsetOverride'> </param>
-		/// <param name='flags'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void OutputToStream([MarshalAs(UnmanagedType.Interface)] nsIOutputStream aStream, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase formatType, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase charsetOverride, uint flags);
 		
@@ -672,7 +667,12 @@ namespace Gecko
 	public class nsIEditorConsts
 	{
 		
-		// 
+		// <summary>
+        //-*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 2 -*-
+        //
+        // This Source Code Form is subject to the terms of the Mozilla Public
+        // License, v. 2.0. If a copy of the MPL was not distributed with this
+        // file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		public const int eNone = 0;
 		
 		// 
@@ -692,5 +692,11 @@ namespace Gecko
 		
 		// 
 		public const int eToEndOfLine = 6;
+		
+		// 
+		public const int eStrip = 0;
+		
+		// 
+		public const int eNoStrip = 1;
 	}
 }

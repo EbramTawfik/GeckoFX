@@ -24,7 +24,6 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
 	/// <summary>
@@ -34,7 +33,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("310ce77d-c92b-4761-82e8-77e1a728e8d4")]
+	[Guid("aed712cb-708b-4caa-981d-767be0fba984")]
 	public interface nsIAccessibleRetrieval
 	{
 		
@@ -112,5 +111,16 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIAccessiblePivot CreateAccessiblePivot([MarshalAs(UnmanagedType.Interface)] nsIAccessible aRoot);
+		
+		/// <summary>
+        /// Enable logging for the given modules, all other modules aren't logged.
+        ///
+        /// @param aModules [in] list of modules, format is comma separated list
+        /// like 'docload,doccreate'.
+        /// @note Works on debug build only.
+        /// @see Logging.cpp for list of possible values.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetLogging([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aModules);
 	}
 }

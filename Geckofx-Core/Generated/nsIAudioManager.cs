@@ -24,10 +24,12 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIAudioManager </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("d2124467-7209-4b2e-a91a-cf3f90681e3c")]
@@ -72,25 +74,15 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetMasterMutedAttribute([MarshalAs(UnmanagedType.U1)] bool aMasterMuted);
 		
-		/// <summary>Member GetPhoneStateAttribute </summary>
-		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetPhoneStateAttribute();
 		
-		/// <summary>Member SetPhoneStateAttribute </summary>
-		/// <param name='aPhoneState'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetPhoneStateAttribute(int aPhoneState);
 		
-		/// <summary>Member SetForceForUse </summary>
-		/// <param name='usage'> </param>
-		/// <param name='force'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetForceForUse(int usage, int force);
 		
-		/// <summary>Member GetForceForUse </summary>
-		/// <param name='usage'> </param>
-		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetForceForUse(int usage);
 	}

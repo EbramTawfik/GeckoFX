@@ -24,28 +24,28 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>mozIDOMApplication </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("b70b84f1-7ac9-4a92-bc32-8b6a7eb7879e")]
 	public interface mozIDOMApplication
 	{
 		
-		/// <summary>Member GetManifestAttribute </summary>
-		/// <returns>A Gecko.JsVal</returns>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		Gecko.JsVal GetManifestAttribute();
 		
-		/// <summary>Member GetManifestURLAttribute </summary>
-		/// <param name='aManifestURL'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetManifestURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aManifestURL);
 		
-		/// <summary>Member GetReceiptsAttribute </summary>
-		/// <returns>A nsIArray</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIArray GetReceiptsAttribute();
@@ -55,13 +55,9 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetOriginAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aOrigin);
 		
-		/// <summary>Member GetInstallOriginAttribute </summary>
-		/// <param name='aInstallOrigin'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetInstallOriginAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aInstallOrigin);
 		
-		/// <summary>Member GetInstallTimeAttribute </summary>
-		/// <returns>A System.UInt32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetInstallTimeAttribute();
 		
@@ -71,8 +67,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMDOMRequest Launch([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase startPoint);
 		
-		/// <summary>Member Uninstall </summary>
-		/// <returns>A nsIDOMDOMRequest</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMDOMRequest Uninstall();

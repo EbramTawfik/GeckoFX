@@ -24,18 +24,22 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIDOMJSWindow </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("6652c4d2-6b49-424b-aaf9-91f91006fab7")]
 	public interface nsIDOMJSWindow
 	{
 		
-		/// <summary>Member Dump </summary>
-		/// <param name='str'> </param>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Dump([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase str);
 		
@@ -48,8 +52,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int SetTimeout();
 		
-		/// <summary>Member SetInterval </summary>
-		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int SetInterval();
 		
@@ -61,8 +63,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ClearTimeout(int handle);
 		
-		/// <summary>Member ClearInterval </summary>
-		/// <param name='handle'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ClearInterval(int handle);
 		
@@ -80,21 +80,15 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void CaptureEvents(int eventFlags);
 		
-		/// <summary>Member ReleaseEvents </summary>
-		/// <param name='eventFlags'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ReleaseEvents(int eventFlags);
 		
-		/// <summary>Member RouteEvent </summary>
-		/// <param name='evt'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RouteEvent([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent evt);
 		
-		/// <summary>Member EnableExternalCapture </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void EnableExternalCapture();
 		
-		/// <summary>Member DisableExternalCapture </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void DisableExternalCapture();
 		

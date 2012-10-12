@@ -24,10 +24,14 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsILocalFileWin </summary>
+	/// <summary>
+    ///-*- Mode: Java; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*-
+    /// This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+    /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("c7b3fd13-30f2-46e5-a0d9-7a79a9b73c5b")]
@@ -48,8 +52,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void Append([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase node);
 		
-		/// <summary>Member AppendNative </summary>
-		/// <param name='node'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void AppendNative([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase node);
 		
@@ -98,13 +100,9 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetLeafNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aLeafName);
 		
-		/// <summary>Member GetNativeLeafNameAttribute </summary>
-		/// <param name='aNativeLeafName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetNativeLeafNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aNativeLeafName);
 		
-		/// <summary>Member SetNativeLeafNameAttribute </summary>
-		/// <param name='aNativeLeafName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetNativeLeafNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aNativeLeafName);
 		
@@ -138,9 +136,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void CopyTo([MarshalAs(UnmanagedType.Interface)] nsIFile newParentDir, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase newName);
 		
-		/// <summary>Member CopyToNative </summary>
-		/// <param name='newParentDir'> </param>
-		/// <param name='newName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void CopyToNative([MarshalAs(UnmanagedType.Interface)] nsIFile newParentDir, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase newName);
 		
@@ -156,9 +151,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void CopyToFollowingLinks([MarshalAs(UnmanagedType.Interface)] nsIFile newParentDir, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase newName);
 		
-		/// <summary>Member CopyToFollowingLinksNative </summary>
-		/// <param name='newParentDir'> </param>
-		/// <param name='newName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void CopyToFollowingLinksNative([MarshalAs(UnmanagedType.Interface)] nsIFile newParentDir, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase newName);
 		
@@ -197,9 +189,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void MoveTo([MarshalAs(UnmanagedType.Interface)] nsIFile newParentDir, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase newName);
 		
-		/// <summary>Member MoveToNative </summary>
-		/// <param name='newParentDir'> </param>
-		/// <param name='newName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void MoveToNative([MarshalAs(UnmanagedType.Interface)] nsIFile newParentDir, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase newName);
 		
@@ -224,13 +213,9 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetPermissionsAttribute(uint aPermissions);
 		
-		/// <summary>Member GetPermissionsOfLinkAttribute </summary>
-		/// <returns>A System.UInt32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new uint GetPermissionsOfLinkAttribute();
 		
-		/// <summary>Member SetPermissionsOfLinkAttribute </summary>
-		/// <param name='aPermissionsOfLink'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetPermissionsOfLinkAttribute(uint aPermissionsOfLink);
 		
@@ -250,13 +235,9 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetLastModifiedTimeAttribute(long aLastModifiedTime);
 		
-		/// <summary>Member GetLastModifiedTimeOfLinkAttribute </summary>
-		/// <returns>A System.Int64</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new long GetLastModifiedTimeOfLinkAttribute();
 		
-		/// <summary>Member SetLastModifiedTimeOfLinkAttribute </summary>
-		/// <param name='aLastModifiedTimeOfLink'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetLastModifiedTimeOfLinkAttribute(long aLastModifiedTimeOfLink);
 		
@@ -278,8 +259,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetFileSizeAttribute(long aFileSize);
 		
-		/// <summary>Member GetFileSizeOfLinkAttribute </summary>
-		/// <returns>A System.Int64</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new long GetFileSizeOfLinkAttribute();
 		
@@ -311,65 +290,43 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetTargetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTarget);
 		
-		/// <summary>Member GetNativeTargetAttribute </summary>
-		/// <param name='aNativeTarget'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetNativeTargetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aNativeTarget);
 		
-		/// <summary>Member GetPathAttribute </summary>
-		/// <param name='aPath'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetPathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPath);
 		
-		/// <summary>Member GetNativePathAttribute </summary>
-		/// <param name='aNativePath'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetNativePathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aNativePath);
 		
-		/// <summary>Member Exists </summary>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool Exists();
 		
-		/// <summary>Member IsWritable </summary>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsWritable();
 		
-		/// <summary>Member IsReadable </summary>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsReadable();
 		
-		/// <summary>Member IsExecutable </summary>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsExecutable();
 		
-		/// <summary>Member IsHidden </summary>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsHidden();
 		
-		/// <summary>Member IsDirectory </summary>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsDirectory();
 		
-		/// <summary>Member IsFile </summary>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsFile();
 		
-		/// <summary>Member IsSymlink </summary>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool IsSymlink();
@@ -473,8 +430,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void InitWithPath([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase filePath);
 		
-		/// <summary>Member InitWithNativePath </summary>
-		/// <param name='filePath'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void InitWithNativePath([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase filePath);
 		
@@ -561,8 +516,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void AppendRelativePath([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase relativeFilePath);
 		
-		/// <summary>Member AppendRelativeNativePath </summary>
-		/// <param name='relativeFilePath'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void AppendRelativeNativePath([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase relativeFilePath);
 		
@@ -663,8 +616,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetCanonicalPathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCanonicalPath);
 		
-		/// <summary>Member GetNativeCanonicalPathAttribute </summary>
-		/// <param name='aNativeCanonicalPath'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetNativeCanonicalPathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aNativeCanonicalPath);
 		
@@ -724,12 +675,20 @@ namespace Gecko
 	{
 		
 		// <summary>
-        // Windows specific file attributes.
-        //
         // WFA_SEARCH_INDEXED: Generally the default on files in Windows except
         // those created in temp locations. Valid on XP and up. When set the
         // file or directory is marked to be indexed by desktop search services.
         // </summary>
 		public const ulong WFA_SEARCH_INDEXED = 1;
+		
+		// <summary>
+        // WFA_READONLY: Whether the file is readonly or not.
+        // </summary>
+		public const ulong WFA_READONLY = 2;
+		
+		// <summary>
+        // WFA_READWRITE: Used to clear the readonly attribute.
+        // </summary>
+		public const ulong WFA_READWRITE = 4;
 	}
 }

@@ -24,28 +24,28 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIDOMBlob </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("f62c6887-e3bc-495a-802c-287e12e969a0")]
+	[Guid("16e3f8d1-7f31-48cc-93f5-9c931a977cf6")]
 	public interface nsIDOMBlob
 	{
 		
-		/// <summary>Member GetSizeAttribute </summary>
-		/// <returns>A System.UInt64</returns>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		ulong GetSizeAttribute();
 		
-		/// <summary>Member GetTypeAttribute </summary>
-		/// <param name='aType'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType);
 		
-		/// <summary>Member GetInternalStreamAttribute </summary>
-		/// <returns>A nsIInputStream</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIInputStream GetInternalStreamAttribute();
@@ -56,15 +56,13 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetInternalUrl([MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
-		/// <summary>Member Slice </summary>
-		/// <param name='start'> </param>
-		/// <param name='end'> </param>
-		/// <param name='contentType'> </param>
-		/// <param name='argc'> </param>
-		/// <returns>A nsIDOMBlob</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMBlob Slice(long start, long end, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase contentType, int argc);
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMBlob MozSlice(long start, long end, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase contentType, System.IntPtr jsContext, int argc);
 		
 		/// <summary>
         /// Intended only for testing. It can be called on any thread.
@@ -85,33 +83,17 @@ namespace Gecko
 		System.IntPtr GetFileInfo(System.IntPtr aFileManager);
 	}
 	
-	/// <summary>nsIDOMBlob_GECKO_13 </summary>
-	[ComImport()]
-	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("96a9f6f5-2353-47a3-9bf5-4b1e0fe11c08")]
-	public interface nsIDOMBlob_GECKO_13
-	{
-		
-		/// <summary>Member MozSlice </summary>
-		/// <param name='start'> </param>
-		/// <param name='end'> </param>
-		/// <param name='contentType'> </param>
-		/// <param name='argc'> </param>
-		/// <returns>A nsIDOMBlob</returns>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMBlob MozSlice(long start, long end, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase contentType, int argc);
-	}
-	
 	/// <summary>nsIDOMFile </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("b096ef67-7b77-47f8-8e70-5d8ee36416bf")]
+	[Guid("cddf6087-0e83-4e1f-91b3-4861d5d4c53f")]
 	public interface nsIDOMFile : nsIDOMBlob
 	{
 		
-		/// <summary>Member GetSizeAttribute </summary>
-		/// <returns>A System.UInt64</returns>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new ulong GetSizeAttribute();
 		
@@ -142,6 +124,17 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMBlob Slice(long start, long end, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase contentType, int argc);
 		
+		/// <summary>Member MozSlice </summary>
+		/// <param name='start'> </param>
+		/// <param name='end'> </param>
+		/// <param name='contentType'> </param>
+		/// <param name='jsContext'> </param>
+		/// <param name='argc'> </param>
+		/// <returns>A nsIDOMBlob</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMBlob MozSlice(long start, long end, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase contentType, System.IntPtr jsContext, int argc);
+		
 		/// <summary>
         /// Intended only for testing. It can be called on any thread.
         /// </summary>
@@ -164,6 +157,12 @@ namespace Gecko
 		/// <param name='aName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
+		
+		/// <summary>Member GetLastModifiedDateAttribute </summary>
+		/// <param name='jsContext'> </param>
+		/// <returns>A Gecko.JsVal</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetLastModifiedDateAttribute(System.IntPtr jsContext);
 		
 		/// <summary>Member GetMozFullPathAttribute </summary>
 		/// <param name='aMozFullPath'> </param>

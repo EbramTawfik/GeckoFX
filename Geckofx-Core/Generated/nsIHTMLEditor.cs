@@ -24,10 +24,12 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIHTMLEditor </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("833f30de-94c7-4630-a852-2300ef329d7b")]
@@ -107,14 +109,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetInlineProperty([MarshalAs(UnmanagedType.Interface)] nsIAtom aProperty, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAttribute, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aValue, [MarshalAs(UnmanagedType.U1)] ref bool aFirst, [MarshalAs(UnmanagedType.U1)] ref bool aAny, [MarshalAs(UnmanagedType.U1)] ref bool aAll);
 		
-		/// <summary>Member GetInlinePropertyWithAttrValue </summary>
-		/// <param name='aProperty'> </param>
-		/// <param name='aAttribute'> </param>
-		/// <param name='aValue'> </param>
-		/// <param name='aFirst'> </param>
-		/// <param name='aAny'> </param>
-		/// <param name='aAll'> </param>
-		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetInlinePropertyWithAttrValue([MarshalAs(UnmanagedType.Interface)] nsIAtom aProperty, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAttribute, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aValue, [MarshalAs(UnmanagedType.U1)] ref bool aFirst, [MarshalAs(UnmanagedType.U1)] ref bool aAny, [MarshalAs(UnmanagedType.U1)] ref bool aAll, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
@@ -570,9 +564,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void CheckSelectionStateForAnonymousButtons([MarshalAs(UnmanagedType.Interface)] nsISelection aSelection);
 		
-		/// <summary>Member IsAnonymousElement </summary>
-		/// <param name='aElement'> </param>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsAnonymousElement([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement);
@@ -608,7 +599,7 @@ namespace Gecko
         /// active in the DOM window, this returns NULL.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetActiveEditingHost();
+		Element GetActiveEditingHost();
 	}
 	
 	/// <summary>nsIHTMLEditorConsts </summary>

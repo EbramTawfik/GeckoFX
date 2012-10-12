@@ -24,7 +24,6 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
 	/// <summary>
@@ -39,7 +38,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("46d422d1-c92f-4536-bdef-f77bc8350ec7")]
+	[Guid("45ce2c92-4d92-49d2-bff1-855934443261")]
 	public interface nsIAccessible
 	{
 		
@@ -334,7 +333,7 @@ namespace Gecko
         /// The number of accessible actions associated with this accessible
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		byte GetNumActionsAttribute();
+		byte GetActionCountAttribute();
 		
 		/// <summary>
         /// The name of the accessible action at the given zero-based index

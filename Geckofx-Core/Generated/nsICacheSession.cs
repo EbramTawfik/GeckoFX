@@ -24,10 +24,14 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsICacheSession </summary>
+	/// <summary>
+    ///-*- Mode: IDL; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*-
+    ///
+    /// This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("1dd7708c-de48-4ffe-b5aa-cd218c762887")]
@@ -52,6 +56,25 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetDoomEntriesIfExpiredAttribute([MarshalAs(UnmanagedType.U1)] bool aDoomEntriesIfExpired);
+		
+		/// <summary>
+        /// When set, entries created with this session will be placed to a cache
+        /// based at this directory.  Use when storing entries to a different
+        /// profile than the active profile of the the current running application
+        /// process.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsILocalFile GetProfileDirectoryAttribute();
+		
+		/// <summary>
+        /// When set, entries created with this session will be placed to a cache
+        /// based at this directory.  Use when storing entries to a different
+        /// profile than the active profile of the the current running application
+        /// process.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetProfileDirectoryAttribute([MarshalAs(UnmanagedType.Interface)] nsILocalFile aProfileDirectory);
 		
 		/// <summary>
         /// Synchronous cache access.  This returns a unique descriptor each
@@ -97,5 +120,20 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void DoomEntry([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase key, [MarshalAs(UnmanagedType.Interface)] nsICacheListener listener);
+		
+		/// <summary>
+        /// Private entries will be doomed when the last private browsing session
+        /// finishes.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetIsPrivateAttribute();
+		
+		/// <summary>
+        /// Private entries will be doomed when the last private browsing session
+        /// finishes.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetIsPrivateAttribute([MarshalAs(UnmanagedType.U1)] bool aIsPrivate);
 	}
 }

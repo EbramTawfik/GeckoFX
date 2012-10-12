@@ -68,7 +68,7 @@ namespace Gecko
 			// https://addons.mozilla.org/en-US/firefox/addon/abduction/
 
 			// Some opertations fail without a proper JSContext.
-			using (AutoJSContext jsContext = new AutoJSContext())
+			using (AutoJSContext jsContext = new AutoJSContext(GlobalJSContextHolder.JSContext))
 			{
 				GeckoCanvasElement canvas = (GeckoCanvasElement)m_browser.Document.CreateElement("canvas");
 				canvas.Width = width;

@@ -24,22 +24,22 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsITokenDialogs </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("a1cbc159-468c-495d-8068-61dd538cbcca")]
 	public interface nsITokenDialogs
 	{
 		
-		/// <summary>Member ChooseToken </summary>
-		/// <param name='ctx'> </param>
-		/// <param name='tokenNameList'> </param>
-		/// <param name='count'> </param>
-		/// <param name='tokenName'> </param>
-		/// <param name='canceled'> </param>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ChooseToken([MarshalAs(UnmanagedType.Interface)] nsIInterfaceRequestor ctx, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] System.IntPtr[] tokenNameList, uint count, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] ref string tokenName, [MarshalAs(UnmanagedType.U1)] ref bool canceled);
 		

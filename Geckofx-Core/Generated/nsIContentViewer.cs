@@ -24,40 +24,35 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIContentViewer </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("26b2380b-4a1a-46cd-b7d8-7600e41c1688")]
 	public interface nsIContentViewer
 	{
 		
-		/// <summary>Member Init </summary>
-		/// <param name='aParentWidget'> </param>
-		/// <param name='aBounds'> </param>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Init(System.IntPtr aParentWidget, System.IntPtr aBounds);
 		
-		/// <summary>Member GetContainerAttribute </summary>
-		/// <returns>A nsISupports</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISupports GetContainerAttribute();
 		
-		/// <summary>Member SetContainerAttribute </summary>
-		/// <param name='aContainer'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetContainerAttribute([MarshalAs(UnmanagedType.Interface)] nsISupports aContainer);
 		
-		/// <summary>Member LoadStart </summary>
-		/// <param name='aDoc'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void LoadStart([MarshalAs(UnmanagedType.Interface)] nsISupports aDoc);
 		
-		/// <summary>Member LoadComplete </summary>
-		/// <param name='aStatus'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void LoadComplete(uint aStatus);
 		
@@ -85,8 +80,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ResetCloseWindow();
 		
-		/// <summary>Member PageHide </summary>
-		/// <param name='isUnload'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void PageHide([MarshalAs(UnmanagedType.U1)] bool isUnload);
 		
@@ -114,22 +107,16 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Close([MarshalAs(UnmanagedType.Interface)] nsISHEntry historyEntry);
 		
-		/// <summary>Member Destroy </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Destroy();
 		
-		/// <summary>Member Stop </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Stop();
 		
-		/// <summary>Member GetDOMDocumentAttribute </summary>
-		/// <returns>A nsIDOMDocument</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMDocument GetDOMDocumentAttribute();
 		
-		/// <summary>Member SetDOMDocumentAttribute </summary>
-		/// <param name='aDOMDocument'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetDOMDocumentAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMDocument aDOMDocument);
 		
@@ -139,13 +126,9 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetDocument();
 		
-		/// <summary>Member GetBounds </summary>
-		/// <param name='aBounds'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetBounds(System.IntPtr aBounds);
 		
-		/// <summary>Member SetBounds </summary>
-		/// <param name='aBounds'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetBounds(System.IntPtr aBounds);
 		
@@ -163,28 +146,19 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetPreviousViewerAttribute(System.IntPtr aPreviousViewer);
 		
-		/// <summary>Member Move </summary>
-		/// <param name='aX'> </param>
-		/// <param name='aY'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Move(int aX, int aY);
 		
-		/// <summary>Member Show </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Show();
 		
-		/// <summary>Member Hide </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Hide();
 		
-		/// <summary>Member GetStickyAttribute </summary>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetStickyAttribute();
 		
-		/// <summary>Member SetStickyAttribute </summary>
-		/// <param name='aSticky'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetStickyAttribute([MarshalAs(UnmanagedType.U1)] bool aSticky);
 		
@@ -241,19 +215,12 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsTabModalPromptAllowedAttribute();
 		
-		/// <summary>Member GetPresShellAttribute </summary>
-		/// <returns>A System.IntPtr</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetPresShellAttribute();
 		
-		/// <summary>Member GetPresContextAttribute </summary>
-		/// <returns>A System.IntPtr</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetPresContextAttribute();
 		
-		/// <summary>Member SetDocumentInternal </summary>
-		/// <param name='aDocument'> </param>
-		/// <param name='aForceReuseInnerWindow'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetDocumentInternal(System.IntPtr aDocument, [MarshalAs(UnmanagedType.U1)] bool aForceReuseInnerWindow);
 		

@@ -24,10 +24,12 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIXTFElement </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("4f144387-796d-4baf-8641-5db45dba1808")]
@@ -65,72 +67,42 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void WillChangeDocument([MarshalAs(UnmanagedType.Interface)] nsIDOMDocument newDoc);
 		
-		/// <summary>Member DocumentChanged </summary>
-		/// <param name='newDoc'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void DocumentChanged([MarshalAs(UnmanagedType.Interface)] nsIDOMDocument newDoc);
 		
-		/// <summary>Member WillChangeParent </summary>
-		/// <param name='newParent'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void WillChangeParent([MarshalAs(UnmanagedType.Interface)] nsIDOMElement newParent);
 		
-		/// <summary>Member ParentChanged </summary>
-		/// <param name='newParent'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ParentChanged([MarshalAs(UnmanagedType.Interface)] nsIDOMElement newParent);
 		
-		/// <summary>Member WillInsertChild </summary>
-		/// <param name='child'> </param>
-		/// <param name='index'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void WillInsertChild([MarshalAs(UnmanagedType.Interface)] nsIDOMNode child, uint index);
 		
-		/// <summary>Member ChildInserted </summary>
-		/// <param name='child'> </param>
-		/// <param name='index'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ChildInserted([MarshalAs(UnmanagedType.Interface)] nsIDOMNode child, uint index);
 		
-		/// <summary>Member WillAppendChild </summary>
-		/// <param name='child'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void WillAppendChild([MarshalAs(UnmanagedType.Interface)] nsIDOMNode child);
 		
-		/// <summary>Member ChildAppended </summary>
-		/// <param name='child'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ChildAppended([MarshalAs(UnmanagedType.Interface)] nsIDOMNode child);
 		
-		/// <summary>Member WillRemoveChild </summary>
-		/// <param name='index'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void WillRemoveChild(uint index);
 		
-		/// <summary>Member ChildRemoved </summary>
-		/// <param name='index'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ChildRemoved(uint index);
 		
-		/// <summary>Member WillSetAttribute </summary>
-		/// <param name='name'> </param>
-		/// <param name='newValue'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void WillSetAttribute([MarshalAs(UnmanagedType.Interface)] nsIAtom name, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase newValue);
 		
-		/// <summary>Member AttributeSet </summary>
-		/// <param name='name'> </param>
-		/// <param name='newValue'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void AttributeSet([MarshalAs(UnmanagedType.Interface)] nsIAtom name, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase newValue);
 		
-		/// <summary>Member WillRemoveAttribute </summary>
-		/// <param name='name'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void WillRemoveAttribute([MarshalAs(UnmanagedType.Interface)] nsIAtom name);
 		
-		/// <summary>Member AttributeRemoved </summary>
-		/// <param name='name'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void AttributeRemoved([MarshalAs(UnmanagedType.Interface)] nsIAtom name);
 		
@@ -140,7 +112,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void BeginAddingChildren();
 		
-		/// <summary>Member DoneAddingChildren </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void DoneAddingChildren();
 		

@@ -24,7 +24,6 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
 	/// <summary>
@@ -87,7 +86,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("e9bdcc53-1bc0-4cae-9eb3-b215b6be7f70")]
+	[Guid("2f8bca5a-3a7c-4d69-a87b-c668307db52f")]
 	public interface nsIDOMSimpleGestureEvent : nsIDOMMouseEvent
 	{
 		
@@ -313,6 +312,9 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new ushort GetButtonAttribute();
 		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new ushort GetButtonsAttribute();
+		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMEventTarget GetRelatedTargetAttribute();
@@ -348,6 +350,10 @@ namespace Gecko
 					[MarshalAs(UnmanagedType.Interface)] nsIDOMEventTarget relatedTargetArg, 
 					float pressure, 
 					ushort inputSourceArg);
+		
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool GetModifierState([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase keyArg);
 		
 		/// <summary>
         ///Direction of a gesture. Diagonals are indicated by OR'ing the

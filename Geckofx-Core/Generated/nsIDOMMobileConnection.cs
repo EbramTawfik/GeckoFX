@@ -24,7 +24,6 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
 	/// <summary>
@@ -33,7 +32,7 @@ namespace Gecko
     /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("ba2be619-fed6-4652-865a-c61f88ffeaa8")]
+	[Guid("962298cd-3443-423e-9e47-f22e24ad850b")]
 	public interface nsIDOMMozMobileConnection : nsIDOMEventTarget
 	{
 		
@@ -266,7 +265,11 @@ namespace Gecko
 		/// <summary>
         /// Search for available networks.
         ///
-        /// If successful, the request result will be an array of operator names.
+        /// If successful, the request's onsuccess will be called, and the request's
+        /// result will be an array of nsIDOMMozMobileOperatorInfo.
+        ///
+        /// Otherwise, the request's onerror will be called, and the request's error
+        /// will be either 'RadioNotAvailable', 'RequestNotSupported', or 'GenericFailure'.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -316,6 +319,118 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOndatachangeAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOndatachange);
+		
+		/// <summary>
+        /// Find out about the status of an ICC lock (e.g. the PIN lock).
+        ///
+        /// @param lockType
+        /// Identifies the lock type, e.g. "pin" for the PIN lock.
+        ///
+        /// @return a DOM Request.
+        /// The request's result will be an object containing
+        /// information about the specified lock's status,
+        /// e.g. {lockType: "pin", enabled: true}.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest GetCardLock([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase lockType);
+		
+		/// <summary>
+        /// Unlock a card lock.
+        ///
+        /// @param info
+        /// An object containing the information necessary to unlock
+        /// the given lock. At a minimum, this object must have a
+        /// "lockType" attribute which specifies the type of lock, e.g.
+        /// "pin" for the PIN lock. Other attributes are dependent on
+        /// the lock type.
+        ///
+        /// Examples:
+        ///
+        /// (1) Unlocking the PIN:
+        ///
+        /// unlockCardLock({lockType: "pin",
+        /// pin: "..."});
+        ///
+        /// (2) Unlocking the PUK and supplying a new PIN:
+        ///
+        /// unlockCardLock({lockType: "puk",
+        /// puk: "...",
+        /// newPin: "..."});
+        ///
+        /// @return a nsIDOMDOMRequest.
+        /// The request's result will be an object containing
+        /// information about the unlock operation.
+        ///
+        /// Examples:
+        ///
+        /// (1) Unlocking failed:
+        ///
+        /// {
+        /// lockType:   "pin",
+        /// result:     false,
+        /// retryCount: 2
+        /// }
+        ///
+        /// (2) Unlocking succeeded:
+        ///
+        /// {
+        /// lockType:  "pin",
+        /// result:    true
+        /// }
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest UnlockCardLock(Gecko.JsVal info);
+		
+		/// <summary>
+        /// Modify the state of a card lock.
+        ///
+        /// @param info
+        /// An object containing information about the lock and
+        /// how to modify its state. At a minimum, this object
+        /// must have a "lockType" attribute which specifies the
+        /// type of lock, e.g. "pin" for the PIN lock. Other
+        /// attributes are dependent on the lock type.
+        ///
+        /// Examples:
+        ///
+        /// (1) Disabling the PIN lock:
+        ///
+        /// setCardLock({lockType: "pin",
+        /// pin: "...",
+        /// enabled: false});
+        ///
+        /// (2) Changing the PIN:
+        ///
+        /// setCardLock({lockType: "pin",
+        /// pin: "...",
+        /// newPin: "..."});
+        ///
+        /// @return a nsIDOMDOMRequest.
+        /// The request's result will be an object containing
+        /// information about the operation.
+        ///
+        /// Examples:
+        ///
+        /// (1) Enabling/Disabling card lock failed or change card lock failed.
+        ///
+        /// {
+        /// lockType: "pin",
+        /// result: false,
+        /// retryCount: 2
+        /// }
+        ///
+        /// (2) Enabling/Disabling card lock succeed or change card lock succeed.
+        ///
+        /// {
+        /// lockType: "pin",
+        /// result: true
+        /// }
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest SetCardLock(Gecko.JsVal info);
 	}
 	
 	/// <summary>nsIDOMMozMobileConnectionInfo </summary>
@@ -377,5 +492,45 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		Gecko.JsVal GetRelSignalStrengthAttribute();
+	}
+	
+	/// <summary>nsIDOMMozMobileOperatorInfo </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("79217f7a-4401-4d75-9654-3b28bba698c9")]
+	public interface nsIDOMMozMobileOperatorInfo
+	{
+		
+		/// <summary>
+        /// Short name of the network operator
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetShortNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aShortName);
+		
+		/// <summary>
+        /// Long name of the network operator
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetLongNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aLongName);
+		
+		/// <summary>
+        /// Mobile Country Code (MCC) of the network operator
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		ushort GetMccAttribute();
+		
+		/// <summary>
+        /// Mobile Network Code (MNC) of the network operator
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		ushort GetMncAttribute();
+		
+		/// <summary>
+        /// State of this network operator.
+        ///
+        /// Possible values: 'available', 'connected', 'forbidden', or null (unknown)
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetStateAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aState);
 	}
 }

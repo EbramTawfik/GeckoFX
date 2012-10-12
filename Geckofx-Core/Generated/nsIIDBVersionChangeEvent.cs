@@ -24,13 +24,15 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIIDBVersionChangeEvent </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("52e21085-d6cd-4886-a5eb-19b47d13abf6")]
+	[Guid("bfe7143f-1cfd-488d-bc0b-fa22d9d7c840")]
 	public interface nsIIDBVersionChangeEvent : nsIDOMEvent
 	{
 		
@@ -162,14 +164,14 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void StopImmediatePropagation();
 		
-		/// <summary>Member GetOldVersionAttribute </summary>
-		/// <returns>A System.UInt64</returns>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		ulong GetOldVersionAttribute();
 		
-		/// <summary>Member GetNewVersionAttribute </summary>
-		/// <returns>A System.UInt64</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		ulong GetNewVersionAttribute();
+		Gecko.JsVal GetNewVersionAttribute(System.IntPtr jsContext);
 	}
 }

@@ -24,33 +24,35 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIBrowserHandler </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("8D3F5A9D-118D-4548-A137-CF7718679069")]
 	public interface nsIBrowserHandler
 	{
 		
-		/// <summary>Member GetStartPageAttribute </summary>
-		/// <param name='aStartPage'> </param>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetStartPageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aStartPage);
 		
-		/// <summary>Member SetStartPageAttribute </summary>
-		/// <param name='aStartPage'> </param>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetStartPageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aStartPage);
 		
-		/// <summary>Member GetDefaultArgsAttribute </summary>
-		/// <param name='aDefaultArgs'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetDefaultArgsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aDefaultArgs);
 		
-		/// <summary>Member SetDefaultArgsAttribute </summary>
-		/// <param name='aDefaultArgs'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetDefaultArgsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aDefaultArgs);
 		

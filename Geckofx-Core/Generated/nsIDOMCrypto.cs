@@ -24,29 +24,29 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIDOMCrypto </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("12b6d899-2aed-4ea9-8c02-2223ab7ab592")]
 	public interface nsIDOMCrypto
 	{
 		
-		/// <summary>Member GetVersionAttribute </summary>
-		/// <param name='aVersion'> </param>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aVersion);
 		
-		/// <summary>Member GetEnableSmartCardEventsAttribute </summary>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetEnableSmartCardEventsAttribute();
 		
-		/// <summary>Member SetEnableSmartCardEventsAttribute </summary>
-		/// <param name='aEnableSmartCardEvents'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetEnableSmartCardEventsAttribute([MarshalAs(UnmanagedType.U1)] bool aEnableSmartCardEvents);
 		
@@ -56,23 +56,12 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMCRMFObject GenerateCRMFRequest();
 		
-		/// <summary>Member ImportUserCertificates </summary>
-		/// <param name='nickname'> </param>
-		/// <param name='cmmfResponse'> </param>
-		/// <param name='doForcedBackup'> </param>
-		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ImportUserCertificates([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase nickname, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase cmmfResponse, [MarshalAs(UnmanagedType.U1)] bool doForcedBackup, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
-		/// <summary>Member PopChallengeResponse </summary>
-		/// <param name='challenge'> </param>
-		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void PopChallengeResponse([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase challenge, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
-		/// <summary>Member Random </summary>
-		/// <param name='numBytes'> </param>
-		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Random(int numBytes, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
@@ -81,11 +70,9 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SignText([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase stringToSign, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase caOption, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
-		/// <summary>Member Logout </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Logout();
 		
-		/// <summary>Member DisableRightClick </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void DisableRightClick();
 	}

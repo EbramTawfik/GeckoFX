@@ -24,10 +24,14 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIStartupCache </summary>
+	/// <summary>
+    ///-*- Mode: IDL; tab-width: 2; indent-tabs-mode: nil; c-basic-offset: 2 -*-
+    ///
+    /// This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("c1b3796b-33af-4ff0-b83d-8eb0ca2c080f")]
@@ -42,14 +46,9 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetBuffer([MarshalAs(UnmanagedType.LPStr)] string aID, ref System.IntPtr aBuffer);
 		
-		/// <summary>Member PutBuffer </summary>
-		/// <param name='aID'> </param>
-		/// <param name='aBuffer'> </param>
-		/// <param name='aLength'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void PutBuffer([MarshalAs(UnmanagedType.LPStr)] string aID, [MarshalAs(UnmanagedType.LPStr)] string aBuffer, uint aLength);
 		
-		/// <summary>Member InvalidateCache </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void InvalidateCache();
 		
@@ -71,7 +70,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool StartupWriteComplete();
 		
-		/// <summary>Member ResetStartupWriteTimer </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ResetStartupWriteTimer();
 		

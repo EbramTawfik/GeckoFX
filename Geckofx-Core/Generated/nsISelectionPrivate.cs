@@ -24,13 +24,15 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsISelectionPrivate </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("0ced91b9-3e77-4191-943f-95bcde5e2d14")]
+	[Guid("719a803f-aa1e-436c-8919-c42908f00599")]
 	public interface nsISelectionPrivate : nsISelection
 	{
 		
@@ -67,6 +69,10 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetIsCollapsedAttribute();
 		
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool Collapsed();
+		
 		/// <summary>
         /// Returns the number of ranges in the selection.
         /// </summary>
@@ -90,9 +96,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void Collapse([MarshalAs(UnmanagedType.Interface)] nsIDOMNode parentNode, int offset);
 		
-		/// <summary>Member CollapseNative </summary>
-		/// <param name='parentNode'> </param>
-		/// <param name='offset'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void CollapseNative(System.IntPtr parentNode, int offset);
 		
@@ -105,6 +108,9 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void Extend([MarshalAs(UnmanagedType.Interface)] nsIDOMNode parentNode, int offset);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void ExtendNative(System.IntPtr parentNode, int offset);
 		
 		/// <summary>
         /// Collapses the whole selection to a single point at the start
@@ -199,14 +205,10 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void Modify([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase alter, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase direction, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase granularity);
 		
-		/// <summary>Member GetInterlinePositionAttribute </summary>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetInterlinePositionAttribute();
 		
-		/// <summary>Member SetInterlinePositionAttribute </summary>
-		/// <param name='aInterlinePosition'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetInterlinePositionAttribute([MarshalAs(UnmanagedType.U1)] bool aInterlinePosition);
 		
@@ -224,28 +226,17 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void EndBatchChanges();
 		
-		/// <summary>Member GetEnumerator </summary>
-		/// <returns>A nsIEnumerator</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIEnumerator GetEnumerator();
 		
-		/// <summary>Member ToStringWithFormat </summary>
-		/// <param name='formatType'> </param>
-		/// <param name='flags'> </param>
-		/// <param name='wrapColumn'> </param>
-		/// <returns>A System.String</returns>
 		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string ToStringWithFormat([MarshalAs(UnmanagedType.LPStr)] string formatType, uint flags, int wrapColumn);
 		
-		/// <summary>Member AddSelectionListener </summary>
-		/// <param name='newListener'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void AddSelectionListener([MarshalAs(UnmanagedType.Interface)] nsISelectionListener newListener);
 		
-		/// <summary>Member RemoveSelectionListener </summary>
-		/// <param name='listenerToRemove'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RemoveSelectionListener([MarshalAs(UnmanagedType.Interface)] nsISelectionListener listenerToRemove);
 		
@@ -297,8 +288,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetFrameSelection();
 		
-		/// <summary>Member SetAncestorLimiter </summary>
-		/// <param name='aContent'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetAncestorLimiter(System.IntPtr aContent);
 		
@@ -316,8 +305,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsDirection GetSelectionDirection();
 		
-		/// <summary>Member SetSelectionDirection </summary>
-		/// <param name='aDirection'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetSelectionDirection(nsDirection aDirection);
 		
@@ -334,13 +321,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetRangesForInterval([MarshalAs(UnmanagedType.Interface)] nsIDOMNode beginNode, int beginOffset, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode endNode, int endOffset, [MarshalAs(UnmanagedType.U1)] bool allowAdjacent, ref uint resultCount, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=5)] ref nsIDOMRange[] results);
 		
-		/// <summary>Member GetRangesForIntervalArray </summary>
-		/// <param name='beginNode'> </param>
-		/// <param name='beginOffset'> </param>
-		/// <param name='endNode'> </param>
-		/// <param name='endOffset'> </param>
-		/// <param name='allowAdjacent'> </param>
-		/// <param name='results'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetRangesForIntervalArray(System.IntPtr beginNode, int beginOffset, System.IntPtr endNode, int endOffset, [MarshalAs(UnmanagedType.U1)] bool allowAdjacent, System.IntPtr results);
 		
@@ -383,7 +363,10 @@ namespace Gecko
 	public class nsISelectionPrivateConsts
 	{
 		
-		// 
+		// <summary>
+        //This Source Code Form is subject to the terms of the Mozilla Public
+        // License, v. 2.0. If a copy of the MPL was not distributed with this
+        // file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		public const int ENDOFPRECEDINGLINE = 0;
 		
 		// 

@@ -24,7 +24,6 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
 	/// <summary>
@@ -38,7 +37,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("E3763903-928B-47C4-AC3B-C47EB43884CA")]
+	[Guid("e43f61e3-9c67-4e78-8534-3399d7f192b9")]
 	public interface nsIDOMHTMLVideoElement : nsIDOMHTMLMediaElement
 	{
 		
@@ -674,13 +673,13 @@ namespace Gecko
         /// network state
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetSrcAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSrc);
+		new Gecko.JsVal GetSrcAttribute(System.IntPtr jsContext);
 		
 		/// <summary>
         /// network state
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetSrcAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSrc);
+		new void SetSrcAttribute(Gecko.JsVal aSrc, System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetCurrentSrcAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCurrentSrc);
@@ -738,6 +737,10 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetPausedAttribute();
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMTimeRanges GetPlayedAttribute();
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -803,6 +806,21 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetDefaultMutedAttribute([MarshalAs(UnmanagedType.U1)] bool aDefaultMuted);
+		
+		/// <summary>
+        /// Mozilla extension: stream capture
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMMediaStream MozCaptureStream();
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMMediaStream MozCaptureStreamUntilEnded();
+		
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool GetMozAudioCapturedAttribute();
 		
 		/// <summary>
         /// audio is (mozChannels * 1024).
@@ -902,5 +920,12 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		double GetMozFrameDelayAttribute();
+		
+		/// <summary>
+        /// True if the video has an audio track available.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetMozHasAudioAttribute();
 	}
 }

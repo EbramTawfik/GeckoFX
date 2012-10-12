@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Release_Windows</Configuration>
@@ -82,6 +82,7 @@
   <ItemGroup>
     <Compile Include="AppShellService.cs" />
     <Compile Include="AutoJSContext.cs" />
+    <Compile Include="BaseTypes\AccessibleTextBoundary.cs" />
     <Compile Include="BaseTypes\gfxContext.cs" />
     <Compile Include="BaseTypes\ScrollAxis.cs" />
     <Compile Include="BaseTypes\TextBoundaryType.cs" />
@@ -108,12 +109,13 @@
     <Compile Include="Generated\nsIAccessiblePivot.cs" />
     <Compile Include="Generated\nsIDeviceSensors.cs" />
     <Compile Include="Generated\nsIDOMBluetoothAdapter.cs" />
-    <Compile Include="Generated\nsIDOMBluetoothDevice.cs" />
+    <Compile Include="Generated\nsIDOMBluetoothManager.cs" />
     <Compile Include="Generated\nsIDOMCallEvent.cs" />
     <Compile Include="Generated\nsIDOMConnection.cs" />
     <Compile Include="Generated\nsIDOMContactManager.cs" />
     <Compile Include="Generated\nsIDOMContactProperties.cs" />
     <Compile Include="Generated\nsIDOMDOMRequest.cs" />
+    <Compile Include="Generated\nsIDOMMediaStream.cs" />
     <Compile Include="Generated\nsIDOMMobileConnection.cs" />
     <Compile Include="Generated\nsIDOMMozBrowserFrame.cs" />
     <Compile Include="Generated\nsIDOMMutationObserver.cs" />
@@ -137,13 +139,16 @@
     <Compile Include="Generated\nsINetAddr.cs" />
     <Compile Include="Generated\nsINetworkManager.cs" />
     <Compile Include="Generated\nsIParserUtils.cs" />
+    <Compile Include="Generated\nsIPrivacyTransitionObserver.cs" />
     <Compile Include="Generated\nsIRadioInterfaceLayer.cs" />
     <Compile Include="Generated\nsISmsDatabaseService.cs" />
     <Compile Include="Generated\nsISmsRequestManager.cs" />
     <Compile Include="Generated\nsIWifi.cs" />
     <Compile Include="Generated\nsIWorkerHolder.cs" />
+    <Compile Include="GlobalJSContextHolder.cs" />
     <Compile Include="Interfaces\IGeckoWebBrowser.cs" />
     <Compile Include="Images\ImageContainer.cs" />
+    <Compile Include="BaseTypes\DOMHighResTimeStamp.cs" />
     <Compile Include="Interop\ExceptionTranslator.cs" />
     <Compile Include="Interop\SimpleNameMaps.cs" />
     <Compile Include="Interop\SpiderMonkey\JSBool.cs" />
@@ -365,7 +370,6 @@
     <Compile Include="Generated\mozIStorageServiceQuotaManagement.cs" />
     <Compile Include="Generated\mozIStorageStatement.cs" />
     <Compile Include="Generated\mozIStorageStatementCallback.cs" />
-    <Compile Include="Generated\mozIStorageStatementWrapper.cs" />
     <Compile Include="Generated\mozIStorageVacuumParticipant.cs" />
     <Compile Include="Generated\mozIStorageValueArray.cs" />
     <Compile Include="Generated\mozIThirdPartyUtil.cs" />
@@ -772,7 +776,6 @@
     <Compile Include="Generated\nsIDOMSmartCardEvent.cs" />
     <Compile Include="Generated\nsIDOMStorage.cs" />
     <Compile Include="Generated\nsIDOMStorageEvent.cs" />
-    <Compile Include="Generated\nsIDOMStorageEventObsolete.cs" />
     <Compile Include="Generated\nsIDOMStorageIndexedDB.cs" />
     <Compile Include="Generated\nsIDOMStorageItem.cs" />
     <Compile Include="Generated\nsIDOMStorageManager.cs" />
@@ -983,7 +986,6 @@
     <Compile Include="Generated\nsIGfxInfo.cs" />
     <Compile Include="Generated\nsIGfxInfoDebug.cs" />
     <Compile Include="Generated\nsIGIOService.cs" />
-    <Compile Include="Generated\nsIGlobalHistory.cs" />
     <Compile Include="Generated\nsIGlobalHistory2.cs" />
     <Compile Include="Generated\nsIGnomeVFSService.cs" />
     <Compile Include="Generated\nsIGSettingsService.cs" />
@@ -1136,7 +1138,6 @@
     <Compile Include="Generated\nsIPluginInputStream.cs" />
     <Compile Include="Generated\nsIPluginInstanceOwner.cs" />
     <Compile Include="Generated\nsIPluginStreamInfo.cs" />
-    <Compile Include="Generated\nsIPluginStreamListener.cs" />
     <Compile Include="Generated\nsIPluginTag.cs" />
     <Compile Include="Generated\nsIPluginTagInfo.cs" />
     <Compile Include="Generated\nsIPopupBoxObject.cs" />

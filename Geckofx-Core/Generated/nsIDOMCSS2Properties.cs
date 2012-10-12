@@ -24,7 +24,6 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
 	/// <summary>
@@ -37,7 +36,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("0640c095-3d15-4b18-aca9-5a65d866978f")]
+	[Guid("35b2c7f0-b56c-11e1-afa6-0800200c9a66")]
 	public interface nsIDOMCSS2Properties
 	{
 		
@@ -1730,6 +1729,18 @@ namespace Gecko
 		void SetTextRenderingAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTextRendering);
 		
 		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetVectorEffectAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aVectorEffect);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetVectorEffectAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aVectorEffect);
+		
+		/// <summary>
         ///Mozilla extension CSS properties </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetMozAppearanceAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozAppearance);
@@ -2363,13 +2374,13 @@ namespace Gecko
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMozBorderImageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozBorderImage);
+		void GetBorderImageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBorderImage);
 		
 		/// <summary>
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozBorderImageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozBorderImage);
+		void SetBorderImageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBorderImage);
 		
 		/// <summary>
         /// raises(DOMException) on setting
@@ -2430,6 +2441,18 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetMozColumnRuleColorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozColumnRuleColor);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetWordBreakAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aWordBreak);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetWordBreakAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aWordBreak);
 		
 		/// <summary>
         /// raises(DOMException) on setting
@@ -2814,5 +2837,77 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetMozTextSizeAdjustAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozTextSizeAdjust);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetBorderImageSourceAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBorderImageSource);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetBorderImageSourceAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBorderImageSource);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetBorderImageSliceAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBorderImageSlice);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetBorderImageSliceAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBorderImageSlice);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetBorderImageWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBorderImageWidth);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetBorderImageWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBorderImageWidth);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetBorderImageOutsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBorderImageOutset);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetBorderImageOutsetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBorderImageOutset);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetBorderImageRepeatAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBorderImageRepeat);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetBorderImageRepeatAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBorderImageRepeat);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetMozBorderImageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozBorderImage);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetMozBorderImageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozBorderImage);
 	}
 }

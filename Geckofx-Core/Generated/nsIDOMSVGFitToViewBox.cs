@@ -24,24 +24,26 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIDOMSVGFitToViewBox </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("089410F3-9777-44f1-A882-AB4225696434")]
 	public interface nsIDOMSVGFitToViewBox
 	{
 		
-		/// <summary>Member GetViewBoxAttribute </summary>
-		/// <returns>A nsIDOMSVGAnimatedRect</returns>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMSVGAnimatedRect GetViewBoxAttribute();
 		
-		/// <summary>Member GetPreserveAspectRatioAttribute </summary>
-		/// <returns>A nsIDOMSVGAnimatedPreserveAspectRatio</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMSVGAnimatedPreserveAspectRatio GetPreserveAspectRatioAttribute();

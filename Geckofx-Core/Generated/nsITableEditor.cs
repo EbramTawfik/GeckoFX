@@ -24,10 +24,12 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsITableEditor </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("4805e684-49b9-11d3-9ce4-ed60bd6cb5bc")]
@@ -48,15 +50,9 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void InsertTableCell(int aNumber, [MarshalAs(UnmanagedType.U1)] bool aAfter);
 		
-		/// <summary>Member InsertTableColumn </summary>
-		/// <param name='aNumber'> </param>
-		/// <param name='aAfter'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void InsertTableColumn(int aNumber, [MarshalAs(UnmanagedType.U1)] bool aAfter);
 		
-		/// <summary>Member InsertTableRow </summary>
-		/// <param name='aNumber'> </param>
-		/// <param name='aAfter'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void InsertTableRow(int aNumber, [MarshalAs(UnmanagedType.U1)] bool aAfter);
 		
@@ -95,13 +91,9 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void DeleteTableCell(int aNumber);
 		
-		/// <summary>Member DeleteTableColumn </summary>
-		/// <param name='aNumber'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void DeleteTableColumn(int aNumber);
 		
-		/// <summary>Member DeleteTableRow </summary>
-		/// <param name='aNumber'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void DeleteTableRow(int aNumber);
 		
@@ -125,19 +117,15 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SelectBlockOfCells([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aStartCell, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement aEndCell);
 		
-		/// <summary>Member SelectTableRow </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SelectTableRow();
 		
-		/// <summary>Member SelectTableColumn </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SelectTableColumn();
 		
-		/// <summary>Member SelectTable </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SelectTable();
 		
-		/// <summary>Member SelectAllTableCells </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SelectAllTableCells();
 		
@@ -417,7 +405,10 @@ namespace Gecko
 	public class nsITableEditorConsts
 	{
 		
-		// 
+		// <summary>
+        //This Source Code Form is subject to the terms of the Mozilla Public
+        // License, v. 2.0. If a copy of the MPL was not distributed with this
+        // file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		public const int eNoSearch = 0;
 		
 		// 

@@ -24,10 +24,12 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIOfflineCacheUpdateObserver </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("47360d57-8ef4-4a5d-8865-1a27a739ad1a")]
@@ -60,7 +62,10 @@ namespace Gecko
 	public class nsIOfflineCacheUpdateObserverConsts
 	{
 		
-		// 
+		// <summary>
+        //This Source Code Form is subject to the terms of the Mozilla Public
+        // License, v. 2.0. If a copy of the MPL was not distributed with this
+        // file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		public const ulong STATE_ERROR = 1;
 		
 		// 
@@ -82,6 +87,9 @@ namespace Gecko
 		public const ulong STATE_ITEMCOMPLETED = 7;
 		
 		// 
+		public const ulong STATE_ITEMPROGRESS = 8;
+		
+		// 
 		public const ulong STATE_FINISHED = 10;
 	}
 	
@@ -101,7 +109,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("24605d81-8cf9-4021-8575-7f39aacbf31a")]
+	[Guid("2FA574B8-AE62-426b-BE95-08E6AA957455")]
 	public interface nsIOfflineCacheUpdate
 	{
 		
@@ -158,7 +166,7 @@ namespace Gecko
         /// The page that is requesting the update.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Init([MarshalAs(UnmanagedType.Interface)] nsIURI aManifestURI, [MarshalAs(UnmanagedType.Interface)] nsIURI aDocumentURI, [MarshalAs(UnmanagedType.Interface)] nsIDOMDocument aDocument);
+		void Init([MarshalAs(UnmanagedType.Interface)] nsIURI aManifestURI, [MarshalAs(UnmanagedType.Interface)] nsIURI aDocumentURI, [MarshalAs(UnmanagedType.Interface)] nsIDOMDocument aDocument, [MarshalAs(UnmanagedType.Interface)] nsILocalFile aCustomProfileDir);
 		
 		/// <summary>
         /// Initialize the update for partial processing.
@@ -212,12 +220,18 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RemoveObserver([MarshalAs(UnmanagedType.Interface)] nsIOfflineCacheUpdateObserver aObserver);
+		
+		/// <summary>
+        /// Return the number of bytes downloaded so far
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		ulong GetByteProgressAttribute();
 	}
 	
 	/// <summary>nsIOfflineCacheUpdateService </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("6fd2030f-7b00-4102-a0e3-d73078821eb1")]
+	[Guid("dc5de18c-197c-41d2-9584-dd7ac7494611")]
 	public interface nsIOfflineCacheUpdateService
 	{
 		
@@ -242,6 +256,15 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIOfflineCacheUpdate ScheduleUpdate([MarshalAs(UnmanagedType.Interface)] nsIURI aManifestURI, [MarshalAs(UnmanagedType.Interface)] nsIURI aDocumentURI, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow);
+		
+		/// <summary>
+        /// Schedule a cache update for a given offline manifest and let the data
+        /// be stored to a custom profile directory.  There is no coalescing of
+        /// manifests by manifest URL.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIOfflineCacheUpdate ScheduleCustomProfileUpdate([MarshalAs(UnmanagedType.Interface)] nsIURI aManifestURI, [MarshalAs(UnmanagedType.Interface)] nsIURI aDocumentURI, [MarshalAs(UnmanagedType.Interface)] nsILocalFile aProfileDir);
 		
 		/// <summary>
         /// Schedule a cache update for a manifest when the document finishes

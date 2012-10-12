@@ -24,67 +24,48 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIFileView </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("60b320d2-1dd2-11b2-bd73-dc3575f78ddd")]
 	public interface nsIFileView
 	{
 		
-		/// <summary>Member GetShowHiddenFilesAttribute </summary>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetShowHiddenFilesAttribute();
 		
-		/// <summary>Member SetShowHiddenFilesAttribute </summary>
-		/// <param name='aShowHiddenFiles'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetShowHiddenFilesAttribute([MarshalAs(UnmanagedType.U1)] bool aShowHiddenFiles);
 		
-		/// <summary>Member GetShowOnlyDirectoriesAttribute </summary>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetShowOnlyDirectoriesAttribute();
 		
-		/// <summary>Member SetShowOnlyDirectoriesAttribute </summary>
-		/// <param name='aShowOnlyDirectories'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetShowOnlyDirectoriesAttribute([MarshalAs(UnmanagedType.U1)] bool aShowOnlyDirectories);
 		
-		/// <summary>Member GetSortTypeAttribute </summary>
-		/// <returns>A System.Int16</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		short GetSortTypeAttribute();
 		
-		/// <summary>Member GetReverseSortAttribute </summary>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetReverseSortAttribute();
 		
-		/// <summary>Member Sort </summary>
-		/// <param name='sortType'> </param>
-		/// <param name='reverseSort'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Sort(short sortType, [MarshalAs(UnmanagedType.U1)] bool reverseSort);
 		
-		/// <summary>Member SetDirectory </summary>
-		/// <param name='directory'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetDirectory([MarshalAs(UnmanagedType.Interface)] nsIFile directory);
 		
-		/// <summary>Member SetFilter </summary>
-		/// <param name='filterString'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetFilter([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase filterString);
 		
-		/// <summary>Member GetSelectedFilesAttribute </summary>
-		/// <returns>A nsIArray</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIArray GetSelectedFilesAttribute();
@@ -94,7 +75,10 @@ namespace Gecko
 	public class nsIFileViewConsts
 	{
 		
-		// 
+		// <summary>
+        //This Source Code Form is subject to the terms of the Mozilla Public
+        // License, v. 2.0. If a copy of the MPL was not distributed with this
+        // file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		public const int sortName = 0;
 		
 		// 

@@ -24,10 +24,12 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsISelectionController </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[Guid("b1ff7faa-8097-431d-b7f1-b0615e3cd596")]
 	public interface nsISelectionController : nsISelectionDisplay
@@ -268,11 +270,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool CheckVisibility([MarshalAs(UnmanagedType.Interface)] nsIDOMNode node, short startOffset, short endOffset);
 		
-		/// <summary>Member CheckVisibilityContent </summary>
-		/// <param name='node'> </param>
-		/// <param name='startOffset'> </param>
-		/// <param name='endOffset'> </param>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool CheckVisibilityContent(System.IntPtr node, short startOffset, short endOffset);
@@ -282,7 +279,10 @@ namespace Gecko
 	public class nsISelectionControllerConsts
 	{
 		
-		// 
+		// <summary>
+        //This Source Code Form is subject to the terms of the Mozilla Public
+        // License, v. 2.0. If a copy of the MPL was not distributed with this
+        // file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		public const int SELECTION_NONE = 0;
 		
 		// 

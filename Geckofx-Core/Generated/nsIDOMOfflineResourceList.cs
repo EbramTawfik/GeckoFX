@@ -24,10 +24,12 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIDOMOfflineResourceList </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("f394a721-66e9-46fc-bb24-b980bb732dd0")]
@@ -87,8 +89,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void MozRemove([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase uri);
 		
-		/// <summary>Member GetStatusAttribute </summary>
-		/// <returns>A System.UInt16</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		ushort GetStatusAttribute();
 		
@@ -116,80 +116,52 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOncheckingAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnchecking);
 		
-		/// <summary>Member GetOnerrorAttribute </summary>
-		/// <returns>A nsIDOMEventListener</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMEventListener GetOnerrorAttribute();
 		
-		/// <summary>Member SetOnerrorAttribute </summary>
-		/// <param name='aOnerror'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOnerrorAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnerror);
 		
-		/// <summary>Member GetOnnoupdateAttribute </summary>
-		/// <returns>A nsIDOMEventListener</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMEventListener GetOnnoupdateAttribute();
 		
-		/// <summary>Member SetOnnoupdateAttribute </summary>
-		/// <param name='aOnnoupdate'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOnnoupdateAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnnoupdate);
 		
-		/// <summary>Member GetOndownloadingAttribute </summary>
-		/// <returns>A nsIDOMEventListener</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMEventListener GetOndownloadingAttribute();
 		
-		/// <summary>Member SetOndownloadingAttribute </summary>
-		/// <param name='aOndownloading'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOndownloadingAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOndownloading);
 		
-		/// <summary>Member GetOnprogressAttribute </summary>
-		/// <returns>A nsIDOMEventListener</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMEventListener GetOnprogressAttribute();
 		
-		/// <summary>Member SetOnprogressAttribute </summary>
-		/// <param name='aOnprogress'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOnprogressAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnprogress);
 		
-		/// <summary>Member GetOnupdatereadyAttribute </summary>
-		/// <returns>A nsIDOMEventListener</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMEventListener GetOnupdatereadyAttribute();
 		
-		/// <summary>Member SetOnupdatereadyAttribute </summary>
-		/// <param name='aOnupdateready'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOnupdatereadyAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnupdateready);
 		
-		/// <summary>Member GetOncachedAttribute </summary>
-		/// <returns>A nsIDOMEventListener</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMEventListener GetOncachedAttribute();
 		
-		/// <summary>Member SetOncachedAttribute </summary>
-		/// <param name='aOncached'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOncachedAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOncached);
 		
-		/// <summary>Member GetOnobsoleteAttribute </summary>
-		/// <returns>A nsIDOMEventListener</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMEventListener GetOnobsoleteAttribute();
 		
-		/// <summary>Member SetOnobsoleteAttribute </summary>
-		/// <param name='aOnobsolete'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOnobsoleteAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnobsolete);
 	}

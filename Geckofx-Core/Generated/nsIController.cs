@@ -24,37 +24,33 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIController </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("D5B61B82-1DA4-11d3-BF87-00105A1B0627")]
 	public interface nsIController
 	{
 		
-		/// <summary>Member IsCommandEnabled </summary>
-		/// <param name='command'> </param>
-		/// <returns>A System.Boolean</returns>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsCommandEnabled([MarshalAs(UnmanagedType.LPStr)] string command);
 		
-		/// <summary>Member SupportsCommand </summary>
-		/// <param name='command'> </param>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool SupportsCommand([MarshalAs(UnmanagedType.LPStr)] string command);
 		
-		/// <summary>Member DoCommand </summary>
-		/// <param name='command'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void DoCommand([MarshalAs(UnmanagedType.LPStr)] string command);
 		
-		/// <summary>Member OnEvent </summary>
-		/// <param name='eventName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void OnEvent([MarshalAs(UnmanagedType.LPStr)] string eventName);
 	}

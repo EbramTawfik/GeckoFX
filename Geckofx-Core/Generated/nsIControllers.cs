@@ -24,50 +24,40 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIControllers </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("f36e3ec1-9197-4ad8-8d4c-d3b1927fd6df")]
 	public interface nsIControllers
 	{
 		
-		/// <summary>Member GetControllerForCommand </summary>
-		/// <param name='command'> </param>
-		/// <returns>A nsIController</returns>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIController GetControllerForCommand([MarshalAs(UnmanagedType.LPStr)] string command);
 		
-		/// <summary>Member InsertControllerAt </summary>
-		/// <param name='index'> </param>
-		/// <param name='controller'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void InsertControllerAt(uint index, [MarshalAs(UnmanagedType.Interface)] nsIController controller);
 		
-		/// <summary>Member RemoveControllerAt </summary>
-		/// <param name='index'> </param>
-		/// <returns>A nsIController</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIController RemoveControllerAt(uint index);
 		
-		/// <summary>Member GetControllerAt </summary>
-		/// <param name='index'> </param>
-		/// <returns>A nsIController</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIController GetControllerAt(uint index);
 		
-		/// <summary>Member AppendController </summary>
-		/// <param name='controller'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void AppendController([MarshalAs(UnmanagedType.Interface)] nsIController controller);
 		
-		/// <summary>Member RemoveController </summary>
-		/// <param name='controller'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RemoveController([MarshalAs(UnmanagedType.Interface)] nsIController controller);
 		
@@ -85,8 +75,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIController GetControllerById(uint controllerID);
 		
-		/// <summary>Member GetControllerCount </summary>
-		/// <returns>A System.UInt32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetControllerCount();
 	}

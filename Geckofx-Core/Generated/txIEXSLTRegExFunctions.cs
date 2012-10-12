@@ -24,39 +24,28 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>txIEXSLTRegExFunctions </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("c180e993-aced-4839-95a0-ecd5ff138be9")]
 	public interface txIEXSLTRegExFunctions
 	{
 		
-		/// <summary>Member Match </summary>
-		/// <param name='aContext'> </param>
-		/// <param name='aString'> </param>
-		/// <param name='aRegEx'> </param>
-		/// <param name='aFlags'> </param>
-		/// <returns>A txINodeSet</returns>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		txINodeSet Match(txIFunctionEvaluationContext aContext, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aString, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aRegEx, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFlags);
 		
-		/// <summary>Member Replace </summary>
-		/// <param name='aString'> </param>
-		/// <param name='aRegEx'> </param>
-		/// <param name='aFlags'> </param>
-		/// <param name='aReplace'> </param>
-		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Replace([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aString, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aRegEx, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFlags, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aReplace, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
-		/// <summary>Member Test </summary>
-		/// <param name='aString'> </param>
-		/// <param name='aRegEx'> </param>
-		/// <param name='aFlags'> </param>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool Test([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aString, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aRegEx, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFlags);

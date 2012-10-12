@@ -26,23 +26,24 @@ namespace Gecko
 	using System.Runtime.CompilerServices;
 	
 	
-	/// <summary>nsIIPCSerializable </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("1f605ac7-666b-471f-9864-1a21a95f11c4")]
 	public interface nsIIPCSerializable
 	{
 		
-		/// <summary>Member Read </summary>
-		/// <param name='msg'> </param>
-		/// <param name='iter'> </param>
-		/// <returns>A System.Boolean</returns>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool Read(System.IntPtr msg, System.IntPtr iter);
 		
-		/// <summary>Member Write </summary>
-		/// <param name='msg'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Write(System.IntPtr msg);
 	}

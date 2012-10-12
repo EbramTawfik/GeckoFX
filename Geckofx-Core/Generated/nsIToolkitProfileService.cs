@@ -24,35 +24,37 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIToolkitProfileService </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("9b434f48-438c-4f85-89de-b7f321a45341")]
+	[Guid("b619f83d-8317-473c-b342-67905993fdc7")]
 	public interface nsIToolkitProfileService
 	{
 		
-		/// <summary>Member GetStartWithLastProfileAttribute </summary>
-		/// <returns>A System.Boolean</returns>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetStartWithLastProfileAttribute();
 		
-		/// <summary>Member SetStartWithLastProfileAttribute </summary>
-		/// <param name='aStartWithLastProfile'> </param>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetStartWithLastProfileAttribute([MarshalAs(UnmanagedType.U1)] bool aStartWithLastProfile);
 		
-		/// <summary>Member GetStartOfflineAttribute </summary>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetStartOfflineAttribute();
 		
-		/// <summary>Member SetStartOfflineAttribute </summary>
-		/// <param name='aStartOffline'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetStartOfflineAttribute([MarshalAs(UnmanagedType.U1)] bool aStartOffline);
 		
@@ -62,14 +64,10 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISimpleEnumerator GetProfilesAttribute();
 		
-		/// <summary>Member GetSelectedProfileAttribute </summary>
-		/// <returns>A nsIToolkitProfile</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIToolkitProfile GetSelectedProfileAttribute();
 		
-		/// <summary>Member SetSelectedProfileAttribute </summary>
-		/// <param name='aSelectedProfile'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetSelectedProfileAttribute([MarshalAs(UnmanagedType.Interface)] nsIToolkitProfile aSelectedProfile);
 		
@@ -107,6 +105,34 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIToolkitProfile CreateProfile([MarshalAs(UnmanagedType.Interface)] nsILocalFile aRootDir, [MarshalAs(UnmanagedType.Interface)] nsILocalFile aTempDir, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aName);
+		
+		/// <summary>
+        /// Create the default profile for an application.
+        ///
+        /// The profile will be typically in
+        /// {Application Data}/.profilename/{salt}.default or
+        /// {Application Data}/.appname/{salt}.default
+        /// or if aVendorName is provided
+        /// {Application Data}/.vendor/appname/{salt}.default
+        ///
+        /// @note Either aProfileName or aAppName must be non-empty
+        ///
+        /// The contents of aProfileDefaultsDir will be copied to the
+        /// new profile directory.
+        ///
+        /// @param  aProfileName
+        /// The name of the profile
+        /// @param  aAppName
+        /// The name of the application
+        /// @param  aVendorName
+        /// The name of the vendor
+        /// @param  aProfileDefaultsDir
+        /// The location where the profile defaults are.
+        /// @return The created profile.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIToolkitProfile CreateDefaultProfileForApp([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aProfileName, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aAppName, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aVendorName, [MarshalAs(UnmanagedType.Interface)] nsIFile aProfileDefaultsDir);
 		
 		/// <summary>
         /// Returns the number of profiles.

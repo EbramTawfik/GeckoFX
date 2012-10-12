@@ -24,7 +24,6 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
 	/// <summary>
@@ -32,7 +31,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("c7325422-817e-4321-957a-c0bdd764941d")]
+	[Guid("6f60ac96-fa2c-41a5-92b4-29aaadbd7a7b")]
 	public interface nsIDocShell
 	{
 		
@@ -782,6 +781,13 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetParentCharsetSourceAttribute(int aParentCharsetSource);
+		
+		/// <summary>
+        /// Add an observer to the list of parties to be notified when this docshell's
+        /// private browsing status is changed. |obs| must support weak references.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void AddWeakPrivacyTransitionObserver([MarshalAs(UnmanagedType.Interface)] nsIPrivacyTransitionObserver obs);
 		
 		/// <summary>
         /// Is this docshell a browser frame (i.e., does it correspond to an <iframe

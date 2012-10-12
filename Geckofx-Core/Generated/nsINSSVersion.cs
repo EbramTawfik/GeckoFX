@@ -24,10 +24,12 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsINSSVersion </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("a8a53a2b-75cc-4c68-a9bb-9791dbddaa00")]
@@ -39,23 +41,15 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetNSPR_MinVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNSPR_MinVersion);
 		
-		/// <summary>Member GetNSS_MinVersionAttribute </summary>
-		/// <param name='aNSS_MinVersion'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetNSS_MinVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNSS_MinVersion);
 		
-		/// <summary>Member GetNSSUTIL_MinVersionAttribute </summary>
-		/// <param name='aNSSUTIL_MinVersion'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetNSSUTIL_MinVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNSSUTIL_MinVersion);
 		
-		/// <summary>Member GetNSSSSL_MinVersionAttribute </summary>
-		/// <param name='aNSSSSL_MinVersion'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetNSSSSL_MinVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNSSSSL_MinVersion);
 		
-		/// <summary>Member GetNSSSMIME_MinVersionAttribute </summary>
-		/// <param name='aNSSSMIME_MinVersion'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetNSSSMIME_MinVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNSSSMIME_MinVersion);
 		
@@ -64,23 +58,15 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetNSPR_VersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNSPR_Version);
 		
-		/// <summary>Member GetNSS_VersionAttribute </summary>
-		/// <param name='aNSS_Version'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetNSS_VersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNSS_Version);
 		
-		/// <summary>Member GetNSSUTIL_VersionAttribute </summary>
-		/// <param name='aNSSUTIL_Version'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetNSSUTIL_VersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNSSUTIL_Version);
 		
-		/// <summary>Member GetNSSSSL_VersionAttribute </summary>
-		/// <param name='aNSSSSL_Version'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetNSSSSL_VersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNSSSSL_Version);
 		
-		/// <summary>Member GetNSSSMIME_VersionAttribute </summary>
-		/// <param name='aNSSSMIME_Version'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetNSSSMIME_VersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNSSSMIME_Version);
 	}

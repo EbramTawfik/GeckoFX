@@ -24,7 +24,6 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
 	/// <summary>
@@ -32,7 +31,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("71ecfba5-15cf-457f-9642-4b33f6e9baf4")]
+	[Guid("cea8812e-faa6-4013-9396-f9936cbb74ec")]
 	public interface nsIHttpServer
 	{
 		
@@ -103,6 +102,25 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RegisterPathHandler([MarshalAs(UnmanagedType.LPStr)] string path, [MarshalAs(UnmanagedType.Interface)] nsIHttpRequestHandler handler);
+		
+		/// <summary>
+        /// Registers a custom prefix handler.
+        ///
+        /// @param prefix
+        /// the path on the server (beginning and ending with "/") which is to be
+        /// handled by handler; this path must not include a query string or hash
+        /// component. All requests that start with this prefix will be directed to
+        /// the given handler.
+        /// @param handler
+        /// an object which will handle any requests for the given path, or null to
+        /// remove any existing handler; if while the server is running the handler
+        /// throws an exception while responding to a request, an HTTP 500 response
+        /// will be returned
+        /// @throws NS_ERROR_INVALID_ARG
+        /// if path does not begin with a "/" or does not end with a "/"
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RegisterPrefixHandler([MarshalAs(UnmanagedType.LPStr)] string prefix, [MarshalAs(UnmanagedType.Interface)] nsIHttpRequestHandler handler);
 		
 		/// <summary>
         /// Registers a custom error page handler.

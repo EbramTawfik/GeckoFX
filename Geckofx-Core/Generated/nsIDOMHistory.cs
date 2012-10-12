@@ -24,73 +24,52 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIDOMHistory </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("d5a3006b-dd6b-4ba3-81be-6559f8889e60")]
 	public interface nsIDOMHistory
 	{
 		
-		/// <summary>Member GetLengthAttribute </summary>
-		/// <returns>A System.Int32</returns>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetLengthAttribute();
 		
-		/// <summary>Member GetCurrentAttribute </summary>
-		/// <param name='aCurrent'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetCurrentAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCurrent);
 		
-		/// <summary>Member GetPreviousAttribute </summary>
-		/// <param name='aPrevious'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetPreviousAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPrevious);
 		
-		/// <summary>Member GetNextAttribute </summary>
-		/// <param name='aNext'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetNextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNext);
 		
-		/// <summary>Member Back </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Back();
 		
-		/// <summary>Member Forward </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Forward();
 		
-		/// <summary>Member Go </summary>
-		/// <param name='aDelta'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Go(int aDelta);
 		
-		/// <summary>Member Item </summary>
-		/// <param name='index'> </param>
-		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Item(uint index, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
-		/// <summary>Member PushState </summary>
-		/// <param name='aData'> </param>
-		/// <param name='aTitle'> </param>
-		/// <param name='aURL'> </param>
-		/// <param name='jsContext'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void PushState([MarshalAs(UnmanagedType.Interface)] nsIVariant aData, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTitle, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aURL, System.IntPtr jsContext);
 		
-		/// <summary>Member ReplaceState </summary>
-		/// <param name='aData'> </param>
-		/// <param name='aTitle'> </param>
-		/// <param name='aURL'> </param>
-		/// <param name='jsContext'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ReplaceState([MarshalAs(UnmanagedType.Interface)] nsIVariant aData, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTitle, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aURL, System.IntPtr jsContext);
 		
-		/// <summary>Member GetStateAttribute </summary>
-		/// <returns>A nsIVariant</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIVariant GetStateAttribute();

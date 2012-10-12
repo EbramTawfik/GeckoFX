@@ -217,8 +217,8 @@ namespace GeckofxUnitTests
 		public void EvaluateScript_SimpleJavascript_ScriptExecutesAndReturnsExpectedResult()
 		{
 			browser.TestLoadHtml("");
-			
-			using (AutoJSContext context = new AutoJSContext())
+
+			using (AutoJSContext context = new AutoJSContext(browser.JSContext))
 			{				
 				string result;
 				Assert.IsTrue(context.EvaluateScript("3 + 2;", out result));

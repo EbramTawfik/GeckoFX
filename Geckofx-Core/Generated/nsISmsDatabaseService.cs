@@ -24,13 +24,15 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsISmsDatabaseService </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this file,
+    /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("74d6ff05-818a-4179-a745-6258e1c3cd08")]
+	[Guid("30e8cdfb-155d-44c7-8fb3-6bcd9c1c3f99")]
 	public interface nsISmsDatabaseService
 	{
 		
@@ -46,38 +48,22 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int SaveSentMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aReceiver, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBody, ulong aDate);
 		
-		/// <summary>Member GetMessage </summary>
-		/// <param name='messageId'> </param>
-		/// <param name='requestId'> </param>
-		/// <param name='processId'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetMessage(int messageId, int requestId, ulong processId);
 		
-		/// <summary>Member DeleteMessage </summary>
-		/// <param name='messageId'> </param>
-		/// <param name='requestId'> </param>
-		/// <param name='processId'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void DeleteMessage(int messageId, int requestId, ulong processId);
 		
-		/// <summary>Member CreateMessageList </summary>
-		/// <param name='filter'> </param>
-		/// <param name='reverse'> </param>
-		/// <param name='requestId'> </param>
-		/// <param name='processId'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void CreateMessageList([MarshalAs(UnmanagedType.Interface)] nsIDOMMozSmsFilter filter, [MarshalAs(UnmanagedType.U1)] bool reverse, int requestId, ulong processId);
 		
-		/// <summary>Member GetNextMessageInList </summary>
-		/// <param name='listId'> </param>
-		/// <param name='requestId'> </param>
-		/// <param name='processId'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetNextMessageInList(int listId, int requestId, ulong processId);
 		
-		/// <summary>Member ClearMessageList </summary>
-		/// <param name='listId'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ClearMessageList(int listId);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void MarkMessageRead(int messageId, [MarshalAs(UnmanagedType.U1)] bool value, int requestId, ulong processId);
 	}
 }

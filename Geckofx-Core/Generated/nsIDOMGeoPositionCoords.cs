@@ -24,48 +24,40 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIDOMGeoPositionCoords </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("B31702D0-6DAC-4FA0-B93B-F043E71C8F9A")]
 	public interface nsIDOMGeoPositionCoords
 	{
 		
-		/// <summary>Member GetLatitudeAttribute </summary>
-		/// <returns>A System.Double</returns>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		double GetLatitudeAttribute();
 		
-		/// <summary>Member GetLongitudeAttribute </summary>
-		/// <returns>A System.Double</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		double GetLongitudeAttribute();
 		
-		/// <summary>Member GetAltitudeAttribute </summary>
-		/// <returns>A System.Double</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		double GetAltitudeAttribute();
 		
-		/// <summary>Member GetAccuracyAttribute </summary>
-		/// <returns>A System.Double</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		double GetAccuracyAttribute();
 		
-		/// <summary>Member GetAltitudeAccuracyAttribute </summary>
-		/// <returns>A System.Double</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		double GetAltitudeAccuracyAttribute();
 		
-		/// <summary>Member GetHeadingAttribute </summary>
-		/// <returns>A System.Double</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		double GetHeadingAttribute();
 		
-		/// <summary>Member GetSpeedAttribute </summary>
-		/// <returns>A System.Double</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		double GetSpeedAttribute();
 	}

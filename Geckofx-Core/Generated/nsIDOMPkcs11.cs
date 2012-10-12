@@ -24,28 +24,25 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIDOMPkcs11 </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("9fd42950-25e7-11d4-8a7d-006008c844c3")]
 	public interface nsIDOMPkcs11
 	{
 		
-		/// <summary>Member Deletemodule </summary>
-		/// <param name='moduleName'> </param>
-		/// <returns>A System.Int32</returns>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int Deletemodule([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase moduleName);
 		
-		/// <summary>Member Addmodule </summary>
-		/// <param name='moduleName'> </param>
-		/// <param name='libraryFullPath'> </param>
-		/// <param name='cryptoMechanismFlags'> </param>
-		/// <param name='cipherFlags'> </param>
-		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int Addmodule([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase moduleName, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase libraryFullPath, int cryptoMechanismFlags, int cipherFlags);
 	}

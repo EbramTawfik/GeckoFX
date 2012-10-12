@@ -24,18 +24,18 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIDOMGeoPositionError </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("AD9FA4C8-EC71-4B2D-8294-9ADF06DDEC32")]
 	public interface nsIDOMGeoPositionError
 	{
 		
-		/// <summary>Member GetCodeAttribute </summary>
-		/// <returns>A System.Int16</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		short GetCodeAttribute();
 	}
@@ -44,7 +44,10 @@ namespace Gecko
 	public class nsIDOMGeoPositionErrorConsts
 	{
 		
-		// 
+		// <summary>
+        //This Source Code Form is subject to the terms of the Mozilla Public
+        // License, v. 2.0. If a copy of the MPL was not distributed with this
+        // file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		public const ulong PERMISSION_DENIED = 1;
 		
 		// 

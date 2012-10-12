@@ -26,7 +26,7 @@ namespace Gecko
 		{
 			get
 			{
-				using (AutoJSContext context = new AutoJSContext())
+				using (AutoJSContext context = new AutoJSContext(GlobalJSContextHolder.JSContext))
 				{
 					var val = _event.GetDataAttribute(context.ContextPointer);
 					//TODO if(!val.IsString)

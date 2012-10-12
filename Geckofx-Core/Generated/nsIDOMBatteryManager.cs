@@ -24,10 +24,12 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIDOMMozBatteryManager </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("41e88f87-42cb-4db1-8724-f5456a16c410")]
@@ -237,68 +239,48 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new System.IntPtr GetJSContextForEventHandlers();
 		
-		/// <summary>Member GetLevelAttribute </summary>
-		/// <returns>A System.Double</returns>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		double GetLevelAttribute();
 		
-		/// <summary>Member GetChargingAttribute </summary>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetChargingAttribute();
 		
-		/// <summary>Member GetDischargingTimeAttribute </summary>
-		/// <returns>A System.Double</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		double GetDischargingTimeAttribute();
 		
-		/// <summary>Member GetChargingTimeAttribute </summary>
-		/// <returns>A System.Double</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		double GetChargingTimeAttribute();
 		
-		/// <summary>Member GetOnlevelchangeAttribute </summary>
-		/// <returns>A nsIDOMEventListener</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMEventListener GetOnlevelchangeAttribute();
 		
-		/// <summary>Member SetOnlevelchangeAttribute </summary>
-		/// <param name='aOnlevelchange'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOnlevelchangeAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnlevelchange);
 		
-		/// <summary>Member GetOnchargingchangeAttribute </summary>
-		/// <returns>A nsIDOMEventListener</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMEventListener GetOnchargingchangeAttribute();
 		
-		/// <summary>Member SetOnchargingchangeAttribute </summary>
-		/// <param name='aOnchargingchange'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOnchargingchangeAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnchargingchange);
 		
-		/// <summary>Member GetOndischargingtimechangeAttribute </summary>
-		/// <returns>A nsIDOMEventListener</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMEventListener GetOndischargingtimechangeAttribute();
 		
-		/// <summary>Member SetOndischargingtimechangeAttribute </summary>
-		/// <param name='aOndischargingtimechange'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOndischargingtimechangeAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOndischargingtimechange);
 		
-		/// <summary>Member GetOnchargingtimechangeAttribute </summary>
-		/// <returns>A nsIDOMEventListener</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMEventListener GetOnchargingtimechangeAttribute();
 		
-		/// <summary>Member SetOnchargingtimechangeAttribute </summary>
-		/// <param name='aOnchargingtimechange'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOnchargingtimechangeAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnchargingtimechange);
 	}

@@ -24,10 +24,12 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIUnicodeNormalizer </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("B43A461F-1BCF-4329-820B-66E48C979E14")]
@@ -50,21 +52,12 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void NormalizeUnicodeNFD([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSrc, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDest);
 		
-		/// <summary>Member NormalizeUnicodeNFC </summary>
-		/// <param name='aSrc'> </param>
-		/// <param name='aDest'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void NormalizeUnicodeNFC([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSrc, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDest);
 		
-		/// <summary>Member NormalizeUnicodeNFKD </summary>
-		/// <param name='aSrc'> </param>
-		/// <param name='aDest'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void NormalizeUnicodeNFKD([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSrc, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDest);
 		
-		/// <summary>Member NormalizeUnicodeNFKC </summary>
-		/// <param name='aSrc'> </param>
-		/// <param name='aDest'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void NormalizeUnicodeNFKC([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSrc, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDest);
 	}

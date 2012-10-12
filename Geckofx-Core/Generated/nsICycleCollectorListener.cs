@@ -24,45 +24,34 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsICycleCollectorHandler </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("0ef15f15-7783-4991-af68-4976d7ec2267")]
 	public interface nsICycleCollectorHandler
 	{
 		
-		/// <summary>Member NoteRefCountedObject </summary>
-		/// <param name='aAddress'> </param>
-		/// <param name='aRefCount'> </param>
-		/// <param name='aObjectDescription'> </param>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void NoteRefCountedObject([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aAddress, uint aRefCount, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aObjectDescription);
 		
-		/// <summary>Member NoteGCedObject </summary>
-		/// <param name='aAddress'> </param>
-		/// <param name='aMarked'> </param>
-		/// <param name='aObjectDescription'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void NoteGCedObject([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aAddress, [MarshalAs(UnmanagedType.U1)] bool aMarked, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aObjectDescription);
 		
-		/// <summary>Member NoteEdge </summary>
-		/// <param name='aFromAddress'> </param>
-		/// <param name='aToAddress'> </param>
-		/// <param name='aEdgeName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void NoteEdge([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aFromAddress, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aToAddress, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aEdgeName);
 		
-		/// <summary>Member DescribeRoot </summary>
-		/// <param name='aAddress'> </param>
-		/// <param name='aKnownEdges'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void DescribeRoot([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aAddress, uint aKnownEdges);
 		
-		/// <summary>Member DescribeGarbage </summary>
-		/// <param name='aAddress'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void DescribeGarbage([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aAddress);
 	}

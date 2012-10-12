@@ -24,63 +24,43 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIDOMSVGTransform </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("29cc2e14-6d18-4710-bda9-a88d9d3bc8dc")]
 	public interface nsIDOMSVGTransform
 	{
 		
-		/// <summary>Member GetTypeAttribute </summary>
-		/// <returns>A System.UInt16</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		ushort GetTypeAttribute();
 		
-		/// <summary>Member GetMatrixAttribute </summary>
-		/// <returns>A nsIDOMSVGMatrix</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMSVGMatrix GetMatrixAttribute();
 		
-		/// <summary>Member GetAngleAttribute </summary>
-		/// <returns>A System.Single</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		float GetAngleAttribute();
 		
-		/// <summary>Member SetMatrix </summary>
-		/// <param name='matrix'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetMatrix([MarshalAs(UnmanagedType.Interface)] nsIDOMSVGMatrix matrix);
 		
-		/// <summary>Member SetTranslate </summary>
-		/// <param name='tx'> </param>
-		/// <param name='ty'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetTranslate(float tx, float ty);
 		
-		/// <summary>Member SetScale </summary>
-		/// <param name='sx'> </param>
-		/// <param name='sy'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetScale(float sx, float sy);
 		
-		/// <summary>Member SetRotate </summary>
-		/// <param name='angle'> </param>
-		/// <param name='cx'> </param>
-		/// <param name='cy'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetRotate(float angle, float cx, float cy);
 		
-		/// <summary>Member SetSkewX </summary>
-		/// <param name='angle'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetSkewX(float angle);
 		
-		/// <summary>Member SetSkewY </summary>
-		/// <param name='angle'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetSkewY(float angle);
 	}

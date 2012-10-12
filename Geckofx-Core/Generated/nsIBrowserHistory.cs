@@ -24,7 +24,6 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
 	/// <summary>
@@ -32,7 +31,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("d092f5a5-33a8-456c-ac89-6ae6f880bd04")]
+	[Guid("d176f8e8-383f-4109-812d-cce015e2d804")]
 	public interface nsIBrowserHistory : nsIGlobalHistory2
 	{
 		
@@ -73,29 +72,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetPageTitle([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTitle);
-		
-		/// <summary>
-        /// Used by the History migrator to add a page to global history, with a
-        /// specific title and last visit time.
-        ///
-        /// @param aURI
-        /// URI of the page to be added.
-        /// @param aTitle
-        /// Title of the page.
-        /// @param aLastvisited
-        /// Microseconds from epoch representing the last visit time.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddPageWithDetails([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string aTitle, long aLastVisited);
-		
-		/// <summary>
-        /// Indicates if there are entries in global history.
-        ///
-        /// @note For performance reasons this is not the real number of entries.
-        /// It will instead evaluate to 0 for no entries, 1 otherwise.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetCountAttribute();
 		
 		/// <summary>
         /// Removes a page from global history.
@@ -179,19 +155,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RemoveAllPages();
-		
-		/// <summary>
-        /// Hides the specified URL from being enumerated (and thus displayed in
-        /// the UI).
-        ///
-        /// @param aURI
-        /// URI of the page to be marked.
-        ///
-        /// @note If the page hasn't been visited yet, then it will be added
-        /// as if it was visited, and then marked as hidden
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void HidePage([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 		
 		/// <summary>
         /// Designates the url as having been explicitly typed in by the user.

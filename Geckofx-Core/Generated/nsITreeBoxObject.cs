@@ -24,10 +24,12 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsITreeBoxObject </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("64BA5199-C4F4-4498-BBDC-F8E4C369086C")]
@@ -182,32 +184,18 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Invalidate();
 		
-		/// <summary>Member InvalidateColumn </summary>
-		/// <param name='col'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void InvalidateColumn([MarshalAs(UnmanagedType.Interface)] nsITreeColumn col);
 		
-		/// <summary>Member InvalidateRow </summary>
-		/// <param name='index'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void InvalidateRow(int index);
 		
-		/// <summary>Member InvalidateCell </summary>
-		/// <param name='row'> </param>
-		/// <param name='col'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void InvalidateCell(int row, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn col);
 		
-		/// <summary>Member InvalidateRange </summary>
-		/// <param name='startIndex'> </param>
-		/// <param name='endIndex'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void InvalidateRange(int startIndex, int endIndex);
 		
-		/// <summary>Member InvalidateColumnRange </summary>
-		/// <param name='startIndex'> </param>
-		/// <param name='endIndex'> </param>
-		/// <param name='col'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void InvalidateColumnRange(int startIndex, int endIndex, [MarshalAs(UnmanagedType.Interface)] nsITreeColumn col);
 		

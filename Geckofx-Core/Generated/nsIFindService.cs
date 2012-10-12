@@ -24,10 +24,12 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIFindService </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("5060b801-340e-11d5-be5b-b3e063ec6a3c")]
@@ -50,57 +52,37 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetSearchStringAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSearchString);
 		
-		/// <summary>Member GetReplaceStringAttribute </summary>
-		/// <param name='aReplaceString'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetReplaceStringAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aReplaceString);
 		
-		/// <summary>Member SetReplaceStringAttribute </summary>
-		/// <param name='aReplaceString'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetReplaceStringAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aReplaceString);
 		
-		/// <summary>Member GetFindBackwardsAttribute </summary>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetFindBackwardsAttribute();
 		
-		/// <summary>Member SetFindBackwardsAttribute </summary>
-		/// <param name='aFindBackwards'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetFindBackwardsAttribute([MarshalAs(UnmanagedType.U1)] bool aFindBackwards);
 		
-		/// <summary>Member GetWrapFindAttribute </summary>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetWrapFindAttribute();
 		
-		/// <summary>Member SetWrapFindAttribute </summary>
-		/// <param name='aWrapFind'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetWrapFindAttribute([MarshalAs(UnmanagedType.U1)] bool aWrapFind);
 		
-		/// <summary>Member GetEntireWordAttribute </summary>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetEntireWordAttribute();
 		
-		/// <summary>Member SetEntireWordAttribute </summary>
-		/// <param name='aEntireWord'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetEntireWordAttribute([MarshalAs(UnmanagedType.U1)] bool aEntireWord);
 		
-		/// <summary>Member GetMatchCaseAttribute </summary>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetMatchCaseAttribute();
 		
-		/// <summary>Member SetMatchCaseAttribute </summary>
-		/// <param name='aMatchCase'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetMatchCaseAttribute([MarshalAs(UnmanagedType.U1)] bool aMatchCase);
 	}

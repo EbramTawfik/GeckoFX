@@ -24,7 +24,6 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
 	/// <summary>
@@ -82,6 +81,7 @@ namespace Gecko
         // or more specifically, when one of the following is called:
         // - Seek
         // - Tell
+        // - SetEOF
         // - Available
         // - Read
         // - ReadLine
@@ -224,6 +224,7 @@ namespace Gecko
         // be performed when one of the following is called:
         // - Seek
         // - Tell
+        // - SetEOF
         // - Write
         // - Flush
         //
@@ -267,5 +268,81 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Init([MarshalAs(UnmanagedType.Interface)] nsIFile file, ulong start, ulong length, int ioFlags, int perm, int behaviorFlags);
+	}
+	
+	/// <summary>
+    /// A stream that allows you to read from a file or stream to a file.
+    /// </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("82cf605a-8393-4550-83ab-43cd5578e006")]
+	public interface nsIFileStream
+	{
+		
+		/// <summary>
+        /// @param file          file to read from or stream to (must QI to
+        /// nsILocalFile)
+        /// @param ioFlags       file open flags listed in prio.h (see
+        /// PR_Open documentation) or -1 to open the
+        /// file in default mode (PR_RDWR).
+        /// @param perm          file mode bits listed in prio.h or -1 to
+        /// use the default value (0)
+        /// @param behaviorFlags flags specifying various behaviors of the class
+        /// (see enumerations in the class)
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Init([MarshalAs(UnmanagedType.Interface)] nsIFile file, int ioFlags, int perm, int behaviorFlags);
+	}
+	
+	/// <summary>nsIFileStreamConsts </summary>
+	public class nsIFileStreamConsts
+	{
+		
+		// <summary>
+        // See the same constant in nsIFileInputStream. The deferred open will
+        // be performed when one of the following is called:
+        // - Seek
+        // - Tell
+        // - SetEOF
+        // - Available
+        // - Read
+        // - Flush
+        // - Write
+        // - GetSize
+        // - GetLastModified
+        //
+        // @note Using this flag results in the file not being opened
+        // during the call to Init.  This means that any errors that might
+        // happen when this flag is not set would happen during the
+        // first read or write. The file is not locked when Init is called,
+        // so it might be deleted before we try to read from it and if the
+        // file is to be created, then it will not appear on the disk until
+        // the first write.
+        // </summary>
+		public const long DEFER_OPEN = 1<<0;
+	}
+	
+	/// <summary>
+    /// An interface that allows you to get some metadata like file size and
+    /// file last modified time.
+    /// </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("07f679e4-9601-4bd1-b510-cd3852edb881")]
+	public interface nsIFileMetadata
+	{
+		
+		/// <summary>
+        /// File size in bytes;
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		long GetSizeAttribute();
+		
+		/// <summary>
+        /// File last modified time in milliseconds from midnight (00:00:00),
+        /// January 1, 1970 Greenwich Mean Time (GMT).
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		long GetLastModifiedAttribute();
 	}
 }

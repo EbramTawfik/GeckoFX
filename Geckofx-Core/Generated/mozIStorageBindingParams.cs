@@ -24,10 +24,14 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>mozIStorageBindingParams </summary>
+	/// <summary>
+    ///-*- Mode: C++; tab-width: 2; indent-tabs-mode: nil; c-basic-offset: 2 -*-
+    /// vim: sw=2 ts=2 sts=2 et
+    /// This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("a8d4827c-641c-45e3-a9ea-493570b4106b")]
@@ -45,45 +49,24 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void BindByName([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aName, [MarshalAs(UnmanagedType.Interface)] nsIVariant aValue);
 		
-		/// <summary>Member BindUTF8StringByName </summary>
-		/// <param name='aName'> </param>
-		/// <param name='aValue'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void BindUTF8StringByName([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aName, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aValue);
 		
-		/// <summary>Member BindStringByName </summary>
-		/// <param name='aName'> </param>
-		/// <param name='aValue'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void BindStringByName([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aName, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aValue);
 		
-		/// <summary>Member BindDoubleByName </summary>
-		/// <param name='aName'> </param>
-		/// <param name='aValue'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void BindDoubleByName([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aName, double aValue);
 		
-		/// <summary>Member BindInt32ByName </summary>
-		/// <param name='aName'> </param>
-		/// <param name='aValue'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void BindInt32ByName([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aName, int aValue);
 		
-		/// <summary>Member BindInt64ByName </summary>
-		/// <param name='aName'> </param>
-		/// <param name='aValue'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void BindInt64ByName([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aName, long aValue);
 		
-		/// <summary>Member BindNullByName </summary>
-		/// <param name='aName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void BindNullByName([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aName);
 		
-		/// <summary>Member BindBlobByName </summary>
-		/// <param name='aName'> </param>
-		/// <param name='aValue'> </param>
-		/// <param name='aValueSize'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void BindBlobByName([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aName, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] byte[] aValue, uint aValueSize);
 		
@@ -98,45 +81,24 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void BindByIndex(uint aIndex, [MarshalAs(UnmanagedType.Interface)] nsIVariant aValue);
 		
-		/// <summary>Member BindUTF8StringByIndex </summary>
-		/// <param name='aIndex'> </param>
-		/// <param name='aValue'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void BindUTF8StringByIndex(uint aIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aValue);
 		
-		/// <summary>Member BindStringByIndex </summary>
-		/// <param name='aIndex'> </param>
-		/// <param name='aValue'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void BindStringByIndex(uint aIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aValue);
 		
-		/// <summary>Member BindDoubleByIndex </summary>
-		/// <param name='aIndex'> </param>
-		/// <param name='aValue'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void BindDoubleByIndex(uint aIndex, double aValue);
 		
-		/// <summary>Member BindInt32ByIndex </summary>
-		/// <param name='aIndex'> </param>
-		/// <param name='aValue'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void BindInt32ByIndex(uint aIndex, int aValue);
 		
-		/// <summary>Member BindInt64ByIndex </summary>
-		/// <param name='aIndex'> </param>
-		/// <param name='aValue'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void BindInt64ByIndex(uint aIndex, long aValue);
 		
-		/// <summary>Member BindNullByIndex </summary>
-		/// <param name='aIndex'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void BindNullByIndex(uint aIndex);
 		
-		/// <summary>Member BindBlobByIndex </summary>
-		/// <param name='aIndex'> </param>
-		/// <param name='aValue'> </param>
-		/// <param name='aValueSize'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void BindBlobByIndex(uint aIndex, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] byte[] aValue, uint aValueSize);
 	}

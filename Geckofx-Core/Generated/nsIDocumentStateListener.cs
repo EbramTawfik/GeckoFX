@@ -24,26 +24,28 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIDocumentStateListener </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("050cdc00-3b8e-11d3-9ce4-a458f454fcbc")]
 	public interface nsIDocumentStateListener
 	{
 		
-		/// <summary>Member NotifyDocumentCreated </summary>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void NotifyDocumentCreated();
 		
-		/// <summary>Member NotifyDocumentWillBeDestroyed </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void NotifyDocumentWillBeDestroyed();
 		
-		/// <summary>Member NotifyDocumentStateChanged </summary>
-		/// <param name='nowDirty'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void NotifyDocumentStateChanged([MarshalAs(UnmanagedType.U1)] bool nowDirty);
 	}

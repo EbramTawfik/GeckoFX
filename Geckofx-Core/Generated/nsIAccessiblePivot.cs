@@ -24,7 +24,6 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
 	/// <summary>
@@ -35,7 +34,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("689058ae-e301-444f-acb0-b5c2b189f350")]
+	[Guid("15ff23de-879e-47ea-b536-6532466108c5")]
 	public interface nsIAccessiblePivot
 	{
 		
@@ -85,24 +84,32 @@ namespace Gecko
 		void SetTextRange([MarshalAs(UnmanagedType.Interface)] nsIAccessibleText aTextAccessible, int aStartOffset, int aEndOffset);
 		
 		/// <summary>
-        /// Move pivot to next object complying to given traversal rule.
+        /// Move pivot to next object, from current position or given anchor,
+        /// complying to given traversal rule.
         ///
-        /// @param aRule [in] traversal rule to use.
+        /// @param aRule         [in] traversal rule to use.
+        /// @param aAnchor       [in] accessible to start search from, if not provided,
+        /// current position will be used.
+        /// @param aIncludeStart [in] include anchor accessible in search.
         /// @return true on success, false if there are no new nodes to traverse to.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool MoveNext([MarshalAs(UnmanagedType.Interface)] nsIAccessibleTraversalRule aRule);
+		bool MoveNext([MarshalAs(UnmanagedType.Interface)] nsIAccessibleTraversalRule aRule, [MarshalAs(UnmanagedType.Interface)] nsIAccessible aAnchor, [MarshalAs(UnmanagedType.U1)] bool aIncludeStart, int argc);
 		
 		/// <summary>
-        /// Move pivot to previous object complying to given traversal rule.
+        /// Move pivot to previous object, from current position or given anchor,
+        /// complying to given traversal rule.
         ///
-        /// @param aRule [in] traversal rule to use.
+        /// @param aRule         [in] traversal rule to use.
+        /// @param aAnchor       [in] accessible to start search from, if not provided,
+        /// current position will be used.
+        /// @param aIncludeStart [in] include anchor accessible in search.
         /// @return true on success, false if there are no new nodes to traverse to.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool MovePrevious([MarshalAs(UnmanagedType.Interface)] nsIAccessibleTraversalRule aRule);
+		bool MovePrevious([MarshalAs(UnmanagedType.Interface)] nsIAccessibleTraversalRule aRule, [MarshalAs(UnmanagedType.Interface)] nsIAccessible aAnchor, [MarshalAs(UnmanagedType.U1)] bool aIncludeStart, int argc);
 		
 		/// <summary>
         /// Move pivot to first object in subtree complying to given traversal rule.

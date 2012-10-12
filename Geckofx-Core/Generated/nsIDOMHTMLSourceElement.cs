@@ -24,7 +24,6 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
 	/// <summary>
@@ -38,7 +37,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("4BF58085-9986-47B5-BB03-62BAA0451497")]
+	[Guid("af4b7ca2-2694-4672-a182-8a63be79c826")]
 	public interface nsIDOMHTMLSourceElement : nsIDOMHTMLElement
 	{
 		
@@ -692,5 +691,11 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetMediaAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMedia);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetMediaAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMedia);
 	}
 }

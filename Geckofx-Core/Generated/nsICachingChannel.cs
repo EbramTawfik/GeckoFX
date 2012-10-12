@@ -24,7 +24,6 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
 	/// <summary>
@@ -39,7 +38,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("830D4BCB-3E46-4011-9BDA-51A5D1AF891F")]
+	[Guid("E2143B61-62FE-4da5-BE2E-E31981095889")]
 	public interface nsICachingChannel : nsICacheInfoChannel
 	{
 		
@@ -227,6 +226,21 @@ namespace Gecko
 		void SetOfflineCacheClientIDAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aOfflineCacheClientID);
 		
 		/// <summary>
+        /// Override base (profile) directory to work with when accessing the cache.
+        /// When not specified, the current process' profile directory will be used.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsILocalFile GetProfileDirectoryAttribute();
+		
+		/// <summary>
+        /// Override base (profile) directory to work with when accessing the cache.
+        /// When not specified, the current process' profile directory will be used.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetProfileDirectoryAttribute([MarshalAs(UnmanagedType.Interface)] nsILocalFile aProfileDirectory);
+		
+		/// <summary>
         /// Get the "file" where the cached data can be found.  This is valid for
         /// as long as a reference to the cache token is held.  This may return
         /// an error if cacheAsFile is false.
@@ -295,6 +309,6 @@ namespace Gecko
         // cache, then the OnDataAvailable events will be skipped.  The listener
         // will only see OnStartRequest followed by OnStopRequest.
         // </summary>
-		public const ulong LOAD_ONLY_IF_MODIFIED = (ulong)1<<31;
+		public const ulong LOAD_ONLY_IF_MODIFIED = (ulong)1 << 31;
 	}
 }

@@ -24,7 +24,6 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
 	/// <summary>
@@ -36,7 +35,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("d35a9adb-8328-4b64-b06f-72a165acd080")]
+	[Guid("a5a785a8-9881-11e1-aaff-001fbc092072")]
 	public interface imgIRequest : nsIRequest
 	{
 		
@@ -200,6 +199,13 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIPrincipal GetImagePrincipalAttribute();
+		
+		/// <summary>
+        /// Whether the request is multipart (ie, multipart/x-mixed-replace)
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetMultipartAttribute();
 		
 		/// <summary>
         /// The CORS mode that this image was loaded with.

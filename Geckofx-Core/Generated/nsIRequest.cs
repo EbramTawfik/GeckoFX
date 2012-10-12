@@ -24,7 +24,6 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
 	/// <summary>
@@ -199,10 +198,17 @@ namespace Gecko
 		public const ulong LOAD_BYPASS_CACHE = 1<<9;
 		
 		// <summary>
-        // Load from the cache, bypassing protocol specific validation logic.  This
-        // flag is used when browsing via history.  It is not recommended for normal
-        // browsing as it may likely violate reasonable assumptions made by the
-        // server and confuse users.
+        // Attempt to force a load from the cache, bypassing ALL validation logic
+        // (note: this is stronger than VALIDATE_NEVER, which still validates for
+        // certain conditions).
+        //
+        // If the resource is not present in cache, it will be loaded from the
+        // network.  Combine this flag with LOAD_ONLY_FROM_CACHE if you wish to
+        // perform cache-only loads without validation checks.
+        //
+        // This flag is used when browsing via history.  It is not recommended for
+        // normal browsing as it may likely violate reasonable assumptions made by
+        // the server and confuse users.
         // </summary>
 		public const ulong LOAD_FROM_CACHE = 1<<10;
 		
@@ -214,7 +220,9 @@ namespace Gecko
         // VALIDATE_ALWAYS forces validation of any cached content independent of
         // its expiration time.
         //
-        // VALIDATE_NEVER disables validation of expired content.
+        // VALIDATE_NEVER disables validation of cached content, unless it arrived
+        // with the "Cache: no-store" header, or arrived via HTTPS with the
+        // "Cache: no-cache" header.
         //
         // VALIDATE_ONCE_PER_SESSION disables validation of expired content,
         // provided it has already been validated (at least once) since the start

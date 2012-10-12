@@ -24,35 +24,32 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIMenuBoxObject </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("689ebf3d-0184-450a-9bfa-5a26be0e7a8c")]
 	public interface nsIMenuBoxObject
 	{
 		
-		/// <summary>Member OpenMenu </summary>
-		/// <param name='openFlag'> </param>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void OpenMenu([MarshalAs(UnmanagedType.U1)] bool openFlag);
 		
-		/// <summary>Member GetActiveChildAttribute </summary>
-		/// <returns>A nsIDOMElement</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMElement GetActiveChildAttribute();
 		
-		/// <summary>Member SetActiveChildAttribute </summary>
-		/// <param name='aActiveChild'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetActiveChildAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aActiveChild);
 		
-		/// <summary>Member HandleKeyPress </summary>
-		/// <param name='keyEvent'> </param>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool HandleKeyPress([MarshalAs(UnmanagedType.Interface)] nsIDOMKeyEvent keyEvent);

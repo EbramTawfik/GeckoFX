@@ -24,14 +24,13 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
 	/// <summary>
     ///Defines the abstract interface for a principal. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("f8c4c89a-d726-421b-8415-3e34b241175b")]
+	[Guid("42ba6a38-d619-49ab-8248-3d247e959d5e")]
 	public interface nsIPrincipal : nsISerializable
 	{
 		
@@ -109,21 +108,12 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		short CanEnableCapability([MarshalAs(UnmanagedType.LPStr)] string capability);
 		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCanEnableCapability([MarshalAs(UnmanagedType.LPStr)] string capability, short canEnable);
-		
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool IsCapabilityEnabled([MarshalAs(UnmanagedType.LPStr)] string capability, System.IntPtr annotation);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void EnableCapability([MarshalAs(UnmanagedType.LPStr)] string capability, ref System.IntPtr annotation);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RevertCapability([MarshalAs(UnmanagedType.LPStr)] string capability, ref System.IntPtr annotation);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DisableCapability([MarshalAs(UnmanagedType.LPStr)] string capability, ref System.IntPtr annotation);
 		
 		/// <summary>
         /// The codebase URI to which this principal pertains.  This is

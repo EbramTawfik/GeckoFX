@@ -24,7 +24,6 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
 	/// <summary>
@@ -235,5 +234,10 @@ namespace Gecko
 		
 		// 
 		public const long loadPushState = 17;
+		
+		// <summary>
+        // history.pushState or replaceState
+        // </summary>
+		public const long loadReplaceBypassCache = 18;
 	}
 }

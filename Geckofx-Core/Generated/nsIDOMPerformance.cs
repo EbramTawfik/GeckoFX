@@ -24,26 +24,31 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIDOMPerformance </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("446faf26-000b-4e66-a5fd-ae37c5ed6beb")]
+	[Guid("ac274ec8-ee9f-44ef-b2f0-b13c22225a98")]
 	public interface nsIDOMPerformance
 	{
 		
-		/// <summary>Member GetTimingAttribute </summary>
-		/// <returns>A nsIDOMPerformanceTiming</returns>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMPerformanceTiming GetTimingAttribute();
 		
-		/// <summary>Member GetNavigationAttribute </summary>
-		/// <returns>A nsIDOMPerformanceNavigation</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMPerformanceNavigation GetNavigationAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		DOMHighResTimeStamp Now();
 	}
 }

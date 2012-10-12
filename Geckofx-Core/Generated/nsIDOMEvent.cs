@@ -24,7 +24,6 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
 	/// <summary>
@@ -32,7 +31,8 @@ namespace Gecko
     /// the Document Object Model.
     ///
     /// For more information on this interface please see
-    /// http://www.w3.org/TR/DOM-Level-2-Events/
+    /// http://dev.w3.org/2006/webapi/DOM-Level-3-Events/html/DOM3-Events.html and
+    /// http://dvcs.w3.org/hg/domcore/raw-file/tip/Overview.html
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -172,6 +172,11 @@ namespace Gecko
 	/// <summary>nsIDOMEventConsts </summary>
 	public class nsIDOMEventConsts
 	{
+		
+		// <summary>
+        // The event isn't being dispatched.
+        // </summary>
+		public const ulong NONE = 0;
 		
 		// <summary>
         // The current event phase is the capturing phase.

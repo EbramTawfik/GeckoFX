@@ -68,7 +68,10 @@ namespace Gecko
 			if (context == IntPtr.Zero)
 			{
 				_jsContextStack = Xpcom.GetService<nsIThreadJSContextStack>("@mozilla.org/js/xpc/ContextStack;1");
-				context = _jsContextStack.GetSafeJSContextAttribute();
+				// Due to GetSafeJSContext (being changed from an attribute to a virtual method in FF 15) we can no longer call
+				// it safely from C#. // TODO: find a better solution for this.				
+				// context = _jsContextStack.GetSafeJSContext();
+				throw new ArgumentException("context");
 			}
 			
 			_cx = context;			
@@ -91,8 +94,10 @@ namespace Gecko
 
 		/// <summary>
 		/// Create a AutoJSContext using the SafeJSContext.
-		/// </summary>
-		public AutoJSContext() : this(IntPtr.Zero)
+		/// This AutoJSContext method is no load avaliable due to nsIThreadJSContextStack.GetSafeJSContext being made a virtual method
+		/// which prevents safe COM access.
+		/// </summary>		
+		/*public*/ AutoJSContext() : this(IntPtr.Zero)
 		{
 		}
 

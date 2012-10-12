@@ -24,22 +24,18 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIDialogCreator </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("17c9e659-2a9a-4a58-8a1c-d76bb58339c0")]
 	public interface nsIDialogCreator
 	{
 		
-		/// <summary>Member OpenDialog </summary>
-		/// <param name='aType'> </param>
-		/// <param name='aName'> </param>
-		/// <param name='aFeatures'> </param>
-		/// <param name='aArguments'> </param>
-		/// <param name='aFrameElement'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void OpenDialog(uint aType, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aName, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aFeatures, [MarshalAs(UnmanagedType.Interface)] nsIDialogParamBlock aArguments, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement aFrameElement);
 	}
@@ -48,7 +44,10 @@ namespace Gecko
 	public class nsIDialogCreatorConsts
 	{
 		
-		// 
+		// <summary>
+        //This Source Code Form is subject to the terms of the Mozilla Public
+        // License, v. 2.0. If a copy of the MPL was not distributed with this
+        // file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		public const ulong UNKNOWN_DIALOG = 0;
 		
 		// 

@@ -24,7 +24,6 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
 	/// <summary>
@@ -109,7 +108,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("32f83e3f-470c-4423-a86a-d35d1c215ccb")]
+	[Guid("231e1e53-05c1-41b6-b9de-dbbcce9385c9")]
 	public interface nsIApplicationCache
 	{
 		
@@ -205,6 +204,14 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIApplicationCacheNamespace GetMatchingNamespace([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase key);
+		
+		/// <summary>
+        /// If set, this offline cache is placed in a different directory
+        /// than the current application profile.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsILocalFile GetCacheDirectoryAttribute();
 	}
 	
 	/// <summary>nsIApplicationCacheConsts </summary>

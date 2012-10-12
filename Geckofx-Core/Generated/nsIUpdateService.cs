@@ -24,7 +24,6 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
 	/// <summary>
@@ -34,7 +33,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("60523512-bb69-417c-9b2c-87a0664b0bbe")]
+	[Guid("1134957d-9449-481b-a515-4d88b9998278")]
 	public interface nsIUpdatePatch
 	{
 		
@@ -464,6 +463,8 @@ namespace Gecko
         /// "pending"            The update is ready to be applied.
         /// "pending-service"    The update is ready to be applied with the service.
         /// "applying"           The update is being applied.
+        /// "applied"            The update is ready to be switched to.
+        /// "applied-service"    The update is ready to be switched to with the service.
         /// "succeeded"          The update was successfully applied.
         /// "download-failed"    The update failed to be downloaded.
         /// "failed"             The update failed to be applied.
@@ -477,6 +478,8 @@ namespace Gecko
         /// "pending"            The update is ready to be applied.
         /// "pending-service"    The update is ready to be applied with the service.
         /// "applying"           The update is being applied.
+        /// "applied"            The update is ready to be switched to.
+        /// "applied-service"    The update is ready to be switched to with the service.
         /// "succeeded"          The update was successfully applied.
         /// "download-failed"    The update failed to be downloaded.
         /// "failed"             The update failed to be applied.
@@ -646,7 +649,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("b5811144-ed30-4343-aff9-c514034aa19a")]
+	[Guid("900b4a18-3bef-4f3e-bcf5-84dce0021c6d")]
 	public interface nsIApplicationUpdateService
 	{
 		
@@ -696,6 +699,20 @@ namespace Gecko
 		void DownloadUpdate([MarshalAs(UnmanagedType.Interface)] nsIUpdate update, [MarshalAs(UnmanagedType.U1)] bool background, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
+        /// Apply an update in the background.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void ApplyUpdateInBackground([MarshalAs(UnmanagedType.Interface)] nsIUpdate update);
+		
+		/// <summary>
+        /// Get the Active Updates directory
+        /// @returns The active updates directory.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIFile GetUpdatesDirectory();
+		
+		/// <summary>
         /// Pauses the active update download process
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -725,6 +742,31 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetCanApplyUpdatesAttribute();
+		
+		/// <summary>
+        /// Whether the Update Service is able to stage updates.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetCanStageUpdatesAttribute();
+	}
+	
+	/// <summary>
+    /// An interface describing a component which handles the job of processing
+    /// an update after it's been downloaded.
+    /// </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("74439497-d796-4915-8cef-3dfe43027e4d")]
+	public interface nsIUpdateProcessor
+	{
+		
+		/// <summary>
+        /// Processes the update which has been downloaded.
+        /// This happens without restarting the application.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void ProcessUpdate([MarshalAs(UnmanagedType.Interface)] nsIUpdate update);
 	}
 	
 	/// <summary>
@@ -733,7 +775,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("fede66a9-9f96-4507-a22a-775ee885577e")]
+	[Guid("c5df56de-919d-406b-aaf9-106dfa9b685b")]
 	public interface nsIUpdateManager
 	{
 		
@@ -771,6 +813,12 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SaveUpdates();
+		
+		/// <summary>
+        /// Refresh the update status based on the information in update.status.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RefreshUpdateStatus([MarshalAs(UnmanagedType.Interface)] nsIUpdate update);
 	}
 	
 	/// <summary>

@@ -24,28 +24,28 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIDOMCounter </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("31adb439-0055-402d-9b1d-d5ca94f3f55b")]
 	public interface nsIDOMCounter
 	{
 		
-		/// <summary>Member GetIdentifierAttribute </summary>
-		/// <param name='aIdentifier'> </param>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetIdentifierAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aIdentifier);
 		
-		/// <summary>Member GetListStyleAttribute </summary>
-		/// <param name='aListStyle'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetListStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aListStyle);
 		
-		/// <summary>Member GetSeparatorAttribute </summary>
-		/// <param name='aSeparator'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetSeparatorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSeparator);
 	}

@@ -24,10 +24,14 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>ISimpleDOMText </summary>
+	/// <summary>
+    ///-*- Mode: C++; tab-width: 2; indent-tabs-mode: nil; c-basic-offset: 2 -*-
+    ///
+    /// This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("4e747be5-2052-4265-8af0-8ecad7aad1c0")]
@@ -44,37 +48,15 @@ namespace Gecko
 			get;
 		}
 		
-		/// <summary>Member Get_clippedSubstringBounds </summary>
-		/// <param name='startIndex'> </param>
-		/// <param name='endIndex'> </param>
-		/// <param name='x'> </param>
-		/// <param name='y'> </param>
-		/// <param name='width'> </param>
-		/// <param name='height'> </param>
-		/// <returns>A System.UInt32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint Get_clippedSubstringBounds(uint startIndex, uint endIndex, ref int x, ref int y, ref int width, ref int height);
 		
-		/// <summary>Member Get_unclippedSubstringBounds </summary>
-		/// <param name='startIndex'> </param>
-		/// <param name='endIndex'> </param>
-		/// <param name='x'> </param>
-		/// <param name='y'> </param>
-		/// <param name='width'> </param>
-		/// <param name='height'> </param>
-		/// <returns>A System.UInt32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint Get_unclippedSubstringBounds(uint startIndex, uint endIndex, ref int x, ref int y, ref int width, ref int height);
 		
-		/// <summary>Member ScrollToSubstring </summary>
-		/// <param name='startIndex'> </param>
-		/// <param name='endIndex'> </param>
-		/// <returns>A System.UInt32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint ScrollToSubstring(uint startIndex, uint endIndex);
 		
-		/// <summary>Gets a FontFamily </summary>
-		/// <returns>A System.String </returns>
 		string FontFamily
 		{
 			[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

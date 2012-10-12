@@ -1024,6 +1024,37 @@ namespace GeckofxUnitTests
 		{
 			throw new NotImplementedException();
 		}
+
+
+		public JsVal GetOndeviceproximityAttribute(IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetOndeviceproximityAttribute(JsVal aOndeviceproximity, IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		public JsVal GetOnuserproximityAttribute(IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetOnuserproximityAttribute(JsVal aOnuserproximity, IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		public JsVal GetOndevicelightAttribute(IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void SetOndevicelightAttribute(JsVal aOndevicelight, IntPtr jsContext)
+		{
+			throw new NotImplementedException();
+		}
 	}
 	#endregion
 }

@@ -24,36 +24,26 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIEntityConverter </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("D14C7111-55E0-11d3-91D9-00105AA3F7DC")]
 	public interface nsIEntityConverter
 	{
 		
-		/// <summary>Member ConvertUTF32ToEntity </summary>
-		/// <param name='character'> </param>
-		/// <param name='entityVersion'> </param>
-		/// <returns>A System.String</returns>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string ConvertUTF32ToEntity(uint character, uint entityVersion);
 		
-		/// <summary>Member ConvertToEntity </summary>
-		/// <param name='character'> </param>
-		/// <param name='entityVersion'> </param>
-		/// <returns>A System.String</returns>
 		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string ConvertToEntity(char character, uint entityVersion);
 		
-		/// <summary>Member ConvertToEntities </summary>
-		/// <param name='inString'> </param>
-		/// <param name='entityVersion'> </param>
-		/// <returns>A System.String</returns>
 		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		string ConvertToEntities([MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string inString, uint entityVersion);
@@ -63,7 +53,10 @@ namespace Gecko
 	public class nsIEntityConverterConsts
 	{
 		
-		// 
+		// <summary>
+        //This Source Code Form is subject to the terms of the Mozilla Public
+        // License, v. 2.0. If a copy of the MPL was not distributed with this
+        // file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		public const ulong entityNone = 0;
 		
 		// 

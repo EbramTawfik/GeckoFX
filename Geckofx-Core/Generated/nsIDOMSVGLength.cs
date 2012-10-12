@@ -24,28 +24,24 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIDOMSVGLength </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("2596325c-aed0-487e-96a1-0a6d589b9c6b")]
 	public interface nsIDOMSVGLength
 	{
 		
-		/// <summary>Member GetUnitTypeAttribute </summary>
-		/// <returns>A System.UInt16</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		ushort GetUnitTypeAttribute();
 		
-		/// <summary>Member GetValueAttribute </summary>
-		/// <returns>A System.Single</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		float GetValueAttribute();
 		
-		/// <summary>Member SetValueAttribute </summary>
-		/// <param name='aValue'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetValueAttribute(float aValue);
 		
@@ -79,8 +75,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void NewValueSpecifiedUnits(ushort unitType, float valueInSpecifiedUnits);
 		
-		/// <summary>Member ConvertToSpecifiedUnits </summary>
-		/// <param name='unitType'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ConvertToSpecifiedUnits(ushort unitType);
 	}

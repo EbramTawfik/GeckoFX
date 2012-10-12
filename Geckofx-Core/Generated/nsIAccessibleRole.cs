@@ -24,18 +24,14 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
 	/// <summary>
     /// Defines cross platform (Gecko) roles.
-    ///
-    /// @note - When adding a new role, be sure to also add it to nsRoleMap.h for
-    /// each platform.
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("f134da65-39a8-4330-843c-5bd42780b34c")]
+	[Guid("50db5e86-9a45-4637-a5c3-4ff148c33270")]
 	public interface nsIAccessibleRole
 	{
 	}
@@ -795,9 +791,18 @@ namespace Gecko
 		public const ulong ROLE_CHECK_RICH_OPTION = 125;
 		
 		// <summary>
-        // It's not role actually. This constant is important to help ensure
-        // nsRoleMap's are synchronized.
+        // An HTML definition list <dl>
         // </summary>
-		public const ulong ROLE_LAST_ENTRY = 126;
+		public const ulong ROLE_DEFINITION_LIST = 126;
+		
+		// <summary>
+        // An HTML definition term <dt>
+        // </summary>
+		public const ulong ROLE_TERM = 127;
+		
+		// <summary>
+        // An HTML definition <dd>
+        // </summary>
+		public const ulong ROLE_DEFINITION = 128;
 	}
 }

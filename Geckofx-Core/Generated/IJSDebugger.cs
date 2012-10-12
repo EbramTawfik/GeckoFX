@@ -24,23 +24,23 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
 	/// <summary>
     /// Do not use this interface. Instead, write:
     /// Components.utils.import("resource://gre/modules/jsdebugger.jsm");
+    /// addDebuggerToGlobal(global);
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("2fc14cc6-4ed0-4bbf-a7dd-e535bf088eb5")]
+	[Guid("a36fa816-31da-4b23-bc97-6412771f0867")]
 	public interface IJSDebugger
 	{
 		
 		/// <summary>
-        /// Define the global Debugger constructor.
+        /// Define the global Debugger constructor on a given global.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddClass(System.IntPtr jsContext);
+		void AddClass(Gecko.JsVal global, System.IntPtr jsContext);
 	}
 }

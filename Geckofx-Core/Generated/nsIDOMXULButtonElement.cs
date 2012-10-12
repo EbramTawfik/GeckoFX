@@ -24,28 +24,24 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIDOMXULButtonElement </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("A0308BD1-A6D7-4352-86F9-2BD4AEE2EAFC")]
 	public interface nsIDOMXULButtonElement : nsIDOMXULLabeledControlElement
 	{
 		
-		/// <summary>Member GetNodeNameAttribute </summary>
-		/// <param name='aNodeName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetNodeNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNodeName);
 		
-		/// <summary>Member GetNodeValueAttribute </summary>
-		/// <param name='aNodeValue'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetNodeValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNodeValue);
 		
-		/// <summary>Member SetNodeValueAttribute </summary>
-		/// <param name='aNodeValue'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetNodeValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNodeValue);
 		
@@ -55,50 +51,34 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new ushort GetNodeTypeAttribute();
 		
-		/// <summary>Member GetParentNodeAttribute </summary>
-		/// <returns>A nsIDOMNode</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMNode GetParentNodeAttribute();
 		
-		/// <summary>Member GetParentElementAttribute </summary>
-		/// <returns>A nsIDOMElement</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMElement GetParentElementAttribute();
 		
-		/// <summary>Member GetChildNodesAttribute </summary>
-		/// <returns>A nsIDOMNodeList</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMNodeList GetChildNodesAttribute();
 		
-		/// <summary>Member GetFirstChildAttribute </summary>
-		/// <returns>A nsIDOMNode</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMNode GetFirstChildAttribute();
 		
-		/// <summary>Member GetLastChildAttribute </summary>
-		/// <returns>A nsIDOMNode</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMNode GetLastChildAttribute();
 		
-		/// <summary>Member GetPreviousSiblingAttribute </summary>
-		/// <returns>A nsIDOMNode</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMNode GetPreviousSiblingAttribute();
 		
-		/// <summary>Member GetNextSiblingAttribute </summary>
-		/// <returns>A nsIDOMNode</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMNode GetNextSiblingAttribute();
 		
-		/// <summary>Member GetAttributesAttribute </summary>
-		/// <returns>A nsIDOMNamedNodeMap</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMNamedNodeMap GetAttributesAttribute();
@@ -110,38 +90,22 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMDocument GetOwnerDocumentAttribute();
 		
-		/// <summary>Member InsertBefore </summary>
-		/// <param name='newChild'> </param>
-		/// <param name='refChild'> </param>
-		/// <returns>A nsIDOMNode</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMNode InsertBefore([MarshalAs(UnmanagedType.Interface)] nsIDOMNode newChild, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode refChild);
 		
-		/// <summary>Member ReplaceChild </summary>
-		/// <param name='newChild'> </param>
-		/// <param name='oldChild'> </param>
-		/// <returns>A nsIDOMNode</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMNode ReplaceChild([MarshalAs(UnmanagedType.Interface)] nsIDOMNode newChild, [MarshalAs(UnmanagedType.Interface)] nsIDOMNode oldChild);
 		
-		/// <summary>Member RemoveChild </summary>
-		/// <param name='oldChild'> </param>
-		/// <returns>A nsIDOMNode</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMNode RemoveChild([MarshalAs(UnmanagedType.Interface)] nsIDOMNode oldChild);
 		
-		/// <summary>Member AppendChild </summary>
-		/// <param name='newChild'> </param>
-		/// <returns>A nsIDOMNode</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMNode AppendChild([MarshalAs(UnmanagedType.Interface)] nsIDOMNode newChild);
 		
-		/// <summary>Member HasChildNodes </summary>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool HasChildNodes();
@@ -255,9 +219,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIVariant GetUserData([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase key);
 		
-		/// <summary>Member Contains </summary>
-		/// <param name='aOther'> </param>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool Contains([MarshalAs(UnmanagedType.Interface)] nsIDOMNode aOther);
@@ -279,54 +240,28 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMDOMTokenList GetClassListAttribute();
 		
-		/// <summary>Member GetAttribute </summary>
-		/// <param name='name'> </param>
-		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
-		/// <summary>Member GetAttributeNS </summary>
-		/// <param name='namespaceURI'> </param>
-		/// <param name='localName'> </param>
-		/// <param name='retval'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetAttributeNS([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase namespaceURI, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase localName, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
-		/// <summary>Member SetAttribute </summary>
-		/// <param name='name'> </param>
-		/// <param name='value'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase value);
 		
-		/// <summary>Member SetAttributeNS </summary>
-		/// <param name='namespaceURI'> </param>
-		/// <param name='qualifiedName'> </param>
-		/// <param name='value'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetAttributeNS([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase namespaceURI, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase qualifiedName, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase value);
 		
-		/// <summary>Member RemoveAttribute </summary>
-		/// <param name='name'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void RemoveAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name);
 		
-		/// <summary>Member RemoveAttributeNS </summary>
-		/// <param name='namespaceURI'> </param>
-		/// <param name='localName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void RemoveAttributeNS([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase namespaceURI, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase localName);
 		
-		/// <summary>Member HasAttribute </summary>
-		/// <param name='name'> </param>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool HasAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name);
 		
-		/// <summary>Member HasAttributeNS </summary>
-		/// <param name='namespaceURI'> </param>
-		/// <param name='localName'> </param>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool HasAttributeNS([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase namespaceURI, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase localName);
@@ -338,46 +273,26 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMAttr GetAttributeNode([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name);
 		
-		/// <summary>Member SetAttributeNode </summary>
-		/// <param name='newAttr'> </param>
-		/// <returns>A nsIDOMAttr</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMAttr SetAttributeNode([MarshalAs(UnmanagedType.Interface)] nsIDOMAttr newAttr);
 		
-		/// <summary>Member RemoveAttributeNode </summary>
-		/// <param name='oldAttr'> </param>
-		/// <returns>A nsIDOMAttr</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMAttr RemoveAttributeNode([MarshalAs(UnmanagedType.Interface)] nsIDOMAttr oldAttr);
 		
-		/// <summary>Member GetAttributeNodeNS </summary>
-		/// <param name='namespaceURI'> </param>
-		/// <param name='localName'> </param>
-		/// <returns>A nsIDOMAttr</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMAttr GetAttributeNodeNS([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase namespaceURI, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase localName);
 		
-		/// <summary>Member SetAttributeNodeNS </summary>
-		/// <param name='newAttr'> </param>
-		/// <returns>A nsIDOMAttr</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMAttr SetAttributeNodeNS([MarshalAs(UnmanagedType.Interface)] nsIDOMAttr newAttr);
 		
-		/// <summary>Member GetElementsByTagName </summary>
-		/// <param name='name'> </param>
-		/// <returns>A nsIDOMNodeList</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMNodeList GetElementsByTagName([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name);
 		
-		/// <summary>Member GetElementsByTagNameNS </summary>
-		/// <param name='namespaceURI'> </param>
-		/// <param name='localName'> </param>
-		/// <returns>A nsIDOMNodeList</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMNodeList GetElementsByTagNameNS([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase namespaceURI, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase localName);
@@ -405,20 +320,14 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMElement GetFirstElementChildAttribute();
 		
-		/// <summary>Member GetLastElementChildAttribute </summary>
-		/// <returns>A nsIDOMElement</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMElement GetLastElementChildAttribute();
 		
-		/// <summary>Member GetPreviousElementSiblingAttribute </summary>
-		/// <returns>A nsIDOMElement</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMElement GetPreviousElementSiblingAttribute();
 		
-		/// <summary>Member GetNextElementSiblingAttribute </summary>
-		/// <returns>A nsIDOMElement</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMElement GetNextElementSiblingAttribute();
@@ -441,15 +350,9 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetOnmouseenterAttribute(Gecko.JsVal aOnmouseenter, System.IntPtr jsContext);
 		
-		/// <summary>Member GetOnmouseleaveAttribute </summary>
-		/// <param name='jsContext'> </param>
-		/// <returns>A Gecko.JsVal</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new Gecko.JsVal GetOnmouseleaveAttribute(System.IntPtr jsContext);
 		
-		/// <summary>Member SetOnmouseleaveAttribute </summary>
-		/// <param name='aOnmouseleave'> </param>
-		/// <param name='jsContext'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetOnmouseleaveAttribute(Gecko.JsVal aOnmouseleave, System.IntPtr jsContext);
 		
@@ -602,23 +505,23 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void MozRequestPointerLock();
 		
-		/// <summary>Member GetIdAttribute </summary>
-		/// <param name='aId'> </param>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetIdAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aId);
 		
-		/// <summary>Member SetIdAttribute </summary>
-		/// <param name='aId'> </param>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetIdAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aId);
 		
-		/// <summary>Member GetClassNameAttribute </summary>
-		/// <param name='aClassName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetClassNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aClassName);
 		
-		/// <summary>Member SetClassNameAttribute </summary>
-		/// <param name='aClassName'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetClassNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aClassName);
 		
@@ -634,63 +537,39 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetAlignAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAlign);
 		
-		/// <summary>Member GetDirAttribute </summary>
-		/// <param name='aDir'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetDirAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDir);
 		
-		/// <summary>Member SetDirAttribute </summary>
-		/// <param name='aDir'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetDirAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDir);
 		
-		/// <summary>Member GetFlexAttribute </summary>
-		/// <param name='aFlex'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetFlexAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFlex);
 		
-		/// <summary>Member SetFlexAttribute </summary>
-		/// <param name='aFlex'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetFlexAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFlex);
 		
-		/// <summary>Member GetFlexGroupAttribute </summary>
-		/// <param name='aFlexGroup'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetFlexGroupAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFlexGroup);
 		
-		/// <summary>Member SetFlexGroupAttribute </summary>
-		/// <param name='aFlexGroup'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetFlexGroupAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFlexGroup);
 		
-		/// <summary>Member GetOrdinalAttribute </summary>
-		/// <param name='aOrdinal'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetOrdinalAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aOrdinal);
 		
-		/// <summary>Member SetOrdinalAttribute </summary>
-		/// <param name='aOrdinal'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetOrdinalAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aOrdinal);
 		
-		/// <summary>Member GetOrientAttribute </summary>
-		/// <param name='aOrient'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetOrientAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aOrient);
 		
-		/// <summary>Member SetOrientAttribute </summary>
-		/// <param name='aOrient'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetOrientAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aOrient);
 		
-		/// <summary>Member GetPackAttribute </summary>
-		/// <param name='aPack'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetPackAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPack);
 		
-		/// <summary>Member SetPackAttribute </summary>
-		/// <param name='aPack'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetPackAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPack);
 		
@@ -707,14 +586,10 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetHiddenAttribute([MarshalAs(UnmanagedType.U1)] bool aHidden);
 		
-		/// <summary>Member GetCollapsedAttribute </summary>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetCollapsedAttribute();
 		
-		/// <summary>Member SetCollapsedAttribute </summary>
-		/// <param name='aCollapsed'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetCollapsedAttribute([MarshalAs(UnmanagedType.U1)] bool aCollapsed);
 		
@@ -742,23 +617,15 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetMenuAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMenu);
 		
-		/// <summary>Member GetContextMenuAttribute </summary>
-		/// <param name='aContextMenu'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetContextMenuAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aContextMenu);
 		
-		/// <summary>Member SetContextMenuAttribute </summary>
-		/// <param name='aContextMenu'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetContextMenuAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aContextMenu);
 		
-		/// <summary>Member GetTooltipAttribute </summary>
-		/// <param name='aTooltip'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetTooltipAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTooltip);
 		
-		/// <summary>Member SetTooltipAttribute </summary>
-		/// <param name='aTooltip'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetTooltipAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTooltip);
 		
@@ -774,53 +641,33 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aWidth);
 		
-		/// <summary>Member GetHeightAttribute </summary>
-		/// <param name='aHeight'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetHeightAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aHeight);
 		
-		/// <summary>Member SetHeightAttribute </summary>
-		/// <param name='aHeight'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetHeightAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aHeight);
 		
-		/// <summary>Member GetMinWidthAttribute </summary>
-		/// <param name='aMinWidth'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetMinWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMinWidth);
 		
-		/// <summary>Member SetMinWidthAttribute </summary>
-		/// <param name='aMinWidth'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetMinWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMinWidth);
 		
-		/// <summary>Member GetMinHeightAttribute </summary>
-		/// <param name='aMinHeight'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetMinHeightAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMinHeight);
 		
-		/// <summary>Member SetMinHeightAttribute </summary>
-		/// <param name='aMinHeight'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetMinHeightAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMinHeight);
 		
-		/// <summary>Member GetMaxWidthAttribute </summary>
-		/// <param name='aMaxWidth'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetMaxWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMaxWidth);
 		
-		/// <summary>Member SetMaxWidthAttribute </summary>
-		/// <param name='aMaxWidth'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetMaxWidthAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMaxWidth);
 		
-		/// <summary>Member GetMaxHeightAttribute </summary>
-		/// <param name='aMaxHeight'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetMaxHeightAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMaxHeight);
 		
-		/// <summary>Member SetMaxHeightAttribute </summary>
-		/// <param name='aMaxHeight'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetMaxHeightAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMaxHeight);
 		
@@ -848,13 +695,9 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetLeftAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aLeft);
 		
-		/// <summary>Member GetTopAttribute </summary>
-		/// <param name='aTop'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetTopAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTop);
 		
-		/// <summary>Member SetTopAttribute </summary>
-		/// <param name='aTop'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetTopAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTop);
 		
@@ -870,13 +713,9 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetDatasourcesAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDatasources);
 		
-		/// <summary>Member GetRefAttribute </summary>
-		/// <param name='aRef'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetRefAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aRef);
 		
-		/// <summary>Member SetRefAttribute </summary>
-		/// <param name='aRef'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetRefAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aRef);
 		
@@ -892,178 +731,127 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetTooltipTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTooltipText);
 		
-		/// <summary>Member GetStatusTextAttribute </summary>
-		/// <param name='aStatusText'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetStatusTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aStatusText);
 		
-		/// <summary>Member SetStatusTextAttribute </summary>
-		/// <param name='aStatusText'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetStatusTextAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aStatusText);
 		
-		/// <summary>Member GetAllowEventsAttribute </summary>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetAllowEventsAttribute();
 		
-		/// <summary>Member SetAllowEventsAttribute </summary>
-		/// <param name='aAllowEvents'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetAllowEventsAttribute([MarshalAs(UnmanagedType.U1)] bool aAllowEvents);
 		
-		/// <summary>Member GetDatabaseAttribute </summary>
-		/// <returns>A nsIRDFCompositeDataSource</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIRDFCompositeDataSource GetDatabaseAttribute();
 		
-		/// <summary>Member GetBuilderAttribute </summary>
-		/// <returns>A nsIXULTemplateBuilder</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIXULTemplateBuilder GetBuilderAttribute();
 		
-		/// <summary>Member GetResourceAttribute </summary>
-		/// <returns>A nsIRDFResource</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIRDFResource GetResourceAttribute();
 		
-		/// <summary>Member GetControllersAttribute </summary>
-		/// <returns>A nsIControllers</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIControllers GetControllersAttribute();
 		
-		/// <summary>Member GetBoxObjectAttribute </summary>
-		/// <returns>A nsIBoxObject</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIBoxObject GetBoxObjectAttribute();
 		
-		/// <summary>Member Focus </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void Focus();
 		
-		/// <summary>Member Blur </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void Blur();
 		
-		/// <summary>Member Click </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void Click();
 		
-		/// <summary>Member DoCommand </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void DoCommand();
 		
-		/// <summary>Member GetElementsByAttribute </summary>
-		/// <param name='name'> </param>
-		/// <param name='value'> </param>
-		/// <returns>A nsIDOMNodeList</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMNodeList GetElementsByAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase value);
 		
-		/// <summary>Member GetElementsByAttributeNS </summary>
-		/// <param name='namespaceURI'> </param>
-		/// <param name='name'> </param>
-		/// <param name='value'> </param>
-		/// <returns>A nsIDOMNodeList</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMNodeList GetElementsByAttributeNS([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase namespaceURI, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase value);
 		
-		/// <summary>Member GetDisabledAttribute </summary>
-		/// <returns>A System.Boolean</returns>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetDisabledAttribute();
 		
-		/// <summary>Member SetDisabledAttribute </summary>
-		/// <param name='aDisabled'> </param>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetDisabledAttribute([MarshalAs(UnmanagedType.U1)] bool aDisabled);
 		
-		/// <summary>Member GetTabIndexAttribute </summary>
-		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new int GetTabIndexAttribute();
 		
-		/// <summary>Member SetTabIndexAttribute </summary>
-		/// <param name='aTabIndex'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetTabIndexAttribute(int aTabIndex);
 		
-		/// <summary>Member GetCropAttribute </summary>
-		/// <param name='aCrop'> </param>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetCropAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCrop);
 		
-		/// <summary>Member SetCropAttribute </summary>
-		/// <param name='aCrop'> </param>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetCropAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCrop);
 		
-		/// <summary>Member GetImageAttribute </summary>
-		/// <param name='aImage'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetImageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aImage);
 		
-		/// <summary>Member SetImageAttribute </summary>
-		/// <param name='aImage'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetImageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aImage);
 		
-		/// <summary>Member GetLabelAttribute </summary>
-		/// <param name='aLabel'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetLabelAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aLabel);
 		
-		/// <summary>Member SetLabelAttribute </summary>
-		/// <param name='aLabel'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetLabelAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aLabel);
 		
-		/// <summary>Member GetAccessKeyAttribute </summary>
-		/// <param name='aAccessKey'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetAccessKeyAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAccessKey);
 		
-		/// <summary>Member SetAccessKeyAttribute </summary>
-		/// <param name='aAccessKey'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetAccessKeyAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAccessKey);
 		
-		/// <summary>Member GetCommandAttribute </summary>
-		/// <param name='aCommand'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetCommandAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCommand);
 		
-		/// <summary>Member SetCommandAttribute </summary>
-		/// <param name='aCommand'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetCommandAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCommand);
 		
-		/// <summary>Member GetTypeAttribute </summary>
-		/// <param name='aType'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType);
 		
-		/// <summary>Member SetTypeAttribute </summary>
-		/// <param name='aType'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType);
 		
-		/// <summary>Member GetDlgTypeAttribute </summary>
-		/// <param name='aDlgType'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetDlgTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDlgType);
 		
-		/// <summary>Member SetDlgTypeAttribute </summary>
-		/// <param name='aDlgType'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetDlgTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDlgType);
 		
@@ -1093,24 +881,16 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetCheckedAttribute([MarshalAs(UnmanagedType.U1)] bool aChecked);
 		
-		/// <summary>Member GetCheckStateAttribute </summary>
-		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetCheckStateAttribute();
 		
-		/// <summary>Member SetCheckStateAttribute </summary>
-		/// <param name='aCheckState'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetCheckStateAttribute(int aCheckState);
 		
-		/// <summary>Member GetAutoCheckAttribute </summary>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetAutoCheckAttribute();
 		
-		/// <summary>Member SetAutoCheckAttribute </summary>
-		/// <param name='aAutoCheck'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetAutoCheckAttribute([MarshalAs(UnmanagedType.U1)] bool aAutoCheck);
 		
@@ -1131,7 +911,10 @@ namespace Gecko
 	public class nsIDOMXULButtonElementConsts
 	{
 		
-		// 
+		// <summary>
+        //This Source Code Form is subject to the terms of the Mozilla Public
+        // License, v. 2.0. If a copy of the MPL was not distributed with this
+        // file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		public const int CHECKSTATE_UNCHECKED = 0;
 		
 		// 

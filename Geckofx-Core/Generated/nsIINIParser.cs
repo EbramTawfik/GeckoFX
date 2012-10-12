@@ -24,10 +24,12 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIINIParser </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("7eb955f6-3e78-4d39-b72f-c1bf12a94bce")]
@@ -58,7 +60,7 @@ namespace Gecko
 	/// <summary>nsIINIParserWriter </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("712dc5da-8d09-45d0-ba2e-de27eb384c4c")]
+	[Guid("b67bb24b-31a3-4a6a-a5d9-0485c9af5a04")]
 	public interface nsIINIParserWriter
 	{
 		
@@ -72,7 +74,19 @@ namespace Gecko
         /// Write to the INI file.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void WriteFile([MarshalAs(UnmanagedType.Interface)] nsILocalFile aINIFile);
+		void WriteFile([MarshalAs(UnmanagedType.Interface)] nsILocalFile aINIFile, uint aFlags);
+	}
+	
+	/// <summary>nsIINIParserWriterConsts </summary>
+	public class nsIINIParserWriterConsts
+	{
+		
+		// <summary>
+        // Windows and the NSIS installer code sometimes expect INI files to be in
+        // UTF-16 encoding. On Windows only, this flag to writeFile can be used to
+        // change the encoding from its default UTF-8.
+        // </summary>
+		public const ulong WRITE_UTF16 = 0x1;
 	}
 	
 	/// <summary>nsIINIParserFactory </summary>

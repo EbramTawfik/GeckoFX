@@ -24,13 +24,15 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIDOMKeyEvent </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("def974c3-b491-481b-bc67-29174af4b26a")]
+	[Guid("229244a6-0515-43bc-8218-9a1b1774959f")]
 	public interface nsIDOMKeyEvent : nsIDOMUIEvent
 	{
 		
@@ -173,127 +175,86 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMWindow GetViewAttribute();
 		
-		/// <summary>Member GetDetailAttribute </summary>
-		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new int GetDetailAttribute();
 		
-		/// <summary>Member InitUIEvent </summary>
-		/// <param name='typeArg'> </param>
-		/// <param name='canBubbleArg'> </param>
-		/// <param name='cancelableArg'> </param>
-		/// <param name='viewArg'> </param>
-		/// <param name='detailArg'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void InitUIEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase typeArg, [MarshalAs(UnmanagedType.U1)] bool canBubbleArg, [MarshalAs(UnmanagedType.U1)] bool cancelableArg, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow viewArg, int detailArg);
 		
-		/// <summary>Member GetLayerXAttribute </summary>
-		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new int GetLayerXAttribute();
 		
-		/// <summary>Member GetLayerYAttribute </summary>
-		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new int GetLayerYAttribute();
 		
-		/// <summary>Member GetPageXAttribute </summary>
-		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new int GetPageXAttribute();
 		
-		/// <summary>Member GetPageYAttribute </summary>
-		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new int GetPageYAttribute();
 		
-		/// <summary>Member GetWhichAttribute </summary>
-		/// <returns>A System.UInt32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new uint GetWhichAttribute();
 		
-		/// <summary>Member GetRangeParentAttribute </summary>
-		/// <returns>A nsIDOMNode</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMNode GetRangeParentAttribute();
 		
-		/// <summary>Member GetRangeOffsetAttribute </summary>
-		/// <returns>A System.Int32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new int GetRangeOffsetAttribute();
 		
-		/// <summary>Member GetCancelBubbleAttribute </summary>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetCancelBubbleAttribute();
 		
-		/// <summary>Member SetCancelBubbleAttribute </summary>
-		/// <param name='aCancelBubble'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetCancelBubbleAttribute([MarshalAs(UnmanagedType.U1)] bool aCancelBubble);
 		
-		/// <summary>Member GetIsCharAttribute </summary>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetIsCharAttribute();
 		
-		/// <summary>Member GetCharCodeAttribute </summary>
-		/// <returns>A System.UInt32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetCharCodeAttribute();
 		
-		/// <summary>Member GetKeyCodeAttribute </summary>
-		/// <returns>A System.UInt32</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetKeyCodeAttribute();
 		
-		/// <summary>Member GetAltKeyAttribute </summary>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetAltKeyAttribute();
 		
-		/// <summary>Member GetCtrlKeyAttribute </summary>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetCtrlKeyAttribute();
 		
-		/// <summary>Member GetShiftKeyAttribute </summary>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetShiftKeyAttribute();
 		
-		/// <summary>Member GetMetaKeyAttribute </summary>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetMetaKeyAttribute();
 		
-		/// <summary>Member InitKeyEvent </summary>
-		/// <param name='typeArg'> </param>
-		/// <param name='canBubbleArg'> </param>
-		/// <param name='cancelableArg'> </param>
-		/// <param name='viewArg'> </param>
-		/// <param name='ctrlKeyArg'> </param>
-		/// <param name='altKeyArg'> </param>
-		/// <param name='shiftKeyArg'> </param>
-		/// <param name='metaKeyArg'> </param>
-		/// <param name='keyCodeArg'> </param>
-		/// <param name='charCodeArg'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void InitKeyEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase typeArg, [MarshalAs(UnmanagedType.U1)] bool canBubbleArg, [MarshalAs(UnmanagedType.U1)] bool cancelableArg, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow viewArg, [MarshalAs(UnmanagedType.U1)] bool ctrlKeyArg, [MarshalAs(UnmanagedType.U1)] bool altKeyArg, [MarshalAs(UnmanagedType.U1)] bool shiftKeyArg, [MarshalAs(UnmanagedType.U1)] bool metaKeyArg, uint keyCodeArg, uint charCodeArg);
+		
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetModifierState([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase keyArg);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetLocationAttribute();
 	}
 	
 	/// <summary>nsIDOMKeyEventConsts </summary>
 	public class nsIDOMKeyEventConsts
 	{
 		
-		// 
+		// <summary>
+        //This Source Code Form is subject to the terms of the Mozilla Public
+        // License, v. 2.0. If a copy of the MPL was not distributed with this
+        // file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		public const ulong DOM_VK_CANCEL = 0x03;
 		
 		// 
@@ -336,6 +297,11 @@ namespace Gecko
 		public const ulong DOM_VK_HANGUL = 0x15;
 		
 		// 
+		public const ulong DOM_VK_EISU = 0x16;
+		
+		// <summary>
+        // Japanese Mac keyboard only
+        // </summary>
 		public const ulong DOM_VK_JUNJA = 0x17;
 		
 		// 
@@ -440,10 +406,25 @@ namespace Gecko
 		public const ulong DOM_VK_9 = 0x39;
 		
 		// 
+		public const ulong DOM_VK_COLON = 0x3A;
+		
+		// 
 		public const ulong DOM_VK_SEMICOLON = 0x3B;
 		
 		// 
+		public const ulong DOM_VK_LESS_THAN = 0x3C;
+		
+		// 
 		public const ulong DOM_VK_EQUALS = 0x3D;
+		
+		// 
+		public const ulong DOM_VK_GREATER_THAN = 0x3E;
+		
+		// 
+		public const ulong DOM_VK_QUESTION_MARK = 0x3F;
+		
+		// 
+		public const ulong DOM_VK_AT = 0x40;
 		
 		// <summary>
         // DOM_VK_A - DOM_VK_Z match their ascii values
@@ -526,12 +507,17 @@ namespace Gecko
 		public const ulong DOM_VK_Z = 0x5A;
 		
 		// 
+		public const ulong DOM_VK_WIN = 0x5B;
+		
+		// 
 		public const ulong DOM_VK_CONTEXT_MENU = 0x5D;
 		
 		// 
 		public const ulong DOM_VK_SLEEP = 0x5F;
 		
-		// 
+		// <summary>
+        // Numpad keys
+        // </summary>
 		public const ulong DOM_VK_NUMPAD0 = 0x60;
 		
 		// 
@@ -658,6 +644,57 @@ namespace Gecko
 		public const ulong DOM_VK_SCROLL_LOCK = 0x91;
 		
 		// 
+		public const ulong DOM_VK_CIRCUMFLEX = 0xA0;
+		
+		// 
+		public const ulong DOM_VK_EXCLAMATION = 0xA1;
+		
+		// 
+		public const ulong DOM_VK_DOUBLE_QUOTE = 0xA2;
+		
+		// 
+		public const ulong DOM_VK_HASH = 0xA3;
+		
+		// 
+		public const ulong DOM_VK_DOLLAR = 0xA4;
+		
+		// 
+		public const ulong DOM_VK_PERCENT = 0xA5;
+		
+		// 
+		public const ulong DOM_VK_AMPERSAND = 0xA6;
+		
+		// 
+		public const ulong DOM_VK_UNDERSCORE = 0xA7;
+		
+		// 
+		public const ulong DOM_VK_OPEN_PAREN = 0xA8;
+		
+		// 
+		public const ulong DOM_VK_CLOSE_PAREN = 0xA9;
+		
+		// 
+		public const ulong DOM_VK_ASTERISK = 0xAA;
+		
+		// 
+		public const ulong DOM_VK_PLUS = 0xAB;
+		
+		// 
+		public const ulong DOM_VK_PIPE = 0xAC;
+		
+		// 
+		public const ulong DOM_VK_HYPHEN_MINUS = 0xAD;
+		
+		// 
+		public const ulong DOM_VK_OPEN_CURLY_BRACKET = 0xAE;
+		
+		// 
+		public const ulong DOM_VK_CLOSE_CURLY_BRACKET = 0xAF;
+		
+		// 
+		public const ulong DOM_VK_TILDE = 0xB0;
+		
+		// 
 		public const ulong DOM_VK_COMMA = 0xBC;
 		
 		// 
@@ -672,16 +709,43 @@ namespace Gecko
 		// 
 		public const ulong DOM_VK_OPEN_BRACKET = 0xDB;
 		
-		// 
+		// <summary>
+        // square bracket
+        // </summary>
 		public const ulong DOM_VK_BACK_SLASH = 0xDC;
 		
 		// 
 		public const ulong DOM_VK_CLOSE_BRACKET = 0xDD;
 		
-		// 
+		// <summary>
+        // square bracket
+        // </summary>
 		public const ulong DOM_VK_QUOTE = 0xDE;
 		
-		// 
+		// <summary>
+        // Apostrophe
+        // </summary>
 		public const ulong DOM_VK_META = 0xE0;
+		
+		// 
+		public const ulong DOM_VK_ALTGR = 0xE1;
+		
+		// 
+		public const ulong DOM_KEY_LOCATION_STANDARD = 0x00;
+		
+		// 
+		public const ulong DOM_KEY_LOCATION_LEFT = 0x01;
+		
+		// 
+		public const ulong DOM_KEY_LOCATION_RIGHT = 0x02;
+		
+		// 
+		public const ulong DOM_KEY_LOCATION_NUMPAD = 0x03;
+		
+		// 
+		public const ulong DOM_KEY_LOCATION_MOBILE = 0x04;
+		
+		// 
+		public const ulong DOM_KEY_LOCATION_JOYSTICK = 0x05;
 	}
 }

@@ -24,7 +24,6 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
 	/// <summary>
@@ -36,7 +35,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("53E29996-F851-4032-B896-8AAFBD0BDF25")]
+	[Guid("22f9f2ef-18f0-4f8f-a459-6ec8cfaa4f59")]
 	public interface nsIDOMMouseEvent : nsIDOMUIEvent
 	{
 		
@@ -262,6 +261,9 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		ushort GetButtonAttribute();
 		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		ushort GetButtonsAttribute();
+		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMEventTarget GetRelatedTargetAttribute();
@@ -297,6 +299,10 @@ namespace Gecko
 					[MarshalAs(UnmanagedType.Interface)] nsIDOMEventTarget relatedTargetArg, 
 					float pressure, 
 					ushort inputSourceArg);
+		
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetModifierState([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase keyArg);
 	}
 	
 	/// <summary>nsIDOMMouseEventConsts </summary>

@@ -24,18 +24,18 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIDOMChromeWindow </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("7cfbc355-cbf9-4408-8e4c-a3c603ff1428")]
 	public interface nsIDOMChromeWindow
 	{
 		
-		/// <summary>Member GetWindowStateAttribute </summary>
-		/// <returns>A System.UInt16</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		ushort GetWindowStateAttribute();
 		
@@ -56,29 +56,21 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetBrowserDOMWindowAttribute([MarshalAs(UnmanagedType.Interface)] nsIBrowserDOMWindow aBrowserDOMWindow);
 		
-		/// <summary>Member GetAttention </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetAttention();
 		
-		/// <summary>Member GetAttentionWithCycleCount </summary>
-		/// <param name='aCycleCount'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetAttentionWithCycleCount(int aCycleCount);
 		
-		/// <summary>Member SetCursor </summary>
-		/// <param name='cursor'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetCursor([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase cursor);
 		
-		/// <summary>Member Maximize </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Maximize();
 		
-		/// <summary>Member Minimize </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Minimize();
 		
-		/// <summary>Member Restore </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Restore();
 		
@@ -89,8 +81,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void NotifyDefaultButtonLoaded([MarshalAs(UnmanagedType.Interface)] nsIDOMElement defaultButton);
 		
-		/// <summary>Member GetMessageManagerAttribute </summary>
-		/// <returns>A nsIChromeFrameMessageManager</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIChromeFrameMessageManager GetMessageManagerAttribute();
@@ -114,7 +104,10 @@ namespace Gecko
 	public class nsIDOMChromeWindowConsts
 	{
 		
-		// 
+		// <summary>
+        //This Source Code Form is subject to the terms of the Mozilla Public
+        // License, v. 2.0. If a copy of the MPL was not distributed with this
+        // file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		public const ulong STATE_MAXIMIZED = 1;
 		
 		// 

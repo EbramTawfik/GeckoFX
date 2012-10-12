@@ -24,37 +24,34 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIDOMSVGTests </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("b6186ed0-0861-11e1-be50-0800200c9a66")]
 	public interface nsIDOMSVGTests
 	{
 		
-		/// <summary>Member GetRequiredFeaturesAttribute </summary>
-		/// <returns>A nsIDOMSVGStringList</returns>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMSVGStringList GetRequiredFeaturesAttribute();
 		
-		/// <summary>Member GetRequiredExtensionsAttribute </summary>
-		/// <returns>A nsIDOMSVGStringList</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMSVGStringList GetRequiredExtensionsAttribute();
 		
-		/// <summary>Member GetSystemLanguageAttribute </summary>
-		/// <returns>A nsIDOMSVGStringList</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMSVGStringList GetSystemLanguageAttribute();
 		
-		/// <summary>Member HasExtension </summary>
-		/// <param name='extension'> </param>
-		/// <returns>A System.Boolean</returns>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool HasExtension([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase extension);

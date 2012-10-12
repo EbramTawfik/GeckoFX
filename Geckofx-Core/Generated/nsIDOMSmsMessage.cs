@@ -24,13 +24,15 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIDOMMozSmsMessage </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this file,
+    /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("20da0c51-2224-49ae-afe9-4b309c6d8f84")]
+	[Guid("fc58ba6e-70de-4550-aa1e-790ecc19cf98")]
 	public interface nsIDOMMozSmsMessage
 	{
 		
@@ -40,8 +42,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetIdAttribute();
 		
-		/// <summary>Member GetDeliveryAttribute </summary>
-		/// <param name='aDelivery'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetDeliveryAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDelivery);
 		
@@ -51,20 +51,20 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetSenderAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSender);
 		
-		/// <summary>Member GetReceiverAttribute </summary>
-		/// <param name='aReceiver'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetReceiverAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aReceiver);
 		
-		/// <summary>Member GetBodyAttribute </summary>
-		/// <param name='aBody'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetBodyAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBody);
 		
-		/// <summary>Member GetTimestampAttribute </summary>
-		/// <param name='jsContext'> </param>
-		/// <returns>A Gecko.JsVal</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		Gecko.JsVal GetTimestampAttribute(System.IntPtr jsContext);
+		
+		/// <summary>
+        /// jsval is for Date.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetReadAttribute();
 	}
 }

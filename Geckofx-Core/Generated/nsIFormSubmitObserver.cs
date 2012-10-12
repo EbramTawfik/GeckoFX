@@ -24,27 +24,25 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIFormSubmitObserver </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("534ab795-6a99-4195-bfab-cfdd7836657d")]
 	public interface nsIFormSubmitObserver
 	{
 		
-		/// <summary>Member Notify </summary>
-		/// <param name='formNode'> </param>
-		/// <param name='window'> </param>
-		/// <param name='actionURL'> </param>
-		/// <param name='cancelSubmit'> </param>
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Notify([MarshalAs(UnmanagedType.Interface)] nsIDOMHTMLFormElement formNode, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, [MarshalAs(UnmanagedType.Interface)] nsIURI actionURL, [MarshalAs(UnmanagedType.U1)] ref bool cancelSubmit);
 		
-		/// <summary>Member NotifyInvalidSubmit </summary>
-		/// <param name='formNode'> </param>
-		/// <param name='invalidElements'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void NotifyInvalidSubmit([MarshalAs(UnmanagedType.Interface)] nsIDOMHTMLFormElement formNode, [MarshalAs(UnmanagedType.Interface)] nsIArray invalidElements);
 	}

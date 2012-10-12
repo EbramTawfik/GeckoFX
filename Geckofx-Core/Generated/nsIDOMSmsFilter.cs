@@ -24,13 +24,15 @@ namespace Gecko
 	using System.Runtime.InteropServices;
 	using System.Runtime.InteropServices.ComTypes;
 	using System.Runtime.CompilerServices;
-
 	
 	
-	/// <summary>nsIDOMMozSmsFilter </summary>
+	/// <summary>
+    ///This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this file,
+    /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("7da08e45-ee81-4293-912b-2f2fea5b6935")]
+	[Guid("ce055c33-553d-4b0e-9bd8-91d93a057c90")]
 	public interface nsIDOMMozSmsFilter
 	{
 		
@@ -81,5 +83,17 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetDeliveryAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDelivery);
+		
+		/// <summary>
+        /// A read flag that can be a boolean or undefined.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetReadAttribute(System.IntPtr jsContext);
+		
+		/// <summary>
+        /// A read flag that can be a boolean or undefined.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetReadAttribute(Gecko.JsVal aRead, System.IntPtr jsContext);
 	}
 }
