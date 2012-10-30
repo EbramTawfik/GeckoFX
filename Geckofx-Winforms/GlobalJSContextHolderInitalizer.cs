@@ -36,7 +36,7 @@ namespace Gecko
 				return _jsContext;
 
 			_browser = new GeckoWebBrowser();
-			_browser.LoadHtml("<html><body></body></html>");
+			_browser.LoadHtml("<html><head><meta http-equiv=\"ContentType\" content=\"text/html; charset=utf-8\" /></head><body></body></html>");
 
 			_browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
 
