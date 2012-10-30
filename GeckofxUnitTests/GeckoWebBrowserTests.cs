@@ -315,6 +315,57 @@ namespace GeckofxUnitTests
 			}
 		}
 
+		//[Ignore]
+		[Test]
+		public void EvaluateScript_Run500Times_DoesNotCrash()
+		{
+			browser.TestLoadHtml("");
+
+			using (AutoJSContext context = new AutoJSContext(browser.JSContext))
+			{
+				for (int i = 0; i < 500; i++)
+				{
+					string result;
+					context.EvaluateScript("2+3;", out result);
+					Assert.AreEqual("5", result);
+				}
+			}
+		}
+
+		//[Ignore]
+		[Test]
+		public void EvaluateScript_Run500TimesCreatingNewAutoJSContextEachTime_DoesNotCrash()
+		{
+			browser.TestLoadHtml("");
+
+			for (int i = 0; i < 500; i++)
+			{
+				using (AutoJSContext context = new AutoJSContext(browser.JSContext))
+				{
+					string result;
+					context.EvaluateScript("2+3;", out result);
+					Assert.AreEqual("5", result);
+				}
+			}
+		}
+
+		//[Ignore]
+		[Test]
+		public void EvaluateScript_Run500TimesNavigatingToANewDocumentEachTime_DoesNotCrash()
+		{			
+			for (int i = 0; i < 500; i++)
+			{
+				browser.TestLoadHtml(String.Format("{0}", i));
+
+				using (AutoJSContext context = new AutoJSContext(browser.JSContext))
+				{
+					string result;
+					context.EvaluateScript("2+3;", out result);
+					Assert.AreEqual("5", result);
+				}
+			}
+		}
+
 		[Test]
 		public void GetMarkupDocumentViewer_InitalizedDocument_ValidGeckoMarkupDocumentViewerReturned()
 		{
