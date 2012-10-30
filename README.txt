@@ -2,6 +2,12 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v15.0-0.2 ==
+
+1. Fix #1 : HTML5 video and audio still non-functional - https://bitbucket.org/geckofx/geckofx-15.0/issue/1
+2. Fix #4 - CreateJSContext puts an error in the console
+3. Fix #7 - GeckoWebBrowser.GetMarkupDocumentViewer() throws Access Violation on subsequent calls
+
 == v15.0-0.1 ==
 
 1. Initial version supporting firefox/xulrunner v15.0
