@@ -432,10 +432,23 @@ namespace Gecko
 				referrerUri = IOService.CreateNsIUri( referrer );
 			}
 
+			ClearCachedCOMPtrs();
+
 			WebNav.LoadURI(url, (uint)loadFlags, referrerUri, postData != null ? postData.InputStream : null, headers != null ? headers.InputStream : null);
 
 			return true;
 		}
+
+		/// <summary>
+		/// A Naviagation causes cached COM Ptrs to document objects to be invalid.
+		/// This method is called before LoadURI and reset all cached COM Ptrs to null.
+		/// </summary>
+		void ClearCachedCOMPtrs()
+		{
+			_MarkupDocumentViewer = null;
+		}
+
+
 		#endregion
 
 		/// <summary>
