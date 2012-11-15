@@ -44,7 +44,9 @@ namespace Gecko
 			return new nsURI(CreateNsIUri(url));
 		}
 
-
+		public static nsIChannel NewChannelFromUri(nsIURI uri) {
+			return _service.Instance.NewChannelFromURI(uri);
+		}
 
 	}
 }
