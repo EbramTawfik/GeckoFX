@@ -26,7 +26,7 @@ namespace Gecko
 		/// </summary>
 		public GeckoHeadElement Head
 		{
-			get { return GeckoHtmlElement.Create<GeckoHeadElement>(_domHtmlDocument.GetHeadAttribute()); }
+			get { return (_domHtmlDocument == null) ? null : GeckoHtmlElement.Create<GeckoHeadElement>(_domHtmlDocument.GetHeadAttribute()); }
 		}
 
 		/// <summary>
@@ -34,7 +34,7 @@ namespace Gecko
 		/// </summary>
 		public GeckoHtmlElement Body
 		{
-			get { return GeckoHtmlElement.Create<GeckoHtmlElement>(_domHtmlDocument.GetBodyAttribute()); }
+			get { return (_domHtmlDocument == null) ? null : GeckoHtmlElement.Create<GeckoHtmlElement>(_domHtmlDocument.GetBodyAttribute()); }
 		}
 		
 		/// <summary>
@@ -110,43 +110,43 @@ namespace Gecko
 		/// </summary>
 		public Uri Url
 		{
-			get { return new Uri(nsString.Get(_domHtmlDocument.GetURLAttribute)); }
+			get { return (_domHtmlDocument == null) ? null : new Uri(nsString.Get(_domHtmlDocument.GetURLAttribute)); }
 		}
 		
 		public GeckoElementCollection Forms
 		{
-			get { return new GeckoHtmlElementCollection(_domHtmlDocument.GetFormsAttribute()); }
+			get { return (_domHtmlDocument == null) ? null : new GeckoHtmlElementCollection(_domHtmlDocument.GetFormsAttribute()); }
 		}
 		
 		public GeckoElementCollection Images
 		{
-			get { return new GeckoHtmlElementCollection(_domHtmlDocument.GetImagesAttribute()); }
+			get { return (_domHtmlDocument == null) ? null : new GeckoHtmlElementCollection(_domHtmlDocument.GetImagesAttribute()); }
 		}
 		
 		public GeckoElementCollection Anchors
 		{
-			get { return new GeckoHtmlElementCollection(_domHtmlDocument.GetAnchorsAttribute()); }
+			get { return (_domHtmlDocument == null) ? null : new GeckoHtmlElementCollection(_domHtmlDocument.GetAnchorsAttribute()); }
 		}
 		
 		public GeckoElementCollection Applets
 		{
-			get { return new GeckoHtmlElementCollection(_domHtmlDocument.GetAppletsAttribute()); }
+			get { return (_domHtmlDocument == null) ? null : new GeckoHtmlElementCollection(_domHtmlDocument.GetAppletsAttribute()); }
 		}
 		
 		public GeckoElementCollection Links
 		{
-			get { return new GeckoHtmlElementCollection(_domHtmlDocument.GetLinksAttribute()); }
+			get { return (_domHtmlDocument == null) ? null : new GeckoHtmlElementCollection(_domHtmlDocument.GetLinksAttribute()); }
 		}
 		
 		public string Cookie
 		{
-			get { return nsString.Get(_domHtmlDocument.GetCookieAttribute); }
+			get { return (_domHtmlDocument == null) ? null : nsString.Get(_domHtmlDocument.GetCookieAttribute); }
 			set { nsString.Set(_domHtmlDocument.SetCookieAttribute, value); }
 		}
 		
 		public string Domain
 		{
-			get { return nsString.Get(_domHtmlDocument.GetDomainAttribute); }
+			get { return (_domHtmlDocument == null) ? null : nsString.Get(_domHtmlDocument.GetDomainAttribute); }
 		}
 		
 

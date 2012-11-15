@@ -59,7 +59,10 @@ namespace Gecko.DOM
 		}
 
 		public GeckoDocument ContentDocument {
-			get { return new GeckoDocument(DOMHTMLElement.GetContentDocumentAttribute() as nsIDOMHTMLDocument); }
+			get {
+				var doc = DOMHTMLElement.GetContentDocumentAttribute() as nsIDOMHTMLDocument;
+				return (doc == null) ? null : new GeckoDocument(doc);
+			}
 		}
 
 	}
