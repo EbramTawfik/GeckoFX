@@ -25,7 +25,8 @@ namespace Gecko
 		/// </summary>
 		public string ContentType
 		{
-			get { return nsString.Get(Channel.GetContentTypeAttribute); }
+			get { return (Channel == null) ? null : nsString.Get(Channel.GetContentTypeAttribute);
+			}
 		}
 		
 		/// <summary>
@@ -33,7 +34,8 @@ namespace Gecko
 		/// </summary>
 		public string ContentCharset
 		{
-			get { return nsString.Get(Channel.GetContentCharsetAttribute); }
+			get { return (Channel == null) ? null : nsString.Get(Channel.GetContentCharsetAttribute);
+			}
 		}
 		
 		/// <summary>
@@ -41,7 +43,7 @@ namespace Gecko
 		/// </summary>
 		public int ContentLength
 		{
-			get { return Channel.GetContentLengthAttribute(); }
+			get { return (Channel == null) ? -1 : Channel.GetContentLengthAttribute(); }
 		}
 		
 		/// <summary>
