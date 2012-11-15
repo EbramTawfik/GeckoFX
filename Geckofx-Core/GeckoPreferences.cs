@@ -193,5 +193,16 @@ namespace Gecko
 			
 			return Branch.PrefIsLocked(name);
 		}
+
+		/// <summary>
+		/// Clear user preferences
+		/// </summary>
+		/// <param name="name">Required. The preference to lock or unlock.</param>
+		public void Clear(string name) {
+			if (string.IsNullOrEmpty(name))
+				throw new ArgumentException("name");
+
+			Branch.ClearUserPref(name);
+		}
 	}
 }
