@@ -64,7 +64,8 @@ namespace Gecko
 		private static readonly object DomFocusEvent = new object();
 		private static readonly object DomBlurEvent = new object();
 		private static readonly object LoadEvent = new object();
-	    private static readonly object HashChangeEvent = new object();
+		private static readonly object DOMContentLoadedEvent = new object();
+		private static readonly object HashChangeEvent = new object();
 		private static readonly object DomContentChangedEvent = new object();
 		private static readonly object DomClickEvent = new object();
 		private static readonly object DomDoubleClickEvent = new object();
@@ -839,6 +840,26 @@ namespace Gecko
 		{
 			var evnt = (EventHandler<GeckoDomEventArgs>)Events[LoadEvent];
 			if (evnt != null) evnt(this, e);
+		}
+		#endregion
+
+		#region public event GeckoDomEventHandler DOMContentLoaded
+		[Category("DOM Events")]
+		public event EventHandler<GeckoDomEventArgs> DOMContentLoaded {
+			add {
+				Events.AddHandler(DOMContentLoadedEvent, value);
+			}
+			remove {
+				Events.RemoveHandler(DOMContentLoadedEvent, value);
+			}
+		}
+
+		/// <summary>Raises the <see cref="LoadEvent"/> event.</summary>
+		/// <param name="e">The data for the event.</param>
+		protected virtual void OnDOMContentLoaded(GeckoDomEventArgs e) {
+			var evnt = (EventHandler<GeckoDomEventArgs>)Events[DOMContentLoadedEvent];
+			if (evnt != null)
+				evnt(this, e);
 		}
 		#endregion
 

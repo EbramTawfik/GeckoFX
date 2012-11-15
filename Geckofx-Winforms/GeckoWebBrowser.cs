@@ -1885,6 +1885,7 @@ namespace Gecko
 				case "focus": OnDomFocus(ea = new GeckoDomEventArgs(e)); break;
 				case "blur": OnDomBlur(ea = new GeckoDomEventArgs(e)); break;
 				case "load": OnLoad(ea = new GeckoDomEventArgs(e)); break;
+				case "DOMContentLoaded": OnDOMContentLoaded(ea = new GeckoDomEventArgs(e)); break;
 				case "change": OnDomContentChanged(ea = new GeckoDomEventArgs(e)); break;
 				case "hashchange": OnHashChange(ea = new GeckoDomEventArgs(e)); break;
 				case "dragstart": OnDomDragStart((GeckoDomDragEventArgs)(ea = new GeckoDomDragEventArgs((nsIDOMDragEvent)e))); break;
