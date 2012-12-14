@@ -5,6 +5,7 @@ using System.Text;
 
 namespace Gecko.Listeners
 {
+	[Obsolete]
     class GeckoDOMEventListener : GeckoBaseListener, nsIDOMEventListener
     {
         public GeckoDOMEventListener(nsIDOMEventListener p_broowser)

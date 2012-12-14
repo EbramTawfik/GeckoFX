@@ -5,6 +5,7 @@ using System.Text;
 
 namespace Gecko.Listeners
 {
+	[Obsolete]
     class GeckoSHistoryListener : GeckoBaseListener, nsISHistoryListener
     {
         public GeckoSHistoryListener(nsISHistoryListener p_broowser)

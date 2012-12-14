@@ -6,6 +6,7 @@ using System.Runtime.InteropServices;
 
 namespace Gecko.Listeners
 {
+	[Obsolete]
     class GeckoWebProgressListener : GeckoBaseListener, nsIWebProgressListener
     {
         public GeckoWebProgressListener(nsIWebProgressListener p_broowser)

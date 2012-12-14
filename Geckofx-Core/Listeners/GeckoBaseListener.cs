@@ -6,6 +6,7 @@ using System.Runtime.InteropServices;
 
 namespace Gecko.Listeners
 {
+	[Obsolete]
     abstract class GeckoBaseListener : nsISupportsWeakReference, nsIWeakReference
     {
         protected System.WeakReference _weakBrowser;

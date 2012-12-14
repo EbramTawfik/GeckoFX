@@ -47,11 +47,18 @@ namespace Gecko.Cache
 			set { _cacheEntryDescriptor.SetCacheElementAttribute( value ); }
 		}
 
-		public new uint ExpirationTime
+		public new uint ExpirationTimeNative
 		{
 			get { return _cacheEntryDescriptor.GetExpirationTimeAttribute(); }
-			set{_cacheEntryDescriptor.SetExpirationTime( value );}
+			set { _cacheEntryDescriptor.SetExpirationTime(value); }
 		}
+
+		public new DateTime ExpirationTime
+		{
+			get { return Xpcom.Time.FromSecondsSinceEpoch(ExpirationTimeNative); }
+			set { ExpirationTimeNative = Xpcom.Time.ToSecondsSinceEpoch(value); }
+		}
+
 
 		public long PredictedDataSize
 		{
@@ -108,6 +115,17 @@ namespace Gecko.Cache
 		public void SetMetaDataElement( string key, string value )
 		{
 			_cacheEntryDescriptor.SetMetaDataElement( key, value );
+		}
+
+		public KeyValuePair<string, string>[] GetAllMetadata()
+		{
+			KeyValuePair<string, string>[] ret = null;
+			using (var searcher = new CacheEntryMetadataSearcher((x, y) => true))
+			{
+				_cacheEntryDescriptor.VisitMetaData(searcher);
+				ret = searcher.GetResult();
+			}
+			return ret;
 		}
 
 		public KeyValuePair<string,string>[] SearchInMetadata(Func<string,string,bool> predicate)

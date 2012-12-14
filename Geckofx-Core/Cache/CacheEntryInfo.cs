@@ -1,3 +1,5 @@
+using System;
+
 namespace Gecko.Cache
 {
 	public class CacheEntryInfo
@@ -23,10 +25,16 @@ namespace Gecko.Cache
 			get { return _cacheEntryInfo.GetDeviceIDAttribute(); }
 		}
 
-		public uint ExpirationTime
+		public uint ExpirationTimeNative
 		{
 			get { return _cacheEntryInfo.GetExpirationTimeAttribute(); }
 		}
+
+		public DateTime ExpirationTime
+		{
+			get { return Xpcom.Time.FromSecondsSinceEpoch(ExpirationTimeNative); }
+		}
+
 
 		public int FetchCount
 		{

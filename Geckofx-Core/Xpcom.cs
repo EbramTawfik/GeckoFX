@@ -587,6 +587,27 @@ namespace Gecko
 			}
 		}
 		#endregion
+
+		public static class Time
+		{
+			private static readonly DateTime _utcLinuxStartEpoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+
+			public static DateTime EpochStart
+			{
+				get { return _utcLinuxStartEpoch; }
+			}
+
+			public static DateTime FromSecondsSinceEpoch(uint time)
+			{
+				return _utcLinuxStartEpoch.AddSeconds(time);
+			}
+
+			public static uint ToSecondsSinceEpoch(DateTime time)
+			{
+				return (uint)(time.ToUniversalTime() - _utcLinuxStartEpoch).Seconds;
+			}
+		}
+
 		#endregion
 	}
 }

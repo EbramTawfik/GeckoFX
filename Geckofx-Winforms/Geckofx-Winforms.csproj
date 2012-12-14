@@ -162,6 +162,7 @@
     <Compile Include="Utils\SaveImageElement.cs" />
     <Compile Include="Linux\X11Structs.cs" />
     <Compile Include="Linux\GtkOnceOnly.cs" />
+    <Compile Include="Utils\WindowsImageCreator.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Dialogs\ChromeDialog.resx">
