@@ -30,7 +30,7 @@ namespace Gecko.Cache
 			if (_cacheSession != null)
 			{
 				var session = Interlocked.Exchange( ref _cacheSession, null );
-				Marshal.ReleaseComObject( _cacheSession );
+				Marshal.ReleaseComObject(session);
 			}
 		}
 
