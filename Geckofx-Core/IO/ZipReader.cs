@@ -39,10 +39,7 @@ namespace Gecko.IO
 
 		public void Close()
 		{
-			if (_zipReader == null) return;
-			var obj = Interlocked.Exchange( ref _zipReader, null );
-			obj.Instance.Close();
-			obj.Dispose();
+			Xpcom.DisposeObject( ref _zipReader );
 		}
 
 		public bool HasEntry(string entry)

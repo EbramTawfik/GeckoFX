@@ -555,6 +555,41 @@ namespace Gecko
 				
 		}
 
+		internal static void DisposeObject<T>(ref T obj)
+			where T :class ,IDisposable
+		{
+			// take it to local variable
+			var localObj = Interlocked.Exchange(ref obj, null);
+			// if it is already null -> return
+			if (localObj == null) return;
+			// Dispose
+			localObj.Dispose();
+		}
+
+		internal static void FreeComObject<T>(ref T obj)
+			where T : class
+		{
+			// take it to local variable
+			var localObj = Interlocked.Exchange( ref obj, null );
+			// if it is already null -> return
+			if ( localObj == null ) return;
+			// release
+			int count=Marshal.ReleaseComObject( localObj );
+
+			Console.WriteLine( "Com Release type={0},count={1}", typeof( T ), count );
+		}
+
+		internal static void FinalFreeComObject<T>(ref T obj)
+			where T : class
+		{
+			// take it to local variable
+			var localObj = Interlocked.Exchange(ref obj, null);
+			// if it is already null -> return
+			if (localObj == null) return;
+			// release
+			Marshal.FinalReleaseComObject(localObj);
+		}
+
 		#region Internal class & interface declarations
 		#region QI_nsIInterfaceRequestor	
 		/// <summary>

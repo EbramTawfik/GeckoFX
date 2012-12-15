@@ -470,32 +470,7 @@ namespace Gecko
 		public void LoadBase64EncodedData(string type, string data)
 		{
 			var bytes = System.Text.Encoding.UTF8.GetBytes(data);
-			Navigate(string.Format("data:{0};base64,{1}", type, Convert.ToBase64String(bytes)));
-		}
-
-		/// <summary>
-		/// Return a Bitmap Image of the current WebBrowsers Rendered page.
-		/// Not supported on Linux - use OffScreenGeckoWebBrowser.
-		/// </summary>
-		/// <param name="width">Width of the bimap</param>
-		/// <param name="height">Height of the bitmap</param>
-		/// <returns></returns>
-		public Bitmap GetBitmap(uint width, uint height)
-		{
-			return GetBitmap(0, 0, width, height);
-		}
-
-		/// <summary>
-		/// Return a Bitmap Image of the current WebBrowsers Rendered page.
-		/// </summary>
-		/// <param name="xOffset"></param>
-		/// <param name="yOffset"></param>
-		/// <param name="width">Width of the bitmap</param>
-		/// <param name="height">Height of the bitmap</param>
-		/// <returns></returns>
-		public Bitmap GetBitmap(uint xOffset, uint yOffset, uint width, uint height)
-		{			
-			return new ImageCreator(this).CanvasGetBitmap(xOffset, yOffset, width, height);
+			Navigate( string.Concat( "data:", type, ";base64,", Convert.ToBase64String( bytes ) ) );
 		}
 
 

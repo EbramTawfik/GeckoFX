@@ -2,6 +2,9 @@ using System;
 
 namespace Gecko.Certificates
 {
+	//https://bugzilla.mozilla.org/show_bug.cgi?id=643041
+	// nsIX509Cert nsIX509Cert2 nsIX509Cert3 - will be merged
+
 	public sealed class Certificate
 		: System.IEquatable<Certificate>
 	{

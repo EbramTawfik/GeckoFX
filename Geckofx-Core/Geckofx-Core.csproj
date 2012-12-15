@@ -99,7 +99,9 @@
     <Compile Include="DOM\GeckoNodeCollection.cs" />
     <Compile Include="DOM\GeckoNodeEnumerable.cs" />
     <Compile Include="DOM\Html\GeckoHtmlElement.cs" />
+    <Compile Include="DOM\Location.cs" />
     <Compile Include="DOM\WindowUtils.cs" />
+    <Compile Include="DOM\Xml\XmlDocument.cs" />
     <Compile Include="GeckoWindow.cs" />
     <Compile Include="DOM\Html\GeckoDocument.cs" />
     <Compile Include="DOM\Html\GeckoHtmlElementCollection.cs" />

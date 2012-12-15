@@ -4,6 +4,10 @@ using System.Threading;
 
 namespace Gecko
 {
+	/// <summary>
+	/// Class for fixing memory leaks :)
+	/// </summary>
+	/// <typeparam name="T"></typeparam>
 	internal sealed class InstanceWrapper<T>
 		:IDisposable,IEquatable<InstanceWrapper<T>>
 		where T : class
@@ -47,22 +51,15 @@ namespace Gecko
 
 		~InstanceWrapper()
 		{
-			FreeInstanceReference();
+			Xpcom.FreeComObject( ref Instance );
 		}
 
 		public void Dispose()
 		{
-			FreeInstanceReference();
+			Xpcom.FreeComObject(ref Instance);
 			GC.SuppressFinalize(this);
 		}
 		#endregion
-
-		private void FreeInstanceReference()
-		{
-			if (Instance == null) return;
-			var obj = Interlocked.Exchange(ref Instance, null);
-			Marshal.ReleaseComObject( obj );
-		}
 
 		/// <summary>
 		/// Finaly releases Xulrunner COM object
@@ -70,9 +67,7 @@ namespace Gecko
 		/// </summary>
 		public void FinalRelease()
 		{
-			if (Instance == null) return;
-			var obj = Interlocked.Exchange(ref Instance, null);
-			Marshal.FinalReleaseComObject(obj);
+			Xpcom.FinalFreeComObject( ref Instance );
 		}
 
 		public bool Equals(InstanceWrapper<T> other)

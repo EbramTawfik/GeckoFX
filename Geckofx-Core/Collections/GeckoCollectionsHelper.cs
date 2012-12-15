@@ -6,7 +6,7 @@ namespace Gecko.Collections
 	{
 		internal static nsIMutableArray CreateArray()
 		{
-			return Xpcom.CreateInstance<nsIMutableArray>( "@mozilla.org/array;1" );
+			return Xpcom.CreateInstance<nsIMutableArray>( Contracts.Array );
 		}
 
 		internal static T GetElementAs<T>(this nsIArray array,int index)

@@ -8,8 +8,7 @@ namespace Gecko.IO
 
 		public ScriptableInputStream()
 		{
-			var stream = Xpcom.CreateInstance<nsIScriptableInputStream>( Contracts.ScriptableInputStream );
-			_scriptableInputStream = Xpcom.QueryInterface<nsIScriptableInputStream>( stream );
+			_scriptableInputStream = Xpcom.CreateInstance<nsIScriptableInputStream>(Contracts.ScriptableInputStream);
 		}
 
 		public ScriptableInputStream(InputStream stream)

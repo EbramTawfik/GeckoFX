@@ -17,7 +17,7 @@ namespace Gecko.Interop
 	{
 		private T _instance;
 
-		#region ctor & dtor	
+		#region ctor & dtor
 		internal ServiceWrapper(string contractID)
 		{
 			CreateServiceReference( contractID );
@@ -30,12 +30,12 @@ namespace Gecko.Interop
 
 		~ServiceWrapper()
 		{
-			FreeServiceReference();
+			Xpcom.FreeComObject( ref _instance );
 		}
 
 		public void Dispose()
 		{
-			FreeServiceReference();
+			Xpcom.FreeComObject(ref _instance);
 			GC.SuppressFinalize(this);
 		}
 		#endregion
@@ -61,13 +61,6 @@ namespace Gecko.Interop
 				throw new GeckoException("Xpcom.Initialize must be called before using of any xulrunner/gecko-fx services");
 			}
 			_instance = Xpcom.GetService<T>(contractID);
-		}
-
-		private void FreeServiceReference()
-		{
-			if (_instance == null) return;
-			var service=Interlocked.Exchange( ref _instance, null );
-			Marshal.ReleaseComObject( service );
 		}
 		#endregion
 

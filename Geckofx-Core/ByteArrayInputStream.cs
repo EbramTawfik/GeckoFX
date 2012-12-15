@@ -6,21 +6,21 @@ namespace Gecko
 	/// <summary>
 	/// Streams a byte array using nsIInputStream.
 	/// </summary>
-	#region class ByteArrayInputStream : nsIInputStream
-	public class ByteArrayInputStream : nsIInputStream
+	public class ByteArrayInputStream
+		: nsIInputStream
 	{
-		private ByteArrayInputStream(byte[] data)
+		private byte[] _data;
+		private int _position;
+
+		private ByteArrayInputStream( byte[] data )
 		{
-			Data = data;
+			_data = data;
 		}
 
-		public static ByteArrayInputStream Create(byte[] data)
+		public static ByteArrayInputStream Create( byte[] data )
 		{
-			return (data == null) ? null : new ByteArrayInputStream(data);
+			return ( data == null ) ? null : new ByteArrayInputStream( data );
 		}
-
-		byte[] Data;
-		int Position;
 
 		#region nsIInputStream Members
 
@@ -31,46 +31,46 @@ namespace Gecko
 
 		public uint Available()
 		{
-			return (uint)(Data.Length - Position);
+			return (uint)(_data.Length - _position);
 		}
 
-		public uint Read(IntPtr aBuf, uint aCount)
+		public uint Read( IntPtr aBuf, uint aCount )
 		{
-			uint count = Math.Min(aCount, Available());
+			uint count = Math.Min( aCount, Available() );
 
-			if (count > 0)
+			if ( count > 0 )
 			{
-				Marshal.Copy(Data, Position, aBuf, (int)count);
+				Marshal.Copy(_data, _position, aBuf, (int)count);
 #if DEBUG
-				for (int i = 0; i < count; ++i)
+				for ( int i = 0; i < count; ++i )
 				{
-					Console.WriteLine((char)Marshal.ReadByte(aBuf, i));
+					Console.WriteLine( ( char ) Marshal.ReadByte( aBuf, i ) );
 				}
 #endif
-				Position += (int)count;
+				_position += (int)count;
 			}
 
 			return count;
 		}
 
-		public unsafe uint ReadSegments(nsWriteSegmentFun aWriter, IntPtr aClosure, uint aCount)
+		public unsafe uint ReadSegments( nsWriteSegmentFun aWriter, IntPtr aClosure, uint aCount )
 		{
-			int length = (int)Math.Min(aCount, Available());
+			int length = ( int ) Math.Min( aCount, Available() );
 			int writeCount = 0;
 
-			if (length > 0)
+			if ( length > 0 )
 			{
 				nsWriteSegmentFun fun = aWriter;
 
-				fixed (byte* data = &Data[Position])
+				fixed (byte* data = &_data[_position])
 				{
-					fun(this, aClosure, (IntPtr)data, Position, length, out writeCount);
+					fun(this, aClosure, (IntPtr)data, _position, length, out writeCount);
 				}
 
-				Position += writeCount;
+				_position += writeCount;
 			}
 
-			return (uint)writeCount;
+			return ( uint ) writeCount;
 		}
 
 		public bool IsNonBlocking()
@@ -80,5 +80,4 @@ namespace Gecko
 
 		#endregion
 	}
-	#endregion
-	}
+}

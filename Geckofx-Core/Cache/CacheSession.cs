@@ -5,51 +5,30 @@ using System.Threading;
 namespace Gecko.Cache
 {
 	public sealed class CacheSession
-		:IDisposable 
 	{
-		private nsICacheSession _cacheSession;
+		private InstanceWrapper<nsICacheSession> _cacheSession;
 
 		internal CacheSession(nsICacheSession cacheSession)
 		{
-			_cacheSession = cacheSession;
-		}
-
-		~CacheSession()
-		{
-			Free();
-		}
-
-		public void Dispose()
-		{
-			Free();
-			GC.SuppressFinalize( this );
-		}
-
-		private void Free()
-		{
-			if (_cacheSession != null)
-			{
-				var session = Interlocked.Exchange( ref _cacheSession, null );
-				Marshal.ReleaseComObject(session);
-			}
+			_cacheSession = new InstanceWrapper<nsICacheSession>(cacheSession);
 		}
 
 		public bool DoomEntriesIfExpired
 		{
-			get { return _cacheSession.GetDoomEntriesIfExpiredAttribute(); }
-			set { _cacheSession.SetDoomEntriesIfExpiredAttribute(value); }
+			get { return _cacheSession.Instance.GetDoomEntriesIfExpiredAttribute(); }
+			set { _cacheSession.Instance.SetDoomEntriesIfExpiredAttribute(value); }
 		}
 
 		public bool IsStorageEnabled
 		{
 
-			get { return _cacheSession.IsStorageEnabled(); }
+			get { return _cacheSession.Instance.IsStorageEnabled(); }
 		}
 
 
 		public void EvictEntries()
 		{
-			_cacheSession.EvictEntries();
+			_cacheSession.Instance.EvictEntries();
 		}
 
 		public CacheEntryDescriptor OpenCacheEntry(string key, CacheAccessMode accessRequested, bool blockingMode)
@@ -57,7 +36,7 @@ namespace Gecko.Cache
 			nsICacheEntryDescriptor descriptor = null;
 			try
 			{
-				descriptor = _cacheSession.OpenCacheEntry( new nsACString( key ), ( IntPtr ) ( int ) accessRequested, blockingMode );
+				descriptor = _cacheSession.Instance.OpenCacheEntry(new nsACString(key), (IntPtr)(int)accessRequested, blockingMode);
 			}
 			catch ( System.Runtime.InteropServices.COMException )
 			{

@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices;
 using Gecko.DOM;
 namespace Gecko
 {
@@ -6,9 +7,21 @@ namespace Gecko
 	/// </summary>
 	public class GeckoWindow
 	{
+		private InstanceWrapper<nsIDOMWindow> _domWindow;
+
 		public GeckoWindow(nsIDOMWindow window)
 		{
-			_DomWindow = window;
+			int hashCode = window.GetHashCode();
+			int refCount = Interop.ComDebug.GetComRefCount( window );
+			int rcwCount = Interop.ComDebug.GetRcwRefCount( window );
+			System.Console.WriteLine( "{0} - ref:{1},rcw:{2}", hashCode, refCount, rcwCount );
+			_domWindow = new InstanceWrapper<nsIDOMWindow>( window );
+			
+		}
+
+		~GeckoWindow()
+		{
+			Xpcom.DisposeObject( ref _domWindow );
 		}
 		
 		/// <summary>
@@ -16,9 +29,8 @@ namespace Gecko
 		/// </summary>
 		public nsIDOMWindow DomWindow
 		{
-			get { return _DomWindow; }
+			get { return _domWindow.Instance; }
 		}
-		nsIDOMWindow _DomWindow;
 
 		public WindowUtils WindowUtils 
 		{
@@ -35,7 +47,7 @@ namespace Gecko
 		/// </summary>
 		public GeckoDocument Document
 		{
-			get { return GeckoDocument.Create((nsIDOMHTMLDocument)_DomWindow.GetDocumentAttribute()); }
+			get { return GeckoDocument.Create( ( nsIDOMHTMLDocument ) _domWindow.Instance.GetDocumentAttribute() ); }
 		}
 		
 		/// <summary>
@@ -43,77 +55,73 @@ namespace Gecko
 		/// </summary>
 		public GeckoWindow Parent
 		{
-			get { return GeckoWindow.Create((nsIDOMWindow)_DomWindow.GetParentAttribute()); }
+			get { return GeckoWindow.Create( ( nsIDOMWindow ) _domWindow.Instance.GetParentAttribute() ); }
 		}
 
 		public int ScrollX
 		{
-			get { return _DomWindow.GetScrollXAttribute(); }
+			get { return _domWindow.Instance.GetScrollXAttribute(); }
 		}
 		
 		public int ScrollY
 		{
-			get { return _DomWindow.GetScrollYAttribute(); }
+			get { return _domWindow.Instance.GetScrollYAttribute(); }
 		}
 
 		public void ScrollTo(int xScroll, int yScroll)
 		{
-			_DomWindow.ScrollTo(xScroll, yScroll);
+			_domWindow.Instance.ScrollTo( xScroll, yScroll );
 		}
 
 		public void ScrollBy(int xScrollDif, int yScrollDif)
 		{
-			_DomWindow.ScrollBy(xScrollDif, yScrollDif);
+			_domWindow.Instance.ScrollBy( xScrollDif, yScrollDif );
 		}
 
 		public void ScrollByLines(int numLines)
 		{
-			_DomWindow.ScrollByLines(numLines);
+			_domWindow.Instance.ScrollByLines( numLines );
 		}
 
 		public void ScrollByPages(int numPages)
 		{
-			_DomWindow.ScrollByPages(numPages);
+			_domWindow.Instance.ScrollByPages( numPages );
 		}
 
 		public void SizeToContent()
 		{
-			_DomWindow.SizeToContent();
+			_domWindow.Instance.SizeToContent();
 		}
 
 		public float TextZoom
 		{
-			get { return _DomWindow.GetTextZoomAttribute(); }
-			set { _DomWindow.SetTextZoomAttribute(value); }
+			get { return _domWindow.Instance.GetTextZoomAttribute(); }
+			set { _domWindow.Instance.SetTextZoomAttribute( value ); }
 		}
 		
 		public GeckoWindow Top
 		{
-			get { return GeckoWindow.Create((nsIDOMWindow)_DomWindow.GetTopAttribute()); }
+			get { return GeckoWindow.Create( _domWindow.Instance.GetTopAttribute() ); }
 		}
 		
 		public string Name
 		{
-			get { return nsString.Get(_DomWindow.GetNameAttribute); }
-			set { nsString.Set(_DomWindow.SetNameAttribute, value); }
+			get { return nsString.Get( _domWindow.Instance.GetNameAttribute ); }
+			set { nsString.Set( _domWindow.Instance.SetNameAttribute, value ); }
 		}
 		
 		public void Print()
 		{
-			nsIWebBrowserPrint print = Xpcom.QueryInterface<nsIWebBrowserPrint>(this.DomWindow);
+			nsIWebBrowserPrint print = Xpcom.QueryInterface<nsIWebBrowserPrint>( _domWindow.Instance );
 			
 			print.Print(null, null);
+
+			Marshal.ReleaseComObject( print );
 		}
 		
 		public GeckoSelection Selection
 		{
-			get 
-			{
-				if (_DomWindow.GetSelection() == null)
-					return null;
-
-				return new GeckoSelection(this._DomWindow.GetSelection());
-			}
+			get { return GeckoSelection.Create( _domWindow.Instance.GetSelection() ); }
 		}
 	}
 }

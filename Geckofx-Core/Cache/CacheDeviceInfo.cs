@@ -2,36 +2,36 @@ namespace Gecko.Cache
 {
 	public sealed class CacheDeviceInfo
 	{
-		private readonly nsICacheDeviceInfo _cacheDeviceInfo;
+		private InstanceWrapper<nsICacheDeviceInfo> _cacheDeviceInfo;
 
 		internal CacheDeviceInfo(nsICacheDeviceInfo cacheDeviceInfo)
 		{
-			_cacheDeviceInfo = cacheDeviceInfo;
+			_cacheDeviceInfo = new InstanceWrapper<nsICacheDeviceInfo>( cacheDeviceInfo );
 		}
 
 		public string Description
 		{
-			get { return _cacheDeviceInfo.GetDescriptionAttribute(); }
+			get { return _cacheDeviceInfo.Instance.GetDescriptionAttribute(); }
 		}
 
 		public uint EntryCount
 		{
-			get { return _cacheDeviceInfo.GetEntryCountAttribute(); }
+			get { return _cacheDeviceInfo.Instance.GetEntryCountAttribute(); }
 		}
 
 		public uint MaximumSize
 		{
-			get { return _cacheDeviceInfo.GetMaximumSizeAttribute(); }
+			get { return _cacheDeviceInfo.Instance.GetMaximumSizeAttribute(); }
 		}
 
 		public uint TotalSize
 		{
-			get { return _cacheDeviceInfo.GetTotalSizeAttribute(); }
+			get { return _cacheDeviceInfo.Instance.GetTotalSizeAttribute(); }
 		}
 
 		public string UsageReport
 		{
-			get { return _cacheDeviceInfo.GetUsageReportAttribute(); }
+			get { return _cacheDeviceInfo.Instance.GetUsageReportAttribute(); }
 		}
 	}
 }

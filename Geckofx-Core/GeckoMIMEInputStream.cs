@@ -6,39 +6,48 @@ using System.Runtime.InteropServices;
 
 namespace Gecko
 {
-	public class GeckoMIMEInputStream : IDisposable
+	public class GeckoMIMEInputStream
+		:IDisposable
 	{
-		public nsIMIMEInputStream InputStream { get; protected set; }
+		private InstanceWrapper<nsIMIMEInputStream> _inputStream;
+
+		public nsIMIMEInputStream InputStream
+		{
+			get { return _inputStream.Instance; }
+		}
 
 		public GeckoMIMEInputStream()
-		{			
-			InputStream = Xpcom.CreateInstance<nsIMIMEInputStream>("@mozilla.org/network/mime-input-stream;1");
+		{
+			_inputStream = new InstanceWrapper<nsIMIMEInputStream>( Contracts.MimeInputStream );
+		}
+
+		public void Dispose()
+		{
+			Xpcom.DisposeObject( ref _inputStream );
 		}
 
 		public bool AddContentLength
 		{
 			set
 			{
-				InputStream.SetAddContentLengthAttribute(value);
+				_inputStream.Instance.SetAddContentLengthAttribute(value);
 			}
 		}
 
 		public void AddHeader(string name, string value)
 		{
-			InputStream.AddHeader(name, value);
+			_inputStream.Instance.AddHeader(name, value);
 		}	
 
 		public void SetData(string data)
 		{
-			var instance = Xpcom.CreateInstance<nsIStringInputStream>("@mozilla.org/io/string-input-stream;1");
-			instance.SetData(data, data.Length);
-			InputStream.SetData(instance);
-			Marshal.ReleaseComObject(instance);
-		}
-
-		public void Dispose()
-		{
-			Marshal.ReleaseComObject(InputStream);
+			using(var stringInputStream = new InstanceWrapper<nsIStringInputStream>( "@mozilla.org/io/string-input-stream;1" ))
+			{
+				stringInputStream.Instance.SetData(data, data.Length);
+				_inputStream.Instance.SetData(stringInputStream.Instance);
+			}
+			
+			
 		}
 	}
 }

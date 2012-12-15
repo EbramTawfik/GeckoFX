@@ -5,6 +5,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 using GeckoFX.Microsoft;
 
 namespace Gecko.Utils
@@ -13,6 +14,37 @@ namespace Gecko.Utils
 #else
 	public static class WindowsImageCreator
 	{
+		private static byte[] SaveBmpAsPng(Bitmap bmp)
+		{
+			byte[] ret = null;
+			// Saving to stream
+			using (var m = new MemoryStream(500))
+			{
+				bmp.Save(m, ImageFormat.Png);
+				ret = m.ToArray();
+			}
+			return ret;
+		}
+
+		private static byte[] HbitmapToPng(IntPtr hBitmap)
+		{
+			byte[] ret = null;
+			// calling  Image.FromHbitmap cause error when hBitmap is not exists
+			try
+			{
+				// get a .NET image object for it
+				using (Bitmap img = Image.FromHbitmap(hBitmap))
+				{
+					ret = SaveBmpAsPng( img );
+				}
+			}
+			catch (Exception)
+			{
+
+			}
+			return ret;
+		}
+
 		/// <summary>
 		/// Windows only window capture by handle
 		/// </summary>
@@ -41,32 +73,13 @@ namespace Gecko.Utils
 			// clean up 
 			Gdi32.DeleteDC(hdcDest);
 			User32.ReleaseDC(handle, hdcSrc);
-			byte[] ret = null;
-			// calling  Image.FromHbitmap cause error when hBitmap is not exists
-			try
-			{
-				// get a .NET image object for it
-				using ( Bitmap img = Image.FromHbitmap( hBitmap ) )
-				{
-					// Saving to stream
-					using ( var m = new MemoryStream(500) )
-					{
-						img.Save( m, ImageFormat.Png );
-						ret = m.ToArray();
-					}
-				}
-			}
-			catch ( Exception )
-			{
-
-			}finally
-			{
-				// free up the Bitmap object
-				Gdi32.DeleteObject( hBitmap );
-			}
-			
+			byte[] ret = HbitmapToPng( hBitmap );
+			// free up the Bitmap object
+			Gdi32.DeleteObject( hBitmap );
 			return ret;
 		}
+
+
 
 		/// <summary>
 		/// Capture whole WebBrowser window (Only on MS Windows Platform)
@@ -75,6 +88,32 @@ namespace Gecko.Utils
 		public static byte[] CapturePng(this GeckoWebBrowser browser)
 		{
 			return WindowsCapturePng(browser.Handle);
+		}
+
+
+		/// <summary>
+		/// Return a Bitmap Image of the current WebBrowsers Rendered page.
+		/// Not supported on Linux - use OffScreenGeckoWebBrowser.
+		/// </summary>
+		/// <param name="width">Width of the bimap</param>
+		/// <param name="height">Height of the bitmap</param>
+		/// <returns></returns>
+		public static Bitmap GetBitmap(this GeckoWebBrowser browser,uint width, uint height)
+		{
+			return GetBitmap(browser,0, 0, width, height);
+		}
+
+		/// <summary>
+		/// Return a Bitmap Image of the current WebBrowsers Rendered page.
+		/// </summary>
+		/// <param name="xOffset"></param>
+		/// <param name="yOffset"></param>
+		/// <param name="width">Width of the bitmap</param>
+		/// <param name="height">Height of the bitmap</param>
+		/// <returns></returns>
+		public static Bitmap GetBitmap(this GeckoWebBrowser browser, uint xOffset, uint yOffset, uint width, uint height)
+		{
+			return new ImageCreator(browser).CanvasGetBitmap(xOffset, yOffset, width, height);
 		}
 	}
 

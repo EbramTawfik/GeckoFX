@@ -252,12 +252,13 @@ namespace Gecko
 		}
 
 
-		///// <summary>
-		///// @see <http://www.whatwg.org/html/#dom-document-location>
-		///// </summary>
-		//[return: MarshalAs(UnmanagedType.Interface)]
-		//[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		//nsIDOMLocation GetLocationAttribute();
+		/// <summary>
+		/// @see <http://www.whatwg.org/html/#dom-document-location>
+		/// </summary>
+		public Location Location
+		{
+			get{return new Location( _domDocument.GetLocationAttribute() );}
+		}
 
 		/// <summary>
 		/// Gets the document title.

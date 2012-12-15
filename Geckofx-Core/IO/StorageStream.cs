@@ -7,31 +7,30 @@ namespace Gecko.IO
 {
 	public sealed class StorageStream
 	{
-		internal nsIStorageStream _storageStream;
+		private InstanceWrapper<nsIStorageStream> _storageStream;
 		public StorageStream()
 		{
-			var storageStream = Xpcom.CreateInstance<nsIStorageStream>(Contracts.StorageStream);
-			_storageStream = Xpcom.QueryInterface<nsIStorageStream>(storageStream);
+			_storageStream = new InstanceWrapper<nsIStorageStream>(Contracts.StorageStream);
 
-			_storageStream.Init( 1024 * 32, 1024 * 1024 * 16, null );
+			_storageStream.Instance.Init( 1024 * 32, 1024 * 1024 * 16, null );
 
 		}
 
 		public OutputStream GetOutputStream(int position)
 		{
-			return OutputStream.Create( _storageStream.GetOutputStream( position ) );
+			return OutputStream.Create(_storageStream.Instance.GetOutputStream(position));
 		}
 
 
 		public InputStream NewInputStream(int position)
 		{
-			return InputStream.Create( _storageStream.NewInputStream( position ) );
+			return InputStream.Create(_storageStream.Instance.NewInputStream(position));
 		}
 
 		public uint Length
 		{
-			get { return _storageStream.GetLengthAttribute(); }
-			set { _storageStream.SetLengthAttribute( value ); }
+			get { return _storageStream.Instance.GetLengthAttribute(); }
+			set { _storageStream.Instance.SetLengthAttribute(value); }
 		}
 	}
 }

@@ -9,6 +9,7 @@ namespace Gecko
 	{
 		#region contracts for elements that HAVE wrappers
 		#region Network
+		public static readonly string MimeInputStream = "@mozilla.org/network/mime-input-stream;1";
 		internal static readonly string DnsService = "@mozilla.org/network/dns-service;1";
 		internal static readonly string StreamListenerTee = "@mozilla.org/network/stream-listener-tee;1";
 		public static readonly string CacheService = "@mozilla.org/network/cache-service;1";
@@ -30,6 +31,7 @@ namespace Gecko
 		public static readonly string ImageContainer = "@mozilla.org/image/container;1";
 		#endregion
 
+		public static readonly string Array = "@mozilla.org/array;1";
 		public static readonly string WindowWatcher = "@mozilla.org/embedcomp/window-watcher;1";
 		public static readonly string WritableVariant = "@mozilla.org/variant;1";
 		public static readonly string ZipReader = "@mozilla.org/libjar/zip-reader;1";
