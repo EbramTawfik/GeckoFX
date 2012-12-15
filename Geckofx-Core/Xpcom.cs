@@ -573,10 +573,11 @@ namespace Gecko
 			var localObj = Interlocked.Exchange( ref obj, null );
 			// if it is already null -> return
 			if ( localObj == null ) return;
-			// release
-			int count=Marshal.ReleaseComObject( localObj );
 
-			Console.WriteLine( "Com Release type={0},count={1}", typeof( T ), count );
+			var hash = localObj.GetHashCode();
+			// release
+			int count = Marshal.ReleaseComObject( localObj );
+			Console.WriteLine( "ComRelease hash={0}, type={1},count={2}", hash, typeof( T ), count );
 		}
 
 		internal static void FinalFreeComObject<T>(ref T obj)
