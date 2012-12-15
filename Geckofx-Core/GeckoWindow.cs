@@ -1,3 +1,4 @@
+using System;
 using System.Runtime.InteropServices;
 using Gecko.DOM;
 namespace Gecko
@@ -6,6 +7,7 @@ namespace Gecko
 	/// Represents a DOM window.
 	/// </summary>
 	public class GeckoWindow
+		:IDisposable 
 	{
 		private InstanceWrapper<nsIDOMWindow> _domWindow;
 
@@ -22,6 +24,12 @@ namespace Gecko
 		~GeckoWindow()
 		{
 			Xpcom.DisposeObject( ref _domWindow );
+		}
+
+		public void Dispose()
+		{
+			Xpcom.DisposeObject( ref _domWindow );
+			GC.SuppressFinalize( this );
 		}
 		
 		/// <summary>

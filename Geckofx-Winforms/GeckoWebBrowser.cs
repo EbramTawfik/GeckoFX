@@ -1695,6 +1695,11 @@ namespace Gecko
 				}
 			}
 			#endregion STATE_STOP
+
+			if (domWindow!=null)
+			{
+				domWindow.Dispose();
+			}
 		}
 
 		void nsIWebProgressListener.OnProgressChange(nsIWebProgress aWebProgress, nsIRequest aRequest, int aCurSelfProgress, int aMaxSelfProgress, int aCurTotalProgress, int aMaxTotalProgress)
@@ -1713,14 +1718,15 @@ namespace Gecko
 			if (IsDisposed) return;
 
 			Uri uri = new Uri(nsString.Get(aLocation.GetSpecAttribute));
-			var domWindow = GeckoWindow.Create(aWebProgress.GetDOMWindowAttribute());
+			using ( var domWindow = GeckoWindow.Create( aWebProgress.GetDOMWindowAttribute() ) )
+			{
 
-			bool sameDocument = (flags & nsIWebProgressListenerConstants.LOCATION_CHANGE_SAME_DOCUMENT) != 0;
-			bool errorPage = (flags & nsIWebProgressListenerConstants.LOCATION_CHANGE_ERROR_PAGE) != 0;
-			var ea = new GeckoNavigatedEventArgs(uri, aRequest, domWindow, sameDocument, errorPage);
+				bool sameDocument = ( flags & nsIWebProgressListenerConstants.LOCATION_CHANGE_SAME_DOCUMENT ) != 0;
+				bool errorPage = ( flags & nsIWebProgressListenerConstants.LOCATION_CHANGE_ERROR_PAGE ) != 0;
+				var ea = new GeckoNavigatedEventArgs( uri, aRequest, domWindow, sameDocument, errorPage );
 
-			OnNavigated(ea);
-
+				OnNavigated( ea );
+			}
 			UpdateCommandStatus();
 		}
 
@@ -1818,14 +1824,17 @@ namespace Gecko
 				OnProgressChanged(new GeckoProgressEventArgs(aCurTotalProgress, aMaxTotalProgress));
 		}
 
-		bool nsIWebProgressListener2.OnRefreshAttempted(nsIWebProgress aWebProgress, nsIURI aRefreshURI, int aMillis, bool aSameURI)
+		bool nsIWebProgressListener2.OnRefreshAttempted( nsIWebProgress aWebProgress, nsIURI aRefreshURI, int aMillis, bool aSameURI )
 		{
-			Uri destUri = new Uri(nsString.Get(aRefreshURI.GetSpecAttribute));
-			var domWindow = GeckoWindow.Create(aWebProgress.GetDOMWindowAttribute());
-
-			GeckoNavigatingEventArgs ea = new GeckoNavigatingEventArgs(destUri, domWindow);
+			Uri destUri = new Uri( nsString.Get( aRefreshURI.GetSpecAttribute ) );
+			bool cancel = false;
+			using ( var domWindow = GeckoWindow.Create( aWebProgress.GetDOMWindowAttribute() ) )
+			{
+				GeckoNavigatingEventArgs ea = new GeckoNavigatingEventArgs( destUri, domWindow );
+				cancel = ea.Cancel;
+			}
 			//OnRefreshAttempt();
-			return !ea.Cancel;
+			return !cancel;
 		}
 
 		#endregion
