@@ -8,9 +8,14 @@ namespace Gecko.Net
 	{
 		internal readonly nsIRequest _request;
 
-		internal Request(nsIRequest request)
+		protected Request(nsIRequest request)
 		{
 			_request = request;
+		}
+
+		public static Request Create(nsIRequest request)
+		{
+			return request == null ? null : new Request( request );
 		}
 		
 		/// <summary>
@@ -48,11 +53,7 @@ namespace Gecko.Net
 
 		public LoadGroup LoadGroup
 		{
-			get
-			{
-				var loadGroup = _request.GetLoadGroupAttribute();
-				return loadGroup == null ? null : new LoadGroup( loadGroup );
-			}
+			get { return LoadGroup.Create( _request.GetLoadGroupAttribute() ); }
 			set { _request.SetLoadGroupAttribute( value._loadGroup ); }
 		}
 

@@ -1,6 +1,7 @@
 using System;
 using System.Runtime.InteropServices;
 using System.Threading;
+using Gecko.Interop;
 
 namespace Gecko.Cache
 {
@@ -10,6 +11,7 @@ namespace Gecko.Cache
 
 		internal CacheSession(nsICacheSession cacheSession)
 		{
+			//ComDebug.WriteDebugInfo( cacheSession );
 			_cacheSession = new InstanceWrapper<nsICacheSession>(cacheSession);
 		}
 

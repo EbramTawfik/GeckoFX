@@ -13,12 +13,8 @@ namespace Gecko
 
 		public GeckoWindow(nsIDOMWindow window)
 		{
-			int hashCode = window.GetHashCode();
-			int refCount = Interop.ComDebug.GetComRefCount( window );
-			int rcwCount = Interop.ComDebug.GetRcwRefCount( window );
-			System.Console.WriteLine( "{0} - ref:{1},rcw:{2}", hashCode, refCount, rcwCount );
+			//Interop.ComDebug.WriteDebugInfo( window );
 			_domWindow = new InstanceWrapper<nsIDOMWindow>( window );
-			
 		}
 
 		~GeckoWindow()
@@ -63,7 +59,7 @@ namespace Gecko
 		/// </summary>
 		public GeckoWindow Parent
 		{
-			get { return GeckoWindow.Create( ( nsIDOMWindow ) _domWindow.Instance.GetParentAttribute() ); }
+			get { return Create( _domWindow.Instance.GetParentAttribute() ); }
 		}
 
 		public int ScrollX
@@ -109,7 +105,7 @@ namespace Gecko
 		
 		public GeckoWindow Top
 		{
-			get { return GeckoWindow.Create( _domWindow.Instance.GetTopAttribute() ); }
+			get { return Create( _domWindow.Instance.GetTopAttribute() ); }
 		}
 		
 		public string Name

@@ -1,4 +1,5 @@
 using System;
+using Gecko.Interop;
 
 namespace Gecko.Cache
 {

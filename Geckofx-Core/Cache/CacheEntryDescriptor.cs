@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Threading;
 using Gecko.IO;
+using Gecko.Interop;
 
 namespace Gecko.Cache
 {
@@ -14,6 +15,7 @@ namespace Gecko.Cache
 		public CacheEntryDescriptor( nsICacheEntryDescriptor cacheEntryDescriptor )
 			: base( cacheEntryDescriptor )
 		{
+			//ComDebug.WriteDebugInfo(cacheEntryDescriptor);
 			_cacheEntryDescriptor = cacheEntryDescriptor;
 		}
 

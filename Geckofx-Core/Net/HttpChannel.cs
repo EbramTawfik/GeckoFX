@@ -11,7 +11,7 @@ namespace Gecko.Net
 		private nsIHttpChannel _httpChannel;
 		private bool _decrement;
 
-		internal HttpChannel(nsIHttpChannel httpChannel)
+		private HttpChannel(nsIHttpChannel httpChannel)
 			:base(httpChannel)
 		{
 			_httpChannel = httpChannel;
@@ -20,6 +20,11 @@ namespace Gecko.Net
 		~HttpChannel()
 		{
 			Release();
+		}
+
+		public static HttpChannel Create(nsIHttpChannel httpChannel)
+		{
+			return httpChannel == null ? null : new HttpChannel( httpChannel );
 		}
 
 		public void Dispose()
@@ -196,10 +201,6 @@ namespace Gecko.Net
 			return ret;
 		}
 
-		public static HttpChannel Create(nsIHttpChannel httpChannel)
-		{
-			return new HttpChannel( httpChannel );
-		}
 
 		private sealed class HttpHeaderVisitor
 			: nsIHttpHeaderVisitor

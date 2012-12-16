@@ -30,6 +30,9 @@ namespace Gecko
 		public static readonly string ImageCache = "@mozilla.org/image/cache;1";
 		public static readonly string ImageContainer = "@mozilla.org/image/container;1";
 		#endregion
+		#region IO
+		public static readonly string StringInputStream = "@mozilla.org/io/string-input-stream;1";
+		#endregion
 
 		public static readonly string Array = "@mozilla.org/array;1";
 		public static readonly string WindowWatcher = "@mozilla.org/embedcomp/window-watcher;1";

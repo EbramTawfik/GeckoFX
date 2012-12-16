@@ -47,7 +47,6 @@ namespace Gecko
 			get { return (byte)((_value & 0x00FF0000) >> 16); }
 		}
 
-
 		public static int MakeNsColor(byte a,byte r,byte g,byte b)
 		{
 			return ((a << 24) | ((b) << 16) | ((g) << 8) | (r));

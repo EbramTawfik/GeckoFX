@@ -33,10 +33,10 @@ namespace Gecko.Interop
 			RegisterWrapper( new Func<nsIX509Cert, Certificate>( Certificate.Create ) );
 			RegisterWrapper( new Func<nsIX509Cert2, Certificate>( Certificate.Create ) );
 			RegisterWrapper( new Func<nsIX509Cert3, Certificate>( Certificate.Create ) );
-			RegisterWrapper( new Func<nsIRequest, Net.Request>( x => new Request( x ) ) );
-			RegisterWrapper(new Func<nsIChannel, Net.Channel>(x => new Channel(x)));
+			RegisterWrapper( new Func<nsIRequest, Net.Request>(Request.Create ) );
+			RegisterWrapper(new Func<nsIChannel, Net.Channel>(Channel.Create));
 			RegisterWrapper(new Func<nsIHttpChannel, Net.HttpChannel>(HttpChannel.Create));
-			RegisterWrapper(new Func<nsILoadGroup, Net.LoadGroup>(x => new LoadGroup(x)));
+			RegisterWrapper( new Func<nsILoadGroup, Net.LoadGroup>( LoadGroup.Create ) );
 		}
 
 		private static void RegisterWrapper<TWrapper, TGeckoObject>( Func<TGeckoObject, TWrapper> translator )

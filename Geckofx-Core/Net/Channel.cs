@@ -8,10 +8,15 @@ namespace Gecko.Net
 	{
 		private nsIChannel _channel;
 
-		internal Channel(nsIChannel channel)
+		protected Channel(nsIChannel channel)
 			:base(channel)
 		{
 			_channel = channel;
+		}
+
+		public static Channel Create(nsIChannel channel)
+		{
+			return channel == null ? null : new Channel( channel );
 		}
 
 		public Uri OriginalUri

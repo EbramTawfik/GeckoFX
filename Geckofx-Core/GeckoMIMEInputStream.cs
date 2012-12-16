@@ -41,7 +41,7 @@ namespace Gecko
 
 		public void SetData(string data)
 		{
-			using(var stringInputStream = new InstanceWrapper<nsIStringInputStream>( "@mozilla.org/io/string-input-stream;1" ))
+			using ( var stringInputStream = new InstanceWrapper<nsIStringInputStream>( Contracts.StringInputStream ) ) 
 			{
 				stringInputStream.Instance.SetData(data, data.Length);
 				_inputStream.Instance.SetData(stringInputStream.Instance);

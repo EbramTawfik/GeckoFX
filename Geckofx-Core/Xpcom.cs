@@ -38,6 +38,7 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
+using Gecko.Interop;
 using GeckoFX.Microsoft;
 using System.Threading;
 
@@ -569,16 +570,19 @@ namespace Gecko
 		internal static void FreeComObject<T>(ref T obj)
 			where T : class
 		{
+#if false
+			// When debug -> use special version, that writes debug information
+			ComDebug.DebugFreeComObject( ref obj );
+#else	
 			// take it to local variable
-			var localObj = Interlocked.Exchange( ref obj, null );
+			var localObj = Interlocked.Exchange(ref obj, null);
 			// if it is already null -> return
-			if ( localObj == null ) return;
-
-			var hash = localObj.GetHashCode();
-			// release
-			int count = Marshal.ReleaseComObject( localObj );
-			Console.WriteLine( "ComRelease hash={0}, type={1},count={2}", hash, typeof( T ), count );
+			if (localObj == null) return;
+			Marshal.ReleaseComObject(localObj);
+#endif
 		}
+
+		
 
 		internal static void FinalFreeComObject<T>(ref T obj)
 			where T : class

@@ -1081,7 +1081,7 @@ namespace Gecko
 				if (WebNav == null)
 					return null;
 				
-				return (_History == null) ? (_History = new GeckoSessionHistory(WebNav)) : _History;
+				return _History ?? (_History = new GeckoSessionHistory(WebNav));
 			}
 		}
 		GeckoSessionHistory _History;

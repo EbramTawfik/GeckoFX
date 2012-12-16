@@ -7,10 +7,15 @@ namespace Gecko.Net
 	{
 		internal nsILoadGroup _loadGroup;
 
-		internal LoadGroup(nsILoadGroup loadGroup)
+		protected LoadGroup(nsILoadGroup loadGroup)
 			:base(loadGroup)
 		{
 			_loadGroup = loadGroup;
+		}
+
+		public static LoadGroup Create(nsILoadGroup loadGroup)
+		{
+			return loadGroup == null ? null : new LoadGroup( loadGroup );
 		}
 
 		public nsIRequestObserver GroupObserver
@@ -21,7 +26,7 @@ namespace Gecko.Net
 
 		public Request DefaultLoadRequest
 		{
-			get{return new Request( _loadGroup.GetDefaultLoadRequestAttribute() );}
+			get{return Create( _loadGroup.GetDefaultLoadRequestAttribute() );}
 			set{_loadGroup.SetDefaultLoadRequestAttribute( value._request );}
 		}
 
@@ -39,8 +44,9 @@ namespace Gecko.Net
 		{
 			get
 			{
-				return new Collections.GeckoEnumerableCollection<Request, nsIRequest>( _loadGroup.GetRequestsAttribute,
-				                                                                       x => new Request( x ) );
+				return new Collections.GeckoEnumerableCollection<Request, nsIRequest>(
+					_loadGroup.GetRequestsAttribute,
+					Create );
 			}
 		}
 
