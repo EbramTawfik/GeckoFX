@@ -37,12 +37,9 @@ namespace Gecko.Net
 			{
 				throw new ArgumentException( "parameter cannot be null", "hostName" );
 			}
-			nsIDNSRecord record = null;
-			using (nsAUTF8String value=new nsAUTF8String(hostName) )
-			{
-				record = _dnsService.Instance.Resolve(value, (uint)flags);
-			}
-			return record == null ? null : new DnsRecord( record );
+			nsIDNSRecord record=nsString.Pass( _dnsService.Instance.Resolve, hostName, ( uint ) flags );
+
+			return DnsRecord.Create( record );
 		}
 	}
 

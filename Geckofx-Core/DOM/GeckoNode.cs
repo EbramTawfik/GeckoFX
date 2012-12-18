@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
 using Gecko.DOM;
+using Gecko.Interop;
 
 namespace Gecko
 {
@@ -17,6 +18,7 @@ namespace Gecko
 		#region ctor & creation methods
 		internal GeckoNode(nsIDOMNode domObject)
 		{
+			//ComDebug.WriteDebugInfo( domObject );
 			_DomObject = domObject;
 		}
 
@@ -222,6 +224,13 @@ namespace Gecko
 			nsIDOMXPathResult result = (nsIDOMXPathResult)evaluator.Evaluate(new nsAString(xpath), node, resolver, 0, null);
 
 			return new GeckoElementEnumerable(result);
+		}
+
+
+		public DomEventTarget GetEventTarget()
+		{
+			var eventTarget = Xpcom.QueryInterface<nsIDOMEventTarget>( _DomObject );
+			return eventTarget.Wrap( DomEventTarget.Create );
 		}
 	}
 }

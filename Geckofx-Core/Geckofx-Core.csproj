@@ -80,7 +80,17 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppShellService.cs" />
+    <Compile Include="DOM\Events\DomHashChangeEventArgs.cs" />
+    <Compile Include="DOM\Events\DomMouseScrollEventArgs.cs" />
+    <Compile Include="DOM\Events\DomDragEventArgs.cs" />
+    <Compile Include="DOM\Events\DomEventArgs.cs" />
+    <Compile Include="DOM\Events\DomMouseEventArgs.cs" />
+    <Compile Include="DOM\Events\DomUIEventArgs.cs" />
+    <Compile Include="Interop\ExtensionMethods.cs" />
+    <Compile Include="Net\AsyncStreamCopier.cs" />
+    <Compile Include="Net\ImgRequest.cs" />
+    <Compile Include="Net\IncrementalDownload.cs" />
+    <Compile Include="Services\AppShellService.cs" />
     <Compile Include="AutoJSContext.cs" />
     <Compile Include="BaseTypes\AccessibleTextBoundary.cs" />
     <Compile Include="BaseTypes\gfxContext.cs" />
@@ -91,6 +101,7 @@
     <Compile Include="Cryptography\KeyObject.cs" />
     <Compile Include="Cryptography\KeyObjectFactory.cs" />
     <Compile Include="DOM\DomNavigator.cs" />
+    <Compile Include="DOM\Events\DomEventTarget.cs" />
     <Compile Include="DOM\GeckoAttribute.cs" />
     <Compile Include="DOM\GeckoElement.cs" />
     <Compile Include="DOM\GeckoElementCollection.cs" />
@@ -158,14 +169,16 @@
     <Compile Include="Interop\SpiderMonkey\JsVal.cs" />
     <Compile Include="Interop\SpiderMonkey\SpiderMonkey.cs" />
     <Compile Include="Net\HttpActivityDistributor.cs" />
-    <Compile Include="RandomGenerator.cs" />
+    <Compile Include="Services\RandomGenerator.cs" />
     <Compile Include="Services\ExceptionService.cs" />
+    <Compile Include="Services\VersionComparator.cs" />
     <Compile Include="Services\WindowWatcher.cs" />
     <Compile Include="Variant.cs" />
     <Compile Include="WiFiMonitor.cs" />
     <Compile Include="WindowMediator.cs" />
-    <Compile Include="XulRuntime.cs" />
+    <Compile Include="Services\XulRuntime.cs" />
     <None Include="ClassDiagrams\nsIDOMNode.cd" />
+    <None Include="DOM\Events\DomEvents.cd" />
     <None Include="GeckoFX.snk" />
     <Compile Include="BaseNsFactory.cs" />
     <Compile Include="BaseTypes\gfxGraphicsFilter.cs" />
@@ -243,7 +256,7 @@
     <Compile Include="IO\StorageStream.cs" />
     <Compile Include="IO\StringInputStream.cs" />
     <Compile Include="IO\ZipReader.cs" />
-    <Compile Include="Microsoft.cs" />
+    <Compile Include="Windows\Api.cs" />
     <Compile Include="Net\Channel.cs" />
     <Compile Include="Net\DnsRecord.cs" />
     <Compile Include="Net\DnsService.cs" />
@@ -255,7 +268,7 @@
     <Compile Include="Net\UploadChannel.cs" />
     <Compile Include="nsCancelable.cs" />
     <Compile Include="nsSupportsPrimitives.cs" />
-    <Compile Include="GeckoMessageEvents.cs" />
+    <Compile Include="DOM\Events\DomMessageEventArgs.cs" />
     <Compile Include="ConsoleMessageEventArgs.cs" />
     <Compile Include="Net\CookieManager.cs" />
     <Compile Include="DOM\DOMSelector.cs" />
@@ -1508,7 +1521,7 @@
     <Compile Include="BaseTypes\nsConstRect.cs" />
     <Compile Include="BaseTypes\nsIntRect.cs" />
     <Compile Include="CustomMarshalers\WStringMarshaler.cs" />
-    <Compile Include="GeckoDomEvents.cs" />
+    <Compile Include="DOM\Events\DomKeyEventArgs.cs" />
     <Compile Include="GeckoHistoryEntry.cs" />
     <Compile Include="GeckoPreferences.cs" />
     <Compile Include="GeckoResponse.cs" />
@@ -1548,6 +1561,8 @@
     <None Include="geckofx-core-15.dll.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Net\Requests.cd" />
+    <None Include="Windows\Taskbar\JumpListItems.cd" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Readme.txt" />

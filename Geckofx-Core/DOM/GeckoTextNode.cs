@@ -1,3 +1,5 @@
+using Gecko.Interop;
+
 namespace Gecko.DOM
 {
 	public class GeckoTextNode
@@ -5,7 +7,7 @@ namespace Gecko.DOM
 	{
 		private nsIDOMText _domText;
 
-		internal GeckoTextNode(nsIDOMText domText)
+		private GeckoTextNode(nsIDOMText domText)
 			:base(domText)
 		{
 			_domText = domText;
@@ -13,13 +15,13 @@ namespace Gecko.DOM
 
 		public static GeckoTextNode CreateTextNodeWrapper(nsIDOMText domText)
 		{
-			return domText == null ? null : new GeckoTextNode( domText );
+			return new GeckoTextNode( domText );
 		}
 
 
 		public GeckoTextNode SplitText(uint offset)
 		{
-			return CreateTextNodeWrapper( _domText.SplitText( offset ) );
+			return _domText.SplitText( offset ).Wrap( CreateTextNodeWrapper );
 		}
 
 

@@ -8,37 +8,30 @@ namespace Gecko.Windows
 	/// <summary>
 	/// Class for controling Windows 7 taskbar behavior
 	/// ONLY Windows 7+
+	/// Check Available property if platform is supported
 	/// </summary>
 	public sealed class WinTaskbar
 	{
-		private readonly nsIWinTaskbar _winTaskbar;
+		private readonly InstanceWrapper<nsIWinTaskbar> _winTaskbar;
 
 		public WinTaskbar()
 		{
-			// may be throwing exception is not good and we shall use GetAvailableAttribute()?
-			//if (Xpcom.IsLinux)
-			//{
-			//    throw new ApplicationException("Windows 7 Taskbar is not avaliable in Linux :)"); 
-			//}
-			var winTaskbar = Xpcom.CreateInstance<nsIWinTaskbar>( "@mozilla.org/windows-taskbar;1" );
-			_winTaskbar = Xpcom.QueryInterface<nsIWinTaskbar>( winTaskbar );
-
-
+			_winTaskbar = new InstanceWrapper<nsIWinTaskbar>( Contracts.WindowsTaskbar );
 		}
 
 		public bool Available
 		{
-			get { return _winTaskbar.GetAvailableAttribute(); }
+			get { return _winTaskbar.Instance.GetAvailableAttribute(); }
 		}
 
 		public string DefaultGroupId
 		{
-			get { return nsString.Get( _winTaskbar.GetDefaultGroupIdAttribute ); }
+			get { return nsString.Get(_winTaskbar.Instance.GetDefaultGroupIdAttribute); }
 		}
 
 		public JumpListBuilder CreateJumpListBuilder()
 		{
-			return new JumpListBuilder( _winTaskbar.CreateJumpListBuilder() );
+			return new JumpListBuilder(_winTaskbar.Instance.CreateJumpListBuilder());
 		}
 
 		//_winTaskbar.CreateTaskbarTabPreview(  )
@@ -51,12 +44,12 @@ namespace Gecko.Windows
 
 		public void PrepareFullScreenHWND( IntPtr aWindow, bool aFullScreen )
 		{
-			_winTaskbar.PrepareFullScreenHWND( aWindow, aFullScreen );
+			_winTaskbar.Instance.PrepareFullScreenHWND(aWindow, aFullScreen);
 		}
 
 		public void SetGroupIdForWindow(GeckoWindow aParent, string aIdentifier)
 		{
-			nsString.Set( x => _winTaskbar.SetGroupIdForWindow( aParent.DomWindow, x ), aIdentifier );
+			nsString.Set(x => _winTaskbar.Instance.SetGroupIdForWindow(aParent.DomWindow, x), aIdentifier);
 		}
 
 	}

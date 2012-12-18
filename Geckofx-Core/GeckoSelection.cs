@@ -46,8 +46,9 @@ namespace Gecko
 	{
 		private GeckoSelection(nsISelection selection)
 		{
-			if (selection == null)
-				throw new ArgumentException("selection");
+			// selection is always NOT null, when we use Create function
+			//if (selection == null)
+			//	throw new ArgumentException("selection");
 
 			this.Selection = selection;
 		}

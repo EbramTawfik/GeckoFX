@@ -8,6 +8,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
 using Gecko.Listeners;
+using Gecko.Windows;
 
 // PLZ keep all Windows Forms related code here
 namespace Gecko
@@ -252,7 +253,7 @@ namespace Gecko
 						{
 							m.Result = (IntPtr)MA_ACTIVATE;
 
-							if (!GeckoFX.Microsoft.User32.IsChild(Handle, GeckoFX.Microsoft.User32.GetFocus()))
+							if (!User32.IsChild(Handle, User32.GetFocus()))
 							{
 								this.Focus();
 							}

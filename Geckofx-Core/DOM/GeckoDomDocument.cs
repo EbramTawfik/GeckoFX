@@ -2,6 +2,7 @@ using System;
 using System.Runtime.InteropServices;
 using Gecko.DOM;
 using Gecko.DOM.Svg;
+using Gecko.Interop;
 
 namespace Gecko
 {
@@ -17,7 +18,7 @@ namespace Gecko
 
 		public DOM.DomDocumentType Doctype
 		{
-			get { return new DomDocumentType(_domDocument.GetDoctypeAttribute()); }
+			get { return _domDocument.GetDoctypeAttribute().Wrap( DomDocumentType.Create ); }
 		}
 
 		//[return: MarshalAs(UnmanagedType.Interface)]
@@ -33,7 +34,7 @@ namespace Gecko
 			{
 				nsIDOMElement domElement = _domDocument.GetDocumentElementAttribute();
 
-				return GeckoElement.CreateDomElementWrapper(domElement);
+				return domElement.Wrap( GeckoElement.CreateDomElementWrapper );
 			}
 		}
 
@@ -52,26 +53,26 @@ namespace Gecko
 			if (string.IsNullOrEmpty(tagName))
 				throw new ArgumentException("tagName");
 
-			var nativeElement = nsString.Pass<nsIDOMElement>(_domDocument.CreateElement, tagName);
-
-			return GeckoElement.CreateDomElementWrapper(nativeElement);
+			return nsString.Pass<nsIDOMElement>( _domDocument.CreateElement, tagName )
+				.Wrap( GeckoElement.CreateDomElementWrapper );
 		}
 
 		public DocumentFragment CreateDocumentFragment()
 		{
-			return DocumentFragment.CreateDocumentFragmentWrapper( _domDocument.CreateDocumentFragment() );
+			return _domDocument.CreateDocumentFragment()
+				.Wrap( DocumentFragment.CreateDocumentFragmentWrapper );
 		}
 
 		public GeckoTextNode CreateTextNode(string data)
 		{
-			var native = nsString.Pass<nsIDOMText>( _domDocument.CreateTextNode, data );
-			return DOM.GeckoTextNode.CreateTextNodeWrapper( native );
+			return nsString.Pass<nsIDOMText>(_domDocument.CreateTextNode, data)
+				.Wrap(DOM.GeckoTextNode.CreateTextNodeWrapper);
 		}
 
 		public GeckoComment CreateComment(string data)
 		{
-			var native = nsString.Pass<nsIDOMComment>(_domDocument.CreateComment, data);
-			return GeckoComment.CreateCommentWrapper(native);
+			return nsString.Pass<nsIDOMComment>( _domDocument.CreateComment, data )
+				.Wrap( GeckoComment.CreateCommentWrapper );
 		}
 
 		//[return: MarshalAs(UnmanagedType.Interface)]
@@ -86,8 +87,8 @@ namespace Gecko
 		{
 			if (string.IsNullOrEmpty(name))
 				throw new ArgumentException("name");
-			var native = nsString.Pass<nsIDOMAttr>(_domDocument.CreateAttribute, name);
-			return GeckoAttribute.CreateAttributeWrapper( native );
+			return nsString.Pass<nsIDOMAttr>(_domDocument.CreateAttribute, name)
+				.Wrap( GeckoAttribute.CreateAttributeWrapper );
 		}
 
 		/// <summary>
@@ -100,9 +101,8 @@ namespace Gecko
 			if (string.IsNullOrEmpty(tagName))
 				return null;
 
-			var native = nsString.Pass<nsIDOMNodeList>(_domDocument.GetElementsByTagName, tagName);
-
-			return new GeckoElementCollection( native );
+			return nsString.Pass<nsIDOMNodeList>( _domDocument.GetElementsByTagName, tagName )
+				.Wrap( x => new GeckoElementCollection( x ) );
 		}
 
 		public GeckoNode ImportNode(GeckoNode node, bool deep)
@@ -110,7 +110,8 @@ namespace Gecko
 			if (node == null)
 				throw new ArgumentNullException("node");
 
-			return GeckoNode.Create(_domDocument.ImportNode(node.DomObject, deep, 1));
+			return _domDocument.ImportNode( node.DomObject, deep, 1 )
+				.Wrap( Create );
 		}
 
 
@@ -133,9 +134,14 @@ namespace Gecko
 			if (string.IsNullOrEmpty(qualifiedName))
 				throw new ArgumentException("qualifiedName");
 
-			var native = nsString.Pass<nsIDOMAttr>(_domDocument.CreateAttributeNS, namespaceUri, qualifiedName);
+			return nsString.Pass<nsIDOMAttr>( _domDocument.CreateAttributeNS, namespaceUri, qualifiedName )
+				.Wrap( GeckoAttribute.CreateAttributeWrapper );
+		}
 
-			return GeckoAttribute.CreateAttributeWrapper(native);
+		public DomEventArgs CreateEvent( string name )
+		{
+			var target = nsString.Pass( _domDocument.CreateEvent, name );
+			return target.Wrap( DomEventArgs.Create );
 		}
 
 
@@ -163,12 +169,11 @@ namespace Gecko
 		/// <returns>Found element or null if element does not exist</returns>
 		public GeckoElement GetElementById(string id)
 		{
-			if (string.IsNullOrEmpty(id))
+			if ( string.IsNullOrEmpty( id ) )
 				return null;
 
-			var native = nsString.Pass<nsIDOMElement>(_domDocument.GetElementById, id);
-
-			return GeckoElement.CreateDomElementWrapper((nsIDOMElement)native);
+			return nsString.Pass<nsIDOMElement>( _domDocument.GetElementById, id )
+				.Wrap( GeckoElement.CreateDomElementWrapper );
 		}
 
 		/// <summary>
@@ -182,9 +187,9 @@ namespace Gecko
 			if (string.IsNullOrEmpty(id))
 				return null;
 
-			var native = nsString.Pass<nsIDOMElement>( _domDocument.GetElementById, id );
 
-			return GeckoHtmlElement.Create( ( nsIDOMHTMLElement ) native );
+			return ( GeckoHtmlElement ) nsString.Pass<nsIDOMElement>( _domDocument.GetElementById, id )
+				                            .Wrap( Create );
 		}
 
 		public string InputEncoding
@@ -231,7 +236,7 @@ namespace Gecko
 		/// </summary>
 		public GeckoWindow DefaultView
 		{
-			get { return GeckoWindow.Create( _domDocument.GetDefaultViewAttribute() ); }
+			get { return _domDocument.GetDefaultViewAttribute().Wrap( GeckoWindow.Create ); }
 		}
 
 		/// <summary>
@@ -257,7 +262,7 @@ namespace Gecko
 		/// </summary>
 		public Location Location
 		{
-			get{return new Location( _domDocument.GetLocationAttribute() );}
+			get { return _domDocument.GetLocationAttribute().Wrap( Location.Create ); }
 		}
 
 		/// <summary>
@@ -309,7 +314,7 @@ namespace Gecko
 		/// </summary>
 		public GeckoHtmlElement ActiveElement
 		{
-			get { return (GeckoHtmlElement)Create(_domDocument.GetActiveElementAttribute()); }
+			get { return ( GeckoHtmlElement ) _domDocument.GetActiveElementAttribute().Wrap( Create ); }
 		}
 
 		/// <summary>
@@ -415,7 +420,7 @@ namespace Gecko
 
 		public GeckoNode CurrentScript
 		{
-			get { return Create( _domDocument.GetCurrentScriptAttribute() ); }
+			get { return _domDocument.GetCurrentScriptAttribute().Wrap( Create ); }
 		}
 
 		/// <summary>

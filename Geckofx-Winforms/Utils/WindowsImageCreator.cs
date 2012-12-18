@@ -6,7 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using GeckoFX.Microsoft;
+using Gecko.Windows;
 
 namespace Gecko.Utils
 {

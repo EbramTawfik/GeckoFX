@@ -17,7 +17,7 @@ namespace Gecko
 			if (string.IsNullOrEmpty(dataAttributeName))
 				throw new ArgumentException("attributeName");
 
-			return node.GetAttribute("data-" + dataAttributeName);			
+			return node.GetAttribute( string.Concat( "data-", dataAttributeName ) );
 		}
 
 

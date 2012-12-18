@@ -9,11 +9,11 @@ namespace Gecko
 {
 	public static class IOService
 	{
-		private static ServiceWrapper<nsIIOService> _service;
+		private static ServiceWrapper<nsIIOService2> _service;
 
 		static IOService()
 		{
-			_service = new ServiceWrapper<nsIIOService>( Contracts.NetworkIOService );
+			_service = new ServiceWrapper<nsIIOService2>( Contracts.NetworkIOService );
 		}
 
 		public static bool Offline
@@ -44,8 +44,22 @@ namespace Gecko
 			return new nsURI(CreateNsIUri(url));
 		}
 
-		public static nsIChannel NewChannelFromUri(nsIURI uri) {
+		public static nsIChannel NewChannelFromUri(nsIURI uri)
+		{
 			return _service.Instance.NewChannelFromURI(uri);
+		
+		}
+
+		public static nsIChannel NewChannelFromUriWithProxyFlags(nsIURI uri,nsIURI proxyUri,uint proxyFlags)
+		{
+			return _service.Instance.NewChannelFromURIWithProxyFlags( uri, proxyUri, proxyFlags );
+		}
+
+
+		public static bool ManageOfflineStatus
+		{
+			get { return _service.Instance.GetManageOfflineStatusAttribute(); }
+			set { _service.Instance.SetManageOfflineStatusAttribute( value ); }
 		}
 
 	}

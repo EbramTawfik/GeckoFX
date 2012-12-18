@@ -54,6 +54,7 @@ namespace Gecko
 		public static readonly string XulRuntime = "@mozilla.org/xre/app-info;1";
 		public static readonly string WiFiMonitor = "@mozilla.org/wifi/monitor;1";
 		public static readonly string ExceptionService = "@mozilla.org/exceptionservice;1";
+		public static readonly string WindowsTaskbar = "@mozilla.org/windows-taskbar;1";
 		#region nsISupportsPrimitive's
 		internal static readonly string SupportsID = "@mozilla.org/supports-id;1";
 		internal static readonly string SupportsString = "@mozilla.org/supports-string;1";

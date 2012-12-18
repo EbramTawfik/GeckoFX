@@ -3,7 +3,6 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Drawing;
 using Gecko.DOM;
-using GeckoFX.Microsoft;
 
 namespace Gecko
 {

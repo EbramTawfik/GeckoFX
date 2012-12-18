@@ -5,10 +5,15 @@ namespace Gecko.DOM
 	{
 		private nsIDOMDocumentType _documentType;
 
-		internal DomDocumentType(nsIDOMDocumentType documentType)
+		private DomDocumentType(nsIDOMDocumentType documentType)
 			:base(documentType)
 		{
 			_documentType = documentType;
+		}
+
+		public static DomDocumentType Create(nsIDOMDocumentType documentType)
+		{
+			return new DomDocumentType( documentType );
 		}
 
 		/// <summary>

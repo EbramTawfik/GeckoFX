@@ -9,14 +9,20 @@ namespace Gecko
 	/// Provides data froma a message event.
 	/// doxygen.db48x.net/mozilla.../interfacensIDOMMessageEvent.html
 	/// </summary>
-	public class GeckoDomMessageEventArgs : GeckoDomEventArgs
+	public class DomMessageEventArgs
+		: DomEventArgs
 	{
-		private nsIDOMMessageEvent _event;
+		private nsIDOMMessageEvent _messageEvent;
 
-		internal GeckoDomMessageEventArgs(nsIDOMMessageEvent ev)
+		private DomMessageEventArgs(nsIDOMMessageEvent ev)
 			: base(ev)
 		{
-			_event = ev;
+			_messageEvent = ev;
+		}
+
+		public static DomMessageEventArgs Create(nsIDOMMessageEvent ev)
+		{
+			return new DomMessageEventArgs( ev );
 		}
 		
 		/// <summary>
@@ -28,7 +34,7 @@ namespace Gecko
 			{
 				using (AutoJSContext context = new AutoJSContext(GlobalJSContextHolder.JSContext))
 				{
-					var val = _event.GetDataAttribute(context.ContextPointer);
+					var val = _messageEvent.GetDataAttribute(context.ContextPointer);
 					//TODO if(!val.IsString)
 					//throw new NotImplementedException("GeckoFx currently only supports messages which are strings.");
 

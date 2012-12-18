@@ -153,7 +153,7 @@ namespace Gecko
 					var webNav = Xpcom.QueryInterface<nsIWebNavigation>( WebNav );
 					if ( webNav != null )
 					{
-						webNav.Stop( nsIWebNavigationConstants.STOP_ALL );
+						webNav.Stop((int) nsIWebNavigationConsts.STOP_ALL );
 						Marshal.ReleaseComObject( webNav );
 					}
 					WebNav = null;
@@ -606,7 +606,7 @@ namespace Gecko
 		public void Stop()
 		{
 			if (WebNav != null)
-				WebNav.Stop(nsIWebNavigationConstants.STOP_ALL);
+				WebNav.Stop((int)nsIWebNavigationConsts.STOP_ALL);
 		}
 		
 		/// <summary>
@@ -1844,57 +1844,112 @@ namespace Gecko
 
 		void nsIDOMEventListener.HandleEvent(nsIDOMEvent e)
 		{
+			if (e == null) return;
+
 			string type = nsString.Get( e.GetTypeAttribute );
-			
-			GeckoDomEventArgs ea = null;
-			
-			switch (type)
+
+			DomEventArgs ea = DomEventArgs.Create( e );
+
+			switch ( type )
 			{
-				case "keydown": OnDomKeyDown((GeckoDomKeyEventArgs)(ea = new GeckoDomKeyEventArgs((nsIDOMKeyEvent)e))); break;
-				case "keyup": OnDomKeyUp((GeckoDomKeyEventArgs)(ea = new GeckoDomKeyEventArgs((nsIDOMKeyEvent)e))); break;
-				case "keypress": OnDomKeyPress((GeckoDomKeyEventArgs)(ea = new GeckoDomKeyEventArgs((nsIDOMKeyEvent)e))); break;
-				
-				case "mousedown": OnDomMouseDown((GeckoDomMouseEventArgs)(ea = new GeckoDomMouseEventArgs((nsIDOMMouseEvent)e))); break;
-				case "mouseup": OnDomMouseUp((GeckoDomMouseEventArgs)(ea = new GeckoDomMouseEventArgs((nsIDOMMouseEvent)e))); break;
-				case "mousemove": OnDomMouseMove((GeckoDomMouseEventArgs)(ea = new GeckoDomMouseEventArgs((nsIDOMMouseEvent)e))); break;
-				case "mouseover": OnDomMouseOver((GeckoDomMouseEventArgs)(ea = new GeckoDomMouseEventArgs((nsIDOMMouseEvent)e))); break;
-				case "mouseout": OnDomMouseOut((GeckoDomMouseEventArgs)(ea = new GeckoDomMouseEventArgs((nsIDOMMouseEvent)e))); break;
-				case "click": OnDomClick(ea = new GeckoDomEventArgs(e)); break;
-				case "dblclick": OnDomDoubleClick(ea = new GeckoDomEventArgs(e)); break;
-				case "submit": OnDomSubmit(ea = new GeckoDomEventArgs(e)); break;
-				case "compositionstart": OnDomCompositionStart(ea = new GeckoDomEventArgs(e)); break;
-				case "compositionend": OnDomCompositionEnd(ea = new GeckoDomEventArgs(e)); break;
-				case "contextmenu": OnDomContextMenu((GeckoDomMouseEventArgs)(ea = new GeckoDomMouseEventArgs((nsIDOMMouseEvent)e))); break;				
-				case "DOMMouseScroll": OnDomMouseScroll((GeckoDomMouseEventArgs)(ea = new GeckoDomMouseEventArgs((nsIDOMMouseEvent)e))); break;				
-				case "focus": OnDomFocus(ea = new GeckoDomEventArgs(e)); break;
-				case "blur": OnDomBlur(ea = new GeckoDomEventArgs(e)); break;
-				case "load": OnLoad(ea = new GeckoDomEventArgs(e)); break;
-				case "DOMContentLoaded": OnDOMContentLoaded(ea = new GeckoDomEventArgs(e)); break;
-				case "change": OnDomContentChanged(ea = new GeckoDomEventArgs(e)); break;
-				case "hashchange": OnHashChange(ea = new GeckoDomEventArgs(e)); break;
-				case "dragstart": OnDomDragStart((GeckoDomDragEventArgs)(ea = new GeckoDomDragEventArgs((nsIDOMDragEvent)e))); break;
-				case "dragenter": OnDomDragEnter((GeckoDomDragEventArgs)(ea = new GeckoDomDragEventArgs((nsIDOMDragEvent)e))); break;
-				case "dragover": OnDomDragOver((GeckoDomDragEventArgs)(ea = new GeckoDomDragEventArgs((nsIDOMDragEvent)e))); break;
-				case "dragleave": OnDomDragLeave((GeckoDomDragEventArgs)(ea = new GeckoDomDragEventArgs((nsIDOMDragEvent)e))); break;
-				case "drag": OnDomDrag((GeckoDomDragEventArgs)(ea = new GeckoDomDragEventArgs((nsIDOMDragEvent)e))); break;
-				case "drop": OnDomDrop((GeckoDomDragEventArgs)(ea = new GeckoDomDragEventArgs((nsIDOMDragEvent)e))); break;
-				case "dragend": OnDomDragEnd((GeckoDomDragEventArgs)(ea = new GeckoDomDragEventArgs((nsIDOMDragEvent)e))); break;
-
-				default:
-					Action<string> action;
-					if(_messageEventListeners.TryGetValue(type, out action))
-					{
-
-						action.Invoke(new GeckoDomMessageEventArgs((nsIDOMMessageEvent)e).Message);
-					}
+				case "keydown":
+					OnDomKeyDown( ( DomKeyEventArgs ) ea );
+					break;
+				case "keyup":
+					OnDomKeyUp( ( DomKeyEventArgs ) ea );
+					break;
+				case "keypress":
+					OnDomKeyPress( ( DomKeyEventArgs ) ea );
+					break;
+				case "mousedown":
+					OnDomMouseDown( ( DomMouseEventArgs ) ea );
+					break;
+				case "mouseup":
+					OnDomMouseUp( ( DomMouseEventArgs ) ea );
+					break;
+				case "mousemove":
+					OnDomMouseMove( ( DomMouseEventArgs ) ea );
+					break;
+				case "mouseover":
+					OnDomMouseOver( ( DomMouseEventArgs ) ea );
+					break;
+				case "mouseout":
+					OnDomMouseOut( ( DomMouseEventArgs ) ea );
+					break;
+				case "click":
+					OnDomClick( ea );
+					break;
+				case "dblclick":
+					OnDomDoubleClick( ea );
+					break;
+				case "submit":
+					OnDomSubmit( ea );
+					break;
+				case "compositionstart":
+					OnDomCompositionStart( ea );
+					break;
+				case "compositionend":
+					OnDomCompositionEnd( ea );
+					break;
+				case "contextmenu":
+					OnDomContextMenu( ( DomMouseEventArgs ) ea );
+					break;
+				case "DOMMouseScroll":
+					OnDomMouseScroll( ( DomMouseEventArgs ) ea );
+					break;
+				case "focus":
+					OnDomFocus( ea );
+					break;
+				case "blur":
+					OnDomBlur( ea );
+					break;
+				case "load":
+					OnLoad( ea );
+					break;
+				case "DOMContentLoaded":
+					OnDOMContentLoaded( ea );
+					break;
+				case "change":
+					OnDomContentChanged( ea );
+					break;
+				case "hashchange":
+					OnHashChange( (DomHashChangeEventArgs)ea );
+					break;
+				case "dragstart":
+					OnDomDragStart( ( DomDragEventArgs ) ea );
+					break;
+				case "dragenter":
+					OnDomDragEnter( ( DomDragEventArgs ) ea );
+					break;
+				case "dragover":
+					OnDomDragOver( ( DomDragEventArgs ) ea );
+					break;
+				case "dragleave":
+					OnDomDragLeave( ( DomDragEventArgs ) ea );
+					break;
+				case "drag":
+					OnDomDrag( ( DomDragEventArgs ) ea );
+					break;
+				case "drop":
+					OnDomDrop( ( DomDragEventArgs ) ea );
+					break;
+				case "dragend":
+					OnDomDragEnd( ( DomDragEventArgs ) ea );
 					break;
 			}
-			
-			
+			if (ea is DomMessageEventArgs)
+			{
+				Action<string> action;
+				DomMessageEventArgs mea = ( DomMessageEventArgs ) ea;
+				if (_messageEventListeners.TryGetValue(type, out action))
+				{
+					action.Invoke( mea.Message );
+				}
+			}
 
-			if (ea != null && ea.Cancelable && ea.Handled)
+			if ( ea != null && ea.Cancelable && ea.Handled )
 				e.PreventDefault();
-			
+
 		}
 
 		#endregion

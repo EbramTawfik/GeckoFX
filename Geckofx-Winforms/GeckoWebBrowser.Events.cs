@@ -569,7 +569,7 @@ namespace Gecko
 		#region Dom keyboard events
 		#region public event GeckoDomKeyEventHandler DomKeyDown
 		[Category("DOM Events")]
-		public event EventHandler<GeckoDomKeyEventArgs> DomKeyDown
+		public event EventHandler<DomKeyEventArgs> DomKeyDown
 		{
 			add { Events.AddHandler(DomKeyDownEvent, value); }
 			remove { Events.RemoveHandler(DomKeyDownEvent, value); }
@@ -577,16 +577,16 @@ namespace Gecko
 
 		/// <summary>Raises the <see cref="DomKeyDown"/> event.</summary>
 		/// <param name="e">The data for the event.</param>
-		protected virtual void OnDomKeyDown(GeckoDomKeyEventArgs e)
+		protected virtual void OnDomKeyDown(DomKeyEventArgs e)
 		{
-			var evnt = (EventHandler<GeckoDomKeyEventArgs>)Events[DomKeyDownEvent];
+			var evnt = (EventHandler<DomKeyEventArgs>)Events[DomKeyDownEvent];
 			if (evnt != null) evnt(this, e);
 		}
 		#endregion
 
 		#region public event GeckoDomKeyEventHandler DomKeyUp
 		[Category("DOM Events")]
-		public event EventHandler<GeckoDomKeyEventArgs> DomKeyUp
+		public event EventHandler<DomKeyEventArgs> DomKeyUp
 		{
 			add { Events.AddHandler(DomKeyUpEvent, value); }
 			remove { Events.RemoveHandler(DomKeyUpEvent, value); }
@@ -594,16 +594,16 @@ namespace Gecko
 
 		/// <summary>Raises the <see cref="DomKeyUp"/> event.</summary>
 		/// <param name="e">The data for the event.</param>
-		protected virtual void OnDomKeyUp(GeckoDomKeyEventArgs e)
+		protected virtual void OnDomKeyUp(DomKeyEventArgs e)
 		{
-			var evnt = (EventHandler<GeckoDomKeyEventArgs>)Events[DomKeyUpEvent];
+			var evnt = (EventHandler<DomKeyEventArgs>)Events[DomKeyUpEvent];
 			if (evnt != null) evnt(this, e);
 		}
 		#endregion
 
 		#region public event GeckoDomKeyEventHandler DomKeyPress
 		[Category("DOM Events")]
-		public event EventHandler<GeckoDomKeyEventArgs> DomKeyPress
+		public event EventHandler<DomKeyEventArgs> DomKeyPress
 		{
 			add { Events.AddHandler(DomKeyPressEvent, value); }
 			remove { Events.RemoveHandler(DomKeyPressEvent, value); }
@@ -611,9 +611,9 @@ namespace Gecko
 
 		/// <summary>Raises the <see cref="DomKeyPress"/> event.</summary>
 		/// <param name="e">The data for the event.</param>
-		protected virtual void OnDomKeyPress(GeckoDomKeyEventArgs e)
+		protected virtual void OnDomKeyPress(DomKeyEventArgs e)
 		{
-			var evnt = (EventHandler<GeckoDomKeyEventArgs>)Events[DomKeyPressEvent];
+			var evnt = (EventHandler<DomKeyEventArgs>)Events[DomKeyPressEvent];
 			if (evnt != null) evnt(this, e);
 		}
 		#endregion
@@ -622,7 +622,7 @@ namespace Gecko
 		#region Dom mouse events
 		#region public event GeckoDomMouseEventHandler DomMouseDown
 		[Category("DOM Events")]
-		public event EventHandler<GeckoDomMouseEventArgs> DomMouseDown
+		public event EventHandler<DomMouseEventArgs> DomMouseDown
 		{
 			add { Events.AddHandler(DomMouseDownEvent, value); }
 			remove { Events.RemoveHandler(DomMouseDownEvent, value); }
@@ -630,16 +630,16 @@ namespace Gecko
 		
 		/// <summary>Raises the <see cref="DomMouseDown"/> event.</summary>
 		/// <param name="e">The data for the event.</param>
-		protected virtual void OnDomMouseDown(GeckoDomMouseEventArgs e)
+		protected virtual void OnDomMouseDown(DomMouseEventArgs e)
 		{
-			var evnt = (EventHandler<GeckoDomMouseEventArgs>)Events[DomMouseDownEvent];
+			var evnt = (EventHandler<DomMouseEventArgs>)Events[DomMouseDownEvent];
 			if (evnt != null) evnt(this, e);
 		}
 		#endregion
 
 		#region public event GeckoDomMouseEventHandler DomMouseUp
 		[Category("DOM Events")]
-		public event EventHandler<GeckoDomMouseEventArgs> DomMouseUp
+		public event EventHandler<DomMouseEventArgs> DomMouseUp
 		{
 			add { Events.AddHandler(DomMouseUpEvent, value); }
 			remove { Events.RemoveHandler(DomMouseUpEvent, value); }
@@ -647,16 +647,16 @@ namespace Gecko
 
 		/// <summary>Raises the <see cref="DomMouseUp"/> event.</summary>
 		/// <param name="e">The data for the event.</param>
-		protected virtual void OnDomMouseUp(GeckoDomMouseEventArgs e)
+		protected virtual void OnDomMouseUp(DomMouseEventArgs e)
 		{
-			var evnt = (EventHandler<GeckoDomMouseEventArgs>)Events[DomMouseUpEvent];
+			var evnt = (EventHandler<DomMouseEventArgs>)Events[DomMouseUpEvent];
 			if (evnt != null) evnt(this, e);
 		}
 		#endregion
 
 		#region public event GeckoDomMouseEventHandler DomMouseOver
 		[Category("DOM Events")]
-		public event EventHandler<GeckoDomMouseEventArgs> DomMouseOver
+		public event EventHandler<DomMouseEventArgs> DomMouseOver
 		{
 			add { Events.AddHandler(DomMouseOverEvent, value); }
 			remove { Events.RemoveHandler(DomMouseOverEvent, value); }
@@ -665,16 +665,16 @@ namespace Gecko
 
 		/// <summary>Raises the <see cref="DomMouseOver"/> event.</summary>
 		/// <param name="e">The data for the event.</param>
-		protected virtual void OnDomMouseOver(GeckoDomMouseEventArgs e)
+		protected virtual void OnDomMouseOver(DomMouseEventArgs e)
 		{
-			var evnt = (EventHandler<GeckoDomMouseEventArgs>)this.Events[DomMouseOverEvent];
+			var evnt = (EventHandler<DomMouseEventArgs>)this.Events[DomMouseOverEvent];
 			if (evnt != null) evnt(this, e);
 		}
 		#endregion
 
 		#region public event GeckoDomMouseEventHandler DomMouseOut
 		[Category("DOM Events")]
-		public event EventHandler<GeckoDomMouseEventArgs> DomMouseOut
+		public event EventHandler<DomMouseEventArgs> DomMouseOut
 		{
 			add { Events.AddHandler(DomMouseOutEvent, value); }
 			remove { Events.RemoveHandler(DomMouseOutEvent, value); }
@@ -682,16 +682,16 @@ namespace Gecko
 		
 		/// <summary>Raises the <see cref="DomMouseOut"/> event.</summary>
 		/// <param name="e">The data for the event.</param>
-		protected virtual void OnDomMouseOut(GeckoDomMouseEventArgs e)
+		protected virtual void OnDomMouseOut(DomMouseEventArgs e)
 		{
-			var evnt = (EventHandler<GeckoDomMouseEventArgs>)Events[DomMouseOutEvent];
+			var evnt = (EventHandler<DomMouseEventArgs>)Events[DomMouseOutEvent];
 			if (evnt != null) evnt( this, e );
 		}
 		#endregion
 
 		#region public event GeckoDomMouseEventHandler DomMouseMove
 		[Category("DOM Events")]
-		public event EventHandler<GeckoDomMouseEventArgs> DomMouseMove
+		public event EventHandler<DomMouseEventArgs> DomMouseMove
 		{
 			add { Events.AddHandler(DomMouseMoveEvent, value); }
 			remove { Events.RemoveHandler(DomMouseMoveEvent, value); }
@@ -699,16 +699,16 @@ namespace Gecko
 		
 		/// <summary>Raises the <see cref="DomMouseMove"/> event.</summary>
 		/// <param name="e">The data for the event.</param>
-		protected virtual void OnDomMouseMove(GeckoDomMouseEventArgs e)
+		protected virtual void OnDomMouseMove(DomMouseEventArgs e)
 		{
-			var evnt = (EventHandler<GeckoDomMouseEventArgs>)Events[DomMouseMoveEvent];
+			var evnt = (EventHandler<DomMouseEventArgs>)Events[DomMouseMoveEvent];
 			if (evnt != null) evnt(this, e);
 		}
 		#endregion
 
 		#region public event GeckoDomMouseEventHandler DomContextMenu
 		[Category("DOM Events")]
-		public event EventHandler<GeckoDomMouseEventArgs> DomContextMenu
+		public event EventHandler<DomMouseEventArgs> DomContextMenu
 		{
 			add { Events.AddHandler(DomContextMenuEvent, value); }
 			remove { Events.RemoveHandler(DomContextMenuEvent, value); }
@@ -716,16 +716,16 @@ namespace Gecko
 		
 		/// <summary>Raises the <see cref="DomContextMenu"/> event.</summary>
 		/// <param name="e">The data for the event.</param>
-		protected virtual void OnDomContextMenu(GeckoDomMouseEventArgs e)
+		protected virtual void OnDomContextMenu(DomMouseEventArgs e)
 		{
-			var evnt = (EventHandler<GeckoDomMouseEventArgs>)Events[DomContextMenuEvent];
+			var evnt = (EventHandler<DomMouseEventArgs>)Events[DomContextMenuEvent];
 			if (evnt != null)evnt(this, e);
 		}
 		#endregion
 
 		#region public event GeckoDomMouseEventHandler DOMMouseScroll
 		[Category("DOM Events")]
-		public event EventHandler<GeckoDomMouseEventArgs> DomMouseScroll
+		public event EventHandler<DomMouseEventArgs> DomMouseScroll
 		{
 			add { Events.AddHandler(DomMouseScrollEvent, value); }
 			remove { Events.RemoveHandler(DomMouseScrollEvent, value); }
@@ -733,9 +733,9 @@ namespace Gecko
 
 		/// <summary>Raises the <see cref="DomMouseScroll"/> event.</summary>
 		/// <param name="e">The data for the event.</param>
-		protected virtual void OnDomMouseScroll(GeckoDomMouseEventArgs e)
+		protected virtual void OnDomMouseScroll(DomMouseEventArgs e)
 		{
-			var evnt = (EventHandler<GeckoDomMouseEventArgs>)Events[DomMouseScrollEvent];
+			var evnt = (EventHandler<DomMouseEventArgs>)Events[DomMouseScrollEvent];
 			if (evnt != null) evnt(this, e);
 		}
 		#endregion
@@ -743,7 +743,7 @@ namespace Gecko
 
 		#region public event GeckoDomEventHandler DomSubmit
 		[Category("DOM Events")]
-		public event EventHandler<GeckoDomEventArgs> DomSubmit
+		public event EventHandler<DomEventArgs> DomSubmit
 		{
 			add { Events.AddHandler(DomSubmitEvent, value); }
 			remove { Events.RemoveHandler(DomSubmitEvent, value); }
@@ -751,16 +751,16 @@ namespace Gecko
 		
 		/// <summary>Raises the <see cref="DomSubmit"/> event.</summary>
 		/// <param name="e">The data for the event.</param>
-		protected virtual void OnDomSubmit(GeckoDomEventArgs e)
+		protected virtual void OnDomSubmit(DomEventArgs e)
 		{
-			var evnt = (EventHandler<GeckoDomEventArgs>)Events[DomSubmitEvent];
+			var evnt = (EventHandler<DomEventArgs>)Events[DomSubmitEvent];
 			if (evnt != null) evnt(this, e);
 		}
 		#endregion
 
 		#region public event GeckoDomEventHandler DomCompositionStart
 		[Category("DOM Events")]
-		public event EventHandler<GeckoDomEventArgs> DomCompositionStart
+		public event EventHandler<DomEventArgs> DomCompositionStart
 		{
 			add { Events.AddHandler(DomCompositionStartEvent, value); }
 			remove { Events.RemoveHandler(DomCompositionStartEvent, value); }
@@ -768,16 +768,16 @@ namespace Gecko
 		
 		/// <summary>Raises the <see cref="DomCompositionStart"/> event.</summary>
 		/// <param name="e">The data for the event.</param>
-		protected virtual void OnDomCompositionStart(GeckoDomEventArgs e)
+		protected virtual void OnDomCompositionStart(DomEventArgs e)
 		{
-			var evnt = (EventHandler<GeckoDomEventArgs>)Events[DomCompositionStartEvent];
+			var evnt = (EventHandler<DomEventArgs>)Events[DomCompositionStartEvent];
 			if (evnt != null) evnt(this, e);
 		}
 		#endregion
 
 		#region public event GeckoDomEventHandler DomCompositionEnd
 		[Category("DOM Events")]
-		public event EventHandler<GeckoDomEventArgs> DomCompositionEnd
+		public event EventHandler<DomEventArgs> DomCompositionEnd
 		{
 			add { Events.AddHandler(DomCompositionEndEvent, value); }
 			remove { Events.RemoveHandler(DomCompositionEndEvent, value); }
@@ -785,16 +785,16 @@ namespace Gecko
 		
 		/// <summary>Raises the <see cref="DomCompositionEnd"/> event.</summary>
 		/// <param name="e">The data for the event.</param>
-		protected virtual void OnDomCompositionEnd(GeckoDomEventArgs e)
+		protected virtual void OnDomCompositionEnd(DomEventArgs e)
 		{
-			var evnt = (EventHandler<GeckoDomEventArgs>)Events[DomCompositionEndEvent];
+			var evnt = (EventHandler<DomEventArgs>)Events[DomCompositionEndEvent];
 			if (evnt != null) evnt(this, e);
 		}
 		#endregion
 
 		#region public event GeckoDomEventHandler DomFocus
 		[Category("DOM Events")]
-		public event EventHandler<GeckoDomEventArgs> DomFocus
+		public event EventHandler<DomEventArgs> DomFocus
 		{
 			add { Events.AddHandler(DomFocusEvent, value); }
 			remove { Events.RemoveHandler(DomFocusEvent, value); }
@@ -802,16 +802,16 @@ namespace Gecko
 		
 		/// <summary>Raises the <see cref="DomFocus"/> event.</summary>
 		/// <param name="e">The data for the event.</param>
-		protected virtual void OnDomFocus(GeckoDomEventArgs e)
+		protected virtual void OnDomFocus(DomEventArgs e)
 		{
-			var evnt = (EventHandler<GeckoDomEventArgs>)Events[DomFocusEvent];
+			var evnt = (EventHandler<DomEventArgs>)Events[DomFocusEvent];
 			if (evnt != null) evnt(this, e);
 		}
 		#endregion
 
 		#region public event GeckoDomEventHandler DomBlur
 		[Category("DOM Events")]
-		public event EventHandler<GeckoDomEventArgs> DomBlur
+		public event EventHandler<DomEventArgs> DomBlur
 		{
 			add { Events.AddHandler(DomBlurEvent, value); }
 			remove { Events.RemoveHandler(DomBlurEvent, value); }
@@ -819,16 +819,16 @@ namespace Gecko
 
 		/// <summary>Raises the <see cref="DomBlur"/> event.</summary>
 		/// <param name="e">The data for the event.</param>
-		protected virtual void OnDomBlur(GeckoDomEventArgs e)
+		protected virtual void OnDomBlur(DomEventArgs e)
 		{
-			var evnt = (EventHandler<GeckoDomEventArgs>)Events[DomBlurEvent];
+			var evnt = (EventHandler<DomEventArgs>)Events[DomBlurEvent];
 			if (evnt != null) evnt(this, e);
 		}
 		#endregion
 
 		#region public event GeckoDomEventHandler Load
 		[Category("DOM Events")]
-		public event EventHandler<GeckoDomEventArgs> Load
+		public event EventHandler<DomEventArgs> Load
 		{
 			add { Events.AddHandler(LoadEvent, value); }
 			remove { Events.RemoveHandler(LoadEvent, value); }
@@ -836,16 +836,16 @@ namespace Gecko
 		
 		/// <summary>Raises the <see cref="LoadEvent"/> event.</summary>
 		/// <param name="e">The data for the event.</param>
-		protected virtual void OnLoad(GeckoDomEventArgs e)
+		protected virtual void OnLoad(DomEventArgs e)
 		{
-			var evnt = (EventHandler<GeckoDomEventArgs>)Events[LoadEvent];
+			var evnt = (EventHandler<DomEventArgs>)Events[LoadEvent];
 			if (evnt != null) evnt(this, e);
 		}
 		#endregion
 
 		#region public event GeckoDomEventHandler DOMContentLoaded
 		[Category("DOM Events")]
-		public event EventHandler<GeckoDomEventArgs> DOMContentLoaded {
+		public event EventHandler<DomEventArgs> DOMContentLoaded {
 			add {
 				Events.AddHandler(DOMContentLoadedEvent, value);
 			}
@@ -856,8 +856,8 @@ namespace Gecko
 
 		/// <summary>Raises the <see cref="LoadEvent"/> event.</summary>
 		/// <param name="e">The data for the event.</param>
-		protected virtual void OnDOMContentLoaded(GeckoDomEventArgs e) {
-			var evnt = (EventHandler<GeckoDomEventArgs>)Events[DOMContentLoadedEvent];
+		protected virtual void OnDOMContentLoaded(DomEventArgs e) {
+			var evnt = (EventHandler<DomEventArgs>)Events[DOMContentLoadedEvent];
 			if (evnt != null)
 				evnt(this, e);
 		}
@@ -865,7 +865,7 @@ namespace Gecko
 
         #region public event GeckoDomEventHandler HashChange
         [Category("DOM Events")]
-        public event EventHandler<GeckoDomEventArgs> HashChange
+		public event EventHandler<DomHashChangeEventArgs> HashChange
         {
             add { Events.AddHandler(HashChangeEvent, value); }
             remove { Events.RemoveHandler(HashChangeEvent, value); }
@@ -873,9 +873,9 @@ namespace Gecko
 
         /// <summary>Raises the <see cref="HashChangeEvent"/> event.</summary>
         /// <param name="e">The data for the event.</param>
-        protected virtual void OnHashChange(GeckoDomEventArgs e)
+		protected virtual void OnHashChange(DomHashChangeEventArgs e)
         {
-            var evnt = (EventHandler<GeckoDomEventArgs>)Events[HashChangeEvent];
+            var evnt = (EventHandler<DomHashChangeEventArgs>)Events[HashChangeEvent];
             if (evnt != null) evnt(this, e);
         }
         #endregion
@@ -884,7 +884,7 @@ namespace Gecko
 
 		// DragStart
 
-		public event EventHandler<GeckoDomDragEventArgs> DomDragStart
+		public event EventHandler<DomDragEventArgs> DomDragStart
 		{
 			add { Events.AddHandler(DomDragStartEvent, value); }
 			remove { Events.RemoveHandler(DomDragStartEvent, value); }
@@ -892,15 +892,15 @@ namespace Gecko
 
 		/// <summary>Raises the <see cref="DomDragStart"/> event.</summary>
 		/// <param name="e">The data for the event.</param>
-		protected virtual void OnDomDragStart(GeckoDomDragEventArgs e)
+		protected virtual void OnDomDragStart(DomDragEventArgs e)
 		{
-			var evnt = (EventHandler<GeckoDomDragEventArgs>)Events[DomDragStartEvent];
+			var evnt = (EventHandler<DomDragEventArgs>)Events[DomDragStartEvent];
 			if (evnt != null) evnt(this, e);
 		}
 
 		// DragEnter
 
-		public event EventHandler<GeckoDomDragEventArgs> DomDragEnter
+		public event EventHandler<DomDragEventArgs> DomDragEnter
 		{
 			add { Events.AddHandler(DomDragEnterEvent, value); }
 			remove { Events.RemoveHandler(DomDragEnterEvent, value); }
@@ -908,15 +908,15 @@ namespace Gecko
 
 		/// <summary>Raises the <see cref="DomDragEnter"/> event.</summary>
 		/// <param name="e">The data for the event.</param>
-		protected virtual void OnDomDragEnter(GeckoDomDragEventArgs e)
+		protected virtual void OnDomDragEnter(DomDragEventArgs e)
 		{
-			var evnt = (EventHandler<GeckoDomDragEventArgs>)Events[DomDragEnterEvent];
+			var evnt = (EventHandler<DomDragEventArgs>)Events[DomDragEnterEvent];
 			if (evnt != null) evnt(this, e);
 		}
 
 		// DragOver
 
-		public event EventHandler<GeckoDomDragEventArgs> DomDragOver
+		public event EventHandler<DomDragEventArgs> DomDragOver
 		{
 			add { Events.AddHandler(DomDragOverEvent, value); }
 			remove { Events.RemoveHandler(DomDragOverEvent, value); }
@@ -924,15 +924,15 @@ namespace Gecko
 
 		/// <summary>Raises the <see cref="DomDragOver"/> event.</summary>
 		/// <param name="e">The data for the event.</param>
-		protected virtual void OnDomDragOver(GeckoDomDragEventArgs e)
+		protected virtual void OnDomDragOver(DomDragEventArgs e)
 		{
-			var evnt = (EventHandler<GeckoDomDragEventArgs>)Events[DomDragOverEvent];
+			var evnt = (EventHandler<DomDragEventArgs>)Events[DomDragOverEvent];
 			if (evnt != null) evnt(this, e);
 		}
 
 		// DragLeave
 
-		public event EventHandler<GeckoDomDragEventArgs> DomDragLeave
+		public event EventHandler<DomDragEventArgs> DomDragLeave
 		{
 			add { Events.AddHandler(DomDragLeaveEvent, value); }
 			remove { Events.RemoveHandler(DomDragLeaveEvent, value); }
@@ -940,15 +940,15 @@ namespace Gecko
 
 		/// <summary>Raises the <see cref="DomDragLeave"/> event.</summary>
 		/// <param name="e">The data for the event.</param>
-		protected virtual void OnDomDragLeave(GeckoDomDragEventArgs e)
+		protected virtual void OnDomDragLeave(DomDragEventArgs e)
 		{
-			var evnt = (EventHandler<GeckoDomDragEventArgs>)Events[DomDragLeaveEvent];
+			var evnt = (EventHandler<DomDragEventArgs>)Events[DomDragLeaveEvent];
 			if (evnt != null) evnt(this, e);
 		}
 
 		// Drag
 
-		public event EventHandler<GeckoDomDragEventArgs> DomDrag
+		public event EventHandler<DomDragEventArgs> DomDrag
 		{
 			add { Events.AddHandler(DomDragEvent, value); }
 			remove { Events.RemoveHandler(DomDragEvent, value); }
@@ -956,15 +956,15 @@ namespace Gecko
 
 		/// <summary>Raises the <see cref="DomDrag"/> event.</summary>
 		/// <param name="e">The data for the event.</param>
-		protected virtual void OnDomDrag(GeckoDomDragEventArgs e)
+		protected virtual void OnDomDrag(DomDragEventArgs e)
 		{
-			var evnt = (EventHandler<GeckoDomDragEventArgs>)Events[DomDragEvent];
+			var evnt = (EventHandler<DomDragEventArgs>)Events[DomDragEvent];
 			if (evnt != null) evnt(this, e);
 		}
 
 		// Drop
 
-		public event EventHandler<GeckoDomDragEventArgs> DomDrop
+		public event EventHandler<DomDragEventArgs> DomDrop
 		{
 			add { Events.AddHandler(DomDropEvent, value); }
 			remove { Events.RemoveHandler(DomDropEvent, value); }
@@ -972,15 +972,15 @@ namespace Gecko
 
 		/// <summary>Raises the <see cref="DomDrop"/> event.</summary>
 		/// <param name="e">The data for the event.</param>
-		protected virtual void OnDomDrop(GeckoDomDragEventArgs e)
+		protected virtual void OnDomDrop(DomDragEventArgs e)
 		{
-			var evnt = (EventHandler<GeckoDomDragEventArgs>)Events[DomDropEvent];
+			var evnt = (EventHandler<DomDragEventArgs>)Events[DomDropEvent];
 			if (evnt != null) evnt(this, e);
 		}
 
 		// DragEnd
 
-		public event EventHandler<GeckoDomDragEventArgs> DomDragEnd
+		public event EventHandler<DomDragEventArgs> DomDragEnd
 		{
 			add { Events.AddHandler(DomDragEndEvent, value); }
 			remove { Events.RemoveHandler(DomDragEndEvent, value); }
@@ -988,9 +988,9 @@ namespace Gecko
 
 		/// <summary>Raises the <see cref="DomDragEnd"/> event.</summary>
 		/// <param name="e">The data for the event.</param>
-		protected virtual void OnDomDragEnd(GeckoDomDragEventArgs e)
+		protected virtual void OnDomDragEnd(DomDragEventArgs e)
 		{
-			var evnt = (EventHandler<GeckoDomDragEventArgs>)Events[DomDragEndEvent];
+			var evnt = (EventHandler<DomDragEventArgs>)Events[DomDragEndEvent];
 			if (evnt != null) evnt(this, e);
 		}
 
@@ -998,7 +998,7 @@ namespace Gecko
 
 		#region public event GeckoDomEventHandler DomContentChanged
 		[Category("DOM Events")]
-		public event EventHandler<GeckoDomEventArgs> DomContentChanged
+		public event EventHandler<DomEventArgs> DomContentChanged
 		{
 			add { Events.AddHandler(DomContentChangedEvent, value); }
 			remove { Events.RemoveHandler(DomContentChangedEvent, value); }
@@ -1006,16 +1006,16 @@ namespace Gecko
 
 		/// <summary>Raises the <see cref="DomContentChanged"/> event.</summary>
 		/// <param name="e">The data for the event.</param>
-		protected virtual void OnDomContentChanged(GeckoDomEventArgs e)
+		protected virtual void OnDomContentChanged(DomEventArgs e)
 		{
-			var evnt = (EventHandler<GeckoDomEventArgs>)Events[DomContentChangedEvent];
+			var evnt = (EventHandler<DomEventArgs>)Events[DomContentChangedEvent];
 			if (evnt != null) evnt(this, e);
 		}
 		#endregion
 
 		#region public event GeckoDomEventHandler DomClick
 		[Category("DOM Events")]
-		public event EventHandler<GeckoDomEventArgs> DomClick
+		public event EventHandler<DomEventArgs> DomClick
 		{
 			add { Events.AddHandler(DomClickEvent, value); }
 			remove { Events.RemoveHandler(DomClickEvent, value); }
@@ -1023,9 +1023,9 @@ namespace Gecko
 		
 		/// <summary>Raises the <see cref="DomClick"/> event.</summary>
 		/// <param name="e">The data for the event.</param>
-		protected virtual void OnDomClick(GeckoDomEventArgs e)
+		protected virtual void OnDomClick(DomEventArgs e)
 		{
-			var evnt = (EventHandler<GeckoDomEventArgs>)Events[DomClickEvent];
+			var evnt = (EventHandler<DomEventArgs>)Events[DomClickEvent];
 			if (evnt != null) evnt(this, e);
 		}
 		#endregion
@@ -1033,7 +1033,7 @@ namespace Gecko
 		#region public event GeckoDomEventHandler DomDoubleClick
 
 		[Category("DOM Events")]
-		public event EventHandler<GeckoDomEventArgs> DomDoubleClick
+		public event EventHandler<DomEventArgs> DomDoubleClick
 		{
 			add { Events.AddHandler(DomDoubleClickEvent, value); }
 			remove { Events.RemoveHandler(DomDoubleClickEvent, value); }
@@ -1041,9 +1041,9 @@ namespace Gecko
 		
 		/// <summary>Raises the <see cref="DomDoubleClick"/> event.</summary>
 		/// <param name="e">The data for the event.</param>
-		protected virtual void OnDomDoubleClick(GeckoDomEventArgs e)
+		protected virtual void OnDomDoubleClick(DomEventArgs e)
 		{
-			var evnt = (EventHandler<GeckoDomEventArgs>)Events[DomDoubleClickEvent];
+			var evnt = (EventHandler<DomEventArgs>)Events[DomDoubleClickEvent];
 			if (evnt != null) evnt(this, e);
 		}
 

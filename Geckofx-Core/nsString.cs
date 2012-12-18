@@ -246,6 +246,18 @@ namespace Gecko
 			return ret;
 		}
 
+		private static T2 GenericPass<TString, T1, T2>(Func<TString, T1, T2> func, string stringValue, T1 value)
+			where TString : IString, IDisposable, new()
+		{
+			T2 ret;
+			using (TString native = new TString())
+			{
+				native.SetData(stringValue);
+				ret = func(native,value);
+			}
+			return ret;
+		}
+
 		/// <summary>
 		/// 2x gecko strings - INPUT
 		/// T - OUTPUT
@@ -301,6 +313,11 @@ namespace Gecko
 		public static T Pass<T,TW> (Func<TW,nsAUTF8String,T> func,TW value,string stringValue )
 		{
 			return GenericPass( func, value, stringValue );
+		}
+
+		public static T Pass<T, TW>(Func<nsAUTF8String, TW, T> func,  string stringValue,TW value)
+		{
+			return GenericPass(func, stringValue, value);
 		}
 		#endregion
 

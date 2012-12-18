@@ -146,7 +146,7 @@ namespace GeckoFxTest
 		/// An example event handler for the DomClick event.
 		/// Prevents a link click from navigating.
 		/// </summary>
-		void StopLinksNavigating(object sender, GeckoDomEventArgs e)
+		void StopLinksNavigating(object sender, DomEventArgs e)
 		{
 			if (sender != null && e != null && e.Target != null && e.Target.TagName != null)
 			{

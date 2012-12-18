@@ -7,21 +7,26 @@ namespace Gecko.Net
 	public sealed class DnsRecord
 		:IEnumerable<string>
 	{
-		private nsIDNSRecord _record;
+		private InstanceWrapper<nsIDNSRecord> _record;
 
-		internal DnsRecord( nsIDNSRecord record )
+		private DnsRecord( nsIDNSRecord record )
 		{
-			_record = record;
+			_record = new InstanceWrapper<nsIDNSRecord>( record );
+		}
+
+		public static DnsRecord Create(nsIDNSRecord record)
+		{
+			return record == null ? null : new DnsRecord( record );
 		}
 
 		public string CanonicalName
 		{
-			get { return nsString.Get( _record.GetCanonicalNameAttribute ); }
+			get { return nsString.Get( _record.Instance.GetCanonicalNameAttribute ); }
 		}
 
 		public IEnumerator<string> GetEnumerator()
 		{
-			return new DnsRecordEnumerator( _record );
+			return new DnsRecordEnumerator(_record.Instance);
 		}
 
 		IEnumerator IEnumerable.GetEnumerator()

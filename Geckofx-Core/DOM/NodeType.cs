@@ -2,17 +2,17 @@
 {
 	public enum NodeType
 	{
-		Element = nsIDOMNodeConstants.ELEMENT_NODE,
-		Attribute = nsIDOMNodeConstants.ATTRIBUTE_NODE,
-		Text = nsIDOMNodeConstants.TEXT_NODE,
-		CDataSection = nsIDOMNodeConstants.CDATA_SECTION_NODE,
-		EntityReference = nsIDOMNodeConstants.ENTITY_REFERENCE_NODE,
-		Entity = nsIDOMNodeConstants.ENTITY_NODE,
-		ProcessingInstruction = nsIDOMNodeConstants.PROCESSING_INSTRUCTION_NODE,
-		Comment = nsIDOMNodeConstants.COMMENT_NODE,
-		Document = nsIDOMNodeConstants.DOCUMENT_NODE,
-		DocumentType = nsIDOMNodeConstants.DOCUMENT_TYPE_NODE,
-		DocumentFragment = nsIDOMNodeConstants.DOCUMENT_FRAGMENT_NODE,
-		Notation = nsIDOMNodeConstants.NOTATION_NODE
+		Element = ( int ) nsIDOMNodeConsts.ELEMENT_NODE,
+		Attribute = ( int ) nsIDOMNodeConsts.ATTRIBUTE_NODE,
+		Text = ( int ) nsIDOMNodeConsts.TEXT_NODE,
+		CDataSection = ( int ) nsIDOMNodeConsts.CDATA_SECTION_NODE,
+		EntityReference = ( int ) nsIDOMNodeConsts.ENTITY_REFERENCE_NODE,
+		Entity = ( int ) nsIDOMNodeConsts.ENTITY_NODE,
+		ProcessingInstruction = ( int ) nsIDOMNodeConsts.PROCESSING_INSTRUCTION_NODE,
+		Comment = ( int ) nsIDOMNodeConsts.COMMENT_NODE,
+		Document = ( int ) nsIDOMNodeConsts.DOCUMENT_NODE,
+		DocumentType = ( int ) nsIDOMNodeConsts.DOCUMENT_TYPE_NODE,
+		DocumentFragment = ( int ) nsIDOMNodeConsts.DOCUMENT_FRAGMENT_NODE,
+		Notation = ( int ) nsIDOMNodeConsts.NOTATION_NODE
 	}
 }

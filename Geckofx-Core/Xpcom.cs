@@ -39,8 +39,8 @@ using System.Runtime.InteropServices;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using Gecko.Interop;
-using GeckoFX.Microsoft;
 using System.Threading;
+using Gecko.Windows;
 
 
 // XpCom function are declared like
