@@ -62,6 +62,7 @@ namespace GeckofxUnitTests
 			for (int i = 0; i < 100; i++)
 			{
 				array[i]=new VersionComparer();
+				array[i].Compare("a", "a");
 			}
 
 
