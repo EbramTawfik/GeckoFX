@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Gecko</RootNamespace>
-    <AssemblyName>geckofx-core-15</AssemblyName>
+    <AssemblyName>geckofx-core-16</AssemblyName>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>GeckoFX.snk</AssemblyOriginatorKeyFile>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
@@ -1557,7 +1557,7 @@
     <Compile Include="Windows\Taskbar\WinTaskbar.cs" />
     <Compile Include="Xpcom.cs" />
     <Compile Include="XULRunnerLocator.cs" />
-    <None Include="geckofx-core-15.dll.config">
+    <None Include="geckofx-core-16.dll.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Net\Requests.cd" />
