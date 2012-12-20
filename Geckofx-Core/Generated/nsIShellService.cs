@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("bb477da4-dddf-4106-a562-f06c85c7f9a8")]
+	[Guid("99d2e9f1-3c86-40f7-81fd-3060c18489f0")]
 	public interface nsIShellService
 	{
 		
@@ -44,10 +44,13 @@ namespace Gecko
         /// @param aStartupCheck true if this is the check being performed
         /// by the first browser window at startup,
         /// false otherwise.
+        /// @param aForAllTypes  true if the check should be made for HTTP and HTML.
+        /// false if the check should be made for HTTP only.
+        /// This parameter may be ignored on some platforms.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsDefaultBrowser([MarshalAs(UnmanagedType.U1)] bool aStartupCheck);
+		bool IsDefaultBrowser([MarshalAs(UnmanagedType.U1)] bool aStartupCheck, [MarshalAs(UnmanagedType.U1)] bool aForAllTypes);
 		
 		/// <summary>
         /// Registers Firefox as the "Default Browser."
@@ -136,14 +139,14 @@ namespace Gecko
         /// The uri to be loaded by the application
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OpenApplicationWithURI([MarshalAs(UnmanagedType.Interface)] nsILocalFile aApplication, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aURI);
+		void OpenApplicationWithURI([MarshalAs(UnmanagedType.Interface)] nsIFile aApplication, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aURI);
 		
 		/// <summary>
         /// The default system handler for web feeds
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsILocalFile GetDefaultFeedReaderAttribute();
+		nsIFile GetDefaultFeedReaderAttribute();
 	}
 	
 	/// <summary>nsIShellServiceConsts </summary>

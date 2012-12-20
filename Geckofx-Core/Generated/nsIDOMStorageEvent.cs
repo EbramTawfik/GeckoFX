@@ -35,7 +35,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("501d7dc8-5b8b-4cce-99ad-16ed1046030a")]
+	[Guid("acb10e76-860f-4a49-8083-661a152ae1b2")]
 	public interface nsIDOMStorageEvent : nsIDOMEvent
 	{
 		
@@ -166,6 +166,29 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void StopImmediatePropagation();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void DuplicatePrivateData();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetTarget([MarshalAs(UnmanagedType.Interface)] nsIDOMEventTarget aTarget);
+		
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool IsDispatchStopped();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new System.IntPtr GetInternalNSEvent();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetTrusted([MarshalAs(UnmanagedType.U1)] bool aTrusted);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void Serialize(System.IntPtr aMsg, [MarshalAs(UnmanagedType.U1)] bool aSerializeInterfaceType);
+		
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool Deserialize(System.IntPtr aMsg, ref System.IntPtr aIter);
 		
 		/// <summary>
         /// Attribute represents the key being changed. The key attribute is null

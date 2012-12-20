@@ -145,8 +145,8 @@ namespace Gecko
 		public const long XULTabs = 0x00001018;
 		
 		// <summary>
-        //Used for XUL tabpanels container element </summary>
-		public const long XULTabpanels = 0x00001019;
+        //Used for XUL deck frame </summary>
+		public const long XULDeck = 0x00001019;
 		
 		// 
 		public const long XULText = 0x0000101A;

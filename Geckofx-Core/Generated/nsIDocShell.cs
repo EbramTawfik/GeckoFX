@@ -31,7 +31,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("6f60ac96-fa2c-41a5-92b4-29aaadbd7a7b")]
+	[Guid("89ea9f32-18ec-413b-9e2c-ce9a4c851b1c")]
 	public interface nsIDocShell
 	{
 		
@@ -535,6 +535,21 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void AddSessionStorage([MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, [MarshalAs(UnmanagedType.Interface)] nsIDOMStorage storage);
+		
+		/// <summary>
+        /// Clones all session storage objects and attaches them to the given docshell.
+        /// Useful when duplicating tabs and their states.
+        ///
+        /// @param docShell the docshell to clone the sessionstorage objects to
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void CloneSessionStoragesTo([MarshalAs(UnmanagedType.Interface)] nsIDocShell docShell);
+		
+		/// <summary>
+        /// Removes all WebApps session storage objects attached to the docshell.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void ClearSessionStorages();
 		
 		/// <summary>
         /// Gets the channel for the currently loaded document, if any.

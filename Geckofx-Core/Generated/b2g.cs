@@ -45,14 +45,43 @@ namespace Gecko
 	/// <summary>nsIB2GKeyboard </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("80ad05f8-e5f6-4a36-b25d-5d5a969b365d")]
+	[Guid("53990d7a-ab2a-11e1-8543-7767e4cbcbff")]
 	public interface nsIB2GKeyboard
 	{
 		
 		/// <summary>Member SendKey </summary>
-		/// <param name='aKeyCode'> </param>
-		/// <param name='aCharCode'> </param>
+		/// <param name='keyCode'> </param>
+		/// <param name='charCode'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendKey(int aKeyCode, int aCharCode);
+		void SendKey(int keyCode, int charCode);
+		
+		/// <summary>
+        /// selection the previous element will be unselected.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetSelectedOption(Gecko.JsVal index);
+		
+		/// <summary>
+        /// selection, then the last index specified in indexes will be selected.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetSelectedOptions(Gecko.JsVal indexes);
+		
+		/// <summary>
+        /// Forms Validation), the value will simply be ignored by the element.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetValue(Gecko.JsVal value);
+		
+		/// <summary>Member GetOnfocuschangeAttribute </summary>
+		/// <returns>A nsIDOMEventListener</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMEventListener GetOnfocuschangeAttribute();
+		
+		/// <summary>Member SetOnfocuschangeAttribute </summary>
+		/// <param name='aOnfocuschange'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOnfocuschangeAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnfocuschange);
 	}
 }

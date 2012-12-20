@@ -41,7 +41,7 @@ namespace Gecko
         /// License, v. 2.0. If a copy of the MPL was not distributed with this
         /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void StartProfiler(uint aInterval, uint aEntries, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=3)] string[] aFeatures, uint aFeatureCount);
+		void StartProfiler(uint aEntries, uint aInterval, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=3)] string[] aFeatures, uint aFeatureCount);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void StopProfiler();

@@ -76,20 +76,28 @@ namespace Gecko
 			
 			_cx = context;			
 
+			// TODO: calling BeginRequest may not be neccessary anymore.
 			// begin a new request
 			SpiderMonkey.JS_BeginRequest(_cx);
 
+			// TODO: pushing the context onto the context stack may not be neccessary anymore.
 			// push the context onto the context stack
 			_contextStack = Xpcom.GetService<nsIJSContextStack>("@mozilla.org/js/xpc/ContextStack;1");
 			_contextStack.Push(_cx);
 
+// PushContextPrinciple was removed in firefox 16.
+// TODO: delete this block if still exists in geckofx 17+
+#if false
 			// obtain the system principal (no security checks) (one could get a different principal by calling securityManager.GetObjectPrincipal())
 			if (_securityManager == null)
 			{
 				_securityManager = Xpcom.GetService<nsIScriptSecurityManager>("@mozilla.org/scriptsecuritymanager;1");
 			}
+
 			_systemPrincipal = _securityManager.GetSystemPrincipal();
+
 			_securityManager.PushContextPrincipal(_cx, IntPtr.Zero, _systemPrincipal);
+#endif
 		}
 
 		/// <summary>
@@ -154,9 +162,13 @@ namespace Gecko
 
 		public void Dispose()
 		{
+// PopContextPrincipal was removed in firefox 16.
+// TODO: delete this block if still exists in geckofx 17+
+#if false
 			_securityManager.PopContextPrincipal(_cx);
-			
+#endif
 			_contextStack.Pop();
+
 			SpiderMonkey.JS_EndRequest(_cx);
 		}
 	}

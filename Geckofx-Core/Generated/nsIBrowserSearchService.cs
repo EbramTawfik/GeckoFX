@@ -198,12 +198,58 @@ namespace Gecko
 		public const ulong DATA_TEXT = 2;
 	}
 	
+	/// <summary>
+    /// Callback for asynchronous initialization of nsIBrowserSearchService
+    /// </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("02256156-16e4-47f1-9979-76ff98ceb590")]
+	public interface nsIBrowserSearchInitObserver
+	{
+		
+		/// <summary>
+        /// Called once initialization of the browser search service is complete.
+        ///
+        /// @param aStatus The status of that service.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void OnInitComplete(int aStatus);
+	}
+	
 	/// <summary>nsIBrowserSearchService </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("8307b8f2-08ea-45b8-96bf-b1dc7688fe3b")]
+	[Guid("a676eb70-6987-4429-a668-3e253b6f7c7c")]
 	public interface nsIBrowserSearchService
 	{
+		
+		/// <summary>
+        /// Start asynchronous initialization.
+        ///
+        /// The callback is triggered once initialization is complete, which may be
+        /// immediately, if initialization has already been completed by some previous
+        /// call to this method. The callback is always invoked asynchronously.
+        ///
+        /// @param aObserver An optional object observing the end of initialization.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Init([MarshalAs(UnmanagedType.Interface)] nsIBrowserSearchInitObserver aObserver);
+		
+		/// <summary>
+        /// Determine whether initialization has been completed.
+        ///
+        /// Clients of the service can use this attribute to quickly determine whether
+        /// initialization is complete, and decide to trigger some immediate treatment,
+        /// to launch asynchronous initialization or to bailout.
+        ///
+        /// Note that this attribute does not indicate that initialization has succeeded.
+        ///
+        /// @return |true| if the search service is now initialized, |false| if
+        /// initialization has not been triggered yet.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetIsInitializedAttribute();
 		
 		/// <summary>
         /// Adds a new search engine from the file at the supplied URI, optionally

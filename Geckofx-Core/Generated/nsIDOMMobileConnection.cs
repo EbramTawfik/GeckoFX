@@ -32,7 +32,7 @@ namespace Gecko
     /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("962298cd-3443-423e-9e47-f22e24ad850b")]
+	[Guid("e7309c47-9a2e-4e12-84ab-f8f39214eaba")]
 	public interface nsIDOMMozMobileConnection : nsIDOMEventTarget
 	{
 		
@@ -263,62 +263,57 @@ namespace Gecko
 		nsIDOMMozMobileConnectionInfo GetDataAttribute();
 		
 		/// <summary>
+        /// The selection mode of the voice and data networks.
+        ///
+        /// Possible values: null (unknown), 'automatic', 'manual'
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetNetworkSelectionModeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNetworkSelectionMode);
+		
+		/// <summary>
         /// Search for available networks.
         ///
         /// If successful, the request's onsuccess will be called, and the request's
-        /// result will be an array of nsIDOMMozMobileOperatorInfo.
+        /// result will be an array of nsIDOMMozMobileNetworkInfo.
         ///
         /// Otherwise, the request's onerror will be called, and the request's error
-        /// will be either 'RadioNotAvailable', 'RequestNotSupported', or 'GenericFailure'.
+        /// will be either 'RadioNotAvailable', 'RequestNotSupported',
+        /// or 'GenericFailure'.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMDOMRequest GetNetworks();
 		
 		/// <summary>
-        /// The 'cardstatechange' event is notified when the 'cardState' attribute
-        /// changes value.
+        /// Manually selects the passed in network, overriding the radio's current
+        /// selection.
+        ///
+        /// If successful, the request's onsuccess will be called.
+        /// Note: If the network was actually changed by this request,
+        /// the 'voicechange' and 'datachange' events will also be fired.
+        ///
+        /// Otherwise, the request's onerror will be called, and the request's error
+        /// will be either 'RadioNotAvailable', 'RequestNotSupported',
+        /// 'IllegalSIMorME', or 'GenericFailure'
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener GetOncardstatechangeAttribute();
+		nsIDOMDOMRequest SelectNetwork([MarshalAs(UnmanagedType.Interface)] nsIDOMMozMobileNetworkInfo network);
 		
 		/// <summary>
-        /// The 'cardstatechange' event is notified when the 'cardState' attribute
-        /// changes value.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOncardstatechangeAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOncardstatechange);
-		
-		/// <summary>
-        /// The 'voicechange' event is notified whenever the voice connection object
-        /// changes.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener GetOnvoicechangeAttribute();
-		
-		/// <summary>
-        /// The 'voicechange' event is notified whenever the voice connection object
-        /// changes.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnvoicechangeAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnvoicechange);
-		
-		/// <summary>
-        /// The 'datachange' event is notified whenever the data connection object
-        /// changes values.
+        /// Tell the radio to automatically select a network.
+        ///
+        /// If successful, the request's onsuccess will be called.
+        /// Note: If the network was actually changed by this request, the
+        /// 'voicechange' and 'datachange' events will also be fired.
+        ///
+        /// Otherwise, the request's onerror will be called, and the request's error
+        /// will be either 'RadioNotAvailable', 'RequestNotSupported',
+        /// 'IllegalSIMorME', or 'GenericFailure'
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener GetOndatachangeAttribute();
-		
-		/// <summary>
-        /// The 'datachange' event is notified whenever the data connection object
-        /// changes values.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOndatachangeAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOndatachange);
+		nsIDOMDOMRequest SelectNetworkAutomatically();
 		
 		/// <summary>
         /// Find out about the status of an ICC lock (e.g. the PIN lock).
@@ -431,12 +426,91 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMDOMRequest SetCardLock(Gecko.JsVal info);
+		
+		/// <summary>
+        /// Send a USSD message.
+        ///
+        /// The network reply will be reported via onussdreceived event.
+        ///
+        /// The 'success' event for the request means the USSD message has been sent
+        /// successfully.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest SendUSSD([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase ussd);
+		
+		/// <summary>
+        /// Cancel the current USSD session if one exists.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest CancelUSSD();
+		
+		/// <summary>
+        /// The 'cardstatechange' event is notified when the 'cardState' attribute
+        /// changes value.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMEventListener GetOncardstatechangeAttribute();
+		
+		/// <summary>
+        /// The 'cardstatechange' event is notified when the 'cardState' attribute
+        /// changes value.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOncardstatechangeAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOncardstatechange);
+		
+		/// <summary>
+        /// The 'voicechange' event is notified whenever the voice connection object
+        /// changes.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMEventListener GetOnvoicechangeAttribute();
+		
+		/// <summary>
+        /// The 'voicechange' event is notified whenever the voice connection object
+        /// changes.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOnvoicechangeAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnvoicechange);
+		
+		/// <summary>
+        /// The 'datachange' event is notified whenever the data connection object
+        /// changes values.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMEventListener GetOndatachangeAttribute();
+		
+		/// <summary>
+        /// The 'datachange' event is notified whenever the data connection object
+        /// changes values.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOndatachangeAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOndatachange);
+		
+		/// <summary>
+        /// The 'ussdreceived' event is notified whenever a new USSD message is
+        /// received.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMEventListener GetOnussdreceivedAttribute();
+		
+		/// <summary>
+        /// The 'ussdreceived' event is notified whenever a new USSD message is
+        /// received.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOnussdreceivedAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnussdreceived);
 	}
 	
 	/// <summary>nsIDOMMozMobileConnectionInfo </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("f3bb0611-5e4a-46f1-a8f5-cf592b37596e")]
+	[Guid("46321d6e-bbce-4b7b-aa32-d17b6aa984fe")]
 	public interface nsIDOMMozMobileConnectionInfo
 	{
 		
@@ -466,10 +540,11 @@ namespace Gecko
 		bool GetRoamingAttribute();
 		
 		/// <summary>
-        /// Operator name.
+        /// Network operator
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetOperatorAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aOperator);
+		nsIDOMMozMobileNetworkInfo GetNetworkAttribute();
 		
 		/// <summary>
         /// Type of connection.
@@ -494,11 +569,11 @@ namespace Gecko
 		Gecko.JsVal GetRelSignalStrengthAttribute();
 	}
 	
-	/// <summary>nsIDOMMozMobileOperatorInfo </summary>
+	/// <summary>nsIDOMMozMobileNetworkInfo </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("79217f7a-4401-4d75-9654-3b28bba698c9")]
-	public interface nsIDOMMozMobileOperatorInfo
+	[Guid("3bd866c7-98a5-4ef4-a464-c22d8cc6b992")]
+	public interface nsIDOMMozMobileNetworkInfo
 	{
 		
 		/// <summary>

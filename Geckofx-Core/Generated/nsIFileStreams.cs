@@ -35,7 +35,7 @@ namespace Gecko
 	{
 		
 		/// <summary>
-        /// @param file          file to read from (must QI to nsILocalFile)
+        /// @param file          file to read from
         /// @param ioFlags       file open flags listed in prio.h (see
         /// PR_Open documentation) or -1 to open the
         /// file in default mode (PR_RDONLY).
@@ -201,7 +201,7 @@ namespace Gecko
 		new bool IsNonBlocking();
 		
 		/// <summary>
-        /// @param file          file to write to (must QI to nsILocalFile)
+        /// @param file          file to write to
         /// @param ioFlags       file open flags listed in prio.h (see
         /// PR_Open documentation) or -1 to open the
         /// file in default mode (PR_WRONLY |
@@ -253,7 +253,7 @@ namespace Gecko
         /// You must initialize the stream, and only initialize it once, before it
         /// can be used.
         ///
-        /// @param file          file to read from (must QI to nsILocalFile)
+        /// @param file          file to read from
         /// @param start         start offset of slice to read. Must be smaller
         /// than the size of the file.
         /// @param length        length of slice to read. Must be small enough that
@@ -280,8 +280,7 @@ namespace Gecko
 	{
 		
 		/// <summary>
-        /// @param file          file to read from or stream to (must QI to
-        /// nsILocalFile)
+        /// @param file          file to read from or stream to
         /// @param ioFlags       file open flags listed in prio.h (see
         /// PR_Open documentation) or -1 to open the
         /// file in default mode (PR_RDWR).

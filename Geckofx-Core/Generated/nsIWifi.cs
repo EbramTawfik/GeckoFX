@@ -46,7 +46,7 @@ namespace Gecko
 	/// <summary>nsIDOMWifiManager </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("e3d5a7d7-6abd-4ac2-83dc-5315ec08a1c3")]
+	[Guid("eda793cd-0bb3-475e-9223-0e778856ebd1")]
 	public interface nsIDOMWifiManager
 	{
 		
@@ -122,7 +122,7 @@ namespace Gecko
 		
 		/// <summary>
         /// A connectionInformation object with the same information found in an
-        /// nsIDOMWifiConnectionInfoEvent (but without the network).
+        /// nsIDOMMozWifiConnectionInfoEvent (but without the network).
         /// If we are not currently connected to a network, this will be null.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -130,7 +130,7 @@ namespace Gecko
 		
 		/// <summary>
         /// State notification listeners. These all take an
-        /// nsIDOMWifiStatusChangeEvent with the new status and a network (which
+        /// nsIDOMMozWifiStatusChangeEvent with the new status and a network (which
         /// may be null).
         ///
         /// The possible statuses are:
@@ -152,7 +152,7 @@ namespace Gecko
 		
 		/// <summary>
         /// State notification listeners. These all take an
-        /// nsIDOMWifiStatusChangeEvent with the new status and a network (which
+        /// nsIDOMMozWifiStatusChangeEvent with the new status and a network (which
         /// may be null).
         ///
         /// The possible statuses are:
@@ -185,13 +185,39 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetConnectionInfoUpdateAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aConnectionInfoUpdate);
+		
+		/// <summary>
+        /// These two events fire when the wifi system is brought online or taken
+        /// offline.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMEventListener GetOnenabledAttribute();
+		
+		/// <summary>
+        /// These two events fire when the wifi system is brought online or taken
+        /// offline.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOnenabledAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnenabled);
+		
+		/// <summary>Member GetOndisabledAttribute </summary>
+		/// <returns>A nsIDOMEventListener</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMEventListener GetOndisabledAttribute();
+		
+		/// <summary>Member SetOndisabledAttribute </summary>
+		/// <param name='aOndisabled'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOndisabledAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOndisabled);
 	}
 	
-	/// <summary>nsIDOMWifiStatusChangeEvent </summary>
+	/// <summary>nsIDOMMozWifiStatusChangeEvent </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("4674c6f1-ea64-44db-ac2f-e7bd6514dfd6")]
-	public interface nsIDOMWifiStatusChangeEvent : nsIDOMEvent
+	[Guid("ba1dab70-b70d-11e1-afa6-0800200c9a66")]
+	public interface nsIDOMMozWifiStatusChangeEvent : nsIDOMEvent
 	{
 		
 		/// <summary>
@@ -321,28 +347,76 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void StopImmediatePropagation();
+		
+		/// <summary>Member DuplicatePrivateData </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void DuplicatePrivateData();
+		
+		/// <summary>Member SetTarget </summary>
+		/// <param name='aTarget'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetTarget([MarshalAs(UnmanagedType.Interface)] nsIDOMEventTarget aTarget);
+		
+		/// <summary>Member IsDispatchStopped </summary>
+		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool IsDispatchStopped();
+		
+		/// <summary>Member GetInternalNSEvent </summary>
+		/// <returns>A System.IntPtr</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new System.IntPtr GetInternalNSEvent();
+		
+		/// <summary>Member SetTrusted </summary>
+		/// <param name='aTrusted'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetTrusted([MarshalAs(UnmanagedType.U1)] bool aTrusted);
+		
+		/// <summary>Member Serialize </summary>
+		/// <param name='aMsg'> </param>
+		/// <param name='aSerializeInterfaceType'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void Serialize(System.IntPtr aMsg, [MarshalAs(UnmanagedType.U1)] bool aSerializeInterfaceType);
+		
+		/// <summary>Member Deserialize </summary>
+		/// <param name='aMsg'> </param>
+		/// <param name='aIter'> </param>
+		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool Deserialize(System.IntPtr aMsg, ref System.IntPtr aIter);
 		
 		/// <summary>
         /// Network object with a SSID field describing the network affected by
         /// this change. This might be null.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal GetNetworkAttribute();
+		nsIVariant GetNetworkAttribute();
 		
 		/// <summary>
         /// String describing the current status of the wifi manager. See above for
         /// the possible values.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.LPStr)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string GetStatusAttribute();
+		void GetStatusAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aStatus);
+		
+		/// <summary>Member InitMozWifiStatusChangeEvent </summary>
+		/// <param name='aType'> </param>
+		/// <param name='aCanBubble'> </param>
+		/// <param name='aCancelable'> </param>
+		/// <param name='aNetwork'> </param>
+		/// <param name='status'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void InitMozWifiStatusChangeEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType, [MarshalAs(UnmanagedType.U1)] bool aCanBubble, [MarshalAs(UnmanagedType.U1)] bool aCancelable, [MarshalAs(UnmanagedType.Interface)] nsIVariant aNetwork, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase status);
 	}
 	
-	/// <summary>nsIDOMWifiConnectionInfoEvent </summary>
+	/// <summary>nsIDOMMozWifiConnectionInfoEvent </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("5c9ee332-dd98-4227-b7fc-768418fd50e3")]
-	public interface nsIDOMWifiConnectionInfoEvent : nsIDOMEvent
+	[Guid("b383e950-b70d-11e1-afa6-0800200c9a66")]
+	public interface nsIDOMMozWifiConnectionInfoEvent : nsIDOMEvent
 	{
 		
 		/// <summary>
@@ -473,11 +547,51 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void StopImmediatePropagation();
 		
+		/// <summary>Member DuplicatePrivateData </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void DuplicatePrivateData();
+		
+		/// <summary>Member SetTarget </summary>
+		/// <param name='aTarget'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetTarget([MarshalAs(UnmanagedType.Interface)] nsIDOMEventTarget aTarget);
+		
+		/// <summary>Member IsDispatchStopped </summary>
+		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool IsDispatchStopped();
+		
+		/// <summary>Member GetInternalNSEvent </summary>
+		/// <returns>A System.IntPtr</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new System.IntPtr GetInternalNSEvent();
+		
+		/// <summary>Member SetTrusted </summary>
+		/// <param name='aTrusted'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetTrusted([MarshalAs(UnmanagedType.U1)] bool aTrusted);
+		
+		/// <summary>Member Serialize </summary>
+		/// <param name='aMsg'> </param>
+		/// <param name='aSerializeInterfaceType'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void Serialize(System.IntPtr aMsg, [MarshalAs(UnmanagedType.U1)] bool aSerializeInterfaceType);
+		
+		/// <summary>Member Deserialize </summary>
+		/// <param name='aMsg'> </param>
+		/// <param name='aIter'> </param>
+		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool Deserialize(System.IntPtr aMsg, ref System.IntPtr aIter);
+		
 		/// <summary>
         /// Network object with an SSID field.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal GetNetworkAttribute();
+		nsIVariant GetNetworkAttribute();
 		
 		/// <summary>
         /// Strength of the signal to network, in dBm between -55 and -100 dBm.
@@ -492,9 +606,20 @@ namespace Gecko
 		short GetRelSignalStrengthAttribute();
 		
 		/// <summary>
-        /// Link spead in Mb/s.
+        /// Link speed in Mb/s.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetLinkSpeedAttribute();
+		
+		/// <summary>Member InitMozWifiConnectionInfoEvent </summary>
+		/// <param name='aType'> </param>
+		/// <param name='aCanBubble'> </param>
+		/// <param name='aCancelable'> </param>
+		/// <param name='aNetwork'> </param>
+		/// <param name='signalStrength'> </param>
+		/// <param name='relSignalStrength'> </param>
+		/// <param name='linkSpeed'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void InitMozWifiConnectionInfoEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType, [MarshalAs(UnmanagedType.U1)] bool aCanBubble, [MarshalAs(UnmanagedType.U1)] bool aCancelable, [MarshalAs(UnmanagedType.Interface)] nsIVariant aNetwork, short signalStrength, short relSignalStrength, int linkSpeed);
 	}
 }

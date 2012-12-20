@@ -24,7 +24,7 @@ namespace Gecko.Images
 			return _container.Instance.CopyFrame(whichFrame, flags);
 		}
 
-		public void Draw(gfxContext context, gfxPattern.GraphicsFilter filter, gfxMatrix matrix, gfxRect fill, nsIntRect subImage, uint viewportSize, uint flags)
+		public void Draw(gfxContext context, gfxGraphicsFilter filter, gfxMatrix matrix, gfxRect fill, nsIntRect subImage, uint viewportSize, uint flags)
 		{
 			_container.Instance.Draw(context, filter, matrix, fill, subImage, viewportSize, flags);
 		}

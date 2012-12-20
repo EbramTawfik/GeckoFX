@@ -34,7 +34,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("7c5ce762-ba90-4539-8723-3e942113a145")]
+	[Guid("c4788e02-3239-490a-8aeb-60fad08303fd")]
 	public interface nsIXPCScriptable
 	{
 		
@@ -43,7 +43,7 @@ namespace Gecko
 		string GetClassNameAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetScriptableFlagsAttribute();
+		uint GetScriptableFlags();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void PreCreate([MarshalAs(UnmanagedType.Interface)] nsISupports nativeObj, System.IntPtr cx, System.IntPtr globalObj, ref System.IntPtr parentObj);

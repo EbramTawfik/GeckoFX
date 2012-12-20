@@ -415,7 +415,7 @@ namespace Gecko
 		/// <summary>
         /// initWith[Native]Path
         ///
-        /// This function will initialize the nsILocalFile object.  Any
+        /// This function will initialize the nsIFile object.  Any
         /// internal state information will be reset.
         ///
         /// @param filePath
@@ -503,7 +503,7 @@ namespace Gecko
 		/// <summary>
         /// appendRelative[Native]Path
         ///
-        /// Append a relative path to the current path of the nsILocalFile object.
+        /// Append a relative path to the current path of the nsIFile object.
         ///
         /// @param relativeFilePath
         /// relativeFilePath is a native relative path. For security reasons,
@@ -710,12 +710,12 @@ namespace Gecko
         ///
         /// Launch the application that this file points to with a document.
         ///
-        /// @param   aDocToLoad          Must not be NULL. If no document, use nsILocalFile::launch
+        /// @param   aDocToLoad          Must not be NULL. If no document, use nsIFile::launch
         /// @param   aLaunchInBackground TRUE if the application should not come to the front.
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void LaunchWithDoc([MarshalAs(UnmanagedType.Interface)] nsILocalFile aDocToLoad, [MarshalAs(UnmanagedType.U1)] bool aLaunchInBackground);
+		void LaunchWithDoc([MarshalAs(UnmanagedType.Interface)] nsIFile aDocToLoad, [MarshalAs(UnmanagedType.U1)] bool aLaunchInBackground);
 		
 		/// <summary>
         /// openDocWithApp
@@ -729,7 +729,7 @@ namespace Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OpenDocWithApp([MarshalAs(UnmanagedType.Interface)] nsILocalFile aAppToOpenWith, [MarshalAs(UnmanagedType.U1)] bool aLaunchInBackground);
+		void OpenDocWithApp([MarshalAs(UnmanagedType.Interface)] nsIFile aAppToOpenWith, [MarshalAs(UnmanagedType.U1)] bool aLaunchInBackground);
 		
 		/// <summary>
         /// isPackage

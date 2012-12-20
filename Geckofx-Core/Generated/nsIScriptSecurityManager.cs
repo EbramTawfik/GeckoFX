@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("3708aa92-e2d9-4fd1-9e46-edfa3eb5ebf5")]
+	[Guid("cdb27711-492b-4973-938b-de81ac124658")]
 	public interface nsIScriptSecurityManager : nsIXPCSecurityManager
 	{
 		
@@ -271,29 +271,6 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIPrincipal GetCxSubjectPrincipalAndFrame(System.IntPtr cx, ref System.IntPtr fp);
-		
-		/// <summary>
-        /// If no scripted code is running "above" (or called from) fp, then
-        /// instead of looking at cx->globalObject, we will return |principal|.
-        /// This function only affects |cx|. If someone pushes another context onto
-        /// the context stack, then it supersedes this call.
-        /// NOTE: If |fp| is non-null popContextPrincipal must be called before fp
-        /// has finished executing.
-        ///
-        /// @param cx The context to clamp.
-        /// @param fp The frame pointer to clamp at. May be 'null'.
-        /// @param principal The principal to clamp to.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PushContextPrincipal(System.IntPtr cx, System.IntPtr fp, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal);
-		
-		/// <summary>
-        /// Removes a clamp set by pushContextPrincipal from cx. This must be
-        /// called in a stack-like fashion (e.g., given two contexts |a| and |b|,
-        /// it is not legal to do: push(a) push(b) pop(a)).
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PopContextPrincipal(System.IntPtr cx);
 	}
 	
 	/// <summary>nsIScriptSecurityManagerConsts </summary>

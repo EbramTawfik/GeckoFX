@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("31845f85-718a-4581-a672-a45c0327cb21")]
+	[Guid("cbba15b8-316d-4ae6-8ed9-fe9cf8386730")]
 	public interface nsIBlocklistService
 	{
 		
@@ -135,6 +135,16 @@ namespace Gecko
         // update available.
         // </summary>
 		public const ulong STATE_OUTDATED = 3;
+		
+		// <summary>
+        // Indicates that the item is vulnerable and there is an update.
+        // </summary>
+		public const ulong STATE_VULNERABLE_UPDATE_AVAILABLE = 4;
+		
+		// <summary>
+        // Indicates that the item is vulnerable and there is no update.
+        // </summary>
+		public const ulong STATE_VULNERABLE_NO_UPDATE = 5;
 	}
 	
 	/// <summary>

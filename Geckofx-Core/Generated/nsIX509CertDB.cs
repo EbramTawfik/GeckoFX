@@ -215,7 +215,7 @@ namespace Gecko
         /// be imported. See type constants in nsIX509Cert.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ImportCertsFromFile([MarshalAs(UnmanagedType.Interface)] nsISupports aToken, [MarshalAs(UnmanagedType.Interface)] nsILocalFile aFile, uint aType);
+		void ImportCertsFromFile([MarshalAs(UnmanagedType.Interface)] nsISupports aToken, [MarshalAs(UnmanagedType.Interface)] nsIFile aFile, uint aType);
 		
 		/// <summary>
         /// Import a PKCS#12 file containing cert(s) and key(s) into the database.
@@ -227,7 +227,7 @@ namespace Gecko
         /// to be imported.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ImportPKCS12File([MarshalAs(UnmanagedType.Interface)] nsISupports aToken, [MarshalAs(UnmanagedType.Interface)] nsILocalFile aFile);
+		void ImportPKCS12File([MarshalAs(UnmanagedType.Interface)] nsISupports aToken, [MarshalAs(UnmanagedType.Interface)] nsIFile aFile);
 		
 		/// <summary>
         /// Export a set of certs and keys from the database to a PKCS#12 file.
@@ -241,7 +241,7 @@ namespace Gecko
         /// @param aCerts The array of all certificates to be exported.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ExportPKCS12File([MarshalAs(UnmanagedType.Interface)] nsISupports aToken, [MarshalAs(UnmanagedType.Interface)] nsILocalFile aFile, uint count, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] nsIX509Cert[] aCerts);
+		void ExportPKCS12File([MarshalAs(UnmanagedType.Interface)] nsISupports aToken, [MarshalAs(UnmanagedType.Interface)] nsIFile aFile, uint count, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=2)] nsIX509Cert[] aCerts);
 		
 		/// <summary>
         /// An array of all known OCSP responders within the scope of the

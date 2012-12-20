@@ -311,6 +311,8 @@ namespace Gecko
         /// Cannot be accessed from unprivileged context (not content-accessible)
         /// Will throw a DOM security error if called without UniversalXPConnect
         /// privileges.
+        ///
+        /// When you use this for tests, use the constants defined in NativeKeyCodes.js
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SendNativeKeyEvent(int aNativeKeyboardLayout, int aNativeKeyCode, int aModifierFlags, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCharacters, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aUnmodifiedCharacters);
@@ -423,8 +425,8 @@ namespace Gecko
         ///Synthesize a simple gesture event for a window. The event types
         /// supported are: MozSwipeGesture, MozMagnifyGestureStart,
         /// MozMagnifyGestureUpdate, MozMagnifyGesture, MozRotateGestureStart,
-        /// MozRotateGestureUpdate, MozRotateGesture, MozPressTapGesture, and
-        /// MozTapGesture.
+        /// MozRotateGestureUpdate, MozRotateGesture, MozPressTapGesture,
+        /// MozTapGesture, and MozEdgeUIGesture.
         ///
         /// Cannot be accessed from unprivileged context (not
         /// content-accessible) Will throw a DOM security error if called
@@ -436,9 +438,10 @@ namespace Gecko
         /// @param aDirection direction, using constants defined in nsIDOMSimpleGestureEvent
         /// @param aDelta  amount of magnification or rotation for magnify and rotation events
         /// @param aModifiers modifiers pressed, using constants defined in nsIDOMNSEvent
+        /// @param aClickCount For tap gestures, the number of taps.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendSimpleGestureEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType, float aX, float aY, uint aDirection, double aDelta, int aModifiers);
+		void SendSimpleGestureEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType, float aX, float aY, uint aDirection, double aDelta, int aModifiers, uint aClickCount);
 		
 		/// <summary>
         /// Retrieve the element at point aX, aY in the window's document.
@@ -974,6 +977,13 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetApp([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase manifestURL);
+		
+		/// <summary>
+        /// Retrieves the Application object associated to this window.
+        /// Can be null if |setApp()| has not been called.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		mozIDOMApplication GetApp();
 	}
 	
 	/// <summary>nsIDOMWindowUtilsConsts </summary>

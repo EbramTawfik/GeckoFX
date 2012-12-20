@@ -76,7 +76,7 @@ namespace Gecko
 	/// <summary>nsIDOMDeviceMotionEvent </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("b74dfd3f-0d16-4717-aaf7-8cadfe739532")]
+	[Guid("cdf9bfef-dd71-4780-889b-edb4780d00da")]
 	public interface nsIDOMDeviceMotionEvent : nsIDOMEvent
 	{
 		
@@ -207,6 +207,45 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void StopImmediatePropagation();
+		
+		/// <summary>Member DuplicatePrivateData </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void DuplicatePrivateData();
+		
+		/// <summary>Member SetTarget </summary>
+		/// <param name='aTarget'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetTarget([MarshalAs(UnmanagedType.Interface)] nsIDOMEventTarget aTarget);
+		
+		/// <summary>Member IsDispatchStopped </summary>
+		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool IsDispatchStopped();
+		
+		/// <summary>Member GetInternalNSEvent </summary>
+		/// <returns>A System.IntPtr</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new System.IntPtr GetInternalNSEvent();
+		
+		/// <summary>Member SetTrusted </summary>
+		/// <param name='aTrusted'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetTrusted([MarshalAs(UnmanagedType.U1)] bool aTrusted);
+		
+		/// <summary>Member Serialize </summary>
+		/// <param name='aMsg'> </param>
+		/// <param name='aSerializeInterfaceType'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void Serialize(System.IntPtr aMsg, [MarshalAs(UnmanagedType.U1)] bool aSerializeInterfaceType);
+		
+		/// <summary>Member Deserialize </summary>
+		/// <param name='aMsg'> </param>
+		/// <param name='aIter'> </param>
+		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool Deserialize(System.IntPtr aMsg, ref System.IntPtr aIter);
 		
 		/// <summary>Member InitDeviceMotionEvent </summary>
 		/// <param name='eventTypeArg'> </param>

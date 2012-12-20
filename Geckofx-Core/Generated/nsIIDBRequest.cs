@@ -27,7 +27,7 @@ namespace Gecko
 	
 	
 	/// <summary>
-    /// IDBReqeust interface.  See
+    /// IDBRequest interface.  See
     /// http://dev.w3.org/2006/webapi/WebSimpleDB/#idl-def-IDBRequest for more
     /// information.
     /// </summary>
@@ -38,7 +38,7 @@ namespace Gecko
 	{
 		
 		/// <summary>
-        /// IDBReqeust interface.  See
+        /// IDBRequest interface.  See
         /// http://dev.w3.org/2006/webapi/WebSimpleDB/#idl-def-IDBRequest for more
         /// information.
         /// </summary>

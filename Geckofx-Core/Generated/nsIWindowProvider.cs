@@ -90,6 +90,9 @@ namespace Gecko
         /// the nsIWindowProvider implementation or may be a window that
         /// already existed.
         ///
+        /// @throw NS_ERROR_ABORT if the caller should cease its attempt to open a new
+        /// window.
+        ///
         /// @see nsIWindowWatcher for more information on aFeatures.
         /// @see nsIWebBrowserChrome for more information on aChromeFlags.
         /// </summary>

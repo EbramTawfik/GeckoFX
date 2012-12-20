@@ -108,7 +108,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("231e1e53-05c1-41b6-b9de-dbbcce9385c9")]
+	[Guid("C3A17414-763B-4235-8BB7-B48324F95DF8")]
 	public interface nsIApplicationCache
 	{
 		
@@ -211,7 +211,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsILocalFile GetCacheDirectoryAttribute();
+		nsIFile GetProfileDirectoryAttribute();
 	}
 	
 	/// <summary>nsIApplicationCacheConsts </summary>

@@ -460,6 +460,16 @@ namespace Gecko
 		new int GetClientHeightAttribute();
 		
 		/// <summary>
+        ///The maximum offset that the element can be scrolled to
+        ///     (i.e., the value that scrollLeft/scrollTop would be clamped to if they were
+        ///     set to arbitrarily large values. </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new int GetScrollLeftMaxAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new int GetScrollTopMaxAttribute();
+		
+		/// <summary>
         /// Returns whether this element would be selected by the given selector
         /// string.
         ///
@@ -1320,6 +1330,18 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new int GetClientHeightAttribute();
+		
+		/// <summary>
+        ///The maximum offset that the element can be scrolled to
+        ///     (i.e., the value that scrollLeft/scrollTop would be clamped to if they were
+        ///     set to arbitrarily large values. </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new int GetScrollLeftMaxAttribute();
+		
+		/// <summary>Member GetScrollTopMaxAttribute </summary>
+		/// <returns>A System.Int32</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new int GetScrollTopMaxAttribute();
 		
 		/// <summary>
         /// Returns whether this element would be selected by the given selector

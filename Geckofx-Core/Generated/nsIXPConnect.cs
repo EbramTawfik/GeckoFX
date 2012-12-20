@@ -397,7 +397,7 @@ namespace Gecko
 	/// <summary> </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("1239b432-b835-4d28-9dc0-53063cb7f60f")]
+	[Guid("bd300b18-1c34-4589-8285-23a12cc580ea")]
 	public interface nsIXPConnect
 	{
 		
@@ -441,9 +441,6 @@ namespace Gecko
         /// as an nsIXPConnectWrappedNative.
         /// 2) The xpcom object is in fact a nsIXPConnectWrappedJS and thus already
         /// has an underlying JSObject.
-        /// 3) The xpcom object implements nsIScriptObjectOwner; i.e. is an idlc
-        /// style DOM object for which we can call GetScriptObject to get the
-        /// JSObject it uses to represent itself into JavaScript.
         ///
         /// It *might* be possible to QueryInterface the nsIXPConnectJSObjectHolder
         /// returned by the method into a nsIXPConnectWrappedNative or a
@@ -561,17 +558,6 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetCurrentNativeCallContextAttribute();
-		
-		/// <summary>
-        ///pass nsnull to clear pending exception </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIException GetPendingExceptionAttribute();
-		
-		/// <summary>
-        ///pass nsnull to clear pending exception </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetPendingExceptionAttribute([MarshalAs(UnmanagedType.Interface)] nsIException aPendingException);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void DebugDump(short depth);
@@ -691,6 +677,15 @@ namespace Gecko
 		void RemoveJSHolder(System.IntPtr aHolder);
 		
 		/// <summary>
+        /// Test to see if a JS holder is in our hashtable.
+        /// Only available in debug builds.
+        /// @param aHolder The object to test for.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool TestJSHolder(System.IntPtr aHolder);
+		
+		/// <summary>
         /// Note aJSContext as a child to the cycle collector.
         /// @param aJSContext The JSContext to note.
         /// @param aCb The cycle collection traversal callback.
@@ -710,10 +705,9 @@ namespace Gecko
 		/// <summary>
         /// Trigger a JS garbage collection.
         /// Use a js::gcreason::Reason from jsfriendapi.h for the kind.
-        /// Use the nsGCType enum for the kind.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GarbageCollect(uint reason, uint kind);
+		void GarbageCollect(uint reason);
 		
 		/// <summary>
         /// Signals a good place to do an incremental GC slice, because the
@@ -766,10 +760,9 @@ namespace Gecko
 		// 
 		public const long INIT_JS_STANDARD_CLASSES = 1<<0;
 		
-		// 
-		public const long FLAG_SYSTEM_GLOBAL_OBJECT = 1<<1;
-		
-		// 
+		// <summary>
+        // Free bit here!
+        // </summary>
 		public const long OMIT_COMPONENTS_OBJECT = 1<<2;
 	}
 }

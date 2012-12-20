@@ -84,7 +84,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsILocalFile GetMinidumpPathAttribute();
+		nsIFile GetMinidumpPathAttribute();
 		
 		/// <summary>
         /// Get or set the path on the local system to which minidumps will be
@@ -93,7 +93,7 @@ namespace Gecko
         /// @throw NS_ERROR_NOT_INITIALIZED if crash reporting is not initialized
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMinidumpPathAttribute([MarshalAs(UnmanagedType.Interface)] nsILocalFile aMinidumpPath);
+		void SetMinidumpPathAttribute([MarshalAs(UnmanagedType.Interface)] nsIFile aMinidumpPath);
 		
 		/// <summary>
         /// Add some extra data to be submitted with a crash report.

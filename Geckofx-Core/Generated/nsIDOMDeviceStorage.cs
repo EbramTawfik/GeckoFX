@@ -63,12 +63,16 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMDOMRequest Delete(Gecko.JsVal aName, System.IntPtr jsContext);
 		
+		/// <summary>
+        ///DeviceStorageEnumerationParameters </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDeviceStorageCursor Enumerate([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase directory);
+		nsIDOMDeviceStorageCursor Enumerate(Gecko.JsVal aName, Gecko.JsVal options, System.IntPtr jsContext, int argc);
 		
+		/// <summary>
+        ///DeviceStorageEnumerationParameters </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDeviceStorageCursor EnumerateEditable([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase directory);
+		nsIDOMDeviceStorageCursor EnumerateEditable(Gecko.JsVal aName, Gecko.JsVal options, System.IntPtr jsContext, int argc);
 	}
 }

@@ -297,6 +297,9 @@ namespace Gecko
 		// 
 		public const ulong USAGE_NOT_ALLOWED = 1<<7;
 		
+		// 
+		public const ulong SIGNATURE_ALGORITHM_DISABLED = 1<<8;
+		
 		// <summary>
         // Constants that describe the certified usages of a certificate.
         // </summary>
