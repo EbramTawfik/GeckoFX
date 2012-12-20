@@ -58,7 +58,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("d628159b-1a03-4985-aa77-43122eb23bfc")]
+	[Guid("ba9a466b-8d4a-4b33-ae5c-6ed751068c90")]
 	public interface nsIThreadPool : nsIEventTarget
 	{
 		
@@ -177,5 +177,12 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetListenerAttribute([MarshalAs(UnmanagedType.Interface)] nsIThreadPoolListener aListener);
+		
+		/// <summary>
+        /// Set the label for threads in the pool. All threads will be named
+        /// "<aName> #<n>", where <n> is a serial number.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetName([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aName);
 	}
 }

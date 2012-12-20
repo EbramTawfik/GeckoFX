@@ -457,5 +457,11 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsUnsafeAttribute();
+		
+		/// <summary>
+        /// Forces the uri to be a app:// uri.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetAppURI([MarshalAs(UnmanagedType.Interface)] nsIURI uri);
 	}
 }

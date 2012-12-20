@@ -73,7 +73,7 @@ namespace Gecko
 		new nsIIDBRequest Delete(System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Advance(int count);
+		new void Advance(long count);
 		
 		/// <summary>
         /// IDBCursor interface.  See

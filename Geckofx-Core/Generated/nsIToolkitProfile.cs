@@ -41,7 +41,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsILocalFile GetDirectoryAttribute();
+		nsIFile GetDirectoryAttribute();
 		
 		/// <summary>
         /// A directory corresponding to the main profile directory that exists for
@@ -53,7 +53,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsILocalFile GetLocalDirectoryAttribute();
+		nsIFile GetLocalDirectoryAttribute();
 		
 		/// <summary>
         /// The timestamp of an existing profile lock at lock time.
@@ -84,7 +84,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsILocalFile GetRootDirAttribute();
+		nsIFile GetRootDirAttribute();
 		
 		/// <summary>
         /// The location of the profile local directory, which may be the same as
@@ -92,7 +92,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsILocalFile GetLocalDirAttribute();
+		nsIFile GetLocalDirAttribute();
 		
 		/// <summary>
         /// The name of the profile.

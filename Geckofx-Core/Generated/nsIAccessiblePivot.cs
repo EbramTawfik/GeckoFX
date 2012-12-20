@@ -154,6 +154,20 @@ namespace Gecko
 		bool MovePreviousByText(TextBoundaryType aBoundary);
 		
 		/// <summary>
+        /// Move pivot to given coordinate in screen pixels.
+        ///
+        /// @param aRule          [in]  raversal rule to use.
+        /// @param aX             [in]  screen's x coordinate
+        /// @param aY             [in]  screen's y coordinate
+        /// @param aIgnoreNoMatch [in]  don't unset position if no object was found at
+        /// point.
+        /// @return true on success, false if the pivot has not been moved.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool MoveToPoint([MarshalAs(UnmanagedType.Interface)] nsIAccessibleTraversalRule aRule, int aX, int aY, [MarshalAs(UnmanagedType.U1)] bool aIgnoreNoMatch);
+		
+		/// <summary>
         /// Add an observer for pivot changes.
         ///
         /// @param aObserver [in] the observer object to be notified of pivot changes.
@@ -190,6 +204,27 @@ namespace Gecko
 		
 		// 
 		public const long ATTRIBUTE_RANGE_BOUNDARY = 3;
+		
+		// 
+		public const long REASON_NONE = 0;
+		
+		// 
+		public const long REASON_NEXT = 1;
+		
+		// 
+		public const long REASON_PREV = 2;
+		
+		// 
+		public const long REASON_FIRST = 3;
+		
+		// 
+		public const long REASON_LAST = 4;
+		
+		// 
+		public const long REASON_TEXT = 5;
+		
+		// 
+		public const long REASON_POINT = 6;
 	}
 	
 	/// <summary>
@@ -208,9 +243,10 @@ namespace Gecko
         /// @param aOldAccessible [in] the old pivot position before the change, or null.
         /// @param aOldStart      [in] the old start offset, or -1.
         /// @param aOldEnd        [in] the old end offset, or -1.
+        /// @param aReason        [in] the reason for the pivot change.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnPivotChanged([MarshalAs(UnmanagedType.Interface)] nsIAccessiblePivot aPivot, [MarshalAs(UnmanagedType.Interface)] nsIAccessible aOldAccessible, int aOldStart, int aOldEnd);
+		void OnPivotChanged([MarshalAs(UnmanagedType.Interface)] nsIAccessiblePivot aPivot, [MarshalAs(UnmanagedType.Interface)] nsIAccessible aOldAccessible, int aOldStart, int aOldEnd, PivotMoveReason aReason);
 	}
 	
 	/// <summary>nsIAccessibleTraversalRule </summary>

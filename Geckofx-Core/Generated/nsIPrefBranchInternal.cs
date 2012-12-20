@@ -145,7 +145,7 @@ namespace Gecko
         /// @param aPrefName The complex preference to get the value of.
         /// @param aType     The XPCOM interface that this complex preference
         /// represents. Interfaces currently supported are:
-        /// - nsILocalFile
+        /// - nsIFile
         /// - nsISupportsString (UniChar)
         /// - nsIPrefLocalizedString (Localized UniChar)
         /// @param aValue    The XPCOM object into which to the complex preference
@@ -167,7 +167,7 @@ namespace Gecko
         /// @param aPrefName The complex preference to set the value of.
         /// @param aType     The XPCOM interface that this complex preference
         /// represents. Interfaces currently supported are:
-        /// - nsILocalFile
+        /// - nsIFile
         /// - nsISupportsString (UniChar)
         /// - nsIPrefLocalizedString (Localized UniChar)
         /// @param aValue    The XPCOM object from which to set the complex preference

@@ -94,6 +94,7 @@
     <Compile Include="AutoJSContext.cs" />
     <Compile Include="BaseTypes\AccessibleTextBoundary.cs" />
     <Compile Include="BaseTypes\gfxContext.cs" />
+    <Compile Include="BaseTypes\PivotMoveReason.cs" />
     <Compile Include="BaseTypes\ScrollAxis.cs" />
     <Compile Include="BaseTypes\TextBoundaryType.cs" />
     <Compile Include="Cryptography\CryptoHash.cs" />
@@ -128,6 +129,7 @@
     <Compile Include="Generated\nsIDOMContactManager.cs" />
     <Compile Include="Generated\nsIDOMContactProperties.cs" />
     <Compile Include="Generated\nsIDOMDOMRequest.cs" />
+    <Compile Include="Generated\nsIDOMHTMLPropertiesCollection.cs" />
     <Compile Include="Generated\nsIDOMMediaStream.cs" />
     <Compile Include="Generated\nsIDOMMobileConnection.cs" />
     <Compile Include="Generated\nsIDOMMozBrowserFrame.cs" />
@@ -136,6 +138,7 @@
     <Compile Include="Generated\nsIDOMNavigatorNetwork.cs" />
     <Compile Include="Generated\nsIDOMNavigatorTelephony.cs" />
     <Compile Include="Generated\nsIDOMPowerManager.cs" />
+    <Compile Include="Generated\nsIDOMPropertyNodeList.cs" />
     <Compile Include="Generated\nsIDOMSettingsManager.cs" />
     <Compile Include="Generated\nsIDOMSmsCursor.cs" />
     <Compile Include="Generated\nsIDOMSmsFilter.cs" />
@@ -146,6 +149,7 @@
     <Compile Include="Generated\nsIDOMTelephonyCall.cs" />
     <Compile Include="Generated\nsIDOMWakeLock.cs" />
     <Compile Include="Generated\nsIDOMWakeLockListener.cs" />
+    <Compile Include="Generated\nsIIdleObserver.cs" />
     <Compile Include="Generated\nsIJSInspector.cs" />
     <Compile Include="Generated\nsIMobileConnectionProvider.cs" />
     <Compile Include="Generated\nsIMozBrowserFrame.cs" />
@@ -752,7 +756,6 @@
     <Compile Include="Generated\nsIDOMMutationEvent.cs" />
     <Compile Include="Generated\nsIDOMNamedNodeMap.cs" />
     <Compile Include="Generated\nsIDOMNavigator.cs" />
-    <Compile Include="Generated\nsIDOMNavigatorBattery.cs" />
     <Compile Include="Generated\nsIDOMNavigatorDesktopNotification.cs" />
     <Compile Include="Generated\nsIDOMNavigatorGeolocation.cs" />
     <Compile Include="Generated\nsIDOMNode.cs" />
@@ -826,7 +829,6 @@
     <Compile Include="Generated\nsIDOMSVGElement.cs" />
     <Compile Include="Generated\nsIDOMSVGEllipseElement.cs" />
     <Compile Include="Generated\nsIDOMSVGEvent.cs" />
-    <Compile Include="Generated\nsIDOMSVGException.cs" />
     <Compile Include="Generated\nsIDOMSVGFilterElement.cs" />
     <Compile Include="Generated\nsIDOMSVGFilters.cs" />
     <Compile Include="Generated\nsIDOMSVGFitToViewBox.cs" />
@@ -895,7 +897,6 @@
     <Compile Include="Generated\nsIDOMWindowUtils.cs" />
     <Compile Include="Generated\nsIDOMXMLDocument.cs" />
     <Compile Include="Generated\nsIDOMXPathEvaluator.cs" />
-    <Compile Include="Generated\nsIDOMXPathException.cs" />
     <Compile Include="Generated\nsIDOMXPathExpression.cs" />
     <Compile Include="Generated\nsIDOMXPathNamespace.cs" />
     <Compile Include="Generated\nsIDOMXPathNSResolver.cs" />
@@ -942,7 +943,6 @@
     <Compile Include="Generated\nsIEditorStyleSheets.cs" />
     <Compile Include="Generated\nsIEffectiveTLDService.cs" />
     <Compile Include="Generated\nsIEmbeddingSiteWindow.cs" />
-    <Compile Include="Generated\nsIEmbeddingSiteWindow2.cs" />
     <Compile Include="Generated\nsIEncodedChannel.cs" />
     <Compile Include="Generated\nsIEntityConverter.cs" />
     <Compile Include="Generated\nsIEntropyCollector.cs" />
@@ -1152,7 +1152,6 @@
     <Compile Include="Generated\nsIPluginHost.cs" />
     <Compile Include="Generated\nsIPluginInputStream.cs" />
     <Compile Include="Generated\nsIPluginInstanceOwner.cs" />
-    <Compile Include="Generated\nsIPluginStreamInfo.cs" />
     <Compile Include="Generated\nsIPluginTag.cs" />
     <Compile Include="Generated\nsIPluginTagInfo.cs" />
     <Compile Include="Generated\nsIPopupBoxObject.cs" />

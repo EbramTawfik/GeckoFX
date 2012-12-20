@@ -573,10 +573,10 @@ namespace Gecko
 		nsIDOMImageData GetImageData(double sx, double sy, double sw, double sh, System.IntPtr jsContext);
 		
 		/// <summary>
-        /// _explicit method directly.
+        /// We use jsval for the imageData because that's what our C++ code wants
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void PutImageData();
+		void PutImageData(Gecko.JsVal imageData, double dx, double dy, double dirtyX, double dirtyY, double dirtyWidth, double dirtyHeight, System.IntPtr jsContext, int argc);
 		
 		/// <summary>
         /// dataLen must be == width*height*4 in this call
@@ -585,10 +585,11 @@ namespace Gecko
 		void PutImageData_explicit(int x, int y, uint width, uint height, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=5)] byte[] dataPtr, uint dataLen, [MarshalAs(UnmanagedType.U1)] bool hasDirtyRect, int dirtyX, int dirtyY, int dirtyWidth, int dirtyHeight);
 		
 		/// <summary>
-        /// a separate ImageData object.
+        /// ImageData createImageData(ImageData data);
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CreateImageData();
+		nsIDOMImageData CreateImageData(Gecko.JsVal arg1, Gecko.JsVal arg2, System.IntPtr jsContext, int argc);
 		
 		/// <summary>
         /// if scaled.

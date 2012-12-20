@@ -32,7 +32,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("29e950a0-0134-44bc-b947-5e0ee95c8f7e")]
+	[Guid("42fbd9f6-b12d-47ef-b7a1-02d73c11fe53")]
 	public interface nsIXPCTestObjectReadOnly
 	{
 		
@@ -59,12 +59,15 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		char GetCharReadOnlyAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		long GetTimeReadOnlyAttribute();
 	}
 	
 	/// <summary>nsIXPCTestObjectReadWrite </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("492609a7-2582-436b-b0ef-92e29bb9e143")]
+	[Guid("f07529b0-a479-4954-aba5-ab3142c6b1cb")]
 	public interface nsIXPCTestObjectReadWrite
 	{
 		
@@ -129,5 +132,15 @@ namespace Gecko
 		/// <param name='aCharProperty'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetCharPropertyAttribute(char aCharProperty);
+		
+		/// <summary>Member GetTimePropertyAttribute </summary>
+		/// <returns>A System.Int64</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		long GetTimePropertyAttribute();
+		
+		/// <summary>Member SetTimePropertyAttribute </summary>
+		/// <param name='aTimeProperty'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetTimePropertyAttribute(long aTimeProperty);
 	}
 }

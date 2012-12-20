@@ -417,7 +417,7 @@ namespace Gecko
 		/// <summary>
         /// initWith[Native]Path
         ///
-        /// This function will initialize the nsILocalFile object.  Any
+        /// This function will initialize the nsIFile object.  Any
         /// internal state information will be reset.
         ///
         /// @param filePath
@@ -505,7 +505,7 @@ namespace Gecko
 		/// <summary>
         /// appendRelative[Native]Path
         ///
-        /// Append a relative path to the current path of the nsILocalFile object.
+        /// Append a relative path to the current path of the nsIFile object.
         ///
         /// @param relativeFilePath
         /// relativeFilePath is a native relative path. For security reasons,
@@ -606,7 +606,7 @@ namespace Gecko
 		
 		/// <summary>
         /// The canonical path of the file, which avoids short/long
-        /// pathname inconsistencies. The nsILocalFile persistent
+        /// pathname inconsistencies. The nsIFile persistent
         /// descriptor is not guaranteed to be canonicalized (it may
         /// persist either the long or the short path name). The format of
         /// the canonical path will vary with the underlying file system:
@@ -667,7 +667,7 @@ namespace Gecko
         ///                              value should be 0.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetShortcut([MarshalAs(UnmanagedType.Interface)] nsILocalFile targetFile, [MarshalAs(UnmanagedType.Interface)] nsILocalFile workingDir, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string args, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string description, [MarshalAs(UnmanagedType.Interface)] nsILocalFile iconFile, int iconIndex);
+		void SetShortcut([MarshalAs(UnmanagedType.Interface)] nsIFile targetFile, [MarshalAs(UnmanagedType.Interface)] nsIFile workingDir, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string args, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string description, [MarshalAs(UnmanagedType.Interface)] nsIFile iconFile, int iconIndex);
 	}
 	
 	/// <summary>nsILocalFileWinConsts </summary>

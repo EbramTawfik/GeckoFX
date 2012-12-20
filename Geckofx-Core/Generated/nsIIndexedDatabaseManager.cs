@@ -85,11 +85,11 @@ namespace Gecko
 		void ClearDatabasesForURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 		
 		/// <summary>
-        /// Defines mozIndexedDB and IDBKeyrange with its static functions on
+        /// Defines indexedDB and IDBKeyrange with its static functions on
         /// aObject and initializes DOM exception providers if needed.
         ///
         /// @param aObject
-        /// The object, mozIndexedDB and IDBKeyrange should be defined on.
+        /// The object, indexedDB and IDBKeyrange should be defined on.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void InitWindowless(Gecko.JsVal aObject, System.IntPtr jsContext);

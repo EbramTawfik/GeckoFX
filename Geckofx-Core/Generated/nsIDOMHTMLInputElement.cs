@@ -38,7 +38,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("05FEDF7E-3050-4143-AB97-B994F3CC9329")]
+	[Guid("c12471c8-155f-4368-9e8b-13a231e85f3b")]
 	public interface nsIDOMHTMLInputElement : nsIDOMHTMLElement
 	{
 		
@@ -466,6 +466,16 @@ namespace Gecko
 		new int GetClientHeightAttribute();
 		
 		/// <summary>
+        ///The maximum offset that the element can be scrolled to
+        ///     (i.e., the value that scrollLeft/scrollTop would be clamped to if they were
+        ///     set to arbitrarily large values. </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new int GetScrollLeftMaxAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new int GetScrollTopMaxAttribute();
+		
+		/// <summary>
         /// Returns whether this element would be selected by the given selector
         /// string.
         ///
@@ -550,6 +560,57 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMDOMStringMap GetDatasetAttribute();
+		
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool GetItemScopeAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetItemScopeAttribute([MarshalAs(UnmanagedType.U1)] bool aItemScope);
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIVariant GetItemTypeAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetItemTypeAttribute([MarshalAs(UnmanagedType.Interface)] nsIVariant aItemType);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void GetItemIdAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aItemId);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetItemIdAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aItemId);
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMHTMLPropertiesCollection GetPropertiesAttribute();
+		
+		/// <summary>
+        /// PutForwards, so we express them as nsIVariants to deal with this.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIVariant GetItemValueAttribute();
+		
+		/// <summary>
+        /// PutForwards, so we express them as nsIVariants to deal with this.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetItemValueAttribute([MarshalAs(UnmanagedType.Interface)] nsIVariant aItemValue);
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIVariant GetItemPropAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetItemPropAttribute([MarshalAs(UnmanagedType.Interface)] nsIVariant aItemProp);
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIVariant GetItemRefAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetItemRefAttribute([MarshalAs(UnmanagedType.Interface)] nsIVariant aItemRef);
 		
 		/// <summary>
         /// Indicates that the element is not yet, or is no longer, relevant.
@@ -768,6 +829,12 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMFileList GetFilesAttribute();
 		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetHeightAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetHeightAttribute(uint aHeight);
+		
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIndeterminateAttribute();
@@ -780,10 +847,22 @@ namespace Gecko
 		nsIDOMHTMLElement GetListAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetMaxAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMax);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetMaxAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMax);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetMaxLengthAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetMaxLengthAttribute(int aMaxLength);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetMinAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMin);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetMinAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMin);
 		
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -825,6 +904,12 @@ namespace Gecko
 		void SetRequiredAttribute([MarshalAs(UnmanagedType.U1)] bool aRequired);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetStepAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aStep);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetStepAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aStep);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetAlignAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAlign);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -835,6 +920,12 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetSizeAttribute(uint aSize);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetWidthAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetWidthAttribute(uint aWidth);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetSrcAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSrc);
@@ -859,6 +950,18 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aValue);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		double GetValueAsNumberAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetValueAsNumberAttribute(double aValueAsNumber);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void StepDown(int n, int argc);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void StepUp(int n, int argc);
 		
 		/// <summary>
         /// http://www.whatwg.org/specs/web-apps/current-work/#the-constraint-validation-api

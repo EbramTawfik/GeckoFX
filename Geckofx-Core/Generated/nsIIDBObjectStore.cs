@@ -33,7 +33,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("43157a3c-bed1-4ce7-98c0-11365b852560")]
+	[Guid("dd189afd-e1b7-4496-bf8d-629c58709595")]
 	public interface nsIIDBObjectStore
 	{
 		
@@ -70,7 +70,7 @@ namespace Gecko
         ///unlimited </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIIDBRequest GetAll(Gecko.JsVal key, uint limit, System.IntPtr jsContext, int argc);
+		nsIIDBRequest MozGetAll(Gecko.JsVal key, uint limit, System.IntPtr jsContext, int argc);
 		
 		/// <summary>
         ///undefined </summary>
@@ -96,7 +96,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIIDBRequest Clear();
+		nsIIDBRequest Clear(System.IntPtr jsContext);
 		
 		/// <summary>
         ///"next" </summary>

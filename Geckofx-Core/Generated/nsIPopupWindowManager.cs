@@ -32,17 +32,17 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("3210a6aa-b464-4f57-9335-b22815567cf1")]
+	[Guid("66386aa9-2088-4bae-82c7-9f58bc02be64")]
 	public interface nsIPopupWindowManager
 	{
 		
 		/// <summary>
         /// Test whether a website has permission to show a popup window.
-        /// @param   uri is the URI to be tested
+        /// @param   principal is the principal to be tested
         /// @return  one of the enumerated permission actions defined above
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint TestPermission([MarshalAs(UnmanagedType.Interface)] nsIURI uri);
+		uint TestPermission([MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal);
 	}
 	
 	/// <summary>nsIPopupWindowManagerConsts </summary>

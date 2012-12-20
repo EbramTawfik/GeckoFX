@@ -32,56 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("02719ffb-1a87-46cd-b8d3-5583f3267b32")]
-	public interface nsITelemetrySessionData
-	{
-		
-		/// <summary>
-        /// The UUID of our previous session.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetUuidAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aUuid);
-		
-		/// <summary>
-        /// An object containing a snapshot from all registered histograms that had
-        /// data recorded in the previous session.
-        /// { name1: data1, name2: data2, .... }
-        /// where the individual dataN are as nsITelemetry.histogramSnapshots.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal GetSnapshotsAttribute(System.IntPtr jsContext);
-	}
-	
-	/// <summary>nsITelemetryLoadSessionDataCallback </summary>
-	[ComImport()]
-	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("aff36c9d-7e4c-41ab-a9b6-53773bbca0cd")]
-	public interface nsITelemetryLoadSessionDataCallback
-	{
-		
-		/// <summary>Member Handle </summary>
-		/// <param name='data'> </param>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Handle([MarshalAs(UnmanagedType.Interface)] nsITelemetrySessionData data);
-	}
-	
-	/// <summary>nsITelemetrySaveSessionDataCallback </summary>
-	[ComImport()]
-	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("40065f26-afd2-4417-93de-c1de9adb1548")]
-	public interface nsITelemetrySaveSessionDataCallback
-	{
-		
-		/// <summary>Member Handle </summary>
-		/// <param name='success'> </param>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Handle([MarshalAs(UnmanagedType.U1)] bool success);
-	}
-	
-	/// <summary>nsITelemetry </summary>
-	[ComImport()]
-	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("f23a2c8d-9286-42e9-ab1b-ed287eeade6d")]
+	[Guid("de54f594-4c20-4968-a27a-83b38ff952b9")]
 	public interface nsITelemetry
 	{
 		
@@ -181,32 +132,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		Gecko.JsVal GetHistogramById([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase id, System.IntPtr jsContext);
-		
-		/// <summary>
-        /// Save persistent histograms to the given file.
-        ///
-        /// @param file - filename for saving
-        /// @param uuid - UUID of this session
-        /// @param callback - function to be caled when file writing is complete
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SaveHistograms([MarshalAs(UnmanagedType.Interface)] nsIFile file, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase uuid, [MarshalAs(UnmanagedType.Interface)] nsITelemetrySaveSessionDataCallback callback, [MarshalAs(UnmanagedType.U1)] bool isSynchronous);
-		
-		/// <summary>
-        ///Reconstruct an nsITelemetryDataSession object containing histogram
-        /// information from the given file; the file must have been produced
-        /// via saveHistograms.
-        ///
-        /// This method does not modify the histogram information being
-        /// collected in the current session.
-        ///
-        /// The reconstructed object is then passed to the given callback.
-        ///
-        /// @param file - the file to load histogram information from
-        /// @param callback - function to process histogram information
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void LoadHistograms([MarshalAs(UnmanagedType.Interface)] nsIFile file, [MarshalAs(UnmanagedType.Interface)] nsITelemetryLoadSessionDataCallback callback, [MarshalAs(UnmanagedType.U1)] bool isSynchronous);
 		
 		/// <summary>
         /// Set this to false to disable gathering of telemetry statistics.

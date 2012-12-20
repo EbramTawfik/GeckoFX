@@ -658,5 +658,11 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetOldEndOffsetAttribute();
+		
+		/// <summary>
+        /// Reason for virtual cursor move.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		short GetReasonAttribute();
 	}
 }

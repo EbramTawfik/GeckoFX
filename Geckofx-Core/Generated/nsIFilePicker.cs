@@ -128,7 +128,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsILocalFile GetDisplayDirectoryAttribute();
+		nsIFile GetDisplayDirectoryAttribute();
 		
 		/// <summary>
         /// Set the directory that the file open/save dialog initially displays
@@ -137,16 +137,16 @@ namespace Gecko
         ///
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetDisplayDirectoryAttribute([MarshalAs(UnmanagedType.Interface)] nsILocalFile aDisplayDirectory);
+		void SetDisplayDirectoryAttribute([MarshalAs(UnmanagedType.Interface)] nsIFile aDisplayDirectory);
 		
 		/// <summary>
-        /// Get the nsILocalFile for the file or directory.
+        /// Get the nsIFile for the file or directory.
         ///
         /// @return Returns the file currently selected
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsILocalFile GetFileAttribute();
+		nsIFile GetFileAttribute();
 		
 		/// <summary>
         /// Get the nsIURI for the file or directory.

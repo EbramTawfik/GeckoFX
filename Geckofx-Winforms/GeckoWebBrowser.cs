@@ -59,7 +59,7 @@ namespace Gecko
 		nsIWebProgressListener,
 		nsIWebProgressListener2,
 		nsIInterfaceRequestor,
-		nsIEmbeddingSiteWindow2,
+		nsIEmbeddingSiteWindow,
 		nsIDOMEventListener,
 		nsISHistoryListener,
 		nsITooltipListener,
@@ -1495,56 +1495,12 @@ namespace Gecko
 			return Handle;
 		}
 
-		#endregion
-
-		#region nsIEmbeddingSiteWindow2 Members
-		
-		void nsIEmbeddingSiteWindow2.SetDimensions(uint flags, int x, int y, int cx, int cy)
+		void nsIEmbeddingSiteWindow.Blur()
 		{
-			(this as nsIEmbeddingSiteWindow).SetDimensions(flags, x, y, cx, cy);
+			// TODO: implement.
 		}
 
-		unsafe void nsIEmbeddingSiteWindow2.GetDimensions(uint flags, int* x, int* y, int* cx, int* cy)
-		{
-			(this as nsIEmbeddingSiteWindow).GetDimensions(flags, x,  y,  cx,  cy);
-		}
-
-		void nsIEmbeddingSiteWindow2.SetFocus()
-		{
-			(this as nsIEmbeddingSiteWindow).SetFocus();			
-		}
-
-		bool nsIEmbeddingSiteWindow2.GetVisibilityAttribute()
-		{
-			return (this as nsIEmbeddingSiteWindow).GetVisibilityAttribute();
-		}
-
-		void nsIEmbeddingSiteWindow2.SetVisibilityAttribute(bool aVisibility)
-		{
-			(this as nsIEmbeddingSiteWindow).SetVisibilityAttribute(aVisibility);
-		}
-
-		string nsIEmbeddingSiteWindow2.GetTitleAttribute()
-		{
-			return (this as nsIEmbeddingSiteWindow).GetTitleAttribute();
-		}
-
-		void nsIEmbeddingSiteWindow2.SetTitleAttribute(string aTitle)
-		{
-			(this as nsIEmbeddingSiteWindow).SetTitleAttribute(aTitle);
-		}
-
-		IntPtr nsIEmbeddingSiteWindow2.GetSiteWindowAttribute()
-		{
-			return (this as nsIEmbeddingSiteWindow).GetSiteWindowAttribute();
-		}
-
-		void nsIEmbeddingSiteWindow2.Blur()
-		{
-		      //throw new NotImplementedException();			
-		}
-
-		#endregion
+		#endregion		
 		
 		#region nsIWebProgressListener Members
 
@@ -2228,7 +2184,7 @@ namespace Gecko
 		public nsIWeakReference GetWeakReference()
 		{
 			return nsWeakReference.Create( this );
-		}
+		}		
 	}
 	
 	#region public enum GeckoSecurityState

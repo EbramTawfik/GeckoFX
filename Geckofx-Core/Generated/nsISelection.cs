@@ -34,7 +34,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("dd40d5b8-1fe1-487f-b66e-28f4b837024f")]
+	[Guid("12cf5a4d-fffb-4f2f-9cec-c65195661d76")]
 	public interface nsISelection
 	{
 		
@@ -182,9 +182,8 @@ namespace Gecko
 		/// <summary>
         /// Returns the whole selection into a plain text string.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		string ToString();
+		void ToString([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 		
 		/// <summary>
         /// Modifies the selection.  Note that the parameters are case-insensitive.

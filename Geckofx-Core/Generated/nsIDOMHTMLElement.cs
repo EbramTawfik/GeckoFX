@@ -39,7 +39,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("5C8B21BC-EF6E-4599-A26F-FACC05B4ADBE")]
+	[Guid("9a677a5b-e6f7-4e2e-9ef9-22c2ac9967b3")]
 	public interface nsIDOMHTMLElement : nsIDOMElement
 	{
 		
@@ -467,6 +467,16 @@ namespace Gecko
 		new int GetClientHeightAttribute();
 		
 		/// <summary>
+        ///The maximum offset that the element can be scrolled to
+        ///     (i.e., the value that scrollLeft/scrollTop would be clamped to if they were
+        ///     set to arbitrarily large values. </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new int GetScrollLeftMaxAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new int GetScrollTopMaxAttribute();
+		
+		/// <summary>
         /// Returns whether this element would be selected by the given selector
         /// string.
         ///
@@ -551,6 +561,57 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMDOMStringMap GetDatasetAttribute();
+		
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetItemScopeAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetItemScopeAttribute([MarshalAs(UnmanagedType.U1)] bool aItemScope);
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIVariant GetItemTypeAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetItemTypeAttribute([MarshalAs(UnmanagedType.Interface)] nsIVariant aItemType);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetItemIdAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aItemId);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetItemIdAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aItemId);
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMHTMLPropertiesCollection GetPropertiesAttribute();
+		
+		/// <summary>
+        /// PutForwards, so we express them as nsIVariants to deal with this.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIVariant GetItemValueAttribute();
+		
+		/// <summary>
+        /// PutForwards, so we express them as nsIVariants to deal with this.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetItemValueAttribute([MarshalAs(UnmanagedType.Interface)] nsIVariant aItemValue);
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIVariant GetItemPropAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetItemPropAttribute([MarshalAs(UnmanagedType.Interface)] nsIVariant aItemProp);
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIVariant GetItemRefAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetItemRefAttribute([MarshalAs(UnmanagedType.Interface)] nsIVariant aItemRef);
 		
 		/// <summary>
         /// Indicates that the element is not yet, or is no longer, relevant.

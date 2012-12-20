@@ -63,7 +63,7 @@ namespace Gecko
 		
 		/// <summary>
         /// Invoke a save-to-file dialog instead of the full fledged helper app dialog.
-        /// Returns the a nsILocalFile for the file name/location selected.
+        /// Returns the a nsIFile for the file name/location selected.
         ///
         /// @param aLauncher
         /// A nsIHelperAppLauncher to be invoked when a file is selected.
@@ -80,7 +80,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsILocalFile PromptForSaveToFile([MarshalAs(UnmanagedType.Interface)] nsIHelperAppLauncher aLauncher, [MarshalAs(UnmanagedType.Interface)] nsISupports aWindowContext, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string aDefaultFileName, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string aSuggestedFileExtension, [MarshalAs(UnmanagedType.U1)] bool aForcePrompt);
+		nsIFile PromptForSaveToFile([MarshalAs(UnmanagedType.Interface)] nsIHelperAppLauncher aLauncher, [MarshalAs(UnmanagedType.Interface)] nsISupports aWindowContext, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string aDefaultFileName, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalType = "Gecko.CustomMarshalers.WStringMarshaler")] string aSuggestedFileExtension, [MarshalAs(UnmanagedType.U1)] bool aForcePrompt);
 	}
 	
 	/// <summary>nsIHelperAppLauncherDialogConsts </summary>

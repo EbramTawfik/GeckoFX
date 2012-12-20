@@ -35,6 +35,30 @@ namespace Gecko
     /// accessing it can trigger significant computation;  the other fields can
     /// be accessed without triggering this computation.  (Compare and contrast
     /// this with nsIMemoryMultiReporter.)
+    ///
+    /// aboutMemory.js is the most important consumer of memory reports.  It
+    /// places the following constraints on reports.
+    ///
+    /// - There must be an "explicit" tree.  It represents non-overlapping
+    /// regions of memory that have been explicitly allocated with an
+    /// OS-level allocation (e.g. mmap/VirtualAlloc/vm_allocate) or a
+    /// heap-level allocation (e.g. malloc/calloc/operator new).  Reporters
+    /// in this tree must have kind HEAP or NONHEAP, units BYTES, and a
+    /// description that is a sentence (i.e. starts with a capital letter and
+    /// ends with a period, or similar).
+    ///
+    /// - The "size", "rss", "pss" and "swap" trees are optional.  They
+    /// represent regions of virtual memory that the process has mapped.
+    /// Reporters in this category must have kind NONHEAP, units BYTES, and a
+    /// non-empty description.
+    ///
+    /// - The "compartments" and "ghost-windows" trees are optional.  They are
+    /// used by about:compartments.  Reporters in these trees must have kind
+    /// OTHER, units COUNT, an amount of 1, and a description that's an empty
+    /// string.
+    ///
+    /// - All other reports are unconstrained except that they must have a
+    /// description that is a sentence.
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -54,23 +78,12 @@ namespace Gecko
 		
 		/// <summary>
         /// The path that this memory usage should be reported under.  Paths are
-        /// '/'-delimited, eg. "a/b/c".  If you want to include a '/' not as a path
-        /// separator, e.g. because the path contains a URL, you need to convert
-        /// each '/' in the URL to a '\'.  Consumers of the path will undo this
-        /// change.  Any other '\' character in a path will also be changed.  This
-        /// is clumsy but hasn't caused any problems so far.
+        /// '/'-delimited, eg. "a/b/c".
         ///
-        /// There are several categories of paths.
-        ///
-        /// - Paths starting with "explicit/" represent regions of memory that have
-        /// been explicitly allocated with an OS-level allocation (eg.
-        /// mmap/VirtualAlloc/vm_allocate) or a heap-level allocation (eg.
-        /// malloc/calloc/operator new).
-        ///
-        /// Each reporter can be viewed as representing a leaf node in a tree
-        /// rooted at "explicit".  Internal nodes of the tree don't have
-        /// reporters.  So, for example, the reporters "explicit/a/b",
-        /// "explicit/a/c", "explicit/d/e", and "explicit/d/f" define this tree:
+        /// Each reporter can be viewed as representing a leaf node in a tree.
+        /// Internal nodes of the tree don't have reporters.  So, for example, the
+        /// reporters "explicit/a/b", "explicit/a/c", "explicit/d/e", and
+        /// "explicit/d/f" define this tree:
         ///
         /// explicit
         /// |--a
@@ -83,29 +96,21 @@ namespace Gecko
         /// Nodes marked with a [*] have a reporter.  Notice that the internal
         /// nodes are implicitly defined by the paths.
         ///
-        /// A node's children divide their parent's memory into disjoint pieces.
-        /// So in the example above, |a| may not count any allocations counted by
-        /// |d|, and vice versa.
+        /// Nodes within a tree should not overlap measurements, otherwise the
+        /// parent node measurements will be double-counted.  So in the example
+        /// above, |b| should not count any allocations counted by |c|, and vice
+        /// versa.
         ///
-        /// Reporters in this category must have kind HEAP or NONHEAP, units BYTES,
-        /// and a description that is a sentence (i.e. starts with a capital letter
-        /// and ends with a period, or similar).
+        /// All nodes within each tree must have the same units.
         ///
-        /// - Paths starting with "smaps/" represent regions of virtual memory that the
-        /// process has mapped.  The rest of the path describes the type of
-        /// measurement; for instance, the reporter "smaps/rss/[stack]" might report
-        /// how much of the process's stack is currently in physical memory.
+        /// If you want to include a '/' not as a path separator, e.g. because the
+        /// path contains a URL, you need to convert each '/' in the URL to a '\'.
+        /// Consumers of the path will undo this change.  Any other '\' character
+        /// in a path will also be changed.  This is clumsy but hasn't caused any
+        /// problems so far.
         ///
-        /// Reporters in this category must have kind NONHEAP, units BYTES, and
-        /// a non-empty description.
-        ///
-        /// - Reporters with kind SUMMARY may have any path which doesn't start with
-        /// "explicit/" or "smaps/".
-        ///
-        /// - All other paths represent cross-cutting values and may overlap with any
-        /// other reporter.  Reporters in this category must have paths that do not
-        /// contain '/' separators, kind OTHER, and a description that is a
-        /// sentence.
+        /// The paths of all reporters form a set of trees.  Trees can be
+        /// "degenerate", i.e. contain a single entry with no '/'.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetPathAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aPath);
@@ -141,33 +146,24 @@ namespace Gecko
 	{
 		
 		// <summary>
-        // There are three categories of memory reporters:
+        // There are three kinds of memory reporters.
         //
-        // - HEAP: memory allocated by the heap allocator, e.g. by calling malloc,
-        // calloc, realloc, memalign, operator new, or operator new[].  Reporters
-        // in this category must have units UNITS_BYTES and must have a path
-        // starting with "explicit/".
+        // - HEAP: reporters measuring memory allocated by the heap allocator,
+        // e.g. by calling malloc, calloc, realloc, memalign, operator new, or
+        // operator new[].  Reporters in this category must have units
+        // UNITS_BYTES.
         //
-        // - NONHEAP: memory which the program explicitly allocated, but does not
-        // live on the heap.  Such memory is commonly allocated by calling one of
-        // the OS's memory-mapping functions (e.g. mmap, VirtualAlloc, or
-        // vm_allocate).  Reporters in this category must have units UNITS_BYTES
-        // and must have a path starting with "explicit/" or "smaps/".
+        // - NONHEAP: reporters measuring memory which the program explicitly
+        // allocated, but does not live on the heap.  Such memory is commonly
+        // allocated by calling one of the OS's memory-mapping functions (e.g.
+        // mmap, VirtualAlloc, or vm_allocate).  Reporters in this category
+        // must have units UNITS_BYTES.
         //
-        // - OTHER: reporters which don't fit into either of these categories. Such
-        // reporters must have a path that does not start with "explicit/" or
-        // "smaps/" and may have any units.
+        // - OTHER: reporters which don't fit into either of these categories.
+        // They can have any units.
         //
-        // - SUMMARY: reporters which report data that's available in a more
-        // detailed form via other reporters.  These reporters are sometimes
-        // useful for efficiency purposes -- for example, a KIND_SUMMARY reporter
-        // might list all the JS compartments without the overhead of the full JS
-        // memory reporter, which walks the JS heap.
-        //
-        // Unlike other reporters, SUMMARY reporters may have empty descriptions.
-        //
-        // SUMMARY reporters must not have a path starting with "explicit/" or
-        // "smaps/".
+        // The kind only matters for reporters in the "explicit" tree;
+        // aboutMemory.js uses it to calculate "heap-unclassified".
         // </summary>
 		public const int KIND_NONHEAP = 0;
 		
@@ -176,16 +172,6 @@ namespace Gecko
 		
 		// 
 		public const int KIND_OTHER = 2;
-		
-		// 
-		public const int KIND_SUMMARY = 3;
-		
-		// <summary>
-        // KIND_MAPPED is a deprecated synonym for KIND_NONHEAP.  We keep it around
-        // to as not to break extensions which might use this interface, but we will
-        // remove it eventually.
-        // </summary>
-		public const int KIND_MAPPED = 0;
 		
 		// <summary>
         // The amount reported by a memory reporter must have one of the following

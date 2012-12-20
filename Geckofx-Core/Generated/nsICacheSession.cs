@@ -65,7 +65,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsILocalFile GetProfileDirectoryAttribute();
+		nsIFile GetProfileDirectoryAttribute();
 		
 		/// <summary>
         /// When set, entries created with this session will be placed to a cache
@@ -74,7 +74,7 @@ namespace Gecko
         /// process.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetProfileDirectoryAttribute([MarshalAs(UnmanagedType.Interface)] nsILocalFile aProfileDirectory);
+		void SetProfileDirectoryAttribute([MarshalAs(UnmanagedType.Interface)] nsIFile aProfileDirectory);
 		
 		/// <summary>
         /// Synchronous cache access.  This returns a unique descriptor each
@@ -120,20 +120,5 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void DoomEntry([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase key, [MarshalAs(UnmanagedType.Interface)] nsICacheListener listener);
-		
-		/// <summary>
-        /// Private entries will be doomed when the last private browsing session
-        /// finishes.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetIsPrivateAttribute();
-		
-		/// <summary>
-        /// Private entries will be doomed when the last private browsing session
-        /// finishes.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetIsPrivateAttribute([MarshalAs(UnmanagedType.U1)] bool aIsPrivate);
 	}
 }

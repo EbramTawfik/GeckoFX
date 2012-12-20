@@ -33,7 +33,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("e4927c76-4f1f-4d7d-80ad-8186e1677da6")]
+	[Guid("79f73099-02ff-416d-9754-5a315e29ee4f")]
 	public interface nsIIDBTransaction
 	{
 		
@@ -51,6 +51,10 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetModeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMode);
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMError GetErrorAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetObjectStoreNamesAttribute();

@@ -91,7 +91,7 @@ namespace Gecko
         /// or an XPI with it on the root.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void AddBootstrappedManifestLocation([MarshalAs(UnmanagedType.Interface)] nsILocalFile aLocation);
+		void AddBootstrappedManifestLocation([MarshalAs(UnmanagedType.Interface)] nsIFile aLocation);
 		
 		/// <summary>
         /// removeBootstrappedManifestLocation
@@ -102,6 +102,6 @@ namespace Gecko
         /// or an XPI with it on the root.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveBootstrappedManifestLocation([MarshalAs(UnmanagedType.Interface)] nsILocalFile aLocation);
+		void RemoveBootstrappedManifestLocation([MarshalAs(UnmanagedType.Interface)] nsIFile aLocation);
 	}
 }

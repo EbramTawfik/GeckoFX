@@ -92,5 +92,8 @@ namespace Gecko
 		
 		// 
 		public const ulong MOZ_KEYFRAME_RULE = 8;
+		
+		// 
+		public const ulong NAMESPACE_RULE = 10;
 	}
 }

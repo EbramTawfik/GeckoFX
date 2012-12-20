@@ -35,13 +35,17 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("d20d48e4-0b94-40c7-a9c7-ba1d6ad44442")]
+	[Guid("94ca74e8-9cff-456e-a7a4-a4071a32ff58")]
 	public interface nsIDOMStorageIndexedDB
 	{
 		
 		/// <summary>
         /// Indexed Databases for the current browsing context.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIIDBFactory GetIndexedDBAttribute();
+		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIIDBFactory GetMozIndexedDBAttribute();

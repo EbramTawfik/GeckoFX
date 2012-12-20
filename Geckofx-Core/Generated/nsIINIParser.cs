@@ -74,7 +74,7 @@ namespace Gecko
         /// Write to the INI file.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void WriteFile([MarshalAs(UnmanagedType.Interface)] nsILocalFile aINIFile, uint aFlags);
+		void WriteFile([MarshalAs(UnmanagedType.Interface)] nsIFile aINIFile, uint aFlags);
 	}
 	
 	/// <summary>nsIINIParserWriterConsts </summary>
@@ -101,6 +101,6 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIINIParser CreateINIParser([MarshalAs(UnmanagedType.Interface)] nsILocalFile aINIFile);
+		nsIINIParser CreateINIParser([MarshalAs(UnmanagedType.Interface)] nsIFile aINIFile);
 	}
 }

@@ -109,6 +109,34 @@ namespace Gecko
 		void SetNumberAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNumber);
 	}
 	
+	/// <summary>nsIDOMContactEmail </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("94811520-c11f-11e1-afa7-0800200c9a66")]
+	public interface nsIDOMContactEmail
+	{
+		
+		/// <summary>Member GetTypeAttribute </summary>
+		/// <param name='aType'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType);
+		
+		/// <summary>Member SetTypeAttribute </summary>
+		/// <param name='aType'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType);
+		
+		/// <summary>Member GetAddressAttribute </summary>
+		/// <param name='aAddress'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetAddressAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAddress);
+		
+		/// <summary>Member SetAddressAttribute </summary>
+		/// <param name='aAddress'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetAddressAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAddress);
+	}
+	
 	/// <summary>nsIDOMContactFindOptions </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -289,13 +317,13 @@ namespace Gecko
 		void SetEmailAttribute(Gecko.JsVal aEmail);
 		
 		/// <summary>
-        /// DOMString[]
+        /// ContactEmail[]
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		Gecko.JsVal GetPhotoAttribute();
 		
 		/// <summary>
-        /// DOMString[]
+        /// ContactEmail[]
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetPhotoAttribute(Gecko.JsVal aPhoto);

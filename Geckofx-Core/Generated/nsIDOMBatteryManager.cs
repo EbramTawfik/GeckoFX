@@ -32,8 +32,8 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("41e88f87-42cb-4db1-8724-f5456a16c410")]
-	public interface nsIDOMMozBatteryManager : nsIDOMEventTarget
+	[Guid("03c6dd20-7efd-4640-b958-c0ce11b9aadf")]
+	public interface nsIDOMBatteryManager : nsIDOMEventTarget
 	{
 		
 		/// <summary>

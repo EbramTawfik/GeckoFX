@@ -36,7 +36,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("35b2c7f0-b56c-11e1-afa6-0800200c9a66")]
+	[Guid("492673d6-039b-4d94-a598-dbf82abc174f")]
 	public interface nsIDOMCSS2Properties
 	{
 		
@@ -2482,6 +2482,78 @@ namespace Gecko
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetTransformAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTransform);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetTransformAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTransform);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetTransformOriginAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTransformOrigin);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetTransformOriginAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTransformOrigin);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetPerspectiveAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPerspective);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetPerspectiveAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPerspective);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetPerspectiveOriginAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPerspectiveOrigin);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetPerspectiveOriginAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPerspectiveOrigin);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetBackfaceVisibilityAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBackfaceVisibility);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetBackfaceVisibilityAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBackfaceVisibility);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetTransformStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTransformStyle);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetTransformStyleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTransformStyle);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetMozTransformAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozTransform);
 		
 		/// <summary>
@@ -2626,6 +2698,66 @@ namespace Gecko
         /// raises(DOMException) on setting
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetTransitionPropertyAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTransitionProperty);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetTransitionPropertyAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTransitionProperty);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetTransitionDurationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTransitionDuration);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetTransitionDurationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTransitionDuration);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetTransitionDelayAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTransitionDelay);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetTransitionDelayAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTransitionDelay);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetTransitionTimingFunctionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTransitionTimingFunction);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetTransitionTimingFunctionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTransitionTimingFunction);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetTransitionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTransition);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetTransitionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aTransition);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetMozTransitionPropertyAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozTransitionProperty);
 		
 		/// <summary>
@@ -2717,6 +2849,114 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetResizeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aResize);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetAnimationNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAnimationName);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetAnimationNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAnimationName);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetAnimationDurationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAnimationDuration);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetAnimationDurationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAnimationDuration);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetAnimationDelayAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAnimationDelay);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetAnimationDelayAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAnimationDelay);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetAnimationTimingFunctionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAnimationTimingFunction);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetAnimationTimingFunctionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAnimationTimingFunction);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetAnimationDirectionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAnimationDirection);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetAnimationDirectionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAnimationDirection);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetAnimationFillModeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAnimationFillMode);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetAnimationFillModeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAnimationFillMode);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetAnimationIterationCountAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAnimationIterationCount);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetAnimationIterationCountAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAnimationIterationCount);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetAnimationPlayStateAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAnimationPlayState);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetAnimationPlayStateAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAnimationPlayState);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetAnimationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAnimation);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetAnimationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAnimation);
 		
 		/// <summary>
         /// raises(DOMException) on setting

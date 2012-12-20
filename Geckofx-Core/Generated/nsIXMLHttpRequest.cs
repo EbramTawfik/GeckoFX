@@ -27,9 +27,8 @@ namespace Gecko
 	
 	
 	/// <summary>
-    ///This Source Code Form is subject to the terms of the Mozilla Public
-    /// License, v. 2.0. If a copy of the MPL was not distributed with this
-    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
+    /// If true, the same origin policy will not be enforced on the request.
+    /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 	[Guid("5e346bf8-7083-4ef8-b9b9-736a1b5aa7ab")]
@@ -628,7 +627,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("8681ffbc-4755-45de-9fc1-b63e6930e76a")]
+	[Guid("2ed23d20-9d6d-47fd-b60f-2416dbd57005")]
 	public interface nsIXMLHttpRequest
 	{
 		
@@ -787,7 +786,7 @@ namespace Gecko
         /// calling send.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Send([MarshalAs(UnmanagedType.Interface)] nsIVariant body, System.IntPtr jsContext);
+		void Send([MarshalAs(UnmanagedType.Interface)] nsIVariant body);
 		
 		/// <summary>
         /// A variant of the send() method used to send binary data.
@@ -797,7 +796,7 @@ namespace Gecko
         /// high-order byte of each character will be discarded).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendAsBinary([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase body, System.IntPtr jsContext);
+		void SendAsBinary([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase body);
 		
 		/// <summary>
         /// Sets a HTTP request header for HTTP requests. You must call open
@@ -965,6 +964,21 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOnreadystatechangeAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnreadystatechange);
+		
+		/// <summary>
+        /// If true, the request will be sent without cookie and authentication
+        /// headers.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetMozAnonAttribute();
+		
+		/// <summary>
+        /// If true, the same origin policy will not be enforced on the request.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetMozSystemAttribute();
 	}
 	
 	/// <summary>nsIXMLHttpRequestConsts </summary>

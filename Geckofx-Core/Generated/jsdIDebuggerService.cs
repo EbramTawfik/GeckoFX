@@ -1721,7 +1721,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("09332485-1419-42bc-ba1f-070815ed4b82")]
+	[Guid("acf1329e-aaf6-4d6a-a1eb-f75858566f09")]
 	public interface jsdIProperty : jsdIEphemeral
 	{
 		
@@ -1768,11 +1768,6 @@ namespace Gecko
         ///value of this property. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		jsdIValue GetValueAttribute();
-		
-		/// <summary>
-        ///slot number if this property is a local variable or parameter. </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetVarArgSlotAttribute();
 	}
 	
 	/// <summary>jsdIPropertyConsts </summary>

@@ -77,6 +77,10 @@ namespace Gecko
     /// Client coordinates contain the center pivot point of the action.
     /// (XXX Not implemented on Mac)
     ///
+    /// MozEdgeUIGesture - Generated when the user swipes the display to
+    /// invoke edge ui.
+    /// (XXX Win8 only)
+    ///
     /// Default behavior:
     ///
     /// Some operating systems support default behaviors for gesture events
@@ -86,7 +90,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("2f8bca5a-3a7c-4d69-a87b-c668307db52f")]
+	[Guid("5e2a88ce-5032-4758-8578-37c6d7f87d7b")]
 	public interface nsIDOMSimpleGestureEvent : nsIDOMMouseEvent
 	{
 		
@@ -217,6 +221,29 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void StopImmediatePropagation();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void DuplicatePrivateData();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetTarget([MarshalAs(UnmanagedType.Interface)] nsIDOMEventTarget aTarget);
+		
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool IsDispatchStopped();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new System.IntPtr GetInternalNSEvent();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetTrusted([MarshalAs(UnmanagedType.U1)] bool aTrusted);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void Serialize(System.IntPtr aMsg, [MarshalAs(UnmanagedType.U1)] bool aSerializeInterfaceType);
+		
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool Deserialize(System.IntPtr aMsg, ref System.IntPtr aIter);
 		
 		/// <summary>
         /// The nsIDOMUIEvent interface is the datatype for all UI events in the
@@ -394,6 +421,11 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		double GetDeltaAttribute();
 		
+		/// <summary>
+        ///Click count value for taps. </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetClickCountAttribute();
+		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void InitSimpleGestureEvent(
 					[MarshalAs(UnmanagedType.LPStruct)] nsAStringBase typeArg, 
@@ -412,7 +444,8 @@ namespace Gecko
 					ushort buttonArg, 
 					[MarshalAs(UnmanagedType.Interface)] nsIDOMEventTarget relatedTargetArg, 
 					uint directionArg, 
-					double deltaArg);
+					double deltaArg, 
+					uint clickCount);
 	}
 	
 	/// <summary>nsIDOMSimpleGestureEventConsts </summary>

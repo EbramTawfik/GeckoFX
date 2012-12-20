@@ -58,7 +58,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIApplicationCache CreateCustomApplicationCache([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase group, [MarshalAs(UnmanagedType.Interface)] nsILocalFile profileDir, int quota);
+		nsIApplicationCache CreateCustomApplicationCache([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase group, [MarshalAs(UnmanagedType.Interface)] nsIFile profileDir, int quota);
 		
 		/// <summary>
         /// Get an application cache object for the given client ID.

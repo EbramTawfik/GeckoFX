@@ -60,7 +60,7 @@ namespace Gecko.DOM
 			set { DOMHTMLElement.SetNameAttribute(new nsAString(value)); }
 		}
 
-		public int Size {
+		public uint Size {
 			get { return DOMHTMLElement.GetSizeAttribute(); }
 			set { DOMHTMLElement.SetSizeAttribute(value); }
 		}

@@ -40,10 +40,10 @@ namespace Gecko
         /// an error occurred
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int DumpFrameModel([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindowToDump, [MarshalAs(UnmanagedType.Interface)] nsILocalFile aFile, uint aFlagsMask);
+		int DumpFrameModel([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindowToDump, [MarshalAs(UnmanagedType.Interface)] nsIFile aFile, uint aFlagsMask);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int CompareFrameModels([MarshalAs(UnmanagedType.Interface)] nsILocalFile aBaseFile, [MarshalAs(UnmanagedType.Interface)] nsILocalFile aVerFile, uint aFlags);
+		int CompareFrameModels([MarshalAs(UnmanagedType.Interface)] nsIFile aBaseFile, [MarshalAs(UnmanagedType.Interface)] nsIFile aVerFile, uint aFlags);
 	}
 	
 	/// <summary>nsILayoutRegressionTesterConsts </summary>

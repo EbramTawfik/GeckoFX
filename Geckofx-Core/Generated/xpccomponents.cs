@@ -336,6 +336,14 @@ namespace Gecko
 		/// <summary>
         /// To be called from JS only.
         ///
+        /// Returns an array created in |vobj|'s compartment.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal CreateArrayIn(Gecko.JsVal vobj, System.IntPtr jsContext);
+		
+		/// <summary>
+        /// To be called from JS only.
+        ///
         /// Ensures that all functions come from vobj's scope (and aren't cross
         /// compartment wrappers).
         /// </summary>

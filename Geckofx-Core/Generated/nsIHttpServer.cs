@@ -82,7 +82,7 @@ namespace Gecko
         /// might exist; this file must exist for the lifetime of the server
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RegisterFile([MarshalAs(UnmanagedType.LPStr)] string path, [MarshalAs(UnmanagedType.Interface)] nsILocalFile file);
+		void RegisterFile([MarshalAs(UnmanagedType.LPStr)] string path, [MarshalAs(UnmanagedType.Interface)] nsIFile file);
 		
 		/// <summary>
         /// Registers a custom path handler.
@@ -160,7 +160,7 @@ namespace Gecko
         /// does not begin with and end with a forward slash
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RegisterDirectory([MarshalAs(UnmanagedType.LPStr)] string path, [MarshalAs(UnmanagedType.Interface)] nsILocalFile dir);
+		void RegisterDirectory([MarshalAs(UnmanagedType.LPStr)] string path, [MarshalAs(UnmanagedType.Interface)] nsIFile dir);
 		
 		/// <summary>
         /// Associates files with the given extension with the given Content-Type when

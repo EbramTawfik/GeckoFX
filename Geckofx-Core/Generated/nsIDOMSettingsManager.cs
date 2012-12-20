@@ -58,7 +58,7 @@ namespace Gecko
 	/// <summary>nsIDOMSettingsManager </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("5609d0a0-52a9-11e1-b86c-0800200c9a66")]
+	[Guid("dd9f5380-a454-11e1-b3dd-0800200c9a66")]
 	public interface nsIDOMSettingsManager
 	{
 		
@@ -67,6 +67,18 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMSettingsLock GetLock();
+		
+		/// <summary>Member AddObserver </summary>
+		/// <param name='name'> </param>
+		/// <param name='callback'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void AddObserver([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, Gecko.JsVal callback);
+		
+		/// <summary>Member RemoveObserver </summary>
+		/// <param name='name'> </param>
+		/// <param name='callback'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RemoveObserver([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, Gecko.JsVal callback);
 		
 		/// <summary>Member GetOnsettingchangeAttribute </summary>
 		/// <returns>A nsIDOMEventListener</returns>
@@ -83,7 +95,7 @@ namespace Gecko
 	/// <summary>nsIDOMMozSettingsEvent </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("5ce02690-52a9-11e1-b86c-0800200c9a66")]
+	[Guid("5e304193-af49-4546-8329-bf7c9159ed98")]
 	public interface nsIDOMMozSettingsEvent : nsIDOMEvent
 	{
 		
@@ -214,6 +226,45 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void StopImmediatePropagation();
+		
+		/// <summary>Member DuplicatePrivateData </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void DuplicatePrivateData();
+		
+		/// <summary>Member SetTarget </summary>
+		/// <param name='aTarget'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetTarget([MarshalAs(UnmanagedType.Interface)] nsIDOMEventTarget aTarget);
+		
+		/// <summary>Member IsDispatchStopped </summary>
+		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool IsDispatchStopped();
+		
+		/// <summary>Member GetInternalNSEvent </summary>
+		/// <returns>A System.IntPtr</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new System.IntPtr GetInternalNSEvent();
+		
+		/// <summary>Member SetTrusted </summary>
+		/// <param name='aTrusted'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetTrusted([MarshalAs(UnmanagedType.U1)] bool aTrusted);
+		
+		/// <summary>Member Serialize </summary>
+		/// <param name='aMsg'> </param>
+		/// <param name='aSerializeInterfaceType'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void Serialize(System.IntPtr aMsg, [MarshalAs(UnmanagedType.U1)] bool aSerializeInterfaceType);
+		
+		/// <summary>Member Deserialize </summary>
+		/// <param name='aMsg'> </param>
+		/// <param name='aIter'> </param>
+		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool Deserialize(System.IntPtr aMsg, ref System.IntPtr aIter);
 		
 		/// <summary>Member GetSettingNameAttribute </summary>
 		/// <param name='aSettingName'> </param>

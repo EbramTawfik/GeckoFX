@@ -38,7 +38,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("45ce2c92-4d92-49d2-bff1-855934443261")]
+	[Guid("45600c50-b06a-11e1-afa6-0800200c9a66")]
 	public interface nsIAccessible
 	{
 		
@@ -169,23 +169,14 @@ namespace Gecko
         /// Usually alt+letter, or just the letter alone for menu items.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetKeyboardShortcutAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aKeyboardShortcut);
+		void GetAccessKeyAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAccessKey);
 		
 		/// <summary>
         /// Provides localized string of global keyboard accelerator for default
         /// action, such as Ctrl+O for Open file
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetDefaultKeyBindingAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDefaultKeyBinding);
-		
-		/// <summary>
-        /// Provides array of localized string of global keyboard accelerator for
-        /// the given action index supported by accessible.
-        ///
-        /// @param aActionIndex - index of the given action
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetKeyBindings(byte aActionIndex);
+		void GetKeyboardShortcutAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aKeyboardShortcut);
 		
 		/// <summary>
         /// Enumerated accessible role (see the constants defined in nsIAccessibleRole).
