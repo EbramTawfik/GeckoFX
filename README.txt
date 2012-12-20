@@ -2,6 +2,10 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v16.0-0.1 ==
+
+1. Initial version supporting firefox/xulrunner v16.0
+
 == v15.0-0.2 ==
 
 1. Fix #1 : HTML5 video and audio still non-functional - https://bitbucket.org/geckofx/geckofx-15.0/issue/1
