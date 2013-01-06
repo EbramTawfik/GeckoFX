@@ -42,6 +42,11 @@ namespace Gecko.Net
 			}
 		}
 
+		public nsIHttpChannel Instance {
+			get {
+				return _httpChannel;
+			}
+		}
 
 		public string RequestMethod
 		{
