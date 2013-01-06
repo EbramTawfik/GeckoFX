@@ -2112,11 +2112,16 @@ namespace Gecko
 		}
 
 		private uint activeNetworkChannels = 0;
+		private List<string> activeNetworkChannelUrls = new List<string>();
 
 		public uint ActiveNetworkChannels {
 			get {
 				return activeNetworkChannels;
 			}
+		}
+
+		public List<string> ActiveNetworkChannelUrls {
+			get { return activeNetworkChannelUrls; }
 		}
 
 		//public void ObserveActivity(nsISupports aHttpChannel, uint aActivityType, uint aActivitySubtype, uint aTimestamp, ulong aExtraSizeData, nsACString aExtraStringData)
@@ -2152,6 +2157,7 @@ namespace Gecko
 						switch (aActivitySubtype) {
 							case nsIHttpActivityObserverConstants.ACTIVITY_SUBTYPE_REQUEST_HEADER: {
 									activeNetworkChannels++;
+									ActiveNetworkChannelUrls.Add(nsString.Get(httpChannel.GetURIAttribute().GetSpecAttribute));
 
 									var callbacks = httpChannel.GetNotificationCallbacksAttribute();
 									var httpChannelXHR = Xpcom.QueryInterface<nsIXMLHttpRequest>(callbacks);
@@ -2172,6 +2178,7 @@ namespace Gecko
 								break;
 							case nsIHttpActivityObserverConstants.ACTIVITY_SUBTYPE_TRANSACTION_CLOSE:
 								activeNetworkChannels--;
+								ActiveNetworkChannelUrls.Remove(nsString.Get(httpChannel.GetURIAttribute().GetSpecAttribute));
 								break;
 						}
 						break;
@@ -2271,7 +2278,8 @@ namespace Gecko
 
 			try
 			{
-				m_origEventListener.HandleEvent(@event);
+				if (m_origEventListener != null)
+					m_origEventListener.HandleEvent(@event);
 			}
 			catch (Exception)
 			{
