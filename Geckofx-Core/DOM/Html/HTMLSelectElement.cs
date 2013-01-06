@@ -38,11 +38,17 @@ namespace Gecko.DOM
 		}
 
 		public GeckoFormElement Form {
-			get { return new GeckoFormElement(DOMHTMLElement.GetFormAttribute()); }
+			get {
+			  var formAttr = DOMHTMLElement.GetFormAttribute();
+			  return formAttr == null ? null : new GeckoFormElement(formAttr);
+			}
 		}
 
 		public GeckoOptionsCollection Options {
-			get { return new GeckoOptionsCollection(DOMHTMLElement.GetOptionsAttribute()); }
+						get {
+			  var optionsAttr = DOMHTMLElement.GetOptionsAttribute();
+			  return optionsAttr == null ? null : new GeckoOptionsCollection(optionsAttr);
+			}
 		}
 
 		public bool Disabled {
@@ -65,7 +71,7 @@ namespace Gecko.DOM
 			set { DOMHTMLElement.SetSizeAttribute(value); }
 		}
 
-		public new int TabIndex {
+		public int TabIndex {
 			get { return DOMHTMLElement.GetTabIndexAttribute(); }
 			set { DOMHTMLElement.SetTabIndexAttribute(value); }
 		}
