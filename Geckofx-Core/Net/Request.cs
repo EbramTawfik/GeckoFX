@@ -54,7 +54,7 @@ namespace Gecko.Net
 		public LoadGroup LoadGroup
 		{
 			get { return LoadGroup.Create( _request.GetLoadGroupAttribute() ); }
-			set { _request.SetLoadGroupAttribute( value._loadGroup ); }
+			set { _request.SetLoadGroupAttribute(value == null ? null : value._loadGroup); }
 		}
 
 		public uint LoadFlags
