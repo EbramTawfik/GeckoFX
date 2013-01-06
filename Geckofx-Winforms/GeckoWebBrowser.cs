@@ -1865,6 +1865,9 @@ namespace Gecko
 				case "DOMContentLoaded":
 					OnDOMContentLoaded( ea );
 					break;
+				case "readystatechange":
+					OnReadyStateChange(ea);
+					break;
 				case "change":
 					OnDomContentChanged( ea );
 					break;
