@@ -6,6 +6,7 @@ using System.Text;
 namespace Gecko
 {
 	#region public enum GeckoLoadFlags
+	[Flags]
 	public enum GeckoLoadFlags
 	{
 		/// <summary>
