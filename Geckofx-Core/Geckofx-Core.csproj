@@ -95,6 +95,7 @@
     <Compile Include="AutoJSContext.cs" />
     <Compile Include="BaseTypes\AccessibleTextBoundary.cs" />
     <Compile Include="BaseTypes\gfxContext.cs" />
+    <Compile Include="BaseTypes\PivotMoveReason.cs" />
     <Compile Include="BaseTypes\ScrollAxis.cs" />
     <Compile Include="BaseTypes\TextBoundaryType.cs" />
     <Compile Include="Cryptography\CryptoHash.cs" />

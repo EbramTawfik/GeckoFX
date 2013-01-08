@@ -246,7 +246,7 @@ namespace Gecko
         /// @param aReason        [in] the reason for the pivot change.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnPivotChanged([MarshalAs(UnmanagedType.Interface)] nsIAccessiblePivot aPivot, [MarshalAs(UnmanagedType.Interface)] nsIAccessible aOldAccessible, int aOldStart, int aOldEnd, long aReason);
+		void OnPivotChanged([MarshalAs(UnmanagedType.Interface)] nsIAccessiblePivot aPivot, [MarshalAs(UnmanagedType.Interface)] nsIAccessible aOldAccessible, int aOldStart, int aOldEnd, PivotMoveReason aReason);
 	}
 	
 	/// <summary>nsIAccessibleTraversalRule </summary>
