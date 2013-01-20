@@ -8,11 +8,11 @@ namespace Gecko
 	/// Class for fixing memory leaks :)
 	/// </summary>
 	/// <typeparam name="T"></typeparam>
-	internal sealed class InstanceWrapper<T>
+	public sealed class InstanceWrapper<T>
 		:IDisposable,IEquatable<InstanceWrapper<T>>
 		where T : class
 	{
-		internal T Instance;
+		private T _instance;
 
 		#region ctor & dror
 		/// <summary>
@@ -20,9 +20,14 @@ namespace Gecko
 		/// refcount of created object is 1, it will automatically decrement when InstanceWrapper is disposed
 		/// </summary>
 		/// <param name="contractID"></param>
-		internal InstanceWrapper(string contractID)
+		public InstanceWrapper(string contractID)
 		{
-			Instance = Xpcom.CreateInstance<T>(contractID);
+			_instance = Xpcom.CreateInstance<T>(contractID);
+		}
+
+		public T Instance
+		{
+			get { return _instance; }
 		}
 
 		/// <summary>
@@ -46,17 +51,17 @@ namespace Gecko
 		/// <param name="incrementReferenceCounter">true to perform QueryInterface on object</param>
 		internal InstanceWrapper(T obj,bool incrementReferenceCounter)
 		{
-			Instance = incrementReferenceCounter ? Xpcom.QueryInterface<T>(obj) : obj;
+			_instance = incrementReferenceCounter ? Xpcom.QueryInterface<T>(obj) : obj;
 		}
 
 		~InstanceWrapper()
 		{
-			Xpcom.FreeComObject( ref Instance );
+			Xpcom.FreeComObject(ref _instance);
 		}
 
 		public void Dispose()
 		{
-			Xpcom.FreeComObject(ref Instance);
+			Xpcom.FreeComObject(ref _instance);
 			GC.SuppressFinalize(this);
 		}
 		#endregion
@@ -67,14 +72,14 @@ namespace Gecko
 		/// </summary>
 		public void FinalRelease()
 		{
-			Xpcom.FinalFreeComObject( ref Instance );
+			Xpcom.FinalFreeComObject(ref _instance);
 		}
 
 		public bool Equals(InstanceWrapper<T> other)
 		{
 			if (ReferenceEquals(this, other)) return true;
 			if (ReferenceEquals(null, other)) return false;
-			return Instance.GetHashCode() == other.Instance.GetHashCode();
+			return _instance.GetHashCode() == other._instance.GetHashCode();
 		}
 
 		public override bool Equals(object obj)
@@ -82,12 +87,12 @@ namespace Gecko
 			if (ReferenceEquals(this, obj)) return true;
 			if (ReferenceEquals(null, obj)) return false;
 			if (!(obj is InstanceWrapper<T>)) return false;
-			return Instance.GetHashCode() == ( ( InstanceWrapper<T> ) obj ).Instance.GetHashCode();
+			return _instance.GetHashCode() == ((InstanceWrapper<T>)obj)._instance.GetHashCode();
 		}
 
 		public override int GetHashCode()
 		{
-			return Instance != null ? Instance.GetHashCode() : 0;
+			return _instance != null ? _instance.GetHashCode() : 0;
 		}
 	}
 }

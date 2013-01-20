@@ -81,10 +81,9 @@ namespace Gecko
 				LauncherDialogFactory.Register();
 #endif
 
-				WebBrowser = Xpcom.CreateInstance<nsIWebBrowser>("@mozilla.org/embedding/browser/nsWebBrowser;1");
+				WebBrowser = Xpcom.CreateInstance<nsIWebBrowser>(Contracts.WebBrowser);
 				WebBrowserFocus = (nsIWebBrowserFocus)WebBrowser;
 				BaseWindow = (nsIBaseWindow)WebBrowser;
-
 				WebNav = (nsIWebNavigation)WebBrowser;
 
 				WebBrowser.SetContainerWindowAttribute(this);

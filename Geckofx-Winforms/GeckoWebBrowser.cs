@@ -2193,7 +2193,7 @@ namespace Gecko
 
 		public nsIWeakReference GetWeakReference()
 		{
-			return nsWeakReference.Create( this );
+			return new ControlWeakReference( this );
 		}		
 	}
 	

@@ -7,6 +7,8 @@ namespace Gecko
 {
 	public static class Contracts
 	{
+		public static readonly string WebBrowser = "@mozilla.org/embedding/browser/nsWebBrowser;1";
+
 		#region contracts for elements that HAVE wrappers
 		#region Network
 		public static readonly string MimeInputStream = "@mozilla.org/network/mime-input-stream;1";
