@@ -91,7 +91,7 @@
     <Compile Include="Net\AsyncStreamCopier.cs" />
     <Compile Include="Net\ImgRequest.cs" />
     <Compile Include="Net\IncrementalDownload.cs" />
-    <Compile Include="AppShellService.cs" />
+    <Compile Include="Services\AppShellService.cs" />
     <Compile Include="AutoJSContext.cs" />
     <Compile Include="BaseTypes\AccessibleTextBoundary.cs" />
     <Compile Include="BaseTypes\gfxContext.cs" />
