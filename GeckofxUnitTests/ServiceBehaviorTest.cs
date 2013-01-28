@@ -56,19 +56,12 @@ namespace GeckofxUnitTests
 		[Test]
 		public void CreateVersionComparer()
 		{
-			var versionComparerNative = Xpcom.GetService<nsIVersionComparator>( Contracts.VersionComparator );
-
-			Gecko.Utils.VersionComparer[] array=new VersionComparer[100];
+			var array=new VersionComparer[100];
 			for (int i = 0; i < 100; i++)
 			{
 				array[i]=new VersionComparer();
 				array[i].Compare("a", "a");
 			}
-
-
-			int count=Marshal.ReleaseComObject(versionComparerNative);
-			// must be only one singleton :)
-			Assert.AreEqual(count, 1);
 		}
 	}
 }
