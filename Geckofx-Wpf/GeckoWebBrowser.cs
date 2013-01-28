@@ -343,9 +343,29 @@ namespace Gecko
 			throw new NotImplementedException();
 		}
 
-		public event EventHandler DocumentCompleted;
-		#endregion
+		public event EventHandler DocumentCompleted;		
 
+		/// <summary>
+		/// UI platform independent call function from UI thread
+		/// </summary>
+		/// <param name="action"></param>
+		public void UserInterfaceThreadInvoke(Action action)
+		{
+			throw new NotImplementedException();
+		}
+
+		/// <summary>
+		/// UI platform independent call function from UI thread
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="func"></param>
+		/// <returns></returns>
+		public T UserInterfaceThreadInvoke<T>(Func<T> func)
+		{
+			throw new NotImplementedException();
+		}
+
+		#endregion
 
 		protected override void OnGotMouseCapture(System.Windows.Input.MouseEventArgs e)
 		{

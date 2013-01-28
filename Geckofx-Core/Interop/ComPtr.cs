@@ -12,7 +12,7 @@ namespace Gecko.Interop
 		: IDisposable, IEquatable<ComPtr<T>>,IEquatable<T>
 		where T:class
 	{
-		private T _instance;
+		protected T _instance;
 
 		#region ctor & dtor
 		public ComPtr( T instance )
