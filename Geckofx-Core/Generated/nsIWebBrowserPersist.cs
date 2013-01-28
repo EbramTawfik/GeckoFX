@@ -120,11 +120,11 @@ namespace Gecko
         /// <CODE>nsnull</CODE>.
         /// @param aExtraHeaders Additional headers to supply with an HTTP request
         /// or <CODE>nsnull</CODE>.
-        /// @param aFile      Target file. This may be a nsILocalFile object or an
+        /// @param aFile      Target file. This may be a nsIFile object or an
         /// nsIURI object with a file scheme or a scheme that
         /// supports uploading (e.g. ftp).
         ///
-        /// @see nsILocalFile
+        /// @see nsIFile
         /// @see nsIURI
         /// @see nsIInputStream
         ///
@@ -149,12 +149,12 @@ namespace Gecko
         /// @param aDocument          Document to save to file. Some implementations of
         /// this interface may also support <CODE>nsnull</CODE>
         /// to imply the currently loaded document.
-        /// @param aFile              Target local file. This may be a nsILocalFile object or an
+        /// @param aFile              Target local file. This may be a nsIFile object or an
         /// nsIURI object with a file scheme or a scheme that
         /// supports uploading (e.g. ftp).
         /// @param aDataPath          Path to directory where URIs linked to the document
         /// are saved or nsnull if no linked URIs should be saved.
-        /// This may be a nsILocalFile object or an nsIURI object
+        /// This may be a nsIFile object or an nsIURI object
         /// with a file scheme.
         /// @param aOutputContentType The desired MIME type format to save the
         /// document and all subdocuments into or nsnull to use
@@ -164,7 +164,7 @@ namespace Gecko
         /// wrap text at. Parameter is ignored if wrapping is not
         /// specified by the encoding flags.
         ///
-        /// @see nsILocalFile
+        /// @see nsIFile
         /// @see nsIURI
         ///
         /// @return NS_OK Operation has been started.

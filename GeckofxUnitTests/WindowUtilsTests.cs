@@ -244,8 +244,8 @@ namespace GeckofxUnitTests
 			var listener = new TestCycleCollectorListener();
 			browser.Window.WindowUtils.GarbageCollect(listener, 0);
 
-			Assert.AreEqual(1, listener._begin);
-			Assert.AreEqual(1, listener._end);
+			Assert.AreEqual(3, listener._begin);
+			Assert.AreEqual(3, listener._end);
 		}
 
 		[Test]
@@ -254,8 +254,8 @@ namespace GeckofxUnitTests
 			var listener = new TestCycleCollectorListener();
 			browser.Window.WindowUtils.CycleCollect(listener, 0);
 
-			Assert.AreEqual(1, listener._begin);
-			Assert.AreEqual(1, listener._end);
+			Assert.AreEqual(3, listener._begin);
+			Assert.AreEqual(3, listener._end);
 		}
 
 		[Test]

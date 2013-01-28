@@ -103,7 +103,7 @@ namespace Gecko
 		/// Gets the underlying <b>nsIURI</b> object.
 		/// </summary>
 		/// <returns></returns>
-		public object GetInstance() { return Instance; }
+		public nsIURI GetInstance() { return Instance; }
 
 		[FieldOffset(0)]
 		nsIURI Instance;

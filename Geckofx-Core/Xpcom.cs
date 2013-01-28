@@ -644,7 +644,7 @@ namespace Gecko
 
 			public static uint ToSecondsSinceEpoch(DateTime time)
 			{
-				return (uint)(time.ToUniversalTime() - _utcLinuxStartEpoch).Seconds;
+				return (uint)(time.ToUniversalTime() - _utcLinuxStartEpoch).TotalSeconds;
 			}
 		}
 

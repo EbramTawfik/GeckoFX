@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("e0737ed5-89c5-4fe3-891e-a75bf3a1bb55")]
+	[Guid("b0ccf251-d793-48a1-94aa-cf840fe6639d")]
 	public interface nsIDOMNavigator
 	{
 		
@@ -112,14 +112,14 @@ namespace Gecko
         /// vibrator, this function does nothing.  If the window is hidden, this
         /// function does nothing.
         ///
-        /// mozVibrate takes one argument, which specifies either how long to vibrate
-        /// for or gives a pattern of vibrator-on/vibrator-off timings.
+        /// vibrate takes one argument, which specifies either how long to vibrate for
+        /// or gives a pattern of vibrator-on/vibrator-off timings.
         ///
         /// If a vibration pattern is in effect when this function is called, this
         /// call will overwrite the existing pattern, if this call successfully
         /// completes.
         ///
-        /// We handle the argument to mozVibrate as follows.
+        /// We handle the argument to vibrate as follows.
         ///
         /// - If the argument is undefined or null, we throw
         /// NS_ERROR_DOM_NOT_SUPPORTED_ERR.
@@ -153,7 +153,19 @@ namespace Gecko
         /// too long, or if any of its elements is too large.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MozVibrate(Gecko.JsVal aPattern, System.IntPtr jsContext);
+		void Vibrate(Gecko.JsVal aPattern, System.IntPtr jsContext);
+		
+		/// <summary>
+        /// Navigator requests to add an idle observer to the existing window.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void AddIdleObserver([MarshalAs(UnmanagedType.Interface)] nsIIdleObserver aIdleObserver);
+		
+		/// <summary>
+        /// Navigator requests to remove an idle observer from the existing window.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RemoveIdleObserver([MarshalAs(UnmanagedType.Interface)] nsIIdleObserver aIdleObserver);
 		
 		/// <summary>
         /// Request a wake lock for a resource.

@@ -83,10 +83,9 @@ namespace Gecko
 				LauncherDialogFactory.Register();
 #endif
 
-				WebBrowser = Xpcom.CreateInstance<nsIWebBrowser>( "@mozilla.org/embedding/browser/nsWebBrowser;1" );
+				WebBrowser = Xpcom.CreateInstance<nsIWebBrowser>(Contracts.WebBrowser);
 				WebBrowserFocus = ( nsIWebBrowserFocus ) WebBrowser;
 				BaseWindow = ( nsIBaseWindow ) WebBrowser;
-
 				WebNav = ( nsIWebNavigation ) WebBrowser;
 
 				WebBrowser.SetContainerWindowAttribute( this );
@@ -140,6 +139,7 @@ namespace Gecko
 				// ths losing attached listener.
 				_target.AddEventListener( new nsAString( "load" ), this, true, true, 2 );
 				_target.AddEventListener( new nsAString( "DOMContentLoaded" ), this, true, true, 2 );
+				_target.AddEventListener(new nsAString("readystatechange"), this, true, true, 2);
 				_target.AddEventListener( new nsAString( "change" ), this, true, true, 2 );
 				_target.AddEventListener( new nsAString( "hashchange" ), this, false, true, 2 );
 				_target.AddEventListener( new nsAString( "dragstart" ), this, true, true, 2 );
@@ -191,6 +191,7 @@ namespace Gecko
 				_target.RemoveEventListener( new nsAString( "blur" ), this, true );
 				_target.RemoveEventListener( new nsAString( "load" ), this, true );
 				_target.RemoveEventListener( new nsAString( "DOMContentLoaded" ), this, true );
+				_target.RemoveEventListener(new nsAString("readystatechange"), this, true);
 				_target.RemoveEventListener( new nsAString( "change" ), this, true );
 				_target.RemoveEventListener( new nsAString( "hashchange" ), this, false );
 				_target.RemoveEventListener( new nsAString( "dragstart" ), this, true );

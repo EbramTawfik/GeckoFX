@@ -424,7 +424,7 @@ namespace Gecko
 		/// <summary>
         /// initWith[Native]Path
         ///
-        /// This function will initialize the nsILocalFile object.  Any
+        /// This function will initialize the nsIFile object.  Any
         /// internal state information will be reset.
         ///
         /// @param filePath
@@ -512,7 +512,7 @@ namespace Gecko
 		/// <summary>
         /// appendRelative[Native]Path
         ///
-        /// Append a relative path to the current path of the nsILocalFile object.
+        /// Append a relative path to the current path of the nsIFile object.
         ///
         /// @param relativeFilePath
         /// relativeFilePath is a native relative path. For security reasons,

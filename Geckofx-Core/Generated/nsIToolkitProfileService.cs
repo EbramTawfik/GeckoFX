@@ -87,7 +87,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIProfileLock LockProfilePath([MarshalAs(UnmanagedType.Interface)] nsILocalFile aDirectory, [MarshalAs(UnmanagedType.Interface)] nsILocalFile aTempDirectory);
+		nsIProfileLock LockProfilePath([MarshalAs(UnmanagedType.Interface)] nsIFile aDirectory, [MarshalAs(UnmanagedType.Interface)] nsIFile aTempDirectory);
 		
 		/// <summary>
         /// Create a new profile.
@@ -104,7 +104,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIToolkitProfile CreateProfile([MarshalAs(UnmanagedType.Interface)] nsILocalFile aRootDir, [MarshalAs(UnmanagedType.Interface)] nsILocalFile aTempDir, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aName);
+		nsIToolkitProfile CreateProfile([MarshalAs(UnmanagedType.Interface)] nsIFile aRootDir, [MarshalAs(UnmanagedType.Interface)] nsIFile aTempDir, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aName);
 		
 		/// <summary>
         /// Create the default profile for an application.

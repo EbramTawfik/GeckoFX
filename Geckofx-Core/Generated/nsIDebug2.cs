@@ -30,7 +30,7 @@ namespace Gecko
     ///interface to expose information about calls to NS_DebugBreak </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("9c9307ed-480a-4f2a-8f29-21378c03bcbc")]
+	[Guid("6cb17fec-cdf7-4f7c-b267-37a0acaa9cf1")]
 	public interface nsIDebug2 : nsIDebug
 	{
 		
@@ -88,5 +88,13 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetAssertionCountAttribute();
+		
+		/// <summary>
+        /// Whether a debugger is currently attached.
+        /// Supports Windows + Mac
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetIsDebuggerAttachedAttribute();
 	}
 }

@@ -44,10 +44,13 @@ namespace Gecko
         /// @param aStartupCheck true if this is the check being performed
         /// by the first browser window at startup,
         /// false otherwise.
+        /// @param aForAllTypes  true if the check should be made for HTTP and HTML.
+        /// false if the check should be made for HTTP only.
+        /// This parameter may be ignored on some platforms.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool IsDefaultBrowser([MarshalAs(UnmanagedType.U1)] bool aStartupCheck);
+		new bool IsDefaultBrowser([MarshalAs(UnmanagedType.U1)] bool aStartupCheck, [MarshalAs(UnmanagedType.U1)] bool aForAllTypes);
 		
 		/// <summary>
         /// Registers Firefox as the "Default Browser."
@@ -136,14 +139,14 @@ namespace Gecko
         /// The uri to be loaded by the application
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void OpenApplicationWithURI([MarshalAs(UnmanagedType.Interface)] nsILocalFile aApplication, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aURI);
+		new void OpenApplicationWithURI([MarshalAs(UnmanagedType.Interface)] nsIFile aApplication, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aURI);
 		
 		/// <summary>
         /// The default system handler for web feeds
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsILocalFile GetDefaultFeedReaderAttribute();
+		new nsIFile GetDefaultFeedReaderAttribute();
 		
 		/// <summary>
         /// Provides the shell service an opportunity to do some Win7+ shortcut

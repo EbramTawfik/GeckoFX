@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("b70b84f1-7ac9-4a92-bc32-8b6a7eb7879e")]
+	[Guid("9583b825-46b1-4e8f-bb48-9fed660a95e6")]
 	public interface mozIDOMApplication
 	{
 		
@@ -46,9 +46,8 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetManifestURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aManifestURL);
 		
-		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIArray GetReceiptsAttribute();
+		Gecko.JsVal GetReceiptsAttribute();
 		
 		/// <summary>
         ///an array of strings </summary>
@@ -59,7 +58,36 @@ namespace Gecko
 		void GetInstallOriginAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aInstallOrigin);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetInstallTimeAttribute();
+		ulong GetInstallTimeAttribute();
+		
+		/// <summary>
+        /// The current progress when downloading an offline cache.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		double GetProgressAttribute();
+		
+		/// <summary>
+        /// The application status :
+        /// "installed"   : The app is in the registry, but we have no offline cache.
+        /// "downlading"  : We are downloading the offline cache.
+        /// "cached"      : We are done with the offline cache download.
+        /// "cache-error" : An error occured while downloading the offline-cache.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetStatusAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aStatus);
+		
+		/// <summary>
+        /// fires a nsIDOMApplicationEvent when a change in appcache download or status happens
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMEventListener GetOnprogressAttribute();
+		
+		/// <summary>
+        /// fires a nsIDOMApplicationEvent when a change in appcache download or status happens
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOnprogressAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnprogress);
 		
 		/// <summary>
         ///startPoint will be used when several launch_path exists for an app </summary>
@@ -72,227 +100,200 @@ namespace Gecko
 		nsIDOMDOMRequest Uninstall();
 	}
 	
-	/// <summary>mozIDOMApplicationEvent </summary>
+	/// <summary>nsIDOMMozApplicationEvent </summary>
 	[ComImport()]
-	[Guid("870bfbdc-3e13-4042-99dd-18e25720782d")]
-	public interface mozIDOMApplicationEvent : nsIDOMEvent
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("8f2bfba8-f10e-4f63-a5e0-7a7056e1dbe6")]
+	public interface nsIDOMMozApplicationEvent : nsIDOMEvent
 	{
+		
+		/// <summary>
+        /// The name of the event (case-insensitive). The name must be an XML
+        /// name.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType);
+		
+		/// <summary>
+        /// Used to indicate the EventTarget to which the event was originally
+        /// dispatched.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMEventTarget GetTargetAttribute();
+		
+		/// <summary>
+        /// Used to indicate the EventTarget whose EventListeners are currently
+        /// being processed. This is particularly useful during capturing and
+        /// bubbling.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMEventTarget GetCurrentTargetAttribute();
+		
+		/// <summary>
+        /// Used to indicate which phase of event flow is currently being
+        /// evaluated.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new ushort GetEventPhaseAttribute();
+		
+		/// <summary>
+        /// Used to indicate whether or not an event is a bubbling event. If the
+        /// event can bubble the value is true, else the value is false.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool GetBubblesAttribute();
+		
+		/// <summary>
+        /// Used to indicate whether or not an event can have its default action
+        /// prevented. If the default action can be prevented the value is true,
+        /// else the value is false.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool GetCancelableAttribute();
+		
+		/// <summary>
+        /// Used to specify the time (in milliseconds relative to the epoch) at
+        /// which the event was created. Due to the fact that some systems may
+        /// not provide this information the value of timeStamp may be not
+        /// available for all events. When not available, a value of 0 will be
+        /// returned. Examples of epoch time are the time of the system start or
+        /// 0:0:0 UTC 1st January 1970.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new long GetTimeStampAttribute();
+		
+		/// <summary>
+        /// The stopPropagation method is used prevent further propagation of an
+        /// event during event flow. If this method is called by any
+        /// EventListener the event will cease propagating through the tree. The
+        /// event will complete dispatch to all listeners on the current
+        /// EventTarget before event flow stops. This method may be used during
+        /// any stage of event flow.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void StopPropagation();
+		
+		/// <summary>
+        /// If an event is cancelable, the preventDefault method is used to
+        /// signify that the event is to be canceled, meaning any default action
+        /// normally taken by the implementation as a result of the event will
+        /// not occur. If, during any stage of event flow, the preventDefault
+        /// method is called the event is canceled. Any default action associated
+        /// with the event will not occur. Calling this method for a
+        /// non-cancelable event has no effect. Once preventDefault has been
+        /// called it will remain in effect throughout the remainder of the
+        /// event's propagation. This method may be used during any stage of
+        /// event flow.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void PreventDefault();
+		
+		/// <summary>
+        /// The initEvent method is used to initialize the value of an Event
+        /// created through the DocumentEvent interface. This method may only be
+        /// called before the Event has been dispatched via the dispatchEvent
+        /// method, though it may be called multiple times during that phase if
+        /// necessary. If called multiple times the final invocation takes
+        /// precedence. If called from a subclass of Event interface only the
+        /// values specified in the initEvent method are modified, all other
+        /// attributes are left unchanged.
+        ///
+        /// @param   eventTypeArg Specifies the event type. This type may be
+        /// any event type currently defined in this
+        /// specification or a new event type.. The string
+        /// must be an XML name.
+        /// Any new event type must not begin with any
+        /// upper, lower, or mixed case version of the
+        /// string "DOM". This prefix is reserved for
+        /// future DOM event sets. It is also strongly
+        /// recommended that third parties adding their
+        /// own events use their own prefix to avoid
+        /// confusion and lessen the probability of
+        /// conflicts with other new events.
+        /// @param   canBubbleArg Specifies whether or not the event can bubble.
+        /// @param   cancelableArg Specifies whether or not the event's default
+        /// action can be prevented.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void InitEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase eventTypeArg, [MarshalAs(UnmanagedType.U1)] bool canBubbleArg, [MarshalAs(UnmanagedType.U1)] bool cancelableArg);
+		
+		/// <summary>
+        /// Used to indicate whether preventDefault() has been called for this event.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool GetDefaultPreventedAttribute();
+		
+		/// <summary>
+        /// Prevents other event listeners from being triggered and,
+        /// unlike Event.stopPropagation() its effect is immediate.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void StopImmediatePropagation();
+		
+		/// <summary>Member DuplicatePrivateData </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void DuplicatePrivateData();
+		
+		/// <summary>Member SetTarget </summary>
+		/// <param name='aTarget'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetTarget([MarshalAs(UnmanagedType.Interface)] nsIDOMEventTarget aTarget);
+		
+		/// <summary>Member IsDispatchStopped </summary>
+		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool IsDispatchStopped();
+		
+		/// <summary>Member GetInternalNSEvent </summary>
+		/// <returns>A System.IntPtr</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new System.IntPtr GetInternalNSEvent();
+		
+		/// <summary>Member SetTrusted </summary>
+		/// <param name='aTrusted'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetTrusted([MarshalAs(UnmanagedType.U1)] bool aTrusted);
+		
+		/// <summary>Member Serialize </summary>
+		/// <param name='aMsg'> </param>
+		/// <param name='aSerializeInterfaceType'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void Serialize(System.IntPtr aMsg, [MarshalAs(UnmanagedType.U1)] bool aSerializeInterfaceType);
+		
+		/// <summary>Member Deserialize </summary>
+		/// <param name='aMsg'> </param>
+		/// <param name='aIter'> </param>
+		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool Deserialize(System.IntPtr aMsg, ref System.IntPtr aIter);
 		
 		/// <summary>Member GetApplicationAttribute </summary>
 		/// <returns>A mozIDOMApplication</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		mozIDOMApplication GetApplicationAttribute();
+		
+		/// <summary>Member InitMozApplicationEvent </summary>
+		/// <param name='aType'> </param>
+		/// <param name='aCanBubble'> </param>
+		/// <param name='aCancelable'> </param>
+		/// <param name='aApplication'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void InitMozApplicationEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType, [MarshalAs(UnmanagedType.U1)] bool aCanBubble, [MarshalAs(UnmanagedType.U1)] bool aCancelable, mozIDOMApplication aApplication);
 	}
 	
 	/// <summary>mozIDOMApplicationMgmt </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("a82771f6-ba46-4073-9e6e-f1ad3f42b1f6")]
-	public interface mozIDOMApplicationMgmt : nsIDOMEventTarget
+	[Guid("bd304874-d532-4e13-8034-544211445583")]
+	public interface mozIDOMApplicationMgmt
 	{
-		
-		/// <summary>
-        /// This method allows the registration of event listeners on the event target.
-        /// If an EventListener is added to an EventTarget while it is processing an
-        /// event, it will not be triggered by the current actions but may be
-        /// triggered during a later stage of event flow, such as the bubbling phase.
-        ///
-        /// If multiple identical EventListeners are registered on the same
-        /// EventTarget with the same parameters the duplicate instances are
-        /// discarded. They do not cause the EventListener to be called twice
-        /// and since they are discarded they do not need to be removed with the
-        /// removeEventListener method.
-        ///
-        /// @param   type The event type for which the user is registering
-        /// @param   listener The listener parameter takes an interface
-        /// implemented by the user which contains the methods
-        /// to be called when the event occurs.
-        /// @param   useCapture If true, useCapture indicates that the user
-        /// wishes to initiate capture. After initiating
-        /// capture, all events of the specified type will be
-        /// dispatched to the registered EventListener before
-        /// being dispatched to any EventTargets beneath them
-        /// in the tree. Events which are bubbling upward
-        /// through the tree will not trigger an
-        /// EventListener designated to use capture.
-        /// @param   wantsUntrusted If false, the listener will not receive any
-        /// untrusted events (see above), if true, the
-        /// listener will receive events whether or not
-        /// they're trusted
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void AddEventListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener listener, [MarshalAs(UnmanagedType.U1)] bool useCapture, [MarshalAs(UnmanagedType.U1)] bool wantsUntrusted, int argc);
-		
-		/// <summary>
-        /// addSystemEventListener() adds an event listener of aType to the system
-        /// group.  Typically, core code should use system group for listening to
-        /// content (i.e., non-chrome) element's events.  If core code uses
-        /// nsIDOMEventTarget::AddEventListener for a content node, it means
-        /// that the listener cannot listen the event when web content calls
-        /// stopPropagation() of the event.
-        ///
-        /// @param aType            An event name you're going to handle.
-        /// @param aListener        An event listener.
-        /// @param aUseCapture      TRUE if you want to listen the event in capturing
-        /// phase.  Otherwise, FALSE.
-        /// @param aWantsUntrusted  TRUE if you want to handle untrusted events.
-        /// Otherwise, FALSE.
-        /// @return                 NS_OK if succeed.  Otherwise, NS_ERROR_*.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void AddSystemEventListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener listener, [MarshalAs(UnmanagedType.U1)] bool aUseCapture, [MarshalAs(UnmanagedType.U1)] bool aWantsUntrusted, int argc);
-		
-		/// <summary>
-        /// This method allows the removal of event listeners from the event
-        /// target. If an EventListener is removed from an EventTarget while it
-        /// is processing an event, it will not be triggered by the current actions.
-        /// EventListeners can never be invoked after being removed.
-        /// Calling removeEventListener with arguments which do not identify any
-        /// currently registered EventListener on the EventTarget has no effect.
-        ///
-        /// @param   type Specifies the event type of the EventListener being
-        /// removed.
-        /// @param   listener The EventListener parameter indicates the
-        /// EventListener to be removed.
-        /// @param   useCapture Specifies whether the EventListener being
-        /// removed was registered as a capturing listener or
-        /// not. If a listener was registered twice, one with
-        /// capture and one without, each must be removed
-        /// separately. Removal of a capturing listener does
-        /// not affect a non-capturing version of the same
-        /// listener, and vice versa.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void RemoveEventListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener listener, [MarshalAs(UnmanagedType.U1)] bool useCapture);
-		
-		/// <summary>
-        /// removeSystemEventListener() should be used if you have used
-        /// addSystemEventListener().
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void RemoveSystemEventListener([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase type, [MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener listener, [MarshalAs(UnmanagedType.U1)] bool aUseCapture);
-		
-		/// <summary>
-        /// This method allows the dispatch of events into the implementations
-        /// event model. Events dispatched in this manner will have the same
-        /// capturing and bubbling behavior as events dispatched directly by the
-        /// implementation. The target of the event is the EventTarget on which
-        /// dispatchEvent is called.
-        ///
-        /// @param   evt Specifies the event type, behavior, and contextual
-        /// information to be used in processing the event.
-        /// @return  Indicates whether any of the listeners which handled the
-        /// event called preventDefault. If preventDefault was called
-        /// the value is false, else the value is true.
-        /// @throws  INVALID_STATE_ERR: Raised if the Event's type was
-        /// not specified by initializing the event before
-        /// dispatchEvent was called. Specification of the Event's
-        /// type as null or an empty string will also trigger this
-        /// exception.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool DispatchEvent([MarshalAs(UnmanagedType.Interface)] nsIDOMEvent evt);
-		
-		/// <summary>
-        /// Returns the nsPIDOMEventTarget object which should be used as the target
-        /// of DOMEvents.
-        /// Usually |this| is returned, but for example global object returns
-        /// the outer object.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMEventTarget GetTargetForDOMEvent();
-		
-		/// <summary>
-        /// Returns the nsPIDOMEventTarget object which should be used as the target
-        /// of the event and when constructing event target chain.
-        /// Usually |this| is returned, but for example global object returns
-        /// the inner object.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMEventTarget GetTargetForEventTargetChain();
-		
-		/// <summary>
-        /// Called before the capture phase of the event flow.
-        /// This is used to create the event target chain and implementations
-        /// should set the necessary members of nsEventChainPreVisitor.
-        /// At least aVisitor.mCanHandle must be set,
-        /// usually also aVisitor.mParentTarget if mCanHandle is PR_TRUE.
-        /// First one tells that this object can handle the aVisitor.mEvent event and
-        /// the latter one is the possible parent object for the event target chain.
-        /// @see nsEventDispatcher.h for more documentation about aVisitor.
-        ///
-        /// @param aVisitor the visitor object which is used to create the
-        /// event target chain for event dispatching.
-        ///
-        /// @note Only nsEventDispatcher should call this method.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void PreHandleEvent(System.IntPtr aVisitor);
-		
-		/// <summary>
-        /// If nsEventChainPreVisitor.mWantsWillHandleEvent is set PR_TRUE,
-        /// called just before possible event handlers on this object will be called.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void WillHandleEvent(System.IntPtr aVisitor);
-		
-		/// <summary>
-        /// Called after the bubble phase of the system event group.
-        /// The default handling of the event should happen here.
-        /// @param aVisitor the visitor object which is used during post handling.
-        ///
-        /// @see nsEventDispatcher.h for documentation about aVisitor.
-        /// @note Only nsEventDispatcher should call this method.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void PostHandleEvent(System.IntPtr aVisitor);
-		
-		/// <summary>
-        /// Dispatch an event.
-        /// @param aEvent the event that is being dispatched.
-        /// @param aDOMEvent the event that is being dispatched, use if you want to
-        /// dispatch nsIDOMEvent, not only nsEvent.
-        /// @param aPresContext the current presentation context, can be nsnull.
-        /// @param aEventStatus the status returned from the function, can be nsnull.
-        ///
-        /// @note If both aEvent and aDOMEvent are used, aEvent must be the internal
-        /// event of the aDOMEvent.
-        ///
-        /// If aDOMEvent is not nsnull (in which case aEvent can be nsnull) it is used
-        /// for dispatching, otherwise aEvent is used.
-        ///
-        /// @deprecated This method is here just until all the callers outside Gecko
-        /// have been converted to use nsIDOMEventTarget::dispatchEvent.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void DispatchDOMEvent(System.IntPtr aEvent, [MarshalAs(UnmanagedType.Interface)] nsIDOMEvent aDOMEvent, System.IntPtr aPresContext, System.IntPtr aEventStatus);
-		
-		/// <summary>
-        /// Get the event listener manager, the guy you talk to to register for events
-        /// on this node.
-        /// @param aMayCreate If PR_FALSE, returns a listener manager only if
-        /// one already exists.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.IntPtr GetListenerManager([MarshalAs(UnmanagedType.U1)] bool aMayCreate);
-		
-		/// <summary>
-        /// Get the script context in which the event handlers should be run.
-        /// May return null.
-        /// @note Caller *must* check the value of aRv.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.IntPtr GetContextForEventHandlers(ref int aRv);
-		
-		/// <summary>
-        /// If the method above returns null, but a success code, this method
-        /// is called.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.IntPtr GetJSContextForEventHandlers();
 		
 		/// <summary>
         /// the request will return the all the applications installed. Only accessible
@@ -340,17 +341,17 @@ namespace Gecko
 	/// <summary>mozIDOMApplicationRegistry </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("f6929871-288b-4613-9a37-9a150760ac50")]
+	[Guid("dd9a044c-1073-4d2b-a17d-c9b5834b3420")]
 	public interface mozIDOMApplicationRegistry
 	{
 		
 		/// <summary>
-        /// Install a web app. onerror can be used to report errors,
-        /// and oninstall if the caller is privileged.
+        /// Install a web app.
         ///
         /// @param manifestUrl : the URL of the webapps manifest.
-        /// @param parameters : A structure with optional information.
+        /// @param parameters  : A structure with optional information.
         /// { receipts: ... } will be used to specify the payment receipts for this installation.
+        /// @returns           : A DOMRequest object, returning the app object in |result| if install succeeds.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -369,6 +370,14 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMDOMRequest GetInstalled();
+		
+		/// <summary>
+        /// the request will return the applications acquired from this origin but which
+        /// are not launchable (e.g. by not being natively installed), or null.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest GetNotInstalled();
 		
 		/// <summary>Member GetMgmtAttribute </summary>
 		/// <returns>A mozIDOMApplicationMgmt</returns>

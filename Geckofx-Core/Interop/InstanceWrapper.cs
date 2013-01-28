@@ -9,7 +9,7 @@ namespace Gecko
 	/// Class for fixing memory leaks :)
 	/// </summary>
 	/// <typeparam name="T"></typeparam>
-	internal sealed class InstanceWrapper<T>
+	public sealed class InstanceWrapper<T>
 		: ComPtr<T>
 		where T : class
 	{
@@ -20,9 +20,14 @@ namespace Gecko
 		/// refcount of created object is 1, it will automatically decrement when InstanceWrapper is disposed
 		/// </summary>
 		/// <param name="contractID"></param>
-		internal InstanceWrapper(string contractID)
+		public InstanceWrapper(string contractID)
 			:base(Xpcom.CreateInstance<T>(contractID))
 		{
+		}
+
+		public T Instance
+		{
+			get { return _instance; }
 		}
 
 		/// <summary>

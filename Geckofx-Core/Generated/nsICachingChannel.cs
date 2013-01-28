@@ -38,7 +38,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("E2143B61-62FE-4da5-BE2E-E31981095889")]
+	[Guid("8456EBEE-7127-485b-9518-C2E328C09F5D")]
 	public interface nsICachingChannel : nsICacheInfoChannel
 	{
 		
@@ -191,54 +191,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetCacheAsFileAttribute([MarshalAs(UnmanagedType.U1)] bool aCacheAsFile);
-		
-		/// <summary>
-        /// Specifies whether or not the data should be placed in the offline cache,
-        /// in addition to normal memory/disk caching.  This may fail if the offline
-        /// cache is not present.  The value of this attribute should be set before
-        /// opening the channel.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetCacheForOfflineUseAttribute();
-		
-		/// <summary>
-        /// Specifies whether or not the data should be placed in the offline cache,
-        /// in addition to normal memory/disk caching.  This may fail if the offline
-        /// cache is not present.  The value of this attribute should be set before
-        /// opening the channel.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetCacheForOfflineUseAttribute([MarshalAs(UnmanagedType.U1)] bool aCacheForOfflineUse);
-		
-		/// <summary>
-        /// The session into which to cache offline data.  If not specified,
-        /// data will be placed in "HTTP-offline"
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetOfflineCacheClientIDAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aOfflineCacheClientID);
-		
-		/// <summary>
-        /// The session into which to cache offline data.  If not specified,
-        /// data will be placed in "HTTP-offline"
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOfflineCacheClientIDAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aOfflineCacheClientID);
-		
-		/// <summary>
-        /// Override base (profile) directory to work with when accessing the cache.
-        /// When not specified, the current process' profile directory will be used.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsILocalFile GetProfileDirectoryAttribute();
-		
-		/// <summary>
-        /// Override base (profile) directory to work with when accessing the cache.
-        /// When not specified, the current process' profile directory will be used.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetProfileDirectoryAttribute([MarshalAs(UnmanagedType.Interface)] nsILocalFile aProfileDirectory);
 		
 		/// <summary>
         /// Get the "file" where the cached data can be found.  This is valid for

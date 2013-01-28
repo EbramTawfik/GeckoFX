@@ -75,13 +75,13 @@ namespace Gecko
         ///unlimited </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIIDBRequest GetAll(Gecko.JsVal key, uint limit, System.IntPtr jsContext, int argc);
+		nsIIDBRequest MozGetAll(Gecko.JsVal key, uint limit, System.IntPtr jsContext, int argc);
 		
 		/// <summary>
         ///unlimited </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIIDBRequest GetAllKeys(Gecko.JsVal key, uint limit, System.IntPtr jsContext, int argc);
+		nsIIDBRequest MozGetAllKeys(Gecko.JsVal key, uint limit, System.IntPtr jsContext, int argc);
 		
 		/// <summary>
         ///"next" </summary>

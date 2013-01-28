@@ -70,7 +70,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("d0b5d7d3-9565-403d-9fb5-e5089c4567c6")]
+	[Guid("6613e2e7-feab-4e3a-bb1f-b03200d544ec")]
 	public interface nsPIExternalAppLauncher
 	{
 		
@@ -81,6 +81,13 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void DeleteTemporaryFileOnExit([MarshalAs(UnmanagedType.Interface)] nsIFile aTemporaryFile);
+		
+		/// <summary>
+        /// Delete a temporary file created inside private browsing mode when
+        /// the private browsing mode has ended.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void DeleteTemporaryPrivateFileWhenPossible([MarshalAs(UnmanagedType.Interface)] nsIFile aTemporaryFile);
 	}
 	
 	/// <summary>

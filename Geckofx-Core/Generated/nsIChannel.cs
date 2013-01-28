@@ -521,6 +521,14 @@ namespace Gecko
         // </summary>
 		public const ulong LOAD_CLASSIFY_URI = 1<<22;
 		
+		// <summary>
+        // If this flag is set and a server's response is Content-Type
+        // application/octet-steam, the server's Content-Type will be ignored and
+        // the channel content will be sniffed as though no Content-Type had been
+        // passed.
+        // </summary>
+		public const ulong LOAD_TREAT_APPLICATION_OCTET_STREAM_AS_UNKNOWN = 1<<23;
+		
 		// 
 		public const ulong DISPOSITION_INLINE = 0;
 		

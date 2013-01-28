@@ -59,9 +59,20 @@ namespace Gecko
 	/// <summary>nsITransferable </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("8B5314BC-DB01-11d2-96CE-0060B0FB9956")]
+	[Guid("983cb266-535b-4ca5-8ef2-2cee08d061e6")]
 	public interface nsITransferable
 	{
+		
+		/// <summary>
+        /// Initializes a transferable object.  This should be called on alli
+        /// transferable objects.  Failure to do so will result in fatal assertions in
+        /// debug builds.
+        ///
+        /// @param aContext the load context associated with the transferable object.
+        /// This can be set to null if a load context is not available.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Init([MarshalAs(UnmanagedType.Interface)] nsILoadContext aContext);
 		
 		/// <summary>
         /// Computes a list of flavors (mime types as nsISupportsCString) that the transferable
@@ -153,6 +164,12 @@ namespace Gecko
 		/// <param name='aConverter'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetConverterAttribute([MarshalAs(UnmanagedType.Interface)] nsIFormatConverter aConverter);
+		
+		/// <summary>Member GetIsPrivateDataAttribute </summary>
+		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetIsPrivateDataAttribute();
 	}
 	
 	/// <summary>nsITransferableConsts </summary>

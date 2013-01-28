@@ -34,7 +34,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("1f19a2ce-cf5c-4a6b-8ba7-63785b45053f")]
+	[Guid("8e16f39e-7012-46bd-aa22-2a7a3265608f")]
 	public interface imgITools
 	{
 		
@@ -85,12 +85,37 @@ namespace Gecko
         /// @param aMimeType
         /// Type of encoded image desired (eg "image/png").
         /// @param aWidth, aHeight
-        /// The size (in pixels) desired for the resulting image.
+        /// The size (in pixels) desired for the resulting image. Specify 0 to
+        /// use the given image's width or height. Values must be >= 0.
         /// @param outputOptions
         /// Encoder-specific output options.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIInputStream EncodeScaledImage(imgIContainer aContainer, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aMimeType, int aWidth, int aHeight, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase outputOptions);
+		
+		/// <summary>
+        /// encodeCroppedImage
+        /// Caller provides an image container, and the mime type it should be
+        /// encoded to. We return an input stream for the encoded image data.
+        /// The encoded image is cropped to the specified dimensions.
+        ///
+        /// The given offset and size must not exceed the image bounds.
+        ///
+        /// @param aContainer
+        /// An image container.
+        /// @param aMimeType
+        /// Type of encoded image desired (eg "image/png").
+        /// @param aOffsetX, aOffsetY
+        /// The crop offset (in pixels). Values must be >= 0.
+        /// @param aWidth, aHeight
+        /// The size (in pixels) desired for the resulting image. Specify 0 to
+        /// use the given image's width or height. Values must be >= 0.
+        /// @param outputOptions
+        /// Encoder-specific output options.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIInputStream EncodeCroppedImage(imgIContainer aContainer, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aMimeType, int aOffsetX, int aOffsetY, int aWidth, int aHeight, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase outputOptions);
 	}
 }

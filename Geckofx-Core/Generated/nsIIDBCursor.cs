@@ -33,7 +33,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("01136b3a-d84c-487c-b929-f5d012346c44")]
+	[Guid("148579a3-6b28-4b2a-92c3-ff5719e8e03e")]
 	public interface nsIIDBCursor
 	{
 		
@@ -73,6 +73,6 @@ namespace Gecko
 		nsIIDBRequest Delete(System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Advance(int count);
+		void Advance(long count);
 	}
 }

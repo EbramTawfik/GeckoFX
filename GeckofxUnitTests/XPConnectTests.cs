@@ -45,7 +45,7 @@ namespace GeckofxUnitTests
 			// nsGCNormal,
 			// nsGCShrinking,
 			// nsGCIncremental			
-			m_instance.GarbageCollect(0, 0);
+			m_instance.GarbageCollect(0);
 		}
 	}
 }

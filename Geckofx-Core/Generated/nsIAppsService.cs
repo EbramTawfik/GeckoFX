@@ -32,7 +32,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("8a4d9921-58ae-41da-a6f1-5f842c3a050f")]
+	[Guid("40e580e7-8891-4eb8-b514-0b5796af4df1")]
 	public interface nsIAppsService
 	{
 		
@@ -42,5 +42,8 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		mozIDOMApplication GetAppByManifestURL([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase manifestURL);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetAppLocalIdByManifestURL([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase manifestURL);
 	}
 }

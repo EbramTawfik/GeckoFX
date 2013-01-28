@@ -42,7 +42,7 @@ namespace Gecko
         /// Saves the current bookmarks hierarchy to a bookmarks.html file.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ExportHTMLToFile([MarshalAs(UnmanagedType.Interface)] nsILocalFile aFile);
+		void ExportHTMLToFile([MarshalAs(UnmanagedType.Interface)] nsIFile aFile);
 		
 		/// <summary>
         /// Backup the bookmarks.html file.

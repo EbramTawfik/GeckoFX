@@ -34,7 +34,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("1B93973F-28CC-4F33-8E7B-B89C63AA9200")]
+	[Guid("ecae54c6-2ab9-4167-b0ef-61960aadbb68")]
 	public interface nsIDOMHTMLDocument : nsIDOMDocument
 	{
 		
@@ -819,6 +819,10 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMNodeList GetElementsByName([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase elementName);
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMNodeList GetItems([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase types);
 		
 		/// <summary>
         /// document in session history; pass false for normal history handling.

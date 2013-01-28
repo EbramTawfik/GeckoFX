@@ -140,6 +140,8 @@ namespace GeckoFxTest
 			// Uncomment this to stop links from navigating.
 			// browser.DomClick += StopLinksNavigating;
 
+			// Demo use of ReadyStateChange.
+			browser.ReadyStateChange += (s, e) => this.Text = browser.Document.ReadyState;
 		}
 
 		/// <summary>

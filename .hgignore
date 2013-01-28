@@ -1,4 +1,9 @@
 syntax: glob
+Geckofx-Core/bin/
+Geckofx-Core/obj/
+Geckofx-Winforms/bin/
+Geckofx-Winforms/obj/
+_ReSharper.Geckofx/
 PutXulRunnerFolderHere/
 *.iip
 Skybound.Gecko/obj/
@@ -13,3 +18,6 @@ GeckoFxTest/bin
 GeckoFxTest/obj
 *.suo
 GeckoWebBrowser/bin
+*.dll
+*.pdb
+*.user

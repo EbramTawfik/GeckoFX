@@ -127,6 +127,9 @@ namespace Gecko
 		// 
 		public const long PLUGIN_OBJECT = 1<<4;
 		
+		// 
+		public const long SINGLETON_CLASSINFO = 1<<5;
+		
 		// <summary>
         // 'flags' attribute bitflag: whether objects of this type implement
         // nsIContent.

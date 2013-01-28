@@ -52,7 +52,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("0b83f9d5-3f96-41b6-91aa-ff3a7e4880d7")]
+	[Guid("cc423aaf-f088-4ec2-86ef-7733225773f9")]
 	public interface nsIPermissionManager
 	{
 		
@@ -85,6 +85,14 @@ namespace Gecko
 		void Add([MarshalAs(UnmanagedType.Interface)] nsIURI uri, [MarshalAs(UnmanagedType.LPStr)] string type, uint permission, uint expireType, long expireTime);
 		
 		/// <summary>
+        /// Add permission information for a given principal.
+        /// It is internally calling the other add() method using the nsIURI from the
+        /// principal.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void AddFromPrincipal([MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, [MarshalAs(UnmanagedType.LPStr)] string typed, uint permission, uint expireType, long expireTime);
+		
+		/// <summary>
         /// Remove permission information for a given host string and permission type.
         /// The host string represents the exact entry in the permission list (such as
         /// obtained from the enumerator), not a URI which that permission might apply
@@ -97,6 +105,13 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Remove([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase host, [MarshalAs(UnmanagedType.LPStr)] string type);
+		
+		/// <summary>
+        /// Remove permission information for a given principal.
+        /// This is internally calling remove() with the host from the principal's URI.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RemoveFromPrincipal([MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, [MarshalAs(UnmanagedType.LPStr)] string type);
 		
 		/// <summary>
         /// Clear permission information for all websites.
@@ -115,6 +130,12 @@ namespace Gecko
 		uint TestPermission([MarshalAs(UnmanagedType.Interface)] nsIURI uri, [MarshalAs(UnmanagedType.LPStr)] string type);
 		
 		/// <summary>
+        /// Test whether the principal has the permission to perform a given action.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint TestPermissionFromPrincipal([MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, [MarshalAs(UnmanagedType.LPStr)] string type);
+		
+		/// <summary>
         /// Test whether a website has permission to perform the given action.
         /// This requires an exact hostname match, subdomains are not a match.
         /// @param uri     the uri to be tested
@@ -124,6 +145,12 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint TestExactPermission([MarshalAs(UnmanagedType.Interface)] nsIURI uri, [MarshalAs(UnmanagedType.LPStr)] string type);
+		
+		/// <summary>
+        /// See testExactPermission() above.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint TestExactPermissionFromPrincipal([MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, [MarshalAs(UnmanagedType.LPStr)] string type);
 		
 		/// <summary>
         /// Allows enumeration of all stored permissions

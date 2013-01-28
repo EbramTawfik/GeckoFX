@@ -31,7 +31,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("8d9024e6-ab01-442d-8119-2f55d55d91b0")]
+	[Guid("6FA816B1-6D5F-4380-9704-054D0908CFA3")]
 	public interface nsIApplicationCacheChannel : nsIApplicationCacheContainer
 	{
 		
@@ -117,5 +117,20 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void MarkOfflineCacheEntryAsForeign();
+		
+		/// <summary>
+        /// Set offline application cache object to instruct the channel
+        /// to cache for offline use using this application cache.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIApplicationCache GetApplicationCacheForWriteAttribute();
+		
+		/// <summary>
+        /// Set offline application cache object to instruct the channel
+        /// to cache for offline use using this application cache.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetApplicationCacheForWriteAttribute([MarshalAs(UnmanagedType.Interface)] nsIApplicationCache aApplicationCacheForWrite);
 	}
 }

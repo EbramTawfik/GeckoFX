@@ -221,6 +221,9 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetPresContextAttribute();
 		
+		/// <summary>
+        /// aDocument must not be null.
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetDocumentInternal(System.IntPtr aDocument, [MarshalAs(UnmanagedType.U1)] bool aForceReuseInnerWindow);
 		

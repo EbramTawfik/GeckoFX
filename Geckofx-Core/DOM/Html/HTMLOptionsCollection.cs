@@ -19,14 +19,14 @@ namespace Gecko.DOM
 			set { DOMHTMLElement.SetLengthAttribute(value); }
 		}
 
-		public GeckoNode item(uint index)
+		public GeckoOptionElement item(uint index)
 		{
-			return new GeckoNode(DOMHTMLElement.Item(index));
+			return new GeckoOptionElement(DOMHTMLElement.Item(index));
 		}
 
-		public GeckoNode namedItem(string name)
+		public GeckoOptionElement namedItem(string name)
 		{
-			return new GeckoNode(DOMHTMLElement.NamedItem(new nsAString(name)));
+			return new GeckoOptionElement(DOMHTMLElement.NamedItem(new nsAString(name)));
 		}
 
 	}

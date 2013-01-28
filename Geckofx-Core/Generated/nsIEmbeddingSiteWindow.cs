@@ -33,7 +33,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("3E5432CD-9568-4bd1-8CBE-D50ABA110743")]
+	[Guid("0b976267-4aaa-4f36-a2d4-27b5ca8d73bb")]
 	public interface nsIEmbeddingSiteWindow
 	{
 		
@@ -128,6 +128,12 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetSiteWindowAttribute();
+		
+		/// <summary>
+        /// Blur the window. This should unfocus the window and send an onblur event.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Blur();
 	}
 	
 	/// <summary>nsIEmbeddingSiteWindowConsts </summary>
