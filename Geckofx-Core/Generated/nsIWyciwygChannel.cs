@@ -419,17 +419,44 @@ namespace Gecko
         /// if available and if applicable. This allows determining inline versus
         /// attachment.
         ///
+        /// Setting contentDisposition provides a hint to the channel about the
+        /// disposition.  If a normal Content-Disposition header is present its
+        /// value will always be used.  If it is missing the hinted value will
+        /// be used if set.
+        ///
         /// Implementations should throw NS_ERROR_NOT_AVAILABLE if the header either
-        /// doesn't exist for this type of channel or is empty, and
+        /// doesn't exist for this type of channel or is empty, and return
         /// DISPOSITION_ATTACHMENT if an invalid/noncompliant value is present.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new uint GetContentDispositionAttribute();
 		
 		/// <summary>
+        /// Access to the type implied or stated by the Content-Disposition header
+        /// if available and if applicable. This allows determining inline versus
+        /// attachment.
+        ///
+        /// Setting contentDisposition provides a hint to the channel about the
+        /// disposition.  If a normal Content-Disposition header is present its
+        /// value will always be used.  If it is missing the hinted value will
+        /// be used if set.
+        ///
+        /// Implementations should throw NS_ERROR_NOT_AVAILABLE if the header either
+        /// doesn't exist for this type of channel or is empty, and return
+        /// DISPOSITION_ATTACHMENT if an invalid/noncompliant value is present.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetContentDispositionAttribute(uint aContentDisposition);
+		
+		/// <summary>
         /// Access to the filename portion of the Content-Disposition header if
         /// available and if applicable. This allows getting the preferred filename
         /// without having to parse it out yourself.
+        ///
+        /// Setting contentDispositionFilename provides a hint to the channel about
+        /// the disposition.  If a normal Content-Disposition header is present its
+        /// value will always be used.  If it is missing the hinted value will be
+        /// used if set.
         ///
         /// Implementations should throw NS_ERROR_NOT_AVAILABLE if the header doesn't
         /// exist for this type of channel, if the header is empty, if the header
@@ -438,6 +465,24 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetContentDispositionFilenameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aContentDispositionFilename);
+		
+		/// <summary>
+        /// Access to the filename portion of the Content-Disposition header if
+        /// available and if applicable. This allows getting the preferred filename
+        /// without having to parse it out yourself.
+        ///
+        /// Setting contentDispositionFilename provides a hint to the channel about
+        /// the disposition.  If a normal Content-Disposition header is present its
+        /// value will always be used.  If it is missing the hinted value will be
+        /// used if set.
+        ///
+        /// Implementations should throw NS_ERROR_NOT_AVAILABLE if the header doesn't
+        /// exist for this type of channel, if the header is empty, if the header
+        /// doesn't contain a filename portion, or the value of the filename
+        /// attribute is empty/missing.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetContentDispositionFilenameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aContentDispositionFilename);
 		
 		/// <summary>
         /// Access to the raw Content-Disposition header if available and applicable.

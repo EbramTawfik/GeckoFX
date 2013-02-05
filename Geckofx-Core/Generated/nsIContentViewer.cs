@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("26b2380b-4a1a-46cd-b7d8-7600e41c1688")]
+	[Guid("b9d92b8b-5623-4079-ae11-36bb341f322e")]
 	public interface nsIContentViewer
 	{
 		
@@ -54,7 +54,7 @@ namespace Gecko
 		void LoadStart([MarshalAs(UnmanagedType.Interface)] nsISupports aDoc);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void LoadComplete(uint aStatus);
+		void LoadComplete(int aStatus);
 		
 		/// <summary>
         /// Checks if the document wants to prevent unloading by firing beforeunload on
@@ -214,6 +214,13 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetIsTabModalPromptAllowedAttribute();
+		
+		/// <summary>
+        /// Returns whether this content viewer is in a hidden state.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetIsHiddenAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetPresShellAttribute();

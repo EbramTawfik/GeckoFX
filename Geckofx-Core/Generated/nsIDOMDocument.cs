@@ -40,7 +40,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("FDB92F4F-C6B4-4509-A29D-A309981E28AC")]
+	[Guid("b7e90442-74d6-494e-af01-906d95926dec")]
 	public interface nsIDOMDocument : nsIDOMNode
 	{
 		
@@ -697,7 +697,7 @@ namespace Gecko
 		/// <summary>
         /// Denotes whether the full-screen-api.enabled is true, no windowed
         /// plugins are present, and all ancestor documents have the
-        /// mozallowfullscreen attribute set.
+        /// allowfullscreen attribute set.
         ///
         /// @see <https://wiki.mozilla.org/index.php?title=Gecko:FullScreenAPI>
         /// </summary>
@@ -752,7 +752,14 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetHiddenAttribute();
+		
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetMozHiddenAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetVisibilityStateAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aVisibilityState);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetMozVisibilityStateAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozVisibilityState);

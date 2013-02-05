@@ -32,11 +32,6 @@ namespace Gecko
 		{
 			get { return _privateBrowsingService.Instance.GetPrivateBrowsingEnabledAttribute(); }
 			set { _privateBrowsingService.Instance.SetPrivateBrowsingEnabledAttribute(value); }
-		}
-
-		public static void RemoveDataFromDomain(string domain)
-		{
-			nsString.Set(_privateBrowsingService.Instance.RemoveDataFromDomain, domain);
-		}
+		}		
 	}
 }

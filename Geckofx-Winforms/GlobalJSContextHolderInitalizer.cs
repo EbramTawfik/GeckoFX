@@ -15,9 +15,10 @@ namespace Gecko
 		public static void Initalize()
 		{
 			if (GlobalJSContextHolder.Initalize == null)
+			{
 				GlobalJSContextHolder.Initalize = CreateJsContext;
-
-			Application.ApplicationExit += new EventHandler(Application_ApplicationExit);
+				Application.ApplicationExit += new EventHandler(Application_ApplicationExit);
+			}
 		}
 
 		static void Application_ApplicationExit(object sender, EventArgs e)

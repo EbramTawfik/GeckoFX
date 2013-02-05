@@ -31,9 +31,15 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("519c8519-0f30-426b-bb7b-c400ba0318e2")]
+	[Guid("3d8579f0-75fa-4e00-ba41-38661d5b5d17")]
 	public interface nsIUrlClassifierPrefixSet
 	{
+		
+		/// <summary>
+        /// Initialize the PrefixSet. Give it a name for memory reporting.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Init([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aName);
 		
 		/// <summary>
         /// Requires array to be sorted.
@@ -41,18 +47,15 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetPrefixes([MarshalAs(UnmanagedType.LPArray, SizeParamIndex=1)] uint[] aPrefixes, uint aLength);
 		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetPrefixes(ref uint aCount, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref uint[] aPrefixes);
+		
 		/// <summary>
-        /// If not set, we will return in aReady whether we were ready or not.
+        /// Do a lookup in the PrefixSet, return whether the value is present.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Probe(uint aPrefix, uint aKey, [MarshalAs(UnmanagedType.U1)] ref bool aReady);
-		
-		/// <summary>
-        /// Return the key that is used to randomize the collisions in the prefixes.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetKey();
+		bool Contains(uint aPrefix);
 		
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

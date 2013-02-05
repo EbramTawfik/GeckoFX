@@ -35,7 +35,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("20a5e3e9-0d5b-482c-9f41-942b5f19e5a3")]
+	[Guid("f5a7c016-8caf-460a-b1a1-3fe5534d5c9e")]
 	public interface imgILoader
 	{
 		
@@ -80,15 +80,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		imgIRequest LoadImageWithChannel([MarshalAs(UnmanagedType.Interface)] nsIChannel aChannel, imgIDecoderObserver aObserver, [MarshalAs(UnmanagedType.Interface)] nsISupports cx, [MarshalAs(UnmanagedType.Interface)] ref nsIStreamListener aListener);
-		
-		/// <summary>
-        /// Checks if a decoder for the an image with the given mime type is available
-        /// @param mimeType The type to find a decoder for
-        /// @return true if a decoder is available, false otherwise
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool SupportImageWithMimeType([MarshalAs(UnmanagedType.LPStr)] string mimeType);
 	}
 	
 	/// <summary>imgILoaderConsts </summary>

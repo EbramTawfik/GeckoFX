@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("9583b825-46b1-4e8f-bb48-9fed660a95e6")]
+	[Guid("84524e5f-c4ab-4dce-8364-4aac71851ff1")]
 	public interface mozIDOMApplication
 	{
 		
@@ -42,6 +42,9 @@ namespace Gecko
         /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		Gecko.JsVal GetManifestAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetUpdateManifestAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetManifestURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aManifestURL);
@@ -60,6 +63,10 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		ulong GetInstallTimeAttribute();
 		
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetRemovableAttribute();
+		
 		/// <summary>
         /// The current progress when downloading an offline cache.
         /// </summary>
@@ -67,27 +74,114 @@ namespace Gecko
 		double GetProgressAttribute();
 		
 		/// <summary>
-        /// The application status :
-        /// "installed"   : The app is in the registry, but we have no offline cache.
-        /// "downlading"  : We are downloading the offline cache.
-        /// "cached"      : We are done with the offline cache download.
-        /// "cache-error" : An error occured while downloading the offline-cache.
+        /// The application installation state :
+        /// "pending"   : The application is being installed (eg, we're downloading the
+        /// offline cache or the package).
+        /// "installed" : The application is installed and ready to be launched.
+        /// "updating"  : We are updating the offline-cache or the package.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetStatusAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aStatus);
+		void GetInstallStateAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aInstallState);
 		
 		/// <summary>
-        /// fires a nsIDOMApplicationEvent when a change in appcache download or status happens
+        /// fires a nsIDOMApplicationEvent when a change in appcache download or
+        /// package download happens.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMEventListener GetOnprogressAttribute();
 		
 		/// <summary>
-        /// fires a nsIDOMApplicationEvent when a change in appcache download or status happens
+        /// fires a nsIDOMApplicationEvent when a change in appcache download or
+        /// package download happens.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOnprogressAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnprogress);
+		
+		/// <summary>
+        /// The date of the last update check.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		ulong GetLastUpdateCheckAttribute();
+		
+		/// <summary>
+        /// The date of the last updated manifest.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		ulong GetUpdateTimeAttribute();
+		
+		/// <summary>
+        /// Starts the process of looking for an update.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest CheckForUpdate();
+		
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetDownloadAvailableAttribute();
+		
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetDownloadingAttribute();
+		
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetReadyToApplyDownloadAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		int GetDownloadSizeAttribute();
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMError GetDownloadErrorAttribute();
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMEventListener GetOndownloadsuccessAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOndownloadsuccessAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOndownloadsuccess);
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMEventListener GetOndownloaderrorAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOndownloaderrorAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOndownloaderror);
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMEventListener GetOndownloadavailableAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOndownloadavailableAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOndownloadavailable);
+		
+		/// <summary>
+        /// Will fire once the mgmt.applyDownload() call succeeds.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMEventListener GetOndownloadappliedAttribute();
+		
+		/// <summary>
+        /// Will fire once the mgmt.applyDownload() call succeeds.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOndownloadappliedAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOndownloadapplied);
+		
+		/// <summary>
+        /// Starts to download an update. If |downloading| is true, this
+        /// is a no-op.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Download();
+		
+		/// <summary>
+        /// Cancels an ongoing update download.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void CancelDownload();
 		
 		/// <summary>
         ///startPoint will be used when several launch_path exists for an app </summary>
@@ -98,200 +192,17 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMDOMRequest Uninstall();
-	}
-	
-	/// <summary>nsIDOMMozApplicationEvent </summary>
-	[ComImport()]
-	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("8f2bfba8-f10e-4f63-a5e0-7a7056e1dbe6")]
-	public interface nsIDOMMozApplicationEvent : nsIDOMEvent
-	{
 		
 		/// <summary>
-        /// The name of the event (case-insensitive). The name must be an XML
-        /// name.
-        /// </summary>
+        ///Clear data that has been collected through mozbrowser elements. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType);
-		
-		/// <summary>
-        /// Used to indicate the EventTarget to which the event was originally
-        /// dispatched.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMEventTarget GetTargetAttribute();
-		
-		/// <summary>
-        /// Used to indicate the EventTarget whose EventListeners are currently
-        /// being processed. This is particularly useful during capturing and
-        /// bubbling.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMEventTarget GetCurrentTargetAttribute();
-		
-		/// <summary>
-        /// Used to indicate which phase of event flow is currently being
-        /// evaluated.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new ushort GetEventPhaseAttribute();
-		
-		/// <summary>
-        /// Used to indicate whether or not an event is a bubbling event. If the
-        /// event can bubble the value is true, else the value is false.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool GetBubblesAttribute();
-		
-		/// <summary>
-        /// Used to indicate whether or not an event can have its default action
-        /// prevented. If the default action can be prevented the value is true,
-        /// else the value is false.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool GetCancelableAttribute();
-		
-		/// <summary>
-        /// Used to specify the time (in milliseconds relative to the epoch) at
-        /// which the event was created. Due to the fact that some systems may
-        /// not provide this information the value of timeStamp may be not
-        /// available for all events. When not available, a value of 0 will be
-        /// returned. Examples of epoch time are the time of the system start or
-        /// 0:0:0 UTC 1st January 1970.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new long GetTimeStampAttribute();
-		
-		/// <summary>
-        /// The stopPropagation method is used prevent further propagation of an
-        /// event during event flow. If this method is called by any
-        /// EventListener the event will cease propagating through the tree. The
-        /// event will complete dispatch to all listeners on the current
-        /// EventTarget before event flow stops. This method may be used during
-        /// any stage of event flow.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void StopPropagation();
-		
-		/// <summary>
-        /// If an event is cancelable, the preventDefault method is used to
-        /// signify that the event is to be canceled, meaning any default action
-        /// normally taken by the implementation as a result of the event will
-        /// not occur. If, during any stage of event flow, the preventDefault
-        /// method is called the event is canceled. Any default action associated
-        /// with the event will not occur. Calling this method for a
-        /// non-cancelable event has no effect. Once preventDefault has been
-        /// called it will remain in effect throughout the remainder of the
-        /// event's propagation. This method may be used during any stage of
-        /// event flow.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void PreventDefault();
-		
-		/// <summary>
-        /// The initEvent method is used to initialize the value of an Event
-        /// created through the DocumentEvent interface. This method may only be
-        /// called before the Event has been dispatched via the dispatchEvent
-        /// method, though it may be called multiple times during that phase if
-        /// necessary. If called multiple times the final invocation takes
-        /// precedence. If called from a subclass of Event interface only the
-        /// values specified in the initEvent method are modified, all other
-        /// attributes are left unchanged.
-        ///
-        /// @param   eventTypeArg Specifies the event type. This type may be
-        /// any event type currently defined in this
-        /// specification or a new event type.. The string
-        /// must be an XML name.
-        /// Any new event type must not begin with any
-        /// upper, lower, or mixed case version of the
-        /// string "DOM". This prefix is reserved for
-        /// future DOM event sets. It is also strongly
-        /// recommended that third parties adding their
-        /// own events use their own prefix to avoid
-        /// confusion and lessen the probability of
-        /// conflicts with other new events.
-        /// @param   canBubbleArg Specifies whether or not the event can bubble.
-        /// @param   cancelableArg Specifies whether or not the event's default
-        /// action can be prevented.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void InitEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase eventTypeArg, [MarshalAs(UnmanagedType.U1)] bool canBubbleArg, [MarshalAs(UnmanagedType.U1)] bool cancelableArg);
-		
-		/// <summary>
-        /// Used to indicate whether preventDefault() has been called for this event.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool GetDefaultPreventedAttribute();
-		
-		/// <summary>
-        /// Prevents other event listeners from being triggered and,
-        /// unlike Event.stopPropagation() its effect is immediate.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void StopImmediatePropagation();
-		
-		/// <summary>Member DuplicatePrivateData </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void DuplicatePrivateData();
-		
-		/// <summary>Member SetTarget </summary>
-		/// <param name='aTarget'> </param>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetTarget([MarshalAs(UnmanagedType.Interface)] nsIDOMEventTarget aTarget);
-		
-		/// <summary>Member IsDispatchStopped </summary>
-		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool IsDispatchStopped();
-		
-		/// <summary>Member GetInternalNSEvent </summary>
-		/// <returns>A System.IntPtr</returns>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new System.IntPtr GetInternalNSEvent();
-		
-		/// <summary>Member SetTrusted </summary>
-		/// <param name='aTrusted'> </param>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetTrusted([MarshalAs(UnmanagedType.U1)] bool aTrusted);
-		
-		/// <summary>Member Serialize </summary>
-		/// <param name='aMsg'> </param>
-		/// <param name='aSerializeInterfaceType'> </param>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Serialize(System.IntPtr aMsg, [MarshalAs(UnmanagedType.U1)] bool aSerializeInterfaceType);
-		
-		/// <summary>Member Deserialize </summary>
-		/// <param name='aMsg'> </param>
-		/// <param name='aIter'> </param>
-		/// <returns>A System.Boolean</returns>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new bool Deserialize(System.IntPtr aMsg, ref System.IntPtr aIter);
-		
-		/// <summary>Member GetApplicationAttribute </summary>
-		/// <returns>A mozIDOMApplication</returns>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		mozIDOMApplication GetApplicationAttribute();
-		
-		/// <summary>Member InitMozApplicationEvent </summary>
-		/// <param name='aType'> </param>
-		/// <param name='aCanBubble'> </param>
-		/// <param name='aCancelable'> </param>
-		/// <param name='aApplication'> </param>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitMozApplicationEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType, [MarshalAs(UnmanagedType.U1)] bool aCanBubble, [MarshalAs(UnmanagedType.U1)] bool aCancelable, mozIDOMApplication aApplication);
+		void ClearBrowserData();
 	}
 	
 	/// <summary>mozIDOMApplicationMgmt </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("bd304874-d532-4e13-8034-544211445583")]
+	[Guid("0015d114-70c1-44ae-a8a3-fb6c107fe0e1")]
 	public interface mozIDOMApplicationMgmt
 	{
 		
@@ -302,6 +213,14 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMDOMRequest GetAll();
+		
+		/// <summary>
+        /// the request will return the applications acquired from all origins but
+        /// which are not launchable (e.g. by not being natively installed), or null.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest GetNotInstalled();
 		
 		/// <summary>
         /// event listener to get notified of application installs. Only settable by
@@ -336,12 +255,20 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOnuninstallAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnuninstall);
+		
+		/// <summary>
+        /// Applies a downloaded update.
+        /// This function is a no-op if it's passed an app object which doesn't have
+        /// |readyToApplyDownload| set to true.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void ApplyDownload(mozIDOMApplication app);
 	}
 	
 	/// <summary>mozIDOMApplicationRegistry </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("dd9a044c-1073-4d2b-a17d-c9b5834b3420")]
+	[Guid("abfc6c15-8b92-4b9a-b892-52e6ae76f379")]
 	public interface mozIDOMApplicationRegistry
 	{
 		
@@ -350,7 +277,10 @@ namespace Gecko
         ///
         /// @param manifestUrl : the URL of the webapps manifest.
         /// @param parameters  : A structure with optional information.
-        /// { receipts: ... } will be used to specify the payment receipts for this installation.
+        /// {
+        /// receipts: ...    Will be used to specify the payment receipts for this installation.
+        /// categories: ...  Will be used to specify the categories of the webapp.
+        /// }
         /// @returns           : A DOMRequest object, returning the app object in |result| if install succeeds.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
@@ -365,19 +295,18 @@ namespace Gecko
 		nsIDOMDOMRequest GetSelf();
 		
 		/// <summary>
+        /// the request will return the application if the app from that origin is installed
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest CheckInstalled([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase manifestUrl);
+		
+		/// <summary>
         /// the request will return the applications installed from this origin, or null.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMDOMRequest GetInstalled();
-		
-		/// <summary>
-        /// the request will return the applications acquired from this origin but which
-        /// are not launchable (e.g. by not being natively installed), or null.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest GetNotInstalled();
 		
 		/// <summary>Member GetMgmtAttribute </summary>
 		/// <returns>A mozIDOMApplicationMgmt</returns>

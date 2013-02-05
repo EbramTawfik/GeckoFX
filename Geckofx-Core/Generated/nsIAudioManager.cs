@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("d2124467-7209-4b2e-a91a-cf3f90681e3c")]
+	[Guid("b76a3de4-79f4-4cbb-a0e2-871095eacb2c")]
 	public interface nsIAudioManager
 	{
 		
@@ -74,6 +74,19 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetMasterMutedAttribute([MarshalAs(UnmanagedType.U1)] bool aMasterMuted);
 		
+		/// <summary>
+        /// Are we playing audio from the FM radio?
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetFmRadioAudioEnabledAttribute();
+		
+		/// <summary>
+        /// Are we playing audio from the FM radio?
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetFmRadioAudioEnabledAttribute([MarshalAs(UnmanagedType.U1)] bool aFmRadioAudioEnabled);
+		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetPhoneStateAttribute();
 		
@@ -85,6 +98,15 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetForceForUse(int usage);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetStreamVolumeIndex(int stream, int index);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		int GetStreamVolumeIndex(int stream);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		int GetMaxStreamVolumeIndex(int stream);
 	}
 	
 	/// <summary>nsIAudioManagerConsts </summary>
@@ -151,5 +173,40 @@ namespace Gecko
 		
 		// 
 		public const long USE_DOCK = 3;
+		
+		// <summary>
+        // Control the volume of various audio streams
+        // </summary>
+		public const long STREAM_TYPE_VOICE_CALL = 0;
+		
+		// 
+		public const long STREAM_TYPE_SYSTEM = 1;
+		
+		// 
+		public const long STREAM_TYPE_RING = 2;
+		
+		// 
+		public const long STREAM_TYPE_MUSIC = 3;
+		
+		// 
+		public const long STREAM_TYPE_ALARM = 4;
+		
+		// 
+		public const long STREAM_TYPE_NOTIFICATION = 5;
+		
+		// 
+		public const long STREAM_TYPE_BLUETOOTH_SCO = 6;
+		
+		// 
+		public const long STREAM_TYPE_ENFORCED_AUDIBLE = 7;
+		
+		// 
+		public const long STREAM_TYPE_DTMF = 8;
+		
+		// 
+		public const long STREAM_TYPE_TTS = 9;
+		
+		// 
+		public const long STREAM_TYPE_FM = 10;
 	}
 }

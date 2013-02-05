@@ -52,7 +52,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("cc423aaf-f088-4ec2-86ef-7733225773f9")]
+	[Guid("ad79e135-6904-4734-8137-a511016d2723")]
 	public interface nsIPermissionManager
 	{
 		
@@ -88,6 +88,8 @@ namespace Gecko
         /// Add permission information for a given principal.
         /// It is internally calling the other add() method using the nsIURI from the
         /// principal.
+        /// Passing a system principal will be a no-op because they will always be
+        /// granted permissions.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void AddFromPrincipal([MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, [MarshalAs(UnmanagedType.LPStr)] string typed, uint permission, uint expireType, long expireTime);
@@ -109,6 +111,8 @@ namespace Gecko
 		/// <summary>
         /// Remove permission information for a given principal.
         /// This is internally calling remove() with the host from the principal's URI.
+        /// Passing system principal will be a no-op because we never add them to the
+        /// database.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void RemoveFromPrincipal([MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, [MarshalAs(UnmanagedType.LPStr)] string type);
@@ -131,9 +135,18 @@ namespace Gecko
 		
 		/// <summary>
         /// Test whether the principal has the permission to perform a given action.
+        /// System principals will always have permissions granted.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint TestPermissionFromPrincipal([MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, [MarshalAs(UnmanagedType.LPStr)] string type);
+		
+		/// <summary>
+        /// Test whether the principal associated with the window's document has the
+        /// permission to perform a given action.  System principals will always
+        /// have permissions granted.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint TestPermissionFromWindow([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, [MarshalAs(UnmanagedType.LPStr)] string type);
 		
 		/// <summary>
         /// Test whether a website has permission to perform the given action.
@@ -148,6 +161,7 @@ namespace Gecko
 		
 		/// <summary>
         /// See testExactPermission() above.
+        /// System principals will always have permissions granted.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint TestExactPermissionFromPrincipal([MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, [MarshalAs(UnmanagedType.LPStr)] string type);
@@ -160,6 +174,12 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsISimpleEnumerator GetEnumeratorAttribute();
+		
+		/// <summary>
+        /// Remove all permissions associated with a given app id.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RemovePermissionsForApp(uint appId);
 	}
 	
 	/// <summary>nsIPermissionManagerConsts </summary>
@@ -180,6 +200,9 @@ namespace Gecko
 		
 		// 
 		public const long DENY_ACTION = 2;
+		
+		// 
+		public const long PROMPT_ACTION = 3;
 		
 		// <summary>
         // Predefined expiration types for permissions.  Permissions can be permanent

@@ -32,7 +32,7 @@ namespace Gecko
     /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("fe6602d2-f32f-4b95-bf66-028452bbe6d2")]
+	[Guid("6a4a9415-cda3-4a19-b79e-05d9bc2c2700")]
 	public interface nsIDOMBluetoothAdapter : nsIDOMEventTarget
 	{
 		
@@ -200,13 +200,13 @@ namespace Gecko
         /// @param aEvent the event that is being dispatched.
         /// @param aDOMEvent the event that is being dispatched, use if you want to
         /// dispatch nsIDOMEvent, not only nsEvent.
-        /// @param aPresContext the current presentation context, can be nsnull.
-        /// @param aEventStatus the status returned from the function, can be nsnull.
+        /// @param aPresContext the current presentation context, can be nullptr.
+        /// @param aEventStatus the status returned from the function, can be nullptr.
         ///
         /// @note If both aEvent and aDOMEvent are used, aEvent must be the internal
         /// event of the aDOMEvent.
         ///
-        /// If aDOMEvent is not nsnull (in which case aEvent can be nsnull) it is used
+        /// If aDOMEvent is not nullptr (in which case aEvent can be nullptr) it is used
         /// for dispatching, otherwise aEvent is used.
         ///
         /// @deprecated This method is here just until all the callers outside Gecko
@@ -238,5 +238,205 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new System.IntPtr GetJSContextForEventHandlers();
+		
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this file,
+        /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetAddressAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAddress);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetClassAttribute();
+		
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetEnabledAttribute();
+		
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetDiscoveringAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetDevicesAttribute(System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetUuidsAttribute(System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName);
+		
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetDiscoverableAttribute();
+		
+		/// <summary>
+        /// Unit: sec
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetDiscoverableTimeoutAttribute();
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest SetName([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name);
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest SetDiscoverable([MarshalAs(UnmanagedType.U1)] bool discoverable);
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest SetDiscoverableTimeout(uint timeout);
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest StartDiscovery();
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest StopDiscovery();
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest Pair([MarshalAs(UnmanagedType.Interface)] nsIDOMBluetoothDevice aDevice);
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest Unpair([MarshalAs(UnmanagedType.Interface)] nsIDOMBluetoothDevice aDevice);
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest GetPairedDevices();
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest SetPinCode([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDeviceAddress, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPinCode);
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest SetPasskey([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDeviceAddress, uint aPasskey);
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest SetPairingConfirmation([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDeviceAddress, [MarshalAs(UnmanagedType.U1)] bool aConfirmation);
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest SetAuthorization([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDeviceAddress, [MarshalAs(UnmanagedType.U1)] bool aAllow);
+		
+		/// <summary>
+        /// Connect/Disconnect to a specific service of a target remote device.
+        /// To check the value of service UUIDs, please check "Bluetooth Assigned
+        /// Numbers" / "Service Discovery Protocol" for more information.
+        ///
+        /// @param aDeviceAddress Remote device address
+        /// @param aProfile 2-octets service UUID
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest Connect([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDeviceAddress, ushort aProfile);
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest Disconnect(ushort aProfile);
+		
+		/// <summary>
+        /// One device can only send one file at a time
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest SendFile([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDeviceAddress, [MarshalAs(UnmanagedType.Interface)] nsIDOMBlob aBlob);
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest StopSendingFile([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDeviceAddress);
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest ConfirmReceivingFile([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDeviceAddress, [MarshalAs(UnmanagedType.U1)] bool aConfirmation);
+		
+		/// <summary>
+        /// Fired when discoverying and any device is discovered.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetOndevicefoundAttribute(System.IntPtr jsContext);
+		
+		/// <summary>
+        /// Fired when discoverying and any device is discovered.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOndevicefoundAttribute(Gecko.JsVal aOndevicefound, System.IntPtr jsContext);
+		
+		/// <summary>
+        /// Fired when any device is out of discoverable range.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetOndevicedisappearedAttribute(System.IntPtr jsContext);
+		
+		/// <summary>
+        /// Fired when any device is out of discoverable range.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOndevicedisappearedAttribute(Gecko.JsVal aOndevicedisappeared, System.IntPtr jsContext);
+		
+		/// <summary>
+        /// Fired when any device is created.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetOndevicecreatedAttribute(System.IntPtr jsContext);
+		
+		/// <summary>
+        /// Fired when any device is created.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOndevicecreatedAttribute(Gecko.JsVal aOndevicecreated, System.IntPtr jsContext);
+		
+		/// <summary>
+        /// Fired when a property of the adapter is changed
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetOnpropertychangedAttribute(System.IntPtr jsContext);
+		
+		/// <summary>
+        /// Fired when a property of the adapter is changed
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOnpropertychangedAttribute(Gecko.JsVal aOnpropertychanged, System.IntPtr jsContext);
+		
+		/// <summary>
+        /// Pairing related events
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetOnrequestconfirmationAttribute(System.IntPtr jsContext);
+		
+		/// <summary>
+        /// Pairing related events
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOnrequestconfirmationAttribute(Gecko.JsVal aOnrequestconfirmation, System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetOnrequestpincodeAttribute(System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOnrequestpincodeAttribute(Gecko.JsVal aOnrequestpincode, System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetOnrequestpasskeyAttribute(System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOnrequestpasskeyAttribute(Gecko.JsVal aOnrequestpasskey, System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetOnauthorizeAttribute(System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOnauthorizeAttribute(Gecko.JsVal aOnauthorize, System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetOncancelAttribute(System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOncancelAttribute(Gecko.JsVal aOncancel, System.IntPtr jsContext);
 	}
 }

@@ -32,7 +32,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("f3a2bae2-291d-43eb-b7f0-bc1b69a890fe")]
+	[Guid("80eb7f77-7f87-4559-9229-60ba5e05135f")]
 	public interface nsIDOMPopupBlockedEvent : nsIDOMEvent
 	{
 		
@@ -164,6 +164,50 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void StopImmediatePropagation();
 		
+		/// <summary>
+        ///The original target of the event, before any retargetings. </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMEventTarget GetOriginalTargetAttribute();
+		
+		/// <summary>
+        /// The explicit original target of the event.  If the event was retargeted
+        /// for some reason other than an anonymous boundary crossing, this will be set
+        /// to the target before the retargeting occurs.  For example, mouse events
+        /// are retargeted to their parent node when they happen over text nodes (bug
+        /// 185889), and in that case .target will show the parent and
+        /// .explicitOriginalTarget will show the text node.
+        /// .explicitOriginalTarget differs from .originalTarget in that it will never
+        /// contain anonymous content.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMEventTarget GetExplicitOriginalTargetAttribute();
+		
+		/// <summary>
+        /// @deprecated Use nsIDOMEvent::stopPropagation.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void PreventBubble();
+		
+		/// <summary>
+        /// @deprecated Use nsIDOMEvent::stopPropagation.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void PreventCapture();
+		
+		/// <summary>
+        /// @deprecated Use nsIDOMEvent::defaultPrevented.
+        /// To be removed in bug 691151.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool GetPreventDefault();
+		
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool GetIsTrustedAttribute();
+		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void DuplicatePrivateData();
 		
@@ -203,18 +247,18 @@ namespace Gecko
 		nsIURI GetPopupWindowURIAttribute();
 		
 		/// <summary>
-        /// The string of features passed to the window.open() call
-        /// (as the third argument)
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPopupWindowFeaturesAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPopupWindowFeatures);
-		
-		/// <summary>
         /// The window name passed to the window.open() call
         /// (as the second argument)
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetPopupWindowNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPopupWindowName);
+		
+		/// <summary>
+        /// The string of features passed to the window.open() call
+        /// (as the third argument)
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetPopupWindowFeaturesAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aPopupWindowFeatures);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void InitPopupBlockedEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase typeArg, [MarshalAs(UnmanagedType.U1)] bool canBubbleArg, [MarshalAs(UnmanagedType.U1)] bool cancelableArg, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow requestingWindow, [MarshalAs(UnmanagedType.Interface)] nsIURI popupWindowURI, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase popupWindowName, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase popupWindowFeatures);

@@ -1189,7 +1189,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("721724e0-7716-4bf4-b48f-92b78d056141")]
+	[Guid("8ce9b2a2-cc33-48a8-9f47-8696186ed9a5")]
 	public interface jsdIScript : jsdIEphemeral
 	{
 		
@@ -1428,6 +1428,13 @@ namespace Gecko
         // The context flag JSD_DEBUG_WHEN_SET decides the logic.
         // </summary>
 		public const ulong FLAG_DEBUG = 0x02;
+		
+		// <summary>
+        // Determines whether to invoke the onScriptDestroy callback for this
+        // script. The default is for this to be true if the onScriptCreated
+        // callback was invoked for this script.
+        // </summary>
+		public const ulong FLAG_CALL_DESTROY_HOOK = 0x04;
 		
 		// 
 		public const ulong PCMAP_SOURCETEXT = 1;

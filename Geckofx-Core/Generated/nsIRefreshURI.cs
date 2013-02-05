@@ -34,7 +34,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("cb0ad623-6b46-4c09-a473-c1d6ca63d3c7")]
+	[Guid("a5e61a3c-51bd-45be-ac0c-e87b71860656")]
 	public interface nsIRefreshURI
 	{
 		
@@ -85,10 +85,11 @@ namespace Gecko
         /// the current page finishes loading.
         ///
         /// @param aBaseURI base URI to resolve refresh uri with.
+        /// @param principal the associated principal
         /// @param aHeader  The meta refresh header string.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetupRefreshURIFromHeader([MarshalAs(UnmanagedType.Interface)] nsIURI aBaseURI, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aHeader);
+		void SetupRefreshURIFromHeader([MarshalAs(UnmanagedType.Interface)] nsIURI aBaseURI, [MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aHeader);
 		
 		/// <summary>
         /// Cancels all timer loads.

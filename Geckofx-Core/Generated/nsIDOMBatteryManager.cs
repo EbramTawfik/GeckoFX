@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("03c6dd20-7efd-4640-b958-c0ce11b9aadf")]
+	[Guid("3d95d773-3c19-4944-8152-ec6ca01a8bde")]
 	public interface nsIDOMBatteryManager : nsIDOMEventTarget
 	{
 		
@@ -200,13 +200,13 @@ namespace Gecko
         /// @param aEvent the event that is being dispatched.
         /// @param aDOMEvent the event that is being dispatched, use if you want to
         /// dispatch nsIDOMEvent, not only nsEvent.
-        /// @param aPresContext the current presentation context, can be nsnull.
-        /// @param aEventStatus the status returned from the function, can be nsnull.
+        /// @param aPresContext the current presentation context, can be nullptr.
+        /// @param aEventStatus the status returned from the function, can be nullptr.
         ///
         /// @note If both aEvent and aDOMEvent are used, aEvent must be the internal
         /// event of the aDOMEvent.
         ///
-        /// If aDOMEvent is not nsnull (in which case aEvent can be nsnull) it is used
+        /// If aDOMEvent is not nullptr (in which case aEvent can be nullptr) it is used
         /// for dispatching, otherwise aEvent is used.
         ///
         /// @deprecated This method is here just until all the callers outside Gecko
@@ -256,32 +256,28 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		double GetChargingTimeAttribute();
 		
-		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener GetOnlevelchangeAttribute();
+		Gecko.JsVal GetOnlevelchangeAttribute(System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnlevelchangeAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnlevelchange);
-		
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener GetOnchargingchangeAttribute();
+		void SetOnlevelchangeAttribute(Gecko.JsVal aOnlevelchange, System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnchargingchangeAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnchargingchange);
-		
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener GetOndischargingtimechangeAttribute();
+		Gecko.JsVal GetOnchargingchangeAttribute(System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOndischargingtimechangeAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOndischargingtimechange);
-		
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener GetOnchargingtimechangeAttribute();
+		void SetOnchargingchangeAttribute(Gecko.JsVal aOnchargingchange, System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnchargingtimechangeAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnchargingtimechange);
+		Gecko.JsVal GetOndischargingtimechangeAttribute(System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOndischargingtimechangeAttribute(Gecko.JsVal aOndischargingtimechange, System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetOnchargingtimechangeAttribute(System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOnchargingtimechangeAttribute(Gecko.JsVal aOnchargingtimechange, System.IntPtr jsContext);
 	}
 }

@@ -52,7 +52,7 @@ namespace Gecko
 	{
 		
 		/// <summary>
-        ///Sets (or clears with nsnull) the current error on the this thread. </summary>
+        ///Sets (or clears with nullptr) the current error on the this thread. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetCurrentException([MarshalAs(UnmanagedType.Interface)] nsIException error);
 		
@@ -80,7 +80,7 @@ namespace Gecko
 	{
 		
 		/// <summary>
-        ///Sets (or clears with nsnull) the current error on the this thread. </summary>
+        ///Sets (or clears with nullptr) the current error on the this thread. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void SetCurrentException([MarshalAs(UnmanagedType.Interface)] nsIException error);
 		

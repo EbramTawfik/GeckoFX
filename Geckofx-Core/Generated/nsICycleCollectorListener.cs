@@ -72,7 +72,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("5d1c5d51-2022-4242-8c33-0a942b5fed06")]
+	[Guid("4282249c-7f80-4093-b620-96c573ad683e")]
 	public interface nsICycleCollectorListener
 	{
 		
@@ -120,6 +120,18 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetWantAfterProcessingAttribute([MarshalAs(UnmanagedType.U1)] bool aWantAfterProcessing);
+		
+		/// <summary>
+        /// This string will appear somewhere in the log's filename.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetFilenameIdentifierAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFilenameIdentifier);
+		
+		/// <summary>
+        /// This string will appear somewhere in the log's filename.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetFilenameIdentifierAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aFilenameIdentifier);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Begin();

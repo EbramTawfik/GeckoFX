@@ -33,7 +33,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("91010fbe-1dfb-435d-852e-288d2804c0a7")]
+	[Guid("2d6c5ef4-b84a-45ae-9030-eb6cfc65bb26")]
 	public interface nsIIDBOpenDBRequest
 	{
 		
@@ -42,9 +42,8 @@ namespace Gecko
         /// http://dvcs.w3.org/hg/IndexedDB/raw-file/tip/Overview.html#idl-def-IDBOpenDBRequest
         /// for more information.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener GetOnblockedAttribute();
+		Gecko.JsVal GetOnblockedAttribute(System.IntPtr jsContext);
 		
 		/// <summary>
         /// IDBOpenDBRequest interface.  See
@@ -52,13 +51,12 @@ namespace Gecko
         /// for more information.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnblockedAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnblocked);
-		
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener GetOnupgradeneededAttribute();
+		void SetOnblockedAttribute(Gecko.JsVal aOnblocked, System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnupgradeneededAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnupgradeneeded);
+		Gecko.JsVal GetOnupgradeneededAttribute(System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOnupgradeneededAttribute(Gecko.JsVal aOnupgradeneeded, System.IntPtr jsContext);
 	}
 }

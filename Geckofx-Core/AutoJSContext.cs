@@ -86,7 +86,7 @@ namespace Gecko
 			_contextStack.Push(_cx);
 
 // PushContextPrinciple was removed in firefox 16.
-// TODO: delete this block if still exists in geckofx 17+
+// TODO: It would be nice to get elevated security when running javascript from geckofx.
 #if false
 			// obtain the system principal (no security checks) (one could get a different principal by calling securityManager.GetObjectPrincipal())
 			if (_securityManager == null)
@@ -120,6 +120,9 @@ namespace Gecko
 			var ptr = new JsVal();
 			IntPtr globalObject = SpiderMonkey.JS_GetGlobalForScopeChain(_cx);
 			bool ret = SpiderMonkey.JS_EvaluateScript(_cx, globalObject, jsScript, (uint)jsScript.Length, "script", 1, ref ptr);
+			// TODO: maybe getting JS_EvaluateScriptForPrincipals working would increase priviliges of the running script.
+			//bool ret = SpiderMonkey.JS_EvaluateScriptForPrincipals(_cx, globalObject, ..., jsScript, (uint)jsScript.Length,"script", 1, ref ptr);
+			
 
 			IntPtr jsStringPtr = SpiderMonkey.JS_ValueToString(_cx, ptr);
 			result = Marshal.PtrToStringAnsi(SpiderMonkey.JS_EncodeString(_cx, jsStringPtr));

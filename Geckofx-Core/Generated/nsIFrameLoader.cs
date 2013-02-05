@@ -143,7 +143,7 @@ namespace Gecko
 	/// <summary>nsIFrameLoader </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("fc338eea-47dc-475e-add7-a3933fcfa07c")]
+	[Guid("f234c232-bb17-4450-b324-bf1ef5ccfd34")]
 	public interface nsIFrameLoader
 	{
 		
@@ -223,7 +223,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIChromeFrameMessageManager GetMessageManagerAttribute();
+		nsIMessageSender GetMessageManagerAttribute();
 		
 		/// <summary>
         /// @see nsIDOMWindowUtils sendKeyEvent.

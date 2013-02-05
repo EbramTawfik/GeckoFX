@@ -189,11 +189,11 @@ namespace Gecko.DOM
         /// @param aIgnoreRootScrollFrame whether the event should ignore viewport bounds
         /// during dispatch
         /// </summary>		
-		public void SendMouseEvent(string aType, float aX, float aY, int aButton, int aClickCount, int aModifiers, bool aIgnoreRootScrollFrame)
+		public void SendMouseEvent(string aType, float aX, float aY, int aButton, int aClickCount, int aModifiers, bool aIgnoreRootScrollFrame, float aPressure, ushort aInputSourceArg)
 		{
 			using (nsAString type = new nsAString(aType))
 			{
-				_windowUtils.SendMouseEvent(type, aX, aY, aButton, aClickCount, aModifiers, aIgnoreRootScrollFrame);
+				_windowUtils.SendMouseEvent(type, aX, aY, aButton, aClickCount, aModifiers, aIgnoreRootScrollFrame, aPressure, aInputSourceArg);
 			}
 		}
 		
@@ -202,42 +202,18 @@ namespace Gecko.DOM
         ///The same as sendMouseEvent but ensures that the event is dispatched to
         /// this DOM window or one of its children.
         /// </summary>		
-		public void SendMouseEventToWindow(string aType, float aX, float aY, int aButton, int aClickCount, int aModifiers, bool aIgnoreRootScrollFrame)
+		public void SendMouseEventToWindow(string aType, float aX, float aY, int aButton, int aClickCount, int aModifiers, bool aIgnoreRootScrollFrame, float aPressure, ushort aInputSourceArg)
 		{
 			using (nsAString type = new nsAString(aType))
 			{
-				_windowUtils.SendMouseEventToWindow(type, aX, aY, aButton, aClickCount, aModifiers, aIgnoreRootScrollFrame);
+				_windowUtils.SendMouseEventToWindow(type, aX, aY, aButton, aClickCount, aModifiers, aIgnoreRootScrollFrame, aPressure, aInputSourceArg);
 			}
-		}
-		
-		/// <summary>
-        ///Synthesize a mouse scroll event for a window. The event types supported
-        /// are:
-        /// DOMMouseScroll
-        /// MozMousePixelScroll
-        ///
-        /// Events are sent in coordinates offset by aX and aY from the window.
-        ///
-        /// Cannot be accessed from unprivileged context (not content-accessible)
-        /// Will throw a DOM security error if called without UniversalXPConnect
-        /// privileges.
-        ///
-        /// @param aType event type
-        /// @param aX x offset in CSS pixels
-        /// @param aY y offset in CSS pixels
-        /// @param aButton button to synthesize
-        /// @param aScrollFlags flag bits --- see nsMouseScrollFlags in nsGUIEvent.h
-        /// @param aDelta the direction and amount to scroll (in lines or pixels,
-        /// depending on the event type)
-        /// @param aModifiers modifiers pressed, using constants defined in nsIDOMNSEvent
-        /// </summary>
-		public void SendMouseScrollEvent(string aType, float aX, float aY, int aButton, int aScrollFlags, int aDelta, int aModifiers)
+		}		
+
+		public void SendWheelEvent(float aX, float aY, double aDeltaX, double aDeltaY, double aDeltaZ, uint aDeltaMode, int aModifiers, int aLineOrPageDeltaX, int aLineOrPageDeltaY, uint aOptions)
 		{
-			using (nsAString type = new nsAString(aType))
-			{
-				_windowUtils.SendMouseScrollEvent(type, aX, aY, aButton, aScrollFlags, aDelta, aModifiers);
-			}
-		}
+			_windowUtils.SendWheelEvent(aX, aY, aDeltaX, aDeltaY, aDeltaZ, aDeltaMode, aModifiers, aLineOrPageDeltaX, aLineOrPageDeltaY, aOptions);
+		}	
 
 		/// <summary>
         /// Synthesize a key event to the window. The event types supported are:

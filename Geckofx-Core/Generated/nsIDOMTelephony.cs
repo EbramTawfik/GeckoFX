@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("0de46b73-be83-4970-ad15-45f92cb0902a")]
+	[Guid("ec253100-630d-4366-ac77-b67525167960")]
 	public interface nsIDOMTelephony : nsIDOMEventTarget
 	{
 		
@@ -200,13 +200,13 @@ namespace Gecko
         /// @param aEvent the event that is being dispatched.
         /// @param aDOMEvent the event that is being dispatched, use if you want to
         /// dispatch nsIDOMEvent, not only nsEvent.
-        /// @param aPresContext the current presentation context, can be nsnull.
-        /// @param aEventStatus the status returned from the function, can be nsnull.
+        /// @param aPresContext the current presentation context, can be nullptr.
+        /// @param aEventStatus the status returned from the function, can be nullptr.
         ///
         /// @note If both aEvent and aDOMEvent are used, aEvent must be the internal
         /// event of the aDOMEvent.
         ///
-        /// If aDOMEvent is not nsnull (in which case aEvent can be nsnull) it is used
+        /// If aDOMEvent is not nullptr (in which case aEvent can be nullptr) it is used
         /// for dispatching, otherwise aEvent is used.
         ///
         /// @deprecated This method is here just until all the callers outside Gecko
@@ -247,6 +247,10 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMTelephonyCall Dial([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase number);
 		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMTelephonyCall DialEmergency([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase number);
+		
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetMutedAttribute();
@@ -279,18 +283,16 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void StopTone();
 		
-		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener GetOnincomingAttribute();
+		Gecko.JsVal GetOnincomingAttribute(System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnincomingAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnincoming);
-		
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener GetOncallschangedAttribute();
+		void SetOnincomingAttribute(Gecko.JsVal aOnincoming, System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOncallschangedAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOncallschanged);
+		Gecko.JsVal GetOncallschangedAttribute(System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOncallschangedAttribute(Gecko.JsVal aOncallschanged, System.IntPtr jsContext);
 	}
 }

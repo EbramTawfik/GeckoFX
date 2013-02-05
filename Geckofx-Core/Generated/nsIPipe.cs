@@ -71,7 +71,7 @@ namespace Gecko
         /// specifies the segment size in bytes (pass 0 to use default value)
         /// @param segmentCount
         /// specifies the max number of segments (pass 0 to use default
-        /// value).   Passing PR_UINT32_MAX here causes the pipe to have
+        /// value).   Passing UINT32_MAX here causes the pipe to have
         /// "infinite" space.  This mode can be useful in some cases, but
         /// should always be used with caution.  The default value for this
         /// parameter is a finite value.

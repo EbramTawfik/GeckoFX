@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("9b978f58-5bfe-409d-aa3f-946ca934e51d")]
+	[Guid("01e8587b-35a9-4a59-8349-c7ee93846fb2")]
 	public interface nsIDOMScreen : nsIDOMEventTarget
 	{
 		
@@ -200,13 +200,13 @@ namespace Gecko
         /// @param aEvent the event that is being dispatched.
         /// @param aDOMEvent the event that is being dispatched, use if you want to
         /// dispatch nsIDOMEvent, not only nsEvent.
-        /// @param aPresContext the current presentation context, can be nsnull.
-        /// @param aEventStatus the status returned from the function, can be nsnull.
+        /// @param aPresContext the current presentation context, can be nullptr.
+        /// @param aEventStatus the status returned from the function, can be nullptr.
         ///
         /// @note If both aEvent and aDOMEvent are used, aEvent must be the internal
         /// event of the aDOMEvent.
         ///
-        /// If aDOMEvent is not nsnull (in which case aEvent can be nsnull) it is used
+        /// If aDOMEvent is not nullptr (in which case aEvent can be nullptr) it is used
         /// for dispatching, otherwise aEvent is used.
         ///
         /// @deprecated This method is here just until all the callers outside Gecko
@@ -281,19 +281,39 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetMozOrientationAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozOrientation);
 		
-		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener GetOnmozorientationchangeAttribute();
+		Gecko.JsVal GetOnmozorientationchangeAttribute(System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnmozorientationchangeAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnmozorientationchange);
+		void SetOnmozorientationchangeAttribute(Gecko.JsVal aOnmozorientationchange, System.IntPtr jsContext);
 		
 		/// <summary>
-        /// Lock screen orientation to the specified type.
+        /// Lock the screen to the specified orientations(s).  This method returns true
+        /// if the lock was acquired successfully, and false otherwise.
+        ///
+        /// The parameter can be a DOMString or an Array of DOMStrings.  If you pass a
+        /// string, we lock the screen to that one orientation.  If you pass an Array,
+        /// we ensure that the screen is always in one of the given orientations.
+        ///
+        /// Valid orientations are "portrait", "portrait-primary",
+        /// "portrait-secondary", "landscape", "landscape-primary", and
+        /// "landscape-secondary".
+        /// These tokens are case-sensitive.
+        ///
+        /// If you pass a string that's not one of the valid orientations, or if you
+        /// pass an array of orientations and any of the orientations in the array is
+        /// not valid, we reject the lock and return false.
+        ///
+        /// The "-primary" orientations correspond to holding the device right-side up,
+        /// while the "-secondary" orientations correspond to holding the device
+        /// upside-down.	Locking the orientation in "portrait" is the same as locking
+        /// the orientation in ['portrait-primary', 'portrait-secondary'], and the
+        /// "landscape" orientation similarly corresponds to the set
+        /// ['landscape-primary', 'landscape-secondary'].
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool MozLockOrientation([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase orientation);
+		bool MozLockOrientation(Gecko.JsVal orientation, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Unlock the screen orientation.

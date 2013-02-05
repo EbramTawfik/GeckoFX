@@ -87,18 +87,18 @@ namespace Gecko
 		// <summary>
         // Sets the stream pointer to the value of the 'offset' parameter
         // </summary>
-		public const int NS_SEEK_SET = 0;
+		public const long NS_SEEK_SET = 0;
 		
 		// <summary>
         // Sets the stream pointer to its current location plus the value
         // of the offset parameter.
         // </summary>
-		public const int NS_SEEK_CUR = 1;
+		public const long NS_SEEK_CUR = 1;
 		
 		// <summary>
         // Sets the stream pointer to the size of the stream plus the value
         // of the offset parameter.
         // </summary>
-		public const int NS_SEEK_END = 2;
+		public const long NS_SEEK_END = 2;
 	}
 }

@@ -38,7 +38,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("97E4F0E1-BD27-40EC-9287-5634DAF15B73")]
+	[Guid("a7bd1e34-3969-47ae-8c1d-2970132ba925")]
 	public interface nsIDOMHTMLIFrameElement : nsIDOMHTMLElement
 	{
 		
@@ -815,17 +815,23 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMWindow GetContentWindowAttribute();
 		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetSandboxAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSandbox);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetSandboxAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSandbox);
+		
 		/// <summary>
         /// mode. See https://wiki.mozilla.org/index.php?title=Gecko:FullScreenAPI
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetMozAllowFullScreenAttribute();
+		bool GetAllowfullscreenAttribute();
 		
 		/// <summary>
         /// mode. See https://wiki.mozilla.org/index.php?title=Gecko:FullScreenAPI
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetMozAllowFullScreenAttribute([MarshalAs(UnmanagedType.U1)] bool aMozAllowFullScreen);
+		void SetAllowfullscreenAttribute([MarshalAs(UnmanagedType.U1)] bool aAllowfullscreen);
 	}
 }

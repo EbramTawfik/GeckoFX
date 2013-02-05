@@ -34,7 +34,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("a3d3181e-47c1-4f2e-b2c7-94775a86f5c5")]
+	[Guid("778e5ae3-c72c-4d4b-9dc7-4a6477651957")]
 	public interface nsIEventSource
 	{
 		
@@ -60,29 +60,26 @@ namespace Gecko
 		/// <summary>
         /// event handler attributes
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener GetOnopenAttribute();
+		Gecko.JsVal GetOnopenAttribute(System.IntPtr jsContext);
 		
 		/// <summary>
         /// event handler attributes
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnopenAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnopen);
-		
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener GetOnmessageAttribute();
+		void SetOnopenAttribute(Gecko.JsVal aOnopen, System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnmessageAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnmessage);
-		
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener GetOnerrorAttribute();
+		Gecko.JsVal GetOnmessageAttribute(System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnerrorAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnerror);
+		void SetOnmessageAttribute(Gecko.JsVal aOnmessage, System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetOnerrorAttribute(System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOnerrorAttribute(Gecko.JsVal aOnerror, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Close the connection, if any, and set the readyState attribute to CLOSED.

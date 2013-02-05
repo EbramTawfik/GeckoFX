@@ -160,7 +160,7 @@ namespace Gecko
     /// interface of Components.utils </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("9e43a260-5db2-11e1-b86c-0800200c9a66")]
+	[Guid("36c19d92-d4a9-4ad1-bee3-945f60c6c991")]
 	public interface nsIXPCComponents_Utils
 	{
 		
@@ -277,6 +277,14 @@ namespace Gecko
 		/// <summary>
         /// To be called from JS only.
         ///
+        /// Force an immediate cycle collection cycle.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void ForceCC();
+		
+		/// <summary>
+        /// To be called from JS only.
+        ///
         /// Force an immediate shrinking garbage collection cycle.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -362,6 +370,34 @@ namespace Gecko
 		bool IsDeadWrapper(Gecko.JsVal obj);
 		
 		/// <summary>
+        /// To be called from JS only. This is for Gecko internal use only, and may
+        /// disappear at any moment.
+        ///
+        /// Forces a recomputation of all wrappers in and out of the compartment
+        /// containing |obj|. If |obj| is not an object, all wrappers system-wide
+        /// are recomputed.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RecomputeWrappers(Gecko.JsVal vobj, System.IntPtr jsContext);
+		
+		/// <summary>
+        /// This seemingly-paradoxical API allows privileged code to explicitly give
+        /// unprivileged code a reference to its own Components object (whereas it's
+        /// normally hidden away on a scope chain visible only to XBL methods). See
+        /// also SpecialPowers.getComponents.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetComponentsForScope(Gecko.JsVal vscope, System.IntPtr jsContext);
+		
+		/// <summary>
+        /// Dispatches a runnable to the current/main thread. If |scope| is passed,
+        /// the runnable will be dispatch in the compartment of |scope|, which
+        /// affects which error reporter gets called.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Dispatch(Gecko.JsVal runnable, Gecko.JsVal scope, System.IntPtr jsContext);
+		
+		/// <summary>
         /// To be called from JS only.
         ///
         /// These are the set of JSContext options that privileged script
@@ -439,15 +475,25 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetStrict_modeAttribute([MarshalAs(UnmanagedType.U1)] bool aStrict_mode, System.IntPtr jsContext);
 		
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetIonAttribute(System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetIonAttribute([MarshalAs(UnmanagedType.U1)] bool aIon, System.IntPtr jsContext);
+		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetGCZeal(int zeal, System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void NukeSandbox(Gecko.JsVal obj, System.IntPtr jsContext);
 	}
 	
 	/// <summary>
     /// interface of JavaScript's 'Components' object </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("4676e9cf-2c07-423b-b161-26bb9d8067d3")]
+	[Guid("8406dedb-23cc-42db-9f69-1f18785091b5")]
 	public interface nsIXPCComponents
 	{
 		

@@ -31,7 +31,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("89ea9f32-18ec-413b-9e2c-ce9a4c851b1c")]
+	[Guid("318CE516-3F7A-41F6-8F3D-3661650F7A46")]
 	public interface nsIDocShell
 	{
 		
@@ -503,18 +503,6 @@ namespace Gecko
 		void HistoryPurged(int numEntries);
 		
 		/// <summary>
-        /// Retrieves the WebApps session storage object for the supplied domain.
-        /// If it doesn't already exist, a new one will be created.
-        ///
-        /// @param uri the uri of the storage object to retrieve
-        /// @param documentURI new storage will be created with reference to this
-        /// document.documentURI that will appear in storage event
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMStorage GetSessionStorageForURI([MarshalAs(UnmanagedType.Interface)] nsIURI uri, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase documentURI);
-		
-		/// <summary>
         /// Retrieves the WebApps session storage object for the supplied principal.
         ///
         /// @param principal returns a storage for this principal
@@ -805,39 +793,174 @@ namespace Gecko
 		void AddWeakPrivacyTransitionObserver([MarshalAs(UnmanagedType.Interface)] nsIPrivacyTransitionObserver obs);
 		
 		/// <summary>
-        /// Is this docshell a browser frame (i.e., does it correspond to an <iframe
-        /// mozbrowser>)?  The frameloader is responsible for setting this property
-        /// when it initializes the docshell.
-        ///
-        /// If so, this docshell should act like a chrome/content boundary for the
-        /// purposes of window.top and window.parent.
-        ///
-        /// See also nsIMozBrowserFrame.
+        /// Returns true if this docshell corresponds to an <iframe mozbrowser>.
+        /// (<iframe mozapp mozbrowser> is not considered a browser.)
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetIsBrowserFrameAttribute();
+		bool GetIsBrowserElementAttribute();
 		
 		/// <summary>
-        /// Is this docshell a browser frame (i.e., does it correspond to an <iframe
-        /// mozbrowser>)?  The frameloader is responsible for setting this property
-        /// when it initializes the docshell.
-        ///
-        /// If so, this docshell should act like a chrome/content boundary for the
-        /// purposes of window.top and window.parent.
-        ///
-        /// See also nsIMozBrowserFrame.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetIsBrowserFrameAttribute([MarshalAs(UnmanagedType.U1)] bool aIsBrowserFrame);
-		
-		/// <summary>
-        /// Is this docshell contained in an <iframe mozbrowser>, either directly or
-        /// indirectly?
+        /// Returns true iff the docshell corresponds to an <iframe mozapp>.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetContainedInBrowserFrameAttribute();
+		bool GetIsAppAttribute();
+		
+		/// <summary>
+        /// Returns isBrowserElement || isApp.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetIsBrowserOrAppAttribute();
+		
+		/// <summary>
+        /// Returns true if this docshell corresponds to an <iframe mozbrowser> or if
+        /// the docshell is contained in an <iframe mozbrowser>.  (<iframe mozapp
+        /// mozbrowser> does not count as a browser.)
+        ///
+        /// Our notion here of "contained in" means: Walk up the docshell hierarchy in
+        /// this process until we hit an <iframe mozapp> or <iframe mozbrowser> (or
+        /// until the hierarchy ends).  Return true iff the docshell we stopped on has
+        /// isBrowserElement == true.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetIsInBrowserElementAttribute();
+		
+		/// <summary>
+        /// Returns true if this docshell corresponds to an <iframe mozbrowser> or
+        /// <iframe mozap>, or if this docshell is contained in an <iframe mozbrowser>
+        /// or <iframe mozapp>.
+        ///
+        /// To compute this value, we walk up the docshell hierarchy.  If we encounter
+        /// a docshell with isBrowserElement or isApp before we hit the end of the
+        /// hierarchy, we return true.  Otherwise, we return false.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetIsInBrowserOrAppAttribute();
+		
+		/// <summary>
+        /// Indicate that this docshell corresponds to an app with the given app id.
+        ///
+        /// You may pass NO_APP_ID or UNKNOWN_APP_ID for containingAppId.  If you
+        /// pass NO_APP_ID, then this docshell will return NO_APP_ID for appId.  If
+        /// you pass UNKNOWN_APP_ID, then this docshell will search its hiearchy for
+        /// an app frame and use that frame's appId.
+        ///
+        /// You can call this method more than once, but there's no guarantee that
+        /// other components will update their view of the world if you change a
+        /// docshell's app id, so tread lightly.
+        ///
+        /// If you call this method after calling setIsBrowserInsideApp, this
+        /// docshell will forget the fact that it was a browser.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetIsApp(uint ownAppId);
+		
+		/// <summary>
+        /// Indicate that this docshell corresponds to a browser inside an app with
+        /// the given ID.  As with setIsApp, you may pass NO_APP_ID or
+        /// UNKNOWN_APP_ID.
+        ///
+        /// As with setIsApp, you may call this more than once, but it's kind of a
+        /// hack, so be careful.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetIsBrowserInsideApp(uint containingAppId);
+		
+		/// <summary>
+        /// Returns the id of the app associated with this docshell.  If this docshell
+        /// is an <iframe mozbrowser> inside an <iframe mozapp>, we return the app's
+        /// appId.
+        ///
+        /// We compute this value by walking up the docshell hierarchy until we find a
+        /// docshell on which setIsApp(x) or setIsBrowserInsideApp(x) was called
+        /// (ignoring those docshells where x == UNKNOWN_APP_ID).  We return the app
+        /// id x.
+        ///
+        /// If we don't find a docshell with an associated app id in our hierarchy, we
+        /// return NO_APP_ID.  We never return UNKNOWN_APP_ID.
+        ///
+        /// Notice that a docshell may have an associated app even if it returns true
+        /// for isBrowserElement!
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetAppIdAttribute();
+		
+		/// <summary>
+        /// Like nsIDocShellTreeItem::GetSameTypeParent, except this ignores <iframe
+        /// mozbrowser> and <iframe mozapp> boundaries.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDocShell GetSameTypeParentIgnoreBrowserAndAppBoundaries();
+		
+		/// <summary>
+        /// True iff asynchronous panning and zooming is enabled for this
+        /// docshell.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetAsyncPanZoomEnabledAttribute();
+		
+		/// <summary>
+        /// The sandbox flags on the docshell. These reflect the value of the sandbox
+        /// attribute of the associated IFRAME or CSP-protectable content, if
+        /// existent. See the HTML5 spec for more details.
+        /// These flags on the docshell reflect the current state of the sandbox
+        /// attribute, which is modifiable. They are only used when loading new
+        /// content, sandbox flags are also immutably set on the document when it is
+        /// loaded.
+        /// The sandbox flags of a document depend on the sandbox flags on its
+        /// docshell and of its parent document, if any.
+        /// See nsSandboxFlags.h for the possible flags.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetSandboxFlagsAttribute();
+		
+		/// <summary>
+        /// The sandbox flags on the docshell. These reflect the value of the sandbox
+        /// attribute of the associated IFRAME or CSP-protectable content, if
+        /// existent. See the HTML5 spec for more details.
+        /// These flags on the docshell reflect the current state of the sandbox
+        /// attribute, which is modifiable. They are only used when loading new
+        /// content, sandbox flags are also immutably set on the document when it is
+        /// loaded.
+        /// The sandbox flags of a document depend on the sandbox flags on its
+        /// docshell and of its parent document, if any.
+        /// See nsSandboxFlags.h for the possible flags.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetSandboxFlagsAttribute(uint aSandboxFlags);
+		
+		/// <summary>
+        /// Are plugins allowed in the current document loaded in this docshell ?
+        /// (if there is one). This depends on whether plugins are allowed by this
+        /// docshell itself or if the document is sandboxed and hence plugins should
+        /// not be allowed.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool PluginsAllowedInCurrentDoc();
+		
+		/// <summary>
+        /// Attribute that determines whether fullscreen is allowed to be entered for
+        /// this subtree of the docshell tree. This is true when all iframes containing
+        /// this docshell have their "allowfullscreen" attribute set to "true".
+        /// fullscreenAllowed is only writable at content boundaries, where it is used
+        /// to propagate the value of the cross process parent's iframe's
+        /// "allowfullscreen" attribute to the child process. Setting
+        /// fullscreenAllowed on docshells which aren't content boundaries throws an
+        /// exception.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetFullscreenAllowedAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetFullscreenAllowed([MarshalAs(UnmanagedType.U1)] bool allowed);
 	}
 	
 	/// <summary>nsIDocShellConsts </summary>

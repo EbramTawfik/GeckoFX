@@ -33,7 +33,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("7144AC8B-6702-4A4B-A73D-D1D4E9717E46")]
+	[Guid("9DA319F3-EEE6-4504-81A5-6A19CF6215BF")]
 	public interface nsIBaseWindow
 	{
 		
@@ -45,12 +45,12 @@ namespace Gecko
         ///	@param parentNativeWindow - This allows a system to pass in the parenting
         ///		window as a native reference rather than relying on the calling
         ///		application to have created the parent window as an nsIWidget.  This
-        ///		value will be ignored (should be nsnull) if an nsIWidget is passed in to
+        ///		value will be ignored (should be nullptr) if an nsIWidget is passed in to
         ///		the parentWidget parameter.
         ///	@param parentWidget - This allows a system to pass in the parenting widget.
         ///		This allows some objects to optimize themselves and rely on the view
         ///		system for event flow rather than creating numerous native windows.  If
-        ///		one of these is not available, nsnull should be passed.
+        ///		one of these is not available, nullptr should be passed.
         ///	@param x - This is the x co-ordinate relative to the parent to place the
         ///		window.
         ///	@param y - This is the y co-ordinate relative to the parent to place the
@@ -186,6 +186,16 @@ namespace Gecko
 		void SetParentNativeWindowAttribute(System.IntPtr aParentNativeWindow);
 		
 		/// <summary>
+        ///This is the handle (HWND, GdkWindow*, ...) to the native window of the
+        ///	control, exposed as a DOMString.
+        ///	@return DOMString in hex format with "0x" prepended, or empty string if
+        ///	mainWidget undefined
+        ///	@throws NS_ERROR_NOT_IMPLEMENTED for non-XULWindows
+        ///	 </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetNativeHandleAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNativeHandle);
+		
+		/// <summary>
         ///Attribute controls the visibility of the object behind this interface.
         ///	Setting this attribute to false will hide the control.  Setting it to
         ///	true will show it.
@@ -224,6 +234,16 @@ namespace Gecko
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetMainWidgetAttribute();
+		
+		/// <summary>
+        ///The number of	device pixels per CSS pixel used on this window's current
+        ///	screen at the default zoom level.
+        ///	This is the value returned by GetDefaultScale() of the underlying widget.
+        ///	Note that this may change if the window is moved between screens with
+        ///	differing resolutions.
+        ///	 </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		double GetUnscaledDevicePixelsPerCSSPixelAttribute();
 		
 		/// <summary>
         /// Give the window focus.

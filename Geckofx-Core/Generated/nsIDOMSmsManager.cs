@@ -32,7 +32,7 @@ namespace Gecko
     /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("6363c0ff-b58f-4fb3-9707-0ba27f120b2c")]
+	[Guid("caaf5c38-a730-4dbb-a0f0-12384bfac8e3")]
 	public interface nsIDOMMozSmsManager : nsIDOMEventTarget
 	{
 		
@@ -200,13 +200,13 @@ namespace Gecko
         /// @param aEvent the event that is being dispatched.
         /// @param aDOMEvent the event that is being dispatched, use if you want to
         /// dispatch nsIDOMEvent, not only nsEvent.
-        /// @param aPresContext the current presentation context, can be nsnull.
-        /// @param aEventStatus the status returned from the function, can be nsnull.
+        /// @param aPresContext the current presentation context, can be nullptr.
+        /// @param aEventStatus the status returned from the function, can be nullptr.
         ///
         /// @note If both aEvent and aDOMEvent are used, aEvent must be the internal
         /// event of the aDOMEvent.
         ///
-        /// If aDOMEvent is not nsnull (in which case aEvent can be nsnull) it is used
+        /// If aDOMEvent is not nullptr (in which case aEvent can be nullptr) it is used
         /// for dispatching, otherwise aEvent is used.
         ///
         /// @deprecated This method is here just until all the callers outside Gecko
@@ -273,23 +273,30 @@ namespace Gecko
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener GetOnreceivedAttribute();
+		nsIDOMMozSmsRequest GetThreadList();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnreceivedAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnreceived);
-		
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener GetOnsentAttribute();
+		Gecko.JsVal GetOnreceivedAttribute(System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnsentAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnsent);
-		
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener GetOndeliveredAttribute();
+		void SetOnreceivedAttribute(Gecko.JsVal aOnreceived, System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOndeliveredAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOndelivered);
+		Gecko.JsVal GetOnsentAttribute(System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOnsentAttribute(Gecko.JsVal aOnsent, System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetOndeliverysuccessAttribute(System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOndeliverysuccessAttribute(Gecko.JsVal aOndeliverysuccess, System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetOndeliveryerrorAttribute(System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOndeliveryerrorAttribute(Gecko.JsVal aOndeliveryerror, System.IntPtr jsContext);
 	}
 }

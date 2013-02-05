@@ -40,7 +40,7 @@ namespace Gecko
         /// Creates an instance of a component.
         ///
         /// @param aOuter Pointer to a component that wishes to be aggregated
-        /// in the resulting instance. This will be nsnull if no
+        /// in the resulting instance. This will be nullptr if no
         /// aggregation is requested.
         /// @param iid    The IID of the interface being requested in
         /// the component which is being currently created.

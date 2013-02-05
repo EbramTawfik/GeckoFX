@@ -132,10 +132,11 @@ namespace Gecko
 		nsIDocShellTreeItem GetParentAttribute();
 		
 		/// <summary>
-        ///This is call returns the same thing parent does however if the parent is
-        ///	of a different itemType, it will instead return nsnull.  This call is a
-        ///	convience function for those wishing to not cross the boundaries at which
-        ///	item types change.
+        ///This getter returns the same thing parent does however if the parent
+        ///	is of a different itemType, or if the parent is an <iframe mozbrowser>
+        ///	or <iframe mozapp>, it will instead return nullptr.  This call is a
+        ///	convience function for those wishing to not cross the boundaries at
+        ///	which item types change.
         ///	 </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -199,7 +200,7 @@ namespace Gecko
         ///	
         ///	Note implementers of this interface should NOT effect the lifetime of the
         ///	parent DocShell by holding this reference as it creates a cycle.  Owners
-        ///	when releasing this interface should set the treeOwner to nsnull.
+        ///	when releasing this interface should set the treeOwner to nullptr.
         ///	Implementers of this interface are guaranteed that when treeOwner is
         ///	set that the poitner is valid without having to addref.
         ///	

@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("8c6b574d-1135-4387-a6e3-6d8ba38d79a1")]
+	[Guid("a0eb16f3-5fa2-4cbd-bf7a-4ce7704b13ea")]
 	public interface nsIDOMMozConnection
 	{
 		
@@ -47,11 +47,10 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetMeteredAttribute();
 		
-		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener GetOnchangeAttribute();
+		Gecko.JsVal GetOnchangeAttribute(System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnchangeAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnchange);
+		void SetOnchangeAttribute(Gecko.JsVal aOnchange, System.IntPtr jsContext);
 	}
 }

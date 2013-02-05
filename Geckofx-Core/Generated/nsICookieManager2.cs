@@ -31,7 +31,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("94628d1d-8b31-4baa-b474-9c872c440f90")]
+	[Guid("daf0caa7-b431-4b4d-ba51-08c179bb9dfe")]
 	public interface nsICookieManager2 : nsICookieManager
 	{
 		
@@ -159,5 +159,30 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ImportCookies([MarshalAs(UnmanagedType.Interface)] nsIFile aCookieFile);
+		
+		/// <summary>
+        /// Returns an enumerator of all cookies that are related to a specific app.
+        ///
+        /// If the onlyBrowserELement parameter is set to true, only cookies part of
+        /// a browser element inside the app will be returned. If set to false, all
+        /// cookies will be returned, regardless of their browserElement flag.
+        ///
+        /// This method assumes that appId is a valid app id. It should not be a
+        /// special value like UNKNOWN_APP_ID or NO_APP_ID.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsISimpleEnumerator GetCookiesForApp(uint appId, [MarshalAs(UnmanagedType.U1)] bool onlyBrowserElement);
+		
+		/// <summary>
+        /// Remove all the cookies associated with the app with the id aAppId.
+        ///
+        /// If onlyBrowserElement is set to true, the method will only remove the
+        /// cookies marked as part of a browser element inside the app.
+        ///
+        /// Special app id values are not allowed (NO_APP_ID or UNKNOWN_APP_ID for example).
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RemoveCookiesForApp(uint appId, [MarshalAs(UnmanagedType.U1)] bool onlyBrowserElement);
 	}
 }

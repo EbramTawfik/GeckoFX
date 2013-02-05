@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("cdb27711-492b-4973-938b-de81ac124658")]
+	[Guid("90c6b901-9952-4934-a560-974dfd144af7")]
 	public interface nsIScriptSecurityManager : nsIXPCSecurityManager
 	{
 		
@@ -87,21 +87,6 @@ namespace Gecko
 		void CheckLoadURIWithPrincipal([MarshalAs(UnmanagedType.Interface)] nsIPrincipal aPrincipal, [MarshalAs(UnmanagedType.Interface)] nsIURI uri, uint flags);
 		
 		/// <summary>
-        /// Check that content from "from" can load "uri".
-        ///
-        /// Will return error code NS_ERROR_DOM_BAD_URI if the load request
-        /// should be denied.
-        ///
-        /// @param from the URI causing the load
-        /// @param uri the URI that is being loaded
-        /// @param flags the permission set, see above
-        ///
-        /// @deprecated Use checkLoadURIWithPrincipal instead of this function.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CheckLoadURI([MarshalAs(UnmanagedType.Interface)] nsIURI from, [MarshalAs(UnmanagedType.Interface)] nsIURI uri, uint flags);
-		
-		/// <summary>
         /// Similar to checkLoadURIWithPrincipal but there are two differences:
         ///
         /// 1) The URI is a string, not a URI object.
@@ -112,15 +97,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void CheckLoadURIStrWithPrincipal([MarshalAs(UnmanagedType.Interface)] nsIPrincipal aPrincipal, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase uri, uint flags);
-		
-		/// <summary>
-        /// Same as CheckLoadURI but takes string arguments for ease of use
-        /// by scripts
-        ///
-        /// @deprecated Use checkLoadURIStrWithPrincipal instead of this function.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CheckLoadURIStr([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase from, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase uri, uint flags);
 		
 		/// <summary>
         /// Check that the function 'funObj' is allowed to run on 'targetObj'
@@ -160,46 +136,50 @@ namespace Gecko
 		nsIPrincipal GetSystemPrincipal();
 		
 		/// <summary>
-        /// Return a principal with the specified certificate fingerprint, subject
-        /// name (the full name or concatenated set of names of the entity
-        /// represented by the certificate), pretty name, certificate, and
-        /// codebase URI.  The certificate fingerprint and subject name MUST be
-        /// nonempty; otherwise an error will be thrown.  Similarly, aCert must
-        /// not be null.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIPrincipal GetCertificatePrincipal([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aCertFingerprint, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aSubjectName, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aPrettyName, [MarshalAs(UnmanagedType.Interface)] nsISupports aCert, [MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
-		
-		/// <summary>
         /// Return a principal that has the same origin as aURI.
+        /// This principals should not be used for any data/permission check, it will
+        /// have appId = UNKNOWN_APP_ID.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIPrincipal GetCodebasePrincipal([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
+		nsIPrincipal GetSimpleCodebasePrincipal([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
 		
 		/// <summary>
-        /// Request that 'capability' can be enabled by scripts or applets
-        /// running with 'principal'. Will prompt user if
-        /// necessary. Returns nsIPrincipal::ENABLE_GRANTED or
-        /// nsIPrincipal::ENABLE_DENIED based on user's choice.
+        /// Returns a principal that has the given information.
+        /// @param appId is the app id of the principal. It can't be UNKNOWN_APP_ID.
+        /// @param inMozBrowser is true if the principal has to be considered as
+        /// inside a mozbrowser frame.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		short RequestCapability([MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, [MarshalAs(UnmanagedType.LPStr)] string capability);
+		nsIPrincipal GetAppCodebasePrincipal([MarshalAs(UnmanagedType.Interface)] nsIURI uri, uint appId, [MarshalAs(UnmanagedType.U1)] bool inMozBrowser);
 		
 		/// <summary>
-        /// Return true if the currently executing script has 'capability' enabled.
+        /// Returns a principal that has the appId and inMozBrowser of the docshell
+        /// inside a mozbrowser frame.
+        /// @param docShell to get appId/inMozBrowser from.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.U1)]
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsCapabilityEnabled([MarshalAs(UnmanagedType.LPStr)] string capability);
+		nsIPrincipal GetDocShellCodebasePrincipal([MarshalAs(UnmanagedType.Interface)] nsIURI uri, [MarshalAs(UnmanagedType.Interface)] nsIDocShell docShell);
 		
 		/// <summary>
-        /// Enable 'capability' in the innermost frame of the currently executing
-        /// script.
+        /// Returns a principal with that has the same origin as uri and is not part
+        /// of an appliction.
+        /// The returned principal will have appId = NO_APP_ID.
         /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EnableCapability([MarshalAs(UnmanagedType.LPStr)] string capability);
+		nsIPrincipal GetNoAppCodebasePrincipal([MarshalAs(UnmanagedType.Interface)] nsIURI uri);
+		
+		/// <summary>
+        /// Legacy name for getNoAppCodebasePrincipal.
+        ///
+        /// @deprecated use getNoAppCodebasePrincipal instead.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIPrincipal GetCodebasePrincipal([MarshalAs(UnmanagedType.Interface)] nsIURI uri);
 		
 		/// <summary>
         /// Return the principal of the specified object in the specified context.
@@ -271,6 +251,15 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIPrincipal GetCxSubjectPrincipalAndFrame(System.IntPtr cx, ref System.IntPtr fp);
+		
+		/// <summary>
+        /// Returns the extended origin for the uri.
+        /// appId can be NO_APP_ID or a valid app id. appId should not be
+        /// UNKNOWN_APP_ID.
+        /// inMozBrowser has to be true if the uri is inside a mozbrowser iframe.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetExtendedOrigin([MarshalAs(UnmanagedType.Interface)] nsIURI uri, uint appId, [MarshalAs(UnmanagedType.U1)] bool inMozBrowser, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase retval);
 	}
 	
 	/// <summary>nsIScriptSecurityManagerConsts </summary>
@@ -306,5 +295,16 @@ namespace Gecko
         // DISALLOW_INHERIT_PRINCIPAL
         // </summary>
 		public const ulong DISALLOW_SCRIPT = 1<<3;
+		
+		// <summary>
+        // a URI to not unnecessarily spam the error console.
+        // </summary>
+		public const ulong DONT_REPORT_ERRORS = 1<<4;
+		
+		// 
+		public const ulong NO_APP_ID = 0;
+		
+		// 
+		public const ulong UNKNOWN_APP_ID = 4294967295;
 	}
 }

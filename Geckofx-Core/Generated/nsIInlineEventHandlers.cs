@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("5b3f9656-9d81-40e4-85ba-01f302177815")]
+	[Guid("22df6ed6-d094-4e45-97fc-a8eca11c390c")]
 	public interface nsIInlineEventHandlers
 	{
 		
@@ -385,6 +385,12 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOnwaitingAttribute(Gecko.JsVal aOnwaiting, System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetOnwheelAttribute(System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOnwheelAttribute(Gecko.JsVal aOnwheel, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Non-HTML5 event attributes

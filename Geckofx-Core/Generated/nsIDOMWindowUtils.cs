@@ -35,7 +35,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("858578f1-9653-4d5c-821a-07479bf2d9b2")]
+	[Guid("ed36f965-173c-4101-a615-63b44f51ed90")]
 	public interface nsIDOMWindowUtils
 	{
 		
@@ -127,6 +127,13 @@ namespace Gecko
 		void SetCSSViewport(float aWidthPx, float aHeightPx);
 		
 		/// <summary>
+        /// Information retrieved from the <meta name="viewport"> tag.
+        /// See nsContentUtils::GetViewportInfo for more information.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetViewportInfo(uint aDisplayWidth, uint aDisplayHeight, ref double aDefaultZoom, [MarshalAs(UnmanagedType.U1)] ref bool aAllowZoom, ref double aMinZoom, ref double aMaxZoom, ref uint aWidth, ref uint aHeight, [MarshalAs(UnmanagedType.U1)] ref bool aAutoSize);
+		
+		/// <summary>
         /// For any scrollable element, this allows you to override the
         /// visible region and draw more than what is visible, which is
         /// useful for asynchronous drawing. The "displayport" will be
@@ -151,6 +158,11 @@ namespace Gecko
         ///
         /// The caller of this method must have UniversalXPConnect
         /// privileges.
+        ///
+        /// Calling this will always force a recomposite, so it should be
+        /// avoided if at all possible. Client code should do checks before
+        /// calling this so that duplicate sets are not made with the same
+        /// displayport.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetDisplayPortForElement(float aXPx, float aYPx, float aWidthPx, float aHeightPx, [MarshalAs(UnmanagedType.Interface)] nsIDOMElement aElement);
@@ -234,9 +246,12 @@ namespace Gecko
         /// @param aModifiers modifiers pressed, using constants defined as MODIFIER_*
         /// @param aIgnoreRootScrollFrame whether the event should ignore viewport bounds
         /// during dispatch
+        /// @param aPressure touch input pressure: 0.0 -> 1.0
+        /// @param aInputSourceArg input source, see nsIDOMMouseEvent for values,
+        /// defaults to mouse input.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendMouseEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType, float aX, float aY, int aButton, int aClickCount, int aModifiers, [MarshalAs(UnmanagedType.U1)] bool aIgnoreRootScrollFrame);
+		void SendMouseEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType, float aX, float aY, int aButton, int aClickCount, int aModifiers, [MarshalAs(UnmanagedType.U1)] bool aIgnoreRootScrollFrame, float aPressure, ushort aInputSourceArg);
 		
 		/// <summary>
         ///Synthesize a touch event. The event types supported are:
@@ -275,31 +290,10 @@ namespace Gecko
         /// this DOM window or one of its children.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendMouseEventToWindow([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType, float aX, float aY, int aButton, int aClickCount, int aModifiers, [MarshalAs(UnmanagedType.U1)] bool aIgnoreRootScrollFrame);
+		void SendMouseEventToWindow([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType, float aX, float aY, int aButton, int aClickCount, int aModifiers, [MarshalAs(UnmanagedType.U1)] bool aIgnoreRootScrollFrame, float aPressure, ushort aInputSourceArg);
 		
-		/// <summary>
-        ///Synthesize a mouse scroll event for a window. The event types supported
-        /// are:
-        /// DOMMouseScroll
-        /// MozMousePixelScroll
-        ///
-        /// Events are sent in coordinates offset by aX and aY from the window.
-        ///
-        /// Cannot be accessed from unprivileged context (not content-accessible)
-        /// Will throw a DOM security error if called without UniversalXPConnect
-        /// privileges.
-        ///
-        /// @param aType event type
-        /// @param aX x offset in CSS pixels
-        /// @param aY y offset in CSS pixels
-        /// @param aButton button to synthesize
-        /// @param aScrollFlags flag bits --- see nsMouseScrollFlags in nsGUIEvent.h
-        /// @param aDelta the direction and amount to scroll (in lines or pixels,
-        /// depending on the event type)
-        /// @param aModifiers modifiers pressed, using constants defined as MODIFIER_*
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendMouseScrollEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType, float aX, float aY, int aButton, int aScrollFlags, int aDelta, int aModifiers);
+		void SendWheelEvent(float aX, float aY, double aDeltaX, double aDeltaY, double aDeltaZ, uint aDeltaMode, int aModifiers, int aLineOrPageDeltaX, int aLineOrPageDeltaY, uint aOptions);
 		
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -556,6 +550,15 @@ namespace Gecko
 		float GetScreenPixelsPerCSSPixelAttribute();
 		
 		/// <summary>
+        /// Get the current zoom factor.
+        /// This is _approximately_ the same as nsIMarkupDocumentViewer.fullZoom,
+        /// but takes into account Gecko's quantization of the zoom factor, which is
+        /// implemented by adjusting the (integer) number of appUnits per devPixel.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		float GetFullZoomAttribute();
+		
+		/// <summary>
         /// Dispatches aEvent via the nsIPresShell object of the window's document.
         /// The event is dispatched to aTarget, which should be an object
         /// which implements nsIContent interface (#element, #text, etc).
@@ -617,12 +620,36 @@ namespace Gecko
 		/// <summary>
         /// Synthesize a query content event.
         ///
-        /// @param aType  On of the following const values.  And see also each comment
+        /// @param aType  One of the following const values.  And see also each comment
         /// for the other parameters and the result.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIQueryContentEventResult SendQueryContentEvent(uint aType, uint aOffset, uint aLength, int aX, int aY);
+		
+		/// <summary>
+        /// Called when the remote child frame has changed its fullscreen state,
+        /// when entering fullscreen, and when the origin which is fullscreen changes.
+        /// aFrameElement is the iframe element which contains the child-process
+        /// fullscreen document, and aNewOrigin is the origin of the new fullscreen
+        /// document.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RemoteFrameFullscreenChanged([MarshalAs(UnmanagedType.Interface)] nsIDOMElement aFrameElement, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNewOrigin);
+		
+		/// <summary>
+        /// Called when the remote frame has popped all fullscreen elements off its
+        /// stack, so that the operation can complete on the parent side.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RemoteFrameFullscreenReverted();
+		
+		/// <summary>
+        /// Called when the child frame has fully exit fullscreen, so that the parent
+        /// process can also fully exit.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void ExitFullscreen();
 		
 		/// <summary>
         /// Synthesize a selection set event to the window.
@@ -640,6 +667,23 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool SendSelectionSetEvent(uint aOffset, uint aLength, [MarshalAs(UnmanagedType.U1)] bool aReverse);
+		
+		/// <summary>
+        /// Select content at a client point based on a selection behavior if the
+        /// underlying content is selectable. Selection will accumulate with any
+        /// existing selection, callers should clear selection prior if needed.
+        /// May fire selection changed events. Calls nsFrame's SelectByTypeAtPoint.
+        ///
+        /// @param aX, aY The selection point in client coordinates.
+        /// @param aSelectType The selection behavior requested.
+        /// @return True if a selection occured, false otherwise.
+        /// @throw NS_ERROR_DOM_SECURITY_ERR, NS_ERROR_UNEXPECTED for utils
+        /// issues, and NS_ERROR_INVALID_ARG for coordinates that are outside
+        /// this window.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool SelectAtPoint(float aX, float aY, uint aSelectBehavior);
 		
 		/// <summary>
         /// Perform the equivalent of:
@@ -727,14 +771,6 @@ namespace Gecko
 		void ResumeTimeouts();
 		
 		/// <summary>
-        /// Set the network status to online from the Offline mode error page.
-        ///
-        /// The caller of this method must be about:neterror.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GoOnline();
-		
-		/// <summary>
         /// What type of layer manager the widget associated with this window is
         /// using. "Basic" is unaccelerated; other types are accelerated. Throws an
         /// error if there is no widget associated with this window.
@@ -747,6 +783,13 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void StopFrameTimeRecording(ref uint frameCount, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref float[] frameTime);
+		
+		/// <summary>
+        /// Signals that we're begining to tab switch. This is used by painting code to
+        /// determine total tab switch time.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void BeginTabSwitch();
 		
 		/// <summary>
         /// The DPI of the display
@@ -959,31 +1002,47 @@ namespace Gecko
 		void SetScrollPositionClampingScrollPortSize(float aWidth, float aHeight);
 		
 		/// <summary>
-        /// Mark if the window is an application window or not.
-        /// This should only be set for top-level mozApp or mozBrowser frames.
-        /// It should not be set for other frames unless you want a frame (and its
-        /// children) to have a different value for IsPartOfApp than the frame's
-        /// parent.
+        /// Prevent this window (and any child windows) from displaying any further
+        /// dialogs (e.g. window.alert()).
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetIsApp([MarshalAs(UnmanagedType.U1)] bool value);
+		void PreventFurtherDialogs();
 		
 		/// <summary>
-        /// Associate the window with an application by passing the URL of the
-        /// application's manifest.
+        /// Synchronously loads a style sheet from |sheetURI| and adds it to the list
+        /// of additional style sheets of the document.
         ///
-        /// This method will throw an exception if the manifest URL isn't a valid URL
-        /// or isn't the manifest URL of an installed application.
+        /// These additional style sheets are very much like user/agent sheets loaded
+        /// with loadAndRegisterSheet. The only difference is that they are applied only
+        /// on the document owned by this window.
+        ///
+        /// Sheets added via this API take effect immediately on the document.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetApp([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase manifestURL);
+		void LoadSheet([MarshalAs(UnmanagedType.Interface)] nsIURI sheetURI, uint type);
 		
 		/// <summary>
-        /// Retrieves the Application object associated to this window.
-        /// Can be null if |setApp()| has not been called.
+        /// Remove the document style sheet at |sheetURI| from the list of additional
+        /// style sheets of the document.  The removal takes effect immediately.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		mozIDOMApplication GetApp();
+		void RemoveSheet([MarshalAs(UnmanagedType.Interface)] nsIURI sheetURI, uint type);
+		
+		/// <summary>
+        /// Returns true if a user input is being handled.
+        ///
+        /// This calls nsEventStateManager::IsHandlingUserInput().
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetIsHandlingUserInputAttribute();
+		
+		/// <summary>
+        /// After calling the method, the window for which this DOMWindowUtils
+        /// was created can be closed using scripts.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void AllowScriptsToClose();
 	}
 	
 	/// <summary>nsIDOMWindowUtilsConsts </summary>
@@ -1027,6 +1086,63 @@ namespace Gecko
 		
 		// 
 		public const long MODIFIER_OS = 0x0400;
+		
+		// <summary>
+        //Synthesize a wheel event for a window. The event types supported is only
+        // wheel.
+        //
+        // Events are sent in coordinates offset by aX and aY from the window.
+        //
+        // Cannot be accessed from unprivileged context (not content-accessible)
+        // Will throw a DOM security error if called without UniversalXPConnect
+        // privileges.
+        //
+        // @param aX                 x offset in CSS pixels
+        // @param aY                 y offset in CSS pixels
+        // @param aDeltaX            deltaX value.
+        // @param aDeltaY            deltaY value.
+        // @param aDeltaZ            deltaZ value.
+        // @param aDeltaMode         deltaMode value which must be one of
+        // nsIDOMWheelEvent::DOM_DELTA_*.
+        // @param aModifiers         modifiers pressed, using constants defined as
+        // MODIFIER_*
+        // @param aLineOrPageDeltaX  If you set this value non-zero for
+        // DOM_DELTA_PIXEL event, nsEventStateManager will
+        // dispatch NS_MOUSE_SCROLL event for horizontal
+        // scroll.
+        // @param aLineOrPageDeltaY  If you set this value non-zero for
+        // DOM_DELTA_PIXEL event, nsEventStateManager will
+        // dispatch NS_MOUSE_SCROLL event for vertical
+        // scroll.
+        // @param aOptions           Set following flags.
+        // </summary>
+		public const ulong WHEEL_EVENT_CAUSED_BY_PIXEL_ONLY_DEVICE = 0x0001;
+		
+		// 
+		public const ulong WHEEL_EVENT_CAUSED_BY_MOMENTUM = 0x0002;
+		
+		// 
+		public const ulong WHEEL_EVENT_CUSTOMIZED_BY_USER_PREFS = 0x0004;
+		
+		// <summary>
+        // exception in case the relevant overflowDelta has an unexpected value.
+        // </summary>
+		public const ulong WHEEL_EVENT_EXPECTED_OVERFLOW_DELTA_X_ZERO = 0x0010;
+		
+		// 
+		public const ulong WHEEL_EVENT_EXPECTED_OVERFLOW_DELTA_X_POSITIVE = 0x0020;
+		
+		// 
+		public const ulong WHEEL_EVENT_EXPECTED_OVERFLOW_DELTA_X_NEGATIVE = 0x0040;
+		
+		// 
+		public const ulong WHEEL_EVENT_EXPECTED_OVERFLOW_DELTA_Y_ZERO = 0x0100;
+		
+		// 
+		public const ulong WHEEL_EVENT_EXPECTED_OVERFLOW_DELTA_Y_POSITIVE = 0x0200;
+		
+		// 
+		public const ulong WHEEL_EVENT_EXPECTED_OVERFLOW_DELTA_Y_NEGATIVE = 0x0400;
 		
 		// <summary>
         // If this is set, preventDefault() the event before dispatch.
@@ -1192,5 +1308,36 @@ namespace Gecko
         // result are available.
         // </summary>
 		public const ulong QUERY_CHARACTER_AT_POINT = 3208;
+		
+		// <summary>
+        //Selection behaviors - mirror nsIFrame's nsSelectionAmount constants </summary>
+		public const ulong SELECT_CHARACTER = 0;
+		
+		// 
+		public const ulong SELECT_CLUSTER = 1;
+		
+		// 
+		public const ulong SELECT_WORD = 2;
+		
+		// 
+		public const ulong SELECT_LINE = 3;
+		
+		// 
+		public const ulong SELECT_BEGINLINE = 4;
+		
+		// 
+		public const ulong SELECT_ENDLINE = 5;
+		
+		// 
+		public const ulong SELECT_PARAGRAPH = 6;
+		
+		// 
+		public const ulong SELECT_WORDNOSPACE = 7;
+		
+		// 
+		public const ulong AGENT_SHEET = 0;
+		
+		// 
+		public const ulong USER_SHEET = 1;
 	}
 }

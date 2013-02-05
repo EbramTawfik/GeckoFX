@@ -41,7 +41,10 @@ namespace Gecko
         ///
         /// @param manifestUrl : the URL of the webapps manifest.
         /// @param parameters  : A structure with optional information.
-        /// { receipts: ... } will be used to specify the payment receipts for this installation.
+        /// {
+        /// receipts: ...    Will be used to specify the payment receipts for this installation.
+        /// categories: ...  Will be used to specify the categories of the webapp.
+        /// }
         /// @returns           : A DOMRequest object, returning the app object in |result| if install succeeds.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
@@ -56,19 +59,18 @@ namespace Gecko
 		new nsIDOMDOMRequest GetSelf();
 		
 		/// <summary>
+        /// the request will return the application if the app from that origin is installed
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMDOMRequest CheckInstalled([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase manifestUrl);
+		
+		/// <summary>
         /// the request will return the applications installed from this origin, or null.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new nsIDOMDOMRequest GetInstalled();
-		
-		/// <summary>
-        /// the request will return the applications acquired from this origin but which
-        /// are not launchable (e.g. by not being natively installed), or null.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMDOMRequest GetNotInstalled();
 		
 		/// <summary>Member GetMgmtAttribute </summary>
 		/// <returns>A mozIDOMApplicationMgmt</returns>
@@ -80,7 +82,10 @@ namespace Gecko
         ///
         /// @param packageUrl : the URL of the webapps manifest.
         /// @param parameters : A structure with optional information.
-        /// { receipts: ... } will be used to specify the payment receipts for this installation.
+        /// {
+        /// receipts: ...    Will be used to specify the payment receipts for this installation.
+        /// categories: ...  Will be used to specify the categories of the webapp.
+        /// }
         /// @returns          : A DOMRequest object, returning the app object in |result| if install succeeds.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]

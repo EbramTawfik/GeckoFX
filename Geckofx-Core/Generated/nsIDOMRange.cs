@@ -34,7 +34,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("a059eea8-fece-4c14-93d3-7f50a944ae43")]
+	[Guid("1f94055c-42e7-4a30-96a1-6a804f1c2d1e")]
 	public interface nsIDOMRange
 	{
 		
@@ -142,6 +142,13 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		short ComparePoint([MarshalAs(UnmanagedType.Interface)] nsIDOMNode parent, int offset);
+		
+		/// <summary>
+        /// Returns whether the range intersects node.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool IntersectsNode([MarshalAs(UnmanagedType.Interface)] nsIDOMNode node);
 		
 		/// <summary>
         /// http://dev.w3.org/csswg/cssom-view/#extensions-to-the-range-interface

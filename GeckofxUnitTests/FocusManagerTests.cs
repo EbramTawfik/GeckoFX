@@ -1055,6 +1055,16 @@ namespace GeckofxUnitTests
 		{
 			throw new NotImplementedException();
 		}
+
+		#region nsIDOMWindow Members
+
+
+		public float GetDevicePixelRatioAttribute()
+		{
+			throw new NotImplementedException();
+		}
+
+		#endregion
 	}
 	#endregion
 }

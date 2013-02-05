@@ -19,8 +19,8 @@ namespace GeckofxUnitTests
 			string prefix = Xpcom.IsLinux ? "--" : "/";
 			string nothread = prefix + "nothread";
 			string domain = prefix + "domain=None";
-			
-			string[] my_args = { Assembly.GetExecutingAssembly().Location, nothread, domain };
+
+			string[] my_args = { Assembly.GetExecutingAssembly().Location, nothread, domain/*, "--run=GeckofxUnitTests.CrossLanguageTests.JavaScriptToCSharpCallBack"*/ };
 
 			int returnCode = NUnit.ConsoleRunner.Runner.Main(my_args);
 

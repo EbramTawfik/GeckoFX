@@ -48,7 +48,7 @@ namespace Gecko
 	/// <summary>nsIDOMDesktopNotification </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("9131FD07-A7DB-4B3A-A98B-6D9F3746682F")]
+	[Guid("77bc6adc-77d6-4b29-9844-7eaac25e995d")]
 	public interface nsIDOMDesktopNotification
 	{
 		
@@ -57,25 +57,43 @@ namespace Gecko
 		void Show();
 		
 		/// <summary>Member GetOnclickAttribute </summary>
-		/// <returns>A nsIDOMEventListener</returns>
-		[return: MarshalAs(UnmanagedType.Interface)]
+		/// <param name='jsContext'> </param>
+		/// <returns>A Gecko.JsVal</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener GetOnclickAttribute();
+		Gecko.JsVal GetOnclickAttribute(System.IntPtr jsContext);
 		
 		/// <summary>Member SetOnclickAttribute </summary>
 		/// <param name='aOnclick'> </param>
+		/// <param name='jsContext'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnclickAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnclick);
+		void SetOnclickAttribute(Gecko.JsVal aOnclick, System.IntPtr jsContext);
 		
 		/// <summary>Member GetOncloseAttribute </summary>
-		/// <returns>A nsIDOMEventListener</returns>
-		[return: MarshalAs(UnmanagedType.Interface)]
+		/// <param name='jsContext'> </param>
+		/// <returns>A Gecko.JsVal</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener GetOncloseAttribute();
+		Gecko.JsVal GetOncloseAttribute(System.IntPtr jsContext);
 		
 		/// <summary>Member SetOncloseAttribute </summary>
 		/// <param name='aOnclose'> </param>
+		/// <param name='jsContext'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOncloseAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnclose);
+		void SetOncloseAttribute(Gecko.JsVal aOnclose, System.IntPtr jsContext);
+	}
+	
+	/// <summary>
+    /// Notification service that also provides the manifest URL
+    /// </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("7fb4f0f9-ff5b-4620-8e1b-d82d723605af")]
+	public interface nsIAppNotificationService
+	{
+		
+		/// <summary>
+        /// Notification service that also provides the manifest URL
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void ShowAppNotification([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase imageUrl, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase title, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase text, [MarshalAs(UnmanagedType.U1)] bool textClickable, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase manifestURL, [MarshalAs(UnmanagedType.Interface)] nsIObserver alertListener);
 	}
 }

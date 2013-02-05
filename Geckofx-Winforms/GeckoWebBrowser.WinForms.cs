@@ -287,6 +287,10 @@ namespace Gecko
 				}
 			}
 
+			// Firefox 17+ can crash when handing this windows message so we just ignore it.
+			if (m.Msg == 0x128 /*WM_UPDATEUISTATE*/)
+				return;
+
 			base.WndProc( ref m );
 		}
 

@@ -49,7 +49,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("f7debb84-2854-4731-a57b-1bd752ad71f8")]
+	[Guid("4bf1a7c5-6edb-4191-a257-e31a90f6aa85")]
 	public interface nsIImageLoadingContent : imgIDecoderObserver
 	{
 		
@@ -293,12 +293,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ForceImageState([MarshalAs(UnmanagedType.U1)] bool aForce, ulong aState);
-		
-		/// <summary>
-        /// We need to be notified when our document changes.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void NotifyOwnerDocumentChanged(System.IntPtr aOldDoc);
 	}
 	
 	/// <summary>nsIImageLoadingContentConsts </summary>

@@ -31,51 +31,14 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("dbd9565d-29b1-437a-bff5-2fc339e2c5df")]
+	[Guid("bed3702d-9374-4804-a20f-32baed8e2954")]
 	public interface nsIProtocolProxyService2 : nsIProtocolProxyService
 	{
 		
 		/// <summary>
-        /// This method returns a nsIProxyInfo instance that identifies a proxy to
-        /// be used for loading the given URI.  Otherwise, this method returns null
-        /// indicating that a direct connection should be used.
-        ///
-        /// @param aURI
-        /// The URI to test.
-        /// @param aFlags
-        /// A bit-wise combination of the RESOLVE_ flags defined above.  Pass
-        /// 0 to specify the default behavior.  Any additional bits that do
-        /// not correspond to a RESOLVE_ flag are reserved for future use.
-        ///
-        /// NOTE: If this proxy is unavailable, getFailoverForProxy may be called
-        /// to determine the correct secondary proxy to be used.
-        ///
-        /// NOTE: If the protocol handler for the given URI supports
-        /// nsIProxiedProtocolHandler, then the nsIProxyInfo instance returned from
-        /// resolve may be passed to the newProxiedChannel method to create a
-        /// nsIChannel to the given URI that uses the specified proxy.
-        ///
-        /// NOTE: However, if the nsIProxyInfo type is "http", then it means that
-        /// the given URI should be loaded using the HTTP protocol handler, which
-        /// also supports nsIProxiedProtocolHandler.
-        ///
-        /// NOTE: If PAC is configured, and the PAC file has not yet been loaded,
-        /// then this method will return a nsIProxyInfo instance with a type of
-        /// "unknown" to indicate to the consumer that asyncResolve should be used
-        /// to wait for the PAC file to finish loading.  Otherwise, the consumer
-        /// may choose to treat the result as type "direct" if desired.
-        ///
-        /// @see nsIProxiedProtocolHandler::newProxiedChannel
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIProxyInfo Resolve([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, uint aFlags);
-		
-		/// <summary>
-        /// This method is an asychronous version of the resolve method.  Unlike
-        /// resolve, this method is guaranteed not to block the calling thread
-        /// waiting for DNS queries to complete.  This method is intended as a
-        /// substitute for resolve when the result is not needed immediately.
+        /// This method returns via callback a nsIProxyInfo instance that identifies
+        /// a proxy to be used for loading the given URI.  Otherwise, this method returns
+        /// null indicating that a direct connection should be used.
         ///
         /// @param aURI
         /// The URI to test.
@@ -89,6 +52,20 @@ namespace Gecko
         /// @return An object that can be used to cancel the asychronous operation.
         /// If canceled, the cancelation status (aReason) will be forwarded
         /// to the callback's onProxyAvailable method via the aStatus param.
+        ///
+        /// NOTE: If this proxy is unavailable, getFailoverForProxy may be called
+        /// to determine the correct secondary proxy to be used.
+        ///
+        /// NOTE: If the protocol handler for the given URI supports
+        /// nsIProxiedProtocolHandler, then the nsIProxyInfo instance returned from
+        /// resolve may be passed to the newProxiedChannel method to create a
+        /// nsIChannel to the given URI that uses the specified proxy.
+        ///
+        /// NOTE: However, if the nsIProxyInfo type is "http", then it means that
+        /// the given URI should be loaded using the HTTP protocol handler, which
+        /// also supports nsIProxiedProtocolHandler.
+        ///
+        /// @see nsIProxiedProtocolHandler::newProxiedChannel
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -119,7 +96,7 @@ namespace Gecko
         /// for currently defined flags.
         /// @param aFailoverTimeout
         /// Specifies the length of time (in seconds) to ignore this proxy if
-        /// this proxy fails.  Pass PR_UINT32_MAX to specify the default
+        /// this proxy fails.  Pass UINT32_MAX to specify the default
         /// timeout value, causing nsIProxyInfo::failoverTimeout to be
         /// assigned the default value.
         /// @param aFailoverProxy
@@ -208,5 +185,16 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ReloadPAC();
+		
+		/// <summary>
+        /// This exists so Java(tm) can migrate to an asynchronous interface.
+        /// Do not use this unless you are the plugin interface, and even then you
+        /// ought to feel horribly guilty because you will create main thread jank.
+        ///
+        /// No documentation - it is deprecated!
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIProxyInfo DeprecatedBlockingResolve([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, uint aFlags);
 	}
 }

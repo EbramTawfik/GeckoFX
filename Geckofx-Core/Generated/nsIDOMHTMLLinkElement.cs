@@ -38,7 +38,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("59AE3529-170A-41E4-8D7A-241DCA6B5760")]
+	[Guid("5b639ece-7b49-4507-9d38-550beb71955b")]
 	public interface nsIDOMHTMLLinkElement : nsIDOMHTMLElement
 	{
 		
@@ -798,5 +798,11 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetCrossOriginAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCrossOrigin);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetCrossOriginAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCrossOrigin);
 	}
 }

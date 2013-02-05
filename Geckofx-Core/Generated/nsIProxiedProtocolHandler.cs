@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("0a24fed4-1dd2-11b2-a75c-9f8b9a8f9ba7")]
+	[Guid("2b63fe69-b0fc-48f2-a2df-adb795a4ce5c")]
 	public interface nsIProxiedProtocolHandler : nsIProtocolHandler
 	{
 		
@@ -108,9 +108,21 @@ namespace Gecko
 		/// <summary>
         ///Create a new channel with the given proxyInfo
         ///
+        /// @param uri the channel uri
+        /// @param proxyInfo any proxy information that has already been determined,
+        /// or null if channel should later determine the proxy on its own using
+        /// proxyResolveFlags/proxyURI
+        /// @param proxyResolveFlags used if the proxy is later determined
+        /// from nsIProtocolProxyService::asyncResolve
+        /// @param proxyURI used if the proxy is later determined from
+        /// nsIProtocolProxyService::asyncResolve with this as the proxyURI name.
+        /// Generally this is the same as uri (or null which has the same
+        /// effect), except in the case of websockets which wants to bootstrap
+        /// to an http:// channel but make its proxy determination based on
+        /// a ws:// uri.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIChannel NewProxiedChannel([MarshalAs(UnmanagedType.Interface)] nsIURI uri, [MarshalAs(UnmanagedType.Interface)] nsIProxyInfo proxyInfo);
+		nsIChannel NewProxiedChannel([MarshalAs(UnmanagedType.Interface)] nsIURI uri, [MarshalAs(UnmanagedType.Interface)] nsIProxyInfo proxyInfo, uint proxyResolveFlags, [MarshalAs(UnmanagedType.Interface)] nsIURI proxyURI);
 	}
 }

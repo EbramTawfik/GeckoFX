@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("28F1F9E1-CD23-4FE2-BCC8-BBB0B2D49A4A")]
+	[Guid("d70af999-cb1f-4429-b85e-f18cdbabc43c")]
 	public interface nsIPluginHost
 	{
 		
@@ -85,6 +85,21 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool SiteHasData([MarshalAs(UnmanagedType.Interface)] nsIPluginTag plugin, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase domain);
+		
+		/// <summary>
+        /// Registers the play preview plugin mode for specific mime type
+        ///
+        /// @param mimeType - specified mime type
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RegisterPlayPreviewMimeType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase mimeType);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void UnregisterPlayPreviewMimeType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase mimeType);
+		
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool IsPluginClickToPlayForType([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase mimeType);
 	}
 	
 	/// <summary>nsIPluginHostConsts </summary>

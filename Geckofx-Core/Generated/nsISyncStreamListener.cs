@@ -73,8 +73,6 @@ namespace Gecko
         /// Number of bytes that were sent in previous onDataAvailable calls
         /// for this request. In other words, the sum of all previous count
         /// parameters.
-        /// If that number is greater than or equal to 2^32, this parameter
-        /// will be PR_UINT32_MAX (2^32 - 1).
         /// @param aCount number of bytes available in the stream
         ///
         /// NOTE: The aInputStream parameter must implement readSegments.
@@ -83,7 +81,7 @@ namespace Gecko
         /// causing the request to be canceled.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void OnDataAvailable([MarshalAs(UnmanagedType.Interface)] nsIRequest aRequest, [MarshalAs(UnmanagedType.Interface)] nsISupports aContext, [MarshalAs(UnmanagedType.Interface)] nsIInputStream aInputStream, uint aOffset, uint aCount);
+		new void OnDataAvailable([MarshalAs(UnmanagedType.Interface)] nsIRequest aRequest, [MarshalAs(UnmanagedType.Interface)] nsISupports aContext, [MarshalAs(UnmanagedType.Interface)] nsIInputStream aInputStream, ulong aOffset, uint aCount);
 		
 		/// <summary>
         /// Returns an input stream that when read will fetch data delivered to the

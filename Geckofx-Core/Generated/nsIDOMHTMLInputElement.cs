@@ -38,7 +38,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("c12471c8-155f-4368-9e8b-13a231e85f3b")]
+	[Guid("e59a4df5-0904-414d-9203-9af2790698ea")]
 	public interface nsIDOMHTMLInputElement : nsIDOMHTMLElement
 	{
 		

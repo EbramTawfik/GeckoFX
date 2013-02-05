@@ -33,7 +33,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("5036f0f6-f77b-4168-9d57-a1c0dd66cf02")]
+	[Guid("cfb08e46-193c-4be7-a467-d7775fb2a31e")]
 	public interface nsIPermission
 	{
 		
@@ -42,6 +42,19 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetHostAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aHost);
+		
+		/// <summary>
+        /// The id of the app for which the permission is set.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetAppIdAttribute();
+		
+		/// <summary>
+        /// Whether the permission has been set to a page inside a browser element.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetIsInBrowserElementAttribute();
 		
 		/// <summary>
         /// a case-sensitive ASCII string, indicating the type of permission

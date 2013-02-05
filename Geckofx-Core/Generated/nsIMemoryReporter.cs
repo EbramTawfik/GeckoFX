@@ -165,13 +165,13 @@ namespace Gecko
         // The kind only matters for reporters in the "explicit" tree;
         // aboutMemory.js uses it to calculate "heap-unclassified".
         // </summary>
-		public const int KIND_NONHEAP = 0;
+		public const long KIND_NONHEAP = 0;
 		
 		// 
-		public const int KIND_HEAP = 1;
+		public const long KIND_HEAP = 1;
 		
 		// 
-		public const int KIND_OTHER = 2;
+		public const long KIND_OTHER = 2;
 		
 		// <summary>
         // The amount reported by a memory reporter must have one of the following
@@ -200,16 +200,16 @@ namespace Gecko
         //
         // Values greater than 100% are allowed.
         // </summary>
-		public const int UNITS_BYTES = 0;
+		public const long UNITS_BYTES = 0;
 		
 		// 
-		public const int UNITS_COUNT = 1;
+		public const long UNITS_COUNT = 1;
 		
 		// 
-		public const int UNITS_COUNT_CUMULATIVE = 2;
+		public const long UNITS_COUNT_CUMULATIVE = 2;
 		
 		// 
-		public const int UNITS_PERCENTAGE = 3;
+		public const long UNITS_PERCENTAGE = 3;
 	}
 	
 	/// <summary>nsIMemoryMultiReporterCallback </summary>
@@ -280,7 +280,7 @@ namespace Gecko
 	/// <summary>nsIMemoryReporterManager </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("4527b1d8-a81f-4af3-9623-80e4120392c7")]
+	[Guid("8b670411-ea2a-44c2-a36b-529db0670821")]
 	public interface nsIMemoryReporterManager
 	{
 		
@@ -360,5 +360,13 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetHasMozMallocUsableSizeAttribute();
+		
+		/// <summary>
+        /// Run a series of GC/CC's in an attempt to minimize the application's memory
+        /// usage.  When we're finished, we invoke the given runnable if it's not
+        /// null.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void MinimizeMemoryUsage([MarshalAs(UnmanagedType.Interface)] nsIRunnable callback);
 	}
 }

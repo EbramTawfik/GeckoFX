@@ -38,8 +38,7 @@ namespace Gecko
 		/// <summary>
         /// Sole purpose is to be able to identify the concrete class nsTabChild
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIContentFrameMessageManager GetMessageManagerAttribute();
+		System.IntPtr GetMessageManagerAttribute();
 	}
 }

@@ -32,7 +32,7 @@ namespace Gecko
     /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("6f043e42-02c9-4e8f-8f8d-1b83c6102827")]
+	[Guid("929AED00-3E15-49B7-8CA2-75003715B7E7")]
 	public interface nsIMozBrowserFrame : nsIDOMMozBrowserFrame
 	{
 		
@@ -80,7 +80,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetReallyIsBrowserAttribute();
+		bool GetReallyIsBrowserOrAppAttribute();
 		
 		/// <summary>
         /// Gets whether this frame really is an app frame.
@@ -96,6 +96,8 @@ namespace Gecko
 		/// <summary>
         /// Gets this frame's app manifest URL, if the frame really is an app frame.
         /// Otherwise, returns the empty string.
+        ///
+        /// This method is guaranteed not to fail.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetAppManifestURLAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAppManifestURL);

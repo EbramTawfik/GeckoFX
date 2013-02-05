@@ -77,15 +77,16 @@ namespace Gecko
 	/// <summary>nsIDeviceSensors </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("83306c9f-1c8f-43c4-900a-245d7f219511")]
+	[Guid("e46e47c7-55ff-44c4-abce-21b14ba07f86")]
 	public interface nsIDeviceSensors
 	{
 		
-		/// <summary>Member ListenerCount </summary>
-		/// <param name='aType'> </param>
-		/// <returns>A System.Int32</returns>
+		/// <summary>
+        /// Returns true if the given window has any listeners of the given type
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int ListenerCount(uint aType);
+		bool HasWindowListener(uint aType, [MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow);
 		
 		/// <summary>
         /// to call RemoveWindowListener before the window is deleted.

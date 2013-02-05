@@ -33,7 +33,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("79f73099-02ff-416d-9754-5a315e29ee4f")]
+	[Guid("3197172b-2f56-4837-9427-5e5d4b20a363")]
 	public interface nsIIDBTransaction
 	{
 		
@@ -69,37 +69,34 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Abort();
 		
-		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener GetOnerrorAttribute();
+		Gecko.JsVal GetOnerrorAttribute(System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnerrorAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnerror);
-		
-		/// <summary>
-        /// successfully. Receives an Event.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener GetOncompleteAttribute();
+		void SetOnerrorAttribute(Gecko.JsVal aOnerror, System.IntPtr jsContext);
 		
 		/// <summary>
         /// successfully. Receives an Event.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOncompleteAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOncomplete);
+		Gecko.JsVal GetOncompleteAttribute(System.IntPtr jsContext);
+		
+		/// <summary>
+        /// successfully. Receives an Event.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOncompleteAttribute(Gecko.JsVal aOncomplete, System.IntPtr jsContext);
 		
 		/// <summary>
         /// Receives an Event.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener GetOnabortAttribute();
+		Gecko.JsVal GetOnabortAttribute(System.IntPtr jsContext);
 		
 		/// <summary>
         /// Receives an Event.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnabortAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnabort);
+		void SetOnabortAttribute(Gecko.JsVal aOnabort, System.IntPtr jsContext);
 	}
 }

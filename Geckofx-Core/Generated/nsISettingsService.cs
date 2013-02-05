@@ -32,7 +32,7 @@ namespace Gecko
     /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("83d67430-8516-11e1-b0c4-0800200c9a66")]
+	[Guid("aad47850-2e87-11e2-81c1-0800200c9a66")]
 	public interface nsISettingsServiceCallback
 	{
 		
@@ -41,16 +41,16 @@ namespace Gecko
         /// License, v. 2.0. If a copy of the MPL was not distributed with this file,
         /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Handle([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName, Gecko.JsVal aResult, System.IntPtr jsContext);
+		void Handle([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aName, Gecko.JsVal aResult);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void HandleError([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aErrorMessage, System.IntPtr jsContext);
+		void HandleError([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aErrorMessage);
 	}
 	
 	/// <summary>nsISettingsServiceLock </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("3ab3cbc0-8513-11e1-b0c4-0800200c9a66")]
+	[Guid("d7a395a0-e292-11e1-834e-1761d57f5f99")]
 	public interface nsISettingsServiceLock
 	{
 		
@@ -58,8 +58,9 @@ namespace Gecko
 		/// <param name='aName'> </param>
 		/// <param name='aValue'> </param>
 		/// <param name='aCallback'> </param>
+		/// <param name='aMessage'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Set([MarshalAs(UnmanagedType.LPStr)] string aName, Gecko.JsVal aValue, [MarshalAs(UnmanagedType.Interface)] nsISettingsServiceCallback aCallback);
+		void Set([MarshalAs(UnmanagedType.LPStr)] string aName, Gecko.JsVal aValue, [MarshalAs(UnmanagedType.Interface)] nsISettingsServiceCallback aCallback, [MarshalAs(UnmanagedType.LPStr)] string aMessage);
 		
 		/// <summary>Member Get </summary>
 		/// <param name='aName'> </param>
@@ -71,14 +72,14 @@ namespace Gecko
 	/// <summary>nsISettingsService </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("3458e760-8513-11e1-b0c4-0800200c9a66")]
+	[Guid("f656f0c0-f776-11e1-a21f-0800200c9a66")]
 	public interface nsISettingsService
 	{
 		
-		/// <summary>Member GetLock </summary>
+		/// <summary>Member CreateLock </summary>
 		/// <returns>A nsISettingsServiceLock</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISettingsServiceLock GetLock();
+		nsISettingsServiceLock CreateLock();
 	}
 }

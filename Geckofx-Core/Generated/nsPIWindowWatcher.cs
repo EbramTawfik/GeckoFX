@@ -31,7 +31,7 @@ namespace Gecko
     ///   bookkeeping methods, not part of the public (embedding) interface. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("8624594a-28d7-4bc3-8d12-b1c2b9eefd90")]
+	[Guid("00788A84-152F-4BD8-A814-FD8EB545DB29")]
 	public interface nsPIWindowWatcher
 	{
 		
@@ -55,8 +55,8 @@ namespace Gecko
 		void RemoveWindow([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindow);
 		
 		/// <summary>
-        ///Like the public interface's open(), but can deal with openDialog
-        ///      style arguments.
+        ///Like the public interface's open(), but can handle openDialog-style
+        ///      arguments and calls which shouldn't result in us navigating the window.
         ///      @param aParent parent window, if any. Null if no parent.  If it is
         ///             impossible to get to an nsIWebBrowserChrome from aParent, this
         ///             method will effectively act as if aParent were null.
@@ -66,7 +66,10 @@ namespace Gecko
         ///             with this name already exists, the openWindow call may just load
         ///             aUrl in it (if aUrl is not null) and return it.
         ///      @param aFeatures window features from JS window.open. can be null.
+        ///      @param aCalledFromScript true if we were called from script.
         ///      @param aDialog use dialog defaults (see nsIDOMWindow::openDialog)
+        ///      @param aNavigate true if we should navigate the new window to the
+        ///             specified URL.
         ///      @param aArgs Window argument
         ///      @return the new window
         ///      @note This method may examine the JS context stack for purposes of
@@ -79,7 +82,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMWindow OpenWindowJS([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aParent, [MarshalAs(UnmanagedType.LPStr)] string aUrl, [MarshalAs(UnmanagedType.LPStr)] string aName, [MarshalAs(UnmanagedType.LPStr)] string aFeatures, [MarshalAs(UnmanagedType.U1)] bool aDialog, [MarshalAs(UnmanagedType.Interface)] nsIArray aArgs);
+		nsIDOMWindow OpenWindow2([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aParent, [MarshalAs(UnmanagedType.LPStr)] string aUrl, [MarshalAs(UnmanagedType.LPStr)] string aName, [MarshalAs(UnmanagedType.LPStr)] string aFeatures, [MarshalAs(UnmanagedType.U1)] bool aCalledFromScript, [MarshalAs(UnmanagedType.U1)] bool aDialog, [MarshalAs(UnmanagedType.U1)] bool aNavigate, [MarshalAs(UnmanagedType.Interface)] nsISupports aArgs);
 		
 		/// <summary>
         /// Find a named docshell tree item amongst all windows registered

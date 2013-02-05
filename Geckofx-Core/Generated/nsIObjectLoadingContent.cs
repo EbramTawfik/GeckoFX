@@ -31,7 +31,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("e3e284a3-b4a8-49ef-af6b-c8c4a158db86")]
+	[Guid("a812424b-4820-4e28-96c8-dd2b69e36496")]
 	public interface nsIObjectLoadingContent
 	{
 		
@@ -98,8 +98,8 @@ namespace Gecko
 		void PlayPlugin();
 		
 		/// <summary>
-        /// This attribute will return true if the plugin has been activated
-        /// and false if the plugin is still in the click-to-play state.
+        /// This attribute will return true if the plugin has been activated and
+        /// false if the plugin is still in the click-to-play or play preview state.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -121,6 +121,15 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIURI GetSrcURIAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetPluginFallbackTypeAttribute();
+		
+		/// <summary>
+        /// This method will disable the play-preview plugin state.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void CancelPlayPreview();
 	}
 	
 	/// <summary>nsIObjectLoadingContentConsts </summary>
@@ -128,7 +137,7 @@ namespace Gecko
 	{
 		
 		// <summary>
-        // This interface represents a content node that loads objects.
+        // See notes in nsObjectLoadingContent.h
         // </summary>
 		public const ulong TYPE_LOADING = 0;
 		
@@ -143,5 +152,65 @@ namespace Gecko
 		
 		// 
 		public const ulong TYPE_NULL = 4;
+		
+		// <summary>
+        // The content type is not supported (e.g. plugin not installed)
+        // </summary>
+		public const ulong PLUGIN_UNSUPPORTED = 0;
+		
+		// <summary>
+        // Showing alternate content
+        // </summary>
+		public const ulong PLUGIN_ALTERNATE = 1;
+		
+		// <summary>
+        // The plugin exists, but is disabled
+        // </summary>
+		public const ulong PLUGIN_DISABLED = 2;
+		
+		// <summary>
+        // The plugin is blocklisted and disabled
+        // </summary>
+		public const ulong PLUGIN_BLOCKLISTED = 3;
+		
+		// <summary>
+        // The plugin is considered outdated, but not disabled
+        // </summary>
+		public const ulong PLUGIN_OUTDATED = 4;
+		
+		// <summary>
+        // The plugin has crashed
+        // </summary>
+		public const ulong PLUGIN_CRASHED = 5;
+		
+		// <summary>
+        // Suppressed by security policy
+        // </summary>
+		public const ulong PLUGIN_SUPPRESSED = 6;
+		
+		// <summary>
+        // Blocked by content policy
+        // </summary>
+		public const ulong PLUGIN_USER_DISABLED = 7;
+		
+		// <summary>
+        // The plugin is disabled until the user clicks on it
+        // </summary>
+		public const ulong PLUGIN_CLICK_TO_PLAY = 8;
+		
+		// <summary>
+        // The plugin is vulnerable (update available)
+        // </summary>
+		public const ulong PLUGIN_VULNERABLE_UPDATABLE = 9;
+		
+		// <summary>
+        // The plugin is vulnerable (no update available)
+        // </summary>
+		public const ulong PLUGIN_VULNERABLE_NO_UPDATE = 10;
+		
+		// <summary>
+        // The plugin is in play preview mode
+        // </summary>
+		public const ulong PLUGIN_PLAY_PREVIEW = 11;
 	}
 }

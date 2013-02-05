@@ -402,12 +402,12 @@ namespace Gecko
 		// <summary>
         // Begins a new transaction with the given type.
         // </summary>
-		public const int TRANSACTION_DEFERRED = 0;
+		public const long TRANSACTION_DEFERRED = 0;
 		
 		// 
-		public const int TRANSACTION_IMMEDIATE = 1;
+		public const long TRANSACTION_IMMEDIATE = 1;
 		
 		// 
-		public const int TRANSACTION_EXCLUSIVE = 2;
+		public const long TRANSACTION_EXCLUSIVE = 2;
 	}
 }

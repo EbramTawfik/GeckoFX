@@ -689,7 +689,7 @@ namespace Gecko
 		/// <summary>
         /// Denotes whether the full-screen-api.enabled is true, no windowed
         /// plugins are present, and all ancestor documents have the
-        /// mozallowfullscreen attribute set.
+        /// allowfullscreen attribute set.
         ///
         /// @see <https://wiki.mozilla.org/index.php?title=Gecko:FullScreenAPI>
         /// </summary>
@@ -744,7 +744,14 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool GetHiddenAttribute();
+		
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new bool GetMozHiddenAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void GetVisibilityStateAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aVisibilityState);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetMozVisibilityStateAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozVisibilityState);

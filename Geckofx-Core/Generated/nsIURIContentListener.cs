@@ -61,7 +61,7 @@ namespace Gecko
         /// preferred by this listener.
         /// @param aRequest             Request that is providing the data.
         /// @param aContentHandler      nsIStreamListener that will consume the data.
-        /// This should be set to <code>nsnull</code> if
+        /// This should be set to <code>nullptr</code> if
         /// this content listener can't handle the content
         /// type.
         ///
@@ -92,7 +92,7 @@ namespace Gecko
         /// to aDesiredContentType before processing the
         /// data.  This causes a stream converted to be
         /// inserted into the nsIStreamListener chain.
-        /// This argument can be <code>nsnull</code> if
+        /// This argument can be <code>nullptr</code> if
         /// the content should be consumed directly as
         /// aContentType.
         ///
@@ -116,7 +116,7 @@ namespace Gecko
         /// to aDesiredContentType before processing the
         /// data.  This causes a stream converted to be
         /// inserted into the nsIStreamListener chain.
-        /// This argument can be <code>nsnull</code> if
+        /// This argument can be <code>nullptr</code> if
         /// the content should be consumed directly as
         /// aContentType.
         ///

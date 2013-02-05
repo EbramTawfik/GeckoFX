@@ -156,6 +156,10 @@ namespace Gecko
         // Generic nsITransportEventSink status codes.  nsITransport
         // implementations may override these status codes with their own more
         // specific status codes (e.g., see nsISocketTransport).
+        //
+        // In C++, these constants have a type of uint32_t, so C++ callers must use
+        // the NS_NET_STATUS_* constants defined below, which have a type of
+        // nsresult.
         // </summary>
 		public const ulong STATUS_READING = 0x804b0008;
 		

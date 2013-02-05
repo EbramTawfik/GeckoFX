@@ -32,7 +32,7 @@ namespace Gecko
     /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("a3ad2846-ffb2-48d7-a786-2254cb82560d")]
+	[Guid("d88998b7-ee30-4ae5-bbed-58f5711929de")]
 	public interface nsIDOMDOMRequest : nsIDOMEventTarget
 	{
 		
@@ -200,13 +200,13 @@ namespace Gecko
         /// @param aEvent the event that is being dispatched.
         /// @param aDOMEvent the event that is being dispatched, use if you want to
         /// dispatch nsIDOMEvent, not only nsEvent.
-        /// @param aPresContext the current presentation context, can be nsnull.
-        /// @param aEventStatus the status returned from the function, can be nsnull.
+        /// @param aPresContext the current presentation context, can be nullptr.
+        /// @param aEventStatus the status returned from the function, can be nullptr.
         ///
         /// @note If both aEvent and aDOMEvent are used, aEvent must be the internal
         /// event of the aDOMEvent.
         ///
-        /// If aDOMEvent is not nsnull (in which case aEvent can be nsnull) it is used
+        /// If aDOMEvent is not nullptr (in which case aEvent can be nullptr) it is used
         /// for dispatching, otherwise aEvent is used.
         ///
         /// @deprecated This method is here just until all the callers outside Gecko
@@ -256,25 +256,23 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMDOMError GetErrorAttribute();
 		
-		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener GetOnsuccessAttribute();
+		Gecko.JsVal GetOnsuccessAttribute(System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnsuccessAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnsuccess);
-		
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener GetOnerrorAttribute();
+		void SetOnsuccessAttribute(Gecko.JsVal aOnsuccess, System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnerrorAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnerror);
+		Gecko.JsVal GetOnerrorAttribute(System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOnerrorAttribute(Gecko.JsVal aOnerror, System.IntPtr jsContext);
 	}
 	
 	/// <summary>nsIDOMRequestService </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("eebcdf29-f8fa-4c36-bbc7-2146b1cbaf7b")]
+	[Guid("10996de9-e6f6-4058-97bd-45f1fe065eb5")]
 	public interface nsIDOMRequestService
 	{
 		
@@ -296,5 +294,17 @@ namespace Gecko
 		/// <param name='error'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void FireError([MarshalAs(UnmanagedType.Interface)] nsIDOMDOMRequest request, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase error);
+		
+		/// <summary>Member FireSuccessAsync </summary>
+		/// <param name='request'> </param>
+		/// <param name='result'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void FireSuccessAsync([MarshalAs(UnmanagedType.Interface)] nsIDOMDOMRequest request, Gecko.JsVal result);
+		
+		/// <summary>Member FireErrorAsync </summary>
+		/// <param name='request'> </param>
+		/// <param name='error'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void FireErrorAsync([MarshalAs(UnmanagedType.Interface)] nsIDOMDOMRequest request, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase error);
 	}
 }

@@ -57,7 +57,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("A1AF6CD9-C6E7-4037-99F8-DBCA1B03E345")]
+	[Guid("7afa38e6-45a1-4f0b-ae84-997669d14059")]
 	public interface nsIDOMWindow
 	{
 		
@@ -548,6 +548,9 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		float GetMozInnerScreenYAttribute();
 		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		float GetDevicePixelRatioAttribute();
+		
 		/// <summary>
         ///The maximum offset that the window can be scrolled to
         ///     (i.e., the document width/height minus the scrollport width/height) </summary>
@@ -817,7 +820,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMPerformance GetPerformanceAttribute();
+		nsISupports GetPerformanceAttribute();
 	}
 	
 	/// <summary>
@@ -1316,6 +1319,9 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new float GetMozInnerScreenYAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new float GetDevicePixelRatioAttribute();
 		
 		/// <summary>
         ///The maximum offset that the window can be scrolled to

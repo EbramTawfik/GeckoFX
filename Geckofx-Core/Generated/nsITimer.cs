@@ -47,6 +47,12 @@ namespace Gecko
     /// documented below.  You may also re-initialize (using one of the init()
     /// methods) an existing instance to avoid the overhead of destroying and
     /// creating a timer.  It is not necessary to cancel the timer in that case.
+    ///
+    /// It is not currently safe to initialize timers on any thread other than the
+    /// main thread (it will cause races on the timers' delay adjustment mechanism,
+    /// which may mess up timings).   You can, however, cancel() and/or release a
+    /// timer on a non-main thread (provided that its callback object has a
+    /// thread-safe release() function).
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]

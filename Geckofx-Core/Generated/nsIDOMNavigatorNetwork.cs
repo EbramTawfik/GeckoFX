@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("fb7c3429-aa2c-4ccc-948a-467c0de29fff")]
+	[Guid("c1685d27-f2e2-4ed9-998f-ff5b1442058f")]
 	public interface nsIDOMMozNavigatorNetwork
 	{
 		
@@ -43,9 +43,5 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMMozConnection GetMozConnectionAttribute();
-		
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMMozMobileConnection GetMozMobileConnectionAttribute();
 	}
 }

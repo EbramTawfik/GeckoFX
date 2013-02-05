@@ -32,7 +32,75 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("abb936bc-ba81-4c23-8dfa-3e5d96557044")]
+	[Guid("cf1ac02b-1f39-446e-815b-651ac78d2233")]
+	public interface nsIWifiScanResult
+	{
+		
+		/// <summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetSsidAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSsid);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetBssidAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBssid);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetCapabilitiesAttribute();
+		
+		/// <summary>
+        /// Strength of the signal to network.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetSignalStrengthAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetRelSignalStrengthAttribute();
+		
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetConnectedAttribute();
+	}
+	
+	/// <summary>nsIWifiScanResultConsts </summary>
+	public class nsIWifiScanResultConsts
+	{
+		
+		// 
+		public const long WPA_PSK = 0x01;
+		
+		// 
+		public const long WPA_EAP = 0x02;
+		
+		// 
+		public const long WEP = 0x04;
+	}
+	
+	/// <summary>nsIWifiScanResultsReady </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("a6931ebf-8493-4014-90e2-99f406999982")]
+	public interface nsIWifiScanResultsReady
+	{
+		
+		/// <summary>
+        /// Callback with list of networks.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Onready(uint count, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] nsIWifiScanResult[] results);
+		
+		/// <summary>
+        /// Callback if scanning for networks failed after 3 retry attempts.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Onfailure();
+	}
+	
+	/// <summary>nsIWifi </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("08dfefed-5c5d-4468-8c5d-2c65c24692d9")]
 	public interface nsIWifi
 	{
 		
@@ -41,29 +109,27 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Shutdown();
+		
+		/// <summary>
+        /// Returns the list of currently available networks as well as the list of
+        /// currently configured networks.
+        ///
+        /// On success a callback is notified with the list of networks.
+        /// On failure after 3 scan retry attempts a callback is notified of failure.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetWifiScanResults([MarshalAs(UnmanagedType.Interface)] nsIWifiScanResultsReady callback);
 	}
 	
 	/// <summary>nsIDOMWifiManager </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("eda793cd-0bb3-475e-9223-0e778856ebd1")]
+	[Guid("caa76ee3-8ffe-4ea5-bc59-3b53a9df0d07")]
 	public interface nsIDOMWifiManager
 	{
 		
 		/// <summary>
-        /// TODO Remove in favor of a settings API.
-        /// Activates or disactivates wifi.
-        /// onsuccess: Wifi has been successfully activated and can start
-        /// attempting to connect to networks. request.value will be true.
-        /// onerror: Wifi was not successfully activated. (TODO provide details!)
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest SetEnabled([MarshalAs(UnmanagedType.U1)] bool enabled);
-		
-		/// <summary>
-        /// Returns the list of currently available networks as well as the list of
-        /// currently configured networks.
+        /// Returns the list of currently available networks.
         /// onsuccess: We have obtained the current list of networks. request.value
         /// is an object whose property names are SSIDs and values are
         /// network objects.
@@ -72,6 +138,17 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMDOMRequest GetNetworks();
+		
+		/// <summary>
+        /// Returns the list of networks known to the system that will be
+        /// automatically connected to if they're in range.
+        /// onsuccess: request.value is an object whose property names are
+        /// SSIDs and values are network objects.
+        /// onerror: We were unable to obtain a list of known networks.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest GetKnownNetworks();
 		
 		/// <summary>
         /// Takes one of the networks returned from getNetworks and tries to
@@ -102,12 +179,43 @@ namespace Gecko
 		nsIDOMDOMRequest Forget(Gecko.JsVal network);
 		
 		/// <summary>
-        /// TODO Remove in favor of a settings API.
+        /// Wi-Fi Protected Setup functionality.
+        /// @param detail WPS detail which has 'method' and 'pin' field.
+        /// The possible method field values are:
+        /// - pbc: The Push Button Configuration.
+        /// - pin: The PIN configuration.
+        /// - cancel: Request to cancel WPS in progress.
+        /// If method field is 'pin', 'pin' field can exist and has
+        /// a PIN number.
+        /// onsuccess: We have successfully started/canceled wps.
+        /// onerror: We have failed to start/cancel wps.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest Wps(Gecko.JsVal detail);
+		
+		/// <summary>
+        /// Turn on/off wifi power saving mode.
+        /// @param enabled true or false.
+        /// onsuccess: We have successfully turn on/off wifi power saving mode.
+        /// onerror: We have failed to turn on/off wifi power saving mode.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest SetPowerSavingMode([MarshalAs(UnmanagedType.U1)] bool enabled);
+		
+		/// <summary>
         /// Returns whether or not wifi is currently enabled.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetEnabledAttribute();
+		
+		/// <summary>
+        /// Returns the MAC address of the wifi adapter.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetMacAddressAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMacAddress);
 		
 		/// <summary>
         /// An non-null object containing the following information:
@@ -216,7 +324,7 @@ namespace Gecko
 	/// <summary>nsIDOMMozWifiStatusChangeEvent </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("ba1dab70-b70d-11e1-afa6-0800200c9a66")]
+	[Guid("f3ef70b0-b2d3-4eb5-8ea4-008f8d330cd6")]
 	public interface nsIDOMMozWifiStatusChangeEvent : nsIDOMEvent
 	{
 		
@@ -348,6 +456,52 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void StopImmediatePropagation();
 		
+		/// <summary>
+        ///The original target of the event, before any retargetings. </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMEventTarget GetOriginalTargetAttribute();
+		
+		/// <summary>
+        /// The explicit original target of the event.  If the event was retargeted
+        /// for some reason other than an anonymous boundary crossing, this will be set
+        /// to the target before the retargeting occurs.  For example, mouse events
+        /// are retargeted to their parent node when they happen over text nodes (bug
+        /// 185889), and in that case .target will show the parent and
+        /// .explicitOriginalTarget will show the text node.
+        /// .explicitOriginalTarget differs from .originalTarget in that it will never
+        /// contain anonymous content.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMEventTarget GetExplicitOriginalTargetAttribute();
+		
+		/// <summary>
+        /// @deprecated Use nsIDOMEvent::stopPropagation.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void PreventBubble();
+		
+		/// <summary>
+        /// @deprecated Use nsIDOMEvent::stopPropagation.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void PreventCapture();
+		
+		/// <summary>
+        /// @deprecated Use nsIDOMEvent::defaultPrevented.
+        /// To be removed in bug 691151.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool GetPreventDefault();
+		
+		/// <summary>Member GetIsTrustedAttribute </summary>
+		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool GetIsTrustedAttribute();
+		
 		/// <summary>Member DuplicatePrivateData </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void DuplicatePrivateData();
@@ -415,7 +569,7 @@ namespace Gecko
 	/// <summary>nsIDOMMozWifiConnectionInfoEvent </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("b383e950-b70d-11e1-afa6-0800200c9a66")]
+	[Guid("1717f9d9-5fd8-43d8-a098-55924c6d37de")]
 	public interface nsIDOMMozWifiConnectionInfoEvent : nsIDOMEvent
 	{
 		
@@ -547,6 +701,52 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void StopImmediatePropagation();
 		
+		/// <summary>
+        ///The original target of the event, before any retargetings. </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMEventTarget GetOriginalTargetAttribute();
+		
+		/// <summary>
+        /// The explicit original target of the event.  If the event was retargeted
+        /// for some reason other than an anonymous boundary crossing, this will be set
+        /// to the target before the retargeting occurs.  For example, mouse events
+        /// are retargeted to their parent node when they happen over text nodes (bug
+        /// 185889), and in that case .target will show the parent and
+        /// .explicitOriginalTarget will show the text node.
+        /// .explicitOriginalTarget differs from .originalTarget in that it will never
+        /// contain anonymous content.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMEventTarget GetExplicitOriginalTargetAttribute();
+		
+		/// <summary>
+        /// @deprecated Use nsIDOMEvent::stopPropagation.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void PreventBubble();
+		
+		/// <summary>
+        /// @deprecated Use nsIDOMEvent::stopPropagation.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void PreventCapture();
+		
+		/// <summary>
+        /// @deprecated Use nsIDOMEvent::defaultPrevented.
+        /// To be removed in bug 691151.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool GetPreventDefault();
+		
+		/// <summary>Member GetIsTrustedAttribute </summary>
+		/// <returns>A System.Boolean</returns>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool GetIsTrustedAttribute();
+		
 		/// <summary>Member DuplicatePrivateData </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void DuplicatePrivateData();
@@ -611,6 +811,12 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetLinkSpeedAttribute();
 		
+		/// <summary>
+        /// IP address in the dotted quad format.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetIpAddressAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aIpAddress);
+		
 		/// <summary>Member InitMozWifiConnectionInfoEvent </summary>
 		/// <param name='aType'> </param>
 		/// <param name='aCanBubble'> </param>
@@ -619,7 +825,8 @@ namespace Gecko
 		/// <param name='signalStrength'> </param>
 		/// <param name='relSignalStrength'> </param>
 		/// <param name='linkSpeed'> </param>
+		/// <param name='ipAddress'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void InitMozWifiConnectionInfoEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType, [MarshalAs(UnmanagedType.U1)] bool aCanBubble, [MarshalAs(UnmanagedType.U1)] bool aCancelable, [MarshalAs(UnmanagedType.Interface)] nsIVariant aNetwork, short signalStrength, short relSignalStrength, int linkSpeed);
+		void InitMozWifiConnectionInfoEvent([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType, [MarshalAs(UnmanagedType.U1)] bool aCanBubble, [MarshalAs(UnmanagedType.U1)] bool aCancelable, [MarshalAs(UnmanagedType.Interface)] nsIVariant aNetwork, short signalStrength, short relSignalStrength, int linkSpeed, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase ipAddress);
 	}
 }

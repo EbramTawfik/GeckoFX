@@ -42,8 +42,9 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int DumpFrameModel([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow aWindowToDump, [MarshalAs(UnmanagedType.Interface)] nsIFile aFile, uint aFlagsMask);
 		
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int CompareFrameModels([MarshalAs(UnmanagedType.Interface)] nsIFile aBaseFile, [MarshalAs(UnmanagedType.Interface)] nsIFile aVerFile, uint aFlags);
+		bool CompareFrameModels([MarshalAs(UnmanagedType.Interface)] nsIFile aBaseFile, [MarshalAs(UnmanagedType.Interface)] nsIFile aVerFile, uint aFlags);
 	}
 	
 	/// <summary>nsILayoutRegressionTesterConsts </summary>

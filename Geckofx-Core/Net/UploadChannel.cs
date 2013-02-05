@@ -21,7 +21,7 @@ namespace Gecko.Net
 			get { return _uploadChannel.Instance.GetUploadStreamAttribute().Wrap( InputStream.Create ); }
 		}
 
-		public void SetUploadStream( InputStream stream, string contentType, int len )
+		public void SetUploadStream( InputStream stream, string contentType, long len )
 		{
 			nsString.Set( _uploadChannel.Instance.SetUploadStream, stream._inputStream, contentType, len );
 		}

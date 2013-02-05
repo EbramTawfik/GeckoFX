@@ -31,7 +31,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("4b1a775d-f6d3-4389-be2e-9dfbaf2ab47b")]
+	[Guid("11ddd4ed-8f5b-40b3-b2a0-27c20ea1c88d")]
 	public interface nsICookiePermission
 	{
 		
@@ -62,7 +62,8 @@ namespace Gecko
         /// the channel corresponding to aURI
         ///
         /// @return one of the following nsCookieAccess values:
-        /// ACCESS_DEFAULT, ACCESS_ALLOW, or ACCESS_DENY
+        /// ACCESS_DEFAULT, ACCESS_ALLOW, ACCESS_DENY, or
+        /// ACCESS_ALLOW_FIRST_PARTY_ONLY
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr CanAccess([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIChannel aChannel);
@@ -97,26 +98,6 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool CanSetCookie([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIChannel aChannel, [MarshalAs(UnmanagedType.Interface)] nsICookie2 aCookie, [MarshalAs(UnmanagedType.U1)] ref bool aIsSession, ref long aExpiry);
-		
-		/// <summary>
-        /// getOriginatingURI
-        ///
-        /// determines the originating URI for a load given a channel, for third-party
-        /// cookie blocking. this is done by leveraging the loadgroup of the channel to
-        /// find the root content docshell, and the URI associated with its principal.
-        /// if the root content docshell or its principal's URI cannot be obtained,
-        /// this method will throw.
-        ///
-        /// @param aChannel
-        /// the channel for the load trying to get or set cookies
-        ///
-        /// @return the originating URI.
-        ///
-        /// @status DEPRECATED -- use mozIThirdPartyUtil instead.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI GetOriginatingURI([MarshalAs(UnmanagedType.Interface)] nsIChannel aChannel);
 	}
 	
 	/// <summary>nsICookiePermissionConsts </summary>
@@ -135,11 +116,14 @@ namespace Gecko
 		public const long ACCESS_DENY = 2;
 		
 		// <summary>
-        // additional values for nsCookieAccess, which are not directly used by
-        // any methods on this interface, but are nevertheless convenient to define
-        // here. these may be relocated somewhere else if we ever consider freezing
-        // this interface.
+        // additional values for nsCookieAccess which may not match
+        // nsIPermissionManager. Keep 3-7 available to allow nsIPermissionManager to
+        // add values without colliding. ACCESS_SESSION is not directly returned by
+        // any methods on this interface.
         // </summary>
 		public const long ACCESS_SESSION = 8;
+		
+		// 
+		public const long ACCESS_ALLOW_FIRST_PARTY_ONLY = 9;
 	}
 }

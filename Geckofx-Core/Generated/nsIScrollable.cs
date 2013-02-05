@@ -99,8 +99,8 @@ namespace Gecko
 		
 		/// <summary>
         ///Get information about whether the vertical and horizontal scrollbars are
-        ///	currently visible.  nsnull is a valid argument.  If you are only interested
-        ///	in one of the visibility settings pass nsnull in for the one you aren't
+        ///	currently visible.  nullptr is a valid argument.  If you are only interested
+        ///	in one of the visibility settings pass nullptr in for the one you aren't
         ///	interested in.
         ///	 </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

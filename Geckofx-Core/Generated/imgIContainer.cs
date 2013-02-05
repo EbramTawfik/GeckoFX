@@ -152,7 +152,7 @@ namespace Gecko
         /// If this image is TYPE_VECTOR, i.e. is really an embedded SVG document,
         /// this method returns a pointer to the root nsIFrame of that document. If
         /// not (or if the root nsIFrame isn't available for some reason), this method
-        /// returns nsnull.
+        /// returns nullptr.
         ///
         /// "notxpcom" for convenience, since we have no need for nsresult return-val.
         /// </summary>

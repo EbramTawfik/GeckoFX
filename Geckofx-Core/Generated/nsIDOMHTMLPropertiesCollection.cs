@@ -31,7 +31,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("da1101db-d1d7-465d-9fd6-49ec9960cb20")]
+	[Guid("b7e84688-98e0-46b2-9d20-8a0e7329dd25")]
 	public interface nsIDOMHTMLPropertiesCollection
 	{
 		
@@ -56,7 +56,7 @@ namespace Gecko
         /// Get the node at the index.  Returns null if the index is out of bounds.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		System.IntPtr GetNodeAt(uint index);
+		IntPtr GetElementAt(uint index);
 		
 		/// <summary>
         /// Get the node for the name.  Returns null if no node exists for the name.

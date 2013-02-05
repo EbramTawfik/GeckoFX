@@ -33,7 +33,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("f3530e8d-0016-4f56-91fe-28958a7ec296")]
+	[Guid("8849feef-0ead-4e9b-b63b-8d862c42a736")]
 	public interface mozIAsyncFavicons
 	{
 		
@@ -68,6 +68,9 @@ namespace Gecko
         /// don't have it or it has expired from the cache.  Setting
         /// aForceReload to true causes us to reload the favicon even if we
         /// have a usable copy.
+        /// @param aFaviconLoadType
+        /// Set to FAVICON_LOAD_PRIVATE if the favicon is loaded from a private
+        /// browsing window.  Set to FAVICON_LOAD_NON_PRIVATE otherwise.
         /// @param aCallback
         /// Once we're done setting and/or fetching the favicon, we invoke this
         /// callback.
@@ -75,7 +78,7 @@ namespace Gecko
         /// @see nsIFaviconDataCallback in nsIFaviconService.idl.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAndFetchFaviconForPage([MarshalAs(UnmanagedType.Interface)] nsIURI aPageURI, [MarshalAs(UnmanagedType.Interface)] nsIURI aFaviconURI, [MarshalAs(UnmanagedType.U1)] bool aForceReload, [MarshalAs(UnmanagedType.Interface)] nsIFaviconDataCallback aCallback);
+		void SetAndFetchFaviconForPage([MarshalAs(UnmanagedType.Interface)] nsIURI aPageURI, [MarshalAs(UnmanagedType.Interface)] nsIURI aFaviconURI, [MarshalAs(UnmanagedType.U1)] bool aForceReload, uint aFaviconLoadType, [MarshalAs(UnmanagedType.Interface)] nsIFaviconDataCallback aCallback);
 		
 		/// <summary>
         /// Sets the data for a given favicon URI either by replacing existing data in

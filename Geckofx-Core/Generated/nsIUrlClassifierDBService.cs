@@ -105,20 +105,19 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("7aae3f3a-527d-488b-a448-45dca6db0e80")]
+	[Guid("e326ec41-46fd-4127-ad3c-3c58b2cdf196")]
 	public interface nsIUrlClassifierDBService
 	{
 		
 		/// <summary>
         /// Looks up a key in the database.
         ///
-        /// @param key: The URL to search for.  This URL will be canonicalized
-        /// by the service.
+        /// @param key: The principal containing the information to search.
         /// @param c: The callback will be called with a comma-separated list
         /// of tables to which the key belongs.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Lookup([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase spec, [MarshalAs(UnmanagedType.Interface)] nsIUrlClassifierCallback c);
+		void Lookup([MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, [MarshalAs(UnmanagedType.Interface)] nsIUrlClassifierCallback c);
 		
 		/// <summary>
         /// Lists the tables along with which chunks are available in each table.
@@ -216,20 +215,19 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("2af84c09-269e-4fc2-b28f-af56717db118")]
+	[Guid("0445be75-b114-43ea-89dc-aa16af26e77e")]
 	public interface nsIUrlClassifierDBServiceWorker : nsIUrlClassifierDBService
 	{
 		
 		/// <summary>
         /// Looks up a key in the database.
         ///
-        /// @param key: The URL to search for.  This URL will be canonicalized
-        /// by the service.
+        /// @param key: The principal containing the information to search.
         /// @param c: The callback will be called with a comma-separated list
         /// of tables to which the key belongs.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void Lookup([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase spec, [MarshalAs(UnmanagedType.Interface)] nsIUrlClassifierCallback c);
+		new void Lookup([MarshalAs(UnmanagedType.Interface)] nsIPrincipal principal, [MarshalAs(UnmanagedType.Interface)] nsIUrlClassifierCallback c);
 		
 		/// <summary>
         /// Lists the tables along with which chunks are available in each table.
@@ -326,11 +324,11 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void CloseDb();
 		
-		/// <summary>
-        /// Cache the results of a hash completion.
-        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CacheCompletions(System.IntPtr entries);
+		void CacheCompletions(System.IntPtr completions);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void CacheMisses(System.IntPtr misses);
 	}
 	
 	/// <summary>
@@ -341,7 +339,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("f1dc83c6-ad43-4f0f-a809-fd43de7de8a4")]
+	[Guid("b903dc8f-dff1-42fe-894b-36e7a59bb801")]
 	public interface nsIUrlClassifierLookupCallback
 	{
 		

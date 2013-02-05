@@ -32,7 +32,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("83123036-81c0-47cb-8d9c-bd85d29a1b3f")]
+	[Guid("32de7b6e-90c3-11e1-b57e-001fbc092072")]
 	public interface nsPISocketTransportService : nsISocketTransportService
 	{
 		
@@ -126,5 +126,20 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetSendBufferSizeAttribute();
+		
+		/// <summary>
+        /// Controls whether the socket transport service is offline.
+        /// Setting it offline will cause non-local socket detachment.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetOfflineAttribute();
+		
+		/// <summary>
+        /// Controls whether the socket transport service is offline.
+        /// Setting it offline will cause non-local socket detachment.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOfflineAttribute([MarshalAs(UnmanagedType.U1)] bool aOffline);
 	}
 }

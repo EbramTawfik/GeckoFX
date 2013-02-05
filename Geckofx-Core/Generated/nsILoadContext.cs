@@ -33,7 +33,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("386806c3-c4cb-4b3d-b05d-c08ea10f5585")]
+	[Guid("17f6a38a-3f4b-4c94-8252-9d9f7dbf4960")]
 	public interface nsILoadContext
 	{
 		
@@ -57,6 +57,17 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIDOMWindow GetTopWindowAttribute();
+		
+		/// <summary>
+        /// topFrameElement is the <iframe> or <frame> element which contains the
+        /// topWindow with which the load is associated.
+        ///
+        /// Note that we may have a topFrameElement even when we don't have an
+        /// associatedWindow, if the topFrameElement's content lives out of process.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMElement GetTopFrameElementAttribute();
 		
 		/// <summary>
         /// Check whether the load is happening in a particular type of application.
@@ -92,5 +103,19 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetUsePrivateBrowsingAttribute([MarshalAs(UnmanagedType.U1)] bool aUsePrivateBrowsing);
+		
+		/// <summary>
+        /// Returns true iff the load is occurring inside a browser element.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetIsInBrowserElementAttribute();
+		
+		/// <summary>
+        /// Returns the app id of the app the load is occurring is in. Returns
+        /// nsIScriptSecurityManager::NO_APP_ID if the load is not part of an app.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetAppIdAttribute();
 	}
 }

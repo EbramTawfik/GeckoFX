@@ -245,5 +245,11 @@ namespace Gecko
         // protocols.
         // </summary>
 		public const ulong URI_FORBIDS_COOKIE_ACCESS = (1<<15);
+		
+		// <summary>
+        // URIs for this protocol require the webapps permission on the principal
+        // when opening URIs for a different domain. See bug#773886
+        // </summary>
+		public const ulong URI_CROSS_ORIGIN_NEEDS_WEBAPPS_PERM = (1<<16);
 	}
 }

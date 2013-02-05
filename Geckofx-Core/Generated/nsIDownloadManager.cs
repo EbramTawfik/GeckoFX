@@ -31,7 +31,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("bacca1ac-1b01-4a6f-9e91-c2ead1f7d2c0")]
+	[Guid("9b6b2f21-affb-4e8f-907a-fd5bd7a2d562")]
 	public interface nsIDownloadManager
 	{
 		
@@ -60,6 +60,10 @@ namespace Gecko
         /// @param aCancelable An object that can be used to abort the download.
         /// Must not be null.
         ///
+        /// @param aIsPrivate Used to determine the privacy status of the new download.
+        /// If true, the download is stored in a manner that leaves
+        /// no permanent trace outside of the current private session.
+        ///
         /// @return The newly created download item with the passed-in properties.
         ///
         /// @note This does not actually start a download.  If you want to add and
@@ -69,7 +73,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDownload AddDownload(short aDownloadType, [MarshalAs(UnmanagedType.Interface)] nsIURI aSource, [MarshalAs(UnmanagedType.Interface)] nsIURI aTarget, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDisplayName, [MarshalAs(UnmanagedType.Interface)] nsIMIMEInfo aMIMEInfo, long aStartTime, [MarshalAs(UnmanagedType.Interface)] nsIFile aTempFile, [MarshalAs(UnmanagedType.Interface)] nsICancelable aCancelable);
+		nsIDownload AddDownload(short aDownloadType, [MarshalAs(UnmanagedType.Interface)] nsIURI aSource, [MarshalAs(UnmanagedType.Interface)] nsIURI aTarget, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDisplayName, [MarshalAs(UnmanagedType.Interface)] nsIMIMEInfo aMIMEInfo, long aStartTime, [MarshalAs(UnmanagedType.Interface)] nsIFile aTempFile, [MarshalAs(UnmanagedType.Interface)] nsICancelable aCancelable, [MarshalAs(UnmanagedType.U1)] bool aIsPrivate);
 		
 		/// <summary>
         /// Retrieves a download managed by the download manager.  This can be one that

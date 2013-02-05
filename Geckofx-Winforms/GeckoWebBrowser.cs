@@ -2163,10 +2163,15 @@ namespace Gecko
 									var httpChannelXHR = Xpcom.QueryInterface<nsIXMLHttpRequest>(callbacks);
 
 									if (httpChannelXHR != null) {
+#if false
 										nsIDOMEventListener origEventListener = httpChannelXHR.GetOnreadystatechangeAttribute();
 										var newEventListener = new GeckoJavaScriptHttpChannelWrapper(this, httpChannel, origEventListener);
 										origJavaScriptHttpChannels.Add(httpChannel, newEventListener);
 										httpChannelXHR.SetOnreadystatechangeAttribute(newEventListener);
+#else
+										// TODO: update for xulrunner/firefox 18
+										throw new NotImplementedException();
+#endif
 									}
 								}
 								break;

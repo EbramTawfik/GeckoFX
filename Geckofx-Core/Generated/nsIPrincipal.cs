@@ -30,7 +30,7 @@ namespace Gecko
     ///Defines the abstract interface for a principal. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("42ba6a38-d619-49ab-8248-3d247e959d5e")]
+	[Guid("011966C0-8564-438D-B37A-08D7E1195E5A")]
 	public interface nsIPrincipal : nsISerializable
 	{
 		
@@ -56,22 +56,9 @@ namespace Gecko
 		new void Write([MarshalAs(UnmanagedType.Interface)] nsIObjectOutputStream aOutputStream);
 		
 		/// <summary>
-        /// Returns the security preferences associated with this principal.
-        /// prefBranch will be set to the pref branch to which these preferences
-        /// pertain.  id is a pseudo-unique identifier, pertaining to either the
-        /// fingerprint or the origin.  subjectName is a name that identifies the
-        /// entity this principal represents (may be empty).  grantedList and
-        /// deniedList are space-separated lists of capabilities which were
-        /// explicitly granted or denied by a pref.  isTrusted is a boolean that
-        /// indicates whether this is a codebaseTrusted certificate.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPreferences([MarshalAs(UnmanagedType.LPStr)] ref string prefBranch, [MarshalAs(UnmanagedType.LPStr)] ref string id, [MarshalAs(UnmanagedType.LPStr)] ref string subjectName, [MarshalAs(UnmanagedType.LPStr)] ref string grantedList, [MarshalAs(UnmanagedType.LPStr)] ref string deniedList, [MarshalAs(UnmanagedType.U1)] ref bool isTrusted);
-		
-		/// <summary>
         /// Returns whether the other principal is equivalent to this principal.
-        /// Principals are considered equal if they are the same principal,
-        /// they have the same origin, or have the same certificate fingerprint ID
+        /// Principals are considered equal if they are the same principal, or
+        /// they have the same origin.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -101,19 +88,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetSecurityPolicyAttribute(System.IntPtr aSecurityPolicy);
-		
-		/// <summary>
-        /// messes with it?  Is that OK?
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		short CanEnableCapability([MarshalAs(UnmanagedType.LPStr)] string capability);
-		
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool IsCapabilityEnabled([MarshalAs(UnmanagedType.LPStr)] string capability, System.IntPtr annotation);
-		
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EnableCapability([MarshalAs(UnmanagedType.LPStr)] string capability, ref System.IntPtr annotation);
 		
 		/// <summary>
         /// The codebase URI to which this principal pertains.  This is
@@ -148,34 +122,9 @@ namespace Gecko
 		string GetOriginAttribute();
 		
 		/// <summary>
-        /// Whether this principal is associated with a certificate.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetHasCertificateAttribute();
-		
-		/// <summary>
-        /// consider using something else for this....
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetFingerprintAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aFingerprint);
-		
-		/// <summary>
-        /// The pretty name for the certificate.  This sort of (but not really)
-        /// identifies the subject of the certificate (the entity that stands behind
-        /// the certificate).  Note that this may be empty; prefer to get the
-        /// certificate itself and get this information from it, since that may
-        /// provide more information.
-        ///
-        /// Throws if there is no certificate associated with this principal.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetPrettyNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aPrettyName);
-		
-		/// <summary>
         /// Returns whether the other principal is equal to or weaker than this
-        /// principal.  Principals are equal if they are the same object, they
-        /// have the same origin, or they have the same certificate ID.
+        /// principal. Principals are equal if they are the same object or they
+        /// have the same origin.
         ///
         /// Thus a principal always subsumes itself.
         ///
@@ -185,18 +134,6 @@ namespace Gecko
         /// privileged, security context) is not equal to any other principal
         /// (including other null principals), and therefore does not subsume
         /// anything but itself.
-        ///
-        /// Both codebase and certificate principals are subsumed by the system
-        /// principal, but no codebase or certificate principal yet subsumes any
-        /// other codebase or certificate principal.  This may change in a future
-        /// release; note that nsIPrincipal is unfrozen, not slated to be frozen.
-        ///
-        /// XXXbz except see bug 147145!
-        ///
-        /// Note for the future: Perhaps we should consider a certificate principal
-        /// for a given URI subsuming a codebase principal for the same URI?  Not
-        /// sure what the immediate benefit would be, but I think the setup could
-        /// make some code (e.g. MaybeDowngradeToCodebase) clearer.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -215,7 +152,13 @@ namespace Gecko
         /// located at the given URI under the same-origin policy. This means that
         /// codebase principals are only allowed to load resources from the same
         /// domain, the system principal is allowed to load anything, and null
-        /// principals are not allowed to load anything.
+        /// principals are not allowed to load anything. This is changed slightly
+        /// by the optional flag allowIfInheritsPrincipal (which defaults to false)
+        /// which allows the load of a data: URI (which inherits the principal of
+        /// its loader) or a URI with the same principal as its loader (eg. a
+        /// Blob URI).
+        /// In these cases, with allowIfInheritsPrincipal set to true, the URI can
+        /// be loaded by a null principal.
         ///
         /// If the load is allowed this function does nothing. If the load is not
         /// allowed the function throws NS_ERROR_DOM_BAD_URI.
@@ -229,30 +172,13 @@ namespace Gecko
         /// @param uri    The URI about to be loaded.
         /// @param report If true, will report a warning to the console service
         /// if the load is not allowed.
+        /// @param allowIfInheritsPrincipal   If true, the load is allowed if the
+        /// loadee inherits the principal of the
+        /// loader.
         /// @throws NS_ERROR_DOM_BAD_URI if the load is not allowed.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CheckMayLoad([MarshalAs(UnmanagedType.Interface)] nsIURI uri, [MarshalAs(UnmanagedType.U1)] bool report);
-		
-		/// <summary>
-        /// The subject name for the certificate.  This actually identifies the
-        /// subject of the certificate.  This may well not be a string that would
-        /// mean much to a typical user on its own (e.g. it may have a number of
-        /// different names all concatenated together with some information on what
-        /// they mean in between).
-        ///
-        /// Throws if there is no certificate associated with this principal.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSubjectNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aSubjectName);
-		
-		/// <summary>
-        /// The certificate associated with this principal, if any.  If there isn't
-        /// one, this will return null.  Getting this attribute never throws.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports GetCertificateAttribute();
+		void CheckMayLoad([MarshalAs(UnmanagedType.Interface)] nsIURI uri, [MarshalAs(UnmanagedType.U1)] bool report, [MarshalAs(UnmanagedType.U1)] bool allowIfInheritsPrincipal);
 		
 		/// <summary>
         /// A Content Security Policy associated with this principal.
@@ -265,27 +191,109 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetCspAttribute(System.IntPtr aCsp);
+		
+		/// <summary>
+        /// Returns the extended origin of the principal.
+        /// The extended origin is a string that has more information than the origin
+        /// and can be used to isolate data or permissions between different
+        /// principals while taking into account parameters like the app id or the
+        /// fact that the principal is embedded in a mozbrowser.
+        /// Some principals will return the origin for extendedOrigin.
+        /// Some principals will assert if you try to access the extendedOrigin.
+        ///
+        /// The extendedOrigin is intended to be an opaque identifier. It is
+        /// currently "human-readable" but no callers should assume it will stay
+        /// as is and it might be crypto-hashed at some point.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetExtendedOriginAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aExtendedOrigin);
+		
+		/// <summary>
+        /// Gets the principal's app status, which indicates whether the principal
+        /// corresponds to "app code", and if it does, how privileged that code is.
+        /// This method returns one of the APP_STATUS constants above.
+        ///
+        /// Note that a principal may have
+        ///
+        /// appId != nsIScriptSecurityManager::NO_APP_ID &&
+        /// appId != nsIScriptSecurityManager::UNKNOWN_APP_ID
+        ///
+        /// and still have appStatus == APP_STATUS_NOT_INSTALLED.  That's because
+        /// appId identifies the app that contains this principal, but a window
+        /// might be contained in an app and not be running code that the app has
+        /// vouched for.  For example, the window might be inside an <iframe
+        /// mozbrowser>, or the window's origin might not match the app's origin.
+        ///
+        /// If you're doing a check to determine "does this principal correspond to
+        /// app code?", you must check appStatus; checking appId != NO_APP_ID is not
+        /// sufficient.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		ushort GetAppStatusAttribute();
+		
+		/// <summary>
+        /// Gets the id of the app this principal is inside.  If this principal is
+        /// not inside an app, returns nsIScriptSecurityManager::NO_APP_ID.
+        ///
+        /// Note that this principal does not necessarily have the permissions of
+        /// the app identified by appId.  For example, this principal might
+        /// correspond to an iframe whose origin differs from that of the app frame
+        /// containing it.  In this case, the iframe will have the appId of its
+        /// containing app frame, but the iframe must not run with the app's
+        /// permissions.
+        ///
+        /// Similarly, this principal might correspond to an <iframe mozbrowser>
+        /// inside an app frame; in this case, the content inside the iframe should
+        /// not have any of the app's permissions, even if the iframe is at the same
+        /// origin as the app.
+        ///
+        /// If you're doing a security check based on appId, you must check
+        /// appStatus as well.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetAppIdAttribute();
+		
+		/// <summary>
+        /// Returns true iff the principal is inside a browser element.  (<iframe
+        /// mozbrowser mozapp> does not count as a browser element.)
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetIsInBrowserElementAttribute();
+		
+		/// <summary>
+        /// Returns true if this principal has an unknown appId. This shouldn't
+        /// generally be used. We only expose it due to not providing the correct
+        /// appId everywhere where we construct principals.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetUnknownAppIdAttribute();
+		
+		/// <summary>
+        /// Returns true iff this principal is a null principal (corresponding to an
+        /// unknown, hence assumed minimally privileged, security context).
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetIsNullPrincipalAttribute();
 	}
 	
 	/// <summary>nsIPrincipalConsts </summary>
 	public class nsIPrincipalConsts
 	{
 		
-		// <summary>
-        // Values of capabilities for each principal. Order is
-        // significant: if an operation is performed on a set
-        // of capabilities, the minimum is computed.
-        // </summary>
-		public const int ENABLE_DENIED = 1;
+		// 
+		public const int APP_STATUS_NOT_INSTALLED = 0;
 		
 		// 
-		public const int ENABLE_UNKNOWN = 2;
+		public const int APP_STATUS_INSTALLED = 1;
 		
 		// 
-		public const int ENABLE_WITH_USER_PERMISSION = 3;
+		public const int APP_STATUS_PRIVILEGED = 2;
 		
 		// 
-		public const int ENABLE_GRANTED = 4;
+		public const int APP_STATUS_CERTIFIED = 3;
 	}
 	
 	/// <summary>
