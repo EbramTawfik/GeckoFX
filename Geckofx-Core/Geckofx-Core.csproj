@@ -87,6 +87,7 @@
     <Compile Include="DOM\Events\DomMouseEventArgs.cs" />
     <Compile Include="DOM\Events\DomUIEventArgs.cs" />
     <Compile Include="GeckoError.cs" />
+    <Compile Include="GeckoWindowCollection.cs" />
     <Compile Include="Generated\nsICertificatePrincipal.cs" />
     <Compile Include="Generated\nsIDOMBluetoothDevice.cs" />
     <Compile Include="Generated\nsIDOMIccManager.cs" />

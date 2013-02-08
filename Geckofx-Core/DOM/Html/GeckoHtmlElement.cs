@@ -1,3 +1,4 @@
+using System;
 using System.Drawing;
 
 namespace Gecko
@@ -39,7 +40,27 @@ namespace Gecko
 				return GeckoStyle.Create(Xpcom.QueryInterface<nsIDOMElementCSSInlineStyle>(DomObject).GetStyleAttribute());
 			}
 		}
-		
+
+		/// <summary>
+		/// Gets style of the GeckoElement. 
+		/// </summary>
+		public GeckoStyle ComputedStyle
+		{
+			get
+			{
+				nsIDOMCSSStyleDeclaration style;
+				using (var element = new InstanceWrapper<nsIDOMElement>(Xpcom.QueryInterface<nsIDOMElement>(this.DomObject)))
+				{
+					using (var nullString = new nsAString())
+					{
+						nullString.SetData(null);
+						style = this.OwnerDocument.DefaultView.DomWindow.GetComputedStyle(element.Instance, nullString);
+					}
+				}
+				return GeckoStyle.Create(style);
+			}
+		}
+
 		/// <summary>
 		/// Gets the parent element of this one.
 		/// </summary>
@@ -125,8 +146,31 @@ namespace Gecko
 			get
 			{
 				nsIDOMClientRect domRect = DomNSElement.GetBoundingClientRect();
-				var r = new Rectangle((int)domRect.GetLeftAttribute(), (int)domRect.GetTopAttribute(), (int)domRect.GetWidthAttribute(), (int)domRect.GetHeightAttribute());
-				return r;				
+				return new Rectangle(
+					(int)Math.Round(domRect.GetLeftAttribute()),
+					(int)Math.Round(domRect.GetTopAttribute()),
+					(int)Math.Round(domRect.GetWidthAttribute()),
+					(int)Math.Round(domRect.GetHeightAttribute()));			
+			}
+		}
+
+		public System.Drawing.Rectangle[] ClientRects
+		{
+			get
+			{
+				nsIDOMClientRectList domRects = DomElement.GetClientRects();
+				uint count = domRects.GetLengthAttribute();
+				Rectangle[] rects = new Rectangle[count];
+				for (uint i = 0; i < count; i++)
+				{
+					nsIDOMClientRect domRect = domRects.Item(i);
+					rects[i] = new Rectangle(
+						(int)Math.Round(domRect.GetLeftAttribute()),
+						(int)Math.Round(domRect.GetTopAttribute()),
+						(int)Math.Round(domRect.GetWidthAttribute()),
+						(int)Math.Round(domRect.GetHeightAttribute()));
+				}
+				return rects;
 			}
 		}
 
