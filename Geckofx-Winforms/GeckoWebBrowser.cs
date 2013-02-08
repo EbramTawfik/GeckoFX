@@ -1592,6 +1592,18 @@ namespace Gecko
 					}
 				}
 			}
+			else if (stateIsDocument)
+			{
+				GeckoNavigatingEventArgs ea = new GeckoNavigatingEventArgs(destUri, domWindow);
+				OnFrameNavigating(ea);
+
+				if (ea.Cancel)
+				{
+					// TODO: test it on Linux
+					if (!Xpcom.IsLinux)
+						aRequest.Cancel(NS_BINDING_ABORTED);
+				}
+			}
 			#endregion STATE_START
 
 			#region STATE_REDIRECTING
@@ -1600,7 +1612,8 @@ namespace Gecko
 			 * When a redirect occurs, a new request is generated automatically to process the new request.
 			 * Expect a corresponding STATE_START event for the new request, and a STATE_STOP for the redirected request.
 			 */
-			else if ((aStateFlags & nsIWebProgressListenerConstants.STATE_REDIRECTING) != 0) {
+			else if ((aStateFlags & nsIWebProgressListenerConstants.STATE_REDIRECTING) != 0)
+			{
 
 				// make sure we're loading the top-level window
 				GeckoRedirectingEventArgs ea = new GeckoRedirectingEventArgs(destUri, domWindow);
@@ -1617,7 +1630,8 @@ namespace Gecko
 			/* This flag indicates that data for a request is being transferred to an end consumer.
 			 * This flag indicates that the request has been targeted, and that the user may start seeing content corresponding to the request.
 			 */
-			else if ((aStateFlags & nsIWebProgressListenerConstants.STATE_TRANSFERRING) != 0) {
+			else if ((aStateFlags & nsIWebProgressListenerConstants.STATE_TRANSFERRING) != 0)
+			{
 			}
 			#endregion STATE_TRANSFERRING
 
@@ -1625,7 +1639,8 @@ namespace Gecko
 			/* This flag indicates the completion of a request.
 			 * The aStatus parameter to onStateChange() indicates the final status of the request.
 			 */
-			else if ((aStateFlags & nsIWebProgressListenerConstants.STATE_STOP) != 0) {
+			else if ((aStateFlags & nsIWebProgressListenerConstants.STATE_STOP) != 0)
+			{
 				/* aStatus
 				 * Error status code associated with the state change.
 				 * This parameter should be ignored unless aStateFlags includes the STATE_STOP bit.
@@ -1635,7 +1650,8 @@ namespace Gecko
 				 * In such cases, the request itself should be queried for extended error information (for example for HTTP requests see nsIHttpChannel).
 				 */
 
-				if (stateIsNetwork) {
+				if (stateIsNetwork)
+				{
 					// clear busy state
 					IsBusy = false;
 
