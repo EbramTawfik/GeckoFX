@@ -2074,27 +2074,29 @@ namespace Gecko
 					if (uploadChannel != null) {
 						var uc = new UploadChannel(uploadChannel);
 						var uploadStream = uc.UploadStream;
-						
-						if (uploadStream.CanSeek) {
-							var rdr = new BinaryReader(uploadStream);
-							var reqBodyStream = new MemoryStream();
-							try {
-								reqBody = new byte[] { };
-								int avl = 0;
-								while ((avl = ((int)uploadStream.Available)) > 0) {
-									reqBodyStream.Write(rdr.ReadBytes(avl), 0, avl);
+
+						if (uploadStream != null) {
+							if (uploadStream.CanSeek) {
+								var rdr = new BinaryReader(uploadStream);
+								var reqBodyStream = new MemoryStream();
+								try {
+									reqBody = new byte[] { };
+									int avl = 0;
+									while ((avl = ((int)uploadStream.Available)) > 0) {
+										reqBodyStream.Write(rdr.ReadBytes(avl), 0, avl);
+									}
+									reqBody = reqBodyStream.ToArray();
+
+									if (uploadChannel2 != null)
+										reqBodyContainsHeaders = uploadChannel2.GetUploadStreamHasHeadersAttribute();
 								}
-								reqBody = reqBodyStream.ToArray();
+								catch (IOException ex) {
+									// failed to read body, ignore
+								}
 
-								if (uploadChannel2 != null)
-									reqBodyContainsHeaders = uploadChannel2.GetUploadStreamHasHeadersAttribute();
+								// rewind stream, so browser can read it as usual
+								uploadStream.Seek(0, 0);
 							}
-							catch (IOException ex) {
-								// failed to read body, ignore
-							}
-
-							// rewind stream, so browser can read it as usual
-							uploadStream.Seek(0, 0);
 						}
 					}
 
