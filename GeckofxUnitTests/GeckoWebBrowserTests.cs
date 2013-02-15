@@ -349,6 +349,20 @@ namespace GeckofxUnitTests
 			}
 		}
 
+		[Test]
+		public void EvaluateScript_Run500Times_CreatingNewSafeAutoJSContextEachTime_DoesNotCrash()
+		{
+			for (int i = 0; i < 500; i++)
+			{
+				using (var safeContext = new AutoJSContext(IntPtr.Zero))
+				{
+					string result;
+					safeContext.EvaluateScript("2+3;", out result);
+					Assert.AreEqual("5", result);
+				}
+			}
+		}
+
 		//[Ignore]
 		[Test]
 		public void EvaluateScript_Run500TimesNavigatingToANewDocumentEachTime_DoesNotCrash()
