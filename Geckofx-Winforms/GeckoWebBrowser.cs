@@ -1591,17 +1591,17 @@ namespace Gecko
 						StatusText = "";
 					}
 				}
-			}
-			else if (stateIsDocument)
-			{
-				GeckoNavigatingEventArgs ea = new GeckoNavigatingEventArgs(destUri, domWindow);
-				OnFrameNavigating(ea);
-
-				if (ea.Cancel)
+				else if (stateIsDocument)
 				{
-					// TODO: test it on Linux
-					if (!Xpcom.IsLinux)
-						aRequest.Cancel(NS_BINDING_ABORTED);
+					GeckoNavigatingEventArgs ea = new GeckoNavigatingEventArgs(destUri, domWindow);
+					OnFrameNavigating(ea);
+
+					if (ea.Cancel)
+					{
+						// TODO: test it on Linux
+						if (!Xpcom.IsLinux)
+							aRequest.Cancel(NS_BINDING_ABORTED);
+					}
 				}
 			}
 			#endregion STATE_START
