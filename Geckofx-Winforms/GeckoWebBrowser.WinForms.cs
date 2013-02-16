@@ -96,7 +96,7 @@ namespace Gecko
 #endif
 				BaseWindow.InitWindow( this.Handle, IntPtr.Zero, 0, 0, this.Width, this.Height );
 
-				RecordNewJsContext();
+				
 				BaseWindow.Create();
 
 				Guid nsIWebProgressListenerGUID = typeof (nsIWebProgressListener).GUID;

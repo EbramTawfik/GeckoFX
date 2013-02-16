@@ -86,6 +86,7 @@
     <Compile Include="DOM\Events\DomEventArgs.cs" />
     <Compile Include="DOM\Events\DomMouseEventArgs.cs" />
     <Compile Include="DOM\Events\DomUIEventArgs.cs" />
+    <Compile Include="FullTrustSecMan.cs" />
     <Compile Include="GeckoError.cs" />
     <Compile Include="GeckoWindowCollection.cs" />
     <Compile Include="Generated\nsICertificatePrincipal.cs" />

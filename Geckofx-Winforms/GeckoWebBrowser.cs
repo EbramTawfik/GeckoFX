@@ -139,7 +139,6 @@ namespace Gecko
 				return;
 			}
 
-			RemoveJsContextCallBack();
 
 			//var count = Gecko.Interop.ComDebug.GetRefCount(WebBrowser);
 			if (NavigateFinishedNotifier != null)
@@ -190,49 +189,19 @@ namespace Gecko
 		#endregion
 
 		#region JSContext
-		/// <summary>
-		/// Add hooks to listen for new JSContext creation and store the context for later use.
-		/// This is the only way I have found of getting hold of the real JSContext
-		/// </summary>
-		protected void RecordNewJsContext()
+
+		public IntPtr JSContext
 		{
-            Xpcom.AssertCorrectThread();
-
-			// Add a hook to record when the a new Context is created.
-			// If an existing hook exists, replace hook with one that
-			// 1. call original hook
-			// 2. reinstates original hook when done.
-
-			_runtimeService = Xpcom.GetService<nsIJSRuntimeService>("@mozilla.org/js/xpc/RuntimeService;1");
-			_jsRuntime = _runtimeService.GetRuntimeAttribute();
-
-			_managedCallback = (IntPtr cx, UInt32 unitN) => { JSContext = cx; SpiderMonkey.JS_SetContextCallback(_jsRuntime, null); return 1; };
-
-			_originalContextCallBack = SpiderMonkey.JS_SetContextCallback(_jsRuntime, _managedCallback);
-			if (_originalContextCallBack != null)
+			get
 			{
-				RemoveJsContextCallBack();
-				_managedCallback = (IntPtr cx, UInt32 unitN) => { JSContext = cx; SpiderMonkey.JS_SetContextCallback(_jsRuntime, _originalContextCallBack); return _originalContextCallBack(cx, unitN); };
-				SpiderMonkey.JS_SetContextCallback(_jsRuntime, _managedCallback);
+				if (_Window != null)
+					return GlobalJSContextHolder.GetJSContextForDomWindow(_Window.DomWindow);
+				if (Window != null)
+					return GlobalJSContextHolder.GetJSContextForDomWindow(Window.DomWindow);
+				return IntPtr.Zero;
 			}
 		}
 
-		protected void RemoveJsContextCallBack()
-		{
-			if (_jsRuntime == IntPtr.Zero)
-				return;
-
-            Xpcom.AssertCorrectThread();
-			SpiderMonkey.JS_SetContextCallback(_jsRuntime, _originalContextCallBack);
-		}
-
-
-		private IntPtr _jsRuntime;
-		private nsIJSRuntimeService _runtimeService;
-		private SpiderMonkey.CallBack _managedCallback;
-		private SpiderMonkey.CallBack _originalContextCallBack;
-
-		public IntPtr JSContext { get; protected set; }
 		#endregion
 
 		public nsIWebBrowserFocus WebBrowserFocus

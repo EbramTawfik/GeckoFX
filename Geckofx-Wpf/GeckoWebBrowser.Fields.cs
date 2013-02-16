@@ -27,12 +27,6 @@ namespace Gecko
 		private nsIWebBrowserFocus _webBrowserFocus;
 		#endregion
 
-		#region JSContext
-		private IntPtr _jsRuntime;
-		private nsIJSRuntimeService _runtimeService;
-		private SpiderMonkey.CallBack _managedCallback;
-		private SpiderMonkey.CallBack _originalContextCallBack;
-		#endregion
 
 		#region WPF fields
 		private HwndSource _source;

@@ -210,17 +210,28 @@ namespace Gecko
 			
 			GeckoStyleSheet StyleSheet;
 			nsIDOMCSSRuleList List;
+			private IntPtr _cx;
 			
 			nsIDOMCSSRuleList GetRuleList()
 			{
-				using (AutoJSContext context = new AutoJSContext(GlobalJSContextHolder.JSContext))
+				using (AutoJSContext context = new AutoJSContext(GetJSContext()))
 				{
 					nsIDOMCSSRuleList ret;
 					ret = StyleSheet._DomStyleSheet.GetCssRulesAttribute();					
 					return ret;
 				}
 			}
-			
+
+			private IntPtr GetJSContext()
+			{
+				if (_cx != IntPtr.Zero)
+				{
+					_cx = GlobalJSContextHolder.GetJSContextForDomWindow(StyleSheet._DomStyleSheet
+							.GetOwnerNodeAttribute().GetOwnerDocumentAttribute().GetDefaultViewAttribute());
+				}
+				return _cx;
+			}
+
 			/// <summary>
 			/// Attempts to reload the rule list.
 			/// </summary>
@@ -287,7 +298,7 @@ namespace Gecko
 				
 				const int NS_ERROR_DOM_SYNTAX_ERR = unchecked((int)0x8053000c);
 
-				using (AutoJSContext context = new AutoJSContext(GlobalJSContextHolder.JSContext))
+				using (AutoJSContext context = new AutoJSContext(GetJSContext()))
 				{
 					index = (int)StyleSheet._DomStyleSheet.InsertRule(new nsAString(rule), (uint)index);										
 				}
@@ -306,7 +317,7 @@ namespace Gecko
 				else if (index < 0 || index >= Count)
 					throw new ArgumentOutOfRangeException("index");
 
-				using (AutoJSContext context = new AutoJSContext(GlobalJSContextHolder.JSContext))
+				using (AutoJSContext context = new AutoJSContext(GetJSContext()))
 				{
 					StyleSheet._DomStyleSheet.DeleteRule((uint)index);
 				}
@@ -320,7 +331,7 @@ namespace Gecko
 				if (IsReadOnly && Count > 0)
 					throw new InvalidOperationException("This collection is read-only.");
 
-				using (AutoJSContext context = new AutoJSContext(GlobalJSContextHolder.JSContext))
+				using (AutoJSContext context = new AutoJSContext(GetJSContext()))
 				{
 					for (int i = Count - 1; i >= 0; i--)
 						StyleSheet._DomStyleSheet.DeleteRule((uint)i);

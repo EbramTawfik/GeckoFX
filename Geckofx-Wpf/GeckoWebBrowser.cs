@@ -46,7 +46,6 @@ namespace Gecko
 			_webNav = (nsIWebNavigation)_webBrowser.Instance;
 			_webBrowser.Instance.SetContainerWindowAttribute(this);
 			_baseWindow.InitWindow(Handle, IntPtr.Zero, 0, 0, (int)ActualWidth, (int)ActualHeight);
-			RecordNewJsContext();
 			_baseWindow.Create();
 
 			Guid nsIWebProgressListenerGUID = typeof(nsIWebProgressListener).GUID;
@@ -119,43 +118,6 @@ namespace Gecko
 			
 		}
 		#endregion
-
-
-		protected void RecordNewJsContext()
-		{
-			Xpcom.AssertCorrectThread();
-
-			// Add a hook to record when the a new Context is created.
-			// If an existing hook exists, replace hook with one that
-			// 1. call original hook
-			// 2. reinstates original hook when done.
-
-			_runtimeService = Xpcom.GetService<nsIJSRuntimeService>("@mozilla.org/js/xpc/RuntimeService;1");
-			_jsRuntime = _runtimeService.GetRuntimeAttribute();
-
-			_managedCallback = (IntPtr cx, UInt32 unitN) => { JSContext = cx; SpiderMonkey.JS_SetContextCallback(_jsRuntime, null); return 1; };
-
-			_originalContextCallBack = SpiderMonkey.JS_SetContextCallback(_jsRuntime, _managedCallback);
-			if (_originalContextCallBack != null)
-			{
-				RemoveJsContextCallBack();
-				_managedCallback = (IntPtr cx, UInt32 unitN) => { JSContext = cx; SpiderMonkey.JS_SetContextCallback(_jsRuntime, _originalContextCallBack); return _originalContextCallBack(cx, unitN); };
-				SpiderMonkey.JS_SetContextCallback(_jsRuntime, _managedCallback);
-			}
-			
-		}
-
-		protected void RemoveJsContextCallBack()
-		{
-			if (_jsRuntime == IntPtr.Zero)
-				return;
-
-			Xpcom.AssertCorrectThread();
-			SpiderMonkey.JS_SetContextCallback(_jsRuntime, _originalContextCallBack);
-		}
-
-
-
 
 		#region nsIWebProgressListener
 		void nsIWebProgressListener.OnStateChange( nsIWebProgress aWebProgress, nsIRequest aRequest, uint aStateFlags, int aStatus )

@@ -69,7 +69,7 @@ namespace Gecko
 		{
 			get
 			{
-				using (AutoJSContext context = new AutoJSContext(GlobalJSContextHolder.JSContext))
+				using (AutoJSContext context = new AutoJSContext())
 				{
 					return SpiderMonkey.JS_TypeOfValue(context.ContextPointer, this);
 				}
@@ -78,7 +78,7 @@ namespace Gecko
 
 		public override string ToString()
 		{
-			using (AutoJSContext context = new AutoJSContext(GlobalJSContextHolder.JSContext))
+			using (AutoJSContext context = new AutoJSContext())
 			{
 				IntPtr jsString = SpiderMonkey.JS_ValueToString(context.ContextPointer, this);
 				return Marshal.PtrToStringAnsi(SpiderMonkey.JS_EncodeString(context.ContextPointer, jsString));
