@@ -175,12 +175,32 @@ namespace Gecko
 		/// <param name="jsScript"></param>
 		/// <param name="jsval"></param>
 		/// <returns></returns>
-		public bool EvaluateFullTrustScript(string jsScript, out string result)
+		public bool EvaluateFullTrustScriptForCurrentContext(string jsScript, out string result)
 		{
 			var ptr = new JsVal();
 			IntPtr globalObject = SpiderMonkey.JS_GetGlobalForScopeChain(_cx);
 			bool ret;
 			using (var security = new FullTrustSecMan(XPConnect, _cx))
+			{
+				ret = SpiderMonkey.JS_EvaluateScript(_cx, globalObject, jsScript, (uint)jsScript.Length, "script", 1, ref ptr);
+				IntPtr jsStringPtr = SpiderMonkey.JS_ValueToString(_cx, ptr);
+				result = Marshal.PtrToStringAnsi(SpiderMonkey.JS_EncodeString(_cx, jsStringPtr));
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// Evaluate javascript in the current context.
+		/// </summary>
+		/// <param name="jsScript"></param>
+		/// <param name="jsval"></param>
+		/// <returns></returns>
+		public bool EvaluateFullTrustScript(string jsScript, out string result)
+		{
+			var ptr = new JsVal();
+			IntPtr globalObject = SpiderMonkey.JS_GetGlobalForScopeChain(_cx);
+			bool ret;
+			using (var security = new FullTrustSecMan(XPConnect, IntPtr.Zero))
 			{
 				ret = SpiderMonkey.JS_EvaluateScript(_cx, globalObject, jsScript, (uint)jsScript.Length, "script", 1, ref ptr);
 				IntPtr jsStringPtr = SpiderMonkey.JS_ValueToString(_cx, ptr);
