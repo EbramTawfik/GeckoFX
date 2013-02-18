@@ -314,8 +314,7 @@ namespace GeckofxUnitTests
 				Assert.AreEqual("hello ", result);
 			}
 		}
-
-		//[Ignore]
+		
 		[Test]
 		public void EvaluateScript_Run500Times_DoesNotCrash()
 		{
@@ -331,8 +330,7 @@ namespace GeckofxUnitTests
 				}
 			}
 		}
-
-		//[Ignore]
+		
 		[Test]
 		public void EvaluateScript_Run500TimesCreatingNewAutoJSContextEachTime_DoesNotCrash()
 		{
@@ -362,8 +360,7 @@ namespace GeckofxUnitTests
 				}
 			}
 		}
-
-		//[Ignore]
+		
 		[Test]
 		public void EvaluateScript_Run500TimesNavigatingToANewDocumentEachTime_DoesNotCrash()
 		{			
