@@ -169,8 +169,7 @@ namespace GeckofxUnitTests
 			}
 		}
 
-		[Test]
-		//[Ignore("Still some issue with priviliges with the running javascript from AutoJsContext")]
+		[Test]		
 		public void CSharpInvokingJavascriptComObjects()
 		{
 			// Note: Firefox 17 removed enablePrivilege #546848 - refactored test so that javascript to create "@mozillazine.org/example/priority;1" is now executated by AutoJsContext 
