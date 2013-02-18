@@ -91,7 +91,7 @@ namespace GeckofxUnitTests
 			const string ComponentManagerCID = "91775d60-d5dc-11d2-92fb-00e09805570f";
 			nsIComponentRegistrar mgr = (nsIComponentRegistrar)Xpcom.GetObjectForIUnknown((IntPtr)Xpcom.GetService(new Guid(ComponentManagerCID)));
 			Guid aClass = new Guid("a7139c0e-962c-44b6-bec3-aaaaaaaaaaab");
-			mgr.RegisterFactory(ref aClass, "Example C sharp com component", "@geckofx/myclass;1", new MyCSharpComClassFactory());
+			mgr.RegisterFactory(ref aClass, "Example C sharp com component", "@geckofx/mysharpclass;1", new MyCSharpComClassFactory());
 
 			// In order to use Components.classes etc we need to enable certan privileges. 
 			GeckoPreferences.User["capability.principal.codebase.p0.granted"] = "UniversalXPConnect";
@@ -104,7 +104,7 @@ namespace GeckofxUnitTests
 			string inithtml = "<html><body></body></html>";
 
 			string initialjavascript =
-				"var myClassInstance = Components.classes['@geckofx/myclass;1'].createInstance(Components.interfaces.nsICommandHandler); myClassInstance.exec('hello', 'world');";
+				"var myClassInstance = Components.classes['@geckofx/mysharpclass;1'].createInstance(Components.interfaces.nsICommandHandler); myClassInstance.exec('hello', 'world');";
 
 			// Create temp file to load 
 			var tempfilename = Path.GetTempFileName();
@@ -119,7 +119,7 @@ namespace GeckofxUnitTests
 			browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
 			File.Delete(tempfilename);
 
-			using (var context = new AutoJSContext(browser.JSContext))
+			using (var context = new AutoJSContext(GlobalJSContextHolder.BackstageJSContext))
 			{
 				string result = String.Empty;
 				bool success = context.EvaluateScript(initialjavascript, out result);				
@@ -170,7 +170,7 @@ namespace GeckofxUnitTests
 		}
 
 		[Test]
-		[Ignore("Still some issue with priviliges with the running javascript from AutoJsContext")]
+		//[Ignore("Still some issue with priviliges with the running javascript from AutoJsContext")]
 		public void CSharpInvokingJavascriptComObjects()
 		{
 			// Note: Firefox 17 removed enablePrivilege #546848 - refactored test so that javascript to create "@mozillazine.org/example/priority;1" is now executated by AutoJsContext 
@@ -275,7 +275,7 @@ namespace GeckofxUnitTests
 			browser.Navigate(tempfilename);
 			browser.NavigateFinishedNotifier.BlockUntilNavigationFinished();
 
-			using (var context = new AutoJSContext(browser.JSContext))
+			using (var context = new AutoJSContext(GlobalJSContextHolder.BackstageJSContext))
 			{
 				string result = String.Empty;				
 				var success = context.EvaluateScript(initialjavascript, out result);				

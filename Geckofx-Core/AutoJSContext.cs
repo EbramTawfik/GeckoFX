@@ -70,8 +70,7 @@ namespace Gecko
 				_jsContextStack = Xpcom.GetService<nsIThreadJSContextStack>("@mozilla.org/js/xpc/ContextStack;1");
 				// Due to GetSafeJSContext (being changed from an attribute to a virtual method in FF 15) we can no longer call
 				// it safely from C#. // TODO: find a better solution for this.				
-				// context = _jsContextStack.GetSafeJSContext();
-				throw new ArgumentException("context");
+				context = _jsContextStack.GetSafeJSContext();
 			}
 			
 			_cx = context;			
@@ -105,8 +104,21 @@ namespace Gecko
 		/// This AutoJSContext method is no load avaliable due to nsIThreadJSContextStack.GetSafeJSContext being made a virtual method
 		/// which prevents safe COM access.
 		/// </summary>		
-		/*public*/ AutoJSContext() : this(IntPtr.Zero)
+		public AutoJSContext() : this(IntPtr.Zero)
 		{
+		}
+
+		private nsIXPConnect XPConnect
+		{
+			get
+			{
+				if (_xpConnect == null)
+				{
+					var xpcomPtr = (IntPtr)Xpcom.GetService(new Guid("CB6593E0-F9B2-11d2-BDD6-000064657374"));
+					_xpConnect = (nsIXPConnect)Xpcom.GetObjectForIUnknown(xpcomPtr);
+				}
+				return _xpConnect;
+			}
 		}
 
 		/// <summary>
@@ -137,19 +149,13 @@ namespace Gecko
 		/// <param name="result"></param>
 		/// <returns></returns>
 		public bool EvaluateScript(string jsScript, nsISupports thisObject, out string result)
-		{	
-			if (_xpConnect == null)
-			{
-				var xpcomPtr = (IntPtr)Xpcom.GetService(new Guid("CB6593E0-F9B2-11d2-BDD6-000064657374"));
-				_xpConnect = (nsIXPConnect)Xpcom.GetObjectForIUnknown(xpcomPtr);	
-			}
-
+		{
 			try
 			{
 				Guid guid = typeof(nsISupports).GUID;
 				IntPtr globalObject = SpiderMonkey.JS_GetGlobalForScopeChain(_cx);
 				var ptr = new JsVal();
-				var wrapper = _xpConnect.WrapNative(_cx, globalObject, thisObject, ref guid);				
+				var wrapper = XPConnect.WrapNative(_cx, globalObject, thisObject, ref guid);				
 				bool ret = SpiderMonkey.JS_EvaluateScript(_cx, wrapper.GetJSObjectAttribute(), jsScript, (uint)jsScript.Length, "script", 1, ref ptr);				
 				IntPtr jsStringPtr = SpiderMonkey.JS_ValueToString(_cx, ptr);
 				result = Marshal.PtrToStringAnsi(SpiderMonkey.JS_EncodeString(_cx, jsStringPtr));
@@ -161,6 +167,69 @@ namespace Gecko
 				result = String.Empty;
 				return false;
 			}
+		}
+
+		/// <summary>
+		/// Evaluate javascript in the current context.
+		/// </summary>
+		/// <param name="jsScript"></param>
+		/// <param name="jsval"></param>
+		/// <returns></returns>
+		public bool EvaluateFullTrustScriptForCurrentContext(string jsScript, out string result)
+		{
+			var ptr = new JsVal();
+			IntPtr globalObject = SpiderMonkey.JS_GetGlobalForScopeChain(_cx);
+			bool ret;
+			using (var security = new FullTrustSecMan(XPConnect, _cx))
+			{
+				ret = SpiderMonkey.JS_EvaluateScript(_cx, globalObject, jsScript, (uint)jsScript.Length, "script", 1, ref ptr);
+				IntPtr jsStringPtr = SpiderMonkey.JS_ValueToString(_cx, ptr);
+				result = Marshal.PtrToStringAnsi(SpiderMonkey.JS_EncodeString(_cx, jsStringPtr));
+			}
+			return ret;
+		}
+
+		/// <summary>
+		/// Evaluate javascript in the current context.
+		/// </summary>
+		/// <param name="jsScript"></param>
+		/// <param name="jsval"></param>
+		/// <returns></returns>
+		public bool EvaluateFullTrustScript(string jsScript, out string result)
+		{
+			var ptr = new JsVal();
+			IntPtr globalObject = SpiderMonkey.JS_GetGlobalForScopeChain(_cx);
+			bool ret;
+			using (var security = new FullTrustSecMan(XPConnect, IntPtr.Zero))
+			{
+				ret = SpiderMonkey.JS_EvaluateScript(_cx, globalObject, jsScript, (uint)jsScript.Length, "script", 1, ref ptr);
+				IntPtr jsStringPtr = SpiderMonkey.JS_ValueToString(_cx, ptr);
+				result = Marshal.PtrToStringAnsi(SpiderMonkey.JS_EncodeString(_cx, jsStringPtr));
+			}
+			return ret;
+		}
+
+		public nsISupports GetGlobalNsObject()
+		{
+			//IntPtr globalObject = SpiderMonkey.JS_GetGlobalForScopeChain(_cx);
+			IntPtr globalObject = SpiderMonkey.JS_GetGlobalObject(_cx);
+			if (globalObject != IntPtr.Zero)
+			{
+				Guid guid = typeof(nsISupports).GUID;
+
+				IntPtr pUnk = IntPtr.Zero;
+				try
+				{
+					pUnk = XPConnect.WrapJS(_cx, globalObject, ref guid);
+					return (nsISupports)Xpcom.GetObjectForIUnknown(pUnk);
+				}
+				finally
+				{
+					if (pUnk != IntPtr.Zero)
+						Marshal.Release(pUnk);
+				}
+			}
+			return null;
 		}
 
 		public void Dispose()
