@@ -2,6 +2,10 @@ Geckofx is licensed under the Mozilla Public License Version.
 
 == Changelog ==
 
+== v18.0-0.1 ==
+
+1. Initial version supporting firefox/xulrunner v18.0
+
 == v16.0-0.2 ==
 
 1. New ReadyStateChanged event. Usefull for telling when a document has completly loaded.
