@@ -27,7 +27,7 @@ namespace GeckofxUnitTests
 			GeckoPreferences.User["capability.principal.codebase.p0.subjectName"] = "";
 			GeckoPreferences.User["security.fileuri.strict_origin_policy"] = false;
 
-			GlobalJSContextHolderInitalizer.Initalize();			
+		
 			//var unusedPtr = GlobalJSContextHolder.JSContext;
 			//Console.WriteLine("Global JSContext is {0}", unusedPtr);
 			browser = new GeckoWebBrowser();

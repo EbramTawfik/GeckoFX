@@ -65,7 +65,7 @@ namespace Gecko
 		/// <summary>
 		/// Add hooks to listen for new JSContext creation and store the context for later use.
 		/// </summary>
-		public static void Initialize()
+		internal static void Initialize()
 		{
 			Xpcom.AssertCorrectThread();
 
