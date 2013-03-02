@@ -189,11 +189,11 @@ namespace Gecko.DOM
         /// @param aIgnoreRootScrollFrame whether the event should ignore viewport bounds
         /// during dispatch
         /// </summary>		
-		public void SendMouseEvent(string aType, float aX, float aY, int aButton, int aClickCount, int aModifiers, bool aIgnoreRootScrollFrame, float aPressure, ushort aInputSourceArg)
+		public void SendMouseEvent(string aType, float aX, float aY, GeckoMouseButton aButton, int aClickCount, int aModifiers, bool aIgnoreRootScrollFrame, float aPressure, ushort aInputSourceArg)
 		{
 			using (nsAString type = new nsAString(aType))
 			{
-				_windowUtils.SendMouseEvent(type, aX, aY, aButton, aClickCount, aModifiers, aIgnoreRootScrollFrame, aPressure, aInputSourceArg);
+				_windowUtils.SendMouseEvent(type, aX, aY, (int)aButton, aClickCount, aModifiers, aIgnoreRootScrollFrame, aPressure, aInputSourceArg);
 			}
 		}
 		
@@ -202,11 +202,11 @@ namespace Gecko.DOM
         ///The same as sendMouseEvent but ensures that the event is dispatched to
         /// this DOM window or one of its children.
         /// </summary>		
-		public void SendMouseEventToWindow(string aType, float aX, float aY, int aButton, int aClickCount, int aModifiers, bool aIgnoreRootScrollFrame, float aPressure, ushort aInputSourceArg)
+		public void SendMouseEventToWindow(string aType, float aX, float aY, GeckoMouseButton aButton, int aClickCount, int aModifiers, bool aIgnoreRootScrollFrame, float aPressure, ushort aInputSourceArg)
 		{
 			using (nsAString type = new nsAString(aType))
 			{
-				_windowUtils.SendMouseEventToWindow(type, aX, aY, aButton, aClickCount, aModifiers, aIgnoreRootScrollFrame, aPressure, aInputSourceArg);
+				_windowUtils.SendMouseEventToWindow(type, aX, aY, (int)aButton, aClickCount, aModifiers, aIgnoreRootScrollFrame, aPressure, aInputSourceArg);
 			}
 		}		
 
@@ -399,7 +399,7 @@ namespace Gecko.DOM
 			if (element == null)
 				return null;
 
-			return new GeckoElement(element);
+			return GeckoElement.CreateDomElementWrapper(element);
 		}
 		
 		/// <summary>

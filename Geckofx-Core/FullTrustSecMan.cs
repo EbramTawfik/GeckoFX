@@ -162,12 +162,13 @@ namespace Gecko
 
 		public nsIPrincipal GetCxSubjectPrincipalAndFrame(IntPtr cx, ref IntPtr fp)
 		{
+			fp = IntPtr.Zero;
 			return _ssm.GetSystemPrincipal();
 		}
 
 		public void GetExtendedOrigin(nsIURI uri, uint appId, bool inMozBrowser, nsAUTF8StringBase retval)
 		{
-
+			retval.SetData(string.Empty);
 		}
 
 		public void Dispose()
