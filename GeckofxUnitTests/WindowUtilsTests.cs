@@ -92,7 +92,7 @@ namespace GeckofxUnitTests
 		{
 			browser.TestLoadHtml("<body>hello world</body>");
 
-			browser.Window.WindowUtils.SendMouseEvent("mousedown", 10, 10, 1, 1, 0, false, 0, 0);
+			browser.Window.WindowUtils.SendMouseEvent("mousedown", 10, 10, GeckoMouseButton.Left, 1, 0, false, 0, 0);
 		}
 
 		[Test]
@@ -100,7 +100,7 @@ namespace GeckofxUnitTests
 		{
 			browser.TestLoadHtml("<body>hello world</body>");
 
-			browser.Window.WindowUtils.SendMouseEventToWindow("mousedown", 10, 10, 1, 1, 0, false, 0, 0);
+			browser.Window.WindowUtils.SendMouseEventToWindow("mousedown", 10, 10, GeckoMouseButton.Left, 1, 0, false, 0, 0);
 		}
 
 		[Test]
