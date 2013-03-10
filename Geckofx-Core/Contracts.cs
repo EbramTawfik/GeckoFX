@@ -77,7 +77,9 @@ namespace Gecko
 		#endregion
 		#endregion
 		#region  contracts for elements that NOT HAVE wrappers
-		
+
+		public static readonly string NavHistoryService = "@mozilla.org/browser/nav-history-service;1";
+
 		#endregion
 
 		#region External components (XULRunner components)
