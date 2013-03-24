@@ -12,19 +12,20 @@ namespace Gecko.Cache
 	{
 		private nsICacheEntryDescriptor _cacheEntryDescriptor;
 
-		public CacheEntryDescriptor( nsICacheEntryDescriptor cacheEntryDescriptor )
+		private CacheEntryDescriptor( nsICacheEntryDescriptor cacheEntryDescriptor )
 			: base( cacheEntryDescriptor )
 		{
-			//ComDebug.WriteDebugInfo(cacheEntryDescriptor);
 			_cacheEntryDescriptor = cacheEntryDescriptor;
+		}
+
+		public static CacheEntryDescriptor Create( nsICacheEntryDescriptor cacheEntryDescriptor )
+		{
+			return new CacheEntryDescriptor( cacheEntryDescriptor );
 		}
 
 		public void Close()
 		{
-			if (_cacheEntryDescriptor == null) return;
-			var obj = Interlocked.Exchange( ref _cacheEntryDescriptor, null );
-			obj.Close();
-			Marshal.ReleaseComObject( obj );
+			_cacheEntryDescriptor.Close();
 		}
 
 		public void Doom()

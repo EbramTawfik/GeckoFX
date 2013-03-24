@@ -1,3 +1,5 @@
+using Gecko.Interop;
+
 namespace Gecko.DOM.Svg
 {
 	public class SvgDocument
@@ -23,7 +25,7 @@ namespace Gecko.DOM.Svg
 
 		public SvgSvgElement RootElement
 		{
-			get { return SvgSvgElement.CreateSvgSvgElementWrapper( _svgDocument.GetRootElementAttribute() ); }
+			get { return _svgDocument.GetRootElementAttribute().Wrap( SvgSvgElement.CreateSvgSvgElementWrapper ); }
 		}
 
 	}

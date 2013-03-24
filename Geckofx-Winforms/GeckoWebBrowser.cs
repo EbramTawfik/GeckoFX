@@ -44,6 +44,7 @@ using System.IO;
 using System.Reflection;
 using System.Diagnostics;
 using System.Text;
+using Gecko.Events;
 using Gecko.Interop;
 using Gecko.Net;
 
@@ -179,12 +180,8 @@ namespace Gecko
 			{
 				baseWindow.Destroy();
 				Marshal.ReleaseComObject(baseWindow);
-			}			
-			if (CommandParams != null)
-			{
-				Marshal.ReleaseComObject(CommandParams);
-				CommandParams = null;
-			}			
+			}
+			Xpcom.FreeComObject( ref CommandParams );		
 		}
 
 		#endregion
@@ -1514,13 +1511,22 @@ namespace Gecko
 
 			// Ignore ViewSource requests, they don't provide the URL
 			// see: http://mxr.mozilla.org/mozilla-central/source/netwerk/protocol/viewsource/nsViewSourceChannel.cpp#114
-			if (Xpcom.QueryInterface<nsIViewSourceChannel>(aRequest) != null)
-				return;
+			{
+				var viewSource = Xpcom.QueryInterface<nsIViewSourceChannel>( aRequest );
+				if ( viewSource != null )
+				{
+					Marshal.ReleaseComObject( viewSource );
+					return;
+				}
+			}
+	
 			#endregion validity checks
 
+			var request=Gecko.Net.Request.Create( aRequest );
+			
 			#region request parameters
 			Uri destUri = null;
-			Uri.TryCreate(nsString.Get(aRequest.GetNameAttribute), UriKind.Absolute, out destUri);
+			Uri.TryCreate( request.Name, UriKind.Absolute, out destUri );
 			var domWindow = aWebProgress.GetDOMWindowAttribute().Wrap( GeckoWindow.Create );
 
 			/* This flag indicates that the state transition is for a request, which includes but is not limited to document requests.
@@ -1661,6 +1667,8 @@ namespace Gecko
 		void nsIWebProgressListener.OnProgressChange(nsIWebProgress aWebProgress, nsIRequest aRequest, int aCurSelfProgress, int aMaxSelfProgress, int aCurTotalProgress, int aMaxTotalProgress)
 		{
 			// Note: If any progress value is unknown, then its value is replaced with -1.
+			var request = Gecko.Net.Request.Create( aRequest );
+
 
 			if ((aCurSelfProgress != -1) && (aMaxSelfProgress != -1))
 				OnRequestProgressChanged(new GeckoRequestProgressEventArgs(aCurTotalProgress, aMaxTotalProgress, aRequest));

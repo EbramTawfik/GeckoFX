@@ -85,7 +85,20 @@
     <Compile Include="DOM\Events\DomDragEventArgs.cs" />
     <Compile Include="DOM\Events\DomEventArgs.cs" />
     <Compile Include="DOM\Events\DomMouseEventArgs.cs" />
+    <Compile Include="DOM\Events\DomSvgEvent.cs" />
     <Compile Include="DOM\Events\DomUIEventArgs.cs" />
+    <Compile Include="DOM\Svg\DomSvgAnimatedLength.cs" />
+    <Compile Include="DOM\Svg\SvgLength.cs" />
+    <Compile Include="DOM\Svg\SvgMatrix.cs" />
+    <Compile Include="Events\GeckoEventList.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Events\GeckoEventListTmp.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Events\GeckoNavigatingEventArgs.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="GeckoError.cs" />
     <Compile Include="Interop\ComPtr.cs" />
     <Compile Include="Interop\ExtensionMethods.cs" />
@@ -93,9 +106,6 @@
     <Compile Include="Net\AsyncStreamCopier.cs" />
     <Compile Include="Net\ImgRequest.cs" />
     <Compile Include="Net\IncrementalDownload.cs" />
-    <Compile Include="NewFolder1\GeckoEventList.cs" />
-    <Compile Include="NewFolder1\GeckoEventListTmp.cs" />
-    <Compile Include="NewFolder1\GeckoNavigatingEventArgs.cs" />
     <Compile Include="Services\AppShellService.cs" />
     <Compile Include="AutoJSContext.cs" />
     <Compile Include="BaseTypes\AccessibleTextBoundary.cs" />
@@ -184,7 +194,9 @@
     <Compile Include="Services\VersionComparator.cs" />
     <Compile Include="Services\WindowWatcher.cs" />
     <Compile Include="Variant.cs" />
-    <Compile Include="WebProgressListener.cs" />
+    <Compile Include="WebProgressListener.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="WiFiMonitor.cs" />
     <Compile Include="WindowMediator.cs" />
     <Compile Include="Services\XulRuntime.cs" />

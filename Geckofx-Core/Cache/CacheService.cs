@@ -90,6 +90,7 @@ namespace Gecko.Cache
 
 		public bool VisitEntry( string deviceID, nsICacheEntryInfo entryInfo )
 		{
+			if ( entryInfo == null ) return true;
 			var entry = new CacheEntryInfo(entryInfo);
 			if (_predicate(entry))
 			{

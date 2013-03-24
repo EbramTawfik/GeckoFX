@@ -27,17 +27,17 @@ namespace Gecko.Net
 		public Request DefaultLoadRequest
 		{
 			get{return Create( _loadGroup.GetDefaultLoadRequestAttribute() );}
-			set{_loadGroup.SetDefaultLoadRequestAttribute( value._request );}
+			set{_loadGroup.SetDefaultLoadRequestAttribute( value.NativeRequest );}
 		}
 
 		public void AddRequest(Request request,Interop.nsSupports aContext)
 		{
-			_loadGroup.AddRequest( request._request, aContext._nsISupports );
+			_loadGroup.AddRequest( request.NativeRequest, aContext._nsISupports );
 		}
 
 		public void RemoveRequest(Request request, Interop.nsSupports aContext, int aStatus)
 		{
-			_loadGroup.RemoveRequest(request._request, aContext._nsISupports, aStatus);
+			_loadGroup.RemoveRequest( request.NativeRequest, aContext._nsISupports, aStatus );
 		}
 
 		public IEnumerable<Request> Requests

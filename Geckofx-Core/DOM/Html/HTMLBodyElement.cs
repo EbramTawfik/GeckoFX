@@ -6,45 +6,52 @@ using System.Runtime.InteropServices;
 using System.Text;
 
 namespace Gecko.DOM
-{	
-	public class GeckoBodyElement : GeckoHtmlElement
+{
+	public class GeckoBodyElement
+		: GeckoHtmlElement
 	{
-		nsIDOMHTMLBodyElement DOMHTMLElement;		
-		internal GeckoBodyElement(nsIDOMHTMLBodyElement element) : base(element)
+		private nsIDOMHTMLBodyElement _domHtmlBodyElement;
+
+		internal GeckoBodyElement( nsIDOMHTMLBodyElement element )
+			: base( element )
 		{
-			this.DOMHTMLElement = element;			
+			_domHtmlBodyElement = element;
 		}
-		public GeckoBodyElement(object element) : this(element as nsIDOMHTMLBodyElement)
+
+		public string ALink
 		{
-		}
-		public string ALink {
-			get { return nsString.Get(DOMHTMLElement.GetALinkAttribute); }
-			set { DOMHTMLElement.SetALinkAttribute(new nsAString(value)); }
+			get { return nsString.Get( _domHtmlBodyElement.GetALinkAttribute ); }
+			set { nsString.Set( _domHtmlBodyElement.SetALinkAttribute, value ); }
 		}
 
-		public string Background {
-			get { return nsString.Get(DOMHTMLElement.GetBackgroundAttribute); }
-			set { DOMHTMLElement.SetBackgroundAttribute(new nsAString(value)); }
+		public string Background
+		{
+			get { return nsString.Get( _domHtmlBodyElement.GetBackgroundAttribute ); }
+			set { nsString.Set( _domHtmlBodyElement.SetBackgroundAttribute, value ); }
 		}
 
-		public string BgColor {
-			get { return nsString.Get(DOMHTMLElement.GetBgColorAttribute); }
-			set { DOMHTMLElement.SetBgColorAttribute(new nsAString(value)); }
+		public string BgColor
+		{
+			get { return nsString.Get( _domHtmlBodyElement.GetBgColorAttribute ); }
+			set { nsString.Set( _domHtmlBodyElement.SetBgColorAttribute, value ); }
 		}
 
-		public string Link {
-			get { return nsString.Get(DOMHTMLElement.GetLinkAttribute); }
-			set { DOMHTMLElement.SetLinkAttribute(new nsAString(value)); }
+		public string Link
+		{
+			get { return nsString.Get( _domHtmlBodyElement.GetLinkAttribute ); }
+			set { nsString.Set( _domHtmlBodyElement.SetLinkAttribute, value ); }
 		}
 
-		public string Text {
-			get { return nsString.Get(DOMHTMLElement.GetTextAttribute); }
-			set { DOMHTMLElement.SetTextAttribute(new nsAString(value)); }
+		public string Text
+		{
+			get { return nsString.Get( _domHtmlBodyElement.GetTextAttribute ); }
+			set { nsString.Set( _domHtmlBodyElement.SetTextAttribute, value ); }
 		}
 
-		public string VLink {
-			get { return nsString.Get(DOMHTMLElement.GetVLinkAttribute); }
-			set { DOMHTMLElement.SetVLinkAttribute(new nsAString(value)); }
+		public string VLink
+		{
+			get { return nsString.Get( _domHtmlBodyElement.GetVLinkAttribute ); }
+			set { nsString.Set( _domHtmlBodyElement.SetVLinkAttribute, value ); }
 		}
 
 	}

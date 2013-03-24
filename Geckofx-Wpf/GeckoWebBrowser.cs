@@ -22,6 +22,7 @@ namespace Gecko
 		nsISupportsWeakReference
 	{
 		private WebProgressListener _webProgressListener=new WebProgressListener();
+		private nsIWeakReference _webProgressWeakReference;
 
 
 		protected override HandleRef BuildWindowCore( HandleRef hwndParent )
@@ -49,16 +50,27 @@ namespace Gecko
 			RecordNewJsContext();
 			_baseWindow.Create();
 
+			#region nsIWebProgressListener/nsIWebProgressListener2
 			Guid nsIWebProgressListenerGUID = typeof(nsIWebProgressListener).GUID;
 			Guid nsIWebProgressListener2GUID = typeof(nsIWebProgressListener2).GUID;
-			_webBrowser.Instance.AddWebBrowserListener(_webProgressListener.GetWeakReference(), ref nsIWebProgressListenerGUID);
-			_webBrowser.Instance.AddWebBrowserListener(_webProgressListener.GetWeakReference(), ref nsIWebProgressListener2GUID);
+			_webProgressWeakReference = _webProgressListener.GetWeakReference();
+			_webBrowser.Instance.AddWebBrowserListener(_webProgressWeakReference, ref nsIWebProgressListenerGUID);
+			_webBrowser.Instance.AddWebBrowserListener(_webProgressWeakReference, ref nsIWebProgressListener2GUID);
+			#endregion
 			_baseWindow.SetVisibilityAttribute(true);
 		}
 
 		protected override void DestroyWindowCore( HandleRef hwnd )
 		{
+			#region nsIWebProgressListener/nsIWebProgressListener2
 			_webProgressListener.IsListening = false;
+			Guid nsIWebProgressListenerGUID = typeof(nsIWebProgressListener).GUID;
+			Guid nsIWebProgressListener2GUID = typeof(nsIWebProgressListener2).GUID;
+			_webBrowser.Instance.RemoveWebBrowserListener(_webProgressWeakReference, ref nsIWebProgressListenerGUID);
+			_webBrowser.Instance.RemoveWebBrowserListener(_webProgressWeakReference, ref nsIWebProgressListener2GUID);
+			_webProgressWeakReference = null;
+			_webProgressListener = null;
+			#endregion
 			//_webNav.Stop(  );
 			_webBrowser.FinalRelease();
 			_webBrowser.Dispose();
@@ -200,17 +212,48 @@ namespace Gecko
 
 		public bool GoBack()
 		{
-			throw new NotImplementedException();
+			bool ok;
+			try
+			{
+				_webNav.GoBack();
+				ok = true;
+			}
+			catch ( Exception )
+			{
+				ok = false;
+			}
+			return ok;
+
 		}
 
 		public bool GoForward()
 		{
-			throw new NotImplementedException();
+			bool ok;
+			try
+			{
+				_webNav.GoForward();
+				ok = true;
+			}
+			catch (Exception)
+			{
+				ok = false;
+			}
+			return ok;
 		}
 
 		public bool Reload()
 		{
-			throw new NotImplementedException();
+			bool ok;
+			try
+			{
+				_webNav.Reload(0);
+				ok = true;
+			}
+			catch (Exception)
+			{
+				ok = false;
+			}
+			return ok;
 		}
 
 		public event EventHandler DocumentCompleted;		
@@ -221,7 +264,14 @@ namespace Gecko
 		/// <param name="action"></param>
 		public void UserInterfaceThreadInvoke(Action action)
 		{
-			throw new NotImplementedException();
+			if ( Dispatcher.CheckAccess() )
+			{
+				action();
+			}
+			else
+			{
+				Dispatcher.Invoke( action );
+			}
 		}
 
 		/// <summary>
@@ -232,7 +282,11 @@ namespace Gecko
 		/// <returns></returns>
 		public T UserInterfaceThreadInvoke<T>(Func<T> func)
 		{
-			throw new NotImplementedException();
+			if (Dispatcher.CheckAccess())
+			{
+				return func();
+			}
+			return (T)Dispatcher.Invoke(func);
 		}
 
 		#endregion

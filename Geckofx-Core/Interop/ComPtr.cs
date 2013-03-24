@@ -6,6 +6,7 @@ namespace Gecko.Interop
 {
 	/// <summary>
 	/// COM pointer wrapper
+	/// SHOULD be used for temporal variables
 	/// </summary>
 	/// <typeparam name="T"></typeparam>
 	public class ComPtr<T>
@@ -15,6 +16,7 @@ namespace Gecko.Interop
 		protected T _instance;
 
 		#region ctor & dtor
+
 		public ComPtr( T instance )
 		{
 			_instance = instance;
@@ -33,11 +35,7 @@ namespace Gecko.Interop
 
 		private void Free()
 		{
-			if (_instance != null)
-			{
-				var ptr = Interlocked.Exchange(ref _instance, null);
-				Marshal.ReleaseComObject(ptr);
-			}
+			Xpcom.FreeComObject( ref _instance );
 		}
 		#endregion
 

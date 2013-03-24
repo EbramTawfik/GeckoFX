@@ -23,13 +23,12 @@ namespace Gecko
 		public void Dispose()
 		{
 			Close();
+			GC.SuppressFinalize( this );
 		}
 
 		private void Close()
 		{
-			if (_sound == null) return;
-			var obj = Interlocked.Exchange( ref _sound, null );
-			obj.Dispose();
+			_sound.Dispose();
 		}
 
 		public void Beep()

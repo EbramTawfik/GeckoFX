@@ -28,16 +28,17 @@ namespace Gecko
 		/// <param name="element"></param>
 		/// <param name="predicate"></param>
 		/// <returns></returns>
-		public static GeckoHtmlElement FindFirstChildInTree(this GeckoHtmlElement element, Predicate<GeckoHtmlElement> predicate)
+		public static T FindFirstChildInTree<T>(this GeckoNode element, Predicate<T> predicate)
+			where T:GeckoNode
 		{
 			for (int i = 0; i < element.ChildNodes.Count; i++)
 			{
 				var node = element.ChildNodes[i];
-				if ( !( node is GeckoHtmlElement ) )
+				if ( !( node is T ) )
 				{
 					continue;
 				}
-				var childElement = (GeckoHtmlElement)node;
+				var childElement = (T)node;
 				if (predicate(childElement))
 				{
 					return childElement;

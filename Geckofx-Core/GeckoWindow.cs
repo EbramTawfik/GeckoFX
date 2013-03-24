@@ -40,7 +40,11 @@ namespace Gecko
 
 		public WindowUtils WindowUtils 
 		{
-			get { return new WindowUtils(Xpcom.QueryInterface<nsIDOMWindowUtils>(DomWindow)); }
+			get
+			{
+				var utils = Xpcom.QueryInterface<nsIDOMWindowUtils>( DomWindow );
+				return utils.Wrap( WindowUtils.Create );
+			}
 		}
 		
 		internal static GeckoWindow Create(nsIDOMWindow window)

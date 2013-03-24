@@ -16,7 +16,11 @@ namespace Gecko.Net
 
 		public static Channel Create(nsIChannel channel)
 		{
-			return channel == null ? null : new Channel( channel );
+			if ( channel is nsIHttpChannel )
+			{
+				return HttpChannel.Create( ( nsIHttpChannel ) channel );
+			}
+			return new Channel( channel );
 		}
 
 		public Uri OriginalUri

@@ -21,6 +21,14 @@ namespace Gecko.DOM
 			get { return _target.Instance; }
 		}
 
+		public GeckoElement CastToGeckoElement()
+		{
+			var domElement=Xpcom.QueryInterface<nsIDOMElement>( _target.Instance );
+			return domElement.Wrap( GeckoElement.CreateDomElementWrapper );
+		}
+
+
+
 		public void DispatchEvent(DomEventArgs @event)
 		{
 			_target.Instance.DispatchEvent( @event.DomEvent );

@@ -8,7 +8,6 @@ namespace Gecko.Cache
 
 		internal CacheDeviceInfo(nsICacheDeviceInfo cacheDeviceInfo)
 		{
-			//ComDebug.WriteDebugInfo(cacheDeviceInfo);
 			_cacheDeviceInfo = new InstanceWrapper<nsICacheDeviceInfo>( cacheDeviceInfo );
 		}
 

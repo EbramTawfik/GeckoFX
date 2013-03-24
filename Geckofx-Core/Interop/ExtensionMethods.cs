@@ -25,8 +25,9 @@ namespace Gecko.Interop
 		/// <summary>
 		/// Function that check if object is null -> then call property getter,check returned object, and if it not null -> calls wrapper creator
 		/// </summary>
-		/// <typeparam name="TGeckoObject"></typeparam>
 		/// <typeparam name="TWrapper"></typeparam>
+		/// <typeparam name="TGeckoObject2"></typeparam>
+		/// <typeparam name="TGeckoObject1"></typeparam>
 		/// <param name="obj"></param>
 		/// <param name="wrapper"></param>
 		/// <returns></returns>

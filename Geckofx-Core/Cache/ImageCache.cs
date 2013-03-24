@@ -21,11 +21,10 @@ namespace Gecko.Cache
 			
 		}
 
-		public static object FindEntryProperties(string url)
+		public static Properties FindEntryProperties(string url)
 		{
-			// TODO - Add nsIProperties wrapper
 			var xpComUri = IOService.CreateNsIUri(url);
-			return _imgCache.Instance.FindEntryProperties(xpComUri);
+			return _imgCache.Instance.FindEntryProperties( xpComUri ).Wrap( ( x ) => new Properties( x ) );
 		}
 
 		public static void RemoveEntry(string url)

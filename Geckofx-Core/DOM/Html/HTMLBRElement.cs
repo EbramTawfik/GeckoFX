@@ -9,18 +9,17 @@ namespace Gecko.DOM
 {	
 	public class GeckoBRElement : GeckoHtmlElement
 	{
-		nsIDOMHTMLBRElement DOMHTMLElement;
+		private nsIDOMHTMLBRElement _domHtmlBrElement;
+
 		internal GeckoBRElement(nsIDOMHTMLBRElement element) : base(element)
 		{
-			this.DOMHTMLElement = element;
+			this._domHtmlBrElement = element;
 		}
-		public GeckoBRElement(object element) : base(element as nsIDOMHTMLElement)
+
+		public string Clear
 		{
-			this.DOMHTMLElement = element as nsIDOMHTMLBRElement;
-		}
-		public string Clear {
-			get { return nsString.Get(DOMHTMLElement.GetClearAttribute); }
-			set { DOMHTMLElement.SetClearAttribute(new nsAString(value)); }
+			get { return nsString.Get( _domHtmlBrElement.GetClearAttribute ); }
+			set { nsString.Set( _domHtmlBrElement.SetClearAttribute, value ); }
 		}
 
 		public override string OuterHtml

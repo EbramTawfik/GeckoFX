@@ -1,4 +1,6 @@
 using System;
+using Gecko.DOM.Events;
+using Gecko.Interop;
 
 namespace Gecko
 {
@@ -9,6 +11,7 @@ namespace Gecko
 		: EventArgs
 	{
 		private nsIDOMEvent _event;
+		bool _Handled;
 
 		protected DomEventArgs(nsIDOMEvent ev)
 		{
@@ -54,6 +57,10 @@ namespace Gecko
 			{
 				return DomMessageEventArgs.Create((nsIDOMMessageEvent)ev);
 			}
+			if ( ev is nsIDOMSVGEvent )
+			{
+				return DomSvgEvent.Create( ( nsIDOMSVGEvent ) ev );
+			}
 			return new DomEventArgs(ev);
 		}
 
@@ -93,17 +100,17 @@ namespace Gecko
 			get { return (EventPhase)_event.GetEventPhaseAttribute(); }
 		}
 
-		public GeckoHtmlElement CurrentTarget
+		public DOM.DomEventTarget CurrentTarget
 		{
-			get { return GeckoHtmlElement.Create(Xpcom.QueryInterface<nsIDOMHTMLElement>(_event.GetCurrentTargetAttribute())); }
+			get { return _event.GetCurrentTargetAttribute().Wrap( DOM.DomEventTarget.Create ); }
 		}
 
 		/// <summary>
 		/// Gets the final destination of the event.
 		/// </summary>
-		public GeckoHtmlElement Target
+		public DOM.DomEventTarget Target
 		{
-			get { return GeckoHtmlElement.Create(Xpcom.QueryInterface<nsIDOMHTMLElement>(_event.GetTargetAttribute())); }
+			get { return _event.GetTargetAttribute().Wrap( DOM.DomEventTarget.Create ); }
 		}
 
 
@@ -151,7 +158,7 @@ namespace Gecko
 			get { return _Handled; }
 			set { _Handled = value; }
 		}
-		bool _Handled;
+		
 
 	}
 

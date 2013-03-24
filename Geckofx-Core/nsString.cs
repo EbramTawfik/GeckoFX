@@ -293,6 +293,11 @@ namespace Gecko
 			return GenericGet( getter, inValue );
 		}
 
+		/// <summary>
+		/// function <paramref name="setter"/> takes <paramref name="value"/> and returns void
+		/// </summary>
+		/// <param name="setter"></param>
+		/// <param name="value"></param>
 		public static void Set(Action<nsAUTF8String> setter, string value)
 		{
 			GenericSet( setter, value );
@@ -338,6 +343,11 @@ namespace Gecko
 			return GenericGet(func, value);
 		}
 
+		/// <summary>
+		/// function <paramref name="setter"/> takes <paramref name="value"/> and returns void
+		/// </summary>
+		/// <param name="setter"></param>
+		/// <param name="value"></param>
 		public static void Set(Action<nsACString> setter, string value)
 		{
 			GenericSet( setter, value );
@@ -402,6 +412,11 @@ namespace Gecko
 
 		#region nsAString Setters
 
+		/// <summary>
+		/// function <paramref name="setter"/> takes <paramref name="value"/> and returns void
+		/// </summary>
+		/// <param name="setter"></param>
+		/// <param name="value"></param>
 		public static void Set(Action<nsAString> setter, string value)
 		{
 			GenericSet( setter, value );

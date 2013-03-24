@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Gecko.Interop;
 
 namespace Gecko.DOM.Svg
 {
@@ -24,12 +25,12 @@ namespace Gecko.DOM.Svg
 
 		public SvgSvgElement OwnerSvgElement
 		{
-			get { return SvgSvgElement.CreateSvgSvgElementWrapper( _svgElement.GetOwnerSVGElementAttribute() ); }
+			get { return _svgElement.GetOwnerSVGElementAttribute().Wrap(SvgSvgElement.CreateSvgSvgElementWrapper); }
 		}
 		
 		public SvgElement ViewportElement
 		{
-			get { return CreateSvgElementWrapper( _svgElement.GetViewportElementAttribute() ); }
+			get { return _svgElement.GetViewportElementAttribute().Wrap( CreateSvgElementWrapper ); }
 		}
 
 		public static SvgElement CreateSvgElementWrapper(nsIDOMSVGElement svgElement)

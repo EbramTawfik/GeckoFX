@@ -148,20 +148,25 @@ namespace GeckoFxTest
 		/// An example event handler for the DomClick event.
 		/// Prevents a link click from navigating.
 		/// </summary>
-		void StopLinksNavigating(object sender, DomEventArgs e)
+		private void StopLinksNavigating( object sender, DomEventArgs e )
 		{
-			if (sender != null && e != null && e.Target != null && e.Target.TagName != null)
+			if ( sender == null ) return;
+			if ( e == null ) return;
+			if ( e.Target == null ) return;
+
+			var element = e.Target.CastToGeckoElement();
+
+			GeckoHtmlElement clicked = element as GeckoHtmlElement;
+			if ( clicked == null ) return;
+
+			// prevent clicking on Links from navigation to the
+			if ( clicked.TagName == "A" )
 			{
-				GeckoHtmlElement clicked = e.Target;
-
-				// prevent clicking on Links from navigation to the
-				if (clicked.TagName == "A")
-				{
-					e.Handled = true;
-					MessageBox.Show(sender as IWin32Window, String.Format("You clicked on Link {0}", clicked.GetAttribute("href")));
-				}
-
+				e.Handled = true;
+				MessageBox.Show( sender as IWin32Window, String.Format( "You clicked on Link {0}", clicked.GetAttribute( "href" ) ) );
 			}
+
+
 		}
 
 		protected void AddToolbarAndBrowserToTab(TabPage tabPage, GeckoWebBrowser browser)

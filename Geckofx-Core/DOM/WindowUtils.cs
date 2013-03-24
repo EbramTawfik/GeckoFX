@@ -1,13 +1,20 @@
 ﻿using System;
+using Gecko.Interop;
+
 namespace Gecko.DOM
 {
 	public class WindowUtils
 	{
-		nsIDOMWindowUtils _windowUtils;
+		private InstanceWrapper<nsIDOMWindowUtils> _windowUtils;
 
 		internal WindowUtils(nsIDOMWindowUtils windowUtils)
 		{
-			_windowUtils = windowUtils;
+			_windowUtils = new InstanceWrapper<nsIDOMWindowUtils>( windowUtils );
+		}
+
+		public static WindowUtils Create( nsIDOMWindowUtils windowUtils )
+		{
+			return new WindowUtils( windowUtils );
 		}
 
 		/// <summary>
@@ -29,8 +36,8 @@ namespace Gecko.DOM
 		/// </summary>		
 		public ushort ImageAnimationMode
 		{
-			get { return _windowUtils.GetImageAnimationModeAttribute(); }
-			set { _windowUtils.SetImageAnimationModeAttribute(value); }
+			get { return _windowUtils.Instance.GetImageAnimationModeAttribute(); }
+			set { _windowUtils.Instance.SetImageAnimationModeAttribute( value ); }
 		}
 
 
@@ -41,7 +48,7 @@ namespace Gecko.DOM
         /// </summary>		
 		public bool DocCharsetIsForced
 		{
-			get { return _windowUtils.GetDocCharsetIsForcedAttribute(); }
+			get { return _windowUtils.Instance.GetDocCharsetIsForcedAttribute(); }
 		}
 
 		/// <summary>
@@ -51,7 +58,7 @@ namespace Gecko.DOM
 
 		public short GetCursorType()
 		{
-			return _windowUtils.GetCursorType();
+			return _windowUtils.Instance.GetCursorType();
 		}
 
 	
@@ -65,11 +72,12 @@ namespace Gecko.DOM
         /// </summary>		
 		public string GetDocumentMetadata(string name)
 		{
-			using (nsAString tempName = new nsAString(name), ret = new nsAString())
-			{
-				_windowUtils.GetDocumentMetadata(tempName, ret);
-				return ret.ToString();
-			}
+			return nsString.Get( _windowUtils.Instance.GetDocumentMetadata, name );
+			//using (nsAString tempName = new nsAString(name), ret = new nsAString())
+			//{
+			//	_windowUtils.Instance.GetDocumentMetadata( tempName, ret );
+			//	return ret.ToString();
+			//}
 		}
 
 		/// <summary>
@@ -80,7 +88,7 @@ namespace Gecko.DOM
         /// </summary>		
 		public uint Redraw(uint aCount)
 		{
-			return _windowUtils.Redraw(aCount);
+			return _windowUtils.Instance.Redraw(aCount);
 		}
 
 		/// <summary>
@@ -93,7 +101,7 @@ namespace Gecko.DOM
         /// </summary>		
 		public void SetCSSViewport(float aWidthPx, float aHeightPx)
 		{
-			_windowUtils.SetCSSViewport(aWidthPx, aHeightPx);
+			_windowUtils.Instance.SetCSSViewport( aWidthPx, aHeightPx );
 		}
 
 		/// <summary>
@@ -124,7 +132,7 @@ namespace Gecko.DOM
         /// </summary>		
 		public void SetDisplayPortForElement(float aXPx, float aYPx, float aWidthPx, float aHeightPx, GeckoElement aElement)
 		{
-			_windowUtils.SetDisplayPortForElement(aXPx, aYPx, aWidthPx, aHeightPx, (nsIDOMElement)aElement.DomObject);
+			_windowUtils.Instance.SetDisplayPortForElement( aXPx, aYPx, aWidthPx, aHeightPx, ( nsIDOMElement ) aElement.DomObject );
 		}
 
 
@@ -154,7 +162,7 @@ namespace Gecko.DOM
         /// </summary>		
 		public void SetResolution(float aXResolution, float aYResolution)
 		{
-			_windowUtils.SetResolution(aXResolution, aYResolution);
+			_windowUtils.Instance.SetResolution( aXResolution, aYResolution );
 		}
 		
 		/// <summary>
@@ -193,7 +201,7 @@ namespace Gecko.DOM
 		{
 			using (nsAString type = new nsAString(aType))
 			{
-				_windowUtils.SendMouseEvent(type, aX, aY, aButton, aClickCount, aModifiers, aIgnoreRootScrollFrame);
+				_windowUtils.Instance.SendMouseEvent( type, aX, aY, aButton, aClickCount, aModifiers, aIgnoreRootScrollFrame );
 			}
 		}
 		
@@ -206,7 +214,7 @@ namespace Gecko.DOM
 		{
 			using (nsAString type = new nsAString(aType))
 			{
-				_windowUtils.SendMouseEventToWindow(type, aX, aY, aButton, aClickCount, aModifiers, aIgnoreRootScrollFrame);
+				_windowUtils.Instance.SendMouseEventToWindow( type, aX, aY, aButton, aClickCount, aModifiers, aIgnoreRootScrollFrame );
 			}
 		}
 		
@@ -235,7 +243,7 @@ namespace Gecko.DOM
 		{
 			using (nsAString type = new nsAString(aType))
 			{
-				_windowUtils.SendMouseScrollEvent(type, aX, aY, aButton, aScrollFlags, aDelta, aModifiers);
+				_windowUtils.Instance.SendMouseScrollEvent( type, aX, aY, aButton, aScrollFlags, aDelta, aModifiers );
 			}
 		}
 
@@ -264,7 +272,7 @@ namespace Gecko.DOM
 		{
 			using (nsAString type = new nsAString(aType))
 			{
-				return _windowUtils.SendKeyEvent(type, aKeyCode, aCharCode, aModifiers, aPreventDefault ? 1U : 0U);
+				return _windowUtils.Instance.SendKeyEvent( type, aKeyCode, aCharCode, aModifiers, aPreventDefault ? 1U : 0U );
 			}
 		}	
 		
@@ -279,7 +287,7 @@ namespace Gecko.DOM
 		{
 			using (nsAString characters = new nsAString(aCharacters), unmodifiedCharaters = new nsAString(aUnmodifiedCharacters))
 			{
-				_windowUtils.SendNativeKeyEvent(aNativeKeyboardLayout, aNativeKeyCode, aModifierFlags, characters, unmodifiedCharaters);
+				_windowUtils.Instance.SendNativeKeyEvent( aNativeKeyboardLayout, aNativeKeyCode, aModifierFlags, characters, unmodifiedCharaters );
 			}
 		}
 
@@ -293,7 +301,7 @@ namespace Gecko.DOM
         /// </summary>
 		public void SendNativeMouseEvent(int aScreenX, int aScreenY, int aNativeMessage, int aModifierFlags, GeckoElement aElement)
 		{
-			_windowUtils.SendNativeMouseEvent(aScreenX, aScreenY, aNativeMessage, aModifierFlags, (nsIDOMElement)aElement.DomObject);
+			_windowUtils.Instance.SendNativeMouseEvent( aScreenX, aScreenY, aNativeMessage, aModifierFlags, ( nsIDOMElement ) aElement.DomObject );
 		}
 		
 		/// <summary>
@@ -305,10 +313,7 @@ namespace Gecko.DOM
         /// </summary>		
 		public void ActivateNativeMenuItemAt(string indexString)
 		{
-			using (nsAString index = new nsAString(indexString))
-			{
-				_windowUtils.ActivateNativeMenuItemAt(index);
-			}
+			nsString.Set( _windowUtils.Instance.ActivateNativeMenuItemAt, indexString );
 		}
 		
 		/// <summary>
@@ -320,7 +325,7 @@ namespace Gecko.DOM
         /// </summary>
 		public void ForceUpdateNativeMenuAt(string indexString)
 		{
-			throw new NotImplementedException();
+			nsString.Set( _windowUtils.Instance.ForceUpdateNativeMenuAt, indexString );
 		}
 
 
@@ -339,9 +344,9 @@ namespace Gecko.DOM
         /// nsIFocusManager::SetFocus instead.
         ///
         /// </summary>		
-		public void Focus(GeckoHtmlElement aElement)
+		public void Focus(GeckoElement aElement)
 		{
-			throw new NotImplementedException();
+			_windowUtils.Instance.Focus( aElement.DOMElement );
 		}
 		
 		/// <summary>
@@ -362,7 +367,7 @@ namespace Gecko.DOM
         /// </summary>		
 		public void GarbageCollect(nsICycleCollectorListener aListener, int aExtraForgetSkippableCalls)
 		{
-			_windowUtils.GarbageCollect(aListener, aExtraForgetSkippableCalls);
+			_windowUtils.Instance.GarbageCollect(aListener, aExtraForgetSkippableCalls);
 		}
 		
 		/// <summary>
@@ -383,7 +388,7 @@ namespace Gecko.DOM
         /// </summary>		
 		public void CycleCollect(nsICycleCollectorListener aListener, int aExtraForgetSkippableCalls)
 		{
-			_windowUtils.GarbageCollect(aListener, aExtraForgetSkippableCalls);
+			_windowUtils.Instance.GarbageCollect( aListener, aExtraForgetSkippableCalls );
 		}
 		
 		/// <summary>
@@ -419,7 +424,7 @@ namespace Gecko.DOM
         /// </summary>		
 		public GeckoElement ElementFromPoint(float aX, float aY, bool aIgnoreRootScrollFrame, bool aFlushLayout)
 		{
-			nsIDOMElement element = _windowUtils.ElementFromPoint(aX, aY, aIgnoreRootScrollFrame, aFlushLayout);
+			nsIDOMElement element = _windowUtils.Instance.ElementFromPoint( aX, aY, aIgnoreRootScrollFrame, aFlushLayout );
 			if (element == null)
 				return null;
 
@@ -515,7 +520,7 @@ namespace Gecko.DOM
         /// </summary>		
 		public bool IMEIsOpen
 		{
-			get { return _windowUtils.GetIMEIsOpenAttribute();  }
+			get { return _windowUtils.Instance.GetIMEIsOpenAttribute(); }
 		}
 		
 		/// <summary>
@@ -523,7 +528,7 @@ namespace Gecko.DOM
         /// </summary>		
 		public uint IMEStatus
 		{
-			get { throw new NotImplementedException(); }
+			get { return _windowUtils.Instance.GetIMEStatusAttribute(); }
 		}
 		
 		/// <summary>
@@ -531,7 +536,7 @@ namespace Gecko.DOM
         /// </summary>		
 		public float ScreenPixelsPerCSSPixel
 		{
-			get { throw new NotImplementedException(); }
+			get { return _windowUtils.Instance.GetScreenPixelsPerCSSPixelAttribute(); }
 		}
 		
 		/// <summary>
@@ -668,7 +673,7 @@ namespace Gecko.DOM
         /// </summary>		
 		public ulong GetOuterWindowIDAttribute()
 		{
-			throw new NotImplementedException();
+			return _windowUtils.Instance.GetOuterWindowIDAttribute();
 		}
 		
 		/// <summary>
@@ -677,7 +682,7 @@ namespace Gecko.DOM
         /// </summary>		
 		public ulong GetCurrentInnerWindowIDAttribute()
 		{
-			throw new NotImplementedException();
+			return _windowUtils.Instance.GetCurrentInnerWindowIDAttribute();
 		}
 		
 		/// <summary>
@@ -686,7 +691,7 @@ namespace Gecko.DOM
         /// </summary>		
 		public void EnterModalState()
 		{
-			throw new NotImplementedException();
+			_windowUtils.Instance.EnterModalState();
 		}
 		
 		/// <summary>
@@ -695,7 +700,7 @@ namespace Gecko.DOM
         /// </summary>		
 		public void LeaveModalState()
 		{
-			throw new NotImplementedException();
+			_windowUtils.Instance.LeaveModalState();
 		}
 		
 		/// <summary>
@@ -705,7 +710,7 @@ namespace Gecko.DOM
 		
 		public GeckoWindow EnterModalStateWithWindow()
 		{
-			throw new NotImplementedException();
+			return _windowUtils.Instance.EnterModalStateWithWindow().Wrap( GeckoWindow.Create );
 		}
 		
 		/// <summary>
@@ -715,7 +720,7 @@ namespace Gecko.DOM
         /// </summary>		
 		public void LeaveModalStateWithWindow(GeckoWindow aWindow)
 		{
-			throw new NotImplementedException();
+			_windowUtils.Instance.LeaveModalStateWithWindow( aWindow.DomWindow );
 		}
 		
 		/// <summary>
@@ -723,7 +728,7 @@ namespace Gecko.DOM
         /// </summary>		
 		public bool IsInModalState()
 		{
-			throw new NotImplementedException();
+			return _windowUtils.Instance.IsInModalState();
 		}
 		
 		/// <summary>
@@ -731,12 +736,12 @@ namespace Gecko.DOM
         /// </summary>		
 		public void SuspendTimeouts()
 		{
-			throw new NotImplementedException();
+			_windowUtils.Instance.SuspendTimeouts();
 		}
 				
 		public void ResumeTimeouts()
 		{
-			throw new NotImplementedException();
+			_windowUtils.Instance.ResumeTimeouts();
 		}
 		
 		/// <summary>
@@ -746,7 +751,7 @@ namespace Gecko.DOM
         /// </summary>		
 		public void GoOnline()
 		{
-			throw new NotImplementedException();
+			_windowUtils.Instance.GoOnline();
 		}
 		
 		/// <summary>
@@ -774,7 +779,7 @@ namespace Gecko.DOM
         /// </summary>		
 		public float DisplayDPI
 		{
-			get{ throw new NotImplementedException(); }
+			get { return _windowUtils.Instance.GetDisplayDPIAttribute(); }
 		}
 		
 		/// <summary>
@@ -782,7 +787,7 @@ namespace Gecko.DOM
         /// </summary>		
 		public GeckoWindow GetOuterWindowWithId(ulong aOuterWindowID)
 		{
-			throw new NotImplementedException();
+			return _windowUtils.Instance.GetOuterWindowWithId( aOuterWindowID ).Wrap( GeckoWindow.Create );
 		}
 				
 		public void RenderDocument(nsConstRect aRect, uint aFlags, nscolor aBackgroundColor, gfxContext aThebesContext)
@@ -847,7 +852,7 @@ namespace Gecko.DOM
         /// </summary>		
 		public string FocusedInputType
 		{
-			get { throw new NotImplementedException(); }
+			get { return _windowUtils.Instance.GetFocusedInputTypeAttribute(); }
 		}
 
 		

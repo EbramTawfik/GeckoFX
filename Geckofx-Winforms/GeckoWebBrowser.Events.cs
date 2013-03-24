@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using Gecko.Events;
 using Gecko.Interop;
 using Gecko.Net;
 using System.Collections.Generic;
@@ -1324,26 +1325,6 @@ namespace Gecko
 		public GeckoResponse Response
 		{
 			get { return _wrapper ?? ( _wrapper = new GeckoResponse( _response ) ); }
-		}
-	}
-	#endregion
-
-	#region GeckoNavigatingEventArgs
-	/// <summary>Provides data for event.</summary>
-	public class GeckoNavigatingEventArgs
-		: CancelEventArgs
-	{
-		public readonly Uri Uri;
-		public readonly GeckoWindow DomWindow;
-		public readonly Boolean DomWindowTopLevel;
-
-		/// <summary>Creates a new instance of a <see cref="GeckoNavigatingEventArgs"/> object.</summary>
-		/// <param name="value"></param>
-		public GeckoNavigatingEventArgs(Uri value, GeckoWindow domWind)
-		{
-			Uri = value;
-			DomWindow = domWind;
-			DomWindowTopLevel = ((domWind == null) ? true : DomWindow.DomWindow.Equals(DomWindow.Top.DomWindow));
 		}
 	}
 	#endregion

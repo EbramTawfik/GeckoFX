@@ -16,13 +16,38 @@ namespace Gecko.Observers
 				case ObserverNotifications.HttpRequests.HttpOnModifyRequest:
 					using (var req = HttpChannel.Create( aSubject ))
 					{
+						// error handling will help in debug
+#if DEBUG
+						try
+						{
+							Request( req );
+						}
+						catch ( Exception e )
+						{
+							Console.WriteLine("Exception in observer implementation");
+						}
+#else
 						Request( req );
+#endif
+
 					}
 					break;
 				case ObserverNotifications.HttpRequests.HttpOnExamineResponse:
 					using (var res = HttpChannel.Create( aSubject ))
 					{
+						// error handling will help in debug
+#if DEBUG
+						try
+						{
+							Response( res );
+						}
+						catch ( Exception e)
+						{
+							Console.WriteLine( "Exception in observer implementation" );
+						}
+#else
 						Response( res );
+#endif
 					}
 					break;
 			}

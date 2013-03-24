@@ -7,6 +7,8 @@ namespace Gecko
 	/// </summary>
 	public static class ObserverNotifications
 	{
+		public const string Everything = "*";
+
 		public static class ApplicationStartup
 		{
 			public const string XpComStartup = "xpcom-startup";
@@ -32,8 +34,10 @@ namespace Gecko
 		public static class Browser
 		{
 			public const string BrowserPurgeSessionHistory = "browser:purge-session-history";
+			public const string BrowserPurgeDomainData = "browser:purge-domain-data";
 			public const string BrowserLastWindowCloseRequested = "browser-lastwindow-close-requested";
 			public const string BrowserLastWindowCloseGranted = "browser-lastwindow-close-granted";
+			public const string BrowserDelayedStartupFinished = "browser-delayed-startup-finished";
 		}
 
 		public static class Documents
@@ -44,6 +48,7 @@ namespace Gecko
 			public const string ChromeDocumentGlobalCreated="chrome-document-global-created";
 			/// <summary>
 			/// Subject is nsIDOMWindow
+			/// Data - origin
 			/// </summary>
 			public const string ContentDocumentGlobalCreated = "content-document-global-created";
 			/// <summary>
@@ -86,6 +91,7 @@ namespace Gecko
 		public static class HttpRequests
 		{
 			public const string HttpOnModifyRequest="http-on-modify-request";
+			public const string HttpOnOpeningRequest = "http-on-opening-request";
 			public const string HttpOnExamineResponse = "http-on-examine-response";
 			public const string HttpOnExamineCachedResponse = "http-on-examine-cached-response";
 			public const string HttpOnExamineMergedResponse = "http-on-examine-merged-response";
@@ -103,8 +109,6 @@ namespace Gecko
 			public const string DownloadManagerRemoveDownload = "download-manager-remove-download";
 		}
 
-		public const string PrivateBrowsing = "private-browsing";
-
 		public static class IdleService
 		{
 			public const string Idle = "idle";
@@ -112,11 +116,35 @@ namespace Gecko
 			public const string Back = "back";
 		}
 
+		public static class Computer
+		{
+			public const string Sleep = "sleep_notification";
+			public const string Wake = "wake_notification";
+		}
+
+		public static class LoginManager
+		{
+			// TODO
+		}
+
+		public static class Places
+		{
+			// TODO
+		}
+
+		public static class SessionStore
+		{
+			// TODO
+		}
+		
+		/// <summary>
+		/// data - enter - on enter
+		/// data - exit - on exit
+		/// </summary>
+		public const string PrivateBrowsing = "private-browsing";
+
 		public static class Telemetry
 		{
-			/// <summary>
-			/// Gecko 10
-			/// </summary>
 			public const string GatherTelemetry="gather-telemetry";
 		}
 	}

@@ -1,4 +1,6 @@
 using System.Drawing;
+using System.Runtime.InteropServices;
+using Gecko.Interop;
 
 namespace Gecko
 {
@@ -8,11 +10,16 @@ namespace Gecko
 	public class GeckoHtmlElement
 		: GeckoElement
 	{
+		private nsIDOMHTMLElement _domHtmlElement;
+
+		//nsIDOMElement DomNSElement;
+
+		#region ctor
 		internal GeckoHtmlElement(nsIDOMHTMLElement element)
 			: base(element)
 		{
-			this.DomElement = element;
-			this.DomNSElement = (nsIDOMElement)element;
+			_domHtmlElement = element;
+			//this.DomNSElement = (nsIDOMElement)element;
 		}
 		
 		internal static GeckoHtmlElement Create(nsIDOMHTMLElement element)
@@ -24,10 +31,14 @@ namespace Gecko
 		{
 			return (element == null) ? null : DOM.DOMSelector.GetClassFor<T>(element);
 		}
-		
-		nsIDOMHTMLElement DomElement;
+		#endregion
 
-		nsIDOMElement DomNSElement;
+		public nsIDOMHTMLElement DOMHtmlElement
+		{
+			get { return _domHtmlElement; }
+		}
+
+
 		
 		/// <summary>
 		/// Gets the inline style of the GeckoElement. 
@@ -36,7 +47,11 @@ namespace Gecko
 		{
 			get
 			{
-				return GeckoStyle.Create(Xpcom.QueryInterface<nsIDOMElementCSSInlineStyle>(DomObject).GetStyleAttribute());
+				var cssInlineStyle = Xpcom.QueryInterface<nsIDOMElementCSSInlineStyle>( DomObject );
+				if ( cssInlineStyle == null ) return null;
+				var ret = cssInlineStyle.GetStyleAttribute().Wrap( GeckoStyle.Create );
+				Marshal.ReleaseComObject( cssInlineStyle );
+				return ret;
 			}
 		}
 		
@@ -48,7 +63,7 @@ namespace Gecko
 			get
 			{
 				// note: the parent node could also be the document
-				return GeckoHtmlElement.Create(Xpcom.QueryInterface<nsIDOMHTMLElement>(DomElement.GetParentNodeAttribute()));
+				return GeckoHtmlElement.Create( Xpcom.QueryInterface<nsIDOMHTMLElement>( _domHtmlElement.GetParentNodeAttribute() ) );
 			}
 		}
 
@@ -59,13 +74,13 @@ namespace Gecko
 		/// </summary>
 		public string Id
 		{
-			get { return nsString.Get(DomElement.GetIdAttribute); }
+			get { return nsString.Get( _domHtmlElement.GetIdAttribute ); }
 			set 
 			{				
 				if (string.IsNullOrEmpty(value))
 					this.RemoveAttribute("id");
 				else
-					nsString.Set(DomElement.SetIdAttribute, value); 
+					nsString.Set( _domHtmlElement.SetIdAttribute, value ); 
 			}
 		}
 		
@@ -74,41 +89,41 @@ namespace Gecko
 		/// </summary>
 		public string ClassName
 		{
-			get { return nsString.Get(DomElement.GetClassNameAttribute); }
+			get { return nsString.Get( _domHtmlElement.GetClassNameAttribute ); }
 			set 
 			{
 				if (string.IsNullOrEmpty(value))
 					this.RemoveAttribute("class");
 				else
-					nsString.Set(DomElement.SetClassNameAttribute, value); 
+					nsString.Set( _domHtmlElement.SetClassNameAttribute, value ); 
 			}
 		}
 
 		public void Blur()
 		{
-			DomElement.Blur();
+			_domHtmlElement.Blur();
 		}
 
 		public string AccessKey
 		{
-			get { return nsString.Get(DomElement.GetAccessKeyAttribute); }
-			set { DomElement.SetAccessKeyAttribute(new nsAString(value)); }
+			get { return nsString.Get( _domHtmlElement.GetAccessKeyAttribute ); }
+			set { _domHtmlElement.SetAccessKeyAttribute( new nsAString( value ) ); }
 		}
 
 		public void Focus()
 		{
-			DomElement.Focus();
+			_domHtmlElement.Focus();
 		}
 
 		public void Click()
 		{
-			DomElement.Click();
+			_domHtmlElement.Click();
 		}
 
 		public bool Draggable
 		{
-			get { return DomElement.GetDraggableAttribute(); }
-			set { DomElement.SetDraggableAttribute(value); }
+			get { return _domHtmlElement.GetDraggableAttribute(); }
+			set { _domHtmlElement.SetDraggableAttribute( value ); }
 		}
 	
 		/// <summary>
@@ -116,77 +131,66 @@ namespace Gecko
 		/// </summary>
 		public string ContentEditable
 		{
-			get { return nsString.Get(DomElement.GetContentEditableAttribute); }
-			set { nsString.Set(DomElement.GetContentEditableAttribute, value); }
+			get { return nsString.Get( _domHtmlElement.GetContentEditableAttribute ); }
+			set { nsString.Set( _domHtmlElement.GetContentEditableAttribute, value ); }
 		}
+
+
+		public int OffsetLeft { get { return _domHtmlElement.GetOffsetLeftAttribute(); } }
+		public int OffsetTop { get { return _domHtmlElement.GetOffsetTopAttribute(); } }
+		public int OffsetWidth { get { return _domHtmlElement.GetOffsetWidthAttribute(); } }
+		public int OffsetHeight { get { return _domHtmlElement.GetOffsetHeightAttribute(); } }
+
+
 		
-		public System.Drawing.Rectangle BoundingClientRect
-		{
-			get
-			{
-				nsIDOMClientRect domRect = DomNSElement.GetBoundingClientRect();
-				var r = new Rectangle((int)domRect.GetLeftAttribute(), (int)domRect.GetTopAttribute(), (int)domRect.GetWidthAttribute(), (int)domRect.GetHeightAttribute());
-				return r;				
-			}
-		}
 
-		public int ScrollLeft { get { return DomNSElement.GetScrollLeftAttribute(); } set { DomNSElement.SetScrollLeftAttribute(value); } }
-		public int ScrollTop { get { return DomNSElement.GetScrollTopAttribute(); } set { DomNSElement.SetScrollTopAttribute(value); } }
-		public int ScrollWidth { get { return DomNSElement.GetScrollWidthAttribute(); } }
-		public int ScrollHeight { get { return DomNSElement.GetScrollHeightAttribute(); } }
-		public int ClientWidth { get { return DomNSElement.GetClientWidthAttribute(); } }
-		public int ClientHeight { get { return DomNSElement.GetClientHeightAttribute(); } }
-
-		public int OffsetLeft { get { return DomElement.GetOffsetLeftAttribute(); } }
-		public int OffsetTop { get { return DomElement.GetOffsetTopAttribute(); } }
-		public int OffsetWidth { get { return DomElement.GetOffsetWidthAttribute(); } }
-		public int OffsetHeight { get { return DomElement.GetOffsetHeightAttribute(); } }
+		
 		
 		public GeckoHtmlElement OffsetParent
 		{
-			get { return GeckoHtmlElement.Create((nsIDOMHTMLElement)DomElement.GetOffsetParentAttribute()); }
+			get { return GeckoHtmlElement.Create( ( nsIDOMHTMLElement ) _domHtmlElement.GetOffsetParentAttribute() ); }
 		}
 		
 		public void ScrollIntoView(bool top)
 		{
-			DomElement.ScrollIntoView(top, 1);
+			_domHtmlElement.ScrollIntoView( top, 1 );
 		}
 		
 
 		public bool Spellcheck
 		{
-			get { return DomElement.GetSpellcheckAttribute(); }
-			set { DomElement.SetSpellcheckAttribute(value); }
+			get { return _domHtmlElement.GetSpellcheckAttribute(); }
+			set { _domHtmlElement.SetSpellcheckAttribute( value ); }
 		}
 
 		public string InnerHtml
 		{
-			get { return nsString.Get(DomElement.GetInnerHTMLAttribute); }
-			set { nsString.Set(DomElement.SetInnerHTMLAttribute, value); }
+			get { return nsString.Get( _domHtmlElement.GetInnerHTMLAttribute ); }
+			set { nsString.Set( _domHtmlElement.SetInnerHTMLAttribute, value ); }
 		}
 
 		public virtual string OuterHtml
 		{
-			get { return nsString.Get(DomElement.GetOuterHTMLAttribute); }			
+			get { return nsString.Get( _domHtmlElement.GetOuterHTMLAttribute ); }			
 		}
 		
 		public int TabIndex
 		{
-			get { return DomElement.GetTabIndexAttribute(); }
-			set { DomElement.SetTabIndexAttribute(value); }
+			get { return _domHtmlElement.GetTabIndexAttribute(); }
+			set { _domHtmlElement.SetTabIndexAttribute( value ); }
 		}
 
 		public void InsertAdjacentHTML(string position, string text)
 		{
 			using(nsAString tempPos = new nsAString(position), tempText = new nsAString(text))
 			{
-				DomElement.InsertAdjacentHTML(tempPos, tempText);
+				_domHtmlElement.InsertAdjacentHTML( tempPos, tempText );
 			}
 		}
 
 		public void MozRequestFullScreen()
 		{
-			DomElement.MozRequestFullScreen();
+			_domHtmlElement.MozRequestFullScreen();
 		}
 	}
 }

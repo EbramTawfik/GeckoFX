@@ -1,23 +1,32 @@
 using System;
 using System.Collections.Generic;
+using Gecko.Interop;
 
 namespace Gecko
 {
-	public class GeckoNamedNodeMap : IEnumerable<GeckoNode>
+	public class GeckoNamedNodeMap
+		: IEnumerable<GeckoNode>
 	{
-		internal GeckoNamedNodeMap(nsIDOMNamedNodeMap map)
+		private nsIDOMNamedNodeMap _map;
+
+		private GeckoNamedNodeMap(nsIDOMNamedNodeMap map)
 		{
-			this.Map = map;
+			// map should be not null
+			this._map = map;
 		}
 		
-		nsIDOMNamedNodeMap Map;
+		public static GeckoNamedNodeMap Create( nsIDOMNamedNodeMap domNamedNodeMap )
+		{
+			return new GeckoNamedNodeMap( domNamedNodeMap );
+		}
+		
 		
 		/// <summary>
 		/// Gets the number of items in the map.
 		/// </summary>
 		public int Count
 		{
-			get { return (Map == null) ? 0 : (int)Map.GetLengthAttribute(); }
+			get { return ( int ) _map.GetLengthAttribute(); }
 		}
 		
 		public GeckoNode this[int index]
@@ -27,24 +36,18 @@ namespace Gecko
 				if (index < 0 || index >= Count)
 					throw new ArgumentOutOfRangeException("index");
 
-				return GeckoNode.Create(Map.Item((uint)index));
+				return _map.Item( ( uint ) index ).Wrap( GeckoNode.Create );
 			}
 		}
 		
 		public GeckoNode this[string name]
 		{
-			get
-			{
-				return GeckoNode.Create(Map.GetNamedItem(new nsAString(name)));
-			}
+			get { return nsString.Pass(_map.GetNamedItem,name).Wrap(GeckoNode.Create); }
 		}
 		
 		public GeckoNode this[string namespaceUri, string localName]
 		{
-			get
-			{
-				return GeckoNode.Create(Map.GetNamedItemNS(new nsAString(namespaceUri), new nsAString(localName)));
-			}
+			get { return nsString.Pass( _map.GetNamedItemNS, namespaceUri, localName ).Wrap( GeckoNode.Create ); }
 		}
 
 		#region IEnumerable<GeckoNode> Members
@@ -54,7 +57,7 @@ namespace Gecko
 			int length = Count;
 			for (int i = 0; i < length; i++)
 			{
-				yield return GeckoNode.Create(Map.Item((uint)i));
+				yield return GeckoNode.Create(_map.Item((uint)i));
 			}
 		}
 
@@ -64,8 +67,7 @@ namespace Gecko
 
 		System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
 		{
-			foreach (GeckoNode node in this)
-				yield return node;
+			return GetEnumerator();
 		}
 
 		#endregion

@@ -48,7 +48,7 @@ namespace Gecko.Cache
 			{
 				
 			}
-			return descriptor != null ? new CacheEntryDescriptor( descriptor ) : null;
+			return descriptor.Wrap( CacheEntryDescriptor.Create );
 		}
 
 

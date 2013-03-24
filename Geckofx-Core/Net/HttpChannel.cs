@@ -25,7 +25,7 @@ namespace Gecko.Net
 
 		public static HttpChannel Create(nsIHttpChannel httpChannel)
 		{
-			return httpChannel == null ? null : new HttpChannel( httpChannel );
+			return new HttpChannel( httpChannel );
 		}
 
 		public void Dispose()
@@ -225,16 +225,16 @@ namespace Gecko.Net
 
 	public sealed class TraceableChannel
 	{
-		private nsITraceableChannel _traceableChannel;
+		private InstanceWrapper<nsITraceableChannel> _traceableChannel;
 		internal TraceableChannel(nsITraceableChannel traceableChannel)
 		{
-			_traceableChannel = traceableChannel;
+			_traceableChannel = new InstanceWrapper<nsITraceableChannel>(traceableChannel);
 		}
 
 
 		public void SetNewListener(StreamListenerTee streamListener)
 		{
-			var old = _traceableChannel.SetNewListener( streamListener._streamListenerTee.Instance );
+			var old = _traceableChannel.Instance.SetNewListener( streamListener._streamListenerTee.Instance );
 			streamListener.IntInit( old );
 		}
 	}

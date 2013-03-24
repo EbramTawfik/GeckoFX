@@ -34,12 +34,14 @@
 #endregion END LICENSE BLOCK
 
 using System;
+using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
 
 namespace Gecko
 {
-	public class GeckoElement : GeckoNode
+	public class GeckoElement
+		: GeckoNode
 	{
 		private nsIDOMElement _domElement;
 
@@ -51,6 +53,10 @@ namespace Gecko
 			_domElement = domElement;
 		}
 
+		public nsIDOMElement DOMElement
+		{
+			get { return _domElement; }
+		}
 		
 
 		/// <summary>
@@ -210,6 +216,41 @@ namespace Gecko
 			return (ret == null) ? null : new GeckoAttribute(ret);
 		}
 		#endregion
+
+
+		public int ScrollLeft
+		{
+			get { return _domElement.GetScrollLeftAttribute(); }
+			set { _domElement.SetScrollLeftAttribute( value ); }
+		}
+
+		public int ScrollTop
+		{
+			get { return _domElement.GetScrollTopAttribute(); }
+			set { _domElement.SetScrollTopAttribute( value ); }
+		}
+
+		public int ScrollWidth
+		{
+			get { return _domElement.GetScrollWidthAttribute(); }
+		}
+
+		public int ScrollHeight
+		{
+			get { return _domElement.GetScrollHeightAttribute(); }
+		}
+
+		public int ClientWidth
+		{
+			get { return _domElement.GetClientWidthAttribute(); }
+		}
+
+		public int ClientHeight
+		{
+			get { return _domElement.GetClientHeightAttribute(); }
+		}
+
+
 
 		/// <summary>
 		/// Returns a collection containing the child elements of this element with a given tag name.

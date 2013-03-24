@@ -123,6 +123,9 @@
       <DependentUpon>ConfirmDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\GeckoHelperAppLauncherDialog.cs" />
+    <Compile Include="DOM\GeckoElementExtensionMethods.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="GeckoWebBrowser.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -195,6 +198,7 @@
   <ItemGroup>
     <None Include="GeckoFX.snk" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

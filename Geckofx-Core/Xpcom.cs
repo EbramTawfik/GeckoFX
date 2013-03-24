@@ -143,12 +143,20 @@ namespace Gecko
 		#endregion
 
 		#region Fields
-		static bool? m_isMono;
+		static readonly bool _isMono;
 		static bool _IsInitialized;
 		static string _ProfileDirectory;
 		static int _XpcomThreadId;
 		private static string _xulrunnerVersion;
 		#endregion
+
+
+		static Xpcom()
+		{
+			// get runtime information at first start
+			//http://www.mono-project.com/Guide:_Porting_Winforms_Applications
+			_isMono = Type.GetType( "Mono.Runtime" ) != null;
+		}
 
 		#region Events
 
@@ -178,7 +186,7 @@ namespace Gecko
 		/// </summary>
 		public static bool IsWindows
 		{
-			get { return !IsLinux; }
+			get { return Environment.OSVersion.Platform != PlatformID.Unix; ; }
 		}
 
 		/// <summary>
@@ -186,13 +194,7 @@ namespace Gecko
 		/// </summary>
 		public static bool IsMono
 		{
-			get
-			{
-				if (m_isMono == null)
-					m_isMono = Type.GetType("Mono.Runtime") != null;
-
-				return (bool)m_isMono;
-			}
+			get { return _isMono; }
 		}
 
 		/// <summary>
@@ -200,7 +202,7 @@ namespace Gecko
 		/// </summary>
 		public static bool IsDotNet
 		{
-			get { return !IsMono; }
+			get { return !_isMono; }
 		}
 		#endregion
 
@@ -410,6 +412,20 @@ namespace Gecko
 			IntPtr ptr = ComponentManager.CreateInstanceByContractID(contractID, null, ref iid);
 			return (TInterfaceType)Xpcom.GetObjectForIUnknown(ptr);
 		}
+
+		/// <summary>
+		/// Creation function for temporal variables with automatic release
+		/// </summary>
+		/// <typeparam name="TInterfaceType"></typeparam>
+		/// <param name="contractID"></param>
+		/// <returns></returns>
+		public static ComPtr<TInterfaceType> CreateInstance2<TInterfaceType>( string contractID )
+			where TInterfaceType : class
+		{
+			var instance = CreateInstance<TInterfaceType>( contractID );
+			return new ComPtr<TInterfaceType>( instance );
+		}
+
 		#endregion
 
 		#region QueryInterface
@@ -657,6 +673,10 @@ namespace Gecko
 		}
 		#endregion
 
+		/// <summary>
+		/// Class for time conversion
+		/// Contains time conversion static methods
+		/// </summary>
 		public static class Time
 		{
 			private static readonly DateTime _utcLinuxStartEpoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
