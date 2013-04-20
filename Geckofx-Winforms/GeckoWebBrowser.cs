@@ -1970,10 +1970,11 @@ namespace Gecko
 
 		void nsITooltipListener.OnShowTooltip(int aXCoords, int aYCoords, string aTipText)
 		{
-			ToolTip = new ToolTipWindow();
-			ToolTip.Location = PointToScreen(new Point(aXCoords, aYCoords)) + new Size(0, 24);
-			ToolTip.Text = aTipText;
-			ToolTip.Show();			
+			if (true.Equals(GeckoPreferences.User["browser.chrome.toolbar_tips"]))
+			{
+				ToolTip = new ToolTipWindow();
+				ToolTip.Show(aTipText, this, new Point(aXCoords, aYCoords + 24));
+			}
 		}
 		
 		ToolTipWindow ToolTip;
@@ -1982,7 +1983,9 @@ namespace Gecko
 		{
 			if (ToolTip != null)
 			{
-				ToolTip.Close();
+				ToolTip.Hide(this);
+				ToolTip.Dispose();
+				ToolTip = null;
 			}
 			
 		}		

@@ -325,73 +325,13 @@ namespace Gecko
 
 		#region Internal classes
 
-		#region class ToolTipWindow : Form
+		#region class ToolTipWindow
 
 		/// <summary>
 		/// A window to contain a tool tip.
 		/// </summary>
-		private class ToolTipWindow : Form
+		private class ToolTipWindow : ToolTip
 		{
-			public ToolTipWindow()
-			{
-				//this.ControlBox = false;
-				this.FormBorderStyle = FormBorderStyle.None;
-				this.ShowInTaskbar = false;
-				this.StartPosition = FormStartPosition.Manual;
-				this.VisibleChanged += delegate { UpdateSize(); };
-
-				this.BackColor = SystemColors.Info;
-				this.ForeColor = SystemColors.InfoText;
-				this.Font = SystemFonts.DialogFont;
-
-				label = new Label();
-				label.Location = new Point( 5, 5 );
-				label.AutoSize = true;
-				label.SizeChanged += delegate { UpdateSize(); };
-				this.Controls.Add( label );
-			}
-
-			private void UpdateSize()
-			{
-				this.Size = label.Size + new Size( 10, 10 );
-			}
-
-			private Label label;
-
-			public override string Text
-			{
-				get { return ( label == null ) ? "" : label.Text; }
-				set
-				{
-					if ( label != null )
-						label.Text = value;
-				}
-			}
-
-			protected override bool ShowWithoutActivation
-			{
-				get { return true; }
-			}
-
-			protected override void OnPaint( PaintEventArgs e )
-			{
-				// draw border and background
-				e.Graphics.DrawRectangle( SystemPens.InfoText, 0, 0, Width - 1, Height - 1 );
-				e.Graphics.FillRectangle( SystemBrushes.Info, 1, 1, Width - 2, Height - 2 );
-			}
-
-			protected override CreateParams CreateParams
-			{
-				get
-				{
-					const int CS_DROPSHADOW = 0x20000;
-
-					// adds a soft drop shadow (windows xp or later required)
-					CreateParams cp = base.CreateParams;
-					cp.ClassStyle |= CS_DROPSHADOW;
-					return cp;
-				}
-			}
 		}
 
 		#endregion
