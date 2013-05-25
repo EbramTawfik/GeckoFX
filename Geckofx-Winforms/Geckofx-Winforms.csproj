@@ -190,15 +190,14 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="GeckoFX.snk" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Geckofx-Core\Geckofx-Core.csproj">
-      <Project>{6AB4EEE6-1889-43AB-83F7-A4F083230BE7}</Project>
+      <Project>{6ab4eee6-1889-43ab-83f7-a4f083230be7}</Project>
       <Name>Geckofx-Core</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="GeckoFX.snk" />
-  </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

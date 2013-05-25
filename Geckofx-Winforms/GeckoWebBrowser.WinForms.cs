@@ -245,6 +245,11 @@ namespace Gecko
 			const int MA_ACTIVATE = 0x1;
 			const int WM_IME_SETCONTEXT = 0x0281;
 			const int WM_PAINT = 0x000F;
+			const int WM_SETFOCUS = 0x0007;
+			const int WM_KILLFOCUS = 0x0008;
+
+
+			const int ISC_SHOWUICOMPOSITIONWINDOW = unchecked ((int)0x80000000);
 			if ( !DesignMode )
 			{
 				switch ( m.Msg )
@@ -257,27 +262,48 @@ namespace Gecko
 						if ( Xpcom.IsWindows )
 						{
 							m.Result = ( IntPtr ) MA_ACTIVATE;
-
-							if ( !User32.IsChild( Handle, User32.GetFocus() ) )
+							var focus = User32.GetFocus();
+							// this special situation is detected
+							// Handle->subwindow[MozillaWindowClass]->focus[MozillaWindowClass]
+							if ( (!IsSubWindow( Handle, focus ))||(User32.IsChild( Handle,User32.GetParent( focus ) )) )
 							{
+							//	Console.WriteLine( "+WM_MOUSEACTIVATE {0:X8} lastfocus", focus.ToInt32() );
 								this.Focus();
+							}
+							else
+							{
+								//	Console.WriteLine( "-WM_MOUSEACTIVATE {0:X8} lastfocus", focus.ToInt32() );
 							}
 							return;
 						}
 						return;
+						
+					//http://msdn.microsoft.com/en-US/library/windows/desktop/dd374142%28v=vs.85%29.aspx
 					case WM_IME_SETCONTEXT:
-						if ( !DisableWmImeSetContext && WebBrowserFocus != null )
+						if ( User32.IsChild( Handle, User32.GetFocus() ) )
+						{
+							break;
+						}
+						if ( WebBrowserFocus != null )
 						{
 							//Console.WriteLine("WM_IME_SETCONTEXT {0} {1}", m.WParam, m.LParam.ToString("X8"));
+
+							var param = m.LParam.ToInt32();
+							if ((param&ISC_SHOWUICOMPOSITIONWINDOW)!=0)
+							{
+
+							}
 							if ( m.WParam == IntPtr.Zero )
 							{
 								// zero
+								RemoveInputFocus();	
 								WebBrowserFocus.Deactivate();
 							}
 							else
 							{
-								// non-zero (1)
+								// non-zero (1)		
 								WebBrowserFocus.Activate();
+								SetInputFocus();
 							}
 							return;
 						}
@@ -286,11 +312,23 @@ namespace Gecko
 						break;
 				}
 			}
-
+			
 			base.WndProc( ref m );
 		}
 
-		public bool DisableWmImeSetContext { get; set; }
+		private bool IsSubWindow( IntPtr window, IntPtr candidate )
+		{
+			// search parent until desktop (flash window is owned by other process)
+			while ( candidate!=IntPtr.Zero )
+			{
+				candidate = User32.GetParent( candidate );
+				if ( window == candidate )
+				{
+					return true;
+				}
+			}
+			return false;
+		}
 
 		#endregion
 

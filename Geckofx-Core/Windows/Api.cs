@@ -59,6 +59,9 @@ namespace Gecko.Windows
 		[DllImport("user32")]
 		public static extern bool IsChild(IntPtr hWndParent, IntPtr hwnd);
 
+		[DllImport( "user32" )]
+		public static extern IntPtr GetParent(IntPtr hwnd);
+
 		[DllImport("user32")]
 		public static extern IntPtr GetFocus();
 	}

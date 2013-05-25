@@ -59,6 +59,7 @@ namespace Gecko
 		nsIContextMenuListener2,
 		nsIWebProgressListener,
 		nsIWebProgressListener2,
+		//nsIWebBrowserChromeFocus, -- TODO
 		nsIInterfaceRequestor,
 		nsIEmbeddingSiteWindow,
 		nsIDOMEventListener,
@@ -966,27 +967,18 @@ namespace Gecko
 			{
 				if (WebBrowser == null)
 					return null;
-
-				if (_Document == null || _Document.DomObject != WebBrowser.GetContentDOMWindowAttribute().GetDocumentAttribute())
-				{
-					_Document =
-						GeckoDomDocument.CreateDomDocumentWraper( WebBrowser.GetContentDOMWindowAttribute().GetDocumentAttribute() );
-					//FromDOMDocumentTable.Add((nsIDOMDocument)_Document.DomObject, this);
-				}
-				return _Document;
+				// caching document is bad idea in some situations when ajax is used
+				// dom document wrapper is 1 per page, so it is better to create it when it needed
+				return GeckoDomDocument.CreateDomDocumentWraper( WebBrowser.GetContentDOMWindowAttribute().GetDocumentAttribute() );
 			}
 		}
-		GeckoDomDocument _Document;
+		//GeckoDomDocument _Document;
 
 		public GeckoDocument Document
 		{
 			get { return DomDocument as GeckoDocument; }
 		}
 		
-		private void UnloadDocument()
-		{
-			_Document = null;
-		}
 		
 		public void SetInputFocus()
 		{
@@ -1587,7 +1579,7 @@ namespace Gecko
 						IsBusy = false;
 
 						// kill any cached document and raise DocumentCompleted event
-						UnloadDocument();
+
 						OnDocumentCompleted(EventArgs.Empty);
 
 						// clear progress bar
@@ -1646,7 +1638,6 @@ namespace Gecko
 					IsBusy = false;
 
 					// kill any cached document and raise DocumentCompleted event
-					UnloadDocument();
 					OnDocumentCompleted(EventArgs.Empty);
 
 					// clear progress bar
@@ -2202,7 +2193,7 @@ namespace Gecko
 		public nsIWeakReference GetWeakReference()
 		{
 			return new ControlWeakReference( this );
-		}		
+		}
 	}
 	
 	#region public enum GeckoSecurityState

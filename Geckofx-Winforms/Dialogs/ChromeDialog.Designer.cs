@@ -33,7 +33,6 @@ namespace Gecko
 			// 
 			// webBrowser
 			// 
-			this.webBrowser.DisableWmImeSetContext = false;
 			this.webBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.webBrowser.Location = new System.Drawing.Point(0, 0);
 			this.webBrowser.Name = "webBrowser";

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using Gecko;
 
@@ -23,6 +24,7 @@ namespace Gecko.DOM
 				( int ) domRect.GetTopAttribute(),
 				( int ) domRect.GetWidthAttribute(),
 				( int ) domRect.GetHeightAttribute() );
+			Marshal.ReleaseComObject( domRect );
 			return r;
 
 		}
