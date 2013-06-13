@@ -31,7 +31,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("6b938133-a8c2-424a-9401-a631f74aeff5")]
+	[Guid("d9331886-3928-11e2-b0e1-10bf48d64bd4")]
 	public interface nsIDOMHTMLMediaElement : nsIDOMHTMLElement
 	{
 		
@@ -728,13 +728,19 @@ namespace Gecko
         /// network state
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal GetSrcAttribute(System.IntPtr jsContext);
+		void GetSrcAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSrc);
 		
 		/// <summary>
         /// network state
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetSrcAttribute(Gecko.JsVal aSrc, System.IntPtr jsContext);
+		void SetSrcAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSrc);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetMozSrcObjectAttribute(System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetMozSrcObjectAttribute(Gecko.JsVal aMozSrcObject, System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetCurrentSrcAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCurrentSrc);
@@ -893,6 +899,12 @@ namespace Gecko
 		void SetMozFrameBufferLengthAttribute(uint aMozFrameBufferLength);
 		
 		/// <summary>
+        /// player interfaces to display the song title, artist, etc.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal MozGetMetadata(System.IntPtr jsContext);
+		
+		/// <summary>
         /// other will be sharable by both elements.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -903,6 +915,18 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		double GetMozFragmentEndAttribute();
+		
+		/// <summary>
+        ///   Use case: Camera shutter sound.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetMozAudioChannelTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozAudioChannelType);
+		
+		/// <summary>
+        ///   Use case: Camera shutter sound.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetMozAudioChannelTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozAudioChannelType);
 	}
 	
 	/// <summary>nsIDOMHTMLMediaElementConsts </summary>

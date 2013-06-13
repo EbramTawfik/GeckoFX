@@ -124,6 +124,13 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		long GetReplacedLockTimeAttribute();
+		
+		/// <summary>
+        /// Local ID of the minidump generated when the process crashed
+        /// on the previous run. Can be passed directly to CrashSubmit.submit.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetLastRunCrashIDAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aLastRunCrashID);
 	}
 	
 	/// <summary>nsIXULRuntimeConsts </summary>

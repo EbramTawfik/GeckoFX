@@ -47,7 +47,7 @@ namespace Gecko
         /// @param aFile The file to be read.
         ///
         /// @note
-        /// If nsnull is passed in for the aFile parameter the default preferences
+        /// If nullptr is passed in for the aFile parameter the default preferences
         /// file(s) [prefs.js, user.js] will be read and processed.
         ///
         /// @return NS_OK File was read and processed.
@@ -83,7 +83,7 @@ namespace Gecko
         /// @param aFile The file to be written.
         ///
         /// @note
-        /// If nsnull is passed in for the aFile parameter the preference data is
+        /// If nullptr is passed in for the aFile parameter the preference data is
         /// written out to the current preferences file (usually prefs.js.)
         ///
         /// @return NS_OK File was written.
@@ -106,7 +106,7 @@ namespace Gecko
         /// branch will be able to easily access the preferences
         /// "browser.startup.page", "browser.startup.homepage", or
         /// "browser.startup.homepage_override" by simply requesting
-        /// "page", "homepage", or "homepage_override". nsnull or ""
+        /// "page", "homepage", or "homepage_override". nullptr or ""
         /// may be used to access to the entire preference "tree".
         ///
         /// @return nsIPrefBranch The object representing the requested branch.
@@ -128,7 +128,7 @@ namespace Gecko
         /// branch will be able to easily access the preferences
         /// "browser.startup.page", "browser.startup.homepage", or
         /// "browser.startup.homepage_override" by simply requesting
-        /// "page", "homepage", or "homepage_override". nsnull or ""
+        /// "page", "homepage", or "homepage_override". nullptr or ""
         /// may be used to access to the entire preference "tree".
         ///
         /// @note

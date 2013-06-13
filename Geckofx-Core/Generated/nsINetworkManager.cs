@@ -31,7 +31,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("e016d594-3072-11e1-9b7d-0010183a41af")]
+	[Guid("d70b9d95-87d5-4ce9-aff7-4323dac79b07")]
 	public interface nsINetworkInterface
 	{
 		
@@ -62,6 +62,54 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetDhcpAttribute();
+		
+		/// <summary>
+        /// IP Address
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetIpAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aIp);
+		
+		/// <summary>
+        /// Netmask
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetNetmaskAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNetmask);
+		
+		/// <summary>
+        /// Broadcast
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetBroadcastAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBroadcast);
+		
+		/// <summary>
+        /// Default gateway
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetGatewayAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aGateway);
+		
+		/// <summary>
+        /// Primary DNS address
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetDns1Attribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDns1);
+		
+		/// <summary>
+        /// Secondary DNS address
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetDns2Attribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDns2);
+		
+		/// <summary>
+        /// The host name of the http proxy server.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetHttpProxyHostAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aHttpProxyHost);
+		
+		/// <summary>
+        /// The port number of the http proxy server.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		int GetHttpProxyPortAttribute();
 	}
 	
 	/// <summary>nsINetworkInterfaceConsts </summary>
@@ -80,13 +128,10 @@ namespace Gecko
 		public const long NETWORK_STATE_CONNECTED = 1;
 		
 		// 
-		public const long NETWORK_STATE_SUSPENDED = 2;
+		public const long NETWORK_STATE_DISCONNECTING = 2;
 		
 		// 
-		public const long NETWORK_STATE_DISCONNECTING = 3;
-		
-		// 
-		public const long NETWORK_STATE_DISCONNECTED = 4;
+		public const long NETWORK_STATE_DISCONNECTED = 3;
 		
 		// 
 		public const long NETWORK_TYPE_WIFI = 0;
@@ -96,6 +141,44 @@ namespace Gecko
 		
 		// 
 		public const long NETWORK_TYPE_MOBILE_MMS = 2;
+		
+		// 
+		public const long NETWORK_TYPE_MOBILE_SUPL = 3;
+	}
+	
+	/// <summary>nsIWifiTetheringCallback </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("91824160-fb25-11e1-a21f-0800200c9a66")]
+	public interface nsIWifiTetheringCallback
+	{
+		
+		/// <summary>
+        /// Callback function used to report status to WifiManager.
+        ///
+        /// @param error
+        /// An error message if the operation wasn't successful,
+        /// or `null` if it was.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void WifiTetheringEnabledChange(Gecko.JsVal error);
+	}
+	
+	/// <summary>nsINetworkStatsCallback </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("9a887e18-b879-4bb1-8663-238bc4234ba0")]
+	public interface nsINetworkStatsCallback
+	{
+		
+		/// <summary>Member NetworkStatsAvailable </summary>
+		/// <param name='success'> </param>
+		/// <param name='connType'> </param>
+		/// <param name='rxBytes'> </param>
+		/// <param name='txBytes'> </param>
+		/// <param name='date'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void NetworkStatsAvailable([MarshalAs(UnmanagedType.U1)] bool success, short connType, uint rxBytes, uint txBytes, Gecko.JsVal date);
 	}
 	
 	/// <summary>
@@ -103,7 +186,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("3bc29392-2fba-11e1-80fd-0010183a41af")]
+	[Guid("4bee9633-47ed-47ae-b92b-3e0679087561")]
 	public interface nsINetworkManager
 	{
 		
@@ -189,5 +272,41 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int OverrideActive([MarshalAs(UnmanagedType.Interface)] nsINetworkInterface network);
+		
+		/// <summary>
+        /// Returns whether or not wifi tethering is currently enabled.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetWifiTetheringEnabledAttribute();
+		
+		/// <summary>
+        /// Enable or disable Wifi Tethering
+        ///
+        /// @param enabled
+        /// Boolean that indicates whether tethering should be enabled (true) or disabled (false).
+        /// @param network
+        /// The Wifi network interface with at least name of network interface.
+        /// @param callback
+        /// Callback function used to report status to WifiManager.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetWifiTethering([MarshalAs(UnmanagedType.U1)] bool enabled, [MarshalAs(UnmanagedType.Interface)] nsINetworkInterface networkInterface, [MarshalAs(UnmanagedType.Interface)] nsIWifiTetheringCallback callback);
+		
+		/// <summary>
+        /// Retrieve network interface stats.
+        ///
+        /// @param networkType
+        /// Select the Network interface to request estats.
+        ///
+        /// @param callback
+        /// Callback to notify result and provide stats, connectionType
+        /// and the date when stats are retrieved
+        ///
+        /// @return false if there is no interface registered for the networkType param.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetNetworkInterfaceStats(short networkType, [MarshalAs(UnmanagedType.Interface)] nsINetworkStatsCallback callback);
 	}
 }

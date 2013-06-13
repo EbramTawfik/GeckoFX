@@ -38,7 +38,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("704c0859-cb64-43bd-bfdf-c8b28427f812")]
+	[Guid("91ca3523-fc52-4dea-b167-ef8f56473dde")]
 	public interface nsISocketTransport : nsITransport
 	{
 		
@@ -214,7 +214,7 @@ namespace Gecko
 		bool IsAlive();
 		
 		/// <summary>
-        /// Socket timeouts in seconds.  To specify no timeout, pass PR_UINT32_MAX
+        /// Socket timeouts in seconds.  To specify no timeout, pass UINT32_MAX
         /// as aValue to setTimeout.  The implementation may truncate timeout values
         /// to a smaller range of values (e.g., 0 to 0xFFFF).
         /// </summary>
@@ -259,6 +259,26 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetQoSBitsAttribute(System.IntPtr aQoSBits);
+		
+		/// <summary>
+        /// TCP send and receive buffer sizes. A value of 0 means OS level
+        /// auto-tuning is in effect.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetRecvBufferSizeAttribute();
+		
+		/// <summary>
+        /// TCP send and receive buffer sizes. A value of 0 means OS level
+        /// auto-tuning is in effect.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetRecvBufferSizeAttribute(uint aRecvBufferSize);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetSendBufferSizeAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetSendBufferSizeAttribute(uint aSendBufferSize);
 	}
 	
 	/// <summary>nsISocketTransportConsts </summary>
@@ -288,6 +308,10 @@ namespace Gecko
         // order).  STATUS_RESOLVING may be skipped if the host does not need to be
         // resolved.  STATUS_WAITING_FOR is an optional status code, which the impl
         // of this interface may choose not to generate.
+        //
+        // In C++, these constants have a type of uint32_t, so C++ callers must use
+        // the NS_NET_STATUS_* constants defined below, which have a type of
+        // nsresult.
         // </summary>
 		public const ulong STATUS_RESOLVING = 0x804b0003;
 		

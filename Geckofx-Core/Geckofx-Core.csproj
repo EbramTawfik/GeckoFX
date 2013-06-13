@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Gecko</RootNamespace>
-    <AssemblyName>geckofx-core-16</AssemblyName>
+    <AssemblyName>geckofx-core-18</AssemblyName>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>GeckoFX.snk</AssemblyOriginatorKeyFile>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
@@ -117,6 +117,7 @@
     <Compile Include="DOM\Events\DomMouseEventArgs.cs" />
     <Compile Include="DOM\Events\DomSvgEvent.cs" />
     <Compile Include="DOM\Events\DomUIEventArgs.cs" />
+    <Compile Include="FullTrustSecMan.cs" />
     <Compile Include="DOM\Svg\DomSvgAnimatedLength.cs" />
     <Compile Include="DOM\Svg\SvgLength.cs" />
     <Compile Include="DOM\Svg\SvgMatrix.cs" />
@@ -130,9 +131,19 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GeckoError.cs" />
+    <Compile Include="GeckoWindowCollection.cs" />
+    <Compile Include="Generated\nsICertificatePrincipal.cs" />
+    <Compile Include="Generated\nsIDOMBluetoothDevice.cs" />
+    <Compile Include="Generated\nsIDOMIccManager.cs" />
+    <Compile Include="Generated\nsIDOMMozCellBroadcast.cs" />
+    <Compile Include="Generated\nsIDOMMozCellBroadcastEvent.cs" />
+    <Compile Include="Generated\nsIDOMMozCellBroadcastMessage.cs" />
+    <Compile Include="Generated\nsIMessageManager.cs" />
+    <Compile Include="Generated\nsISmsRequest.cs" />
     <Compile Include="Interop\ComPtr.cs" />
     <Compile Include="Interop\ExtensionMethods.cs" />
     <Compile Include="Interop\nsWeakReference.cs" />
+    <Compile Include="Interop\SpiderMonkey\JSPrincipals.cs" />
     <Compile Include="Net\AsyncStreamCopier.cs" />
     <Compile Include="Net\ImgRequest.cs" />
     <Compile Include="Net\IncrementalDownload.cs" />
@@ -205,7 +216,6 @@
     <Compile Include="Generated\nsIPrivacyTransitionObserver.cs" />
     <Compile Include="Generated\nsIRadioInterfaceLayer.cs" />
     <Compile Include="Generated\nsISmsDatabaseService.cs" />
-    <Compile Include="Generated\nsISmsRequestManager.cs" />
     <Compile Include="Generated\nsIWifi.cs" />
     <Compile Include="Generated\nsIWorkerHolder.cs" />
     <Compile Include="GlobalJSContextHolder.cs" />
@@ -249,7 +259,6 @@
     <Compile Include="Generated\nsIFrameRequestCallback.cs" />
     <Compile Include="Generated\nsIProfiler.cs" />
     <Compile Include="Generated\nsISmsService.cs" />
-    <Compile Include="Generated\nsIWebSocket.cs" />
     <Compile Include="Interop\InstanceWrapper.cs" />
     <Compile Include="IOService.cs" />
     <Compile Include="Listeners\GeckoBaseListener.cs" />
@@ -801,7 +810,6 @@
     <Compile Include="Generated\nsIDOMMouseScrollEvent.cs" />
     <Compile Include="Generated\nsIDOMMozCSSKeyframeRule.cs" />
     <Compile Include="Generated\nsIDOMMozCSSKeyframesRule.cs" />
-    <Compile Include="Generated\nsIDOMMozTouchEvent.cs" />
     <Compile Include="Generated\nsIDOMMutationEvent.cs" />
     <Compile Include="Generated\nsIDOMNamedNodeMap.cs" />
     <Compile Include="Generated\nsIDOMNavigator.cs" />
@@ -823,9 +831,6 @@
     <Compile Include="Generated\nsIDOMPaintRequest.cs" />
     <Compile Include="Generated\nsIDOMPaintRequestList.cs" />
     <Compile Include="Generated\nsIDOMParser.cs" />
-    <Compile Include="Generated\nsIDOMPerformance.cs" />
-    <Compile Include="Generated\nsIDOMPerformanceNavigation.cs" />
-    <Compile Include="Generated\nsIDOMPerformanceTiming.cs" />
     <Compile Include="Generated\nsIDOMPkcs11.cs" />
     <Compile Include="Generated\nsIDOMPlugin.cs" />
     <Compile Include="Generated\nsIDOMPluginArray.cs" />
@@ -985,9 +990,7 @@
     <Compile Include="Generated\nsIEditorBoxObject.cs" />
     <Compile Include="Generated\nsIEditorDocShell.cs" />
     <Compile Include="Generated\nsIEditorIMESupport.cs" />
-    <Compile Include="Generated\nsIEditorLogging.cs" />
     <Compile Include="Generated\nsIEditorMailSupport.cs" />
-    <Compile Include="Generated\nsIEditorObserver.cs" />
     <Compile Include="Generated\nsIEditorSpellCheck.cs" />
     <Compile Include="Generated\nsIEditorStyleSheets.cs" />
     <Compile Include="Generated\nsIEffectiveTLDService.cs" />
@@ -1042,7 +1045,6 @@
     <Compile Include="Generated\nsIFormSigningDialog.cs" />
     <Compile Include="Generated\nsIFormSubmitObserver.cs" />
     <Compile Include="Generated\nsIFrameLoader.cs" />
-    <Compile Include="Generated\nsIFrameMessageManager.cs" />
     <Compile Include="Generated\nsIFTPChannel.cs" />
     <Compile Include="Generated\nsIGConfService.cs" />
     <Compile Include="Generated\nsIGenKeypairInfoDlg.cs" />
@@ -1113,7 +1115,6 @@
     <Compile Include="Generated\nsIIOService.cs" />
     <Compile Include="Generated\nsIIOService2.cs" />
     <Compile Include="Generated\nsIIOUtil.cs" />
-    <Compile Include="Generated\nsIIPCSerializable.cs" />
     <Compile Include="Generated\nsIJARChannel.cs" />
     <Compile Include="Generated\nsIJARProtocolHandler.cs" />
     <Compile Include="Generated\nsIJARURI.cs" />
@@ -1247,7 +1248,6 @@
     <Compile Include="Generated\nsIProtocolProxyService2.cs" />
     <Compile Include="Generated\nsIProxiedChannel.cs" />
     <Compile Include="Generated\nsIProxiedProtocolHandler.cs" />
-    <Compile Include="Generated\nsIProxyAutoConfig.cs" />
     <Compile Include="Generated\nsIProxyInfo.cs" />
     <Compile Include="Generated\nsIQueryContentEventResult.cs" />
     <Compile Include="Generated\nsIRandomGenerator.cs" />
@@ -1606,7 +1606,7 @@
     <Compile Include="Windows\Taskbar\WinTaskbar.cs" />
     <Compile Include="Xpcom.cs" />
     <Compile Include="XULRunnerLocator.cs" />
-    <None Include="geckofx-core-16.dll.config">
+    <None Include="geckofx-core-18.dll.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Net\Requests.cd" />

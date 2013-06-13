@@ -32,9 +32,22 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("28adfdc7-6718-4b3e-bdb2-ecfefa3c8910")]
+	[Guid("9b5b2cde-d5dd-48d3-87f8-8e8b776952a8")]
 	public interface nsIApplicationCacheService
 	{
+		
+		/// <summary>
+        /// Create group string identifying cache group according the manifest
+        /// URL and the given load context.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void BuildGroupID([MarshalAs(UnmanagedType.Interface)] nsIURI aManifestURL, [MarshalAs(UnmanagedType.Interface)] nsILoadContext aLoadContext, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
+		
+		/// <summary>
+        /// Same as buildGroupID method, just doesn't require load context.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void BuildGroupIDForApp([MarshalAs(UnmanagedType.Interface)] nsIURI aManifestURL, uint aAppID, [MarshalAs(UnmanagedType.U1)] bool aInBrowser, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase retval);
 		
 		/// <summary>
         /// Create a new, empty application cache for the given cache
@@ -81,11 +94,26 @@ namespace Gecko
 		void DeactivateGroup([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase group);
 		
 		/// <summary>
+        /// Deletes some or all of an application's cache entries.
+        ///
+        /// @param appId
+        /// The mozIApplication.localId of the application.
+        ///
+        /// @param discardOnlyBrowserEntries
+        /// If true, only entries marked as 'inBrowserElement' are deleted
+        /// (this is used by browser applications to delete user browsing
+        /// data/history.).  If false, *all* entries for the given appId are
+        /// deleted (this is used for application uninstallation).
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void DiscardByAppId(int appID, [MarshalAs(UnmanagedType.U1)] bool discardOnlyBrowserEntries);
+		
+		/// <summary>
         /// Try to find the best application cache to serve a resource.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIApplicationCache ChooseApplicationCache([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase key);
+		nsIApplicationCache ChooseApplicationCache([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase key, [MarshalAs(UnmanagedType.Interface)] nsILoadContext loadContext);
 		
 		/// <summary>
         /// Flags the key as being opportunistically cached.

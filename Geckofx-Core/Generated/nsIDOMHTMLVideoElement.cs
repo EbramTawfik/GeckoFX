@@ -37,7 +37,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("e43f61e3-9c67-4e78-8534-3399d7f192b9")]
+	[Guid("fe914e4a-3928-11e2-bea2-10bf48d64bd4")]
 	public interface nsIDOMHTMLVideoElement : nsIDOMHTMLMediaElement
 	{
 		
@@ -734,13 +734,19 @@ namespace Gecko
         /// network state
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new Gecko.JsVal GetSrcAttribute(System.IntPtr jsContext);
+		new void GetSrcAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSrc);
 		
 		/// <summary>
         /// network state
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetSrcAttribute(Gecko.JsVal aSrc, System.IntPtr jsContext);
+		new void SetSrcAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSrc);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new Gecko.JsVal GetMozSrcObjectAttribute(System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetMozSrcObjectAttribute(Gecko.JsVal aMozSrcObject, System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetCurrentSrcAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCurrentSrc);
@@ -899,6 +905,12 @@ namespace Gecko
 		new void SetMozFrameBufferLengthAttribute(uint aMozFrameBufferLength);
 		
 		/// <summary>
+        /// player interfaces to display the song title, artist, etc.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new Gecko.JsVal MozGetMetadata(System.IntPtr jsContext);
+		
+		/// <summary>
         /// other will be sharable by both elements.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -909,6 +921,18 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new double GetMozFragmentEndAttribute();
+		
+		/// <summary>
+        ///   Use case: Camera shutter sound.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void GetMozAudioChannelTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozAudioChannelType);
+		
+		/// <summary>
+        ///   Use case: Camera shutter sound.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SetMozAudioChannelTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozAudioChannelType);
 		
 		/// <summary>
         /// The nsIDOMHTMLVideoElement interface is the interface to a HTML

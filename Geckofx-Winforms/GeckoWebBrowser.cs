@@ -123,7 +123,6 @@ namespace Gecko
 				m_wrapper = new GtkDotNet.GtkReparentingWrapperNoThread(new Gtk.Window(Gtk.WindowType.Popup), this);
 			}
 #endif
-			GlobalJSContextHolderInitalizer.Initalize();
 			NavigateFinishedNotifier = new NavigateFinishedNotifier(this);
 		}
 
@@ -141,7 +140,6 @@ namespace Gecko
 				return;
 			}
 
-			RemoveJsContextCallBack();
 
 			//var count = Gecko.Interop.ComDebug.GetRefCount(WebBrowser);
 			if (NavigateFinishedNotifier != null)
@@ -188,49 +186,19 @@ namespace Gecko
 		#endregion
 
 		#region JSContext
-		/// <summary>
-		/// Add hooks to listen for new JSContext creation and store the context for later use.
-		/// This is the only way I have found of getting hold of the real JSContext
-		/// </summary>
-		protected void RecordNewJsContext()
+
+		public IntPtr JSContext
 		{
-            Xpcom.AssertCorrectThread();
-
-			// Add a hook to record when the a new Context is created.
-			// If an existing hook exists, replace hook with one that
-			// 1. call original hook
-			// 2. reinstates original hook when done.
-
-			_runtimeService = Xpcom.GetService<nsIJSRuntimeService>("@mozilla.org/js/xpc/RuntimeService;1");
-			_jsRuntime = _runtimeService.GetRuntimeAttribute();
-
-			_managedCallback = (IntPtr cx, UInt32 unitN) => { JSContext = cx; SpiderMonkey.JS_SetContextCallback(_jsRuntime, null); return 1; };
-
-			_originalContextCallBack = SpiderMonkey.JS_SetContextCallback(_jsRuntime, _managedCallback);
-			if (_originalContextCallBack != null)
+			get
 			{
-				RemoveJsContextCallBack();
-				_managedCallback = (IntPtr cx, UInt32 unitN) => { JSContext = cx; SpiderMonkey.JS_SetContextCallback(_jsRuntime, _originalContextCallBack); return _originalContextCallBack(cx, unitN); };
-				SpiderMonkey.JS_SetContextCallback(_jsRuntime, _managedCallback);
+				if (_Window != null)
+					return GlobalJSContextHolder.GetJSContextForDomWindow(_Window.DomWindow);
+				if (Window != null)
+					return GlobalJSContextHolder.GetJSContextForDomWindow(Window.DomWindow);
+				return IntPtr.Zero;
 			}
 		}
 
-		protected void RemoveJsContextCallBack()
-		{
-			if (_jsRuntime == IntPtr.Zero)
-				return;
-
-            Xpcom.AssertCorrectThread();
-			SpiderMonkey.JS_SetContextCallback(_jsRuntime, _originalContextCallBack);
-		}
-
-
-		private IntPtr _jsRuntime;
-		private nsIJSRuntimeService _runtimeService;
-		private SpiderMonkey.CallBack _managedCallback;
-		private SpiderMonkey.CallBack _originalContextCallBack;
-
-		public IntPtr JSContext { get; protected set; }
 		#endregion
 
 		public nsIWebBrowserFocus WebBrowserFocus
@@ -1589,6 +1557,18 @@ namespace Gecko
 						StatusText = "";
 					}
 				}
+				else if (stateIsDocument)
+				{
+					GeckoNavigatingEventArgs ea = new GeckoNavigatingEventArgs(destUri, domWindow);
+					OnFrameNavigating(ea);
+
+					if (ea.Cancel)
+					{
+						// TODO: test it on Linux
+						if (!Xpcom.IsLinux)
+							aRequest.Cancel(NS_BINDING_ABORTED);
+					}
+				}
 			}
 			#endregion STATE_START
 
@@ -1598,7 +1578,8 @@ namespace Gecko
 			 * When a redirect occurs, a new request is generated automatically to process the new request.
 			 * Expect a corresponding STATE_START event for the new request, and a STATE_STOP for the redirected request.
 			 */
-			else if ((aStateFlags & nsIWebProgressListenerConstants.STATE_REDIRECTING) != 0) {
+			else if ((aStateFlags & nsIWebProgressListenerConstants.STATE_REDIRECTING) != 0)
+			{
 
 				// make sure we're loading the top-level window
 				GeckoRedirectingEventArgs ea = new GeckoRedirectingEventArgs(destUri, domWindow);
@@ -1615,7 +1596,8 @@ namespace Gecko
 			/* This flag indicates that data for a request is being transferred to an end consumer.
 			 * This flag indicates that the request has been targeted, and that the user may start seeing content corresponding to the request.
 			 */
-			else if ((aStateFlags & nsIWebProgressListenerConstants.STATE_TRANSFERRING) != 0) {
+			else if ((aStateFlags & nsIWebProgressListenerConstants.STATE_TRANSFERRING) != 0)
+			{
 			}
 			#endregion STATE_TRANSFERRING
 
@@ -1623,7 +1605,8 @@ namespace Gecko
 			/* This flag indicates the completion of a request.
 			 * The aStatus parameter to onStateChange() indicates the final status of the request.
 			 */
-			else if ((aStateFlags & nsIWebProgressListenerConstants.STATE_STOP) != 0) {
+			else if ((aStateFlags & nsIWebProgressListenerConstants.STATE_STOP) != 0)
+			{
 				/* aStatus
 				 * Error status code associated with the state change.
 				 * This parameter should be ignored unless aStateFlags includes the STATE_STOP bit.
@@ -1633,7 +1616,8 @@ namespace Gecko
 				 * In such cases, the request itself should be queried for extended error information (for example for HTTP requests see nsIHttpChannel).
 				 */
 
-				if (stateIsNetwork) {
+				if (stateIsNetwork)
+				{
 					// clear busy state
 					IsBusy = false;
 
@@ -1985,10 +1969,11 @@ namespace Gecko
 
 		void nsITooltipListener.OnShowTooltip(int aXCoords, int aYCoords, string aTipText)
 		{
-			ToolTip = new ToolTipWindow();
-			ToolTip.Location = PointToScreen(new Point(aXCoords, aYCoords)) + new Size(0, 24);
-			ToolTip.Text = aTipText;
-			ToolTip.Show();			
+			if (true.Equals(GeckoPreferences.User["browser.chrome.toolbar_tips"]))
+			{
+				ToolTip = new ToolTipWindow();
+				ToolTip.Show(aTipText, this, new Point(aXCoords, aYCoords + 24));
+			}
 		}
 		
 		ToolTipWindow ToolTip;
@@ -1997,7 +1982,9 @@ namespace Gecko
 		{
 			if (ToolTip != null)
 			{
-				ToolTip.Close();
+				ToolTip.Hide(this);
+				ToolTip.Dispose();
+				ToolTip = null;
 			}
 			
 		}		
@@ -2057,27 +2044,29 @@ namespace Gecko
 					if (uploadChannel != null) {
 						var uc = new UploadChannel(uploadChannel);
 						var uploadStream = uc.UploadStream;
-						
-						if (uploadStream.CanSeek) {
-							var rdr = new BinaryReader(uploadStream);
-							var reqBodyStream = new MemoryStream();
-							try {
-								reqBody = new byte[] { };
-								int avl = 0;
-								while ((avl = ((int)uploadStream.Available)) > 0) {
-									reqBodyStream.Write(rdr.ReadBytes(avl), 0, avl);
+
+						if (uploadStream != null) {
+							if (uploadStream.CanSeek) {
+								var rdr = new BinaryReader(uploadStream);
+								var reqBodyStream = new MemoryStream();
+								try {
+									reqBody = new byte[] { };
+									int avl = 0;
+									while ((avl = ((int)uploadStream.Available)) > 0) {
+										reqBodyStream.Write(rdr.ReadBytes(avl), 0, avl);
+									}
+									reqBody = reqBodyStream.ToArray();
+
+									if (uploadChannel2 != null)
+										reqBodyContainsHeaders = uploadChannel2.GetUploadStreamHasHeadersAttribute();
 								}
-								reqBody = reqBodyStream.ToArray();
+								catch (IOException ex) {
+									// failed to read body, ignore
+								}
 
-								if (uploadChannel2 != null)
-									reqBodyContainsHeaders = uploadChannel2.GetUploadStreamHasHeadersAttribute();
+								// rewind stream, so browser can read it as usual
+								uploadStream.Seek(0, 0);
 							}
-							catch (IOException ex) {
-								// failed to read body, ignore
-							}
-
-							// rewind stream, so browser can read it as usual
-							uploadStream.Seek(0, 0);
 						}
 					}
 
@@ -2162,10 +2151,15 @@ namespace Gecko
 									var httpChannelXHR = Xpcom.QueryInterface<nsIXMLHttpRequest>(callbacks);
 
 									if (httpChannelXHR != null) {
+#if false
 										nsIDOMEventListener origEventListener = httpChannelXHR.GetOnreadystatechangeAttribute();
 										var newEventListener = new GeckoJavaScriptHttpChannelWrapper(this, httpChannel, origEventListener);
 										origJavaScriptHttpChannels.Add(httpChannel, newEventListener);
 										httpChannelXHR.SetOnreadystatechangeAttribute(newEventListener);
+#else
+										// TODO: update for xulrunner/firefox 18
+										throw new NotImplementedException();
+#endif
 									}
 								}
 								break;

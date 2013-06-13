@@ -83,13 +83,13 @@ namespace Gecko
         // This Source Code Form is subject to the terms of the Mozilla Public
         // License, v. 2.0. If a copy of the MPL was not distributed with this
         // file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
-		public const int NONE = 0;
+		public const long NONE = 0;
 		
 		// 
-		public const int PARTIAL = 1;
+		public const long PARTIAL = 1;
 		
 		// 
-		public const int FULL = 2;
+		public const long FULL = 2;
 	}
 	
 	/// <summary>nsIXULChromeRegistry </summary>

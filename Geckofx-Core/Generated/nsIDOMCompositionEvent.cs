@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("681563fa-7b3a-4d1d-a6a4-8f06287560fa")]
+	[Guid("858d898a-33a8-4c0b-a9ff-fa9a81a5ce09")]
 	public interface nsIDOMCompositionEvent : nsIDOMUIEvent
 	{
 		
@@ -163,6 +163,50 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void StopImmediatePropagation();
+		
+		/// <summary>
+        ///The original target of the event, before any retargetings. </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMEventTarget GetOriginalTargetAttribute();
+		
+		/// <summary>
+        /// The explicit original target of the event.  If the event was retargeted
+        /// for some reason other than an anonymous boundary crossing, this will be set
+        /// to the target before the retargeting occurs.  For example, mouse events
+        /// are retargeted to their parent node when they happen over text nodes (bug
+        /// 185889), and in that case .target will show the parent and
+        /// .explicitOriginalTarget will show the text node.
+        /// .explicitOriginalTarget differs from .originalTarget in that it will never
+        /// contain anonymous content.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMEventTarget GetExplicitOriginalTargetAttribute();
+		
+		/// <summary>
+        /// @deprecated Use nsIDOMEvent::stopPropagation.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void PreventBubble();
+		
+		/// <summary>
+        /// @deprecated Use nsIDOMEvent::stopPropagation.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void PreventCapture();
+		
+		/// <summary>
+        /// @deprecated Use nsIDOMEvent::defaultPrevented.
+        /// To be removed in bug 691151.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool GetPreventDefault();
+		
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new bool GetIsTrustedAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void DuplicatePrivateData();

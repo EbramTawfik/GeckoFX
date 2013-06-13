@@ -51,7 +51,7 @@ namespace Gecko
         ///
         /// @param aScheme
         /// the URL scheme (e.g., "http").  NOTE: for proxy authentication,
-        /// this should be "http" (this includes authentication for SSL
+        /// this should be "http" (this includes authentication for CONNECT
         /// tunneling).
         /// @param aHost
         /// the host of the server issuing a challenge (ASCII only).
@@ -78,7 +78,7 @@ namespace Gecko
         ///
         /// @param aScheme
         /// the URL scheme (e.g., "http").  NOTE: for proxy authentication,
-        /// this should be "http" (this includes authentication for SSL
+        /// this should be "http" (this includes authentication for CONNECT
         /// tunneling).
         /// @param aHost
         /// the host of the server issuing a challenge (ASCII only).

@@ -35,9 +35,20 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("a9f3ae38-b769-4e0b-9317-578388e326c9")]
+	[Guid("971591cd-277e-409a-bbf6-0a79879cd307")]
 	public interface nsISystemProxySettings
 	{
+		
+		/// <summary>
+        /// Whether or not it is appropriate to execute getProxyForURI off the main thread.
+        /// If that method can block (e.g. for WPAD as windows does) then it must be
+        /// not mainThreadOnly to avoid creating main thread jank. The main thread only option is
+        /// provided for implementations that do not block but use other main thread only
+        /// functions such as dbus.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetMainThreadOnlyAttribute();
 		
 		/// <summary>
         /// If non-empty, use this PAC file. If empty, call getProxyForURI instead.
@@ -46,10 +57,12 @@ namespace Gecko
 		void GetPACURIAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aPACURI);
 		
 		/// <summary>
-        /// See nsIProxyAutoConfig::getProxyForURI; this function behaves exactly
-        /// the same way.
+        /// See ProxyAutoConfig::getProxyForURI; this function behaves similarly except
+        /// a more relaxed return string is allowed that includes full urls instead of just
+        /// host:port syntax. e.g. "PROXY http://www.foo.com:8080" instead of
+        /// "PROXY www.foo.com:8080"
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetProxyForURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase retval);
+		void GetProxyForURI([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase testSpec, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase testScheme, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase testHost, int testPort, [MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase retval);
 	}
 }

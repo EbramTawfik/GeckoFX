@@ -34,7 +34,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("49c1a11d-f5d2-4f09-8262-551e64908ada")]
+	[Guid("90b17d31-46aa-4fb1-a206-473c966cbc18")]
 	public interface nsICacheEntryDescriptor : nsICacheEntryInfo
 	{
 		
@@ -244,6 +244,14 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void DoomAndFailPendingRequests(int status);
+		
+		/// <summary>
+        /// Asynchronously doom an entry. Listener will be notified about the status
+        /// of the operation. Null may be passed if caller doesn't care about the
+        /// result.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void AsyncDoom([MarshalAs(UnmanagedType.Interface)] nsICacheListener listener);
 		
 		/// <summary>
         /// A writer must validate this cache object before any readers are given

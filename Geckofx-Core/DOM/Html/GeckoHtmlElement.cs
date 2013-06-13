@@ -1,3 +1,4 @@
+using System;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using Gecko.Interop;
@@ -54,7 +55,27 @@ namespace Gecko
 				return ret;
 			}
 		}
-		
+
+		/// <summary>
+		/// Gets style of the GeckoElement. 
+		/// </summary>
+		public GeckoStyle ComputedStyle
+		{
+			get
+			{
+				nsIDOMCSSStyleDeclaration style;
+				using (var element = new InstanceWrapper<nsIDOMElement>(Xpcom.QueryInterface<nsIDOMElement>(this.DomObject)))
+				{
+					using (var nullString = new nsAString())
+					{
+						nullString.SetData(null);
+						style = this.OwnerDocument.DefaultView.DomWindow.GetComputedStyle(element.Instance, nullString);
+					}
+				}
+				return GeckoStyle.Create(style);
+			}
+		}
+
 		/// <summary>
 		/// Gets the parent element of this one.
 		/// </summary>
@@ -135,6 +156,29 @@ namespace Gecko
 			set { nsString.Set( _domHtmlElement.GetContentEditableAttribute, value ); }
 		}
 
+					(int)Math.Round(domRect.GetTopAttribute()),
+					(int)Math.Round(domRect.GetWidthAttribute()),
+					(int)Math.Round(domRect.GetHeightAttribute()));			
+			}
+		}
+
+		public System.Drawing.Rectangle[] ClientRects
+		{
+			get
+			{
+				nsIDOMClientRectList domRects = DomElement.GetClientRects();
+				uint count = domRects.GetLengthAttribute();
+				Rectangle[] rects = new Rectangle[count];
+				for (uint i = 0; i < count; i++)
+				{
+					nsIDOMClientRect domRect = domRects.Item(i);
+					rects[i] = new Rectangle(
+						(int)Math.Round(domRect.GetLeftAttribute()),
+						(int)Math.Round(domRect.GetTopAttribute()),
+						(int)Math.Round(domRect.GetWidthAttribute()),
+						(int)Math.Round(domRect.GetHeightAttribute()));
+				}
+				return rects;
 
 		public int OffsetLeft { get { return _domHtmlElement.GetOffsetLeftAttribute(); } }
 		public int OffsetTop { get { return _domHtmlElement.GetOffsetTopAttribute(); } }

@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("a361a7e7-7f8d-4b68-91e9-30ae096460d4")]
+	[Guid("b8bf0a06-e395-4f44-af39-a51d3e7ef4b9")]
 	public interface nsIPluginTag
 	{
 		
@@ -75,5 +75,8 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetClicktoplayAttribute([MarshalAs(UnmanagedType.U1)] bool aClicktoplay);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetMimeTypes(ref uint aCount, [MarshalAs(UnmanagedType.LPArray, SizeParamIndex=0)] ref nsIDOMMimeType[] aResults);
 	}
 }

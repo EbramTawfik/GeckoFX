@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("e27cf38e-c19f-4294-bd31-d7e0916e7fa2")]
+	[Guid("f9348014-0239-11e2-b029-3d38e719eb2d")]
 	public interface nsISHistoryInternal
 	{
 		
@@ -81,11 +81,18 @@ namespace Gecko
 		void ReplaceEntry(int aIndex, [MarshalAs(UnmanagedType.Interface)] nsISHEntry aReplaceEntry);
 		
 		/// <summary>
-        /// Get handle to the history listener
+        /// Notifies all registered session history listeners about an impending
+        /// reload.
+        ///
+        /// @param aReloadURI    The URI of the document to be reloaded.
+        /// @param aReloadFlags  Flags that indicate how the document is to be
+        /// refreshed. See constants on the nsIWebNavigation
+        /// interface.
+        /// @return              Whether the operation can proceed.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
+		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISHistoryListener GetListenerAttribute();
+		bool NotifyOnHistoryReload([MarshalAs(UnmanagedType.Interface)] nsIURI aReloadURI, uint aReloadFlags);
 		
 		/// <summary>
         /// Evict content viewers which don't lie in the "safe" range around aIndex.

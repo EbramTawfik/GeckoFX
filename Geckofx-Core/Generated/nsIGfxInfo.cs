@@ -30,7 +30,7 @@ namespace Gecko
     ///NOTE: this interface is completely undesigned, not stable and likely to change </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("a67c77af-2952-4028-93ab-e7bc3b43cf81")]
+	[Guid("8a9797ae-22d4-431d-a628-18fd5900c53c")]
 	public interface nsIGfxInfo
 	{
 		
@@ -44,10 +44,6 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetDWriteEnabledAttribute();
-		
-		[return: MarshalAs(UnmanagedType.U1)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool GetAzureEnabledAttribute();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetDWriteVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDWriteVersion);
@@ -181,6 +177,10 @@ namespace Gecko
 		// <summary>
         //Whether WebGL antialiasing is supported. </summary>
 		public const long FEATURE_WEBGL_MSAA = 8;
+		
+		// <summary>
+        //Whether Stagefright is supported </summary>
+		public const long FEATURE_STAGEFRIGHT = 9;
 		
 		// <summary>
         //We don't explicitly block or discourage the feature. Which means we'll try getting it from the

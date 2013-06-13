@@ -32,7 +32,7 @@ namespace Gecko
     /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("30e8cdfb-155d-44c7-8fb3-6bcd9c1c3f99")]
+	[Guid("c2cb2af7-6b96-4915-bcc8-54ad705d6110")]
 	public interface nsISmsDatabaseService
 	{
 		
@@ -40,7 +40,7 @@ namespace Gecko
         /// Takes some information required to save the message and returns its id.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		int SaveReceivedMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSender, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBody, ulong aDate);
+		int SaveReceivedMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSender, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBody, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMessageClass, ulong aDate);
 		
 		/// <summary>
         /// Takes some information required to save the message and returns its id.
@@ -49,21 +49,27 @@ namespace Gecko
 		int SaveSentMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aReceiver, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBody, ulong aDate);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetMessage(int messageId, int requestId, ulong processId);
+		void SetMessageDeliveryStatus(int aMessageId, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDeliveryStatus);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void DeleteMessage(int messageId, int requestId, ulong processId);
+		void GetMessage(int messageId, [MarshalAs(UnmanagedType.Interface)] nsISmsRequest request);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CreateMessageList([MarshalAs(UnmanagedType.Interface)] nsIDOMMozSmsFilter filter, [MarshalAs(UnmanagedType.U1)] bool reverse, int requestId, ulong processId);
+		void DeleteMessage(int messageId, [MarshalAs(UnmanagedType.Interface)] nsISmsRequest request);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNextMessageInList(int listId, int requestId, ulong processId);
+		void CreateMessageList([MarshalAs(UnmanagedType.Interface)] nsIDOMMozSmsFilter filter, [MarshalAs(UnmanagedType.U1)] bool reverse, [MarshalAs(UnmanagedType.Interface)] nsISmsRequest request);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetNextMessageInList(int listId, [MarshalAs(UnmanagedType.Interface)] nsISmsRequest request);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void ClearMessageList(int listId);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void MarkMessageRead(int messageId, [MarshalAs(UnmanagedType.U1)] bool value, int requestId, ulong processId);
+		void MarkMessageRead(int messageId, [MarshalAs(UnmanagedType.U1)] bool value, [MarshalAs(UnmanagedType.Interface)] nsISmsRequest request);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetThreadList([MarshalAs(UnmanagedType.Interface)] nsISmsRequest request);
 	}
 }

@@ -95,7 +95,7 @@ namespace Gecko
 	/// <summary>nsIZipReader </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("8fbf5023-3827-4fbc-a464-5db546e7f747")]
+	[Guid("38d6d07a-8a58-4fe7-be8b-ef6472fa83ff")]
 	public interface nsIZipReader
 	{
 		
@@ -239,7 +239,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIPrincipal GetCertificatePrincipal([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aEntryName);
+		nsICertificatePrincipal GetCertificatePrincipal([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aEntryName);
 		
 		/// <summary>Member GetManifestEntriesCountAttribute </summary>
 		/// <returns>A System.UInt32</returns>

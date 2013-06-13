@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("c14c71b8-afba-403b-8320-94593de9380f")]
+	[Guid("0faabc35-644d-4ed5-b109-425280ff1cdf")]
 	public interface nsIRILTelephonyCallback
 	{
 		
@@ -83,10 +83,27 @@ namespace Gecko
 		void NotifyError(int callIndex, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase error);
 	}
 	
+	/// <summary>nsIRILVoicemailCallback </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("521cfe4a-bf79-4134-a9fc-e2242164d657")]
+	public interface nsIRILVoicemailCallback
+	{
+		
+		/// <summary>
+        /// Called when a voicemail notification has been received by the network.
+        ///
+        /// @param status
+        /// The new voicemail status
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void VoicemailNotification(System.IntPtr status);
+	}
+	
 	/// <summary>nsIRILDataCallInfo </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("8a711703-1ee5-4675-9d9a-0b188e944cfe")]
+	[Guid("1e602d20-d066-4399-8997-daf36b3158ef")]
 	public interface nsIRILDataCallInfo
 	{
 		
@@ -111,6 +128,31 @@ namespace Gecko
 		/// <param name='aIfname'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetIfnameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aIfname);
+		
+		/// <summary>Member GetIpAttribute </summary>
+		/// <param name='aIp'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetIpAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aIp);
+		
+		/// <summary>Member GetNetmaskAttribute </summary>
+		/// <param name='aNetmask'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetNetmaskAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNetmask);
+		
+		/// <summary>Member GetBroadcastAttribute </summary>
+		/// <param name='aBroadcast'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetBroadcastAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBroadcast);
+		
+		/// <summary>Member GetGwAttribute </summary>
+		/// <param name='aGw'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetGwAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aGw);
+		
+		/// <summary>Member GetDnsAttribute </summary>
+		/// <returns>A Gecko.JsVal</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetDnsAttribute();
 	}
 	
 	/// <summary>nsIRILDataCallback </summary>
@@ -145,20 +187,39 @@ namespace Gecko
 	/// <summary>nsIRILContactCallback </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("2bc2f51a-78be-4c0e-95dd-55a3ce2ded40")]
+	[Guid("a94282b6-da60-4daf-95c1-82ee6889d0df")]
 	public interface nsIRILContactCallback
 	{
 		
 		/// <summary>
         /// Called when nsIRadioInterfaceLayer is asked to provide ICC contacts.
         ///
-        /// @param type
+        /// @param errorMsg
+        /// error message from RIL.
+        /// @param contactType
         /// Type of the dialling number, i.e. ADN, FDN.
         /// @param contacts
         /// Array of the ICC contacts of the specified type.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ReceiveContactsList([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase type, Gecko.JsVal contacts);
+		void ReceiveContactsList([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase errorMsg, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase contactType, Gecko.JsVal contacts);
+	}
+	
+	/// <summary>nsIRILCellBroadcastCallback </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("c5e31c2c-a6a1-44c3-a30e-7fdfb4dc1750")]
+	public interface nsIRILCellBroadcastCallback
+	{
+		
+		/// <summary>
+        /// Called when a Cell Broadcast message has been received by the network.
+        ///
+        /// @param message
+        /// The received Cell Broadcast Message.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void NotifyMessageReceived([MarshalAs(UnmanagedType.Interface)] nsIDOMMozCellBroadcastMessage message);
 	}
 	
 	/// <summary>
@@ -167,16 +228,27 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("2f8b0929-2ecf-498c-bfa7-42690509696e")]
+	[Guid("8c35c286-7a84-410d-9b36-b15f2cadf78f")]
 	public interface nsIRILContentHelper : nsIMobileConnectionProvider
 	{
 		
 		/// <summary>
-        /// XPCOM component (in the content process) that provides the mobile
-        /// network information.
+        /// Called when a content process registers receiving unsolicited messages from
+        /// RadioInterfaceLayer in the chrome process. Only a content process that has
+        /// the 'mobileconnection' permission is allowed to register. Note that content
+        /// doesn't need to unregister because the chrome process will remove it from
+        /// the registration list once the chrome receives a 'child-process-shutdown'
+        /// message.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void RegisterMobileConnectionMsg();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		new void GetCardStateAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCardState);
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMMozMobileICCInfo GetIccInfoAttribute();
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -215,11 +287,28 @@ namespace Gecko
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMDOMRequest SendUSSD([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase ussd);
+		new nsIDOMDOMRequest SendMMI([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase mmi);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMDOMRequest CancelUSSD([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window);
+		new nsIDOMDOMRequest CancelMMI([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SendStkResponse([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, Gecko.JsVal command, Gecko.JsVal response);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SendStkMenuSelection([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, ushort itemIdentifier, [MarshalAs(UnmanagedType.U1)] bool helpRequested);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new void SendStkEventDownload([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, Gecko.JsVal @event);
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMDOMRequest GetCallForwardingOption([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, ushort reason);
+		
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		new nsIDOMDOMRequest SetCallForwardingOption([MarshalAs(UnmanagedType.Interface)] nsIDOMWindow window, [MarshalAs(UnmanagedType.Interface)] nsIDOMMozMobileCFInfo CFInfo);
 		
 		/// <summary>
         /// Helper that runs in the content process and exposes information
@@ -230,6 +319,51 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void UnregisterTelephonyCallback([MarshalAs(UnmanagedType.Interface)] nsIRILTelephonyCallback callback);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RegisterVoicemailCallback([MarshalAs(UnmanagedType.Interface)] nsIRILVoicemailCallback callback);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void UnregisterVoicemailCallback([MarshalAs(UnmanagedType.Interface)] nsIRILVoicemailCallback callback);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RegisterCellBroadcastCallback([MarshalAs(UnmanagedType.Interface)] nsIRILCellBroadcastCallback callback);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void UnregisterCellBroadcastCallback([MarshalAs(UnmanagedType.Interface)] nsIRILCellBroadcastCallback callback);
+		
+		/// <summary>
+        /// Called when a content process registers receiving unsolicited messages from
+        /// RadioInterfaceLayer in the chrome process. Only a content process that has
+        /// the 'telephony' permission is allowed to register. Note that content
+        /// doesn't need to unregister because the chrome process will remove it from
+        /// the registration list once the chrome receives a 'child-process-shutdown'
+        /// message.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RegisterTelephonyMsg();
+		
+		/// <summary>
+        /// Called when a content process registers receiving unsolicited messages from
+        /// RadioInterfaceLayer in the chrome process. Only a content process that has
+        /// the 'voicemail' permission is allowed to register. Note that content
+        /// doesn't need to unregister because the chrome process will remove it from
+        /// the registration list once the chrome receives a 'child-process-shutdown'
+        /// message.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RegisterVoicemailMsg();
+		
+		/// <summary>
+        /// Called when a content process registers receiving unsolicited messages from
+        /// RadioInterfaceLayer in the chrome process. Only a content process that has
+        /// the 'cellbroadcast' permission is allowed to register. Note that content
+        /// doesn't need to unregister because the chrome process will remove it from
+        /// the registration list once the chrome receives a 'child-process-shutdown'
+        /// message.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RegisterCellBroadcastMsg();
 		
 		/// <summary>
         /// Will continue calling callback.enumerateCallState until the callback
@@ -243,6 +377,9 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Dial([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase number);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void DialEmergency([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase number);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void HangUp(uint callIndex);
@@ -278,12 +415,21 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetSpeakerEnabledAttribute([MarshalAs(UnmanagedType.U1)] bool aSpeakerEnabled);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		System.IntPtr GetVoicemailStatusAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetVoicemailNumberAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aVoicemailNumber);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetVoicemailDisplayNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aVoicemailDisplayName);
 	}
 	
 	/// <summary>nsIICCRecords </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("fd9e8b38-b839-4d56-8482-3bf1f5c8f2ee")]
+	[Guid("4efdb1d4-1e49-4f5d-a656-44e6180062a7")]
 	public interface nsIICCRecords
 	{
 		
@@ -318,12 +464,6 @@ namespace Gecko
 		ushort GetMncAttribute();
 		
 		/// <summary>
-        /// USIM Service Table
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		Gecko.JsVal GetUstAttribute();
-		
-		/// <summary>
         /// Abbreviated dialling numbers
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -336,30 +476,10 @@ namespace Gecko
 		Gecko.JsVal GetFdnAttribute();
 	}
 	
-	/// <summary>nsICellLocation </summary>
-	[ComImport()]
-	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("1b47459d-d0bc-4e91-8509-cc106054b9ee")]
-	public interface nsICellLocation
-	{
-		
-		/// <summary>
-        /// Location Area Code
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		ushort GetLacAttribute();
-		
-		/// <summary>
-        /// Cell Identity
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetCidAttribute();
-	}
-	
 	/// <summary>nsIRilContext </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("a6f6977e-f4ee-42b4-ae79-798c8c47c360")]
+	[Guid("e6dc89f2-0d4e-46fc-902c-cfeeaee15e40")]
 	public interface nsIRilContext
 	{
 		
@@ -379,12 +499,6 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIICCRecords GetIccAttribute();
 		
-		/// <summary>Member GetCellAttribute </summary>
-		/// <returns>A nsICellLocation</returns>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsICellLocation GetCellAttribute();
-		
 		/// <summary>Member GetVoiceAttribute </summary>
 		/// <returns>A nsIDOMMozMobileConnectionInfo</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]
@@ -401,7 +515,7 @@ namespace Gecko
 	/// <summary>nsIRadioInterfaceLayer </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("8b649965-6687-46a8-88fa-a5495ce90735")]
+	[Guid("a90fef2c-44aa-4f2b-a0ee-a590e9dd345e")]
 	public interface nsIRadioInterfaceLayer
 	{
 		
@@ -420,6 +534,27 @@ namespace Gecko
 		/// <summary>
         /// PDP APIs
         /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetupDataCallByType([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase apntype);
+		
+		/// <summary>Member DeactivateDataCallByType </summary>
+		/// <param name='apntype'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void DeactivateDataCallByType([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase apntype);
+		
+		/// <summary>Member GetDataCallStateByType </summary>
+		/// <param name='apntype'> </param>
+		/// <returns>A System.Int32</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		int GetDataCallStateByType([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase apntype);
+		
+		/// <summary>Member SetupDataCall </summary>
+		/// <param name='radioTech'> </param>
+		/// <param name='apn'> </param>
+		/// <param name='user'> </param>
+		/// <param name='passwd'> </param>
+		/// <param name='chappap'> </param>
+		/// <param name='pdptype'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetupDataCall(int radioTech, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase apn, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase user, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase passwd, int chappap, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase pdptype);
 		
@@ -452,16 +587,20 @@ namespace Gecko
 		/// <summary>Member SendSMS </summary>
 		/// <param name='number'> </param>
 		/// <param name='message'> </param>
-		/// <param name='requestId'> </param>
-		/// <param name='processId'> </param>
+		/// <param name='request'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SendSMS([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase number, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase message, int requestId, ulong processId);
+		void SendSMS([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase number, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase message, [MarshalAs(UnmanagedType.Interface)] nsISmsRequest request);
 		
 		/// <summary>
-        /// ICC-related functionality.
+        /// Get ICC Contact List.
+        ///
+        /// @param contactType One of the values below.
+        /// "ADN" (Abbreviated Dialling Numbers)
+        /// "FDN" (Fixed Dialling Numbers)
+        /// @param callback  A nsIRILContactCallback object.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetICCContacts([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase type, [MarshalAs(UnmanagedType.Interface)] nsIRILContactCallback callback);
+		void GetICCContacts([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase contactType, [MarshalAs(UnmanagedType.Interface)] nsIRILContactCallback callback);
 	}
 	
 	/// <summary>nsIRadioInterfaceLayerConsts </summary>

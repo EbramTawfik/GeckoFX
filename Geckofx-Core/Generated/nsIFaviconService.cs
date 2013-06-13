@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("2cf188f4-3c96-4bca-b668-36b25aaf7c1d")]
+	[Guid("8062a652-e0ea-4a50-b204-a0dde133de0e")]
 	public interface nsIFaviconService
 	{
 		
@@ -88,6 +88,9 @@ namespace Gecko
         /// Unset is normal behavior, we will only try to reload the favicon
         /// if we don't have it or if it has expired from the cache.  If set,
         /// it will always try to reload the favicon.
+        /// @param aFaviconLoadType
+        /// Set to FAVICON_LOAD_PRIVATE if the favicon is loaded from a private
+        /// browsing window.  Set to FAVICON_LOAD_NON_PRIVATE otherwise.
         /// @param aCallback
         /// Once we're done setting and/or loading the favicon, we invoke this
         /// callback.
@@ -96,7 +99,7 @@ namespace Gecko
         /// mozIAsyncFavicons::setAndFetchFaviconForPage.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAndLoadFaviconForPage([MarshalAs(UnmanagedType.Interface)] nsIURI aPageURI, [MarshalAs(UnmanagedType.Interface)] nsIURI aFaviconURI, [MarshalAs(UnmanagedType.U1)] bool aForceReload, [MarshalAs(UnmanagedType.Interface)] nsIFaviconDataCallback aCallback);
+		void SetAndLoadFaviconForPage([MarshalAs(UnmanagedType.Interface)] nsIURI aPageURI, [MarshalAs(UnmanagedType.Interface)] nsIURI aFaviconURI, [MarshalAs(UnmanagedType.U1)] bool aForceReload, uint aFaviconLoadType, [MarshalAs(UnmanagedType.Interface)] nsIFaviconDataCallback aCallback);
 		
 		/// <summary>
         /// Stores the data for a given favicon URI.
@@ -322,6 +325,21 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIURI GetDefaultFaviconAttribute();
+	}
+	
+	/// <summary>nsIFaviconServiceConsts </summary>
+	public class nsIFaviconServiceConsts
+	{
+		
+		// <summary>
+        // The favicon is being loaded from a private browsing window
+        // </summary>
+		public const ulong FAVICON_LOAD_PRIVATE = 1;
+		
+		// <summary>
+        // The favicon is being loaded from a non-private browsing window
+        // </summary>
+		public const ulong FAVICON_LOAD_NON_PRIVATE = 2;
 	}
 	
 	/// <summary>nsIFaviconDataCallback </summary>

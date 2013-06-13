@@ -52,7 +52,7 @@ namespace Gecko
 		/// <summary>
         /// Converts the specified string into a URI, first attempting
         /// to correct any errors in the syntax or other vagaries. Returns
-        /// a wellformed URI or nsnull if it can't.
+        /// a wellformed URI or nullptr if it can't.
         ///
         /// @param aURIText    Candidate URI.
         /// @param aFixupFlags Flags that govern ways the URI may be fixed up.

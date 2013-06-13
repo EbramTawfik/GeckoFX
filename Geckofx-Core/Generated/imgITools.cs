@@ -34,7 +34,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("8e16f39e-7012-46bd-aa22-2a7a3265608f")]
+	[Guid("53dd1cbe-cb9f-4d9e-8104-1ab72851c88e")]
 	public interface imgITools
 	{
 		
@@ -93,6 +93,30 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIInputStream EncodeScaledImage(imgIContainer aContainer, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aMimeType, int aWidth, int aHeight, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase outputOptions);
+		
+		/// <summary>
+        /// getImgLoaderForDocument
+        /// Retrieve an image loader that reflects the privacy status of the given
+        /// document.
+        ///
+        /// @param doc
+        /// A document. Must not be null.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		imgILoader GetImgLoaderForDocument([MarshalAs(UnmanagedType.Interface)] nsIDOMDocument doc);
+		
+		/// <summary>
+        /// getImgLoaderForDocument
+        /// Retrieve an image cache that reflects the privacy status of the given
+        /// document.
+        ///
+        /// @param doc
+        /// A document. Null is allowed, but must _only_ be passed
+        /// when there is no way to obtain a relevant document for
+        /// the current context in which a cache is desired.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		imgICache GetImgCacheForDocument([MarshalAs(UnmanagedType.Interface)] nsIDOMDocument doc);
 		
 		/// <summary>
         /// encodeCroppedImage

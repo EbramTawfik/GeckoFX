@@ -110,7 +110,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <None Include="..\Geckofx-Core\geckofx-core-16.dll.config">
+    <None Include="..\Geckofx-Core\geckofx-core-18.dll.config">
       <Link>geckofx-core-16.dll.config</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Gettext-ScanForTranslations>false</Gettext-ScanForTranslations>

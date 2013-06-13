@@ -27,12 +27,34 @@ namespace Gecko
 	
 	
 	/// <summary>
+    ///-*- Mode: C++; tab-width: 2; indent-tabs-mode: nil; c-basic-offset: 2 -*-
+    ///
+    /// This Source Code Form is subject to the terms of the Mozilla Public
+    /// License, v. 2.0. If a copy of the MPL was not distributed with this
+    /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("48411e2d-85a9-4b16-bec8-e30cde801f9e")]
+	public interface nsIOpenSignedJARFileCallback
+	{
+		
+		/// <summary>
+        ///-*- Mode: C++; tab-width: 2; indent-tabs-mode: nil; c-basic-offset: 2 -*-
+        ///
+        /// This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void OpenSignedJARFileFinished(int rv, [MarshalAs(UnmanagedType.Interface)] nsIZipReader aZipReader, [MarshalAs(UnmanagedType.Interface)] nsIX509Cert3 aSignerCert);
+	}
+	
+	/// <summary>
     /// This represents a service to access and manipulate
     /// X.509 certificates stored in a database.
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("da48b3c0-1284-11d5-ac67-000064657374")]
+	[Guid("9384802f-a783-43c9-8356-77cfc2318cc1")]
 	public interface nsIX509CertDB
 	{
 		
@@ -270,6 +292,36 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIX509Cert ConstructX509FromBase64([MarshalAs(UnmanagedType.LPStr)] string base64);
+		
+		/// <summary>
+        /// Verifies the signature on the given JAR file to verify that it has a
+        /// valid signature.  To be considered valid, there must be exactly one
+        /// signature on the JAR file and that signature must have signed every
+        /// entry. Further, the signature must come from a certificate that
+        /// is trusted for code signing.
+        ///
+        /// On success, NS_OK, a nsIZipReader, and the trusted certificate that
+        /// signed the JAR are returned.
+        ///
+        /// On failure, an error code is returned.
+        ///
+        /// This method returns a nsIZipReader, instead of taking an nsIZipReader
+        /// as input, to encourage users of the API to verify the signature as the
+        /// first step in opening the JAR.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void OpenSignedJARFileAsync([MarshalAs(UnmanagedType.Interface)] nsIFile aJarFile, [MarshalAs(UnmanagedType.Interface)] nsIOpenSignedJARFileCallback callback);
+		
+		/// <summary>
+        /// Add a cert to a cert DB from a binary string.
+        ///
+        /// @param certDER The raw DER encoding of a certificate.
+        /// @param aTrust decoded by CERT_DecodeTrustString. 3 comma separated characters,
+        /// indicating SSL, Email, and Obj signing trust
+        /// @param aName name of the cert for display purposes.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void AddCert([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase certDER, [MarshalAs(UnmanagedType.LPStr)] string aTrust, [MarshalAs(UnmanagedType.LPStr)] string aName);
 	}
 	
 	/// <summary>nsIX509CertDBConsts </summary>

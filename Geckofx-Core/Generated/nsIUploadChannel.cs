@@ -35,7 +35,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("ddf633d8-e9a4-439d-ad88-de636fd9bb75")]
+	[Guid("5cfe15bd-5adb-4a7f-9e55-4f5a67d15794")]
 	public interface nsIUploadChannel
 	{
 		
@@ -68,7 +68,7 @@ namespace Gecko
         /// determined by calling the stream's |available| method.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetUploadStream([MarshalAs(UnmanagedType.Interface)] nsIInputStream aStream, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aContentType, int aContentLength);
+		void SetUploadStream([MarshalAs(UnmanagedType.Interface)] nsIInputStream aStream, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aContentType, long aContentLength);
 		
 		/// <summary>
         /// Get the stream (to be) uploaded by this channel.

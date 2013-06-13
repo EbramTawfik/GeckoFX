@@ -94,6 +94,20 @@ namespace Gecko
 		void SetBoolPref([MarshalAs(UnmanagedType.LPStr)] string aPrefName, [MarshalAs(UnmanagedType.U1)] bool aValue);
 		
 		/// <summary>
+        /// Called to get the state of an individual floating-point preference.
+        /// "Floating point" preferences are really string preferences that
+        /// are converted to floating point numbers.
+        ///
+        /// @param aPrefName The floating point preference to get the state of.
+        ///
+        /// @return float  The value of the requested floating point preference.
+        ///
+        /// @see setCharPref
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		float GetFloatPref([MarshalAs(UnmanagedType.LPStr)] string aPrefName);
+		
+		/// <summary>
         /// Called to get the state of an individual string preference.
         ///
         /// @param aPrefName The string preference to retrieve.

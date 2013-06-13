@@ -31,7 +31,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("1a637020-1482-11d3-9333-00104ba0fd40")]
+	[Guid("3b4c8a77-76ba-4610-b316-678c73a3b88c")]
 	public interface nsIStreamListener : nsIRequestObserver
 	{
 		
@@ -72,8 +72,6 @@ namespace Gecko
         /// Number of bytes that were sent in previous onDataAvailable calls
         /// for this request. In other words, the sum of all previous count
         /// parameters.
-        /// If that number is greater than or equal to 2^32, this parameter
-        /// will be PR_UINT32_MAX (2^32 - 1).
         /// @param aCount number of bytes available in the stream
         ///
         /// NOTE: The aInputStream parameter must implement readSegments.
@@ -82,6 +80,6 @@ namespace Gecko
         /// causing the request to be canceled.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnDataAvailable([MarshalAs(UnmanagedType.Interface)] nsIRequest aRequest, [MarshalAs(UnmanagedType.Interface)] nsISupports aContext, [MarshalAs(UnmanagedType.Interface)] nsIInputStream aInputStream, uint aOffset, uint aCount);
+		void OnDataAvailable([MarshalAs(UnmanagedType.Interface)] nsIRequest aRequest, [MarshalAs(UnmanagedType.Interface)] nsISupports aContext, [MarshalAs(UnmanagedType.Interface)] nsIInputStream aInputStream, ulong aOffset, uint aCount);
 	}
 }

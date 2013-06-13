@@ -314,10 +314,11 @@ namespace Gecko
 			if (directoryService != null)
 				directoryService.RegisterProvider(new ProfileProvider());
 
+			_IsInitialized = true;
+			GlobalJSContextHolder.Initialize();
+
 			if (AfterInitalization != null)
 				AfterInitalization();
-			
-			_IsInitialized = true;
 		}
 
 		private static void ReadXulrunnerVersion(string xulDll)

@@ -31,15 +31,15 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("A4B2831D-6065-472F-8A6D-2C9085C74C15")]
+	[Guid("da1fbf6e-259c-40bc-ba8c-4ae81748dca3")]
 	public interface nsIDOMNavigatorDeviceStorage
 	{
 		
 		/// <summary>
-        /// returns an array of nsIDOMDeviceStorage
+        /// Property that extends the navigator object.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIVariant GetDeviceStorage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase type);
+		nsIDOMDeviceStorage GetDeviceStorage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase type);
 	}
 }

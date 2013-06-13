@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("9814fdf0-5ac3-11e0-80e3-0800200c9a66")]
+	[Guid("c48126d9-2ddd-485b-a51a-378e917e75f8")]
 	public interface nsIHttpProtocolHandler : nsIProxiedProtocolHandler
 	{
 		
@@ -108,10 +108,22 @@ namespace Gecko
 		/// <summary>
         ///Create a new channel with the given proxyInfo
         ///
+        /// @param uri the channel uri
+        /// @param proxyInfo any proxy information that has already been determined,
+        /// or null if channel should later determine the proxy on its own using
+        /// proxyResolveFlags/proxyURI
+        /// @param proxyResolveFlags used if the proxy is later determined
+        /// from nsIProtocolProxyService::asyncResolve
+        /// @param proxyURI used if the proxy is later determined from
+        /// nsIProtocolProxyService::asyncResolve with this as the proxyURI name.
+        /// Generally this is the same as uri (or null which has the same
+        /// effect), except in the case of websockets which wants to bootstrap
+        /// to an http:// channel but make its proxy determination based on
+        /// a ws:// uri.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIChannel NewProxiedChannel([MarshalAs(UnmanagedType.Interface)] nsIURI uri, [MarshalAs(UnmanagedType.Interface)] nsIProxyInfo proxyInfo);
+		new nsIChannel NewProxiedChannel([MarshalAs(UnmanagedType.Interface)] nsIURI uri, [MarshalAs(UnmanagedType.Interface)] nsIProxyInfo proxyInfo, uint proxyResolveFlags, [MarshalAs(UnmanagedType.Interface)] nsIURI proxyURI);
 		
 		/// <summary>
         /// Get the HTTP advertised user agent string.
@@ -134,18 +146,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetAppVersionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aAppVersion);
-		
-		/// <summary>
-        /// @return The product name.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetProductAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aProduct);
-		
-		/// <summary>
-        /// @return A product sub string.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetProductSubAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aProductSub);
 		
 		/// <summary>
         /// Get the current platform.

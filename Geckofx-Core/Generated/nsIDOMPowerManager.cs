@@ -31,7 +31,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("256a3287-f528-45b5-9ba8-2b3650c056e6")]
+	[Guid("7b181fef-2757-4198-89a0-8c426b8439ea")]
 	public interface nsIDOMMozPowerManager
 	{
 		
@@ -43,6 +43,9 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Reboot();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void FactoryReset();
 		
 		/// <summary>
         /// The listeners are notified when a resource changes its lock state to:

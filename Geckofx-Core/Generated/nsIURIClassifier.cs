@@ -55,15 +55,15 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("2de5c563-1203-43dd-a212-f5d56d530b6f")]
+	[Guid("617f1002-ec55-42c4-a7b0-ebb221ba9fa2")]
 	public interface nsIURIClassifier
 	{
 		
 		/// <summary>
-        /// Classify a URI.
+        /// Classify a Principal using it's URI, appId and InBrowserElement state.
         ///
-        /// @param aURI
-        /// The URI that should be checked by the URI classifier.
+        /// @param aPrincipal
+        /// The principal that should be checked by the URI classifier.
         /// @param aCallback
         /// The URI classifier will call this callback when the URI has been
         /// classified.
@@ -75,6 +75,6 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		bool Classify([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIURIClassifierCallback aCallback);
+		bool Classify([MarshalAs(UnmanagedType.Interface)] nsIPrincipal aPrincipal, [MarshalAs(UnmanagedType.Interface)] nsIURIClassifierCallback aCallback);
 	}
 }

@@ -58,9 +58,12 @@ namespace Gecko
 
 		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl)]
 		public static extern IntPtr JS_Init(UInt32 maxbytes);
-		
+
+		[DllImport("mozjs", CallingConvention = CallingConvention.Cdecl)]
+		public static extern IntPtr JS_GetClass(IntPtr obj);
+
 		[UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
-		public delegate int CallBack(IntPtr cx, UInt32 contextOp);
+		public delegate JSBool JSContextCallback(IntPtr cx, UInt32 contextOp);
 		
 		/// <summary>
 		/// declaration in jsapi.h
@@ -70,7 +73,7 @@ namespace Gecko
 		/// <param name="cb"></param>
 		/// <returns></returns>
 		[DllImport("mozjs",CallingConvention = CallingConvention.Cdecl)]
-		public static extern SpiderMonkey.CallBack JS_SetContextCallback(IntPtr rt, CallBack cb);
+		public static extern SpiderMonkey.JSContextCallback JS_SetContextCallback(IntPtr rt, JSContextCallback cb);
 
 
 	}

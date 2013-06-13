@@ -92,7 +92,7 @@ namespace GeckofxUnitTests
 		{
 			browser.TestLoadHtml("<body>hello world</body>");
 
-			browser.Window.WindowUtils.SendMouseEvent("mousedown", 10, 10, 1, 1, 0, false);
+			browser.Window.WindowUtils.SendMouseEvent("mousedown", 10, 10, GeckoMouseButton.Left, 1, 0, false, 0, 0);
 		}
 
 		[Test]
@@ -100,7 +100,7 @@ namespace GeckofxUnitTests
 		{
 			browser.TestLoadHtml("<body>hello world</body>");
 
-			browser.Window.WindowUtils.SendMouseEventToWindow("mousedown", 10, 10, 1, 1, 0, false);
+			browser.Window.WindowUtils.SendMouseEventToWindow("mousedown", 10, 10, GeckoMouseButton.Left, 1, 0, false, 0, 0);
 		}
 
 		[Test]
@@ -236,6 +236,21 @@ namespace GeckofxUnitTests
 			{
 				throw new NotImplementedException();
 			}
+
+			#region nsICycleCollectorListener Members
+
+
+			public void GetFilenameIdentifierAttribute(nsAStringBase aFilenameIdentifier)
+			{
+				throw new NotImplementedException();
+			}
+
+			public void SetFilenameIdentifierAttribute(nsAStringBase aFilenameIdentifier)
+			{
+				throw new NotImplementedException();
+			}
+
+			#endregion
 		}
 
 		[Test]
@@ -244,8 +259,8 @@ namespace GeckofxUnitTests
 			var listener = new TestCycleCollectorListener();
 			browser.Window.WindowUtils.GarbageCollect(listener, 0);
 
-			Assert.AreEqual(3, listener._begin);
-			Assert.AreEqual(3, listener._end);
+			Assert.AreEqual(1, listener._begin);
+			Assert.AreEqual(1, listener._end);
 		}
 
 		[Test]
@@ -254,8 +269,8 @@ namespace GeckofxUnitTests
 			var listener = new TestCycleCollectorListener();
 			browser.Window.WindowUtils.CycleCollect(listener, 0);
 
-			Assert.AreEqual(3, listener._begin);
-			Assert.AreEqual(3, listener._end);
+			Assert.AreEqual(1, listener._begin);
+			Assert.AreEqual(1, listener._end);
 		}
 
 		[Test]

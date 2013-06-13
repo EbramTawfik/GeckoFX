@@ -133,6 +133,11 @@ namespace Gecko
 		{
 			get { return GeckoSelection.Create( _domWindow.Instance.GetSelection() ); }
 		}
+
+		public GeckoWindowCollection Frames
+		{
+			get { return new GeckoWindowCollection(_domWindow.Instance.GetFramesAttribute()); }
+		}
 	}
 
 

@@ -63,6 +63,137 @@ namespace Gecko
 		nsIBrowserTab GetBrowserTab(int tabId);
 	}
 	
+	/// <summary>nsIAndroidViewport </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("59cfcb35-69b7-47b2-8155-32b193272666")]
+	public interface nsIAndroidViewport
+	{
+		
+		/// <summary>Member GetXAttribute </summary>
+		/// <returns>A System.Single</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		float GetXAttribute();
+		
+		/// <summary>Member GetYAttribute </summary>
+		/// <returns>A System.Single</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		float GetYAttribute();
+		
+		/// <summary>Member GetWidthAttribute </summary>
+		/// <returns>A System.Single</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		float GetWidthAttribute();
+		
+		/// <summary>Member GetHeightAttribute </summary>
+		/// <returns>A System.Single</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		float GetHeightAttribute();
+		
+		/// <summary>Member GetPageLeftAttribute </summary>
+		/// <returns>A System.Single</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		float GetPageLeftAttribute();
+		
+		/// <summary>Member GetPageTopAttribute </summary>
+		/// <returns>A System.Single</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		float GetPageTopAttribute();
+		
+		/// <summary>Member GetPageRightAttribute </summary>
+		/// <returns>A System.Single</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		float GetPageRightAttribute();
+		
+		/// <summary>Member GetPageBottomAttribute </summary>
+		/// <returns>A System.Single</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		float GetPageBottomAttribute();
+		
+		/// <summary>Member GetCssPageLeftAttribute </summary>
+		/// <returns>A System.Single</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		float GetCssPageLeftAttribute();
+		
+		/// <summary>Member GetCssPageTopAttribute </summary>
+		/// <returns>A System.Single</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		float GetCssPageTopAttribute();
+		
+		/// <summary>Member GetCssPageRightAttribute </summary>
+		/// <returns>A System.Single</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		float GetCssPageRightAttribute();
+		
+		/// <summary>Member GetCssPageBottomAttribute </summary>
+		/// <returns>A System.Single</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		float GetCssPageBottomAttribute();
+		
+		/// <summary>Member GetZoomAttribute </summary>
+		/// <returns>A System.Single</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		float GetZoomAttribute();
+	}
+	
+	/// <summary>nsIAndroidDisplayport </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("e1bfbc07-dbae-409d-a5b5-ef57522c1f15")]
+	public interface nsIAndroidDisplayport
+	{
+		
+		/// <summary>Member GetLeftAttribute </summary>
+		/// <returns>A System.Single</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		float GetLeftAttribute();
+		
+		/// <summary>Member SetLeftAttribute </summary>
+		/// <param name='aLeft'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetLeftAttribute(float aLeft);
+		
+		/// <summary>Member GetTopAttribute </summary>
+		/// <returns>A System.Single</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		float GetTopAttribute();
+		
+		/// <summary>Member SetTopAttribute </summary>
+		/// <param name='aTop'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetTopAttribute(float aTop);
+		
+		/// <summary>Member GetRightAttribute </summary>
+		/// <returns>A System.Single</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		float GetRightAttribute();
+		
+		/// <summary>Member SetRightAttribute </summary>
+		/// <param name='aRight'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetRightAttribute(float aRight);
+		
+		/// <summary>Member GetBottomAttribute </summary>
+		/// <returns>A System.Single</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		float GetBottomAttribute();
+		
+		/// <summary>Member SetBottomAttribute </summary>
+		/// <param name='aBottom'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetBottomAttribute(float aBottom);
+		
+		/// <summary>Member GetResolutionAttribute </summary>
+		/// <returns>A System.Single</returns>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		float GetResolutionAttribute();
+		
+		/// <summary>Member SetResolutionAttribute </summary>
+		/// <param name='aResolution'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetResolutionAttribute(float aResolution);
+	}
+	
 	/// <summary>nsIAndroidBridge </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
@@ -86,5 +217,15 @@ namespace Gecko
 		/// <param name='aBrowserApp'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetBrowserAppAttribute([MarshalAs(UnmanagedType.Interface)] nsIAndroidBrowserApp aBrowserApp);
+		
+		/// <summary>Member GetDisplayPort </summary>
+		/// <param name='aPageSizeUpdate'> </param>
+		/// <param name='isBrowserContentDisplayed'> </param>
+		/// <param name='tabId'> </param>
+		/// <param name='metrics'> </param>
+		/// <returns>A nsIAndroidDisplayport</returns>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIAndroidDisplayport GetDisplayPort([MarshalAs(UnmanagedType.U1)] bool aPageSizeUpdate, [MarshalAs(UnmanagedType.U1)] bool isBrowserContentDisplayed, int tabId, [MarshalAs(UnmanagedType.Interface)] nsIAndroidViewport metrics);
 	}
 }

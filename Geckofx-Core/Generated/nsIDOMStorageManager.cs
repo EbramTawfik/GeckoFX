@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("1541da6c-a9fb-4a8f-af9d-4493c981491d")]
+	[Guid("b16b207c-d883-43f5-a27e-548e7f2f5c20")]
 	public interface nsIDOMStorageManager
 	{
 		
@@ -46,13 +46,6 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetUsage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aOwnerDomain);
-		
-		/// <summary>
-        /// Clear keys owned by offline applications.  All data owned by a domain
-        /// with the "offline-app" permission will be removed from the database.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ClearOfflineApps();
 		
 		/// <summary>
         /// Returns instance of localStorage object for aURI's origin.

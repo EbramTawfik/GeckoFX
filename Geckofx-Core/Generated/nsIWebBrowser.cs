@@ -110,9 +110,9 @@ namespace Gecko
         /// <CODE>nsIWeakReference</CODE>.
         ///
         /// @note The implementation should not refcount the supplied chrome
-        /// object; it should assume that a non <CODE>nsnull</CODE> value is
+        /// object; it should assume that a non <CODE>nullptr</CODE> value is
         /// always valid. The embedder must explicitly set this value back
-        /// to nsnull if the chrome object is destroyed before the browser
+        /// to nullptr if the chrome object is destroyed before the browser
         /// object.
         ///
         /// @see nsIBaseWindow
@@ -151,9 +151,9 @@ namespace Gecko
         /// <CODE>nsIWeakReference</CODE>.
         ///
         /// @note The implementation should not refcount the supplied chrome
-        /// object; it should assume that a non <CODE>nsnull</CODE> value is
+        /// object; it should assume that a non <CODE>nullptr</CODE> value is
         /// always valid. The embedder must explicitly set this value back
-        /// to nsnull if the chrome object is destroyed before the browser
+        /// to nullptr if the chrome object is destroyed before the browser
         /// object.
         ///
         /// @see nsIBaseWindow

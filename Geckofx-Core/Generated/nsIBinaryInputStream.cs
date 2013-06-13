@@ -64,8 +64,7 @@ namespace Gecko
         /// this method returns 0 bytes available.  (Note: some nsIInputStream
         /// implementations automatically close when eof is reached; some do not).
         ///
-        /// @return number of bytes currently available in the stream, or
-        /// PR_UINT32_MAX if the size of the stream exceeds PR_UINT32_MAX.
+        /// @return number of bytes currently available in the stream.
         ///
         /// @throws NS_BASE_STREAM_CLOSED if the stream is closed normally.
         /// @throws <other-error> if the stream is closed due to some error

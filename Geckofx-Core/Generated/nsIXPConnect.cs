@@ -322,21 +322,10 @@ namespace Gecko
     ///
     /// If a null interface pointer is returned then xpconnect will use the default
     /// 'this' - the same JSObject as the function object it is calling.
-    ///
-    /// The translator can also return a non-null aIIDOfResult to tell xpconnect what
-    /// type of wrapper to build. If that is null then xpconnect will assume the
-    /// wrapper should be for nsISupports. For objects that support flattening -
-    /// i.e. expose nsIClassInfo and that interface's getInterfaces method - then
-    /// a flattened wrapper will be created and no iid was really necessary.
-    ///
-    /// XXX aHideFirstParamFromJS is intended to allow the trimming of that first
-    /// param (used to indicate 'this') from the actual call to the JS code. The JS
-    /// DOM does not require this functionality and it is **NOT YET IMPLEMENTED**
-    ///
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("039ef260-2a0d-11d5-90a7-0010a4e73d9a")]
+	[Guid("f5f84b70-92eb-41f1-a1dd-2eaac0ed564c")]
 	public interface nsIXPCFunctionThisTranslator
 	{
 		
@@ -377,27 +366,16 @@ namespace Gecko
         ///
         /// If a null interface pointer is returned then xpconnect will use the default
         /// 'this' - the same JSObject as the function object it is calling.
-        ///
-        /// The translator can also return a non-null aIIDOfResult to tell xpconnect what
-        /// type of wrapper to build. If that is null then xpconnect will assume the
-        /// wrapper should be for nsISupports. For objects that support flattening -
-        /// i.e. expose nsIClassInfo and that interface's getInterfaces method - then
-        /// a flattened wrapper will be created and no iid was really necessary.
-        ///
-        /// XXX aHideFirstParamFromJS is intended to allow the trimming of that first
-        /// param (used to indicate 'this') from the actual call to the JS code. The JS
-        /// DOM does not require this functionality and it is **NOT YET IMPLEMENTED**
-        ///
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsISupports TranslateThis([MarshalAs(UnmanagedType.Interface)] nsISupports aInitialThis, [MarshalAs(UnmanagedType.Interface)] nsIInterfaceInfo aInterfaceInfo, ushort aMethodIndex, [MarshalAs(UnmanagedType.U1)] ref bool aHideFirstParamFromJS, ref System.Guid aIIDOfResult);
+		nsISupports TranslateThis([MarshalAs(UnmanagedType.Interface)] nsISupports aInitialThis);
 	}
 	
 	/// <summary> </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("bd300b18-1c34-4589-8285-23a12cc580ea")]
+	[Guid("d94c13ae-7585-4e7b-b7ad-482976bc6f1b")]
 	public interface nsIXPConnect
 	{
 		
@@ -596,13 +574,8 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIXPConnectWrappedNative GetWrappedNativeOfNativeObject(System.IntPtr aJSContext, System.IntPtr aScope, [MarshalAs(UnmanagedType.Interface)] nsISupports aCOMObj, ref System.Guid aIID);
 		
-		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIXPCFunctionThisTranslator GetFunctionThisTranslator(ref System.Guid aIID);
-		
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIXPCFunctionThisTranslator SetFunctionThisTranslator(ref System.Guid aIID, [MarshalAs(UnmanagedType.Interface)] nsIXPCFunctionThisTranslator aTranslator);
+		void SetFunctionThisTranslator(ref System.Guid aIID, [MarshalAs(UnmanagedType.Interface)] nsIXPCFunctionThisTranslator aTranslator);
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]

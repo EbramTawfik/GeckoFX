@@ -21,6 +21,7 @@ namespace Gecko
 		// Navigation
 		private static readonly object NavigatingEvent = new object();
 		private static readonly object NavigatedEvent = new object();
+		private static readonly object FrameNavigatingEvent = new object();
 		private static readonly object DocumentCompletedEvent = new object();
 		private static readonly object RedirectingEvent = new object();
 		private static readonly object CanGoBackChangedEvent = new object();
@@ -154,6 +155,29 @@ namespace Gecko
 			var evnt = ((EventHandler<GeckoRedirectingEventArgs>)Events[RedirectingEvent]);
 			if (evnt != null)
 				evnt(this, e);
+		}
+
+		#endregion
+
+		#region public event EventHandler<GeckoNavigatingEventArgs> FrameNavigating
+
+		/// <summary>
+		/// Occurs before the browser navigates to a new frame.
+		/// </summary>
+		[Category("Navigation")]
+		[Description("Occurs before the browser navigates to a new frame.")]
+		public event EventHandler<GeckoNavigatingEventArgs> FrameNavigating
+		{
+			add { Events.AddHandler(FrameNavigatingEvent, value); }
+			remove { Events.RemoveHandler(FrameNavigatingEvent, value); }
+		}
+
+		/// <summary>Raises the <see cref="FrameNavigating"/> event.</summary>
+		/// <param name="e">The data for the event.</param>
+		protected virtual void OnFrameNavigating(GeckoNavigatingEventArgs e)
+		{
+			var evnt = ((EventHandler<GeckoNavigatingEventArgs>)Events[FrameNavigatingEvent]);
+			if (evnt != null) evnt(this, e);
 		}
 
 		#endregion
@@ -1098,7 +1122,7 @@ namespace Gecko
 			if (m_javascriptDebuggingEnabled)
 				return;
 
-			using (var a = new AutoJSContext(GlobalJSContextHolder.JSContext))
+			//using (var a = new AutoJSContext(JSContext))
 			{
 				using (var jsd = new ServiceWrapper<jsdIDebuggerService>( "@mozilla.org/js/jsd/debugger-service;1" ))
 				{

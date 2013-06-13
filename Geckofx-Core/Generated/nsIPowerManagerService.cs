@@ -31,18 +31,27 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("235ca1a1-d0c8-41f3-9b4a-dbaa4437d69c")]
+	[Guid("a232e826-07bd-11e2-8a8f-236186ff1a14")]
 	public interface nsIPowerManagerService
 	{
 		
 		/// <summary>
-        /// For use with non-content code.
+        /// This API will power off the machine.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void PowerOff();
 		
+		/// <summary>
+        /// This API will completely shut down and boot the machine.
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Reboot();
+		
+		/// <summary>
+        /// This API will restart the Gecko processes without powering off the machine.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Restart();
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void AddWakeLockListener([MarshalAs(UnmanagedType.Interface)] nsIDOMMozWakeLockListener aListener);

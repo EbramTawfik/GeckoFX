@@ -61,7 +61,7 @@ namespace Gecko
         ///
         /// @param aAlignMask
         /// Bit-mask computed by subtracting 1 from the power-of-two alignment
-        /// modulus (e.g., 3 or sizeof(PRUint32)-1 for PRUint32 alignment).
+        /// modulus (e.g., 3 or sizeof(uint32_t)-1 for uint32_t alignment).
         ///
         /// @return
         /// The aligned pointer to aLength bytes in the buffer, or null if the

@@ -8,8 +8,8 @@ namespace Gecko
 	public enum GeckoMouseButton
 	{
 		None = 0,
-		Left = 1,
-		Right = 2,
-		Middle = 3,		
+		Left = 0,
+		Middle = 1,
+		Right = 2,		
 	}
 }

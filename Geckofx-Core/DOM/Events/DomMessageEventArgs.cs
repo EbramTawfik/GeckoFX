@@ -32,7 +32,7 @@ namespace Gecko
 		{
 			get
 			{
-				using (AutoJSContext context = new AutoJSContext(GlobalJSContextHolder.JSContext))
+				using (AutoJSContext context = new AutoJSContext(_messageEvent.GetTargetAttribute().GetJSContextForEventHandlers()))
 				{
 					var val = _messageEvent.GetDataAttribute(context.ContextPointer);
 					//TODO if(!val.IsString)

@@ -33,7 +33,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("1016d5e8-690f-4d97-8ac5-d50ffa341c46")]
+	[Guid("9014d2be-be9e-4d0c-b7ae-4e82857b153d")]
 	public interface nsIMarkupDocumentViewer
 	{
 		
@@ -244,5 +244,15 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void AppendSubtree(System.IntPtr array);
+		
+		/// <summary>
+        /// Set the maximum line width for the document.
+        /// NOTE: This will generate a reflow!
+        ///
+        /// @param maxLineWidth The maximum width of any line boxes on the page,
+        /// in CSS pixels.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void ChangeMaxLineBoxWidth(int maxLineBoxWidth);
 	}
 }

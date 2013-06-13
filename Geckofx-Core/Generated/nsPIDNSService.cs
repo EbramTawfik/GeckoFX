@@ -32,7 +32,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("a26c5b45-7707-4412-bbc1-2462b890848d")]
+	[Guid("6b16fb1f-5709-4c94-a89f-a22be873c54d")]
 	public interface nsPIDNSService : nsIDNSService
 	{
 		
@@ -114,5 +114,31 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void Shutdown();
+		
+		/// <summary>
+        /// Whether or not DNS prefetching (aka RESOLVE_SPECULATE) is enabled
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetPrefetchEnabledAttribute();
+		
+		/// <summary>
+        /// Whether or not DNS prefetching (aka RESOLVE_SPECULATE) is enabled
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetPrefetchEnabledAttribute([MarshalAs(UnmanagedType.U1)] bool aPrefetchEnabled);
+		
+		/// <summary>
+        /// @return whether the DNS service is offline.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetOfflineAttribute();
+		
+		/// <summary>
+        /// @return whether the DNS service is offline.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOfflineAttribute([MarshalAs(UnmanagedType.U1)] bool aOffline);
 	}
 }

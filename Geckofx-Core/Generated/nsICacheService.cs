@@ -60,7 +60,7 @@ namespace Gecko
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsICacheSession CreateSession([MarshalAs(UnmanagedType.LPStr)] string clientID, System.IntPtr storagePolicy, [MarshalAs(UnmanagedType.U1)] bool streamBased);
+		nsICacheSession CreateSession([MarshalAs(UnmanagedType.LPStr)] string clientID, int storagePolicy, [MarshalAs(UnmanagedType.U1)] bool streamBased);
 		
 		/// <summary>
         /// Visit entries stored in the cache.  Used to implement about:cache.
@@ -75,7 +75,7 @@ namespace Gecko
         /// everything.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void EvictEntries(System.IntPtr storagePolicy);
+		void EvictEntries(int storagePolicy);
 		
 		/// <summary>
         /// Event target which is used for I/O operations

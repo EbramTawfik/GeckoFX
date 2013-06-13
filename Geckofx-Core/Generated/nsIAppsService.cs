@@ -32,7 +32,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("40e580e7-8891-4eb8-b514-0b5796af4df1")]
+	[Guid("4a182c18-dbdf-4f9c-93a0-0f0cffb88ed0")]
 	public interface nsIAppsService
 	{
 		
@@ -43,7 +43,39 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		mozIDOMApplication GetAppByManifestURL([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase manifestURL);
 		
+		/// <summary>
+        /// Returns the |localId| of the app associated with the |manifestURL| passed
+        /// in parameter.
+        /// Returns nsIScriptSecurityManager::NO_APP_ID if |manifestURL| isn't a valid
+        /// installed manifest URL.
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		uint GetAppLocalIdByManifestURL([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase manifestURL);
+		
+		/// <summary>
+        /// Returns the application associated to this localId.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		mozIDOMApplication GetAppByLocalId(uint localId);
+		
+		/// <summary>
+        /// Returns the manifest URL associated to this localId.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetManifestURLByLocalId(uint localId, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
+		
+		/// <summary>
+        /// Returns the app that is related to the message.
+        /// This is a helper to not have to worry about what is the actual structure
+        /// of the message when listening to one.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		mozIApplication GetAppFromObserverMessage([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase message);
+		
+		/// <summary>
+        /// Returns the CSP associated to this localId.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetCSPByLocalId(uint localId, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase retval);
 	}
 }

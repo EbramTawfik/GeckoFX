@@ -70,6 +70,8 @@ namespace Gecko
         /// at some point after the method returns.
         /// SCROLL_FIRST_ANCESTOR_ONLY: if set, only the first ancestor will be scrolled
         /// into view.
+        /// SCROLL_OVERFLOW_HIDDEN: if set, scrolls even if the overflow is specified
+        /// as hidden.
         ///
         /// Note that if isSynchronous is true, then this might flush the pending
         /// reflow. It's dangerous for some objects. See bug 418470 comment 12.
@@ -354,5 +356,8 @@ namespace Gecko
 		
 		// 
 		public const int SCROLL_CENTER_VERTICALLY = 1<<4;
+		
+		// 
+		public const int SCROLL_OVERFLOW_HIDDEN = 1<<5;
 	}
 }

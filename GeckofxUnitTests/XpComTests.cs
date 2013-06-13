@@ -138,31 +138,7 @@ namespace GeckofxUnitTests
 			var instance = Xpcom.CreateInstance<nsIEventListenerService>("@mozilla.org/eventlistenerservice;1");
 			Assert.IsNotNull(instance);
 			Marshal.ReleaseComObject(instance);
-		}
-
-		[Test]
-		public void CreateInstance_CreatingGlobalMessageManager_ReturnsValidInstance()
-		{
-			var instance = Xpcom.CreateInstance<nsIFrameMessageManager>("@mozilla.org/globalmessagemanager;1");
-			Assert.IsNotNull(instance);
-			Marshal.ReleaseComObject(instance);
-		}
-
-		[Test]
-		public void CreateInstance_CreatingParentProcessMessageManager_ReturnsValidInstance()
-		{
-			var instance = Xpcom.CreateInstance<nsIFrameMessageManager>("@mozilla.org/parentprocessmessagemanager;1");
-			Assert.IsNotNull(instance);
-			Marshal.ReleaseComObject(instance);
-		}
-
-		[Test]
-		public void CreateInstance_CreatingChildProcessMessageManager_ReturnsNull()
-		{
-			var instance = Xpcom.CreateInstance<nsIFrameMessageManager>("@mozilla.org/childprocessmessagemanager;1");
-			Assert.IsNotNull(instance);
-			Marshal.ReleaseComObject(instance);
-		}
+		}		
 
 		[Test]
 		public void CreateInstance_CreatingContentPolicy_ReturnsValidInstance()
@@ -244,6 +220,7 @@ namespace GeckofxUnitTests
 			Marshal.ReleaseComObject(instance);
 		}
 
+		[Ignore("Removed in firefox 18 : https://bugzilla.mozilla.org/show_bug.cgi?id=775368")]
 		[Test]
 		public void CreateInstance_CreatingWebSocket_ReturnsValidInstance()
 		{

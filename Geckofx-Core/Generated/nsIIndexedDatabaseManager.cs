@@ -32,21 +32,22 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("ef1795ec-7050-4658-b80f-0e48cbe1d64b")]
+	[Guid("38f15cc7-2df0-4a90-8b7f-1606b2243522")]
 	public interface nsIIndexedDatabaseUsageCallback
 	{
 		
 		/// <summary>
-        ///
-        /// </summary>
+        ///This Source Code Form is subject to the terms of the Mozilla Public
+        /// License, v. 2.0. If a copy of the MPL was not distributed with this
+        /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void OnUsageResult([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, ulong aUsage, ulong aFileUsage);
+		void OnUsageResult([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, ulong aUsage, ulong aFileUsage, uint aAppId, [MarshalAs(UnmanagedType.U1)] bool aInMozBrowserOnly);
 	}
 	
 	/// <summary>nsIIndexedDatabaseManager </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("02256aa7-70d8-473f-bf3b-8cb35d28fd75")]
+	[Guid("e5168115-baff-4559-887e-7c0405cc9e63")]
 	public interface nsIIndexedDatabaseManager
 	{
 		
@@ -60,7 +61,7 @@ namespace Gecko
         /// The callback that will be called when the usage is available.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetUsageForURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIIndexedDatabaseUsageCallback aCallback);
+		void GetUsageForURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIIndexedDatabaseUsageCallback aCallback, uint aAppId, [MarshalAs(UnmanagedType.U1)] bool aInMozBrowserOnly, int argc);
 		
 		/// <summary>
         /// Cancels an asynchronous usage check initiated by a previous call to
@@ -72,7 +73,7 @@ namespace Gecko
         /// The callback that will be called when the usage is available.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void CancelGetUsageForURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIIndexedDatabaseUsageCallback aCallback);
+		void CancelGetUsageForURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsIIndexedDatabaseUsageCallback aCallback, uint aAppId, [MarshalAs(UnmanagedType.U1)] bool aInMozBrowserOnly, int argc);
 		
 		/// <summary>
         /// Removes all databases stored for the given URI. The files may not be
@@ -82,7 +83,7 @@ namespace Gecko
         /// The URI whose databases are to be cleared.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void ClearDatabasesForURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI);
+		void ClearDatabasesForURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, uint aAppId, [MarshalAs(UnmanagedType.U1)] bool aInMozBrowserOnly, int argc);
 		
 		/// <summary>
         /// Defines indexedDB and IDBKeyrange with its static functions on

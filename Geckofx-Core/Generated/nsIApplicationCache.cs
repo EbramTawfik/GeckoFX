@@ -108,7 +108,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("C3A17414-763B-4235-8BB7-B48324F95DF8")]
+	[Guid("06568DAE-C374-4383-A122-0CC96C7177F2")]
 	public interface nsIApplicationCache
 	{
 		
@@ -121,8 +121,15 @@ namespace Gecko
 		void InitAsHandle([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase groupId, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase clientId);
 		
 		/// <summary>
-        /// The group ID for this cache group.  This is the URI of the
-        /// manifest file.
+        /// URI of the manfiest specifying this application cache.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIURI GetManifestURIAttribute();
+		
+		/// <summary>
+        /// The group ID for this cache group.  It is an internally generated string
+        /// and cannot be used as manifest URL spec.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetGroupIDAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aGroupID);

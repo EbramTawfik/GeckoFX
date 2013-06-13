@@ -32,7 +32,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("e546afd6-1248-4deb-8940-4b000b618a58")]
+	[Guid("3fce9015-472a-4080-ac3e-cd875dbe361e")]
 	public interface nsIScriptableInputStream
 	{
 		

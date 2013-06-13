@@ -202,10 +202,10 @@ namespace Gecko
 		// <summary>
         //  -2 will be treated as the caret position
         // </summary>
-		public const int TEXT_OFFSET_END_OF_TEXT = -1;
+		public const long TEXT_OFFSET_END_OF_TEXT = -1;
 		
 		// 
-		public const int TEXT_OFFSET_CARET = -2;
+		public const long TEXT_OFFSET_CARET = -2;
 		
 		// 
 		public const long BOUNDARY_CHAR = 0;

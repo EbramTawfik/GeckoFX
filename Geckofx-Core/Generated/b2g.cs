@@ -73,6 +73,10 @@ namespace Gecko
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetValue(Gecko.JsVal value);
 		
+		/// <summary>Member RemoveFocus </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RemoveFocus();
+		
 		/// <summary>Member GetOnfocuschangeAttribute </summary>
 		/// <returns>A nsIDOMEventListener</returns>
 		[return: MarshalAs(UnmanagedType.Interface)]

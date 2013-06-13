@@ -33,7 +33,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("E79C7063-DBAB-45E3-8A98-D0142E1ABC9A")]
+	[Guid("1de67000-2de8-11e2-81c1-0800200c9a66")]
 	public interface nsIContentPermissionRequest
 	{
 		
@@ -45,11 +45,18 @@ namespace Gecko
 		void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aType);
 		
 		/// <summary>
-        /// The uri of the permission request.
+        /// The access of the permission request, such as
+        /// "read".
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetAccessAttribute([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase aAccess);
+		
+		/// <summary>
+        /// The principal of the permission request.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIURI GetUriAttribute();
+		nsIPrincipal GetPrincipalAttribute();
 		
 		/// <summary>
         /// The window or element that the permission request was

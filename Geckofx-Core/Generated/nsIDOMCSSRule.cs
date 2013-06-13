@@ -95,5 +95,8 @@ namespace Gecko
 		
 		// 
 		public const ulong NAMESPACE_RULE = 10;
+		
+		// 
+		public const ulong SUPPORTS_RULE = 12;
 	}
 }

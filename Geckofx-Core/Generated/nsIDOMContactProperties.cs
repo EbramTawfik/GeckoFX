@@ -81,60 +81,74 @@ namespace Gecko
 		void SetCountryNameAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCountryName);
 	}
 	
-	/// <summary>nsIDOMContactTelephone </summary>
+	/// <summary>nsIDOMContactField </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("82601b20-89e8-11e1-b0c4-0800200c9a66")]
-	public interface nsIDOMContactTelephone
+	[Guid("e2cb19c0-e4aa-11e1-9b23-0800200c9a66")]
+	public interface nsIDOMContactField
 	{
 		
 		/// <summary>Member GetTypeAttribute </summary>
-		/// <param name='aType'> </param>
+		/// <returns>A Gecko.JsVal</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType);
+		Gecko.JsVal GetTypeAttribute();
 		
 		/// <summary>Member SetTypeAttribute </summary>
 		/// <param name='aType'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType);
+		void SetTypeAttribute(Gecko.JsVal aType);
 		
-		/// <summary>Member GetNumberAttribute </summary>
-		/// <param name='aNumber'> </param>
+		/// <summary>
+        /// DOMString[] for primary/favorite (use:"PREF"), "home", "work", etc.
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetNumberAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNumber);
+		void GetValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aValue);
 		
-		/// <summary>Member SetNumberAttribute </summary>
-		/// <param name='aNumber'> </param>
+		/// <summary>
+        /// DOMString[] for primary/favorite (use:"PREF"), "home", "work", etc.
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetNumberAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNumber);
+		void SetValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aValue);
 	}
 	
-	/// <summary>nsIDOMContactEmail </summary>
+	/// <summary>nsIDOMContactTelField </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("94811520-c11f-11e1-afa7-0800200c9a66")]
-	public interface nsIDOMContactEmail
+	[Guid("ed0ab260-e4aa-11e1-9b23-0800200c9a66")]
+	public interface nsIDOMContactTelField : nsIDOMContactField
 	{
 		
 		/// <summary>Member GetTypeAttribute </summary>
-		/// <param name='aType'> </param>
+		/// <returns>A Gecko.JsVal</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType);
+		new Gecko.JsVal GetTypeAttribute();
 		
 		/// <summary>Member SetTypeAttribute </summary>
 		/// <param name='aType'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetTypeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aType);
+		new void SetTypeAttribute(Gecko.JsVal aType);
 		
-		/// <summary>Member GetAddressAttribute </summary>
-		/// <param name='aAddress'> </param>
+		/// <summary>
+        /// DOMString[] for primary/favorite (use:"PREF"), "home", "work", etc.
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetAddressAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAddress);
+		new void GetValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aValue);
 		
-		/// <summary>Member SetAddressAttribute </summary>
-		/// <param name='aAddress'> </param>
+		/// <summary>
+        /// DOMString[] for primary/favorite (use:"PREF"), "home", "work", etc.
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetAddressAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aAddress);
+		new void SetValueAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aValue);
+		
+		/// <summary>Member GetCarrierAttribute </summary>
+		/// <param name='aCarrier'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetCarrierAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCarrier);
+		
+		/// <summary>Member SetCarrierAttribute </summary>
+		/// <param name='aCarrier'> </param>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetCarrierAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCarrier);
 	}
 	
 	/// <summary>nsIDOMContactFindOptions </summary>
@@ -218,7 +232,7 @@ namespace Gecko
 	/// <summary>nsIDOMContactProperties </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("f5181640-89e8-11e1-b0c4-0800200c9a66")]
+	[Guid("f0ddb360-e4aa-11e1-9b23-0800200c9a66")]
 	public interface nsIDOMContactProperties
 	{
 		
@@ -317,37 +331,37 @@ namespace Gecko
 		void SetEmailAttribute(Gecko.JsVal aEmail);
 		
 		/// <summary>
-        /// ContactEmail[]
+        /// ContactField[]
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		Gecko.JsVal GetPhotoAttribute();
 		
 		/// <summary>
-        /// ContactEmail[]
+        /// ContactField[]
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetPhotoAttribute(Gecko.JsVal aPhoto);
 		
 		/// <summary>
-        /// DOMString[]
+        /// nsIDOMBlob[]
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		Gecko.JsVal GetUrlAttribute();
 		
 		/// <summary>
-        /// DOMString[]
+        /// nsIDOMBlob[]
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetUrlAttribute(Gecko.JsVal aUrl);
 		
 		/// <summary>
-        /// DOMString[]
+        /// ContactField[]
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		Gecko.JsVal GetCategoryAttribute();
 		
 		/// <summary>
-        /// DOMString[]
+        /// ContactField[]
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetCategoryAttribute(Gecko.JsVal aCategory);
@@ -377,13 +391,13 @@ namespace Gecko
 		void SetTelAttribute(Gecko.JsVal aTel);
 		
 		/// <summary>
-        /// ContactTelephone[]
+        /// ContactTelField[]
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		Gecko.JsVal GetOrgAttribute();
 		
 		/// <summary>
-        /// ContactTelephone[]
+        /// ContactTelField[]
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetOrgAttribute(Gecko.JsVal aOrg);
@@ -437,13 +451,13 @@ namespace Gecko
 		void SetImppAttribute(Gecko.JsVal aImpp);
 		
 		/// <summary>
-        /// DOMString[]
+        /// ContactField[]
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		Gecko.JsVal GetAnniversaryAttribute();
 		
 		/// <summary>
-        /// DOMString[]
+        /// ContactField[]
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetAnniversaryAttribute(Gecko.JsVal aAnniversary);

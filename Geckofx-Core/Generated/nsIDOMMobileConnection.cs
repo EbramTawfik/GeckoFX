@@ -32,7 +32,7 @@ namespace Gecko
     /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("e7309c47-9a2e-4e12-84ab-f8f39214eaba")]
+	[Guid("cc4947eb-aa39-4c25-878d-618dc4d4d2bc")]
 	public interface nsIDOMMozMobileConnection : nsIDOMEventTarget
 	{
 		
@@ -200,13 +200,13 @@ namespace Gecko
         /// @param aEvent the event that is being dispatched.
         /// @param aDOMEvent the event that is being dispatched, use if you want to
         /// dispatch nsIDOMEvent, not only nsEvent.
-        /// @param aPresContext the current presentation context, can be nsnull.
-        /// @param aEventStatus the status returned from the function, can be nsnull.
+        /// @param aPresContext the current presentation context, can be nullptr.
+        /// @param aEventStatus the status returned from the function, can be nullptr.
         ///
         /// @note If both aEvent and aDOMEvent are used, aEvent must be the internal
         /// event of the aDOMEvent.
         ///
-        /// If aDOMEvent is not nsnull (in which case aEvent can be nsnull) it is used
+        /// If aDOMEvent is not nullptr (in which case aEvent can be nullptr) it is used
         /// for dispatching, otherwise aEvent is used.
         ///
         /// @deprecated This method is here just until all the callers outside Gecko
@@ -249,6 +249,13 @@ namespace Gecko
 		void GetCardStateAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aCardState);
 		
 		/// <summary>
+        /// Information stored in the device's ICC card.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMMozMobileICCInfo GetIccInfoAttribute();
+		
+		/// <summary>
         /// Information about the voice connection.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
@@ -269,6 +276,13 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetNetworkSelectionModeAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNetworkSelectionMode);
+		
+		/// <summary>
+        /// IccManager provides access to ICC related funcionality.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMMozIccManager GetIccAttribute();
 		
 		/// <summary>
         /// Search for available networks.
@@ -347,7 +361,12 @@ namespace Gecko
         /// unlockCardLock({lockType: "pin",
         /// pin: "..."});
         ///
-        /// (2) Unlocking the PUK and supplying a new PIN:
+        /// (2) Network depersonalization. Unlocking the network control key (NCK).
+        ///
+        /// unlockCardLock({lockType: "nck",
+        /// pin: "..."});
+        ///
+        /// (3) Unlocking the PUK and supplying a new PIN:
         ///
         /// unlockCardLock({lockType: "puk",
         /// puk: "...",
@@ -428,94 +447,221 @@ namespace Gecko
 		nsIDOMDOMRequest SetCardLock(Gecko.JsVal info);
 		
 		/// <summary>
-        /// Send a USSD message.
+        /// Send a MMI message.
         ///
-        /// The network reply will be reported via onussdreceived event.
+        /// @param mmi
+        /// DOMString containing an MMI string that can be associated to a
+        /// USSD request or other RIL functionality.
         ///
-        /// The 'success' event for the request means the USSD message has been sent
-        /// successfully.
+        /// @return a nsIDOMDOMRequest
+        /// The request's result will be an object containing information
+        /// about the operation.
+        ///
+        /// In case that the MMI code requires sending an USSD request, the DOMrequest
+        /// 'success' event means that the RIL has successfully processed and sent the
+        /// USSD request to the network. The network reply will be reported via
+        /// 'onussdreceived' event. If the MMI code is not associated to a USSD but to
+        /// other RIL request its result, if one is needed, will be notified via the
+        /// returned DOMRequest 'success' or 'error' event.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest SendUSSD([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase ussd);
+		nsIDOMDOMRequest SendMMI([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase mmi);
 		
 		/// <summary>
-        /// Cancel the current USSD session if one exists.
+        /// Cancel the current MMI request if one exists.
         /// </summary>
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMDOMRequest CancelUSSD();
+		nsIDOMDOMRequest CancelMMI();
+		
+		/// <summary>
+        /// Configures call forward options.
+        ///
+        /// @param CFInfo
+        /// An object containing the call forward rule to set.
+        ///
+        /// If successful, the request's onsuccess will be called.
+        ///
+        /// Otherwise, the request's onerror will be called, and the request's error
+        /// will be either 'RadioNotAvailable', 'RequestNotSupported',
+        /// 'IllegalSIMorME', or 'GenericFailure'
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest SetCallForwardingOption([MarshalAs(UnmanagedType.Interface)] nsIDOMMozMobileCFInfo CFInfo);
+		
+		/// <summary>
+        /// Queries current call forward options.
+        ///
+        /// @param reason
+        /// Indicates the reason the call is being forwarded. It will be either
+        /// unconditional (0), mobile busy (1), no reply (2), not reachable (3),
+        /// all call forwarding (4), or all conditional call forwarding (5).
+        ///
+        /// If successful, the request's onsuccess will be called, and the request's
+        /// result will be an array of nsIDOMMozMobileCFInfo.
+        ///
+        /// Otherwise, the request's onerror will be called, and the request's error
+        /// will be either 'RadioNotAvailable', 'RequestNotSupported',
+        /// or 'GenericFailure'.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMDOMRequest GetCallForwardingOption(ushort reason);
 		
 		/// <summary>
         /// The 'cardstatechange' event is notified when the 'cardState' attribute
         /// changes value.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener GetOncardstatechangeAttribute();
+		Gecko.JsVal GetOncardstatechangeAttribute(System.IntPtr jsContext);
 		
 		/// <summary>
         /// The 'cardstatechange' event is notified when the 'cardState' attribute
         /// changes value.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOncardstatechangeAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOncardstatechange);
+		void SetOncardstatechangeAttribute(Gecko.JsVal aOncardstatechange, System.IntPtr jsContext);
+		
+		/// <summary>
+        /// The 'iccinfochange' event is notified whenever the icc info object
+        /// changes.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetOniccinfochangeAttribute(System.IntPtr jsContext);
+		
+		/// <summary>
+        /// The 'iccinfochange' event is notified whenever the icc info object
+        /// changes.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOniccinfochangeAttribute(Gecko.JsVal aOniccinfochange, System.IntPtr jsContext);
 		
 		/// <summary>
         /// The 'voicechange' event is notified whenever the voice connection object
         /// changes.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener GetOnvoicechangeAttribute();
+		Gecko.JsVal GetOnvoicechangeAttribute(System.IntPtr jsContext);
 		
 		/// <summary>
         /// The 'voicechange' event is notified whenever the voice connection object
         /// changes.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnvoicechangeAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnvoicechange);
-		
-		/// <summary>
-        /// The 'datachange' event is notified whenever the data connection object
-        /// changes values.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener GetOndatachangeAttribute();
+		void SetOnvoicechangeAttribute(Gecko.JsVal aOnvoicechange, System.IntPtr jsContext);
 		
 		/// <summary>
         /// The 'datachange' event is notified whenever the data connection object
         /// changes values.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOndatachangeAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOndatachange);
+		Gecko.JsVal GetOndatachangeAttribute(System.IntPtr jsContext);
+		
+		/// <summary>
+        /// The 'datachange' event is notified whenever the data connection object
+        /// changes values.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOndatachangeAttribute(Gecko.JsVal aOndatachange, System.IntPtr jsContext);
 		
 		/// <summary>
         /// The 'ussdreceived' event is notified whenever a new USSD message is
         /// received.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener GetOnussdreceivedAttribute();
+		Gecko.JsVal GetOnussdreceivedAttribute(System.IntPtr jsContext);
 		
 		/// <summary>
         /// The 'ussdreceived' event is notified whenever a new USSD message is
         /// received.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnussdreceivedAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnussdreceived);
+		void SetOnussdreceivedAttribute(Gecko.JsVal aOnussdreceived, System.IntPtr jsContext);
+		
+		/// <summary>
+        /// The 'dataerror' event is notified whenever the data connection object
+        /// receives an error from the RIL
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetOndataerrorAttribute(System.IntPtr jsContext);
+		
+		/// <summary>
+        /// The 'dataerror' event is notified whenever the data connection object
+        /// receives an error from the RIL
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOndataerrorAttribute(Gecko.JsVal aOndataerror, System.IntPtr jsContext);
+		
+		/// <summary>
+        /// The 'icccardlockerror' event is notified whenever 'unlockCardLock' or
+        /// 'setCardLock' fails.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetOnicccardlockerrorAttribute(System.IntPtr jsContext);
+		
+		/// <summary>
+        /// The 'icccardlockerror' event is notified whenever 'unlockCardLock' or
+        /// 'setCardLock' fails.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOnicccardlockerrorAttribute(Gecko.JsVal aOnicccardlockerror, System.IntPtr jsContext);
+	}
+	
+	/// <summary>nsIDOMMozMobileConnectionConsts </summary>
+	public class nsIDOMMozMobileConnectionConsts
+	{
+		
+		// <summary>
+        //This Source Code Form is subject to the terms of the Mozilla Public
+        // License, v. 2.0. If a copy of the MPL was not distributed with this file,
+        // You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
+		public const long ICC_SERVICE_CLASS_VOICE = (1<<0);
+		
+		// 
+		public const long ICC_SERVICE_CLASS_DATA = (1<<1);
+		
+		// 
+		public const long ICC_SERVICE_CLASS_FAX = (1<<2);
+		
+		// 
+		public const long ICC_SERVICE_CLASS_SMS = (1<<3);
+		
+		// 
+		public const long ICC_SERVICE_CLASS_DATA_SYNC = (1<<4);
+		
+		// 
+		public const long ICC_SERVICE_CLASS_DATA_ASYNC = (1<<5);
+		
+		// 
+		public const long ICC_SERVICE_CLASS_PACKET = (1<<6);
+		
+		// 
+		public const long ICC_SERVICE_CLASS_PAD = (1<<7);
+		
+		// 
+		public const long ICC_SERVICE_CLASS_MAX = (1<<7);
 	}
 	
 	/// <summary>nsIDOMMozMobileConnectionInfo </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("46321d6e-bbce-4b7b-aa32-d17b6aa984fe")]
+	[Guid("5ea0e4a9-4684-40da-9930-8ebb61d187f3")]
 	public interface nsIDOMMozMobileConnectionInfo
 	{
 		
 		/// <summary>
-        /// Indicates whether the device is connected to a mobile network.
+        /// State of the connection.
+        ///
+        /// Possible values: 'notSearching', 'searching', 'denied', 'registered'.
+        /// null if the state is unknown.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetStateAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aState);
+		
+		/// <summary>
+        /// Indicates whether the connection is ready. This may be different
         /// </summary>
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
@@ -567,6 +713,13 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		Gecko.JsVal GetRelSignalStrengthAttribute();
+		
+		/// <summary>
+        /// Cell location.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.Interface)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		nsIDOMMozMobileCellInfo GetCellAttribute();
 	}
 	
 	/// <summary>nsIDOMMozMobileNetworkInfo </summary>
@@ -607,5 +760,182 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetStateAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aState);
+	}
+	
+	/// <summary>nsIDOMMozMobileCellInfo </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("aa546788-4f34-488b-8c3e-2786e02ab992")]
+	public interface nsIDOMMozMobileCellInfo
+	{
+		
+		/// <summary>
+        /// Mobile Location Area Code (LAC) for GSM/WCDMA networks.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		ushort GetGsmLocationAreaCodeAttribute();
+		
+		/// <summary>
+        /// Mobile Cell ID for GSM/WCDMA networks.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		uint GetGsmCellIdAttribute();
+	}
+	
+	/// <summary>nsIDOMMozMobileICCInfo </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("352e7f1a-c09f-44ed-8fde-a138b09a0ea9")]
+	public interface nsIDOMMozMobileICCInfo
+	{
+		
+		/// <summary>
+        /// Integrated Circuit Card Identifier.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetIccidAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aIccid);
+		
+		/// <summary>
+        /// Mobile Country Code (MCC) of the subscriber's home network.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		ushort GetMccAttribute();
+		
+		/// <summary>
+        /// Mobile Network Code (MNC) of the subscriber's home network.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		ushort GetMncAttribute();
+		
+		/// <summary>
+        /// Service Provider Name (SPN) of the subscriber's home network.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetSpnAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSpn);
+		
+		/// <summary>
+        /// Network name must be a part of displayed carrier name.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetIsDisplayNetworkNameRequiredAttribute();
+		
+		/// <summary>
+        /// Service provider name must be a part of displayed carrier name.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetIsDisplaySpnRequiredAttribute();
+		
+		/// <summary>
+        /// Mobile Station ISDN Number (MSISDN) of the subscriber's, aka
+        /// his phone number.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetMsisdnAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMsisdn);
+	}
+	
+	/// <summary>nsIDOMMozMobileCFInfo </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("d1b35ad8-99aa-47cc-ab49-2e72b00e39df")]
+	public interface nsIDOMMozMobileCFInfo
+	{
+		
+		/// <summary>
+        /// Call forwarding rule status.
+        ///
+        /// It will be either not active (false), or active (true).
+        ///
+        /// Note: Unused for setting call forwarding options. It reports
+        /// the status of the rule when getting how the rule is
+        /// configured.
+        ///
+        /// @see 3GPP TS 27.007 7.11 "status".
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetActiveAttribute();
+		
+		/// <summary>
+        /// Indicates what to do with the rule.
+        ///
+        /// One of the CALL_FORWARD_ACTION_* constants. It will be either disable (0),
+        /// enable (1), query status (2), registration (3), or erasure (4).
+        ///
+        /// @see 3GPP TS 27.007 7.11 "mode".
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		ushort GetActionAttribute();
+		
+		/// <summary>
+        /// Indicates the reason the call is being forwarded.
+        ///
+        /// One of the CALL_FORWARD_REASON_* constants. It will be either
+        /// unconditional (0), mobile busy (1), no reply (2), not reachable (3),
+        /// all call forwarding (4), or all conditional call forwarding (5).
+        ///
+        /// @see 3GPP TS 27.007 7.11 "reason".
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		ushort GetReasonAttribute();
+		
+		/// <summary>
+        /// Phone number of forwarding address.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetNumberAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aNumber);
+		
+		/// <summary>
+        /// When "no reply" is enabled or queried, this gives the time in
+        /// seconds to wait before call is forwarded.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		ushort GetTimeSecondsAttribute();
+		
+		/// <summary>
+        /// Service for which the call forward is set up. It should be one of the
+        /// nsIDOMMozMobileConnectionInfo.ICC_SERVICE_CLASS_* values.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		ushort GetServiceClassAttribute();
+	}
+	
+	/// <summary>nsIDOMMozMobileCFInfoConsts </summary>
+	public class nsIDOMMozMobileCFInfoConsts
+	{
+		
+		// 
+		public const long CALL_FORWARD_ACTION_DISABLE = 0;
+		
+		// 
+		public const long CALL_FORWARD_ACTION_ENABLE = 1;
+		
+		// 
+		public const long CALL_FORWARD_ACTION_QUERY_STATUS = 2;
+		
+		// 
+		public const long CALL_FORWARD_ACTION_REGISTRATION = 3;
+		
+		// 
+		public const long CALL_FORWARD_ACTION_ERASURE = 4;
+		
+		// 
+		public const long CALL_FORWARD_REASON_UNCONDITIONAL = 0;
+		
+		// 
+		public const long CALL_FORWARD_REASON_MOBILE_BUSY = 1;
+		
+		// 
+		public const long CALL_FORWARD_REASON_NO_REPLY = 2;
+		
+		// 
+		public const long CALL_FORWARD_REASON_NOT_REACHABLE = 3;
+		
+		// 
+		public const long CALL_FORWARD_REASON_ALL_CALL_FORWARDING = 4;
+		
+		// 
+		public const long CALL_FORWARD_REASON_ALL_CONDITIONAL_CALL_FORWARDING = 5;
 	}
 }

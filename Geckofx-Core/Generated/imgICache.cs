@@ -35,7 +35,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("f1b74aae-5661-4753-a21c-66dd644afebc")]
+	[Guid("b06e0fa5-d6e2-4fa3-8fc0-7775aed96522")]
 	public interface imgICache
 	{
 		
@@ -72,5 +72,13 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		nsIProperties FindEntryProperties([MarshalAs(UnmanagedType.Interface)] nsIURI uri);
+		
+		/// <summary>
+        /// Make this cache instance respect private browsing notifications. This entails clearing
+        /// the chrome and content caches whenever the last-pb-context-exited notification is
+        /// observed.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void RespectPrivacyNotifications();
 	}
 }

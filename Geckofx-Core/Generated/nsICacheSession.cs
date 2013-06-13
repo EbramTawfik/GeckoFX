@@ -77,9 +77,10 @@ namespace Gecko
 		void SetProfileDirectoryAttribute([MarshalAs(UnmanagedType.Interface)] nsIFile aProfileDirectory);
 		
 		/// <summary>
-        /// Synchronous cache access.  This returns a unique descriptor each
-        /// time it is called, even if the same key is specified.  When
-        /// called by multiple threads for write access, only one writable
+        /// Synchronous cache access. This method fails if it is called on the main
+        /// thread. Use asyncOpenCacheEntry() instead. This returns a unique
+        /// descriptor each time it is called, even if the same key is specified.
+        /// When called by multiple threads for write access, only one writable
         /// descriptor will be granted.  If 'blockingMode' is set to false, it will
         /// return NS_ERROR_CACHE_WAIT_FOR_VALIDATION rather than block when another
         /// descriptor has been given WRITE access but hasn't validated the entry yet.
@@ -120,5 +121,20 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void DoomEntry([MarshalAs(UnmanagedType.LPStruct)] nsACStringBase key, [MarshalAs(UnmanagedType.Interface)] nsICacheListener listener);
+		
+		/// <summary>
+        /// Private entries will be doomed when the last private browsing session
+        /// finishes.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetIsPrivateAttribute();
+		
+		/// <summary>
+        /// Private entries will be doomed when the last private browsing session
+        /// finishes.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetIsPrivateAttribute([MarshalAs(UnmanagedType.U1)] bool aIsPrivate);
 	}
 }

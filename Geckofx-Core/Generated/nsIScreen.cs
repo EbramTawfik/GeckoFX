@@ -34,15 +34,27 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("d961f76e-8437-4bc6-9ada-a1c98ace9560")]
+	[Guid("D6F13AF4-8ACA-4A10-8687-3F99C3692AC0")]
 	public interface nsIScreen
 	{
 		
+		/// <summary>
+        /// These report screen dimensions in (screen-specific) device pixels
+        /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetRect(ref int left, ref int top, ref int width, ref int height);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetAvailRect(ref int left, ref int top, ref int width, ref int height);
+		
+		/// <summary>
+        /// And these report in global display pixels
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetRectDisplayPix(ref int left, ref int top, ref int width, ref int height);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetAvailRectDisplayPix(ref int left, ref int top, ref int width, ref int height);
 		
 		/// <summary>
         /// Locks the minimum brightness of the screen, forcing it to be at
@@ -83,6 +95,13 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetRotationAttribute(uint aRotation);
+		
+		/// <summary>
+        /// The number of device pixels per screen point in HiDPI mode.
+        /// Returns 1.0 if HiDPI mode is disabled or unsupported.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		double GetContentsScaleFactorAttribute();
 	}
 	
 	/// <summary>nsIScreenConsts </summary>

@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("16e3f8d1-7f31-48cc-93f5-9c931a977cf6")]
+	[Guid("52d22585-7737-460e-9731-c658df03304a")]
 	public interface nsIDOMBlob
 	{
 		
@@ -174,35 +174,10 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetMozFullPathInternalAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozFullPathInternal);
-	}
-	
-	/// <summary>nsIDOMMozBlobBuilder </summary>
-	[ComImport()]
-	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("57195950-edd9-496b-9b45-e4893a9ffca9")]
-	public interface nsIDOMMozBlobBuilder
-	{
 		
-		/// <summary>Member GetBlob </summary>
-		/// <param name='contentType'> </param>
-		/// <returns>A nsIDOMBlob</returns>
-		[return: MarshalAs(UnmanagedType.Interface)]
+		/// <summary>Member GetMozLastModifiedDateAttribute </summary>
+		/// <returns>A System.UInt64</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMBlob GetBlob([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase contentType);
-		
-		/// <summary>Member GetFile </summary>
-		/// <param name='name'> </param>
-		/// <param name='contentType'> </param>
-		/// <returns>A nsIDOMFile</returns>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMFile GetFile([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase name, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase contentType);
-		
-		/// <summary>Member Append </summary>
-		/// <param name='data'> </param>
-		/// <param name='endings'> </param>
-		/// <param name='jsContext'> </param>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void Append(Gecko.JsVal data, [MarshalAs(UnmanagedType.LPStruct)] nsAStringBase endings, System.IntPtr jsContext);
+		ulong GetMozLastModifiedDateAttribute();
 	}
 }

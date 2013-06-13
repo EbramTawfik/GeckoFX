@@ -32,7 +32,7 @@ namespace Gecko
     /// You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("fc58ba6e-70de-4550-aa1e-790ecc19cf98")]
+	[Guid("a82f9998-02a2-4db2-a0d1-f8353933d7b0")]
 	public interface nsIDOMMozSmsMessage
 	{
 		
@@ -46,8 +46,13 @@ namespace Gecko
 		void GetDeliveryAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDelivery);
 		
 		/// <summary>
-        /// Should be "sent" or "received".
+        /// For received messages, it is "success"; for sent messages, it can be
+        /// "pending", "success", "error", or "not-applicable" if the message was sent
+        /// without status report requisition.
         /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetDeliveryStatusAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aDeliveryStatus);
+		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetSenderAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aSender);
 		
@@ -56,6 +61,12 @@ namespace Gecko
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void GetBodyAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aBody);
+		
+		/// <summary>
+        /// Should be "normal", "class-0", "class-1", "class-2" or "class-3".
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetMessageClassAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMessageClass);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		Gecko.JsVal GetTimestampAttribute(System.IntPtr jsContext);

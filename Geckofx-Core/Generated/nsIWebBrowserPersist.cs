@@ -31,7 +31,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("dd4e0a6a-210f-419a-ad85-40e8543b9465")]
+	[Guid("35c1f231-582b-4315-a26c-a1227e3539b4")]
 	public interface nsIWebBrowserPersist : nsICancelable
 	{
 		
@@ -77,7 +77,7 @@ namespace Gecko
         /// @return NS_ERROR_FAILURE Non-specific failure.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		uint GetResultAttribute();
+		int GetResultAttribute();
 		
 		/// <summary>
         /// Callback listener for progress notifications. The object that the
@@ -108,21 +108,26 @@ namespace Gecko
         /// Save the specified URI to file.
         ///
         /// @param aURI       URI to save to file. Some implementations of this interface
-        /// may also support <CODE>nsnull</CODE> to imply the currently
+        /// may also support <CODE>nullptr</CODE> to imply the currently
         /// loaded URI.
         /// @param aCacheKey  An object representing the URI in the cache or
-        /// <CODE>nsnull</CODE>.  This can be a necko cache key,
+        /// <CODE>nullptr</CODE>.  This can be a necko cache key,
         /// an nsIWebPageDescriptor, or the currentDescriptor of an
         /// nsIWebPageDescriptor.
         /// @param aReferrer  The referrer URI to pass with an HTTP request or
-        /// <CODE>nsnull</CODE>.
+        /// <CODE>nullptr</CODE>.
         /// @param aPostData  Post data to pass with an HTTP request or
-        /// <CODE>nsnull</CODE>.
+        /// <CODE>nullptr</CODE>.
         /// @param aExtraHeaders Additional headers to supply with an HTTP request
-        /// or <CODE>nsnull</CODE>.
+        /// or <CODE>nullptr</CODE>.
         /// @param aFile      Target file. This may be a nsIFile object or an
         /// nsIURI object with a file scheme or a scheme that
         /// supports uploading (e.g. ftp).
+        /// @param aPrivacyContext A context from which the privacy status of this
+        /// save operation can be determined. Must only be null
+        /// in situations in which no such context is available
+        /// (eg. the operation has no logical association with any
+        /// window or document)
         ///
         /// @see nsIFile
         /// @see nsIURI
@@ -132,7 +137,16 @@ namespace Gecko
         /// @return NS_ERROR_INVALID_ARG One or more arguments was invalid.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SaveURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsISupports aCacheKey, [MarshalAs(UnmanagedType.Interface)] nsIURI aReferrer, [MarshalAs(UnmanagedType.Interface)] nsIInputStream aPostData, [MarshalAs(UnmanagedType.LPStr)] string aExtraHeaders, [MarshalAs(UnmanagedType.Interface)] nsISupports aFile);
+		void SaveURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsISupports aCacheKey, [MarshalAs(UnmanagedType.Interface)] nsIURI aReferrer, [MarshalAs(UnmanagedType.Interface)] nsIInputStream aPostData, [MarshalAs(UnmanagedType.LPStr)] string aExtraHeaders, [MarshalAs(UnmanagedType.Interface)] nsISupports aFile, [MarshalAs(UnmanagedType.Interface)] nsILoadContext aPrivacyContext);
+		
+		/// <summary>
+        /// @param aIsPrivate Treat the save operation as private (ie. with
+        /// regards to networking operations and persistence
+        /// of intermediate data, etc.)
+        /// @see saveURI for all other parameter descriptions
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SavePrivacyAwareURI([MarshalAs(UnmanagedType.Interface)] nsIURI aURI, [MarshalAs(UnmanagedType.Interface)] nsISupports aCacheKey, [MarshalAs(UnmanagedType.Interface)] nsIURI aReferrer, [MarshalAs(UnmanagedType.Interface)] nsIInputStream aPostData, [MarshalAs(UnmanagedType.LPStr)] string aExtraHeaders, [MarshalAs(UnmanagedType.Interface)] nsISupports aFile, [MarshalAs(UnmanagedType.U1)] bool aIsPrivate);
 		
 		/// <summary>
         /// Save a channel to a file. It must not be opened yet.
@@ -147,17 +161,17 @@ namespace Gecko
         /// document has finished loading!
         ///
         /// @param aDocument          Document to save to file. Some implementations of
-        /// this interface may also support <CODE>nsnull</CODE>
+        /// this interface may also support <CODE>nullptr</CODE>
         /// to imply the currently loaded document.
         /// @param aFile              Target local file. This may be a nsIFile object or an
         /// nsIURI object with a file scheme or a scheme that
         /// supports uploading (e.g. ftp).
         /// @param aDataPath          Path to directory where URIs linked to the document
-        /// are saved or nsnull if no linked URIs should be saved.
+        /// are saved or nullptr if no linked URIs should be saved.
         /// This may be a nsIFile object or an nsIURI object
         /// with a file scheme.
         /// @param aOutputContentType The desired MIME type format to save the
-        /// document and all subdocuments into or nsnull to use
+        /// document and all subdocuments into or nullptr to use
         /// the default behaviour.
         /// @param aEncodingFlags     Flags to pass to the encoder.
         /// @param aWrapColumn        For text documents, indicates the desired width to

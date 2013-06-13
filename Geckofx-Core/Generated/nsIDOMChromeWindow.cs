@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("7cfbc355-cbf9-4408-8e4c-a3c603ff1428")]
+	[Guid("6ff5df67-22da-4379-bf57-da775dad19f8")]
 	public interface nsIDOMChromeWindow
 	{
 		
@@ -83,7 +83,7 @@ namespace Gecko
 		
 		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIChromeFrameMessageManager GetMessageManagerAttribute();
+		nsIMessageBroadcaster GetMessageManagerAttribute();
 		
 		/// <summary>
         /// On some operating systems, we must allow the window manager to

@@ -169,7 +169,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("2379e2e1-8eab-4084-8d8c-94ffeee56804")]
+	[Guid("b10bbf29-5a54-4e1e-aa64-c4e4e5819a52")]
 	public interface nsIUpdate
 	{
 		
@@ -425,6 +425,21 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetIsSecurityUpdateAttribute([MarshalAs(UnmanagedType.U1)] bool aIsSecurityUpdate);
+		
+		/// <summary>
+        /// Whether or not the update being downloaded is an OS update. This is
+        /// generally only possible in Gonk right now.
+        /// </summary>
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetIsOSUpdateAttribute();
+		
+		/// <summary>
+        /// Whether or not the update being downloaded is an OS update. This is
+        /// generally only possible in Gonk right now.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetIsOSUpdateAttribute([MarshalAs(UnmanagedType.U1)] bool aIsOSUpdate);
 		
 		/// <summary>
         /// When the update was installed.

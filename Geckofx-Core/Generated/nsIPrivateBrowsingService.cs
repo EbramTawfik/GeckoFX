@@ -32,7 +32,7 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("4b731983-9542-49f4-b16b-de68ad1c2068")]
+	[Guid("b5a148a4-b422-478d-b475-194a126bbab1")]
 	public interface nsIPrivateBrowsingService
 	{
 		
@@ -62,15 +62,5 @@ namespace Gecko
 		[return: MarshalAs(UnmanagedType.U1)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		bool GetLastChangedByCommandLineAttribute();
-		
-		/// <summary>
-        /// Removes all data stored for a given domain.  This includes all data for
-        /// subdomains of the given domain.
-        ///
-        /// @param aDomain
-        /// The domain that will have its data removed.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void RemoveDataFromDomain([MarshalAs(UnmanagedType.LPStruct)] nsAUTF8StringBase aDomain);
 	}
 }

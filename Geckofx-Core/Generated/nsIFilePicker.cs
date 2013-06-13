@@ -34,7 +34,24 @@ namespace Gecko
     /// file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("f2c0e216-5d07-4df4-bbcb-37683077ae7e")]
+	[Guid("0d79adad-b244-49A5-9997-2a8cad93fc44")]
+	public interface nsIFilePickerShownCallback
+	{
+		
+		/// <summary>
+        /// Callback which is called when a filepicker is shown and a result
+        /// is returned.
+        ///
+        /// @param aResult One of returnOK, returnCancel, or returnReplace
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Done(short aResult);
+	}
+	
+	/// <summary>nsIFilePicker </summary>
+	[ComImport()]
+	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+	[Guid("60e2dfb6-3fc7-4A2C-8137-16bef44536fc")]
 	public interface nsIFilePicker
 	{
 		
@@ -194,18 +211,20 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		short Show();
+		
+		/// <summary>
+        /// Opens the file dialog asynchrounously.
+        /// The passed in object's done method will be called upon completion.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void Open([MarshalAs(UnmanagedType.Interface)] nsIFilePickerShownCallback aFilePickerShownCallback);
 	}
 	
 	/// <summary>nsIFilePickerConsts </summary>
 	public class nsIFilePickerConsts
 	{
 		
-		// <summary>
-        //-*- Mode: C++; tab-width: 2; indent-tabs-mode: nil; c-basic-offset: 2 -*-
-        //
-        // This Source Code Form is subject to the terms of the Mozilla Public
-        // License, v. 2.0. If a copy of the MPL was not distributed with this
-        // file, You can obtain one at http://mozilla.org/MPL/2.0/. </summary>
+		// 
 		public const int modeOpen = 0;
 		
 		// <summary>

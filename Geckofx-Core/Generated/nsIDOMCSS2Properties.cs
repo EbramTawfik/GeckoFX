@@ -36,7 +36,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("492673d6-039b-4d94-a598-dbf82abc174f")]
+	[Guid("b86b1b20-6875-402a-b463-5005077f55fe")]
 	public interface nsIDOMCSS2Properties
 	{
 		
@@ -3149,5 +3149,113 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetMozBorderImageAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozBorderImage);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetMozAlignItemsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozAlignItems);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetMozAlignItemsAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozAlignItems);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetMozAlignSelfAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozAlignSelf);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetMozAlignSelfAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozAlignSelf);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetMozFlexAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozFlex);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetMozFlexAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozFlex);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetMozFlexBasisAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozFlexBasis);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetMozFlexBasisAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozFlexBasis);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetMozFlexDirectionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozFlexDirection);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetMozFlexDirectionAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozFlexDirection);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetMozFlexGrowAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozFlexGrow);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetMozFlexGrowAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozFlexGrow);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetMozFlexShrinkAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozFlexShrink);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetMozFlexShrinkAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozFlexShrink);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetMozOrderAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozOrder);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetMozOrderAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozOrder);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void GetMozJustifyContentAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozJustifyContent);
+		
+		/// <summary>
+        /// raises(DOMException) on setting
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetMozJustifyContentAttribute([MarshalAs(UnmanagedType.LPStruct)] nsAStringBase aMozJustifyContent);
 	}
 }

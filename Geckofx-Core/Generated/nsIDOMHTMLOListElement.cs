@@ -38,7 +38,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("64155DCA-83CA-4FFE-8B64-A7F82F29586F")]
+	[Guid("8A2BA7C5-B3F2-4A57-86F9-0E87C291A591")]
 	public interface nsIDOMHTMLOListElement : nsIDOMHTMLElement
 	{
 		
@@ -750,6 +750,13 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void SetCompactAttribute([MarshalAs(UnmanagedType.U1)] bool aCompact);
+		
+		[return: MarshalAs(UnmanagedType.U1)]
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		bool GetReversedAttribute();
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetReversedAttribute([MarshalAs(UnmanagedType.U1)] bool aReversed);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		int GetStartAttribute();

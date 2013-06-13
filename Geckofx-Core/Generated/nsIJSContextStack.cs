@@ -124,6 +124,7 @@ namespace Gecko
 		
 		/// <summary>
         ///inherits methods of nsIJSContextStack </summary>
+		[PreserveSig]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		System.IntPtr GetSafeJSContext();
 	}

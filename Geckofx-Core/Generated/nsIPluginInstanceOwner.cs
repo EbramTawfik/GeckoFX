@@ -31,7 +31,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("23bd0a76-a5dc-4a1d-be76-13d7a0dfd9ff")]
+	[Guid("CE1EE148-B201-4DC7-8A65-311143EA01BF")]
 	public interface nsIPluginInstanceOwner
 	{
 		
@@ -115,5 +115,12 @@ namespace Gecko
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
 		void CallSetWindow();
+		
+		/// <summary>
+        /// Get the contents scale factor for the screen the plugin is
+        /// drawn on.
+        /// </summary>
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		double GetContentsScaleFactor();
 	}
 }

@@ -31,7 +31,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("5e346bf8-7083-4ef8-b9b9-736a1b5aa7ab")]
+	[Guid("a137d5e6-81e2-4fa3-a791-26459df723ff")]
 	public interface nsIXMLHttpRequestEventTarget : nsIDOMEventTarget
 	{
 		
@@ -199,13 +199,13 @@ namespace Gecko
         /// @param aEvent the event that is being dispatched.
         /// @param aDOMEvent the event that is being dispatched, use if you want to
         /// dispatch nsIDOMEvent, not only nsEvent.
-        /// @param aPresContext the current presentation context, can be nsnull.
-        /// @param aEventStatus the status returned from the function, can be nsnull.
+        /// @param aPresContext the current presentation context, can be nullptr.
+        /// @param aEventStatus the status returned from the function, can be nullptr.
         ///
         /// @note If both aEvent and aDOMEvent are used, aEvent must be the internal
         /// event of the aDOMEvent.
         ///
-        /// If aDOMEvent is not nsnull (in which case aEvent can be nsnull) it is used
+        /// If aDOMEvent is not nullptr (in which case aEvent can be nullptr) it is used
         /// for dispatching, otherwise aEvent is used.
         ///
         /// @deprecated This method is here just until all the callers outside Gecko
@@ -241,57 +241,50 @@ namespace Gecko
 		/// <summary>
         /// event handler attributes
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener GetOnabortAttribute();
+		Gecko.JsVal GetOnabortAttribute(System.IntPtr jsContext);
 		
 		/// <summary>
         /// event handler attributes
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnabortAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnabort);
-		
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener GetOnerrorAttribute();
+		void SetOnabortAttribute(Gecko.JsVal aOnabort, System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnerrorAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnerror);
-		
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener GetOnloadAttribute();
+		Gecko.JsVal GetOnerrorAttribute(System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnloadAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnload);
-		
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener GetOnloadstartAttribute();
+		void SetOnerrorAttribute(Gecko.JsVal aOnerror, System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnloadstartAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnloadstart);
-		
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener GetOnprogressAttribute();
+		Gecko.JsVal GetOnloadAttribute(System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnprogressAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnprogress);
-		
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener GetOntimeoutAttribute();
+		void SetOnloadAttribute(Gecko.JsVal aOnload, System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOntimeoutAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOntimeout);
-		
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener GetOnloadendAttribute();
+		Gecko.JsVal GetOnloadstartAttribute(System.IntPtr jsContext);
 		
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnloadendAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnloadend);
+		void SetOnloadstartAttribute(Gecko.JsVal aOnloadstart, System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetOnprogressAttribute(System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOnprogressAttribute(Gecko.JsVal aOnprogress, System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetOntimeoutAttribute(System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOntimeoutAttribute(Gecko.JsVal aOntimeout, System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		Gecko.JsVal GetOnloadendAttribute(System.IntPtr jsContext);
+		
+		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
+		void SetOnloadendAttribute(Gecko.JsVal aOnloadend, System.IntPtr jsContext);
 	}
 	
 	/// <summary>nsIXMLHttpRequestUpload </summary>
@@ -465,13 +458,13 @@ namespace Gecko
         /// @param aEvent the event that is being dispatched.
         /// @param aDOMEvent the event that is being dispatched, use if you want to
         /// dispatch nsIDOMEvent, not only nsEvent.
-        /// @param aPresContext the current presentation context, can be nsnull.
-        /// @param aEventStatus the status returned from the function, can be nsnull.
+        /// @param aPresContext the current presentation context, can be nullptr.
+        /// @param aEventStatus the status returned from the function, can be nullptr.
         ///
         /// @note If both aEvent and aDOMEvent are used, aEvent must be the internal
         /// event of the aDOMEvent.
         ///
-        /// If aDOMEvent is not nsnull (in which case aEvent can be nsnull) it is used
+        /// If aDOMEvent is not nullptr (in which case aEvent can be nullptr) it is used
         /// for dispatching, otherwise aEvent is used.
         ///
         /// @deprecated This method is here just until all the callers outside Gecko
@@ -507,81 +500,86 @@ namespace Gecko
 		/// <summary>
         /// event handler attributes
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMEventListener GetOnabortAttribute();
+		new Gecko.JsVal GetOnabortAttribute(System.IntPtr jsContext);
 		
 		/// <summary>
         /// event handler attributes
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetOnabortAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnabort);
+		new void SetOnabortAttribute(Gecko.JsVal aOnabort, System.IntPtr jsContext);
 		
 		/// <summary>Member GetOnerrorAttribute </summary>
-		/// <returns>A nsIDOMEventListener</returns>
-		[return: MarshalAs(UnmanagedType.Interface)]
+		/// <param name='jsContext'> </param>
+		/// <returns>A Gecko.JsVal</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMEventListener GetOnerrorAttribute();
+		new Gecko.JsVal GetOnerrorAttribute(System.IntPtr jsContext);
 		
 		/// <summary>Member SetOnerrorAttribute </summary>
 		/// <param name='aOnerror'> </param>
+		/// <param name='jsContext'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetOnerrorAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnerror);
+		new void SetOnerrorAttribute(Gecko.JsVal aOnerror, System.IntPtr jsContext);
 		
 		/// <summary>Member GetOnloadAttribute </summary>
-		/// <returns>A nsIDOMEventListener</returns>
-		[return: MarshalAs(UnmanagedType.Interface)]
+		/// <param name='jsContext'> </param>
+		/// <returns>A Gecko.JsVal</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMEventListener GetOnloadAttribute();
+		new Gecko.JsVal GetOnloadAttribute(System.IntPtr jsContext);
 		
 		/// <summary>Member SetOnloadAttribute </summary>
 		/// <param name='aOnload'> </param>
+		/// <param name='jsContext'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetOnloadAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnload);
+		new void SetOnloadAttribute(Gecko.JsVal aOnload, System.IntPtr jsContext);
 		
 		/// <summary>Member GetOnloadstartAttribute </summary>
-		/// <returns>A nsIDOMEventListener</returns>
-		[return: MarshalAs(UnmanagedType.Interface)]
+		/// <param name='jsContext'> </param>
+		/// <returns>A Gecko.JsVal</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMEventListener GetOnloadstartAttribute();
+		new Gecko.JsVal GetOnloadstartAttribute(System.IntPtr jsContext);
 		
 		/// <summary>Member SetOnloadstartAttribute </summary>
 		/// <param name='aOnloadstart'> </param>
+		/// <param name='jsContext'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetOnloadstartAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnloadstart);
+		new void SetOnloadstartAttribute(Gecko.JsVal aOnloadstart, System.IntPtr jsContext);
 		
 		/// <summary>Member GetOnprogressAttribute </summary>
-		/// <returns>A nsIDOMEventListener</returns>
-		[return: MarshalAs(UnmanagedType.Interface)]
+		/// <param name='jsContext'> </param>
+		/// <returns>A Gecko.JsVal</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMEventListener GetOnprogressAttribute();
+		new Gecko.JsVal GetOnprogressAttribute(System.IntPtr jsContext);
 		
 		/// <summary>Member SetOnprogressAttribute </summary>
 		/// <param name='aOnprogress'> </param>
+		/// <param name='jsContext'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetOnprogressAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnprogress);
+		new void SetOnprogressAttribute(Gecko.JsVal aOnprogress, System.IntPtr jsContext);
 		
 		/// <summary>Member GetOntimeoutAttribute </summary>
-		/// <returns>A nsIDOMEventListener</returns>
-		[return: MarshalAs(UnmanagedType.Interface)]
+		/// <param name='jsContext'> </param>
+		/// <returns>A Gecko.JsVal</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMEventListener GetOntimeoutAttribute();
+		new Gecko.JsVal GetOntimeoutAttribute(System.IntPtr jsContext);
 		
 		/// <summary>Member SetOntimeoutAttribute </summary>
 		/// <param name='aOntimeout'> </param>
+		/// <param name='jsContext'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetOntimeoutAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOntimeout);
+		new void SetOntimeoutAttribute(Gecko.JsVal aOntimeout, System.IntPtr jsContext);
 		
 		/// <summary>Member GetOnloadendAttribute </summary>
-		/// <returns>A nsIDOMEventListener</returns>
-		[return: MarshalAs(UnmanagedType.Interface)]
+		/// <param name='jsContext'> </param>
+		/// <returns>A Gecko.JsVal</returns>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new nsIDOMEventListener GetOnloadendAttribute();
+		new Gecko.JsVal GetOnloadendAttribute(System.IntPtr jsContext);
 		
 		/// <summary>Member SetOnloadendAttribute </summary>
 		/// <param name='aOnloadend'> </param>
+		/// <param name='jsContext'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		new void SetOnloadendAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnloadend);
+		new void SetOnloadendAttribute(Gecko.JsVal aOnloadend, System.IntPtr jsContext);
 	}
 	
 	/// <summary>
@@ -627,7 +625,7 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("2ed23d20-9d6d-47fd-b60f-2416dbd57005")]
+	[Guid("8e9768b4-339c-413c-a210-0c74934eb9e1")]
 	public interface nsIXMLHttpRequest
 	{
 		
@@ -947,9 +945,8 @@ namespace Gecko
         ///
         /// Call open() before setting an onreadystatechange listener.
         /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener GetOnreadystatechangeAttribute();
+		Gecko.JsVal GetOnreadystatechangeAttribute(System.IntPtr jsContext);
 		
 		/// <summary>
         /// Meant to be a script-only mechanism for setting a callback function.
@@ -963,7 +960,7 @@ namespace Gecko
         /// Call open() before setting an onreadystatechange listener.
         /// </summary>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnreadystatechangeAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnreadystatechange);
+		void SetOnreadystatechangeAttribute(Gecko.JsVal aOnreadystatechange, System.IntPtr jsContext);
 		
 		/// <summary>
         /// If true, the request will be sent without cookie and authentication
@@ -1020,10 +1017,11 @@ namespace Gecko
 		
 		/// <summary>Member GetSendInfo </summary>
 		/// <param name='body'> </param>
+		/// <param name='contentLength'> </param>
 		/// <param name='contentType'> </param>
 		/// <param name='charset'> </param>
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void GetSendInfo([MarshalAs(UnmanagedType.Interface)] ref nsIInputStream body, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase contentType, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase charset);
+		void GetSendInfo([MarshalAs(UnmanagedType.Interface)] ref nsIInputStream body, ref ulong contentLength, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase contentType, [MarshalAs(UnmanagedType.LPStruct)] nsACStringBase charset);
 	}
 	
 	/// <summary>
@@ -1031,41 +1029,8 @@ namespace Gecko
     /// </summary>
 	[ComImport()]
 	[InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-	[Guid("423fdd3d-41c9-4149-8fe5-b14a1d3912a0")]
+	[Guid("8ae70a39-edf1-40b4-a992-472d23421c25")]
 	public interface nsIJSXMLHttpRequest
 	{
-		
-		/// <summary>
-        /// Meant to be a script-only mechanism for setting an upload progress event
-        /// listener.
-        /// This attribute should not be used from native code!!
-        /// This event listener may be called multiple times during the upload..
-        ///
-        /// After the initial response, all event listeners will be cleared.
-        /// // XXXbz what does that mean, exactly?
-        ///
-        /// This event listener must be set BEFORE calling open().
-        ///
-        /// Mozilla only.
-        /// </summary>
-		[return: MarshalAs(UnmanagedType.Interface)]
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		nsIDOMEventListener GetOnuploadprogressAttribute();
-		
-		/// <summary>
-        /// Meant to be a script-only mechanism for setting an upload progress event
-        /// listener.
-        /// This attribute should not be used from native code!!
-        /// This event listener may be called multiple times during the upload..
-        ///
-        /// After the initial response, all event listeners will be cleared.
-        /// // XXXbz what does that mean, exactly?
-        ///
-        /// This event listener must be set BEFORE calling open().
-        ///
-        /// Mozilla only.
-        /// </summary>
-		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime)]
-		void SetOnuploadprogressAttribute([MarshalAs(UnmanagedType.Interface)] nsIDOMEventListener aOnuploadprogress);
 	}
 }

@@ -132,5 +132,11 @@ namespace Gecko
         // If set, only IPv4 addresses will be returned from resolve/asyncResolve.
         // </summary>
 		public const ulong RESOLVE_DISABLE_IPV6 = (1<<5);
+		
+		// <summary>
+        // If set, only literals and cached entries will be returned from resolve/
+        // asyncResolve.
+        // </summary>
+		public const ulong RESOLVE_OFFLINE = (1<<6);
 	}
 }
