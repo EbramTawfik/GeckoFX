@@ -120,8 +120,7 @@ namespace GeckoFxTest
 			var tabPage = new TabPage();
 			tabPage.Text = "blank";
 			var browser = new GeckoWebBrowser();
-			browser.Dock = DockStyle.Fill;
-			browser.DisableWmImeSetContext = true;
+			browser.Dock = DockStyle.Fill;			
 			tabPage.DockPadding.Top = 25;
 			tabPage.Dock = DockStyle.Fill;
 

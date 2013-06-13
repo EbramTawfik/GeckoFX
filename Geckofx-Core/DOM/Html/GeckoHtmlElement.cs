@@ -156,29 +156,25 @@ namespace Gecko
 			set { nsString.Set( _domHtmlElement.GetContentEditableAttribute, value ); }
 		}
 
-					(int)Math.Round(domRect.GetTopAttribute()),
-					(int)Math.Round(domRect.GetWidthAttribute()),
-					(int)Math.Round(domRect.GetHeightAttribute()));			
-			}
-		}
-
 		public System.Drawing.Rectangle[] ClientRects
 		{
 			get
 			{
-				nsIDOMClientRectList domRects = DomElement.GetClientRects();
+				nsIDOMClientRectList domRects = DOMHtmlElement.GetClientRects();
 				uint count = domRects.GetLengthAttribute();
 				Rectangle[] rects = new Rectangle[count];
 				for (uint i = 0; i < count; i++)
 				{
 					nsIDOMClientRect domRect = domRects.Item(i);
 					rects[i] = new Rectangle(
-						(int)Math.Round(domRect.GetLeftAttribute()),
-						(int)Math.Round(domRect.GetTopAttribute()),
-						(int)Math.Round(domRect.GetWidthAttribute()),
-						(int)Math.Round(domRect.GetHeightAttribute()));
+						(int) Math.Round(domRect.GetLeftAttribute()),
+						(int) Math.Round(domRect.GetTopAttribute()),
+						(int) Math.Round(domRect.GetWidthAttribute()),
+						(int) Math.Round(domRect.GetHeightAttribute()));
 				}
 				return rects;
+			}
+		}
 
 		public int OffsetLeft { get { return _domHtmlElement.GetOffsetLeftAttribute(); } }
 		public int OffsetTop { get { return _domHtmlElement.GetOffsetTopAttribute(); } }

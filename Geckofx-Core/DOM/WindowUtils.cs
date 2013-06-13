@@ -201,7 +201,7 @@ namespace Gecko.DOM
 		{
 			using (nsAString type = new nsAString(aType))
 			{
-				_windowUtils.Instance.SendMouseEvent( type, aX, aY, aButton, aClickCount, aModifiers, aIgnoreRootScrollFrame );
+				_windowUtils.Instance.SendMouseEvent( type, aX, aY, (int)aButton, aClickCount, aModifiers, aIgnoreRootScrollFrame, aPressure, aInputSourceArg);
 			}
 		}
 		
@@ -214,14 +214,9 @@ namespace Gecko.DOM
 		{
 			using (nsAString type = new nsAString(aType))
 			{
-				_windowUtils.Instance.SendMouseEventToWindow( type, aX, aY, aButton, aClickCount, aModifiers, aIgnoreRootScrollFrame );
+				_windowUtils.Instance.SendMouseEventToWindow( type, aX, aY, (int)aButton, aClickCount, aModifiers, aIgnoreRootScrollFrame, aPressure, aInputSourceArg );
 			}
 		}		
-
-		public void SendWheelEvent(float aX, float aY, double aDeltaX, double aDeltaY, double aDeltaZ, uint aDeltaMode, int aModifiers, int aLineOrPageDeltaX, int aLineOrPageDeltaY, uint aOptions)
-		{
-				_windowUtils.Instance.SendMouseScrollEvent( type, aX, aY, aButton, aScrollFlags, aDelta, aModifiers );
-		}	
 
 		/// <summary>
         /// Synthesize a key event to the window. The event types supported are:
@@ -718,17 +713,7 @@ namespace Gecko.DOM
 		public void ResumeTimeouts()
 		{
 			_windowUtils.Instance.ResumeTimeouts();
-		}
-		
-		/// <summary>
-        /// Set the network status to online from the Offline mode error page.
-        ///
-        /// The caller of this method must be about:neterror.
-        /// </summary>		
-		public void GoOnline()
-		{
-			_windowUtils.Instance.GoOnline();
-		}
+		}				
 		
 		/// <summary>
         /// What type of layer manager the widget associated with this window is
