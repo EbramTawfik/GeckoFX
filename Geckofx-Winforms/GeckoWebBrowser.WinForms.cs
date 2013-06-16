@@ -252,6 +252,7 @@ namespace Gecko
 			const int ISC_SHOWUICOMPOSITIONWINDOW = unchecked ((int)0x80000000);
 			if ( !DesignMode )
 			{
+				IntPtr focus;
 				switch ( m.Msg )
 				{
 					case WM_GETDLGCODE:
@@ -262,17 +263,20 @@ namespace Gecko
 						if ( Xpcom.IsWindows )
 						{
 							m.Result = ( IntPtr ) MA_ACTIVATE;
-							var focus = User32.GetFocus();
-							// this special situation is detected
-							// Handle->subwindow[MozillaWindowClass]->focus[MozillaWindowClass]
-							if ( (!IsSubWindow( Handle, focus ))||(User32.IsChild( Handle,User32.GetParent( focus ) )) )
+							focus = User32.GetFocus();
+							if ( !IsSubWindow( Handle, focus ) )
 							{
-							//	Console.WriteLine( "+WM_MOUSEACTIVATE {0:X8} lastfocus", focus.ToInt32() );
-								this.Focus();
+							//	var str = string.Format( "+WM_MOUSEACTIVATE {0:X8} lastfocus", focus.ToInt32() );
+							//	System.Diagnostics.Debug.WriteLine( str );
+								if ( WebBrowserFocus != null )
+								{
+									WebBrowserFocus.Activate();
+								}
 							}
 							else
 							{
-								//	Console.WriteLine( "-WM_MOUSEACTIVATE {0:X8} lastfocus", focus.ToInt32() );
+							//	var str = string.Format( "-WM_MOUSEACTIVATE {0:X8} lastfocus", focus.ToInt32() );
+							//	System.Diagnostics.Debug.WriteLine( str );
 							}
 							return;
 						}
@@ -280,33 +284,38 @@ namespace Gecko
 						
 					//http://msdn.microsoft.com/en-US/library/windows/desktop/dd374142%28v=vs.85%29.aspx
 					case WM_IME_SETCONTEXT:
-						if ( User32.IsChild( Handle, User32.GetFocus() ) )
+						focus = User32.GetFocus();
+						if ( User32.IsChild( Handle, focus ) )
 						{
 							break;
 						}
+
 						if ( WebBrowserFocus != null )
 						{
-							//Console.WriteLine("WM_IME_SETCONTEXT {0} {1}", m.WParam, m.LParam.ToString("X8"));
+						//	var str = string.Format( "WM_IME_SETCONTEXT {0} {1} {2} (focus on {3})", m.HWnd.ToString( "X8" ), m.WParam, m.LParam.ToString( "X8" ), focus.ToString( "X8" ) );
+						//	System.Diagnostics.Debug.WriteLine( str );
+
 
 							var param = m.LParam.ToInt32();
-							if ((param&ISC_SHOWUICOMPOSITIONWINDOW)!=0)
+							if ( ( param & ISC_SHOWUICOMPOSITIONWINDOW ) != 0 )
 							{
 
 							}
 							if ( m.WParam == IntPtr.Zero )
 							{
 								// zero
-								RemoveInputFocus();	
+								RemoveInputFocus();
 								WebBrowserFocus.Deactivate();
 							}
 							else
 							{
-								// non-zero (1)		
+								// non-zero (1)
 								WebBrowserFocus.Activate();
 								SetInputFocus();
 							}
 							return;
 						}
+
 						break;
 					case WM_PAINT:
 						break;

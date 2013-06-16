@@ -87,6 +87,11 @@ namespace Gecko
 			set { nsString.Set(_domNode.SetNodeValueAttribute, value); }
 		}
 
+		public string NodeName
+		{
+			get { return nsString.Get(_domNode.GetNodeNameAttribute); }
+		}
+
 		/// <summary>
 		/// Gets a collection containing all child nodes of this node.
 		/// </summary>
@@ -204,6 +209,17 @@ namespace Gecko
 			}
 		}
 
+
+		private nsIDOMXPathResult EvaluateXPath( string xpath )
+		{
+			var evaluator = Xpcom.CreateInstance2<nsIDOMXPathEvaluator>( Contracts.XPathEvaluator );
+			nsIDOMNode node = DomObject;
+			nsIDOMXPathNSResolver resolver = evaluator.Instance.CreateNSResolver( node );
+			nsIDOMXPathResult result =
+				( nsIDOMXPathResult ) evaluator.Instance.Evaluate( new nsAString( xpath ), node, resolver, 0, null );
+			return result;
+		}
+
 		/// <summary>
 		/// Get GeckoNodes from give xpath expression.
 		/// </summary>
@@ -211,10 +227,7 @@ namespace Gecko
 		/// <returns></returns>
 		public IEnumerable<GeckoNode> GetNodes(string xpath)
 		{
-			var evaluator = Xpcom.CreateInstance2<nsIDOMXPathEvaluator>( Contracts.XPathEvaluator );
-			nsIDOMNode node = (nsIDOMNode)this.DomObject;
-			nsIDOMXPathNSResolver resolver = evaluator.Instance.CreateNSResolver(node);
-			nsIDOMXPathResult result = (nsIDOMXPathResult)evaluator.Instance.Evaluate(new nsAString(xpath), node, resolver, 0, null);
+			var result = EvaluateXPath( xpath );
 
 			return new GeckoNodeEnumerable(result);
 		}
@@ -226,12 +239,23 @@ namespace Gecko
 		/// <returns></returns>
 		public IEnumerable<GeckoHtmlElement> GetElements(string xpath)
 		{
-			var evaluator = Xpcom.CreateInstance2<nsIDOMXPathEvaluator>(Contracts.XPathEvaluator);
-			nsIDOMNode node = (nsIDOMNode)this.DomObject;
-			nsIDOMXPathNSResolver resolver = evaluator.Instance.CreateNSResolver(node);
-			nsIDOMXPathResult result = (nsIDOMXPathResult)evaluator.Instance.Evaluate(new nsAString(xpath), node, resolver, 0, null);
+			var result = EvaluateXPath( xpath );
 
 			return new GeckoElementEnumerable(result);
+		}
+
+		public GeckoNode GetSingleElement( string xpath )
+		{
+			var result = EvaluateXPath( xpath );
+
+			var type = result.GetResultTypeAttribute();
+
+			if ( type == nsIDOMXPathResultConsts.UNORDERED_NODE_ITERATOR_TYPE )
+			{
+				return result.IterateNext().Wrap( Create );
+			}
+
+			return result.GetSingleNodeValueAttribute().Wrap( Create );
 		}
 
 
