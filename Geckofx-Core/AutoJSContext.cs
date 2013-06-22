@@ -50,7 +50,6 @@ namespace Gecko
 		
 		public IntPtr ContextPointer { get { return _cx; } }
 
-		private nsIThreadJSContextStack _jsContextStack;
 		private readonly nsIJSContextStack _contextStack;
 
 		private readonly nsIPrincipal _systemPrincipal;
@@ -67,10 +66,7 @@ namespace Gecko
 		{
 			if (context == IntPtr.Zero)
 			{
-				_jsContextStack = Xpcom.GetService<nsIThreadJSContextStack>("@mozilla.org/js/xpc/ContextStack;1");
-				// Due to GetSafeJSContext (being changed from an attribute to a virtual method in FF 15) we can no longer call
-				// it safely from C#. // TODO: find a better solution for this.				
-				context = _jsContextStack.GetSafeJSContext();
+				context = GlobalJSContextHolder.SafeJSContext;
 			}
 			
 			_cx = context;			
